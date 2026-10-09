@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "task": "P03-01",
-  "status": "in_progress",
+  "status": "implemented_and_verified",
   "acceptedRuntimeSource": "6361510faf904402eea8a5cb18eec21b112b4b7e",
   "findings": {
     "failedDocumentationSource": "3654890ee3be23b4cf2d411b50b4e03c5d9783d2",
@@ -31,7 +31,8 @@
       "runId": 37942217349,
       "sha256": "d5af9168c4b6c753ef91c52d9f551bd80ffd5b2a78941d6690ba0f2cf69547f2",
       "cache": ".cache/ci-37923489728/evidence-37942217349.zip",
-      "trace": "test-results/e2e/P03-01.files-P03-01-T08-na-e9cff--only-to-the-original-draft/trace.zip"
+      "trace": "test-results/e2e/P03-01.files-P03-01-T08-na-e9cff--only-to-the-original-draft/trace.zip",
+      "extractedTraceSha256": "b7e90cf8c0cd04d5030980963074ea1faab099fb81b62e6128d593f669931584"
     },
     "trigger": "Core creates the session before the sessions.create reply and DesktopShell.refresh finish; the previous chat-surface/input remains enabled. A Core workspace query can observe the new ID before renderer navigation.",
     "fix": "Use the existing chat-surface data-session-id to wait for a different displayed session and its loaded input before filling. Delay one real sessions.create reply300ms during the held real files.import reply to keep the race observable. No production source or original isolation assertions changed."
@@ -69,10 +70,7 @@
       "failed": 0
     }
   ],
-  "pending": [
-    "Push and exact-source CI of changed test",
-    "Final task and requirement handoff"
-  ],
+  "pending": [],
   "scope": "P03-01 only; P03-02/03 and gate remain not_started; no real account/model or transplanted capability report",
   "source": {
     "changed": "tests/e2e/P03-01.files.spec.ts",
@@ -96,5 +94,227 @@
       "docs/evidence/P03-01/task-usage.png"
     ],
     "action": "Restored only this run’s regenerated PNGs to the already reviewed c78e40a versions; no UI/product source changed."
-  }
+  },
+  "acceptedTestSource": "ab6edd4240af337a5e4e0bdaa4301f783b91e489",
+  "ci": {
+    "source": "ab6edd4240af337a5e4e0bdaa4301f783b91e489",
+    "runs": [
+      {
+        "id": 37948612539,
+        "url": "https://github.com/tteok1/TapKit/actions/runs/37948612539",
+        "sha": "ab6edd4240af337a5e4e0bdaa4301f783b91e489",
+        "event": "pull_request",
+        "attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "jobs": [
+          {
+            "id": 113881277695,
+            "name": "check",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 113889055541,
+            "name": "startup-diagnostics",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 37948602670,
+        "url": "https://github.com/tteok1/TapKit/actions/runs/37948602670",
+        "sha": "ab6edd4240af337a5e4e0bdaa4301f783b91e489",
+        "event": "push",
+        "attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "jobs": [
+          {
+            "id": 113881243351,
+            "name": "check",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 113888438357,
+            "name": "startup-diagnostics",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      }
+    ],
+    "checkReports": [
+      {
+        "jobId": 113881243351,
+        "unit": 263,
+        "integration": 238,
+        "electron": 25,
+        "standardP00": {
+          "total": 22,
+          "passed": 22,
+          "failed": 0,
+          "pending": 0
+        },
+        "standardParser": {
+          "schemaVersion": 1,
+          "task": "P03-01",
+          "startedAt": "2026-10-09T15:15:44.768Z",
+          "endedAt": "2026-10-09T15:16:00.458Z",
+          "command": "pnpm test:integration P03-01.native-parser --reporter=json --outputFile=test-results/P03-01-native-parser.json",
+          "exitCode": 0,
+          "standardUser": true,
+          "adapterSha256": "34721611394eb3697828f9b8beae68e1b3360f5f4a13a37a86294224abd286d0",
+          "passed": true,
+          "missingCases": [],
+          "tests": {
+            "total": 3,
+            "passed": 3,
+            "failed": 0,
+            "pending": 0
+          }
+        },
+        "standardRuntime": {
+          "exitCode": 0,
+          "standardUser": true,
+          "tests": {
+            "total": 22,
+            "passed": 22,
+            "failed": 0,
+            "pending": 0
+          },
+          "missingCases": []
+        }
+      },
+      {
+        "jobId": 113881277695,
+        "unit": 263,
+        "integration": 238,
+        "electron": 25,
+        "standardP00": {
+          "total": 22,
+          "passed": 22,
+          "failed": 0,
+          "pending": 0
+        },
+        "standardParser": {
+          "schemaVersion": 1,
+          "task": "P03-01",
+          "startedAt": "2026-10-09T15:16:59.924Z",
+          "endedAt": "2026-10-09T15:17:16.252Z",
+          "command": "pnpm test:integration P03-01.native-parser --reporter=json --outputFile=test-results/P03-01-native-parser.json",
+          "exitCode": 0,
+          "standardUser": true,
+          "adapterSha256": "34721611394eb3697828f9b8beae68e1b3360f5f4a13a37a86294224abd286d0",
+          "passed": true,
+          "missingCases": [],
+          "tests": {
+            "total": 3,
+            "passed": 3,
+            "failed": 0,
+            "pending": 0
+          }
+        },
+        "standardRuntime": {
+          "exitCode": 0,
+          "standardUser": true,
+          "tests": {
+            "total": 22,
+            "passed": 22,
+            "failed": 0,
+            "pending": 0
+          },
+          "missingCases": []
+        }
+      }
+    ],
+    "startupReports": [
+      {
+        "jobId": 113888438357,
+        "storagePasses": 3,
+        "vaultPasses": 3,
+        "markers": [
+          "STARTUP_DIAGNOSTIC_REPEAT 1 storage",
+          "STARTUP_DIAGNOSTIC_REPEAT 1 vault",
+          "STARTUP_DIAGNOSTIC_REPEAT 2 storage",
+          "STARTUP_DIAGNOSTIC_REPEAT 2 vault",
+          "STARTUP_DIAGNOSTIC_REPEAT 3 storage",
+          "STARTUP_DIAGNOSTIC_REPEAT 3 vault"
+        ]
+      },
+      {
+        "jobId": 113889055541,
+        "storagePasses": 3,
+        "vaultPasses": 3,
+        "markers": [
+          "STARTUP_DIAGNOSTIC_REPEAT 1 storage",
+          "STARTUP_DIAGNOSTIC_REPEAT 1 vault",
+          "STARTUP_DIAGNOSTIC_REPEAT 2 storage",
+          "STARTUP_DIAGNOSTIC_REPEAT 2 vault",
+          "STARTUP_DIAGNOSTIC_REPEAT 3 storage",
+          "STARTUP_DIAGNOSTIC_REPEAT 3 vault"
+        ]
+      }
+    ],
+    "artifacts": [
+      {
+        "runId": 37948612539,
+        "id": 11625003557,
+        "name": "windows-p00-evidence",
+        "url": "https://api.github.com/repos/tteok1/TapKit/actions/artifacts/11625003557",
+        "githubReportedDigest": "sha256:4eb01a2b091c917cf9a46d013e859cdb7d00df6e8e44a7db635da621136ca42a",
+        "note": "GitHub metadata digest; this follow-up ZIP was not downloaded; original6361510 raw artifact was downloaded and verified."
+      },
+      {
+        "runId": 37948602670,
+        "id": 11626096258,
+        "name": "windows-p00-evidence",
+        "url": "https://api.github.com/repos/tteok1/TapKit/actions/artifacts/11626096258",
+        "githubReportedDigest": "sha256:dcbc0985c13f63248a959a7cc4190490184304089a04385b1f923c8c78c8a2bb",
+        "note": "GitHub metadata digest; this follow-up ZIP was not downloaded; original6361510 raw artifact was downloaded and verified."
+      }
+    ],
+    "scope": "Only E2E synchronization changed; runtime/native source is byte-identical to accepted6361510; standard-user capabilities apply only to the ephemeral CIhosts.",
+    "logs": [
+      {
+        "jobId": 113881243351,
+        "path": ".cache/ci-37923489728/job-113881243351.log",
+        "normalization": "GitHub decoded text; CRLF normalized to LF; finalLF preserved by cache write",
+        "sha256": "bc1419896ed5e5c85ba688d7201a4246781ff0fb26bf890068bc59af227ca854"
+      },
+      {
+        "jobId": 113881277695,
+        "path": ".cache/ci-37923489728/job-113881277695.log",
+        "normalization": "GitHub decoded text; CRLF normalized to LF; finalLF preserved by cache write",
+        "sha256": "7d33721ca80f069f8aa10901db736e33ede898402e2ff1e3f66a2e46aa38da92"
+      },
+      {
+        "jobId": 113888438357,
+        "path": ".cache/ci-37923489728/job-113888438357.log",
+        "normalization": "GitHub decoded text; CRLF normalized to LF; finalLF preserved by cache write",
+        "sha256": "8bd3006a5f819e1041d429f54d77eedde0f5acfc67a6450f18e1d098a841f3fb"
+      },
+      {
+        "jobId": 113889055541,
+        "path": ".cache/ci-37923489728/job-113889055541.log",
+        "normalization": "GitHub decoded text; CRLF normalized to LF; finalLF preserved by cache write",
+        "sha256": "f0b7c43319fe828df650702700cfaf201ce7c60b9571eb14489e5c9d3b798567"
+      }
+    ]
+  },
+  "pushAttempts": [
+    {
+      "tls": "default; HTTP1.1",
+      "exitCode": 128,
+      "reason": "connection reset; API ref remainedc78e40a"
+    },
+    {
+      "tls": "one-command schannel; HTTP1.1",
+      "exitCode": 0,
+      "remoteRefVerified": "ab6edd4240af337a5e4e0bdaa4301f783b91e489"
+    }
+  ],
+  "handoff": "All24 P03-01 scoped requirements verified. Runtime/native source remains6361510. Test sourceab6edd4 resolves the reproduced navigation timing race without relaxing isolation/text/persistence assertions. P03-02/03 and gate not_started."
 }

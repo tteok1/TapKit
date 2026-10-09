@@ -1,6 +1,6 @@
 # P03-01 公开修复验收审计
 
-2026-10-09接续：下表保留6361510的24项真实验收；收口文档CI发现T08测试等待竞态，FR-03-002暂回in_progress。受控真实回包延迟复现后，仅修改测试等待页面会话ID及输入加载；T08三轮15/15与完整P03 17/17、check/docs/diff退出0，新测试源码CI待核验。业务/原生源码不变；最新状态和证据以 [导航同步复核](public-navigation-sync-2026-10-09.json) 为准。
+2026-10-09最终接续：全部24项需求及T07/T08=implemented_and_verified。业务/原生源码仍为6361510，最新测试同步源码ab6edd4240af337a5e4e0bdaa4301f783b91e489之push CI37948602670与PR CI37948612539的check/startup均completed/success，unit263/integration238/Electron25/perf、标准P00 22/22/P03 3/3零pending/缺项。3654890文档CI暴露的旧Composer enabled竞态经300ms真实创建回包延迟复现；页面会话ID/输入加载等待修复后本地T08三轮15/15、完整P03 17/17和新CI通过，全部隔离/原件/持久化断言保留。下表原验收链路保持，最新证据见 [导航同步复核](public-navigation-sync-2026-10-09.json)。
 
 status：implemented_and_verified；验收源码 6361510faf904402eea8a5cb18eec21b112b4b7e，公开修复分支 codex/p03-01-ci-repair。本地运行结果和首轮失败详见 [修复验证](public-ci-repair-2026-10-09.json)，真实源码6361510的push CI37938112057与PR CI37938119655均completed/success。原 [需求审计](requirements-audit-2026-10-09.md) 是历史接续资料，本表对应当前公开源码和本轮实际检查。
 
