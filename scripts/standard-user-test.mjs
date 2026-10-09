@@ -50,6 +50,14 @@ env.Path = dirname(node) + delimiter + (process.env.Path ?? process.env.PATH ?? 
 try {
   const commands = [
     [join(target, 'scripts/prepare-native.mjs')],
+    // The fresh kit intentionally copies source rather than dist. Prepare the
+    // fixed parser once, before probes; parallel tests never rebuild it.
+    [
+      join(target, 'node_modules/vite/bin/vite.js'),
+      'build',
+      '--config',
+      'packages/retrieval/vite.worker.config.ts',
+    ],
     [join(target, 'scripts/runtime-probe.mjs')],
     [join(target, 'scripts/p03-parser-probe.mjs')],
   ];

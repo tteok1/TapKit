@@ -8,4 +8,6 @@ Core 仅对固定的受信 parse.cjs 启动参数增加 --preserve-symlinks-main
 
 PDF 单测把固定 PDF.js 加载移到有界 beforeAll，解析断言继续使用既有测试预算；Electron 的合成种子子进程单独关闭启动诊断，应用进程诊断保留，成功标记仍严格检查。每项测试重置并清理其应用实例。
 
+原生测试消费 bootstrap/build 已准备的 bundle，不在并行测试期间清空共享 dist。独立标准用户 kit 只复制源码，因此 standard-user-test 在 prepare-native 后、两个探针前顺序构建固定解析 bundle 与 PDF 资源；不从其他主机搬运能力报告，也不扩大 kit 或 AppContainer 权限。
+
 上述参数是修复候选；便携进程与编排分类测试不能替代真实标准用户/AppContainer 验收。必须通过 P03 正向格式、恶意输入、取消、helper kill 与重试，以及原有 P00 隔离回归后才可将 P03-01 标为已验证。本机应用控制限制保留。

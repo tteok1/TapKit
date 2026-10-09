@@ -6,7 +6,7 @@
   "source": {
     "branch": "codex/p03-01-ci-repair",
     "baseCommit": "752ab6a32e23af10f6dccc6eb781247bda248bba",
-    "changes": "uncommitted working tree",
+    "changes": "67aee23 plus standard-user source-kit preparation repair",
     "files": [
       {
         "path": "packages/core/src/file-parser.ts",
@@ -38,9 +38,14 @@
       },
       {
         "path": "docs/adr/0041-isolated-parser-node-entry.md",
-        "sha256": "e9c752819a63a4126a97addfb2916f2a6bb008e9e6a1546e7b4be2b77ce57fac"
+        "sha256": "faa8ae9230504e852fb5d5f9e769a45f41946be335907184f352e22bde1cb7ac"
+      },
+      {
+        "path": "scripts/standard-user-test.mjs",
+        "sha256": "df4a8df67f638b600a7b6afceac4ee4d98f79476a28c97086dff1cdcd1e6d2aa"
       }
-    ]
+    ],
+    "commit": "67aee23fbbb6e4ad8599b9bbfcdbd546054b0d30"
   },
   "checkpoint": "status：in_progress；修复分支 codex/p03-01-ci-repair，基线752ab6a。固定Node主入口/模块加载参数及启动失败分类、PDF.js独立初始化预算、Electron种子诊断环境和实例清理已实现。bootstrap重试/ABI、全量unit263/263、明确清单P03便携integration78/78、完整P03 Electron17/17（启动诊断开启）及desktop build退出0。首轮integration78/81：Vitest项目未应用exclude而误选native，native重建共享dist造成两项编排ENOENT；ZIP样例错误要求正文检索造成第三失败。已移除native重建并按既定ZIP原件/目录元数据范围校正断言，11文件便携复验全部通过。该轮native真实2/3且零网络/身份/Job回收观察成立，不代表标准用户通过或生产能力开放。真实验收现覆盖15种格式（含ZIP安全目录）/扫描PDF及7项恶意或失败输入；需新CI管理员、标准用户、隔离回归收口。截图已核查为本轮合成资料。P03-02/03未开始，无gate；本轮尚未push。证据：docs/evidence/P03-01/public-ci-repair-2026-10-09.json。",
   "checks": [
@@ -122,6 +127,13 @@
     {
       "command": "git diff --check",
       "exitCode": 0
+    },
+    {
+      "command": "node --check scripts/standard-user-test.mjs; pnpm check",
+      "exitCode": 0,
+      "log": ".cache/ci-37923489728/check-standard-kit.log",
+      "logSha256": "9ac230c0410e5e7ec53d1e684d4d419fc8410cb7f44fc18b0cbb828936c1194f",
+      "detail": "标准用户源码kit构建准备语法及324文件静态检查通过"
     }
   ],
   "nativeLocal": {
@@ -443,7 +455,7 @@
     "policy": "unchanged; production capability remains failed; no probe report transfer or host-process fallback"
   },
   "nativeRemote": "pending_candidate_ci",
-  "externalWrites": "none_this_goal_yet",
+  "externalWrites": "repair branch push and Draft PR 1 only; no merge",
   "screenshots": [
     {
       "path": "docs/evidence/P03-01/chat-host-import.png",
@@ -521,5 +533,41 @@
     "sha256": "527fadee13e0c05939a6a05d5bd6eec6cd2e3dbd648b9f8e447c6518133d8580",
     "verification": "Cargo.lock checksum before and after exclusive copy"
   },
-  "finalLocalCheckedAt": "2026-10-09T13:17:38.808Z"
+  "finalLocalCheckedAt": "2026-10-09T13:17:38.808Z",
+  "delivery": {
+    "branch": "codex/p03-01-ci-repair",
+    "repository": "tteok1/TapKit",
+    "push": {
+      "exitCode": 0,
+      "remoteSha": "67aee23fbbb6e4ad8599b9bbfcdbd546054b0d30",
+      "verifiedBy": "git ls-remote"
+    },
+    "pullRequest": {
+      "number": 1,
+      "url": "https://github.com/tteok1/TapKit/pull/1",
+      "draft": true,
+      "attached": true
+    },
+    "ci": {
+      "runId": 37935864184,
+      "jobId": 113837630323,
+      "url": "https://github.com/tteok1/TapKit/actions/runs/37935864184",
+      "headSha": "67aee23fbbb6e4ad8599b9bbfcdbd546054b0d30",
+      "status": "in_progress",
+      "lastObservedStep": "Verify P00-03 and P03 parser as an independent standard user",
+      "completedSuccessfulSteps": [
+        "bootstrap",
+        "Check",
+        "Unit and current-route integration",
+        "Dedicated Core performance checks",
+        "Build and Electron checks"
+      ]
+    },
+    "prAuthorization": "User explicitly approved existing Git credential in-memory use and Draft PR creation after connector 403 and automatic-review rejection; approved execution succeeded; no credentials persisted"
+  },
+  "standardUserPreparationRepair": {
+    "reason": "Kit intentionally excludes dist/out; native beforeAll no longer rebuilds shared dist",
+    "change": "Build fixed parser and locked PDF assets once in sequential standard-user preparation before both probes",
+    "acceptance": "pending new CI; no ACL or capability report change"
+  }
 }
