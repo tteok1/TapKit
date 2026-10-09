@@ -1,9 +1,12 @@
 # 开发进度总表
 
+## 2026-10-10 收口文档格式失败诊断
+
+P03-01业务/测试仍以ab6edd4的完整双CI验收为准；最终文档提交e85633d的push CI37954965077与PR CI37954970148均在Check阶段因INDEX.md和P03-01.md的Prettier格式失败（323文件/2失败），后续业务/标准用户套件未运行，独立startup均success。本地同一命令已复现退出1。原因是收口Markdown新增空行/表格对齐后只执行docs:check，遗漏最终完整check。现统一格式化受影响进度文档并重跑完整check/docs/diff，本地完整check（323文件/0格式失败）、docs:check（37状态/证据）和diff均退出0；推送后新CI待确认。业务/测试无改动，24项需求状态及R15不变；PR仍Draft，未合并，P03-02/03和gate未开始。证据：docs/evidence/P03-01/public-handoff-format-2026-10-10.json。
+
 ## 2026-10-09 导航同步与最终验收
 
 status：implemented_and_verified；测试同步源码ab6edd4的push CI37948602670和PR CI37948612539均completed/success（check/startup）；unit263/integration238/Electron25/perf通过，独立标准P00 22/22、P03 3/3零pending/缺项，固定parser摘要匹配。300ms真实创建回包延迟下旧等待复现空草稿失败；等待页面data-session-id及输入加载后本地T08三轮15/15、完整P03 17/17、check/docs/diff退出0，CI保留同一延迟与全部隔离/原件/持久化断言。业务/原生源码与已验收6361510逐字节一致。FR-03-002恢复implemented_and_verified，全部24项需求按既定范围收口。完整失败轮与新源码CI见 docs/evidence/P03-01/public-navigation-sync-2026-10-09.json；历史原生证据仍见public-ci-repair和public-acceptance-audit。P03-02/03和gate未开始；本机仍须自己的有效probe。
-
 
 ## 2026-10-09 导航测试时序复核
 
@@ -152,7 +155,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P02-01 | 桌面布局、设置和模型连接体验       | P01-03         | implemented_not_live_verified | docs/progress/P02-01.md              |
 | P02-02 | 聊天发送、流式消息和只读执行循环   | P02-01         | implemented_not_live_verified | docs/progress/P02-02.md              |
 | P02-03 | 会话组织、消息分支与全局搜索       | P02-02         | implemented_not_live_verified | docs/progress/P02-03.md              |
-| P03-01 | 文件导入、版本、资料库与解析流水线 | P02-03, P00-03 | implemented_and_verified                   | docs/progress/P03-01.md              |
+| P03-01 | 文件导入、版本、资料库与解析流水线 | P02-03, P00-03 | implemented_and_verified      | docs/progress/P03-01.md              |
 | P03-02 | 文件预览、定位与右侧工作面板       | P03-01         | not_started                   | docs/progress/P03-02.md              |
 | P03-03 | 项目管理、资料范围与索引版本       | P03-02         | not_started                   | docs/progress/P03-03.md              |
 | P04-01 | 中文混合检索、重排与引用证据       | P03-03         | not_started                   | docs/progress/P04-01.md              |

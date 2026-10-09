@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "task": "P03-01",
+  "status": "locally_verified_pending_ci",
+  "diagnosedOn": "2026-10-10",
+  "branch": "codex/p03-01-ci-repair",
+  "failedHead": "e85633d5aa115d19d4956cda8b27202b47d33a27",
+  "acceptedProgramAndTestHead": "ab6edd4240af337a5e4e0bdaa4301f783b91e489",
+  "runs": [
+    {
+      "id": 37954970148,
+      "event": "pull_request",
+      "checkJob": 113903054605,
+      "check": "failure",
+      "startupJob": 113904576669,
+      "startup": "success"
+    },
+    {
+      "id": 37954965077,
+      "event": "push",
+      "checkJob": 113903041237,
+      "check": "failure",
+      "startupJob": 113904630977,
+      "startup": "success"
+    }
+  ],
+  "failure": {
+    "step": "Check",
+    "command": "pnpm check -> node scripts/check-format.mjs",
+    "checkedFiles": 323,
+    "formatFailures": 2,
+    "files": [
+      "docs/progress/INDEX.md",
+      "docs/progress/P03-01.md"
+    ],
+    "reason": "Final handoff edits introduced extra blank lines and incorrect Markdown table alignment. docs:check validates states/evidence paths, not Prettier format. Full pnpm check was not rerun after these final edits.",
+    "businessTests": "Unit/integration/Electron/performance/standard-user suites were not executed after the failing Check step in these two runs. The separate startup job passed. Prior ab6edd4 full CI evidence remains valid for byte-identical program/tests."
+  },
+  "localChecks": [
+    {
+      "command": "node scripts/check-format.mjs",
+      "exitCode": 1,
+      "checkedFiles": 323,
+      "formatFailures": 2,
+      "phase": "before correction; exact CI errors reproduced"
+    },
+    {
+      "command": "pnpm exec prettier --write docs/progress/INDEX.md docs/progress/P03-01.md docs/progress/CURRENT.md; pnpm check; pnpm docs:check; git diff --check",
+      "exitCode": 0,
+      "formatFiles": 323,
+      "formatFailures": 0,
+      "taskStates": 37
+    },
+    {
+      "command": "pnpm exec prettier --write affected progress Markdown; pnpm check; pnpm docs:check; git diff --check",
+      "sessionId": 49630,
+      "exitCode": 0,
+      "formatFiles": 323,
+      "formatFailures": 0,
+      "taskStates": 37,
+      "phase": "final after all progress wording changes"
+    }
+  ],
+  "correction": {
+    "files": [
+      "docs/progress/INDEX.md",
+      "docs/progress/P03-01.md"
+    ],
+    "method": "Prettier on affected progress Markdown after all handoff edits, followed by full pnpm check, docs:check and git diff --check",
+    "validation": "Final full pnpm check, docs:check and git diff --check after all progress edits exit0. No progress Markdown edits after this final check.",
+    "programAndTestsChanged": false,
+    "fileDigests": [
+      {
+        "path": "docs/progress/INDEX.md",
+        "sha256": "96121066ed73f27d8f25aacbaab596ff951d07795448d15b31e7b3b2af108316"
+      },
+      {
+        "path": "docs/progress/P03-01.md",
+        "sha256": "71632f099afe60c4f069ca22942636df1d84773e42dedcfceb0cdd2d4538b19d"
+      },
+      {
+        "path": "docs/progress/CURRENT.md",
+        "sha256": "dba701925d1ddc50d5c3bbc50cecdf4678e140acd4836765c8f62141d0d2a381"
+      }
+    ]
+  },
+  "requirements": {
+    "owner": "P03-01",
+    "count": 24,
+    "status": "implemented_and_verified",
+    "change": "No business requirement state or verified program/test reference changes; only documentation delivery failure and format correction."
+  },
+  "mergeReadiness": "Keep PR#1 Draft; wait for the new complete CI before merging or starting P03-02.",
+  "pending": [
+    "new full CI after format correction"
+  ],
+  "logExcerpts": [
+    {
+      "jobId": 113903054605,
+      "path": ".cache/ci-37923489728/check-failure-113903054605.log",
+      "sha256": "1038b91a4fb5dbaa7cdf2e1e3c4d7e500d4d353d974ce2bac07d6aea6a3c7ea8",
+      "text": "2026-10-09T15:56:05.8554383Z $ node scripts/check.mjs\n2026-10-09T15:56:12.2639823Z Formatting required: docs/progress/INDEX.md\n2026-10-09T15:56:12.5855712Z Formatting required: docs/progress/P03-01.md\n2026-10-09T15:56:16.2338331Z Formatting checked 323 repository files; 2 failures.\n2026-10-09T15:56:16.2851932Z file:///D:/a/TapKit/TapKit/scripts/lib.mjs:24\n2026-10-09T15:56:16.2852637Z   if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);\n2026-10-09T15:56:16.2853643Z                                  ^\n2026-10-09T15:56:16.2853954Z \n2026-10-09T15:56:16.2855086Z Error: D:\\a\\TapKit\\TapKit\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe exited 1\n2026-10-09T15:56:16.2856868Z     at run (file:///D:/a/TapKit/TapKit/scripts/lib.mjs:24:34)\n2026-10-09T15:56:16.2857340Z     at file:///D:/a/TapKit/TapKit/scripts/check.mjs:6:1\n2026-10-09T15:56:16.2857760Z     at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n2026-10-09T15:56:16.2858173Z     at async node:internal/modules/esm/loader:647:26\n2026-10-09T15:56:16.2858652Z     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n2026-10-09T15:56:16.2859278Z \n2026-10-09T15:56:16.2859362Z Node.js v24.21.0\n2026-10-09T15:56:16.2941366Z [ELIFECYCLE] Command failed with exit code 1.\n2026-10-09T15:56:16.4271813Z ##[error]Process completed with exit code 1.\n2026-10-09T15:56:16.4601748Z ##[group]Run actions/upload-artifact@v4\n\n"
+    },
+    {
+      "jobId": 113903041237,
+      "path": ".cache/ci-37923489728/check-failure-113903041237.log",
+      "sha256": "3f42bc4dff686e7423e172aaaee3becd500575b4f67c41b7da54c951f553096c",
+      "text": "2026-10-09T15:56:11.4837101Z $ node scripts/check.mjs\n2026-10-09T15:56:18.2762548Z Formatting required: docs/progress/INDEX.md\n2026-10-09T15:56:18.6241877Z Formatting required: docs/progress/P03-01.md\n2026-10-09T15:56:22.6108652Z Formatting checked 323 repository files; 2 failures.\n2026-10-09T15:56:22.6695046Z file:///D:/a/TapKit/TapKit/scripts/lib.mjs:24\n2026-10-09T15:56:22.6695767Z   if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);\n2026-10-09T15:56:22.6696435Z                                  ^\n2026-10-09T15:56:22.6696643Z \n2026-10-09T15:56:22.6697020Z Error: D:\\a\\TapKit\\TapKit\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe exited 1\n2026-10-09T15:56:22.6697658Z     at run (file:///D:/a/TapKit/TapKit/scripts/lib.mjs:24:34)\n2026-10-09T15:56:22.6699120Z     at file:///D:/a/TapKit/TapKit/scripts/check.mjs:6:1\n2026-10-09T15:56:22.6699935Z     at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n2026-10-09T15:56:22.6702549Z     at async node:internal/modules/esm/loader:647:26\n2026-10-09T15:56:22.6703733Z     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n2026-10-09T15:56:22.6704395Z \n2026-10-09T15:56:22.6704537Z Node.js v24.21.0\n2026-10-09T15:56:22.6804485Z [ELIFECYCLE] Command failed with exit code 1.\n2026-10-09T15:56:22.8227090Z ##[error]Process completed with exit code 1.\n2026-10-09T15:56:22.8486710Z ##[group]Run actions/upload-artifact@v4\n\n"
+    }
+  ]
+}
