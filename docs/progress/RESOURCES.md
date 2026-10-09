@@ -1,5 +1,9 @@
 # 外部资源状态
 
+## 2026-10-09 公开仓库首次 CI 失败诊断
+
+公开 main 752ab6a 已推送，CI37923489728/check113796801014 实际执行。unit262/263：PDF.js实际文本解析默认5秒超时，导致管理员全量integration未运行；build成功，Electron22/25，三项seedUsage被job级启动诊断stdout干扰，另有app生命周期连带报错。标准用户P00 22/22；P03 0/3，artifact确认Node脚本入口realpathSync对D:\根目录lstat遭EPERM，尚未进入解析器；Core将无阶段的启动退出归为CORRUPT_FILE。AppContainer身份匹配/零网络/Job限制与零残留进程观察成立，不能据此宣称解析验收通过。Office宏/外链各三轮及startup成功。R15仅在新公开仓库已验证runner可执行，不推断旧私有仓库账单状态。只诊断与更新文档，未改业务/测试/ACL，未重跑/commit/push；P03-01=in_progress、02/03未开始，无gate。证据：docs/evidence/P03-01/public-ci-diagnosis-2026-10-09.json。
+
 ## 2026-10-09 独立公开副本准备检查点
 
 2026-10-09 用户提供新公开仓库 https://github.com/tteok1/TapKit 与 noreply 提交邮箱。已在 D:/Tapkit-public 建立独立 main 快照，当前 P03-01 工作树源码随单次首次提交准备交付；原目录与 Git 历史保留。303 份代码/配置逐字节一致，213 份 JSON 可解析，格式检查与37项文档状态/证据链接检查退出0；81份未完成公开审查的旧截图/PDF留在私有档案，三个已核查合成截图保留。常见令牌/密钥模式、旧账号、旧提交邮箱和当前主机名检查未发现残留；这是模式检查，不保证无法通过项目内容建立关联。尚未公开推送，新 CI 未运行，R15=pending，三个 native CORRUPT_FILE 未修复，P03-01=in_progress、02/03未开始，无gate。证据：docs/evidence/P03-01/public-snapshot-preparation-2026-10-09.json。
@@ -114,22 +118,23 @@ R15=pending：19afa7f PR/check111937957349及旧startup111938559554零步骤失�
 
 实际资源状态（2026-09-15，P00-01 收口）。只存标签、权限范围、状态和证据路径，不存凭据。具体要求见手册11-external-todos.md。
 
-| 资源 | 用途                      | 状态       | 验证/失败原因/下一步                                                                                                                                                           |
-| ---- | ------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| R01  | Codex订阅                 | configured | 用户报告OAuth已完成；已只读实测Luna文本/echo检测ready，缺响应头与终结取消误报已修复。两轮/真实重启刷新/注销完整live未通过，无凭据日志；见P01-01.md及missing-mime-2026-10-04.md |
-| R02  | DeepSeek API              | pending    | 开发接入时核对，不在此填写密钥                                                                                                                                                 |
-| R03  | 混元API                   | pending    | 开发接入时核对，不在此填写密钥                                                                                                                                                 |
-| R04  | Grok API                  | pending    | 开发接入时核对，不在此填写密钥                                                                                                                                                 |
-| R05  | 豆包API                   | pending    | 开发接入时核对，不在此填写密钥                                                                                                                                                 |
-| R06  | Tavily搜索                | pending    | 开发接入时核对，不在此填写密钥                                                                                                                                                 |
-| R07  | GitHub测试仓库和PAT       | pending    | 已确认 origin URL；PAT/真实 GitHub 接口未配置或联调                                                                                                                            |
-| R08  | 代表性文件/数据fixture    | pending    | P00-01 流式 mock fixture 已建立；代表性 Office/资料集待后续                                                                                                                    |
-| R09  | Windows标准用户测试环境   | verified   | CI run46独立medium/non-admin标准用户22/22；无失败/跳过/缺失；宏/外链/Job/恢复全部通过。证据docs/evidence/P00-03/ci-run46.json；不同目标主机仍需重跑probe                       |
-| R10  | 开源目标仓库和Logo确认    | pending    | 公开副本目标 https://github.com/tteok1/TapKit；Logo 仍待提供                                                                                                                   |
-| R11  | 安装包签名                | pending    | 开发接入时核对，不在此填写密钥                                                                                                                                                 |
-| R12  | 官网下载域名/地址         | pending    | 开发接入时核对，不在此填写密钥                                                                                                                                                 |
-| R13  | OpenAI/兼容API            | configured | 历史智谱Chat/4.7-Flash基础检测通过；FlashX Responses按ADR0021暂不支持。Chat/FlashX修复后完整live及两轮/工具闭环/取消/usage待验；入口已补，见P01-02/P01-review-2026-10-05.md    |
-| R14  | Anthropic/Messages兼容API | configured | 智谱Messages/4.7-Flash及4.7-FlashX基础文本工具通过；完整两轮/工具闭环/取消/usage待验，入口已补但不核对原账本；见P01-02/P01-review-2026-10-05.md                                |
+| 资源 | 用途                      | 状态       | 验证/失败原因/下一步                                                                                                                                                              |
+| ---- | ------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| R01  | Codex订阅                 | configured | 用户报告OAuth已完成；已只读实测Luna文本/echo检测ready，缺响应头与终结取消误报已修复。两轮/真实重启刷新/注销完整live未通过，无凭据日志；见P01-01.md及missing-mime-2026-10-04.md    |
+| R02  | DeepSeek API              | pending    | 开发接入时核对，不在此填写密钥                                                                                                                                                    |
+| R03  | 混元API                   | pending    | 开发接入时核对，不在此填写密钥                                                                                                                                                    |
+| R04  | Grok API                  | pending    | 开发接入时核对，不在此填写密钥                                                                                                                                                    |
+| R05  | 豆包API                   | pending    | 开发接入时核对，不在此填写密钥                                                                                                                                                    |
+| R06  | Tavily搜索                | pending    | 开发接入时核对，不在此填写密钥                                                                                                                                                    |
+| R07  | GitHub测试仓库和PAT       | pending    | 已确认 origin URL；PAT/真实 GitHub 接口未配置或联调                                                                                                                               |
+| R08  | 代表性文件/数据fixture    | pending    | P00-01 流式 mock fixture 已建立；代表性 Office/资料集待后续                                                                                                                       |
+| R09  | Windows标准用户测试环境   | verified   | CI run46独立medium/non-admin标准用户22/22；无失败/跳过/缺失；宏/外链/Job/恢复全部通过。证据docs/evidence/P00-03/ci-run46.json；不同目标主机仍需重跑probe                          |
+| R10  | 开源目标仓库和Logo确认    | pending    | 公开副本目标 https://github.com/tteok1/TapKit；Logo 仍待提供                                                                                                                      |
+| R11  | 安装包签名                | pending    | 开发接入时核对，不在此填写密钥                                                                                                                                                    |
+| R12  | 官网下载域名/地址         | pending    | 开发接入时核对，不在此填写密钥                                                                                                                                                    |
+| R13  | OpenAI/兼容API            | configured | 历史智谱Chat/4.7-Flash基础检测通过；FlashX Responses按ADR0021暂不支持。Chat/FlashX修复后完整live及两轮/工具闭环/取消/usage待验；入口已补，见P01-02/P01-review-2026-10-05.md       |
+| R14  | Anthropic/Messages兼容API | configured | 智谱Messages/4.7-Flash及4.7-FlashX基础文本工具通过；完整两轮/工具闭环/取消/usage待验，入口已补但不核对原账本；见P01-02/P01-review-2026-10-05.md                                   |
+| R15  | GitHub Actions runner     | verified   | 新公开仓库tteok1/TapKit的CI37923489728已实际执行；仅验证runner资源可用，P03解析验收失败；不推断旧私有仓库账单状态。证据：docs/evidence/P03-01/public-ci-diagnosis-2026-10-09.json |
 
 可用状态：pending/configured/verified/failed/not_needed_yet。configured不代表已联调；提供资源后更新相关任务及phase gate，保留之前未验证记录。
 

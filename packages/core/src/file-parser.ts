@@ -150,7 +150,13 @@ export class FileParser {
           ...runtime,
           inputRoot,
           workspace,
-          args: [join(inputRoot, 'parse.cjs'), inputRoot, workspace],
+          args: [
+            '--preserve-symlinks',
+            '--preserve-symlinks-main',
+            join(inputRoot, 'parse.cjs'),
+            inputRoot,
+            workspace,
+          ],
           timeoutMs: FILE_LIMITS.parseTimeoutMs,
           terminal: false,
           processLimit: 2,
@@ -180,7 +186,9 @@ export class FileParser {
         finished.data.status !== 'exited' ||
         finished.data.activeProcesses !== 0
       ) {
-        let reason: FileParseReason = 'CORRUPT_FILE';
+        // A loader/process failure without a parser report is an execution failure,
+        // not evidence that the immutable original is corrupt.
+        let reason: FileParseReason = 'SANDBOX_UNAVAILABLE';
         if (typeof finished?.data.stdout === 'string')
           for (const line of finished.data.stdout.split(/\r?\n/).slice(-20)) {
             try {

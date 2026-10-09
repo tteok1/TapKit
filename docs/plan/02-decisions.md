@@ -1,5 +1,7 @@
 # 范围、决策与默认行为
 
+2026-10-09 P03-01：[ADR0041](../adr/0041-isolated-parser-node-entry.md)规定固定受限 Node 主入口/模块加载参数及无解析报告时的启动失败分类；不改 ACL、AppContainer、原件保护或解析上限，候选必须通过真实标准用户与隔离回归。
+
 2026-10-09 P03-01：[ADR0039](../adr/0039-file-original-only-and-generated-notes.md)规定媒体/旧 Office 原件保留、OCR_REQUIRED、确定文本生成笔记与 schema9 旧引用迁移；[ADR0040](../adr/0040-individual-file-cancellation.md)规定按项导入取消/重新选择与固定版本解析取消。真实 native 验收与 R15 保持未收口，不开放延期能力。
 
 [ADR0036](../adr/0036-chat-material-from-pinned-parsed-version.md)：P03文件聊天材料读取固定版本解析结构；项目需明确session/project版本引用，读取前后验证。P02旧文本附件兼容，不以二进制原件UTF-8回退；Host token统一和原生验收仍待收口。
