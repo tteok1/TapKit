@@ -67,6 +67,8 @@ type ToolResult = {
 
 ## 4. Native helper 的最小实现
 
+2026-10-09 P03-01：[ADR0041](../adr/0041-isolated-parser-node-entry.md)固定解析器可使用 Node 的 preserve-symlinks/main 加载选项避免未授权磁盘根的真实路径解析；所有 Core/helper 路径与链接校验、只读 input、私有 workspace、零网络及 Job 回收仍为安全边界。无 parser_failed 报告的载荷启动退出按 SANDBOX_UNAVAILABLE 失败关闭，真实原生验收通过前不提升能力状态。
+
 > **2026-09-30 当前方案补丁（基于旧账户方案及 AppContainer 兼容实测的优化，现以本补丁为准）**：
 >
 > - Node、Python、ConPTY 和受控 Office 转换使用每次独立 AppContainer profile/SID；只给锁定 runtime/input 读取和 workspace 写入 ACL，使用 Job Object 杀除整棵进程树，不授予网络 capability。创建进程时先挂起、加入 Job、核验 AppContainer SID，再恢复；任何安全检查失败都 fail closed。

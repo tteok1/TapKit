@@ -3,12 +3,15 @@ import type { Readable } from 'node:stream';
 const require = createRequire(import.meta.url);
 const { ZipFile } = require('../../packages/tools/node_modules/yazl') as {
   ZipFile: new () => {
-    addBuffer(bytes: Buffer, name: string, options: { compress: boolean }): void;
+    addBuffer(bytes: Buffer, name: string, options: { compress: boolean; mode?: number }): void;
     end(): void;
     outputStream: Readable;
   };
 };
-export async function officeZip(parts: Record<string, string | Buffer>) {
+export async function officeZip(
+  parts: Record<string, string | Buffer>,
+  options: { compress?: boolean; mode?: number } = {},
+) {
   const zip = new ZipFile(),
     chunks: Buffer[] = [];
   const result = new Promise<Buffer>((resolve, reject) => {
@@ -17,7 +20,7 @@ export async function officeZip(parts: Record<string, string | Buffer>) {
     zip.outputStream.on('error', reject);
   });
   for (const [path, value] of Object.entries(parts))
-    zip.addBuffer(Buffer.from(value), path, { compress: false });
+    zip.addBuffer(Buffer.from(value), path, { compress: false, ...options });
   zip.end();
   return result;
 }

@@ -12,7 +12,11 @@ import { execFile, spawn } from 'node:child_process';
 import { promisify } from 'node:util';
 import { once } from 'node:events';
 import type { IpcMainInvokeEvent } from 'electron';
-let app: ElectronApplication, root: string, dir: string;
+let app: ElectronApplication | undefined, root: string, dir: string;
+function getApp() {
+  if (!app) throw new Error('Electron application has not launched');
+  return app;
+}
 let nativeStatus: string | undefined;
 let lifecycleRequest = 200;
 const lifecycleId = () =>
@@ -31,69 +35,80 @@ type ReplyGate = {
   releasedTokens: number;
 };
 type GateGlobal = { p03ReplyGate?: ReplyGate };
-async function holdRealReply(command: 'files.import' | 'sessions.create' | 'selection') {
-  await app.evaluate(({ ipcMain }, command) => {
-    const map = (ipcMain as unknown as { _invokeHandlers: Map<string, InvokeHandler> })
-      ._invokeHandlers;
-    const original = map.get('tapkit:request');
-    const selectionOriginal = map.get('tapkit:select-dropped-files');
-    if (!original || !selectionOriginal)
-      throw new Error('Original application IPC handler missing');
-    let release!: () => void;
-    const gate = new Promise<void>((resolve) => {
-      release = resolve;
-    });
-    const state: ReplyGate = {
-      original,
-      selectionOriginal,
-      release,
-      used: false,
-      held: false,
-      cancels: 0,
-      imports: 0,
-      selections: 0,
-      releases: 0,
-      releasedTokens: 0,
-    };
-    (globalThis as unknown as GateGlobal).p03ReplyGate = state;
-    ipcMain.removeHandler('tapkit:request');
-    ipcMain.handle('tapkit:request', async (event, raw: unknown) => {
-      const request = raw as { command?: string };
-      if (request.command === 'files.import') state.imports++;
-      // Every request still executes the original sender/DTO/permission checks,
-      // Core operation and audit. Only the first matching reply is held.
-      const hold = request.command === command && !state.used;
-      if (hold) state.used = true;
-      const reply = await original(event, raw);
-      if (request.command === 'files.cancelImport' && (reply as { ok?: boolean }).ok)
-        state.cancels++;
-      if (request.command === 'files.releaseSelection' && (reply as { ok?: boolean }).ok) {
-        state.releases++;
-        state.releasedTokens += (
-          reply as { data: { changedIds: string[] } }
-        ).data.changedIds.length;
-      }
-      if (hold) {
-        state.held = true;
-        await gate;
-      }
-      return reply;
-    });
-    ipcMain.removeHandler('tapkit:select-dropped-files');
-    ipcMain.handle('tapkit:select-dropped-files', async (event, raw: unknown) => {
-      state.selections++;
-      const reply = await selectionOriginal(event, raw);
-      if (command === 'selection' && !state.used) {
-        state.used = true;
-        state.held = true;
-        await gate;
-      }
-      return reply;
-    });
-  }, command);
+async function holdRealReply(
+  command: 'files.import' | 'sessions.create' | 'selection',
+  delayNavigationReply = false,
+) {
+  await getApp().evaluate(
+    ({ ipcMain }, options) => {
+      const { command, delayNavigationReply } = options;
+      const map = (ipcMain as unknown as { _invokeHandlers: Map<string, InvokeHandler> })
+        ._invokeHandlers;
+      const original = map.get('tapkit:request');
+      const selectionOriginal = map.get('tapkit:select-dropped-files');
+      if (!original || !selectionOriginal)
+        throw new Error('Original application IPC handler missing');
+      let release!: () => void;
+      const gate = new Promise<void>((resolve) => {
+        release = resolve;
+      });
+      const state: ReplyGate = {
+        original,
+        selectionOriginal,
+        release,
+        used: false,
+        held: false,
+        cancels: 0,
+        imports: 0,
+        selections: 0,
+        releases: 0,
+        releasedTokens: 0,
+      };
+      (globalThis as unknown as GateGlobal).p03ReplyGate = state;
+      ipcMain.removeHandler('tapkit:request');
+      ipcMain.handle('tapkit:request', async (event, raw: unknown) => {
+        const request = raw as { command?: string };
+        if (request.command === 'files.import') state.imports++;
+        // Every request still executes the original sender/DTO/permission checks,
+        // Core operation and audit. Only the first matching reply is held.
+        const hold = request.command === command && !state.used;
+        if (hold) state.used = true;
+        const reply = await original(event, raw);
+        // A new session exists in Core before its create reply navigates the renderer.
+        // Keep that interval observable without replacing the real operation.
+        if (delayNavigationReply && state.held && request.command === 'sessions.create')
+          await new Promise((resolve) => setTimeout(resolve, 300));
+        if (request.command === 'files.cancelImport' && (reply as { ok?: boolean }).ok)
+          state.cancels++;
+        if (request.command === 'files.releaseSelection' && (reply as { ok?: boolean }).ok) {
+          state.releases++;
+          state.releasedTokens += (
+            reply as { data: { changedIds: string[] } }
+          ).data.changedIds.length;
+        }
+        if (hold) {
+          state.held = true;
+          await gate;
+        }
+        return reply;
+      });
+      ipcMain.removeHandler('tapkit:select-dropped-files');
+      ipcMain.handle('tapkit:select-dropped-files', async (event, raw: unknown) => {
+        state.selections++;
+        const reply = await selectionOriginal(event, raw);
+        if (command === 'selection' && !state.used) {
+          state.used = true;
+          state.held = true;
+          await gate;
+        }
+        return reply;
+      });
+    },
+    { command, delayNavigationReply },
+  );
 }
 async function releaseRealReply(restore = false) {
-  await app.evaluate(({ ipcMain }, restore) => {
+  await getApp().evaluate(({ ipcMain }, restore) => {
     const root = globalThis as unknown as GateGlobal,
       state = root.p03ReplyGate;
     if (!state) return;
@@ -112,6 +127,19 @@ async function latestSession(page: Page) {
     if (!reply.ok || !('sessions' in reply.data)) throw new Error('workspace');
     return reply.data.sessions[0]!.id;
   }, lifecycleId());
+}
+async function newChatSession(page: Page) {
+  const surface = page.locator('.chat-surface'),
+    previous = (await surface.count()) ? await surface.getAttribute('data-session-id') : null;
+  await page.keyboard.press('Control+n');
+  // The previous composer stays enabled while session creation/refresh is pending.
+  // Wait for the displayed session before typing into its loaded draft.
+  await expect(surface).toHaveAttribute('data-session-id', /.+/);
+  if (previous) await expect(surface).not.toHaveAttribute('data-session-id', previous);
+  const sessionId = (await surface.getAttribute('data-session-id'))!;
+  await expect(surface.getByLabel('输入草稿')).toBeEnabled();
+  expect(await latestSession(page)).toBe(sessionId);
+  return sessionId;
 }
 async function lifecycleDraft(page: Page, sessionId: string) {
   return page.evaluate(
@@ -147,6 +175,7 @@ async function seedUsage(mode?: 'ocr') {
     {
       timeout: 15000,
       windowsHide: true,
+      env: { ...process.env, TAPKIT_STARTUP_DIAGNOSTICS: '0' },
     },
   );
   expect(seeded.stdout.trim()).toBe('P03_USAGE_FIXTURE_SEEDED');
@@ -205,7 +234,7 @@ test('P03-01 accepted task usage shows its pinned historical version and follows
     );
     if (!r.ok) throw new Error(r.error.code);
   });
-  await app.close();
+  await getApp().close();
   const restarted = await launch();
   await restarted.getByRole('button', { name: '版本资料.txt', exact: true }).click();
   await expect(
@@ -223,18 +252,21 @@ test('P03-01 accepted task usage shows its pinned historical version and follows
   expect(await readFile(join(root, '原件.txt'), 'utf8')).toBe('历史原件保留');
 });
 test.beforeEach(async () => {
+  app = undefined;
   await mkdir('.test-data', { recursive: true });
   root = await mkdtemp(resolve('.test-data', 'P03-01 Electron files '));
   dir = join(root, 'profile');
   await mkdir('docs/evidence/P03-01', { recursive: true });
 });
 test.afterEach(async () => {
-  if (app) {
-    const child = app.process();
+  const current = app;
+  app = undefined;
+  if (current) {
+    const child = current.process();
     let timer: ReturnType<typeof setTimeout> | undefined;
     try {
       await Promise.race([
-        app.close(),
+        current.close(),
         new Promise<void>((resolve) => {
           timer = setTimeout(() => {
             child.kill();
@@ -255,13 +287,15 @@ async function launch() {
   );
   delete env.ELECTRON_RUN_AS_NODE;
   app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
-  app.process().stderr?.on('data', (chunk) => process.stderr.write(chunk));
-  const page = await app.firstWindow();
+  getApp()
+    .process()
+    .stderr?.on('data', (chunk) => process.stderr.write(chunk));
+  const page = await getApp().firstWindow();
   page.on('pageerror', (error) =>
     process.stderr.write('P03_SYNTHETIC_RENDERER_ERROR ' + error.message + '\n'),
   );
   await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
-  // This local test must never execute the application-control-blocked helper.
+  // Local production capabilities stay fail-closed until a standard-user probe verifies them.
   nativeStatus = await page.evaluate(async () => {
     const r = await window.tapkit.bootstrap({
       requestId: '0195abc0-0000-7000-8000-000000000011',
@@ -275,7 +309,7 @@ async function launch() {
   return page;
 }
 async function picker(paths: string[], output = join(root, '下载原件.txt')) {
-  await app.evaluate(
+  await getApp().evaluate(
     ({ dialog }, value) => {
       dialog.showOpenDialog = async () => ({ canceled: false, filePaths: value.paths });
       dialog.showSaveDialog = async () => ({ canceled: false, filePath: value.output });
@@ -309,30 +343,28 @@ test('P03-01 T08 navigation sends cancellation while a real committed import rep
     .update(await readFile(source))
     .digest('hex');
   const page = await launch();
-  await page.keyboard.press('Control+n');
-  await expect(page.getByLabel('输入草稿')).toBeEnabled();
-  const originalSession = await latestSession(page);
+  const originalSession = await newChatSession(page);
   await page.getByLabel('输入草稿').fill('原会话问题保留');
   await expect
     .poll(async () => (await lifecycleDraft(page, originalSession)).text)
     .toBe('原会话问题保留');
-  await holdRealReply('files.import');
+  await holdRealReply('files.import', true);
   try {
     await page.locator('input[type=file]').setInputFiles(source);
     await expect
-      .poll(() => app.evaluate(() => (globalThis as unknown as GateGlobal).p03ReplyGate?.held))
+      .poll(() => getApp().evaluate(() => (globalThis as unknown as GateGlobal).p03ReplyGate?.held))
       .toBe(true);
     await expect(page.getByRole('button', { name: '取消文件导入', exact: true })).toBeVisible();
-    await page.keyboard.press('Control+n');
-    await expect(page.getByLabel('输入草稿')).toBeEnabled();
-    const nextSession = await latestSession(page);
+    const nextSession = await newChatSession(page);
     expect(nextSession).not.toBe(originalSession);
     await page.getByLabel('输入草稿').fill('新会话问题不能覆盖');
     await expect
       .poll(async () => (await lifecycleDraft(page, nextSession)).text)
       .toBe('新会话问题不能覆盖');
     await expect
-      .poll(() => app.evaluate(() => (globalThis as unknown as GateGlobal).p03ReplyGate?.cancels))
+      .poll(() =>
+        getApp().evaluate(() => (globalThis as unknown as GateGlobal).p03ReplyGate?.cancels),
+      )
       .toBeGreaterThan(0);
     await releaseRealReply();
     await expect
@@ -371,7 +403,7 @@ test('P03-01 T08 navigation sends cancellation while a real committed import rep
     ).toBe(sourceHash);
     await page.screenshot({ path: 'docs/evidence/P03-01/chat-navigation-isolation.png' });
     await releaseRealReply(true);
-    await app.close();
+    await getApp().close();
     const restarted = await launch();
     expect(await lifecycleDraft(restarted, originalSession)).toEqual(original);
     expect(await lifecycleDraft(restarted, nextSession)).toEqual(next);
@@ -390,11 +422,9 @@ test('P03-01 T08 late session creation after leaving the home composer cannot st
   try {
     await page.locator('input[type=file]').setInputFiles(source);
     await expect
-      .poll(() => app.evaluate(() => (globalThis as unknown as GateGlobal).p03ReplyGate?.held))
+      .poll(() => getApp().evaluate(() => (globalThis as unknown as GateGlobal).p03ReplyGate?.held))
       .toBe(true);
-    await page.keyboard.press('Control+n');
-    await expect(page.getByLabel('输入草稿')).toBeEnabled();
-    const nextSession = await latestSession(page);
+    const nextSession = await newChatSession(page);
     await page.getByLabel('输入草稿').fill('切换后的输入保留');
     await expect
       .poll(async () => (await lifecycleDraft(page, nextSession)).text)
@@ -418,7 +448,7 @@ test('P03-01 T08 late session creation after leaving the home composer cannot st
     });
     expect(await readFile(source, 'utf8')).toBe('取消创建后的物理源不应导入');
     expect(
-      await app.evaluate(() => {
+      await getApp().evaluate(() => {
         const state = (globalThis as unknown as GateGlobal).p03ReplyGate!;
         return {
           selections: state.selections,
@@ -437,9 +467,7 @@ test('P03-01 T08 leaving during a real Host selection releases its pending grant
     content = '只授权选择尚未导入';
   await writeFile(source, content);
   const page = await launch();
-  await page.keyboard.press('Control+n');
-  await expect(page.getByLabel('输入草稿')).toBeEnabled();
-  const originalSession = await latestSession(page);
+  const originalSession = await newChatSession(page);
   await page.getByLabel('输入草稿').fill('选择前的原问题');
   await expect
     .poll(async () => (await lifecycleDraft(page, originalSession)).text)
@@ -448,11 +476,9 @@ test('P03-01 T08 leaving during a real Host selection releases its pending grant
   try {
     await page.locator('input[type=file]').setInputFiles(source);
     await expect
-      .poll(() => app.evaluate(() => (globalThis as unknown as GateGlobal).p03ReplyGate?.held))
+      .poll(() => getApp().evaluate(() => (globalThis as unknown as GateGlobal).p03ReplyGate?.held))
       .toBe(true);
-    await page.keyboard.press('Control+n');
-    await expect(page.getByLabel('输入草稿')).toBeEnabled();
-    const nextSession = await latestSession(page);
+    const nextSession = await newChatSession(page);
     expect(nextSession).not.toBe(originalSession);
     await page.getByLabel('输入草稿').fill('选择取消后的新问题');
     await expect
@@ -460,10 +486,12 @@ test('P03-01 T08 leaving during a real Host selection releases its pending grant
       .toBe('选择取消后的新问题');
     await releaseRealReply();
     await expect
-      .poll(() => app.evaluate(() => (globalThis as unknown as GateGlobal).p03ReplyGate?.releases))
+      .poll(() =>
+        getApp().evaluate(() => (globalThis as unknown as GateGlobal).p03ReplyGate?.releases),
+      )
       .toBe(1);
     expect(
-      await app.evaluate(() => {
+      await getApp().evaluate(() => {
         const state = (globalThis as unknown as GateGlobal).p03ReplyGate!;
         return {
           selections: state.selections,
@@ -495,8 +523,7 @@ test('P03-01 T07 chat physical File uses the real Host token import, preserves s
     .update(await readFile(source))
     .digest('hex');
   const page = await launch();
-  await page.keyboard.press('Control+n');
-  await expect(page.getByLabel('输入草稿')).toBeEnabled();
+  await newChatSession(page);
   await page.getByLabel('输入草稿').fill('保留此问题');
   expect(
     await page.evaluate(async () => {
@@ -806,7 +833,7 @@ test('P03-01 T07 real saved-message note is searchable as a generated result in 
     await expect(page.getByRole('button', { name: '收藏笔记.md', exact: true })).toBeVisible();
   }
   await page.screenshot({ path: 'docs/evidence/P03-01/generated-note-library.png' });
-  await app.close();
+  await getApp().close();
   page = await launch();
   await page
     .getByRole('combobox', { name: /^文件范围与导入位置/ })
@@ -944,7 +971,7 @@ test('P03-01 batch download keeps unfinished files selected and stops further di
   await page.getByRole('combobox', { name: '排序', exact: true }).selectOption('name');
   await expect(page.locator('.file-card').first()).toContainText('A.txt');
   await page.getByLabel('选择本页文件', { exact: true }).check();
-  await app.evaluate(
+  await getApp().evaluate(
     ({ dialog }, output) => {
       let calls = 0;
       dialog.showSaveDialog = async () => {
@@ -971,7 +998,7 @@ test('P03-01 batch download keeps unfinished files selected and stops further di
   await expect(page.getByLabel('选择 C.txt', { exact: true })).toBeChecked();
   expect(await readFile(join(root, 'A-下载.txt'), 'utf8')).toBe('原件 0');
   expect(
-    await app.evaluate(() =>
+    await getApp().evaluate(() =>
       (globalThis as unknown as { p03SaveCalls: () => number }).p03SaveCalls(),
     ),
   ).toBe(2);
@@ -1342,7 +1369,7 @@ test('P03-01 interrupted import survives actual process termination and its reco
   await page.screenshot({ path: 'docs/evidence/P03-01/import-recovery.png' });
   await notice.getByRole('button', { name: '隐藏此导入记录', exact: true }).click();
   await expect(notice).toHaveCount(0);
-  await app.close();
+  await getApp().close();
   const restarted = await launch();
   await expect(restarted.getByRole('region', { name: '中断的导入记录', exact: true })).toHaveCount(
     0,

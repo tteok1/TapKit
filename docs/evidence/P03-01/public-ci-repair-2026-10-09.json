@@ -1,0 +1,849 @@
+{
+  "schemaVersion": 1,
+  "task": "P03-01",
+  "status": "implemented_and_verified",
+  "recordedAt": "2026-10-09T13:16:28.167Z",
+  "source": {
+    "branch": "codex/p03-01-ci-repair",
+    "baseCommit": "752ab6a32e23af10f6dccc6eb781247bda248bba",
+    "changes": "program/test/harness source accepted at 6361510; completion documentation follows without program changes",
+    "files": [
+      {
+        "path": "packages/core/src/file-parser.ts",
+        "sha256": "2b1bcd75b920addacea3f173f6a3d2e0135d48a37d105db597c666443fd0f0a6"
+      },
+      {
+        "path": "tests/unit/P03-01.pdf-parser.test.ts",
+        "sha256": "21b0fb204b057ed6102846f2895e730275a6d589d8150ac0cb18b7a60545c224"
+      },
+      {
+        "path": "tests/e2e/P03-01.files.spec.ts",
+        "sha256": "7e9b51edb959c861a2b9f72fa60a2db4150fc378e813e245b42322f0a603651d"
+      },
+      {
+        "path": "tests/integration/P03-01.parser-orchestration.test.ts",
+        "sha256": "9602544cd5fed271f91e6b6f6d15727d63c440d192eec88714d2267515bef221"
+      },
+      {
+        "path": "tests/integration/P03-01.parser-process.test.ts",
+        "sha256": "5f99ceaad39da0b9b98f88ac13dc5ed0fa658c05aadeeace71c5461075ec25a2"
+      },
+      {
+        "path": "tests/integration/P03-01.native-parser.test.ts",
+        "sha256": "2e53997e57d87b97bb516ad33c488dd269d35532bf31c3dcf22a8b71490458f4"
+      },
+      {
+        "path": "tests/fixtures/P03-office.ts",
+        "sha256": "f5e478ac686757f4d85718be6a8571740a95e649b7622144a000ea1898dbfbd9"
+      },
+      {
+        "path": "docs/adr/0041-isolated-parser-node-entry.md",
+        "sha256": "faa8ae9230504e852fb5d5f9e769a45f41946be335907184f352e22bde1cb7ac"
+      },
+      {
+        "path": "scripts/standard-user-test.mjs",
+        "sha256": "df4a8df67f638b600a7b6afceac4ee4d98f79476a28c97086dff1cdcd1e6d2aa"
+      }
+    ],
+    "commit": "6361510faf904402eea8a5cb18eec21b112b4b7e"
+  },
+  "checkpoint": "status：in_progress；修复分支 codex/p03-01-ci-repair，基线752ab6a。固定Node主入口/模块加载参数及启动失败分类、PDF.js独立初始化预算、Electron种子诊断环境和实例清理已实现。bootstrap重试/ABI、全量unit263/263、明确清单P03便携integration78/78、完整P03 Electron17/17（启动诊断开启）及desktop build退出0。首轮integration78/81：Vitest项目未应用exclude而误选native，native重建共享dist造成两项编排ENOENT；ZIP样例错误要求正文检索造成第三失败。已移除native重建并按既定ZIP原件/目录元数据范围校正断言，11文件便携复验全部通过。该轮native真实2/3且零网络/身份/Job回收观察成立，不代表标准用户通过或生产能力开放。真实验收现覆盖15种格式（含ZIP安全目录）/扫描PDF及7项恶意或失败输入；需新CI管理员、标准用户、隔离回归收口。截图已核查为本轮合成资料。P03-02/03未开始，无gate；本轮尚未push。证据：docs/evidence/P03-01/public-ci-repair-2026-10-09.json。",
+  "checks": [
+    {
+      "command": "node scripts/bootstrap.mjs",
+      "exitCode": 1,
+      "log": ".cache/ci-37923489728/bootstrap-repair.log",
+      "logSha256": "c296805922ad02a68f992475fe8d99fe9ae8fb1c3132b55ff6aa429fbb2d92af",
+      "detail": "Cargo windows crate 下载连续无进展；确认命令/路径后终止，仅从既有缓存复制锁定摘要一致的crate"
+    },
+    {
+      "command": "node scripts/bootstrap.mjs",
+      "exitCode": 0,
+      "log": ".cache/ci-37923489728/bootstrap-repair-retry.log",
+      "logSha256": "b6a2bae855c3a80f3abe4d3105b88b67379dae0db688385ae68d540635750be2",
+      "detail": "BOOTSTRAP_OK；生产构建及Electron ABI1/1"
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "log": ".cache/ci-37923489728/desktop-build-repair.log",
+      "logSha256": "5f4e54471643f8a46bbfddbbf0e767726cd21ee8901851b0c884dad7e15216b7",
+      "detail": "production build"
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "log": ".cache/ci-37923489728/unit-repair.log",
+      "logSha256": "6adab10a40291997815074511dcff962ffe553dc91f2c901be7c211b85ba3396",
+      "detail": "25文件263/263"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "log": ".cache/ci-37923489728/check-repair.log",
+      "logSha256": "9ac230c0410e5e7ec53d1e684d4d419fc8410cb7f44fc18b0cbb828936c1194f",
+      "detail": "323格式/边界/锁定清单/TypeScript/eslint"
+    },
+    {
+      "command": "pnpm test:integration P03-01.file P03-01.migration P03-01.import-recovery",
+      "exitCode": 0,
+      "log": ".cache/ci-37923489728/integration-files-repair.log",
+      "logSha256": "a9fa24a1223febf251c47197b9ac0a001e7003494968da0bf94499fcadd07069",
+      "detail": "9文件65/65"
+    },
+    {
+      "command": "pnpm test:integration P03-01 --exclude '**/P03-01.native-parser.test.ts'",
+      "exitCode": 1,
+      "log": ".cache/ci-37923489728/integration-p03-portable-repair.log",
+      "logSha256": "f5bd2206f3e0c7fc92e6fcfb68e268dcda427e796e07a2e979dbc3a435d41e40",
+      "detail": "12文件78/81；exclude未应用于项目；2项ENOENT及ZIP检索断言失败"
+    },
+    {
+      "command": "pnpm test:integration <11 explicit P03-01 non-native test files>",
+      "exitCode": 0,
+      "log": ".cache/ci-37923489728/integration-p03-portable-final.log",
+      "logSha256": "f7dc0192cf78aea6326a04cff35cdbad44535263e7b3b7547201e96291550ff5",
+      "detail": "11文件78/78"
+    },
+    {
+      "command": "TAPKIT_STARTUP_DIAGNOSTICS=1 pnpm test:e2e -- --grep P03-01",
+      "exitCode": 0,
+      "log": ".cache/ci-37923489728/e2e-p03-repair.log",
+      "logSha256": "d295855b9d614195787ed7df70a1e8d603f259c88d4c4eb08313e2737b8dd3db",
+      "detail": "完整17/17；真实Electron/Host/Core/SQLite；合成profile"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "log": ".cache/ci-37923489728/check-final.log",
+      "logSha256": "9ac230c0410e5e7ec53d1e684d4d419fc8410cb7f44fc18b0cbb828936c1194f",
+      "detail": "最终323文件格式/TypeScript/eslint/依赖与运行库锁定检查通过"
+    },
+    {
+      "command": "node scripts/docs-check.mjs",
+      "exitCode": 0,
+      "detail": "37项任务状态及证据链接通过"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "node --check scripts/standard-user-test.mjs; pnpm check",
+      "exitCode": 0,
+      "log": ".cache/ci-37923489728/check-standard-kit.log",
+      "logSha256": "9ac230c0410e5e7ec53d1e684d4d419fc8410cb7f44fc18b0cbb828936c1194f",
+      "detail": "标准用户源码kit构建准备语法及323文件静态检查通过"
+    }
+  ],
+  "nativeLocal": {
+    "selection": "unintended_by_ignored_project_exclude",
+    "tests": {
+      "passed": 2,
+      "failed": 1,
+      "total": 3
+    },
+    "failure": "ZIP metadata-only fixture expected extracted body search",
+    "rawLog": ".cache/ci-37923489728/native-unintended-selection.jsonl",
+    "sha256": "4afdb7e9de6d75f97ed965774e8702407ff91602919924e07109e9131fc4f312",
+    "cases": [
+      {
+        "case": "formats:txt",
+        "status": "exited",
+        "payloadExitCode": 0,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "formats:md",
+        "status": "exited",
+        "payloadExitCode": 0,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "formats:ts",
+        "status": "exited",
+        "payloadExitCode": 0,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "formats:csv",
+        "status": "exited",
+        "payloadExitCode": 0,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "formats:tsv",
+        "status": "exited",
+        "payloadExitCode": 0,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "formats:json",
+        "status": "exited",
+        "payloadExitCode": 0,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "formats:yaml",
+        "status": "exited",
+        "payloadExitCode": 0,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "formats:yml",
+        "status": "exited",
+        "payloadExitCode": 0,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "formats:xml",
+        "status": "exited",
+        "payloadExitCode": 0,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "formats:html",
+        "status": "exited",
+        "payloadExitCode": 0,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "formats:zip",
+        "status": "exited",
+        "payloadExitCode": 0,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "rejection",
+        "status": "exited",
+        "payloadExitCode": 1,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "rejection",
+        "status": "exited",
+        "payloadExitCode": 1,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "rejection",
+        "status": "exited",
+        "payloadExitCode": 1,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "rejection",
+        "status": "exited",
+        "payloadExitCode": 1,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "rejection",
+        "status": "exited",
+        "payloadExitCode": 1,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "rejection",
+        "status": "exited",
+        "payloadExitCode": 1,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "rejection",
+        "status": "exited",
+        "payloadExitCode": 1,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "cancel",
+        "status": "cancelled",
+        "payloadExitCode": 1,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      },
+      {
+        "case": "helper-hard-kill",
+        "identityMatched": true
+      },
+      {
+        "case": "retry-after-kill",
+        "status": "exited",
+        "payloadExitCode": 0,
+        "activeProcesses": 0,
+        "appContainer": true,
+        "identityMatched": true,
+        "networkCapabilities": 0,
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 2
+        }
+      }
+    ],
+    "policy": "unchanged; production capability remains failed; no probe report transfer or host-process fallback"
+  },
+  "nativeRemote": "verified administrator and independent standard user at 6361510; no capability report copied to local host",
+  "externalWrites": "repair commits pushed and user-authorized Draft PR1; no merge",
+  "screenshots": [
+    {
+      "path": "docs/evidence/P03-01/chat-host-import.png",
+      "sha256": "57c125ff4e18202041661640047e33ddbb6b296add56e053da983732a5a2e604",
+      "review": "synthetic fixture; visual review 2026-10-09"
+    },
+    {
+      "path": "docs/evidence/P03-01/chat-navigation-isolation.png",
+      "sha256": "f2471b95eea3687d847ac5ac6466c9d9818d67409eb393f91f03da8716e9fea6",
+      "review": "synthetic fixture; visual review 2026-10-09"
+    },
+    {
+      "path": "docs/evidence/P03-01/generated-note-library.png",
+      "sha256": "b725719ab68ab31a21859d407817bdfe0c0382c91be7efa47ecb26e168910b17",
+      "review": "synthetic fixture; visual review 2026-10-09"
+    },
+    {
+      "path": "docs/evidence/P03-01/import-recovery.png",
+      "sha256": "ace033686a7f249a96dac25ff61aebbe8dba92e9b6d41c110b49e5ebfcc370de",
+      "review": "synthetic fixture; visual review 2026-10-09"
+    },
+    {
+      "path": "docs/evidence/P03-01/library-dark-1200.png",
+      "sha256": "fa4a47c09e4af0a1a69e7e9259ddab6fb4f101b1eeae21da86a98a8e59f227b9",
+      "review": "synthetic fixture; visual review 2026-10-09"
+    },
+    {
+      "path": "docs/evidence/P03-01/library-dark-200-percent.png",
+      "sha256": "dbe49f531ef546ea6ed445c2f4d81c30b07c43e903534f5e522b4605042c0a78",
+      "review": "synthetic fixture; visual review 2026-10-09"
+    },
+    {
+      "path": "docs/evidence/P03-01/library-dark-960.png",
+      "sha256": "4b5a5c0af549926ea7764fd037965e3df8cc1a0700e64a67ce28b696be28b6e6",
+      "review": "synthetic fixture; visual review 2026-10-09"
+    },
+    {
+      "path": "docs/evidence/P03-01/library-light-1200.png",
+      "sha256": "edb2d9629ebfb17b15b781c16ad003229f1e270312f02d2e182a56f6bfc0aacf",
+      "review": "synthetic fixture; visual review 2026-10-09"
+    },
+    {
+      "path": "docs/evidence/P03-01/library-light-960.png",
+      "sha256": "66b3de10bf6a96f838a250fbfca116d71f603512f472faa41dd5a250f0b76bc4",
+      "review": "synthetic fixture; visual review 2026-10-09"
+    },
+    {
+      "path": "docs/evidence/P03-01/media-original-only.png",
+      "sha256": "06471fb6728ef8fb80d96b47083cdae92da7813837cb3977a28fa12b76ce9c00",
+      "review": "synthetic fixture; visual review 2026-10-09"
+    },
+    {
+      "path": "docs/evidence/P03-01/ocr-original-recovery.png",
+      "sha256": "412bf4dbf0543338bbd3db56b7931fe409b0707319d226354f694d74609c9c38",
+      "review": "synthetic fixture; visual review 2026-10-09"
+    },
+    {
+      "path": "docs/evidence/P03-01/scoped-folder-root.png",
+      "sha256": "122cf9124a66a0afb7d35481b7c49e15045b1c787fed3614141221694a56dd62",
+      "review": "synthetic fixture; visual review 2026-10-09"
+    },
+    {
+      "path": "docs/evidence/P03-01/scoped-pinned-library.png",
+      "sha256": "7ebd29079612bd781463c9c37571d87729dea01ad5352265de0c7a0abb00ad71",
+      "review": "synthetic fixture; visual review 2026-10-09"
+    },
+    {
+      "path": "docs/evidence/P03-01/task-usage.png",
+      "sha256": "37b3d5e6c1a36db15621738f4af9fe2652b0da5b5d1f436b18a8b3548ac8005d",
+      "review": "synthetic fixture; visual review 2026-10-09"
+    }
+  ],
+  "cargoRecovery": {
+    "file": "windows-0.62.2.crate",
+    "sha256": "527fadee13e0c05939a6a05d5bd6eec6cd2e3dbd648b9f8e447c6518133d8580",
+    "verification": "Cargo.lock checksum before and after exclusive copy"
+  },
+  "finalLocalCheckedAt": "2026-10-09T13:17:38.808Z",
+  "delivery": {
+    "branch": "codex/p03-01-ci-repair",
+    "repository": "tteok1/TapKit",
+    "push": {
+      "exitCode": 0,
+      "remoteSha": "67aee23fbbb6e4ad8599b9bbfcdbd546054b0d30",
+      "verifiedBy": "git ls-remote"
+    },
+    "pullRequest": {
+      "number": 1,
+      "url": "https://github.com/tteok1/TapKit/pull/1",
+      "draft": true,
+      "attached": true
+    },
+    "ci": {
+      "runId": 37935864184,
+      "jobId": 113837630323,
+      "url": "https://github.com/tteok1/TapKit/actions/runs/37935864184",
+      "headSha": "67aee23fbbb6e4ad8599b9bbfcdbd546054b0d30",
+      "status": "in_progress",
+      "lastObservedStep": "Verify P00-03 and P03 parser as an independent standard user",
+      "completedSuccessfulSteps": [
+        "bootstrap",
+        "Check",
+        "Unit and current-route integration",
+        "Dedicated Core performance checks",
+        "Build and Electron checks"
+      ]
+    },
+    "prAuthorization": "User explicitly approved existing Git credential in-memory use and Draft PR creation after connector 403 and automatic-review rejection; approved execution succeeded; no credentials persisted",
+    "latestPush": {
+      "exitCode": 0,
+      "remoteSha": "6361510faf904402eea8a5cb18eec21b112b4b7e",
+      "verifiedBy": "GitHub GET /repos/tteok1/TapKit/git/ref/heads/codex/p03-01-ci-repair",
+      "gitLsRemoteAttempt": "failed network connection; not claimed as verification"
+    },
+    "latestCi": "acceptedCi"
+  },
+  "standardUserPreparationRepair": {
+    "reason": "Kit intentionally excludes dist/out; native beforeAll no longer rebuilds shared dist",
+    "change": "Build fixed parser and locked PDF assets once in sequential standard-user preparation before both probes",
+    "acceptance": "verified in CI37938119655 and CI37938112057"
+  },
+  "ciAttempts": [
+    {
+      "headSha": "67aee23fbbb6e4ad8599b9bbfcdbd546054b0d30",
+      "runId": 37935864184,
+      "checkJobId": 113837630323,
+      "checkConclusion": "failure",
+      "successful": {
+        "unit": 263,
+        "integration": 238,
+        "electron": 25,
+        "perf": 1,
+        "standardP00": 22,
+        "officeMacroRepeats": 3,
+        "officeLinkRepeats": 3
+      },
+      "standardP03": {
+        "total": 3,
+        "passed": 0,
+        "failed": 0,
+        "pending": 3,
+        "exitCode": 1,
+        "adapterSha256": null,
+        "reason": "fresh source kit excludes dist; beforeAll access fails; native P03 cases never execute"
+      },
+      "artifact": {
+        "id": 11619007224,
+        "name": "windows-p00-evidence",
+        "sha256": "b1fb10d269685b18ba85f6f33e26502afcd315004d3eae6cb2134ec19faad386"
+      },
+      "jobLog": {
+        "path": ".cache/ci-37923489728/job-113837630323.log",
+        "sha256": "fc4333c60d66f61d7042dba62aae57a98bef527ef19a260a135e7469398c8495"
+      },
+      "nativeAdministratorEvidence": "docs/evidence/P03-01/public-ci-67aee23-native-cases.jsonl",
+      "standardRuntimeEvidence": "docs/evidence/P03-01/public-ci-67aee23-standard-runtime.json",
+      "standardParserEvidence": "docs/evidence/P03-01/public-ci-67aee23-standard-parser.json",
+      "nativeAdministrator": {
+        "records": 26,
+        "checkedFinishedEvents": 25,
+        "formats": 15,
+        "ocr": 1,
+        "rejections": 7,
+        "cancel": 1,
+        "hardKill": 1,
+        "retry": 1,
+        "checks": "AppContainer true; identity SID matches container SID; no network; killOnClose true; breakaway false; processLimit2; activeProcesses0"
+      }
+    },
+    {
+      "headSha": "6361510faf904402eea8a5cb18eec21b112b4b7e",
+      "runs": [
+        {
+          "id": 37938112057,
+          "event": "push",
+          "jobId": 113845215729
+        },
+        {
+          "id": 37938119655,
+          "event": "pull_request",
+          "jobId": 113845241774
+        }
+      ],
+      "status": "in_progress",
+      "lastObservedStep": "Unit and current-route integration"
+    }
+  ],
+  "completedAt": "2026-10-09T14:05:18.067Z",
+  "verifiedSourceFiles": [
+    {
+      "path": "packages/core/src/file-parser.ts",
+      "sha256": "2b1bcd75b920addacea3f173f6a3d2e0135d48a37d105db597c666443fd0f0a6"
+    },
+    {
+      "path": "tests/unit/P03-01.pdf-parser.test.ts",
+      "sha256": "21b0fb204b057ed6102846f2895e730275a6d589d8150ac0cb18b7a60545c224"
+    },
+    {
+      "path": "tests/e2e/P03-01.files.spec.ts",
+      "sha256": "7e9b51edb959c861a2b9f72fa60a2db4150fc378e813e245b42322f0a603651d"
+    },
+    {
+      "path": "tests/integration/P03-01.parser-orchestration.test.ts",
+      "sha256": "9602544cd5fed271f91e6b6f6d15727d63c440d192eec88714d2267515bef221"
+    },
+    {
+      "path": "tests/integration/P03-01.parser-process.test.ts",
+      "sha256": "5f99ceaad39da0b9b98f88ac13dc5ed0fa658c05aadeeace71c5461075ec25a2"
+    },
+    {
+      "path": "tests/integration/P03-01.native-parser.test.ts",
+      "sha256": "2e53997e57d87b97bb516ad33c488dd269d35532bf31c3dcf22a8b71490458f4"
+    },
+    {
+      "path": "tests/fixtures/P03-office.ts",
+      "sha256": "f5e478ac686757f4d85718be6a8571740a95e649b7622144a000ea1898dbfbd9"
+    },
+    {
+      "path": "scripts/standard-user-test.mjs",
+      "sha256": "df4a8df67f638b600a7b6afceac4ee4d98f79476a28c97086dff1cdcd1e6d2aa"
+    }
+  ],
+  "acceptedCi": {
+    "sourceCommit": "6361510faf904402eea8a5cb18eec21b112b4b7e",
+    "pullRequestRun": {
+      "id": 37938119655,
+      "status": "completed",
+      "conclusion": "success",
+      "checkJob": 113845241774,
+      "startupJob": 113851968492
+    },
+    "pushRun": {
+      "id": 37938112057,
+      "status": "completed",
+      "conclusion": "success",
+      "checkJob": 113845215729,
+      "startupJob": 113852469056
+    },
+    "results": {
+      "unit": {
+        "files": 25,
+        "passed": 263,
+        "failed": 0
+      },
+      "integration": {
+        "files": 31,
+        "passed": 238,
+        "failed": 0
+      },
+      "electron": {
+        "passed": 25,
+        "failed": 0,
+        "p03Cases": 17
+      },
+      "perf": {
+        "passed": 1,
+        "unchangedBudget": true
+      },
+      "standardP00": {
+        "total": 22,
+        "passed": 22,
+        "failed": 0,
+        "pending": 0,
+        "missingCases": []
+      },
+      "standardP03": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "pending": 0,
+        "missingCases": [],
+        "standardUser": true,
+        "adapterSha256": "34721611394eb3697828f9b8beae68e1b3360f5f4a13a37a86294224abd286d0"
+      },
+      "office": {
+        "macroRepeats": 3,
+        "linkRepeats": 3,
+        "allPassed": true
+      },
+      "startup": {
+        "freshStorageRepeats": 3,
+        "freshElectronVaultRepeats": 3,
+        "allPassed": true,
+        "otherCasesExcludedByDiagnosticFilter": true
+      }
+    },
+    "artifact": {
+      "id": 11620572763,
+      "name": "windows-p00-evidence",
+      "sha256": "a1c9ea72470e026e21d5ceb33e491eddad8cd8860b27005250d8655bc472318e"
+    },
+    "files": [
+      {
+        "path": "docs/evidence/P03-01/public-ci-6361510-admin-native-cases.jsonl",
+        "sha256": "6d857ae19b7834af08e35dbfa7030044157cea072c0d59cefb64163ab66527bb"
+      },
+      {
+        "path": "docs/evidence/P03-01/public-ci-6361510-office-diagnostics.json",
+        "sha256": "036a7b6654c3dc5811595416b217b2c90f6c3687ccb25a64763c492be86726e7",
+        "artifactEntrySha256": "79fe3c92e119ae63f70913c9ebeaa05e98bfc6273dd874ade5d8034f4e62ce67",
+        "normalization": "CRLF normalized to LF for publication; original ZIP digest retained"
+      },
+      {
+        "path": "docs/evidence/P03-01/public-ci-6361510-standard-native-cases.jsonl",
+        "sha256": "dd8044c16b13f0e5ef9c420b386d4a9faf440a5442b974ab99e5fb23ed2ece48"
+      },
+      {
+        "path": "docs/evidence/P03-01/public-ci-6361510-standard-parser-results.json",
+        "sha256": "a483b7a11e2cb35f9ad352f171e729c74fef24ab9e265b4cda6939d6937f94b4"
+      },
+      {
+        "path": "docs/evidence/P03-01/public-ci-6361510-standard-parser.json",
+        "sha256": "ec691f69eb8be3723ed0aa21658557b64487086499fa9c382635faef6e0bb488"
+      },
+      {
+        "path": "docs/evidence/P03-01/public-ci-6361510-standard-runtime.json",
+        "sha256": "a406bb44a16f66ad63d08739db4218a130ff5f7219492f186c8981507ca184e0"
+      }
+    ],
+    "jobLogs": [
+      {
+        "jobId": 113845241774,
+        "cachePath": ".cache/ci-37923489728/job-113845241774.log",
+        "sha256": "7f773f2fbdba155c0dadda5f3536d378c52731e72b44aeafe48bb9f848f051d1"
+      },
+      {
+        "jobId": 113851968492,
+        "cachePath": ".cache/ci-37923489728/job-113851968492.log",
+        "sha256": "246a3f7ca6d256d131bf77c369ea4b546d81561c1f5715825a1293cc9cb0eec4"
+      }
+    ]
+  },
+  "requirementsAudit": {
+    "path": "docs/evidence/P03-01/public-acceptance-audit-2026-10-09.md",
+    "count": 24,
+    "status": "verified_within_planned_scope",
+    "deferred": [
+      "image understanding",
+      "OCR",
+      "audio/video analysis",
+      "screen capture",
+      "P03-02/03 preview and project indexing"
+    ]
+  },
+  "acceptanceChecks": [
+    "Both workflow runs completed/success on exact source SHA",
+    "ZIP digest matches GitHub artifact digest",
+    "standardP00=22/22 and standardP03=3/3 with zero pending/missing",
+    "Admin and standard-user each26 records:15 suffix samples plus OCR state plus7 rejected inputs plus cancel/hard-kill/fenced retry",
+    "Each set25 finished events:AppContainer; matching SID; network0; helperExit0; activeProcesses0; Job killOnClose/no breakaway/processLimit2",
+    "7 expected rejection reasons preserved; source originals and one-version publication asserted by passed native tests",
+    "Standard parser bundle digest matches local production build",
+    "Office links/macro3 rounds each and startup storage/vault3 rounds each passed",
+    "Current packages/tests/scripts unchanged from accepted source"
+  ],
+  "finalDocumentationChecks": {
+    "checkedAt": "2026-10-09T14:10:17.756Z",
+    "checks": [
+      {
+        "command": "pnpm check",
+        "exitCode": 0,
+        "formattedFiles": 323,
+        "logSha256": "9ac230c0410e5e7ec53d1e684d4d419fc8410cb7f44fc18b0cbb828936c1194f"
+      },
+      {
+        "command": "node scripts/docs-check.mjs",
+        "exitCode": 0,
+        "taskStates": 37,
+        "verifiedRequirementRows": 24
+      },
+      {
+        "command": "git diff --check",
+        "exitCode": 0
+      },
+      {
+        "command": "git show 6361510:<file> vs current SHA256; git diff --name-only 6361510 -- program/test/config paths",
+        "exitCode": 0,
+        "verifiedSourceFiles": 8,
+        "programDiff": []
+      },
+      {
+        "command": "SHA256 of published evidence vs Git blobs; Office CRLF normalization",
+        "exitCode": 0,
+        "files": 6,
+        "originalArtifactDigestRetained": true
+      }
+    ]
+  },
+  "followUpEvidence": "docs/evidence/P03-01/public-navigation-sync-2026-10-09.json",
+  "followUpNote": "Historical accepted6361510 source/evidence retained. A subsequent documentation CI exposed a test navigation timing race; displayed-session wait and controlled real reply delay were accepted atab6edd4 in two completed successful CI runs. Product/native source remained byte-identical to6361510; latest evidence in followUpEvidence."
+}

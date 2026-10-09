@@ -1,7 +1,5 @@
 import { afterEach, beforeAll, expect, test, vi } from 'vitest';
-import { execFile } from 'node:child_process';
-import { promisify } from 'node:util';
-import { appendFile, mkdir, mkdtemp, readdir } from 'node:fs/promises';
+import { access, appendFile, mkdir, mkdtemp, readdir } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { FileParser, type ParserExecutor } from '../../packages/core/src/file-parser';
 import {
@@ -18,8 +16,7 @@ import { officeZip, docxFixture, xlsxFixture, pptxFixture } from '../fixtures/P0
 import { pdfFixture } from '../fixtures/P03-pdf';
 import { startNativeHelper } from './native-helper';
 
-const root = resolve('.'),
-  node = resolve('.runtime/node/node-v24.21.0-win-x64/node.exe');
+const root = resolve('.');
 const stores: Store[] = [];
 const available: ExecutionCapabilities = {
   nativeExecution: { status: 'available' },
@@ -28,16 +25,10 @@ const available: ExecutionCapabilities = {
 };
 beforeAll(async () => {
   await mkdir(join(root, 'docs/evidence/P03-01'), { recursive: true });
-  await promisify(execFile)(
-    node,
-    [
-      resolve('node_modules/vite/bin/vite.js'),
-      'build',
-      '--config',
-      'packages/retrieval/vite.worker.config.ts',
-    ],
-    { windowsHide: true, timeout: 15000 },
-  );
+  // Bootstrap/build prepares this trusted bundle. Never empty its shared directory
+  // while other integration files are validating or copying it.
+  await access(join(root, 'packages/retrieval/dist/parse.cjs'));
+  await access(join(root, 'packages/retrieval/dist/pdf/assets.json'));
 });
 afterEach(() => {
   for (const s of stores.splice(0)) s.close();
@@ -120,20 +111,41 @@ async function cleaned(store: Store) {
 // an unavailable/blocked local helper must fail, never skip or fall back to a host process.
 test('P03-01 native parser publishes text and Office structure from a read-only AppContainer input', async () => {
   const { store, files, blobs, put } = await fixture();
-  const parser = new FileParser(
-    root,
-    files,
-    available,
-    observing(new NativeSandboxExecutor(root), 'formats'),
-  );
   const samples = [
     ['原件.txt', Buffer.from('原件文本唯一检索'), '原件文本唯一检索'],
+    ['说明.MD', Buffer.from('# 原生Markdown标记\n固定正文'), '原生Markdown标记'],
+    [
+      '代码.ts',
+      Buffer.from('const marker = "原生代码标记"; throw new Error(marker);'),
+      '原生代码标记',
+    ],
+    ['数据.CSV', Buffer.from('名称,数量\n原生CSV标记,2'), '原生CSV标记'],
+    ['数据.TSV', Buffer.from('名称\t数量\n原生TSV标记\t3'), '原生TSV标记'],
+    ['配置.JSON', Buffer.from('{"名称":"原生JSON标记"}'), '原生JSON标记'],
+    ['配置.YAML', Buffer.from('名称: 原生YAML标记'), '原生YAML标记'],
+    ['配置.YML', Buffer.from('名称: 原生YML标记'), '原生YML标记'],
+    ['结构.XML', Buffer.from('<root>原生XML标记</root>'), '原生XML标记'],
+    [
+      '页面.HTML',
+      Buffer.from('<p>原生HTML标记</p><script>throw new Error("inert")</script>'),
+      '原生HTML标记',
+    ],
+    ['资料.ZIP', await officeZip({ '中文目录/资料.md': '# 原生ZIP标记' }), '资料.ZIP'],
     ['原件.DOCX', await officeZip(docxFixture()), '中文标题'],
     ['原件.XLSX', await officeZip(xlsxFixture()), '富文本中文'],
     ['原件.PPTX', await officeZip(pptxFixture()), '实际第一张'],
     ['原件.PDF', pdfFixture('Native PDF marker'), 'Native PDF marker'],
   ] as const;
   for (const [name, bytes, query] of samples) {
+    const parser = new FileParser(
+      root,
+      files,
+      available,
+      observing(
+        new NativeSandboxExecutor(root),
+        'formats:' + name.split('.').at(-1)!.toLowerCase(),
+      ),
+    );
     const file = await put(name, bytes),
       job = claim(files);
     expect(await parser.execute(job, new AbortController().signal)).toBe(file.currentVersionId);
@@ -143,6 +155,24 @@ test('P03-01 native parser publishes text and Office structure from a read-only 
     expect(await blobs.readVersion(file.currentVersionId)).toEqual(bytes);
     await cleaned(store);
   }
+  const scanned = await put('扫描.pdf', pdfFixture(null)),
+    scannedJob = claim(files),
+    parser = new FileParser(
+      root,
+      files,
+      available,
+      observing(new NativeSandboxExecutor(root), 'formats:pdf-ocr'),
+    );
+  expect(await parser.execute(scannedJob, new AbortController().signal)).toBe(
+    scanned.currentVersionId,
+  );
+  expect(files.jobs.finish(scannedJob, 'completed', scanned.currentVersionId)).toBe(true);
+  expect(files.get(scanned.id).version).toMatchObject({
+    parseStatus: 'unsupported',
+    errorReason: 'OCR_REQUIRED',
+  });
+  expect(await blobs.readVersion(scanned.currentVersionId)).toEqual(pdfFixture(null));
+  await cleaned(store);
 }, 30000);
 test('P03-01 native parser rejects corrupt and hostile Office packages while originals remain downloadable', async () => {
   const { store, files, blobs, put } = await fixture();
@@ -152,8 +182,21 @@ test('P03-01 native parser rejects corrupt and hostile Office packages while ori
     available,
     observing(new NativeSandboxExecutor(root), 'rejection'),
   );
+  const traversal = await officeZip({ 'safe.txt': '不可提取' });
+  for (
+    let offset = traversal.indexOf('safe.txt');
+    offset !== -1;
+    offset = traversal.indexOf('safe.txt', offset + 1)
+  )
+    Buffer.from('../x.txt').copy(traversal, offset);
+  const bomb = await officeZip({ 'bomb.txt': '0'.repeat(100000) }, { compress: true }),
+    link = await officeZip({ 'link.txt': '/outside' }, { mode: 0o120777 });
   for (const [name, bytes, reason] of [
+    ['空白.txt', Buffer.alloc(0), 'EMPTY_FILE'],
     ['损坏.docx', Buffer.from('corrupt'), 'MAGIC_MISMATCH'],
+    ['穿越.zip', traversal, 'UNSAFE_ARCHIVE'],
+    ['链接.zip', link, 'UNSAFE_ARCHIVE'],
+    ['炸弹.zip', bomb, 'ARCHIVE_LIMIT'],
     ['加密.pdf', pdfFixture('Encrypted original', 1, false, 'public-test-pass'), 'ENCRYPTED_FILE'],
     [
       '实体.docx',

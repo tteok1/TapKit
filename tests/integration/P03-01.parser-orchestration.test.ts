@@ -131,8 +131,16 @@ test('P03-01 request uses fixed Node adapter and limits and rejects a forged non
     execute: async (request) => {
       expect(request.operation).toBe('diagnostic.execute');
       expect(request.payload.executable).toMatch(/node\.exe$/);
-      expect(request.payload.args[0]).toMatch(/parse\.cjs$/);
-      expect(request.payload.args).toHaveLength(3);
+      expect(request.payload.args.slice(0, 2)).toEqual([
+        '--preserve-symlinks',
+        '--preserve-symlinks-main',
+      ]);
+      expect(request.payload.args[2]).toMatch(/parse\.cjs$/);
+      expect(request.payload.args.slice(3)).toEqual([
+        request.payload.inputRoot,
+        request.payload.workspace,
+      ]);
+      expect(request.payload.args).toHaveLength(5);
       expect(request.payload.timeoutMs).toBe(120000);
       expect(request.payload.terminal).toBe(false);
       expect(request.payload.processLimit).toBe(2);
@@ -152,3 +160,58 @@ test('P03-01 request uses fixed Node adapter and limits and rejects a forged non
   expect(files.get(file.id).version.parseStatus).toBe('failed');
   expect(files.list({ query: 'parsed output' }).files).toEqual([]);
 });
+
+test.each([
+  { stdout: '', reason: 'SANDBOX_UNAVAILABLE' },
+  {
+    stdout: JSON.stringify({ stage: 'parser_failed', reason: 'CORRUPT_FILE' }),
+    reason: 'CORRUPT_FILE',
+  },
+  {
+    stdout: JSON.stringify({ stage: 'parser_failed', reason: 'MAGIC_MISMATCH' }),
+    reason: 'MAGIC_MISMATCH',
+  },
+])(
+  'P03-01 worker exit reports $reason without publishing or changing the original',
+  async ({ stdout, reason }) => {
+    const { files, file, job, blobs } = await fixture();
+    const parser = new FileParser(resolve('.'), files, available, {
+      execute: async () => ({
+        exitCode: 0,
+        events: [
+          {
+            event: 'started',
+            data: {
+              appContainer: true,
+              networkCapabilities: 0,
+              appContainerSid: 'synthetic-container',
+              identitySid: 'synthetic-container',
+              job: { killOnClose: true, breakaway: false },
+            },
+          },
+          {
+            event: 'finished',
+            data: {
+              status: 'exited',
+              exitCode: 1,
+              activeProcesses: 0,
+              stdout,
+              stderr: stdout ? '' : "EPERM: operation not permitted, lstat 'D:\\\\'",
+            },
+          },
+        ],
+      }),
+    });
+    await expect(parser.execute(job, new AbortController().signal)).rejects.toThrow(reason);
+    expect(files.get(file.id).version).toMatchObject({
+      parseStatus: 'failed',
+      errorReason: reason,
+    });
+    expect(
+      files.store.db
+        .prepare('SELECT 1 FROM parsed_documents WHERE file_version_id=?')
+        .get(file.currentVersionId),
+    ).toBeUndefined();
+    expect((await blobs.readVersion(file.currentVersionId)).toString()).toBe('原件保留');
+  },
+);

@@ -1,4 +1,4 @@
-import { expect, test } from 'vitest';
+import { beforeAll, expect, test } from 'vitest';
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 import { dirname, resolve } from 'node:path';
@@ -6,10 +6,14 @@ import { FILE_LIMITS } from '../../packages/contracts/src';
 import { parsePdfFile, type PdfApi } from '../../packages/retrieval/src/ingest/pdf';
 import { pdfFixture } from '../fixtures/P03-pdf';
 const require = createRequire(resolve('packages/retrieval/package.json'));
-async function parser() {
+let pdf: { api: PdfApi; assets: string };
+beforeAll(async () => {
   const path = require.resolve('pdfjs-dist/legacy/build/pdf.mjs');
   const api = (await import(pathToFileURL(path).href)) as PdfApi;
-  return { api, assets: resolve(dirname(path), '../../') };
+  pdf = { api, assets: resolve(dirname(path), '../../') };
+}, 30_000);
+async function parser() {
+  return pdf;
 }
 test('P03-01 actual PDF.js extracts text with normalized page rectangles while preserving source bytes', async () => {
   const { api, assets } = await parser(),

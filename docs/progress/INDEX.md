@@ -1,5 +1,41 @@
 # 开发进度总表
 
+## 2026-10-10 收口文档格式失败诊断
+
+P03-01业务/测试仍以ab6edd4的完整双CI验收为准；最终文档提交e85633d的push CI37954965077与PR CI37954970148均在Check阶段因INDEX.md和P03-01.md的Prettier格式失败（323文件/2失败），后续业务/标准用户套件未运行，独立startup均success。本地同一命令已复现退出1。原因是收口Markdown新增空行/表格对齐后只执行docs:check，遗漏最终完整check。现统一格式化受影响进度文档并重跑完整check/docs/diff，本地完整check（323文件/0格式失败）、docs:check（37状态/证据）和diff均退出0；推送后新CI待确认。业务/测试无改动，24项需求状态及R15不变；PR仍Draft，未合并，P03-02/03和gate未开始。证据：docs/evidence/P03-01/public-handoff-format-2026-10-10.json。
+
+## 2026-10-09 导航同步与最终验收
+
+status：implemented_and_verified；测试同步源码ab6edd4的push CI37948602670和PR CI37948612539均completed/success（check/startup）；unit263/integration238/Electron25/perf通过，独立标准P00 22/22、P03 3/3零pending/缺项，固定parser摘要匹配。300ms真实创建回包延迟下旧等待复现空草稿失败；等待页面data-session-id及输入加载后本地T08三轮15/15、完整P03 17/17、check/docs/diff退出0，CI保留同一延迟与全部隔离/原件/持久化断言。业务/原生源码与已验收6361510逐字节一致。FR-03-002恢复implemented_and_verified，全部24项需求按既定范围收口。完整失败轮与新源码CI见 docs/evidence/P03-01/public-navigation-sync-2026-10-09.json；历史原生证据仍见public-ci-repair和public-acceptance-audit。P03-02/03和gate未开始；本机仍须自己的有效probe。
+
+## 2026-10-09 导航测试时序复核
+
+P03-01=in_progress；3654890的两轮Electron24/25暴露T08测试在旧Composer输入；c78e40a两轮全绿未消除时序竞态。300ms真实创建回包延迟复现后，已用页面会话ID等待修复，T08三轮15/15通过。业务/原生仍为已验收6361510，完整P03 17/17及check/docs/diff退出0；新CI待核验，FR-03-002暂回in_progress。证据：docs/evidence/P03-01/public-navigation-sync-2026-10-09.json；P03-02/03和gate未开始。
+
+## 2026-10-09 P03-01 验收完成
+
+status：implemented_and_verified；P03-01的24项需求按既定范围及T07/T08异常验收完成。源码6361510，公开push CI37938112057与PR CI37938119655的check/startup均success。unit263/integration238/Electron25（P03为17项）/perf通过；独立标准P00 22/22、P03 3/3零pending/缺项；管理员与标准用户各26条原生事件核验，15种后缀样例、扫描PDF、7项拒绝及取消/helper kill/单版本fenced retry成立，原件保持。标准bundle摘要与本地生产构建一致；Office宏/外链各三轮及storage/vault启动各三轮通过。完整失败轮、修复、命令和摘要见 docs/evidence/P03-01/public-ci-repair-2026-10-09.json；需求逐项见 docs/evidence/P03-01/public-acceptance-audit-2026-10-09.md。本地生产能力仍须该机器的有效probe，不复制CI报告。图片理解/OCR/媒体分析/屏幕采集按计划延期；P03-02/03未开始，P03-gate未开始，本轮不扩展任务。
+
+## 2026-10-09 首轮公开修复CI归档
+
+status：in_progress；6361510已push并由GitHub ref核验完整SHA。CI37938112057/push与37938119655/PR正在管理员全量测试。旧67aee23/check113837630323最终failure：unit263/integration238/Electron25/perf及Office宏/外链各三轮通过，标准P00 22/22；标准P03因kit缺dist而三项pending/adapterSha=null，未执行。管理员26条P03事件均已归档，25条结束事件验证AppContainer/身份匹配/零网络/Job限制/零残留。顺序构建kit已在6361510补齐，不能用管理员通过代替标准用户收口。证据：docs/evidence/P03-01/public-ci-repair-2026-10-09.json。
+
+## 2026-10-09 标准用户测试包构建接续
+
+status：in_progress；67aee23推送CI已通过bootstrap/Check/全量unit与管理员integration/性能/build+Electron，标准用户仍运行中。复核发现标准用户kit刻意排除dist；移除native并行重建后须在standard-user-test顺序准备阶段构建固定parser/PDF资源，已补齐在prepare-native后且probe前。node --check与完整check退出0；不改ACL、capability或解析上限。该补充需新CI，原轮结果继续保留。证据：docs/evidence/P03-01/public-ci-repair-2026-10-09.json。
+
+## 2026-10-09 公开修复分支交付检查点
+
+status：in_progress；67aee23已推送且远端完整SHA核验一致，Draft PR#1已创建并附加：https://github.com/tteok1/TapKit/pull/1。CI37935864184/check113837630323已通过bootstrap与Check，当前unit/管理员integration运行中。用户明确批准已有Git凭据仅内存使用建PR；连接器403和自动审批拒绝未被绕过，授权后相同行为成功。最终本地check/docs/diff退出0，unit263/便携integration78/Electron17已通过；真实标准用户及P00安全回归待CI。证据：docs/evidence/P03-01/public-ci-repair-2026-10-09.json。
+
+## 2026-10-09 P03-01 CI 修复候选
+
+status：in_progress；修复分支 codex/p03-01-ci-repair，基线752ab6a。固定Node主入口/模块加载参数及启动失败分类、PDF.js独立初始化预算、Electron种子诊断环境和实例清理已实现。bootstrap重试/ABI、全量unit263/263、明确清单P03便携integration78/78、完整P03 Electron17/17（启动诊断开启）及desktop build退出0。首轮integration78/81：Vitest项目未应用exclude而误选native，native重建共享dist造成两项编排ENOENT；ZIP样例错误要求正文检索造成第三失败。已移除native重建并按既定ZIP原件/目录元数据范围校正断言，11文件便携复验全部通过。该轮native真实2/3且零网络/身份/Job回收观察成立，不代表标准用户通过或生产能力开放。真实验收现覆盖15种格式（含ZIP安全目录）/扫描PDF及7项恶意或失败输入；需新CI管理员、标准用户、隔离回归收口。截图已核查为本轮合成资料。P03-02/03未开始，无gate；本轮尚未push。证据：docs/evidence/P03-01/public-ci-repair-2026-10-09.json。
+
+## 2026-10-09 公开仓库首次 CI 失败诊断
+
+公开 main 752ab6a 已推送，CI37923489728/check113796801014 实际执行。unit262/263：PDF.js实际文本解析默认5秒超时，导致管理员全量integration未运行；build成功，Electron22/25，三项seedUsage被job级启动诊断stdout干扰，另有app生命周期连带报错。标准用户P00 22/22；P03 0/3，artifact确认Node脚本入口realpathSync对D:\根目录lstat遭EPERM，尚未进入解析器；Core将无阶段的启动退出归为CORRUPT_FILE。AppContainer身份匹配/零网络/Job限制与零残留进程观察成立，不能据此宣称解析验收通过。Office宏/外链各三轮及startup成功。R15仅在新公开仓库已验证runner可执行，不推断旧私有仓库账单状态。只诊断与更新文档，未改业务/测试/ACL，未重跑/commit/push；P03-01=in_progress、02/03未开始，无gate。证据：docs/evidence/P03-01/public-ci-diagnosis-2026-10-09.json。
+
 ## 2026-10-09 独立公开副本准备检查点
 
 2026-10-09 用户提供新公开仓库 https://github.com/tteok1/TapKit 与 noreply 提交邮箱。已在 D:/Tapkit-public 建立独立 main 快照，当前 P03-01 工作树源码随单次首次提交准备交付；原目录与 Git 历史保留。303 份代码/配置逐字节一致，213 份 JSON 可解析，格式检查与37项文档状态/证据链接检查退出0；81份未完成公开审查的旧截图/PDF留在私有档案，三个已核查合成截图保留。常见令牌/密钥模式、旧账号、旧提交邮箱和当前主机名检查未发现残留；这是模式检查，不保证无法通过项目内容建立关联。尚未公开推送，新 CI 未运行，R15=pending，三个 native CORRUPT_FILE 未修复，P03-01=in_progress、02/03未开始，无gate。证据：docs/evidence/P03-01/public-snapshot-preparation-2026-10-09.json。
@@ -119,7 +155,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P02-01 | 桌面布局、设置和模型连接体验       | P01-03         | implemented_not_live_verified | docs/progress/P02-01.md              |
 | P02-02 | 聊天发送、流式消息和只读执行循环   | P02-01         | implemented_not_live_verified | docs/progress/P02-02.md              |
 | P02-03 | 会话组织、消息分支与全局搜索       | P02-02         | implemented_not_live_verified | docs/progress/P02-03.md              |
-| P03-01 | 文件导入、版本、资料库与解析流水线 | P02-03, P00-03 | in_progress                   | docs/progress/P03-01.md              |
+| P03-01 | 文件导入、版本、资料库与解析流水线 | P02-03, P00-03 | implemented_and_verified      | docs/progress/P03-01.md              |
 | P03-02 | 文件预览、定位与右侧工作面板       | P03-01         | not_started                   | docs/progress/P03-02.md              |
 | P03-03 | 项目管理、资料范围与索引版本       | P03-02         | not_started                   | docs/progress/P03-03.md              |
 | P04-01 | 中文混合检索、重排与引用证据       | P03-03         | not_started                   | docs/progress/P04-01.md              |

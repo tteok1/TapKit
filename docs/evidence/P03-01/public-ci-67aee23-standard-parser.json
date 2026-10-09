@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "task": "P03-01",
+  "startedAt": "2026-10-09T13:34:44.849Z",
+  "endedAt": "2026-10-09T13:34:46.581Z",
+  "command": "pnpm test:integration P03-01.native-parser --reporter=json --outputFile=test-results/P03-01-native-parser.json",
+  "exitCode": 1,
+  "standardUser": true,
+  "adapterSha256": null,
+  "passed": false,
+  "missingCases": [
+    "P03-01 native parser publishes text and Office structure from a read-only AppContainer input",
+    "P03-01 native parser rejects corrupt and hostile Office packages while originals remain downloadable",
+    "P03-01 native parser cancellation and helper kill preserve the version and allow one fenced retry"
+  ],
+  "tests": {
+    "total": 3,
+    "passed": 0,
+    "failed": 0,
+    "pending": 3
+  }
+}

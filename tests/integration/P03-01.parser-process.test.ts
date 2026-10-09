@@ -76,7 +76,7 @@ async function input(text: string | Buffer, sha?: string, name = '资料/原件.
     work,
     bytes,
     hash,
-    args: [adapter, source, work],
+    args: ['--preserve-symlinks', '--preserve-symlinks-main', adapter, source, work],
   };
 }
 // Portable adapter tests on synthetic bytes only; these do not certify AppContainer isolation.
