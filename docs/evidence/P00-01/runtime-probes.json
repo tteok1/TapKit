@@ -1,0 +1,62 @@
+{
+  "at": "2026-09-15T10:50:37.616Z",
+  "host": {
+    "platform": "win32",
+    "release": "10.0.26200",
+    "version": "Windows 11 Home China",
+    "arch": "x64"
+  },
+  "probes": [
+    {
+      "name": "node",
+      "args": [
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "v24.21.0",
+      "stderr": ""
+    },
+    {
+      "name": "python",
+      "args": [
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "Python 3.13.15",
+      "stderr": ""
+    },
+    {
+      "name": "rust",
+      "args": [
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "rustc 1.98.1 (48a229cea 2026-09-01)",
+      "stderr": ""
+    },
+    {
+      "name": "git",
+      "args": [
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "git version 2.55.0.windows.5",
+      "stderr": ""
+    },
+    {
+      "name": "libreoffice",
+      "args": [
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "LibreOffice 26.2.6.3 8221e31b3ac356a1623c672912a3d2b492f7e3d1",
+      "stderr": ""
+    },
+    {
+      "name": "Python wheels",
+      "exitCode": 0,
+      "stdout": "3.0.5 3.1.5 3.11.2",
+      "stderr": ""
+    }
+  ]
+}

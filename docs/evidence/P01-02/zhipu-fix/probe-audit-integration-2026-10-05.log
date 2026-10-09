@@ -1,0 +1,299 @@
+$ vitest run --config vitest.config.ts --project integration "--" "P01-02"
+
+ RUN  v5.0.0 D:/tapkit/TapKit
+
+stderr | tests/integration/P00-03.office.test.ts > P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppContainer route
+[P00-03 Office helper rejected] APP_CONTAINER_HELPER_FAILED:path.open.office.runtime.component.3:0x80070005
+
+ ❯ |integration| tests/integration/P00-03.sandbox.test.ts (11 tests | 10 failed) 925ms
+   ❯ P00-03 real Windows sandbox T08 T19 (11)
+     × Node reads only input and writes workspace; runtime and input are read only; environment is private 214ms
+     × execution lease cleanup allows the next helper invocation 66ms
+     × concurrent runs keep independent AppContainer identities and workspace ACLs 50ms
+     × hard-killing the helper stops job descendants and recovers its ACL/profile lease 55ms
+     × Python starts and spawns a child in AppContainer 74ms
+     × network denies public, loopback and metadata connections 80ms
+     × cancel kills descendants 44ms
+     × timeout, output flood and fork limits are enforced 44ms
+     × memory exhaustion is contained 39ms
+     × ConPTY is interactive while still in AppContainer 45ms
+ ❯ |integration| tests/integration/P00-03.office.test.ts (5 tests | 5 failed) 413ms
+   × P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppContainer route 157ms
+   × P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an isolated positive control 98ms
+   × P00-03 T19 OfficeWorker preserves cached external-link data with an isolated refresh control 66ms
+   × P00-03 T08 OfficeWorker fails closed on a corrupt document and remains usable 50ms
+   × P00-03 Office hard kill recovers only its recorded mapped drives on the next helper run 40ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 15 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P00-03.office.test.ts > P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppContainer route
+Error: APP_CONTAINER_HELPER_FAILED:path.open.office.runtime.component.3:0x80070005
+ ❯ NativeSandboxExecutor.execute packages/tools/src/execution/native-executor.ts:32:13
+     30|             ? finished.data.code
+     31|             : 'unknown';
+     32|       throw new SandboxError(`APP_CONTAINER_HELPER_FAILED:${stage}`);
+       |             ^
+     33|     }
+     34|     if (
+ ❯ Object.execute tests/integration/P00-03.office.test.ts:48:18
+ ❯ OfficeWorker.render packages/tools/src/execution/office-worker.ts:103:20
+ ❯ tests/integration/P00-03.office.test.ts:115:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/15]⎯
+
+ FAIL  |integration| tests/integration/P00-03.office.test.ts > P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an isolated positive control
+Error: APP_CONTAINER_HELPER_FAILED:path.open.office.runtime.component.3:0x80070005
+ ❯ NativeSandboxExecutor.execute packages/tools/src/execution/native-executor.ts:32:13
+     30|             ? finished.data.code
+     31|             : 'unknown';
+     32|       throw new SandboxError(`APP_CONTAINER_HELPER_FAILED:${stage}`);
+       |             ^
+     33|     }
+     34|     if (
+ ❯ Object.execute tests/integration/P00-03.office.test.ts:162:22
+ ❯ OfficeWorker.render packages/tools/src/execution/office-worker.ts:103:20
+ ❯ tests/integration/P00-03.office.test.ts:211:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/15]⎯
+
+ FAIL  |integration| tests/integration/P00-03.office.test.ts > P00-03 T19 OfficeWorker preserves cached external-link data with an isolated refresh control
+Error: APP_CONTAINER_HELPER_FAILED:path.open.office.runtime.component.3:0x80070005
+ ❯ NativeSandboxExecutor.execute packages/tools/src/execution/native-executor.ts:32:13
+     30|             ? finished.data.code
+     31|             : 'unknown';
+     32|       throw new SandboxError(`APP_CONTAINER_HELPER_FAILED:${stage}`);
+       |             ^
+     33|     }
+     34|     if (
+ ❯ Object.execute tests/integration/P00-03.office.test.ts:263:22
+ ❯ OfficeWorker.render packages/tools/src/execution/office-worker.ts:103:20
+ ❯ tests/integration/P00-03.office.test.ts:276:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/15]⎯
+
+ FAIL  |integration| tests/integration/P00-03.office.test.ts > P00-03 T08 OfficeWorker fails closed on a corrupt document and remains usable
+AssertionError: expected [Function] to throw error including 'OFFICE_EXECUTION_FAILED' but got 'APP_CONTAINER_HELPER_FAILED:path.open…'
+
+Expected: "OFFICE_EXECUTION_FAILED"
+Received: "APP_CONTAINER_HELPER_FAILED:path.open.office.runtime.component.3:0x80070005"
+
+ ❯ tests/integration/P00-03.office.test.ts:349:70
+    347|     sha256: sha(corrupt),
+    348|   };
+    349|   await expect(worker.render({ fileVersionId, format: 'pdf' }, input))…
+       |                                                                      ^
+    350|     'OFFICE_EXECUTION_FAILED',
+    351|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/15]⎯
+
+ FAIL  |integration| tests/integration/P00-03.office.test.ts > P00-03 Office hard kill recovers only its recorded mapped drives on the next helper run
+Error: Helper failed before started: {"protocolVersion":1,"requestId":"1339cd12-d42b-7887-8302-716770750b63","runId":"f98a6ab8-2f34-7d7d-b2cf-b8a4a3951786","leaseEpoch":1,"event":"failed","data":{"code":"SANDBOX_UNAVAILABLE","stage":"path.open.office.runtime.component.3:0x80070005"}}
+ ❯ Socket.<anonymous> tests/integration/native-helper.ts:71:25
+     69|         } else if (event.event === 'failed' && !startedSettled) {
+     70|           startedSettled = true;
+     71|           rejectStarted(new Error(`Helper failed before started: ${JSO…
+       |                         ^
+     72|         }
+     73|       } catch (error) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/15]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > Node reads only input and writes workspace; runtime and input are read only; environment is private
+AssertionError: helper events: [{"protocolVersion":1,"requestId":"039dd776-7368-7f74-9826-256ef0be0cfc","runId":"07cd9b72-08fb-72b5-ba05-52404650379d","leaseEpoch":1,"event":"failed","data":{"code":"SANDBOX_UNAVAILABLE","stage":"execution.recovery.journalDirectory"}}]: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ finished tests/integration/P00-03.sandbox.test.ts:65:68
+     63|   });
+     64| const finished = (r: Awaited<ReturnType<typeof run>>) => {
+     65|   expect(r.exitCode, `helper events: ${JSON.stringify(r.events)}`).toB…
+       |                                                                    ^
+     66|   expect(r.events[0]?.data.appContainer).toBe(true);
+     67|   const e = r.events.at(-1)!;
+ ❯ tests/integration/P00-03.sandbox.test.ts:102:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/15]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > execution lease cleanup allows the next helper invocation
+AssertionError: helper events: [{"protocolVersion":1,"requestId":"a46ea335-2318-7e07-9305-72172cf753b8","runId":"55e80436-5d8b-7989-aba1-c13a96386844","leaseEpoch":1,"event":"failed","data":{"code":"SANDBOX_UNAVAILABLE","stage":"execution.recovery.journalDirectory"}}]: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ finished tests/integration/P00-03.sandbox.test.ts:65:68
+     63|   });
+     64| const finished = (r: Awaited<ReturnType<typeof run>>) => {
+     65|   expect(r.exitCode, `helper events: ${JSON.stringify(r.events)}`).toB…
+       |                                                                    ^
+     66|   expect(r.events[0]?.data.appContainer).toBe(true);
+     67|   const e = r.events.at(-1)!;
+ ❯ tests/integration/P00-03.sandbox.test.ts:116:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/15]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > concurrent runs keep independent AppContainer identities and workspace ACLs
+Error: Both helpers did not reach started before one finished
+ ❯ tests/integration/P00-03.sandbox.test.ts:191:15
+    189|       bothStarted,
+    190|       resultsPromise.then(() => {
+    191|         throw new Error('Both helpers did not reach started before one…
+       |               ^
+    192|       }),
+    193|     ]);
+ ❯ tests/integration/P00-03.sandbox.test.ts:188:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/15]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > hard-killing the helper stops job descendants and recovers its ACL/profile lease
+Error: Helper failed before started: {"protocolVersion":1,"requestId":"fe1ede2b-e7cc-7c59-830f-0e09a9bb1307","runId":"14cd27f3-6bf0-79b8-994e-a570846feacd","leaseEpoch":1,"event":"failed","data":{"code":"SANDBOX_UNAVAILABLE","stage":"execution.recovery.journalDirectory"}}
+ ❯ Socket.<anonymous> tests/integration/native-helper.ts:71:25
+     69|         } else if (event.event === 'failed' && !startedSettled) {
+     70|           startedSettled = true;
+     71|           rejectStarted(new Error(`Helper failed before started: ${JSO…
+       |                         ^
+     72|         }
+     73|       } catch (error) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/15]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > Python starts and spawns a child in AppContainer
+AssertionError: helper events: [{"protocolVersion":1,"requestId":"f669e0e9-7481-7282-bee4-e2a670ba83dd","runId":"47f07bb9-0fae-7550-aedd-ce1fe77a76b3","leaseEpoch":1,"event":"failed","data":{"code":"SANDBOX_UNAVAILABLE","stage":"execution.recovery.journalDirectory"}}]: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ finished tests/integration/P00-03.sandbox.test.ts:65:68
+     63|   });
+     64| const finished = (r: Awaited<ReturnType<typeof run>>) => {
+     65|   expect(r.exitCode, `helper events: ${JSON.stringify(r.events)}`).toB…
+       |                                                                    ^
+     66|   expect(r.events[0]?.data.appContainer).toBe(true);
+     67|   const e = r.events.at(-1)!;
+ ❯ tests/integration/P00-03.sandbox.test.ts:308:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/15]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > network denies public, loopback and metadata connections
+AssertionError: helper events: [{"protocolVersion":1,"requestId":"b41b7ab9-e9f8-731b-b720-01ecb46c759c","runId":"92fa16d7-ee7a-75b1-87de-223bd3c97917","leaseEpoch":1,"event":"failed","data":{"code":"SANDBOX_UNAVAILABLE","stage":"execution.recovery.journalDirectory"}}]: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ finished tests/integration/P00-03.sandbox.test.ts:65:68
+     63|   });
+     64| const finished = (r: Awaited<ReturnType<typeof run>>) => {
+     65|   expect(r.exitCode, `helper events: ${JSON.stringify(r.events)}`).toB…
+       |                                                                    ^
+     66|   expect(r.events[0]?.data.appContainer).toBe(true);
+     67|   const e = r.events.at(-1)!;
+ ❯ tests/integration/P00-03.sandbox.test.ts:337:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/15]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > cancel kills descendants
+AssertionError: helper events: [{"protocolVersion":1,"requestId":"2840455a-ce94-76f7-a6cf-a0b8645d8879","runId":"48d22c81-7dcf-75f2-8290-b9be3d1aea6e","leaseEpoch":1,"event":"failed","data":{"code":"SANDBOX_UNAVAILABLE","stage":"execution.recovery.journalDirectory"}}]: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ finished tests/integration/P00-03.sandbox.test.ts:65:68
+     63|   });
+     64| const finished = (r: Awaited<ReturnType<typeof run>>) => {
+     65|   expect(r.exitCode, `helper events: ${JSON.stringify(r.events)}`).toB…
+       |                                                                    ^
+     66|   expect(r.events[0]?.data.appContainer).toBe(true);
+     67|   const e = r.events.at(-1)!;
+ ❯ tests/integration/P00-03.sandbox.test.ts:350:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/15]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > timeout, output flood and fork limits are enforced
+AssertionError: helper events: [{"protocolVersion":1,"requestId":"fa4dd5fd-8b42-7be5-b5e7-a6714e897723","runId":"d0225a66-d86c-7ca6-b171-e91c3536e744","leaseEpoch":1,"event":"failed","data":{"code":"SANDBOX_UNAVAILABLE","stage":"execution.recovery.journalDirectory"}}]: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ finished tests/integration/P00-03.sandbox.test.ts:65:68
+     63|   });
+     64| const finished = (r: Awaited<ReturnType<typeof run>>) => {
+     65|   expect(r.exitCode, `helper events: ${JSON.stringify(r.events)}`).toB…
+       |                                                                    ^
+     66|   expect(r.events[0]?.data.appContainer).toBe(true);
+     67|   const e = r.events.at(-1)!;
+ ❯ tests/integration/P00-03.sandbox.test.ts:365:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/15]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > memory exhaustion is contained
+AssertionError: helper events: [{"protocolVersion":1,"requestId":"882dd1ed-12dc-7217-879e-8b02306063e2","runId":"4d0097aa-f4cd-78ce-8ffe-fb6307c483b9","leaseEpoch":1,"event":"failed","data":{"code":"SANDBOX_UNAVAILABLE","stage":"execution.recovery.journalDirectory"}}]: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ finished tests/integration/P00-03.sandbox.test.ts:65:68
+     63|   });
+     64| const finished = (r: Awaited<ReturnType<typeof run>>) => {
+     65|   expect(r.exitCode, `helper events: ${JSON.stringify(r.events)}`).toB…
+       |                                                                    ^
+     66|   expect(r.events[0]?.data.appContainer).toBe(true);
+     67|   const e = r.events.at(-1)!;
+ ❯ tests/integration/P00-03.sandbox.test.ts:520:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/15]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > ConPTY is interactive while still in AppContainer
+AssertionError: helper events: [{"protocolVersion":1,"requestId":"cabc4d30-c3f7-715d-a219-36815bebc698","runId":"08a38a10-9e9b-77ef-a71b-7d66774f9555","leaseEpoch":1,"event":"failed","data":{"code":"SANDBOX_UNAVAILABLE","stage":"execution.recovery.journalDirectory"}}]: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ finished tests/integration/P00-03.sandbox.test.ts:65:68
+     63|   });
+     64| const finished = (r: Awaited<ReturnType<typeof run>>) => {
+     65|   expect(r.exitCode, `helper events: ${JSON.stringify(r.events)}`).toB…
+       |                                                                    ^
+     66|   expect(r.events[0]?.data.appContainer).toBe(true);
+     67|   const e = r.events.at(-1)!;
+ ❯ tests/integration/P00-03.sandbox.test.ts:553:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/15]⎯
+
+
+ Test Files  2 failed | 14 passed (16)
+      Tests  15 failed | 108 passed (123)
+   Start at  03:22:18
+   Duration  2.24s (import 43%, tests 38%, transform 17%, setup 2%, worker 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+pnpm exited 1
+At D:\tapkit\TapKit\scripts\pnpm.ps1:18 char:5
++     throw "pnpm exited $tapkitCommandExit"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1

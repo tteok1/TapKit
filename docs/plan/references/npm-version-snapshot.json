@@ -1,0 +1,1045 @@
+{
+  "electron": {
+    "version": "44.3.0",
+    "engines": {
+      "node": ">= 22.12.0"
+    },
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/electron/electron.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "fdbf0ed786eb0f07a051c25a55f515b6b1a3420e",
+      "tarball": "https://registry.npmjs.org/electron/-/electron-44.3.0.tgz",
+      "fileCount": 9,
+      "integrity": "sha512-St9EV7F2VtYaYWD2qaAjBwUgKxx39eJOUsUJ5+/1113sqbVfNqv4Dbm/W1rN7qmYSPa+mWwR6yr+b7MfgjgVfQ==",
+      "signatures": [
+        {
+          "sig": "MEUCIHh6Lu/TlMWZI3Tn6J8RXU55uMcUDPnva+O9s37BcsllAiEA8bCe4QwCn2k3yoSiKe5xA1vv9tAr0VN2WuFXyAxl3jU=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEQCIBzvxD1m68wXekhrPBFVCZ0x9G2n2CsVXSbHQ093kZ72AiBOuw7Gh/RlIFnh7YbWBO0HWpZ49WBTTHBEvAmXjaVEsA==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "unpackedSize": 1155802
+    }
+  },
+  "electron-vite": {
+    "version": "5.0.0",
+    "engines": {
+      "node": "^20.19.0 || >=22.12.0"
+    },
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/alex8088/electron-vite.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "f5bfac1c30d63d5c8261c6504e3005d5203a930a",
+      "tarball": "https://registry.npmjs.org/electron-vite/-/electron-vite-5.0.0.tgz",
+      "fileCount": 13,
+      "integrity": "sha512-OHp/vjdlubNlhNkPkL/+3JD34ii5ov7M0GpuXEVdQeqdQ3ulvVR7Dg/rNBLfS5XPIFwgoBLDf9sjjrL+CuDyRQ==",
+      "signatures": [
+        {
+          "sig": "MEUCIF5a4JOsmbhTtNGBM+migxCpq96FDQ9PYsJarVmCidRTAiEAinph5WYfJKRFPaUGdEZKXnuHxND30ugrbT7PFJipWTw=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "unpackedSize": 104942
+    }
+  },
+  "electron-builder": {
+    "version": "26.15.3",
+    "engines": {
+      "node": ">=14.0.0"
+    },
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/electron-userland/electron-builder.git",
+      "type": "git",
+      "directory": "packages/electron-builder"
+    },
+    "dist": {
+      "shasum": "0e82828f6829c0b2596338365209170ac0acbcd5",
+      "tarball": "https://registry.npmjs.org/electron-builder/-/electron-builder-26.15.3.tgz",
+      "fileCount": 31,
+      "integrity": "sha512-a1KM5heqS3gQCZzizXEI8RjJy3QVogULPdeSknt76uLDpBIW/HDGsMg/XgP0riP6PI9COsRvFITKKGDqA8fJxA==",
+      "signatures": [
+        {
+          "sig": "MEUCICD+5kUvzmrf8gp04MJmDhRMhm2TXveNra5QIsetoDCwAiEApFDw66OASfU1qLYaOfO9Xc8pOnUJoFZsdpePPCFbErU=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/electron-builder@26.15.3",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 84535
+    }
+  },
+  "react": {
+    "version": "19.3.0",
+    "engines": {
+      "node": ">=0.10.0"
+    },
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/react/react.git",
+      "type": "git",
+      "directory": "packages/react"
+    },
+    "dist": {
+      "shasum": "e20aa3a14687075ce863351b5878b0608c3fbfb2",
+      "tarball": "https://registry.npmjs.org/react/-/react-19.3.0.tgz",
+      "fileCount": 27,
+      "integrity": "sha512-E8LUcbtBWt20bbl2YoHfx4ZDBdxVTfOKtCZn9cDSJ4l6/nuoApcpIBcj47t2wZoVX8g2ZHuMHbiShgCR1T5Sog==",
+      "signatures": [
+        {
+          "sig": "MEUCIALru2uJjzTwQTeh/ax6FRZSyVBDySuUEr4k+TiaANpDAiEAgJVCX1upjcvo4FzKCrJW9vcVnWVJwMbuM4Wsc4UM61o=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEYCIQCLRI5uegHedldoJjX7BioMz8AnR5jZmFZB2+1PMyrFagIhAMlHH0dBWncX0Nq4vSqkVKZtP7Jolgae2aodnOtIRrQK",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/react@19.3.0",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 178663
+    }
+  },
+  "react-dom": {
+    "version": "19.3.0",
+    "engines": null,
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/react/react.git",
+      "type": "git",
+      "directory": "packages/react-dom"
+    },
+    "dist": {
+      "shasum": "a0ff19161d7f4e9be5469a07278b0c06e00f9001",
+      "tarball": "https://registry.npmjs.org/react-dom/-/react-dom-19.3.0.tgz",
+      "fileCount": 43,
+      "integrity": "sha512-JDk8dgif51OjFoDE70+OT9ICyYr+69HlmihNwp1+Nsfbna3t5sIiCa9ZJktDmQ4/1b/rn26hIAR2uYXDMr5r0Q==",
+      "signatures": [
+        {
+          "sig": "MEUCIQDl7gfoVlOoqKLgPU325X6EcrNHIYuFJJX0R9PHDs9KygIgAQaRzlBCG57IDn6XBjaOL/adBCuf/oiguaTixpmBBjw=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIBJlBwP9e+XpqYfXpAJxCFTZ2i9tt8XCm9JYmuFMXsm1AiEAi9g3MN8fg6vModu7alAeUKmJ6iWO6untLGlvHfX1mb4=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/react-dom@19.3.0",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 8063782
+    }
+  },
+  "typescript": {
+    "version": "7.0.2",
+    "engines": {
+      "node": ">=16.20.0"
+    },
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/microsoft/TypeScript.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "9ec773d7954a8c182c17cc5bbd575aa28bc51582",
+      "tarball": "https://registry.npmjs.org/typescript/-/typescript-7.0.2.tgz",
+      "fileCount": 416,
+      "integrity": "sha512-8FYau96o3NKOhbjKi/qNvG/W5jhzxkbdm5sj9AbZ/5T5sWqn3hJgLfGx27sRKZWTvyzCP8dLRBTf5tBTSRVUNA==",
+      "signatures": [
+        {
+          "sig": "MEUCIHn8lVrLBbTJToaOcV3IJ0oVPREmFT5BhqmO2niVNCaSAiEAjbubGExGAYMSJN39iEgX/eDYhwBGnh/iyyGTRigXGjY=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "unpackedSize": 2497498
+    }
+  },
+  "vite": {
+    "version": "8.3.0",
+    "engines": {
+      "node": "^20.19.0 || >=22.12.0"
+    },
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/vitejs/vite.git",
+      "type": "git",
+      "directory": "packages/vite"
+    },
+    "dist": {
+      "shasum": "f9565cfd4879d58d28fa64d3c7aff3b372d2ccc8",
+      "tarball": "https://registry.npmjs.org/vite/-/vite-8.3.0.tgz",
+      "fileCount": 37,
+      "integrity": "sha512-lhZBVvEHefgE+HQZC9O7EBJgCU/nVzFNl7vkS4RE0APtWLP02/8QVIkQtzBxPquh7lq5/78NHipTj7ODQ6XuyQ==",
+      "signatures": [
+        {
+          "sig": "MEUCIQC6/kYWbrBTW51oUkyntHZ9LpjXCOrT7HIb213qT/q4LQIgDWIF97Fb1C8TvoJHIg37Vg1Bcsuh+EslNdR7W1VtvIE=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEQCIFwGbT0il/0wNZ1/QWe6KYtPmhluQiji573dYgLkAsLqAiAjDuWcZDmJha7pYgL2ajvnxfwthXUvMDvN+UD7Xev9Uw==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/vite@8.3.0",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 2361169
+    }
+  },
+  "pnpm": {
+    "version": "12.4.1",
+    "engines": {
+      "node": ">=18.*"
+    },
+    "license": "MIT",
+    "repository": {
+      "url": "https://github.com/pnpm/pnpm",
+      "type": "git",
+      "directory": "pnpm/npm/pnpm"
+    },
+    "dist": {
+      "shasum": "60f9b8babe5493e391343c39f217dfd58445721b",
+      "tarball": "https://registry.npmjs.org/pnpm/-/pnpm-12.4.1.tgz",
+      "fileCount": 450,
+      "integrity": "sha512-LoHjmdc/6DkNqyXgaqeIq3pZCCSNL1o3D4K0gRR6ano2e/gEj5pv22Rg8hpm8FQt7bi5TKLIcjWWdBkgsWVtTA==",
+      "signatures": [
+        {
+          "sig": "MEUCIQDtzdgg2ZVgqMAyK5Qaj6YJrsQ22zW61HxOa7gH3rNUpgIgRuM4v25yra2m34ARYdMatTB+7iYoo3e/YPO8WoTUasQ=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/pnpm@12.4.1",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 3937390
+    }
+  },
+  "better-sqlite3": {
+    "version": "13.0.3",
+    "engines": {
+      "node": ">=22"
+    },
+    "license": "MIT",
+    "repository": {
+      "url": "git://github.com/WiseLibs/better-sqlite3.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "b6ea0dc7fff7e28d04d9093e81051d38f7beabe2",
+      "tarball": "https://registry.npmjs.org/better-sqlite3/-/better-sqlite3-13.0.3.tgz",
+      "fileCount": 68,
+      "integrity": "sha512-RbOBxmLBG8uvFUc15X9+9SFemKcQ0WBuISBVkpuiaUB2qblC8UWlHEjdWVoZ8AdhSwmoEgsiXKfopX0CQxaACQ==",
+      "signatures": [
+        {
+          "sig": "MEQCIG5XcQugF5yR91WqxfQ/42uesO+1tOoP8cqWYDL0rTQbAiAZN7XYiGtaRoMIwep+uyFdzu+HZlciRsCIC7SBCQwBeA==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEYCIQDZJa2vJ7fVu/paNwf6ir8HSF5rIuSfWn109wRzMP83AAIhAPYcQ9gS9vlRrsDPpJLvTX0X85ftbFW9SDudfKak9Sj4",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/better-sqlite3@13.0.3",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 27302969
+    }
+  },
+  "drizzle-orm": {
+    "version": "0.45.2",
+    "engines": null,
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/drizzle-team/drizzle-orm.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "37eb5e4e6bd1309cb8d5414de09632d8f82d8a65",
+      "tarball": "https://registry.npmjs.org/drizzle-orm/-/drizzle-orm-0.45.2.tgz",
+      "fileCount": 2666,
+      "integrity": "sha512-kY0BSaTNYWnoDMVoyY8uxmyHjpJW1geOmBMdSSicKo9CIIWkSxMIj2rkeSR51b8KAPB7m+qysjuHme5nKP+E5Q==",
+      "signatures": [
+        {
+          "sig": "MEUCIQDJyZGzf8DhZ6NRe5Cyu0VSdpYxBG2SqZaeVjx2I0kVrgIgAtUi5B7mHpHZH/1vZM+RN5ymEAomLUToIEVbLIIPmEM=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/drizzle-orm@0.45.2",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 10420427
+    }
+  },
+  "drizzle-kit": {
+    "version": "0.31.10",
+    "engines": null,
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/drizzle-team/drizzle-orm.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "556b4ba9ecfe089423dc5338634efa9ecd9afc1a",
+      "tarball": "https://registry.npmjs.org/drizzle-kit/-/drizzle-kit-0.31.10.tgz",
+      "fileCount": 13,
+      "integrity": "sha512-7OZcmQUrdGI+DUNNsKBn1aW8qSoKuTH7d0mYgSP8bAzdFzKoovxEFnoGQp2dVs82EOJeYycqRtciopszwUf8bw==",
+      "signatures": [
+        {
+          "sig": "MEUCIQCP67tJvv/vQ90fU8zyGK87WiOiSu95YxLZj35cjoeOtQIgaeCDhRo2+7aigsMAG7YaelCQ++v1QzMybqU3BOM1H90=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/drizzle-kit@0.31.10",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 10267084
+    }
+  },
+  "zod": {
+    "version": "4.6.5",
+    "engines": null,
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/colinhacks/zod.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "e3af3edbdc260239c52f73caad05dbbffe6e82cd",
+      "tarball": "https://registry.npmjs.org/zod/-/zod-4.6.5.tgz",
+      "fileCount": 840,
+      "integrity": "sha512-v5l/aFXZQeai4awLbOpSoHecE9UiMrnfx75tEXLjNonXVARxQ5mOeipTjROUchszUNCqnE+hqAMujRsRHsut2Q==",
+      "signatures": [
+        {
+          "sig": "MEUCIDtkjZOq6lmdtsdqBESzHORjYxE3jnbtCMlc6fp5KcXBAiEAx7qf7EGotCL3tQfTVb+gukRlzOmeGDbJR+8DrkwN+Vs=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEQCIBNNqEXGwMQtbIAF5A2Z8IDOhQQVSkHwQAkmsgywNJSCAiAfbEx/zArqNnn/f4OQedpGwu17tlhIWsBJ1+yBFjssqQ==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/zod@4.6.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 6140311
+    }
+  },
+  "zustand": {
+    "version": "5.0.15",
+    "engines": {
+      "node": ">=12.20.0"
+    },
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/pmndrs/zustand.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "42bddf35647cb80a818a8943a69f6618c126fcfe",
+      "tarball": "https://registry.npmjs.org/zustand/-/zustand-5.0.15.tgz",
+      "fileCount": 52,
+      "integrity": "sha512-MpSEjRiBkA9crSYeOUH32rJC7SVqAbm0Fqcqge/bUi2PPoLcBWKOsG+C8mevmpr8TwXHBVkChbbJiyvkE+i/3A==",
+      "signatures": [
+        {
+          "sig": "MEYCIQD/NvQg71lrpjFEE4P3/33nDnpvqoj7gzyDoDrb9w8KRgIhALLsbxPaUngtlFBu1hA7t85JuIpslalFoVZqiVtNTf08",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIH4Gk965cRuCEYaV0uqY3/Dx6bPXSO7FE3sw7cjiw2f7AiEA7Kw2+wVRx5r+25/gGK3zVwQGImKeNyz50Z5ZOKRsrIY=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/zustand@5.0.15",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 95173
+    }
+  },
+  "@tanstack/react-query": {
+    "version": "5.102.8",
+    "engines": null,
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/TanStack/query.git",
+      "type": "git",
+      "directory": "packages/react-query"
+    },
+    "dist": {
+      "shasum": "bdc5c24485258e6ae2e7ecac0a4cf58c59937839",
+      "tarball": "https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.102.8.tgz",
+      "fileCount": 415,
+      "integrity": "sha512-TYBea4OuXWD7MhaSHq069TWbFe7rcwWN6kzT7JF0OKi1K6c1gTv2IzD6A6ExJsCMozdkqBWeuIUZmu4KQg0O5A==",
+      "signatures": [
+        {
+          "sig": "MEUCIGPzj3kGlcIsEVvZs2un3bXKWty2sHSddwbtDbxG8OZoAiEApraAbOgM1BcXLwwy8kw2yRuitxpWMJByZ+cpS53Fc2U=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEYCIQDgye+zswwRVnlm0q3hiN3LxVCy2C6Meysmx1KURWszdQIhAOO2MMoZb2V3JnRuAfMKCcwhASRgz37WDcmHbTOoKqYc",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@tanstack%2freact-query@5.102.8",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 744861
+    }
+  },
+  "@tanstack/react-virtual": {
+    "version": "3.14.13",
+    "engines": null,
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/TanStack/virtual.git",
+      "type": "git",
+      "directory": "packages/react-virtual"
+    },
+    "dist": {
+      "shasum": "b30cab7650aef2f05a70297c3861bd3a43013d0b",
+      "tarball": "https://registry.npmjs.org/@tanstack/react-virtual/-/react-virtual-3.14.13.tgz",
+      "fileCount": 9,
+      "integrity": "sha512-JbDTAwtzZ99aOeCrAfW5EsE5KSq5RWh6Af2dtFwyLIIk48Ja7vm6n4axu/43T3vfjFnEGJalxJ1wyYjSQD6bSg==",
+      "signatures": [
+        {
+          "sig": "MEQCIBvVkw9MS8uXKGkgaH1xXIZRHX0GL5X7HZTfrD+wviiHAiBBbEUpxe0ciNRKEwXzwbvdHmCVvnzkhADT/k64En+iqw==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIQC9b65LJUHii+JlW9QdESW8n5NlNWNrJxR40jZuJ5lI2gIgftycFkkY4Ib/iDjKOvPbN0on0c0IJaa3mNJxYceh5EI=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@tanstack%2freact-virtual@3.14.13",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 60900
+    }
+  },
+  "react-router": {
+    "version": "8.3.1",
+    "engines": {
+      "node": ">=22.22.0"
+    },
+    "license": "MIT",
+    "repository": {
+      "url": "https://github.com/remix-run/react-router",
+      "type": "git",
+      "directory": "packages/react-router"
+    },
+    "dist": {
+      "shasum": "d704ca5a564e2bc89ce05a537ab577578e947b7b",
+      "tarball": "https://registry.npmjs.org/react-router/-/react-router-8.3.1.tgz",
+      "fileCount": 320,
+      "integrity": "sha512-TEOpiO2g0TJHEOJeRVv4amUFun9v1npCKszvcquNvzETUtJ8udV86ah5eFoHT7g26bsBvT6EiIhqulR8eDF++A==",
+      "signatures": [
+        {
+          "sig": "MEUCIHkn8MiIXq5fKMWPQbBDd4yG5E28PV47LRDVeDB1OrCmAiEA+NuVBdRrb1/I9FRXvo5MhdhuLGOEKsHyQJ5iynzss40=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIEiTcTcx2/iZJdHf/xxGCxffwk3vqAPYtBNbmuIlEnWfAiEAzjEwsvCVP/YLcxxN3XyA/HxxYfpW4oY5y3WkUzE8Mtw=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/react-router@8.3.1",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 2800441
+    }
+  },
+  "tailwindcss": {
+    "version": "4.3.3",
+    "engines": null,
+    "license": "MIT",
+    "repository": {
+      "url": "https://github.com/tailwindlabs/tailwindcss.git",
+      "type": "git",
+      "directory": "packages/tailwindcss"
+    },
+    "dist": {
+      "shasum": "c006861611c213c1877893ab5b23daa16be2bb55",
+      "tarball": "https://registry.npmjs.org/tailwindcss/-/tailwindcss-4.3.3.tgz",
+      "fileCount": 34,
+      "integrity": "sha512-gOhV3P7ufE62QDGg1zVaTgCR+EtPv92k2nIhVcVKcLmxT1sUBsQGhnZj175j+MqRt4zLF7ic+sCYjfhxMxj7YQ==",
+      "signatures": [
+        {
+          "sig": "MEQCIBhVHX/RChjUWt77CdssLibpRhMHsS3XWOKLRtP/ibJvAiBt9/qLAVxC6nR+eobWqzs5j/1ztHVMWGH0p/sMFj08bw==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/tailwindcss@4.3.3",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 772893
+    }
+  },
+  "lucide-react": {
+    "version": "1.46.0",
+    "engines": null,
+    "license": "ISC",
+    "repository": {
+      "url": "https://github.com/lucide-icons/lucide.git",
+      "type": "git",
+      "directory": "packages/lucide-react"
+    },
+    "dist": {
+      "shasum": "f485e29a7b448250ca96977450e529c473b5b496",
+      "tarball": "https://registry.npmjs.org/lucide-react/-/lucide-react-1.46.0.tgz",
+      "fileCount": 4250,
+      "integrity": "sha512-Bv+FZXgZPrxc/NCl1e7JJVQFLdiCxYgxNVhqoV7X0p6I8ADJo8DxBnK1auH0fZz4AmqOJ3jgneL4f1i8LJQRAA==",
+      "signatures": [
+        {
+          "sig": "MEYCIQDElkAVKjh1kMqXcaWouT6wXha4taTQCa2/VwFP3VXBbgIhAI2a6EGEG+0smz8j7/p+umU/XGtQfu2mYldK/wkgwWyZ",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIBhaJdcFJore4qjDliWUD4KvkK+8nwh9opZMmLzoIW4AAiEAxm1AWOitfvtpwlCB3c68gNVlNiXB1CppiFBjs+zfueo=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/lucide-react@1.46.0",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 35021074
+    }
+  },
+  "vitest": {
+    "version": "5.0.0",
+    "engines": {
+      "node": "^22.12.0 || ^24.0.0 || >=26.0.0"
+    },
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/vitest-dev/vitest.git",
+      "type": "git",
+      "directory": "packages/vitest"
+    },
+    "dist": {
+      "shasum": "a85f075e65bc7c87cce4df2f9114214fbd92f245",
+      "tarball": "https://registry.npmjs.org/vitest/-/vitest-5.0.0.tgz",
+      "fileCount": 103,
+      "integrity": "sha512-gpsMNoRhMjMktVxPtstOH4/PJuPyovVaMDr4oDilXaGH1EcqM2OE96SoHT2VIQ6fTGtTjqmHDrEu2X9RQiXf8Q==",
+      "signatures": [
+        {
+          "sig": "MEUCIQCBZvXsLLHywAeL4aYdS17xMfedme0V6h50CInEXGw8lAIga2o9yzpI9wKk2H49keYWY5ekVMNe4E1Vzuop9lJlozY=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/vitest@5.0.0",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 2735325
+    }
+  },
+  "@playwright/test": {
+    "version": "1.63.0",
+    "engines": {
+      "node": ">=20"
+    },
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/microsoft/playwright.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "808020c46e8b6b91f9d628cd0ebcbb32bdfd8b6c",
+      "tarball": "https://registry.npmjs.org/@playwright/test/-/test-1.63.0.tgz",
+      "fileCount": 11,
+      "integrity": "sha512-oxMK4vllB9RK5NQ2l1pq1IfOf2AvnEuj/vYGDj0H2nMtmtZpKtCwt/l00GEO6xjGfpBNAvjovvYdCm50dRQkpQ==",
+      "signatures": [
+        {
+          "sig": "MEYCIQDUH4a4V6wkW8vZKOHi60EtVScpadXG/qpWxl0HkScehwIhALwx8bC8oCgXeZQI6mjJ+bZJAjZIowIiLS5jEK8g5md0",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIQDbceOr8IFZs4Y1etJqfQV6K1O4zduy8yn9ngl8996WfwIgcNc6YXDqCpPA781bx9peX5wboqICx5KngcccBzk7Vq0=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@playwright%2ftest@1.63.0",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 28544
+    }
+  },
+  "@earendil-works/pi-ai": {
+    "version": "0.85.1",
+    "engines": {
+      "node": ">=22.19.0"
+    },
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/earendil-works/pi.git",
+      "type": "git",
+      "directory": "packages/ai"
+    },
+    "dist": {
+      "shasum": "3f5726032c30149f6060a3aeacb79436c7387a37",
+      "tarball": "https://registry.npmjs.org/@earendil-works/pi-ai/-/pi-ai-0.85.1.tgz",
+      "fileCount": 750,
+      "integrity": "sha512-+VgVIJDkDO2efYJKEEqvPTH4zmnIaXdAppGbO+vKFA9qy5PdhFiAenuFAkU+oiCSfOC4dMHDyrjdQeL4ZoC5CQ==",
+      "signatures": [
+        {
+          "sig": "MEUCIQDcUNgX34W1J3Ffjyxp60oYZ1XAREdLCgragaApFQ3dQgIgRuPlOA+xS9p6btiaGC60AIzAuNVLk5/3o12k1yzIqlY=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEQCIE3Ux3LGmL/daUgy/Zmrz5jH9N0Dn/4NZ7sgA87LFCoCAiBfpsyPinrY34wckafPgUZzY5NNdPzez1MflP5duTU8Bg==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@earendil-works%2fpi-ai@0.85.1",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 4281282
+    }
+  },
+  "openai": {
+    "version": "7.15.0",
+    "engines": {
+      "node": ">=22.0.0"
+    },
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/openai/openai-node.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "a4220009b4cee2fe0d5a5a1525095a19e8f7aef8",
+      "tarball": "https://registry.npmjs.org/openai/-/openai-7.15.0.tgz",
+      "fileCount": 3512,
+      "integrity": "sha512-2DIwesnPSduw68MFx7nAdgvshrgvS8WOan5W8+tgUMlAy/tY+Q41g80Pa+w/v64rHA6rtn+dketa8QvMVxU96w==",
+      "signatures": [
+        {
+          "sig": "MEQCIHRo0Nrainq0UomHmGvRzjdFgxzTpyp4TqO0uTQhOH/hAiA+EAHR2VXbjnxcd4+BrCyL0nr9pUDkH50JeqZDcYIfWg==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEQCIFp7WUrZ/cxVsnqrO+IGnHUaEvAaHtrvHeu7uxeEP/ShAiAHRHp/gi+Fl35kNJLzvcy00Cou47kecCXS/0YXqLeBbg==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/openai@7.15.0",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 17791913
+    }
+  },
+  "@huggingface/transformers": {
+    "version": "4.2.0",
+    "engines": null,
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/huggingface/transformers.js.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "5a5342a1a148c5d297ed8384d21cee1824fab031",
+      "tarball": "https://registry.npmjs.org/@huggingface/transformers/-/transformers-4.2.0.tgz",
+      "fileCount": 1339,
+      "integrity": "sha512-8BRCoBMH0XsWaEIamuR0LrJGAfftgHAfb2Vrffy0VKlSAE/MnUJ5/h/zTfEP3fDIft+nk7TqB8xXEyABGitBjQ==",
+      "signatures": [
+        {
+          "sig": "MEYCIQChK9LlrKT7Ygv14fE9kqQsSmiVMbnMRntf90hsn2JQRQIhAKVHj0BZhB9ykA49Umz9+Sos+7UD0lwxhUORn3Lc3pmJ",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "unpackedSize": 9536375
+    }
+  },
+  "pdfjs-dist": {
+    "version": "6.3.289",
+    "engines": {
+      "node": ">=22.13.0 || >=24"
+    },
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/mozilla/pdf.js.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "9e46d89489782a479f58d674ae5ddde8481aaa17",
+      "tarball": "https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-6.3.289.tgz",
+      "fileCount": 554,
+      "integrity": "sha512-ZHjSVpDa3D6izMq8/04lvkhkATUmL9px6ChPaXc1k6nU2Mrhlg1/7F0bdUqCwUjw3NsPTfPZsMDUU6ZIcRaeQw==",
+      "signatures": [
+        {
+          "sig": "MEUCIHTrXOTUg3r52454XEhkfNnyT7mfHHNQz6FnOwEF1TUbAiEAyME7BuLwtYtiQHe8pKl0bJGhGBhhCJTBLXFqOGse1ng=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEQCIDCSD4pVFLa4IbwK5u9iJ7aWH+XTA0Dc0Y82SNgZseEJAiAX+WaxAHeYWH5fh1wKuJtO0lQ0fBBcaG9dCPht5o3Kpw==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/pdfjs-dist@6.3.289",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 34781083
+    }
+  },
+  "mammoth": {
+    "version": "1.12.3",
+    "engines": {
+      "node": ">=12.0.0"
+    },
+    "license": "BSD-2-Clause",
+    "repository": {
+      "url": "git+https://github.com/mwilliamson/mammoth.js.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "b8d1e923f99410141b319331f3d18734de38df59",
+      "tarball": "https://registry.npmjs.org/mammoth/-/mammoth-1.12.3.tgz",
+      "fileCount": 117,
+      "integrity": "sha512-kkv2MrSFk3f/w3uLsz4FG/91LdWp2j+qmp7AjG2v7w2xgX5YDxiaFlaWourXrXtyUR6335+9guyIlPBnhHLvKw==",
+      "signatures": [
+        {
+          "sig": "MEUCIQDUZa+2/gooDwktT3BSs9IAdN4GheRT5LK2P5hyMPr+MgIgMOBeEcJ/Ngs59M6RHWNUPn+ws0Ag2tqoBlHc2uHiVLs=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEYCIQDeeynGhjM1D6pboBk02Zz4hzWM0nmnUM1kTXOUyQU1NAIhANse2/FhExJhmullGpvnJe0ZA6YTf6DGnzcmtAbPF6HD",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "unpackedSize": 2175009
+    }
+  },
+  "exceljs": {
+    "version": "4.4.0",
+    "engines": {
+      "node": ">=8.3.0"
+    },
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/exceljs/exceljs.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "cfb1cb8dcc82c760a9fc9faa9e52dadab66b0156",
+      "tarball": "https://registry.npmjs.org/exceljs/-/exceljs-4.4.0.tgz",
+      "fileCount": 519,
+      "integrity": "sha512-XctvKaEMaj1Ii9oDOqbW/6e1gXknSY4g/aLCDicOXqBE4M0nRWkUu0PTp++UPNzoFY12BNHMfs/VadKIS6llvg==",
+      "signatures": [
+        {
+          "sig": "MEQCIFwCYQzMOynIoEteDy5mkf5tDosIO5+1hQvB0TjWBZyqAiB6ZAdVCECtIcILmeuNCFT1OWeWASqBdHXnMiXPO0DxPQ==",
+          "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA"
+        }
+      ],
+      "unpackedSize": 21825509
+    }
+  },
+  "pptxgenjs": {
+    "version": "4.0.1",
+    "engines": null,
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/gitbrent/PptxGenJS.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "cd0f202f62f74d950bcd217e90b766da8f73742e",
+      "tarball": "https://registry.npmjs.org/pptxgenjs/-/pptxgenjs-4.0.1.tgz",
+      "fileCount": 10,
+      "integrity": "sha512-TeJISr8wouAuXw4C1F/mC33xbZs/FuEG6nH9FG1Zj+nuPcGMP5YRHl6X+j3HSUnS1f3at6k75ZZXPMZlA5Lj9A==",
+      "signatures": [
+        {
+          "sig": "MEUCIBx1vCY+LdxsSp5wdLG+fPU3mrafcWCj8FvQHlx5tx78AiEAv9PPbZb01+SPxvq8+lhbZzBjKCPwZpDa1hZun7RKG1k=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "unpackedSize": 2605307
+    }
+  },
+  "docx": {
+    "version": "9.7.1",
+    "engines": {
+      "node": ">=10"
+    },
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/dolanmiu/docx.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "9313f05c7733e59a97651bda7e17e7fb10fd9106",
+      "tarball": "https://registry.npmjs.org/docx/-/docx-9.7.1.tgz",
+      "fileCount": 9,
+      "integrity": "sha512-ilXFf9Moz47ABjFpDiA5s1w9lpb4EFSp7+5iiJSbfyYDM+bpZdAgLlSr7fW4aXhVe/E+F6QCv0EvRVFEd5CsWg==",
+      "signatures": [
+        {
+          "sig": "MEUCIHuBgUiemNF5jWoypU8qOsbDaCq7zHiX0svxxIRF2SbmAiEA1X2P1kfxRPaAnRIJxd6E/OEIfNQJP+caU2fAb756nIk=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/docx@9.7.1",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 4653599
+    }
+  },
+  "@tiptap/react": {
+    "version": "3.31.3",
+    "engines": null,
+    "license": "MIT",
+    "repository": {
+      "url": "https://github.com/ueberdosis/tiptap",
+      "type": "git",
+      "directory": "packages/react"
+    },
+    "dist": {
+      "shasum": "e2a5371b44d41bd47645ffd6b21d22dd0bbb3000",
+      "tarball": "https://registry.npmjs.org/@tiptap/react/-/react-3.31.3.tgz",
+      "fileCount": 50,
+      "integrity": "sha512-QiwQqvaLFLm5EMFu5tg7nAgXJxCUiUTLD8EsK+TqVV5P4bqOoMOCM39khbhXTJyahCuYpiFWx5YOSDtC/JiPtg==",
+      "signatures": [
+        {
+          "sig": "MEUCIHpjXVpZxWCO2nQAxjBS6Hw3drtjOkQqkGHpTcujQ7c9AiEAyWZ33iNGYIYU/v2SZBBFuEUFd6B0hE4v3YR8ERNycuw=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEYCIQDlaJysCthMc/hDIODPIzL4h9S0gqafeynwwuTozDD5dAIhAKFFU04BjBDZ2M8N7f6/lnWrvknym+k9aDqv+jIjjZgl",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@tiptap%2freact@3.31.3",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 566604
+    }
+  },
+  "fast-xml-parser": {
+    "version": "5.11.1",
+    "engines": null,
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/NaturalIntelligence/fast-xml-parser.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "0ee672fcce1710c38185b8290d77e98806ff0bfb",
+      "tarball": "https://registry.npmjs.org/fast-xml-parser/-/fast-xml-parser-5.11.1.tgz",
+      "fileCount": 53,
+      "integrity": "sha512-TBw6K/fxoQGGjCmZDw9w/ZwP3uDcnTM4YH/g+PFRWr8sbe5idXtxNN6vITh4+1ruCZaho6uBFurElsA7F0zzgw==",
+      "signatures": [
+        {
+          "sig": "MEUCIH3YL+lbg6iwbG3ulaY7bUrTcsu4lxMxui8ltNYpwuIaAiEAh+xf8kSxbdt5j/kPcEaT4+1F+IDAimu0VlYYPcVOFs8=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEQCIFjrgl/5MtewMB4cmbvGzcwAFhwfcRWNVYWQFomkbGaoAiAbAFtBWTmJdJ1at1V2wCTekReIHAczvjcNsNLkK3ZjFg==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/fast-xml-parser@5.11.1",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 1313670
+    }
+  },
+  "yauzl": {
+    "version": "3.4.0",
+    "engines": {
+      "node": ">=12"
+    },
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/thejoshwolfe/yauzl.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "88b2a21455f37ca7dccf2eeb33bacb4392322719",
+      "tarball": "https://registry.npmjs.org/yauzl/-/yauzl-3.4.0.tgz",
+      "fileCount": 6,
+      "integrity": "sha512-jIH9yLR9wqr0wOS0TpBvo/g/2UgZH5qePVbjgRliiF0BYvOZyaBknKsF+x9Iht0O6sqgnB93rCICdOZFecJuDw==",
+      "signatures": [
+        {
+          "sig": "MEQCIAryCA/YldNOUaI+uMPErdGkEtaa0WT8/jNaEdG/79Y0AiAsqjFoWFD/xiEZcaSUb8EwPqTtEYwi7NMaqbtdVMiI/Q==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "unpackedSize": 109901
+    }
+  },
+  "yazl": {
+    "version": "3.3.1",
+    "engines": null,
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/thejoshwolfe/yazl.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "a69abad02d80739d3b1a7ffcca8434422477432c",
+      "tarball": "https://registry.npmjs.org/yazl/-/yazl-3.3.1.tgz",
+      "fileCount": 4,
+      "integrity": "sha512-BbETDVWG+VcMUle37k5Fqp//7SDOK2/1+T7X8TD96M3D9G8jK5VLUdQVdVjGi8im7FGkazX7kk5hkU8X4L5Bng==",
+      "signatures": [
+        {
+          "sig": "MEYCIQD+97RjWj4Wd8s1O9bi2h6iqCq20AwZmkgpBuIdOejd4QIhAIF8BMLfZX8USGpOol0TbPUyOJZZyfGl8NzDGSPeVd7+",
+          "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA"
+        }
+      ],
+      "unpackedSize": 58743
+    }
+  },
+  "@xterm/xterm": {
+    "version": "6.0.0",
+    "engines": null,
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/xtermjs/xterm.js.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "93637b0f2ee3a70718b5746a27c9c506af16745b",
+      "tarball": "https://registry.npmjs.org/@xterm/xterm/-/xterm-6.0.0.tgz",
+      "fileCount": 161,
+      "integrity": "sha512-TQwDdQGtwwDt+2cgKDLn0IRaSxYu1tSUjgKarSDkUM0ZNiSRXFpjxEsvc/Zgc5kq5omJ+V0a8/kIM2WD3sMOYg==",
+      "signatures": [
+        {
+          "sig": "MEQCIE1Age1GsE5nVZ79G0fSE/NrJFT6fpZJ20Ex0Qfk6pDtAiBSh1Lchtv/+Ls+A0QRH7I1xjJDRtkWNoFMWUVf6HVC5g==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "unpackedSize": 5921599
+    }
+  },
+  "node-pty": {
+    "version": "1.1.0",
+    "engines": null,
+    "license": "MIT",
+    "repository": {
+      "url": "git://github.com/microsoft/node-pty.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "161936d45a47751c2e3b694c365e73017417a887",
+      "tarball": "https://registry.npmjs.org/node-pty/-/node-pty-1.1.0.tgz",
+      "fileCount": 286,
+      "integrity": "sha512-20JqtutY6JPXTUnL0ij1uad7Qe1baT46lyolh2sSENDd4sTzKZ4nmAFkeAARDKwmlLjPx6XKRlwRUxwjOy+lUg==",
+      "signatures": [
+        {
+          "sig": "MEYCIQCKs8Cj6hiCPyce2gtyUmH7zpS7JieIRFjwR9F78EKI8AIhAJLvp5tJVoA1nnOjoYWwYexVlMPP7/qCsrr+9YrpfWaN",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "unpackedSize": 64363742
+    }
+  },
+  "undici": {
+    "version": "8.10.2",
+    "engines": {
+      "node": ">=22.19.0"
+    },
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/nodejs/undici.git",
+      "type": "git"
+    },
+    "dist": {
+      "shasum": "960bcb0b43c267f86910ea7ca408ada843a44bc7",
+      "tarball": "https://registry.npmjs.org/undici/-/undici-8.10.2.tgz",
+      "fileCount": 214,
+      "integrity": "sha512-/y4/bH9YNU5hi9NIrpOuvGXFcxrj3CMrV+/AYpowAYTpHn8gX/XPFjNy766FPoYY0miQhdW977JFWKGNhBdwyQ==",
+      "signatures": [
+        {
+          "sig": "MEUCIQD1PxvKiEOkz6cbhJxkk2IRzAMUq3SkfAtvfKXsuIPwUwIgQWwAmbeB+iYSXGQzsi2EmkZF0BImJ2NpmKyopb3sTC0=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEQCIEah70AYQIk+wMhMDfsxPPMZO4KzFf8wlEWdmplItSOvAiArmg/fDWIGFvegas+ArMMRLv2XGralPhT/w5QPABDJ7Q==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/undici@8.10.2",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 1904976
+    }
+  }
+}

@@ -1,0 +1,533 @@
+{
+  "run": {
+    "id": 37003627906,
+    "run_number": 54,
+    "run_attempt": 1,
+    "head_sha": "7214ae0c5ca54ec87e0b6b14729424f84f9ac9f2",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "private-archive:TapKit",
+    "created_at": "2026-10-02T11:54:41Z",
+    "updated_at": "2026-10-02T12:20:58Z"
+  },
+  "collectedAt": "2026-10-02T12:22:34.0148404Z",
+  "jobs": [
+    {
+      "id": 110826725990,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T11:54:44Z",
+          "completed_at": "2026-10-02T11:54:46Z"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T11:54:46Z",
+          "completed_at": "2026-10-02T11:54:58Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T11:54:58Z",
+          "completed_at": "2026-10-02T11:55:11Z"
+        },
+        {
+          "number": 4,
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T11:55:11Z",
+          "completed_at": "2026-10-02T11:55:12Z"
+        },
+        {
+          "number": 5,
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T11:55:12Z",
+          "completed_at": "2026-10-02T11:59:56Z"
+        },
+        {
+          "number": 6,
+          "name": "Save verified runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T11:59:56Z",
+          "completed_at": "2026-10-02T12:00:13Z"
+        },
+        {
+          "number": 7,
+          "name": "Check",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:00:13Z",
+          "completed_at": "2026-10-02T12:00:25Z"
+        },
+        {
+          "number": 8,
+          "name": "Unit and current-route integration",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:00:25Z",
+          "completed_at": "2026-10-02T12:06:49Z"
+        },
+        {
+          "number": 9,
+          "name": "Build and Electron checks",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:06:52Z",
+          "completed_at": "2026-10-02T12:07:43Z"
+        },
+        {
+          "number": 10,
+          "name": "Verify current-route P00-03 as an independent standard user",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:07:43Z",
+          "completed_at": "2026-10-02T12:15:37Z"
+        },
+        {
+          "number": 11,
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:15:38Z",
+          "completed_at": "2026-10-02T12:16:08Z"
+        },
+        {
+          "number": 21,
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:16:09Z",
+          "completed_at": "2026-10-02T12:16:12Z"
+        },
+        {
+          "number": 22,
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:16:12Z",
+          "completed_at": "2026-10-02T12:16:18Z"
+        },
+        {
+          "number": 23,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:16:18Z",
+          "completed_at": "2026-10-02T12:16:19Z"
+        }
+      ],
+      "logSha256": "91dd568fddb2b2b2a28a0d664ba7522ce5c82711ffb2226f9f02eb6360c056d5"
+    },
+    {
+      "id": 110833396772,
+      "name": "startup-diagnostics",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:16:40Z",
+          "completed_at": "2026-10-02T12:16:41Z"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:16:41Z",
+          "completed_at": "2026-10-02T12:16:56Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:16:56Z",
+          "completed_at": "2026-10-02T12:17:05Z"
+        },
+        {
+          "number": 4,
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:17:05Z",
+          "completed_at": "2026-10-02T12:17:14Z"
+        },
+        {
+          "number": 5,
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:17:14Z",
+          "completed_at": "2026-10-02T12:20:28Z"
+        },
+        {
+          "number": 6,
+          "name": "Repeat fresh-process startup diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:20:29Z",
+          "completed_at": "2026-10-02T12:20:52Z"
+        },
+        {
+          "number": 7,
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:20:52Z",
+          "completed_at": "2026-10-02T12:20:53Z"
+        },
+        {
+          "number": 13,
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:20:53Z",
+          "completed_at": "2026-10-02T12:20:53Z"
+        },
+        {
+          "number": 14,
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:20:53Z",
+          "completed_at": "2026-10-02T12:20:56Z"
+        },
+        {
+          "number": 15,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-02T12:20:56Z",
+          "completed_at": "2026-10-02T12:20:56Z"
+        }
+      ],
+      "logSha256": "1fc3fd2148910836d635d7c4af20acb9af9224ea8d3445cec7fbd5f6ae4a73f1"
+    }
+  ],
+  "runnerRegion": "westus3",
+  "artifact": {
+    "id": 11224863731,
+    "sha256": "65c7a4fbfd27b45cca9ac965927f5c0ac04d5ecec159b2f49c4148b63e200e47"
+  },
+  "testSummaries": [
+    "2026-10-02T11:59:54.1502528Z   1 passed (3.1s)",
+    "2026-10-02T12:00:51.9704690Z  Test Files  8 passed (8)",
+    "2026-10-02T12:00:51.9705474Z       Tests  31 passed (31)",
+    "2026-10-02T12:06:22.0370809Z  Test Files  8 passed (8)",
+    "2026-10-02T12:06:22.0382573Z       Tests  46 passed (46)",
+    "2026-10-02T12:07:42.8856321Z   8 passed (23.8s)"
+  ],
+  "standardUser": {
+    "standardUser": true,
+    "tests": {
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "pending": 0
+    },
+    "missingCases": [],
+    "fingerprint": "fbb803da6d5779fe38dc78646dc308f7ca6e75c6735214674b4e2dd618d397d4",
+    "capabilities": {
+      "nativeExecution": {
+        "status": "available"
+      },
+      "officeRender": {
+        "status": "available"
+      },
+      "terminal": {
+        "status": "available"
+      }
+    },
+    "cases": [
+      {
+        "fullName": "P00-03 Core reports isolated capabilities failed while storage remains usable",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker bounds oversized diff output and cleans the private lease",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker runs real MinGit status/diff on private byte snapshots",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker rejects model args, metadata pointers and Windows path aliases",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker excludes inherited Git config, external diff and SSH commands",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 rejects the superseded account.execute protocol",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppContainer route",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an isolated positive control",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 T19 OfficeWorker preserves cached external-link data with an isolated refresh control",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 T08 OfficeWorker fails closed on a corrupt document and remains usable",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 Office hard kill recovers only its recorded mapped drives on the next helper run",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 Node reads only input and writes workspace; runtime and input are read only; environment is private",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 execution lease cleanup allows the next helper invocation",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 concurrent runs keep independent AppContainer identities and workspace ACLs",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 hard-killing the helper stops job descendants and recovers its ACL/profile lease",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 Python starts and spawns a child in AppContainer",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 network denies public, loopback and metadata connections",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 cancel kills descendants",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 timeout, output flood and fork limits are enforced",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 memory exhaustion is contained",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 UNC, ADS, traversal, aliases and junction input paths fail closed",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 ConPTY is interactive while still in AppContainer",
+        "status": "passed"
+      }
+    ]
+  },
+  "downloadAndCacheEvidence": [
+    "2026-10-02T11:55:12.5742698Z Cache not found for input keys: windows-runtime-archives-v1-0546639819717bc85b7723e4216dc5d6a9d0ba9c33261534562ec61453df96f0",
+    "2026-10-02T11:57:20.1799549Z DOWNLOAD_RETRY attempt=1 reason=HTTP_504 waitMs=1159 sourceHost=download.documentfoundation.org",
+    "2026-10-02T12:00:13.5881810Z Cache saved with key: windows-runtime-archives-v1-0546639819717bc85b7723e4216dc5d6a9d0ba9c33261534562ec61453df96f0"
+  ],
+  "diagnosticCacheEvidence": [
+    "2026-10-02T12:17:05.9574828Z Cache hit for: windows-runtime-archives-v1-0546639819717bc85b7723e4216dc5d6a9d0ba9c33261534562ec61453df96f0",
+    "2026-10-02T12:17:14.5949574Z Cache restored successfully",
+    "2026-10-02T12:17:14.6689878Z Cache restored from key: windows-runtime-archives-v1-0546639819717bc85b7723e4216dc5d6a9d0ba9c33261534562ec61453df96f0"
+  ],
+  "diagnosticTestSummaries": [
+    "2026-10-02T12:20:28.0104099Z   1 passed (3.1s)",
+    "2026-10-02T12:20:33.0102551Z  Test Files  1 passed (1)",
+    "2026-10-02T12:20:33.0103923Z       Tests  1 passed | 18 skipped (19)",
+    "2026-10-02T12:20:38.9604931Z   1 passed (4.9s)",
+    "2026-10-02T12:20:40.7292093Z  Test Files  1 passed (1)",
+    "2026-10-02T12:20:40.7293240Z       Tests  1 passed | 18 skipped (19)",
+    "2026-10-02T12:20:44.9871555Z   1 passed (3.2s)",
+    "2026-10-02T12:20:51.3083470Z  Test Files  1 passed (1)",
+    "2026-10-02T12:20:51.3108021Z       Tests  1 passed | 18 skipped (19)",
+    "2026-10-02T12:20:52.1402620Z   1 passed (3.9s)"
+  ],
+  "diagnosticCompletedStages": [
+    {
+      "scope": "storage.migrate",
+      "trace": 2,
+      "pid": 6828,
+      "elapsedMs": 10.522499999999923
+    },
+    {
+      "scope": "storage.open",
+      "trace": 1,
+      "pid": 6828,
+      "elapsedMs": 512.7431
+    },
+    {
+      "scope": "storage.migrate",
+      "trace": 4,
+      "pid": 6828,
+      "elapsedMs": 0.055000000000063665
+    },
+    {
+      "scope": "storage.open",
+      "trace": 3,
+      "pid": 6828,
+      "elapsedMs": 5.046800000000076
+    },
+    {
+      "scope": "vault.save",
+      "trace": 1,
+      "pid": 6520,
+      "elapsedMs": 2083.6584000000003
+    },
+    {
+      "scope": "vault.save",
+      "trace": 3,
+      "pid": 6520,
+      "elapsedMs": 312.9222999999997
+    },
+    {
+      "scope": "storage.migrate",
+      "trace": 2,
+      "pid": 792,
+      "elapsedMs": 12.72099999999989
+    },
+    {
+      "scope": "storage.open",
+      "trace": 1,
+      "pid": 792,
+      "elapsedMs": 61.78710000000001
+    },
+    {
+      "scope": "storage.migrate",
+      "trace": 4,
+      "pid": 792,
+      "elapsedMs": 0.08280000000002019
+    },
+    {
+      "scope": "storage.open",
+      "trace": 3,
+      "pid": 792,
+      "elapsedMs": 6.173000000000002
+    },
+    {
+      "scope": "vault.save",
+      "trace": 1,
+      "pid": 2092,
+      "elapsedMs": 308.2885000000001
+    },
+    {
+      "scope": "vault.save",
+      "trace": 3,
+      "pid": 2092,
+      "elapsedMs": 304.4693
+    },
+    {
+      "scope": "storage.migrate",
+      "trace": 2,
+      "pid": 6856,
+      "elapsedMs": 11.975700000000074
+    },
+    {
+      "scope": "storage.open",
+      "trace": 1,
+      "pid": 6856,
+      "elapsedMs": 54.36040000000003
+    },
+    {
+      "scope": "storage.migrate",
+      "trace": 4,
+      "pid": 6856,
+      "elapsedMs": 0.0745000000000573
+    },
+    {
+      "scope": "storage.open",
+      "trace": 3,
+      "pid": 6856,
+      "elapsedMs": 4.859199999999987
+    },
+    {
+      "scope": "vault.save",
+      "trace": 1,
+      "pid": 1352,
+      "elapsedMs": 423.2985000000001
+    },
+    {
+      "scope": "vault.save",
+      "trace": 3,
+      "pid": 1352,
+      "elapsedMs": 366.2772
+    }
+  ],
+  "diagnosticLargestStages": [
+    {
+      "scope": "vault.save",
+      "stage": "existing-ciphertext.begin",
+      "stepMs": 2075.8757000000005,
+      "elapsedMs": 2078.2839000000004
+    },
+    {
+      "scope": "vault.acl",
+      "stage": "powershell.complete",
+      "stepMs": 2027.0134,
+      "elapsedMs": 2075.3503
+    },
+    {
+      "scope": "storage.open",
+      "stage": "deletion-journal.begin",
+      "stepMs": 492.07330000000013,
+      "elapsedMs": 511.67050000000006
+    },
+    {
+      "scope": "vault.save",
+      "stage": "existing-ciphertext.begin",
+      "stepMs": 411.45640000000003,
+      "elapsedMs": 418.5386000000001
+    },
+    {
+      "scope": "vault.save",
+      "stage": "existing-ciphertext.begin",
+      "stepMs": 366.23310000000015,
+      "elapsedMs": 367.16280000000006
+    },
+    {
+      "scope": "vault.save",
+      "stage": "existing-ciphertext.begin",
+      "stepMs": 363.3584999999998,
+      "elapsedMs": 364.72519999999986
+    },
+    {
+      "scope": "vault.acl",
+      "stage": "powershell.complete",
+      "stepMs": 351.47260000000006,
+      "elapsedMs": 410.83220000000006
+    },
+    {
+      "scope": "vault.acl",
+      "stage": "powershell.complete",
+      "stepMs": 330.55679999999984,
+      "elapsedMs": 365.8567999999998
+    }
+  ]
+}

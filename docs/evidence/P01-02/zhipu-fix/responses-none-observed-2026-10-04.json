@@ -1,0 +1,89 @@
+{
+  "task": "P01-02",
+  "status": "failed",
+  "checks": [
+    {
+      "phase": "text",
+      "status": "failed",
+      "usage": {
+        "inputTotal": 20,
+        "outputTotal": 128,
+        "inputCachedSubset": 2,
+        "reasoningSubset": 128,
+        "source": "actual"
+      },
+      "error": {
+        "code": "OUTPUT_LIMIT_REACHED",
+        "retryable": false
+      }
+    },
+    {
+      "phase": "two-turn-native",
+      "status": "not_run",
+      "usage": null
+    },
+    {
+      "phase": "two-turn-canonical",
+      "status": "not_run",
+      "usage": null
+    },
+    {
+      "phase": "tool-call",
+      "status": "not_run",
+      "usage": null
+    },
+    {
+      "phase": "tool-result",
+      "status": "not_run",
+      "usage": null
+    },
+    {
+      "phase": "cancel",
+      "status": "not_run",
+      "usage": null
+    }
+  ],
+  "requests": 1,
+  "limits": {
+    "requests": 1,
+    "outputPerRequest": 128,
+    "totalMs": 90000
+  },
+  "ledgerVerified": false,
+  "accountId": "01a106a5-4b4e-77fa-b52b-87976a4eac2f",
+  "label": "智谱 Responses 测试 3",
+  "config": {
+    "providerId": "openai-compatible",
+    "apiFormat": "openai-responses",
+    "baseURL": "https://open.bigmodel.cn/api/v1",
+    "modelId": "glm-4.7-flashx"
+  },
+  "runMode": "text-only",
+  "fullAcceptancePassed": false,
+  "requestAudit": [
+    {
+      "ordinal": 1,
+      "endpointMatchesConfig": true,
+      "modelMatchesConfig": true,
+      "stream": true,
+      "maxOutputTokens": 128,
+      "reasoningEffort": "none",
+      "thinkingType": null,
+      "inputShape": "message.content.string",
+      "instructionsPresent": true,
+      "toolCount": 0,
+      "storeFalse": true,
+      "httpStatus": 200
+    }
+  ],
+  "adapterVersion": "tapkit-api/2",
+  "checkedAt": "2026-10-04T12:20:33.091Z",
+  "nodeVersion": "v24.21.0",
+  "platform": "win32",
+  "network": "production-secure-api-fetch",
+  "proxySetting": "direct-default",
+  "nativeStorage": "memory-only",
+  "credentialSource": "user-secure-prompt",
+  "profileModified": false,
+  "retries": 0
+}

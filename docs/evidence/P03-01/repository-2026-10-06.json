@@ -1,0 +1,53 @@
+{
+  "recordedAt": "2026-10-05T17:24:59.923Z",
+  "task": "P03-01",
+  "status": "in_progress",
+  "implementation": [
+    "schema8 migration preserves old versions and leases",
+    "strict public file DTOs and version-specific name/format",
+    "immutable replacement and restoration, explicit owners and pinned links",
+    "scoped folders, literal content/name search and filter-bound cursors",
+    "soft trash, permanent journal deletion and derived-index cleanup on backup restore",
+    "reference and backup-aware blob GC and verified downloads",
+    "existing durable file.parse jobs with lease fencing, cancellation and retry"
+  ],
+  "missing": [
+    "Host selection tokens and batch ingress",
+    "isolated actual parsers and worker handler",
+    "FileService bridge and library UI",
+    "P03-01 end-to-end/native acceptance"
+  ],
+  "validation": [
+    {
+      "command": "pnpm check",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 230
+    },
+    {
+      "command": "pnpm exec vite build --config packages/storage/vite.config.ts",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm exec vitest run --project integration tests/integration/P00-02.storage.test.ts tests/integration/P02-03.history.test.ts tests/integration/P03-01.migration.test.ts tests/integration/P03-01.files.test.ts",
+      "exitCode": 0,
+      "passed": 45
+    },
+    {
+      "command": "compile generated links and macro Python only; pnpm exec tsc --project tsconfig.json",
+      "exitCode": 0
+    }
+  ],
+  "initialLocalFailures": [
+    "New trash test expected Promise rejection but readVersion performs a synchronous authorization check; fixed the assertion.",
+    "Attempted async readVersion changed existing synchronous error semantics; retained the existing API with a private bounded/hash-verified async reader. Original P00 assertions remain unchanged and now pass."
+  ],
+  "nativeDependency": {
+    "status": "failed",
+    "evidence": "docs/evidence/P03-01/macro-control-repair-2026-10-06.json",
+    "localApplicationControlBypass": false
+  }
+}

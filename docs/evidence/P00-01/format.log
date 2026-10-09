@@ -1,0 +1,71 @@
+.github/workflows/check.yml 37ms (unchanged)
+.prettierrc.json 50ms (unchanged)
+AGENTS.md 70ms
+apps/desktop/electron.vite.config.ts 54ms (unchanged)
+apps/desktop/package.json 1ms (unchanged)
+apps/desktop/src/main/index.ts 36ms
+apps/desktop/src/preload/index.ts 2ms
+apps/desktop/src/renderer/index.html 33ms
+apps/desktop/src/renderer/locales/zh-CN.json 1ms (unchanged)
+apps/desktop/src/renderer/src/assets.d.ts 2ms (unchanged)
+apps/desktop/src/renderer/src/global.d.ts 2ms
+apps/desktop/src/renderer/src/main.tsx 9ms
+apps/desktop/src/renderer/src/styles.css 44ms
+apps/desktop/tsconfig.renderer.json 1ms
+dependency-baseline.json 15ms (unchanged)
+docs/adr/0001-pi-baseline.md 3ms (unchanged)
+docs/adr/0002-build-peer-compatibility.md 2ms (unchanged)
+docs/adr/template.md 2ms (unchanged)
+docs/progress/CURRENT.md 6ms
+docs/progress/INDEX.md 19ms
+docs/progress/P00-01.md 4ms (unchanged)
+docs/progress/RESOURCES.md 4ms
+eslint.config.mjs 5ms
+package.json 1ms (unchanged)
+packages/context/package.json 1ms (unchanged)
+packages/context/src/index.ts 3ms (unchanged)
+packages/contracts/package.json 1ms (unchanged)
+packages/contracts/src/index.ts 7ms
+packages/core/package.json 1ms (unchanged)
+packages/core/src/index.ts 4ms
+packages/core/vite.config.ts 2ms
+packages/network/package.json 1ms (unchanged)
+packages/network/src/index.ts 1ms (unchanged)
+packages/providers/package.json 1ms (unchanged)
+packages/providers/src/index.ts 1ms (unchanged)
+packages/retrieval/package.json 1ms (unchanged)
+packages/retrieval/src/index.ts 1ms (unchanged)
+packages/storage/package.json 0ms (unchanged)
+packages/storage/src/index.ts 3ms
+packages/tools/package.json 1ms (unchanged)
+packages/tools/src/index.ts 1ms (unchanged)
+packages/ui/package.json 1ms (unchanged)
+packages/ui/src/index.ts 1ms (unchanged)
+packages/workflows/package.json 1ms (unchanged)
+packages/workflows/src/index.ts 1ms (unchanged)
+playwright.config.ts 2ms
+pnpm-workspace.yaml 2ms (unchanged)
+python-wheels.lock.json 12ms (unchanged)
+README.md 5ms (unchanged)
+runtime-lock.json 2ms (unchanged)
+scripts/bootstrap.mjs 3ms
+scripts/build.mjs 1ms (unchanged)
+scripts/check-boundaries.mjs 10ms
+scripts/check-manifests.mjs 7ms
+scripts/check.mjs 2ms (unchanged)
+scripts/dev.mjs 3ms
+scripts/docs-check.mjs 1ms
+scripts/e2e.mjs 1ms (unchanged)
+scripts/lib.mjs 2ms
+scripts/not-implemented.mjs 1ms
+scripts/runtime-fetch.mjs 7ms
+tests/e2e/P00-01.shell.spec.ts 9ms
+tests/fixtures/mock-http.ts 4ms
+tests/fixtures/stream.json 1ms
+tests/integration/P00-01.mock-http.test.ts 3ms
+tests/setup.ts 2ms
+tests/unit/P00-01.contracts.test.ts 3ms
+THIRD_PARTY_NOTICES.md 17ms
+tsconfig.base.json 1ms (unchanged)
+tsconfig.json 1ms
+vitest.config.ts 1ms

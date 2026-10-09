@@ -1,0 +1,87 @@
+
+ RUN  v5.0.0 D:/TapKit
+
+ ❯ |integration| tests/integration/P00-03.sandbox.test.ts (8 tests | 2 failed) 21062ms
+   ❯ P00-03 real Windows sandbox T08 T19 (8)
+     × timeout, output flood and fork limits are enforced 2563ms
+     × ConPTY is interactive while still in AppContainer 10770ms
+ ❯ |integration| tests/integration/P00-03.office-git.test.ts (2 tests | 2 failed) 105136ms
+   × P00-03 T07 Office three formats convert with private profile and unchanged originals 102498ms
+   × P00-03 MinGit status/diff only with hooks, textconv and credentials disabled 2636ms
+
+ Test Files  2 failed | 4 passed (6)
+      Tests  4 failed | 31 passed (35)
+   Start at  21:37:00
+   Duration  109.57s (tests 96%, import 3%, transform 1%)
+
+$ vitest run --config vitest.config.ts --project integration "--" "P00-01" "P00-02" "P00-03.capability"
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P00-03.office-git.test.ts > P00-03 T07 Office three formats convert with private profile and unchanged originals
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/integration/P00-03.office-git.test.ts:78:32
+     76|     expect(last.event).toBe('finished');
+     77|     expect(last.data.status).toBe('exited');
+     78|     expect(last.data.exitCode).toBe(0);
+       |                                ^
+     79|     const pdf = await readFile(join(output, 'sample.pdf'));
+     80|     expect(pdf.subarray(0, 5).toString()).toBe('%PDF-');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  |integration| tests/integration/P00-03.office-git.test.ts > P00-03 MinGit status/diff only with hooks, textconv and credentials disabled
+AssertionError: expected 128 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 128
+
+ ❯ tests/integration/P00-03.office-git.test.ts:130:32
+    128|     expect(last.event).toBe('finished');
+    129|     expect(last.data.status).toBe('exited');
+    130|     expect(last.data.exitCode).toBe(0);
+       |                                ^
+    131|     expect(last.data.stdout).toContain(args[0] === 'status' ? 'readme.…
+    132|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > timeout, output flood and fork limits are enforced
+AssertionError: expected 5 to be less than or equal to 4
+ ❯ tests/integration/P00-03.sandbox.test.ts:165:48
+    163|     fork.payload.timeoutMs = 800;
+    164|     const forked = finished(await run(fork));
+    165|     expect(Number(forked.peakActiveProcesses)).toBeLessThanOrEqual(4);
+       |                                                ^
+    166|     expect(forked.stderr).toContain('spawn');
+    167|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > ConPTY is interactive while still in AppContainer
+AssertionError: expected 'timeout' to be 'exited' // Object.is equality
+
+Expected: "exited"
+Received: "timeout"
+
+ ❯ tests/integration/P00-03.sandbox.test.ts:208:25
+    206|       }),
+    207|     );
+    208|     expect(data.status).toBe('exited');
+       |                         ^
+    209|     expect(data.exitCode).toBe(0);
+    210|     expect(data.stdout).toContain('PTY_ECHO:hello terminal');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+[ELIFECYCLE] Command failed with exit code 1.

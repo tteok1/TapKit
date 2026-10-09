@@ -1,0 +1,6 @@
+{"taskId":"P01-01","stage":"response","status":200,"contentType":"missing","bodyKind":"sse","compressedRequest":true}
+{"taskId":"P01-01","stage":"stream","frames":9,"terminalFrames":1,"tailKind":"empty","tailTerminal":false,"tailLength":0}
+{"taskId":"P01-01","stage":"response","status":200,"contentType":"missing","bodyKind":"sse","compressedRequest":true}
+{"taskId":"P01-01","stage":"stream","frames":11,"terminalFrames":1,"tailKind":"empty","tailTerminal":false,"tailLength":0}
+{"taskId":"P01-01","stage":"probe","status":"ready","text":true,"tools":true,"errorCode":null}
+{"processExit":0,"launchError":false,"stderrPresent":false}

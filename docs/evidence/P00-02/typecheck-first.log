@@ -1,0 +1,21 @@
+apps/desktop/src/preload/index.ts(5,12): error TS7006: Parameter 'request' implicitly has an 'any' type.
+apps/desktop/src/preload/index.ts(6,12): error TS7006: Parameter 'options' implicitly has an 'any' type.
+apps/desktop/src/preload/index.ts(7,14): error TS7006: Parameter 'options' implicitly has an 'any' type.
+apps/desktop/src/preload/index.ts(7,22): error TS7006: Parameter 'scope' implicitly has an 'any' type.
+apps/desktop/src/preload/index.ts(8,14): error TS7006: Parameter 'options' implicitly has an 'any' type.
+apps/desktop/src/preload/index.ts(8,22): error TS7006: Parameter 'payload' implicitly has an 'any' type.
+apps/desktop/src/preload/index.ts(9,13): error TS7006: Parameter 'options' implicitly has an 'any' type.
+apps/desktop/src/preload/index.ts(9,21): error TS7006: Parameter 'payload' implicitly has an 'any' type.
+apps/desktop/src/preload/index.ts(10,15): error TS7006: Parameter 'options' implicitly has an 'any' type.
+apps/desktop/src/preload/index.ts(10,23): error TS7006: Parameter 'payload' implicitly has an 'any' type.
+apps/desktop/src/preload/index.ts(11,23): error TS7006: Parameter 'options' implicitly has an 'any' type.
+apps/desktop/src/preload/index.ts(11,31): error TS7006: Parameter 'payload' implicitly has an 'any' type.
+apps/desktop/src/preload/index.ts(11,39): error TS7006: Parameter 'listener' implicitly has an 'any' type.
+apps/desktop/src/preload/index.ts(24,9): error TS7006: Parameter 'options' implicitly has an 'any' type.
+apps/desktop/src/preload/index.ts(25,12): error TS7006: Parameter 'options' implicitly has an 'any' type.
+apps/desktop/src/preload/index.ts(25,20): error TS7006: Parameter 'jobId' implicitly has an 'any' type.
+packages/core/src/service.ts(28,73): error TS2322: Type '{ locale: "zh-CN" | undefined; memoryEnabled: boolean | undefined; historyEnabled: boolean | undefined; maxConcurrentRoots: number | undefined; maxModelRequests: number | undefined; maxCredentialRequests: number | undefined; dailyTokenLimit: number | undefined; }' is not assignable to type '{ locale: "zh-CN"; memoryEnabled: boolean; historyEnabled: boolean; maxConcurrentRoots: number; maxModelRequests: number; maxCredentialRequests: number; dailyTokenLimit: number; }'.
+  Types of property 'locale' are incompatible.
+    Type '"zh-CN" | undefined' is not assignable to type '"zh-CN"'.
+      Type 'undefined' is not assignable to type '"zh-CN"'.
+packages/storage/src/foundation.ts(35,10): error TS2571: Object is of type 'unknown'.

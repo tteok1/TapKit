@@ -1,0 +1,10 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+Scope: all 12 workspace projects
+✓ Lockfile passes supply-chain policies (verified 1m ago)
+Progress: resolved 0, reused 419, downloaded 3, added 0
+[WARN] 9 deprecated subdependencies found: boolean@3.2.0, fstream@1.0.12, glob@7.2.3, inflight@1.0.6, lodash.isequal@4.5.0, node-domexception@1.0.0, rimraf@2.6.3, rimraf@2.7.1, uuid@8.3.2
+Progress: resolved 19, reused 500, downloaded 10, added 9
+Packages: +19 -28
++++++++++++++++++++----------------------------
+Progress: resolved 19, reused 500, downloaded 19, added 19, done
+Done in 4.4s using pnpm v12.4.1

@@ -1,0 +1,61 @@
+react@19.3.0
+pnpm@12.4.1
+electron-vite@5.0.0
+react-dom@19.3.0
+vite@8.3.0
+remark-math@6.0.0
+@xterm/xterm@6.0.0
+typescript@7.0.2
+zod@4.6.5
+@tiptap/extension-link@3.31.3
+mermaid@12.0.0
+yaml@2.9.1
+@tanstack/react-virtual@3.14.13
+electron-builder@26.15.3
+typescript-eslint@8.70.0
+react-markdown@10.1.0
+@tailwindcss/vite@4.3.3
+rehype-katex@7.0.1
+tailwindcss@4.3.3
+@types/react@19.3.0
+@tiptap/starter-kit@3.31.3
+prettier@3.9.6
+@types/better-sqlite3@9.6.0
+semver@7.8.5
+@electron/rebuild@4.2.0
+vitest@5.0.0
+mammoth@1.12.3
+@tiptap/extension-table@3.31.3
+@tiptap/extension-image@3.31.3
+@playwright/test@1.63.0
+yauzl@3.4.0
+katex@0.18.7
+eslint@10.10.0
+yazl@3.3.1
+zustand@5.0.15
+pdfjs-dist@6.3.289
+@huggingface/transformers@4.2.0
+@eslint/js@10.0.1
+@tanstack/react-query@5.102.8
+fast-xml-parser@5.11.1
+@types/node@26.5.1
+shiki@4.4.3
+@tiptap/react@3.31.3
+react-router@8.3.1
+better-sqlite3@13.0.3
+pptxgenjs@4.0.1
+exceljs@4.4.0
+lucide-react@1.46.0
+docx@9.7.1
+@types/react-dom@19.3.0
+file:///D:/TapKit/scripts/lock-initial-dependencies.mjs:8
+ const r = await fetch(url); if (!r.ok) throw Error(`${name}: ${r.status}`);
+                                              ^
+
+Error: @mariozechner/pi-ai: 404
+    at file:///D:/TapKit/scripts/lock-initial-dependencies.mjs:8:47
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Promise.all (index 15)
+    at async file:///D:/TapKit/scripts/lock-initial-dependencies.mjs:6:1
+
+Node.js v24.18.0

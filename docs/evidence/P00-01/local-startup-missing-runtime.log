@@ -1,0 +1,11 @@
+file:///D:/TapKit/.test-data/startup-missing-runtime/scripts/dev.mjs:14
+    throw new Error('Development dependency missing: ' + file + '. Run bootstrap first.');
+          ^
+
+Error: Development dependency missing: D:\TapKit\.test-data\startup-missing-runtime\.runtime\node\node-v24.21.0-win-x64\node.exe. Run bootstrap first.
+    at file:///D:/TapKit/.test-data/startup-missing-runtime/scripts/dev.mjs:14:11
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0

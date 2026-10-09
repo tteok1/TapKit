@@ -1,0 +1,106 @@
+$ node scripts/e2e.mjs "--grep" "P00-0[12]|P01-01"
+
+Running 9 tests using 1 worker
+
+(node:33476) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_HOST_WINDOW 22048
+(node:22048) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+P00-01 runtime probe {"nonce":"中文 空格 ABI","process":"core","sqliteVersion":"3.53.4","electronVersion":"44.3.0","nodeAbi":"149","corePid":37936}
+Debugger ending on ws://127.0.0.1:62467/88557455-67f6-4553-941c-7ce70d8d92a1
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 1 tests\e2e\P00-01.shell.spec.ts:22:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory (789ms)
+TAPKIT_CORE_READY
+TAPKIT_HOST_WINDOW 5752
+(node:5752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:51416/96f34060-6c89-4c1e-8604-17b6a563d22e
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 2 tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown (660ms)
+TAPKIT_CORE_READY
+TAPKIT_HOST_WINDOW 36096
+(node:36096) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_PONG
+TAPKIT_HOST_WINDOW 36096
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:58892/c3bf5c22-18e1-4e9c-8d3a-6b2b172a45a4
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 3 tests\e2e\P00-02.foundation.spec.ts:29:1 › P00-02 T01 T05 real two-window CAS and committed event subscription (975ms)
+TAPKIT_CORE_READY
+TAPKIT_HOST_WINDOW 36140
+(node:36140) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:64966/40a42233-dca0-49d9-b2f9-b6057e8210d8
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 4 tests\e2e\P00-02.foundation.spec.ts:87:1 › P00-02 T19 real Windows safeStorage round trip, ACL and plaintext exclusion (1.7s)
+TAPKIT_CORE_READY
+TAPKIT_HOST_WINDOW 28176
+(node:28176) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:60560/44b8aa26-437b-4f93-9ff9-93ae210d812c
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 5 tests\e2e\P00-02.foundation.spec.ts:146:1 › P00-02 T19 foreign WebContents cannot invoke app IPC (818ms)
+TAPKIT_CORE_READY
+TAPKIT_HOST_WINDOW 12040
+(node:12040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+TAPKIT_CORE_EXIT 1
+Error occurred in handler for 'tapkit:ping': Error: Core unavailable
+    at ForkUtilityProcess.<anonymous> (D:\TapKit\apps\desktop\out\main\index.js:6932:21)
+    at ForkUtilityProcess.emit (node:events:514:28)
+    at UtilityProcess.emit (node:electron/js2c/browser_init:2:95072)
+Error occurred in handler for 'tapkit:ping': Error: Core unavailable
+    at forward (D:\TapKit\apps\desktop\out\main\index.js:6823:49)
+    at D:\TapKit\apps\desktop\out\main\index.js:7066:14
+    at async Session.<anonymous> (node:electron/js2c/browser_init:2:123817)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:53547/12987300-378a-42c1-b95f-07b3b34e0448
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 6 tests\e2e\P00-02.foundation.spec.ts:165:1 › P00-02 T05 Core kill rebuilds writer; acked settings survive and backup is not duplicated (1.3s)
+TAPKIT_CORE_READY
+TAPKIT_HOST_WINDOW 18684
+(node:18684) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+
+TAPKIT_SECOND_INSTANCE
+TAPKIT_HOST_WINDOW 18684
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:58888/dc2be5ef-2670-4865-8118-f382126220f0
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 7 tests\e2e\P00-02.foundation.spec.ts:212:1 › P00-02 single instance activates owner and closing UI keeps Core alive until explicit quit (1.4s)
+TAPKIT_CORE_READY
+TAPKIT_HOST_WINDOW 34928
+(node:34928) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:58822/e2bbdc20-4a98-4a7f-bec5-c036ae89d46c
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 8 tests\e2e\P00-02.foundation.spec.ts:266:1 › P00-02 higher schema shows a recovery prompt and preserves original database (1.6s)
+  ok 9 tests\e2e\P01-01.codex.spec.ts:4:1 › P01-01 unconfigured diagnostics uses private Core catalog and a finite preload bridge (862ms)
+
+  9 passed (10.7s)

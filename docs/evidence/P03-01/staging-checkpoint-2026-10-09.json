@@ -1,0 +1,114 @@
+{
+  "task": "P03-01",
+  "status": "in_progress",
+  "date": "2026-10-09",
+  "baseHead": "5d3c0eca18d637baf0a8b019206094490e262f5c",
+  "baseCommittedAndPushed": true,
+  "baseRemoteShaVerified": true,
+  "implementation": [
+    "exclusive private staging marker bound to profile/version/job/lease",
+    "bounded read-only marker and regular-tree validation before recursive removal",
+    "retain current lease even when expired until normal reclaim; reject links/unknown context",
+    "background scan after Core ready, periodic serialized maintenance and graceful stop before DB close"
+  ],
+  "checks": [
+    {
+      "command": "pnpm test:integration -- P00-02.jobs P00-02.storage P03-01.file-staging P03-01.parser-orchestration P03-01.import-recovery P03-01.file-service (2026-10-06)",
+      "exitCode": 1,
+      "passed": 39,
+      "failed": 1,
+      "log": ".cache/ci/p03-staging-integration-final.log",
+      "note": "parser fixture failed before executor seam while production build was running; old log lacks original IO cause. Production build was interrupted and not accepted.",
+      "logSha256": "4db57dd4afdcb835ed0cf70dd504571b97782768b96c91eb9b513cb2e54b5105"
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.file-staging (2026-10-09)",
+      "exitCode": 0,
+      "passed": 4,
+      "log": ".cache/ci/p03-staging-revalidation-2026-10-09.log",
+      "logSha256": "d0b3ca319c614793859a6090b0ad7ed7a9adcc5796f728240d9597508334add0"
+    },
+    {
+      "command": "pnpm test:integration -- P00-02.storage P03-01.file-staging P03-01.parser-orchestration P03-01.import-recovery P03-01.file-service",
+      "exitCode": 1,
+      "passed": 39,
+      "failed": 1,
+      "log": ".cache/ci/p03-staging-integration-2026-10-09.log",
+      "note": "isolated synthetic app fixture lacked runtime-lock.json required by runtimePaths. Copied repository lock without executing adapter/helper.",
+      "logSha256": "c9b0d0c0090ee2abc9cbf42a11d368b221e56302e0e6f285a9cc34dc9d432d3a"
+    },
+    {
+      "command": "pnpm test:integration -- P00-02.storage P03-01.file-staging P03-01.parser-orchestration P03-01.import-recovery P03-01.file-service",
+      "exitCode": 0,
+      "passed": 41,
+      "log": ".cache/ci/p03-staging-integration-delivery-2026-10-09.log",
+      "logSha256": "097b7f5e9706feb8431187cf4fd887d52814642d4317788dc0f290ce14735076"
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-staging-build-delivery-2026-10-09.log",
+      "logSha256": "2f4d26c6ff6ba71b6863574827a280678789b9402a9dbca1fa09716a13d033dc"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P00-0[12]|P03-01",
+      "exitCode": 0,
+      "passed": 13,
+      "log": ".cache/ci/p03-staging-electron-2026-10-09.log",
+      "logSha256": "a091ddb577f4b2656f4b21e36b53a859198b70852c192a7256f4e778d0e2d56e"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "formattedFiles": 307,
+      "log": ".cache/ci/p03-staging-check-delivery-2026-10-09.log",
+      "logSha256": "b481e5b47aef7eaa00d984021ecbc2df5e15f2e481a597351463f795fa3c5de1"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "handoffs": 37
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "coverage": [
+    "actual compiled FileParser process killed at injected executor seam before helper launch",
+    "reopen SQLite retains current/expired lease; normal reclaim increments epoch before cleanup",
+    "concurrent sweeps share pending promise",
+    "malformed/missing/foreign-profile/wrong-version marker and excessive depth retained",
+    "root and nested junctions preserve outside synthetic sentinel",
+    "stop waits for scan, preserves originals and prevents future access to closed Store",
+    "Core connection, shutdown and existing library UI work after background maintenance integration"
+  ],
+  "ci": {
+    "head": "5d3c0eca18d637baf0a8b019206094490e262f5c",
+    "prRun": 37371772936,
+    "pushRun": 37371770472,
+    "status": "completed",
+    "conclusion": "failure",
+    "checkJob": 111970416246,
+    "checkConclusion": "cancelled",
+    "checkSteps": 0,
+    "startupJob": 111975484374,
+    "startupConclusion": "failure",
+    "startupSteps": 0,
+    "annotation": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the Billing & plans section in your settings",
+    "resource": "R15",
+    "nativeDiagnostics": "not_run"
+  },
+  "guard": {
+    "localUnsignedHelper": "not_executed",
+    "syntheticAdapter": "never_executed",
+    "nativeCapability": "failed_closed_in_real_local_Electron",
+    "chromiumSandbox": true,
+    "realUserProfileVaultOrKeys": "not_read"
+  },
+  "remaining": [
+    "task-linked usage records",
+    "remaining P03-01 version/exception E2E and requirement closure",
+    "actual native parser acceptance after R15; P03-02/03 unstarted"
+  ]
+}

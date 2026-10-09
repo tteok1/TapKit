@@ -1,0 +1,117 @@
+{
+  "task": "P03-01",
+  "status": "in_progress",
+  "date": "2026-10-09",
+  "baseHead": "d4204b642e97e083f178fcb4937bdd5c913a4fc6",
+  "implementation": [
+    "finite preload native File classification; private paths and Host tokens only",
+    "physical chat uses existing FileService session destination; virtual clipboard compatibility",
+    "partial and cancellation preserve successful pinned refs; draft CAS keeps original session",
+    "parsing material refresh, original download and version retry; project grant and revocation checked"
+  ],
+  "checks": [
+    {
+      "command": "pnpm test:unit -- P03-01.chat-import P03-01.files-contract P02-02.chat",
+      "exitCode": 0,
+      "passed": 13,
+      "log": ".cache/ci/p03-chat-host-unit-final-2026-10-09.log",
+      "logSha256": "b60dad5df7b4af0c2f86478ce2f09ebf2ee26a39d3fd842aadcaba29d86b80fe"
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.file-material P03-01.file-service P03-01.file-host P02-02.chat P02-03.history",
+      "exitCode": 0,
+      "passed": 50,
+      "log": ".cache/ci/p03-chat-host-integration-2026-10-09.log",
+      "logSha256": "8020a4d6cc00be6eb00e69272f999bd20de8a7af48e34a2a0ff029119cc4c0e5"
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.file-selections",
+      "exitCode": 0,
+      "passed": 6,
+      "log": ".cache/ci/p03-chat-host-selection-regression-2026-10-09.log",
+      "logSha256": "af25252e969bc2cdcb992388d5f348b62929adb2624192eb6bd90e3a3ec30b5a"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P00-01|P02-02|P03-01",
+      "exitCode": 0,
+      "passed": 15,
+      "log": ".cache/ci/p03-chat-host-electron-closed-2026-10-09.log",
+      "logSha256": "f75351162cc9bc12af47de1265dc19339d706956ab83b8834a65d257f02063de",
+      "note": "Initial full regression before adding project-reference download coverage."
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P00-01|P02-02|P03-01",
+      "exitCode": 1,
+      "passed": 14,
+      "log": ".cache/ci/p03-chat-host-electron-final-2026-10-09.log",
+      "logSha256": "42bfe71b80cff280e0f3edf356522a090998b60e04a8761f4143e0f8ebc6e5c4",
+      "failed": 1,
+      "note": "New revocation assertion looked inside composer, but actual alert is its sibling. Other 14 cases passed. Script restored production build."
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01 T07 chat physical",
+      "exitCode": 0,
+      "passed": 1,
+      "log": ".cache/ci/p03-chat-host-electron-scope-fixed-2026-10-09.log",
+      "logSha256": "85b92210b376e253244c742696589a537a0d9dfe1a77b1cb0a85f0423c42186f",
+      "note": "Changed only the locator to role=alert; permission-denial and nonexistent-target assertions preserved and passed. Final production implementation identical to preceding 14 passed cases."
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-chat-host-check-final-2026-10-09.log",
+      "logSha256": "25013585ab4aa2988c0ba443525d70cb3b754063d8920af55a02602f780e2116",
+      "repositoryFiles": 317
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-chat-host-docs-final-2026-10-09.log",
+      "logSha256": "a49a9c3fffefbf5720a74224b98b845cc437bb7411bdc92825d6f41bb8339276"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "screenshots": {
+    "new": "docs/evidence/P03-01/chat-host-import.png",
+    "visuallyReviewed": true,
+    "previousRegeneratedRestored": [
+      "docs/evidence/P00-02/regression-shell.png",
+      "docs/evidence/P02-02/narrow-composer.png",
+      "docs/evidence/P02-02/safe-markdown.png",
+      "docs/evidence/P02-02/static-diagram.png",
+      "docs/evidence/P02-02/two-turns.png",
+      "docs/evidence/P03-01/import-recovery.png",
+      "docs/evidence/P03-01/library-dark-1200.png",
+      "docs/evidence/P03-01/library-dark-200-percent.png",
+      "docs/evidence/P03-01/library-dark-960.png",
+      "docs/evidence/P03-01/library-light-1200.png",
+      "docs/evidence/P03-01/library-light-960.png",
+      "docs/evidence/P03-01/task-usage.png"
+    ]
+  },
+  "productionFixtureMarker": false,
+  "guards": {
+    "localBlockedHelper": "not_executed",
+    "realModel": "not_called",
+    "realUserKeysVaultProfile": "not_read",
+    "chromiumSandbox": true,
+    "physicalRendererByteRead": "forbidden by real Electron test"
+  },
+  "resource": {
+    "id": "R15",
+    "status": "pending",
+    "basePrRun": 37832605223,
+    "baseCheck": 113501487013,
+    "baseStartup": 113501502633,
+    "steps": 0,
+    "annotation": "account payments failed or spending limit; new native diagnostics not run"
+  },
+  "remaining": [
+    "navigation cancellation/final draft append fault audit; final requirement/exception audit",
+    "P03 real native parser CORRUPT_FILE after R15 restored",
+    "P03-02/03 unstarted"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": [
+    "apps/desktop/src/main/**/*.ts",
+    "apps/desktop/src/preload/**/*.ts",
+    "packages/**/*.ts",
+    "tests/**/*.ts",
+    "*.config.ts",
+    "apps/desktop/electron.vite.config.ts",
+    "apps/desktop/src/renderer/src/global.d.ts"
+  ],
+  "exclude": ["**/node_modules", "**/dist", "**/out"]
+}

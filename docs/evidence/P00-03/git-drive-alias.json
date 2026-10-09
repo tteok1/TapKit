@@ -1,0 +1,71 @@
+{
+  "startedAt": "2026-09-18T07:51:11.590Z",
+  "endedAt": "2026-09-18T07:51:12.720Z",
+  "scope": "Temporary per-logon drive alias to the already granted workspace; no additional file access; compatibility experiment only",
+  "request": {
+    "protocolVersion": 1,
+    "requestId": "f266f95a-bc2e-79eb-8556-2159f54bc976",
+    "runId": "f266f95a-bc2e-79eb-8556-2159f54bc976",
+    "leaseEpoch": 1,
+    "operation": "diagnostic.execute",
+    "payload": {
+      "runtimeRoot": "D:\\TapKit\\.runtime\\python",
+      "executable": "D:\\TapKit\\.runtime\\python\\python.exe",
+      "inputRoot": "D:\\TapKit\\.runtime\\git",
+      "workspace": "D:\\TapKit\\.test-data\\P00-03-git-alias-ieMl8V\\workspace",
+      "args": [
+        "-c",
+        "import ctypes as c,os,sys,json,subprocess\nk=c.WinDLL(\"kernel32\",use_last_error=True);k.GetLongPathNameW.argtypes=[c.c_wchar_p,c.c_wchar_p,c.c_ulong]\ngit=sys.argv[1];workspace=sys.argv[2];drive=sys.argv[3]\nos.chdir(drive+\"\\\\\")\nb=c.create_unicode_buffer(32768);c.set_last_error(0);n=k.GetLongPathNameW(os.getcwd(),b,32768)\nprint(json.dumps({\"stage\":\"cwd\",\"cwd\":os.getcwd(),\"longResult\":b.value,\"longLength\":n,\"error\":c.get_last_error()}),flush=True)\nfor args in [[\"status\",\"--porcelain=v1\"],[\"diff\",\"--no-ext-diff\",\"--no-textconv\",\"--\",\"readme.txt\"]]:\n    command=[git,\"-c\",\"safe.directory=\"+os.getcwd(),\"-c\",\"core.hooksPath=NUL\",\"-c\",\"core.fsmonitor=false\",\"-c\",\"credential.helper=\",\"-c\",\"protocol.allow=never\"]+args\n    r=subprocess.run(command,stdin=subprocess.DEVNULL,stdout=sys.stdout,stderr=sys.stderr,timeout=8)\n    print(json.dumps({\"stage\":args[0],\"exitCode\":r.returncode}),flush=True)\n",
+        "D:\\TapKit\\.runtime\\git\\cmd\\git.exe",
+        "D:\\TapKit\\.test-data\\P00-03-git-alias-ieMl8V\\workspace",
+        "Z:"
+      ],
+      "timeoutMs": 20000,
+      "memoryBytes": 2147483648,
+      "processLimit": 8,
+      "outputBytes": 1048576,
+      "terminal": false
+    }
+  },
+  "exitCode": 0,
+  "events": [
+    {
+      "data": {
+        "appContainer": true,
+        "appContainerSid": "S-1-15-2-34683038-1213961062-1468810152-3327481831-3808115033-4203505563-1328355831",
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 8
+        },
+        "networkCapabilities": 0,
+        "pid": 3780
+      },
+      "event": "started",
+      "leaseEpoch": 1,
+      "protocolVersion": 1,
+      "requestId": "f266f95a-bc2e-79eb-8556-2159f54bc976",
+      "runId": "f266f95a-bc2e-79eb-8556-2159f54bc976"
+    },
+    {
+      "data": {
+        "activeProcesses": 0,
+        "exitCode": 0,
+        "logDirectory": "D:\\TapKit\\.test-data\\P00-03-git-alias-ieMl8V\\helper-logs-f266f95a-bc2e-79eb-8556-2159f54bc976",
+        "outputBytes": 372,
+        "peakActiveProcesses": 4,
+        "status": "exited",
+        "stderr": "Failed to find real location of D:\\TapKit\\.runtime\\python\\python.exe\n",
+        "stdout": "{\"stage\": \"cwd\", \"cwd\": \"Z:\\\\\", \"longResult\": \"Z:\\\\\", \"longLength\": 3, \"error\": 0}\r\nAM readme.txt\n{\"stage\": \"status\", \"exitCode\": 0}\r\ndiff --git a/readme.txt b/readme.txt\nindex 90be1f3..2a4f1bf 100644\n--- a/readme.txt\n+++ b/readme.txt\n@@ -1 +1 @@\n-before\n+after 中文\n{\"stage\": \"diff\", \"exitCode\": 0}\r\n",
+        "totalProcesses": 6
+      },
+      "event": "finished",
+      "leaseEpoch": 1,
+      "protocolVersion": 1,
+      "requestId": "f266f95a-bc2e-79eb-8556-2159f54bc976",
+      "runId": "f266f95a-bc2e-79eb-8556-2159f54bc976"
+    }
+  ],
+  "stderr": ""
+}

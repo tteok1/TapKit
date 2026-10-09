@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-05",
+  "timezone": "Asia/Shanghai",
+  "task": "P01-02",
+  "codeRef": "b92eece52e88eb6bd16931cd6ed942bb91d4d1f6+working-tree",
+  "branch": "codex/fix-zhipu-api-probe",
+  "committed": false,
+  "pushed": false,
+  "authorization": {
+    "realModelRequests": "not-authorized-by-local-test-reply",
+    "localFixtureTests": "resumed-by-user"
+  },
+  "modelRequests": 0,
+  "keyRead": false,
+  "userConfigurationChanged": false,
+  "agentStartedElectron": false,
+  "checks": {
+    "unitBefore": {
+      "log": "probe-audit-unit-before-2026-10-05.log",
+      "exitCode": 1,
+      "failed": 1,
+      "passed": 203
+    },
+    "unitAfter": {
+      "log": "probe-audit-unit-after-2026-10-05.log",
+      "exitCode": 1,
+      "failed": 3,
+      "passed": 207
+    },
+    "unitFinal": {
+      "scope": "full-unit",
+      "exitCode": 0,
+      "failed": 0,
+      "log": "probe-audit-unit-final-2026-10-05.log",
+      "passed": 210
+    },
+    "integrationFull": {
+      "failureScope": "P00-03-office-and-sandbox",
+      "exitCode": 1,
+      "failed": 15,
+      "log": "probe-audit-integration-2026-10-05.log",
+      "passed": 108
+    },
+    "integrationTargeted": {
+      "scope": "P01-02",
+      "exitCode": 0,
+      "failed": 0,
+      "log": "probe-audit-integration-targeted-2026-10-05.log",
+      "passed": 19
+    },
+    "checkCurrentUser": {
+      "exitCode": 0,
+      "log": "probe-audit-check-2026-10-05.log"
+    },
+    "buildDesktop": {
+      "exitCode": 0,
+      "log": "probe-audit-build-2026-10-05.log"
+    },
+    "docsCheck": {
+      "exitCode": 0,
+      "log": "probe-audit-docs-2026-10-05.log"
+    },
+    "diffCheck": {
+      "exitCode": 0
+    },
+    "live": {
+      "status": "not_run"
+    },
+    "electron": {
+      "status": "not_run"
+    }
+  },
+  "sha256": {
+    "packages/contracts/src/providers.ts": "3bbb8446adaf09047971a8d0ad98bdddb20f0fba450416bef2ea3d51244424eb",
+    "packages/providers/src/api/http.ts": "67a6d7851e01e6f61baa71c20df925f2f61a02bf1a7351e3b6626561f5a199f3",
+    "packages/providers/src/api/adapter.ts": "91c29e62f0cfada28e3614d0ff6e19f93e8ad8f138096370dd14ccedf81ad6ea",
+    "packages/providers/src/api/errors.ts": "17f06c8b394ce5e765a3c8e12017f966da8e52f7f14050961691218ab0321236",
+    "apps/desktop/src/renderer/src/api-diagnostic.tsx": "6205226427e9a8f324cf498149b66cd104f1c0d225faa03675e18c7b9276c7ac",
+    "apps/desktop/src/renderer/locales/zh-CN.json": "412748877599d701b3065f9c9b7d6d791296668ccca959f15e2545ad7d309fb3",
+    "tests/unit/P01-02.api.test.ts": "e05e4234cee5907c01594d8ac324dc1d520e4893e5b4e4fde9ae8d60af04cd0b",
+    "tests/unit/P01-02.zhipu.test.ts": "00812f8d113aefe7f6346dc5b4973ccfdfea2d84639dc16bf736e0141c314952",
+    "tests/integration/P01-02.zhipu.test.ts": "e20eb64359a6ee8fde10c24ed497bf7dc48324d5a4a764ce41855cb7364ac134",
+    "packages/core/dist/index.cjs": "0f02261907acf7b94b6f3de38a08a95a612fff58a18e4a1699cac8deccc3f3c6"
+  },
+  "taskStatus": "in_progress",
+  "gateStatus": "failed",
+  "realReasoningDisabled": "unverified",
+  "currentScreenshotUsage": "not_observed",
+  "fullIntegrationPassed": false,
+  "currentSync": "initial-direct-write-mapped-file-failed-atomic-replacement-verified"
+}

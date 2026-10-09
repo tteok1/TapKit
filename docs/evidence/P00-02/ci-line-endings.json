@@ -1,0 +1,82 @@
+{
+  "recordedAt": "2026-09-17T12:06:18.170Z",
+  "baseHead": "dc440ce12dd4252dfcc7d7b7e028d6b502642242",
+  "failureJobUrl": "private-archive:TapKit",
+  "failure": {
+    "step": "Check",
+    "command": "prettier --check .",
+    "reportedFiles": 98,
+    "exitCode": 1
+  },
+  "changedConfig": [
+    ".gitattributes",
+    ".prettierrc.json"
+  ],
+  "scope": "CI line endings only; no business changes, task advancement or stage gate",
+  "checks": [
+    {
+      "command": "pnpm exec prettier --write changed progress/config records",
+      "startedAt": "2026-09-17T12:06:51.364Z",
+      "endedAt": "2026-09-17T12:06:51.950Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-02/ci-lf-format.log"
+    },
+    {
+      "command": "git read-tree HEAD (isolated index)",
+      "startedAt": "2026-09-17T12:06:51.959Z",
+      "endedAt": "2026-09-17T12:06:52.068Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-02/ci-lf-index.log"
+    },
+    {
+      "command": "git add fixed attributes/config/progress (isolated index)",
+      "startedAt": "2026-09-17T12:06:52.072Z",
+      "endedAt": "2026-09-17T12:06:52.195Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-02/ci-lf-snapshot.log"
+    },
+    {
+      "command": "git checkout-index --all with core.autocrlf=true (isolated directory)",
+      "startedAt": "2026-09-17T12:06:52.199Z",
+      "endedAt": "2026-09-17T12:06:53.731Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-02/ci-lf-checkout.log"
+    },
+    {
+      "command": "prettier --check . (actual Windows Git checkout)",
+      "startedAt": "2026-09-17T12:06:53.734Z",
+      "endedAt": "2026-09-17T12:06:55.203Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-02/ci-lf-checkout-prettier.log"
+    },
+    {
+      "command": "pnpm check",
+      "startedAt": "2026-09-17T12:06:55.822Z",
+      "endedAt": "2026-09-17T12:07:09.368Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-02/ci-lf-check.log"
+    },
+    {
+      "command": "pnpm docs:check",
+      "startedAt": "2026-09-17T12:07:09.373Z",
+      "endedAt": "2026-09-17T12:07:09.722Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-02/ci-lf-docs.log"
+    },
+    {
+      "command": "git diff --check",
+      "startedAt": "2026-09-17T12:07:09.726Z",
+      "endedAt": "2026-09-17T12:07:09.818Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-02/ci-lf-diff.log"
+    }
+  ],
+  "remoteVerification": "Pending push; no claim that CI passed.",
+  "checkoutVerification": {
+    "coreAutocrlf": true,
+    "fixtureDirectory": ".test-data/ci-line-endings-1789646811958",
+    "formattedFiles": 98,
+    "crlfFiles": [],
+    "binaryMismatches": []
+  }
+}

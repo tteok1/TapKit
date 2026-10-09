@@ -1,0 +1,320 @@
+{
+  "scope": "Selected roots and Node executable; not a complete recursive ACL audit",
+  "checked": 78,
+  "remainingJournalCount": 0,
+  "remainingAceCount": 0.0,
+  "paths": [
+    {
+      "path": "D:\\TapKit",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.runtime",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.runtime\\node\\node-v24.21.0-win-x64",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\resources\\runtime\\helper",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 3A8CCW",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 3A8CCW\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 3A8CCW\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 3oBjx6",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 3oBjx6\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 3oBjx6\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 4LNCRO",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 4LNCRO\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 4LNCRO\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 5ARehK",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 5ARehK\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 5ARehK\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 8G7bgU",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 8G7bgU\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 8G7bgU\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 Ce0m36",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 Ce0m36\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 Ce0m36\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 ceNzbR",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 ceNzbR\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 ceNzbR\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 dz6ME9",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 dz6ME9\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 dz6ME9\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 EUvuMh",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 EUvuMh\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 EUvuMh\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 F6gp3G",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 F6gp3G\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 F6gp3G\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 H6SVcU",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 H6SVcU\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 H6SVcU\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 h8Lu00",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 h8Lu00\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 h8Lu00\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 HmE65l",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 HmE65l\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 HmE65l\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 Hua3gs",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 Hua3gs\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 Hua3gs\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 IxPHDS",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 IxPHDS\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 IxPHDS\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 LzK0an",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 LzK0an\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 LzK0an\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 nbAhsM",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 nbAhsM\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 nbAhsM\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 Ok7eIg",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 Ok7eIg\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 Ok7eIg\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 qeTkeE",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 qeTkeE\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 qeTkeE\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 SlDYJj",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 SlDYJj\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 SlDYJj\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 sqjQ8G",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 sqjQ8G\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 sqjQ8G\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 umYJwb",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 umYJwb\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 umYJwb\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 YugwAz",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 YugwAz\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 YugwAz\\workspace",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 yY8NbO",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 yY8NbO\\input",
+      "remainingAceCount": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 account 中文 yY8NbO\\workspace",
+      "remainingAceCount": 0
+    }
+  ]
+}

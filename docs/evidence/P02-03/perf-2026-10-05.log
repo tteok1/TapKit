@@ -1,0 +1,9 @@
+pnpm test:perf
+exit_code=0
+$ node scripts/perf.mjs
+$ vitest run --config vitest.config.ts --project integration "P02-03.perf"
+ RUN  v5.0.0 D:/TapKit
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  11:18:18
+   Duration  29.49s (tests 95%, transform 3%, import 2%)

@@ -1,0 +1,6 @@
+pnpm check
+exit_code=0
+$ node scripts/check.mjs
+All matched files use Prettier code style!
+Dependency boundaries verified
+Runtime/dependency/wheel manifests verified

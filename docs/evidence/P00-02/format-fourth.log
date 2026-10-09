@@ -1,0 +1,25 @@
+packages/contracts/src/foundation.ts 80ms (unchanged)
+packages/contracts/src/index.ts 20ms
+packages/contracts/src/persistence.ts 12ms
+packages/contracts/src/resources.ts 20ms (unchanged)
+packages/core/src/index.ts 11ms
+packages/core/src/service.ts 17ms (unchanged)
+packages/core/src/worker.ts 10ms (unchanged)
+packages/storage/src/blobs.ts 35ms
+packages/storage/src/foundation.ts 47ms
+packages/storage/src/index.ts 4ms (unchanged)
+packages/storage/src/jobs.ts 16ms (unchanged)
+packages/storage/src/sql.d.ts 2ms (unchanged)
+apps/desktop/src/main/index.ts 44ms
+apps/desktop/src/main/security.ts 3ms (unchanged)
+apps/desktop/src/main/vault.ts 14ms (unchanged)
+apps/desktop/src/main/zh-CN.json 14ms (unchanged)
+apps/desktop/src/preload/index.ts 11ms (unchanged)
+apps/desktop/src/renderer/index.html 22ms (unchanged)
+apps/desktop/src/renderer/locales/zh-CN.json 2ms (unchanged)
+apps/desktop/src/renderer/src/assets.d.ts 1ms (unchanged)
+apps/desktop/src/renderer/src/global.d.ts 2ms (unchanged)
+apps/desktop/src/renderer/src/main.tsx 14ms
+apps/desktop/src/renderer/src/styles.css 29ms (unchanged)
+tests/e2e/P00-02.foundation.spec.ts 31ms
+tests/integration/P00-02.storage.test.ts 43ms

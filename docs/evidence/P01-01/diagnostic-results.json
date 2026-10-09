@@ -1,0 +1,72 @@
+{
+  "taskId": "P01-01",
+  "recordedAt": "2026-10-04T04:28:56.4742179+08:00",
+  "checkout": "D:/tapkit/TapKit",
+  "branch": "codex/p01-01",
+  "codeRef": "3840347+working-tree",
+  "sourceSha256": {
+    "packages/contracts/src/providers.ts": "ba9d6bce83c6220a731ebc6afb1201baab1c82f937ddc6db8477d99eac4e24ca",
+    "packages/providers/src/codex/adapter.ts": "d62c759d396d7680e945cfd1b2df4a5f0cf58d19ead08fb58f8f154c26b54658",
+    "packages/providers/src/codex/transport.ts": "7a83b06433fcb81023b52343a38c6b46c45f186b672994afcd04bc28bec9fee9",
+    "apps/desktop/src/renderer/src/auth-diagnostic.tsx": "8755979dd568589eb2f559a0af1e1f75edb7279b9da77ca4b6be8f1ef9db7c19",
+    "apps/desktop/src/renderer/locales/zh-CN.json": "7bc0b8f94e87506b4591d50f73236bcd30cf7a9b30e85564c56d3d36ff097508",
+    "tests/integration/P01-01.codex.test.ts": "a68dcd332d208321fc6ff95dc610b4c08ff30e6ea3cd260b6051e8ae941bea36",
+    "tests/unit/P01-01.transport.test.ts": "3c26ffb4edd00da837b3cc611fc1b236e0da4596b3cd3bb0703fc2e50a061a83",
+    "tests/e2e/P01-01.utility.spec.ts": "7772cd07aee149417a2a95aa2355a30b13512b3dafe2690211b3729412efd164",
+    "tests/fixtures/P01-01.utility.cjs": "419a7d7e2fa0bdfadfc595a327b806ab3a7fda76464e8efed149375281528a1c"
+  },
+  "commands": [
+    {
+      "command": "pnpm build",
+      "log": "diagnostic-build.log",
+      "exitCode": 0
+    },
+    {
+      "passed": 37,
+      "command": "pnpm test:unit",
+      "log": "diagnostic-unit.log",
+      "exitCode": 0
+    },
+    {
+      "passed": 58,
+      "command": "pnpm test:integration P01-01 P00-02.storage",
+      "log": "diagnostic-integration.log",
+      "exitCode": 0
+    },
+    {
+      "passed": 4,
+      "command": "pnpm test:e2e -- --grep P01-01",
+      "log": "diagnostic-electron.log",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm check",
+      "log": "diagnostic-check.log",
+      "exitCode": 0
+    }
+  ],
+  "finalChecks": {
+    "docsCheck": 0,
+    "check": 0,
+    "diffCheck": 0
+  },
+  "live": {
+    "status": "user_reported_probe_failed",
+    "resourceId": "R01",
+    "rootCause": "unknown",
+    "realCredentialsRead": false,
+    "code": "STREAM_INTERRUPTED",
+    "resourceStatus": "configured",
+    "models": [
+      "gpt-5.6-luna",
+      "gpt-5.5"
+    ],
+    "agentLiveCalls": 0
+  },
+  "restrictions": [
+    "no commit or push",
+    "no task advancement",
+    "P00 gate remains failed",
+    "mock success does not resolve actual connection failure"
+  ]
+}

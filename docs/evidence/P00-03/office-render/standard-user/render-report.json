@@ -1,0 +1,75 @@
+{
+  "parserVersion": "6.3.289",
+  "results": [
+    {
+      "name": "sample-docx",
+      "pdfSha256": "fe52f4910463a4a30d4b05296641c963eb3564475e509140a2fcabc4143182a0",
+      "pngSha256": "891de12e9b905ba9a025830d436416701bfce1cb891f6a5b67fe961f538ef9c9",
+      "pages": 1,
+      "width": 596,
+      "height": 842,
+      "text": "TapKit 隔离转换验收  DOCX   原件不可修改；中文内容应清晰可读。",
+      "chineseTitlePresent": true
+    },
+    {
+      "name": "sample-xlsx",
+      "pdfSha256": "18ca98459b9b368b24140534baeda9f5f22e910ea6efe52f4073134ef9de2a30",
+      "pngSha256": "3a3994ca436204391162832528d4569f581dde39084d2fd1c919aaa0bbd21dc2",
+      "pages": 1,
+      "width": 612,
+      "height": 792,
+      "text": "数值 中文行   42 TapKit 隔离转换验收",
+      "chineseTitlePresent": true
+    },
+    {
+      "name": "sample-pptx",
+      "pdfSha256": "e6a318c17cddffb31719cb62be29c690383e3458683bbc649fb36486dec8200f",
+      "pngSha256": "f487950ba1f09307d18f9f59f50aab31c349acddc280cec35a3ac8a6ce5b0293",
+      "pages": 1,
+      "width": 961,
+      "height": 540,
+      "text": "TapKit 隔离转换验收  PPTX → PDF / 受限环境",
+      "chineseTitlePresent": true
+    },
+    {
+      "name": "macro-blocked",
+      "pdfSha256": "e7a2565097170bcfea70587ace0df9880cc8316d112163ae897f14b5de4fca11",
+      "pngSha256": "88d1c03da194b032840872aa2f241231a75700c7f5abd9020c6abebc5206ba4b",
+      "pages": 1,
+      "width": 612,
+      "height": 792,
+      "text": "Sheet1 Page 1  TK_MACRO_BLOCKED",
+      "chineseTitlePresent": false
+    },
+    {
+      "name": "macro-control",
+      "pdfSha256": "862d7c5054b021d493024c0ac3e5441f54df4ff01d3fb30d89355283a7468b2b",
+      "pngSha256": "1f8cb43885bcd995043ffd7b3b91863be8d7447e23c623d9cb4d27eaaead8c35",
+      "pages": 1,
+      "width": 612,
+      "height": 792,
+      "text": "Sheet1 Page 1  TK_MACRO_EXECUTED",
+      "chineseTitlePresent": false
+    },
+    {
+      "name": "link-blocked",
+      "pdfSha256": "94d26f5c78af6e2e269a8778f0195c2c82410eaba4acf18aa25bdacad494530c",
+      "pngSha256": "e5c5169f04a1d460992fbf1d4d007483d9f9147d17f2f75e0b7a53197c71ef80",
+      "pages": 1,
+      "width": 612,
+      "height": 792,
+      "text": "TK_LINK_CACHED",
+      "chineseTitlePresent": false
+    },
+    {
+      "name": "link-control",
+      "pdfSha256": "06725daccfb44c2d0e2be9bcf14208370c95413ff66329e96b63b476ea1da614",
+      "pngSha256": "7b23ac76a8215f50345b1894ca5e3f9486f685379a98e05d762a7c72754780cb",
+      "pages": 1,
+      "width": 612,
+      "height": 792,
+      "text": "TK_LINK_UPDATED",
+      "chineseTitlePresent": false
+    }
+  ]
+}

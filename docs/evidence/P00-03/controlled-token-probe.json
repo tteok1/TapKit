@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-30",
+  "experiment": "controlled-token-probe",
+  "scope": {
+    "candidate": "unrestricted-restriction-set token proposal; superseded before any access-control probe",
+    "payloadLaunched": false,
+    "accountsChanged": false,
+    "wfpChanged": false,
+    "systemAclChanged": false,
+    "supersededBy": "AppContainer sandbox direction"
+  },
+  "build": {
+    "toolchain": "Rust 1.98.1; Windows SDK 10.0.28000.2705; MSVC CRT 14.44.35226",
+    "lockedFeatureBuild": "passed",
+    "lockedProductionBuild": "passed",
+    "probeOptionInProductionBuild": "rejected with CLI_VALIDATION_ERROR",
+    "lockedCrates": 23,
+    "cargoLockChanged": false,
+    "cargoLockSha256": "cf3a835915c03dc8a372dbd885fe679327f8b118477068525d98b1ba9a04f60c",
+    "featureBinarySha256": "9e849694d07bb4c7fe376cecac94fc50ae77dfce4588d685dea98c8aeeb50946",
+    "productionBinarySha256": "1da0b50b3c755d38d467d93d182a4495c3e3d2fbff6f15b83c37406994abe856",
+    "sourceSha256": {
+      "native/windows-helper/Cargo.toml": "81d8087d48ddcfaeb9d0bc52d55e53b5ea3995018815a81164e7a889758c0306",
+      "native/windows-helper/src/account_token.rs": "73c34f72dde62ad2682099ef882ace060d2d7461e49764d5299191f371514f38",
+      "native/windows-helper/src/account_token_probe.rs": "b40c730284c44350bbc245a4d2ae21dbfcd3d980a2fe793156ceac5f3a91ba37",
+      "native/windows-helper/src/main.rs": "613278b766fc9d580b455d22d1df3ac6076e0c7f39b408c86c09d7033003d0b3",
+      "scripts/account-token-probe.mjs": "61dfc84ac87cf5bee9658c5244f7aa0bbc3740a796401404c090918309afc2ca"
+    }
+  },
+  "liveProbe": {
+    "status": "superseded_before_run",
+    "preflight": "ACCOUNT_SETUP_REQUIRED",
+    "currentWindowsIdentitySetupRoot": "C:\\ProgramData\\TapKit-Sandbox-v1 was checked by the obsolete account-token probe; this is not a prerequisite for AppContainer",
+    "systemReadResults": null,
+    "isolationResults": null,
+    "temporaryFixtureCreated": false,
+    "reason": "User clarified that execution isolation should use an OS sandbox, not a separate local Windows account. The approved account-token experiment was stopped before running its access-control checks."
+  },
+  "conclusion": "Historical feature and production builds passed, but their token candidate is superseded and no live access checks ran. No account, WFP, system ACL, or temporary fixture was changed. The KnownDlls preflight is used only by the account.execute path; diagnostic.execute launches in AppContainer and does not require this account-state directory."
+}

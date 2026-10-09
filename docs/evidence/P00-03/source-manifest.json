@@ -1,0 +1,191 @@
+{
+  "capturedAt": "2026-09-18T08:16:11.878Z",
+  "cwd": "D:\\TapKit",
+  "branch": "main",
+  "head": "071d15c5c45db4e91d232a4d26db7904061bc89b",
+  "scope": "Changed/new source and progress files; evidence files excluded to avoid circular hashes",
+  "helperSha256": "e4b39808bb4661169456b8800f1972c2216120da075f9006694534d994ea7f57",
+  "files": [
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "sha256": "69ca29710fc3be2a0ceebfa7e4837f22ba6b238b1305de161d63591a8a29f284"
+    },
+    {
+      "path": "apps/desktop/src/main/index.ts",
+      "sha256": "f933034e57047f6d787a2a4482fd6a692ecb269317849d3fc4744f8cc9ba601f"
+    },
+    {
+      "path": "docs/adr/0006-native-diagnostics-and-build.md",
+      "sha256": "fe77c33d0d34b6ace4526be78034751054833aca184ee88415369e19921f8c22"
+    },
+    {
+      "path": "docs/plan/03-architecture.md",
+      "sha256": "f2b9a74735b7cc48b180d585f7284233a3c230eef215c7d82a4777eeba0acd5c"
+    },
+    {
+      "path": "docs/progress/CURRENT.md",
+      "sha256": "4ffd0d1be3ab6cba9b3fa09c283d76e76cedcd331c56dc7b0f3cc0cc11f32e2c"
+    },
+    {
+      "path": "docs/progress/INDEX.md",
+      "sha256": "e6d4402f1c0c74f41a2eef9c5e9bf8faa79c6265ecb85925faa7a428790c9044"
+    },
+    {
+      "path": "docs/progress/P00-03.md",
+      "sha256": "2f1a9dc79480440a90d107fd7c2aae0206c2ad0331686115691e717d51b5b8ea"
+    },
+    {
+      "path": "docs/progress/P00-gate.md",
+      "sha256": "2873a518ab4b4b67716039d27571f7633dc70290c33735faab05a80b34928b11"
+    },
+    {
+      "path": "docs/progress/RESOURCES.md",
+      "sha256": "8c9b77d9de11380ad518a4cd3d2ef32c78af90ca388f6942000326dd86a60563"
+    },
+    {
+      "path": "docs/progress/requirements.csv",
+      "sha256": "fda084ea16fe3e70b441deaeaaf3efd09b9f4fc3626b8063af06ec3fc1313954"
+    },
+    {
+      "path": "native/windows-helper/Cargo.lock",
+      "sha256": "cf3a835915c03dc8a372dbd885fe679327f8b118477068525d98b1ba9a04f60c"
+    },
+    {
+      "path": "native/windows-helper/Cargo.toml",
+      "sha256": "d6836a2fd5c92cb2020ade304dbb20bb7aabb05995b4e780ef33de74ded57e86"
+    },
+    {
+      "path": "native/windows-helper/src/main.rs",
+      "sha256": "de9426572c4248fa0c6b457d7b9e4e165df9e027a53339ca1823350699a117a5"
+    },
+    {
+      "path": "native/windows-helper/src/sandbox.rs",
+      "sha256": "ccfea2c294d70b100ce80e238bee211fffdef878496b6433800ce5983c7be795"
+    },
+    {
+      "path": "package.json",
+      "sha256": "cd18c5ed31e9a02ff18afc64d9598b6405d5f798f327abf874b37d10f7cfa2af"
+    },
+    {
+      "path": "packages/contracts/src/execution.ts",
+      "sha256": "e2a2738b2dffc142b46afa4da90ee3a0849be3fcbd403f95a7c21e17c67d275c"
+    },
+    {
+      "path": "packages/contracts/src/foundation.ts",
+      "sha256": "2c8d7e0c6c3d81a951610cd368bab21a781d3b10ca318af325e490404a47b57b"
+    },
+    {
+      "path": "packages/contracts/src/identity.ts",
+      "sha256": "8dcc87b2b0c0d368317bd46b518c5da92827351e575e020e013f899d0b9a4910"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "a779fbc12e1e2664a0da4d8e20eca26b7bd2dff8fc203179562e5aa3284a5742"
+    },
+    {
+      "path": "packages/core/package.json",
+      "sha256": "b60898813225f36b951071b24b44b44ed99b275be80b04be2bc13cd1632ffee3"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "44e6e14474e34fe7c8abcb8f1f234c73d455033deca1424541b1fc3d267ac060"
+    },
+    {
+      "path": "packages/core/src/service.ts",
+      "sha256": "b59f6e0c24768019328ab480f10fd2ac1d4cfea0ec86e15f8eb05ad7ed80b8d6"
+    },
+    {
+      "path": "packages/core/vite.config.ts",
+      "sha256": "2d07be22997d85fd9588ff2cd8f6f099691a1156756f59ff06c0b72639dc3e02"
+    },
+    {
+      "path": "packages/tools/src/execution/index.ts",
+      "sha256": "a24ac5b7ea4a3a2a7230df0e9a4737598f90e9c4a2ce70ed30796e0c42013d41"
+    },
+    {
+      "path": "packages/tools/src/index.ts",
+      "sha256": "5ef4bb1799fa4f9dc55b114d030d057eec28ff077a9ac0b4629a6fb8a395e833"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "54da7ec8ebbda17f2f1d28a696a635ab1fc42d2ed9e96434bf4474f824beb85f"
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "sha256": "0fe389f73c1ab44b3e63904c3c5b401052c2ae01018795d87067827bd6b06c11"
+    },
+    {
+      "path": "runtime-lock.json",
+      "sha256": "c70ad08a433096b38a6ea7e69066c67bd593377d7ee1a1ceb3e6c15ee9869e3f"
+    },
+    {
+      "path": "scripts/build.mjs",
+      "sha256": "265d91d0a44f8c30d50a9dadd4f9ecea1ec9c5aed9d3e17314b362af8da6430f"
+    },
+    {
+      "path": "scripts/e2e.mjs",
+      "sha256": "161d7976b58267bd2775aa3399a31db68c9b6cd1ebc59406aac9d9e40f3f1045"
+    },
+    {
+      "path": "scripts/fixtures-office.mjs",
+      "sha256": "de0fd0b427fe1571f8224c974a7e9f87bac5a4d5c79ce0fcbc42c1d7c0b44c8a"
+    },
+    {
+      "path": "scripts/helper-build.mjs",
+      "sha256": "61a94e3674129987a97f4b71b2960d14fc86b7a1895c4c5bdfb90bf58ed8c001"
+    },
+    {
+      "path": "scripts/native-test-summary.mjs",
+      "sha256": "4256c6f15bca0e272629658aaac4d508c95c2cc1259971c85ec85df5e406abd8"
+    },
+    {
+      "path": "scripts/repair-standard-user-kit.mjs",
+      "sha256": "bbce6eef4e3f8f6c948f5bd51468099fa968cb6d154f5f4f316087d445b4b35b"
+    },
+    {
+      "path": "scripts/runtime-fetch.ps1",
+      "sha256": "8cf3d6dcc898e216ad352fa9aae857198c2acd5eec6525585506e917a470608d"
+    },
+    {
+      "path": "scripts/runtime-inventory.mjs",
+      "sha256": "6497772c5a89467ce4da24ea0ed3863371beb3cff8123c4060a51c8d9505658e"
+    },
+    {
+      "path": "scripts/runtime-probe.mjs",
+      "sha256": "02a23a86dc0facca8f2c23988e3f10f9edc2f9b30e913cff2436b92f128fa52a"
+    },
+    {
+      "path": "scripts/standard-user-kit.mjs",
+      "sha256": "0b4882b8e1cc0c79e7bbe2a60a92af4091c3178ea2ae7ac40728bac1b98ae2bd"
+    },
+    {
+      "path": "scripts/standard-user-test.mjs",
+      "sha256": "572dd0ac31a445c1320229f543c1d3ebc8cbb187be8ca685ba7b830175315568"
+    },
+    {
+      "path": "scripts/standard-user-test.ps1",
+      "sha256": "bf756a2c83f3aa33e0877d87bbef0afcae2555e4a86109e8f8d89752a0b6511e"
+    },
+    {
+      "path": "tests/integration/P00-03.capability.test.ts",
+      "sha256": "8f1084f3f295dbaa1efc324104bdcf9424bfe3d1072ac0c4d3332f9c47562d3d"
+    },
+    {
+      "path": "tests/integration/P00-03.office-git.test.ts",
+      "sha256": "a0c6a1f76d458e81f09cce21a7d4b0f2034b319c86e3853561d799b3e5a9184b"
+    },
+    {
+      "path": "tests/integration/P00-03.sandbox.test.ts",
+      "sha256": "fb901c8566ae2f6e31cc4fa68bd0624e049564c71f54de4c66eebe4ea278f20b"
+    },
+    {
+      "path": "tests/unit/P00-03.execution.test.ts",
+      "sha256": "be96ee88d0047903cc82904a2bc00878c1ecc9249ad4f3e478835eafbd12de0b"
+    },
+    {
+      "path": "tests/unit/P00-03.standard-user-kit.test.ts",
+      "sha256": "cbab47732ebc143d5a55a9972dbfc9bd2a41c351adb5e8ce997e38847289c1a7"
+    }
+  ],
+  "dirty": " M THIRD_PARTY_NOTICES.md\n M apps/desktop/src/main/index.ts\n M docs/plan/03-architecture.md\n M docs/progress/CURRENT.md\n M docs/progress/INDEX.md\n M docs/progress/RESOURCES.md\n M docs/progress/requirements.csv\n M package.json\n M packages/contracts/src/foundation.ts\n M packages/contracts/src/index.ts\n M packages/core/package.json\n M packages/core/src/index.ts\n M packages/core/src/service.ts\n M packages/core/vite.config.ts\n M packages/tools/src/index.ts\n M pnpm-lock.yaml\n M pnpm-workspace.yaml\n M runtime-lock.json\n M scripts/build.mjs\n M scripts/e2e.mjs\n?? docs/adr/0006-native-diagnostics-and-build.md\n?? docs/evidence/P00-03/\n?? docs/evidence/runtime-compatibility.md\n?? docs/progress/P00-03.md\n?? docs/progress/P00-gate.md\n?? native/windows-helper/Cargo.lock\n?? native/windows-helper/Cargo.toml\n?? native/windows-helper/src/\n?? packages/contracts/src/execution.ts\n?? packages/contracts/src/identity.ts\n?? packages/tools/src/execution/\n?? scripts/fixtures-office.mjs\n?? scripts/helper-build.mjs\n?? scripts/native-test-summary.mjs\n?? scripts/repair-standard-user-kit.mjs\n?? scripts/runtime-fetch.ps1\n?? scripts/runtime-inventory.mjs\n?? scripts/runtime-probe.mjs\n?? scripts/standard-user-kit.mjs\n?? scripts/standard-user-test.mjs\n?? scripts/standard-user-test.ps1\n?? tests/integration/P00-03.capability.test.ts\n?? tests/integration/P00-03.office-git.test.ts\n?? tests/integration/P00-03.sandbox.test.ts\n?? tests/unit/P00-03.execution.test.ts\n?? tests/unit/P00-03.standard-user-kit.test.ts\n"
+}

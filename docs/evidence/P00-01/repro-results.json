@@ -1,0 +1,95 @@
+{
+  "workspace": "D:\\TapKit\\.cache\\repro\\中文用户 工程-Ker44u",
+  "simulatedProfile": "D:\\TapKit\\.cache\\repro\\中文用户 工程-Ker44u\\.test-data\\中文 用户目录",
+  "actualWindowsAccountChanged": false,
+  "lockSha256": "69b760dec55e7f1cad08098b336965cfce0a0ab04bbddca92125a4608228b89a",
+  "results": [
+    {
+      "command": "pnpm bootstrap (fresh directory)",
+      "exitCode": 0,
+      "start": "2026-09-15T10:42:59.473Z",
+      "end": "2026-09-15T10:49:28.185Z"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "start": "2026-09-15T10:49:28.186Z",
+      "end": "2026-09-15T10:49:38.113Z"
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "start": "2026-09-15T10:49:38.113Z",
+      "end": "2026-09-15T10:49:39.914Z"
+    },
+    {
+      "command": "pnpm test:integration",
+      "exitCode": 0,
+      "start": "2026-09-15T10:49:39.914Z",
+      "end": "2026-09-15T10:49:41.290Z"
+    },
+    {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "start": "2026-09-15T10:49:41.290Z",
+      "end": "2026-09-15T10:49:46.200Z"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P00-01",
+      "exitCode": 0,
+      "start": "2026-09-15T10:49:46.200Z",
+      "end": "2026-09-15T10:49:49.577Z"
+    },
+    {
+      "command": "pnpm dev (fresh directory)",
+      "exitCode": 0,
+      "start": "2026-09-15T10:49:49.577Z",
+      "end": "2026-09-15T10:49:58.147Z"
+    },
+    {
+      "command": "pnpm bootstrap (after deleting all node_modules)",
+      "exitCode": 0,
+      "start": "2026-09-15T10:50:42.370Z",
+      "end": "2026-09-15T10:51:44.325Z"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P00-01 (reinstalled)",
+      "exitCode": 0,
+      "start": "2026-09-15T10:51:44.325Z",
+      "end": "2026-09-15T10:51:47.732Z"
+    }
+  ],
+  "finalSourceSha256": "34cb4b332972adeb9b50ea233b9c4c518f55015ab9dab687884623a703b63546",
+  "finalSourceRevalidation": [
+    {
+      "command": "pnpm bootstrap",
+      "exitCode": 0,
+      "started": "2026-09-15T10:57:29.176Z",
+      "ended": "2026-09-15T10:58:22.236Z"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "started": "2026-09-15T10:58:22.240Z",
+      "ended": "2026-09-15T10:58:28.026Z"
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "started": "2026-09-15T10:58:28.029Z",
+      "ended": "2026-09-15T10:58:29.258Z"
+    },
+    {
+      "command": "pnpm test:integration",
+      "exitCode": 0,
+      "started": "2026-09-15T10:58:29.263Z",
+      "ended": "2026-09-15T10:58:30.611Z"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P00-01",
+      "exitCode": 0,
+      "started": "2026-09-15T10:58:30.615Z",
+      "ended": "2026-09-15T10:58:33.796Z"
+    }
+  ]
+}

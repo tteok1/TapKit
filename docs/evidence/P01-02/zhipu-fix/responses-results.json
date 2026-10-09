@@ -1,0 +1,87 @@
+{
+  "taskId": "P01-02",
+  "recordedAt": "2026-10-04T03:37:57.329Z",
+  "branch": "codex/fix-zhipu-api-probe",
+  "baseCommit": "2e785316b74b3dbdb38ae68990e07652dbadbd56",
+  "verifiedCodeRef": "2e78531+working-tree",
+  "adapterVersion": "tapkit-api/2",
+  "sourceSha256": {
+    "packages/providers/src/api/adapter.ts": "4ffa12298ccc74043a43b97fd0f0a46c5eaf26f7d5bf0fedb372180432451af5",
+    "packages/providers/src/api/errors.ts": "3d6a9e60ec1b2186807af41b48486e40fd6ee09a3f917ee36c358f9cd9e7bd45",
+    "packages/providers/src/api/zhipu.ts": "818091793f4ca4f8dfc44e0dc63a8d72691da0d34a2253fd3bb9721aa8d7b625",
+    "packages/contracts/src/foundation.ts": "38ec23fdf6a10d11ae8932f08374ab275d89666b03d0d712c51368b9c48a0348",
+    "packages/contracts/src/providers.ts": "b463bd9699efcc604ee6193dffd478cdf6a608402400a2cf57685e3eafb19274",
+    "apps/desktop/src/renderer/src/api-diagnostic.tsx": "7105f6ebb536299b608fd4cbe556a0bf645b7477242d9119e3a9e3a4c179422b",
+    "apps/desktop/src/renderer/locales/zh-CN.json": "3c2de383c2048c4eb1e3930f72d81b92c806933617b1de312c3ce76f55c0c428",
+    "tests/unit/P01-02.zhipu.test.ts": "760150f45085c17d442c091a5ddb0662e214e6bb68e91a29c54bf772a2953922",
+    "tests/integration/P01-02.zhipu.test.ts": "282fa191eacb4cad02631ec448355d0e7fe6efccbe7cb0ff5e9621d5110d05a1",
+    "tests/e2e/P01-02.api.spec.ts": "813871b4ce30ae53336a2cfb17654efdc0d2dedc786e40539321552d5761f794"
+  },
+  "change": "Official Zhipu Responses glm-4.7-flash reasoning=off maps to reasoning.effort=none; fixed output budgets, exact endpoint whitelist, business-code mapping.",
+  "commands": [
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "evidence": "responses-build.log"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "context": "current user; no ACL change",
+      "evidence": "responses-check.log"
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "filesPassed": 15,
+      "testsPassed": 147,
+      "evidence": "responses-unit.log"
+    },
+    {
+      "command": "pnpm test:integration P01-02 P01-01 P01-03",
+      "exitCode": 0,
+      "filesPassed": 7,
+      "testsPassed": 68,
+      "evidence": "responses-integration.log"
+    }
+  ],
+  "live": {
+    "resourceStates": {
+      "R13": "configured",
+      "R14": "configured"
+    },
+    "chat": "User text/tools probe passed",
+    "messages": "User text/tools probe passed",
+    "responses": "Patched user one-shot 11:39:53 still OUTPUT_LIMIT_REACHED in text phase; root cause unconfirmed",
+    "fullTwoRoundsCancelUsage": "pending",
+    "evidence": "protocol-probes-2026-10-04.json",
+    "apiKeyReadByAgent": false,
+    "realModelRequestsByAgent": 0,
+    "residualEvidence": "responses-residual-2026-10-04.json"
+  },
+  "limits": {
+    "textOutputTokens": 32,
+    "toolsOutputTokens": 128,
+    "totalMs": 120000,
+    "automaticRetries": false
+  },
+  "status": "implemented_not_live_verified",
+  "phaseGate": "engineering_passed_external_pending",
+  "uiChecks": "Renderer unchanged this turn. Same-label integration covers pure adapter changes; prior Electron2/2 remains historical. No new automatic Electron launch.",
+  "nativeContinuity": "Same unreleased v2 fix, no separate version or credential migration; raw reasoning remains private.",
+  "userConfigChanged": false,
+  "committed": false,
+  "pushed": false,
+  "officialSources": [
+    "https://docs.bigmodel.cn/cn/guide/develop/responses/introduction",
+    "https://docs.bigmodel.cn/api-reference/response/创建-response"
+  ],
+  "handoff": "handoff-2026-10-04.md",
+  "stopReason": "User requested handoff; no further interface diagnosis or code changes",
+  "draftDiagnosticScript": {
+    "path": "responses-direct-probe.ps1",
+    "verified": false,
+    "executed": false
+  },
+  "deliveryNote": "committed/pushed describe this recorded verification snapshot; user later authorized branch delivery, final status is in Git"
+}

@@ -1,0 +1,36 @@
+{
+  "results": [
+    {
+      "profile": "tapkit.diagnostic.7de57425-0f39-79c8-b986-81c37f286dec",
+      "removed": 1,
+      "path": "D:\\TapKit"
+    },
+    {
+      "profile": "tapkit.diagnostic.7de57425-0f39-79c8-b986-81c37f286dec",
+      "removed": 1,
+      "path": "D:\\TapKit\\.runtime"
+    },
+    {
+      "profile": "tapkit.diagnostic.7de57425-0f39-79c8-b986-81c37f286dec",
+      "removed": 1,
+      "path": "D:\\TapKit\\.runtime\\libreoffice"
+    },
+    {
+      "profile": "tapkit.diagnostic.7de57425-0f39-79c8-b986-81c37f286dec",
+      "removed": 1,
+      "path": "D:\\TapKit\\.test-data"
+    },
+    {
+      "profile": "tapkit.diagnostic.7de57425-0f39-79c8-b986-81c37f286dec",
+      "removed": 1,
+      "path": "D:\\TapKit\\.test-data\\P00-03 Office Git 中文 ZgmJbv"
+    },
+    {
+      "profile": "tapkit.diagnostic.adb554c0-5966-7a6d-8765-42583841a819",
+      "removed": 1,
+      "path": "D:\\TapKit\\.runtime"
+    }
+  ],
+  "authorization": "User explicitly approved cleanup of these two diagnostic profiles and their ACLs",
+  "date": "2026-09-17T14:16:02.6132603Z"
+}

@@ -1,0 +1,7 @@
+apps/desktop/src/main/index.ts 105ms
+apps/desktop/src/main/security.ts 4ms (unchanged)
+apps/desktop/src/main/vault.ts 13ms
+apps/desktop/src/main/zh-CN.json 8ms (unchanged)
+apps/desktop/src/preload/index.ts 6ms
+packages/storage/src/blobs.ts 27ms
+packages/storage/src/foundation.ts 26ms

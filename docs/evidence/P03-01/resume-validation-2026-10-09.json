@@ -1,0 +1,438 @@
+{
+  "recordedAt": "2026-10-09T03:55:12.829Z",
+  "task": "P03-01",
+  "status": "in_progress",
+  "source": {
+    "directory": "D:/TapKit",
+    "branch": "codex/p03-files",
+    "baseCommit": "47db84726878afc5abb91fc0849543b6c81070a7",
+    "changes": "uncommitted working tree",
+    "schemaVersion": 9,
+    "commit": "not_performed",
+    "push": "not_performed",
+    "verifiedFiles": [
+      {
+        "path": "apps/desktop/src/renderer/locales/files.zh-CN.json",
+        "sha256": "408cc57d4d866fc1db8763c5260aabe407494ba2cda00e5b4eabfd3ea9fe4e71"
+      },
+      {
+        "path": "apps/desktop/src/renderer/src/file-library.tsx",
+        "sha256": "c5fe1b58b2c62fa8b0956e1ea156175e9f890dfeb6146b11cf09b282197d0621"
+      },
+      {
+        "path": "packages/contracts/src/files.ts",
+        "sha256": "7f43a8796d6ccc8cb5d4e89bed77eb9415b0d638a68e3f484e378596cd0db766"
+      },
+      {
+        "path": "packages/contracts/src/index.ts",
+        "sha256": "c1f83ce4ddba61757bb6f588501e22c2306e99df711a841bba64f7f5a7ea1d8c"
+      },
+      {
+        "path": "packages/core/src/file-parser.ts",
+        "sha256": "a00003d989380ca2ee797cb81d802d2b57efc8bd40a20d82ae6bd59d894c33ed"
+      },
+      {
+        "path": "packages/core/src/file-service.ts",
+        "sha256": "f47484ed40ba683a114ac34dae99078a46eddb0f5882773b1ed6ad39a1f34cee"
+      },
+      {
+        "path": "packages/core/src/history-service.ts",
+        "sha256": "fc1143c477ec3cae231445a23f80a9287e88cd2871ff9e6862925c71f4f958ec"
+      },
+      {
+        "path": "packages/core/src/index.ts",
+        "sha256": "64702e6b6bbfdc8094d714592ea3de682d06d1bc0e5aee4b8c836f3fc71d4d56"
+      },
+      {
+        "path": "packages/storage/src/files.ts",
+        "sha256": "eeaa07893deba347d2d566b228bd4550442f1a1af89fbc7e217a72fa24f2ffb6"
+      },
+      {
+        "path": "packages/storage/src/foundation.ts",
+        "sha256": "7b1f6ab01bfb6e3c2a41d810379f273ae8836f1123892c12130c47fd2cb5fe32"
+      },
+      {
+        "path": "tests/e2e/P03-01.files.spec.ts",
+        "sha256": "0c92ce853e6360f7aa24c96a19952eaa77299b0a2754d2241ad3fc5809b2316f"
+      },
+      {
+        "path": "tests/fixtures/P03-usage.ts",
+        "sha256": "81cd05c580504c4a3645f9026a031440e0920656a4ad1747e477a9dc99ad8924"
+      },
+      {
+        "path": "tests/integration/P01-02.api.test.ts",
+        "sha256": "5052a9ecea1253c51d7f174c633164cf895a05ca484df6ce09af651623ed339a"
+      },
+      {
+        "path": "tests/integration/P01-03.usage.test.ts",
+        "sha256": "ff20aa0826f3d5b7f4d056b25dd00d760a16ca49e3e87c53f249e825e6d1d20f"
+      },
+      {
+        "path": "tests/integration/P02-01.desktop.test.ts",
+        "sha256": "7a9cfdfdcf0556a2519ccf0b74aa022c0e6ce5869c5b15d3418885f5930c366b"
+      },
+      {
+        "path": "tests/integration/P02-03.history.test.ts",
+        "sha256": "c85f0d8f598693e4784e4acac1aa8213730c26179af2da7d55a0e46c7914f6e2"
+      },
+      {
+        "path": "tests/integration/P03-01.file-material.test.ts",
+        "sha256": "f7424f7400a5b96f6ac6cb74fc71e5dba7bddd18a4c8e7255b70fad5db15b6c4"
+      },
+      {
+        "path": "tests/integration/P03-01.file-service.test.ts",
+        "sha256": "cef3d26f290171dcaed919b8d3da9b03947c5a77c298721a14f320b997c9b5be"
+      },
+      {
+        "path": "tests/integration/P03-01.files.test.ts",
+        "sha256": "ea3bbb6bdbb36968c307042eba035097ab4912c2c88ec4c8146ac43e5b4aa7b9"
+      },
+      {
+        "path": "tests/integration/P03-01.migration.test.ts",
+        "sha256": "9c605f91fc45ecd8dc53458f68f63a3afe82db40eab2f5a22d57dec2c3de4018"
+      },
+      {
+        "path": "tests/integration/P03-01.parser-orchestration.test.ts",
+        "sha256": "4fc649bf7a2292e596366ac9aea0bc28be46c27e47dfdef2d6ce1e41c0095be2"
+      },
+      {
+        "path": "tests/unit/P00-02.contracts.test.ts",
+        "sha256": "70cfd4d3b0f340a1b01d7a4300f85a1520e57595e253236ccb723969361485c3"
+      },
+      {
+        "path": "migrations/0009_generated_note_links.sql",
+        "sha256": "b1c3a3effc5926720f8d91b112527c8dd367ca6ee428e07fed344177ef9021ae"
+      }
+    ]
+  },
+  "implementation": [
+    "Original-only media and legacy Office classification before executor invocation",
+    "Generated stored-message notes indexed with immutable version metadata and pinned session/project links",
+    "Schema9 migration preserves original generated-note version1 and rejects invalid/deleted/foreign links",
+    "OCR-required PDF is unsupported with original download and searchable-replacement instructions",
+    "Individual import cancellation, source reselect and version-specific parse cancellation reuse receipts and lease fencing",
+    "Note generation rechecks message revision and session/project scope after asynchronous blob I/O"
+  ],
+  "validation": [
+    {
+      "command": "pnpm test:unit -- P03-01 P00-02.contracts P02-02.chat",
+      "invocation": "& ./scripts/pnpm.ps1 test:unit -- P03-01 P00-02.contracts P02-02.chat",
+      "exitCode": 0,
+      "log": ".cache/p03-01-resume-unit-final.log",
+      "logSha256": "bfc7431e49729c5194be69e0220008826f8ffb20bbb15d081fda9954a424d75a",
+      "passed": 44,
+      "total": 44
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.migration P03-01.files P03-01.file-service P03-01.file-selections P03-01.file-material P03-01.file-exporter P03-01.file-usage P03-01.file-staging P03-01.import-recovery P03-01.parser-orchestration P03-01.parser-process P00-02.storage P02-02.chat P02-03.history P01-02.api P01-03.usage P02-01.desktop",
+      "invocation": "& ./scripts/pnpm.ps1 test:integration -- P03-01.migration P03-01.files P03-01.file-service P03-01.file-selections P03-01.file-material P03-01.file-exporter P03-01.file-usage P03-01.file-staging P03-01.import-recovery P03-01.parser-orchestration P03-01.parser-process P00-02.storage P02-02.chat P02-03.history P01-02.api P01-03.usage P02-01.desktop",
+      "exitCode": 0,
+      "log": ".cache/p03-01-resume-integration-last.log",
+      "logSha256": "44cfb7c5379dcc298c6fe7286bde4bd2924c87c37e1a4d9ef2478c7155050820",
+      "passed": 148,
+      "total": 148
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01",
+      "invocation": "& ./scripts/pnpm.ps1 test:e2e -- --grep P03-01",
+      "exitCode": 0,
+      "log": ".cache/p03-01-resume-e2e-last.log",
+      "logSha256": "488de75bcbd3bf0c73ddb575ad704702648e420f454e47fd6d3eb1b4d898201e",
+      "passed": 17,
+      "total": 17,
+      "chromiumSandbox": true
+    },
+    {
+      "command": "pnpm build:desktop",
+      "invocation": "& ./scripts/pnpm.ps1 build:desktop",
+      "exitCode": 0,
+      "log": ".cache/p03-01-resume-build-complete.log",
+      "logSha256": "908e33a968821ffa432798ad343ef8b0af2e0b8ede87af700008a1f8a3eb5edb"
+    },
+    {
+      "command": "pnpm check",
+      "invocation": "& ./scripts/pnpm.ps1 check",
+      "exitCode": 0,
+      "log": ".cache/p03-01-resume-check-recorded.log",
+      "logSha256": "b4e405b274304c681dcbdfb3ceea2c4fc1bde74b1299e6e2f88a472a00584133"
+    },
+    {
+      "command": "pnpm docs:check",
+      "invocation": "& ./scripts/pnpm.ps1 docs:check",
+      "exitCode": 0,
+      "log": ".cache/p03-01-resume-docs-recorded.log",
+      "logSha256": "a49a9c3fffefbf5720a74224b98b845cc437bb7411bdc92825d6f41bb8339276",
+      "tasks": 37
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/evidence/P03-01/media-original-only.png",
+      "sha256": "c11dc5e9e00412f015b30ac40aad9f8cd76f301bd86ad5b6fafe4ae2f0e02df9",
+      "visuallyInspected": true
+    },
+    {
+      "path": "docs/evidence/P03-01/ocr-original-recovery.png",
+      "sha256": "19c44118ebd37112cd4c0e503c41f0c3ee69b4eb768b727913ee412687507915",
+      "visuallyInspected": true
+    },
+    {
+      "path": "docs/evidence/P03-01/generated-note-library.png",
+      "sha256": "e528fb66f93fcbdafe8ad838b291c8a441e4eab03414eb5494949961196b2f8e",
+      "visuallyInspected": true
+    }
+  ],
+  "failuresPreserved": [
+    {
+      "command": "initial focused integration",
+      "passed": 20,
+      "failed": 3,
+      "total": 23,
+      "exitCode": 1,
+      "cause": "Missing fetched-branch parser bundle; schema9 backup SCHEMA_VERSION ceiling initially not updated",
+      "repair": "Build branch and synchronize storage ceiling; focused 23/23 passed"
+    },
+    {
+      "command": "initial pnpm check",
+      "exitCode": 1,
+      "cause": "14 formatting failures in three pre-existing untracked personal-document directories",
+      "repair": "Exclude only those directories from Prettier; leave all original files unchanged"
+    },
+    {
+      "command": "first broader local integration",
+      "passed": 142,
+      "failed": 3,
+      "total": 145,
+      "exitCode": 1,
+      "cause": "OCR material now correctly returns unsupported; two fork fixtures consumed old storage dist and timed out",
+      "repair": "Assert unsupported without text, rebuild current schema9 bundles, retain original timeouts",
+      "log": ".cache/p03-01-resume-integration.log",
+      "logSha256": "2a70c2279843501ab6e36f2a6a21342073ab11f25f3e371ae8e9c910f9e7f36c"
+    },
+    {
+      "command": "three new Electron cases",
+      "passed": 2,
+      "failed": 1,
+      "total": 3,
+      "exitCode": 1,
+      "cause": "Test exact-label selector included dynamic option text",
+      "repair": "Use actual combobox label prefix; full current-source 17/17 passed",
+      "log": ".cache/p03-01-resume-e2e-new.log",
+      "logSha256": "98a1500e1e93c6426b7179f3704bba96581fdce039bfaf6c5c7fd7f0b6a44c4b"
+    },
+    {
+      "command": "cancellation pnpm check",
+      "exitCode": 1,
+      "cause": "Two strict TypeScript narrowing/optional-property errors",
+      "repair": "Parse the typed cancel DTO and delete optional current-item field",
+      "log": ".cache/p03-01-resume-check-cancel.log",
+      "logSha256": "cff653a88e425dc761526962b50aeaba6317df85486422214ad8f1c77514d426"
+    },
+    {
+      "command": "focused cancellation integration",
+      "passed": 31,
+      "failed": 1,
+      "total": 32,
+      "exitCode": 1,
+      "cause": "Test stopped a restarted service sharing the active selection registry before source retry",
+      "repair": "Restart test with a fresh selection registry, then reselect only unfinished original",
+      "log": ".cache/p03-01-resume-cancel-integration.log",
+      "logSha256": "9f37f1eebc4b0eda3dd90dbceb1b1256ea91dbad5c407918c216be40177790b0"
+    }
+  ],
+  "audit": {
+    "path": "docs/evidence/P03-01/requirements-audit-2026-10-09.md",
+    "total": 24,
+    "requirements": [
+      {
+        "requirementId": "FR-03-002",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "物理聊天 Host 导入和虚拟粘贴/导航已验；图片理解延期，文档原生解析待验"
+      },
+      {
+        "requirementId": "FR-13-001",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "Host 导入/便携格式适配已验；真实 AppContainer 正向解析待验"
+      },
+      {
+        "requirementId": "FR-13-002",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "媒体原件仅保留/实际下载已验；ZIP 原生待验，媒体理解延期"
+      },
+      {
+        "requirementId": "FR-13-003",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "中文目录、跨范围目录投影及真实拖入链路已验"
+      },
+      {
+        "requirementId": "FR-13-005",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "锁定格式/大小/数量/可用空间及超限拒绝已验"
+      },
+      {
+        "requirementId": "FR-13-006",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "按项导入取消/重选、按版本取消/重试和 fencing 已验；真正 native kill/取消待验"
+      },
+      {
+        "requirementId": "FR-13-007",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "原件与正文状态分离，媒体和 OCR 不标正文 ready；native 正向链待验"
+      },
+      {
+        "requirementId": "FR-13-008",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "同名同 hash/大小写 skip、明确替换、恢复与独立副本已验"
+      },
+      {
+        "requirementId": "FR-13-009",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "损坏/加密/空/恶意/格式/OCR 具体原因和处理入口已验；native 拒绝链待验"
+      },
+      {
+        "requirementId": "FR-13-011",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "library/session/project 导入目标及固定引用/撤权已验"
+      },
+      {
+        "requirementId": "FR-13-012",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "失败/unsupported 与历史版本原件导出及前后权限检查已验"
+      },
+      {
+        "requirementId": "FR-14-001",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "真实保存消息笔记进入生成成果库/搜索/固定范围/下载已验，旧笔记迁移已验；办公成果生产为 P07"
+      },
+      {
+        "requirementId": "FR-14-002",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "类型/来源/项目会话/日期/收藏筛选和固定旧版一致性已验"
+      },
+      {
+        "requirementId": "FR-14-003",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "名称/固定版本结构索引/已知生成正文搜索已验；native 结构生产待验"
+      },
+      {
+        "requirementId": "FR-14-004",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "原始版本格式/大小/owner/更新时间/hash 元数据及详情已验"
+      },
+      {
+        "requirementId": "FR-14-005",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "folders/rename/move/copy/favorite 修订与范围校验及实际界面已验"
+      },
+      {
+        "requirementId": "FR-14-006",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "批量移动/下载/删除逐项状态、下载取消与未完成选择保留已验"
+      },
+      {
+        "requirementId": "FR-14-007",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "会话引用/已接受 run/task_version 使用记录及恢复已验"
+      },
+      {
+        "requirementId": "FR-14-008",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "跨会话项目引用固定版本与根目录可见性、坏指针拒绝已验"
+      },
+      {
+        "requirementId": "FR-14-009",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "版本历史/恢复新增版本/指定版本副本和下载已验"
+      },
+      {
+        "requirementId": "FR-14-010",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "移除引用与实体删除影响预览和权限分别验证"
+      },
+      {
+        "requirementId": "FR-14-011",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "30 天保留/恢复/永久删除 journal/旧备份防复活已验"
+      },
+      {
+        "requirementId": "FR-14-012",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "共享原件/衍生/备份占用去重与按大小排序/缓存清理已验"
+      },
+      {
+        "requirementId": "FR-33-008",
+        "localAudit": "completed",
+        "taskStatus": "in_progress",
+        "note": "真实拖入/文件夹选择的部分范围已验；截图/屏幕功能延期"
+      }
+    ],
+    "exceptionCoverage": "T07/T08/T19; portable parsers and synthetic OCR are explicitly distinguished from native acceptance"
+  },
+  "ci": {
+    "sourceCommit": "47db84726878afc5abb91fc0849543b6c81070a7",
+    "prRun": 37865577359,
+    "pushRun": 37865573473,
+    "resourceId": "R15",
+    "status": "pending",
+    "jobs": [
+      {
+        "id": 113611382525,
+        "name": "check",
+        "steps": 0,
+        "conclusion": "failure"
+      },
+      {
+        "id": 113611406455,
+        "name": "startup-diagnostics",
+        "steps": 0,
+        "conclusion": "failure"
+      }
+    ],
+    "annotation": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the Billing & plans section in your settings",
+    "newNativeDiagnosticsExecuted": false
+  },
+  "remaining": [
+    "R15 restoration or system-trusted Windows helper/test environment",
+    "Diagnose and repair existing three native CORRUPT_FILE failures with actual stage/IO output",
+    "Current-source AppContainer/standard-user positive/rejection/cancel/hard-kill/retry proof before task completion"
+  ],
+  "boundaries": {
+    "nativeAcceptancePassed": false,
+    "nativeGuardsRelaxed": false,
+    "blockedUnsignedHelperActuallyExecuted": false,
+    "realModelCalls": 0,
+    "realUserKeyVaultProfileReads": 0,
+    "historicalScreenshotsRestoredFromPreRunSnapshot": true,
+    "P03_02Started": false,
+    "P03_03Started": false,
+    "gateWritten": false,
+    "nextPhaseStarted": false
+  }
+}

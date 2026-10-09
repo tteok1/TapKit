@@ -1,0 +1,480 @@
+{
+  "run": {
+    "id": 36886335322,
+    "run_number": 45,
+    "head_sha": "a4ddd9cfe104ff30de403db8abb57a847068ea8f",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "private-archive:TapKit",
+    "created_at": "2026-10-01T15:42:15Z",
+    "updated_at": "2026-10-01T16:13:08Z"
+  },
+  "collectedAt": "2026-10-01T16:14:43.1837034Z",
+  "artifact": {
+    "sha256": "c5702a17225ac0924071f3eebc841cf74bc670f9f94dad8fdd3fa580a89f8afd",
+    "id": 11176711335
+  },
+  "jobLog": {
+    "sha256": "7cbd81124bd873fb875a8e6ceee9bd2ac5c326319de6b4c14b176ca556509e0a",
+    "id": 110450495207
+  },
+  "steps": [
+    {
+      "name": "Bootstrap locked runtime and native dependencies",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Unit and current-route integration",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Build and Electron checks",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Verify current-route P00-03 as an independent standard user",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "testSummaries": [
+    "2026-10-01T15:46:49.8393028Z   1 passed (5.3s)",
+    "2026-10-01T15:47:23.2866534Z  Test Files  7 passed (7)",
+    "2026-10-01T15:47:23.2867725Z       Tests  17 passed (17)",
+    "2026-10-01T15:52:04.2104724Z  Test Files  8 passed (8)",
+    "2026-10-01T15:52:04.2116000Z       Tests  46 passed (46)",
+    "2026-10-01T15:52:53.0783113Z   8 passed (17.5s)"
+  ],
+  "standardUser": {
+    "confirmed": true,
+    "cases": [
+      {
+        "fullName": "P00-03 Core reports isolated capabilities failed while storage remains usable",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker bounds oversized diff output and cleans the private lease",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker runs real MinGit status/diff on private byte snapshots",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker rejects model args, metadata pointers and Windows path aliases",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker excludes inherited Git config, external diff and SSH commands",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 rejects the superseded account.execute protocol",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppContainer route",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an isolated positive control",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 T19 OfficeWorker preserves cached external-link data with an isolated refresh control",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 T08 OfficeWorker fails closed on a corrupt document and remains usable",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 Office hard kill recovers only its recorded mapped drives on the next helper run",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 Node reads only input and writes workspace; runtime and input are read only; environment is private",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 execution lease cleanup allows the next helper invocation",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 concurrent runs keep independent AppContainer identities and workspace ACLs",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 hard-killing the helper stops job descendants and recovers its ACL/profile lease",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 Python starts and spawns a child in AppContainer",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 network denies public, loopback and metadata connections",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 cancel kills descendants",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 timeout, output flood and fork limits are enforced",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 memory exhaustion is contained",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 UNC, ADS, traversal, aliases and junction input paths fail closed",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 ConPTY is interactive while still in AppContainer",
+        "status": "passed"
+      }
+    ],
+    "failures": null,
+    "report": {
+      "schemaVersion": 1,
+      "executionPolicy": "appcontainer-lok-v1",
+      "startedAt": "2026-10-01T16:01:03.196Z",
+      "endedAt": "2026-10-01T16:10:25.893Z",
+      "command": "pnpm test:integration P00-03 --reporter=json --outputFile=test-results/P00-03-native.json",
+      "exitCode": 0,
+      "standardUser": true,
+      "fingerprint": "39b423bc18870060b7fd7748ad0486a3facd40efa155e12489f905e412031782",
+      "capabilities": {
+        "nativeExecution": {
+          "status": "available"
+        },
+        "officeRender": {
+          "status": "available"
+        },
+        "terminal": {
+          "status": "available"
+        }
+      },
+      "tests": {
+        "total": 22,
+        "passed": 22,
+        "failed": 0,
+        "pending": 0
+      },
+      "missingCases": []
+    }
+  },
+  "office": [
+    {
+      "case": "office-render",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "64290e29-1453-7cc4-af50-c8681de9e81d",
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n{\"stage\": \"converted\", \"format\": \"docx\", \"bytes\": 35683}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "administrator"
+    },
+    {
+      "case": "office-render",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "c3517fcc-52f1-7226-af4c-53b0986c2e3d",
+      "stderr": "",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 18403}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "administrator"
+    },
+    {
+      "case": "office-render",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "47d32005-5c48-7f15-adc8-6580cf0ede8b",
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"pptx\"}\r\n{\"stage\": \"converted\", \"format\": \"pptx\", \"bytes\": 19251}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "administrator"
+    },
+    {
+      "case": "office-macro-blocked",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "0bf4beda-e414-71ad-bebc-833643c1067a",
+      "stderr": "",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 23492}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "administrator"
+    },
+    {
+      "case": "office-control-macro",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "9dbaea1d-764c-7a6b-befb-e96fe2e82c38",
+      "stderr": "",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 23954}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "administrator"
+    },
+    {
+      "proof": {
+        "case": "office-macro-behavior",
+        "sourceSha256": "f90f27d9ea3b5d086eaf34d340f1b03520b078b6b3ce6b4253685f0abc0d7aa9",
+        "blockedPdfSha256": "f55900a7c7b7cdb1893a6349a923d06e05cc5c0e7ba32434b434d6bf2a0b0104",
+        "controlPdfSha256": "5f86072305a4ee3987cd89f1045c3b0cd71435fe249977507746b2b790a4cd27",
+        "blockedMarker": "TK_MACRO_BLOCKED",
+        "enabledMarker": "TK_MACRO_EXECUTED",
+        "blockedFileAbsent": true,
+        "enabledFilePresent": true,
+        "sourceUnchanged": true
+      },
+      "case": "office-macro-behavior",
+      "role": "administrator"
+    },
+    {
+      "case": "office-link-blocked",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "3dfe5390-a9ad-7a86-ab42-e1317f515c8a",
+      "stderr": "",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 20099}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "administrator"
+    },
+    {
+      "case": "office-control-links",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "019faaf5-9338-7c2c-b107-d1b92bda8e02",
+      "stderr": "",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"control_updated\", \"value\": \"TK_LINK_UPDATED\"}\r\n{\"stage\": \"control_saved\", \"bytes\": 20929}\r\n{\"stage\": \"control_closed\"}\r\n{\"stage\": \"control_references_released\"}\r\n{\"stage\": \"control_destroyed\"}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "administrator"
+    },
+    {
+      "proof": {
+        "case": "office-link-behavior",
+        "sourceSha256": "df08d8c8f356b919a329e421cdf1aeba9bd7419b24e1d57747a3739e9011e5b6",
+        "targetSha256": "5ea75fd81fabb000d3fcfc2a64de7ede86508ca48bd0153de820648e5822bfe5",
+        "blockedPdfSha256": "687a475e2878faa5c7f2a86d9a2c7b910910c16da82cec81bad1fffda36225d0",
+        "controlPdfSha256": "cd6e48bfe07b4c89887a69fc4a184040bef1d7878ccb32abab2a577e2dd9ce36",
+        "blockedMarker": "TK_LINK_CACHED",
+        "enabledMarker": "TK_LINK_UPDATED",
+        "sourceUnchanged": true,
+        "targetUnchanged": true
+      },
+      "case": "office-link-behavior",
+      "role": "administrator"
+    },
+    {
+      "case": "office-corrupt",
+      "networkCapabilities": 0,
+      "status": "timeout",
+      "runId": "e9c508d3-e885-74e2-867c-3d5f46d0d5a7",
+      "stderr": "",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 1,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n",
+      "role": "administrator"
+    },
+    {
+      "case": "office-corrupt",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "3a17d93e-ff31-7b9d-afcf-63e1b45fd580",
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n{\"stage\": \"converted\", \"format\": \"docx\", \"bytes\": 35683}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "administrator"
+    },
+    {
+      "case": "office-render",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "177fa281-d706-70c5-a2aa-21fbfd92702f",
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n{\"stage\": \"converted\", \"format\": \"docx\", \"bytes\": 35683}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "standardUser"
+    },
+    {
+      "case": "office-render",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "63e40652-6fc7-79ac-ab9c-1b41616b3050",
+      "stderr": "",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 18403}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "standardUser"
+    },
+    {
+      "case": "office-render",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "d9d9abdf-5de2-7a82-8f1d-259ad32e811c",
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"pptx\"}\r\n{\"stage\": \"converted\", \"format\": \"pptx\", \"bytes\": 19251}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "standardUser"
+    },
+    {
+      "case": "office-macro-blocked",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "0593bea5-e476-7620-b730-f0af8ff9e4ed",
+      "stderr": "",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 23492}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "standardUser"
+    },
+    {
+      "case": "office-control-macro",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "4dfce256-e649-74c0-bb80-cca2b1aaaba9",
+      "stderr": "",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 23954}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "standardUser"
+    },
+    {
+      "proof": {
+        "case": "office-macro-behavior",
+        "sourceSha256": "f90f27d9ea3b5d086eaf34d340f1b03520b078b6b3ce6b4253685f0abc0d7aa9",
+        "blockedPdfSha256": "9fdbce79115b1214d697500f82b4dd24575918be4a6ecca31303b023608242fa",
+        "controlPdfSha256": "f0a50622719c39578990530d03f30aa4318aa5e1ab42f38134ffac2b30cb4e5e",
+        "blockedMarker": "TK_MACRO_BLOCKED",
+        "enabledMarker": "TK_MACRO_EXECUTED",
+        "blockedFileAbsent": true,
+        "enabledFilePresent": true,
+        "sourceUnchanged": true
+      },
+      "case": "office-macro-behavior",
+      "role": "standardUser"
+    },
+    {
+      "case": "office-link-blocked",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "4603652b-ee68-7d24-bbc3-66ef5fc6f149",
+      "stderr": "",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 20099}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "standardUser"
+    },
+    {
+      "case": "office-control-links",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "0e4b4712-b17d-758a-ab34-fa9b3d86775b",
+      "stderr": "",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"control_updated\", \"value\": \"TK_LINK_UPDATED\"}\r\n{\"stage\": \"control_saved\", \"bytes\": 20929}\r\n{\"stage\": \"control_closed\"}\r\n{\"stage\": \"control_references_released\"}\r\n{\"stage\": \"control_destroyed\"}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "standardUser"
+    },
+    {
+      "proof": {
+        "case": "office-link-behavior",
+        "sourceSha256": "29018b74d7a327b0f65a76f37a424bb38c8d538b92b8f5765372293895c100e9",
+        "targetSha256": "5ea75fd81fabb000d3fcfc2a64de7ede86508ca48bd0153de820648e5822bfe5",
+        "blockedPdfSha256": "01097e78f1005041415c2d1fdf31fcf7f0554f5a1e1ecf9fe78758e66f0eefe3",
+        "controlPdfSha256": "b6f018b48e923fb381334bc644fe8271ead9f68db57a454df7b360f9db2eeedf",
+        "blockedMarker": "TK_LINK_CACHED",
+        "enabledMarker": "TK_LINK_UPDATED",
+        "sourceUnchanged": true,
+        "targetUnchanged": true
+      },
+      "case": "office-link-behavior",
+      "role": "standardUser"
+    },
+    {
+      "case": "office-corrupt",
+      "networkCapabilities": 0,
+      "status": "timeout",
+      "runId": "df20b072-7e7b-7cb7-9379-baad94b93cfb",
+      "stderr": "",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 1,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n",
+      "role": "standardUser"
+    },
+    {
+      "case": "office-corrupt",
+      "networkCapabilities": 0,
+      "status": "exited",
+      "runId": "5b7692d3-34e9-7940-8215-dfee11695044",
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "appContainer": true,
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n{\"stage\": \"converted\", \"format\": \"docx\", \"bytes\": 35683}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "standardUser"
+    }
+  ],
+  "administratorEvidenceBaselineLines": 149,
+  "sourceReference": "a4ddd9cfe104ff30de403db8abb57a847068ea8f",
+  "taskStatus": "in_progress",
+  "gate": "failed",
+  "administrator": {
+    "unitTotal": 17,
+    "unitPassed": 17,
+    "integrationTotal": 46,
+    "integrationPassed": 46,
+    "electronTotal": 8,
+    "electronPassed": 8
+  },
+  "diagnosis": [
+    "All native, standard-user, macro/external-link behavior and full P00 Electron assertions passed. PyUNO local-reference release before kit destruction resolves the control teardown failure with the original 5-second join.",
+    "Successful-run PDF artifacts were absent: Playwright cleared the shared test-results output root. Isolate E2E output in test-results/e2e and collect the seven fixed-name standard-user synthetic PDFs before final visual acceptance."
+  ],
+  "remainingRequiredP00Work": [
+    "Confirm successful-run PDF archival and review the same-run three Chinese PDF renders."
+  ]
+}

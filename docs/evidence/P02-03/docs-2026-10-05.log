@@ -1,0 +1,4 @@
+pnpm docs:check
+exit_code=0
+$ node scripts/docs-check.mjs
+All 37 task states, started handoffs and completed requirement evidence links verified

@@ -1,0 +1,28 @@
+{
+  "startedAt": "2026-09-17T14:39:02.560Z",
+  "endedAt": "2026-09-17T14:39:03.163Z",
+  "purpose": "Isolate Office named-pipe compatibility; trusted host positive control only, no document conversion outside AppContainer",
+  "salSha256": "85e5a8cad49d5f0ef801411533859409cee22e26c58d06fb104a7020ed66a3f0",
+  "control": {
+    "exitCode": 0,
+    "stdout": "[{\"kind\": \"win32\", \"namespace\": \"default\", \"created\": true, \"error\": 0}, {\"kind\": \"win32\", \"namespace\": \"LOCAL\\\\\", \"created\": true, \"error\": 0}, {\"kind\": \"LibreOffice.sal3.osl_createPipe\", \"created\": true, \"win32Error\": 0, \"oslError\": 0}]\r\n",
+    "stderr": ""
+  },
+  "isolated": {
+    "exitCode": 2,
+    "events": [
+      {
+        "data": {
+          "code": "VALIDATION_ERROR",
+          "stage": "protocol"
+        },
+        "event": "failed",
+        "leaseEpoch": 1,
+        "protocolVersion": 1,
+        "requestId": "efc64a5f-d9fc-4df9-b602-59962994948b",
+        "runId": "efc64a5f-d9fc-4df9-b602-59962994948b"
+      }
+    ],
+    "stderr": ""
+  }
+}

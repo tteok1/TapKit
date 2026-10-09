@@ -1,0 +1,81 @@
+$ vitest run --config vitest.config.ts --project unit "--" "P01-02"
+
+ RUN  v5.0.0 D:/tapkit/TapKit
+
+ ❯ |unit| tests/unit/P01-02.zhipu.test.ts (75 tests | 3 failed) 135ms
+   ❯ P01-02 Zhipu Responses off mapping (21)
+     × still stops after one truncated text response for glm-4.7-flash and never exposes private reasoning 7ms
+     × still stops after one truncated text response for glm-4.7-flashx and never exposes private reasoning 2ms
+   ❯ P01-02 Zhipu thinking and bounded diagnostics (45)
+     × does not fabricate response facts or reasoning usage when none are available 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P01-02.zhipu.test.ts > P01-02 Zhipu Responses off mapping > still stops after one truncated text response for glm-4.7-flash and never exposes private reasoning
+ FAIL  |unit| tests/unit/P01-02.zhipu.test.ts > P01-02 Zhipu Responses off mapping > still stops after one truncated text response for glm-4.7-flashx and never exposes private reasoning
+AssertionError: expected { …(7) } to match object { status: 'unavailable', …(4) }
+(14 matching properties omitted from actual)
+
+- Expected
++ Received
+
+@@ -1,9 +1,9 @@
+  {
+    "diagnostic": {
+      "phase": "text",
+-     "reason": "output_truncated",
++     "reason": "reasoning_output_truncated",
+    },
+    "errorCode": "OUTPUT_LIMIT_REACHED",
+    "status": "unavailable",
+    "text": false,
+    "tools": false,
+
+ ❯ tests/unit/P01-02.zhipu.test.ts:337:22
+    335|       });
+    336|       const result = await probe(channel, config);
+    337|       expect(result).toMatchObject({
+       |                      ^
+    338|         status: 'unavailable',
+    339|         text: false,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  |unit| tests/unit/P01-02.zhipu.test.ts > P01-02 Zhipu thinking and bounded diagnostics > does not fabricate response facts or reasoning usage when none are available
+AssertionError: expected undefined to match object { request: { outputLimit: 32, …(2) } }
+
+- Expected:
+{
+  "request": {
+    "outputLimit": 32,
+    "reasoning": "none",
+    "stream": true,
+  },
+}
+
++ Received:
+undefined
+
+ ❯ tests/unit/P01-02.zhipu.test.ts:483:31
+    481|     });
+    482|     const result = await probe(channel, config);
+    483|     expect(result.diagnostic).toMatchObject({
+       |                               ^
+    484|       request: { outputLimit: 32, reasoning: 'none', stream: true },
+    485|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+
+ Test Files  1 failed | 15 passed (16)
+      Tests  3 failed | 207 passed (210)
+   Start at  03:19:57
+   Duration  9.57s (tests 50%, import 31%, transform 16%, setup 2%, worker 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+pnpm exited 1
+At D:\tapkit\TapKit\scripts\pnpm.ps1:18 char:5
++     throw "pnpm exited $tapkitCommandExit"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1

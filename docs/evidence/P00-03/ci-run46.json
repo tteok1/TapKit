@@ -1,0 +1,2160 @@
+{
+  "run": {
+    "id": 36891317575,
+    "run_number": 46,
+    "head_sha": "b901ef7ec788bcfcec772adcfc564974ab64f32b",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "private-archive:TapKit",
+    "created_at": "2026-10-01T16:21:02Z",
+    "updated_at": "2026-10-01T16:39:33Z"
+  },
+  "collectedAt": "2026-10-01T16:40:42.0704451Z",
+  "artifact": {
+    "id": 11178441480,
+    "sha256": "1ca85d47936d35b0bb5deaba718a16c770ad74d750e1ecf81c1b567d2d715264"
+  },
+  "jobLog": {
+    "id": 110467369896,
+    "sha256": "30e9df9a836ecec4b8bb9b446986a4d68b43cf6a8bd8b1b81ee8d3b791e57ada"
+  },
+  "steps": [
+    {
+      "name": "Bootstrap locked runtime and native dependencies",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Unit and current-route integration",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Build and Electron checks",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Verify current-route P00-03 as an independent standard user",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "testSummaries": [
+    "2026-10-01T16:25:20.3420008Z   1 passed (3.2s)",
+    "2026-10-01T16:25:39.6463117Z  Test Files  7 passed (7)",
+    "2026-10-01T16:25:39.6466833Z       Tests  17 passed (17)",
+    "2026-10-01T16:29:34.8625284Z  Test Files  8 passed (8)",
+    "2026-10-01T16:29:34.8626383Z       Tests  46 passed (46)",
+    "2026-10-01T16:30:17.1751499Z   8 passed (24.6s)"
+  ],
+  "standardUser": {
+    "cases": [
+      {
+        "fullName": "P00-03 Core reports isolated capabilities failed while storage remains usable",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker bounds oversized diff output and cleans the private lease",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker runs real MinGit status/diff on private byte snapshots",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker rejects model args, metadata pointers and Windows path aliases",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker excludes inherited Git config, external diff and SSH commands",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 rejects the superseded account.execute protocol",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppContainer route",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an isolated positive control",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 T19 OfficeWorker preserves cached external-link data with an isolated refresh control",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 T08 OfficeWorker fails closed on a corrupt document and remains usable",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 Office hard kill recovers only its recorded mapped drives on the next helper run",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 Node reads only input and writes workspace; runtime and input are read only; environment is private",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 execution lease cleanup allows the next helper invocation",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 concurrent runs keep independent AppContainer identities and workspace ACLs",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 hard-killing the helper stops job descendants and recovers its ACL/profile lease",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 Python starts and spawns a child in AppContainer",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 network denies public, loopback and metadata connections",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 cancel kills descendants",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 timeout, output flood and fork limits are enforced",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 memory exhaustion is contained",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 UNC, ADS, traversal, aliases and junction input paths fail closed",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 ConPTY is interactive while still in AppContainer",
+        "status": "passed"
+      }
+    ],
+    "failures": null,
+    "confirmed": true,
+    "report": {
+      "schemaVersion": 1,
+      "executionPolicy": "appcontainer-lok-v1",
+      "startedAt": "2026-10-01T16:33:45.983Z",
+      "endedAt": "2026-10-01T16:38:56.162Z",
+      "command": "pnpm test:integration P00-03 --reporter=json --outputFile=test-results/P00-03-native.json",
+      "exitCode": 0,
+      "standardUser": true,
+      "fingerprint": "92ca7e0db576c6cf948ab8d9fa9e73ffd9a1996a6bf10a0169fd5a3ab7fdd6dc",
+      "capabilities": {
+        "nativeExecution": {
+          "status": "available"
+        },
+        "officeRender": {
+          "status": "available"
+        },
+        "terminal": {
+          "status": "available"
+        }
+      },
+      "tests": {
+        "total": 22,
+        "passed": 22,
+        "failed": 0,
+        "pending": 0
+      },
+      "missingCases": []
+    }
+  },
+  "office": [
+    {
+      "status": "exited",
+      "runId": "e4e126ee-c148-76c4-a323-efae82a48009",
+      "case": "office-render",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n{\"stage\": \"converted\", \"format\": \"docx\", \"bytes\": 35683}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "role": "administrator",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "status": "exited",
+      "runId": "12662427-bcae-7ebc-8f37-fb60292246ab",
+      "case": "office-render",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 18403}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "",
+      "role": "administrator",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "status": "exited",
+      "runId": "e23c4cde-0619-71a9-8bee-e640bff1a142",
+      "case": "office-render",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"pptx\"}\r\n{\"stage\": \"converted\", \"format\": \"pptx\", \"bytes\": 19251}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "role": "administrator",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "status": "exited",
+      "runId": "e126678b-232d-7c00-89df-1f90ccfaf10a",
+      "case": "office-macro-blocked",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 23492}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "",
+      "role": "administrator",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "status": "exited",
+      "runId": "0b2ca82c-9ff1-721d-a3f1-bb9d90a1be6a",
+      "case": "office-control-macro",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 23954}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "",
+      "role": "administrator",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "role": "administrator",
+      "proof": {
+        "case": "office-macro-behavior",
+        "sourceSha256": "f90f27d9ea3b5d086eaf34d340f1b03520b078b6b3ce6b4253685f0abc0d7aa9",
+        "blockedPdfSha256": "4bcc688c923d1014be38224c750f773a4bd7b8b47958ed946734ad653f97bd5f",
+        "controlPdfSha256": "15a524b5a7ce3b1b6cec2696edbebd14bad71e27be00e4a37dcc496ea6346176",
+        "blockedMarker": "TK_MACRO_BLOCKED",
+        "enabledMarker": "TK_MACRO_EXECUTED",
+        "blockedFileAbsent": true,
+        "enabledFilePresent": true,
+        "sourceUnchanged": true
+      },
+      "case": "office-macro-behavior"
+    },
+    {
+      "status": "exited",
+      "runId": "fe8e7af8-cde9-7777-96b3-8f738487dd6e",
+      "case": "office-link-blocked",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 20099}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "",
+      "role": "administrator",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "status": "exited",
+      "runId": "4c18a6c6-a6c9-76f8-b014-15c2648d874b",
+      "case": "office-control-links",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"control_updated\", \"value\": \"TK_LINK_UPDATED\"}\r\n{\"stage\": \"control_saved\", \"bytes\": 20929}\r\n{\"stage\": \"control_closed\"}\r\n{\"stage\": \"control_references_released\"}\r\n{\"stage\": \"control_destroyed\"}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "",
+      "role": "administrator",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "role": "administrator",
+      "proof": {
+        "case": "office-link-behavior",
+        "sourceSha256": "5f34e4133bff562c271a1a1dd1607ab162412a61cb578612dbd7cfa1de3431e2",
+        "targetSha256": "5ea75fd81fabb000d3fcfc2a64de7ede86508ca48bd0153de820648e5822bfe5",
+        "blockedPdfSha256": "eee9b32b1758352caa70cc5c3045912f1b27ce7a05bab685c1bf636feccaf83e",
+        "controlPdfSha256": "f48b771d0e337fcd23fddd724d7a5536bae60ff5715eda7b89cf2d060def2fdc",
+        "blockedMarker": "TK_LINK_CACHED",
+        "enabledMarker": "TK_LINK_UPDATED",
+        "sourceUnchanged": true,
+        "targetUnchanged": true
+      },
+      "case": "office-link-behavior"
+    },
+    {
+      "status": "timeout",
+      "runId": "06a6ab3e-c232-7b6d-a41b-a2918e3f34e6",
+      "case": "office-corrupt",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n",
+      "stderr": "",
+      "role": "administrator",
+      "exitCode": 1,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "status": "exited",
+      "runId": "1c4d5790-bdf1-7f02-8bf7-fd0a912af628",
+      "case": "office-corrupt",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n{\"stage\": \"converted\", \"format\": \"docx\", \"bytes\": 35683}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "role": "administrator",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "status": "exited",
+      "runId": "9b749374-30bd-7ce6-a1da-bb4dec4e253e",
+      "case": "office-render",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n{\"stage\": \"converted\", \"format\": \"docx\", \"bytes\": 35683}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "role": "standardUser",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "status": "exited",
+      "runId": "7f44b1af-20c9-74d3-a84f-e6f33184f7bf",
+      "case": "office-render",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 18403}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "",
+      "role": "standardUser",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "status": "exited",
+      "runId": "f1164d94-104f-7e2e-9d7d-4fac60a716df",
+      "case": "office-render",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"pptx\"}\r\n{\"stage\": \"converted\", \"format\": \"pptx\", \"bytes\": 19251}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "role": "standardUser",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "status": "exited",
+      "runId": "07402f76-70e4-7434-b6c6-7acdb38abb66",
+      "case": "office-macro-blocked",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 23492}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "",
+      "role": "standardUser",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "status": "exited",
+      "runId": "5f3c42db-811a-7095-83d5-6acc6cb4c88c",
+      "case": "office-control-macro",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 23954}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "",
+      "role": "standardUser",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "role": "standardUser",
+      "proof": {
+        "case": "office-macro-behavior",
+        "sourceSha256": "f90f27d9ea3b5d086eaf34d340f1b03520b078b6b3ce6b4253685f0abc0d7aa9",
+        "blockedPdfSha256": "e7a2565097170bcfea70587ace0df9880cc8316d112163ae897f14b5de4fca11",
+        "controlPdfSha256": "862d7c5054b021d493024c0ac3e5441f54df4ff01d3fb30d89355283a7468b2b",
+        "blockedMarker": "TK_MACRO_BLOCKED",
+        "enabledMarker": "TK_MACRO_EXECUTED",
+        "blockedFileAbsent": true,
+        "enabledFilePresent": true,
+        "sourceUnchanged": true
+      },
+      "case": "office-macro-behavior"
+    },
+    {
+      "status": "exited",
+      "runId": "91dee8be-96bb-7dca-b7f9-dcdf81b4108c",
+      "case": "office-link-blocked",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 20099}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "",
+      "role": "standardUser",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "status": "exited",
+      "runId": "8223060d-d1f4-7fb0-8680-ce4a6ab0f1f1",
+      "case": "office-control-links",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"control_updated\", \"value\": \"TK_LINK_UPDATED\"}\r\n{\"stage\": \"control_saved\", \"bytes\": 20929}\r\n{\"stage\": \"control_closed\"}\r\n{\"stage\": \"control_references_released\"}\r\n{\"stage\": \"control_destroyed\"}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "",
+      "role": "standardUser",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "role": "standardUser",
+      "proof": {
+        "case": "office-link-behavior",
+        "sourceSha256": "3eab628da2bbd0c08320ca7d37591ab9c78aa9f6f61c8280c63f11c07c349c93",
+        "targetSha256": "5ea75fd81fabb000d3fcfc2a64de7ede86508ca48bd0153de820648e5822bfe5",
+        "blockedPdfSha256": "94d26f5c78af6e2e269a8778f0195c2c82410eaba4acf18aa25bdacad494530c",
+        "controlPdfSha256": "06725daccfb44c2d0e2be9bcf14208370c95413ff66329e96b63b476ea1da614",
+        "blockedMarker": "TK_LINK_CACHED",
+        "enabledMarker": "TK_LINK_UPDATED",
+        "sourceUnchanged": true,
+        "targetUnchanged": true
+      },
+      "case": "office-link-behavior"
+    },
+    {
+      "status": "timeout",
+      "runId": "4b95cd28-e586-77a0-aad6-53d13e43ad2f",
+      "case": "office-corrupt",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n",
+      "stderr": "",
+      "role": "standardUser",
+      "exitCode": 1,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    },
+    {
+      "status": "exited",
+      "runId": "90f135f7-44ab-7458-a72e-bddd54dba1eb",
+      "case": "office-corrupt",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n{\"stage\": \"converted\", \"format\": \"docx\", \"bytes\": 35683}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "role": "standardUser",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "networkCapabilities": 0,
+      "appContainer": true
+    }
+  ],
+  "administratorEvidenceBaselineLines": 149,
+  "sourceReference": "b901ef7ec788bcfcec772adcfc564974ab64f32b",
+  "taskStatus": "implemented_and_verified",
+  "gate": "passed",
+  "administrator": {
+    "unitTotal": 17,
+    "unitPassed": 17,
+    "integrationTotal": 46,
+    "integrationPassed": 46,
+    "electronTotal": 8,
+    "electronPassed": 8
+  },
+  "lockedEnvironment": {
+    "runner": "windows-2025",
+    "packageManager": "pnpm@12.4.1",
+    "runtimes": {
+      "node": {
+        "version": "24.21.0",
+        "archiveSha256": "158f7685b44de51f6c0df1d153526cbcd3e1bc739a8dfc607721cef75de9e541"
+      },
+      "python": {
+        "version": "3.13.15",
+        "archiveSha256": "d1f04d990aee1253d8569e8e5104e30fa9f5fa830899f14843448872d936a2cf"
+      },
+      "rust": {
+        "version": "1.98.1",
+        "archiveSha256": "c34c3f01633efe5edac0e1ed1ee66d5ec13a7f27e57c149059ed6bdbe0534407"
+      },
+      "libreoffice": {
+        "version": "26.2.6",
+        "archiveSha256": "f9877032fd908beb9c0ddf06df4af5c2e85f419c42e14876c4cce5aae5fb2660"
+      },
+      "git": {
+        "version": "2.55.0.windows.5",
+        "archiveSha256": "56d7b226b7693196cfc71fef26568f536c4a021ab6c37ff2db4287bed908e96e"
+      },
+      "windowsSdk": {
+        "version": "10.0.28000.2705",
+        "archiveSha256": "bf892c1048059984850a1ed79bb81c0243478c6d7472d637c90565ab5c836013"
+      },
+      "msvcCrt": {
+        "version": "14.44.35226",
+        "archiveSha256": "f01f701a7bcd9587a340898c851424f6a52bb913a70c185ff0d5bf0288c5831a"
+      },
+      "msvcImports": {
+        "version": "14.44.35226",
+        "archiveSha256": "9135b03c0df53c7a0aa9bef7230a1c2ff4263a0ee7baa7e419d034f484f6bb56"
+      }
+    },
+    "nativeModule": {
+      "package": "better-sqlite3",
+      "version": "13.0.3",
+      "format": "Node-API",
+      "platform": "win32-x64",
+      "sha256": "e21e5efd71fba66578e95b62554d9028064a80dafd7221bf8a8ef155de8d240a"
+    },
+    "repositoryLockBlobSha256": {
+      "runtime-lock.json": "c70ad08a433096b38a6ea7e69066c67bd593377d7ee1a1ceb3e6c15ee9869e3f",
+      "native-lock.json": "09fbaf4cce326df26f5e9eff66d070d4a68e353b8257bb5e4dc8cd078d8eb81b",
+      "pnpm-lock.yaml": "54da7ec8ebbda17f2f1d28a696a635ab1fc42d2ed9e96434bf4474f824beb85f"
+    }
+  },
+  "nativeBoundaryExecutions": [
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 5,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 0,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 3,
+        "totalProcesses": 3,
+        "outputBytes": 92
+      },
+      "stdout": "授权输入\nwrite EPERM\nwrite EPERM\nread EPERM\nread EPERM\nread EPERM\nenv false false\nchild\n",
+      "stderr": ""
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 0,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 2,
+        "totalProcesses": 2,
+        "outputBytes": 10
+      },
+      "stdout": "first run\n",
+      "stderr": ""
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 0,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 2,
+        "totalProcesses": 2,
+        "outputBytes": 11
+      },
+      "stdout": "second run\n",
+      "stderr": ""
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 0,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 2,
+        "totalProcesses": 2,
+        "outputBytes": 10
+      },
+      "stdout": "recovered\n",
+      "stderr": ""
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/python",
+        "executable": ".runtime/python/python.exe",
+        "argumentCount": 3,
+        "argumentFlags": [
+          "-c"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 0,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 3,
+        "totalProcesses": 3,
+        "outputBytes": 450
+      },
+      "stdout": "acl_edit_denied:5\r\nacl_edit_denied:5\r\npython_child_launch_probe:{\"launch\": {\"executable\": \"D:\\\\a\\\\TapKit\\\\TapKit\\\\.runtime\\\\python\\\\python.exe\", \"argumentCount\": 2, \"flags\": [\"-c\"], \"probe\": \"python-child-startup\"}, \"created\": true, \"returncode\": 0, \"stdout\": \"42\\n\", \"stderr\": \"Failed to find real location of D:\\\\a\\\\TapKit\\\\TapKit\\\\.runtime\\\\python\\\\python.exe\\n\"}\r\n42\r\n",
+      "stderr": "Failed to find real location of D:\\a\\TapKit\\TapKit\\.runtime\\python\\python.exe\n"
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 3,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 0,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 2,
+        "totalProcesses": 2,
+        "outputBytes": 75
+      },
+      "stdout": "1.1.1.1 EACCES\n169.254.169.254 EACCES\n::1 ECONNREFUSED\n127.0.0.1 ETIMEDOUT\n",
+      "stderr": ""
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "cancelled",
+        "exitCode": 1,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 3,
+        "totalProcesses": 3,
+        "outputBytes": 21
+      },
+      "stdout": "cancel_child_created;",
+      "stderr": ""
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 300,
+        "processLimit": 4
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 4
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "timeout",
+        "exitCode": 1,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 2,
+        "totalProcesses": 2,
+        "outputBytes": 0
+      },
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "output_limit",
+        "exitCode": 1,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 2,
+        "totalProcesses": 2,
+        "outputBytes": 49152
+      },
+      "stdout": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "stderr": ""
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 5000,
+        "processLimit": 4
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 4
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "process_limit",
+        "exitCode": 1,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 5,
+        "totalProcesses": 5,
+        "outputBytes": 731
+      },
+      "stdout": "fork_attempt:0;fork_launch:{\"executable\":\"D:\\\\a\\\\TapKit\\\\TapKit\\\\.runtime\\\\node\\\\node-v24.21.0-win-x64\\\\node.exe\",\"argumentCount\":3,\"flags\":[\"-e\"],\"stdio\":\"inherit\",\"windowsHide\":true,\"probe\":\"fork-child-startup\"};fork_child_created:0;fork_ready:1;fork_attempt:1;fork_launch:{\"executable\":\"D:\\\\a\\\\TapKit\\\\TapKit\\\\.runtime\\\\node\\\\node-v24.21.0-win-x64\\\\node.exe\",\"argumentCount\":3,\"flags\":[\"-e\"],\"stdio\":\"inherit\",\"windowsHide\":true,\"probe\":\"fork-child-startup\"};fork_child_created:1;fork_ready:2;fork",
+      "stderr": ""
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/python",
+        "executable": ".runtime/python/python.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-c"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 268435456,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 23,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 2,
+        "totalProcesses": 2,
+        "outputBytes": 132
+      },
+      "stdout": "memory_payload_ready\r\nmemory_limit_reached:251658240\r\n",
+      "stderr": "Failed to find real location of D:\\a\\TapKit\\TapKit\\.runtime\\python\\python.exe\n"
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 0,
+        "argumentFlags": [],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": null,
+      "networkCapabilities": null,
+      "job": null,
+      "runtimeAcl": null,
+      "result": {},
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 0,
+        "argumentFlags": [],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": null,
+      "networkCapabilities": null,
+      "job": null,
+      "runtimeAcl": null,
+      "result": {},
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 0,
+        "argumentFlags": [],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": null,
+      "networkCapabilities": null,
+      "job": null,
+      "runtimeAcl": null,
+      "result": {},
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 0,
+        "argumentFlags": [],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": null,
+      "networkCapabilities": null,
+      "job": null,
+      "runtimeAcl": null,
+      "result": {},
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 0,
+        "argumentFlags": [],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": null,
+      "networkCapabilities": null,
+      "job": null,
+      "runtimeAcl": null,
+      "result": {},
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "role": "administrator",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 0,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 1,
+        "totalProcesses": 1,
+        "outputBytes": 163
+      },
+      "stdout": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[Hhello terminal\r\n\u001b]0;D:\\a\\TapKit\\TapKit\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe\u0007\u001b[?25hPTY_ECHO:hello terminal\r\n\u001b[?9001l\u001b[?1004l",
+      "stderr": ""
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 5,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 0,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 3,
+        "totalProcesses": 3,
+        "outputBytes": 92
+      },
+      "stdout": "授权输入\nwrite EPERM\nwrite EPERM\nread EPERM\nread EPERM\nread EPERM\nenv false false\nchild\n",
+      "stderr": ""
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 0,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 2,
+        "totalProcesses": 2,
+        "outputBytes": 10
+      },
+      "stdout": "first run\n",
+      "stderr": ""
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 0,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 2,
+        "totalProcesses": 2,
+        "outputBytes": 11
+      },
+      "stdout": "second run\n",
+      "stderr": ""
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 0,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 2,
+        "totalProcesses": 2,
+        "outputBytes": 10
+      },
+      "stdout": "recovered\n",
+      "stderr": ""
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/python",
+        "executable": ".runtime/python/python.exe",
+        "argumentCount": 3,
+        "argumentFlags": [
+          "-c"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 0,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 3,
+        "totalProcesses": 3,
+        "outputBytes": 602
+      },
+      "stdout": "acl_edit_denied:5\r\nacl_edit_denied:5\r\npython_child_launch_probe:{\"launch\": {\"executable\": \"D:\\\\a\\\\_temp\\\\tapkit-standard-user-2e20e1d68ccf4e9e8209a5985fd1dc41\\\\kit\\\\.runtime\\\\python\\\\python.exe\", \"argumentCount\": 2, \"flags\": [\"-c\"], \"probe\": \"python-child-startup\"}, \"created\": true, \"returncode\": 0, \"stdout\": \"42\\n\", \"stderr\": \"Failed to find real location of D:\\\\a\\\\_temp\\\\tapkit-standard-user-2e20e1d68ccf4e9e8209a5985fd1dc41\\\\kit\\\\.runtime\\\\python\\\\python.exe\\n\"}\r\n42\r\n",
+      "stderr": "Failed to find real location of D:\\a\\_temp\\tapkit-standard-user-2e20e1d68ccf4e9e8209a5985fd1dc41\\kit\\.runtime\\python\\python.exe\n"
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 3,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 0,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 2,
+        "totalProcesses": 2,
+        "outputBytes": 75
+      },
+      "stdout": "1.1.1.1 EACCES\n169.254.169.254 EACCES\n::1 ECONNREFUSED\n127.0.0.1 ETIMEDOUT\n",
+      "stderr": ""
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "cancelled",
+        "exitCode": 1,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 3,
+        "totalProcesses": 3,
+        "outputBytes": 21
+      },
+      "stdout": "cancel_child_created;",
+      "stderr": ""
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 300,
+        "processLimit": 4
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 4
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "timeout",
+        "exitCode": 1,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 2,
+        "totalProcesses": 2,
+        "outputBytes": 0
+      },
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "output_limit",
+        "exitCode": 1,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 2,
+        "totalProcesses": 2,
+        "outputBytes": 49152
+      },
+      "stdout": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "stderr": ""
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 5000,
+        "processLimit": 4
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 4
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "process_limit",
+        "exitCode": 1,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 5,
+        "totalProcesses": 5,
+        "outputBytes": 884
+      },
+      "stdout": "fork_attempt:0;fork_launch:{\"executable\":\"D:\\\\a\\\\_temp\\\\tapkit-standard-user-2e20e1d68ccf4e9e8209a5985fd1dc41\\\\kit\\\\.runtime\\\\node\\\\node-v24.21.0-win-x64\\\\node.exe\",\"argumentCount\":3,\"flags\":[\"-e\"],\"stdio\":\"inherit\",\"windowsHide\":true,\"probe\":\"fork-child-startup\"};fork_child_created:0;fork_ready:1;fork_attempt:1;fork_launch:{\"executable\":\"D:\\\\a\\\\_temp\\\\tapkit-standard-user-2e20e1d68ccf4e9e8209a5985fd1dc41\\\\kit\\\\.runtime\\\\node\\\\node-v24.21.0-win-x64\\\\node.exe\",\"argumentCount\":3,\"flags\":[\"-e\"],\"st",
+      "stderr": ""
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/python",
+        "executable": ".runtime/python/python.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-c"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 268435456,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 23,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 2,
+        "totalProcesses": 2,
+        "outputBytes": 182
+      },
+      "stdout": "memory_payload_ready\r\nmemory_limit_reached:251658240\r\n",
+      "stderr": "Failed to find real location of D:\\a\\_temp\\tapkit-standard-user-2e20e1d68ccf4e9e8209a5985fd1dc41\\kit\\.runtime\\python\\python.exe\n"
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 0,
+        "argumentFlags": [],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": null,
+      "networkCapabilities": null,
+      "job": null,
+      "runtimeAcl": null,
+      "result": {},
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 0,
+        "argumentFlags": [],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": null,
+      "networkCapabilities": null,
+      "job": null,
+      "runtimeAcl": null,
+      "result": {},
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 0,
+        "argumentFlags": [],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": null,
+      "networkCapabilities": null,
+      "job": null,
+      "runtimeAcl": null,
+      "result": {},
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 0,
+        "argumentFlags": [],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": null,
+      "networkCapabilities": null,
+      "job": null,
+      "runtimeAcl": null,
+      "result": {},
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 0,
+        "argumentFlags": [],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": null,
+      "networkCapabilities": null,
+      "job": null,
+      "runtimeAcl": null,
+      "result": {},
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "role": "standardUser",
+      "launch": {
+        "operation": "diagnostic.execute",
+        "runtimeRoot": ".runtime/node/node-v24.21.0-win-x64",
+        "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+        "argumentCount": 2,
+        "argumentFlags": [
+          "-e"
+        ],
+        "timeoutMs": 10000,
+        "processLimit": 32
+      },
+      "appContainer": true,
+      "networkCapabilities": 0,
+      "job": {
+        "breakaway": false,
+        "killOnClose": true,
+        "memoryBytes": 2147483648,
+        "processLimit": 32
+      },
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "result": {
+        "status": "exited",
+        "exitCode": 0,
+        "activeProcesses": 0,
+        "peakActiveProcesses": 1,
+        "totalProcesses": 1,
+        "outputBytes": 213
+      },
+      "stdout": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[Hhello terminal\r\n\u001b]0;D:\\a\\_temp\\tapkit-standard-user-2e20e1d68ccf4e9e8209a5985fd1dc41\\kit\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe\u0007\u001b[?25h\u001b[?9001l\u001b[?1004lPTY_ECHO:hello terminal\r\n",
+      "stderr": ""
+    }
+  ],
+  "officeVisual": {
+    "reviewed": true,
+    "sourceRun": 36891317575,
+    "sourceReference": "b901ef7ec788bcfcec772adcfc564974ab64f32b",
+    "roles": [
+      {
+        "role": "administrator",
+        "artifactPrefix": "test-results/P00-03-office",
+        "render": {
+          "parserVersion": "6.3.289",
+          "results": [
+            {
+              "name": "sample-docx",
+              "pdfSha256": "4b16d7490a77e01a8e40c1b1fdc3ff7213fbcf6b5fb09952e252b2db563835d5",
+              "pngSha256": "891de12e9b905ba9a025830d436416701bfce1cb891f6a5b67fe961f538ef9c9",
+              "pages": 1,
+              "width": 596,
+              "height": 842,
+              "text": "TapKit 隔离转换验收  DOCX   原件不可修改；中文内容应清晰可读。",
+              "chineseTitlePresent": true
+            },
+            {
+              "name": "sample-xlsx",
+              "pdfSha256": "06b86d7cc16c4e7b5a72f77ef5b4c0cc814dbb18d39c5c16e73efd3264725496",
+              "pngSha256": "3a3994ca436204391162832528d4569f581dde39084d2fd1c919aaa0bbd21dc2",
+              "pages": 1,
+              "width": 612,
+              "height": 792,
+              "text": "数值 中文行   42 TapKit 隔离转换验收",
+              "chineseTitlePresent": true
+            },
+            {
+              "name": "sample-pptx",
+              "pdfSha256": "5e46f31f11289f3f202140d31b66b2f12b2f2c09ae3dbe6d9919adbfc4d5d450",
+              "pngSha256": "f487950ba1f09307d18f9f59f50aab31c349acddc280cec35a3ac8a6ce5b0293",
+              "pages": 1,
+              "width": 961,
+              "height": 540,
+              "text": "TapKit 隔离转换验收  PPTX → PDF / 受限环境",
+              "chineseTitlePresent": true
+            },
+            {
+              "name": "macro-blocked",
+              "pdfSha256": "4bcc688c923d1014be38224c750f773a4bd7b8b47958ed946734ad653f97bd5f",
+              "pngSha256": "88d1c03da194b032840872aa2f241231a75700c7f5abd9020c6abebc5206ba4b",
+              "pages": 1,
+              "width": 612,
+              "height": 792,
+              "text": "Sheet1 Page 1  TK_MACRO_BLOCKED",
+              "chineseTitlePresent": false
+            },
+            {
+              "name": "macro-control",
+              "pdfSha256": "15a524b5a7ce3b1b6cec2696edbebd14bad71e27be00e4a37dcc496ea6346176",
+              "pngSha256": "1f8cb43885bcd995043ffd7b3b91863be8d7447e23c623d9cb4d27eaaead8c35",
+              "pages": 1,
+              "width": 612,
+              "height": 792,
+              "text": "Sheet1 Page 1  TK_MACRO_EXECUTED",
+              "chineseTitlePresent": false
+            },
+            {
+              "name": "link-blocked",
+              "pdfSha256": "eee9b32b1758352caa70cc5c3045912f1b27ce7a05bab685c1bf636feccaf83e",
+              "pngSha256": "e5c5169f04a1d460992fbf1d4d007483d9f9147d17f2f75e0b7a53197c71ef80",
+              "pages": 1,
+              "width": 612,
+              "height": 792,
+              "text": "TK_LINK_CACHED",
+              "chineseTitlePresent": false
+            },
+            {
+              "name": "link-control",
+              "pdfSha256": "f48b771d0e337fcd23fddd724d7a5536bae60ff5715eda7b89cf2d060def2fdc",
+              "pngSha256": "7b23ac76a8215f50345b1894ca5e3f9486f685379a98e05d762a7c72754780cb",
+              "pages": 1,
+              "width": 612,
+              "height": 792,
+              "text": "TK_LINK_UPDATED",
+              "chineseTitlePresent": false
+            }
+          ]
+        }
+      },
+      {
+        "role": "standardUser",
+        "artifactPrefix": "ci-evidence/P00-03-standard-user/office-pdfs",
+        "render": {
+          "parserVersion": "6.3.289",
+          "results": [
+            {
+              "name": "sample-docx",
+              "pdfSha256": "fe52f4910463a4a30d4b05296641c963eb3564475e509140a2fcabc4143182a0",
+              "pngSha256": "891de12e9b905ba9a025830d436416701bfce1cb891f6a5b67fe961f538ef9c9",
+              "pages": 1,
+              "width": 596,
+              "height": 842,
+              "text": "TapKit 隔离转换验收  DOCX   原件不可修改；中文内容应清晰可读。",
+              "chineseTitlePresent": true
+            },
+            {
+              "name": "sample-xlsx",
+              "pdfSha256": "18ca98459b9b368b24140534baeda9f5f22e910ea6efe52f4073134ef9de2a30",
+              "pngSha256": "3a3994ca436204391162832528d4569f581dde39084d2fd1c919aaa0bbd21dc2",
+              "pages": 1,
+              "width": 612,
+              "height": 792,
+              "text": "数值 中文行   42 TapKit 隔离转换验收",
+              "chineseTitlePresent": true
+            },
+            {
+              "name": "sample-pptx",
+              "pdfSha256": "e6a318c17cddffb31719cb62be29c690383e3458683bbc649fb36486dec8200f",
+              "pngSha256": "f487950ba1f09307d18f9f59f50aab31c349acddc280cec35a3ac8a6ce5b0293",
+              "pages": 1,
+              "width": 961,
+              "height": 540,
+              "text": "TapKit 隔离转换验收  PPTX → PDF / 受限环境",
+              "chineseTitlePresent": true
+            },
+            {
+              "name": "macro-blocked",
+              "pdfSha256": "e7a2565097170bcfea70587ace0df9880cc8316d112163ae897f14b5de4fca11",
+              "pngSha256": "88d1c03da194b032840872aa2f241231a75700c7f5abd9020c6abebc5206ba4b",
+              "pages": 1,
+              "width": 612,
+              "height": 792,
+              "text": "Sheet1 Page 1  TK_MACRO_BLOCKED",
+              "chineseTitlePresent": false
+            },
+            {
+              "name": "macro-control",
+              "pdfSha256": "862d7c5054b021d493024c0ac3e5441f54df4ff01d3fb30d89355283a7468b2b",
+              "pngSha256": "1f8cb43885bcd995043ffd7b3b91863be8d7447e23c623d9cb4d27eaaead8c35",
+              "pages": 1,
+              "width": 612,
+              "height": 792,
+              "text": "Sheet1 Page 1  TK_MACRO_EXECUTED",
+              "chineseTitlePresent": false
+            },
+            {
+              "name": "link-blocked",
+              "pdfSha256": "94d26f5c78af6e2e269a8778f0195c2c82410eaba4acf18aa25bdacad494530c",
+              "pngSha256": "e5c5169f04a1d460992fbf1d4d007483d9f9147d17f2f75e0b7a53197c71ef80",
+              "pages": 1,
+              "width": 612,
+              "height": 792,
+              "text": "TK_LINK_CACHED",
+              "chineseTitlePresent": false
+            },
+            {
+              "name": "link-control",
+              "pdfSha256": "06725daccfb44c2d0e2be9bcf14208370c95413ff66329e96b63b476ea1da614",
+              "pngSha256": "7b23ac76a8215f50345b1894ca5e3f9486f685379a98e05d762a7c72754780cb",
+              "pages": 1,
+              "width": 612,
+              "height": 792,
+              "text": "TK_LINK_UPDATED",
+              "chineseTitlePresent": false
+            }
+          ]
+        }
+      }
+    ],
+    "reviewedAt": "2026-10-01T16:41:25.787077+00:00",
+    "reviewer": "Codex direct image inspection",
+    "notes": "Viewed all six same-run normal DOCX/XLSX/PPTX first-page PNGs for administrator and standard user. Chinese titles/body glyphs are legible, with no missing-glyph boxes or clipping. Corresponding rendered PNG hashes match between identities. PDF.js emitted a font-program function-21 warning; actual Chinese text extraction and rendered glyph inspection both pass."
+  },
+  "diagnosis": [
+    "All functional and security tests passed for the exact source SHA. The original 5-second control join passes after releasing PyUNO component/Desktop/Context references before kit destruction.",
+    "Both administrator and standard-user seven-PDF sets are preserved in this successful run. E2E output is scoped to test-results/e2e. Archive PDF bytes, behavior-proof hashes and actual parser/render results match."
+  ],
+  "remainingRequiredP00Work": []
+}

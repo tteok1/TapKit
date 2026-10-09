@@ -1,0 +1,18 @@
+{
+  "name": "@tapkit/retrieval",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@tapkit/contracts": "workspace:*",
+    "@huggingface/transformers": "4.2.0",
+    "pdfjs-dist": "6.3.289",
+    "mammoth": "1.12.3",
+    "exceljs": "4.4.0",
+    "fast-xml-parser": "5.11.1",
+    "yauzl": "3.4.0"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "task": "P03-01",
+  "status": "in_progress",
+  "date": "2026-10-09",
+  "baseHead": "4765ee4f1c6345b9e0bf805c36eea9e15043efac",
+  "baseCommittedAndPushed": true,
+  "baseRemoteShaVerified": true,
+  "source": "production unchanged from usage milestone; new meaningful Electron version workflow test",
+  "checks": [
+    {
+      "command": "pnpm test:e2e -- --grep P03-01 T07 duplicate skip",
+      "exitCode": 1,
+      "failed": 1,
+      "log": ".cache/ci/p03-versions-electron-2026-10-09.log",
+      "note": "Fixture used an incorrect scope label; corrected it and confirmation selector to existing locale strings.",
+      "logSha256": "97f7a740591588d1a12dafe275977b3f316f568a8c606783e8f478bf81924247"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01 T07 duplicate skip",
+      "exitCode": 0,
+      "passed": 1,
+      "log": ".cache/ci/p03-versions-electron-fixed-2026-10-09.log",
+      "logSha256": "f311fd836288093d49c2b327937a58dde456e7e76628b4865aed5ce26e8285f1"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01",
+      "exitCode": 0,
+      "passed": 7,
+      "log": ".cache/ci/p03-versions-electron-final-2026-10-09.log",
+      "logSha256": "2ea3cbc246fab4e0c66638476c06855f44afcea3933fc678983eefa375c204a5"
+    },
+    {
+      "command": "pnpm exec tsc --noEmit",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "formattedFiles": 311,
+      "log": ".cache/ci/p03-versions-check-2026-10-09.log",
+      "logSha256": "8fef772fad874830a46e3b517ccf411a376b4964a06b3fb71c6562f49e63271c"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "handoffs": 37
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "coverage": [
+    "Chinese same-name uppercase extension duplicate skip does not create a new file",
+    "replacement requires explicit target and creates version 2",
+    "restore creates version 3, retaining versions 1 and 2",
+    "historical version 2 and restored version 3 download exact original bytes",
+    "copy owns independent version 1",
+    "project reference links pinned version and unlink leaves originals in library",
+    "both real synthetic source files unchanged"
+  ],
+  "ci": {
+    "head": "4765ee4f1c6345b9e0bf805c36eea9e15043efac",
+    "prRun": 37828123412,
+    "pushRun": 37828113924,
+    "status": "completed",
+    "conclusion": "failure",
+    "checkJob": 113486146409,
+    "startupJob": 113486158748,
+    "checkSteps": 0,
+    "startupSteps": 0,
+    "annotation": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the Billing & plans section in your settings",
+    "resource": "R15",
+    "nativeDiagnostics": "not_run"
+  },
+  "guard": {
+    "nativeHelper": "not_executed",
+    "realModel": "not_called",
+    "chromiumSandbox": true,
+    "realUserProfileVaultOrKeys": "not_read"
+  },
+  "remaining": [
+    "chat file material still decodes original UTF-8 rather than P03 parsed structure; reconcile with current P03 attachments/permissions before task closure",
+    "remaining exception/requirement audit and native CORRUPT_FILE acceptance after R15",
+    "P03-02/03 unstarted"
+  ]
+}

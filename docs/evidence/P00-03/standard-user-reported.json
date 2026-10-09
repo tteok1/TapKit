@@ -1,0 +1,33 @@
+{
+  "provenance": "User supplied console output; direct read of the test user's private directory was denied. Failure details requested with a read-only summary command.",
+  "evidenceDirectory": "C:/Users/private-user\\AppData\\Local\\TapKit-P00-03-2026-09-17T14-05-32-401Z\\docs\\evidence\\P00-03",
+  "schemaVersion": 1,
+  "startedAt": "2026-09-17T14:07:54.442Z",
+  "endedAt": "2026-09-17T14:11:14.500Z",
+  "command": "pnpm test:integration -- P00-03 --reporter=json --outputFile=test-results/P00-03-native.json",
+  "exitCode": 1,
+  "standardUser": true,
+  "fingerprint": "9ea095cfb0080ed6b781ca490ac3eff77fd221b1da2c9f01413df4623251b000",
+  "capabilities": {
+    "nativeExecution": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    },
+    "officeRender": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    },
+    "terminal": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    }
+  },
+  "tests": {
+    "total": 10,
+    "passed": 7,
+    "failed": 3
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "startedAt": "2026-09-17T15:30:20.700Z",
+  "scope": "Official Agent Windows static-source review and P00-03 progress only",
+  "thirdPartyCodeExecuted": false,
+  "productTestsRerun": false,
+  "status": "passed",
+  "checks": [
+    {
+      "name": "Pinned Git blob and SHA-256 verification",
+      "count": 214,
+      "passed": true
+    },
+    {
+      "command": "node scripts/docs-check.mjs",
+      "startedAt": "2026-09-17T15:30:20.763Z",
+      "endedAt": "2026-09-17T15:30:20.876Z",
+      "exitCode": 0,
+      "output": "All 37 task states, started handoffs and completed requirement evidence links verified"
+    },
+    {
+      "command": "git -c safe.directory=D:/TapKit diff --check",
+      "startedAt": "2026-09-17T15:30:20.876Z",
+      "endedAt": "2026-09-17T15:30:20.977Z",
+      "exitCode": 0,
+      "output": "warning: in the working copy of 'docs/plan/03-architecture.md', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/progress/requirements.csv', CRLF will be replaced by LF the next time Git touches it"
+    },
+    {
+      "command": "node .cache/P00-03/source-manifest.mjs",
+      "startedAt": "2026-09-17T15:30:20.977Z",
+      "endedAt": "2026-09-17T15:30:21.497Z",
+      "exitCode": 0,
+      "output": "{\"head\":\"071d15c5c45db4e91d232a4d26db7904061bc89b\",\"branch\":\"main\",\"files\":45,\"helperSha256\":\"e4b39808bb4661169456b8800f1972c2216120da075f9006694534d994ea7f57\"}\nwarning: in the working copy of 'docs/plan/03-architecture.md', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/progress/requirements.csv', CRLF will be replaced by LF the next time Git touches it"
+    }
+  ],
+  "endedAt": "2026-09-17T15:30:21.497Z"
+}

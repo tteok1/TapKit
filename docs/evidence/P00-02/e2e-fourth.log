@@ -1,0 +1,116 @@
+$ node scripts/e2e.mjs "--grep" "P00-02"
+
+Running 5 tests using 1 worker
+
+(node:50568) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_HOST_WINDOW 6616
+(node:6616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+TAPKIT_HOST_WINDOW 6616
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:59519/8e17729b-a05a-453c-b57d-54465adff5de
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 1 tests\e2e\P00-02.foundation.spec.ts:29:1 › P00-02 T01 T05 real two-window CAS and committed event subscription (1.5s)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+TAPKIT_HOST_WINDOW 38592
+(node:38592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:53076/ac68df52-44c4-4437-bfe4-96960c52a3b6
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 2 tests\e2e\P00-02.foundation.spec.ts:87:1 › P00-02 T19 real Windows safeStorage round trip, ACL and plaintext exclusion (2.1s)
+TAPKIT_CORE_READY
+TAPKIT_HOST_WINDOW 19104
+(node:19104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:54731/19f24615-c056-42f7-a343-c964a0e78a30
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 3 tests\e2e\P00-02.foundation.spec.ts:146:1 › P00-02 T19 foreign WebContents cannot invoke app IPC (1.2s)
+TAPKIT_CORE_READY
+TAPKIT_HOST_WINDOW 27288
+(node:27288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+TAPKIT_CORE_EXIT 1
+Error occurred in handler for 'tapkit:ping': Error: Core unavailable
+    at ForkUtilityProcess.<anonymous> (D:\TapKit\apps\desktop\out\main\index.js:6268:21)
+    at ForkUtilityProcess.emit (node:events:514:28)
+    at UtilityProcess.emit (node:electron/js2c/browser_init:2:95072)
+Error occurred in handler for 'tapkit:ping': Error: Core unavailable
+    at forward (D:\TapKit\apps\desktop\out\main\index.js:6184:49)
+    at D:\TapKit\apps\desktop\out\main\index.js:6400:14
+    at async Session.<anonymous> (node:electron/js2c/browser_init:2:123817)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:55958/5637a2ac-59b2-4eca-8e3b-fa40dcebd73d
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 4 tests\e2e\P00-02.foundation.spec.ts:165:1 › P00-02 T05 Core kill rebuilds writer; acked settings survive and backup is not duplicated (1.8s)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+TAPKIT_HOST_WINDOW 34272
+(node:34272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:58104/cc37829c-82bc-4984-8e7e-4eba848a6aa9
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  x  5 tests\e2e\P00-02.foundation.spec.ts:212:1 › P00-02 single instance activates owner and closing UI keeps Core alive until explicit quit (15.0s)
+
+
+  1) tests\e2e\P00-02.foundation.spec.ts:212:1 › P00-02 single instance activates owner and closing UI keeps Core alive until explicit quit
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+    Call Log:
+    - Timeout 15000ms exceeded while waiting on the predicate
+
+      227 |   await expect
+      228 |     .poll(() => app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows().length))
+    > 229 |     .toBe(1);
+          |      ^
+      230 |   const reopened = (await app.windows())[0]!;
+      231 |   await expect(reopened.getByTestId('core-status')).toHaveText('本地核心已连接');
+      232 |   expect(
+        at D:\TapKit\tests\e2e\P00-02.foundation.spec.ts:229:6
+
+    Error Context: test-results\P00-02.foundation-P00-02-s-0c1f1-e-alive-until-explicit-quit\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\P00-02.foundation-P00-02-s-0c1f1-e-alive-until-explicit-quit\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\P00-02.foundation-P00-02-s-0c1f1-e-alive-until-explicit-quit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P00-02.foundation.spec.ts:212:1 › P00-02 single instance activates owner and closing UI keeps Core alive until explicit quit
+  4 passed (22.4s)
+file:///D:/TapKit/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\TapKit\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/TapKit/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/TapKit/scripts/lib.mjs:27:3)
+    at file:///D:/TapKit/scripts/e2e.mjs:3:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.

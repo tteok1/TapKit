@@ -1,0 +1,242 @@
+{
+  "run": {
+    "id": 36882487714,
+    "run_number": 43,
+    "head_sha": "2f46c90f5a6ddc1b5663ccb63eea1830ef295f30",
+    "status": "completed",
+    "conclusion": "failure",
+    "html_url": "private-archive:TapKit",
+    "created_at": "2026-10-01T15:12:53Z",
+    "updated_at": "2026-10-01T15:22:51Z"
+  },
+  "collectedAt": "2026-10-01T15:23:34.8481419Z",
+  "artifact": {
+    "sha256": "598b02423549cd4b1b7e79f3130b836535b6572e01440cce898848fefa69d038",
+    "id": 11173155440
+  },
+  "jobLog": {
+    "sha256": "16ff33c209561503866b379bd1f935162f0507f2b8cf98ebaed4c8356d9a7ef9",
+    "id": 110437481730
+  },
+  "steps": [
+    {
+      "name": "Bootstrap locked runtime and native dependencies",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Unit and current-route integration",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "name": "Build and Electron checks",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Verify current-route P00-03 as an independent standard user",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "testSummaries": [
+    "2026-10-01T15:17:22.3096891Z   1 passed (2.9s)",
+    "2026-10-01T15:17:39.9882827Z  Test Files  7 passed (7)",
+    "2026-10-01T15:17:39.9883864Z       Tests  17 passed (17)",
+    "2026-10-01T15:21:23.9227377Z  Test Files  1 failed | 7 passed (8)",
+    "2026-10-01T15:21:23.9234113Z       Tests  2 failed | 44 passed (46)"
+  ],
+  "standardUser": {
+    "cases": [],
+    "report": null,
+    "failures": null,
+    "confirmed": null
+  },
+  "office": [
+    {
+      "appContainer": true,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n{\"stage\": \"converted\", \"format\": \"docx\", \"bytes\": 35683}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "status": "exited",
+      "role": "administrator",
+      "exitCode": 0,
+      "networkCapabilities": 0,
+      "activeProcesses": 0,
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "runId": "fc720572-570d-7ec1-892d-ff9b4704f866",
+      "case": "office-render"
+    },
+    {
+      "appContainer": true,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 18403}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "status": "exited",
+      "role": "administrator",
+      "exitCode": 0,
+      "networkCapabilities": 0,
+      "activeProcesses": 0,
+      "stderr": "",
+      "runId": "06b39ba3-ac04-7bc0-b0fd-58f44760fabb",
+      "case": "office-render"
+    },
+    {
+      "appContainer": true,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"pptx\"}\r\n{\"stage\": \"converted\", \"format\": \"pptx\", \"bytes\": 19251}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "status": "exited",
+      "role": "administrator",
+      "exitCode": 0,
+      "networkCapabilities": 0,
+      "activeProcesses": 0,
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "runId": "0ba3f6f3-1efa-73df-8b15-d39a3eea2429",
+      "case": "office-render"
+    },
+    {
+      "appContainer": true,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 23492}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "status": "exited",
+      "role": "administrator",
+      "exitCode": 0,
+      "networkCapabilities": 0,
+      "activeProcesses": 0,
+      "stderr": "",
+      "runId": "5cfd4b07-365a-7691-9ac2-31a3a820cb47",
+      "case": "office-macro-blocked"
+    },
+    {
+      "appContainer": true,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 23954}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "status": "exited",
+      "role": "administrator",
+      "exitCode": 0,
+      "networkCapabilities": 0,
+      "activeProcesses": 0,
+      "stderr": "",
+      "runId": "1f00b86f-3d98-7684-bb0f-b21dafc18801",
+      "case": "office-control-macro"
+    },
+    {
+      "appContainer": true,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 20099}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "status": "exited",
+      "role": "administrator",
+      "exitCode": 0,
+      "networkCapabilities": 0,
+      "activeProcesses": 0,
+      "stderr": "",
+      "runId": "da2a85a4-75f6-7b6a-aaae-22e79f4d2678",
+      "case": "office-link-blocked"
+    },
+    {
+      "appContainer": true,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"control_updated\", \"value\": \"TK_LINK_UPDATED\"}\r\n{\"stage\": \"finished\", \"ok\": false, \"failures\": [\"OFFICE_LOK_WORKER_STUCK\"], \"pollCount\": 0}\r\n",
+      "status": "exited",
+      "role": "administrator",
+      "exitCode": 1,
+      "networkCapabilities": 0,
+      "activeProcesses": 0,
+      "stderr": "",
+      "runId": "478000de-cd6b-7f9a-854c-63eb6e734609",
+      "case": "office-control-links"
+    },
+    {
+      "appContainer": true,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n",
+      "status": "timeout",
+      "role": "administrator",
+      "exitCode": 1,
+      "networkCapabilities": 0,
+      "activeProcesses": 0,
+      "stderr": "",
+      "runId": "49fae674-fac7-72a7-abec-b92b88c22bd9",
+      "case": "office-corrupt"
+    },
+    {
+      "appContainer": true,
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n{\"stage\": \"converted\", \"format\": \"docx\", \"bytes\": 35683}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "status": "exited",
+      "role": "administrator",
+      "exitCode": 0,
+      "networkCapabilities": 0,
+      "activeProcesses": 0,
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "runId": "4d462af1-82e5-71ff-aaa4-8174be00c365",
+      "case": "office-corrupt"
+    }
+  ],
+  "administratorEvidenceBaselineLines": 149,
+  "sourceReference": "2f46c90f5a6ddc1b5663ccb63eea1830ef295f30",
+  "taskStatus": "in_progress",
+  "gate": "failed",
+  "administrator": {
+    "unitTotal": 17,
+    "unitPassed": 17,
+    "integrationTotal": 46,
+    "integrationPassed": 44,
+    "integrationFailed": 2
+  },
+  "diagnosis": [
+    "Both positive controls failed in finally: a single QueryDosDevice target was returned as a scalar string, so targets[0] compared its first character with the full recorded target. Array capture preserves exact identity comparison.",
+    "The external-link control actually emitted TK_LINK_UPDATED, then the 5-second worker join expired. Added stage records and a 30-second test-only completion budget to determine the lifecycle issue; the production worker and 120-second Job timeout are unchanged.",
+    "Macro control native execution exited 0 but finally masked the result; no completed PDF/marker assertion is claimed."
+  ],
+  "officeVisual": {
+    "renderer": "6.3.289",
+    "reviewed": true,
+    "source": "CI #43 synthetic conversion PDFs",
+    "normalPdfs": [
+      {
+        "name": "sample-docx",
+        "pdfSha256": "3c9774e562e2f88bb54c13491fdce7f66a021f59a24619da96ed9ccc9de05ab7",
+        "pngSha256": "891de12e9b905ba9a025830d436416701bfce1cb891f6a5b67fe961f538ef9c9",
+        "pages": 1,
+        "width": 596,
+        "height": 842,
+        "text": "TapKit 隔离转换验收  DOCX   原件不可修改；中文内容应清晰可读。",
+        "chineseTitlePresent": true
+      },
+      {
+        "name": "sample-xlsx",
+        "pdfSha256": "0447076e3bdc353f79a32e835c588db720a6064116f5a0885fe18ea7f6e4750a",
+        "pngSha256": "3a3994ca436204391162832528d4569f581dde39084d2fd1c919aaa0bbd21dc2",
+        "pages": 1,
+        "width": 612,
+        "height": 792,
+        "text": "数值 中文行   42 TapKit 隔离转换验收",
+        "chineseTitlePresent": true
+      },
+      {
+        "name": "sample-pptx",
+        "pdfSha256": "3830d4b3fa1b03f1eb23bd5a8ffac7265c72dd03f7e44fcab8005de691b02747",
+        "pngSha256": "f487950ba1f09307d18f9f59f50aab31c349acddc280cec35a3ac8a6ce5b0293",
+        "pages": 1,
+        "width": 961,
+        "height": 540,
+        "text": "TapKit 隔离转换验收  PPTX → PDF / 受限环境",
+        "chineseTitlePresent": true
+      }
+    ],
+    "finding": "All three first pages visually reviewed: Chinese title and content legible without missing glyphs."
+  },
+  "localRepairChecks": [
+    {
+      "command": "Locked Node pnpm test:unit",
+      "exitCode": 0,
+      "passed": 17,
+      "total": 17
+    },
+    {
+      "command": "tsc --noEmit; PowerShell AST parse; compile-only embedded control Python; docs-check; git diff --check",
+      "exitCode": 0
+    }
+  ]
+}

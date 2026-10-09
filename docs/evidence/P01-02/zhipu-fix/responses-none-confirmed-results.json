@@ -1,0 +1,75 @@
+{
+  "task": "P01-02",
+  "recordedAt": "2026-10-04T12:25:43.905Z",
+  "checkedAt": "2026-10-04T12:20:33.091Z",
+  "branch": "codex/fix-zhipu-api-probe",
+  "head": "b8b4d53a0cf8280014e599a0384221add79831ae",
+  "userObservationValidated": true,
+  "bundleMatchesSnapshot": true,
+  "bundleSha256": "c12d4870de959760c1b16f5b018768a8f4030531e0d4a9a5525df00192d54894",
+  "agentRealModelRequests": 0,
+  "userReportedRequests": 1,
+  "sourceChangedThisTurn": false,
+  "userConfigModified": false,
+  "codexAccountRead": false,
+  "codexModelRequests": 0,
+  "electronLaunched": false,
+  "taskStatus": "in_progress",
+  "gateStatus": "failed",
+  "supportMaterialSent": false,
+  "checks": [
+    {
+      "command": "pnpm test:live -- --provider openai-compatible --account '智谱 Chat 测试 2' --prepare-only",
+      "exitCode": 0,
+      "modelRequests": 0,
+      "log": "chat-full-live-prepare.log"
+    }
+  ],
+  "chatFullLive": "deferred_not_run_at_user_request",
+  "handoff": {
+    "updatedAt": "2026-10-04T20:30:00+08:00",
+    "document": "docs/evidence/P01-02/zhipu-fix/handoff-2026-10-04.md",
+    "userMachineFurtherTesting": "stopped_at_user_request",
+    "chatFullLive": "deferred_not_run",
+    "previousChatRequestWithdrawn": true,
+    "newTestsExecuted": false,
+    "newModelRequests": 0,
+    "productionSourceChanged": false,
+    "committed": false,
+    "pushed": false
+  },
+  "deliveryAuthorization": {
+    "authorizedAt": "2026-10-04T20:35:00+08:00",
+    "remote": "private-archive:TapKit",
+    "branch": "codex/fix-zhipu-api-probe",
+    "scope": "latest related implementation/tests/ADR/evidence/progress/handoff",
+    "historicalCommitFlagsRemainSnapshotValues": true,
+    "deliveryCommitReference": "Git HEAD containing this report"
+  },
+  "deliveryPreparation": {
+    "files": 79,
+    "plaintextFilesScanned": 78,
+    "userReportedScreenshotFiles": 1,
+    "secretPatternMatches": 0,
+    "diffCheckExitCode": 0,
+    "newTestsExecuted": 0,
+    "newModelRequests": 0,
+    "credentialsRead": false,
+    "remote": "private-archive:TapKit",
+    "branch": "codex/fix-zhipu-api-probe",
+    "stagedDiffCheckBeforeNormalizationExitCode": 1,
+    "evidenceLogEndWhitespaceNormalized": [
+      "docs/evidence/P01-02/zhipu-fix/api-live-diagnostic-integration.log",
+      "docs/evidence/P01-02/zhipu-fix/api-live-diagnostic-unit.log",
+      "docs/evidence/P01-02/zhipu-fix/api-live-integration.log",
+      "docs/evidence/P01-02/zhipu-fix/api-live-unit.log",
+      "docs/evidence/P01-02/zhipu-fix/flashx-before-unit.log",
+      "docs/evidence/P01-02/zhipu-fix/flashx-integration.log",
+      "docs/evidence/P01-02/zhipu-fix/flashx-unit.log",
+      "docs/evidence/P01-02/zhipu-fix/resume-integration.log",
+      "docs/evidence/P01-02/zhipu-fix/resume-unit.log"
+    ],
+    "normalizationChangesTestResultContent": false,
+    "stagedDiffCheckAfterNormalizationExitCode": 0
+  }
+}

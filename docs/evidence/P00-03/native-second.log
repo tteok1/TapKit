@@ -1,0 +1,27 @@
+$ vitest run --config vitest.config.ts --project integration "P00-03"
+
+ RUN  v5.0.0 D:/TapKit
+
+ ❯ |integration| tests/integration/P00-03.sandbox.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts [ tests/integration/P00-03.sandbox.test.ts ]
+TypeError: describe.sequential is not a function
+ ❯ tests/integration/P00-03.sandbox.test.ts:22:10
+     20|   const e = r.events.at(-1)!; expect(e.event).toBe('finished'); expect…
+     21| };
+     22| describe.sequential('P00-03 real Windows sandbox T08 T19',()=>{
+       |          ^
+     23|   test('Node reads only input and writes workspace; runtime and input …
+     24|     const r = await request();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  21:19:04
+   Duration  459ms (transform 68%, setup 23%, worker 9%)
+
+[ELIFECYCLE] Command failed with exit code 1.

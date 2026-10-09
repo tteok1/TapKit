@@ -1,0 +1,23 @@
+{
+  "startedAt": "2026-09-17T14:26:34.390Z",
+  "endedAt": "2026-09-17T14:26:51.453Z",
+  "standardUser": false,
+  "exitCode": 0,
+  "repaired": [
+    {
+      "path": "migrations/0001_core.sql",
+      "sha256": "77dd9061ced298dbc33eb8af0b63195cb236cf920fd41915c4aa79f5a96f682b"
+    },
+    {
+      "path": "tests/integration/P00-03.sandbox.test.ts",
+      "sha256": "fb901c8566ae2f6e31cc4fa68bd0624e049564c71f54de4c66eebe4ea278f20b"
+    }
+  ],
+  "tests": {
+    "total": 9,
+    "passed": 9,
+    "failed": 0
+  },
+  "failures": [],
+  "note": "Focused preparation regression only; Office/Git and the full P00 gate remain failed. Capabilities are not enabled."
+}

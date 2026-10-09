@@ -1,0 +1,115 @@
+{
+  "taskId": "P02-02",
+  "date": "2026-10-05",
+  "timezone": "Asia/Shanghai",
+  "branch": "codex/p02-01",
+  "baseHead": "aebd8982b361b906acae626f6b13dfe19d287fe4",
+  "delivery": "working-tree at test acceptance; implementation 744819b committed and pushed, remote SHA verified",
+  "gitDelivery": "docs/evidence/P02-02/git-delivery-2026-10-05.json",
+  "schemaVersion": 6,
+  "status": "implemented_not_live_verified",
+  "runner": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\pnpm.ps1",
+  "checks": [
+    {
+      "command": "check",
+      "exitCode": 0,
+      "log": "docs/evidence/P02-02/check.log"
+    },
+    {
+      "command": "build:desktop",
+      "exitCode": 0,
+      "log": "docs/evidence/P02-02/production-build.log"
+    },
+    {
+      "command": "test:unit",
+      "exitCode": 0,
+      "passed": 224,
+      "files": 18,
+      "log": "docs/evidence/P02-02/unit.log"
+    },
+    {
+      "command": "test:integration P00-02 P01-01 P01-02 P01-03 P02-01 P02-02",
+      "exitCode": 0,
+      "passed": 112,
+      "files": 11,
+      "log": "docs/evidence/P02-02/integration.log",
+      "scope": "related regression; excludes P00-03"
+    },
+    {
+      "command": "test:unit P02-02",
+      "exitCode": 0,
+      "passed": 4
+    },
+    {
+      "command": "test:integration P02-02",
+      "exitCode": 0,
+      "passed": 12
+    },
+    {
+      "command": "test:e2e -- --grep P02-02",
+      "exitCode": 0,
+      "passed": 5,
+      "log": "docs/evidence/P02-02/e2e.log"
+    },
+    {
+      "command": "test:e2e -- --grep 'P02-02 T02 malicious'",
+      "exitCode": 0,
+      "passed": 1,
+      "log": "docs/evidence/P02-02/render-labels.log",
+      "scope": "after global htmlLabels=false; actual SVG labels and fitting"
+    },
+    {
+      "command": "test:e2e -- --grep 'P02-(01|02)'",
+      "exitCode": 1,
+      "passed": 6,
+      "failed": 2,
+      "scope": "intermediate: P02-01 all 3 passed; P02-02 failures fixed and rerun"
+    },
+    {
+      "command": "docs:check",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "isolation": {
+    "originalUserKeyVaultProfileReads": 0,
+    "liveModelRequests": 0,
+    "chromiumSandbox": true,
+    "nativeExecutionEnabled": false,
+    "fixture": "test-build-only ProviderAdapter with marked isolated profile; actual Core/SQLite/ModelRouter/UsageLedger"
+  },
+  "production": {
+    "fixtureMarkers": 0,
+    "fixtureChunks": 0
+  },
+  "gates": {
+    "P00": "failed",
+    "P01": "failed",
+    "P02": "not_started"
+  },
+  "nextTask": {
+    "id": "P02-03",
+    "status": "not_started"
+  },
+  "resourcesPending": [
+    "R01/R13/R14 live acceptance and P01 documented gaps",
+    "R02",
+    "R03",
+    "R04",
+    "R05"
+  ],
+  "screenshots": [
+    "two-turns.png",
+    "narrow-composer.png",
+    "safe-markdown.png",
+    "static-diagram.png"
+  ],
+  "limitations": [
+    "Managed UTF-8 text/message refs only; Office/PDF/media remain original-only",
+    "Project-wide/web/agent/plugin refs, media playback and work execution deferred",
+    "No claim of full integration/security/native/live gate completion"
+  ]
+}

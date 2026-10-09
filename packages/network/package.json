@@ -1,0 +1,12 @@
+{
+  "name": "@tapkit/network",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@tapkit/contracts": "workspace:*"
+  }
+}

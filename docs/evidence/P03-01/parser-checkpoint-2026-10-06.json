@@ -1,0 +1,90 @@
+{
+  "recordedAt": "2026-10-05T17:59:41.980Z",
+  "task": "P03-01",
+  "status": "in_progress",
+  "implementation": [
+    "Shared strict file limits and p03-1 parser version; catalog bounds unchanged from specification",
+    "Text/code/Markdown/CSV/TSV/JSON/XML/HTML worker-side parsing with coordinates, encoding and corruption checks",
+    "ZIP central-directory preflight, traversal/ADS/symlink/alias/encryption/count/ratio/size rejection, bounded CRC reads and shared nested-archive budgets",
+    "Self-contained parser CJS bundle in normal desktop/Core builds",
+    "Registered Core file.parse handler: fixed pinned Node through NativeSandboxExecutor, private immutable staged input, strict AppContainer/no-network/Job checks, bounded version/hash-matched output, existing lease-fenced publication",
+    "No host parsing fallback. Unavailable local native capability does not invoke an executor; original remains downloadable"
+  ],
+  "limitations": [
+    "P03 parser native AppContainer acceptance not yet implemented/run; orchestration tests use explicit test doubles only",
+    "Host import selection tokens/batch/folder ingress, FileService/bridge/library UI pending",
+    "PDF/DOCX/XLSX/PPTX/image format dispatch pending; not accepted by current text/ZIP adapter",
+    "P03-02/P03-03 not started; task/stage not complete"
+  ],
+  "validation": [
+    {
+      "command": "pnpm check",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 242
+    },
+    {
+      "command": "pnpm exec vitest run --project integration P00-02.storage P02-03.history P03-01.migration P03-01.files P03-01.parser-process P03-01.parser-orchestration (six exact paths)",
+      "exitCode": 0,
+      "passed": 50
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm docs:check; git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "dependency": {
+    "package": "yauzl",
+    "version": "3.4.0",
+    "baselineAndIntegrityChanged": false,
+    "lockChange": "only retrieval importer reuses existing locked package",
+    "initialOfflineInstallExitCode": 1,
+    "reason": "missing cached metadata for existing supply-chain policies",
+    "resolution": "normal existing pnpm policy verification fetched metadata; 1091 entries passed; no policy disabled",
+    "subsequentInstallExitCode": 0
+  },
+  "initialTestFailure": "Encrypted-flag adversarial fixture initially used a stored member without encryption-header size, so yauzl rejected it as corrupt before emitting entry. Switched the fixture to a compressed member; all encryption and CRC assertions passed. Limits and parser assertions unchanged.",
+  "git": {
+    "priorHead": "21d39244137c39e9a299c0b5d636692c384a7100",
+    "priorPushExitCode": 0,
+    "remoteShaMatched": true,
+    "priorPrCi": "complete success",
+    "priorPushCi": "complete success",
+    "currentParserCommit": "bcedfd76fb30a248ee79fdc11257afa58777e993",
+    "pushExitCode": 0,
+    "remoteParserShaMatched": true,
+    "prRun": 37353816483,
+    "pushRun": 37353812031,
+    "latestCheck": {
+      "job": 111911028217,
+      "conclusion": "failure",
+      "step": "Check",
+      "reason": "Prettier docs/progress/INDEX.md; docs updated after prior local check",
+      "log": ".cache/ci/37300466141/actions-jobs-111911028217-logs.log"
+    }
+  },
+  "p00Evidence": "docs/evidence/P03-01/macro-control-repair-2026-10-06.json",
+  "formatRepair": {
+    "sourceCommit": "bcedfd76fb30a248ee79fdc11257afa58777e993",
+    "initialLocalCheckExitCode": 1,
+    "reason": "Prettier recursive directory glob attempted scandir of ignored ACL-protected .test-data/development/secrets; no permission changed",
+    "implementation": "scripts/check-format.mjs reads Git tracked plus nonignored new files and applies existing Prettier config/ignore with same check API",
+    "negativeProbe": {
+      "exitCode": 1,
+      "newUnformattedFileDetected": true,
+      "probeRemoved": true
+    },
+    "finalCheck": {
+      "exitCode": 0,
+      "checkedRepositoryFiles": 280,
+      "formatFailures": 0
+    }
+  }
+}

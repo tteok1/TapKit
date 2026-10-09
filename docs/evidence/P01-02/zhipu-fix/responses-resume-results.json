@@ -1,0 +1,116 @@
+{
+  "taskId": "P01-02",
+  "recordedAt": "2026-10-04T10:43:13.856Z",
+  "timezone": "Asia/Shanghai",
+  "baseCommit": "b8b4d53a0cf8280014e599a0384221add79831ae",
+  "branch": "codex/fix-zhipu-api-probe",
+  "previousDeliveryVerified": true,
+  "userResumed": true,
+  "commands": [
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\docs\\evidence\\P01-02\\zhipu-fix\\responses-direct-probe.ps1 -OfflineCheck",
+      "exitCode": 0,
+      "fixturesPassed": 4,
+      "runs": 2,
+      "networkRequests": 0
+    },
+    {
+      "command": "PowerShell .NET HttpClient/handler/content construction with fixture-key; no PostAsync",
+      "exitCode": 0,
+      "constructorsValid": true,
+      "useProxy": false,
+      "allowRedirects": false,
+      "timeoutSeconds": 120,
+      "maxBufferBytes": 4194304,
+      "contentType": "application/json",
+      "networkRequests": 0
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "filesPassed": 15,
+      "testsPassed": 148,
+      "evidence": "resume-unit.log"
+    },
+    {
+      "command": "pnpm test:integration P01-02 P01-01 P01-03",
+      "exitCode": 0,
+      "filesPassed": 7,
+      "testsPassed": 68,
+      "evidence": "resume-integration.log"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "context": "current user; no ACL change",
+      "evidence": "resume-check.log"
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File responses-direct-probe.ps1 -OfflineCheck after aligning input shape",
+      "exitCode": 0,
+      "responseFixturesPassed": 4,
+      "requestShapeVerified": true,
+      "networkRequests": 0
+    }
+  ],
+  "script": {
+    "path": "docs/evidence/P01-02/zhipu-fix/responses-direct-probe.ps1",
+    "sha256": "de52626dcd9e92c3af40ad9f84fe72c838daa59e38b46b5a68408e5f71ec1132",
+    "syntaxVerified": true,
+    "offlineVerified": true,
+    "inputShape": "message.content.string",
+    "liveTransportAndSummaryVerified": true,
+    "textGenerationPassed": false,
+    "exactShapeTextGenerationVerified": false
+  },
+  "staticChecks": [
+    {
+      "command": "pnpm exec prettier --write affected progress files",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "productCodeChanged": false,
+  "realModelRequestsByAgent": 0,
+  "apiKeyReadByAgent": false,
+  "userConfigChanged": false,
+  "userOneShotResult": "Three received; final aligned input failed upstream overloaded with no usage. Stop real requests this round; exact-shape thinking-off/generation remains unverified.",
+  "taskStatus": "implemented_not_live_verified",
+  "phaseGate": "engineering_passed_external_pending",
+  "newChangesCommitted": false,
+  "newChangesPushed": false,
+  "userOneShotResults": [
+    "responses-direct-overloaded-2026-10-04.json",
+    "responses-direct-truncated-2026-10-04.json",
+    "responses-direct-aligned-overloaded-2026-10-04.json"
+  ],
+  "userOperatedRequestsObserved": 3,
+  "finalUserComparison": "completed with overloaded; no pending cooperation request",
+  "testFixturesChanged": true,
+  "sourceSha256": {
+    "packages/providers/src/api/adapter.ts": "4ffa12298ccc74043a43b97fd0f0a46c5eaf26f7d5bf0fedb372180432451af5",
+    "packages/providers/src/api/errors.ts": "3d6a9e60ec1b2186807af41b48486e40fd6ee09a3f917ee36c358f9cd9e7bd45",
+    "packages/providers/src/api/zhipu.ts": "818091793f4ca4f8dfc44e0dc63a8d72691da0d34a2253fd3bb9721aa8d7b625",
+    "packages/contracts/src/foundation.ts": "38ec23fdf6a10d11ae8932f08374ab275d89666b03d0d712c51368b9c48a0348",
+    "packages/contracts/src/providers.ts": "b463bd9699efcc604ee6193dffd478cdf6a608402400a2cf57685e3eafb19274",
+    "apps/desktop/src/renderer/src/api-diagnostic.tsx": "7105f6ebb536299b608fd4cbe556a0bf645b7477242d9119e3a9e3a4c179422b",
+    "apps/desktop/src/renderer/locales/zh-CN.json": "3c2de383c2048c4eb1e3930f72d81b92c806933617b1de312c3ce76f55c0c428",
+    "tests/unit/P01-02.zhipu.test.ts": "9c4faf9987ce6f9fa833f04f32cc84ff05543cde483ed60e11c9b8dcd12ecbed",
+    "tests/integration/P01-02.zhipu.test.ts": "e7882f60133f2ad6f7783abab3a908e40328087b426ab990b28c408963e6edb5",
+    "tests/e2e/P01-02.api.spec.ts": "813871b4ce30ae53336a2cfb17654efdc0d2dedc786e40539321552d5761f794"
+  },
+  "realRequestsThisRoundStopped": true,
+  "limits": {
+    "textOutputTokens": 32,
+    "toolsOutputTokens": 128,
+    "automaticRetries": 0,
+    "automaticBudgetIncrease": false
+  }
+}

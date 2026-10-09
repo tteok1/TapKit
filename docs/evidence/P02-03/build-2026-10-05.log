@@ -1,0 +1,8 @@
+pnpm build
+exit_code=0
+$ node scripts/build.mjs
+✓ built in 660ms
+✓ built in 1.62s
+✓ built in 659ms
+✓ built in 375ms
+✓ built in 31.75s

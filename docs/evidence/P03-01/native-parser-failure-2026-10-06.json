@@ -1,0 +1,94 @@
+{
+  "recordedAt": "2026-10-05T19:09:02.649Z",
+  "task": "P03-01",
+  "status": "in_progress",
+  "sourceCommit": "3e569f7a671482719787703254cd174b3418c9ae",
+  "prRun": 37356263115,
+  "checkJob": 111919325286,
+  "checkConclusion": "failure",
+  "failedSteps": [
+    "Unit and current-route integration",
+    "Verify P00-03 and P03 parser as an independent standard user"
+  ],
+  "logSha256": "1e61dd6f56ac0f5ec6ed0329e6b06cf1a923f432bba7afef9415a462270284f5",
+  "artifact": {
+    "id": 11365489402,
+    "size": 688478,
+    "zipSha256": "5bc7d7b0f9da0e1975aeb8f2f78e9102e5ac3107813c411241dadfdf0d4da922"
+  },
+  "results": {
+    "unit": {
+      "passed": 251,
+      "total": 251
+    },
+    "integration": {
+      "passed": 171,
+      "failed": 3,
+      "total": 174,
+      "failedFile": "P03-01.native-parser.test.ts"
+    },
+    "p00StandardUser": {
+      "passed": 22,
+      "total": 22,
+      "failed": 0,
+      "pending": 0
+    },
+    "p03StandardUser": {
+      "passed": 0,
+      "failed": 3,
+      "total": 3,
+      "pending": 0
+    },
+    "officeControls": {
+      "links": 3,
+      "macro": 3,
+      "allPassed": true
+    },
+    "performance": {
+      "listP95Ms": 20.1153,
+      "searchP95Ms": 229.8348
+    },
+    "buildAndElectron": "success"
+  },
+  "nativeObservation": {
+    "adminAndStandard": "AppContainer=true; identity matched; networkCapabilities=0; helper exit0; payload exit1; activeProcesses0; normal exited status. Source/download assertions and cancellation/kill path ran until retry failed.",
+    "reason": "CORRUPT_FILE; precise IO stage unavailable in old adapter",
+    "nativeAcceptancePassed": false
+  },
+  "nextDiagnostic": {
+    "implementation": "Adapter emits only static stage and whitelisted IO code, never raw exception/input/path. Synthetic native test records bounded stdout/stderr on failure.",
+    "guardChanges": false,
+    "hostParsingFallback": false,
+    "localHelperInvoked": false
+  },
+  "validation": [
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 255
+    },
+    {
+      "command": "pnpm test:integration P00-02.storage P02-03.history P03-01.files P03-01.migration P03-01.parser-process P03-01.parser-orchestration",
+      "exitCode": 0,
+      "passed": 56
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0
+    }
+  ],
+  "portablePermissionExperiment": {
+    "native": false,
+    "initialReadInputWriteWorkspace": "exit1 because output lstat read not allowed by Node flags; no inference about AppContainer",
+    "correctedReadInputAndWorkspaceWriteWorkspace": "both without and with synthetic package.json exit0; package-scope hypothesis not supported; no package-scope/runtime/permission change applied"
+  },
+  "git": {
+    "commit": "pending",
+    "push": "pending"
+  },
+  "remaining": [
+    "Actual P03 worker failure diagnosis/repair and native+standard user proof",
+    "Host token/file service/library UI and image support",
+    "P03-02/P03-03 not started"
+  ]
+}

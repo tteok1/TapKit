@@ -1,0 +1,15 @@
+scripts/bootstrap.mjs 22ms (unchanged)
+scripts/build.mjs 3ms (unchanged)
+scripts/check-boundaries.mjs 22ms (unchanged)
+scripts/check-manifests.mjs 13ms (unchanged)
+scripts/check.mjs 1ms (unchanged)
+scripts/dev-smoke.mjs 7ms
+scripts/dev.mjs 2ms (unchanged)
+scripts/docs-check.mjs 2ms (unchanged)
+scripts/e2e.mjs 1ms (unchanged)
+scripts/lib.mjs 4ms (unchanged)
+scripts/not-implemented.mjs 1ms (unchanged)
+scripts/prepare-native.mjs 1ms (unchanged)
+scripts/repro.mjs 7ms
+scripts/runtime-fetch.mjs 7ms (unchanged)
+apps/desktop/src/main/index.ts 47ms

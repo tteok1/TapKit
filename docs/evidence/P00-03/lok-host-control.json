@@ -1,0 +1,11 @@
+{
+  "startedAt": "2026-09-18T07:47:20.908Z",
+  "endedAt": "2026-09-18T07:48:05.992Z",
+  "scope": "Trusted generated fixtures host positive control only; never enables execution capabilities",
+  "workspace": "D:\\TapKit\\.test-data\\P00-03-lok-host-skK0R7\\workspace",
+  "exitCode": null,
+  "signal": "SIGTERM",
+  "error": "spawnSync D:\\TapKit\\.runtime\\python\\python.exe ETIMEDOUT",
+  "stdout": "{\"stage\": \"init\"}\r\n{\"stage\": \"initialized\", \"ok\": true}\r\n{\"stage\": \"loading\", \"format\": \"docx\"}\r\n{\"stage\": \"saved\", \"format\": \"docx\", \"ok\": true, \"bytes\": 73214, \"pdfHeader\": \"%PDF-\", \"originalUnchanged\": true}\r\n{\"stage\": \"loading\", \"format\": \"xlsx\"}\r\n",
+  "stderr": "No language allowlisted, turning off the language support.\n"
+}

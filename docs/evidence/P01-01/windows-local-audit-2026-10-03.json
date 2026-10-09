@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "kind": "local-environment-audit",
+  "date": "2026-10-03",
+  "timezone": "Asia/Shanghai",
+  "sourceHead": "38403478322ad581c8ab16ebf9745732498b3417",
+  "policyChanged": false,
+  "os": {
+    "displayVersion": "25H2",
+    "build": "26200.9457",
+    "verifiedAndReputablePolicyState": 1
+  },
+  "ci": {
+    "workflow": ".github/workflows/check.yml",
+    "runner": "windows-2025",
+    "runnerIntegrationRetained": true,
+    "independentStandardUserProbeRetained": true,
+    "electronFilter": "P00-0[12]",
+    "liveProviderVerificationIncluded": false,
+    "newAdministratorAccountCreatedByCurrentHarness": false
+  },
+  "retainedCodeIntegrityLog": {
+    "queryStart": "2026-09-15",
+    "eventId": 3077,
+    "projectMatchingEvents": 19,
+    "policy": "VerifiedAndReputableDesktop",
+    "status": "0xc0e90002",
+    "completeHistoricalPopupInventory": false,
+    "blockedComponents": [
+      "tapkit-windows-helper.exe",
+      "rustfmt.exe",
+      "rollup.win32-x64-msvc.node",
+      "rustc dependency std-44a584f44bc3dd65.dll"
+    ],
+    "olderArchivedEvidence": "docs/evidence/P00-03/policy-block.json"
+  },
+  "otherRecordedFailures": [
+    {
+      "component": "Prettier traversal of protected acl-probe",
+      "classification": "filesystem ACL / EPERM; no SAC attribution",
+      "evidence": "docs/evidence/P00-02/main-ci-repair.md"
+    },
+    {
+      "component": "PowerShell 5.1 mapping metadata test",
+      "classification": "script-policy rejection; exact historical policy source unverified",
+      "currentExecutionPolicy": "LocalMachine RemoteSigned; other scopes Undefined",
+      "evidence": "docs/evidence/P00-03/history.md"
+    },
+    {
+      "component": "historical dedicated-account WFP initialization",
+      "classification": "UAC cancellation / WFP DACL; later corrected; superseded route",
+      "evidence": "docs/evidence/P00-03/account-backend-checkpoint.md"
+    },
+    {
+      "component": "historical dedicated-account Node/Python/Office startup",
+      "classification": "KnownDlls / kernel32 restricted-token access denied; superseded route",
+      "evidence": "docs/evidence/P00-03/account-after-uac.md"
+    },
+    {
+      "component": "historical Office / MinGit AppContainer compatibility",
+      "classification": "pipe / path access denied; not established as SAC",
+      "evidence": "docs/evidence/runtime-compatibility.md"
+    },
+    {
+      "component": "historical rustfmt dependency search",
+      "classification": "DLL search-path failure; corrected independently of later SAC blocks",
+      "evidence": "docs/evidence/P00-03/account-backend-checkpoint.md"
+    }
+  ],
+  "newStartupDiagnostic": {
+    "command": "isolated Electron startup smoke via Playwright _electron.launch; no build",
+    "profileCreatedAtLocal": "2026-10-03 14:56:26",
+    "profile": ".test-data/local-startup-audit/profile-O42pDD",
+    "applicationCheckout": "C:/Users/private-user/.codex/worktrees/p01-01/TapKit",
+    "exitCode": 1,
+    "automationError": "Assertion error in Playwright CRSession._onMessage",
+    "userReportedApplicationError": "TapKit electron.exe unknown software exception 0x80000003",
+    "samePeriodApplicationCrashEventsFound": false,
+    "samePeriodProjectSacBlockEventsFound": false,
+    "status": "failed_diagnostic_root_cause_unconfirmed",
+    "noElectronProcessesObservedAfterward": true,
+    "privateModelRequestsPerformed": false,
+    "credentialsRead": false,
+    "nativeHelperVerified": false,
+    "existingHistoricalTestsOverwritten": false,
+    "repeatedStartupStopped": true
+  },
+  "interpretation": "Historical Electron passes remain historical evidence. This new diagnostic did not verify stable local startup and does not establish SAC as the crash cause. Resolve local startup before P02 acceptance; no task or phase promoted."
+}

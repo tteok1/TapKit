@@ -1,0 +1,101 @@
+$ node scripts/bootstrap.mjs
+node already prepared 24.21.0
+python already prepared 3.13.15
+git already prepared 2.55.0.windows.5
+rust already prepared 1.98.1
+libreoffice already prepared 26.2.6
+3.0.5 3.1.5 3.11.2
+v24.21.0
+Scope: all 12 workspace projects
+✓ Lockfile passes supply-chain policies (verified 16m ago)
+Lockfile is up to date, resolution step is skipped
+Done in 222ms using pnpm v12.4.1
+Verified better-sqlite3 Node-API prebuild e21e5efd71fba66578e95b62554d9028064a80dafd7221bf8a8ef155de8d240a; Electron probe runs after build
+vite v7.3.6 building ssr environment for production...
+transforming...
+✓ 1 modules transformed.
+rendering chunks...
+packages/storage/dist/index.cjs  0.76 kB
+✓ built in 51ms
+vite v7.3.6 building ssr environment for production...
+transforming...
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 97 modules transformed.
+rendering chunks...
+packages/core/dist/index.cjs  177.36 kB
+✓ built in 637ms
+vite v7.3.6 building ssr environment for production...
+transforming...
+../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 97 modules transformed.
+rendering chunks...
+out/main/index.js  181.20 kB
+✓ built in 704ms
+vite v7.3.6 building ssr environment for production...
+transforming...
+../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 97 modules transformed.
+rendering chunks...
+out/preload/index.js  176.81 kB
+✓ built in 414ms
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 28 modules transformed.
+rendering chunks...
+../../out/renderer/index.html                   0.60 kB
+../../out/renderer/assets/index-Btb8L5UA.css    7.19 kB
+../../out/renderer/assets/index-2EOakfTA.js   645.56 kB
+✓ built in 861ms
+$ node scripts/e2e.mjs "--" "--grep" "P00-01.*ABI"
+
+Running 1 test using 1 worker
+
+(node:29412) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+P00-01 runtime probe {"nonce":"中文 空格 ABI","process":"core","sqliteVersion":"3.53.4","electronVersion":"44.3.0","nodeAbi":"149","corePid":31660}
+TAPKIT_HOST_WINDOW 15012
+(node:15012) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:49701/6a94f7a4-8425-4360-a293-3411fbc3f243
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 1 tests\e2e\P00-01.shell.spec.ts:22:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory (5.4s)
+
+  1 passed (5.8s)
+BOOTSTRAP_OK

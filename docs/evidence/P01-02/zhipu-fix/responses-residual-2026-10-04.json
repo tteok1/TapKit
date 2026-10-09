@@ -1,0 +1,52 @@
+{
+  "taskId": "P01-02",
+  "recordedAt": "2026-10-04T03:47:12.533Z",
+  "accountLabel": "智谱 Responses 测试",
+  "modelId": "glm-4.7-flash",
+  "baseURL": "https://open.bigmodel.cn/api/v1",
+  "apiFormat": "openai-responses",
+  "userResult": {
+    "errorCode": "OUTPUT_LIMIT_REACHED",
+    "phase": "text",
+    "tools": "not_entered"
+  },
+  "readOnlyDatabaseObservation": {
+    "status": "unavailable",
+    "lastErrorCode": "OUTPUT_LIMIT_REACHED",
+    "lastCheckAt": 1791085193902,
+    "lastCheckAsiaShanghai": "2026-10-04 11:39:53"
+  },
+  "freshBuildObservation": {
+    "coreArtifact": "packages/core/dist/index.cjs",
+    "lastWriteAsiaShanghai": "2026-10-04 11:39:46",
+    "containsZhipuResponsesMatcher": true,
+    "containsReasoningEffortNone": true,
+    "electronMain": {
+      "pid": 48688,
+      "startAsiaShanghai": "2026-10-04 11:39:48.184"
+    },
+    "coreUtility": {
+      "pid": 18132,
+      "parentPid": 48688,
+      "startAsiaShanghai": "2026-10-04 11:39:48.418",
+      "nodeUtility": true,
+      "expectedProfileArgument": true
+    },
+    "actualWireRequestCaptured": false,
+    "upstreamTerminalEventCaptured": false,
+    "usageCaptured": false
+  },
+  "conclusion": "Patched mapping did not resolve user probe. Fresh app/Core confirmed; actual request and upstream usage remain unobserved. Root cause unconfirmed.",
+  "apiKeyReadByAgent": false,
+  "realModelRequestsByAgent": 0,
+  "userConfigChanged": false,
+  "stopReason": "User requested handoff instead of further diagnosis or code changes.",
+  "draftScript": {
+    "path": "docs/evidence/P01-02/zhipu-fix/responses-direct-probe.ps1",
+    "syntaxVerified": false,
+    "offlineVerified": false,
+    "liveExecuted": false
+  },
+  "gitDelivery": "User subsequently authorized committing and pushing this branch including handoff; verify final Git history and remote.",
+  "handoff": "docs/evidence/P01-02/zhipu-fix/handoff-2026-10-04.md"
+}

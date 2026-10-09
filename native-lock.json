@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "package": "better-sqlite3",
+  "version": "13.0.3",
+  "format": "Node-API",
+  "platform": "win32-x64",
+  "file": "prebuilds/win32-x64.node",
+  "sha256": "e21e5efd71fba66578e95b62554d9028064a80dafd7221bf8a8ef155de8d240a",
+  "source": "https://registry.npmjs.org/better-sqlite3/-/better-sqlite3-13.0.3.tgz",
+  "sourceIntegrity": "sha512-RbOBxmLBG8uvFUc15X9+9SFemKcQ0WBuISBVkpuiaUB2qblC8UWlHEjdWVoZ8AdhSwmoEgsiXKfopX0CQxaACQ=="
+}

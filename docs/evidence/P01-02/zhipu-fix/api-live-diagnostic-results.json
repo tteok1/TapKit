@@ -1,0 +1,244 @@
+{
+  "task": "P01-02",
+  "recordedAt": "2026-10-04T12:20:17.560Z",
+  "status": "local_passed_single_request_failed_upstream_pending",
+  "taskStatus": "in_progress",
+  "gateStatus": "failed",
+  "head": "b8b4d53a0cf8280014e599a0384221add79831ae",
+  "branch": "codex/fix-zhipu-api-probe",
+  "committed": false,
+  "pushed": false,
+  "sourceSha256": {
+    "scripts/api-live.mjs": "04585068fd6c345f73fd5c4e856bd19649492fee6c41c933345b41152a8a0fb0",
+    "scripts/live.mjs": "cf71ef7d4d3e24f3f46a7c74fcfd9e20bdb3115bc3414e0583cd6110e29c531b",
+    "scripts/api-live-key.ps1": "19b7da999db448b033e3d9aa91adc399836f6d9c08b9a5960144bd72f19ae249",
+    "scripts/pnpm.ps1": "c9381b8509ff5c55bb0fdebfb1c999f6f517f2d57bfa5f19f74f1d07b75289f3",
+    "tests/live/P01-02.audit.ts": "63ba45726776fd4bbf9459a0d743cbc53ddb9fdaea28ab12bc6a83e0295f52de",
+    "tests/live/P01-02.acceptance.ts": "4cee1883ce62cab9b0489ffe019158855e051034ef097da16d9b60b8aa1a0c00",
+    "tests/live/P01-02.api.ts": "bdd394586db7a54578070330c76f573108b0c1721a713a26f47b68b12d2f541c",
+    "tests/unit/P01-02.live.test.ts": "c3754595ecedba6d54079c87cb62e9831ad0f5254ab771c2b79ed7df56aa25f7",
+    "tests/integration/P01-02.live.test.ts": "eb427e59d2507956924ac0e6d4d6badff571ee55afaf1ca9091aa2130638713d",
+    ".test-data/P01-02-live-runner/index.cjs": "c12d4870de959760c1b16f5b018768a8f4030531e0d4a9a5525df00192d54894",
+    "packages/providers/src/api/adapter.ts": "a6f36cbf7f80cb5a61323cb65ade0bd685d7106cf46d09ff670d699198288989"
+  },
+  "userFeedback": {
+    "checkedAt": "2026-10-04T12:10:31.510Z",
+    "requests": 1,
+    "status": "failed",
+    "phase": "text",
+    "errorCode": "OUTPUT_LIMIT_REACHED",
+    "usage": {
+      "inputTotal": 20,
+      "outputTotal": 128,
+      "inputCachedSubset": 2,
+      "reasoningSubset": 128,
+      "source": "actual"
+    },
+    "observedRequestedEffort": null,
+    "evidence": "api-live-user-truncated-2026-10-04.json"
+  },
+  "previousBundleMatchedEngineeringSnapshot": true,
+  "diagnosis": "actual fetch-boundary none/128 confirmed; supplier reports all 128 output as reasoning and truncation; vendor parameter execution or usage semantics remain unconfirmed",
+  "officialDocs": {
+    "checkedAt": "2026-10-04T12:20:17.561Z",
+    "sources": [
+      "https://docs.bigmodel.cn/cn/guide/develop/responses/introduction.md",
+      "https://docs.bigmodel.cn/api-reference/response/创建-response.md"
+    ],
+    "noneAndMinimalDocumentedAsAbandonThinking": true,
+    "outputIncludesReasoning": true
+  },
+  "changes": {
+    "productionAdapterModified": false,
+    "payloadModified": false,
+    "budgetIncreased": false,
+    "requestAuditWhitelist": true,
+    "textOnlyMode": true,
+    "expectedNonzeroExitWithoutExtraStack": true
+  },
+  "checks": [
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 167,
+      "files": 16,
+      "log": "api-live-diagnostic-unit.log"
+    },
+    {
+      "command": "pnpm test:integration P01-01 P01-02 P01-03",
+      "exitCode": 0,
+      "passed": 76,
+      "files": 8,
+      "log": "api-live-diagnostic-integration.log"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "execution": "current Windows user",
+      "log": "api-live-diagnostic-check.log"
+    },
+    {
+      "command": "pnpm exec vite build --config tests/live/api.vite.config.ts",
+      "exitCode": 0,
+      "log": "api-live-diagnostic-bundle.log"
+    },
+    {
+      "command": "locked Node .test-data/verify-api-live.mjs",
+      "exitCode": 0,
+      "log": "api-live-diagnostic-cli.log",
+      "realRequests": 0
+    },
+    {
+      "command": "locked Node .test-data/verify-api-live-diagnostic.mjs",
+      "exitCode": 0,
+      "log": "api-live-diagnostic-exit.log",
+      "realRequests": 0
+    },
+    {
+      "command": "pnpm test:live -- --provider openai-compatible --account '中文 fixture' --prepare-only --text-only",
+      "exitCode": 0,
+      "log": "api-live-diagnostic-prepare.log",
+      "realRequests": 0
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": "api-live-diagnostic-docs-check.log"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "log": "api-live-diagnostic-diff-check.log"
+    }
+  ],
+  "offlineCapture": {
+    "requestBoundaryEffort": "none",
+    "outputLimit": 128,
+    "inputShape": "message.content.string",
+    "simulatedReportedReasoningTokens": 128,
+    "stopsAfterOne": true
+  },
+  "agentRealModelRequests": 0,
+  "userRealRequestsReportedThisTurn": 1,
+  "savedKeysRead": false,
+  "codexAccountRead": false,
+  "codexModelRequests": 0,
+  "electronLaunched": false,
+  "userConfigModified": false,
+  "nextUserVerification": {
+    "status": "completed_failed",
+    "account": "智谱 Responses 测试 3",
+    "modelId": "glm-4.7-flashx",
+    "runMode": "text-only",
+    "requestsMax": 1,
+    "outputTokensMax": 128,
+    "noAutomaticRetry": true,
+    "checkedAt": "2026-10-04T12:20:33.091Z"
+  },
+  "ledgerVerified": false,
+  "observedUserFeedback": {
+    "checkedAt": "2026-10-04T12:20:33.091Z",
+    "status": "failed",
+    "runMode": "text-only",
+    "requests": 1,
+    "usage": {
+      "inputTotal": 20,
+      "outputTotal": 128,
+      "inputCachedSubset": 2,
+      "reasoningSubset": 128,
+      "source": "actual"
+    },
+    "error": {
+      "code": "OUTPUT_LIMIT_REACHED",
+      "retryable": false
+    },
+    "requestAudit": [
+      {
+        "ordinal": 1,
+        "endpointMatchesConfig": true,
+        "modelMatchesConfig": true,
+        "stream": true,
+        "maxOutputTokens": 128,
+        "reasoningEffort": "none",
+        "thinkingType": null,
+        "inputShape": "message.content.string",
+        "instructionsPresent": true,
+        "toolCount": 0,
+        "storeFalse": true,
+        "httpStatus": 200
+      }
+    ],
+    "evidence": "docs/evidence/P01-02/zhipu-fix/responses-none-observed-2026-10-04.json"
+  },
+  "diagnosticOutcome": {
+    "noneMissingExcluded": true,
+    "oldBundleExcluded": true,
+    "thinkingDisabledAtProviderConfirmed": false,
+    "upstreamParameterOrUsageSemanticsSuspected": true,
+    "vendorInternalRootCauseConfirmed": false,
+    "noFurtherRequestsForThisResponsesCombination": true,
+    "extraCliStackAbsentInUserFeedback": true,
+    "supportMaterial": "docs/evidence/P01-02/zhipu-fix/zhipu-responses-support-2026-10-04.md",
+    "supportMaterialSent": false
+  },
+  "nextChatVerification": {
+    "status": "deferred_at_user_request",
+    "account": "智谱 Chat 测试 2",
+    "modelId": "glm-4.7-flash",
+    "runMode": "full",
+    "maxRequests": 6,
+    "maxOutputTokensPerRequest": 128,
+    "noAutomaticRetry": true,
+    "prepareExitCode": 0,
+    "prepareLog": "chat-full-live-prepare.log",
+    "executed": false,
+    "nextActor": "receiving_developer_own_isolated_environment_and_credentials"
+  },
+  "feedbackRecordedAt": "2026-10-04T12:25:43.895Z",
+  "handoff": {
+    "updatedAt": "2026-10-04T20:30:00+08:00",
+    "document": "docs/evidence/P01-02/zhipu-fix/handoff-2026-10-04.md",
+    "userMachineFurtherTesting": "stopped_at_user_request",
+    "chatFullLive": "deferred_not_run",
+    "previousChatRequestWithdrawn": true,
+    "newTestsExecuted": false,
+    "newModelRequests": 0,
+    "productionSourceChanged": false,
+    "committed": false,
+    "pushed": false
+  },
+  "deliveryAuthorization": {
+    "authorizedAt": "2026-10-04T20:35:00+08:00",
+    "remote": "private-archive:TapKit",
+    "branch": "codex/fix-zhipu-api-probe",
+    "scope": "latest related implementation/tests/ADR/evidence/progress/handoff",
+    "historicalCommitFlagsRemainSnapshotValues": true,
+    "deliveryCommitReference": "Git HEAD containing this report"
+  },
+  "deliveryPreparation": {
+    "files": 79,
+    "plaintextFilesScanned": 78,
+    "userReportedScreenshotFiles": 1,
+    "secretPatternMatches": 0,
+    "diffCheckExitCode": 0,
+    "newTestsExecuted": 0,
+    "newModelRequests": 0,
+    "credentialsRead": false,
+    "remote": "private-archive:TapKit",
+    "branch": "codex/fix-zhipu-api-probe",
+    "stagedDiffCheckBeforeNormalizationExitCode": 1,
+    "evidenceLogEndWhitespaceNormalized": [
+      "docs/evidence/P01-02/zhipu-fix/api-live-diagnostic-integration.log",
+      "docs/evidence/P01-02/zhipu-fix/api-live-diagnostic-unit.log",
+      "docs/evidence/P01-02/zhipu-fix/api-live-integration.log",
+      "docs/evidence/P01-02/zhipu-fix/api-live-unit.log",
+      "docs/evidence/P01-02/zhipu-fix/flashx-before-unit.log",
+      "docs/evidence/P01-02/zhipu-fix/flashx-integration.log",
+      "docs/evidence/P01-02/zhipu-fix/flashx-unit.log",
+      "docs/evidence/P01-02/zhipu-fix/resume-integration.log",
+      "docs/evidence/P01-02/zhipu-fix/resume-unit.log"
+    ],
+    "normalizationChangesTestResultContent": false,
+    "stagedDiffCheckAfterNormalizationExitCode": 0
+  }
+}

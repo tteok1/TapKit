@@ -1,0 +1,98 @@
+{
+  "taskId": "P01-01",
+  "checkout": "D:/tapkit/TapKit",
+  "branch": "codex/p01-01",
+  "codeRef": "3840347+working-tree",
+  "recordedAt": "2026-10-03T21:23:24.594Z",
+  "sourceSha256": {
+    "packages/providers/src/codex/transport.ts": "73e9ee94d2bce9d4970ba8de4cfeeb7faf8535e33d51a18f1ba476734c881af2",
+    "packages/providers/src/codex/adapter.ts": "d62c759d396d7680e945cfd1b2df4a5f0cf58d19ead08fb58f8f154c26b54658",
+    "packages/providers/src/codex/network.ts": "f9b7396875bea7b09630a147691d4b12f46a4b1d150faee03a883b25a8d7f0f0",
+    "packages/core/src/provider-service.ts": "9570a9a38339355ee7bc43f3199c609882f352d11501f91c8f4d265223f58e3d",
+    "packages/contracts/src/providers.ts": "3f17a890e80f95e6df43956b287bbe886e13486faa10c169bdc259a7076ddd28",
+    "apps/desktop/src/renderer/src/auth-diagnostic.tsx": "cfa0f5653fa411fef4ca4801bff4c4cfde278d2242af73ac17943ba57b77ea49",
+    "apps/desktop/src/renderer/locales/zh-CN.json": "01b00b2577b5e847a3e0dd938f26f7e87760385879f272e56ef382435fc2af38",
+    "tests/unit/P01-01.transport.test.ts": "30b2d021014cda130f59021324383ce967a76e2e7dae291394d4e9a5d3439bc9",
+    "tests/integration/P01-01.codex.test.ts": "85c5a5f6995b26701087b86f6fb1c09e21ab8d1f6e3d90f91f202340aab42f6d",
+    "tests/e2e/P01-01.utility.spec.ts": "a9e059ad25941cc7379e279c35b5fe75acde17ae5abc27e1e3351db3e65bb153",
+    "tests/fixtures/P01-01.utility.cjs": "bc27e5198f357fb3787e2d6571e351e869b9517d4cc38027f94e8fe43ec8fcd3",
+    "tests/live/P01-01.diagnostic.ts": "38b51bfa52724a7562da01aa955fc748dc77faf2ca729e16e61fc6f890fe50e1",
+    "tests/live/P01-01.diagnostic.mjs": "5770720a7ce3562f410a298297cfce8220db727852bac1391c11beb84da5c647",
+    "tests/live/diagnostic.vite.config.ts": "a48a061f53f6edaf4bf1bcd23cf83721281367255baaf3b25dadd9243e7149cf"
+  },
+  "commands": [
+    {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "log": "missing-mime-build.log"
+    },
+    {
+      "command": "pnpm test:unit",
+      "passed": 46,
+      "exitCode": 0,
+      "log": "missing-mime-unit.log"
+    },
+    {
+      "command": "pnpm test:integration P01-01 P00-02.storage",
+      "passed": 65,
+      "exitCode": 0,
+      "log": "missing-mime-integration.log"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P01-01",
+      "passed": 7,
+      "exitCode": 0,
+      "log": "missing-mime-electron.log"
+    },
+    {
+      "command": "pnpm exec vite build --config tests/live/diagnostic.vite.config.ts",
+      "exitCode": 0,
+      "log": "missing-mime-runner-build.log"
+    }
+  ],
+  "finalChecks": {
+    "check": 0,
+    "docsCheck": 0,
+    "diffCheck": 0
+  },
+  "sandboxCheck": {
+    "exitCode": 1,
+    "reason": "Prettier directory enumeration EPERM on existing private test fixture",
+    "log": "missing-mime-check-sandbox.log",
+    "resolved": "same checks passed as real desktop user without changing ACL"
+  },
+  "actualLive": {
+    "resourceId": "R01",
+    "modelId": "gpt-5.6-luna",
+    "requestCount": 7,
+    "contentType": "missing",
+    "bodyKind": "sse",
+    "status": "ready",
+    "text": true,
+    "tools": true,
+    "errorCode": null,
+    "profileReadOnly": true,
+    "credentialsRead": true,
+    "temporarySealedKeyHostDeleted": true,
+    "tokenRefresh": false,
+    "logout": false,
+    "toolExecuted": false,
+    "fullLivePassed": false,
+    "before": "response-inspect-before.log",
+    "intermediate": "response-inspect-cancel-race.log",
+    "afterText": "response-inspect-text-passed.log",
+    "afterProbe": "response-inspect-live.log"
+  },
+  "rootCause": [
+    "missing response Content-Type rejected genuine SSE",
+    "terminal reader cancellation raced with pending read and controller close"
+  ],
+  "diagnosticOptInAbsentExit": 2,
+  "restrictions": [
+    "no raw credentials or response text in evidence",
+    "no git commit or push",
+    "P00 gate failed",
+    "no later tasks advanced",
+    "full two-turn/restart-refresh/logout live pending"
+  ]
+}

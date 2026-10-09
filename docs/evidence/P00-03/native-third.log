@@ -1,0 +1,88 @@
+$ vitest run --config vitest.config.ts --project integration "P00-03"
+
+ RUN  v5.0.0 D:/TapKit
+
+ ❯ |integration| tests/integration/P00-03.sandbox.test.ts (8 tests | 4 failed) 29177ms
+   ❯ P00-03 real Windows sandbox T08 T19 (8)
+     × Node reads only input and writes workspace; runtime and input are read only; environment is private 10736ms
+     × network denies public, loopback and metadata connections 965ms
+     × timeout, output flood and fork limits are enforced 2075ms
+     × ConPTY is interactive while still in AppContainer 10633ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > Node reads only input and writes workspace; runtime and input are read only; environment is private
+AssertionError: expected '授权输入\nwrite EPERM\nwrite EPERM\nread …' to contain 'child'
+
+- Expected
++ Received
+
+- child
++ 授权输入
++ write EPERM
++ write EPERM
++ read EPERM
++ env false false
++
+
+ ❯ tests/integration/P00-03.sandbox.test.ts:43:27
+     41|     expect(result.exitCode).toBe(0);
+     42|     expect(result.stdout).toContain('授权输入');
+     43|     expect(result.stdout).toContain('child');
+       |                           ^
+     44|     expect(result.stdout).toContain('env false false');
+     45|     expect(result.stdout).not.toMatch(/PRIVATE_MARKER|WRITE_ESCAPED/);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > network denies public, loopback and metadata connections
+AssertionError: expected 1 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 1
+
+ ❯ tests/integration/P00-03.sandbox.test.ts:68:60
+     66|       `,JSON.stringify([['127.0.0.1',port],['1.1.1.1',443],['169.254.1…
+     67|       const data=finished(await run(r));expect(data.stdout).not.toCont…
+     68|       expect(String(data.stdout).match(/EACCES/g)?.length).toBe(4);
+       |                                                            ^
+     69|     } finally { server.close(); }
+     70|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > timeout, output flood and fork limits are enforced
+AssertionError: expected 5 to be less than or equal to 4
+ ❯ tests/integration/P00-03.sandbox.test.ts:83:82
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > ConPTY is interactive while still in AppContainer
+AssertionError: expected '' to contain 'PTY_ECHO:hello terminal'
+
+- Expected
++ Received
+
+- PTY_ECHO:hello terminal
+
+ ❯ tests/integration/P00-03.sandbox.test.ts:105:55
+    103|     r.payload.terminal=true;
+    104|     const data=finished(await run(r,{onStarted:(_e,send)=>setTimeout((…
+    105|     expect(data.exitCode).toBe(0);expect(data.stdout).toContain('PTY_E…
+       |                                                       ^
+    106|   });
+    107| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 4 passed (8)
+   Start at  21:19:30
+   Duration  29.64s (tests 99%, transform 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.

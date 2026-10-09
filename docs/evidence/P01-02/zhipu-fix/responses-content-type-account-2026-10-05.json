@@ -1,0 +1,19 @@
+{
+  "profile": "development",
+  "readOnly": true,
+  "credentialsRead": false,
+  "found": true,
+  "account": [
+    {
+      "label": "response",
+      "provider_id": "openai-compatible",
+      "api_format": "openai-responses",
+      "base_url": "https://open.bigmodel.cn/api/v1",
+      "model_id": "glm-4.7-flashx",
+      "status": "unavailable",
+      "last_error_code": "STREAM_INTERRUPTED",
+      "last_check_at": 1791137120786,
+      "updated_at": 1791137120786
+    }
+  ]
+}

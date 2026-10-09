@@ -1,0 +1,15 @@
+{
+  "name": "@tapkit/workflows",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@tapkit/contracts": "workspace:*",
+    "docx": "9.7.1",
+    "pptxgenjs": "4.0.1",
+    "exceljs": "4.4.0"
+  }
+}

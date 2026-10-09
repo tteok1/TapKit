@@ -1,0 +1,11 @@
+Scope: all 12 workspace projects
+✓ Lockfile passes supply-chain policies (verified 12m ago)
+[WARN] 9 deprecated subdependencies found: boolean@3.2.0, fstream@1.0.12, glob@7.2.3, inflight@1.0.6, lodash.isequal@4.5.0, node-domexception@1.0.0, rimraf@2.6.3, rimraf@2.7.1, uuid@8.3.2
+Packages: +4
+++++
+Progress: resolved 4, reused 438, downloaded 4, added 4, done
+
+devDependencies:
++ @babel/parser 8.0.5
+
+Done in 1.3s using pnpm v12.4.1

@@ -1,0 +1,59 @@
+{
+  "task": "P03-01",
+  "status": "in_progress",
+  "date": "2026-10-09",
+  "codeHead": "99afbad144db57a61adb14c3367938b48f41b782",
+  "committed": true,
+  "push": {
+    "initialAttempts": [
+      {
+        "exitCode": 128,
+        "error": "connection reset"
+      },
+      {
+        "exitCode": 128,
+        "error": "connection reset"
+      },
+      {
+        "exitCode": 128,
+        "error": "connection failed; HTTP/1.1"
+      }
+    ],
+    "successfulAttempt": {
+      "exitCode": 0,
+      "temporaryParameters": "schannel TLS backend + HTTP/1.1; certificate validation enabled; no persistent config change"
+    },
+    "remoteShaVerified": true
+  },
+  "pr": {
+    "number": 6,
+    "url": "private-archive:TapKit",
+    "draft": true,
+    "bodyUpdated": true,
+    "note": "Initial API fetch failed; same idempotent update retried successfully"
+  },
+  "ci": {
+    "prRun": 37836620620,
+    "pushRun": 37836615137,
+    "status": "completed",
+    "conclusion": "failure",
+    "checkJob": 113515161310,
+    "checkSteps": 0,
+    "startupJob": 113515177173,
+    "startupSteps": 0,
+    "annotation": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+    "resource": "R15",
+    "nativeDiagnostic": "not_run"
+  },
+  "localEvidence": "docs/evidence/P03-01/chat-host-checkpoint-2026-10-09.json",
+  "remaining": [
+    "navigation cancellation/final draft append fault audit and final requirement/exception audit",
+    "real native parser CORRUPT_FILE after R15 restored",
+    "P03-02/03 unstarted"
+  ],
+  "guards": {
+    "goal": "active; independent audit remains",
+    "localHelper": "not_executed",
+    "realUserVaultKeysProfile": "not_read"
+  }
+}

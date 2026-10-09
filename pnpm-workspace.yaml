@@ -1,0 +1,16 @@
+packages:
+  - apps/*
+  - packages/*
+allowBuilds:
+  electron: false
+  '@google/genai': false
+  better-sqlite3: false
+  electron-winstaller: false
+  esbuild: false
+  onnxruntime-node: false
+  protobufjs: false
+  sharp: false
+minimumReleaseAgeExclude:
+  - '@tanstack/react-virtual@3.14.13'
+  - '@tanstack/virtual-core@3.17.11'
+strictPeerDependencies: true

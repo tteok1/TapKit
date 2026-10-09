@@ -1,0 +1,33 @@
+{
+  "paths": [
+    {
+      "path": "D:\\TapKit",
+      "remaining": 0
+    },
+    {
+      "path": "D:\\TapKit\\.runtime",
+      "remaining": 0
+    },
+    {
+      "path": "D:\\TapKit\\.runtime\\libreoffice",
+      "remaining": 0
+    },
+    {
+      "path": "D:\\TapKit\\.runtime\\libreoffice\\program\\soffice.com",
+      "remaining": 0
+    },
+    {
+      "path": "D:\\TapKit\\.runtime\\libreoffice\\share\\registry\\main.xcd",
+      "remaining": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data",
+      "remaining": 0
+    },
+    {
+      "path": "D:\\TapKit\\.test-data\\P00-03 Office Git 中文 ZgmJbv",
+      "remaining": 0
+    }
+  ],
+  "remainingProfiles": 0
+}

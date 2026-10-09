@@ -1,0 +1,17 @@
+$ node scripts/docs-check.mjs
+node:internal/fs/promises:1345
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open 'D:\TapKit\docs\progress\P01-01.md'
+    at async open (node:internal/fs/promises:1345:25)
+    at async readFile (node:internal/fs/promises:1996:14)
+    at async file:///D:/TapKit/scripts/docs-check.mjs:16:19 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\TapKit\\docs\\progress\\P01-01.md'
+}
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.

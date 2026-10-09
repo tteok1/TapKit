@@ -1,0 +1,8 @@
+apps/desktop/src/main/index.ts 108ms
+tests/e2e/P00-02.foundation.spec.ts 43ms
+packages/contracts/src/foundation.ts 23ms (unchanged)
+packages/contracts/src/index.ts 14ms
+packages/contracts/src/persistence.ts 8ms
+packages/contracts/src/resources.ts 13ms (unchanged)
+packages/storage/src/foundation.ts 24ms
+docs/adr/0005-foundation-protocol-and-recovery.md 26ms (unchanged)

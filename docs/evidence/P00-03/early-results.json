@@ -1,0 +1,45 @@
+{
+  "note": "Earlier command evidence. The old runner appended an incorrect not_run_after_policy_block annotation after native tests had actually executed; that annotation is withdrawn.",
+  "commands": [
+    {
+      "command": "pnpm check",
+      "cwd": "D:\\TapKit",
+      "startedAt": "2026-09-17T13:36:41.314Z",
+      "endedAt": "2026-09-17T13:36:51.924Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-03/final-check.log"
+    },
+    {
+      "command": "pnpm build",
+      "cwd": "D:\\TapKit",
+      "startedAt": "2026-09-17T13:36:51.935Z",
+      "endedAt": "2026-09-17T13:36:57.878Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-03/final-build.log"
+    },
+    {
+      "command": "pnpm test:unit",
+      "cwd": "D:\\TapKit",
+      "startedAt": "2026-09-17T13:36:57.888Z",
+      "endedAt": "2026-09-17T13:36:59.248Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-03/final-unit.log"
+    },
+    {
+      "command": "pnpm test:integration -- P00-01 P00-02 P00-03.capability",
+      "cwd": "D:\\TapKit",
+      "startedAt": "2026-09-17T13:36:59.264Z",
+      "endedAt": "2026-09-17T13:38:49.665Z",
+      "exitCode": 1,
+      "log": "docs/evidence/P00-03/final-integration.log"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P00-(01|02)",
+      "cwd": "D:\\TapKit",
+      "startedAt": "2026-09-17T13:38:49.678Z",
+      "endedAt": "2026-09-17T13:39:08.943Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-03/final-e2e.log"
+    }
+  ]
+}

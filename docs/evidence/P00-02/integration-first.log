@@ -1,0 +1,46 @@
+$ vitest run --config vitest.config.ts --project integration
+
+ RUN  v5.0.0 D:/TapKit
+
+ ❯ |integration| tests/integration/P00-02.storage.test.ts (13 tests | 2 failed) 1160ms
+   ❯ P00-02 real SQLite storage integration (13)
+     × T05 duplicate request writes once across reopen; changed payload conflicts 64ms
+     × T05 process death after job claim recovers the same job with a new epoch 205ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P00-02.storage.test.ts > P00-02 real SQLite storage integration > T05 duplicate request writes once across reopen; changed payload conflicts
+AssertionError: expected 'INTERNAL_ERROR' to be 'CONFLICT' // Object.is equality
+
+Expected: "CONFLICT"
+Received: "INTERNAL_ERROR"
+
+ ❯ tests/integration/P00-02.storage.test.ts:38:77
+     36| expect(next.dispatch(request)).toEqual(first);
+     37| const conflict=next.dispatch({...request,payload:{scope:{type:'profile…
+     38| expect(conflict.ok).toBe(false);if(!conflict.ok)expect(conflict.error.…
+       |                                                                             ^
+     39| expect(reopened.db.prepare('SELECT count(*) AS n FROM events').get()).…
+     40| expect(reopened.db.prepare('SELECT count(*) AS n FROM outbox').get()).…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |integration| tests/integration/P00-02.storage.test.ts > P00-02 real SQLite storage integration > T05 process death after job claim recovers the same job with a new epoch
+TypeError: Cannot read properties of undefined (reading 'id')
+ ❯ tests/integration/P00-02.storage.test.ts:136:12
+    134| const reopened=await openStore(store.dataDir,()=>Date.now()+16_000);st…
+    135| const queue=new JobQueue(reopened),job=queue.claim('recovered')!;
+    136| expect(job.id).toBe(result.id);expect(job.lease_epoch).toBe(result.epo…
+       |            ^
+    137| expect(queue.finish(job,'completed')).toBe(true);expect(queue.claim('a…
+    138| expect(ReplySchema.safeParse(new CoreService(reopened).dispatch(req('a…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 16 passed (18)
+   Start at  18:16:37
+   Duration  1.89s (tests 66%, transform 20%, import 11%, setup 1%, worker 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.

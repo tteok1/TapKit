@@ -1,0 +1,34 @@
+{
+  "task": "P02-03",
+  "recordedAt": "2026-10-05T10:52:45.937Z",
+  "dataset": {
+    "sessions": 10000,
+    "messages": 100000
+  },
+  "seedMs": 20142.027,
+  "device": {
+    "platform": "win32",
+    "arch": "x64",
+    "cpu": "13th Gen Intel(R) Core(TM) i7-13700H",
+    "logicalCpus": 20,
+    "totalMemory": 16961822720
+  },
+  "list": {
+    "samples": 200,
+    "p50Ms": 6.425200000001496,
+    "p95Ms": 8.490099999999074
+  },
+  "search": {
+    "samples": 30,
+    "p50Ms": 147.03199999999924,
+    "p95Ms": 207.45780000000013
+  },
+  "processMemory": {
+    "rss": 301350912,
+    "heapTotal": 110571520,
+    "heapUsed": 43638776,
+    "external": 4400368,
+    "arrayBuffers": 212359
+  },
+  "scope": "Isolated Core/SQLite fixture; excludes Electron launch, total app memory and P03 document retrieval"
+}

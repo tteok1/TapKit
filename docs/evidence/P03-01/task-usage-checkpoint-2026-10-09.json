@@ -1,0 +1,129 @@
+{
+  "task": "P03-01",
+  "status": "in_progress",
+  "date": "2026-10-09",
+  "baseHead": "b707dc53f52fe787368eabf694b272ae3f387299",
+  "baseCommittedAndPushed": true,
+  "baseRemoteShaVerified": true,
+  "implementation": [
+    "read-only projection from accepted runs/user attachments/task_versions",
+    "pinned version, actual execution status, per-table profile and lifecycle filters",
+    "latest 100 distinct records with truncation; bounded escaped labels; saved links/queued inputs excluded"
+  ],
+  "checks": [
+    {
+      "command": "pnpm test:integration -- P03-01.file-usage P03-01.files",
+      "exitCode": 1,
+      "passed": 12,
+      "failed": 3,
+      "log": ".cache/ci/p03-usage-integration-2026-10-09.log",
+      "note": "Fixture omitted pending-input revision and transaction, and attempted forbidden second singleton profile. Corrected fixture; corrupt foreign-profile metadata is injected only in its private synthetic DB.",
+      "logSha256": "b2de7c4b356be3a925ca91ce6ac19072f13438868990fc5b8a1e3a81865e5a8d"
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.file-usage P03-01.files P02-02.chat P02-03.history",
+      "exitCode": 1,
+      "passed": 42,
+      "failed": 1,
+      "log": ".cache/ci/p03-usage-integration-fixed-2026-10-09.log",
+      "note": "UUID randomness within equal milliseconds invalidated fixture insertion-order assumption. Fixture now sets distinct run timestamps and tests actual newest-time ordering.",
+      "logSha256": "29f14204a03444d81f2dcfbeffe73fb7ffa5c8480dc16047ca20f1768d23fab8"
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.file-usage P03-01.files P03-01.file-service P02-02.chat P02-03.history",
+      "exitCode": 0,
+      "passed": 57,
+      "log": ".cache/ci/p03-usage-integration-closed-2026-10-09.log",
+      "logSha256": "cac3843b35a6cf23b9a80422b103c769821c215f23ad3ef49768a1b13830b4ae"
+    },
+    {
+      "command": "pnpm test:unit -- P03-01.files-contract P02-02.chat",
+      "exitCode": 0,
+      "passed": 7,
+      "log": ".cache/ci/p03-usage-unit-2026-10-09.log",
+      "logSha256": "4a39b5ce3aa159c49d369eaac9a1dedab558f4e059080e65e2d3b74772aeb9f6"
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-usage-build-closed-2026-10-09.log",
+      "logSha256": "19b94f0f031df5d728d836b4bf89aa9bd3c38a3094066367f104187dd8412e1c"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01",
+      "exitCode": 0,
+      "passed": 6,
+      "log": ".cache/ci/p03-usage-electron-final-2026-10-09.log",
+      "logSha256": "1d8ce17fc4da9f7c989eed311dd634cad0b3b55438593a4ddd49e033a767fd36"
+    },
+    {
+      "command": "pnpm exec tsc --noEmit",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 1,
+      "formattedFiles": 311,
+      "formattingFailures": 1,
+      "log": ".cache/ci/p03-usage-check-2026-10-09.log",
+      "logSha256": "5c4421b74aab0a45302ead94f815affff6522481c9ebf035d11c6ca94ccb0336",
+      "note": "Storage source still required formatting; formatted again and passed. No behavior or boundary changes."
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "formattedFiles": 311,
+      "formattingFailures": 0,
+      "log": ".cache/ci/p03-usage-check-fixed-2026-10-09.log",
+      "logSha256": "8fef772fad874830a46e3b517ccf411a376b4964a06b3fb71c6562f49e63271c"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "handoffs": 37
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "coverage": [
+    "accepted/queued/cancelled and duplicate send",
+    "replace immutable file version and reopen SQLite",
+    "session trash/restore/permanent delete",
+    "corrupt JSON/foreign-profile metadata excluded",
+    "task-version goal and Unicode bounds",
+    "newest 100/trash metadata without download grant",
+    "real Electron usage UI, escaped HTML, no overflow, restart and historical bytes download"
+  ],
+  "screenshot": {
+    "path": "docs/evidence/P03-01/task-usage.png",
+    "sha256": "d704255d8877a8bbf44d6bf27ae921378fe8dbd28fb9c1fe35735494b7b39704",
+    "visuallyInspected": true
+  },
+  "ci": {
+    "head": "b707dc53f52fe787368eabf694b272ae3f387299",
+    "prRun": 37825534686,
+    "pushRun": 37825525410,
+    "status": "completed",
+    "conclusion": "failure",
+    "checkJob": 113477297263,
+    "checkSteps": 0,
+    "startupJob": 113477317697,
+    "startupSteps": 0,
+    "annotation": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the Billing & plans section in your settings",
+    "resource": "R15",
+    "nativeDiagnostics": "not_run"
+  },
+  "guard": {
+    "nativeHelper": "not_executed",
+    "realModel": "not_called",
+    "realUserProfileVaultOrKeys": "not_read",
+    "chromiumSandbox": true
+  },
+  "remaining": [
+    "remaining P03-01 version/exception E2E and requirement audit",
+    "native CORRUPT_FILE diagnosis/acceptance after R15 recovery",
+    "P03-02/03 unstarted"
+  ]
+}

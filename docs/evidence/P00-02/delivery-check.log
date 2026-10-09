@@ -1,0 +1,5 @@
+Checking formatting...
+All matched files use Prettier code style!
+Dependency boundaries verified
+Runtime/dependency/wheel manifests verified
+$ node scripts/check.mjs

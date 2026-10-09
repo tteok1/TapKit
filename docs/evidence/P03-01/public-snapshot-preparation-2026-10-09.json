@@ -1,0 +1,105 @@
+{
+  "recordedAt": "2026-10-09T10:41:42.852Z",
+  "action": "local_independent_public_snapshot",
+  "sourceBase": "47db84726878afc5abb91fc0849543b6c81070a7",
+  "sourceProductWorktreeCommit": "not_committed",
+  "target": "D:/Tapkit-public",
+  "branch": "main",
+  "remote": "https://github.com/tteok1/TapKit.git",
+  "intendedIdentity": {
+    "name": "tteok1",
+    "email": "340067657+tteok1@users.noreply.github.com"
+  },
+  "initialCommit": null,
+  "publicPush": "not_performed",
+  "newCi": "not_run",
+  "checks": {
+    "checkedAt": "2026-10-09T10:42:21.685Z",
+    "target": "D:/Tapkit-public",
+    "files": 1047,
+    "byteIdenticalCodeAndConfigFiles": 303,
+    "jsonFilesParsed": 214,
+    "formattingFilesChecked": 322,
+    "documentationFormatsRepaired": 0,
+    "formattingFailures": [],
+    "privacyOrIntegrityIssues": [],
+    "initialCommit": null,
+    "remote": "https://github.com/tteok1/TapKit.git",
+    "published": false,
+    "newCi": "not_run",
+    "docs": {
+      "command": "node D:/Tapkit-public/scripts/docs-check.mjs",
+      "exitCode": 0,
+      "taskStates": 37
+    },
+    "originalCheck": {
+      "command": "./scripts/pnpm.ps1 check",
+      "exitCode": 0,
+      "formattedFiles": 321
+    },
+    "originalDiff": {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    "remoteRead": {
+      "method": "unauthenticated GitHub REST GET /repos/tteok1/TapKit",
+      "private": false,
+      "size": 0,
+      "defaultBranch": "main"
+    },
+    "firstInitialStageDiff": {
+      "command": "git diff --cached --check",
+      "exitCode": 2,
+      "reason": "Historical evidence logs and reference CSV carried trailing whitespace or extra EOF blank lines",
+      "repairedInPublicCopyOnly": [
+        "docs/evidence/P00-01/e2e-first.log",
+        "docs/evidence/P00-01/final-integration.log",
+        "docs/evidence/P00-01/final-unit.log",
+        "docs/evidence/P00-01/install-initial.log",
+        "docs/evidence/P00-01/integration-first.log",
+        "docs/evidence/P00-01/unit-first.log",
+        "docs/evidence/P00-02/e2e-first.log",
+        "docs/evidence/P00-02/e2e-fourth.log",
+        "docs/evidence/P00-02/e2e-third.log",
+        "docs/evidence/P00-02/final-integration.log",
+        "docs/evidence/P00-02/final-unit.log",
+        "docs/evidence/P00-02/integration-fourth.log",
+        "docs/evidence/P00-02/integration-second.log",
+        "docs/evidence/P00-02/integration-third.log",
+        "docs/evidence/P00-02/recovery-final.log",
+        "docs/evidence/P00-02/unit-first.log",
+        "docs/evidence/P00-03/account-setup-readfix-final.log",
+        "docs/evidence/P00-03/account-setup-readfix.log",
+        "docs/evidence/P01-02/zhipu-fix/check-final.log",
+        "docs/evidence/P01-02/zhipu-fix/check.log",
+        "docs/evidence/P01-02/zhipu-fix/docs-check.log",
+        "docs/evidence/P01-02/zhipu-fix/e2e-final.log",
+        "docs/evidence/P01-02/zhipu-fix/e2e.log",
+        "docs/evidence/P01-02/zhipu-fix/integration-final.log",
+        "docs/evidence/P01-02/zhipu-fix/integration-verified.log",
+        "docs/evidence/P01-02/zhipu-fix/integration.log",
+        "docs/evidence/P01-02/zhipu-fix/responses-integration.log",
+        "docs/evidence/P01-02/zhipu-fix/responses-unit.log",
+        "docs/evidence/P01-02/zhipu-fix/unit-final.log",
+        "docs/evidence/P01-02/zhipu-fix/unit.log",
+        "docs/plan/execution-state/requirements.csv",
+        "docs/plan/references/product-original.md"
+      ]
+    }
+  },
+  "exclusions": {
+    "privateUntrackedFiles": 97,
+    "unreviewedHistoricalVisuals": 81,
+    "retainedReviewedSyntheticImages": 3,
+    "gitHistory": "not_imported",
+    "runtimeCachesAndPrivateProfiles": "not_copied"
+  },
+  "limits": [
+    "Pattern scan does not guarantee anonymity or absence of all secrets",
+    "Historical hashes refer to private originals; redacted document bytes differ",
+    "New native CI has not run; three prior CORRUPT_FILE cases remain unresolved"
+  ],
+  "taskState": "P03-01=in_progress; P03-02/03=not_started; R15=pending",
+  "sourceRetained": true,
+  "initialCommitAtEvidenceCreation": "pending"
+}

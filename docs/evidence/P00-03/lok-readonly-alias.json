@@ -1,0 +1,75 @@
+{
+  "startedAt": "2026-09-18T08:03:50.807Z",
+  "endedAt": "2026-09-18T08:04:02.322Z",
+  "scope": "Compatibility experiment with bundled LibreOffice Python, read-only input/runtime, private workspace, outside sentinel and live loopback control; not full P00 acceptance",
+  "workspace": "D:\\TapKit\\.test-data\\P00-03-lok-readonly-alias-cSfZ5S\\workspace",
+  "sourceSha256": "5d3446d66d540d66ffe1f23409052556a84c136d117aef9db78d7cf5fcc0929c",
+  "request": {
+    "protocolVersion": 1,
+    "requestId": "09916258-f5d1-73cc-ac19-00e17117b94c",
+    "runId": "09916258-f5d1-73cc-ac19-00e17117b94c",
+    "leaseEpoch": 1,
+    "operation": "diagnostic.execute",
+    "payload": {
+      "runtimeRoot": "D:\\TapKit\\.runtime\\libreoffice",
+      "executable": "D:\\TapKit\\.runtime\\libreoffice\\program\\python.exe",
+      "inputRoot": "D:\\TapKit\\.test-data\\P00-03-lok-readonly-alias-cSfZ5S\\input",
+      "workspace": "D:\\TapKit\\.test-data\\P00-03-lok-readonly-alias-cSfZ5S\\workspace",
+      "args": [
+        "-c",
+        "import ctypes as c,os,sys,json,pathlib,threading,time,hashlib\np=sys.argv[1];w=pathlib.Path(sys.argv[2]);os.chdir(w);inputroot=pathlib.Path(sys.argv[3]);outside=pathlib.Path(sys.argv[4]);profile=w/\"office-profile\";(profile/\"user\").mkdir(parents=True)\n(profile/\"user\"/\"registrymodifications.xcu\").write_text('<?xml version=\"1.0\"?><oor:items xmlns:oor=\"http://openoffice.org/2001/registry\"><item oor:path=\"/org.openoffice.Office.Common/Security/Scripting\"><prop oor:name=\"MacroSecurityLevel\" oor:op=\"fuse\"><value>3</value></prop><prop oor:name=\"DisableMacrosExecution\" oor:op=\"fuse\"><value>true</value></prop></item></oor:items>',encoding=\"utf-8\")\nos.environ[\"PATH\"]=p+os.pathsep+os.environ.get(\"PATH\",\"\");os.environ[\"SAL_LOK_OPTIONS\"]=\"unipoll\";os.environ[\"SAL_LOG\"]=\"+WARN+INFO.lok\"\ndef event(**v):print(json.dumps(v),flush=True)\ndef uri(v):return v.resolve().as_uri().encode(\"utf-8\")\ndef method(obj,index,result,*args):\n    table=c.cast(obj,c.POINTER(c.c_void_p))[0];addr=c.cast(table,c.POINTER(c.c_void_p))[index]\n    return c.CFUNCTYPE(result,*args)(addr)\nctx=os.add_dll_directory(p);lib=c.CDLL(os.path.join(p,\"mergedlo.dll\"),use_last_error=True);init=lib.libreofficekit_hook_2;init.argtypes=[c.c_char_p,c.c_char_p];init.restype=c.c_void_p\nevent(stage=\"init\");kit=init(p.encode(\"utf-8\"),uri(profile));event(stage=\"initialized\",ok=bool(kit))\nif not kit:sys.exit(2)\nfailures=[]\ndef denied(label,fn):\n    try:\n        fn()\n        event(stage=\"boundary\",label=label,denied=False)\n        failures.append(label)\n    except PermissionError as e:\n        event(stage=\"boundary\",label=label,denied=True,winerror=e.winerror)\ndef probe_write(path):\n    with path.open(\"xb\") as f:f.write(b\"unexpected\")\n    path.unlink()\ndenied(\"input-read-only\",lambda:probe_write(inputroot/\"tapkit-write-probe.tmp\"))\ndenied(\"runtime-read-only\",lambda:probe_write(pathlib.Path(p)/\"tapkit-write-probe.tmp\"))\ndenied(\"outside-read\",lambda:outside.read_bytes())\ndenied(\"outside-write\",lambda:probe_write(outside.parent/\"tapkit-write-probe.tmp\"))\nimport socket\ndef connect():\n    with socket.socket() as s:\n        s.settimeout(3);s.connect((\"127.0.0.1\",int(sys.argv[5])))\ndenied(\"loopback\",connect)\nwake=threading.Event();pollCount=0\n@c.CFUNCTYPE(c.c_int,c.c_void_p,c.c_int)\ndef poll(data,timeout):\n    global pollCount\n    pollCount+=1\n    if pollCount in [1,10,100]:event(stage=\"poll\",count=pollCount,timeout=timeout)\n    wake.wait(min(max(timeout/1e6,0),0.05));wake.clear();return 0\n@c.CFUNCTYPE(None,c.c_void_p)\ndef awaken(data):wake.set()\ndef worker():\n    time.sleep(2)\n    for ext in [\"docx\",\"xlsx\",\"pptx\"]:\n        event(stage=\"load\",format=ext)\n        source=inputroot/(\"sample.\"+ext);out=w/(\"converted-\"+ext+\".pdf\")\n        before=hashlib.sha256(source.read_bytes()).hexdigest()\n        doc=method(kit,4,c.c_void_p,c.c_void_p,c.c_char_p,c.c_char_p)(kit,uri(source),b\"MacroSecurityLevel=3,EnableMacrosExecution=false\")\n        event(stage=\"loaded\",format=ext,ok=bool(doc))\n        if not doc:failures.append(\"load-\"+ext)\n        if doc:\n            ok=method(doc,2,c.c_int,c.c_void_p,c.c_char_p,c.c_char_p,c.c_char_p)(doc,uri(out),b\"pdf\",None)\n            event(stage=\"save\",format=ext,ok=ok,bytes=out.stat().st_size if out.exists() else 0,originalUnchanged=before==hashlib.sha256(source.read_bytes()).hexdigest())\n            data=out.read_bytes() if out.exists() else b\"\"\n            if not ok or not data.startswith(b\"%PDF-\") or before!=hashlib.sha256(source.read_bytes()).hexdigest():failures.append(\"save-\"+ext)\n            method(doc,1,None,c.c_void_p)(doc)\n    event(stage=\"destroy\");method(kit,1,None,c.c_void_p)(kit);event(stage=\"destroyed\")\nt=threading.Thread(target=worker,daemon=True);t.start()\nevent(stage=\"runLoop\")\nmethod(kit,13,None,c.c_void_p,c.c_void_p,c.c_void_p,c.c_void_p)(kit,c.cast(poll,c.c_void_p),c.cast(awaken,c.c_void_p),None)\nevent(stage=\"loopExited\");t.join(5)\nevent(stage=\"result\",failures=failures);sys.exit(1 if failures or t.is_alive() else 0)\n",
+        "Y:\\program",
+        "Z:\\",
+        "X:\\",
+        "D:\\TapKit\\.test-data\\P00-03-lok-readonly-alias-cSfZ5S\\outside\\sentinel.txt",
+        "49718"
+      ],
+      "timeoutMs": 45000,
+      "memoryBytes": 2147483648,
+      "processLimit": 8,
+      "outputBytes": 1048576,
+      "terminal": false
+    }
+  },
+  "exitCode": 0,
+  "events": [
+    {
+      "data": {
+        "appContainer": true,
+        "appContainerSid": "S-1-15-2-1228191939-3264292273-3323318673-325736487-4116457867-2389673802-364064287",
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 8
+        },
+        "networkCapabilities": 0,
+        "pid": 35976
+      },
+      "event": "started",
+      "leaseEpoch": 1,
+      "protocolVersion": 1,
+      "requestId": "09916258-f5d1-73cc-ac19-00e17117b94c",
+      "runId": "09916258-f5d1-73cc-ac19-00e17117b94c"
+    },
+    {
+      "data": {
+        "activeProcesses": 0,
+        "exitCode": 1,
+        "logDirectory": "D:\\TapKit\\.test-data\\P00-03-lok-readonly-alias-cSfZ5S\\helper-logs-09916258-f5d1-73cc-ac19-00e17117b94c",
+        "outputBytes": 575,
+        "peakActiveProcesses": 3,
+        "status": "exited",
+        "stderr": "Traceback (most recent call last):\r\n  File \"<string>\", line 32, in <module>\r\n  File \"<string>\", line 16, in denied\r\n  File \"<string>\", line 31, in connect\r\nTimeoutError: timed out\r\n",
+        "stdout": "{\"stage\": \"init\"}\r\n{\"stage\": \"initialized\", \"ok\": true}\r\n{\"stage\": \"boundary\", \"label\": \"input-read-only\", \"denied\": true, \"winerror\": null}\r\n{\"stage\": \"boundary\", \"label\": \"runtime-read-only\", \"denied\": true, \"winerror\": null}\r\n{\"stage\": \"boundary\", \"label\": \"outside-read\", \"denied\": true, \"winerror\": null}\r\n{\"stage\": \"boundary\", \"label\": \"outside-write\", \"denied\": true, \"winerror\": null}\r\n",
+        "totalProcesses": 3
+      },
+      "event": "finished",
+      "leaseEpoch": 1,
+      "protocolVersion": 1,
+      "requestId": "09916258-f5d1-73cc-ac19-00e17117b94c",
+      "runId": "09916258-f5d1-73cc-ac19-00e17117b94c"
+    }
+  ],
+  "stderr": ""
+}

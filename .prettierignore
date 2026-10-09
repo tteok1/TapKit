@@ -1,0 +1,13 @@
+docs/plan/
+docs/evidence/
+docs/.tmp/
+docs/.workbuddy/
+docs/doc-fetch-resources/
+pnpm-lock.yaml
+requirements.lock
+.runtime/
+.cache/
+.test-data/
+node_modules/
+**/out/
+**/dist/

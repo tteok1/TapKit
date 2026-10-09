@@ -1,0 +1,20 @@
+{
+  "recorded_at": "2026-09-17T09:32:50.527Z",
+  "user_authorization": "提交并推送到远程，直接推到main分支",
+  "remote": "private-archive:TapKit",
+  "branch": "main",
+  "implementation_commit": "b5f60e92afcee559c468dd1e3e4971d83e8880f7",
+  "implementation_push_exit_code": 0,
+  "verified_remote_main": "b5f60e92afcee559c468dd1e3e4971d83e8880f7",
+  "pre_push_checks": {
+    "check": 0,
+    "docs:check": 0
+  },
+  "unchanged_verified_source_files": 87,
+  "unit_integration_build_e2e_repro_rerun_this_delivery": false,
+  "remote_ci_result": "not_checked",
+  "excluded_local_files": [
+    "docs/plan/resume_image.png"
+  ],
+  "note": "This records the completed implementation push; follow-up progress-record commit is identified by git log."
+}

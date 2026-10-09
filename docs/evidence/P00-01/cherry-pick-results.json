@@ -1,0 +1,44 @@
+{
+  "recordedAtUtc": "2026-10-03T23:51:45.9968868Z",
+  "operation": "cherry-pick",
+  "sourceCommit": "8098c2fe262ef1445bbbc03cefe5fe93e60f1840",
+  "baseCommit": "8f3cfd3a8c7780347e5310707da15d13e5681d58",
+  "branch": "codex/p01-03",
+  "commands": [
+    {
+      "exitCode": 0,
+      "command": "pnpm build:desktop",
+      "log": "docs/evidence/P00-01/cherry-pick-build.log"
+    },
+    {
+      "exitCode": 0,
+      "command": "pnpm check",
+      "log": "docs/evidence/P00-01/cherry-pick-check.log"
+    },
+    {
+      "exitCode": 1,
+      "reason": "Duplicate saveApiKey in adapted test expectation",
+      "command": "pnpm test:e2e -- --grep \"P00-01 sandbox\"",
+      "log": "docs/evidence/P00-01/cherry-pick-e2e-failed.log"
+    },
+    {
+      "exitCode": 0,
+      "passed": 1,
+      "command": "pnpm test:e2e -- --grep \"P00-01 sandbox\"",
+      "log": "docs/evidence/P00-01/cherry-pick-e2e.log"
+    },
+    {
+      "exitCode": 0,
+      "launchers": [
+        "double-click-command",
+        "dev-script"
+      ],
+      "command": "pnpm test:dev",
+      "log": "docs/evidence/P00-01/cherry-pick-dev.log"
+    }
+  ],
+  "preservedLatestTaskStates": true,
+  "originalEvidenceRemainsHistorical": true,
+  "liveApiRun": false,
+  "pushed": false
+}

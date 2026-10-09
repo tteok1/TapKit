@@ -1,0 +1,106 @@
+{
+  "taskId": "P01-02",
+  "status": "implemented_not_live_verified",
+  "recordedAt": "2026-10-04T06:23:41+08:00",
+  "branch": "codex/p01-02",
+  "head": "e5c541d77dd1020bf175efd3430d127ec2b17c09",
+  "dirty": true,
+  "unit": {
+    "log": "docs/evidence/P01-02/unit-2026-10-04.log",
+    "exitCode": 0,
+    "passed": 94,
+    "files": 13
+  },
+  "integration": {
+    "log": "docs/evidence/P01-02/integration-2026-10-04.log",
+    "exitCode": 0,
+    "passed": 73,
+    "files": 6
+  },
+  "e2eRegression": {
+    "exitCode": 0,
+    "passed": 14,
+    "log": "docs/evidence/P01-02/e2e-2026-10-04.log"
+  },
+  "finalVault": {
+    "exitCode": 0,
+    "passed": 5,
+    "log": "docs/evidence/P01-02/unit-final-vault-2026-10-04.log"
+  },
+  "finalApiE2e": {
+    "exitCode": 0,
+    "passed": 1,
+    "log": "docs/evidence/P01-02/e2e-final-api-2026-10-04.log"
+  },
+  "build": {
+    "exitCode": 0,
+    "log": "docs/evidence/P01-02/build-2026-10-04.log"
+  },
+  "reverification": "Full suites passed before final API wording and interrupted-delete cleanup; affected vault/UI were rerun, followed by final build/check. Final source fingerprints below.",
+  "live": {
+    "resources": [
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R13",
+      "R14"
+    ],
+    "executed": false,
+    "reason": "No user API keys configured for live validation; all test credentials are fixtures."
+  },
+  "sourceSha256": {
+    "apps/desktop/src/main/auth/secrets.ts": "858d2fc662b43cddf5d0510465a52a0d8f234081d5bbed0b333a47ddf141fc4a",
+    "apps/desktop/src/main/index.ts": "47b4f5d152728a76478f16541bd55dc7dc23bda9ee47ece527b819df5a694896",
+    "apps/desktop/src/main/vault.ts": "f4e014fafbd5d7036aec34178ea634e4e5b8999ed9a12cc0df641334bc62d856",
+    "apps/desktop/src/renderer/locales/zh-CN.json": "ca2f86fc467a303c497437e679e05e2e7871565a4f10b3d097c63a2f9e2f458e",
+    "apps/desktop/src/renderer/src/api-diagnostic.tsx": "80a2a10b2c6ac94ff415c77d28f2035188845db563fec784ab8a9b890bfd6ea7",
+    "apps/desktop/src/renderer/src/auth-diagnostic.tsx": "73cdab4be562f31f30697489ce5e834b43e76da6151111e8c2c4614be8c91d62",
+    "apps/desktop/src/renderer/src/main.tsx": "28aedd1969dc7c4da7eb681e143440dc6ed25dea7a3b6a09820696d62d836596",
+    "apps/desktop/src/renderer/src/styles.css": "5bddebbf3c3cbbd93c36b508c1913cc3adde25022cfa7996a25613bbbef0433e",
+    "migrations/0003_api_providers.sql": "42d00efe40c297da2de0e9d8bfd172b17b52da8c1109ff4c3f7ffdff59c4c1df",
+    "packages/contracts/src/foundation.ts": "1ce03c0e287a32abd240ee1c5a6d8100ae78838538965b7e90bdef4b51208208",
+    "packages/contracts/src/index.ts": "7685cd71f45dcdbd291b687b28478d93e8f56f3367011aadb7b9859a252d6127",
+    "packages/contracts/src/providers.ts": "b60233a40f7ef7928dc5f106d5c4313ddff0892c9ab394070b2cf7498285107c",
+    "packages/core/src/index.ts": "d8d68055e14cb95a302f6cf7cb4e488e84a544e6b8abb21d3d593cb5a9deb446",
+    "packages/core/src/provider-service.ts": "353da68c96ace11a4d46e6122b071912581b7ec77235e81a65c8339c9393b7a3",
+    "packages/core/src/service.ts": "82a60b05af683c72defad3adefcf78dbeaa1801a2c30638cf042c723e9d6e410",
+    "packages/providers/src/api/adapter.ts": "d05ce64756119ece7f909afe9eec1ab99a56ce279d6e4d24b17dee6bfb92d9e7",
+    "packages/providers/src/api/arguments.ts": "423b63535f841e5bb1f3803f3b82b24bab55943b70ca6b9a65ec72a522db926f",
+    "packages/providers/src/api/errors.ts": "ff7928c86d942dab92c1c2de554a4399ae99de8ac7de3ce39a1b5024dacdb1d8",
+    "packages/providers/src/api/http.ts": "3c989c3f6cb92ee74c9d228f6ed57cf9dc349ad899ecac360106bac61c51ce5c",
+    "packages/providers/src/codex/adapter.ts": "9887817fca4166c639b72b819c679ef542118ed66b7043ff92f5d6fd1e0406eb",
+    "packages/providers/src/index.ts": "11336d1814e3d8d8ffe119d8b1a0f0e653e0d209f13dd4834cde28d45622abbd",
+    "packages/storage/src/blobs.ts": "26c80ea4b6a7706ed1b7c768e90985c9253792fce529d9205f9f6867f075a4b7",
+    "packages/storage/src/foundation.ts": "f8da692d0f06f70e2ae73d50076526559a4a54610dc6ed6667fdeb3ac8b5b5f8",
+    "tests/e2e/P00-02.foundation.spec.ts": "a2f190e30600285ccedaf86d4f739b36b86bd0fd59d5bee384d8710697533d57",
+    "tests/e2e/P01-02.api.spec.ts": "c7e57264f8ade232f82f09fa5edd4c1f55f4da2c8cfce7bb2b5d5efd6ee63894",
+    "tests/fixtures/P01-02.api.ts": "93ccdb7ce7b149f831899857931a8bf072799f32d3b30e81844baf02eb002872",
+    "tests/integration/P00-02.storage.test.ts": "11587716c613f441d8abd8a5905db9ac6af5c73d79155e580b2e217e9ad97c02",
+    "tests/integration/P01-02.api.test.ts": "58b19721c2cc679fa546bfcd31b3017ea8412ad9f185136db1c581d0c6ef4450",
+    "tests/unit/P00-02.contracts.test.ts": "bc55f4373fab7e19e08423c4289cfec91bb77d3f050c86b4a99c2b5f77108517",
+    "tests/unit/P01-02.api.test.ts": "cc9279de78ff783ecaa64b26b700cbcaf7dbdd49d6fff4dbdaa3c1e23aae7619",
+    "tests/unit/P01-02.transport.test.ts": "56b8dac47da7f7364b28ab4df383db3ffeb8ff0b89fe8a49379f3140255d3983",
+    "tests/unit/P01-02.vault.test.ts": "2f320c2d5c0b8205c41755e2cf4120807c63f8d0a24f7b8672e51d8af3875b4e"
+  },
+  "check": {
+    "log": "docs/evidence/P01-02/check-2026-10-04.log",
+    "endedAt": "2026-10-04T06:24:07.9124057+08:00",
+    "exitCode": 0
+  },
+  "docsCheck": {
+    "log": "docs/evidence/P01-02/docs-check-2026-10-04.log",
+    "endedAt": "2026-10-04T06:24:00.9709589+08:00",
+    "exitCode": 0
+  },
+  "diffCheck": {
+    "exitCode": 0
+  },
+  "visual": {
+    "width760NoHorizontalOverflow": true,
+    "compact": "docs/evidence/P01-02/api-accounts-compact.png",
+    "desktop": "docs/evidence/P01-02/api-accounts-desktop.png",
+    "inspected": true
+  },
+  "finalizedAt": "2026-10-04T06:25:03+08:00"
+}

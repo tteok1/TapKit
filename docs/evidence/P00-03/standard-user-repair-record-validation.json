@@ -1,0 +1,18 @@
+[
+  {
+    "command": "pnpm docs:check",
+    "startedAt": "2026-09-17T14:44:43.610Z",
+    "endedAt": "2026-09-17T14:44:45.522Z",
+    "exitCode": 0,
+    "stdout": "All 37 task states, started handoffs and completed requirement evidence links verified\n",
+    "stderr": "$ node scripts/docs-check.mjs\n"
+  },
+  {
+    "command": "git diff --check -- . :(exclude)docs/evidence/**",
+    "startedAt": "2026-09-17T14:44:45.522Z",
+    "endedAt": "2026-09-17T14:44:45.638Z",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": "warning: in the working copy of 'docs/plan/03-architecture.md', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/progress/requirements.csv', CRLF will be replaced by LF the next time Git touches it\n"
+  }
+]

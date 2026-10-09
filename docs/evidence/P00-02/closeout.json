@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-09-17T11:37:53.658Z",
+  "cwd": "D:\\TapKit",
+  "branch": "main",
+  "head": "60b038960ee67fc4d61765a5d7a9118457eafaae",
+  "sourceSha256": "9e182d396ef33852b944b05c4e285485a36636d069bcb481f2ffcb5b3e9f12ce",
+  "sourceFilesChecked": 93,
+  "sourceChangesSinceVerification": [],
+  "taskElectronProcesses": [],
+  "checks": [
+    {
+      "command": "pnpm exec prettier --check docs/progress/CURRENT.md docs/progress/INDEX.md docs/progress/P00-02.md",
+      "cwd": "D:\\TapKit",
+      "startedAt": "2026-09-17T11:37:53.877Z",
+      "endedAt": "2026-09-17T11:37:54.448Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-02/closeout-prettier.log"
+    },
+    {
+      "command": "pnpm docs:check",
+      "cwd": "D:\\TapKit",
+      "startedAt": "2026-09-17T11:37:54.452Z",
+      "endedAt": "2026-09-17T11:37:54.803Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-02/final-docs.log"
+    },
+    {
+      "command": "git diff --check",
+      "cwd": "D:\\TapKit",
+      "startedAt": "2026-09-17T11:37:54.805Z",
+      "endedAt": "2026-09-17T11:37:54.930Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-02/diff-check.log"
+    }
+  ]
+}

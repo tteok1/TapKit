@@ -1,0 +1,35 @@
+{
+  "scope": "Parse and render generated compatibility fixtures; not hostile-doc or portable-font acceptance",
+  "files": [
+    {
+      "format": "docx",
+      "sha256": "8952323f6857835d87d52e7b4588e6a4396e42d4b76d2e1a0490754067e4fc69",
+      "pages": 1,
+      "text": "TapKit 隔离转换验收\nDOCX 原件不可修改；中文内容应清晰可读。",
+      "titlePresent": true,
+      "rendered": [
+        "D:\\TapKit\\docs\\evidence\\P00-03\\lok-three-docx-1.png"
+      ]
+    },
+    {
+      "format": "xlsx",
+      "sha256": "639a6b99825a7ff84cd7136075cc969d391b9c7bfd7d7091a4988c11415a0e50",
+      "pages": 1,
+      "text": "数值\n中文行 42\nTapKit 隔离转换验收",
+      "titlePresent": true,
+      "rendered": [
+        "D:\\TapKit\\docs\\evidence\\P00-03\\lok-three-xlsx-1.png"
+      ]
+    },
+    {
+      "format": "pptx",
+      "sha256": "06d281e57dad0ad54976c5e69e4824badaa844a8e4296de8946b7830dd4e5214",
+      "pages": 1,
+      "text": "TapKit 隔离转换验收\nPPTX → PDF / 受限环境",
+      "titlePresent": true,
+      "rendered": [
+        "D:\\TapKit\\docs\\evidence\\P00-03\\lok-three-pptx-1.png"
+      ]
+    }
+  ]
+}

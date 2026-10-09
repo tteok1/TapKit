@@ -1,0 +1,4 @@
+* text=auto eol=lf
+
+# Keep screenshot assets binary.
+*.png binary

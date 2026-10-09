@@ -1,0 +1,76 @@
+{
+  "recordedAt": "2026-10-04T11:28:43.273Z",
+  "head": "b8b4d53a0cf8280014e599a0384221add79831ae",
+  "branch": "codex/fix-zhipu-api-probe",
+  "scope": "official Zhipu Responses / glm-4.7-flashx / reasoning off",
+  "change": "reasoning.effort=none in text and tools phases",
+  "limits": {
+    "textOutputTokens": 32,
+    "toolsOutputTokens": 128,
+    "automaticRetries": 0
+  },
+  "checks": [
+    {
+      "command": "pnpm test:unit tests/unit/P01-02.zhipu.test.ts (before fix)",
+      "exitCode": 1,
+      "failed": 2,
+      "passed": 47,
+      "expectedRegression": true,
+      "evidence": "flashx-before-unit.log"
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 155,
+      "files": 15,
+      "evidence": "flashx-unit.log"
+    },
+    {
+      "command": "pnpm test:integration P01-02 P01-01 P01-03",
+      "exitCode": 0,
+      "passed": 69,
+      "files": 7,
+      "evidence": "flashx-integration.log"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "evidence": "flashx-check.log"
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "evidence": "flashx-build-desktop.log"
+    }
+  ],
+  "builtCoreMappingVerified": true,
+  "artifactModifiedAt": "2026-10-04T11:26:52.183Z",
+  "sourceSha256": {
+    "packages/providers/src/api/adapter.ts": "a6f36cbf7f80cb5a61323cb65ade0bd685d7106cf46d09ff670d699198288989",
+    "packages/providers/src/api/errors.ts": "3d6a9e60ec1b2186807af41b48486e40fd6ee09a3f917ee36c358f9cd9e7bd45",
+    "packages/providers/src/api/zhipu.ts": "818091793f4ca4f8dfc44e0dc63a8d72691da0d34a2253fd3bb9721aa8d7b625",
+    "tests/unit/P01-02.zhipu.test.ts": "06e2b2da6d2e96c21f4538341a2bcc0f6ba284f390748961b4bb3bd9c02129cf",
+    "tests/integration/P01-02.zhipu.test.ts": "a9b3b54a120df313ba50c581b05c7443ba2b0cf6d3ad01284631feb11d954822",
+    "docs/adr/0016-zhipu-thinking-and-probe-diagnostics.md": "348dee8e5a6b46f9db691164f0274102bf865ce381afb8ed3676737eb76e8005",
+    "docs/plan/06-model-adapters.md": "d0645e26146272ae2feb5865b579769647e43a71576fca74be6082ff927ada5c",
+    "docs/plan/tasks/P01-02.md": "022f1c7cc7fceba82565d3fed5464d029254c6ffad9ff2697f8b79cbd2b82034",
+    "packages/core/dist/index.cjs": "eecdefe20670f27e500cb5c845e6d22b3fa9a7bf305f66fbf92382406163940f",
+    "apps/desktop/out/main/index.js": "335cce3750486c3627ae3106fc90716ac26e4735ed77674d462dd91a2f3d7f7d"
+  },
+  "realRequestsByAgent": 0,
+  "userKeyRead": false,
+  "userConfigurationChanged": false,
+  "electronLaunchedByAgent": false,
+  "liveStatus": "basic connection probe passed by user feedback; full live acceptance pending",
+  "newChangesCommitted": false,
+  "newChangesPushed": false,
+  "userVerification": {
+    "feedbackRecordedAt": "2026-10-04T11:44:25.001Z",
+    "feedback": "测试已经通过了",
+    "accountLabel": "智谱 Responses 测试 3",
+    "modelId": "glm-4.7-flashx",
+    "basicProbePassed": true,
+    "fullLiveVerified": false,
+    "actualUsageProvided": false
+  }
+}

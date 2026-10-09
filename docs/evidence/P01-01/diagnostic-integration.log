@@ -1,0 +1,9 @@
+$ vitest run --config vitest.config.ts --project integration "P01-01" "P00-02.storage"
+
+ RUN  v5.0.0 D:/tapkit/TapKit
+
+
+ Test Files  4 passed (4)
+      Tests  58 passed (58)
+   Start at  04:22:37
+   Duration  1.84s (tests 50%, import 34%, transform 14%, setup 1%)

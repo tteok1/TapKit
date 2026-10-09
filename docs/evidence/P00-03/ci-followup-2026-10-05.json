@@ -1,0 +1,142 @@
+{
+  "recordedAtLocal": "2026-10-05 Asia/Shanghai",
+  "repository": "[private-account]/TapKit",
+  "branch": "codex/p02-01",
+  "verifiedRun": {
+    "url": "private-archive:TapKit",
+    "headSha": "31501b2a7f3d6c47dc9514e778d85099c481aab3",
+    "event": "pull_request",
+    "conclusion": "failure",
+    "steps": {
+      "bootstrap": "success",
+      "check": "success",
+      "unit": {
+        "passed": 227,
+        "failed": 0
+      },
+      "integration": {
+        "passed": 153,
+        "failed": 1
+      },
+      "buildAndElectron": "success",
+      "electron": {
+        "passed": 8,
+        "failed": 0
+      },
+      "independentStandardUser": "success",
+      "officeRepeats": [
+        "timeout",
+        "passed",
+        "passed"
+      ],
+      "startupDiagnostics": "success"
+    },
+    "failures": [
+      {
+        "test": "P02-03.perf",
+        "searchP95Ms": 658.0683999999965,
+        "budgetMs": 500,
+        "execution": "Concurrent with other integration files in the integration project"
+      },
+      {
+        "test": "P00-03 external-link positive control round 1",
+        "status": "timeout",
+        "timeoutMs": 120000,
+        "exitCode": 1,
+        "activeProcessesAfterCleanup": 0,
+        "lastWorkerStages": [
+          "control_updated:TK_LINK_UPDATED",
+          "control_saved",
+          "control_closed",
+          "control_references_released",
+          "control_destroyed",
+          "control_worker_complete",
+          "control_loop_returned",
+          "finished:ok=true"
+        ],
+        "rootCause": "Not confirmed; the process did not exit after the Python success marker"
+      }
+    ],
+    "evidence": "docs/evidence/P00-03/ci-followup-2026-10-05/failures.log"
+  },
+  "changes": {
+    "performance": "Dedicated single-worker perf project and mandatory sequential CI step; original dataset, pagination and 500ms assertions unchanged",
+    "office": "Test-only ctypes release and Python atexit markers; no speculative lifecycle fix or forced exit",
+    "productionCodeChanged": false,
+    "securityLimitsChanged": false
+  },
+  "localChecks": {
+    "perfBefore": {
+      "exitCode": 0,
+      "passed": 1,
+      "searchP95Ms": 212.87320000000182
+    },
+    "perfAfter": {
+      "exitCode": 0,
+      "passed": 1,
+      "listP95Ms": 8.490099999999074,
+      "searchP95Ms": 207.45780000000013
+    },
+    "unit": {
+      "exitCode": 0,
+      "passed": 227
+    },
+    "relatedIntegration": {
+      "exitCode": 0,
+      "passed": 19,
+      "tags": [
+        "P00-01",
+        "P02-03.history"
+      ]
+    },
+    "integrationDiscovery": {
+      "exitCode": 0,
+      "performanceFileExcluded": true,
+      "ordinaryIntegrationFilesRetained": 19
+    },
+    "generatedControlSyntax": {
+      "exitCode": 0,
+      "runtime": "locked Python",
+      "libreofficeExecuted": false
+    },
+    "check": {
+      "exitCode": 0
+    },
+    "docsCheck": {
+      "exitCode": 0
+    },
+    "diffCheck": {
+      "exitCode": 0
+    }
+  },
+  "verificationLimit": "Local unsigned helper application-control restriction retained. Office full administrator/standard-user/repeat validation requires new CI; the additional diagnostics are not a fix claim.",
+  "delivery": "User-authorized push of 856b160 completed and remote SHA matched; both new runs failed. Final results and next candidate are recorded in ci-run37300466141.json.",
+  "status": {
+    "P00-03": "in_progress",
+    "P00-gate": "failed",
+    "P02-03": "implemented_not_live_verified"
+  },
+  "pushVerification": {
+    "sha": "856b160d225f70dd9e4e6e82fdc4b1afa5549422",
+    "runs": [
+      {
+        "id": 37300466141,
+        "head_sha": "856b160d225f70dd9e4e6e82fdc4b1afa5549422",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "private-archive:TapKit"
+      },
+      {
+        "id": 37300460827,
+        "head_sha": "856b160d225f70dd9e4e6e82fdc4b1afa5549422",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "private-archive:TapKit"
+      }
+    ],
+    "exitCode": 0,
+    "remoteHeadMatches": true
+  }
+}

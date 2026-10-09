@@ -1,0 +1,152 @@
+{
+  "taskId": "P01-02",
+  "recordedAt": "2026-10-04T03:22:03.583Z",
+  "workspace": "D:/TapKit",
+  "branch": "codex/fix-zhipu-api-probe",
+  "baseRef": "main",
+  "baseCommit": "2e785316b74b3dbdb38ae68990e07652dbadbd56",
+  "verifiedCodeRef": "2e78531+working-tree",
+  "taskStatus": "implemented_not_live_verified",
+  "phaseGate": "engineering_passed_external_pending",
+  "pnpmWrapper": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\pnpm.ps1",
+  "sourceSha256": {
+    "packages/providers/src/api/adapter.ts": "99e5b012b938ba4d7d5ee386bc532e65233f2e32c4ee8adf47d7cb25babbdfad",
+    "packages/providers/src/api/errors.ts": "3d6a9e60ec1b2186807af41b48486e40fd6ee09a3f917ee36c358f9cd9e7bd45",
+    "packages/providers/src/api/zhipu.ts": "3b76cf1ee0e5b4dff825635772c35522c9e32adfe6a987e356b4b5b0c54bbb80",
+    "packages/contracts/src/foundation.ts": "38ec23fdf6a10d11ae8932f08374ab275d89666b03d0d712c51368b9c48a0348",
+    "packages/contracts/src/providers.ts": "b463bd9699efcc604ee6193dffd478cdf6a608402400a2cf57685e3eafb19274",
+    "apps/desktop/src/renderer/src/api-diagnostic.tsx": "7105f6ebb536299b608fd4cbe556a0bf645b7477242d9119e3a9e3a4c179422b",
+    "apps/desktop/src/renderer/locales/zh-CN.json": "3c2de383c2048c4eb1e3930f72d81b92c806933617b1de312c3ce76f55c0c428",
+    "tests/unit/P01-02.zhipu.test.ts": "adc6fe1fc923372fe0dec8f8cc5f477e1e921b1d82e2e4c3a237965d2062cf8a",
+    "tests/integration/P01-02.zhipu.test.ts": "c5eb0453538371dbb45d7b61766a194ff0172125399f9de3d4ef6763740895ed",
+    "tests/e2e/P01-02.api.spec.ts": "813871b4ce30ae53336a2cfb17654efdc0d2dedc786e40539321552d5761f794"
+  },
+  "commands": [
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "evidence": "build-desktop-final.log"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "context": "current user; existing test ACL unchanged",
+      "evidence": "check-verified.log"
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "filesPassed": 15,
+      "testsPassed": 133,
+      "evidence": "unit-final.log"
+    },
+    {
+      "command": "pnpm test:integration P01-02 P01-01 P01-03",
+      "exitCode": 0,
+      "filesPassed": 7,
+      "testsPassed": 67,
+      "evidence": "integration-verified.log"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P01-02",
+      "exitCode": 0,
+      "testsPassed": 2,
+      "context": "actual sandboxed Electron, independent fixture profile, current user",
+      "evidence": "e2e-user.log"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "evidence": "diff-check.log"
+    },
+    {
+      "command": "pnpm exec prettier --check <changed source/tests/progress/ADR files>",
+      "exitCode": 0,
+      "evidence": "format-final.log"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "tasksChecked": 37,
+      "evidence": "docs-check-final.log"
+    }
+  ],
+  "failedAttempts": [
+    {
+      "command": "pnpm test:integration P01-02 P01-01 P01-03",
+      "exitCode": 1,
+      "testsPassed": 66,
+      "testsFailed": 1,
+      "reason": "Test expected public failed catalog state; public documented / SQL failed is existing contract. Assertion corrected and rerun.",
+      "evidence": "integration.log"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P01-02",
+      "exitCode": 1,
+      "reason": "Test aggregate import required JSON import attribute; replaced with direct protocol module import.",
+      "evidence": "e2e.log"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P01-02",
+      "exitCode": 1,
+      "reason": "Restricted execution context failed Electron startup; current-user rerun passed without disabling Chromium sandbox.",
+      "evidence": "e2e-final.log"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 1,
+      "reason": "Restricted execution context cannot enumerate existing test ACL directory; no ACL modification.",
+      "evidence": "check.log"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 1,
+      "reason": "Current-user run found prior RESOURCES formatting warning. Formatted document then reran successfully.",
+      "evidence": "check-final.log"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 1,
+      "reason": "Requirements referenced results.json before closeout report creation; created report then reran successfully.",
+      "evidence": "docs-check.log"
+    }
+  ],
+  "visualReview": {
+    "reviewed": true,
+    "files": [
+      "api-business-code.png",
+      "api-truncation-compact.png"
+    ],
+    "compactWidthPx": 760,
+    "horizontalOverflow": false,
+    "data": "fictional UI diagnostic receipts; no real provider request"
+  },
+  "live": {
+    "resourceId": "R13",
+    "status": "configured",
+    "independentUserEvidence": "Non-stream text request: default thinking HTTP200/no text/length; thinking disabled HTTP200/text/stop.",
+    "tapkitProbe": "User reported text-stage HTTP429/upstream1305/PROVIDER_UNAVAILABLE. Current Node DNS public; database public status matches. Official model busy; generation and tools still pending.",
+    "apiKeyReadByAgent": false,
+    "realModelRequestsByAgent": 0,
+    "systemOrAccountConfigChanged": false,
+    "fullLiveAcceptance": "pending",
+    "latestDiagnostic": "docs/evidence/P01-02/zhipu-fix/model-busy-1305-2026-10-04.json",
+    "userReportedProxyState": {
+      "tun": "off",
+      "systemProxy": "on"
+    }
+  },
+  "boundaries": [
+    "No Rust helper rebuild claimed",
+    "No DNS/TLS/private-IP security relaxation",
+    "No new dependencies or schema migration",
+    "No P02 work",
+    "No commit or push"
+  ],
+  "documents": [
+    "docs/adr/0016-zhipu-thinking-and-probe-diagnostics.md",
+    "docs/evidence/P01-02/zhipu-fix/report.md"
+  ],
+  "supersededBy": "responses-results.json",
+  "snapshotNote": "Historical verification counts and source hashes retained; consult responses-results.json and handoff-2026-10-04.md for latest state."
+}

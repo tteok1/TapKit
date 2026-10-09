@@ -1,0 +1,169 @@
+$ node scripts/e2e.mjs "--" "--grep" "P00-01"
+
+Running 2 tests using 1 worker
+
+(node:25032) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/cjs/loader:1571
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'better-sqlite3'
+Require stack:
+- D:\TapKit\packages\core\dist\index.cjs
+    at node:internal/modules/cjs/loader:1571:15
+    at Module._resolveFilename (node:electron/js2c/utility_init:2:16306)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1125:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1149:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1176:12)
+    at node:internal/modules/cjs/loader:1348:5
+    at Module._load (node:electron/js2c/node_init:2:18263)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:268:19)
+    at Module.require (node:internal/modules/cjs/loader:1681:12)
+    at require (node:internal/modules/helpers:157:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ 'D:\\TapKit\\packages\\core\\dist\\index.cjs' ]
+}
+
+Node.js v24.20.0
+TAPKIT_CORE_EXIT 1
+(node:15212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Core startup failed Error: Core exited: 1
+    at ForkUtilityProcess.<anonymous> (D:\TapKit\apps\desktop\out\main\index.js:5662:17)
+    at ForkUtilityProcess.emit (node:events:514:28)
+    at UtilityProcess.emit (node:electron/js2c/browser_init:2:95072)
+Error occurred in handler for 'tapkit:ping': Error: Core exited: 1
+    at ForkUtilityProcess.<anonymous> (D:\TapKit\apps\desktop\out\main\index.js:5662:17)
+    at ForkUtilityProcess.emit (node:events:514:28)
+    at UtilityProcess.emit (node:electron/js2c/browser_init:2:95072)
+Debugger ending on ws://127.0.0.1:54201/16bb2d72-c8a2-4425-8f03-728cff8722a4
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  x  1 tests\e2e\P00-01.shell.spec.ts:22:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory (27.5s)
+(node:1968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/cjs/loader:1571
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'better-sqlite3'
+Require stack:
+- D:\TapKit\packages\core\dist\index.cjs
+    at node:internal/modules/cjs/loader:1571:15
+    at Module._resolveFilename (node:electron/js2c/utility_init:2:16306)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1125:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1149:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1176:12)
+    at node:internal/modules/cjs/loader:1348:5
+    at Module._load (node:electron/js2c/node_init:2:18263)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:268:19)
+    at Module.require (node:internal/modules/cjs/loader:1681:12)
+    at require (node:internal/modules/helpers:157:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ 'D:\\TapKit\\packages\\core\\dist\\index.cjs' ]
+}
+
+Node.js v24.20.0
+TAPKIT_CORE_EXIT 1
+(node:30884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Core startup failed Error: Core exited: 1
+    at ForkUtilityProcess.<anonymous> (D:\TapKit\apps\desktop\out\main\index.js:5662:17)
+    at ForkUtilityProcess.emit (node:events:514:28)
+    at UtilityProcess.emit (node:electron/js2c/browser_init:2:95072)
+Error occurred in handler for 'tapkit:ping': Error: Core exited: 1
+    at ForkUtilityProcess.<anonymous> (D:\TapKit\apps\desktop\out\main\index.js:5662:17)
+    at ForkUtilityProcess.emit (node:events:514:28)
+    at UtilityProcess.emit (node:electron/js2c/browser_init:2:95072)
+Debugger ending on ws://127.0.0.1:65424/cbe51c98-1458-4c80-9c92-80a21ecaa4f5
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  x  2 tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown (15.6s)
+
+
+  1) tests\e2e\P00-01.shell.spec.ts:22:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('core-status')
+    Expected: "本地核心已连接"
+    Received: "本地核心连接失败，请重启应用后重试。"
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('core-status') with timeout 15000ms
+      - waiting for getByTestId('core-status')
+        33 × locator resolved to <p role="status" data-testid="core-status">本地核心连接失败，请重启应用后重试。</p>
+           - unexpected value "本地核心连接失败，请重启应用后重试。"
+
+
+      23 |   const page = await app.firstWindow();
+      24 |   await expect(page.getByRole('heading', { name: '从这里开始' })).toBeVisible();
+    > 25 |   await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+         |                                                 ^
+      26 |   const reply = await page.evaluate(() => window.tapkit.ping({ nonce: '中文 空格 ABI' }));
+      27 |   expect(reply.nonce).toBe('中文 空格 ABI');
+      28 |   expect(reply.process).toBe('core');
+        at D:\TapKit\tests\e2e\P00-01.shell.spec.ts:25:49
+
+    Error Context: test-results\P00-01.shell-P00-01-ABI-El-2cf44--and-Chinese-data-directory\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\P00-01.shell-P00-01-ABI-El-2cf44--and-Chinese-data-directory\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\P00-01.shell-P00-01-ABI-El-2cf44--and-Chinese-data-directory\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown ───
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('core-status')
+    Expected: "本地核心已连接"
+    Received: "本地核心连接失败，请重启应用后重试。"
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('core-status') with timeout 15000ms
+      - waiting for getByTestId('core-status')
+        33 × locator resolved to <p role="status" data-testid="core-status">本地核心连接失败，请重启应用后重试。</p>
+           - unexpected value "本地核心连接失败，请重启应用后重试。"
+
+
+      42 | test('P00-01 sandbox bridge errors and clean child shutdown', async () => {
+      43 |   const page = await app.firstWindow();
+    > 44 |   await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+         |                                                 ^
+      45 |   expect(
+      46 |     await page.evaluate(() => ({
+      47 |       require: typeof (window as unknown as Record<string, unknown>).require,
+        at D:\TapKit\tests\e2e\P00-01.shell.spec.ts:44:49
+
+    Error Context: test-results\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests\e2e\P00-01.shell.spec.ts:22:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory
+    tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown ────
+file:///D:/TapKit/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\TapKit\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/TapKit/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/TapKit/scripts/lib.mjs:27:3)
+    at file:///D:/TapKit/scripts/e2e.mjs:3:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.18.0
+[ELIFECYCLE] Command failed with exit code 1.

@@ -1,0 +1,98 @@
+{
+  "reviewedAt": "2026-09-17T15:04:41.868Z",
+  "repo": "https://github.com/FoyonaCZY/AelionBot",
+  "commit": "101935cda6071a4854d403c0b8bd3d602d44d729",
+  "treeTruncated": false,
+  "sourceFilesFetched": 308,
+  "verifiedGitBlobHashes": true,
+  "method": "Static source inspection only; no third-party commands/tests executed",
+  "files": [
+    {
+      "path": "electron/core/background-processes.ts",
+      "blobSha": "3d930e60a18d8aa8c8aa74c0d3b0e85d973baa88",
+      "bytes": 12303
+    },
+    {
+      "path": "electron/core/desktop-profile.ts",
+      "blobSha": "eba38da38cc40391c3fddc5df107506bb1894d58",
+      "bytes": 17540
+    },
+    {
+      "path": "electron/core/host-platform.ts",
+      "blobSha": "f5377f5bb7172ef72ce81bfa2f1484a309f85586",
+      "bytes": 2517
+    },
+    {
+      "path": "electron/core/host.ts",
+      "blobSha": "23631273d64a33c68c010607aeaf6c69945ccd6c",
+      "bytes": 23322
+    },
+    {
+      "path": "electron/core/office-preview.ts",
+      "blobSha": "ec615719314016ba3b4cc538d00f7ff1cefe4ece",
+      "bytes": 3675
+    },
+    {
+      "path": "electron/core/owned-qemu.ts",
+      "blobSha": "ec9091ba1725054f6bc798c8bc659222d60c9436",
+      "bytes": 2173
+    },
+    {
+      "path": "electron/core/shutdown.ts",
+      "blobSha": "2af5e325e25a87fd4095ae6bd99e093aa799a32a",
+      "bytes": 1084
+    },
+    {
+      "path": "electron/core/terminal-sessions.ts",
+      "blobSha": "18a41ac03b86b37056e8008fb479caf54cfa8772",
+      "bytes": 10157
+    },
+    {
+      "path": "electron/core/store.ts",
+      "blobSha": "34a517146fc22dc9572a3fa3c1e54cb80a4aa943",
+      "bytes": 26862
+    },
+    {
+      "path": "electron/core/vm-shutdown.ts",
+      "blobSha": "4fbde6f304618dfc4b60fe1a8ea69f1d0c6efc1f",
+      "bytes": 1627
+    },
+    {
+      "path": "electron/core/vm-storage.ts",
+      "blobSha": "cbb19c44a73492243276486fb46f9e8c7a4deab2",
+      "bytes": 7121
+    },
+    {
+      "path": "electron/core/vm.ts",
+      "blobSha": "5c28e20310a1b920963ca29fdfb20cade5caa27b",
+      "bytes": 51056
+    },
+    {
+      "path": "tests/background-processes.test.ts",
+      "blobSha": "15aac4c2e26bd3c26f1b923372cb8caf406dbfd4",
+      "bytes": 2078
+    },
+    {
+      "path": "tests/file-preview.test.ts",
+      "blobSha": "a78164de1c9fce759caad70cc1a9d1455b6fe61a",
+      "bytes": 4929
+    },
+    {
+      "path": "tests/shutdown.test.ts",
+      "blobSha": "007937565dfda2b66c034d0bbda952b7d8749a28",
+      "bytes": 7550
+    },
+    {
+      "path": "tests/terminal-vm.test.ts",
+      "blobSha": "9e042e46296355b862c446420b62cbc9d5a66f48",
+      "bytes": 3529
+    },
+    {
+      "path": "tests/vm-storage.test.ts",
+      "blobSha": "710d855cfe4b98d6e9171b8f5fdd5be045ea012e",
+      "bytes": 7017
+    }
+  ],
+  "searchScope": "Fetched electron/runtime/scripts/tests source files and selected docs",
+  "directWindowsFixFound": false
+}

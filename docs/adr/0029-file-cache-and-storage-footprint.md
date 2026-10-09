@@ -1,0 +1,13 @@
+# ADR0029：文件缓存清理与占用统计
+
+日期：2026-10-06；状态：采纳，P03-01实施中，公共文件服务/UI尚未接入。
+
+资料库占用按当前profile实际保留的不同blob摘要计量；相同原件/版本/副本共用blob，不重复计字节。originalBytes包含活动文件和回收站的原件；derivedBytes包含仍关联版本的解析结构/预览且排除已计入原件的blob；backupRetainedBytes包含当前profile已完成备份仍引用、但已不属于上述活动/回收站集合的blob。fileCount只数活动文件，trashCount数可恢复文件，永久删除墓碑不再计入。这里统计文件blob占用，未把SQLite备份/程序runtime大小冒充文件占用，UI必须明确口径。
+
+备份manifest使用既有schema/id校验及有界普通文件读取，核对保留blob的状态/大小；损坏或缺失不能显示假数字。统计不删除备份、不解除其保留义务。GC继续遵守既有manifest与有效引用；以后备份轮转/全数据清理由相应任务处理。
+
+deletePreviews先全量验证选择文件的profile及存在性，再在一个事务内清除各有效版本preview_blob_id并逐引用递减计数，preview_status改pending；原件、解析结构、FTS和历史版本不清除。不同版本共用预览blob时仍逐引用递减，物理字节能否回收由GC和备份决定。批量命令拒绝重复ID，避免重复改变revision/引用计数。
+
+解析结构读取先校验文件、profile及指定owner/pinned-version，通过既有blob大小/hash校验读取，I/O后再次校验成员关系/删除状态。隐式当前版本发生替换则CONFLICT，显式旧版本只返回该版本。未在公共bridge开放任意blob ID或路径。
+
+合成集成测试覆盖共享原件/预览计量、失败批次回滚、清理后结构与原件保持、回收站/永久删除/备份保留、固定版本权限及读取中解除引用。本次只完成仓库服务能力，Host选择token和资料库界面仍待接入。

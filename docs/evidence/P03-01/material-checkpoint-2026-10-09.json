@@ -1,0 +1,121 @@
+{
+  "task": "P03-01",
+  "status": "in_progress",
+  "date": "2026-10-09",
+  "baseHead": "8e057056361714bd9091b4bb7fcdcb277022ab96",
+  "baseCommittedAndPushed": true,
+  "baseRemoteShaVerified": true,
+  "implementation": [
+    "fixed parsed-structure material consumer with bounded text; no binary original decoding",
+    "project session/project pinned grant checks before and after I/O; project chooser keeps pinned old versions",
+    "P02 legacy text compatible, current-session grant on controlled attach",
+    "1px static diagram inset fixes measured viewport rounding while preserving original assertions/CSP/sandbox"
+  ],
+  "checks": [
+    {
+      "command": "pnpm test:integration -- P03-01.file-material P03-01.file-usage P03-01.files P02-02.chat P02-03.history",
+      "exitCode": 0,
+      "passed": 53,
+      "log": ".cache/ci/p03-material-integration-closed-2026-10-09.log",
+      "logSha256": "f37d23e49f224283a13e57d0305679b421db832c6d2924e4eed9305acd850d14"
+    },
+    {
+      "command": "pnpm test:unit -- P03-01.files-contract P02-02.chat",
+      "exitCode": 0,
+      "passed": 7,
+      "log": ".cache/ci/p03-material-unit-2026-10-09.log",
+      "logSha256": "f26f8f36f4cf9d74f4e669d52d6c116c1f71e6d0b47549caab3bc749e14a9e84"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P02-02|P03-01",
+      "exitCode": 1,
+      "passed": 11,
+      "failed": 1,
+      "log": ".cache/ci/p03-material-electron-2026-10-09.log",
+      "note": "Existing malicious-Markdown diagram bounds check failed; material flows passed. Script restored production build.",
+      "logSha256": "eccde9b7989491e34dab30d7406bd6f52f6988e9a6568e917e987f52b5eea99a"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P02-02 T02 malicious",
+      "exitCode": 1,
+      "failed": 1,
+      "log": ".cache/ci/p03-material-diagram-diagnostic-2026-10-09.log",
+      "note": "Measured SVG width 777.333374px versus integer innerWidth 777; height 260 equals viewport 260. No assertion relaxation.",
+      "logSha256": "c35e5c1b2fbd7f086ad82120e0b55f08ef8b07b2592267077854a74304cd4590"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P02-02|P03-01",
+      "exitCode": 0,
+      "passed": 12,
+      "log": ".cache/ci/p03-material-electron-fixed-2026-10-09.log",
+      "note": "Static SVG max-width adds 1px inset; original bounds assertion passes at width 776.333374px, viewport 777. Script also restores production build.",
+      "logSha256": "984b48f22a39fedef7fb6501923c7b5e99a1d3ab2bcb192844240c403e96ff18"
+    },
+    {
+      "command": "pnpm exec tsc --noEmit",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "formattedFiles": 314,
+      "log": ".cache/ci/p03-material-check-2026-10-09.log",
+      "logSha256": "4b8254f49a53173de6f548265b087fab6f7f1cfd1d53391c27f9d9d66fe1ed47"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "handoffs": 37
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "inspect restored production Core for installChatFixture marker",
+      "exitCode": 0,
+      "markerPresent": false
+    }
+  ],
+  "coverage": [
+    "synthetic trusted DOCX/PDF/sheet/PPTX structures; no native parsing claimed",
+    "original read spy and immutable version replacement",
+    "project reference withdrawal/project change/file delete after I/O",
+    "project chooser pinned old version excludes outside library files",
+    "legacy text exact CRLF selected range",
+    "OCR/oversize/missing binary structure refused without original fallback",
+    "actual Electron existing chat and P03 file flows; restored production build"
+  ],
+  "screenshot": {
+    "path": "docs/evidence/P03-01/material-static-diagram.png",
+    "sha256": "636f5fa335f85f1e94dd0fbe0ca0d37363b34ab024a3fd74252ad511a846304e",
+    "visuallyInspected": true
+  },
+  "ci": {
+    "head": "8e057056361714bd9091b4bb7fcdcb277022ab96",
+    "prRun": 37829217781,
+    "pushRun": 37829209442,
+    "checkJob": 113489886118,
+    "startupJob": 113489897720,
+    "status": "completed",
+    "conclusion": "failure",
+    "checkSteps": 0,
+    "startupSteps": 0,
+    "annotation": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the Billing & plans section in your settings",
+    "resource": "R15",
+    "nativeDiagnostics": "not_run"
+  },
+  "guard": {
+    "localHelper": "not_executed",
+    "realModel": "not_called",
+    "realUserProfileVaultOrKeys": "not_read",
+    "chromiumSandbox": true,
+    "diagramCSPAndSandbox": "unchanged",
+    "productionBuildRestored": true
+  },
+  "remaining": [
+    "physical chat file import still uses legacy bytes path; unify with Host selection tokens while retaining virtual clipboard/text attachment compatibility",
+    "remaining exception/requirement audit and native CORRUPT_FILE acceptance after R15",
+    "P03-02/03 unstarted; non-text locator UI belongs P03-02"
+  ]
+}

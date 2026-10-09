@@ -1,0 +1,211 @@
+{
+  "task": "P03-01",
+  "status": "in_progress",
+  "date": "2026-10-06",
+  "baseHead": "9b78267115d6cbba9acb1a4c4c0557746030a0c5",
+  "implementation": [
+    "real file library route and Host/preload/Core import/drop/save chain",
+    "date filters, disk availability and selection release",
+    "list/grid, scope, folder, details, rename, copy, favorite, versions and trash",
+    "owner-fenced complete batch impact and honest per-item operation results"
+  ],
+  "checks": [
+    {
+      "command": "pnpm test:integration -- P00-02.storage P02-03.history P03-01.files P03-01.migration P03-01.parser-process P03-01.parser-orchestration P03-01.file-selections P03-01.file-service P03-01.file-exporter",
+      "exitCode": 0,
+      "passed": 80,
+      "log": ".cache/ci/p03-library-integration-final.log",
+      "logSha256": "39fc6f73755f56e74f0b462ae9de2b79d9c55a02b732655f5d4a827c07c76a44"
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 255,
+      "log": ".cache/ci/p03-library-unit-final.log",
+      "logSha256": "ff11bc54b4af271512a862f3d41333635c59dc620cee6c7761d93e5399d3b995"
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-library-desktop-build-final.log",
+      "logSha256": "cda39ed0dcaf0a9b62bab9bdc568522720024a8c9a19a39afbb521e905b229d0"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01",
+      "exitCode": 0,
+      "passed": 4,
+      "log": ".cache/ci/p03-library-e2e-batch-final.log",
+      "logSha256": "bc58ac4f57c1179a145c24830ae450467d1f549928d8acff6718ad27e3f2081d"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P00-0[12]",
+      "exitCode": 1,
+      "passed": 7,
+      "failed": 1,
+      "reason": "strict bridge allowlist omitted four newly implemented file methods",
+      "log": ".cache/ci/p03-library-p00-e2e-regression.log",
+      "logSha256": "f9bd7b81051caddfbf2f5aaae87a76d71673cf412fcedf613e6319f0f3ea3282"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P00-0[12]",
+      "exitCode": 0,
+      "passed": 8,
+      "log": ".cache/ci/p03-library-p00-e2e-regression-fixed.log",
+      "logSha256": "14fd84210a2fe6ec6110c133be8ac7090f08a3b9e3858c0ccd1b745dba1013fb"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 1,
+      "log": ".cache/ci/p03-library-check-final.log",
+      "reason": "synthetic cancelled SaveDialogReturnValue omitted required filePath",
+      "logSha256": "2476c69d5436ecfa8ff9ba37db065716e40db4392c80c3a554d91c8a1af3b476"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 1,
+      "log": ".cache/ci/p03-library-check-fixed.log",
+      "reason": "fixed Electron types require empty string on cancellation; undefined is invalid",
+      "logSha256": "2470ea75d79e0d825feae08ae1e294c18c9a5048c160ece86f6dcb50aa1bd95e"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "formattedFiles": 300,
+      "log": ".cache/ci/p03-library-check-typed-final.log",
+      "logSha256": "f7d7882a3e19a6da95ba0abe9fa3601ebaf445a61190560430baae62c4db891b"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01 batch download",
+      "exitCode": 0,
+      "passed": 1,
+      "log": ".cache/ci/p03-library-batch-typed-final.log",
+      "logSha256": "711151f27c94c99c2618db3a866bd04ae4b0736da33d574616d93b356a12dd1a"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "tasks": 37
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "e2eCoverage": [
+    "immutable source hash and exact downloaded bytes with unavailable native parsing",
+    "rename, favorite, trash and restore through real bridge",
+    "genuine DOM File passed through Electron webUtils and nested folder import after selection dismissal",
+    "light/dark at 1200 and 960 widths plus actual application zoom 2; no document/library horizontal overflow and keyboard focus",
+    "batch save cancellation retains unfinished selection, does not open remaining dialogs or claim full success"
+  ],
+  "earlierFailures": [
+    "default command sandbox GPU startup failed before UI; unchanged Electron binary, chromiumSandbox:true and assertions passed outside that command sandbox",
+    "first complete library E2E had asynchronous folder option read and test-only ancestor zoom errors; switched to awaited real combobox and existing settings.zoom=2; all four final tests passed"
+  ],
+  "screenshots": [
+    {
+      "file": "docs/evidence/P03-01/library-light-1200.png",
+      "sha256": "3e86d5c931ab9bee56b55cd9920fe6524940e3bab166a473498c10233e73fbc8",
+      "visualReview": "passed"
+    },
+    {
+      "file": "docs/evidence/P03-01/library-light-960.png",
+      "sha256": "0b320fdf0ec23636f5d95801034a553901317660932e98f863f46658ee46a54e",
+      "visualReview": "passed"
+    },
+    {
+      "file": "docs/evidence/P03-01/library-dark-1200.png",
+      "sha256": "3e974025fd340c9865b9e05a1794d207955dfee9e8a7497ddc87ebe4a55997d0",
+      "visualReview": "passed"
+    },
+    {
+      "file": "docs/evidence/P03-01/library-dark-960.png",
+      "sha256": "b01914a67f821ded34a3f3ea1c1e9c5855ad8906300c03d190c22d00caf9f4a4",
+      "visualReview": "passed"
+    },
+    {
+      "file": "docs/evidence/P03-01/library-dark-200-percent.png",
+      "sha256": "d37872cb9373b897d997637db7f23d106bdccd6d1a6d17b6ddad6478befb6042",
+      "visualReview": "passed"
+    }
+  ],
+  "ci": {
+    "head": "9b78267115d6cbba9acb1a4c4c0557746030a0c5",
+    "prRun": 37365004247,
+    "pushRun": 37364997424,
+    "status": "completed",
+    "conclusion": "failure",
+    "checkJob": 111947939405,
+    "checkConclusion": "cancelled",
+    "checkSteps": 0,
+    "startupJob": 111953207879,
+    "startupSteps": 0,
+    "startupAnnotation": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the Billing & plans section in your settings",
+    "resource": "R15",
+    "nativeDiagnostics": "not_run"
+  },
+  "guard": {
+    "localUnsignedHelper": "not_executed",
+    "chromiumSandbox": true,
+    "actualSystemDialogInteraction": "not_manually_verified",
+    "dialogs": "synthetic paths returned only within test",
+    "realUserProfileVaultOrKeys": "not_read"
+  },
+  "remaining": [
+    "native P03 failure diagnosis and actual Windows acceptance after R15",
+    "unfinished import and parser staging crash recovery",
+    "task-linked usage records",
+    "image-original experience and remaining task-level negative E2E/requirements closure"
+  ],
+  "baseRemoteShaVerified": true,
+  "sourceSnapshot": [
+    {
+      "file": "packages/contracts/src/files.ts",
+      "sha256": "28d8e2209a267063c9e72e210767b34fc294ec9a97bf4c0e43c6061bd9417128"
+    },
+    {
+      "file": "packages/core/src/file-service.ts",
+      "sha256": "27dd8cbadcf78803688347676456b3aa47b7aadc3d17cd88d7ef4f43817bb337"
+    },
+    {
+      "file": "packages/core/src/file-selections.ts",
+      "sha256": "043142a1b54bb961e7f54ed43f4732a9ea7588bf4b9b57851737efedf93200c3"
+    },
+    {
+      "file": "packages/storage/src/files.ts",
+      "sha256": "2ca17aa7a4c922d1b9f76f5d6e1529a9cbd8a285207bcda727dfb2e766d1458e"
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/file-library.tsx",
+      "sha256": "7fce4a2427c1a15ea4deb5a5549c5b405d91690f716a059e4d6bec4bc5c9e869"
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/desktop-shell.tsx",
+      "sha256": "9b28dfbb7bf542802af4ffd3d097c473bf286ec4a4fd63909f793c4a568a64e5"
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/styles.css",
+      "sha256": "9d2426967a4d44755591a66b68b27a2b87570c08ab4073d960375821a97d3c10"
+    },
+    {
+      "file": "apps/desktop/src/renderer/locales/files.zh-CN.json",
+      "sha256": "40be6ec676b1e0db56271238b4f6e4fb473a9b92317944faa27cd2b3f57cdb7a"
+    },
+    {
+      "file": "tests/integration/P03-01.file-service.test.ts",
+      "sha256": "9a22322dc2143dfdb1a5e9a0a0d2a12f50f4fc2d864e18481a4860128712a3b8"
+    },
+    {
+      "file": "tests/e2e/P00-01.shell.spec.ts",
+      "sha256": "92d3682f56a0f34c4acab325f0f78fd565454d412b840f7db2fcd820351856f6"
+    },
+    {
+      "file": "tests/e2e/P03-01.files.spec.ts",
+      "sha256": "dc3fe1ccddb6401f0c669facf589a5afde22ac441e795baceb03749f216cbdd7"
+    },
+    {
+      "file": ".github/workflows/check.yml",
+      "sha256": "7dde4245cf5013cab0ac8a28ec8201dc8f4050541ed9c971fdb2e2a791df61b3"
+    }
+  ]
+}

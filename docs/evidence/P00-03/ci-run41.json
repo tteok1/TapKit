@@ -1,0 +1,140 @@
+{
+  "run": {
+    "id": 36877560760,
+    "run_number": 41,
+    "head_sha": "9e8e603e522e75eb6cb735e32cf7142f106b3112",
+    "status": "completed",
+    "conclusion": "failure",
+    "html_url": "private-archive:TapKit",
+    "created_at": "2026-10-01T14:35:44Z",
+    "updated_at": "2026-10-01T14:49:15Z"
+  },
+  "collectedAt": "2026-10-01T14:54:07.7720756Z",
+  "artifact": {
+    "id": 11169949779,
+    "sha256": "027109c821551a8851cfb5b72799c61cd20c17c5494dfe26af8e63c342965190"
+  },
+  "jobLog": {
+    "id": 110420787390,
+    "sha256": "9a635419d58c5d9fdf45e107556c7df4c8a7056c094823cd6d10521f025b8256"
+  },
+  "steps": [
+    {
+      "name": "Bootstrap locked runtime and native dependencies",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Unit and current-route integration",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "name": "Build and Electron checks",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Verify current-route P00-03 as an independent standard user",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "testSummaries": [
+    "2026-10-01T14:44:53.1898371Z   1 passed (4.0s)"
+  ],
+  "standardUser": {
+    "cases": [],
+    "confirmed": null,
+    "failures": null,
+    "report": null
+  },
+  "office": [
+    {
+      "exitCode": 0,
+      "appContainer": true,
+      "role": "administrator",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n{\"stage\": \"converted\", \"format\": \"docx\", \"bytes\": 35683}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "status": "exited",
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "networkCapabilities": 0,
+      "runId": "2fcfa55e-1cdf-7d24-89fa-57c3dc96a197",
+      "case": "office-render",
+      "activeProcesses": 0
+    },
+    {
+      "exitCode": 0,
+      "appContainer": true,
+      "role": "administrator",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 23492}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "status": "exited",
+      "stderr": "",
+      "networkCapabilities": 0,
+      "runId": "1386f738-13d6-781f-9e99-1bdb5390db93",
+      "case": "office-macro-blocked",
+      "activeProcesses": 0
+    },
+    {
+      "exitCode": 0,
+      "appContainer": true,
+      "role": "administrator",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 20099}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "status": "exited",
+      "stderr": "",
+      "networkCapabilities": 0,
+      "runId": "26fad6e7-65e4-74c2-80c9-9ed99eec4bf4",
+      "case": "office-link-blocked",
+      "activeProcesses": 0
+    },
+    {
+      "exitCode": 1,
+      "appContainer": true,
+      "role": "administrator",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n",
+      "status": "timeout",
+      "stderr": "",
+      "networkCapabilities": 0,
+      "runId": "1fb3b35f-fe73-7651-8d7c-cdbe8f0b435e",
+      "case": "office-corrupt",
+      "activeProcesses": 0
+    },
+    {
+      "exitCode": 0,
+      "appContainer": true,
+      "role": "administrator",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n{\"stage\": \"converted\", \"format\": \"docx\", \"bytes\": 35683}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "status": "exited",
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "networkCapabilities": 0,
+      "runId": "1fddd6eb-b2bb-758e-9eab-ba3718ffb1af",
+      "case": "office-corrupt",
+      "activeProcesses": 0
+    }
+  ],
+  "administratorEvidenceBaselineLines": 149,
+  "sourceReference": "9e8e603e522e75eb6cb735e32cf7142f106b3112",
+  "taskStatus": "in_progress",
+  "gate": "failed",
+  "administratorTests": {
+    "unitPassed": 16,
+    "integrationTotal": 46,
+    "integrationFailed": 4,
+    "integrationPassed": 42,
+    "unitTotal": 16
+  },
+  "diagnosis": [
+    "All four Office failures are TypeError: document.destroy is not a function in pdfText cleanup. The macro/link positive controls were not reached.",
+    "The corrupt document hit the 120-second Job timeout with activeProcesses=0, and the next valid DOCX conversion exited 0.",
+    "Standard-user verification and Build/Electron were skipped."
+  ]
+}

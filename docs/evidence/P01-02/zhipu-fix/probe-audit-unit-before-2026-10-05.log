@@ -1,0 +1,52 @@
+$ vitest run --config vitest.config.ts --project unit "--" "P01-02"
+
+ RUN  v5.0.0 D:/tapkit/TapKit
+
+ ❯ |unit| tests/unit/P01-02.api.test.ts (61 tests | 1 failed) 135ms
+   ❯ P01-02 API protocol fixtures (61)
+     × inspects JSON safely without completing or retrying: {"type":"error","code":"invalid_api_key","message":"private-body-marker"} 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P01-02.api.test.ts > P01-02 API protocol fixtures > inspects JSON safely without completing or retrying: {"type":"error","code":"invalid_api_key","message":"private-body-marker"}
+AssertionError: expected { …(7) } to match object { status: 'unavailable', …(4) }
+(2 matching properties omitted from actual)
+
+- Expected
++ Received
+
+@@ -4,9 +4,9 @@
+      "phase": "text",
+      "reason": "upstream_error",
+      "responseType": "json",
+    },
+    "errorCode": "AUTH_EXPIRED",
+-   "status": "unavailable",
++   "status": "expired",
+    "text": false,
+    "tools": false,
+  }
+
+ ❯ tests/unit/P01-02.api.test.ts:378:24
+    376|           ),
+    377|         );
+    378|         expect(result).toMatchObject({
+       |                        ^
+    379|           status: 'unavailable',
+    380|           text: false,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 15 passed (16)
+      Tests  1 failed | 203 passed (204)
+   Start at  03:16:57
+   Duration  9.67s (tests 55%, import 29%, transform 14%, setup 2%, worker 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+pnpm exited 1
+At D:\tapkit\TapKit\scripts\pnpm.ps1:18 char:5
++     throw "pnpm exited $tapkitCommandExit"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1

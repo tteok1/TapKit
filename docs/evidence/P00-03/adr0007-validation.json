@@ -1,0 +1,30 @@
+{
+  "recordedAt": "2026-09-24T15:11:38+08:00",
+  "task": "P00-03",
+  "branch": "main",
+  "head": "071d15c5c45db4e91d232a4d26db7904061bc89b",
+  "workingTree": "uncommitted changes preserved",
+  "node": "24.21.0",
+  "checks": {
+    "pnpm check": { "exitCode": 0 },
+    "node scripts/build.mjs": { "exitCode": 0 },
+    "unit": { "exitCode": 0, "passed": 15, "total": 15, "report": "adr0007-unit-results.json" },
+    "integrationSelected": { "exitCode": 0, "passed": 29, "total": 29, "report": "adr0007-integration-results.json" },
+    "node scripts/docs-check.mjs": { "exitCode": 0 },
+    "git diff --check": { "exitCode": 0 },
+    "runtime-probe default": { "exitCode": 1, "expectedFailure": "ACCOUNT_BACKEND_NOT_READY" },
+    "standard-user-test default": { "exitCode": 1, "expectedFailure": "ACCOUNT_BACKEND_NOT_READY" }
+  },
+  "sha256": {
+    "packages/tools/src/execution/git-broker.ts": "ed717216f83f18711888277c6f86798f48dd826b0289405a26c913dfed1563a1",
+    "packages/tools/src/execution/office-worker.ts": "2df383d0d09a605bb9ba38fd2ae22a91aba65231c886da6cb6818b6e8f62dfe0",
+    "packages/contracts/src/execution.ts": "d4b22b57294b37d7af31272f6cef8a622460c86536685f4f404090a3c4daaf2f",
+    "resources/runtime/helper/tapkit-windows-helper.exe": "e4b39808bb4661169456b8800f1972c2216120da075f9006694534d994ea7f57"
+  },
+  "accountBackendImplemented": false,
+  "newNativeAcceptanceRun": false,
+  "standardUserNewBackendRun": false,
+  "osAccountsAclNetworkChanged": false,
+  "phaseGate": "failed",
+  "note": "Implementation checkpoint only. GitBroker has four real tests; OfficeWorker uses an injected test executor. The helper remains the legacy AppContainer binary. These checks cannot enable native capabilities."
+}

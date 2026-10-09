@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "taskId": "P01-01",
+  "observedAt": "2026-10-04 (Asia/Shanghai)",
+  "checkout": "D:/tapkit/TapKit",
+  "branch": "codex/p01-01",
+  "head": "38403478322ad581c8ab16ebf9745732498b3417",
+  "codeRef": "HEAD+working-tree",
+  "status": "implemented_not_live_verified",
+  "sourceHashes": [
+    {
+      "path": "packages/core/src/provider-service.ts",
+      "sha256": "876452a4cee36beba6abb1c13db4121172066ca64e7ab980a197df849bf919a4"
+    },
+    {
+      "path": "packages/providers/src/codex/adapter.ts",
+      "sha256": "8b4f47cca50a95b873ed0d3dcf40c9270bf385cbd4f22fdcf0ce7d19f2326b22"
+    },
+    {
+      "path": "packages/providers/src/codex/errors.ts",
+      "sha256": "198a0ab4ded7fe63c30eae0199056e121ecbb12a2fc17137ecd1ba82818d253f"
+    },
+    {
+      "path": "packages/providers/src/codex/login.ts",
+      "sha256": "b271e5a72cd9215b5f29af06a084a37025a4eef56042605d9cab0571b06d356f"
+    },
+    {
+      "path": "packages/providers/src/codex/refresh.ts",
+      "sha256": "4db505c533b2b99ae32872283b1027c9c70b4ec19102c2c3414cae65359988d1"
+    },
+    {
+      "path": "apps/desktop/src/main/auth/secrets.ts",
+      "sha256": "5fe8aa2ef31e5eb93d166f11ef49f4d12161cc761f691fcfccc28d6721c8d518"
+    },
+    {
+      "path": "scripts/live.mjs",
+      "sha256": "6af26d3743ea32d43d9ed10fddaf3f6d14508757bb311feb09e643535a61f942"
+    },
+    {
+      "path": "tests/integration/P01-01.lifecycle-regression.test.ts",
+      "sha256": "38e10bf0ee789b4925d6edc6113ecbb29a7880ab83f13ae3f87bcabe383471c4"
+    },
+    {
+      "path": "tests/e2e/P01-01.codex.spec.ts",
+      "sha256": "ed11e52e7cf78de84a9f97330292baa825ebcab4fd610441ac2e469b7be24e26"
+    },
+    {
+      "path": "tests/e2e/P01-01.live-runner.spec.ts",
+      "sha256": "14d4721728060961c6673fde6672a3dc905db0b5e0d63c55553582405cbb6e6f"
+    },
+    {
+      "path": "tests/fixtures/P01-01.live.cjs",
+      "sha256": "f794478cb6b962f5edf4851aedb8ca204420491a215890376a9ae8c2b2382a95"
+    },
+    {
+      "path": "tests/live/P01-01.codex.ts",
+      "sha256": "e394ea290f8338a9e2679c60ad8fb022f9f93f567985b6e51b8eea6e34a5921f"
+    },
+    {
+      "path": "resources/catalogs/codex-adapter.json",
+      "sha256": "e802c86ccafcad4987deca03837f193718e5f18b669a87b96c30d4b547050267"
+    }
+  ],
+  "commands": [
+    {
+      "exitCode": 0,
+      "log": "repair-build.log",
+      "command": "scripts/pnpm.ps1 build"
+    },
+    {
+      "total": 37,
+      "exitCode": 0,
+      "log": "repair-unit.log",
+      "command": "scripts/pnpm.ps1 test:unit",
+      "passed": 37
+    },
+    {
+      "passed": 50,
+      "exitCode": 0,
+      "p01Passed": 31,
+      "log": "repair-integration.log",
+      "command": "scripts/pnpm.ps1 test:integration P01-01 P00-02.storage",
+      "total": 50
+    },
+    {
+      "exitCode": 0,
+      "execution": "actual desktop outside execution sandbox",
+      "liveTransport": "mock only",
+      "p01Passed": 2,
+      "log": "repair-electron.log",
+      "passed": 8,
+      "total": 8,
+      "command": "scripts/pnpm.ps1 test:e2e -- --grep 'P00-02|P01-01'"
+    },
+    {
+      "wrapperExitCode": 1,
+      "pnpmExitCode": 2,
+      "resourceId": "R01",
+      "status": "not_run",
+      "command": "scripts/pnpm.ps1 test:live -- --provider codex-subscription"
+    },
+    {
+      "command": "scripts/pnpm.ps1 check",
+      "exitCode": 0,
+      "log": "repair-check.log",
+      "execution": "actual host; protected test profile ACL preserved"
+    },
+    {
+      "command": "scripts/pnpm.ps1 docs:check",
+      "exitCode": 0,
+      "log": "repair-docs-check.log"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "finalChecks": {
+    "docsCheck": 0,
+    "diffCheck": 0,
+    "check": 0
+  },
+  "restrictions": [
+    "R01 pending; no real OAuth/model requests",
+    "P00-gate remains failed; helper compilation is not safety acceptance",
+    "No commit/push in this repair",
+    "Existing P00-03 logs preserved"
+  ]
+}

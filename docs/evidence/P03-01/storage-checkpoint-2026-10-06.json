@@ -1,0 +1,39 @@
+{
+  "recordedAt": "2026-10-05T19:09:02.652Z",
+  "task": "P03-01",
+  "status": "in_progress",
+  "implementation": [
+    "Distinct scoped physical blob counts for originals/derived/backup-only retention and live/trash file counts",
+    "Atomic batch preview cache removal preserves original/structure/index/versions",
+    "Verified parsed structure reads with owner/pinned version checks before and after IO and implicit-current conflict guard"
+  ],
+  "validation": [
+    {
+      "command": "pnpm test:integration P03-01.files",
+      "exitCode": 0,
+      "passed": 11
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 255
+    },
+    {
+      "command": "pnpm test:integration P00-02.storage P02-03.history P03-01.files P03-01.migration P03-01.parser-process P03-01.parser-orchestration",
+      "exitCode": 0,
+      "passed": 56
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0
+    }
+  ],
+  "limitations": [
+    "Repository implementation only; public FileService/bridge/UI still pending",
+    "Native parser CI failure remains open; no local helper invoked"
+  ],
+  "git": {
+    "commit": "pending",
+    "push": "pending"
+  }
+}

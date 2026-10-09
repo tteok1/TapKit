@@ -1,0 +1,376 @@
+{
+  "recordedAt": "2026-10-05T11:47:35.491Z",
+  "head": "856b160d225f70dd9e4e6e82fdc4b1afa5549422",
+  "run": 37300466141,
+  "url": "private-archive:TapKit",
+  "jobs": [
+    {
+      "id": 111731698288,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "failure",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "conclusion": "success"
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "conclusion": "success"
+        },
+        {
+          "name": "Save verified runtime archives",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Unit and current-route integration",
+          "conclusion": "success"
+        },
+        {
+          "name": "Dedicated Core performance checks",
+          "conclusion": "failure"
+        },
+        {
+          "name": "Build and Electron checks",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify current-route P00-03 as an independent standard user",
+          "conclusion": "success"
+        },
+        {
+          "name": "Repeat fresh-process Office shutdown diagnostics",
+          "conclusion": "failure"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 111740649968,
+      "name": "startup-diagnostics",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "conclusion": "success"
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "conclusion": "success"
+        },
+        {
+          "name": "Repeat fresh-process startup diagnostics",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "sameHeadPush": {
+    "run": 37300460827,
+    "jobs": [
+      {
+        "id": 111731681366,
+        "name": "check",
+        "status": "completed",
+        "conclusion": "failure",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Restore locked runtime archives",
+            "conclusion": "success"
+          },
+          {
+            "name": "Bootstrap locked runtime and native dependencies",
+            "conclusion": "success"
+          },
+          {
+            "name": "Save verified runtime archives",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Check",
+            "conclusion": "success"
+          },
+          {
+            "name": "Unit and current-route integration",
+            "conclusion": "success"
+          },
+          {
+            "name": "Dedicated Core performance checks",
+            "conclusion": "failure"
+          },
+          {
+            "name": "Build and Electron checks",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify current-route P00-03 as an independent standard user",
+            "conclusion": "success"
+          },
+          {
+            "name": "Repeat fresh-process Office shutdown diagnostics",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 111740141676,
+        "name": "startup-diagnostics",
+        "status": "completed",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Restore locked runtime archives",
+            "conclusion": "success"
+          },
+          {
+            "name": "Bootstrap locked runtime and native dependencies",
+            "conclusion": "success"
+          },
+          {
+            "name": "Repeat fresh-process startup diagnostics",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      }
+    ]
+  },
+  "failures": {
+    "performance": {
+      "error": "Test timed out in 60000ms",
+      "location": "tests/integration/P02-03.perf.test.ts:13",
+      "scope": "Synthetic 100,000-message seeding and query sampling shared one 60-second test budget; this run did not reach a P95 assertion"
+    },
+    "office": {
+      "rounds": [
+        "passed",
+        "failed",
+        "passed"
+      ],
+      "controlValue": "0",
+      "error": "OFFICE_CONTROL_LINK_NOT_UPDATED",
+      "status": "timeout",
+      "exitCode": 1,
+      "activeProcesses": 0,
+      "lastStage": "control_worker_complete",
+      "loopReturned": false,
+      "pythonStack": "Main thread remained in the native LOK runLoop; library teardown was not reached"
+    }
+  },
+  "changes": {
+    "performance": "Move synthetic seeding to a bounded 120-second beforeAll; keep query sampling at 60 seconds and both P95 assertions at 500ms. Reuse prepared branch-head update, archive the measured report under test-results/P02-03-perf.",
+    "office": "Candidate: queue PyUNO conversion via official awt.AsyncCallback on the VCL main message loop. Verify main-thread invocation; retain full PDF/source hash, process exit, isolation, and three independent repeat checks. Production worker unchanged."
+  },
+  "validation": {
+    "unit": {
+      "command": "pnpm test:unit",
+      "passed": 227,
+      "total": 227,
+      "exitCode": 0
+    },
+    "perf": {
+      "command": "pnpm test:perf",
+      "passed": 1,
+      "total": 1,
+      "exitCode": 0,
+      "report": {
+        "task": "P02-03",
+        "recordedAt": "2026-10-05T11:45:21.625Z",
+        "dataset": {
+          "sessions": 10000,
+          "messages": 100000
+        },
+        "seedMs": 21032.962900000002,
+        "sampleMs": 7277.462199999998,
+        "timeoutBudgets": {
+          "setupMs": 120000,
+          "samplingMs": 60000
+        },
+        "device": {
+          "platform": "win32",
+          "arch": "x64",
+          "cpu": "13th Gen Intel(R) Core(TM) i7-13700H",
+          "logicalCpus": 20,
+          "totalMemory": 16961822720
+        },
+        "list": {
+          "samples": 200,
+          "p50Ms": 8.739199999999983,
+          "p95Ms": 13.105399999996735
+        },
+        "search": {
+          "samples": 30,
+          "p50Ms": 171.82849999999962,
+          "p95Ms": 231.8199999999997
+        },
+        "processMemory": {
+          "rss": 238198784,
+          "heapTotal": 107163648,
+          "heapUsed": 45136360,
+          "external": 4400327,
+          "arrayBuffers": 212855
+        },
+        "scope": "Isolated Core/SQLite fixture; excludes Electron launch, total app memory and P03 document retrieval"
+      },
+      "note": "Unit workers ran during fixture setup and completed before sampling began"
+    },
+    "controlSyntax": {
+      "command": "locked LibreOffice Python compile() of the generated control script (not executed)",
+      "exitCode": 0
+    },
+    "check": {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "note": "Default sandbox Prettier scan failed EPERM on existing protected synthetic secrets; rerun with approved read access passed; ACL unchanged"
+    },
+    "docsCheck": {
+      "command": "pnpm docs:check",
+      "exitCode": 0
+    },
+    "diffCheck": {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  },
+  "verificationLimit": "Office candidate requires actual administrator, standard-user and three-round Windows CI; local unsigned helper restriction retained.",
+  "status": {
+    "P00-03": "in_progress",
+    "P00-gate": "failed",
+    "P02-03": "implemented_not_live_verified"
+  },
+  "delivery": {
+    "sha": "9837526b91ad0f465cfa3d0efe16a5d26ffb1453",
+    "branch": "codex/p02-01",
+    "pushExitCode": 0,
+    "remoteHeadMatches": true,
+    "newPrRun": 37305371971,
+    "newPushRun": 37305366141,
+    "status": "completed",
+    "conclusion": "failure"
+  },
+  "sources": [
+    "https://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1awt_1_1AsyncCallback.html",
+    "https://github.com/LibreOffice/core/blob/libreoffice-26.2.6.3/toolkit/source/awt/asynccallback.cxx"
+  ],
+  "followup": {
+    "run": 37305371971,
+    "office": "Administrator, standard-user and all three repeated positive-control cases passed",
+    "remainingFailure": "Search P95 552.35ms > 500ms",
+    "nextEvidence": "docs/evidence/P02-03/ci-search-optimization-2026-10-05.json"
+  }
+}

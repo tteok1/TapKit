@@ -1,0 +1,7 @@
+{
+  "expectedFailureExitCodePreserved": true,
+  "safeReportPreserved": true,
+  "apiCliStackRemoved": true,
+  "noOptInNoModelRequests": true,
+  "realRequests": 0
+}

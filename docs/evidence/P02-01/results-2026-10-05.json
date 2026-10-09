@@ -1,0 +1,112 @@
+{
+  "taskId": "P02-01",
+  "date": "2026-10-05",
+  "timezone": "Asia/Shanghai",
+  "branch": "codex/p02-01",
+  "head": "c9cd48293dadb93d5c4dacb198bf13b883e6bcc5",
+  "status": "implemented_not_live_verified",
+  "dirty": true,
+  "commandPrefix": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\pnpm.ps1",
+  "verification": [
+    {
+      "command": "exec tsc --project tsconfig.json",
+      "exitCode": 0
+    },
+    {
+      "command": "exec tsc --project apps/desktop/tsconfig.renderer.json",
+      "exitCode": 0
+    },
+    {
+      "command": "build:desktop",
+      "exitCode": 0,
+      "warnings": [
+        "Third-party annotation/use client warnings"
+      ]
+    },
+    {
+      "command": "test:unit",
+      "exitCode": 0,
+      "passed": 220,
+      "total": 220,
+      "taskTests": 10
+    },
+    {
+      "command": "exec vitest run --config vitest.config.ts --project integration P00-02 P01-01 P01-02 P01-03 P02-01",
+      "exitCode": 0,
+      "passed": 100,
+      "total": 100,
+      "taskTests": 4
+    },
+    {
+      "command": "test:e2e --grep P02-01",
+      "exitCode": 0,
+      "passed": 3,
+      "total": 3,
+      "environment": "Current-user isolated fixture profiles"
+    },
+    {
+      "command": "test:e2e --grep 'P02-01|P01-03|P00-01.*sandbox'",
+      "exitCode": 0,
+      "passed": 6,
+      "total": 6,
+      "environment": "Current-user isolated fixture profiles",
+      "observedCompletionUtc": "2026-10-04 21:37:02 UTC"
+    },
+    {
+      "command": "check",
+      "exitCode": 0,
+      "environment": "Current-user check; ignored old test directories inaccessible to sandbox",
+      "observedByUtc": "2026-10-04 21:38:05 UTC"
+    },
+    {
+      "command": "docs:check",
+      "exitCode": 0,
+      "observedByUtc": "2026-10-04 21:38:05 UTC"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "observedByUtc": "2026-10-04 21:38:05 UTC",
+      "warnings": [
+        "Existing CRLF working copies normalize to LF at next Git write"
+      ]
+    }
+  ],
+  "timestampNote": "Earlier check completion timestamps were not captured; counts and exit codes come from actual tool outputs. Final checks record observed completion time.",
+  "scope": {
+    "realModelRequests": 0,
+    "originalUserKeyVaultProfileReads": 0,
+    "syntheticCredentialFixtures": true,
+    "P00_03SuiteRun": false,
+    "systemProxyChanged": false,
+    "newCommit": false,
+    "push": false,
+    "P02_02Started": false,
+    "P00Gate": "failed",
+    "P01Gate": "failed"
+  },
+  "screenshots": [
+    "light-home-1200.png",
+    "dark-settings.png",
+    "settings-960-200.png",
+    "connection-error.png"
+  ],
+  "intermediateFailuresDocument": "docs/evidence/P02-01/implementation-2026-10-05.md",
+  "intermediateFinalE2E": {
+    "exitCode": 1,
+    "passed": 5,
+    "failed": 1,
+    "reason": "DOM read before route commit; retained assertion after visible home heading"
+  },
+  "recordedAtUtc": "2026-10-04 21:38:05 UTC",
+  "visualInspection": {
+    "passed": true,
+    "files": [
+      "light-home-1200.png",
+      "dark-settings.png",
+      "settings-960-200.png",
+      "connection-error.png"
+    ],
+    "connectionErrorReceiptVisible": true
+  }
+}

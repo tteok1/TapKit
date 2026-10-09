@@ -1,0 +1,114 @@
+name: Windows engineering checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: windows-2025
+    timeout-minutes: 45
+    env:
+      TAPKIT_STARTUP_DIAGNOSTICS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+      - name: Restore locked runtime archives
+        id: runtime-cache
+        uses: actions/cache/restore@v5
+        with:
+          path: |
+            .cache/downloads
+            .cache/wheels
+          key: windows-runtime-archives-v1-${{ hashFiles('runtime-lock.json', 'dependency-baseline.json', 'python-wheels.lock.json') }}
+      - name: Bootstrap locked runtime and native dependencies
+        id: bootstrap
+        run: node scripts/bootstrap.mjs
+      - name: Save verified runtime archives
+        if: ${{ steps.runtime-cache.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@v5
+        with:
+          path: |
+            .cache/downloads
+            .cache/wheels
+          key: ${{ steps.runtime-cache.outputs.cache-primary-key }}
+      - name: Check
+        id: check
+        run: .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs check
+      - name: Unit and current-route integration
+        run: |
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:unit
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          # Run the AppContainer helper, LibreOfficeKit OfficeWorker and trusted GitBroker routes.
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:integration
+      - name: Dedicated Core performance checks
+        # Measure the unchanged P95 budget after other integration workers have exited.
+        if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' && steps.check.outcome == 'success' }}
+        run: .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:perf
+      - name: Build and Electron checks
+        # Run independently after successful preparation; earlier failures still fail the job.
+        if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' && steps.check.outcome == 'success' }}
+        run: |
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs build
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:e2e -- --grep "P00-0[12]|P03-01"
+      - name: Verify P00-03 and P03 parser as an independent standard user
+        if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' && steps.check.outcome == 'success' }}
+        shell: pwsh
+        timeout-minutes: 20
+        run: .\scripts\ci-standard-user-test.ps1
+      - name: Repeat fresh-process Office shutdown diagnostics
+        # Temporary bounded sampling of CI55's intermittent control shutdown failure.
+        if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' && steps.check.outcome == 'success' }}
+        shell: pwsh
+        timeout-minutes: 16
+        run: .\scripts\ci-office-shutdown-diagnostics.ps1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-p00-evidence
+          path: |
+            test-results
+            test-results/P00-03-standard-user
+            ci-evidence/P00-03-standard-user
+            docs/evidence/P00-01
+            docs/evidence/P00-03/native-cases.jsonl
+            docs/evidence/P03-01/native-parser-cases.jsonl
+  startup-diagnostics:
+    # A successful bootstrap saves verified archives before the other checks run.
+    needs: check
+    if: ${{ !cancelled() }}
+    runs-on: windows-2025
+    timeout-minutes: 20
+    env:
+      TAPKIT_STARTUP_DIAGNOSTICS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+      - name: Restore locked runtime archives
+        uses: actions/cache/restore@v5
+        with:
+          path: |
+            .cache/downloads
+            .cache/wheels
+          key: windows-runtime-archives-v1-${{ hashFiles('runtime-lock.json', 'dependency-baseline.json', 'python-wheels.lock.json') }}
+      - name: Bootstrap locked runtime and native dependencies
+        run: node scripts/bootstrap.mjs
+      - name: Repeat fresh-process startup diagnostics
+        shell: pwsh
+        timeout-minutes: 10
+        run: .\scripts\ci-startup-diagnostics.ps1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-startup-evidence
+          path: test-results/e2e-startup-repeat-*
+          if-no-files-found: ignore

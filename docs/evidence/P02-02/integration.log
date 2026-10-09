@@ -1,0 +1,9 @@
+$ vitest run --config vitest.config.ts --project integration "P00-02" "P01-01" "P01-02" "P01-03" "P02-01" "P02-02"
+
+ RUN  v5.0.0 D:/TapKit
+
+
+ Test Files  11 passed (11)
+      Tests  112 passed (112)
+   Start at  09:04:32
+   Duration  6.56s (tests 41%, import 35%, transform 23%, setup 1%)

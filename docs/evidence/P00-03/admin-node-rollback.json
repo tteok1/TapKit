@@ -1,0 +1,78 @@
+{
+  "taskId": "P00-03",
+  "date": "2026-10-01",
+  "branch": "fix/corrected-appcontainer-isolation",
+  "headBeforeChanges": "c6610436795c9fc09c11dd91cddd7730430108f1",
+  "status": "in_progress",
+  "gateStatus": "failed",
+  "change": {
+    "file": "tests/integration/P00-03.sandbox.test.ts",
+    "baselineCommit": "654f961",
+    "nodeCaseExactlyMatchesBaseline": true,
+    "safetyAssertionsUnchanged": true,
+    "sourceSha256": "0CFAEB96ACDE5980E0B6F6FFDB6599594400E92227A4B64BC3B7E935E2D77AF4",
+    "launch": "execFileSync(process.execPath, ['-e', 'console.log(\"child\")'], {stdio: 'inherit'})",
+    "isolationOrAclChanged": false
+  },
+  "runtime": {
+    "node": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+    "pnpm": ".cache/tools/pnpm/package/bin/pnpm.mjs"
+  },
+  "checks": [
+    {
+      "command": "pnpm check",
+      "exitCode": 1,
+      "log": "20261001-admin-node-rollback-check.log",
+      "reason": "Prettier cannot scan existing ignored .test-data/acl-probe (EPERM). Sequential TypeScript and ESLint steps finished before this failure."
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 16,
+      "total": 16,
+      "log": "20261001-admin-node-rollback-unit.log"
+    },
+    {
+      "command": "pnpm test:integration P00-03.git-broker P00-03.capability",
+      "exitCode": 0,
+      "passed": 5,
+      "total": 5,
+      "log": "20261001-admin-node-rollback-integration.log"
+    },
+    {
+      "command": "pnpm exec prettier --check tests/integration/P00-03.sandbox.test.ts",
+      "exitCode": 0,
+      "log": "20261001-admin-node-rollback-format.log"
+    },
+    {
+      "command": "node scripts/check-boundaries.mjs",
+      "exitCode": 0,
+      "log": "20261001-admin-node-rollback-boundaries.log"
+    },
+    {
+      "command": "node scripts/check-manifests.mjs",
+      "exitCode": 0,
+      "log": "20261001-admin-node-rollback-manifests.log"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "taskStatesVerified": 37,
+      "log": "20261001-admin-node-rollback-docs.log"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "nativeIntegrationRunLocally": false,
+  "nativeIntegrationReason": "Existing Windows application control policy blocks unsigned helper; did not bypass it.",
+  "administratorFullCiAfterRollback": "pending",
+  "latestStandardUserCi": { "run": 36, "passed": 13, "total": 20 },
+  "followUp": [
+    "Verify administrator full integration after pushing this concrete rollback with user authorization.",
+    "Then inspect standard-user runtime/AppContainer ACLs and distinguish failed creation from initialization failure.",
+    "Avoid blocking onStarted with synchronous bulk ACL queries.",
+    "Require proof the memory payload actually started before counting memory containment as passed."
+  ]
+}

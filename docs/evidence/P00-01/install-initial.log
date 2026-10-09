@@ -1,0 +1,75 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+Scope: all 12 workspace projects
+Progress: resolved 0, reused 9, downloaded 7, added 0
+Progress: resolved 0, reused 31, downloaded 77, added 0
+Downloading @rolldown/binding-win32-x64-msvc@1.2.8: 0.00 B/8.00 MB
+Progress: resolved 0, reused 69, downloaded 174, added 0
+Progress: resolved 0, reused 130, downloaded 267, added 0
+Downloading @rolldown/binding-win32-x64-msvc@1.2.8: 2.91 MB/8.00 MB
+Downloading @rolldown/binding-win32-x64-msvc@1.2.8: 5.12 MB/8.00 MB
+Progress: resolved 0, reused 130, downloaded 280, added 0
+Packages are hard linked from the content-addressable store to the virtual store.
+  Content-addressable store is at: D:\.pnpm-store\v11
+  Virtual store is at:             node_modules/.pnpm
+Progress: resolved 0, reused 130, downloaded 295, added 0
+packages/providers                       | [WARN] deprecated @mariozechner/pi-ai@0.73.1
+Progress: resolved 0, reused 145, downloaded 330, added 0
+Downloading pdfjs-dist@6.3.289: 0.00 B/8.50 MB
+Downloading @img/sharp-win32-x64@0.34.5: 0.00 B/8.68 MB
+Downloading onnxruntime-node@1.24.3: 0.00 B/85.98 MB
+Downloading @napi-rs/canvas-win32-x64-msvc@1.0.9: 0.00 B/15.23 MB
+Downloading onnxruntime-web@1.26.0-dev.20260416-b7804b056c: 0.00 B/30.23 MB
+Downloading better-sqlite3@13.0.3: 0.00 B/11.40 MB
+Progress: resolved 0, reused 155, downloaded 399, added 0
+Downloading cytoscape-fcose@2.2.0: 0.00 B/7.60 MB
+Downloading mermaid@12.0.0: 0.00 B/26.39 MB
+Downloading pdfjs-dist@6.3.289: 5.81 MB/8.50 MB
+[WARN] Tarball download average speed 28 KiB/s (size 40 KiB) is below 50 KiB/s: https://registry.npmjs.org/stylis/-/stylis-4.4.0.tgz (GET)
+Downloading @napi-rs/canvas-win32-x64-msvc@1.0.9: 1.67 MB/15.23 MB
+Downloading @napi-rs/canvas-win32-x64-msvc@1.0.9: 3.04 MB/15.23 MB
+Downloading electron-winstaller@5.4.0: 0.00 B/9.14 MB
+Added 2 entries to minimumReleaseAgeExclude in pnpm-workspace.yaml (set minimumReleaseAgeStrict to true to gate these updates with a prompt):
+  @tanstack/react-virtual@3.14.13
+  @tanstack/virtual-core@3.17.11
+[WARN] 9 deprecated subdependencies found: boolean@3.2.0, fstream@1.0.12, glob@7.2.3, inflight@1.0.6, lodash.isequal@4.5.0, node-domexception@1.0.0, rimraf@2.6.3, rimraf@2.7.1, uuid@8.3.2
+Progress: resolved 0, reused 162, downloaded 556, added 0
+Progress: resolved 0, reused 162, downloaded 567, added 0
+Downloading electron-winstaller@5.4.0: 6.59 MB/9.14 MB
+[WARN] GET https://registry.npmjs.org/@napi-rs/canvas-win32-x64-msvc/-/canvas-win32-x64-msvc-1.0.9.tgz error (Failed to fetch https://registry.npmjs.org/@napi-rs/canvas-win32-x64-msvc/-/canvas-win32-x64-msvc-1.0.9.tgz: error decoding response body: request or response body error: error reading a body from connection: end of file before message length reached) — 1
+Will retry in 10s. 1 retries left.
+Progress: resolved 304, reused 162, downloaded 746, added 288
+Progress: resolved 602, reused 162, downloaded 786, added 586
+Downloading mermaid@12.0.0: 15.20 MB/26.39 MB
+Downloading mermaid@12.0.0: 18.71 MB/26.39 MB
+Downloading mermaid@12.0.0: 21.87 MB/26.39 MB
+Downloading onnxruntime-web@1.26.0-dev.20260416-b7804b056c: 25.80 MB/30.23 MB
+Downloading onnxruntime-node@1.24.3: 76.34 MB/85.98 MB
+Downloading @napi-rs/canvas-win32-x64-msvc@1.0.9: 15.63 kB/15.23 MB
+Downloading @napi-rs/canvas-win32-x64-msvc@1.0.9: 11.68 MB/15.23 MB
+Progress: resolved 949, reused 162, downloaded 791, added 943
+Packages: +949
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 949, reused 162, downloaded 791, added 949, done
+[ERR_PNPM_PEER_DEP_ISSUES] Unmet peer dependencies
+
+✕ unmet peer typescript
+  Installed: 7.0.2
+  Wanted:
+    ">=4.8.4 <6.1.0":
+      typescript-eslint@8.70.0
+      @typescript-eslint/eslint-plugin@8.70.0
+      @typescript-eslint/type-utils@8.70.0
+      @typescript-eslint/typescript-estree@8.70.0
+      @typescript-eslint/project-service@8.70.0
+      @typescript-eslint/tsconfig-utils@8.70.0
+      @typescript-eslint/utils@8.70.0
+      @typescript-eslint/parser@8.70.0
+
+✕ unmet peer vite
+  Installed: 8.3.0
+  Wanted:
+    "^5.0.0 || ^6.0.0 || ^7.0.0":
+      electron-vite@5.0.0
+hint: To disable failing on peer dependency issues, add the following to pnpm-workspace.yaml in your project root:
+
+  strictPeerDependencies: false

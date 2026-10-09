@@ -1,0 +1,213 @@
+{
+  "run": {
+    "id": 36884652830,
+    "run_number": 44,
+    "head_sha": "3fb60e3ad7dd9f344ab23679255fde05440d9bfa",
+    "status": "completed",
+    "conclusion": "failure",
+    "html_url": "private-archive:TapKit",
+    "created_at": "2026-10-01T15:29:22Z",
+    "updated_at": "2026-10-01T15:38:28Z"
+  },
+  "collectedAt": "2026-10-01T15:40:11.1964832Z",
+  "artifact": {
+    "sha256": "a4c015116ea269ed7b42bb5cd259de5edad5bdd283d69c7a46dbe2283ce615c1",
+    "id": 11173858435
+  },
+  "jobLog": {
+    "sha256": "e671e610eb6ead37673db0543b93738dfaa5c86f015e9c59c6caf046730fc678",
+    "id": 110444748518
+  },
+  "steps": [
+    {
+      "name": "Bootstrap locked runtime and native dependencies",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Unit and current-route integration",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "name": "Build and Electron checks",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Verify current-route P00-03 as an independent standard user",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "testSummaries": [
+    "2026-10-01T15:33:25.9010527Z   1 passed (3.2s)",
+    "2026-10-01T15:33:47.1047585Z  Test Files  7 passed (7)",
+    "2026-10-01T15:33:47.1048811Z       Tests  17 passed (17)",
+    "2026-10-01T15:38:18.0785346Z  Test Files  1 failed | 7 passed (8)",
+    "2026-10-01T15:38:18.0815717Z       Tests  1 failed | 45 passed (46)"
+  ],
+  "standardUser": {
+    "confirmed": null,
+    "cases": [],
+    "failures": null,
+    "report": null
+  },
+  "office": [
+    {
+      "runId": "dcb118b3-4ce0-741c-a711-9a9ac4782fe1",
+      "activeProcesses": 0,
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n{\"stage\": \"converted\", \"format\": \"docx\", \"bytes\": 35683}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "administrator",
+      "status": "exited",
+      "networkCapabilities": 0,
+      "appContainer": true,
+      "exitCode": 0,
+      "case": "office-render"
+    },
+    {
+      "runId": "92d69ea9-b9b2-77a6-a1ac-40f436d64d73",
+      "activeProcesses": 0,
+      "stderr": "",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 18403}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "administrator",
+      "status": "exited",
+      "networkCapabilities": 0,
+      "appContainer": true,
+      "exitCode": 0,
+      "case": "office-render"
+    },
+    {
+      "runId": "7f28808b-5e8e-7f35-9656-8e4833ed6fd8",
+      "activeProcesses": 0,
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"pptx\"}\r\n{\"stage\": \"converted\", \"format\": \"pptx\", \"bytes\": 19251}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "administrator",
+      "status": "exited",
+      "networkCapabilities": 0,
+      "appContainer": true,
+      "exitCode": 0,
+      "case": "office-render"
+    },
+    {
+      "runId": "7f26af83-3336-7dfe-bbb4-73c21eefb69a",
+      "activeProcesses": 0,
+      "stderr": "",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 23492}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "administrator",
+      "status": "exited",
+      "networkCapabilities": 0,
+      "appContainer": true,
+      "exitCode": 0,
+      "case": "office-macro-blocked"
+    },
+    {
+      "runId": "ce234e43-9b4f-79e7-8244-3e127f0c5b2f",
+      "activeProcesses": 0,
+      "stderr": "",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 23954}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "administrator",
+      "status": "exited",
+      "networkCapabilities": 0,
+      "appContainer": true,
+      "exitCode": 0,
+      "case": "office-control-macro"
+    },
+    {
+      "case": "office-macro-behavior",
+      "role": "administrator",
+      "proof": {
+        "case": "office-macro-behavior",
+        "sourceSha256": "f90f27d9ea3b5d086eaf34d340f1b03520b078b6b3ce6b4253685f0abc0d7aa9",
+        "blockedPdfSha256": "06e2489a1bc77aca01ad31597b5ad775f873b12c0d83391b4d4fef7b3f11be1e",
+        "controlPdfSha256": "b3989f7054715e56aaae561c3fd53b9f83e41690e2f659b660ce53f2c4159443",
+        "blockedMarker": "TK_MACRO_BLOCKED",
+        "enabledMarker": "TK_MACRO_EXECUTED",
+        "blockedFileAbsent": true,
+        "enabledFilePresent": true,
+        "sourceUnchanged": true
+      }
+    },
+    {
+      "runId": "b730a90f-ed1b-7e07-8d38-094f85780357",
+      "activeProcesses": 0,
+      "stderr": "",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"xlsx\"}\r\n{\"stage\": \"converted\", \"format\": \"xlsx\", \"bytes\": 20099}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "administrator",
+      "status": "exited",
+      "networkCapabilities": 0,
+      "appContainer": true,
+      "exitCode": 0,
+      "case": "office-link-blocked"
+    },
+    {
+      "runId": "f2932947-5521-712b-aed4-f766f98cf336",
+      "activeProcesses": 0,
+      "stderr": "",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"control_updated\", \"value\": \"TK_LINK_UPDATED\"}\r\n{\"stage\": \"control_saved\", \"bytes\": 20929}\r\n{\"stage\": \"control_closed\"}\r\n{\"stage\": \"control_destroyed\"}\r\n{\"stage\": \"finished\", \"ok\": false, \"failures\": [\"OFFICE_LOK_WORKER_STUCK\"], \"pollCount\": 0}\r\n",
+      "role": "administrator",
+      "status": "exited",
+      "networkCapabilities": 0,
+      "appContainer": true,
+      "exitCode": 1,
+      "case": "office-control-links"
+    },
+    {
+      "runId": "03ca9132-3a6e-747c-b58a-328e5b839619",
+      "activeProcesses": 0,
+      "stderr": "",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n",
+      "role": "administrator",
+      "status": "timeout",
+      "networkCapabilities": 0,
+      "appContainer": true,
+      "exitCode": 1,
+      "case": "office-corrupt"
+    },
+    {
+      "runId": "da637279-238d-705d-902a-f3f3a63b915e",
+      "activeProcesses": 0,
+      "stderr": "No language allowlisted, turning off the language support.\n",
+      "stdout": "{\"stage\": \"loop_started\"}\r\n{\"stage\": \"load_started\", \"format\": \"docx\"}\r\n{\"stage\": \"converted\", \"format\": \"docx\", \"bytes\": 35683}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n",
+      "role": "administrator",
+      "status": "exited",
+      "networkCapabilities": 0,
+      "appContainer": true,
+      "exitCode": 0,
+      "case": "office-corrupt"
+    }
+  ],
+  "administratorEvidenceBaselineLines": 149,
+  "sourceReference": "3fb60e3ad7dd9f344ab23679255fde05440d9bfa",
+  "taskStatus": "in_progress",
+  "gate": "failed",
+  "administrator": {
+    "unitTotal": 17,
+    "unitPassed": 17,
+    "integrationTotal": 46,
+    "integrationPassed": 45,
+    "integrationFailed": 1
+  },
+  "diagnosis": [
+    "Mapping cleanup repaired and the executable macro PDF/file-marker positive control fully passed.",
+    "The link control emitted updated, saved (20929 bytes), closed and destroyed, but the thread remained alive after 30 seconds. Increasing the join budget did not fix the issue.",
+    "Release local component, Desktop and Context PyUNO references before kit destruction, because PyUNO_del releases native UNO members. Restore the original 5-second join and verify the causal effect in the next CI. Product/Job/ACL/positive-control assertions unchanged."
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/LibreOffice/core/blob/libreoffice-26.2.6.3/pyuno/source/module/pyuno.cxx",
+      "sha256": "2d231b438e7cb7ec960ea53c4904dad568e35be3dabe5ebd4820de8ecd464551"
+    }
+  ]
+}

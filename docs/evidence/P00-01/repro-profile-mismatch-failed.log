@@ -1,0 +1,41 @@
+$ node scripts/bootstrap.mjs
+node already prepared 24.21.0
+python already prepared 3.13.15
+git already prepared 2.55.0.windows.5
+rust already prepared 1.98.1
+libreoffice already prepared 26.2.6
+3.0.5 3.1.5 3.11.2
+v24.21.0
+Scope: all 12 workspace projects
+Error: ERR_PNPM_PACKAGE_MANAGER_REMOVE_MODULES_DIR
+
+  × installing dependencies
+  ╰─▶ Failed to remove D:\TapKit\.cache\repro\中文用户 工程-
+      Ker44u\node_modules\electron from the modules directory: 拒绝访问。 (os
+      error 5)
+
+file:///D:/TapKit/.cache/repro/%E4%B8%AD%E6%96%87%E7%94%A8%E6%88%B7%20%E5%B7%A5%E7%A8%8B-Ker44u/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\TapKit\.cache\repro\中文用户 工程-Ker44u\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/TapKit/.cache/repro/%E4%B8%AD%E6%96%87%E7%94%A8%E6%88%B7%20%E5%B7%A5%E7%A8%8B-Ker44u/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/TapKit/.cache/repro/%E4%B8%AD%E6%96%87%E7%94%A8%E6%88%B7%20%E5%B7%A5%E7%A8%8B-Ker44u/scripts/lib.mjs:27:3)
+    at file:///D:/TapKit/.cache/repro/%E4%B8%AD%E6%96%87%E7%94%A8%E6%88%B7%20%E5%B7%A5%E7%A8%8B-Ker44u/scripts/bootstrap.mjs:6:1
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/TapKit/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\TapKit\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/TapKit/scripts/lib.mjs:24:34)
+    at file:///D:/TapKit/[eval1]:9:41
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async node:internal/modules/esm/loader:224:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:221:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.18.0

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "providerId": "codex-subscription",
+  "adapterVersion": "pi-ai/0.85.1:tapkit/1",
+  "package": "@earendil-works/pi-ai",
+  "version": "0.85.1",
+  "integrity": "sha512-+VgVIJDkDO2efYJKEEqvPTH4zmnIaXdAppGbO+vKFA9qy5PdhFiAenuFAkU+oiCSfOC4dMHDyrjdQeL4ZoC5CQ==",
+  "releaseGitHead": "d981de1229ef899957bbe968bc8dcda02a21f477",
+  "specReferenceCommit": "53816d7dcc5ebe3a0eedec3cd07196c3a66d83fd",
+  "sourceURL": "https://registry.npmjs.org/@earendil-works%2Fpi-ai/0.85.1",
+  "checkedAt": "2026-10-02",
+  "publicExports": [".", "./providers/openai-codex", "./bun-oauth"],
+  "transport": "sse",
+  "maxRetries": 0,
+  "authRefresh": {
+    "endpoint": "https://auth.openai.com/oauth/token",
+    "publicClientId": "app_EMoamEEZ73f0CkXaXp7hrann",
+    "sourcePackagePath": "dist/auth/oauth/openai-codex.js",
+    "sourceSha256": "41432753ef2ec7ef21c577fdc8f83b731c78be90c10ed8e7e1df7010f84d198f",
+    "checkedAt": "2026-10-04",
+    "decision": "docs/adr/0010-codex-auth-failure-and-lifecycle.md"
+  },
+  "verification": "documented",
+  "liveResourceId": "R01"
+}

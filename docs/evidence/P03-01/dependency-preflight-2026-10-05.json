@@ -1,0 +1,161 @@
+{
+  "recordedAt": "2026-10-05T14:24:32.742Z",
+  "branch": "codex/p03-files",
+  "base": "cc3d60f9691455ab62e5200273e0a813a45797cc",
+  "baseSourceMatchesVerifiedHead": "e3d5d1f3106c8c1492ff4e746997ab8cfc8fd166",
+  "run": {
+    "id": 37320656771,
+    "url": "private-archive:TapKit",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 111798563343,
+        "name": "check",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Restore locked runtime archives",
+            "conclusion": "success"
+          },
+          {
+            "name": "Bootstrap locked runtime and native dependencies",
+            "conclusion": "success"
+          },
+          {
+            "name": "Save verified runtime archives",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Check",
+            "conclusion": "success"
+          },
+          {
+            "name": "Unit and current-route integration",
+            "conclusion": "success"
+          },
+          {
+            "name": "Dedicated Core performance checks",
+            "conclusion": "success"
+          },
+          {
+            "name": "Build and Electron checks",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify current-route P00-03 as an independent standard user",
+            "conclusion": "success"
+          },
+          {
+            "name": "Repeat fresh-process Office shutdown diagnostics",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 111807539237,
+        "name": "startup-diagnostics",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Restore locked runtime archives",
+            "conclusion": "success"
+          },
+          {
+            "name": "Bootstrap locked runtime and native dependencies",
+            "conclusion": "success"
+          },
+          {
+            "name": "Repeat fresh-process startup diagnostics",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      }
+    ]
+  },
+  "logs": [
+    {
+      "job": 111798563343,
+      "sha256": "5f925c10011f36c09f3410fcfecea39ea7dcd49b16e704119466474b9e47dcd4"
+    },
+    {
+      "job": 111807539237,
+      "sha256": "a8c4c0bbcc2f1534e480d10f83b6e9bd470190e2446c75c674a4da0734c9ad1f"
+    }
+  ],
+  "nativeEvidence": {
+    "standardUser": true,
+    "missingCases": [],
+    "officeRepeats": [
+      1,
+      2,
+      3
+    ],
+    "adminIntegration": 155,
+    "unit": 227,
+    "electron": 8,
+    "coverage": "Full current-route sandbox, Office, GitBroker and capability suite; independent medium non-admin probe; fresh-process Office control repeats and startup repeats. Existing standard-user harness rejects failed, pending, missing cases or unavailable capability."
+  },
+  "decision": {
+    "P00_03": "implemented_and_verified",
+    "P00_gate": "passed",
+    "P03_01": "in_progress",
+    "localNativeCapability": "Remains fail closed: this host application-control restriction is not bypassed and remote reports are not installed locally.",
+    "remainingDependencies": "P02-03 local interfaces verified; P01 live and R01/R02-R05/R13/R14 remain unchanged. P03 file parsing does not require model calls."
+  }
+}

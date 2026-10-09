@@ -1,0 +1,312 @@
+{
+  "runId": 36870604191,
+  "runNumber": 39,
+  "commit": "0dcbbb25be18dee2ebcf02f0dbc80f04c8945aed",
+  "url": "private-archive:TapKit",
+  "conclusion": "failure",
+  "artifact": {
+    "id": 11166564842,
+    "sha256": "69f58e4695d34e9b76778d2fc5ebf4be1fea0cd249aff8dccb2f8b17e47df03a"
+  },
+  "jobLogSha256": "40799baabcd0467438621a0be5e3f1a95ac1769cc9f9c1d27a81b698f8b94daf",
+  "administrator": {
+    "unitTotal": 16,
+    "unitPassed": 16,
+    "electronPassed": 2,
+    "electronTotal": 2,
+    "integrationPassed": 44,
+    "check": "passed",
+    "build": "passed",
+    "integrationTotal": 44
+  },
+  "standardUser": {
+    "passed": 12,
+    "failures": [
+      {
+        "message": "Error: OFFICE_EXECUTION_FAILED",
+        "name": "P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppContainer route"
+      },
+      {
+        "message": "AssertionError: expected { protocolVersion: 1, …(5) } to match object { event: 'finished', data: { …(3) } }",
+        "name": "P00-03 OfficeWorker rejects macro-enabled formats and applies external-link denial settings in the live AppContainer route"
+      },
+      {
+        "message": "AssertionError: expected 1 to be +0 // Object.is equality",
+        "name": "P00-03 real Windows sandbox T08 T19 Node reads only input and writes workspace; runtime and input are read only; environment is private"
+      },
+      {
+        "message": "AssertionError: expected 0 to be greater than or equal to 2",
+        "name": "P00-03 real Windows sandbox T08 T19 hard-killing the helper stops job descendants and recovers its ACL/profile lease"
+      },
+      {
+        "message": "AssertionError: expected 3221225506 to be +0 // Object.is equality",
+        "name": "P00-03 real Windows sandbox T08 T19 Python starts and spawns a child in AppContainer"
+      },
+      {
+        "message": "AssertionError: expected 'exited' to be 'cancelled' // Object.is equality",
+        "name": "P00-03 real Windows sandbox T08 T19 cancel kills descendants"
+      },
+      {
+        "message": "Error: [P00-03 fork expected 2 child payloads to start from baseline 2, got 0]",
+        "name": "P00-03 real Windows sandbox T08 T19 timeout, output flood and fork limits are enforced"
+      },
+      {
+        "message": "AssertionError: expected '' to contain 'memory_payload_ready'",
+        "name": "P00-03 real Windows sandbox T08 T19 memory exhaustion is contained"
+      }
+    ],
+    "failed": 8,
+    "total": 20,
+    "confirmed": true
+  },
+  "beforeResumeSnapshots": [
+    {
+      "exitCode": 0,
+      "outputBytes": 92,
+      "status": "exited",
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "scope": "administrator",
+      "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe"
+    },
+    {
+      "exitCode": 0,
+      "outputBytes": 412,
+      "status": "exited",
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "scope": "administrator",
+      "executable": ".runtime/python/python.exe"
+    },
+    {
+      "exitCode": 0,
+      "outputBytes": 240,
+      "status": "exited",
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "scope": "administrator",
+      "executable": "office-render"
+    },
+    {
+      "exitCode": 0,
+      "outputBytes": 181,
+      "status": "exited",
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "scope": "administrator",
+      "executable": "office-security"
+    },
+    {
+      "exitCode": 1,
+      "outputBytes": 1311,
+      "status": "exited",
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": []
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "scope": "standard-user",
+      "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe"
+    },
+    {
+      "exitCode": 3221225506,
+      "outputBytes": 0,
+      "status": "exited",
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": []
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "scope": "standard-user",
+      "executable": ".runtime/python/python.exe"
+    },
+    {
+      "exitCode": 1,
+      "outputBytes": 0,
+      "status": "exited",
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": []
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "scope": "standard-user",
+      "executable": "office-render"
+    },
+    {
+      "exitCode": 1,
+      "outputBytes": 0,
+      "status": "exited",
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": []
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "scope": "standard-user",
+      "executable": "office-security"
+    }
+  ],
+  "collection": {
+    "selfCopyFixed": true,
+    "launcherLogsPresent": true,
+    "helperLogFiles": 30
+  },
+  "observations": [
+    "Administrator Node/Python/Office roots have allow ACE mask 1179817 flags 3; their executables have the inherited allow ACE mask 1179817 flags 16.",
+    "Standard-user Node/Python/Office roots have the same profile allow ACE; their executables have no ordinary ACE for that profile, captured before ResumeThread and cleanup.",
+    "Strict memory test now correctly rejects the Python startup failure without memory_payload_ready. The changed 12/20 count exposes an old false pass.",
+    "The standard user has Modify on the runner-created runtime copy, plus WRITE_DAC only on the exact roots. The next targeted experiment supplies WRITE_DAC to existing runtime descendants for the trusted host account."
+  ],
+  "repair": [
+    "Add /T to the existing non-inherited WRITE_DAC grant for the ephemeral standard host account on the three private copied runtime trees.",
+    "Check each resolved runtime root stays below the private destination/.runtime prefix.",
+    "Keep profile grants read/execute, original Job limits and zero network capabilities.",
+    "Attempt SetNamedSecurityInfoW with NULL DACL on runtime executable and read-only input from sandboxed Python; require ERROR_ACCESS_DENIED (5) for both."
+  ],
+  "localValidation": [
+    {
+      "command": "pnpm exec tsc --project tsconfig.json",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm exec prettier --check tests/integration/P00-03.sandbox.test.ts",
+      "exitCode": 0
+    },
+    {
+      "command": "PowerShell Parser.ParseFile scripts/ci-standard-user-test.ps1",
+      "exitCode": 0
+    },
+    {
+      "exitCode": 0,
+      "note": "Initial stdin pipeline attempt failed due shell encoding; explicit UTF-8 file compile passed. No payload execution locally.",
+      "command": "Python compile of UTF-8 sandbox test payload"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "sources": [
+    "https://learn.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-setsecurityinfo",
+    "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/icacls",
+    "https://learn.microsoft.com/en-us/windows/win32/secauthz/implementing-an-appcontainer",
+    "https://learn.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-setnamedsecurityinfow"
+  ],
+  "taskStatus": "in_progress",
+  "gate": "failed"
+}

@@ -1,0 +1,178 @@
+$ node scripts/bootstrap.mjs
+node already prepared 24.21.0
+python already prepared 3.13.15
+git already prepared 2.55.0.windows.5
+rust already prepared 1.98.1
+libreoffice already prepared 26.2.6
+3.0.5 3.1.5 3.11.2
+v24.21.0
+Scope: all 12 workspace projects
+✓ Lockfile passes supply-chain policies (verified 9m ago)
+Lockfile is up to date, resolution step is skipped
+Packages are hard linked from the content-addressable store to the virtual store.
+  Content-addressable store is at: D:\TapKit\.cache\repro\中文用户 工程-Ker44u\.test-data\中文 用户目录\AppData\Local\pnpm\store\v11
+  Virtual store is at:             node_modules/.pnpm
+Progress: resolved 302, reused 302, downloaded 0, added 270
+Progress: resolved 553, reused 553, downloaded 0, added 520
+Progress: resolved 777, reused 777, downloaded 0, added 743
+Progress: resolved 905, reused 905, downloaded 0, added 882
+Progress: resolved 932, reused 932, downloaded 0, added 915
+Packages: +932
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 932, reused 932, downloaded 0, added 932, done
+
+devDependencies:
++ @babel/parser 8.0.5
++ @electron/rebuild 4.2.0
++ @eslint/js 10.0.1
++ @playwright/test 1.63.0
++ @types/better-sqlite3 9.6.0
++ @types/node 24.13.4
++ @types/react 19.3.0
++ @types/react-dom 19.3.0
+
+Done in 9.1s using pnpm v12.4.1
+Verified better-sqlite3 Node-API prebuild e21e5efd71fba66578e95b62554d9028064a80dafd7221bf8a8ef155de8d240a; Electron probe runs after build
+vite v7.3.6 building ssr environment for production...
+transforming...
+✓ 1 modules transformed.
+rendering chunks...
+packages/storage/dist/index.cjs  0.76 kB
+✓ built in 48ms
+vite v7.3.6 building ssr environment for production...
+transforming...
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 97 modules transformed.
+rendering chunks...
+packages/core/dist/index.cjs  177.36 kB
+✓ built in 500ms
+vite v7.3.6 building ssr environment for production...
+transforming...
+../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 97 modules transformed.
+rendering chunks...
+out/main/index.js  181.20 kB
+✓ built in 625ms
+vite v7.3.6 building ssr environment for production...
+transforming...
+../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 97 modules transformed.
+rendering chunks...
+out/preload/index.js  176.81 kB
+✓ built in 427ms
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 28 modules transformed.
+rendering chunks...
+../../out/renderer/index.html                   0.60 kB
+../../out/renderer/assets/index-Btb8L5UA.css    7.19 kB
+../../out/renderer/assets/index-2EOakfTA.js   645.56 kB
+✓ built in 690ms
+$ node scripts/e2e.mjs "--" "--grep" "P00-01.*ABI"
+
+Running 1 test using 1 worker
+
+(node:2664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+P00-01 runtime probe {"nonce":"中文 空格 ABI","process":"core","sqliteVersion":"3.53.4","electronVersion":"44.3.0","nodeAbi":"149","corePid":8920}
+TAPKIT_HOST_WINDOW 17784
+(node:17784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:61225/a4a84886-0c69-471e-937b-cbfd62a7e369
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 1 tests\e2e\P00-01.shell.spec.ts:22:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory (4.0s)
+
+  1 passed (4.5s)
+BOOTSTRAP_OK
+$ node scripts/check.mjs
+Checking formatting...
+All matched files use Prettier code style!
+Dependency boundaries verified
+Runtime/dependency/wheel manifests verified
+$ vitest run --config vitest.config.ts --project unit
+
+ RUN  v5.0.0 D:/TapKit/.cache/repro/中文用户 工程-Ker44u
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  18:58:28
+   Duration  410ms (transform 45%, import 44%, setup 5%, tests 3%, worker 2%)
+
+$ vitest run --config vitest.config.ts --project integration
+
+ RUN  v5.0.0 D:/TapKit/.cache/repro/中文用户 工程-Ker44u
+
+
+ Test Files  2 passed (2)
+      Tests  5 passed (5)
+   Start at  18:58:30
+   Duration  517ms (tests 53%, transform 31%, import 9%, setup 5%, worker 2%)
+
+$ node scripts/e2e.mjs "--" "--grep" "P00-01"
+
+Running 2 tests using 1 worker
+
+(node:38104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+TAPKIT_HOST_WINDOW 37712
+(node:37712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_PONG
+P00-01 runtime probe {"nonce":"中文 空格 ABI","process":"core","sqliteVersion":"3.53.4","electronVersion":"44.3.0","nodeAbi":"149","corePid":23028}
+Debugger ending on ws://127.0.0.1:55321/665f597a-e7a1-463e-9e53-5be7989dec5b
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 1 tests\e2e\P00-01.shell.spec.ts:22:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory (897ms)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+TAPKIT_HOST_WINDOW 16532
+(node:16532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:52742/4852188f-7a44-4a67-bfa3-bf39b258d6cc
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 2 tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown (747ms)
+
+  2 passed (2.1s)
+P00-01 FINAL_SOURCE_REPRO_OK

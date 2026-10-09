@@ -1,0 +1,7 @@
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/pnpm.ps1 check
+exit_code=0
+$ node scripts/check.mjs
+Checking formatting...
+All matched files use Prettier code style!
+Dependency boundaries verified
+Runtime/dependency/wheel manifests verified

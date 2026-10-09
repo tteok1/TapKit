@@ -1,0 +1,287 @@
+{
+  "runId": 36872718511,
+  "runNumber": 40,
+  "commit": "f0bf4bd395479f7b24192abc68070314f6a4d554",
+  "url": "private-archive:TapKit",
+  "conclusion": "success",
+  "artifact": {
+    "id": 11168383316,
+    "sha256": "f7abd4caae96cacc36e294348ad7c271986f7f1553db6b8eaf34a71c83c0bac2"
+  },
+  "jobLogSha256": "ad5b65996973b14141c86b806d1965fb32899edde71ce759412303e2330c33c1",
+  "administrator": {
+    "electronPassed": 2,
+    "unitTotal": 16,
+    "unitPassed": 16,
+    "electronTotal": 2,
+    "build": "passed",
+    "integrationPassed": 44,
+    "integrationTotal": 44,
+    "check": "passed"
+  },
+  "standardUser": {
+    "confirmed": true,
+    "capabilities": {
+      "nativeExecution": {
+        "status": "available"
+      },
+      "officeRender": {
+        "status": "available"
+      },
+      "terminal": {
+        "status": "available"
+      }
+    },
+    "missingCases": [],
+    "passed": 20,
+    "total": 20,
+    "failed": 0,
+    "cases": [
+      {
+        "fullName": "P00-03 Core reports isolated capabilities failed while storage remains usable",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker bounds oversized diff output and cleans the private lease",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker runs real MinGit status/diff on private byte snapshots",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker rejects model args, metadata pointers and Windows path aliases",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 GitBroker excludes inherited Git config, external diff and SSH commands",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 rejects the superseded account.execute protocol",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppContainer route",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 OfficeWorker rejects macro-enabled formats and applies external-link denial settings in the live AppContainer route",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 Office hard kill recovers only its recorded mapped drives on the next helper run",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 Node reads only input and writes workspace; runtime and input are read only; environment is private",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 execution lease cleanup allows the next helper invocation",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 concurrent runs keep independent AppContainer identities and workspace ACLs",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 hard-killing the helper stops job descendants and recovers its ACL/profile lease",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 Python starts and spawns a child in AppContainer",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 network denies public, loopback and metadata connections",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 cancel kills descendants",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 timeout, output flood and fork limits are enforced",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 memory exhaustion is contained",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 UNC, ADS, traversal, aliases and junction input paths fail closed",
+        "status": "passed"
+      },
+      {
+        "fullName": "P00-03 real Windows sandbox T08 T19 ConPTY is interactive while still in AppContainer",
+        "status": "passed"
+      }
+    ]
+  },
+  "beforeResumeSnapshots": [
+    {
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe"
+    },
+    {
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "executable": ".runtime/python/python.exe"
+    },
+    {
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "executable": "office-render"
+    },
+    {
+      "runtimeAcl": {
+        "executable": {
+          "profileAces": [
+            {
+              "flags": 16,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        },
+        "phase": "before-resume",
+        "root": {
+          "profileAces": [
+            {
+              "flags": 3,
+              "mask": 1179817,
+              "type": "allow"
+            }
+          ]
+        }
+      },
+      "executable": "office-security"
+    }
+  ],
+  "python": {
+    "childCreated": true,
+    "exitCode": 0,
+    "childStdout": "42\n",
+    "aclEditDeniedCount": 2,
+    "childExitCode": 0
+  },
+  "memory": {
+    "allocatedBytes": 251658240,
+    "exitCode": 23,
+    "payloadReady": true,
+    "status": "exited"
+  },
+  "fork": {
+    "readyChildren": [
+      1,
+      2
+    ],
+    "activeProcesses": 0,
+    "totalProcesses": 5,
+    "peakActiveProcesses": 5,
+    "status": "process_limit"
+  },
+  "officeRenders": [
+    {
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "status": "exited"
+    },
+    {
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "status": "exited"
+    },
+    {
+      "activeProcesses": 0,
+      "exitCode": 0,
+      "status": "exited"
+    }
+  ],
+  "conclusionEvidence": [
+    "The private-runtime host WRITE_DAC descendant grant resolves the previously absent executable profile ACEs; standard-user executables now have inherited read/execute profile ACE mask 1179817 flags 16.",
+    "The same independent medium-integrity non-administrator suite passes all 20 cases, including Node/Python children, fork capacity, memory exhaustion, helper cleanup, terminal, Office conversion and policy delivery.",
+    "The AppContainer cannot replace the runtime executable or read-only input DACL: both SetNamedSecurityInfoW attacks return ERROR_ACCESS_DENIED (5).",
+    "Profile grants, Job limits and network capabilities remain unchanged."
+  ],
+  "remaining": [
+    "Actual malicious macro and real external-link document behavior validation remains outstanding; existing policy-delivery tests do not replace it.",
+    "Local unsigned-helper execution remains blocked by Windows application control and was not attempted."
+  ],
+  "taskStatus": "in_progress",
+  "gate": "failed",
+  "finalDocumentationChecks": [
+    {
+      "exitCode": 0,
+      "result": "37 task states and evidence links verified",
+      "command": "node scripts/docs-check.mjs"
+    },
+    {
+      "exitCode": 0,
+      "command": "Targeted Prettier for CURRENT INDEX P00-03"
+    },
+    {
+      "exitCode": 0,
+      "command": "git diff --check"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "observedAt": "2026-10-04T03:08:34.094Z",
+  "sourceSha256": "3c989c3f6cb92ee74c9d228f6ed57cf9dc349ad899ecac360106bac61c51ce5c",
+  "addresses": [
+    {
+      "address": "198.18.0.99",
+      "family": 4,
+      "public": false
+    }
+  ],
+  "accounts": [
+    {
+      "label": "智谱 Chat 测试",
+      "provider_id": "openai-compatible",
+      "api_format": "openai-chat",
+      "base_url": "https://open.bigmodel.cn/api/paas/v4",
+      "model_id": "GLM-4.7-Flash",
+      "status": "unavailable",
+      "last_error_code": "PERMISSION_DENIED",
+      "last_check_at": 1791083299576,
+      "updated_at": 1791083299576
+    },
+    {
+      "label": "智谱 Chat 测试 2",
+      "provider_id": "openai-compatible",
+      "api_format": "openai-chat",
+      "base_url": "https://open.bigmodel.cn/api/paas/v4",
+      "model_id": "glm-4.7-flash",
+      "status": "unavailable",
+      "last_error_code": "PERMISSION_DENIED",
+      "last_check_at": 1791083301764,
+      "updated_at": 1791083301764
+    }
+  ],
+  "preflight": {
+    "code": "PERMISSION_DENIED",
+    "retryable": false,
+    "httpRequests": 0
+  },
+  "apiKeyRead": false,
+  "systemOrAccountConfigChanged": false,
+  "userReportedProxyState": {
+    "tun": "off",
+    "systemProxy": "on"
+  },
+  "readOnlyNetworkObservation": {
+    "dnsServers": [
+      {
+        "interface": "Meta",
+        "interfaceIndex": 42,
+        "addresses": [
+          "198.18.0.2"
+        ]
+      },
+      {
+        "interface": "WLAN",
+        "interfaceIndex": 5,
+        "addresses": [
+          "192.168.0.1"
+        ]
+      }
+    ],
+    "interfaces": [
+      {
+        "interface": "Meta",
+        "state": "Up",
+        "connectionState": "Connected"
+      },
+      {
+        "interface": "WLAN",
+        "state": "Up",
+        "connectionState": "Connected"
+      }
+    ],
+    "dnsCacheEntry": "No matching open.bigmodel.cn entry when queried",
+    "commands": [
+      {
+        "command": "Get-DnsClientCache (filtered target hostname)",
+        "context": "current user",
+        "exitCode": 0
+      },
+      {
+        "command": "Get-DnsClientServerAddress -AddressFamily IPv4",
+        "context": "current user",
+        "exitCode": 0
+      },
+      {
+        "command": "Get-NetIPInterface / Get-NetAdapter (Meta and WLAN only)",
+        "context": "current user",
+        "exitCode": 0
+      },
+      {
+        "command": "Resolve-DnsName open.bigmodel.cn -Server 192.168.0.1 -DnsOnly -NoHostsFile",
+        "context": "restricted",
+        "exitCode": 1,
+        "result": "Timed out; does not establish root cause or router failure"
+      }
+    ],
+    "interpretation": "User says TUN off; Windows still exposes an active Meta virtual interface and configured fake-IP DNS. Exact core state, lingering process or selection of DNS server not verified."
+  }
+}

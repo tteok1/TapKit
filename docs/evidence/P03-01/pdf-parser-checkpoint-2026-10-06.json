@@ -1,0 +1,78 @@
+{
+  "recordedAt": "2026-10-05T18:46:32.043Z",
+  "task": "P03-01",
+  "status": "in_progress",
+  "implementation": [
+    "Locked text-only PDF API/worker/CMap/font assets emitted with size/SHA256 manifest",
+    "Core fixed resource whitelist and normal-file/realpath/size/hash validation; no Host fallback or native canvas dependency",
+    "PDF page dimensions and normalized transformed text rectangles; limits500 pages/120s unchanged; no-text OCR explicitly unsupported",
+    "PDF native format and genuine encrypted rejection cases added to existing three required native cases"
+  ],
+  "assets": {
+    "version": "6.3.289",
+    "count": 187,
+    "totalBytes": 5408787
+  },
+  "validation": [
+    {
+      "command": "pnpm test:unit P03-01.pdf-parser",
+      "exitCode": 0,
+      "passed": 4
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 255
+    },
+    {
+      "command": "pnpm test:integration P03-01.parser-process P03-01.parser-orchestration P03-01.files P03-01.migration",
+      "exitCode": 0,
+      "passed": 19
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-pdf-desktop-build.log"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0
+    },
+    {
+      "command": "PowerShell AST parse scripts/ci-standard-user-test.ps1",
+      "exitCode": 0
+    }
+  ],
+  "initialFixtureFailure": "Public-password PDF fixture initially had an incorrectly transcribed 32-byte PDF padding constant; correct-password API validation failed. Corrected the fixture constant, then actual API decryption/text succeeded; importer still reports ENCRYPTED_FILE without password.",
+  "nativeValidation": {
+    "status": "pending_ci",
+    "localHelperInvoked": false,
+    "localPolicyUnchanged": true,
+    "portableAndTestDoublesNotNativeAcceptance": true
+  },
+  "previousOfficeDelivery": {
+    "commit": "3e569f7a671482719787703254cd174b3418c9ae",
+    "pushExitCode": 0,
+    "remoteRead": "connection reset before confirmation",
+    "prRun": 37356263115,
+    "checkJob": 111919325286,
+    "lastObserved": {
+      "check": "success",
+      "integration": "failure",
+      "performance": "success",
+      "buildAndElectron": "success",
+      "standardUser": "in_progress"
+    },
+    "failureDetail": "pending completed job logs; no native success claimed"
+  },
+  "limitations": [
+    "PDF native/standard user verification pending",
+    "Office CI integration failure requires actual completed logs and repair",
+    "Images/Host selection tokens/FileService/bridge/library UI/E2E pending",
+    "P03-01 in_progress; P03-02/P03-03 not started"
+  ],
+  "git": {
+    "commit": "pending",
+    "push": "pending"
+  }
+}

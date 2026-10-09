@@ -1,0 +1,79 @@
+$ node scripts/e2e.mjs "--" "--grep" "P00-01 sandbox"
+
+Running 1 test using 1 worker
+
+(node:288216) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 297576
+(node:297576) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:49619/b7469cce-fd47-442e-a29c-e5b34f9f7643
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  x  1 tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown (813ms)
+
+
+  1) tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown ───
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 0
+
+    @@ -11,11 +11,10 @@
+          "ping",
+          "bootstrap",
+          "getSettings",
+          "setSettings",
+          "saveApiKey",
+    -     "saveApiKey",
+          "replayEvents",
+          "subscribeEvents",
+          "backup",
+          "cancelJob",
+        ],
+
+      49 |       bridge: Object.keys(window.tapkit),
+      50 |     })),
+    > 51 |   ).toEqual({
+         |     ^
+      52 |     require: 'undefined',
+      53 |     process: 'undefined',
+      54 |     bridge: [
+        at D:\tapkit\TapKit\tests\e2e\P00-01.shell.spec.ts:51:5
+
+    Error Context: test-results\e2e\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown ────
+file:///D:/tapkit/TapKit/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\tapkit\TapKit\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/tapkit/TapKit/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/tapkit/TapKit/scripts/lib.mjs:27:3)
+    at file:///D:/tapkit/TapKit/scripts/e2e.mjs:6:8
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.
+pnpm exited 1
+At D:\tapkit\TapKit\scripts\pnpm.ps1:12 char:30
++   if ($LASTEXITCODE -ne 0) { throw "pnpm exited $LASTEXITCODE" }
++                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1

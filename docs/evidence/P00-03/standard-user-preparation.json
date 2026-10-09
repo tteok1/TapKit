@@ -1,0 +1,9 @@
+{
+  "command": "node scripts/standard-user-kit.mjs <C:/Users/private-user/AppData/Local/Temp/new-directory>",
+  "exitCode": 0,
+  "destination": "C:/Users/private-user\\AppData\\Local\\Temp\\TapKit-P00-03-kit-check-20260917220045",
+  "purpose": "Cross-drive copy verification only; not standard-user native acceptance",
+  "regression": "tests/unit/P00-03.standard-user-kit.test.ts",
+  "userReportedOriginalError": "Destination must be outside the source workspace",
+  "fix": "Accept absolute relative() results for different Windows drives; reject the source itself and its descendants"
+}

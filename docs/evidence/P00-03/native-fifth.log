@@ -1,0 +1,104 @@
+$ vitest run --config vitest.config.ts --project integration "P00-03"
+
+ RUN  v5.0.0 D:/TapKit
+
+ ❯ |integration| tests/integration/P00-03.sandbox.test.ts (8 tests | 8 failed) 2331ms
+   ❯ P00-03 real Windows sandbox T08 T19 (8)
+     × Node reads only input and writes workspace; runtime and input are read only; environment is private 1202ms
+     × Python starts and spawns a child in AppContainer 548ms
+     × network denies public, loopback and metadata connections 126ms
+     × cancel fences identity and kills descendants 93ms
+     × timeout, output flood and fork limits are enforced 89ms
+     × memory exhaustion is contained 88ms
+     × UNC, ADS, traversal, aliases and junction input paths fail closed 94ms
+     × ConPTY is interactive while still in AppContainer 88ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > Node reads only input and writes workspace; runtime and input are read only; environment is private
+Error: spawn UNKNOWN
+ ❯ packages/tools/src/execution/index.ts:20:19
+
+ ❯ runDiagnostic packages/tools/src/execution/index.ts:17:10
+ ❯ run tests/integration/P00-03.sandbox.test.ts:17:104
+ ❯ tests/integration/P00-03.sandbox.test.ts:39:33
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > Python starts and spawns a child in AppContainer
+Error: spawn UNKNOWN
+ ❯ packages/tools/src/execution/index.ts:20:19
+
+ ❯ runDiagnostic packages/tools/src/execution/index.ts:17:10
+ ❯ run tests/integration/P00-03.sandbox.test.ts:17:104
+ ❯ tests/integration/P00-03.sandbox.test.ts:50:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > network denies public, loopback and metadata connections
+Error: spawn UNKNOWN
+ ❯ packages/tools/src/execution/index.ts:20:19
+
+ ❯ runDiagnostic packages/tools/src/execution/index.ts:17:10
+ ❯ run tests/integration/P00-03.sandbox.test.ts:17:104
+ ❯ tests/integration/P00-03.sandbox.test.ts:67:33
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > cancel fences identity and kills descendants
+Error: spawn UNKNOWN
+ ❯ packages/tools/src/execution/index.ts:20:19
+
+ ❯ runDiagnostic packages/tools/src/execution/index.ts:17:10
+ ❯ run tests/integration/P00-03.sandbox.test.ts:17:104
+ ❯ tests/integration/P00-03.sandbox.test.ts:73:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > timeout, output flood and fork limits are enforced
+Error: spawn UNKNOWN
+ ❯ packages/tools/src/execution/index.ts:20:19
+
+ ❯ runDiagnostic packages/tools/src/execution/index.ts:17:10
+ ❯ run tests/integration/P00-03.sandbox.test.ts:17:104
+ ❯ tests/integration/P00-03.sandbox.test.ts:78:27
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > memory exhaustion is contained
+Error: spawn UNKNOWN
+ ❯ packages/tools/src/execution/index.ts:20:19
+
+ ❯ runDiagnostic packages/tools/src/execution/index.ts:17:10
+ ❯ run tests/integration/P00-03.sandbox.test.ts:17:104
+ ❯ tests/integration/P00-03.sandbox.test.ts:87:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > UNC, ADS, traversal, aliases and junction input paths fail closed
+Error: spawn UNKNOWN
+ ❯ packages/tools/src/execution/index.ts:20:19
+
+ ❯ runDiagnostic packages/tools/src/execution/index.ts:17:10
+ ❯ run tests/integration/P00-03.sandbox.test.ts:17:104
+ ❯ tests/integration/P00-03.sandbox.test.ts:97:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  |integration| tests/integration/P00-03.sandbox.test.ts > P00-03 real Windows sandbox T08 T19 > ConPTY is interactive while still in AppContainer
+Error: spawn UNKNOWN
+ ❯ packages/tools/src/execution/index.ts:20:19
+
+ ❯ runDiagnostic packages/tools/src/execution/index.ts:17:10
+ ❯ run tests/integration/P00-03.sandbox.test.ts:17:104
+ ❯ tests/integration/P00-03.sandbox.test.ts:104:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed (8)
+   Start at  21:22:08
+   Duration  2.77s (tests 89%, transform 7%, import 4%)
+
+[ELIFECYCLE] Command failed with exit code 1.

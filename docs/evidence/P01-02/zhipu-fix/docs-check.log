@@ -1,0 +1,22 @@
+$ node scripts/docs-check.mjs
+node:internal/fs/promises:1312
+  return await PromisePrototypeThen(
+         ^
+
+Error: ENOENT: no such file or directory, access 'D:\TapKit\docs\evidence\P01-02\zhipu-fix\results.json'
+    at async access (node:internal/fs/promises:1312:10)
+    at async file:///D:/TapKit/scripts/docs-check.mjs:36:32 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'access',
+  path: 'D:\\TapKit\\docs\\evidence\\P01-02\\zhipu-fix\\results.json'
+}
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.
+pnpm exited 1
+At D:\TapKit\scripts\pnpm.ps1:12 char:30
++   if ($LASTEXITCODE -ne 0) { throw "pnpm exited $LASTEXITCODE" }
++                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1

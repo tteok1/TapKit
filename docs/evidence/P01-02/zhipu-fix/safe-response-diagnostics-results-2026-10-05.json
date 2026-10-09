@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-05",
+  "timezone": "Asia/Shanghai",
+  "task": "P01-02",
+  "branch": "codex/fix-zhipu-api-probe",
+  "codeRef": "b92eece52e88eb6bd16931cd6ed942bb91d4d1f6+working-tree",
+  "committed": false,
+  "pushed": false,
+  "modelRequests": 0,
+  "networkDiagnostics": 0,
+  "keyRead": false,
+  "userConfigurationChanged": false,
+  "agentStartedElectron": false,
+  "checks": {
+    "format": {
+      "exitCode": 0
+    },
+    "checkCurrentUser": {
+      "log": "safe-diagnostics-check-2026-10-05.log",
+      "exitCode": 0
+    },
+    "buildDesktop": {
+      "log": "safe-diagnostics-build-2026-10-05.log",
+      "exitCode": 0
+    },
+    "docsCheck": {
+      "exitCode": 0,
+      "log": "safe-diagnostics-docs-2026-10-05.log"
+    },
+    "diffCheck": {
+      "exitCode": 0
+    },
+    "unit": {
+      "reason": "user-paused-local-testing",
+      "status": "not_run"
+    },
+    "integration": {
+      "reason": "user-paused-local-testing",
+      "status": "not_run"
+    },
+    "e2e": {
+      "status": "not_run"
+    },
+    "live": {
+      "status": "not_run"
+    }
+  },
+  "sha256": {
+    "packages/contracts/src/providers.ts": "6ccb21215daa77c34be8de9bfc23da76dfc18fe08b9779ccea008fcc4201ae91",
+    "packages/providers/src/api/http.ts": "51079d779d5a897c20f50906eeef806b6912cc996ba030c3803d242a3f343e8a",
+    "packages/providers/src/api/adapter.ts": "85ad2d9401364b190316dc553f943cb528e8acd90a89f2f95dfabf8979c7c80a",
+    "apps/desktop/src/renderer/src/api-diagnostic.tsx": "ed8fbac4c2cc9167f13ad9ed57040c1d3b63adeb5952dbce313f086c4feb9e38",
+    "apps/desktop/src/renderer/locales/zh-CN.json": "5d93c8c793bbe1f447db543fac45607ea751f54bf36ad77034b67a41e4ff4a97",
+    "tests/unit/P01-02.api.test.ts": "c85949e7ba0ecd92110fe99519499183ed13ec1cacaea8392e4edaa3fb35c0f6",
+    "tests/unit/P01-02.zhipu.test.ts": "6db812871b5ce5f07e9970e85cd1afe957527e971b1c519e21157038dab22b0d",
+    "tests/integration/P01-02.zhipu.test.ts": "d502d4e5d489b1814394dbd64a25fb2918d0d3fecb80ce8d4c27a4b2df27d982",
+    "packages/core/dist/index.cjs": "e8c8d27bcc3aca190e88c2838632e0fa17137142450642d9504c8496beff6884"
+  },
+  "taskStatus": "in_progress",
+  "gateStatus": "failed",
+  "historicalResponseRootCause": "not_confirmed",
+  "artifactInspection": {
+    "coreHasClassifier": true,
+    "coreHasResponseType": true,
+    "rendererHasResponseTypes": true,
+    "rendererHasNeutralReason": true
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "provenance": "User supplied screenshot during standard-user runtime:probe",
+  "visibleMessage": "无法启动应用程序。\n发生内部错误。",
+  "component": "LibreOffice desktop bootstrap",
+  "source": "https://raw.githubusercontent.com/LibreOffice/translations/master/source/zh-CN/desktop/messages.po",
+  "symbols": [
+    "STR_BOOTSTRAP_ERR_CANNOT_START",
+    "STR_BOOTSTRAP_ERR_INTERNAL"
+  ],
+  "evidence": [
+    "docs/evidence/P00-03/office-version-probe.log",
+    "docs/evidence/P00-03/office-pty-probe.log",
+    "docs/evidence/P00-03/native-final.json"
+  ],
+  "conclusion": "Version query succeeds in AppContainer; conversion startup fails or times out. Exact failing bootstrap operation is not yet established. The message does not prove a missing DLL.",
+  "scope": "Do not re-run Office in the focused standard-user kit repair; conversion capability remains failed.",
+  "followup": {
+    "at": "2026-09-17T14:41:22.773Z",
+    "evidence": "docs/evidence/P00-03/office-ipc-probe.json",
+    "finding": "Locked sal3.dll osl_createPipe succeeds on host and fails with Win32 5 inside AppContainer; LOCAL namespace Win32 pipe succeeds in same container.",
+    "limit": "Compatibility failure reproduced directly; original soffice bootstrap call stack not captured; other startup failures are not excluded.",
+    "sources": [
+      "https://raw.githubusercontent.com/LibreOffice/core/libreoffice-26.2.6.3/sal/osl/w32/pipe.cxx",
+      "https://raw.githubusercontent.com/LibreOffice/core/libreoffice-26.2.6.3/desktop/source/app/app.cxx",
+      "https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createnamedpipea"
+    ]
+  }
+}

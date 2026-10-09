@@ -1,0 +1,56 @@
+{
+  "observedAt": "2026-10-04T03:37:57.322Z",
+  "accounts": [
+    {
+      "label": "智谱 Chat 测试 2",
+      "provider_id": "openai-compatible",
+      "api_format": "openai-chat",
+      "base_url": "https://open.bigmodel.cn/api/paas/v4",
+      "model_id": "glm-4.7-flash",
+      "status": "ready",
+      "last_error_code": null,
+      "last_check_at": 1791084237891,
+      "lastCheckAsiaShanghai": "2026/10/4 11:23:57"
+    },
+    {
+      "label": "智谱 Responses 测试",
+      "provider_id": "openai-compatible",
+      "api_format": "openai-responses",
+      "base_url": "https://open.bigmodel.cn/api/v1",
+      "model_id": "glm-4.7-flash",
+      "status": "unavailable",
+      "last_error_code": "OUTPUT_LIMIT_REACHED",
+      "last_check_at": 1791084399453,
+      "lastCheckAsiaShanghai": "2026/10/4 11:26:39"
+    },
+    {
+      "label": "智谱 Messages 测试",
+      "provider_id": "anthropic-compatible",
+      "api_format": "anthropic-messages",
+      "base_url": "https://open.bigmodel.cn/api/anthropic/v1",
+      "model_id": "glm-4.7-flash",
+      "status": "ready",
+      "last_error_code": null,
+      "last_check_at": 1791084544484,
+      "lastCheckAsiaShanghai": "2026/10/4 11:29:04"
+    }
+  ],
+  "userScreenshots": {
+    "chat": {
+      "text": true,
+      "tools": true
+    },
+    "messages": {
+      "text": true,
+      "tools": true
+    },
+    "responses": {
+      "errorCode": "OUTPUT_LIMIT_REACHED",
+      "phase": "text",
+      "tools": "not_entered"
+    }
+  },
+  "apiKeyRead": false,
+  "realRequestsByAgent": 0,
+  "accountOrNetworkConfigChanged": false
+}

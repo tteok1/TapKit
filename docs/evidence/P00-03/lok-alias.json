@@ -1,0 +1,71 @@
+{
+  "startedAt": "2026-09-18T07:53:43.673Z",
+  "endedAt": "2026-09-18T07:54:35.945Z",
+  "scope": "LOKit plus temporary aliases to already granted roots; generated fixtures; not full T07 acceptance",
+  "workspace": "D:\\TapKit\\.test-data\\P00-03-lok-alias-UAp9ec\\workspace",
+  "request": {
+    "protocolVersion": 1,
+    "requestId": "3a013194-7182-7e29-96a1-e04964ac7e6e",
+    "runId": "3a013194-7182-7e29-96a1-e04964ac7e6e",
+    "leaseEpoch": 1,
+    "operation": "diagnostic.execute",
+    "payload": {
+      "runtimeRoot": "D:\\TapKit\\.runtime\\python",
+      "executable": "D:\\TapKit\\.runtime\\python\\python.exe",
+      "inputRoot": "D:\\TapKit\\.runtime\\libreoffice",
+      "workspace": "D:\\TapKit\\.test-data\\P00-03-lok-alias-UAp9ec\\workspace",
+      "args": [
+        "-c",
+        "import ctypes as c, os, sys, json, pathlib, hashlib\np=sys.argv[1];w=pathlib.Path(sys.argv[2]);os.chdir(w);profile=w/\"office-profile\";(profile/\"user\").mkdir(parents=True)\n(profile/\"user\"/\"registrymodifications.xcu\").write_text('<?xml version=\"1.0\"?><oor:items xmlns:oor=\"http://openoffice.org/2001/registry\"><item oor:path=\"/org.openoffice.Office.Common/Security/Scripting\"><prop oor:name=\"MacroSecurityLevel\" oor:op=\"fuse\"><value>3</value></prop><prop oor:name=\"DisableMacrosExecution\" oor:op=\"fuse\"><value>true</value></prop></item><item oor:path=\"/org.openoffice.Office.Common/Load\"><prop oor:name=\"UpdateLinks\" oor:op=\"fuse\"><value>0</value></prop></item></oor:items>',encoding=\"utf-8\")\nos.environ[\"PATH\"]=p+os.pathsep+os.environ.get(\"PATH\",\"\")\nos.environ[\"SAL_LOG\"]=\"+WARN+INFO.lok\"\ndef event(**v): print(json.dumps(v),flush=True)\ndef uri(path): return path.resolve().as_uri().encode(\"utf-8\")\ndef method(obj,index,result,*args):\n    table=c.cast(obj,c.POINTER(c.c_void_p))[0]\n    size=c.cast(table,c.POINTER(c.c_size_t))[0]\n    assert size >= (index+1)*c.sizeof(c.c_void_p)\n    addr=c.cast(table,c.POINTER(c.c_void_p))[index]\n    return c.CFUNCTYPE(result,*args)(addr)\nwith os.add_dll_directory(p):\n    lib=c.CDLL(os.path.join(p,\"mergedlo.dll\"),use_last_error=True)\n    init=lib.libreofficekit_hook_2;init.argtypes=[c.c_char_p,c.c_char_p];init.restype=c.c_void_p\n    event(stage=\"init\")\n    kit=init(p.encode(\"utf-8\"),uri(profile))\n    event(stage=\"initialized\",ok=bool(kit))\n    if not kit: sys.exit(2)\n    failed=False\n    for ext in [\"docx\",\"xlsx\",\"pptx\"]:\n        source=w/(\"sample.\"+ext);out=w/(\"converted-\"+ext+\".pdf\");before=hashlib.sha256(source.read_bytes()).hexdigest()\n        event(stage=\"loading\",format=ext)\n        doc=method(kit,2,c.c_void_p,c.c_void_p,c.c_char_p)(kit,uri(source))\n        if not doc:\n            error=method(kit,3,c.c_char_p,c.c_void_p)(kit)\n            event(stage=\"load-failed\",format=ext,error=error.decode(\"utf-8\",\"replace\") if error else None);failed=True;continue\n        ok=method(doc,2,c.c_int,c.c_void_p,c.c_char_p,c.c_char_p,c.c_char_p)(doc,uri(out),b\"pdf\",None)\n        data=out.read_bytes() if out.exists() else b\"\"\n        unchanged=before==hashlib.sha256(source.read_bytes()).hexdigest()\n        event(stage=\"saved\",format=ext,ok=bool(ok),bytes=len(data),pdfHeader=data[:5].decode(\"ascii\",\"replace\"),originalUnchanged=unchanged)\n        failed=failed or not ok or not data.startswith(b\"%PDF-\") or not unchanged\n        method(doc,1,None,c.c_void_p)(doc)\n    event(stage=\"destroy\")\n    method(kit,1,None,c.c_void_p)(kit)\n    event(stage=\"done\",failed=failed)\n    sys.exit(1 if failed else 0)\n",
+        "Y:\\program",
+        "Z:\\"
+      ],
+      "timeoutMs": 45000,
+      "memoryBytes": 2147483648,
+      "processLimit": 8,
+      "outputBytes": 1048576,
+      "terminal": false
+    }
+  },
+  "exitCode": 0,
+  "events": [
+    {
+      "data": {
+        "appContainer": true,
+        "appContainerSid": "S-1-15-2-99512094-330059664-704302372-1563418632-2340543117-2303722812-1418738427",
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 8
+        },
+        "networkCapabilities": 0,
+        "pid": 15468
+      },
+      "event": "started",
+      "leaseEpoch": 1,
+      "protocolVersion": 1,
+      "requestId": "3a013194-7182-7e29-96a1-e04964ac7e6e",
+      "runId": "3a013194-7182-7e29-96a1-e04964ac7e6e"
+    },
+    {
+      "data": {
+        "activeProcesses": 0,
+        "exitCode": 1,
+        "logDirectory": "D:\\TapKit\\.test-data\\P00-03-lok-alias-UAp9ec\\helper-logs-3a013194-7182-7e29-96a1-e04964ac7e6e",
+        "outputBytes": 380,
+        "peakActiveProcesses": 4,
+        "status": "timeout",
+        "stderr": "Failed to find real location of D:\\TapKit\\.runtime\\python\\python.exe\nNo language allowlisted, turning off the language support.\n",
+        "stdout": "{\"stage\": \"init\"}\r\n{\"stage\": \"initialized\", \"ok\": true}\r\n{\"stage\": \"loading\", \"format\": \"docx\"}\r\n{\"stage\": \"saved\", \"format\": \"docx\", \"ok\": true, \"bytes\": 73214, \"pdfHeader\": \"%PDF-\", \"originalUnchanged\": true}\r\n{\"stage\": \"loading\", \"format\": \"xlsx\"}\r\n",
+        "totalProcesses": 4
+      },
+      "event": "finished",
+      "leaseEpoch": 1,
+      "protocolVersion": 1,
+      "requestId": "3a013194-7182-7e29-96a1-e04964ac7e6e",
+      "runId": "3a013194-7182-7e29-96a1-e04964ac7e6e"
+    }
+  ],
+  "stderr": ""
+}

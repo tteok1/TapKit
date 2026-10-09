@@ -1,0 +1,31 @@
+{
+  "capturedAt": "2026-09-18T08:14:41.722Z",
+  "scope": "Experimental scripts archived byte-for-byte. Restore to originalPath before reproduction; paths/imports assume D:/TapKit. They are not production integration.",
+  "files": [
+    {
+      "originalPath": ".cache/P00-03/lok-readonly-verified.mjs",
+      "archivedPath": "docs/evidence/P00-03/experiment-lok-readonly-verified.mjs",
+      "sha256": "fffa3420476ab201805c44706a1f0a30a106755127e5c937053f30a0b0371429"
+    },
+    {
+      "originalPath": ".cache/P00-03/compat-20260918/lok-readonly.py",
+      "archivedPath": "docs/evidence/P00-03/experiment-lok-readonly.py",
+      "sha256": "99fb9fb3fb69a6482cd69853e808c59224855f65ffff6e3f9f6ec2f84ff3f6d6"
+    },
+    {
+      "originalPath": ".cache/P00-03/compat-20260918/three-drives-host.py",
+      "archivedPath": "docs/evidence/P00-03/experiment-three-drives-host.py",
+      "sha256": "fccdc76d28ab3bddb26d7d36fbffb90820315b676f4623402739cd3de6be7457"
+    },
+    {
+      "originalPath": ".cache/P00-03/compat-20260918/lok-loop-three.py",
+      "archivedPath": "docs/evidence/P00-03/experiment-lok-loop-three.py",
+      "sha256": "da386e66d39071dbede72de665cc370da75965655b148b0da995552fd3e63931"
+    },
+    {
+      "originalPath": ".cache/P00-03/verify-lok-pdfs.py",
+      "archivedPath": "docs/evidence/P00-03/experiment-verify-lok-pdfs.py",
+      "sha256": "70e2cd02b0065c6125529f98a2fe1745d82acda1646990061a48401605e3f6b0"
+    }
+  ]
+}

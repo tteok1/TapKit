@@ -1,0 +1,2 @@
+All 37 task states, started handoffs and completed requirement evidence links verified
+$ node scripts/docs-check.mjs

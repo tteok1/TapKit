@@ -1,0 +1,77 @@
+{
+  "task": "P03-01",
+  "status": "in_progress",
+  "date": "2026-10-06",
+  "baseHead": "1f58f17822b039f4e40d0d3f050748e50b84bcff",
+  "git": {
+    "baseCommitted": true,
+    "basePushed": true,
+    "baseRemoteShaVerified": true,
+    "currentExport": "validated_uncommitted"
+  },
+  "implementation": [
+    "ID-only saveOriginal bridge",
+    "private Host save-dialog output grant",
+    "profile/version/owner fenced original read",
+    "exclusive bounded output writer and owned-output failure cleanup"
+  ],
+  "checks": [
+    {
+      "command": "pnpm test:integration -- P03-01.file-exporter",
+      "exitCode": 1,
+      "passed": 4,
+      "failed": 1,
+      "note": "final fixture tried reading a trashed version; expected repository NOT_FOUND. Restore fixture before immutable-byte assertion."
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.file-exporter",
+      "exitCode": 0,
+      "passed": 5
+    },
+    {
+      "command": "pnpm exec tsc --project tsconfig.json",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "formattedFiles": 296
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "tasks": 37
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.files P03-01.file-service P03-01.file-selections P03-01.file-exporter",
+      "exitCode": 0,
+      "passed": 32
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "logSha256": "4d452f47cab48c59436b214a86e31868bff12f7347c60755109a8a3d36037347"
+    }
+  ],
+  "remaining": [
+    "library UI",
+    "actual Electron save/picker/drop E2E",
+    "unfinished import crash recovery",
+    "disk free-space preflight",
+    "image preview",
+    "native CI R15"
+  ],
+  "ci": {
+    "latestHead": "1f58f17822b039f4e40d0d3f050748e50b84bcff",
+    "prRun": 37364001607,
+    "pushRun": 37363996488,
+    "job": 111944834763,
+    "status": "queued",
+    "nativeNewDiagnostics": "not_run",
+    "resource": "R15"
+  },
+  "guard": {
+    "localUnsignedHelper": "not_executed",
+    "productionNativeGuardChanged": false
+  }
+}

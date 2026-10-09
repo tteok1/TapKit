@@ -1,0 +1,17 @@
+warning: in the working copy of 'apps/desktop/src/main/index.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'apps/desktop/src/preload/index.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'apps/desktop/src/renderer/locales/zh-CN.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'apps/desktop/src/renderer/src/main.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/plan/05-ipc-and-events.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/progress/CURRENT.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/progress/INDEX.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'packages/contracts/src/index.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'packages/core/src/index.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'packages/storage/package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'packages/storage/src/index.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'packages/storage/vite.config.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'pnpm-lock.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/dev-smoke.mjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/docs-check.mjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/e2e/P00-01.shell.spec.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'vitest.config.ts', LF will be replaced by CRLF the next time Git touches it

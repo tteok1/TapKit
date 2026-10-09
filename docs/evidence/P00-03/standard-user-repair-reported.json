@@ -1,0 +1,44 @@
+{
+  "provenance": "User supplied console JSON from the test account; not a direct read of its private evidence directory.",
+  "receivedAt": "2026-09-17T14:44:16.767Z",
+  "evidenceDirectory": "C:/Users/private-user\\AppData\\Local\\TapKit-P00-03-2026-09-17T14-05-32-401Z\\docs\\evidence\\P00-03",
+  "report": {
+    "startedAt": "2026-09-17T14:40:55.952Z",
+    "endedAt": "2026-09-17T14:41:10.341Z",
+    "standardUser": true,
+    "exitCode": 0,
+    "repaired": [
+      {
+        "path": "migrations/0001_core.sql",
+        "sha256": "77dd9061ced298dbc33eb8af0b63195cb236cf920fd41915c4aa79f5a96f682b"
+      },
+      {
+        "path": "tests/integration/P00-03.sandbox.test.ts",
+        "sha256": "fb901c8566ae2f6e31cc4fa68bd0624e049564c71f54de4c66eebe4ea278f20b"
+      }
+    ],
+    "tests": {
+      "total": 9,
+      "passed": 9,
+      "failed": 0
+    },
+    "failures": [],
+    "note": "Focused preparation regression only; Office/Git and the full P00 gate remain failed. Capabilities are not enabled."
+  },
+  "localVerification": {
+    "checkedAt": "2026-09-17T14:44:16.767Z",
+    "files": [
+      {
+        "path": "migrations/0001_core.sql",
+        "currentSourceSha256": "77dd9061ced298dbc33eb8af0b63195cb236cf920fd41915c4aa79f5a96f682b",
+        "matchesReported": true
+      },
+      {
+        "path": "tests/integration/P00-03.sandbox.test.ts",
+        "currentSourceSha256": "fb901c8566ae2f6e31cc4fa68bd0624e049564c71f54de4c66eebe4ea278f20b",
+        "matchesReported": true
+      }
+    ],
+    "scope": "Both repaired source files match. No new full runtime fingerprint was supplied by this focused report."
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "recordedAt": "2026-10-05T16:46:18.060Z",
+  "branch": "codex/p03-files",
+  "firstCommit": "c39446babe1a4dd04e7c67dddcc2b6e05508c590",
+  "pushExitCode": 0,
+  "pr": {
+    "number": 6,
+    "url": "private-archive:TapKit",
+    "draft": true
+  },
+  "ci": {
+    "pr": {
+      "run": 37324850125,
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "id": 111812844183,
+          "name": "check",
+          "conclusion": "failure",
+          "failedSteps": [
+            "Verify current-route P00-03 as an independent standard user"
+          ]
+        },
+        {
+          "id": 111824018658,
+          "name": "startup-diagnostics",
+          "conclusion": "success",
+          "failedSteps": []
+        }
+      ],
+      "standardUser": {
+        "total": 22,
+        "passed": 21,
+        "failed": 1,
+        "pending": 0,
+        "case": "P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an isolated positive control",
+        "detail": "Default macro blocking succeeded. The enabled control exited cleanly but its PDF retained TK_MACRO_BLOCKED; this failure is not a shutdown timeout."
+      },
+      "logSha256": "cf0170b01ef5a3be9a214712f5929032dc36a224e0247047366e50982b10756c"
+    },
+    "push": {
+      "run": 37324723679,
+      "conclusion": "success"
+    }
+  },
+  "local": {
+    "contracts": {
+      "command": "pnpm test:unit",
+      "passed": 230,
+      "total": 230,
+      "exitCode": 0
+    },
+    "migration": {
+      "command": "pnpm test:integration tests/integration/P03-01.migration.test.ts",
+      "passed": 1,
+      "total": 1,
+      "exitCode": 0
+    },
+    "regression": {
+      "command": "pnpm exec vite build --config packages/storage/vite.config.ts; pnpm test:integration tests/integration/P00-02.storage.test.ts tests/integration/P02-03.history.test.ts tests/integration/P03-01.migration.test.ts",
+      "passed": 36,
+      "total": 36,
+      "exitCode": 0
+    },
+    "initialRegressionFailure": {
+      "passed": 32,
+      "failed": 3,
+      "exitCode": 1,
+      "reasons": [
+        "Rollback fixture used version8, now the installed schema; changed future probe to SCHEMA_VERSION+1.",
+        "Two fork fixtures used obsolete schema7 Storage dist; rebuilt before rerunning."
+      ],
+      "limitsChanged": false
+    }
+  },
+  "state": {
+    "P00_03": "in_progress",
+    "P00_gate": "failed",
+    "P03_01": "in_progress",
+    "note": "Native-dependent P03 acceptance cannot pass until the current standard-user regression is repaired and verified. No parser handler/UI exists yet; no completion claim."
+  },
+  "macroCandidateEvidence": "docs/evidence/P03-01/macro-control-repair-2026-10-06.json"
+}

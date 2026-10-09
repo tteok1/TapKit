@@ -1,0 +1,63 @@
+{
+  "startedAt": "2026-09-18T08:16:11.027Z",
+  "endedAt": "2026-09-18T08:16:11.526Z",
+  "status": "passed",
+  "scope": "Research/experimental diagnostics only; no production-code or runtime binary change this checkpoint; original full native and independent standard-user counts preserved",
+  "helperSha256": "e4b39808bb4661169456b8800f1972c2216120da075f9006694534d994ea7f57",
+  "checks": [
+    {
+      "command": [
+        "D:\\TapKit\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "scripts/docs-check.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "All 37 task states, started handoffs and completed requirement evidence links verified\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "safe.directory=D:/TapKit",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/plan/03-architecture.md', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/progress/requirements.csv', CRLF will be replaced by LF the next time Git touches it\n"
+    },
+    {
+      "command": [
+        "D:\\TapKit\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "--check",
+        ".cache/P00-03/lok-readonly-verified.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\TapKit\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "--check",
+        ".cache/P00-03/git-drive-alias.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "experiments": {
+    "git": "git-drive-alias.json",
+    "office": "lok-readonly-alias-verified.json",
+    "cleanup": "lok-readonly-alias-verified-cleanup.json",
+    "pdf": "lok-readonly-pdf-validation.json"
+  },
+  "pending": [
+    "Production integration",
+    "Race-free drive allocation and crash recovery",
+    "LOKit initialization readiness and error propagation",
+    "Malicious macro/external-link fixtures",
+    "Full independent standard-user acceptance"
+  ]
+}

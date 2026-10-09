@@ -1,0 +1,25 @@
+open D:\TapKit\.test-data\P00-03 中文 空格\workspace 444 0
+final 0 0 5
+final 8 0 5
+final 1 0 5
+final 2 64 5 \Device\HarddiskVolume4\TapKit\.test-data\P00-03 中文 空格\workspace
+final 4 41 5 \TapKit\.test-data\P00-03 中文 空格\workspace
+open D:\TapKit\.test-data\P00-03 中文 空格 444 0
+final 0 0 5
+final 8 0 5
+final 1 0 5
+final 2 54 5 \Device\HarddiskVolume4\TapKit\.test-data\P00-03 中文 空格
+final 4 31 5 \TapKit\.test-data\P00-03 中文 空格
+open D:\TapKit\.test-data 444 0
+final 0 0 5
+final 8 0 5
+final 1 0 5
+final 2 41 5 \Device\HarddiskVolume4\TapKit\.test-data
+final 4 18 5 \TapKit\.test-data
+open D:\TapKit 444 0
+final 0 0 5
+final 8 0 5
+final 1 0 5
+final 2 30 5 \Device\HarddiskVolume4\TapKit
+final 4 7 5 \TapKit
+open D:\ 18446744073709551615 5

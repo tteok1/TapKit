@@ -1,0 +1,2 @@
+tests/integration/P00-02.storage.test.ts(122,126): error TS2353: Object literal may only specify known properties, and 'windowsHide' does not exist in type 'ForkOptions'.
+tests/integration/P00-02.storage.test.ts(131,125): error TS2353: Object literal may only specify known properties, and 'windowsHide' does not exist in type 'ForkOptions'.

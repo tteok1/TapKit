@@ -1,0 +1,243 @@
+{
+  "runId": 36868398199,
+  "runNumber": 38,
+  "commit": "089e23022e4942db8dd8e00961d88575c60595fc",
+  "url": "private-archive:TapKit",
+  "conclusion": "failure",
+  "artifact": {
+    "sha256": "e2339a35e0da22f72bf2a1db561a910b48f35d382853fc87a75846cc8b327f3f",
+    "id": 11166207137
+  },
+  "jobLogSha256": "cf62a642e8a4dfd58afd82ab3ab3210bd6f642ee2d01656522166770154aa01d",
+  "administrator": {
+    "integrationTotal": 44,
+    "integrationPassed": 44,
+    "electronTotal": 2,
+    "unitPassed": 16,
+    "electronPassed": 2,
+    "check": "passed",
+    "unitTotal": 16,
+    "build": "passed"
+  },
+  "standardUser": {
+    "total": 20,
+    "failed": 7,
+    "failures": [
+      {
+        "name": "P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppContainer route",
+        "message": "Error: OFFICE_EXECUTION_FAILED"
+      },
+      {
+        "name": "P00-03 OfficeWorker rejects macro-enabled formats and applies external-link denial settings in the live AppContainer route",
+        "message": "AssertionError: expected { protocolVersion: 1, …(5) } to match object { event: 'finished', data: { …(3) } }"
+      },
+      {
+        "name": "P00-03 real Windows sandbox T08 T19 Node reads only input and writes workspace; runtime and input are read only; environment is private",
+        "message": "AssertionError: expected 1 to be +0 // Object.is equality"
+      },
+      {
+        "name": "P00-03 real Windows sandbox T08 T19 hard-killing the helper stops job descendants and recovers its ACL/profile lease",
+        "message": "AssertionError: expected 0 to be greater than or equal to 2"
+      },
+      {
+        "name": "P00-03 real Windows sandbox T08 T19 Python starts and spawns a child in AppContainer",
+        "message": "AssertionError: expected 3221225506 to be +0 // Object.is equality"
+      },
+      {
+        "name": "P00-03 real Windows sandbox T08 T19 cancel kills descendants",
+        "message": "AssertionError: expected 'exited' to be 'cancelled' // Object.is equality"
+      },
+      {
+        "name": "P00-03 real Windows sandbox T08 T19 timeout, output flood and fork limits are enforced",
+        "message": "Error: [P00-03 fork expected 2 child payloads to start from baseline 2, got 0]"
+      }
+    ],
+    "passed": 13
+  },
+  "launches": [
+    {
+      "timeoutMs": 10000,
+      "stderrFirstLine": "<ref *1> node:child_process:981\r",
+      "exitCode": 1,
+      "status": "exited",
+      "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+      "peakActiveProcesses": 2,
+      "outputBytes": 1311,
+      "argumentCount": 5,
+      "totalProcesses": 2,
+      "stdoutPreview": "授权输入\nwrite EPERM\nwrite EPERM\nread EPERM\nread EPERM\nread EPERM\nenv false false\n"
+    },
+    {
+      "timeoutMs": 10000,
+      "stderrFirstLine": "",
+      "exitCode": 0,
+      "status": "exited",
+      "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+      "peakActiveProcesses": 2,
+      "outputBytes": 10,
+      "argumentCount": 2,
+      "totalProcesses": 2,
+      "stdoutPreview": "first run\n"
+    },
+    {
+      "timeoutMs": 10000,
+      "stderrFirstLine": "",
+      "exitCode": 0,
+      "status": "exited",
+      "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+      "peakActiveProcesses": 2,
+      "outputBytes": 11,
+      "argumentCount": 2,
+      "totalProcesses": 2,
+      "stdoutPreview": "second run\n"
+    },
+    {
+      "timeoutMs": 10000,
+      "stderrFirstLine": "",
+      "exitCode": 3221225506,
+      "status": "exited",
+      "executable": ".runtime/python/python.exe",
+      "peakActiveProcesses": 2,
+      "outputBytes": 0,
+      "argumentCount": 2,
+      "totalProcesses": 2,
+      "stdoutPreview": ""
+    },
+    {
+      "timeoutMs": 10000,
+      "stderrFirstLine": "",
+      "exitCode": 0,
+      "status": "exited",
+      "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+      "peakActiveProcesses": 2,
+      "outputBytes": 75,
+      "argumentCount": 3,
+      "totalProcesses": 2,
+      "stdoutPreview": "1.1.1.1 EACCES\n169.254.169.254 EACCES\n::1 ECONNREFUSED\n127.0.0.1 ETIMEDOUT\n"
+    },
+    {
+      "timeoutMs": 10000,
+      "stderrFirstLine": "node:internal/child_process:458\r",
+      "exitCode": 1,
+      "status": "exited",
+      "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+      "peakActiveProcesses": 2,
+      "outputBytes": 688,
+      "argumentCount": 2,
+      "totalProcesses": 2,
+      "stdoutPreview": ""
+    },
+    {
+      "timeoutMs": 300,
+      "stderrFirstLine": "",
+      "exitCode": 1,
+      "status": "timeout",
+      "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+      "peakActiveProcesses": 2,
+      "outputBytes": 0,
+      "argumentCount": 2,
+      "totalProcesses": 2,
+      "stdoutPreview": ""
+    },
+    {
+      "timeoutMs": 10000,
+      "stderrFirstLine": "",
+      "exitCode": 1,
+      "status": "output_limit",
+      "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+      "peakActiveProcesses": 2,
+      "outputBytes": 49152,
+      "argumentCount": 2,
+      "totalProcesses": 2,
+      "stdoutPreview": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    },
+    {
+      "timeoutMs": 5000,
+      "stderrFirstLine": "",
+      "exitCode": 1,
+      "status": "timeout",
+      "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+      "peakActiveProcesses": 2,
+      "outputBytes": 402,
+      "argumentCount": 2,
+      "totalProcesses": 2,
+      "stdoutPreview": "fork_attempt:0;fork_launch:{\"executable\":\"D:\\\\a\\\\_temp\\\\tapkit-standard-user-dc3fd95d54e644739b426c559c74c8d4\\\\kit\\\\.runtime\\\\node\\\\node-v24.21.0-win-x64\\\\node.exe\",\"argumentCount\""
+    },
+    {
+      "timeoutMs": 10000,
+      "stderrFirstLine": "",
+      "exitCode": 3221225506,
+      "status": "exited",
+      "executable": ".runtime/python/python.exe",
+      "peakActiveProcesses": 2,
+      "outputBytes": 0,
+      "argumentCount": 2,
+      "totalProcesses": 2,
+      "stdoutPreview": ""
+    },
+    {
+      "timeoutMs": 10000,
+      "stderrFirstLine": "",
+      "exitCode": 0,
+      "status": "exited",
+      "executable": ".runtime/node/node-v24.21.0-win-x64/node.exe",
+      "peakActiveProcesses": 1,
+      "outputBytes": 213,
+      "argumentCount": 2,
+      "totalProcesses": 1,
+      "stdoutPreview": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[Hhello terminal\r\n\u001b]0;<kit>\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe\u0007\u001b[?25hPTY_ECHO"
+    }
+  ],
+  "findings": [
+    "The standard-user failures match run 36; Node parent payload runs but inherited-stdio child creation reports EPERM with pid 0.",
+    "Python payload exits 0xC0000022 without output. The old memory assertion accepts the same startup failure, so 13/20 includes an invalid memory pass.",
+    "Copy-Item tries to copy runtime-acl.json to itself in finally, masking the original error and preventing launcher/helper log collection.",
+    "Post-start synchronous icacls snapshots can run after the payload exits and ACL cleanup occurs. Missing profile ACEs in those snapshots are not proof of propagation failure."
+  ],
+  "nextChange": [
+    "Remove the self-copy.",
+    "Capture profile DACL rights for the pinned runtime root and executable before ResumeThread.",
+    "Remove synchronous external ACL queries from onStarted callbacks.",
+    "Require Python payload readiness, at least 128 MiB allocation and caught MemoryError for the memory test."
+  ],
+  "localValidation": [
+    {
+      "exitCode": 0,
+      "command": "pnpm helper:build",
+      "result": "Locked Rust/SDK/CRT compile only; no helper execution."
+    },
+    {
+      "command": "pnpm exec tsc --project tsconfig.json",
+      "exitCode": 0
+    },
+    {
+      "total": 16,
+      "exitCode": 0,
+      "command": "pnpm test:unit",
+      "passed": 16
+    },
+    {
+      "total": 5,
+      "exitCode": 0,
+      "command": "pnpm test:integration P00-03.git-broker P00-03.capability",
+      "passed": 5
+    },
+    {
+      "command": "PowerShell Parser.ParseFile scripts/ci-standard-user-test.ps1",
+      "exitCode": 0
+    },
+    {
+      "command": "Targeted Prettier, check-boundaries.mjs, check-manifests.mjs",
+      "exitCode": 0
+    }
+  ],
+  "sources": [
+    "https://learn.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-setsecurityinfo",
+    "https://learn.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-getnamedsecurityinfow",
+    "https://learn.microsoft.com/en-us/windows/win32/api/securitybaseapi/nf-securitybaseapi-getace",
+    "https://github.com/libuv/libuv/pull/5181",
+    "https://raw.githubusercontent.com/libuv/libuv/v1.52.1/src/win/pipe.c"
+  ],
+  "taskStatus": "in_progress",
+  "gate": "failed"
+}

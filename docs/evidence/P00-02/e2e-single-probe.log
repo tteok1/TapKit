@@ -1,0 +1,30 @@
+$ node scripts/e2e.mjs "--grep" "P00-02 single instance"
+
+Running 1 test using 1 worker
+
+(node:26740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_HOST_WINDOW 26148
+(node:26148) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+P00-02 second-instance launcher C:\windows\system32\cmd.exe [
+  'C:\\windows\\system32\\cmd.exe',
+  '/d',
+  '/s',
+  '/c',
+  '""D:\\TapKit\\node_modules\\.pnpm\\electron@44.3.0_supports-color@7.2.0\\node_modules\\electron\\dist\\electron.exe" "-r" "D:\\TapKit\\node_modules\\.pnpm\\playwright-core@1.63.0\\node_modules\\playwright-core\\lib\\server\\electron\\loader.js" "--inspect=0" "--remote-debugging-port=0" "D:\\TapKit\\apps\\desktop""'
+]
+
+TAPKIT_SECOND_INSTANCE
+TAPKIT_HOST_WINDOW 26148
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:52323/a3818e24-d06c-4959-b2f9-8e5a5e69661c
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 1 tests\e2e\P00-02.foundation.spec.ts:212:1 › P00-02 single instance activates owner and closing UI keeps Core alive until explicit quit (1.5s)
+
+  1 passed (2.2s)

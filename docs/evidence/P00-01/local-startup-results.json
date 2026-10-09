@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-10-03T07:29:27.8139081Z",
+  "workspace": "D:/TapKit",
+  "branch": "codex/fix-local-startup",
+  "baseline": "38403478322ad581c8ab16ebf9745732498b3417",
+  "phase": "pre-commit local verification",
+  "authorization": "New repair branch; local tests first; one final commit and push. Machine configuration changes require user manual action.",
+  "machineConfigurationChanged": false,
+  "executionContext": "ordinary local user process outside the Codex tool sandbox; not an administrator or separate Windows account verification",
+  "smartAppControlState": 1,
+  "commands": [
+    {
+      "logWrittenAtUtc": "2026-10-03T07:27:04.6183029Z",
+      "log": "docs/evidence/P00-01/local-startup-build.log",
+      "exitCode": 0,
+      "command": "pnpm build:desktop"
+    },
+    {
+      "logWrittenAtUtc": "2026-10-03T07:28:48.3716802Z",
+      "log": "docs/evidence/P00-01/local-startup-check.log",
+      "exitCode": 0,
+      "command": "pnpm check"
+    },
+    {
+      "logWrittenAtUtc": "2026-10-03T07:25:06.9118886Z",
+      "log": "docs/evidence/P00-01/local-startup-unit.log",
+      "exitCode": 0,
+      "passed": 37,
+      "command": "pnpm test:unit"
+    },
+    {
+      "logWrittenAtUtc": "2026-10-03T07:25:09.6781197Z",
+      "log": "docs/evidence/P00-01/local-startup-integration.log",
+      "exitCode": 0,
+      "passed": 36,
+      "command": "pnpm test:integration P01-01 P00-02.storage"
+    },
+    {
+      "logWrittenAtUtc": "2026-10-03T07:27:16.3683492Z",
+      "log": "docs/evidence/P00-01/local-startup-e2e.log",
+      "exitCode": 0,
+      "passed": 9,
+      "command": "pnpm test:e2e -- --grep P00-0[12]|P01-01"
+    },
+    {
+      "logWrittenAtUtc": "2026-10-03T07:26:55.9672054Z",
+      "log": "docs/evidence/P00-01/local-startup-dev.log",
+      "exitCode": 0,
+      "launches": 2,
+      "command": "pnpm test:dev"
+    },
+    {
+      "logWrittenAtUtc": "2026-10-03T07:24:48.7525427Z",
+      "log": "docs/evidence/P00-01/local-startup-hmr.log",
+      "exitCode": 0,
+      "command": "node .test-data/startup-hmr-probe.mjs"
+    },
+    {
+      "logWrittenAtUtc": "2026-10-03T07:26:52.4619376Z",
+      "log": "docs/evidence/P00-01/local-startup-invalid-profile.log",
+      "exitCode": 1,
+      "expectedFailure": true,
+      "command": "node scripts/dev.mjs with relative TAPKIT_DATA_DIR"
+    },
+    {
+      "logWrittenAtUtc": "2026-10-03T07:28:31.8094646Z",
+      "log": "docs/evidence/P00-01/local-startup-missing-runtime.log",
+      "exitCode": 1,
+      "expectedFailure": true,
+      "command": "node copied scripts/dev.mjs in fixture without project runtime"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-01/local-startup-docs-check.log"
+    }
+  ],
+  "launches": [
+    {
+      "launcher": "double-click-command",
+      "exitCode": 0,
+      "security": {
+        "argv": [
+          "D:\\TapKit\\node_modules\\.pnpm\\electron@44.3.0_supports-color@7.2.0\\node_modules\\electron\\dist\\electron.exe",
+          ".",
+          "--remote-debugging-port=0",
+          "--inspect=0"
+        ],
+        "tabs": [
+          {
+            "sandboxed": true,
+            "integrityLevel": "untrusted"
+          }
+        ]
+      },
+      "persistedProfile": true
+    },
+    {
+      "launcher": "dev-script",
+      "exitCode": 0,
+      "security": {
+        "argv": [
+          "D:\\TapKit\\node_modules\\.pnpm\\electron@44.3.0_supports-color@7.2.0\\node_modules\\electron\\dist\\electron.exe",
+          ".",
+          "--remote-debugging-port=0",
+          "--inspect=0"
+        ],
+        "tabs": [
+          {
+            "sandboxed": true,
+            "integrityLevel": "untrusted"
+          }
+        ]
+      },
+      "persistedProfile": true
+    }
+  ],
+  "hotReload": {
+    "providersCoreRestart": true,
+    "oldCoreExited": true,
+    "sourceBytesRestored": true,
+    "toolsCoreRestart": true,
+    "renderer": true
+  },
+  "sameExistingBuildProbe": {
+    "rootCause": "Underlying Windows/ACL cause not established",
+    "exitCode": 0,
+    "result": "Core connected outside tool sandbox; previous 0x80000003 did not recur",
+    "chromiumSandbox": true
+  },
+  "failureHistory": [
+    {
+      "log": "docs/evidence/P00-01/local-startup-dev-fixture-failed.log",
+      "exitCode": 1,
+      "reason": "Smoke fixture used UUIDv4 instead of contract UUIDv7; corrected"
+    },
+    {
+      "log": "docs/evidence/P00-01/local-startup-dev-inspector-failed.log",
+      "exitCode": 1,
+      "reason": "Test inspector global require unavailable; use createRequire"
+    },
+    {
+      "log": "docs/evidence/P00-01/local-startup-hmr-watch-failed.log",
+      "exitCode": 1,
+      "reason": "Actual dev did not enable main/preload watch; fixed with --watch"
+    }
+  ],
+  "currentTask": "P01-01 implemented_not_live_verified; R01 pending",
+  "nativeGate": "P00-03 in_progress; P00-gate failed; unavailable native/Office/terminal not enabled",
+  "fullNativeBuild": "Not repeated in this repair; previous rustc DLL SAC block remains unresolved",
+  "packagedExe": false,
+  "visualCheck": "Desktop screenshot inspected: Chinese UI, Core connected, no model configured, no clipping",
+  "screenshot": "docs/evidence/P00-01/local-startup-desktop.png",
+  "sourceSha256": {
+    "Start-TapKit.cmd": "7dc40af44c548a227a55b6350643a4c5a7fc6791d03d9d403159c50e7bd031a9",
+    "package.json": "b4b8a5787752842ad6f4be4fcb03520f7363bdb54731b4436c838abc0383c039",
+    "eslint.config.mjs": "23c51155ac1d3a27094140932158c38cbed77ef105cf38f0b058181e23834ee2",
+    "scripts/desktop-build.mjs": "3c721099072fa37a6f92bf9f7fbcba3955f0ba4413da23c4dcbe9653aeae64cd",
+    "scripts/build.mjs": "b054aed71ac80275afedaa566d81ca51bb097aaf6b0ed273eb4a0bfbae74fdc2",
+    "scripts/dev.mjs": "9555d5043344fab7105ec00865e848987b5d3b4f5310268547f5a22ff20e9c45",
+    "scripts/dev-smoke.mjs": "56b508beb876c2f4ce965d905c72cbafc33ecfbc24b152978aa556988954d1b9",
+    "apps/desktop/electron.vite.config.ts": "b182ae1d7628f3b2c09d2de0fd06d5e501e3db8410e1cf656ba382971e5db495",
+    "tests/e2e/P00-01.shell.spec.ts": "3f176dd91a360e2c3e6dc81a6bc9be5a6d47d8482f1ffee63601ccae060468ac",
+    "tests/e2e/P00-02.foundation.spec.ts": "baa44063801cb1c38d76b640a8a10295684ca812ab07e33dd9088cc0e2ecbdc0",
+    "tests/e2e/P01-01.codex.spec.ts": "f76c2a5f23958cc6c03c0161bcd40bc90780ee26a25ccbf376fdb5f72aa7083c"
+  },
+  "normalDevelopmentStartup": {
+    "checkedAtUtc": "2026-10-03T07:31:34.5767189Z",
+    "launcher": "locked Node scripts/dev.mjs",
+    "profile": ".test-data/development",
+    "debuggingPorts": false,
+    "sandboxDisabled": false,
+    "hostPid": 39300,
+    "supervisorPid": 33048,
+    "coreReady": true,
+    "startupPing": true,
+    "appLeftOpenForUser": true
+  },
+  "remainingElectronProcessesAfterAutomatedTests": []
+}

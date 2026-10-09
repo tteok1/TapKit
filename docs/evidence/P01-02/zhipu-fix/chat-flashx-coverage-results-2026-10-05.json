@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-05",
+  "timezone": "Asia/Shanghai",
+  "task": "P01-02",
+  "branch": "codex/fix-zhipu-api-probe",
+  "codeRef": "b92eece52e88eb6bd16931cd6ed942bb91d4d1f6+working-tree",
+  "committed": false,
+  "pushed": false,
+  "modelRequests": 0,
+  "keyRead": false,
+  "userConfigurationChanged": false,
+  "agentStartedElectron": false,
+  "checks": {
+    "format": { "exitCode": 0 },
+    "checkSandbox": { "exitCode": 1, "reason": "ignored-directory-enumeration-EPERM", "log": "chat-flashx-check-2026-10-05.log" },
+    "checkCurrentUser": { "exitCode": 0, "log": "chat-flashx-check-user-2026-10-05.log" },
+    "buildDesktop": { "exitCode": 0, "log": "chat-flashx-build-2026-10-05.log" },
+    "docsCheck": { "exitCode": 0, "log": "chat-flashx-docs-2026-10-05.log" },
+    "diffCheck": { "exitCode": 0 },
+    "unit": { "status": "not_run", "reason": "user-paused-local-testing" },
+    "integration": { "status": "not_run", "reason": "user-paused-local-testing" },
+    "electron": { "status": "not_run" },
+    "live": { "status": "not_run" }
+  },
+  "sha256": {
+    "packages/providers/src/api/adapter.ts": "2de2768807a68bdb5f421ccbd9fc27ac3a521b952a6e3b0146d256a6a25b630e",
+    "tests/unit/P01-02.zhipu.test.ts": "6db812871b5ce5f07e9970e85cd1afe957527e971b1c519e21157038dab22b0d",
+    "tests/integration/P01-02.zhipu.test.ts": "297f05ad2335cdcee01f561d4debfae221aef4d39bf5dd280e04211e88c4324d",
+    "packages/core/dist/index.cjs": "6659f5720fa7b5a322dd101b1a6523fe3548c4660f9be2baa1b1534a254b6bfe"
+  },
+  "taskStatus": "in_progress",
+  "gateStatus": "failed"
+}

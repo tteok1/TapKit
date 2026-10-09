@@ -1,0 +1,249 @@
+{
+  "recordedAt": "2026-10-05T16:52:48.448Z",
+  "run": 37324850125,
+  "head": "c39446babe1a4dd04e7c67dddcc2b6e05508c590",
+  "artifact": {
+    "id": 11352663529,
+    "zipSha256": "d9b8ad4b2c80a14b114ae954a4eca5ac87cbcfcda19c166b580af0741ae00ef3"
+  },
+  "failed": [
+    {
+      "title": "P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an isolated positive control",
+      "durationMs": 30009.451799999995,
+      "reason": "AssertionError: expected 'Sheet1 Page 1  TK_MACRO_BLOCKED' to contain 'TK_MACRO_EXECUTED'"
+    }
+  ],
+  "macroProcesses": [
+    {
+      "case": "office-macro-blocked",
+      "status": "exited",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "stages": [
+        {
+          "stage": "loop_started"
+        },
+        {
+          "stage": "load_started",
+          "format": "xlsx"
+        },
+        {
+          "stage": "converted",
+          "format": "xlsx",
+          "bytes": 23492
+        },
+        {
+          "stage": "finished",
+          "ok": true,
+          "pollCount": 0
+        }
+      ]
+    },
+    {
+      "case": "office-control-macro",
+      "status": "exited",
+      "exitCode": 0,
+      "activeProcesses": 0,
+      "stages": [
+        {
+          "stage": "loop_started"
+        },
+        {
+          "stage": "load_started",
+          "format": "xlsx"
+        },
+        {
+          "stage": "converted",
+          "format": "xlsx",
+          "bytes": 23492
+        },
+        {
+          "stage": "finished",
+          "ok": true,
+          "pollCount": 0
+        }
+      ]
+    }
+  ],
+  "finding": "Default macro blocking succeeded. The enabled control exited cleanly but its PDF retained TK_MACRO_BLOCKED; this failure is not a shutdown timeout.",
+  "candidate": "Run both test-only positive controls through UNO AsyncCallback on the VCL loop. Macro loader uses MacroExecutionMode=4 and UpdateDocMode=0; links keep MacroExecutionMode=0 and UpdateDocMode=3. Assert the real loaded macro marker before exporting. Production MacroSecurityLevel=3/disabled macros and all Job/network/ACL/source/PDF/marker limits remain unchanged.",
+  "validation": {
+    "check": {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "scope": "current working tree, including uncommitted P03 schema8 foundation"
+    },
+    "typescript": {
+      "command": "pnpm exec tsc --project tsconfig.json",
+      "exitCode": 0
+    },
+    "generatedPython": {
+      "command": "compile only both generated control scripts with locked LibreOffice Python; no LOK execution",
+      "exitCode": 0,
+      "modes": [
+        "links",
+        "macro"
+      ]
+    },
+    "powershellAst": {
+      "command": "Parser.ParseFile(ci-office-shutdown-diagnostics.ps1)",
+      "exitCode": 0
+    },
+    "nodeSyntax": {
+      "command": "node --check scripts/runtime-probe.mjs",
+      "exitCode": 0
+    }
+  },
+  "remoteVerification": "Pending new CI; do not enable native-dependent P03 acceptance.",
+  "sources": [
+    "https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1document_1_1MacroExecMode.html",
+    "https://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1awt_1_1AsyncCallback.html"
+  ],
+  "delivery": {
+    "sha": "d4fd451513ebb8d2937162f19354c4c1b5d4273d",
+    "branch": "codex/p03-files",
+    "initialPushExitCode": 1,
+    "initialPushError": "connection reset",
+    "remoteCheckedBeforeRetry": true,
+    "retryPushExitCode": 0,
+    "prRun": 37344605352,
+    "pushRun": 37344599460,
+    "status": "in_progress"
+  },
+  "candidate1Result": {
+    "head": "d4fd451513ebb8d2937162f19354c4c1b5d4273d",
+    "conclusion": "failure",
+    "runs": [
+      37344605352,
+      37344599460
+    ],
+    "jobs": [
+      {
+        "id": 111879909428,
+        "logSha256": "df89eec9d51f25cd4b9ce1be3f45bd9abe92455a8cb28d358b4173a69025ac4d"
+      },
+      {
+        "id": 111879889179,
+        "logSha256": "cbc60e24fd2108b96a385f739015416ab5240c526214ebb59b788fea4c737181"
+      }
+    ],
+    "unit": 227,
+    "integrationPassed": 154,
+    "integrationFailed": 1,
+    "standardUser": "21/22",
+    "macroRepeats": "0/3",
+    "linksRepeats": "3/3",
+    "failure": "On mainThread=true with MacroExecutionMode=4, A1 remained TK_MACRO_BLOCKED; clean exitCode=1/activeProcesses=0. Candidate1 did not repair the failure."
+  },
+  "candidate2": {
+    "inference": "Pinned LibreOffice source PostActivateEvent_Impl suppresses OpenDoc notification when SID_HIDDEN is true. The UNO macro control used Hidden=true; this directly conflicts with its OnLoad control purpose. Pending native CI verification.",
+    "source": "https://raw.githubusercontent.com/LibreOffice/core/libreoffice-26.2.6.3/sfx2/source/doc/objmisc.cxx",
+    "sourceLines": "870-884",
+    "change": "Test-only macro UNO load uses Hidden=false in headless LOK. Deliver queued events via Toolkit.reschedule within 5s, then assert unchanged real A1/PDF/marker-file behavior. No forced macro/script invocation; no production flag change.",
+    "validation": {
+      "generatedPythonCompileOnlyExitCode": 0,
+      "typescriptExitCode": 0,
+      "checkExitCode": 0
+    },
+    "remote": "passed on 21d39244137c39e9a299c0b5d636692c384a7100; PR/push check and startup-diagnostics all successful"
+  },
+  "candidate2Result": {
+    "head": "21d39244137c39e9a299c0b5d636692c384a7100",
+    "prRun": 37348464103,
+    "pushRun": 37348457242,
+    "checkJobs": [
+      111892972358,
+      111892947529
+    ],
+    "startupJobs": [
+      111903121763,
+      111903024122
+    ],
+    "conclusions": "all success (verified jobs API)",
+    "logSha256": "3b86317d02f9b93c8b729536d39034ffdaa4b3243454f633f87e5c276e1424ab",
+    "unit": 230,
+    "integration": 165,
+    "electron": 8,
+    "standardUser": {
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "pending": 0,
+      "success": true
+    },
+    "office": [
+      {
+        "mode": "links",
+        "round": 1,
+        "exitCode": 0,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "mode": "links",
+        "round": 2,
+        "exitCode": 0,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "mode": "links",
+        "round": 3,
+        "exitCode": 0,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "mode": "macro",
+        "round": 1,
+        "exitCode": 0,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "mode": "macro",
+        "round": 2,
+        "exitCode": 0,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "mode": "macro",
+        "round": 3,
+        "exitCode": 0,
+        "passed": true,
+        "reason": null
+      }
+    ],
+    "artifact": {
+      "id": 11362432951,
+      "size": 683582,
+      "sha256": "aeb9b865e7ec13ddf89cd42ceae969f5574d6ca57c83693ba9942015dc96e9c7"
+    },
+    "macro": [
+      {
+        "status": "exited",
+        "exitCode": 0,
+        "activeProcesses": 0,
+        "mainThread": true,
+        "hidden": false,
+        "value": "TK_MACRO_EXECUTED",
+        "loopReturned": true
+      }
+    ],
+    "behavior": [
+      {
+        "case": "office-macro-behavior",
+        "sourceSha256": "f90f27d9ea3b5d086eaf34d340f1b03520b078b6b3ce6b4253685f0abc0d7aa9",
+        "blockedPdfSha256": "9581cab2756f7e5b425699634753b8ecf20ef9a6c0be83e2446d6a9c4b0baf07",
+        "controlPdfSha256": "b6b7b26a7cc362cc1d35e2215572ac01cec80cb6849cd0c5decbb639604322d2",
+        "blockedMarker": "TK_MACRO_BLOCKED",
+        "enabledMarker": "TK_MACRO_EXECUTED",
+        "blockedFileAbsent": true,
+        "enabledFilePresent": true,
+        "sourceUnchanged": true
+      }
+    ],
+    "limitation": "P00 safety regression closed for this exact source/CI. Local unsigned helper remains blocked; no capability transplant or application-control bypass. New P03 parser worker still requires its own native acceptance."
+  }
+}

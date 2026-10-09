@@ -1,0 +1,74 @@
+[
+  {
+    "command": "pnpm build",
+    "cwd": "D:\\TapKit",
+    "startedAt": "2026-09-17T14:07:06.710Z",
+    "endedAt": "2026-09-17T14:07:18.740Z",
+    "exitCode": 0,
+    "log": "docs/evidence/P00-03/final-build.log"
+  },
+  {
+    "command": "pnpm test:unit",
+    "cwd": "D:\\TapKit",
+    "startedAt": "2026-09-17T14:07:18.749Z",
+    "endedAt": "2026-09-17T14:07:22.190Z",
+    "exitCode": 0,
+    "log": "docs/evidence/P00-03/final-unit.log"
+  },
+  {
+    "command": "pnpm test:integration P00-01 P00-02 P00-03.capability",
+    "cwd": "D:\\TapKit",
+    "startedAt": "2026-09-17T14:07:22.212Z",
+    "endedAt": "2026-09-17T14:07:27.624Z",
+    "exitCode": 0,
+    "log": "docs/evidence/P00-03/final-integration-base.log"
+  },
+  {
+    "command": "pnpm runtime:probe",
+    "cwd": "D:\\TapKit",
+    "startedAt": "2026-09-17T14:07:27.640Z",
+    "endedAt": "2026-09-17T14:12:10.894Z",
+    "exitCode": 1,
+    "log": "docs/evidence/P00-03/final-runtime-probe.log"
+  },
+  {
+    "command": "pnpm test:e2e -- --grep P00-03 --reporter=json --outputFile=test-results/P00-03-native-final.json",
+    "startedAt": "2026-09-17T14:13:39.428Z",
+    "endedAt": "2026-09-17T14:14:05.458Z",
+    "exitCode": 1,
+    "tests": {
+      "total": 11,
+      "passed": 9,
+      "failed": 2
+    },
+    "log": "docs/evidence/P00-03/final-native.log"
+  },
+  {
+    "command": "pnpm check",
+    "startedAt": "2026-09-17T14:22:26.660Z",
+    "endedAt": "2026-09-17T14:22:42.735Z",
+    "exitCode": 0,
+    "log": "docs/evidence/P00-03/final-check.log"
+  },
+  {
+    "command": "pnpm docs:check",
+    "startedAt": "2026-09-17T14:22:42.738Z",
+    "endedAt": "2026-09-17T14:22:43.116Z",
+    "exitCode": 0,
+    "log": "docs/evidence/P00-03/final-docs-check.log"
+  },
+  {
+    "command": "pnpm check",
+    "startedAt": "2026-09-17T14:30:33.444Z",
+    "endedAt": "2026-09-17T14:30:43.322Z",
+    "exitCode": 0,
+    "log": "docs/evidence/P00-03/final-check.log"
+  },
+  {
+    "command": "pnpm docs:check",
+    "startedAt": "2026-09-17T14:30:43.324Z",
+    "endedAt": "2026-09-17T14:30:43.636Z",
+    "exitCode": 0,
+    "log": "docs/evidence/P00-03/final-docs-check.log"
+  }
+]

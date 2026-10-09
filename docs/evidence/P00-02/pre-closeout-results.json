@@ -1,0 +1,42 @@
+[
+  {
+    "command": "pnpm build",
+    "cwd": "D:\\TapKit",
+    "startedAt": "2026-09-17T11:27:15.568Z",
+    "endedAt": "2026-09-17T11:27:21.860Z",
+    "exitCode": 0,
+    "log": "docs/evidence/P00-02/final-build.log"
+  },
+  {
+    "command": "pnpm test:unit",
+    "cwd": "D:\\TapKit",
+    "startedAt": "2026-09-17T11:27:21.869Z",
+    "endedAt": "2026-09-17T11:27:23.315Z",
+    "exitCode": 0,
+    "log": "docs/evidence/P00-02/final-unit.log"
+  },
+  {
+    "command": "pnpm test:integration",
+    "cwd": "D:\\TapKit",
+    "startedAt": "2026-09-17T11:27:23.324Z",
+    "endedAt": "2026-09-17T11:27:26.835Z",
+    "exitCode": 0,
+    "log": "docs/evidence/P00-02/final-integration.log"
+  },
+  {
+    "command": "pnpm test:e2e -- --grep P00-(01|02)",
+    "cwd": "D:\\TapKit",
+    "startedAt": "2026-09-17T11:27:26.847Z",
+    "endedAt": "2026-09-17T11:27:41.508Z",
+    "exitCode": 0,
+    "log": "docs/evidence/P00-02/final-e2e.log"
+  },
+  {
+    "command": "node scripts/dev-smoke.mjs",
+    "cwd": "D:\\TapKit",
+    "startedAt": "2026-09-17T11:27:41.518Z",
+    "endedAt": "2026-09-17T11:27:48.463Z",
+    "exitCode": 1,
+    "log": "docs/evidence/P00-02/final-dev.log"
+  }
+]

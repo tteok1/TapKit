@@ -1,0 +1,280 @@
+{
+  "schemaVersion": 1,
+  "taskId": "P01-01",
+  "recordedAt": "2026-10-02 16:09:24 UTC",
+  "status": "implemented_not_live_verified",
+  "branch": "codex/p01-01",
+  "head": "e8df1e7e98b12176c35ccdc15c1ce1a7d51dcb08",
+  "checkout": "C:/Users/private-user/.codex/worktrees/p01-01/TapKit",
+  "dirty": "P01-01 implementation, contracts/migration, focused regression fixtures and progress/evidence; no commit/push",
+  "checks": [
+    {
+      "command": ".\\scripts\\pnpm.ps1 check",
+      "startedAt": "2026-10-02 16:06:46 UTC",
+      "endedAt": "2026-10-02 16:06:56 UTC",
+      "exitCode": 0,
+      "output": "$ node scripts/check.mjs\nChecking formatting...\nAll matched files use Prettier code style!\nDependency boundaries verified\nRuntime/dependency/wheel manifests verified\n"
+    },
+    {
+      "command": ".\\scripts\\pnpm.ps1 test:unit",
+      "startedAt": "2026-10-02 16:06:56 UTC",
+      "endedAt": "2026-10-02 16:07:11 UTC",
+      "exitCode": 0,
+      "output": "$ vitest run --config vitest.config.ts --project unit\n\n RUN  v5.0.0 C:/Users/private-user/.codex/worktrees/p01-01/TapKit\n\n\n Test Files  10 passed (10)\n      Tests  37 passed (37)\n   Start at  00:07:01\n   Duration  9.73s (tests 66%, import 17%, transform 14%, setup 2%, worker 1%)\n\n"
+    },
+    {
+      "command": ".\\scripts\\pnpm.ps1 test:integration P01-01 P00-02.storage",
+      "startedAt": "2026-10-02 16:07:11 UTC",
+      "endedAt": "2026-10-02 16:07:19 UTC",
+      "exitCode": 0,
+      "output": "$ vitest run --config vitest.config.ts --project integration \"P01-01\" \"P00-02.storage\"\n\n RUN  v5.0.0 C:/Users/private-user/.codex/worktrees/p01-01/TapKit\n\n\n Test Files  3 passed (3)\n      Tests  36 passed (36)\n   Start at  00:07:16\n   Duration  3.12s (tests 52%, import 31%, transform 15%, setup 1%)\n\n"
+    },
+    {
+      "command": ".\\scripts\\pnpm.ps1 test:e2e -- --grep 'P00-02|P01-01'",
+      "startedAt": "2026-10-02 16:07:45 UTC",
+      "endedAt": "2026-10-02 16:08:02 UTC",
+      "exitCode": 0,
+      "output": "$ node scripts/e2e.mjs \"--grep\" \"P00-02|P01-01\"\n\nRunning 7 tests using 1 worker\n\n(node:14604) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\nTAPKIT_HOST_WINDOW 36364\n(node:36364) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `electron --trace-warnings ...` to show where the warning was created)\nTAPKIT_CORE_READY\nTAPKIT_CORE_PONG\nTAPKIT_HOST_WINDOW 36364\nTAPKIT_CORE_PONG\nTAPKIT_CORE_PONG\nTAPKIT_CORE_PONG\nDebugger ending on ws://127.0.0.1:63829/8359a3c2-4fba-4871-992e-c7ff8f3228e7\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\nTAPKIT_CORE_EXIT 0\n  ok 1 tests\\e2e\\P00-02.foundation.spec.ts:29:1 › P00-02 T01 T05 real two-window CAS and committed event subscription (1.3s)\nTAPKIT_HOST_WINDOW 15140\n(node:15140) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `electron --trace-warnings ...` to show where the warning was created)\nTAPKIT_CORE_READY\nTAPKIT_CORE_PONG\nDebugger ending on ws://127.0.0.1:54981/6140f220-fa04-4cc0-a1ce-369b609b6fe9\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\nTAPKIT_CORE_EXIT 0\n  ok 2 tests\\e2e\\P00-02.foundation.spec.ts:87:1 › P00-02 T19 real Windows safeStorage round trip, ACL and plaintext exclusion (2.0s)\nTAPKIT_HOST_WINDOW 9360\n(node:9360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `electron --trace-warnings ...` to show where the warning was created)\nTAPKIT_CORE_READY\nTAPKIT_CORE_PONG\nDebugger ending on ws://127.0.0.1:51941/b62a1469-093e-4a6c-8ce7-9f94f8b6529f\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\nTAPKIT_CORE_EXIT 0\n  ok 3 tests\\e2e\\P00-02.foundation.spec.ts:146:1 › P00-02 T19 foreign WebContents cannot invoke app IPC (904ms)\nTAPKIT_HOST_WINDOW 47600\n(node:47600) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `electron --trace-warnings ...` to show where the warning was created)\nTAPKIT_CORE_READY\nTAPKIT_CORE_PONG\nTAPKIT_CORE_PONG\nTAPKIT_CORE_EXIT 1\nError occurred in handler for 'tapkit:ping': Error: Core unavailable\n    at ForkUtilityProcess.<anonymous> (C:/Users/private-user\\.codex\\worktrees\\p01-01\\TapKit\\apps\\desktop\\out\\main\\index.js:6932:21)\n    at ForkUtilityProcess.emit (node:events:514:28)\n    at UtilityProcess.emit (node:electron/js2c/browser_init:2:95072)\nError occurred in handler for 'tapkit:ping': Error: Core unavailable\n    at forward (C:/Users/private-user\\.codex\\worktrees\\p01-01\\TapKit\\apps\\desktop\\out\\main\\index.js:6823:49)\n    at C:/Users/private-user\\.codex\\worktrees\\p01-01\\TapKit\\apps\\desktop\\out\\main\\index.js:7066:14\n    at async Session.<anonymous> (node:electron/js2c/browser_init:2:123817)\nTAPKIT_CORE_READY\nTAPKIT_CORE_PONG\nDebugger ending on ws://127.0.0.1:51575/d3e4b43b-975e-4518-b828-59b6f8a40b20\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\nTAPKIT_CORE_EXIT 0\n  ok 4 tests\\e2e\\P00-02.foundation.spec.ts:165:1 › P00-02 T05 Core kill rebuilds writer; acked settings survive and backup is not duplicated (1.5s)\nTAPKIT_HOST_WINDOW 38764\n(node:38764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `electron --trace-warnings ...` to show where the warning was created)\nTAPKIT_CORE_READY\nTAPKIT_CORE_PONG\nTAPKIT_CORE_PONG\n\r\nTAPKIT_SECOND_INSTANCE\nTAPKIT_HOST_WINDOW 38764\nTAPKIT_CORE_PONG\nTAPKIT_CORE_PONG\nDebugger ending on ws://127.0.0.1:50838/c57db6fc-a5aa-4ca7-bbb5-3eecf2ec8df7\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\nTAPKIT_CORE_EXIT 0\n  ok 5 tests\\e2e\\P00-02.foundation.spec.ts:212:1 › P00-02 single instance activates owner and closing UI keeps Core alive until explicit quit (1.7s)\nTAPKIT_HOST_WINDOW 48688\n(node:48688) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `electron --trace-warnings ...` to show where the warning was created)\nTAPKIT_CORE_READY\nTAPKIT_CORE_PONG\nDebugger ending on ws://127.0.0.1:59814/b5a45240-ba43-48d4-8119-cdb156879e38\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\nTAPKIT_CORE_EXIT 0\n  ok 6 tests\\e2e\\P00-02.foundation.spec.ts:266:1 › P00-02 higher schema shows a recovery prompt and preserves original database (2.1s)\n  ok 7 tests\\e2e\\P01-01.codex.spec.ts:4:1 › P01-01 unconfigured diagnostics uses private Core catalog and a finite preload bridge (1.3s)\n\n  7 passed (11.4s)\n"
+    }
+  ],
+  "earlierChecks": [
+    {
+      "command": "pnpm exec vite build --config packages/storage/vite.config.ts",
+      "exitCode": 0,
+      "endedAt": "2026-10-02; exact completion time not separately recorded"
+    },
+    {
+      "command": "pnpm exec vite build --config packages/core/vite.config.ts",
+      "exitCode": 0,
+      "endedAt": "2026-10-03 Asia/Shanghai; exact completion time not separately recorded"
+    },
+    {
+      "command": "pnpm --dir apps/desktop exec electron-vite build",
+      "exitCode": 0,
+      "endedAt": "2026-10-03 Asia/Shanghai; exact completion time not separately recorded"
+    },
+    {
+      "command": "pnpm exec vite build --config tests/live/vite.config.ts",
+      "exitCode": 0,
+      "endedAt": "2026-10-03 Asia/Shanghai; exact completion time not separately recorded"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P01-01",
+      "exitCode": 0,
+      "passed": 1,
+      "endedAt": "2026-10-03 Asia/Shanghai; exact completion time not separately recorded"
+    },
+    {
+      "command": "pnpm build",
+      "exitCode": 1,
+      "rustcExit": "0xc0e90002",
+      "cargoExit": 101,
+      "endedAt": "2026-10-02 Asia/Shanghai; exact completion time not separately recorded",
+      "reason": "Windows Security blocked rustc std DLL publisher validation; user supplied matching popup; no policy bypass"
+    },
+    {
+      "command": "pnpm test:live -- --provider codex-subscription",
+      "pnpmExitCode": 2,
+      "powershellWrapperExitCode": 1,
+      "status": "not_run",
+      "resourceId": "R01",
+      "reason": "Explicit opt-in and isolated test profile not configured; no credentials accessed or API calls"
+    },
+    {
+      "command": "electron .test-data/P01-01-live-runner/index.cjs (fresh empty test profile)",
+      "exitCode": 1,
+      "status": "expected_failure",
+      "stage": "profile",
+      "reason": "No Codex account; runtime boundary loaded but no credential/API/live validation"
+    }
+  ],
+  "sourceHashes": [
+    {
+      "path": "apps/desktop/src/main/auth/secrets.ts",
+      "sha256": "5fe8aa2ef31e5eb93d166f11ef49f4d12161cc761f691fcfccc28d6721c8d518"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/auth-diagnostic.tsx",
+      "sha256": "d84dbe5f2a6b587f8494995662a9271d3e2ac8e7df6d88a488c8102474940743"
+    },
+    {
+      "path": "migrations/0002_codex.sql",
+      "sha256": "b0003d7bd65d9e4358068893c37353d8f1db426411360deda77e808409c35fc8"
+    },
+    {
+      "path": "packages/contracts/src/providers.ts",
+      "sha256": "f01350db6db59c59b82f0050c0a96e76d63a9a5a26fe2f17330727da24fa2ed6"
+    },
+    {
+      "path": "packages/core/src/provider-service.ts",
+      "sha256": "7d8cb28be6007df0889a9a314f87de5b5319bbb520ec62061f0e57ed5974d78e"
+    },
+    {
+      "path": "packages/providers/src/codex/adapter.ts",
+      "sha256": "5fe075c878ce7f8f2fe59a8cdb23c951fb841368774f7b694b35e47a867d0757"
+    },
+    {
+      "path": "packages/providers/src/codex/credentials.ts",
+      "sha256": "0ad9ffd7b9018c8ea37a62a9e84d9661a8a5cf1a39e5df5c916223107591e7a1"
+    },
+    {
+      "path": "packages/providers/src/codex/errors.ts",
+      "sha256": "72f26fe610843bb1e3938523657473de260ae47dcad390a71ca768d4e923cc5a"
+    },
+    {
+      "path": "packages/providers/src/codex/login.ts",
+      "sha256": "6750a51f2293ae076ca4859da12b22b12820ec35a6b1e1d911ddb3127fa30778"
+    },
+    {
+      "path": "packages/providers/src/codex/transport.ts",
+      "sha256": "7da592ee88814ef9b73dbd9fc990e7983b06dec82d4ac9c80a13b61be581ec59"
+    },
+    {
+      "path": "resources/catalogs/codex-adapter.json",
+      "sha256": "9ca8d1bddbed6373e75f4b2feb667531d69344165f65c612dbe5b40d9a47b9c3"
+    },
+    {
+      "path": "scripts/live.mjs",
+      "sha256": "0030a821bb3cdd6d842c57c8e2fe212e65db3357029087b61340283a4a1c1de6"
+    },
+    {
+      "path": "tests/e2e/P01-01.codex.spec.ts",
+      "sha256": "7fa6fe3a907645b24c5966bacc9d0163e72ba89140e33522d52a0690de007c91"
+    },
+    {
+      "path": "tests/fixtures/P01-01.codex.ts",
+      "sha256": "33f7158ae503ce27375614c005dc52252d18d7f558fd3cdc9978082b687b05b9"
+    },
+    {
+      "path": "tests/integration/P01-01.codex.test.ts",
+      "sha256": "dbd2893a43c7847f129a46c4023c9dfbe6ac877eb2d085bd2d885f9bb3555251"
+    },
+    {
+      "path": "tests/integration/P01-01.provider-service.test.ts",
+      "sha256": "f3e76773c59f6f62d08be82b32c4b3b0c683316f172e89f6dbc55d293d29cdb6"
+    },
+    {
+      "path": "tests/live/P01-01.codex.ts",
+      "sha256": "821fe3a421f8da54914352cb5bdbec25a4cf8b2d68eb55b9f4e2df12a4a4dfd1"
+    },
+    {
+      "path": "tests/live/vite.config.ts",
+      "sha256": "afdd40a032138db9a4373bb50e179fb5832382adcded835ba45de1c8cb05da98"
+    },
+    {
+      "path": "tests/unit/P01-01.auth-secrets.test.ts",
+      "sha256": "c8e57e072fcc23f2bb2fd89158da9b8c43cf5292abf8aa7149582f84273fef0a"
+    },
+    {
+      "path": "tests/unit/P01-01.transport.test.ts",
+      "sha256": "491bf5a5202b93da17c6cca2cac2b57fd7b7eae7ea38c889aea83faaa7686ed9"
+    },
+    {
+      "path": "apps/desktop/src/main/index.ts",
+      "sha256": "6d8df3cde5ea9aa073356f24e69ca229f21f48ff6361d8597fd500c0f05ba5a2"
+    },
+    {
+      "path": "apps/desktop/src/preload/index.ts",
+      "sha256": "8661b4bf1a694ee09a11e9027b65b6623fc052ae05d3a2ec619e1edfbc34746a"
+    },
+    {
+      "path": "apps/desktop/src/renderer/locales/zh-CN.json",
+      "sha256": "1e05e02405877a42aa02067d763758ea5605ac651862c8c6d3f614ad365bfa29"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/main.tsx",
+      "sha256": "2931bd6750e06aab2adc9f93123013c9833b2c8f4609b46525cd78aa51fa788b"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/styles.css",
+      "sha256": "6af93a760bd1b383a75f5e6e7ae93745a3e66aac1bd755a62c54c6ad443a2166"
+    },
+    {
+      "path": "package.json",
+      "sha256": "78896fca77c495b75d4bc06ab378068886ea26c13f02b1e583ff8bcaf6c2c2ef"
+    },
+    {
+      "path": "packages/contracts/src/foundation.ts",
+      "sha256": "5e526a35eb65d6abeebf9f5663c3405e81f1e0f9cc9e76daab847705d718ad54"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "2762cfc98c112a2d3f11a0e356cc4a371560ba60ffa2590b11febd0a35e94f33"
+    },
+    {
+      "path": "packages/core/package.json",
+      "sha256": "1a98e8de49d1bfba30b7b08ae83afc4d6b1189d8ad3dc60218aff4690c2321ac"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "6b8c84d3fb7a2039faf8d5d64e6fc60c6850d8dfce0a396f2c02d3e1f649759a"
+    },
+    {
+      "path": "packages/core/vite.config.ts",
+      "sha256": "93f1482871659329fd6ef021e23bc695c41ffb97e845942b685eccb68c6bac10"
+    },
+    {
+      "path": "packages/providers/src/index.ts",
+      "sha256": "8164a3f7b0fefea476880feba238360000cfa85c31987d7ffb109124b017ff15"
+    },
+    {
+      "path": "packages/storage/src/blobs.ts",
+      "sha256": "cf60d75bb534a90b9fcc94fffe19196cade9538ae3f20d42200f1fa52ef3ac0d"
+    },
+    {
+      "path": "packages/storage/src/foundation.ts",
+      "sha256": "98a1a47801e170eb888ebe3aa290da5bee65eedf6d428f424f586260c78df67b"
+    },
+    {
+      "path": "packages/ui/src/index.ts",
+      "sha256": "3cba268ce548517567abc64ca7538dbca662f28665144c82ffbf141f2c438f70"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "3102e1e32e057d8c0cc9d4c6ac175e65f844c5d8d351b19de1a5ab364d01abac"
+    },
+    {
+      "path": "tests/e2e/P00-02.foundation.spec.ts",
+      "sha256": "63fd6b0b8f88e1f86b4042fd01b24d7d946e8274a59d2d93b19171fe9f70ea28"
+    },
+    {
+      "path": "tests/integration/P00-02.storage.test.ts",
+      "sha256": "01325af8612da81c3438136df982a2c7b6c1b413aeef9666e3fdd318cba7dd91"
+    },
+    {
+      "path": "tests/unit/P00-02.contracts.test.ts",
+      "sha256": "01e8f59b079a589d2eb9d5dbf20a748711067e39553255139a6315f47f6c3690"
+    }
+  ],
+  "live": {
+    "resourceId": "R01",
+    "status": "pending",
+    "oauth": false,
+    "text": false,
+    "twoTurn": false,
+    "echo": false,
+    "restartRefresh": false,
+    "logout": false
+  },
+  "visual": {
+    "desktop": "diagnostic-desktop.png",
+    "desktopPixels": [
+      2174,
+      1382
+    ],
+    "compact": "diagnostic-compact.png",
+    "compactPixels": [
+      760,
+      560
+    ],
+    "inspected": true,
+    "horizontalOverflow": false
+  },
+  "originalCheckout": {
+    "path": "D:/TapKit",
+    "branch": "codex/diagnose-main-ci",
+    "existingChangesPreserved": true
+  },
+  "p00Gate": "failed",
+  "unsafeCapabilitiesEnabled": false
+}

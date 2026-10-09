@@ -1,0 +1,79 @@
+{
+  "taskId": "P01-01",
+  "checkout": "D:/tapkit/TapKit",
+  "branch": "codex/p01-01",
+  "codeRef": "3840347+working-tree",
+  "recordedAt": "2026-10-04T04:53:27.0009842+08:00",
+  "sourceSha256": {
+    "packages/contracts/src/providers.ts": "3f17a890e80f95e6df43956b287bbe886e13486faa10c169bdc259a7076ddd28",
+    "packages/core/src/provider-service.ts": "9570a9a38339355ee7bc43f3199c609882f352d11501f91c8f4d265223f58e3d",
+    "packages/providers/src/codex/network.ts": "f9b7396875bea7b09630a147691d4b12f46a4b1d150faee03a883b25a8d7f0f0",
+    "packages/providers/src/index.ts": "5c43bf70c601566d3c7c792a513a5cdf1ed05ef8b659fd56872480ad437e4f03",
+    "apps/desktop/src/renderer/src/auth-diagnostic.tsx": "cfa0f5653fa411fef4ca4801bff4c4cfde278d2242af73ac17943ba57b77ea49",
+    "apps/desktop/src/renderer/locales/zh-CN.json": "01b00b2577b5e847a3e0dd938f26f7e87760385879f272e56ef382435fc2af38",
+    "tests/live/P01-01.codex.ts": "8946df7a28e145858e0892b1288f2d88c38cd496507bb7a19119e9b220a73d2b",
+    "tests/integration/P01-01.network.test.ts": "a39221801a112cda7f84a94fba42f7a76272bdf7a8c88b74aab72b6742586846",
+    "tests/integration/P01-01.provider-service.test.ts": "07905ce3e6da8237e6197a5727ead5a35204d46c2de7cd70e6035e8e9719bce3",
+    "tests/integration/P01-01.lifecycle-regression.test.ts": "271974da23168225badd2f21ab7f9e909ab4fc359146f4f37353de5d5519d17d",
+    "tests/e2e/P01-01.codex.spec.ts": "a56cd118e10838d54e90c85c3f34480b9de212d34739f8e6075cfaa4d27af769",
+    "tests/fixtures/P01-01.live.cjs": "7e15576750cdd2065a9176e3c94ddb3decbe203690a34279261b69680b2854eb"
+  },
+  "commands": [
+    {
+      "log": "logout-proxy-build.log",
+      "command": "pnpm build",
+      "exitCode": 0
+    },
+    {
+      "log": "logout-proxy-unit.log",
+      "command": "pnpm test:unit",
+      "passed": 37,
+      "exitCode": 0
+    },
+    {
+      "log": "logout-proxy-integration.log",
+      "command": "pnpm test:integration P01-01 P00-02.storage",
+      "passed": 63,
+      "exitCode": 0
+    },
+    {
+      "log": "logout-proxy-electron.log",
+      "command": "pnpm test:e2e -- --grep P01-01",
+      "passed": 6,
+      "exitCode": 0
+    }
+  ],
+  "finalChecks": {
+    "check": 0,
+    "docsCheck": 0,
+    "diffCheck": 0
+  },
+  "anonymousConnectivity": {
+    "status": 401,
+    "exitCode": 0,
+    "proxyProvided": true,
+    "contentType": "application/json",
+    "modelCalls": 0,
+    "authenticated": false
+  },
+  "actualLive": {
+    "resource": "R01",
+    "status": "user_reported_http_200_non_sse",
+    "agentModelCalls": 0,
+    "rootCause": "not_confirmed",
+    "resourceStatus": "configured",
+    "realCredentialsRead": false
+  },
+  "accountRemoval": {
+    "isolation": "other account unaffected",
+    "logout": "clear credential and remove active account",
+    "history": "retain deletion tombstone and unrelated history",
+    "emptyAccount": "clear account record button"
+  },
+  "restrictions": [
+    "no git commit or push",
+    "no later task advancement",
+    "P00 gate failed",
+    "anonymous or mock verification does not prove real model access"
+  ]
+}

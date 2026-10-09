@@ -1,0 +1,42 @@
+{
+  "task": "P03-01",
+  "status": "in_progress",
+  "date": "2026-10-09",
+  "codeHead": "8f69bebf4cc186d8bd2fd80e4449d49110374f71",
+  "committed": true,
+  "push": {
+    "initial": "connection reset; remote still 8e05705",
+    "retryExitCode": 0,
+    "remoteShaVerified": true
+  },
+  "pr": {
+    "number": 6,
+    "url": "private-archive:TapKit",
+    "draft": true,
+    "bodyUpdated": true
+  },
+  "ci": {
+    "prRun": 37831922651,
+    "pushRun": 37831915108,
+    "status": "completed",
+    "conclusion": "failure",
+    "checkJob": 113499168601,
+    "checkSteps": 0,
+    "startupJob": 113499184273,
+    "startupSteps": 0,
+    "annotation": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the Billing & plans section in your settings",
+    "resource": "R15",
+    "nativeDiagnostic": "not_run"
+  },
+  "localEvidence": "docs/evidence/P03-01/material-checkpoint-2026-10-09.json",
+  "remaining": [
+    "Host-token physical chat import with virtual clipboard compatibility",
+    "exception/requirement audit and real native parser acceptance after R15",
+    "P03-02/03 unstarted"
+  ],
+  "guard": {
+    "localHelper": "not_executed",
+    "realUserProfileVaultOrKeys": "not_read",
+    "goal": "active; independent work remains"
+  }
+}

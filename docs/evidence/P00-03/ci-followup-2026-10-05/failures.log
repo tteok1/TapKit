@@ -1,0 +1,12 @@
+2026-10-05T07:31:40.5841937Z       Tests  227 passed (227)
+2026-10-05T07:37:32.3650730Z       Tests  1 failed | 153 passed (154)
+2026-10-05T07:37:32.3654884Z AssertionError: expected 658.0683999999965 to be less than or equal to 500
+2026-10-05T07:37:32.5056417Z ##[error]AssertionError: expected 658.0683999999965 to be less than or equal to 500
+2026-10-05T07:39:17.1042892Z   8 passed (33.4s)
+2026-10-05T07:47:39.6084738Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 1
+2026-10-05T07:50:02.7374101Z Error: OFFICE_CONTROL_FAILED: {"activeProcesses":0,"exitCode":1,"logDirectory":"D:\\a\\TapKit\\TapKit\\.test-data\\P00-03 external-link 中文 cDHIlT\\helper-logs-83f65336-c9a7-7476-8840-50fea55abf4b","outputBytes":1123,"peakActiveProcesses":3,"status":"timeout","stderr":"","stdout":"{\"stage\": \"loop_started\"}\r\n{\"stage\": \"control_loaded\", \"value\": \"TK_LINK_CACHED\", \"formula\": \"='file:///D:/a/TapKit/TapKit/.test-data/P00-03 external-link 中文 cDHIlT/input/external-source.xlsx'#$Sheet1.A1\", \"cellError\": 0, \"allowLinkUpdate\": true, \"externalLinkCount\": 1, \"sourceExists\": true}\r\n{\"stage\": \"control_links_refreshed\", \"value\": \"TK_LINK_CACHED\", \"formula\": \"='file:///D:/a/TapKit/TapKit/.test-data/P00-03 external-link 中文 cDHIlT/input/external-source.xlsx'#$Sheet1.A1\", \"cellError\": 0, \"allowLinkUpdate\": true, \"externalLinkCount\": 1, \"sourceExists\": true}\r\n{\"stage\": \"control_updated\", \"value\": \"TK_LINK_UPDATED\", \"formula\": \"='file:///D:/a/TapKit/TapKit/.test-data/P00-03 external-link 中文 cDHIlT/input/external-source.xlsx'#$Sheet1.A1\", \"cellError\": 0, \"allowLinkUpdate\": true, \"externalLinkCount\": 1, \"sourceExists\": true}\r\n{\"stage\": \"control_saved\", \"bytes\": 20929}\r\n{\"stage\": \"control_closed\"}\r\n{\"stage\": \"control_references_released\"}\r\n{\"stage\": \"control_destroyed\"}\r\n{\"stage\": \"control_worker_complete\"}\r\n{\"stage\": \"control_loop_returned\"}\r\n{\"stage\": \"finished\", \"ok\": true, \"pollCount\": 0}\r\n","totalProcesses":3}
+2026-10-05T07:50:02.7607982Z     214|       throw new Error('OFFICE_CONTROL_FAILED: ' + JSON.stringify(finis…
+2026-10-05T07:50:02.8294960Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 2
+2026-10-05T07:50:30.4318976Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 3
+2026-10-05T07:50:52.3913930Z   29 |  … es -ne 0) { throw "Office shutdown diagnostic checks failed: $taskFai …
+2026-10-05T07:50:52.3919466Z      | Office shutdown diagnostic checks failed: 1

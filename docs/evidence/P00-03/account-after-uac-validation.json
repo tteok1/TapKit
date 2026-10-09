@@ -1,0 +1,76 @@
+{
+  "recordedAt": "2026-09-24T14:03:22.796Z",
+  "head": "071d15c5c45db4e91d232a4d26db7904061bc89b",
+  "branch": "main",
+  "dirty": true,
+  "helperSha256": "536cbeba6b8b6debfb238bda6cd92cb628a4160b3e15e6bd59d5acded6631544",
+  "reports": [
+    {
+      "path": "docs/evidence/P00-03/account-after-uac-unit.json",
+      "sha256": "2e096c5678572c652ba9ddb9276570168f23094148eb5f33c6c21b533cd38ea2",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "pending": 0
+    },
+    {
+      "path": "docs/evidence/P00-03/account-after-uac-base.json",
+      "sha256": "9eb1b47e566ec0929a93883b54d3cd167be489c31f3f1558d71dc0cfe965db8d",
+      "total": 29,
+      "passed": 29,
+      "failed": 0,
+      "pending": 0
+    },
+    {
+      "path": "docs/evidence/P00-03/account-after-uac.json",
+      "sha256": "f3c0d685cb17626fdb4dc2aff1e131428d5778c5573112db22c9dcb38079faa6",
+      "total": 5,
+      "passed": 2,
+      "failed": 3,
+      "pending": 0
+    }
+  ],
+  "sources": [
+    {
+      "path": "native/windows-helper/src/account_broker.rs",
+      "sha256": "340581cb34fbc54048c4aefd42b0129f94b866fda32b11968d47735a70887479"
+    },
+    {
+      "path": "native/windows-helper/src/account_journal.rs",
+      "sha256": "ea9486d33b4003b3f9191f154db35b3dd17b0d3afeb4feac157bcb51eadafa37"
+    },
+    {
+      "path": "native/windows-helper/src/account_network.rs",
+      "sha256": "adcad3d81e0faa6d21695cd15404f2e3b512b586148e2797f3920f21c8dee4cf"
+    },
+    {
+      "path": "native/windows-helper/src/account_setup.rs",
+      "sha256": "2466988c434c23b196f0825d75db32c2c4b421260c83829fef6eb3ace42995a6"
+    },
+    {
+      "path": "native/windows-helper/src/account_token.rs",
+      "sha256": "c399e96dbc5b650b22e5b8dc08c9e3ddef12254ccb6f4b61638fe4056eccf441"
+    },
+    {
+      "path": "native/windows-helper/src/main.rs",
+      "sha256": "ede78be0bd349842442e62d396ea58d4ad36b2fe8aa5f221dbb97ce11afaa4b8"
+    },
+    {
+      "path": "native/windows-helper/src/sandbox.rs",
+      "sha256": "c66964600daa7d8b462f8e7cea643b49db9171780219af5e6b27a578ce47a319"
+    },
+    {
+      "path": "native/windows-helper/src/win.rs",
+      "sha256": "a4470e5393cc880b33f7f47d1dff50d1eafca8bffc39d2fc9d9bf67a9c1e40d9"
+    }
+  ],
+  "verifiedCommandExitCodes": {
+    "pnpm check": 0,
+    "pnpm build": 0,
+    "pnpm docs:check": 0,
+    "account setup UAC repair": 0,
+    "account status ordinary token": 0
+  },
+  "gate": "failed",
+  "note": "Counts are read from actual reports. Native account tests failed; these are not safety acceptance evidence."
+}

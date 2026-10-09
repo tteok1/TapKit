@@ -1,0 +1,36 @@
+$ node scripts/check.mjs
+Checking formatting...
+All matched files use Prettier code style!
+Dependency boundaries verified
+D:\TapKit\node_modules\.pnpm\yaml@2.9.1\node_modules\yaml\dist\public-api.js:50
+            doc.errors.push(new errors.YAMLParseError(_doc.range.slice(0, 2), 'MULTIPLE_DOCS', 'Source contains multiple documents; please use YAML.parseAllDocuments()'));
+                            ^
+
+YAMLParseError: Source contains multiple documents; please use YAML.parseAllDocuments() at line 158, column 1:
+
+
+---
+^
+
+    at parseDocument (D:\TapKit\node_modules\.pnpm\yaml@2.9.1\node_modules\yaml\dist\public-api.js:50:29)
+    at parse (D:\TapKit\node_modules\.pnpm\yaml@2.9.1\node_modules\yaml\dist\public-api.js:68:17)
+    at file:///D:/TapKit/scripts/check-manifests.mjs:36:14 {
+  code: 'MULTIPLE_DOCS',
+  pos: [ 4556, 327669 ],
+  linePos: [ { line: 158, col: 1 }, { line: 9891, col: 1 } ]
+}
+
+Node.js v24.21.0
+file:///D:/TapKit/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\TapKit\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/TapKit/scripts/lib.mjs:24:34)
+    at file:///D:/TapKit/scripts/check.mjs:8:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.18.0
+[ELIFECYCLE] Command failed with exit code 1.

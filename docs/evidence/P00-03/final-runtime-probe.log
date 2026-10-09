@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-17T14:07:28.000Z",
+  "endedAt": "2026-09-17T14:12:10.841Z",
+  "command": "pnpm test:e2e -- --grep P00-03 --reporter=json --outputFile=test-results/P00-03-native.json",
+  "exitCode": 1,
+  "standardUser": false,
+  "fingerprint": "9ea095cfb0080ed6b781ca490ac3eff77fd221b1da2c9f01413df4623251b000",
+  "capabilities": {
+    "nativeExecution": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    },
+    "officeRender": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    },
+    "terminal": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    }
+  },
+  "tests": {
+    "total": 11,
+    "passed": 8,
+    "failed": 3
+  }
+}
+$ node scripts/runtime-probe.mjs
+[ELIFECYCLE] Command failed with exit code 1.

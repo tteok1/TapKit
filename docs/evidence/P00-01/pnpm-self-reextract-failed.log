@@ -1,0 +1,16 @@
+$ node scripts/bootstrap.mjs
+node already prepared 24.21.0
+pnpm.exe: Can't unlink already-existing object: Permission denied
+tar.exe: Error exit delayed from previous errors
+file:///D:/TapKit/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: tar.exe exited 1
+    at run (file:///D:/TapKit/scripts/lib.mjs:24:34)
+    at preparePnpm (file:///D:/TapKit/scripts/runtime-fetch.mjs:89:3)
+    at async prepareRuntimes (file:///D:/TapKit/scripts/runtime-fetch.mjs:112:3)
+    at async file:///D:/TapKit/scripts/bootstrap.mjs:4:1
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.

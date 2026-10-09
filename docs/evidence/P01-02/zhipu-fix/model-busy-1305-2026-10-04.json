@@ -1,0 +1,38 @@
+{
+  "observedAt": "2026-10-04T03:20:42.899Z",
+  "userScreenshot": {
+    "dnsIpv4": [
+      "39.108.102.11",
+      "39.108.52.113"
+    ],
+    "publicErrorCode": "PROVIDER_UNAVAILABLE",
+    "phase": "text",
+    "httpStatus": 429,
+    "upstreamCode": "1305"
+  },
+  "currentNodeLookup": [
+    {
+      "address": "39.108.52.113",
+      "family": 4
+    },
+    {
+      "address": "39.108.102.11",
+      "family": 4
+    }
+  ],
+  "persistedAccount": {
+    "provider_id": "openai-compatible",
+    "api_format": "openai-chat",
+    "base_url": "https://open.bigmodel.cn/api/paas/v4",
+    "model_id": "glm-4.7-flash",
+    "status": "unavailable",
+    "last_error_code": "PROVIDER_UNAVAILABLE",
+    "last_check_at": 1791083882437,
+    "lastCheckAsiaShanghai": "2026/10/4 11:18:02"
+  },
+  "officialSource": "https://docs.bigmodel.cn/cn/api/api-code",
+  "interpretation": "Official 1305: model current traffic too high. Transport reached an upstream HTTP response; no successful text/tools generation acceptance yet.",
+  "apiKeyRead": false,
+  "realModelRequestsByAgent": 0,
+  "codeOrUserConfigChanged": false
+}

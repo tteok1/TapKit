@@ -1,0 +1,14 @@
+{
+  "name": "@tapkit/tools",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@tapkit/contracts": "workspace:*",
+    "yauzl": "3.4.0",
+    "yazl": "3.3.1"
+  }
+}

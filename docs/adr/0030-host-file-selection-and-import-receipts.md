@@ -1,0 +1,13 @@
+# ADR 0030：Host文件选择与逐项导入收据
+
+日期：2026-10-06。状态：accepted（实现中）。
+
+Host对话框或preload的Electron原生File对象选择文件，通过私有files.select消息向Core交付路径；公共fileCommand只接受contracts/files.ts内有限命令及opaque token。Host覆盖windowId，Core生成五分钟有效的窗口绑定token，持只读句柄；选择时和读取前后校验文件身份、尺寸、mtime/ctime及真实路径，拒绝junction、链接、重复路径及超限。源文件仅读；取消/关闭/过期关闭句柄。
+
+单次最多20文件、每文件100MiB；窗口最多20未消费授权，全Core最多100。目录有界遍历（最多2000目录/32层），超过20文件拒绝整次选择，完整保留相对路径；库/项目在逐项事务内建立实际folder层级，会话仅保留文件relativePath。新选择须在Host再次由用户选择，Renderer没有传任意路径的bridge方法。
+
+files.import最多同时2批，120秒停止新文件发布；Host等待上限130秒。files.importStatus返回各项读取字节、waiting/reading/imported/skipped/failed/cancelled与安全错误码，files.cancelImport仅原窗口可取消。原件fsync登记后才在同步事务内创建版本、引用和file.parse job；导入成功与解析状态分开。失败项不隐藏在批次成功内；取消已完成项仍保留。
+
+批次和逐项结果复用request_receipts，不持SQLite事务跨异步I/O。逐项ID由批次requestId/token确定，含窗口绑定及规范化导入参数的收据阻止同请求换目标或重复建版本；完整批次在Core重启后可重放。replace必须逐token指定fileId，并校验读取期间目标revision未变。失败/取消后重试用新请求及重新选择；后续ADR0033增加开始检查点，实际终止导入进程后已验新批次的恢复视图与无源授权重放。旧版本无开始检查点的半批次不能完整重建。
+
+2026-10-06后续ADR0031/0032已接入原件下载、statfs剩余空间、资料库UI及真实Electron File拖入验收。临时目录与未完成批次恢复、任务使用记录及真实AppContainer诊断仍待实现或CI。便携合成测试和构建不等于原生安全验收。

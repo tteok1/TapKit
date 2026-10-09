@@ -1,0 +1,132 @@
+{
+  "task": "P03-01",
+  "status": "in_progress",
+  "date": "2026-10-09",
+  "baseHead": "4b0ae7d9b2aa0cb6de9450faefe0a71d1e4cfc3f",
+  "implementation": [
+    "Owner-specific folder projection in get/list; foreign/deleted folders appear at root without changing physical shared folder_id",
+    "Explicit foreign folder access still rejected; session no folders; library projects project directories at root",
+    "Actual UI import into Chinese library folder, link to project/session, move into project folder, library/session root visibility and original download"
+  ],
+  "checks": [
+    {
+      "command": "pnpm test:integration -- P03-01.files",
+      "exitCode": 1,
+      "passed": 15,
+      "log": ".cache/ci/p03-scoped-folder-repro-2026-10-09.log",
+      "logSha256": "c04600b215ba2f9771887461757fa5a215abcf97dfbf4c56e405b0a9c6713d07",
+      "note": "One failed case reproduces cross-scope root invisibility."
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.files",
+      "exitCode": 0,
+      "passed": 16,
+      "log": ".cache/ci/p03-scoped-folder-first-fixed-2026-10-09.log",
+      "logSha256": "3c7090e7e454b36329f6c6890ada530556394a76e5e5d581e6e763833e2da146",
+      "note": "Before adding deleted-folder assertion."
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.files P03-01.file-service P03-01.file-selections P03-01.file-material P03-01.file-exporter P03-01.file-usage P02-02.chat P02-03.history",
+      "exitCode": 0,
+      "passed": 82,
+      "log": ".cache/ci/p03-scoped-folder-integration-2026-10-09.log",
+      "logSha256": "70910c10f623f5e2c3aa3b026bf5fbdd9165b802478f8761bc29d2b13210f85f"
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-scoped-folder-build-2026-10-09.log",
+      "logSha256": "e89cc2e051de74c9518295838119c9060556d1004c4ff332eba75bafc4b24989"
+    },
+    {
+      "command": "pnpm exec tsc --project tsconfig.json",
+      "exitCode": 1,
+      "log": ".cache/ci/p03-scoped-folder-tsc-2026-10-09.log",
+      "logSha256": "18b895dc7bb8370aaccd96c330b084a185696bf833429405883806637dd8ee02",
+      "note": "New E2E request array indexing and Reply union not narrowed; corrected test types."
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01 T07 linking a folder",
+      "exitCode": 0,
+      "passed": 1,
+      "log": ".cache/ci/p03-scoped-folder-electron-first-2026-10-09.log",
+      "logSha256": "c0462b6527e78fb65d0cc230a618658e0e6cd03d9836bd7ca9976b6c466576e4"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 1,
+      "log": ".cache/ci/p03-scoped-folder-check-2026-10-09.log",
+      "logSha256": "6f0b64108983525daf15c1038a400add59bb6ce444e37755bc0be64a8b304811",
+      "note": "New test used sessions.create on ChatCommand rather than declared DesktopCommand; corrected test bridge method only."
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-scoped-folder-check-fixed-2026-10-09.log",
+      "logSha256": "a105e4a3ad71a563c1005afd553f78e1f9908a81f62241e1c825ae140a63c4a6",
+      "note": "318 formatted files; corrected test type and finite bridge."
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01",
+      "exitCode": 0,
+      "passed": 13,
+      "log": ".cache/ci/p03-scoped-folder-electron-final-2026-10-09.log",
+      "logSha256": "83fc593b11974ed8028b143e9b07cba0561f2ca8f9398ac4313cbe9f4d6c63c3",
+      "note": "Same production source; before changing test-only chatCommand to desktopCommand for sessions.create."
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01 T07 linking a folder",
+      "exitCode": 0,
+      "passed": 1,
+      "log": ".cache/ci/p03-scoped-folder-electron-typed-final-2026-10-09.log",
+      "logSha256": "43babcf1803ab59c4c5ec5ed0e1abf747c36225d720b65c6a083ce53251977b8",
+      "note": "Final correctly typed finite bridge; other 12 cases passed against unchanged production implementation."
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-handoff-check-2026-10-09.log",
+      "logSha256": "7469ac72e3594716fdb99ac6fb213d1d01b1bab75627f99ee9496d655b72bee4",
+      "repositoryFiles": 319
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-handoff-docs-2026-10-09.log",
+      "logSha256": "a49a9c3fffefbf5720a74224b98b845cc437bb7411bdc92825d6f41bb8339276",
+      "taskStates": 37
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "visual": {
+    "path": "docs/evidence/P03-01/scoped-folder-root.png",
+    "sha256": "c64aa3534f5bc12c19688737ad46bedfc50d5141565849af9c9d0a38459edd70",
+    "visuallyReviewed": true
+  },
+  "productionFixtureMarkers": false,
+  "ci": {
+    "codeHead": "4b0ae7d9b2aa0cb6de9450faefe0a71d1e4cfc3f",
+    "prRun": 37843769278,
+    "pushRun": 37843764932,
+    "status": "completed",
+    "conclusion": "failure",
+    "checkJob": 113539392235,
+    "startupJob": 113539403798,
+    "steps": 0,
+    "annotation": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+    "resource": "R15",
+    "nativeDiagnostic": "not_run"
+  },
+  "delivery": {
+    "previousPush": "4b0ae7d push exit0; following ls-remote failed exit128; actual Actions full head_sha verified, not a successful Git ls-remote"
+  },
+  "remaining": [
+    "Final 24-requirement and exception audit incomplete, including media originals and generated artifact path checks",
+    "Native CORRUPT_FILE unresolved; R15 must recover before diagnostic execution",
+    "P03-02 and P03-03 unstarted"
+  ],
+  "handoff": "docs/progress/P03-handoff-2026-10-09.md"
+}

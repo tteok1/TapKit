@@ -1,0 +1,6 @@
+{
+  "command": "git diff --check -- . :(exclude)docs/evidence/**",
+  "exitCode": 0,
+  "output": "warning: in the working copy of 'docs/plan/03-architecture.md', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/progress/requirements.csv', CRLF will be replaced by LF the next time Git touches it\n",
+  "reason": "Raw diagnostic evidence logs preserve original whitespace"
+}

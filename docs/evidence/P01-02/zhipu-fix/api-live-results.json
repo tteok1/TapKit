@@ -1,0 +1,144 @@
+{
+  "task": "P01-02",
+  "status": "local_passed_live_pending",
+  "recordedAt": "2026-10-04T12:07:07.611Z",
+  "branch": "codex/fix-zhipu-api-probe",
+  "head": "b8b4d53a0cf8280014e599a0384221add79831ae",
+  "worktreeChangesCommitted": false,
+  "newChangesPushed": false,
+  "sourceSha256": {
+    "packages/providers/src/api/errors.ts": "8b973ea9d5b24151f234ba970b5241095d7d4ad2f3a489a59c80f76c5749d02d",
+    "packages/providers/src/api/adapter.ts": "a6f36cbf7f80cb5a61323cb65ade0bd685d7106cf46d09ff670d699198288989",
+    "scripts/live.mjs": "6e4c5c276459c7a7c0e754066c68330da247472c509107707d66c02abc79ca30",
+    "scripts/api-live.mjs": "2edc1a4b492b0e301b6b6ddf509589b2ad32e9ac4efd0c8eacedcd5be2d75c41",
+    "scripts/api-live-key.ps1": "cd5e242bad480d1b2e90a9b9833238970c9515695328389c47acbb82b2e71044",
+    "tests/live/P01-02.acceptance.ts": "8e23c4c29a185b3094c915cdc406a82fae6eda196dfa3167d313afa78cc23379",
+    "tests/live/P01-02.profile.ts": "17409a07abf1aafb340077dbde1207483a3e1b31ef761c2e79a928a24192f097",
+    "tests/live/P01-02.api.ts": "35778088a65160eeef119a35ddeb029e1b9d840044dd4be430dacd0a8672c781",
+    "tests/live/api.vite.config.ts": "95e5eea8f595e42309fdb94a3ea9b57e5149ca62a4f5eb7989890da6e22270a8",
+    "tests/unit/P01-02.live.test.ts": "dd3dfe591e7f90ad5d199d9edfa43760f8f892de79c1cd7da78a1dc439928885",
+    "tests/integration/P01-02.live.test.ts": "8ca4478b2007a9d3925e651b08104c0cc7396bb100bd409d90adcad3882a3757",
+    "docs/adr/0017-bounded-api-live-acceptance.md": "acef161d8fd78e311e4e6c9f1059b7938466fb4f5afd48f37d608f3cb54a9d36",
+    ".test-data/P01-02-live-runner/index.cjs": "3c75c09070f1d09ef71c88271526c9dca1059246969f7d2bc13d9bfd9771af7c",
+    "packages/core/dist/index.cjs": "b1e4f19c7c9722aa0261a6c51ccb3ac916548114affeebee562a9e4711d41887"
+  },
+  "checks": [
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 164,
+      "files": 16,
+      "log": "api-live-unit.log"
+    },
+    {
+      "command": "pnpm test:integration P01-01 P01-02 P01-03",
+      "exitCode": 0,
+      "passed": 75,
+      "files": 8,
+      "log": "api-live-integration.log"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "execution": "current Windows user",
+      "log": "api-live-check.log"
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "log": "api-live-build.log"
+    },
+    {
+      "command": "pnpm exec vite build --config tests/live/api.vite.config.ts",
+      "exitCode": 0,
+      "log": "api-live-bundle.log"
+    },
+    {
+      "command": "locked Node .test-data/verify-api-live.mjs",
+      "exitCode": 0,
+      "log": "api-live-offline-cli.log",
+      "realRequests": 0
+    },
+    {
+      "command": "pnpm test:live -- --provider openai-compatible --account '中文 fixture' --prepare-only",
+      "exitCode": 0,
+      "log": "api-live-prepare.log",
+      "realRequests": 0
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": "api-live-docs-check.log"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "log": "api-live-diff-check.log"
+    }
+  ],
+  "limits": {
+    "requestCount": 6,
+    "maxOutputTokensPerRequest": 128,
+    "maxRequestedOutputTokens": 768,
+    "phaseMs": 90000,
+    "totalMs": 300000,
+    "retries": 0,
+    "fallback": false
+  },
+  "adapterErrorFix": {
+    "code": "overloaded",
+    "officialZhipuOnly": true,
+    "retryable": true,
+    "http200Preserved": true,
+    "http401And403NotRetried": true
+  },
+  "routerFixtures": {
+    "recoveredRequests": 2,
+    "alwaysBusyRequests": 3,
+    "partialOutputRequests": 1,
+    "waitsMs": [
+      1000,
+      3000
+    ]
+  },
+  "agentRealModelRequests": 0,
+  "userRealLiveRequestsThisTurn": 0,
+  "savedKeysRead": false,
+  "nativeStorage": "memory-only",
+  "ledgerVerified": false,
+  "userVerification": {
+    "status": "failed",
+    "account": "智谱 Responses 测试 3",
+    "modelId": "glm-4.7-flashx",
+    "actualUsage": {
+      "inputTotal": 20,
+      "outputTotal": 128,
+      "inputCachedSubset": 2,
+      "reasoningSubset": 128,
+      "source": "actual"
+    },
+    "requests": 1,
+    "phase": "text",
+    "checkedAt": "2026-10-04T12:10:31.510Z",
+    "errorCode": "OUTPUT_LIMIT_REACHED",
+    "evidence": "docs/evidence/P01-02/zhipu-fix/api-live-user-truncated-2026-10-04.json",
+    "feedbackRecordedAt": "2026-10-04T12:18:45.165Z"
+  },
+  "codexUserReport": {
+    "evidence": "docs/evidence/P01-01/login-user-report-2026-10-04.md",
+    "investigated": false,
+    "accountRead": false,
+    "callsMade": 0,
+    "explicitUserConsentRequiredBeforeCalls": true
+  },
+  "taskStatus": "in_progress",
+  "gateStatus": "failed",
+  "remaining": [
+    "R13/R14 full real acceptance",
+    "R02-R05 resources and real acceptance",
+    "original ledger vs real usage",
+    "system proxy/Fake-IP compatibility",
+    "P01-01 new login/UI report and consent-bound real acceptance"
+  ],
+  "followupDiagnosticEvidence": "docs/evidence/P01-02/zhipu-fix/api-live-truncation-2026-10-04.md"
+}

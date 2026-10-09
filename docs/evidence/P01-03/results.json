@@ -1,0 +1,146 @@
+{
+  "taskId": "P01-03",
+  "status": "implemented_not_live_verified",
+  "recordedAt": "2026-10-03T23:40:02.348Z",
+  "cwd": "D:\\tapkit\\TapKit",
+  "branch": "codex/p01-03",
+  "head": "715d55aaa1d6800f0d56932c94937417eadd910f",
+  "dirty": true,
+  "priorAuthorizedCommit": "715d55a",
+  "pushed": false,
+  "commands": [
+    {
+      "kind": "build",
+      "exitCode": 0,
+      "log": "docs/evidence/P01-03/build.log",
+      "endedAt": "2026-10-03T23:30:36.813Z"
+    },
+    {
+      "kind": "check",
+      "exitCode": 0,
+      "log": "docs/evidence/P01-03/check.log",
+      "endedAt": "2026-10-03T23:37:32.365Z"
+    },
+    {
+      "kind": "unit",
+      "exitCode": 0,
+      "log": "docs/evidence/P01-03/unit.log",
+      "endedAt": "2026-10-03T23:30:48.713Z"
+    },
+    {
+      "kind": "integration",
+      "exitCode": 0,
+      "log": "docs/evidence/P01-03/integration.log",
+      "endedAt": "2026-10-03T23:30:41.688Z"
+    },
+    {
+      "kind": "electron",
+      "exitCode": 0,
+      "log": "docs/evidence/P01-03/e2e.log",
+      "endedAt": "2026-10-03T23:31:22.843Z"
+    },
+    {
+      "kind": "docs",
+      "exitCode": 0,
+      "log": "docs/evidence/P01-03/docs-check.log",
+      "endedAt": "2026-10-03T23:37:21.556Z"
+    },
+    {
+      "kind": "diff",
+      "exitCode": 0,
+      "log": "docs/evidence/P01-03/diff-check.log",
+      "endedAt": "2026-10-03T23:37:22.798Z"
+    }
+  ],
+  "totals": {
+    "unit": 106,
+    "integration": 85,
+    "electron": 16,
+    "taskUnit": 12,
+    "taskIntegration": 12,
+    "taskElectron": 2
+  },
+  "sourceSha256": {
+    "apps/desktop/src/main/index.ts": "3c2e10ecd71e04de4d9c3d1f26d17df62cd7505fbd1ef9ce30b83c95c9703042",
+    "apps/desktop/src/preload/index.ts": "cf9344cbe17637ac29e32a60dba1d3dde42bc5a809dce7f4008d106e3a0c01cc",
+    "apps/desktop/src/renderer/src/main.tsx": "4013b2b1627026c353e6f34c0d1fd25f649a75eaa592e2de6c7d9ea71d1aa4ba",
+    "apps/desktop/src/renderer/src/model-settings.tsx": "097ac9c6a5d65c5e709668c43c613ac7db728cd70e7b106eb7cf157961e4a009",
+    "apps/desktop/src/renderer/src/styles.css": "c62d52b9d8818c8c30cb2175cceecc7da1310dfa80347febdbf3731102eac401",
+    "migrations/0004_usage.sql": "4816f43ba6e7382f56846b5a3a536115b73f2d7543e5af2cae4310ec71acc563",
+    "packages/contracts/src/foundation.ts": "af1e6b9812bfdbd5c55a62223c6cd5815d3e167164ac187701f248d71fd31995",
+    "packages/contracts/src/index.ts": "b466d0ee9c6adfe1f856f0d8be8bc03ed894513d2dae01fa9389e94c38054db5",
+    "packages/contracts/src/models.ts": "f1b52eef0600b1e48b4bdb43c7cbb2d687f7bd57214e34c13664862cdfd67a10",
+    "packages/contracts/src/persistence.ts": "3acab04c42f11f8c34301d842eb5153549fb267bb68f715c8752d3a60bb28c53",
+    "packages/contracts/src/providers.ts": "57e68650d556e992292e2b373853c750a0b81367144ed0abc4ac03a1e05417e5",
+    "packages/core/src/index.ts": "af3e5238d4a41062a5cf5a19a5ecd1fa41762434095360f398f07cc17164cefb",
+    "packages/core/src/model-service.ts": "e1fb4defeb8892a5cf777a9301c41614f29b3bdf2ca088917d31258513c95265",
+    "packages/core/src/provider-service.ts": "55c26e3e8971205d806a25833a7a1cb34aa1b5e713e307633cfb79e9b2e17478",
+    "packages/providers/src/codex/adapter.ts": "c6b6f17b0100ecca0cc42f8f29ea6b6b72649acb611aad25eacc6628c28829fb",
+    "packages/providers/src/codex/transport.ts": "714560e0828d96a69dad9d00e24ff1c34a3dc1756bc5d9ed8096222ee0434e9a",
+    "packages/providers/src/index.ts": "96e159f7cc16682137d00d385af72288ee37d465f3eb53c2b5d23ce7a9364a88",
+    "packages/providers/src/routing/catalog.ts": "a6e25e7204ca0146aca0c4af3d1e93f93e0cc0366eea2f985515e61a1afbf089",
+    "packages/providers/src/routing/router.ts": "cb9af5e68e3074b24127bfeeb7ebf6485f98c9dd0d4b6a1a469997ba898d3bc2",
+    "packages/storage/src/foundation.ts": "b224ca4b78793eb4b3c503546121e2171c5b177e13c1200830eb739d803e602d",
+    "packages/storage/src/index.ts": "28bcd8ad2aa1df00a2dc4ad0c32f74944f5e325e5b70501d19fab1f27ee85e9f",
+    "packages/storage/src/usage-ledger.ts": "2c09c9b30c52a7b0338b3e99949f72c07d590da133cdbe069446f078e569ae13",
+    "resources/catalogs/defaults.json": "927d204b1eb18dc69d2215c5ae32bf0da6b2fade41613e77e5dde2d583dd83ee",
+    "resources/catalogs/prices.json": "f2aa8cdcf13449a8f0bb43b5fadb4fdc8c8a95277cc87e4e922e62a22ffa001a",
+    "tests/e2e/P00-02.foundation.spec.ts": "d53d8a12f884177f810304ee27f16e9d5f674347188fb4bf579dd3dcb4ae4d1e",
+    "tests/e2e/P01-03.models.spec.ts": "2eacbe70c593464fcd31630a9f833ea422fe9825b40a6ce691c8e5b682a397f5",
+    "tests/fixtures/P01-03.utility.cjs": "b3a2199b8d0e8324c81a7f55fa9e821ea770e382eec5849c49f2cfc5cefb11c1",
+    "tests/integration/P00-02.storage.test.ts": "d6a2353814c05cefb752cfa1c789f624e0e75a0ba6519d36ac7d978d59e661cb",
+    "tests/integration/P01-02.api.test.ts": "575b1cd471214080bf9f28b2848e99b3ccc9dc238e6a1e2e9e1b8deef89de060",
+    "tests/integration/P01-03.usage.test.ts": "de64f1de76a5f0ba63c9611bf3e7a9765c9aadb4cda87d121107a853cb066820",
+    "tests/unit/P00-02.contracts.test.ts": "2a5edaf5f68e9e3b03fc37602c1dfffc2acee1fa7bba938b9203aaae8f274d49",
+    "tests/unit/P01-03.routing.test.ts": "48b355fb90f30f9cdf76104ad935f33f3a2696b80a992598fcb2a0cc230f9da4"
+  },
+  "migration": 4,
+  "gate": "engineering_passed_external_pending",
+  "live": {
+    "executed": false,
+    "pending": [
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R13",
+      "R14"
+    ],
+    "subscription": "R01 configured; full live pending",
+    "deliberateExhaustion": false
+  },
+  "prices": {
+    "verifiedRealEntries": 0,
+    "unknownNotZero": true,
+    "moneyFixtureOnly": true
+  },
+  "security": {
+    "p00Gate": "failed",
+    "executionEnabled": false,
+    "credentials": "Only isolated fixture credentials in this task"
+  },
+  "visual": {
+    "inspected": true,
+    "horizontalOverflowAt760": false,
+    "screenshots": [
+      "docs/evidence/P01-03/models-desktop.png",
+      "docs/evidence/P01-03/models-compact.png",
+      "docs/evidence/P01-03/foundation-recovery.png"
+    ]
+  },
+  "fixtures": {
+    "approvedLocalWriteCount": 1,
+    "approvalsPreserved": true,
+    "separateAttemptsAndActiveModel": true,
+    "forcedRefreshSerialized": true,
+    "quotaVersus429": true,
+    "lateRevisionRaceAndLogoutCancellation": true,
+    "conservativeUnknownUsage": true,
+    "cacheReasoningSubsets": true
+  },
+  "preservedUntracked": [
+    "docs/evidence/P00-03/ci-2026-10-04-bootstrap.log",
+    "docs/evidence/P00-03/ci-2026-10-04-check.log",
+    "docs/evidence/P00-03/ci-2026-10-04-cold-cargo.log"
+  ]
+}

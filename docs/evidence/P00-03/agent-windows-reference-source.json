@@ -1,0 +1,2179 @@
+{
+  "capturedAt": "2026-09-17T15:29:12.224Z",
+  "scope": "Static official-source review only; third-party code and tests not executed",
+  "repositories": [
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "files": 120
+    },
+    {
+      "repo": "anthropics/claude-code",
+      "commit": "68ac8bbf0245b615b41517bf8f2b2f35af1ae31d",
+      "files": 3
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "files": 43
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "files": 21
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "files": 27
+    }
+  ],
+  "sourceVerification": "Every selected file SHA-1 checked as Git blob against fixed commit tree",
+  "files": [
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/core/src/windows_sandbox.rs",
+      "blob": "d0573faa0f0a272ed5c97aabe9b118be167de368",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/core/src/windows_sandbox.rs",
+      "sha256": "6bcf29f7e4672906ffd5fe22a9894a729239015788c9cdc97aa5639ab9d6761b",
+      "bytes": 14184,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/BUILD.bazel",
+      "blob": "8531cb4d664c25de6fbf200c71cb8042d1d8d865",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/BUILD.bazel",
+      "sha256": "187e93c5a9a244c752dee5ed15202b361d593d9d651f850a1bda5d69969a7702",
+      "bytes": 2556,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "LICENSE",
+      "blob": "4606e72e042564097e8780d66c1d4dcb611869bd",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/LICENSE",
+      "sha256": "d17f227e4df5da1600391338865ce0f3055211760a36688f816941d58232d8dc",
+      "bytes": 10926,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/core/tests/suite/windows_sandbox.rs",
+      "blob": "14e140ff8e273cb088b1d4d87566c0ae9e718119",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/core/tests/suite/windows_sandbox.rs",
+      "sha256": "831b10e8e422b650f5329966b46d42611e8b957a30553210e917099ec638e604",
+      "bytes": 30325,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/Cargo.toml",
+      "blob": "b9e5ce694cebb803baeb8bd42398823ea0fa732b",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/Cargo.toml",
+      "sha256": "9be795d317153263d1ef30d4a283561408983b01873920c50dd4d1d1a3cb6a9b",
+      "bytes": 2632,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/sandboxing/src/windows.rs",
+      "blob": "b69168ca98a0bdbc9d41a24b4bb1c7cf9e0d6a21",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/sandboxing/src/windows.rs",
+      "sha256": "873e260824edb519213834fc52d0c82a84f8897979f195ebbaa3609b1885c625",
+      "bytes": 16593,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "SECURITY.md",
+      "blob": "29a9b903df5da8e789d685efe8012fa4edd775e5",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/SECURITY.md",
+      "sha256": "a71f3645c5438400bf803a210cae829a07b5319ac1babe289badad7d1091af3a",
+      "bytes": 923,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "README.md",
+      "blob": "06b02fced7db972084bf0188cb03f60375b51c1c",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/README.md",
+      "sha256": "ba4e1f69ff48386e72a9c5e1edaf76aad64a475c2d51af79ccba6d1128261ba7",
+      "bytes": 3334,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/build.rs",
+      "blob": "6ba79e6c75deb87067ced02e824eaf7faf79346d",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/build.rs",
+      "sha256": "b656ced2ef8037f379c2d45d57116e937dc80ec3b23c7f9cb2501da98338774d",
+      "bytes": 1416,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/acl.rs",
+      "blob": "ace264360d67fad3714452a772b19b068edaf483",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/acl.rs",
+      "sha256": "19201bce366d904bf78bbd15ac8beb5042192461ee8c3be933a449eb6884719c",
+      "bytes": 35657,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/codex-windows-sandbox-setup.manifest",
+      "blob": "14807962f83a2a89109ae22557d82a8cbb7d761b",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/codex-windows-sandbox-setup.manifest",
+      "sha256": "14b210c3cc998be496d7511a8900321cdf603a1510cf4423b25648023085b7cb",
+      "bytes": 370,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/acl_tests.rs",
+      "blob": "4a1cd62444e0471f52189aeaa6d652de7f89c7db",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/acl_tests.rs",
+      "sha256": "ce2ff2741fa8ef6e4f48cd09b38c08c96f892edcfe3eff049f12221af5a4e993",
+      "bytes": 4754,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/allow.rs",
+      "blob": "5a10261d0c5e82f5987df16c86680d68e7a6d705",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/allow.rs",
+      "sha256": "80ec8f751950626ad9462a8d48c0531a90b3703d8b8ef97ac729c6dd46fc00a2",
+      "bytes": 12660,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/sandbox_smoketests.py",
+      "blob": "a1553e5e54ed8772845dbf3e9e9dd6e8339d2993",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/sandbox_smoketests.py",
+      "sha256": "cf187945bcbb8a528d07126cd6c48786cf513e0fddd52a61d4d32139ad1e04e4",
+      "bytes": 29090,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/app_package.rs",
+      "blob": "3e4d5d09d3d8d47b3b1aba27f46f229187671e77",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/app_package.rs",
+      "sha256": "2b253eb464cbeb87e0c3edcc22d427575ffd613c2d3751f975c180e7c05eaa90",
+      "bytes": 9194,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/app_package_tests.rs",
+      "blob": "015acffcf88c0f0df1cf98d72d0b58f8f1f6da28",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/app_package_tests.rs",
+      "sha256": "25e800b9a1b06860378e003d7b92c749a07f237ab31aa0b656e703cf03c10fdd",
+      "bytes": 3017,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/audit.rs",
+      "blob": "5a9fb5a3a9ae4ea9016cf0df4760a9e6f2797bf2",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/audit.rs",
+      "sha256": "f14584a58b71bb0565465855fa6b1cfd43031f622375c93f4d9d7ee3bcd278d2",
+      "bytes": 13766,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/bin/command_runner/main.rs",
+      "blob": "1e3c88b4436595940983984e30935cf84ee95cc8",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/bin/command_runner/main.rs",
+      "sha256": "69a1085f80b32e96e6cfaf699b8fb673bc59b236ab8b745957421c223a432161",
+      "bytes": 308,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/bin/command_runner/win/cwd_junction.rs",
+      "blob": "7ddd391c3498c611b47c15b858d59b2eda1cce41",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/bin/command_runner/win/cwd_junction.rs",
+      "sha256": "e77c44263f96bf5ef21d0fffec9f4550c2f335738c7149dfd2eb7d4e48fa6ee2",
+      "bytes": 4952,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/bin/command_runner/win.rs",
+      "blob": "b380aa0af9dabddc8d5f4aa774baf53b934d0ee4",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/bin/command_runner/win.rs",
+      "sha256": "5d5ac13c90ad8c6825cd33831935618eb4b0568222df9f35a3b00d089264743f",
+      "bytes": 25675,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/bin/command_runner/win/input_loop_tests.rs",
+      "blob": "13b94fa3ebcefb7efa34b0d4a33656fda06aa30a",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/bin/command_runner/win/input_loop_tests.rs",
+      "sha256": "760f8dd903b0df47a74148a3c08369e63aa5cd63f30c11ac0bce5eb1a0a56f47",
+      "bytes": 2869,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/bin/managed_deny_probe/main.rs",
+      "blob": "4535c9b9579c866d0a9dc4f4ef0f045a2b420a8e",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/bin/managed_deny_probe/main.rs",
+      "sha256": "65c9857f750fac175d085bd5f59cfa0442c8d0815637d7fb9ebcfe7c71ce06b6",
+      "bytes": 299,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/bin/managed_deny_probe/win.rs",
+      "blob": "159268d84cc680194f1c56b98adcb6d2fc26292c",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/bin/managed_deny_probe/win.rs",
+      "sha256": "99b5670165a6ac1486168e4189c550f5036e8c9f661b6c70c2b39d52effca128",
+      "bytes": 3211,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/conpty/mod.rs",
+      "blob": "363421ec19a74f1c795ef4be0febdf1743c18454",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/conpty/mod.rs",
+      "sha256": "83e3fb47358f5cd36048863ee3f1be069632456994382445bca41bfdd9b7400f",
+      "bytes": 6516,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/bin/setup_main/main.rs",
+      "blob": "0f2ff98deee43aa819ac0c6b1d7278a49f651681",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/bin/setup_main/main.rs",
+      "sha256": "34a2f94633b31dfea0bd2296368ac1c386c3989c4b854de912f50a752c5260b6",
+      "bytes": 222,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/deny_read_acl.rs",
+      "blob": "06eda3b6effad296d4cd5130a2f19bb5495f03f6",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/deny_read_acl.rs",
+      "sha256": "dac8d998e433f4592422d12cb2ec74b559fea098621a75c88b5cd55af8137435",
+      "bytes": 5374,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/cap.rs",
+      "blob": "41b33b63fda6f9bbc648fef98e5c9065f8f17b5e",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/cap.rs",
+      "sha256": "8e566bf403711781568ba6aec41d13d565caeef48c396d05a7cc8ea323d32354",
+      "bytes": 7394,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/deny_read_resolver.rs",
+      "blob": "f7b39839f9191dffd62e7f6b005a7852b46fb86d",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/deny_read_resolver.rs",
+      "sha256": "64fa9861b540c0701769efa03bf28b8dc37ac5a4cbd6f31c4d1abe21ed339ea3",
+      "bytes": 28231,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/deny_read_resolver_access_tests.rs",
+      "blob": "4e5b7c17764a9680c197c66eb233ffe0494fe722",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/deny_read_resolver_access_tests.rs",
+      "sha256": "a587458a1b1d2f798455ab37a7e8be3c7129ce8598d3e45dd2fd72cea68386f7",
+      "bytes": 9006,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/deny_read_state.rs",
+      "blob": "274ff004e9f580f9d6e00ba54263c901b421d79e",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/deny_read_state.rs",
+      "sha256": "21440472139d6fd03d62fa74262b154ff19379da20e70f768caea2f1e830a5ae",
+      "bytes": 2991,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/deny_read_walker.rs",
+      "blob": "dd1b6e3cca3df6a02bda0600f2c54627af798877",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/deny_read_walker.rs",
+      "sha256": "5c55b3a6c810ed7c10f9dbf44d147fda262702d63e08394be283fbe2206ab855",
+      "bytes": 5063,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/desktop_tests.rs",
+      "blob": "2c8f35c9616ca1993e987601e1ed32a7603dd512",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/desktop_tests.rs",
+      "sha256": "9fb109967a443ffc5e49e788a05ee659529479328bc969d3399b257e28dc099b",
+      "bytes": 8490,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/desktop.rs",
+      "blob": "4311ba07036e6fca1fe8ab14e3c458c10d48cd79",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/desktop.rs",
+      "sha256": "41ed23a9cc57471775279a7b9e1a05d22be6478ff89ed46d1174602d4cea5fc0",
+      "bytes": 17453,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/dpapi.rs",
+      "blob": "3a90704127e2fd7c71131492aa0d25f70dfba114",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/dpapi.rs",
+      "sha256": "e87a193e0d41b8d53da58d0390e302dc28c617cd437fbbfc86034838104de87d",
+      "bytes": 2739,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/deny_read_walker_tests.rs",
+      "blob": "8836197762be94a5181b37ba8cb827a3fdd7b816",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/deny_read_walker_tests.rs",
+      "sha256": "509727a0e28d35af4e172e1a262a1d5ae360fb787a1f9081cbe22f08db07efb0",
+      "bytes": 463,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/elevated/ipc_framed.rs",
+      "blob": "1b1766ac79c90709fdafec1d4c9597dec585d9fe",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/elevated/ipc_framed.rs",
+      "sha256": "ae0d979b8c6cf4ef91a2698ecc189b5c71475699a4a6fc26db04ffbbd65863d5",
+      "bytes": 9312,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/elevated/mod.rs",
+      "blob": "70d1ad9ccdd58dbf724a05ac27ceba556c43beb0",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/elevated/mod.rs",
+      "sha256": "99bc3d8436ba8849654409f38e0208bc94d489307a47af5316be1e30c12b83cc",
+      "bytes": 116,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/elevated/runner_client.rs",
+      "blob": "6f688f166d347a4d86e26c7b5ce8688125652b5f",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/elevated/runner_client.rs",
+      "sha256": "bd8a1762e740eb348a2b6a44487103c576319e3dc41661b43105c1c4e734672a",
+      "bytes": 19280,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/elevated/runner_metrics.rs",
+      "blob": "460e5317ed2f21d3dc32032f9432101c856f9e1e",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/elevated/runner_metrics.rs",
+      "sha256": "91089f0697f530373fb30cd1e044b6066421b946b11c0d726e938cb86b7ce2f8",
+      "bytes": 1143,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/elevated_impl.rs",
+      "blob": "01368975c1413184d03773891ee83c2f404c4d9d",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/elevated_impl.rs",
+      "sha256": "5df4944df5af5170a15e4db86729cad95e46e1ed9c672ee1ca5054daf058f82a",
+      "bytes": 13653,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/elevated/runner_metrics_tests.rs",
+      "blob": "7d7e17ee49c6d54e075138ceb30a45c8120b73a4",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/elevated/runner_metrics_tests.rs",
+      "sha256": "6f4ab16c274ff44108f0bc2a280e3d51b7bfc653e02eb5b5616a1d094bd7b877",
+      "bytes": 710,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/elevated/runner_pipe.rs",
+      "blob": "463005ce7735eb9b9557733651b191aaff04afba",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/elevated/runner_pipe.rs",
+      "sha256": "2630fa3d2d033005343448b13981516bf7b0f72457bb5eb6abb0cde09592c4e2",
+      "bytes": 5175,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/env.rs",
+      "blob": "bdf7a76ab2efa345664b6467aed6e7550a80be0d",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/env.rs",
+      "sha256": "aa3746281cd6c5bb056e3dd449bd92cc98ceea667fa8681add3e16572fdc521d",
+      "bytes": 5573,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/file_write.rs",
+      "blob": "e8a2932bcff640c55a46dd354ac809fe247cb760",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/file_write.rs",
+      "sha256": "2348dc43873284811a742dc0de30a4684ba549d40aa6799a1749e2c1b73fc7ba",
+      "bytes": 5947,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/file_write_tests.rs",
+      "blob": "6711c8050c87dbffdfd500df93cd0014643150da",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/file_write_tests.rs",
+      "sha256": "4ebca87209242655de692461a8c8456db37f1a57bb6187d79be124c03727a202",
+      "bytes": 2289,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/helper_materialization/copy.rs",
+      "blob": "2658bd350c5f2090826dc56a87c34b2fe47c3ee8",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/helper_materialization/copy.rs",
+      "sha256": "4f81813b8430db61786bdfedb38be9bacd7bf9db36a4bcae6f33f114366846f3",
+      "bytes": 3924,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/framed_io.rs",
+      "blob": "537257f522d21aded0107c76436e1282805b5fa2",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/framed_io.rs",
+      "sha256": "c2563df1238f709992635b18756f5ab6de49efff8c597168c2a3466a316f2b40",
+      "bytes": 3002,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/helper_materialization/copy_tests.rs",
+      "blob": "8a71d392a206802843e1b4639017de3871ac924e",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/helper_materialization/copy_tests.rs",
+      "sha256": "6a651fb90530e8d9c86537acbf9db09ba4e39212ba09d37a94771c4e4d37355a",
+      "bytes": 2050,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/helper_materialization.rs",
+      "blob": "1d219422daa90071c321476b328b3b5cb739ecef",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/helper_materialization.rs",
+      "sha256": "4156cbf6c6eed5566196e1b703aef941cc0caa09bc0f000ff1b07f2b78bf2448",
+      "bytes": 16281,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/hide_users.rs",
+      "blob": "c036a2c4d535ca5e77f60879add3bbc8b3989bfa",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/hide_users.rs",
+      "sha256": "7ba4b864bd49194d27ac82691d58af97c499f193ac707353b9a1cc46c78f9140",
+      "bytes": 6629,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/identity.rs",
+      "blob": "ccf7aaee4fac8f78535fdcf8ea6173348dc6f85b",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/identity.rs",
+      "sha256": "06c69d0e771ec432e1b316c462b695ebf55b8b5e5cac573628a39d59ab6c351b",
+      "bytes": 19583,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/identity_integration_tests.rs",
+      "blob": "3ac816aaa2801d56d4b8d7fb235e777516eef02b",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/identity_integration_tests.rs",
+      "sha256": "4e24497f75d928dfcec0394829d1186e4d9854f3627de3bb3f5527c75f9e358b",
+      "bytes": 8045,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/installation_record.rs",
+      "blob": "3fc2f23ad25b7e427c6e74094f05bb180da7a2cc",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/installation_record.rs",
+      "sha256": "f56bf16c340cf45a2178d60b8446c5127a3760a3d146383a9f78033fe73b8bdc",
+      "bytes": 3649,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/lib.rs",
+      "blob": "4393e9e1913b26d5f81d3e5e11d2e2abc4523ede",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/lib.rs",
+      "sha256": "013efb556644a04a76574b922cbb3e6825d811dae91b4efe330a56b07051e271",
+      "bytes": 36301,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/logging.rs",
+      "blob": "8bbd721b8aa9834c407a6c5fefba19f82da31caa",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/logging.rs",
+      "sha256": "7740c6b89f1feaaee29b3ffdb1321e58a098a8cbf33a36aa16b6647754b2bd68",
+      "bytes": 8910,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/no_reparse_dir_tests.rs",
+      "blob": "829552e57758a15232ed3509c63edd9519df4fe4",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/no_reparse_dir_tests.rs",
+      "sha256": "c4002f3aeb2699f8505c0434643ea620dde5abeacfcf3d3ec830cab258505db9",
+      "bytes": 3830,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/no_reparse_dir.rs",
+      "blob": "da8cb2de0e1fd7946450d2c4d518676c339fa584",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/no_reparse_dir.rs",
+      "sha256": "81001c86925a5d40c62da2a09e8da05529addd87557f0ccbe61986e90eff2a53",
+      "bytes": 8834,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/package_identity.rs",
+      "blob": "9ee96797564b9dc172b08dce9c974c795f26f9cb",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/package_identity.rs",
+      "sha256": "24e943c53a7ca11d406ef7b9dbee022dff7a083209789c92c246d435b6eec8c1",
+      "bytes": 1878,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/path_normalization.rs",
+      "blob": "1735b745a28dc92b2c78e6f61fd70fa878042352",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/path_normalization.rs",
+      "sha256": "0d4babda338194208989ffabb5cd9e8499036df89cb335dcfd8ff51e1153a8e3",
+      "bytes": 783,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/proc_thread_attr.rs",
+      "blob": "12c9b3c864c81577af53dacb99655437567bbff2",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/proc_thread_attr.rs",
+      "sha256": "bf846b5770b2e3eeabe43c000fd53e80da5c500dd82c85f3436f4db6ea57f3c8",
+      "bytes": 5669,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/process.rs",
+      "blob": "a6d088ef41fe6228d325a0de52fa7b4f3eb19bba",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/process.rs",
+      "sha256": "d2f118a0851f8ed9c64a3e50bf9b4ac4c14742e179d95964693e617f2d007999",
+      "bytes": 11900,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/provisioning_client/refresh_retry.rs",
+      "blob": "c4ea23369c98a0b74052d96e0e4be21c4f20a79b",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/provisioning_client/refresh_retry.rs",
+      "sha256": "9e66b0be55a47b565945c6ac30bc58b052fd0b30ff7d4426ca006d5c05e9494f",
+      "bytes": 3789,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/provisioning_client.rs",
+      "blob": "de1823aef9c24f04ffe7055b9d424255b2b77587",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/provisioning_client.rs",
+      "sha256": "45de883e45ecc934ca0b097304aed796d3c25a79dbb168b1817ac609622388df",
+      "bytes": 14258,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/provisioning_client/refresh_retry_tests.rs",
+      "blob": "ab553e75df833fcd69cd9ade1e1a1f890646940e",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/provisioning_client/refresh_retry_tests.rs",
+      "sha256": "8838950b3cc4f1188992ec0d67337a8714fb3bb6e0e9ac9faeb6c0d7cd0d36e3",
+      "bytes": 4342,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/provisioning_client/group_change.rs",
+      "blob": "6eca7033dc1258b538cfd173bd64787c048ef6bc",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/provisioning_client/group_change.rs",
+      "sha256": "b64362fb9d972ade0d3dae6562a26aea034492d2a2c5fd643bd1573662aa649e",
+      "bytes": 795,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/provisioning_protocol.rs",
+      "blob": "6a8c978477fc3b644983b9b30e653c39a381da5b",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/provisioning_protocol.rs",
+      "sha256": "05a09b1170701501121aee183110eb3ca6eaa178a3f3cbda47d32b45a0410013",
+      "bytes": 3233,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/resolved_permissions.rs",
+      "blob": "392dd5fc0df6e11dd079144a50afa689985f519a",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/resolved_permissions.rs",
+      "sha256": "5a1ebbe414eab5b32950cfd7300e799d1af4cf77157bece1f29d9219844c6b55",
+      "bytes": 23470,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/runtime_ownership.rs",
+      "blob": "eea65af888e01a41d15835ed96d1949f555c1f3d",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/runtime_ownership.rs",
+      "sha256": "fe1f58c8039ec05325b55285e4e265b528bdbb99c0e06f196bb77426a7ca21d3",
+      "bytes": 8493,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/runtime_ownership_tests.rs",
+      "blob": "9ef77269afad15a4ca2e6d4d1c74f9c7f3d2d2e4",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/runtime_ownership_tests.rs",
+      "sha256": "732d2a3261e3304f7ea5febcddbbad8e23493e6e54016455a70b118b40a6c7cc",
+      "bytes": 8010,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/service_identity_tests.rs",
+      "blob": "358057ea0a5feceb9472a2022cec7eb771f5399a",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/service_identity_tests.rs",
+      "sha256": "9f3f5f49349256c49eda68a5a22441eaeebb4703b02f0e9a5147522d9f11d60f",
+      "bytes": 697,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/sandbox_utils.rs",
+      "blob": "1dfd7683021065d8e2899ce589b3f55c8999aebb",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/sandbox_utils.rs",
+      "sha256": "e3e7c4ea8f8f1e6278182552596ddda87c07c1a36e7166e4a1bf4eee6a34d0d7",
+      "bytes": 4503,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup.rs",
+      "blob": "ad9ed0dcd334c8beec4355857100c37c9ab8249c",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup.rs",
+      "sha256": "4665228ef70b7b438000c4752eaafd753ab6cbf2c8ab36c401a041ea63562e49",
+      "bytes": 98039,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/service_identity.rs",
+      "blob": "ce60848d136456d60ffae13d61c2e9e2573e1dba",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/service_identity.rs",
+      "sha256": "ab644521f4b060898bfff1db7c8e732d825e50592c2b34babe34a007bdb0939a",
+      "bytes": 2427,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup_error.rs",
+      "blob": "d9104602bc19af88101fbb5b44f839a1d799c174",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup_error.rs",
+      "sha256": "0325efd3abefe50de8eef5e7cf59f2572388b1f8f18365431c69b766a4eb1e35",
+      "bytes": 11408,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup_launch.rs",
+      "blob": "a811b6acca3c4c0c27a52edb42f8e84a56d1d287",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup_launch.rs",
+      "sha256": "e121d6cf3eb548248292706c007787beb4f2c23f38705d61a650d137b89f10d4",
+      "bytes": 2697,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup_launch_tests.rs",
+      "blob": "21968f1364df221d314999372ffb099cf11b1766",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup_launch_tests.rs",
+      "sha256": "06fa92288b9d48397ee634f67ea130d9f5a673981c344b812a66add67137d086",
+      "bytes": 4673,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup_provisioning/acl_tests.rs",
+      "blob": "3e2120eeae32e53728478b93262d664fd3ba4049",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup_provisioning/acl_tests.rs",
+      "sha256": "ee2889eb5468944a8b9292d1688df0654f0bc8d50dc46115e64c3691c122c630",
+      "bytes": 5527,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup_mutex.rs",
+      "blob": "dcb8f6f0c17abe650bcae81f04ab0d59d6fa0ea6",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup_mutex.rs",
+      "sha256": "6e460ecaf498f7e94c072a2b927b165da664c83c404472f18a2f8272b9cc73d5",
+      "bytes": 3100,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup_provisioning.rs",
+      "blob": "6b003f09d67d9ef45c6f19892a7788cc4d72f7ea",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup_provisioning.rs",
+      "sha256": "675e762097cc54c2dfaa52a9940678c5ed8fc1bd01153f92a91c6f7bb0d626af",
+      "bytes": 53470,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup_provisioning/firewall.rs",
+      "blob": "81f4fa50eb87d7d1bf0560b848b9da17f94fde88",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup_provisioning/firewall.rs",
+      "sha256": "798143ed6115dadd36ba35cc3edf6beb94def870269e954a8a01dc74a3c23306",
+      "bytes": 25057,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup_provisioning/firewall_apartment_tests.rs",
+      "blob": "a08826de808c5dcaf52289a01aa637d2e0eaf0c8",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup_provisioning/firewall_apartment_tests.rs",
+      "sha256": "96a856764bc2bba351df0979cbb8dd41084cdad8d7f8041e92cd4de5468228dc",
+      "bytes": 1567,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup_provisioning/read_acl_mutex.rs",
+      "blob": "7954826bd442915b5ba6900f960a7c1db9ba3d8f",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup_provisioning/read_acl_mutex.rs",
+      "sha256": "6af6c2aeba58bd6660aff4fe14f04be50ea89bd0d5585a8eb6dc1ddf001d20cc",
+      "bytes": 1897,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup_provisioning/registered_tests.rs",
+      "blob": "e815b60bfde1ddcf58381e65c32d1d936fee8886",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup_provisioning/registered_tests.rs",
+      "sha256": "a87c651616116e8523657250dd2cb275e818a16ae7206bb939e2990cbfdd4cac",
+      "bytes": 3647,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup_provisioning/sandbox_users.rs",
+      "blob": "b36879b64a336132ad7984b8a066515c3c4e0ddc",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup_provisioning/sandbox_users.rs",
+      "sha256": "4abb21d18ed450b8fdb35fa246708cd8175b6f11dc11ceea381592d351bda1eb",
+      "bytes": 17673,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup_provisioning/sandbox_users_tests.rs",
+      "blob": "597a75e9ec067c93b2769fec05ca6bafe09959cd",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup_provisioning/sandbox_users_tests.rs",
+      "sha256": "2d239824ddd3f0451a21a9af1c6911b51ace593763d8a9c11c55b14d9340ca43",
+      "bytes": 3121,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup_provisioning/setup_runtime_bin.rs",
+      "blob": "f2c16a8705e11014610dd359ce61d1f6ad62df5a",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup_provisioning/setup_runtime_bin.rs",
+      "sha256": "f2981730b4c6439651b83feb4e9daf5f59baed37f73d6ecee0b4dbd0930aa912",
+      "bytes": 3884,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup_provisioning/service.rs",
+      "blob": "013c1a4f20acffe93cdf8c6c3ad3e735578ece81",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup_provisioning/service.rs",
+      "sha256": "442fe6729653291257ccdb4bb01cdcfedb53ac6266e3356eb0d7ade0b7643195",
+      "bytes": 1855,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/spawn_prep.rs",
+      "blob": "a19f0eeaac0818b661b0cf4452e21f254a1f8630",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/spawn_prep.rs",
+      "sha256": "a5e4b45995e0d676d8adeb0354c5cb9206f45abd40ed75dd53a5855e9146bfb1",
+      "bytes": 26307,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/setup_provisioning/setup_runtime_bin_tests.rs",
+      "blob": "ad8aa7c3e46fd05403649f7abb5422d513e6a77f",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/setup_provisioning/setup_runtime_bin_tests.rs",
+      "sha256": "b96ad955e87808615587d8d94e4e0c707bbdae45f12439308e32605e3cde8c27",
+      "bytes": 834,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/ssh_config_dependencies.rs",
+      "blob": "ae6d82d560190e99d84b2f147df7e2f40a656e4b",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/ssh_config_dependencies.rs",
+      "sha256": "9ef2a08f5206d101387523073175c52995ddd32579c50e0d75f77d1483d336ca",
+      "bytes": 7435,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/stdio_bridge.rs",
+      "blob": "3ad722ba8db4eae79918aa79f14e102ea8cdb634",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/stdio_bridge.rs",
+      "sha256": "6f5aa7818ec5508f28f5857f6ffda4215ad50951d85ecab0a1df1d4b77dacb93",
+      "bytes": 4334,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/stdio_bridge_tests.rs",
+      "blob": "c13632b84a1e25d906dd46e2570a9f6273774604",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/stdio_bridge_tests.rs",
+      "sha256": "e00678b2172a1c765f491db8e36f7a34e71b829241fd9976cd2e78f8aa288055",
+      "bytes": 2043,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/token.rs",
+      "blob": "2fa88012bf016c1c527c2b0621434102e98b59d6",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/token.rs",
+      "sha256": "12c53d3e3914a1c4ef340a78024bcf64a23dbfcffb0730f4f06772407c7c841f",
+      "bytes": 18073,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/token_groups_tests.rs",
+      "blob": "7a002c0eb9cd5afe16d609cc2966e1c66ca42c9f",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/token_groups_tests.rs",
+      "sha256": "b6d1c5a9fe979844ba3e5041c7d3dd27350e1c0ac6e53da3f65b4275daeff3d5",
+      "bytes": 4011,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/token_tests.rs",
+      "blob": "63178355b140201332c13f31d99521592dda6dfb",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/token_tests.rs",
+      "sha256": "702ed0eeb8a4c78e66f70a871fccc970d55b7e753660d389863995199cf7151d",
+      "bytes": 2202,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/unified_exec/backends/elevated.rs",
+      "blob": "24a5494b7141033284b1ede2f3a96450f24a4fdc",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/unified_exec/backends/elevated.rs",
+      "sha256": "b498f6592c3cd7f9d33426dd59fd6f8ecdab50dc030081d726679b3017869b15",
+      "bytes": 9865,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/token_user.rs",
+      "blob": "3c8689ddf839d1a76e567ac0104fed56a23ff51d",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/token_user.rs",
+      "sha256": "b30ee9ce208175adf5d972abf45c825b33a1144933bb1a8c9e0dac728b5546c2",
+      "bytes": 2539,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/token_user_tests.rs",
+      "blob": "15a7c1e58a2f40ff77dfbf39e598ccf88fd4d386",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/token_user_tests.rs",
+      "sha256": "c349c191b30c72f210c6d90c26f40bdc9c50b48afba532582fc55b6e9bd573fd",
+      "bytes": 2600,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/unified_exec/backends/elevated_tests.rs",
+      "blob": "e8025109e025187c10f68e472acab4039d3d281f",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/unified_exec/backends/elevated_tests.rs",
+      "sha256": "16df4b539a16c39174ff6e07862205bbbadd9180d28c11efefca090c74d497ba",
+      "bytes": 7966,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/unified_exec/backends/legacy.rs",
+      "blob": "ca13e191062857d0d1d4f6fbcb41d22aba3ba7eb",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/unified_exec/backends/legacy.rs",
+      "sha256": "ea0422707388bac8d1bec16e1ee87f387bc6531dfb3dfefbd724c01a056047da",
+      "bytes": 15796,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/unified_exec/backends/mod.rs",
+      "blob": "9d2aaa9070bb269c766b404a3bdeb365fc29955b",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/unified_exec/backends/mod.rs",
+      "sha256": "cf64b630aa4a2fadc62f4bf2e3a15cc24fd0079183d72d25c3b60e69bc88adc1",
+      "bytes": 79,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/unified_exec/mod.rs",
+      "blob": "540baf0c237388d4e82fcadb623deff9d20f2105",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/unified_exec/mod.rs",
+      "sha256": "677611ba8698f4792d9d9dc6dcd84afdd5db1bbafcdafab14e5ab651c3dc3cdb",
+      "bytes": 6878,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/unified_exec/backends/windows_common.rs",
+      "blob": "05a87785898cee81d633ad8da294a861fc9e84a0",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/unified_exec/backends/windows_common.rs",
+      "sha256": "5fa23af9a160b15bdf355187798f3729f03948932a7a11c085c086e6b94d3099",
+      "bytes": 6030,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/uninstall_windows.rs",
+      "blob": "e08b62358dfce3c601ef439f1cb998360aa2a8f5",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/uninstall_windows.rs",
+      "sha256": "50711ceb7abfe3e10f5d3556ca14e7e59f2c975edcb3a49cbf1f920f03a95cc9",
+      "bytes": 7460,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/unified_exec/tests.rs",
+      "blob": "296b81b0e4177539681a86e4ee7f7f14a243d5a5",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/unified_exec/tests.rs",
+      "sha256": "960c1a34411e7d59f0698ab21a18cf11dd5d816cd862079923ba58db104609ec",
+      "bytes": 44152,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/unified_exec/backends/windows_common_tests.rs",
+      "blob": "1a957e1e52157c968708e8dcb9100440c12face3",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/unified_exec/backends/windows_common_tests.rs",
+      "sha256": "6d11857724f49eab110638d4a9766b027aa15ce7804db0e8b59e98a756216497",
+      "bytes": 1187,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/uninstall_windows/firewall.rs",
+      "blob": "0e5c98d376047f458f02b8656993d12fc0d527ef",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/uninstall_windows/firewall.rs",
+      "sha256": "211f70f95d0d5b355a4dfcb8cea159cec25bcef010660b290233e0870961b966",
+      "bytes": 1336,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/uninstall_windows/principals.rs",
+      "blob": "ef79a21980a62529f82e0b6f4105d61289ab910d",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/uninstall_windows/principals.rs",
+      "sha256": "30ae7123c4046fc6bdf331888d2d249b87f5da575d6e6b796c379f90674120ec",
+      "bytes": 6108,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/uninstall_windows/processes.rs",
+      "blob": "84752b20303a5d001bc8a30cdb97105525eb5cc1",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/uninstall_windows/processes.rs",
+      "sha256": "294131dc5fd86ad614e04cbad53e75bd4115e46ba4146cb517c8b9c535db6e6f",
+      "bytes": 8873,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/uninstall_windows/principals_tests.rs",
+      "blob": "4e8380d7f5ec9a8051205d8ed0ce2b8a9c19ab95",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/uninstall_windows/principals_tests.rs",
+      "sha256": "ce0feb375ceb55d00156d03428cbf53a69be25c260d10b547cec0d7ef059eacd",
+      "bytes": 7684,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/uninstall_windows/retained_logons.rs",
+      "blob": "8df1ac694adedcd77c484dee2e90bd7b53480066",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/uninstall_windows/retained_logons.rs",
+      "sha256": "a9f624230705b18302206575819bbf29bcf095b8de5e561749b3a7c96e4bc771",
+      "bytes": 2803,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/uninstall_windows/retained_logons_tests.rs",
+      "blob": "255c5c5747c73eb4d119b04928ddaa71291ed333",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/uninstall_windows/retained_logons_tests.rs",
+      "sha256": "f796fef0c88794b4ec58ef4b4911431ef098e117dcdf90ec6cc39ea8fe6404c1",
+      "bytes": 3621,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/wfp.rs",
+      "blob": "d992bcdd931c77050de2b5b4fe04aaf00e247725",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/wfp.rs",
+      "sha256": "82effcda9c951ad62d1f1b4afa9b4f0ad59b3d35d7c2feab53a9b6838dd93fc4",
+      "bytes": 17060,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/wfp/filter_specs.rs",
+      "blob": "d86df4ac1eff0c9cc2cc567817a9cdc8584f78cc",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/wfp/filter_specs.rs",
+      "sha256": "11bef68565843485376f31dea62930d833c6b758ccc2a8613a8b1872a2a0e1f1",
+      "bytes": 5267,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/wfp_setup.rs",
+      "blob": "b3d6c4d33925f122661c75dd1843bca861c969ad",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/wfp_setup.rs",
+      "sha256": "7fcbb2c394d06ada5b14fd653e79be14b84442a1a5caaf2bc2de2c8fe093aa6d",
+      "bytes": 6234,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/winutil.rs",
+      "blob": "089936268409c643aead38aeea4bd133875a51ee",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/winutil.rs",
+      "sha256": "5620770d64aee14ba9d6918822c858f1fceb308d97db53a86a97808adadf510b",
+      "bytes": 12308,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/workspace_acl.rs",
+      "blob": "7143212b54c088e317ef5acbc729060e68237e68",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/workspace_acl.rs",
+      "sha256": "40c4cfdbc75943e5335811c8524646205ef3af28010c73516a1fdc099d956452",
+      "bytes": 943,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/tests/helper_manifest.rs",
+      "blob": "0428f906aac683584feb18a2236d1acd14c17618",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/tests/helper_manifest.rs",
+      "sha256": "6f8afae11af3bfeea64843e2e2116cc32339a16bc183982341b9bb49e68ad233",
+      "bytes": 3499,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/wrapper.rs",
+      "blob": "eb410216d806bac331d048545e50c1febfb562e9",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/wrapper.rs",
+      "sha256": "7b750ef2407e5d787ebbf6cece02b6a635c15484609726f98e5444c735bee78e",
+      "bytes": 19834,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "LICENSE",
+      "blob": "75410e73319c72cd3e991a501c5455eb78f38375",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/LICENSE",
+      "sha256": "821556e6336796450ab852d375117b48a4887e71d255794fd6318d99982a5ab6",
+      "bytes": 1070,
+      "status": "verified"
+    },
+    {
+      "repo": "openai/codex",
+      "commit": "7abf2a3b5cbe08ca875d677dcd027528f9556152",
+      "path": "codex-rs/windows-sandbox-rs/src/wrapper_tests.rs",
+      "blob": "b3ba3fa69f6ac8a22ce34ef013c7be2620bdc4ee",
+      "url": "https://raw.githubusercontent.com/openai/codex/7abf2a3b5cbe08ca875d677dcd027528f9556152/codex-rs/windows-sandbox-rs/src/wrapper_tests.rs",
+      "sha256": "a1fda3164be094d5023777244dcf513a2ffd6f33115802844c46327e80206aad",
+      "bytes": 5717,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "README.md",
+      "blob": "c05112266746ff99a3326a62c38c33fbc08ecd23",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/README.md",
+      "sha256": "1d733df90c2836c1b9cd8d7307d2d222023456b7b55b5036c2fbb54fd8bcfdf4",
+      "bytes": 17688,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "apps/desktop/electron/windows-sandbox-fallback.test.ts",
+      "blob": "1b24aaa1769da949685762b416184ca414722ea0",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/apps/desktop/electron/windows-sandbox-fallback.test.ts",
+      "sha256": "c1f3a10727a65663eab17ab17eecb091a2f12a651ec9562ebf34f60bf611de29",
+      "bytes": 11501,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "SECURITY.md",
+      "blob": "cea2a9a2e8869ac7a4b7307332b974a27e9fd27a",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/SECURITY.md",
+      "sha256": "08b733d1f2c71f8cdd87200beb10c06185d0912a6eb19bbf69149dbb4e207a55",
+      "bytes": 15752,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "apps/desktop/electron/windows-sandbox-fallback.ts",
+      "blob": "815f47189e1cb1da6c1bf5e907f26754d6c84de9",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/apps/desktop/electron/windows-sandbox-fallback.ts",
+      "sha256": "0e754019d5c255a8725e981e60df5888109c16a7df244df1357788d1121c2659",
+      "bytes": 12546,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "hermes_cli/gateway_windows.py",
+      "blob": "3eac5130a99a9aeae765f96e9d67e21c2c30044c",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/hermes_cli/gateway_windows.py",
+      "sha256": "698ba2f493890592be4326da6d17e71d268a7376eafc7efe5fcca23485110689",
+      "bytes": 69446,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "tests/hermes_cli/test_taskkill_identity_windows_live.py",
+      "blob": "24321b62b36915a2692ab20bbf5a6bde5382c289",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/tests/hermes_cli/test_taskkill_identity_windows_live.py",
+      "sha256": "490bf61ea88a921d8a929cc72bc55eccbf5bffe838005211071d923e9f5a48c8",
+      "bytes": 7118,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "tests/hermes_cli/test_windows_gateway_job_teardown.py",
+      "blob": "78d9dd5187e8d3545cfa060a04dd7c6978a85a68",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/tests/hermes_cli/test_windows_gateway_job_teardown.py",
+      "sha256": "329843cf283406f90fce8a25ad2aec8f9950bf90b8384387a4cee795d1d6a6a4",
+      "bytes": 7961,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "tests/tools/test_local_env_windows_msys.py",
+      "blob": "79a3edff0e7a9eaec93e607c60f48a1a4ec94179",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/tests/tools/test_local_env_windows_msys.py",
+      "sha256": "8263def28055096eec5d899d28e7043aa4f0f05f1b9ae4ec35b45dfb2e138b5d",
+      "bytes": 13650,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "tests/tools/test_process_registry_windows_live.py",
+      "blob": "a10c2f2370662d2eec76aedc1ba0ce913d52d5be",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/tests/tools/test_process_registry_windows_live.py",
+      "sha256": "5a1da7260c719b46f44b571c1df97f4e1b8200f09a246ab322b7de3d2a67bc90",
+      "bytes": 3760,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "tests/tools/test_windows_native_support.py",
+      "blob": "b41a462764a23c9216fda8f03ae896dae8ffa7f6",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/tests/tools/test_windows_native_support.py",
+      "sha256": "5ae24d5b86915cc2640ca84275a09a5ec54d16a74bd67f671f07ec5a32943763",
+      "bytes": 51418,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "tools/environments/base.py",
+      "blob": "b212ca7c13d924538139cd18308e8a13dfaa512c",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/tools/environments/base.py",
+      "sha256": "3171b5d01d1825bb2d278659602296d5c9d0a48cc5da6f436d6543ee973f6a44",
+      "bytes": 31851,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "tools/environments/local.py",
+      "blob": "6a8263761657e1e38c798fa4655461ff7af4e004",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/tools/environments/local.py",
+      "sha256": "2056d30dca92057cf2e0ff4460bcadc6a25a6a429477560b7cbafcd617281539",
+      "bytes": 45207,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "tools/environments/local_env_policy.py",
+      "blob": "d11d2f45d4ccad086637196a4652ee21b6868855",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/tools/environments/local_env_policy.py",
+      "sha256": "1a1b916fcbf3af7ceb1f27d47cee67db0d3dd2f92c84d622458ccc0bfc9663a5",
+      "bytes": 13634,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "tools/environments/local_gitbash_probe.py",
+      "blob": "ac7dabf27e0cdcb4ea1b4f180968a6cd83952633",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/tools/environments/local_gitbash_probe.py",
+      "sha256": "65398ac87a186b8a74e629b7c7c616fc32f1b317f79bb848af5482cfa7498fcf",
+      "bytes": 4940,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "tools/terminal_tool_backends.py",
+      "blob": "0ee50256893ced83a7e8507292e976e20711029c",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/tools/terminal_tool_backends.py",
+      "sha256": "f1f61cb9bc42daeea919c220eee483fd4f22c9d3f35d3a16ee00ee25902477e2",
+      "bytes": 19602,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "website/docs/getting-started/platform-support.md",
+      "blob": "1791716717c92e07f449eed99eace2fec2fe5a03",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/website/docs/getting-started/platform-support.md",
+      "sha256": "250c36a664d84170cf9240486b920208ef2e7fba1392c445d265b20d01bdf1e1",
+      "bytes": 4302,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "tools/process_registry.py",
+      "blob": "2b0fd982092bce4bdba4d1dc53fa4d0d9b3291e3",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/tools/process_registry.py",
+      "sha256": "bb15d54c30f3e11220a968cc2f757885f4be0f1c731b4a335ff835b2ebd778e4",
+      "bytes": 126809,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "tools/terminal_tool_lifecycle.py",
+      "blob": "ba2c2cc9e12e88d94192f1a1c4b9fe91c5308e5a",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/tools/terminal_tool_lifecycle.py",
+      "sha256": "262b401fda5fcce40176ec9c660fa91fefb5c9a5eef670053e920138e0a4d4a5",
+      "bytes": 13516,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "90b1793cf8eb2d6444863591e8405ecc707dc62d",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/LICENSE",
+      "sha256": "116f7778b9802e569b7fa3a532b17bd80eb13c67837def01eed093d4ea472f28",
+      "bytes": 11388,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/claude-code",
+      "commit": "68ac8bbf0245b615b41517bf8f2b2f35af1ae31d",
+      "path": "README.md",
+      "blob": "80aa75edf74a5f9e1269811b4e8b5852be91e66e",
+      "url": "https://raw.githubusercontent.com/anthropics/claude-code/68ac8bbf0245b615b41517bf8f2b2f35af1ae31d/README.md",
+      "sha256": "aa0d8b80ac083e1591be0789273f447058cc9187b4331634a5614155da27778d",
+      "bytes": 2873,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/claude-code",
+      "commit": "68ac8bbf0245b615b41517bf8f2b2f35af1ae31d",
+      "path": "LICENSE.md",
+      "blob": "645a5d67c6d1e16437bec850dad5bd3b6c81f77c",
+      "url": "https://raw.githubusercontent.com/anthropics/claude-code/68ac8bbf0245b615b41517bf8f2b2f35af1ae31d/LICENSE.md",
+      "sha256": "728158fd1037143fad6907e8fa34804177e598b7326519503fe83cafdef849e6",
+      "bytes": 150,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "website/docs/user-guide/windows-native.md",
+      "blob": "99cb490a8fe06c2e17ef64834c3c00856eb244f6",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/website/docs/user-guide/windows-native.md",
+      "sha256": "ef157adc2d5c1a11179f494b88e242495c31f019cb955ddaeac62e64c9649953",
+      "bytes": 24568,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/claude-code",
+      "commit": "68ac8bbf0245b615b41517bf8f2b2f35af1ae31d",
+      "path": "SECURITY.md",
+      "blob": "d6724b2bbc8dac70775da8a5fb281aa42fe62fe5",
+      "url": "https://raw.githubusercontent.com/anthropics/claude-code/68ac8bbf0245b615b41517bf8f2b2f35af1ae31d/SECURITY.md",
+      "sha256": "682ab87da77179b60028989b97fa03f0caa063ef16cb9b6cc7b3317146d04503",
+      "bytes": 674,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "4569db83fe4fee02ba656f8eaa52db22e43e8e63",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/README.md",
+      "sha256": "322066de9f5bc136295bd0ae4f1752cef3d8dcb1a8f9d88044609e7b6d7abcf7",
+      "bytes": 5757,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "f4c81480b897c197b4a3d4640429a021e32d117f",
+      "path": "crates/codegen/xai-grok-sandbox/examples/sandbox_smoke_test.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/examples/sandbox_smoke_test.rs",
+      "sha256": "310e64490c3450a7660c5f082418e4cb26bdae05170cbcb2b2824171486710c3",
+      "bytes": 5584,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "df325ae4300551834481b41038434646a558f996",
+      "path": "crates/codegen/xai-grok-sandbox/Cargo.toml",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/Cargo.toml",
+      "sha256": "e5cc07ed2bcdaffeb85920b1dac094fc0da201a531f41a93b62611b11a0542aa",
+      "bytes": 3030,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "a6be5dbc3b2e54e225e820fdac3a801ed7caa073",
+      "path": "SECURITY.md",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/SECURITY.md",
+      "sha256": "0344f1e31e09713f829a34f71a1dbdbe43f34ed455f19df770ab2deeb2028b35",
+      "bytes": 166,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "b9c1c25f770fd1596db54dcf83cda433955c1e85",
+      "path": "crates/codegen/xai-grok-sandbox/src/allow_path.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/allow_path.rs",
+      "sha256": "9bda2cb666a2d4a68448dfc001c152eb7637066efc7a8a75eabfd8c84d9744d4",
+      "bytes": 3924,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "16a1326176efce73e3f177aa1e3bc76b763f858c",
+      "path": "crates/codegen/xai-grok-pager/docs/user-guide/18-sandbox.md",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-pager/docs/user-guide/18-sandbox.md",
+      "sha256": "327816d24c153880828b72bc03385f36bccaa369d839d8ad7870cbb409375d84",
+      "bytes": 17987,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "e2873bf1f720020cbffd48da9dd2be4a9c22f98e",
+      "path": "crates/codegen/xai-grok-sandbox/src/child_net.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/child_net.rs",
+      "sha256": "dcbf176ab0256469dfcd982400d8992edfa04e2540211422042402ebe9b7ea25",
+      "bytes": 17431,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "8fbee313e382f361314fec1da9389b652407dcb3",
+      "path": "crates/codegen/xai-grok-sandbox/src/deny/glob.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/deny/glob.rs",
+      "sha256": "b9193977466f1aa45154f8d9eb74bb81d3873ccc37a85bf3b7ecbe5ecef111df",
+      "bytes": 45603,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "d6fe6868fa791cacbff250070c0c14675c878051",
+      "path": "crates/codegen/xai-grok-sandbox/src/hook_write_deny.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/hook_write_deny.rs",
+      "sha256": "78b9f1b7ea86c7423883630073fef4d6d8a5269a3de2c1366f89c987e575385a",
+      "bytes": 14929,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "e3ce9d02f7474f27fa9beac911169a30ac56d9d1",
+      "path": "crates/codegen/xai-grok-sandbox/src/hook_write_deny_tests.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/hook_write_deny_tests.rs",
+      "sha256": "dcc7182e0e07691aa51087e6693b1f589db0bad1bbf040a21dabfd0610471cbd",
+      "bytes": 5872,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "f50a4510443e086fbbfe9b76db9af3445f002b8c",
+      "path": "crates/codegen/xai-grok-sandbox/src/deny/mod.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/deny/mod.rs",
+      "sha256": "cda3bc291d7e4afb6807b89f91a33473360f6342fff2f7b7f5bae43ae1898599",
+      "bytes": 18416,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "1e9bc040c24cdda581c1b47a769433be0b2103d4",
+      "path": "crates/codegen/xai-grok-sandbox/src/lib.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/lib.rs",
+      "sha256": "24dc7690a6cd9fe3199042a47d1acb2da9e1027fa885459c1acae6f094052426",
+      "bytes": 45494,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "57ff1775ae55c6665993bbb04b97f972031ed60f",
+      "path": "crates/codegen/xai-grok-sandbox/src/logging.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/logging.rs",
+      "sha256": "188176aa31b1e428c7963bfa53c41b98c7a22e05a011b523a7df23440b5c9e8d",
+      "bytes": 2687,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "3204a9ee6437569216844e0aadb1a6dd93ad7420",
+      "path": "crates/codegen/xai-grok-sandbox/src/network_policy.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/network_policy.rs",
+      "sha256": "e7fe9a2063a0eef74dab317ee12487b8fee8fc30ec55a3fea63f2aa8575e7a4b",
+      "bytes": 16358,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "810a813075c9c028b3c933e337d6973c39371cb1",
+      "path": "crates/codegen/xai-grok-sandbox/src/profiles.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/profiles.rs",
+      "sha256": "3eb64b922341a5113e144e52dd65529c972976eede7ccd5ae55f53075d4252df",
+      "bytes": 46675,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "51b76631f8ecb3010e6991b2279db6a2b8e5c22f",
+      "path": "crates/codegen/xai-grok-sandbox/src/paths.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/paths.rs",
+      "sha256": "f11f8764e685a018ad7930edb52d9f8dc6559269974037a40905ac60cbcd0b7e",
+      "bytes": 4378,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "5c301e0515d57f953189ceeee77c2db80ab9cb9f",
+      "path": "crates/codegen/xai-grok-sandbox/src/read_deny_verify.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/read_deny_verify.rs",
+      "sha256": "8f7faf9fa0252b82fcb2eb869257a25c9800002c2459c02474d29301943c2993",
+      "bytes": 19516,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "3efda971a6fa752f070f9f0f9820d9114d74b79d",
+      "path": "crates/codegen/xai-grok-sandbox/src/read_deny_verify_tests.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/read_deny_verify_tests.rs",
+      "sha256": "918a789272c12a457019f79e176e10bc2ae5fbbb38ad428b64bbd54e0df434dc",
+      "bytes": 10978,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "d209839771e82d0e63796cefe8b62eb3825ab78e",
+      "path": "crates/codegen/xai-grok-sandbox/src/runtime_sockets.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/runtime_sockets.rs",
+      "sha256": "0e6eb8050229925448e16dbc76ed1cb4d73761336928a17d0223cb3f5d076431",
+      "bytes": 10993,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "70c1fa5a5049c814a1ed337756026cdf87eeae53",
+      "path": "crates/codegen/xai-grok-sandbox/src/runtime_sockets_tests.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/runtime_sockets_tests.rs",
+      "sha256": "520a09201780947c22a49704015ca8c9375e3df9567428dab3d111aa10b535eb",
+      "bytes": 18286,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "cb07c09c09350f8d6dfa758ddd4deb44650bf144",
+      "path": "crates/codegen/xai-grok-sandbox/tests/child_net_e2e.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/tests/child_net_e2e.rs",
+      "sha256": "2d92cbd92653353d1da5beebd29ec082d1291e0bc7a3e57c7998f358e42ecebb",
+      "bytes": 4612,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "6ef0323c5a2284c7cb35720fb2744c261fba685e",
+      "path": "crates/codegen/xai-grok-sandbox/src/types.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/types.rs",
+      "sha256": "dedf0f91a577bfe879e2aaea47f6a2ad821e1cef3544e1bb5dd05d81c34e8db2",
+      "bytes": 5855,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "4d45782048840c61669770a389729b9e3432ebf1",
+      "path": "crates/codegen/xai-grok-sandbox/src/test_util.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/src/test_util.rs",
+      "sha256": "5fde2fa8f2e17b64444589fb1b084f4e62ab23e57839f124942e953705de50a1",
+      "bytes": 2371,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "af667722238876e2e68120a91667e783395cd8c1",
+      "path": "crates/codegen/xai-grok-sandbox/tests/deny_paths_e2e.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/tests/deny_paths_e2e.rs",
+      "sha256": "72448562adfafff2d5c1110c3934d464a5a0783438e4c7a4ad047460f3b70c8c",
+      "bytes": 55788,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "95ddeedb4caeee8f90223435774d0ad4782f9bdd",
+      "path": "crates/codegen/xai-grok-sandbox/tests/integration_test.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/tests/integration_test.rs",
+      "sha256": "e9a62b2ca093c9c5e40313539417ffb65b1782c2d8a4c275416934b8dbdde0ad",
+      "bytes": 2692,
+      "status": "verified"
+    },
+    {
+      "repo": "xai-org/grok-build",
+      "commit": "482711333c7195dc16a272777f86086d615e2afb",
+      "blob": "264ef2c9e725e568befaf5a479b81d3de623db1f",
+      "path": "crates/codegen/xai-grok-sandbox/tests/read_write_trailing_glob_e2e.rs",
+      "url": "https://raw.githubusercontent.com/xai-org/grok-build/482711333c7195dc16a272777f86086d615e2afb/crates/codegen/xai-grok-sandbox/tests/read_write_trailing_glob_e2e.rs",
+      "sha256": "fd54d15ae0bf20899bb17b92d786b6f7574c8730a61685716bc168558f605b68",
+      "bytes": 5245,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "fe95f74680c8c8023153ebaeceb8ce03e523d75a",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/LICENSE",
+      "sha256": "1210bc93eb85dd786c33192d5bcb7153a93922fa99fbc1512af6a7199cb41080",
+      "bytes": 11339,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "656582fb178d3ff5b35deb67c3139518b9b50204",
+      "path": "src/sandbox/sandbox-manager.ts",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/src/sandbox/sandbox-manager.ts",
+      "sha256": "fdb97736a5e5ac5d53ccaa1964a902fa6c5ef1f84fa3bc4025a8f77f5f3c1647",
+      "bytes": 91716,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "0212472127b2697ed51b662123e06fd11e5212ca",
+      "path": "src/sandbox/windows-sandbox-utils.ts",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/src/sandbox/windows-sandbox-utils.ts",
+      "sha256": "ee18b33f1e602e8384f6a1ff7329d03981895fc90274484da7e6cc6e37b6c6dd",
+      "bytes": 85831,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "87fbe6f6efac608a090ebb17078dec72e2345255",
+      "path": "package.json",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/package.json",
+      "sha256": "ac01bee11133ef0d7aefbc53307b5658adf3f74efb36b833b3ed00f0817c84e9",
+      "bytes": 2532,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "7a0c11d6b9d81a78fbcfd3353ada90c435ffa6f6",
+      "path": "src/utils/platform.ts",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/src/utils/platform.ts",
+      "sha256": "fb603d7306dffd6759713f2e3f03db33a115fb17190a070b2d7bee3af1ba7b44",
+      "bytes": 1458,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "da85e3df3ac89e1d3a0f9ed9fa7fc4fa7ae4f4cc",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/README.md",
+      "sha256": "789860e7812ae8eacbf5f315de1dd81223148478f89d9f953458c2315857eef1",
+      "bytes": 58726,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "e8421ce1b73c56f2be28f51d5b6e9bcec33c41b0",
+      "path": "test/sandbox/winsrt-paths.property.test.ts",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/test/sandbox/winsrt-paths.property.test.ts",
+      "sha256": "83935538e19748fb0e2110069c10750cb344cfa17001746aa39cac4dd20e4b10",
+      "bytes": 2846,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "2c4ccde884b8c188cd2cab9e22829acb3ff029c9",
+      "path": "test/sandbox/winsrt.test.ts",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/test/sandbox/winsrt.test.ts",
+      "sha256": "b51318363e038ccdcf9ac086376e69e518d7258a11650e6287f565ef9f3245ad",
+      "bytes": 104351,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "2f7896d1d1365eafb0da03d9fe456fac81408487",
+      "path": "vendor/srt-win-src/.gitignore",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/.gitignore",
+      "sha256": "b53ee26e6ff1da219b0563333a76d2c9ec19eec713d6ee54e11a1edacb0e9f3d",
+      "bytes": 8,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "aeaca1ab30235e8f6bf4b9f926e15fa0d2f07172",
+      "path": "vendor/srt-win-src/ci/smoke-ambient.ps1",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/ci/smoke-ambient.ps1",
+      "sha256": "ace308adfee4d12c1bc3d3473dcab14fb846e728652569f06f395b4ff1dc2ebe",
+      "bytes": 6254,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "73d9e5dd52dc0e20cbef49b22829ddd13c5ca57e",
+      "path": "vendor/srt-win-src/ci/cleanup.ps1",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/ci/cleanup.ps1",
+      "sha256": "6ae30edaa8fcae7c9c4f461fe390dd73dbe9aafa37c25c2283dd69b84c2ae34d",
+      "bytes": 2862,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "8493e7d487a2dd6f1a2e0f060c54b471e3e76500",
+      "path": "vendor/srt-win-src/Cargo.toml",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/Cargo.toml",
+      "sha256": "281fb1762ecf788466eb61c184078c51184da197c56f426252cf65a3ecf60e38",
+      "bytes": 1857,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "aa84cda1f9f343438cc85cd5ba744ca650698262",
+      "path": "vendor/srt-win-src/Cargo.lock",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/Cargo.lock",
+      "sha256": "c41cf41050c2b1e2986ed7ca690a703415cabadfed9219788a451df0da0967ec",
+      "bytes": 13464,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "7321b9a8b15f61998e3bcecb01a03c82e351268f",
+      "path": "vendor/srt-win-src/ci/smoke-exec.ps1",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/ci/smoke-exec.ps1",
+      "sha256": "70933250e97ab2166e07479e4eccd1ea63b9aca27b05b5a7540e51ddfd3ae7ef",
+      "bytes": 33548,
+      "status": "verified"
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "commit": "61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6",
+      "path": "hermes_cli/process_identity.py",
+      "blob": "b71a0662157555bb0e9f9e3ca1bd58f0bc2604f9",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/61e730cc0b7594eeb8e92fd8a56e4259ba87cfe6/hermes_cli/process_identity.py",
+      "sha256": "4d031af472dfac1d987e645f8e744c83535d010dc85aab1f12b1ce823d2f259d",
+      "bytes": 17095,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "6a03fdc3cfdc6112c851d11cabcc6f0df61c7317",
+      "path": "vendor/srt-win-src/ci/smoke-kill.ps1",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/ci/smoke-kill.ps1",
+      "sha256": "ae12e2e1a4536343d5346d074fa74c04653d4407ca00b36ae7ae7a51b93f9e5b",
+      "bytes": 6306,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "263b3b4aa5c943d071eb75c3cb98aeae0f2d5527",
+      "path": "vendor/srt-win-src/ci/smoke.ps1",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/ci/smoke.ps1",
+      "sha256": "b54404515ba864eb4f3f6eed10b19c384a15d79391e11305fdf0b51d4dfd94af",
+      "bytes": 22287,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "bd75cfde87119a3ec13bdfacb79c9f7e41eefbb0",
+      "path": "vendor/srt-win-src/ci/smoke-machine-store.ps1",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/ci/smoke-machine-store.ps1",
+      "sha256": "8ea6f083aa26d0cc31090f63a5d28e7e1acfb4c2fa350871772a6aa187e759c2",
+      "bytes": 17074,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "e9421f7707327bc2fca330ee7538e75179d5b044",
+      "path": "vendor/srt-win-src/rustfmt.toml",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/rustfmt.toml",
+      "sha256": "f9a583540be5e2f397df00db75fbb7405828dc36eb2bcfb951c39b1dada53f02",
+      "bytes": 274,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "0efb5956f1014ded976c412fe285874c07df25d1",
+      "path": "vendor/srt-win-src/src/acl.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/acl.rs",
+      "sha256": "8d1df6d165f8885e8b6de08c0ebd8b22bb7f688c074f3a4c759b3e5a1fca95a4",
+      "bytes": 42799,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "31f2b19da5f19c3dfef2bcf1edb961d379e7151d",
+      "path": "vendor/srt-win-src/src/ambient.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/ambient.rs",
+      "sha256": "de17a43491b5b2d6c645e9cef6f9fc463cd9ec9c23ddd2687228d945068a740c",
+      "bytes": 3817,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "7264891fd87c2a274d3680c020a90a0bf4166439",
+      "path": "vendor/srt-win-src/src/cert_store.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/cert_store.rs",
+      "sha256": "2ac25f5bed8fa2c084961fbcd286d01288f27ed333b15bce7aa3c6c15a32ce47",
+      "bytes": 13586,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "472fbe52fc3bb7b54a807406cfada6a24aa0fc1f",
+      "path": "vendor/srt-win-src/ci/smoke-aces.ps1",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/ci/smoke-aces.ps1",
+      "sha256": "234b12ad79303d8fcd97ce5ce5e9ca94a61aa10b7f0ffdbe57a331cb3e6ff5aa",
+      "bytes": 19620,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "791da972d723e40e2916269d7c978a0e7fefa28b",
+      "path": "vendor/srt-win-src/src/dpapi.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/dpapi.rs",
+      "sha256": "0a331e9ee6e5b41d2727c833941b02a1264c15b10b698496a9e57e9c797cd4b5",
+      "bytes": 4022,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "d9d3f19c2b061fb7ae43dd94437223b3a09aa561",
+      "path": "vendor/srt-win-src/src/job.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/job.rs",
+      "sha256": "a4c729c97e67cdf055a9f664da63c54edec73446e666cdfd45519c3ecd36c37c",
+      "bytes": 5521,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "25c32ff3406aec720612ebde3d84b64d8d7f0cee",
+      "path": "vendor/srt-win-src/src/cli.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/cli.rs",
+      "sha256": "6d4879a547c2c4f5f83ad88025b1ccd4722c76c61e526258e97eec6e21214137",
+      "bytes": 77275,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "93aabb52eb9de90d1857282718565649d0fad806",
+      "path": "vendor/srt-win-src/src/install.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/install.rs",
+      "sha256": "4b6158177c5fff29ea2822a929869d60f94e4b9ba402f612843d8297e38285be",
+      "bytes": 19567,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "6322363388d2cf43eb0c45e7d03a20f30dc225d2",
+      "path": "vendor/srt-win-src/src/launch.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/launch.rs",
+      "sha256": "b8304db36889e6f02cb58aadfbc9a8a36a8b6f5b3479812ee29daa1a45ac3e55",
+      "bytes": 33337,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "2021803cf80fc13efc11cb5804132aee857ed7e8",
+      "path": "vendor/srt-win-src/src/lib.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/lib.rs",
+      "sha256": "94d3debf3c97cb6cfd63d583ff624bf24ddd7759cb15df83afec6b1a2eeb1120",
+      "bytes": 951,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "f2482f4ab7d4ac10107d5c2255e34d85ea522066",
+      "path": "vendor/srt-win-src/src/logon.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/logon.rs",
+      "sha256": "1bd52b19b81a39fe725170c7dd87bdb40938f90388f629c44b1975e828db1ac7",
+      "bytes": 19417,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "59ce478bcdcc8a18c84f1c6134ddcecf85affc7a",
+      "path": "vendor/srt-win-src/src/reg.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/reg.rs",
+      "sha256": "98bade54b1495dfa24c27720b85fc9a231e8191c91832f63a1c410f23ec16b0c",
+      "bytes": 12931,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "00d63d7243a481f48024994e1ed3a73ff709d62c",
+      "path": "vendor/srt-win-src/src/path_id.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/path_id.rs",
+      "sha256": "e62b9be426b5ea173a9eaca0a5165dde5230b89a43cd8673c5a5c44f0d55c0c9",
+      "bytes": 27445,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "f073ce1cf5979e61b9c5951b7872483649642fda",
+      "path": "vendor/srt-win-src/src/sam.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/sam.rs",
+      "sha256": "ec0b1899c11f57aa324435c94a445f7e34b9e5049c7447e6bcd7b5bc44aa3d27",
+      "bytes": 4470,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "eee26105dd4c279f43416d23e0883c389400ba4c",
+      "path": "vendor/srt-win-src/src/runner.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/runner.rs",
+      "sha256": "ad3ff6c7249ad0e30fbac8894ee41ab5b6eb86f6aebc4ec529b232dbec586b03",
+      "bytes": 9371,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "643820ea476ba7fa04f65167840afa4cfc96ad35",
+      "path": "vendor/srt-win-src/src/self_protect.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/self_protect.rs",
+      "sha256": "d7da443a8cff5388730b819dd9f0cef0e3192616cfaccd820ac55d95a0b5c1ab",
+      "bytes": 8757,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "27819f81b48b45d99dfe6162679c8baa2f0fbffd",
+      "path": "vendor/srt-win-src/src/sid.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/sid.rs",
+      "sha256": "d32de003c65d61ec8a24a3e46b230a6706cdd0aa8d05f5a537c320489462470b",
+      "bytes": 8876,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "d3778f4e639bab273183f7516eccd337beeabf94",
+      "path": "vendor/srt-win-src/src/state_db.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/state_db.rs",
+      "sha256": "e70df3c739fe30fc5dce54a8aceac2e634864bc08ba0ad96a02450d17703917c",
+      "bytes": 59404,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "f739bf31705ee796a100ff3e68e9065deaea6a57",
+      "path": "vendor/srt-win-src/src/token.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/token.rs",
+      "sha256": "afb6393729a41cdc246c817a2cbcb8d0bb394993a792de204ad51a5c702035ea",
+      "bytes": 12716,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "27e11cc4dbf2f30863b882f2fa0c4f1323a4b962",
+      "path": "vendor/srt-win-src/src/util.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/util.rs",
+      "sha256": "9da88ef9f835d7195637535bbfed833e322ecb099b2760e44edfd232430fe719",
+      "bytes": 8756,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "5515e8ea349f48f5d8141ed3d116cf0b4e9bd94a",
+      "path": "vendor/srt-win-src/src/wfp.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/wfp.rs",
+      "sha256": "3b451fea5e57188e9987067f5e4ce7062df3fdd319d8813f08bb389bbcd02d15",
+      "bytes": 32839,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "12080eeec7296adaece0c629ce96ca79f12993bf",
+      "path": "vendor/srt-win-src/src/user.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/user.rs",
+      "sha256": "e7c2ede50968ad5af1a04d44ab73319f7d171ec4842d8e12e2d2839d94a2d129",
+      "bytes": 26887,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "c84636cf500d1de9e0c57b0a83e8d3c89272cb7f",
+      "path": "vendor/srt-win-src/tests/sd_access_check_matrix.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/tests/sd_access_check_matrix.rs",
+      "sha256": "9dcc32df0a8d747a2752a0a353533818e28738b867b377e930d69f4962b0dea9",
+      "bytes": 4888,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "610338e7bc9fdbb914200beed96a111f851d8e61",
+      "path": "vendor/srt-win-src/src/winsta.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/winsta.rs",
+      "sha256": "708b27141ee16dd5856ed3abcc8a2be8fac6f51d584b66faf0c16afc7092bd60",
+      "bytes": 21413,
+      "status": "verified"
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "commit": "1831bab341c71adda0fa78dec5496ccf9b43296a",
+      "blob": "6de82ea7b0a1b87c6c7a671633b403c089f5a72f",
+      "path": "vendor/srt-win-src/src/main.rs",
+      "url": "https://raw.githubusercontent.com/anthropics/sandbox-runtime/1831bab341c71adda0fa78dec5496ccf9b43296a/vendor/srt-win-src/src/main.rs",
+      "sha256": "f63e12f9943bbb07815472853df32284a1be0c78f3dde83cfd1fd7b5275a5ba9",
+      "bytes": 598,
+      "status": "verified"
+    }
+  ],
+  "officialDocs": [
+    "https://learn.chatgpt.com/docs/windows/windows-sandbox",
+    "https://code.claude.com/docs/en/sandboxing",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createnamedpipea"
+  ]
+}

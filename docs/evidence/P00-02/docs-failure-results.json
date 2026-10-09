@@ -1,0 +1,8 @@
+{
+  "command": "pnpm docs:check",
+  "cwd": "D:\\TapKit",
+  "startedAt": "2026-09-17T11:32:43.115Z",
+  "endedAt": "2026-09-17T11:32:43.472Z",
+  "exitCode": 1,
+  "log": "docs/evidence/P00-02/docs-status-failed.log"
+}

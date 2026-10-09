@@ -1,0 +1,38 @@
+$ vitest run --config vitest.config.ts --project integration "P01-02" "P01-01" "P01-03"
+
+ RUN  v5.0.0 D:/TapKit
+
+ ❯ |integration| tests/integration/P01-02.zhipu.test.ts (1 test | 1 failed) 281ms
+   × P01-02 Zhipu real mock HTTP and Core persist accurate readiness, quota and truncation outcomes 279ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P01-02.zhipu.test.ts > P01-02 Zhipu real mock HTTP and Core persist accurate readiness, quota and truncation outcomes
+AssertionError: expected 'documented' to be 'failed' // Object.is equality
+
+Expected: "failed"
+Received: "documented"
+
+ ❯ tests/integration/P01-02.zhipu.test.ts:129:9
+    127|       expect(
+    128|         listing.models.find((model) => model.accountId === account.acc…
+    129|       ).toBe(outcome === 'ready' ? 'probed' : 'failed');
+       |         ^
+    130|       expect(JSON.stringify(result) + JSON.stringify(listing)).not.toM…
+    131|         /fixture-zhipu-key|private-error-message|private-thinking-mark…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  1 failed | 66 passed (67)
+   Start at  10:46:56
+   Duration  4.53s (import 49%, transform 28%, tests 22%, setup 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+pnpm exited 1
+At D:\TapKit\scripts\pnpm.ps1:12 char:30
++   if ($LASTEXITCODE -ne 0) { throw "pnpm exited $LASTEXITCODE" }
++                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1

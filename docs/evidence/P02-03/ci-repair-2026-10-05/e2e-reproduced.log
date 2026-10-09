@@ -1,0 +1,130 @@
+$ node scripts/e2e.mjs "--grep" "sandbox bridge|higher schema"
+
+Running 2 tests using 1 worker
+
+(node:28208) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_READY
+TAPKIT_HOST_WINDOW 32872
+(node:32872) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:58160/b3c9cb8e-bc0d-477d-ba61-58ebc8b5d8b4
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+[32872:1005/150553.746:ERROR:gpu\ipc\client\command_buffer_proxy_impl.cc:490] GPU state invalid after WaitForGetOffsetInRange.
+[32872:1005/150553.746:ERROR:gpu\ipc\client\command_buffer_proxy_impl.cc:490] GPU state invalid after WaitForGetOffsetInRange.
+  x  1 tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown (867ms)
+(node:37524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_READY
+TAPKIT_HOST_WINDOW 38228
+(node:38228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:55030/5510de14-c3c9-4e67-9a69-aa753f701c35
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+[38228:1005/150554.821:ERROR:gpu\ipc\client\command_buffer_proxy_impl.cc:490] GPU state invalid after WaitForGetOffsetInRange.
+[38228:1005/150554.821:ERROR:gpu\ipc\client\command_buffer_proxy_impl.cc:490] GPU state invalid after WaitForGetOffsetInRange.
+  x  2 tests\e2e\P00-02.foundation.spec.ts:266:1 › P00-02 higher schema shows a recovery prompt and preserves original database (16.3s)
+
+
+  1) tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown ───
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 6
+
+    @@ -1,12 +1,18 @@
+      Object {
+        "bridge": Array [
+          "windowSlot",
+          "newWindow",
+    +     "initialRoute",
+    +     "openEntity",
+    +     "saveConversation",
+    +     "historyCommand",
+          "chooseAvatar",
+          "chooseDirectory",
+    +     "openPublicLink",
+          "desktopCommand",
+    +     "chatCommand",
+          "modelCommand",
+          "listProviders",
+          "startLogin",
+          "loginStatus",
+          "answerLogin",
+
+      49 |       bridge: Object.keys(window.tapkit),
+      50 |     })),
+    > 51 |   ).toEqual({
+         |     ^
+      52 |     require: 'undefined',
+      53 |     process: 'undefined',
+      54 |     bridge: [
+        at D:\tapkit\TapKit\tests\e2e\P00-01.shell.spec.ts:51:5
+
+    Error Context: test-results\e2e\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests\e2e\P00-02.foundation.spec.ts:266:1 › P00-02 higher schema shows a recovery prompt and preserves original database
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByTestId('core-status')
+    Expected substring: "本地数据需要恢复"
+    Received string:    "本地核心已连接"
+    Timeout: 15000ms
+
+    Call log:
+      - Expect "toContainText" getByTestId('core-status') with timeout 15000ms
+      - waiting for getByTestId('core-status')
+        31 × locator resolved to <span data-testid="core-status">本地核心已连接</span>
+           - unexpected value "本地核心已连接"
+
+
+      283 |   app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
+      284 |   const page = await app.firstWindow();
+    > 285 |   await expect(page.getByTestId('core-status')).toContainText('本地数据需要恢复');
+          |                                                 ^
+      286 |   expect(
+      287 |     await page.evaluate((requestId) => window.tapkit.bootstrap({ requestId }), id()),
+      288 |   ).toMatchObject({ ok: false, error: { code: 'DATABASE_RECOVERY_REQUIRED' } });
+        at D:\tapkit\TapKit\tests\e2e\P00-02.foundation.spec.ts:285:49
+
+    Error Context: test-results\e2e\P00-02.foundation-P00-02-h-7e36a-preserves-original-database\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P00-02.foundation-P00-02-h-7e36a-preserves-original-database\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P00-02.foundation-P00-02-h-7e36a-preserves-original-database\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown ────
+    tests\e2e\P00-02.foundation.spec.ts:266:1 › P00-02 higher schema shows a recovery prompt and preserves original database
+file:///D:/tapkit/TapKit/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\tapkit\TapKit\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/tapkit/TapKit/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/tapkit/TapKit/scripts/lib.mjs:27:3)
+    at file:///D:/tapkit/TapKit/scripts/e2e.mjs:14:21
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.

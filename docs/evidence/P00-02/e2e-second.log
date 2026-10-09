@@ -1,0 +1,41 @@
+$ node scripts/e2e.mjs "--grep" "P00-02"
+
+Running 5 tests using 1 worker
+
+(node:37820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_EXIT 1
+(node:45336) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Error occurred in handler for 'tapkit:ping': Error: Core exited
+    at ForkUtilityProcess.<anonymous> (D:\TapKit\apps\desktop\out\main\index.js:6241:17)
+    at ForkUtilityProcess.emit (node:events:514:28)
+    at UtilityProcess.emit (node:electron/js2c/browser_init:2:95072)
+TAPKIT_HOST_WINDOW 45336
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_EXIT 1
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_EXIT 1
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_EXIT 1
+Debugger ending on ws://127.0.0.1:62265/6c6ad6e1-dc9b-48e3-bb11-58ac98a41266
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  x  1 tests\e2e\P00-02.foundation.spec.ts:29:1 › P00-02 T01 T05 real two-window CAS and committed event subscription (15.7s)
+(node:45080) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_EXIT 1
+(node:22336) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Error occurred in handler for 'tapkit:ping': Error: Core exited
+    at ForkUtilityProcess.<anonymous> (D:\TapKit\apps\desktop\out\main\index.js:6241:17)
+    at ForkUtilityProcess.emit (node:events:514:28)
+    at UtilityProcess.emit (node:electron/js2c/browser_init:2:95072)
+TAPKIT_HOST_WINDOW 22336
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_EXIT 1
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_EXIT 1
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_EXIT 1

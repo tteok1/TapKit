@@ -1,0 +1,73 @@
+{
+  "startedAt": "2026-09-18T07:49:07.069Z",
+  "endedAt": "2026-09-18T07:49:14.201Z",
+  "label": "git-path-spelling",
+  "scope": "AppContainer compatibility experiment only; fixtures in writable workspace; not full T07 acceptance",
+  "sourceSha256": "fd8ed9e4cfec0423400f43e6dbd316ff3dba2891162b09545a82bb8c05cb62ef",
+  "workspace": "D:\\TapKit\\.test-data\\P00-03-git-path-spelling-jmtVKU\\workspace",
+  "request": {
+    "protocolVersion": 1,
+    "requestId": "6d694829-8977-7f26-97f5-29aceb78a32c",
+    "runId": "6d694829-8977-7f26-97f5-29aceb78a32c",
+    "leaseEpoch": 1,
+    "operation": "diagnostic.execute",
+    "payload": {
+      "runtimeRoot": "D:\\TapKit\\.runtime\\python",
+      "executable": "D:\\TapKit\\.runtime\\python\\python.exe",
+      "inputRoot": "D:\\TapKit\\.runtime\\libreoffice",
+      "workspace": "D:\\TapKit\\.test-data\\P00-03-git-path-spelling-jmtVKU\\workspace",
+      "args": [
+        "-c",
+        "import ctypes as c,os,json\nk=c.WinDLL(\"kernel32\",use_last_error=True)\nk.CreateFileW.argtypes=[c.c_wchar_p,c.c_ulong,c.c_ulong,c.c_void_p,c.c_ulong,c.c_ulong,c.c_void_p];k.CreateFileW.restype=c.c_void_p\nk.GetFinalPathNameByHandleW.argtypes=[c.c_void_p,c.c_wchar_p,c.c_ulong,c.c_ulong]\nk.GetLongPathNameW.argtypes=[c.c_wchar_p,c.c_wchar_p,c.c_ulong];k.CloseHandle.argtypes=[c.c_void_p]\ncwd=os.getcwd();h=k.CreateFileW(cwd,0,7,None,3,0x02000000,None);b=c.create_unicode_buffer(32768)\nn=k.GetFinalPathNameByHandleW(h,b,32768,2);nt=b.value;k.CloseHandle(h)\nfor path in [cwd,\"\\\\\\\\?\\\\\"+cwd,\"\\\\\\\\?\\\\GLOBALROOT\"+nt]:\n    out=c.create_unicode_buffer(32768);c.set_last_error(0);n=k.GetLongPathNameW(path,out,32768)\n    print(json.dumps({\"path\":path,\"getLong\":n,\"error\":c.get_last_error(),\"result\":out.value}),flush=True)\n",
+        "D:\\TapKit\\.runtime\\libreoffice\\program",
+        "D:\\TapKit\\.test-data\\P00-03-git-path-spelling-jmtVKU\\workspace"
+      ],
+      "timeoutMs": 45000,
+      "memoryBytes": 2147483648,
+      "processLimit": 8,
+      "outputBytes": 1048576,
+      "terminal": false
+    }
+  },
+  "exitCode": 0,
+  "events": [
+    {
+      "data": {
+        "appContainer": true,
+        "appContainerSid": "S-1-15-2-1764683506-3351643639-3715450601-762417196-1354421087-3783257716-1499190447",
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 8
+        },
+        "networkCapabilities": 0,
+        "pid": 31396
+      },
+      "event": "started",
+      "leaseEpoch": 1,
+      "protocolVersion": 1,
+      "requestId": "6d694829-8977-7f26-97f5-29aceb78a32c",
+      "runId": "6d694829-8977-7f26-97f5-29aceb78a32c"
+    },
+    {
+      "data": {
+        "activeProcesses": 0,
+        "exitCode": 0,
+        "logDirectory": "D:\\TapKit\\.test-data\\P00-03-git-path-spelling-jmtVKU\\helper-logs-6d694829-8977-7f26-97f5-29aceb78a32c",
+        "outputBytes": 512,
+        "peakActiveProcesses": 2,
+        "status": "exited",
+        "stderr": "Failed to find real location of D:\\TapKit\\.runtime\\python\\python.exe\n",
+        "stdout": "{\"path\": \"D:\\\\TapKit\\\\.test-data\\\\P00-03-git-path-spelling-jmtVKU\\\\workspace\", \"getLong\": 0, \"error\": 5, \"result\": \"D:\\\\\"}\r\n{\"path\": \"\\\\\\\\?\\\\D:\\\\TapKit\\\\.test-data\\\\P00-03-git-path-spelling-jmtVKU\\\\workspace\", \"getLong\": 0, \"error\": 5, \"result\": \"\\\\\\\\?\\\\D:\\\\\"}\r\n{\"path\": \"\\\\\\\\?\\\\GLOBALROOT\\\\Device\\\\HarddiskVolume4\\\\TapKit\\\\.test-data\\\\P00-03-git-path-spelling-jmtVKU\\\\workspace\", \"getLong\": 0, \"error\": 123, \"result\": \"\\\\\\\\?\\\\GLOBALROOT\\\\\"}\r\n",
+        "totalProcesses": 2
+      },
+      "event": "finished",
+      "leaseEpoch": 1,
+      "protocolVersion": 1,
+      "requestId": "6d694829-8977-7f26-97f5-29aceb78a32c",
+      "runId": "6d694829-8977-7f26-97f5-29aceb78a32c"
+    }
+  ],
+  "stderr": ""
+}

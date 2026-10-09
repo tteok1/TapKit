@@ -1,0 +1,57 @@
+{
+  "recordedAt": "2026-09-17T11:49:20.788Z",
+  "cwd": "D:/TapKit",
+  "branch": "main",
+  "authorizedBy": "用户明确请求：提交并推送",
+  "implementationCommit": "5d09cf19e75a1f77c78764c9ff159ff8fc9174c7",
+  "remote": {
+    "name": "origin",
+    "url": "private-archive:TapKit",
+    "ref": "refs/heads/main"
+  },
+  "implementationPush": {
+    "command": "git push origin main",
+    "exitCode": 0,
+    "verifiedAt": "2026-09-17T11:48:12.884Z",
+    "verificationCommand": "git ls-remote origin refs/heads/main",
+    "verifiedRemoteCommit": "5d09cf19e75a1f77c78764c9ff159ff8fc9174c7"
+  },
+  "sourceVerification": {
+    "sourceManifest": "docs/evidence/P00-02/source-manifest.json",
+    "sourceSha256": "9e182d396ef33852b944b05c4e285485a36636d069bcb481f2ffcb5b3e9f12ce",
+    "filesChecked": 93,
+    "changedFiles": [],
+    "diffAgainstImplementationCommitExitCode": 0
+  },
+  "prescribedTestEvidence": "docs/evidence/P00-02/final-results.json",
+  "stagedWhitespaceCheck": {
+    "findings": "Only original test log trailing spaces or blank lines at EOF; raw output preserved.",
+    "sourceAndDocsExcludingRawLogsExitCode": 0,
+    "fullCheckResult": "failed: raw test log whitespace only"
+  },
+  "scope": "P00-02 only; P00-03 not started; no P00 stage gate or package release",
+  "note": "This follow-up documentation commit records the verified implementation push; its own commit and delivery are checked through Git without a self-referential commit hash.",
+  "checks": [
+    {
+      "command": "pnpm exec prettier --write progress and delivery records",
+      "startedAt": "2026-09-17T11:49:54.293Z",
+      "endedAt": "2026-09-17T11:49:54.710Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-02/delivery-format.log"
+    },
+    {
+      "command": "pnpm check",
+      "startedAt": "2026-09-17T11:49:54.718Z",
+      "endedAt": "2026-09-17T11:50:04.689Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-02/delivery-check.log"
+    },
+    {
+      "command": "pnpm docs:check",
+      "startedAt": "2026-09-17T11:50:04.697Z",
+      "endedAt": "2026-09-17T11:50:05.057Z",
+      "exitCode": 0,
+      "log": "docs/evidence/P00-02/delivery-docs.log"
+    }
+  ]
+}

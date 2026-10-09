@@ -1,0 +1,25 @@
+$ node scripts/check.mjs
+tests/unit/P01-02.zhipu.test.ts(84,28): error TS2379: Argument of type '{ logicalCallId: string; attemptId: string; accountId: string; model: ModelRef; systemModules: { id: string; text: string; }[]; tools: { name: string; description: string; parameters: Record<string, unknown>; }[]; ... 5 more ...; nativeStateRef: string | undefined; }' is not assignable to parameter of type 'ModelRequest' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  Types of property 'nativeStateRef' are incompatible.
+    Type 'string | undefined' is not assignable to type 'string'.
+      Type 'undefined' is not assignable to type 'string'.
+file:///D:/tapkit/TapKit/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\tapkit\TapKit\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/tapkit/TapKit/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/tapkit/TapKit/scripts/lib.mjs:27:3)
+    at file:///D:/tapkit/TapKit/scripts/check.mjs:3:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.
+pnpm exited 1
+At D:\tapkit\TapKit\scripts\pnpm.ps1:18 char:5
++     throw "pnpm exited $tapkitCommandExit"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1

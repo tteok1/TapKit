@@ -1,0 +1,7 @@
+scripts/dev-smoke.mjs 36ms
+scripts/docs-check.mjs 13ms
+apps/desktop/src/main/index.ts 99ms
+tests/e2e/P00-01.shell.spec.ts 15ms (unchanged)
+tests/e2e/P00-02.foundation.spec.ts 44ms
+tests/integration/P00-02.storage.test.ts 52ms (unchanged)
+docs/adr/0005-foundation-protocol-and-recovery.md 32ms (unchanged)

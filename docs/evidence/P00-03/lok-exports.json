@@ -1,0 +1,73 @@
+{
+  "startedAt": "2026-09-18T07:44:07.167Z",
+  "endedAt": "2026-09-18T07:44:23.823Z",
+  "label": "lok-exports",
+  "scope": "AppContainer compatibility experiment only; fixtures in writable workspace; not full T07 acceptance",
+  "sourceSha256": "065a911ca4245472dd5f3f7d62d4d6f25a89364a3597ef390e76cfb5c5b15ada",
+  "workspace": "D:\\TapKit\\.test-data\\P00-03-lok-exports-zlupwA\\workspace",
+  "request": {
+    "protocolVersion": 1,
+    "requestId": "b74b158f-3001-74c9-8f74-1b9d0bfe303f",
+    "runId": "b74b158f-3001-74c9-8f74-1b9d0bfe303f",
+    "leaseEpoch": 1,
+    "operation": "diagnostic.execute",
+    "payload": {
+      "runtimeRoot": "D:\\TapKit\\.runtime\\python",
+      "executable": "D:\\TapKit\\.runtime\\python\\python.exe",
+      "inputRoot": "D:\\TapKit\\.runtime\\libreoffice",
+      "workspace": "D:\\TapKit\\.test-data\\P00-03-lok-exports-zlupwA\\workspace",
+      "args": [
+        "-c",
+        "import ctypes as c, os, sys, json\np=sys.argv[1]\nwith os.add_dll_directory(p):\n    lib=c.CDLL(os.path.join(p,\"mergedlo.dll\"),use_last_error=True)\n    print(json.dumps({\"stage\":\"loaded\",\"exports\":{n:bool(getattr(lib,n,None)) for n in [\"libreofficekit_hook\",\"libreofficekit_hook_2\",\"soffice_main\"]}}),flush=True)\n",
+        "D:\\TapKit\\.runtime\\libreoffice\\program",
+        "D:\\TapKit\\.test-data\\P00-03-lok-exports-zlupwA\\workspace"
+      ],
+      "timeoutMs": 45000,
+      "memoryBytes": 2147483648,
+      "processLimit": 8,
+      "outputBytes": 1048576,
+      "terminal": false
+    }
+  },
+  "exitCode": 0,
+  "events": [
+    {
+      "data": {
+        "appContainer": true,
+        "appContainerSid": "S-1-15-2-2255395528-2320916374-1267211500-2770476560-1515960839-3844272381-1616502718",
+        "job": {
+          "breakaway": false,
+          "killOnClose": true,
+          "memoryBytes": 2147483648,
+          "processLimit": 8
+        },
+        "networkCapabilities": 0,
+        "pid": 46696
+      },
+      "event": "started",
+      "leaseEpoch": 1,
+      "protocolVersion": 1,
+      "requestId": "b74b158f-3001-74c9-8f74-1b9d0bfe303f",
+      "runId": "b74b158f-3001-74c9-8f74-1b9d0bfe303f"
+    },
+    {
+      "data": {
+        "activeProcesses": 0,
+        "exitCode": 0,
+        "logDirectory": "D:\\TapKit\\.test-data\\P00-03-lok-exports-zlupwA\\helper-logs-b74b158f-3001-74c9-8f74-1b9d0bfe303f",
+        "outputBytes": 185,
+        "peakActiveProcesses": 2,
+        "status": "exited",
+        "stderr": "Failed to find real location of D:\\TapKit\\.runtime\\python\\python.exe\n",
+        "stdout": "{\"stage\": \"loaded\", \"exports\": {\"libreofficekit_hook\": true, \"libreofficekit_hook_2\": true, \"soffice_main\": true}}\r\n",
+        "totalProcesses": 2
+      },
+      "event": "finished",
+      "leaseEpoch": 1,
+      "protocolVersion": 1,
+      "requestId": "b74b158f-3001-74c9-8f74-1b9d0bfe303f",
+      "runId": "b74b158f-3001-74c9-8f74-1b9d0bfe303f"
+    }
+  ],
+  "stderr": ""
+}

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "lockedAt": "2026-09-15T10:14:00.467Z",
+  "platform": "win32",
+  "arch": "x64",
+  "runtimes": {
+    "node": {
+      "version": "24.21.0",
+      "url": "https://nodejs.org/dist/v24.21.0/node-v24.21.0-win-x64.zip",
+      "sha256": "158f7685b44de51f6c0df1d153526cbcd3e1bc739a8dfc607721cef75de9e541",
+      "license": "MIT",
+      "licenseUrl": "https://raw.githubusercontent.com/nodejs/node/v24.21.0/LICENSE",
+      "archive": "zip",
+      "directory": "node-v24.21.0-win-x64",
+      "executable": "node.exe",
+      "scope": "bundled"
+    },
+    "python": {
+      "version": "3.13.15",
+      "url": "https://www.python.org/ftp/python/3.13.15/python-3.13.15-embed-amd64.zip",
+      "sha256": "d1f04d990aee1253d8569e8e5104e30fa9f5fa830899f14843448872d936a2cf",
+      "hashSource": "Calculated from official HTTPS distribution on first lock",
+      "license": "PSF-2.0",
+      "licenseUrl": "https://docs.python.org/3.13/license.html",
+      "archive": "zip",
+      "directory": ".",
+      "executable": "python.exe",
+      "scope": "bundled"
+    },
+    "rust": {
+      "version": "1.98.1",
+      "url": "https://static.rust-lang.org/dist/2026-09-03/rust-1.98.1-x86_64-pc-windows-msvc.tar.xz",
+      "sha256": "c34c3f01633efe5edac0e1ed1ee66d5ec13a7f27e57c149059ed6bdbe0534407",
+      "license": "MIT OR Apache-2.0",
+      "licenseUrl": "https://www.rust-lang.org/policies/licenses",
+      "archive": "tar.xz",
+      "directory": "rust-1.98.1-x86_64-pc-windows-msvc",
+      "executable": "rustc/bin/rustc.exe",
+      "scope": "development"
+    },
+    "libreoffice": {
+      "version": "26.2.6",
+      "url": "https://download.documentfoundation.org/libreoffice/stable/26.2.6/win/x86_64/LibreOffice_26.2.6_Win_x86-64.msi",
+      "mirrorUrls": [
+        "https://ftp.osuosl.org/pub/tdf/libreoffice/stable/26.2.6/win/x86_64/LibreOffice_26.2.6_Win_x86-64.msi"
+      ],
+      "sha256": "f9877032fd908beb9c0ddf06df4af5c2e85f419c42e14876c4cce5aae5fb2660",
+      "license": "MPL-2.0 AND LGPL-3.0-or-later",
+      "licenseUrl": "https://www.libreoffice.org/about-us/licenses",
+      "archive": "msi",
+      "directory": ".",
+      "executable": "program/soffice.exe",
+      "scope": "bundled"
+    },
+    "git": {
+      "version": "2.55.0.windows.5",
+      "url": "https://github.com/git-for-windows/git/releases/download/v2.55.0.windows.5/MinGit-2.55.0.5-64-bit.zip",
+      "sha256": "56d7b226b7693196cfc71fef26568f536c4a021ab6c37ff2db4287bed908e96e",
+      "license": "GPL-2.0-only",
+      "licenseUrl": "https://github.com/git-for-windows/git/blob/main/COPYING",
+      "archive": "zip",
+      "directory": ".",
+      "executable": "cmd/git.exe",
+      "scope": "bundled"
+    },
+    "windowsSdk": {
+      "version": "10.0.28000.2705",
+      "url": "https://api.nuget.org/v3-flatcontainer/microsoft.windows.sdk.cpp.x64/10.0.28000.2705/microsoft.windows.sdk.cpp.x64.10.0.28000.2705.nupkg",
+      "sha256": "bf892c1048059984850a1ed79bb81c0243478c6d7472d637c90565ab5c836013",
+      "license": "Microsoft Windows SDK License",
+      "licenseUrl": "https://www.nuget.org/packages/Microsoft.Windows.SDK.CPP.x64/10.0.28000.2705/License",
+      "archive": "zip",
+      "directory": ".",
+      "executable": "c/um/x64/kernel32.Lib",
+      "scope": "development"
+    },
+    "msvcCrt": {
+      "version": "14.44.35226",
+      "url": "https://download.visualstudio.microsoft.com/download/pr/67cf767c-5e71-47c2-a54a-cd5631e28942/f01f701a7bcd9587a340898c851424f6a52bb913a70c185ff0d5bf0288c5831a/Microsoft.VC.14.44.17.14.CRT.x64.Desktop.base.vsix",
+      "sha256": "f01f701a7bcd9587a340898c851424f6a52bb913a70c185ff0d5bf0288c5831a",
+      "license": "Microsoft Visual Studio License",
+      "licenseUrl": "https://visualstudio.microsoft.com/license-terms/",
+      "archive": "zip",
+      "directory": ".",
+      "executable": "Contents/VC/Tools/MSVC/14.44.35207/lib/x64/libcmt.lib",
+      "scope": "development"
+    },
+    "msvcImports": {
+      "version": "14.44.35226",
+      "url": "https://download.visualstudio.microsoft.com/download/pr/67cf767c-5e71-47c2-a54a-cd5631e28942/9135b03c0df53c7a0aa9bef7230a1c2ff4263a0ee7baa7e419d034f484f6bb56/Microsoft.VC.14.44.17.14.CRT.x64.Store.base.vsix",
+      "sha256": "9135b03c0df53c7a0aa9bef7230a1c2ff4263a0ee7baa7e419d034f484f6bb56",
+      "license": "Microsoft Visual Studio License",
+      "licenseUrl": "https://visualstudio.microsoft.com/license-terms/",
+      "archive": "zip",
+      "directory": ".",
+      "executable": "Contents/VC/Tools/MSVC/14.44.35207/lib/x64/msvcrt.lib",
+      "scope": "development"
+    }
+  }
+}

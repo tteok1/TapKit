@@ -1,0 +1,132 @@
+{
+  "task": "P02-03",
+  "recordedAt": "2026-10-05T03:34:38.038Z",
+  "baseline": "f7e0156a0b5dd7f76bce3e922108a6a30b81ea79",
+  "branch": "codex/p02-01",
+  "status": "implemented_not_live_verified",
+  "gate": "engineering_passed_external_pending",
+  "workingTree": true,
+  "codeHashes": {
+    "migrations/0007_chat_history.sql": "12c56adbcb09808a4ce8d5c35286cfebf3ee8a9df5f717c2f7601ed34b2b330e",
+    "packages/contracts/src/history.ts": "84b09957f51dfdcc0096ad0f6b989d9b2f285a4a9d17c6338937f32cf4758419",
+    "packages/core/src/history-service.ts": "09894c5f209844ba359dae9136d42bdf2ddc3c3874a30ab7aeb4982a696eeecd",
+    "packages/core/src/temporary-service.ts": "e5f2ab274a1b3d275aed6f0bffa4ebc75d8cfbd5b06b9595cdbd588be3954b44",
+    "packages/storage/src/session-cleanup.ts": "721634f1a538a816334e600138ba01ae00cf3b0d82b605fe32c5f511e1bc7f8b",
+    "apps/desktop/src/renderer/src/chat-surface.tsx": "16102d1cc3f417de8334d10d1fed77087d204dec7331a78db8317a8953c57abd",
+    "apps/desktop/src/renderer/src/desktop-shell.tsx": "b440eafb338dd6047b9a525e28682f39db499f1003ae771aff996e1031ecd3c0",
+    "apps/desktop/src/renderer/src/message-history.tsx": "ab950569f5f5c092c313aa118894243696252c5b8cb74c23a4ee4988a7fadb22",
+    "apps/desktop/src/renderer/src/history-ui.tsx": "d94dd5cb9257ecce80cdc2bfc9e5f62325cad35997071ad5489846d567b896b3"
+  },
+  "checks": [
+    {
+      "name": "unit",
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 227,
+      "evidence": "docs/evidence/P02-03/unit-2026-10-05.log"
+    },
+    {
+      "name": "integration",
+      "command": "pnpm test:integration P00-02 P01-01 P01-02 P01-03 P02-01 P02-02 P02-03.history",
+      "exitCode": 0,
+      "passed": 126,
+      "evidence": "docs/evidence/P02-03/integration-2026-10-05.log"
+    },
+    {
+      "name": "perf",
+      "command": "pnpm test:perf",
+      "exitCode": 0,
+      "passed": 1,
+      "evidence": "docs/evidence/P02-03/perf-2026-10-05.log"
+    },
+    {
+      "name": "e2e",
+      "command": "pnpm test:e2e -- --grep 'P02-01|P02-02|P02-03'",
+      "exitCode": 0,
+      "passed": 12,
+      "evidence": "docs/evidence/P02-03/e2e-2026-10-05.log"
+    },
+    {
+      "name": "check",
+      "command": "pnpm check",
+      "exitCode": 0,
+      "evidence": "docs/evidence/P02-03/check-2026-10-05.log"
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "exitCode": 0,
+      "evidence": "docs/evidence/P02-03/build-2026-10-05.log"
+    },
+    {
+      "name": "docs",
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "evidence": "docs/evidence/P02-03/docs-2026-10-05.log"
+    },
+    {
+      "name": "diff",
+      "command": "git diff --check",
+      "exitCode": 0,
+      "evidence": "docs/evidence/P02-03/diff-2026-10-05.log"
+    }
+  ],
+  "historyTests": 14,
+  "performance": {
+    "dataset": {
+      "sessions": 10000,
+      "messages": 100000
+    },
+    "listP95Ms": 13.3153999999995,
+    "searchP95Ms": 289.35169999999925
+  },
+  "productionFixtureAbsent": true,
+  "external": {
+    "realModelRequests": 0,
+    "originalProfileOrVaultReads": 0,
+    "R01": "complete live pending",
+    "R13": "complete live pending",
+    "R14": "complete live pending",
+    "R02": "pending",
+    "R03": "pending",
+    "R04": "pending",
+    "R05": "pending"
+  },
+  "unchangedGates": {
+    "P00": "failed",
+    "P01": "failed",
+    "nativeExecution": "closed"
+  },
+  "earlierFailures": [
+    {
+      "scope": "Electron sandbox launch",
+      "exitCode": 1,
+      "reason": "renderer crashed; rerun isolated fixture under current Windows user without changing Chromium sandbox"
+    },
+    {
+      "scope": "FTS broad-hit performance",
+      "exitCode": 1,
+      "reason": "P95 818–946ms; external-content indexed projection fixed"
+    },
+    {
+      "scope": "check sandbox",
+      "exitCode": 1,
+      "reason": "existing ACL fixture EPERM; current user check passed with ACL unchanged"
+    },
+    {
+      "scope": "integration migration fixture",
+      "exitCode": 1,
+      "reason": "hardcoded schema6 and fabricated v4 downgrade; fixed to real legacy migration fixture"
+    },
+    {
+      "scope": "Electron fixture rebuild",
+      "exitCode": 1,
+      "reason": "existing development watcher rebuilt production on source edit during E2E; fixture asserted and source held stable"
+    },
+    {
+      "scope": "Electron UI regression",
+      "exitCode": 1,
+      "reason": "legacy anchor selector; async branch value reset; archived route briefly unmounted dialog on refresh; fixed and all P02 reverified"
+    }
+  ]
+}

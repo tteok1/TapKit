@@ -1,0 +1,122 @@
+{
+  "task": "P03-01",
+  "status": "in_progress",
+  "date": "2026-10-06",
+  "baseHead": "e1d4094f2de4ae2eb2df1b1875c70074003ea5bc",
+  "baseCommittedAndPushed": true,
+  "baseRemoteShaVerified": true,
+  "implementation": [
+    "durable bounded batch-start checkpoint reuses request_receipts",
+    "interrupted results reconstructed from real item receipts; no source grants reused",
+    "exact-request replay does not create versions; changed arguments/window rejected",
+    "history and durable dismissal preserve originals and idempotency",
+    "separate import versus parsing UI states"
+  ],
+  "checks": [
+    {
+      "command": "pnpm test:integration -- P03-01.import-recovery",
+      "exitCode": 0,
+      "passed": 1,
+      "log": ".cache/ci/p03-import-hardkill-initial.log",
+      "logSha256": "8cd184a95981d8738a6b23c2696272b3e86ab928cc95db1e23945e525c5c39bf"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 1,
+      "reason": "test fixture package alias unavailable to root TypeScript and ForkOptions has no windowsHide; use relative source import and hidden spawn with IPC",
+      "log": ".cache/ci/p03-import-recovery-check-initial.log",
+      "logSha256": "a6070047edf9d7bbd720069bb862ec8ebafc52c69f730500574748f6875e1fe5"
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.file-service P03-01.import-recovery P03-01.file-selections P03-01.file-exporter P03-01.files",
+      "exitCode": 0,
+      "passed": 36,
+      "log": ".cache/ci/p03-import-recovery-integration-final.log",
+      "logSha256": "847c6d6f52fcf5a980f884b9443ae19580d3f742b258a53acd9e8d990547dfff"
+    },
+    {
+      "command": "pnpm test:unit -- P03-01",
+      "exitCode": 0,
+      "passed": 28,
+      "log": ".cache/ci/p03-import-recovery-unit.log",
+      "logSha256": "b9551f2c22b5a927c08f6c29099c2d4a0b5d859a8f12cf9792a637d6cdf33f64"
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-import-recovery-build-final.log",
+      "logSha256": "b7c7355365fd3fde9d3b92b4de65593e9d72d82017aafb8cd8cfda12d17b9e68"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01",
+      "exitCode": 0,
+      "passed": 5,
+      "log": ".cache/ci/p03-import-recovery-e2e-final.log",
+      "logSha256": "968bcd4a076147668c6b78ff850e38836c3dbcdc37bb1b731d8a23f82aa4b376"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "formattedFiles": 303,
+      "log": ".cache/ci/p03-import-recovery-check-final.log",
+      "logSha256": "637c9da0a738a4c27e5851890de1f9e1b86356785effc40c29b2a76954ec166a"
+    },
+    {
+      "command": "pnpm check (including final documentation)",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-import-recovery-check-delivery.log",
+      "logSha256": "6b8ed071b0e99ac48e9b15ab00bebf12fdfbc45de253a6f4a905094f511ddce6"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "tasks": 37
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "actualCrash": {
+    "process": "compiled current FileService/FileSelections/Store in a synthetic Node importer",
+    "termination": "exact fixture PID killed after first commit and before second read",
+    "reopened": "real SQLite profile and real Electron Host/Core opening same synthetic profile",
+    "preserved": [
+      "first file, single version and parse job",
+      "exact original source bytes",
+      "receipt identity"
+    ],
+    "unfinished": "failed with PERMISSION_DENIED; new token and request required",
+    "legacyHalfBatchesWithoutStartCheckpoint": "cannot completely reconstruct"
+  },
+  "screenshot": {
+    "file": "docs/evidence/P03-01/import-recovery.png",
+    "sha256": "2825b8fa697ef0931975c740788cb681070f1cbf8d99010cc6b85b83bb15eac4",
+    "visualReview": "passed"
+  },
+  "ci": {
+    "head": "e1d4094f2de4ae2eb2df1b1875c70074003ea5bc",
+    "prRun": 37370141971,
+    "pushRun": 37370137041,
+    "checkJob": 111964981057,
+    "checkStatus": "completed",
+    "checkConclusion": "failure",
+    "checkSteps": 0,
+    "startupJob": 111966840058,
+    "startupStatus": "queued",
+    "annotation": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the Billing & plans section in your settings",
+    "resource": "R15",
+    "newNativeDiagnostics": "not_run"
+  },
+  "guard": {
+    "localUnsignedHelper": "not_executed",
+    "chromiumSandbox": true,
+    "realUserProfileVaultOrKeys": "not_read"
+  },
+  "remaining": [
+    "parser staging startup cleanup",
+    "task-linked usage",
+    "remaining task requirements and negative/version E2E",
+    "R15 and actual native P03 acceptance"
+  ]
+}

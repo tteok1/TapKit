@@ -1,0 +1,4 @@
+{"taskId":"P01-01","stage":"response","status":200,"contentType":"missing","bodyKind":"sse","compressedRequest":true}
+{"taskId":"P01-01","stage":"result","errorCode":"STREAM_INTERRUPTED","diagnosticCode":"unexpected_content_type"}
+{"taskId":"P01-01","finished":false}
+{"processExit":1,"launchError":false,"stderrPresent":false}

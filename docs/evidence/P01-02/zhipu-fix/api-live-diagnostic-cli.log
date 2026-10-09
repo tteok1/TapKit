@@ -1,0 +1,9 @@
+{
+  "publicProfilePreflight": true,
+  "changedBindingRejectedBeforeRequest": true,
+  "windowsPowerShell51SecureInputFixture": true,
+  "unicodeArgument": true,
+  "keyAbsentFromOutputAndEnvironment": true,
+  "realRequests": 0,
+  "fixtureDataDir": "D:\\TapKit\\.test-data\\P01-02-live-cli-fixture-cGGYP5"
+}

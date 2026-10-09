@@ -1,0 +1,9 @@
+$ node scripts/e2e.mjs "--" "--grep" "P01-02"
+
+Running 1 test using 1 worker
+
+(node:292896) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\e2e\P01-02.api.spec.ts:5:1 › P01-02 real desktop UI stores both formats with DPAPI, restarts metadata and clears the selected account (5.5s)
+
+  1 passed (5.9s)

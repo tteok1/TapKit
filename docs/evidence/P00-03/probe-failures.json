@@ -1,0 +1,23 @@
+[
+  {
+    "fullName": "P00-03 T07 Office three formats convert with private profile and unchanged originals",
+    "status": "failed",
+    "failureMessages": [
+      "AssertionError: expected 'timeout' to be 'exited' // Object.is equality\n    at D:/TapKit/tests/integration/P00-03.office-git.test.ts:75:28\n    at file:///D:/TapKit/node_modules/.pnpm/vitest@5.0.0_@types+node@24_68d150b1aed274d0dc573b66b4a74a47/node_modules/vitest/dist/chunks/run.CQOUYP-x.js:2783:20"
+    ]
+  },
+  {
+    "fullName": "P00-03 MinGit status/diff only with hooks, textconv and credentials disabled",
+    "status": "failed",
+    "failureMessages": [
+      "AssertionError: expected 128 to be +0 // Object.is equality\n    at D:/TapKit/tests/integration/P00-03.office-git.test.ts:133:32\n    at file:///D:/TapKit/node_modules/.pnpm/vitest@5.0.0_@types+node@24_68d150b1aed274d0dc573b66b4a74a47/node_modules/vitest/dist/chunks/run.CQOUYP-x.js:2783:20"
+    ]
+  },
+  {
+    "fullName": "P00-03 real Windows sandbox T08 T19 Node reads only input and writes workspace; runtime and input are read only; environment is private",
+    "status": "failed",
+    "failureMessages": [
+      "AssertionError: Target cannot be null or undefined.\n    at Proxy.<anonymous> (file:///D:/TapKit/node_modules/.pnpm/vitest@5.0.0_@types+node@24_68d150b1aed274d0dc573b66b4a74a47/node_modules/vitest/dist/chunks/index.OVGXnVRj.js:2137:20)\n    at Proxy.<anonymous> (file:///D:/TapKit/node_modules/.pnpm/vitest@5.0.0_@types+node@24_68d150b1aed274d0dc573b66b4a74a47/node_modules/vitest/dist/chunks/index.OVGXnVRj.js:1934:14)\n    at Proxy.methodWrapper (file:///D:/TapKit/node_modules/.pnpm/chai@6.2.2/node_modules/chai/index.js:1700:25)\n    at D:/TapKit/tests/integration/P00-03.sandbox.test.ts:95:57\n    at file:///D:/TapKit/node_modules/.pnpm/vitest@5.0.0_@types+node@24_68d150b1aed274d0dc573b66b4a74a47/node_modules/vitest/dist/chunks/run.CQOUYP-x.js:2783:20"
+    ]
+  }
+]

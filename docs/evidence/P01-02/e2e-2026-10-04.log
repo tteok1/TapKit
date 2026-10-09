@@ -1,0 +1,120 @@
+$ node scripts/e2e.mjs "--" "--grep" "P01-02|P01-01|P00-02"
+
+Running 14 tests using 1 worker
+
+(node:298892) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 282076
+(node:282076) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+TAPKIT_HOST_WINDOW 282076
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:51244/31f1b142-918e-466d-b0fa-137f7bbb7e38
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok  1 tests\e2e\P00-02.foundation.spec.ts:29:1 › P00-02 T01 T05 real two-window CAS and committed event subscription (1.1s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 283680
+(node:283680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:61199/bdc40a95-4883-400e-b654-889e246d3578
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok  2 tests\e2e\P00-02.foundation.spec.ts:87:1 › P00-02 T19 real Windows safeStorage round trip, ACL and plaintext exclusion (2.1s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 294512
+(node:294512) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:62305/c36b7cad-7894-4b97-ab19-19a6bf4011e8
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok  3 tests\e2e\P00-02.foundation.spec.ts:146:1 › P00-02 T19 foreign WebContents cannot invoke app IPC (1.1s)
+TAPKIT_HOST_WINDOW 280616
+(node:280616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+TAPKIT_CORE_EXIT 1
+Error occurred in handler for 'tapkit:ping': Error: Core unavailable
+    at ForkUtilityProcess.<anonymous> (D:\tapkit\TapKit\apps\desktop\out\main\index.js:7063:21)
+    at ForkUtilityProcess.emit (node:events:514:28)
+    at UtilityProcess.emit (node:electron/js2c/browser_init:2:95072)
+Error occurred in handler for 'tapkit:ping': Error: Core unavailable
+    at forward (D:\tapkit\TapKit\apps\desktop\out\main\index.js:6952:49)
+    at D:\tapkit\TapKit\apps\desktop\out\main\index.js:7197:14
+    at async Session.<anonymous> (node:electron/js2c/browser_init:2:123817)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:57513/9342db17-0424-46b3-a00f-609482fa3dbe
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok  4 tests\e2e\P00-02.foundation.spec.ts:165:1 › P00-02 T05 Core kill rebuilds writer; acked settings survive and backup is not duplicated (2.9s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 270348
+(node:270348) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+
+TAPKIT_SECOND_INSTANCE
+TAPKIT_HOST_WINDOW 270348
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:61237/b1bfa6b7-f056-4bfe-87c6-70dcb4a3e389
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok  5 tests\e2e\P00-02.foundation.spec.ts:212:1 › P00-02 single instance activates owner and closing UI keeps Core alive until explicit quit (1.8s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 268292
+(node:268292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:57439/38fa0ba2-6d37-48d5-8ab3-24c7bf72cbfe
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok  6 tests\e2e\P00-02.foundation.spec.ts:266:1 › P00-02 higher schema shows a recovery prompt and preserves original database (2.2s)
+  ok  7 tests\e2e\P01-01.codex.spec.ts:7:1 › P01-01 unconfigured diagnostics uses private Core catalog and a finite preload bridge (1.1s)
+  ok  8 tests\e2e\P01-01.codex.spec.ts:53:3 › P01-01 logout button clears real DPAPI credentials and removes the account record (2.6s)
+  ok  9 tests\e2e\P01-01.codex.spec.ts:53:3 › P01-01 clear account button removes an old unconfigured record (2.6s)
+(node:292836) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+vite v7.3.6 building ssr environment for production...
+transforming...
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 845 modules transformed.
+rendering chunks...
+.test-data/P01-01-live-runner/assets/openai-codex-responses-ChjsgNYz.cjs  111.13 kB
+.test-data/P01-01-live-runner/index.cjs                                   401.19 kB
+✓ built in 1.12s
+  ok 10 tests\e2e\P01-01.live-runner.spec.ts:8:1 › P01-01 mock live runner cancels during generation, restarts a process, refreshes DPAPI credentials and logs out (5.7s)
+  ok 11 tests\e2e\P01-01.utility.spec.ts:9:3 › P01-01 desktop utility Core probes text and tools through the compiled model API (590ms)
+  ok 12 tests\e2e\P01-01.utility.spec.ts:9:3 › P01-01 desktop utility Core returns safe gateway diagnostics through IPC (622ms)
+  ok 13 tests\e2e\P01-01.utility.spec.ts:9:3 › P01-01 desktop utility Core probes text and tools when the SSE MIME header is missing (612ms)
+  ok 14 tests\e2e\P01-02.api.spec.ts:5:1 › P01-02 real desktop UI stores both formats with DPAPI, restarts metadata and clears the selected account (5.4s)
+
+  14 passed (31.1s)

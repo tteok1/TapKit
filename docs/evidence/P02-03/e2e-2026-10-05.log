@@ -1,0 +1,14 @@
+pnpm test:e2e -- --grep 'P02-01|P02-02|P02-03'
+exit_code=0
+$ node scripts/e2e.mjs "--" "--grep" "P02-01|P02-02|P02-03"
+✓ built in 602ms
+✓ built in 1.57s
+✓ built in 641ms
+✓ built in 376ms
+✓ built in 34.45s
+  12 passed (1.2m)
+✓ built in 682ms
+✓ built in 1.73s
+✓ built in 711ms
+✓ built in 424ms
+✓ built in 32.48s

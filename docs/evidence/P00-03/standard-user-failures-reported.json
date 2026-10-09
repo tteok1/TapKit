@@ -1,0 +1,30 @@
+{
+  "provenance": "User pasted output of scripts/native-test-summary.mjs from the test account",
+  "total": 10,
+  "passed": 7,
+  "failed": 3,
+  "failures": [
+    {
+      "suite": "P00-03.capability.test.ts",
+      "type": "collection_error",
+      "message": "ENOENT: no such file or directory, open 'C:/Users/private-user\\migrations\\0001_core.sql'",
+      "cause": "Generated test kit omitted root migrations directory; no storage source change needed"
+    },
+    {
+      "suite": "P00-03.office-git.test.ts",
+      "name": "Office three formats",
+      "message": "expected 1 to be 0"
+    },
+    {
+      "suite": "P00-03.office-git.test.ts",
+      "name": "MinGit status/diff",
+      "message": "expected 128 to be 0"
+    },
+    {
+      "suite": "P00-03.sandbox.test.ts",
+      "name": "Node input/runtime/privacy",
+      "message": "Target cannot be null or undefined at permission-code assertion",
+      "cause": "Assertion accepted EACCES only; Windows returned EPERM; now accepts these two access-denied codes"
+    }
+  ]
+}

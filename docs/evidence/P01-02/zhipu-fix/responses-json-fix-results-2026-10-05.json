@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-05",
+  "timezone": "Asia/Shanghai",
+  "task": "P01-02",
+  "branch": "codex/fix-zhipu-api-probe",
+  "codeRef": "b92eece52e88eb6bd16931cd6ed942bb91d4d1f6+working-tree",
+  "committed": false,
+  "pushed": false,
+  "modelRequests": 0,
+  "keyRead": false,
+  "userConfigurationChanged": false,
+  "agentStartedElectron": false,
+  "officialDocuments": {
+    "webBodyFetch": "failed",
+    "publicGetOnly": true,
+    "sandboxCurlExitCode": 35,
+    "urls": [
+      "https://docs.bigmodel.cn/cn/guide/develop/responses/introduction.md",
+      "https://docs.bigmodel.cn/api-reference/response/创建-response.md"
+    ],
+    "currentUserCurlExitCode": 0
+  },
+  "checks": {
+    "formatInitial": {
+      "reason": "http.ts-write-UNKNOWN",
+      "pnpmExitCode": 2
+    },
+    "formatRetry": {
+      "log": "responses-json-fix-format-2026-10-05.log",
+      "exitCode": 0
+    },
+    "checkInitial": {
+      "exitCode": 1,
+      "log": "responses-json-fix-check-2026-10-05.log",
+      "reason": "new-test-exact-optional-property"
+    },
+    "checkCurrentUser": {
+      "log": "responses-json-fix-check-reviewed-2026-10-05.log",
+      "exitCode": 0
+    },
+    "buildDesktop": {
+      "log": "responses-json-fix-build-2026-10-05.log",
+      "exitCode": 0
+    },
+    "docsCheck": {
+      "exitCode": 0,
+      "log": "responses-json-fix-docs-2026-10-05.log"
+    },
+    "diffCheck": {
+      "exitCode": 0
+    },
+    "unit": {
+      "reason": "user-paused-local-testing",
+      "status": "not_run"
+    },
+    "integration": {
+      "reason": "user-paused-local-testing",
+      "status": "not_run"
+    },
+    "e2e": {
+      "status": "not_run"
+    },
+    "live": {
+      "status": "not_run"
+    }
+  },
+  "artifactInspection": {
+    "coreHasJsonInspection": true,
+    "coreHasMessageType": true,
+    "coreHasNonStreamingReason": true,
+    "rendererHasJsonReason": true
+  },
+  "sha256": {
+    "packages/contracts/src/providers.ts": "bd580a52f168e32d48056fa989f0531bfbbf35110acac5dfd7c1f02efe12fe9f",
+    "packages/providers/src/api/http.ts": "67a6d7851e01e6f61baa71c20df925f2f61a02bf1a7351e3b6626561f5a199f3",
+    "packages/providers/src/api/adapter.ts": "4088703b5e43c790c452f44ad23d99657bba03aa622ac46d58a248a62480781d",
+    "packages/providers/src/api/errors.ts": "17f06c8b394ce5e765a3c8e12017f966da8e52f7f14050961691218ab0321236",
+    "apps/desktop/src/renderer/locales/zh-CN.json": "383caf5c21f395d55a165337e80616701e57add53ed37e750820b8d1f6bf1abd",
+    "tests/unit/P01-02.api.test.ts": "262db98522282399ad453a1bd664fa64e9fb20e26366a94795d622cea21e0649",
+    "tests/unit/P01-02.zhipu.test.ts": "1e0a469b4c4e75c39fef49d2ba73408df9b7b94a921bb1ebfe26afb11d4e1821",
+    "tests/integration/P01-02.zhipu.test.ts": "4322f7ae6a345e3168216ae87190d7105593326eea0fd3eefc050099dc1f8c8d",
+    "packages/core/dist/index.cjs": "09e05c5fe0017f566c174c62941453f842ec959c41df980539cc92c72e129be3"
+  },
+  "taskStatus": "in_progress",
+  "gateStatus": "failed",
+  "historicalResponseRootCause": "not_confirmed",
+  "confirmedCodeDefects": [
+    "missing-required-message-type",
+    "missing-top-level-sse-error-code",
+    "responses-error-alias-gap",
+    "http-2xx-json-error-masking"
+  ]
+}

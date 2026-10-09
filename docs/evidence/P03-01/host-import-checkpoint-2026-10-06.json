@@ -1,0 +1,100 @@
+{
+  "task": "P03-01",
+  "status": "in_progress",
+  "date": "2026-10-06",
+  "baseHead": "19afa7f17131db9656dc3a4601bcb30afdd3d0e5",
+  "implementation": [
+    "private Host/Core file selection and pinned read-only handles",
+    "window-bound expiring one-use grants",
+    "bounded folder hierarchy",
+    "public FileService dispatch",
+    "per-item durable receipts and partial results",
+    "cancellation and revision fence"
+  ],
+  "checks": [
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 255
+    },
+    {
+      "command": "pnpm test:integration -- P00-02.storage P02-03.history P03-01.files P03-01.migration P03-01.parser-process P03-01.parser-orchestration P03-01.file-selections P03-01.file-service",
+      "exitCode": 0,
+      "passed": 70,
+      "note": "before final two service race tests"
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.file-selections P03-01.file-service",
+      "exitCode": 0,
+      "passed": 16
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "formattedFiles": 292,
+      "note": "before this documentation checkpoint; final check required"
+    },
+    {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "note": "compiled unsigned helper only; never executed local blocked helper"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 1,
+      "note": "new concurrent-replay test spread an unknown payload; replaced with typed input constructor"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "formattedFiles": 293,
+      "note": "after test repair and documentation checkpoint"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "tasks": 37
+    },
+    {
+      "command": "pnpm test:integration -- P00-02.storage P02-03.history P03-01.files P03-01.migration P03-01.parser-process P03-01.parser-orchestration P03-01.file-selections P03-01.file-service",
+      "exitCode": 0,
+      "passed": 72,
+      "note": "final selected regression including two race tests"
+    }
+  ],
+  "ci": {
+    "run": 37361800521,
+    "job": 111937957349,
+    "head": "19afa7f17131db9656dc3a4601bcb30afdd3d0e5",
+    "status": "completed",
+    "conclusion": "failure",
+    "executedSteps": 0,
+    "resourceId": "R15",
+    "cause": "GitHub recent account payments failed or spending limit needs increase",
+    "annotationsSha256": "bbed7344ec151e5a2c408ed7de6c9ae8904fe241fb76038943b14650c6f47a0a",
+    "previousPdfRun": 37358597763,
+    "previousStartupJob": 111938559554,
+    "previousStartupExecutedSteps": 0
+  },
+  "native": {
+    "local": "not_run_application_control",
+    "productionFailure": "CORRUPT_FILE in 3e569f7 real AppContainer tests",
+    "newDiagnostics": "not_run_billing_blocked",
+    "guardRelaxed": false
+  },
+  "remaining": [
+    "file library UI and real Electron picker/drop E2E",
+    "remaining space and controlled original download",
+    "crash recovery of unfinished imports/staging",
+    "image previews",
+    "real P03 native acceptance",
+    "P03-02/03 and P03 gate"
+  ],
+  "git": {
+    "commit": "1f58f17822b039f4e40d0d3f050748e50b84bcff",
+    "push": "exit0",
+    "remoteSha": "1f58f17822b039f4e40d0d3f050748e50b84bcff",
+    "pr": 6,
+    "prBodyUpdated": true
+  }
+}

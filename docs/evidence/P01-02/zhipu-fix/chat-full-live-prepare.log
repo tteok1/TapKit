@@ -1,0 +1,20 @@
+$ node scripts/live.mjs "--" "--provider" "openai-compatible" "--account" "智谱 Chat 测试 2" "--prepare-only"
+vite v7.3.6 building ssr environment for production...
+transforming...
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 804 modules transformed.
+rendering chunks...
+.test-data/P01-02-live-runner/index.cjs  271.58 kB
+✓ built in 1.34s
+{"accountId":"01a10491-7c7a-7b31-bdce-d62b557d124e","label":"智谱 Chat 测试 2","config":{"providerId":"openai-compatible","apiFormat":"openai-chat","baseURL":"https://open.bigmodel.cn/api/paas/v4","modelId":"glm-4.7-flash"},"bindingHash":"e0e921f8d2aaf8737da5bbba116b1a29cb3b2a6c6b224a8015e47d0e99182431","requests":6,"maxOutputTokens":768,"runMode":"full"}

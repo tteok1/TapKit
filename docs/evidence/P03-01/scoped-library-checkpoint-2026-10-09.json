@@ -1,0 +1,146 @@
+{
+  "task": "P03-01",
+  "status": "in_progress",
+  "date": "2026-10-09",
+  "baseHead": "726fa3c3f0586743d2e6171fecc687c7d72960bf",
+  "implementation": [
+    "Default project/session library reads follow pinned versions; source role preferred, invalid pins never fall back",
+    "Version format/body/size/status filters and scoped I/O authorization agree",
+    "UI fixed-version badge and explicit historical copy; scoped view reloaded after metadata mutation and restoration",
+    "Real Electron navigation cancellation and original-draft-only late results, late creation and grant release verified"
+  ],
+  "checks": [
+    {
+      "command": "pnpm test:unit -- P03-01.chat-import P03-01.files-contract P02-02.chat",
+      "exitCode": 0,
+      "passed": 15,
+      "log": ".cache/ci/p03-chat-lifecycle-unit-2026-10-09.log",
+      "logSha256": "5a590cc29bc2ee92e1e3cd77ec53a3964a732ae5fffa86f75c47b19bc45e011c"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01 T08",
+      "exitCode": 0,
+      "passed": 3,
+      "log": ".cache/ci/p03-chat-lifecycle-electron-closed-2026-10-09.log",
+      "logSha256": "97db6b7a65102fb46a3966c19e82e2c3b81b468209e1c03a540fcda0b4ea3602",
+      "note": "Actual original Main/Core replies delayed after execution; cancellation, draft isolation/restart, late sessions.create and one released Host token. Not an interrupted half-transfer."
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01",
+      "exitCode": 0,
+      "passed": 11,
+      "log": ".cache/ci/p03-chat-lifecycle-electron-final-2026-10-09.log",
+      "logSha256": "c523d251604d44a09d3fe75dc45bbdde9b6b7ca330b538e6481a549c190cbbb0",
+      "note": "Before scoped-library production fix."
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.files",
+      "exitCode": 1,
+      "passed": 11,
+      "log": ".cache/ci/p03-scoped-list-repro-2026-10-09.log",
+      "logSha256": "b37203e8154ef33bfc272c584a60b37165b76c1234ac0f8b0be799103dff9bb7",
+      "note": "One failure reproduced default scoped listing selecting the global current version."
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.files",
+      "exitCode": 0,
+      "passed": 12,
+      "log": ".cache/ci/p03-scoped-list-first-fixed-2026-10-09.log",
+      "logSha256": "947673912fa3e312e3e8d84e19a228a7052d97c570191ea1921cdeabaee9344d"
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.files",
+      "exitCode": 0,
+      "passed": 15,
+      "log": ".cache/ci/p03-scoped-list-integration-fixed-2026-10-09.log",
+      "logSha256": "c0d043e0dc46c8424a7311b2dfdf13c13e865db05654f6386372595d285a60f7",
+      "note": "Additional owner/invalid-pin/actual I/O races; previous 13/15 run used invalid fixture role attachment, corrected to the existing input role."
+    },
+    {
+      "command": "pnpm test:integration -- P03-01.files P03-01.file-service P03-01.file-selections P03-01.file-material P03-01.file-exporter P03-01.file-usage P02-02.chat P02-03.history",
+      "exitCode": 0,
+      "passed": 81,
+      "log": ".cache/ci/p03-scoped-list-integration-closed-2026-10-09.log",
+      "logSha256": "010454b20a72231fa562ccc5a970f9660cc3d347b586c3f70dc00a9aae5fdcae"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01 T07 scoped",
+      "exitCode": 1,
+      "passed": 0,
+      "log": ".cache/ci/p03-scoped-list-electron-first-2026-10-09.log",
+      "logSha256": "73958da863a4dee4007b3bf384e2c75d815e7aa2bc5651b80126f5faeefbbc81",
+      "note": "Test locator assumed select; actual format control is a textbox."
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01 T07 scoped",
+      "exitCode": 1,
+      "passed": 0,
+      "log": ".cache/ci/p03-scoped-list-electron-fixed-2026-10-09.log",
+      "logSha256": "73c531b80d268fe93ba8a11e94ea41d09b0c9b30cf9c9509f20357ad984f905a",
+      "note": "Real production refresh defect: files.get strict DTO rejected extra trash:false. Removed unsupported field; did not relax schema."
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-scoped-list-build-fixed-2026-10-09.log",
+      "logSha256": "1a98f788ddc762873395b3beb94c3676570f4e8da866cd70112617c60a7b3cbd"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01 T07 scoped",
+      "exitCode": 0,
+      "passed": 1,
+      "log": ".cache/ci/p03-scoped-list-electron-refresh-fixed-2026-10-09.log",
+      "logSha256": "a4979cbe9a57ec02b36feac34d4614f446b6c00f7c979e7389c02d44533081bc"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P03-01",
+      "exitCode": 0,
+      "passed": 12,
+      "log": ".cache/ci/p03-scoped-list-electron-final-2026-10-09.log",
+      "logSha256": "9fb467674f30564effa1ca8945b777a76c71e99ddb28f1a10f5a490e662ba334",
+      "note": "Final production implementation; script restores ordinary build."
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-scoped-list-check-final-2026-10-09.log",
+      "logSha256": "a105e4a3ad71a563c1005afd553f78e1f9908a81f62241e1c825ae140a63c4a6",
+      "note": "318 repository files before this evidence/progress update; final check recorded separately."
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-scoped-checkpoint-check-2026-10-09.log",
+      "logSha256": "a105e4a3ad71a563c1005afd553f78e1f9908a81f62241e1c825ae140a63c4a6"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": ".cache/ci/p03-scoped-checkpoint-docs-2026-10-09.log",
+      "logSha256": "a49a9c3fffefbf5720a74224b98b845cc437bb7411bdc92825d6f41bb8339276"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/evidence/P03-01/chat-navigation-isolation.png",
+      "sha256": "83660b21404b4793fcaac4769777298f675960ceb00c4037576b9330c0651c27",
+      "visuallyReviewed": true
+    },
+    {
+      "path": "docs/evidence/P03-01/scoped-pinned-library.png",
+      "sha256": "d5335dfee1c399e2d9e9c182dd8e30b00244c624879421f5f2a172e76494a9df",
+      "visuallyReviewed": true
+    }
+  ],
+  "productionFixtureMarker": false,
+  "limits": [
+    "Synthetic parsed structures are consumer/lease tests, not native acceptance.",
+    "No real model or locally blocked unsigned helper executed.",
+    "R15 pending: previous head CI zero-step billing failure; new head must be checked after push.",
+    "Cross-scope folder/root projection and final requirement/exception audit remain; P03-02/03 unstarted."
+  ]
+}

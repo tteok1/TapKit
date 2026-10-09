@@ -1,0 +1,1108 @@
+{
+  "recordedAt": "2026-10-05T12:22:29.224Z",
+  "previousHead": "9837526b91ad0f465cfa3d0efe16a5d26ffb1453",
+  "previousCi": {
+    "pr": {
+      "run": 37305371971,
+      "jobs": [
+        {
+          "id": 111747649210,
+          "name": "check",
+          "status": "completed",
+          "conclusion": "failure",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "conclusion": "success"
+            },
+            {
+              "name": "Restore locked runtime archives",
+              "conclusion": "success"
+            },
+            {
+              "name": "Bootstrap locked runtime and native dependencies",
+              "conclusion": "success"
+            },
+            {
+              "name": "Save verified runtime archives",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Check",
+              "conclusion": "success"
+            },
+            {
+              "name": "Unit and current-route integration",
+              "conclusion": "success"
+            },
+            {
+              "name": "Dedicated Core performance checks",
+              "conclusion": "failure"
+            },
+            {
+              "name": "Build and Electron checks",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify current-route P00-03 as an independent standard user",
+              "conclusion": "success"
+            },
+            {
+              "name": "Repeat fresh-process Office shutdown diagnostics",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "id": 111755767392,
+          "name": "startup-diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "conclusion": "success"
+            },
+            {
+              "name": "Restore locked runtime archives",
+              "conclusion": "success"
+            },
+            {
+              "name": "Bootstrap locked runtime and native dependencies",
+              "conclusion": "success"
+            },
+            {
+              "name": "Repeat fresh-process startup diagnostics",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "searchP95Ms": 552.3543000000027
+    },
+    "push": {
+      "run": 37305366141,
+      "jobs": [
+        {
+          "id": 111747628636,
+          "name": "check",
+          "status": "completed",
+          "conclusion": "failure",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "conclusion": "success"
+            },
+            {
+              "name": "Restore locked runtime archives",
+              "conclusion": "success"
+            },
+            {
+              "name": "Bootstrap locked runtime and native dependencies",
+              "conclusion": "success"
+            },
+            {
+              "name": "Save verified runtime archives",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Check",
+              "conclusion": "success"
+            },
+            {
+              "name": "Unit and current-route integration",
+              "conclusion": "success"
+            },
+            {
+              "name": "Dedicated Core performance checks",
+              "conclusion": "failure"
+            },
+            {
+              "name": "Build and Electron checks",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify current-route P00-03 as an independent standard user",
+              "conclusion": "success"
+            },
+            {
+              "name": "Repeat fresh-process Office shutdown diagnostics",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "id": 111755944476,
+          "name": "startup-diagnostics",
+          "status": "in_progress",
+          "conclusion": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "conclusion": "success"
+            },
+            {
+              "name": "Restore locked runtime archives",
+              "conclusion": "success"
+            },
+            {
+              "name": "Bootstrap locked runtime and native dependencies",
+              "conclusion": null
+            },
+            {
+              "name": "Repeat fresh-process startup diagnostics",
+              "conclusion": null
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "conclusion": null
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "conclusion": null
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "conclusion": null
+            }
+          ]
+        }
+      ],
+      "searchP95Ms": 971.9636000000028
+    },
+    "results": {
+      "unit": 227,
+      "integration": 153,
+      "electron": 8,
+      "standardUser": "success",
+      "officeFreshProcesses": [
+        true,
+        true,
+        true
+      ]
+    },
+    "logSha256": "02d2a9a59051ee48cbcfd0803e5943c3dce59539d7037e8b65f75637d88cd811",
+    "note": "Both check jobs failed only the unchanged 500ms search P95 assertion; the fixture/test 60-second timeout and Office failure no longer reproduced. Startup PR job passed."
+  },
+  "change": "Materialize FTS matching rowids only for timestamp sorting so the existing profile/time index can stop after a page; avoid unused BM25 scoring. Replace per-row session EXISTS with an equivalent profile-scoped LEFT JOIN. Retain relevance score/time/id order and all scope/file/deletion/archive predicates.",
+  "validation": {
+    "unit": {
+      "command": "pnpm test:unit",
+      "passed": 227,
+      "total": 227,
+      "exitCode": 0
+    },
+    "integration": {
+      "command": "pnpm test:integration tests/integration/P02-03.history.test.ts",
+      "passed": 15,
+      "total": 15,
+      "exitCode": 0,
+      "note": "Added stable pagination/ties across both sorts, archived visibility, stale deleted/missing/foreign-profile index entries, live/deleted files and short scoped query. Initial synthetic file fixture collided with real file-index triggers; changed to upsert then passed."
+    },
+    "perf": {
+      "command": "pnpm test:perf",
+      "passed": 1,
+      "total": 1,
+      "exitCode": 0,
+      "report": {
+        "task": "P02-03",
+        "recordedAt": "2026-10-05T12:16:37.705Z",
+        "dataset": {
+          "sessions": 10000,
+          "messages": 100000
+        },
+        "seedMs": 19738.7548,
+        "sampleMs": 3737.4014000000025,
+        "timeoutBudgets": {
+          "setupMs": 120000,
+          "samplingMs": 60000
+        },
+        "device": {
+          "platform": "win32",
+          "arch": "x64",
+          "cpu": "13th Gen Intel(R) Core(TM) i7-13700H",
+          "logicalCpus": 20,
+          "totalMemory": 16961822720
+        },
+        "list": {
+          "samples": 200,
+          "p50Ms": 6.427400000000489,
+          "p95Ms": 9.072100000001228
+        },
+        "search": {
+          "samples": 30,
+          "p50Ms": 40.105899999998655,
+          "p95Ms": 129.90550000000076,
+          "bySort": {
+            "updated": {
+              "samples": 15,
+              "p50Ms": 35.163799999998446,
+              "p95Ms": 40.105899999998655
+            },
+            "relevance": {
+              "samples": 15,
+              "p50Ms": 117.93240000000151,
+              "p95Ms": 131.69620000000214
+            }
+          }
+        },
+        "processMemory": {
+          "rss": 239407104,
+          "heapTotal": 107163648,
+          "heapUsed": 45178744,
+          "external": 4400142,
+          "arrayBuffers": 212855
+        },
+        "scope": "Isolated Core/SQLite fixture; excludes Electron launch, total app memory and P03 document retrieval"
+      }
+    },
+    "build": {
+      "command": "pnpm build",
+      "exitCode": 0
+    },
+    "electron": {
+      "command": "pnpm test:e2e -- --grep P02-03",
+      "passed": 4,
+      "total": 4,
+      "exitCode": 0,
+      "productionRestored": true
+    },
+    "check": {
+      "command": "pnpm check",
+      "exitCode": 0
+    },
+    "docsCheck": {
+      "command": "pnpm docs:check",
+      "exitCode": 0
+    },
+    "diffCheck": {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  },
+  "sources": [
+    "https://www.sqlite.org/fts5.html#sorting_by_auxiliary_function_results",
+    "https://www.sqlite.org/lang_with.html#materialization_hints"
+  ],
+  "delivery": {
+    "sha": "491d31622d1f14c3dd3c475af28f4b7ee3da753f",
+    "branch": "codex/p02-01",
+    "pushExitCode": 0,
+    "remoteHeadMatches": true,
+    "prRun": 37309310850,
+    "pushRun": 37309305693,
+    "status": "completed",
+    "conclusion": "failure"
+  },
+  "status": {
+    "P00-03": "in_progress",
+    "P00-gate": "failed",
+    "P02-03": "implemented_not_live_verified"
+  },
+  "rankFollowup": {
+    "recordedAt": "2026-10-05T12:54:42.089Z",
+    "head": "491d31622d1f14c3dd3c475af28f4b7ee3da753f",
+    "prRun": 37309310850,
+    "pushRun": 37309305693,
+    "prSearchP95Ms": 1031.1579000000056,
+    "pushSearchP95Ms": 531.2290999999968,
+    "jobs": [
+      {
+        "id": 111760535272,
+        "name": "check",
+        "status": "completed",
+        "conclusion": "failure",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Restore locked runtime archives",
+            "conclusion": "success"
+          },
+          {
+            "name": "Bootstrap locked runtime and native dependencies",
+            "conclusion": "success"
+          },
+          {
+            "name": "Save verified runtime archives",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Check",
+            "conclusion": "success"
+          },
+          {
+            "name": "Unit and current-route integration",
+            "conclusion": "success"
+          },
+          {
+            "name": "Dedicated Core performance checks",
+            "conclusion": "failure"
+          },
+          {
+            "name": "Build and Electron checks",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify current-route P00-03 as an independent standard user",
+            "conclusion": "success"
+          },
+          {
+            "name": "Repeat fresh-process Office shutdown diagnostics",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 111769459088,
+        "name": "startup-diagnostics",
+        "status": "in_progress",
+        "conclusion": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Restore locked runtime archives",
+            "conclusion": null
+          },
+          {
+            "name": "Bootstrap locked runtime and native dependencies",
+            "conclusion": null
+          },
+          {
+            "name": "Repeat fresh-process startup diagnostics",
+            "conclusion": null
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "conclusion": null
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "conclusion": null
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "conclusion": null
+          }
+        ]
+      }
+    ],
+    "pushJobs": [
+      {
+        "id": 111760516598,
+        "name": "check",
+        "status": "completed",
+        "conclusion": "failure",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Restore locked runtime archives",
+            "conclusion": "success"
+          },
+          {
+            "name": "Bootstrap locked runtime and native dependencies",
+            "conclusion": "success"
+          },
+          {
+            "name": "Save verified runtime archives",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Check",
+            "conclusion": "success"
+          },
+          {
+            "name": "Unit and current-route integration",
+            "conclusion": "success"
+          },
+          {
+            "name": "Dedicated Core performance checks",
+            "conclusion": "failure"
+          },
+          {
+            "name": "Build and Electron checks",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify current-route P00-03 as an independent standard user",
+            "conclusion": "success"
+          },
+          {
+            "name": "Repeat fresh-process Office shutdown diagnostics",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 111768344825,
+        "name": "startup-diagnostics",
+        "status": "in_progress",
+        "conclusion": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Restore locked runtime archives",
+            "conclusion": "success"
+          },
+          {
+            "name": "Bootstrap locked runtime and native dependencies",
+            "conclusion": null
+          },
+          {
+            "name": "Repeat fresh-process startup diagnostics",
+            "conclusion": null
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "conclusion": null
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "conclusion": null
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "conclusion": null
+          }
+        ]
+      }
+    ],
+    "logs": [
+      {
+        "job": 111760535272,
+        "sha256": "22d4261aa327fc5ea00c2aa9cfab2f9c409c43c664b235c3c7faebdceeb5940f"
+      },
+      {
+        "job": 111760516598,
+        "sha256": "837116db5293fb23bf2df279eaa52bacef66ad8d2be49cef489b81b9f4673bc8"
+      }
+    ],
+    "note": "Both check jobs again failed only the 500ms P95 assertion; Office administrator/standard-user/three-repeat checks passed.",
+    "change": "Materialize BM25 rowid/score once, include every tie at a global cutoff, join only candidates to entity metadata. If visibility or scope removes high-ranked candidates, expand until a complete visible page or all matches; use one read transaction/snapshot. No row-score cutoff can discard an eligible tie. No SQLite pragma/schema/contract changes.",
+    "validation": {
+      "unit": {
+        "command": "pnpm test:unit",
+        "passed": 227,
+        "total": 227,
+        "exitCode": 0
+      },
+      "integration": {
+        "command": "pnpm test:integration tests/integration/P02-03.history.test.ts",
+        "passed": 16,
+        "total": 16,
+        "exitCode": 0,
+        "note": "New case hides the best 100-score group through archive/session scope, checks all visible pages, score/time/id ties and zero matches"
+      },
+      "perf": {
+        "command": "pnpm test:perf",
+        "passed": 1,
+        "total": 1,
+        "exitCode": 0,
+        "report": {
+          "task": "P02-03",
+          "recordedAt": "2026-10-05T12:44:24.732Z",
+          "dataset": {
+            "sessions": 10000,
+            "messages": 100000
+          },
+          "seedMs": 36050.1465,
+          "sampleMs": 4940.6442000000025,
+          "timeoutBudgets": {
+            "setupMs": 120000,
+            "samplingMs": 60000
+          },
+          "device": {
+            "platform": "win32",
+            "arch": "x64",
+            "cpu": "13th Gen Intel(R) Core(TM) i7-13700H",
+            "logicalCpus": 20,
+            "totalMemory": 16961822720
+          },
+          "list": {
+            "samples": 200,
+            "p50Ms": 11.486900000003516,
+            "p95Ms": 14.802499999997963
+          },
+          "search": {
+            "samples": 30,
+            "p50Ms": 63.98510000000533,
+            "p95Ms": 114.74110000000655,
+            "bySort": {
+              "updated": {
+                "samples": 15,
+                "p50Ms": 53.69919999999547,
+                "p95Ms": 63.98510000000533
+              },
+              "relevance": {
+                "samples": 15,
+                "p50Ms": 111.8411999999953,
+                "p95Ms": 117.61290000000008
+              }
+            }
+          },
+          "processMemory": {
+            "rss": 240254976,
+            "heapTotal": 108228608,
+            "heapUsed": 45230128,
+            "external": 4400142,
+            "arrayBuffers": 212855
+          },
+          "scope": "Isolated Core/SQLite fixture; excludes Electron launch, total app memory and P03 document retrieval"
+        }
+      },
+      "electron": {
+        "command": "pnpm test:e2e -- --grep P02-03",
+        "passed": 4,
+        "total": 4,
+        "exitCode": 0,
+        "productionBuildRestored": true
+      },
+      "check": {
+        "command": "pnpm check",
+        "exitCode": 0
+      },
+      "docsCheck": {
+        "command": "pnpm docs:check",
+        "exitCode": 0
+      },
+      "diffCheck": {
+        "command": "git diff --check",
+        "exitCode": 0
+      }
+    },
+    "diagnosticExperiment": "Read-only SQL comparisons kept result IDs/order; candidate scoring avoided metadata joins outside the score prefix. Cache/temp-store tuning did not materially help and was not adopted.",
+    "delivery": {
+      "sha": "e3d5d1f3106c8c1492ff4e746997ab8cfc8fd166",
+      "branch": "codex/p02-01",
+      "pushExitCode": 0,
+      "remoteHeadMatches": true,
+      "prRun": 37313071166,
+      "pushRun": 37313064059,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "remoteVerification": {
+      "recordedAt": "2026-10-05T13:25:59.454Z",
+      "runs": [
+        {
+          "run": 37313071166,
+          "url": "private-archive:TapKit",
+          "head": "e3d5d1f3106c8c1492ff4e746997ab8cfc8fd166",
+          "event": "pull_request",
+          "status": "completed",
+          "conclusion": "success",
+          "jobs": [
+            {
+              "id": 111772978082,
+              "name": "check",
+              "conclusion": "success",
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Run actions/checkout@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Run actions/setup-node@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Restore locked runtime archives",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Bootstrap locked runtime and native dependencies",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Save verified runtime archives",
+                  "conclusion": "skipped"
+                },
+                {
+                  "name": "Check",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Unit and current-route integration",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Dedicated Core performance checks",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Build and Electron checks",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Verify current-route P00-03 as an independent standard user",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Repeat fresh-process Office shutdown diagnostics",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Run actions/upload-artifact@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Post Run actions/setup-node@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Post Run actions/checkout@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Complete job",
+                  "conclusion": "success"
+                }
+              ],
+              "logSha256": "51383231238383e0706357ba3b86ecbb80b7dc90be1197e92eb68ae437aaa618",
+              "performance": {
+                "seedMs": 35869.3442,
+                "sampleMs": 7768.665399999998,
+                "list": {
+                  "samples": 200,
+                  "p50Ms": 14.649199999999837,
+                  "p95Ms": 28.6336999999985
+                },
+                "search": {
+                  "samples": 30,
+                  "p50Ms": 148.6958999999988,
+                  "p95Ms": 269.9910000000018,
+                  "bySort": {
+                    "updated": {
+                      "samples": 15,
+                      "p50Ms": 68.33250000000407,
+                      "p95Ms": 163.0720999999976
+                    },
+                    "relevance": {
+                      "samples": 15,
+                      "p50Ms": 165.223699999995,
+                      "p95Ms": 284.7497000000003
+                    }
+                  }
+                }
+              },
+              "testSummaries": [
+                "1 passed (7.1s)",
+                "Tests  227 passed (227)",
+                "Tests  155 passed (155)",
+                "Tests  1 passed (1)",
+                "8 passed (32.9s)",
+                "Tests  1 passed | 4 skipped (5)",
+                "Tests  1 passed | 4 skipped (5)",
+                "Tests  1 passed | 4 skipped (5)"
+              ],
+              "officeRepeatMarkers": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "id": 111782958322,
+              "name": "startup-diagnostics",
+              "conclusion": "success",
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Run actions/checkout@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Run actions/setup-node@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Restore locked runtime archives",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Bootstrap locked runtime and native dependencies",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Repeat fresh-process startup diagnostics",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Run actions/upload-artifact@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Post Run actions/setup-node@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Post Run actions/checkout@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Complete job",
+                  "conclusion": "success"
+                }
+              ],
+              "logSha256": "826aa35f03cd6f7245d1ee8159921b59692799f5708e9d62dddde715707fe005",
+              "testSummaries": [
+                "1 passed (13.0s)",
+                "Tests  1 passed | 18 skipped (19)",
+                "1 passed (5.6s)",
+                "Tests  1 passed | 18 skipped (19)",
+                "1 passed (3.4s)",
+                "Tests  1 passed | 18 skipped (19)",
+                "1 passed (3.4s)"
+              ],
+              "officeRepeatMarkers": []
+            }
+          ]
+        },
+        {
+          "run": 37313064059,
+          "url": "private-archive:TapKit",
+          "head": "e3d5d1f3106c8c1492ff4e746997ab8cfc8fd166",
+          "event": "push",
+          "status": "completed",
+          "conclusion": "success",
+          "jobs": [
+            {
+              "id": 111772953328,
+              "name": "check",
+              "conclusion": "success",
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Run actions/checkout@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Run actions/setup-node@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Restore locked runtime archives",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Bootstrap locked runtime and native dependencies",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Save verified runtime archives",
+                  "conclusion": "skipped"
+                },
+                {
+                  "name": "Check",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Unit and current-route integration",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Dedicated Core performance checks",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Build and Electron checks",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Verify current-route P00-03 as an independent standard user",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Repeat fresh-process Office shutdown diagnostics",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Run actions/upload-artifact@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Post Run actions/setup-node@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Post Run actions/checkout@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Complete job",
+                  "conclusion": "success"
+                }
+              ],
+              "logSha256": "a67e48f84fb4b23f93fb6568526632dc31817455c73c9e3d1356ebe917bc5d53",
+              "performance": {
+                "seedMs": 32720.955200000004,
+                "sampleMs": 7239.051800000001,
+                "list": {
+                  "samples": 200,
+                  "p50Ms": 14.166199999999662,
+                  "p95Ms": 27.185000000004948
+                },
+                "search": {
+                  "samples": 30,
+                  "p50Ms": 154.20119999999588,
+                  "p95Ms": 210.4820000000036,
+                  "bySort": {
+                    "updated": {
+                      "samples": 15,
+                      "p50Ms": 68.23489999999583,
+                      "p95Ms": 192.84940000000643
+                    },
+                    "relevance": {
+                      "samples": 15,
+                      "p50Ms": 165.50769999999466,
+                      "p95Ms": 274.2700999999943
+                    }
+                  }
+                }
+              },
+              "testSummaries": [
+                "1 passed (5.0s)",
+                "Tests  227 passed (227)",
+                "Tests  155 passed (155)",
+                "Tests  1 passed (1)",
+                "8 passed (34.9s)",
+                "Tests  1 passed | 4 skipped (5)",
+                "Tests  1 passed | 4 skipped (5)",
+                "Tests  1 passed | 4 skipped (5)"
+              ],
+              "officeRepeatMarkers": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "id": 111782521931,
+              "name": "startup-diagnostics",
+              "conclusion": "success",
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Run actions/checkout@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Run actions/setup-node@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Restore locked runtime archives",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Bootstrap locked runtime and native dependencies",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Repeat fresh-process startup diagnostics",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Run actions/upload-artifact@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Post Run actions/setup-node@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Post Run actions/checkout@v4",
+                  "conclusion": "success"
+                },
+                {
+                  "name": "Complete job",
+                  "conclusion": "success"
+                }
+              ],
+              "logSha256": "8a1ce8dddb5cf1c1e852c6c4af495f70a4fa107593607069fe3c5062eebc49e6",
+              "testSummaries": [
+                "1 passed (4.7s)",
+                "Tests  1 passed | 18 skipped (19)",
+                "1 passed (6.7s)",
+                "Tests  1 passed | 18 skipped (19)",
+                "1 passed (3.7s)",
+                "Tests  1 passed | 18 skipped (19)",
+                "1 passed (3.7s)"
+              ],
+              "officeRepeatMarkers": []
+            }
+          ]
+        }
+      ],
+      "note": "Both complete Windows workflows passed on the exact pushed source head. The unchanged 10k-session/100k-message performance fixture and 500ms P95 assertions passed. No local native capability or task gate is enabled by this record."
+    }
+  }
+}

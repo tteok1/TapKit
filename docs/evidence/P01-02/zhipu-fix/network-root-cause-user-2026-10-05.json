@@ -1,0 +1,63 @@
+{
+  "time": "2026-10-04T17:31:46.635Z",
+  "node": "v24.21.0",
+  "keyRead": false,
+  "modelRequests": 0,
+  "configurationChanged": false,
+  "env": {
+    "TAPKIT_HTTP_PROXY": false,
+    "HTTPS_PROXY": false,
+    "https_proxy": false,
+    "HTTP_PROXY": false,
+    "http_proxy": false,
+    "NO_PROXY": false,
+    "no_proxy": false
+  },
+  "dns": [
+    {
+      "address": "39.108.52.113",
+      "family": 4
+    },
+    {
+      "address": "39.108.102.11",
+      "family": 4
+    }
+  ],
+  "tls": [
+    {
+      "address": "39.108.52.113",
+      "milliseconds": 40,
+      "tcpConnected": true,
+      "status": "tls-ok",
+      "authorized": true
+    },
+    {
+      "address": "39.108.102.11",
+      "milliseconds": 50,
+      "tcpConnected": true,
+      "status": "tls-ok",
+      "authorized": true
+    }
+  ],
+  "production": {
+    "status": 401,
+    "milliseconds": 123,
+    "events": [
+      {
+        "event": "socket"
+      },
+      {
+        "event": "tcp-connect"
+      },
+      {
+        "event": "tls-connect",
+        "authorized": true
+      },
+      {
+        "event": "response",
+        "status": 401
+      }
+    ]
+  },
+  "sourceSha256": "3c989c3f6cb92ee74c9d228f6ed57cf9dc349ad899ecac360106bac61c51ce5c"
+}

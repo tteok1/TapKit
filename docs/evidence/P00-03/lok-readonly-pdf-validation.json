@@ -1,0 +1,49 @@
+{
+  "files": [
+    {
+      "format": "docx",
+      "pages": 1,
+      "bytes": 73214,
+      "sha256": "d475d3cdcecf856e75b51fddf1da0ed100e5eca1c3c77a706aa8b6a63b87eca0",
+      "titlePresent": true,
+      "pixelsMatchVisuallyReviewedOutput": true
+    },
+    {
+      "format": "xlsx",
+      "pages": 1,
+      "bytes": 18428,
+      "sha256": "7ec5031756836efa08c99b84d85df01901c11bea204d5054e9376b4202d78570",
+      "titlePresent": true,
+      "pixelsMatchVisuallyReviewedOutput": true
+    },
+    {
+      "format": "pptx",
+      "pages": 1,
+      "bytes": 19276,
+      "sha256": "b6d31d8777f5812f4b8c8785c34839937291b09c442c1ac33bbbd9dcdfe849c4",
+      "titlePresent": true,
+      "pixelsMatchVisuallyReviewedOutput": true
+    }
+  ],
+  "temporaryDrivesAfterCleanup": [
+    {
+      "drive": "X:",
+      "exists": false,
+      "target": null,
+      "error": 2
+    },
+    {
+      "drive": "Y:",
+      "exists": false,
+      "target": null,
+      "error": 2
+    },
+    {
+      "drive": "Z:",
+      "exists": false,
+      "target": null,
+      "error": 2
+    }
+  ],
+  "visualReview": "Prior three rendered PNGs inspected: Chinese readable without missing glyphs. Current PDF renders must match pixel-for-pixel."
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "command": "pnpm check",
+    "started_at": "2026-09-15T18:48:02.7554919+08:00",
+    "ended_at": "2026-09-15T18:48:13.0484730+08:00",
+    "exit_code": 0,
+    "log": "docs/evidence/P00-01/final-check.log",
+    "cwd": "D:\\TapKit"
+  },
+  {
+    "command": "pnpm test:unit",
+    "started_at": "2026-09-15T18:48:13.1132062+08:00",
+    "ended_at": "2026-09-15T18:48:16.3189097+08:00",
+    "exit_code": 0,
+    "log": "docs/evidence/P00-01/final-unit.log",
+    "cwd": "D:\\TapKit"
+  },
+  {
+    "command": "pnpm test:integration",
+    "started_at": "2026-09-15T18:48:16.3584478+08:00",
+    "ended_at": "2026-09-15T18:48:18.5731125+08:00",
+    "exit_code": 0,
+    "log": "docs/evidence/P00-01/final-integration.log",
+    "cwd": "D:\\TapKit"
+  },
+  {
+    "command": "pnpm build",
+    "started_at": "2026-09-15T18:48:18.5830403+08:00",
+    "ended_at": "2026-09-15T18:48:26.7388565+08:00",
+    "exit_code": 0,
+    "log": "docs/evidence/P00-01/final-build.log",
+    "cwd": "D:\\TapKit"
+  },
+  {
+    "command": "pnpm test:e2e -- --grep P00-01",
+    "started_at": "2026-09-15T18:48:26.7557452+08:00",
+    "ended_at": "2026-09-15T18:48:33.7387258+08:00",
+    "exit_code": 0,
+    "log": "docs/evidence/P00-01/final-e2e.log",
+    "cwd": "D:\\TapKit"
+  }
+]

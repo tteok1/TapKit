@@ -1,0 +1,15 @@
+# ADR0025：P03不可变文件版本与持久解析任务
+
+日期：2026-10-06；状态：采纳，P03-01实施中。
+
+P03复用P00/P02已交付的files、file_versions、blobs、resource_links、jobs及ResourceRef/Locator。文件导入完成与内容读取完成分别记录；新增版本不修改旧blob，不重定向旧版本引用。替换操作必须由Host选择token及明确目标fileId共同指定，同名不自动覆盖。
+
+追加0008/schema8：files补收藏、相对路径和回收站期限，file_versions补解析失败原因、预览blob、恢复来源及每版原始名称/格式；旧版本不依赖可变的当前文件名判断格式。folders保存托管目录，parsed_documents关联不可变结构blob。文件库全文索引使用file_search_documents与external-content file_content_fts，删除通过FTS删除触发器同步；不实现P04的检索/向量或第二套引用表。
+
+扩展既有jobs约束为file.parse，按fileVersionId+parserVersion去重。job租约、取消、恢复与终结规则继续由同一队列处理；旧回调不得提交新版本的解析结果。尚未接入的handler明确失败，不能落入其他job分支或将原件上传视为解析成功。
+
+所有公共文件命令接受资源ID和Host token，拒绝任意绝对路径、profileId及执行参数。解析器处理不可信输入必须使用P00的AppContainer/Job/无网络边界；目标主机能力不可用则失败关闭并保留原件下载，不能回退宿主解析。P00门禁按最新实际CI核对，不沿用旧成功快照。
+
+迁移集成实际确认：schema7的文件/blob/活动租约保留，迁移重跑无重复，FK/integrity正常，FTS写入与删除同步。P03业务解析、安全、UI和阶段验收仍未完成，状态以进度记录为准。
+
+文件仓库补充：回收站仅标记files.deleted_at并保留版本30天，永久删除才写既有fsync journal并清理衍生索引/取消解析；备份重放删除同样清理索引。blob引用按版本/结构计数，GC同时检查有效关系和备份manifest；已回收blob保留FK元数据并标deleting，重新导入相同hash时写回字节再恢复ready。下载通过固定句柄有界读取及sha256/大小校验。解析发布在结构blob落盘后同一SQLite事务复核租约/取消/版本可见性并提交结构及版本索引；替换后的旧解析结果不进入当前文件搜索。

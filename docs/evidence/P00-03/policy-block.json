@@ -1,0 +1,52 @@
+{
+  "observedAt": "2026-09-17T13:34:37.9237665Z",
+  "eventId": 3077,
+  "log": "Microsoft-Windows-CodeIntegrity/Operational",
+  "action": "Launch resources/runtime/helper/tapkit-windows-helper.exe",
+  "result": "Blocked by Windows application control signing policy",
+  "events": [
+    {
+      "time": "2026-09-17T13:22:48.8708252Z",
+      "id": 3077
+    },
+    {
+      "time": "2026-09-17T13:22:28.7723891Z",
+      "id": 3077
+    },
+    {
+      "time": "2026-09-17T13:22:10.8241145Z",
+      "id": 3077
+    },
+    {
+      "time": "2026-09-17T13:22:10.7357000Z",
+      "id": 3077
+    },
+    {
+      "time": "2026-09-17T13:22:10.6412851Z",
+      "id": 3077
+    },
+    {
+      "time": "2026-09-17T13:22:10.5529790Z",
+      "id": 3077
+    },
+    {
+      "time": "2026-09-17T13:22:10.4634086Z",
+      "id": 3077
+    },
+    {
+      "time": "2026-09-17T13:22:10.3699501Z",
+      "id": 3077
+    },
+    {
+      "time": "2026-09-17T13:22:10.2440337Z",
+      "id": 3077
+    },
+    {
+      "time": "2026-09-17T13:22:09.6936013Z",
+      "id": 3077
+    }
+  ],
+  "testAccountExists": true,
+  "testAccountAdmin": false,
+  "policyChanged": false
+}

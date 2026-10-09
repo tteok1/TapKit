@@ -1,0 +1,76 @@
+{
+  "taskId": "P02-03",
+  "date": "2026-10-05",
+  "timezone": "Asia/Shanghai",
+  "recordedAt": "2026-10-05T03:46:35.812Z",
+  "directory": "D:/TapKit",
+  "branch": "codex/p02-01",
+  "remote": "private-archive:TapKit",
+  "remoteRef": "refs/heads/codex/p02-01",
+  "baseline": "f7e0156a0b5dd7f76bce3e922108a6a30b81ea79",
+  "implementationCommit": "69df0048d63af3755ac4da3621b936284bffad4d",
+  "verifiedRemoteImplementationCommit": "69df0048d63af3755ac4da3621b936284bffad4d",
+  "status": "committed_and_pushed",
+  "taskStatus": "implemented_not_live_verified",
+  "gate": "engineering_passed_external_pending",
+  "sourceHashAudit": {
+    "matched": 9,
+    "mismatches": 0,
+    "hashes": {
+      "migrations/0007_chat_history.sql": "12c56adbcb09808a4ce8d5c35286cfebf3ee8a9df5f717c2f7601ed34b2b330e",
+      "packages/contracts/src/history.ts": "84b09957f51dfdcc0096ad0f6b989d9b2f285a4a9d17c6338937f32cf4758419",
+      "packages/core/src/history-service.ts": "09894c5f209844ba359dae9136d42bdf2ddc3c3874a30ab7aeb4982a696eeecd",
+      "packages/core/src/temporary-service.ts": "e5f2ab274a1b3d275aed6f0bffa4ebc75d8cfbd5b06b9595cdbd588be3954b44",
+      "packages/storage/src/session-cleanup.ts": "721634f1a538a816334e600138ba01ae00cf3b0d82b605fe32c5f511e1bc7f8b",
+      "apps/desktop/src/renderer/src/chat-surface.tsx": "16102d1cc3f417de8334d10d1fed77087d204dec7331a78db8317a8953c57abd",
+      "apps/desktop/src/renderer/src/desktop-shell.tsx": "b440eafb338dd6047b9a525e28682f39db499f1003ae771aff996e1031ecd3c0",
+      "apps/desktop/src/renderer/src/message-history.tsx": "ab950569f5f5c092c313aa118894243696252c5b8cb74c23a4ee4988a7fadb22",
+      "apps/desktop/src/renderer/src/history-ui.tsx": "d94dd5cb9257ecce80cdc2bfc9e5f62325cad35997071ad5489846d567b896b3"
+    }
+  },
+  "requirementRowsAudited": 44,
+  "recordedTestEvidence": "docs/evidence/P02-03/results-2026-10-05.json",
+  "productionFixtureAbsent": true,
+  "checks": [
+    {
+      "command": "git -c http.proxy=http://127.0.0.1:7897 fetch origin codex/p02-01 codex/diagnose-main-ci",
+      "exitCode": 0,
+      "divergenceBeforeCommit": "0 ahead / 0 behind"
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/pnpm.ps1 check",
+      "exitCode": 0
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/pnpm.ps1 docs:check",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check / git diff --cached --check",
+      "exitCode": 0
+    },
+    {
+      "command": "git commit -m feat(history): implement P02-03 branches, search and temporary chat",
+      "exitCode": 0,
+      "files": 81
+    },
+    {
+      "command": "git -c http.proxy=http://127.0.0.1:7897 push origin HEAD:refs/heads/codex/p02-01",
+      "exitCode": 0
+    },
+    {
+      "command": "git -c http.proxy=http://127.0.0.1:7897 ls-remote --heads origin refs/heads/codex/p02-01",
+      "exitCode": 0,
+      "matchesImplementationCommit": true
+    }
+  ],
+  "notes": [
+    "The 9 source hashes match the recorded P02-03 test results; tests were not rerun in this Git delivery audit. Engineering check and documentation/diff checks were rerun.",
+    "The malformed E2E Markdown table row was repaired; test commands and outcomes were unchanged.",
+    "This record describes the verified implementation push. A subsequent documentation commit saves this record; obtain the final branch tip from Git.",
+    "Untracked docs/doc-fetch-resources and docs/.tmp appeared after the implementation push; they are preserved and excluded from this delivery.",
+    "P00/P01 gates remain failed. No real model requests, original credential/profile reads, native execution, or Office verification were performed in this audit.",
+    "P00-03 blockers and recommendations are delivered in chat as requested; no new P00-03 analysis file is retained."
+  ],
+  "nextPlan": "docs/evidence/P02-03/next-plan-2026-10-05.md"
+}
