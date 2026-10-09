@@ -754,7 +754,9 @@
       },
       {
         "path": "docs/evidence/P03-01/public-ci-6361510-office-diagnostics.json",
-        "sha256": "79fe3c92e119ae63f70913c9ebeaa05e98bfc6273dd874ade5d8034f4e62ce67"
+        "sha256": "036a7b6654c3dc5811595416b217b2c90f6c3687ccb25a64763c492be86726e7",
+        "artifactEntrySha256": "79fe3c92e119ae63f70913c9ebeaa05e98bfc6273dd874ade5d8034f4e62ce67",
+        "normalization": "CRLF normalized to LF for publication; original ZIP digest retained"
       },
       {
         "path": "docs/evidence/P03-01/public-ci-6361510-standard-native-cases.jsonl",
@@ -833,6 +835,12 @@
         "exitCode": 0,
         "verifiedSourceFiles": 8,
         "programDiff": []
+      },
+      {
+        "command": "SHA256 of published evidence vs Git blobs; Office CRLF normalization",
+        "exitCode": 0,
+        "files": 6,
+        "originalArtifactDigestRetained": true
       }
     ]
   }
