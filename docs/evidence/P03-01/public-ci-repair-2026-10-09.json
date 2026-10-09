@@ -843,5 +843,7 @@
         "originalArtifactDigestRetained": true
       }
     ]
-  }
+  },
+  "followUpEvidence": "docs/evidence/P03-01/public-navigation-sync-2026-10-09.json",
+  "followUpNote": "Historical accepted6361510 source/evidence retained. A subsequent documentation CI exposed a test navigation timing race; current status and test synchronization source are tracked separately in followUpEvidence."
 }

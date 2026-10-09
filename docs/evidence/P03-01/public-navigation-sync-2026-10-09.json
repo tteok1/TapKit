@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "task": "P03-01",
+  "status": "in_progress",
+  "acceptedRuntimeSource": "6361510faf904402eea8a5cb18eec21b112b4b7e",
+  "findings": {
+    "failedDocumentationSource": "3654890ee3be23b4cf2d411b50b4e03c5d9783d2",
+    "runs": [
+      {
+        "id": 37942208372,
+        "event": "push",
+        "jobId": 113859184641
+      },
+      {
+        "id": 37942217349,
+        "event": "pull_request",
+        "jobId": 113859217081
+      }
+    ],
+    "failure": "Both check jobs passed unit263/integration238/performance/standardP00 22/standardP03 3 but Electron was24/25: T08 navigation filled before the new session rendered; next persistent draft remained empty.",
+    "latestBeforeTestFix": {
+      "sha": "c78e40a458388ac9ecf1218db2b52eb1b06b6f68",
+      "push": 37942577441,
+      "pullRequest": 37942583944,
+      "check": "success",
+      "startup": "success",
+      "note": "Both green; no product/test source changes since6361510, so these passes do not resolve the observed timing race."
+    },
+    "artifact": {
+      "id": 11622333170,
+      "runId": 37942217349,
+      "sha256": "d5af9168c4b6c753ef91c52d9f551bd80ffd5b2a78941d6690ba0f2cf69547f2",
+      "cache": ".cache/ci-37923489728/evidence-37942217349.zip",
+      "trace": "test-results/e2e/P03-01.files-P03-01-T08-na-e9cff--only-to-the-original-draft/trace.zip"
+    },
+    "trigger": "Core creates the session before the sessions.create reply and DesktopShell.refresh finish; the previous chat-surface/input remains enabled. A Core workspace query can observe the new ID before renderer navigation.",
+    "fix": "Use the existing chat-surface data-session-id to wait for a different displayed session and its loaded input before filling. Delay one real sessions.create reply300ms during the held real files.import reply to keep the race observable. No production source or original isolation assertions changed."
+  },
+  "localChecks": [
+    {
+      "command": "TAPKIT_STARTUP_DIAGNOSTICS=1 pnpm test:e2e -- --grep 'P03-01 T08 navigation sends'",
+      "phase": "before displayed-session wait; injected real create reply300ms",
+      "sessionId": 86462,
+      "exitCode": 1,
+      "passed": 0,
+      "failed": 1,
+      "reason": "exact same next draft empty assertion; default15sec budget"
+    },
+    {
+      "command": "TAPKIT_STARTUP_DIAGNOSTICS=1 pnpm test:e2e -- --grep 'P03-01 T08' --repeat-each 3",
+      "sessionId": 69335,
+      "exitCode": 0,
+      "passed": 15,
+      "failed": 0,
+      "note": "5 selected real Electron cases in3 rounds; create reply delay retained; three navigation isolation cases plus choice cancellation/OCR recovery."
+    },
+    {
+      "command": "pnpm check; pnpm docs:check; git diff --check",
+      "sessionId": 95464,
+      "exitCode": 0,
+      "formatFiles": 323,
+      "taskStates": 37
+    },
+    {
+      "command": "TAPKIT_STARTUP_DIAGNOSTICS=1 pnpm test:e2e -- --grep P03-01",
+      "sessionId": 79414,
+      "exitCode": 0,
+      "passed": 17,
+      "failed": 0
+    }
+  ],
+  "pending": [
+    "Push and exact-source CI of changed test",
+    "Final task and requirement handoff"
+  ],
+  "scope": "P03-01 only; P03-02/03 and gate remain not_started; no real account/model or transplanted capability report",
+  "source": {
+    "changed": "tests/e2e/P03-01.files.spec.ts",
+    "sha256": "9482ca0b1b7c06d2d64452ed7ca24d1994d4107010397da1e09b2f558e95dfaa",
+    "runtimeByteIdenticalTo": "6361510faf904402eea8a5cb18eec21b112b4b7e",
+    "parent": "c78e40a458388ac9ecf1218db2b52eb1b06b6f68"
+  },
+  "screenshotHandling": {
+    "regenerated": [
+      "docs/evidence/P03-01/generated-note-library.png",
+      "docs/evidence/P03-01/import-recovery.png",
+      "docs/evidence/P03-01/library-dark-1200.png",
+      "docs/evidence/P03-01/library-dark-200-percent.png",
+      "docs/evidence/P03-01/library-dark-960.png",
+      "docs/evidence/P03-01/library-light-1200.png",
+      "docs/evidence/P03-01/library-light-960.png",
+      "docs/evidence/P03-01/media-original-only.png",
+      "docs/evidence/P03-01/ocr-original-recovery.png",
+      "docs/evidence/P03-01/scoped-folder-root.png",
+      "docs/evidence/P03-01/scoped-pinned-library.png",
+      "docs/evidence/P03-01/task-usage.png"
+    ],
+    "action": "Restored only this run’s regenerated PNGs to the already reviewed c78e40a versions; no UI/product source changed."
+  }
+}

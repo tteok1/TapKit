@@ -1,5 +1,7 @@
 # P03-01 公开修复验收审计
 
+2026-10-09接续：下表保留6361510的24项真实验收；收口文档CI发现T08测试等待竞态，FR-03-002暂回in_progress。受控真实回包延迟复现后，仅修改测试等待页面会话ID及输入加载；T08三轮15/15与完整P03 17/17、check/docs/diff退出0，新测试源码CI待核验。业务/原生源码不变；最新状态和证据以 [导航同步复核](public-navigation-sync-2026-10-09.json) 为准。
+
 status：implemented_and_verified；验收源码 6361510faf904402eea8a5cb18eec21b112b4b7e，公开修复分支 codex/p03-01-ci-repair。本地运行结果和首轮失败详见 [修复验证](public-ci-repair-2026-10-09.json)，真实源码6361510的push CI37938112057与PR CI37938119655均completed/success。原 [需求审计](requirements-audit-2026-10-09.md) 是历史接续资料，本表对应当前公开源码和本轮实际检查。
 
 本轮全量 unit263/263，明确清单的11个P03便携集成文件78/78，开启启动诊断的完整P03 Electron17/17，bootstrap/ABI、production desktop build、check、docs检查均退出0。编排模拟、便携进程和合成OCR界面不替代真实AppContainer及标准用户验收。
