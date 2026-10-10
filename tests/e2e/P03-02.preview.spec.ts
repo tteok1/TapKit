@@ -404,14 +404,22 @@ test('P03-02 Electron preview failure offers real retry, fixed original download
   const { root, fixtures: f } = await seed(),
     page = await launch(root),
     panel = panelFor(page),
-    target = join(root, 'download.pdf');
-  await app!.evaluate(({ dialog, shell }, target) => {
-    dialog.showSaveDialog = async () => ({ canceled: false, filePath: target });
-    shell.openPath = async (path) => {
-      (globalThis as unknown as { p03ExternalPath: string }).p03ExternalPath = path;
-      return '';
-    };
-  }, target);
+    target = join(root, 'download.pdf'),
+    shared = join(root, 'shared.pdf');
+  await app!.evaluate(
+    ({ dialog, shell }, { target, shared }) => {
+      let saves = 0;
+      dialog.showSaveDialog = async () => ({
+        canceled: false,
+        filePath: saves++ === 0 ? target : shared,
+      });
+      shell.openPath = async (path) => {
+        (globalThis as unknown as { p03ExternalPath: string }).p03ExternalPath = path;
+        return '';
+      };
+    },
+    { target, shared },
+  );
   await open(page, f.badPdf);
   await expect(panel.getByRole('alert')).toContainText('原件');
   await panel.getByRole('button', { name: '重试预览', exact: true }).first().click();
@@ -421,6 +429,9 @@ test('P03-02 Electron preview failure offers real retry, fixed original download
     .poll(async () => readFile(target, 'utf8').catch(() => ''))
     .toBe('Invalid PDF original retained for recovery');
   await panel.getByRole('button', { name: '分享副本', exact: true }).click();
+  await expect
+    .poll(async () => readFile(shared, 'utf8').catch(() => ''))
+    .toBe('Invalid PDF original retained for recovery');
   await expect(panel.getByRole('status').filter({ hasText: '保存本地副本' })).toBeVisible();
   await panel.getByRole('button', { name: '外部打开', exact: true }).click();
   await expect

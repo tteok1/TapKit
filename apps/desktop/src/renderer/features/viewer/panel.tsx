@@ -901,9 +901,11 @@ function FileView({ tab }: { tab: ViewerTab }) {
         <button
           onClick={() =>
             void action(async () => {
-              setNotice(t.shareHint);
+              setNotice('');
               const reply = await window.tapkit.saveOriginal(access);
               if (!reply.ok) throw new Error(reply.error.code);
+              if ('changedIds' in reply.data && reply.data.changedIds.length)
+                setNotice(t.shareHint);
             })
           }
         >

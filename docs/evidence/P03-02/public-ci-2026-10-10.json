@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "task": "P03-02",
+  "status": "in_progress",
+  "branch": "codex/p03-02-preview",
+  "mainSha": "9fb7f355bdf4eda56862df517e31ebbd8ab592f7",
+  "runs": [
+    {"id":38022983397,"event":"push","headSha":"7a3adcaca52c54e49224b70124663b58fd7d875d","status":"in_progress","conclusion":null,"url":"https://github.com/tteok1/TapKit/actions/runs/38022983397"}
+  ],
+  "local": {"previewUnit":11,"relatedOfficeUnit":9,"previewIntegration":11,"nativeIntegration":3,"electron":5,"visualSamples":9,"checkExitCode":0,"docsExitCode":0},
+  "latestRepair": {"change":"share feedback only after a successful immutable copy; verify separate downloaded and shared original bytes","electronTests":1,"exitCode":0,"durationSeconds":6.0},
+  "acceptance": {"independentStandardUser":"pending","sameSourceCI":"pending","pullRequestCreated":false,"mainMerged":false}
+}
