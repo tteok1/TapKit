@@ -40,6 +40,18 @@
         "check": "failure",
         "startupDiagnostics": "success"
       }
+    },
+    {
+      "id": 38028321221,
+      "event": "push",
+      "headSha": "d680a8b2fccb8b31a56552614cbfb79969e9896f",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/38028321221",
+      "jobs": {
+        "check": "failure",
+        "startupDiagnostics": "success"
+      }
     }
   ],
   "local": {
@@ -68,7 +80,7 @@
     "pullRequestCreated": false,
     "mainMerged": false
   },
-  "currentSourceSha": "cef678139a69a1a095c96d8d580aee77cc9b5608",
+  "currentSourceSha": "d680a8b2fccb8b31a56552614cbfb79969e9896f",
   "failedCI": {
     "unit": {
       "passed": 274,
@@ -150,5 +162,64 @@
       "id": 11660891284,
       "sha256": "a7c493a0a8eb927ef6f7d4cea2897ad2471a12b6572bd874978b5411e4d2c512"
     }
+  },
+  "currentRepair": {
+    "nativeCasesPassed": 4,
+    "narrowElectronPassed": 5,
+    "staticCheckFiles": 353,
+    "checkExitCode": 0,
+    "integrationWorkers": 1,
+    "internalOfficeJobs": 2,
+    "standardUserRequiredCases": 4,
+    "standardUserSourceFiles": 11,
+    "fullIntegrationExpected": 253,
+    "fullIntegrationStatus": "running",
+    "standardUserStatus": "P00 macro positive control failed; P03 not reached",
+    "ciStatus": "failure"
+  },
+  "d680Failure": {
+    "headSha": "d680a8b2fccb8b31a56552614cbfb79969e9896f",
+    "artifact": {
+      "id": 11662135552,
+      "bytes": 1210815,
+      "sha256": "decb96b94986f3a2985bd7ee1894cf82e65713d5a1d32b408a2def97e9db154e",
+      "extractedEntries": 175
+    },
+    "unit": {
+      "total": 274,
+      "passed": 274
+    },
+    "integration": {
+      "total": 253,
+      "passed": 252,
+      "failed": 1,
+      "pending": 0
+    },
+    "electron": {
+      "total": 30,
+      "passed": 30
+    },
+    "standardUser": {
+      "confirmed": true,
+      "tests": {
+        "total": 22,
+        "passed": 21,
+        "failed": 1,
+        "pending": 0
+      },
+      "missingCases": [
+        "P00-03.office.test.ts: P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an isolated positive control"
+      ],
+      "parserAndPreview": "Not reached because the P00 acceptance failed"
+    },
+    "freshOffice": {
+      "linksPassed": 3,
+      "macroFailed": 3
+    },
+    "failure": "Macro positive control changed its PDF cell but did not leave the required workspace marker file. No safety assertion was weakened.",
+    "check": "success",
+    "build": "success",
+    "performance": "success",
+    "startupDiagnostics": "success"
   }
 }

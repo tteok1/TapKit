@@ -1,8 +1,8 @@
 # 当前接续点
 
-- 2026-10-10：D:/Tapkit-public，codex/p03-02-preview，基线main9fb7f355bdf4eda56862df517e31ebbd8ab592f7；P03-02=in_progress。
+- 2026-10-10：D:/Tapkit-public，codex/p03-02-preview，main基线9fb7f355bdf4eda56862df517e31ebbd8ab592f7；P03-02=in_progress。
 - 用户目标：完整P03-02实现、测试和同源码CI通过；禁止创建PR/合入main，验收后等待人工确认。
-- P03-01=implemented_and_verified；main CI37963914434全部success。既有合并/同步改动已保留。开发分支cef678139a69a1a095c96d8d580aee77cc9b5608已commit/push，远程ref一致，CI38025546811已failure（startup success）；旧两轮失败保留。分享成功反馈/独立副本字节补验通过。未PR/main合并。
-- 最新ADR0043/原生短cwd与URI/内部长路径修复native4/4、窄窗口同版重开Electron5/5、check353文件均退出0；九截图与已观察b385f07一致。全量253项及P00安全复验中，独立标准用户和新源码CI待验；未提交这轮修复。
-- 前序修复后的完整integration252/252、加强native3/3、窄窗口Electron5/5及check均退出0；更深目录六个真实Office样本诊断通过。两轮旧源码CI均failure：unit274通过、integration249/252、Electron24/30，标准P00 22/22与parser3/3通过但preview未验收。盘符分配、桥接白名单、重开等待与抽屉测试已修复；标准超时原因仍待新CI诊断，撤权测试已补成功转换前提。独立标准用户和修复源码CI待完成；P03-03/gate仍not_started。
+- 私有环境采用活跃租约绝对目录的点组件拼写；helper release构建、原有宏禁用/允许执行正控1选中和完整check353文件均退出0。所有原断言保留，完整253项重跑中；独立标准用户/修复源码CI待验。旧本地251/253与d680 CI失败保留，不能作为验收。P03-02仍in_progress，无PR/main合并。
+- d680a8b CI38028321221已completed/failure（startup success）：unit274通过、integration252/253、Electron30/30；唯一集成失败为P00宏正控标记文件缺失。标准P00为21/22因此parser/preview尚未执行；fresh links3通过但macro3失败。真实完整日志及摘要已保留；继续定位私有环境与宏文件路径交互，所有断言保持。
+- 前三轮CI失败及修复证据保留在docs/evidence/P03-02；当前判断只采用最新检查点。P03-01已验证，P03-03/gate仍not_started。
 - P01完整live和P02外部验收缺口保持；本机须有效probe，不转植CI报告。OCR/媒体理解/屏幕采集延期。

@@ -15,6 +15,8 @@ cef6781的CI首次两Office转换在初始化前超时，独立标准用户撤�
 
 Office已有原生三目录盘符租约。启动cwd明确采用该活跃租约的workspace别名，固定LOK脚本的profile/source/output URI和TEMP等私有环境保留同一短别名，不再resolve回深物理路径。参数只存在于Rust内部调用，不进入payload或模型接口；ACL、范围/版本及句柄验证仍针对原物理目录。通用执行cwd路线保持原有行为。
 
+d680a8b的完整CI已证明预览四项及Electron30项通过，但宏允许执行的隔离正控只改变了PDF单元格，未写出工作区标记文件；三次fresh macro均失败。短盘符根本身以分隔符结尾，私有环境使用绝对的`S:\.`形式（盘符取自活跃租约），让Basic的`Environ("USERPROFILE") + "\\macro-ran.txt"`拼接保留同一目录且无重复末尾分隔符。不是新增环境权限或切换目录；生产宏禁用和正控的文件/PDF/原件/Job断言保持。该拼写修复后实际正控退出0，最终仍须完整安全与标准用户复验。
+
 原allocation mutex、每run lease、精确目标journal、AppContainer身份、零网络、Job限制及关闭回收仍执行。固定Office宏/外链策略和渲染版本保持。新路径必须重验P00隔离/宏/外链/中断恢复与独立标准用户。
 
 ## 验证设计

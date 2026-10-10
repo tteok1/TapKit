@@ -37,8 +37,11 @@ if not source.is_file() or output.exists():
 
 program = runtime_root / "program"
 os.chdir(workspace)
+# A drive-root alias ends with a separator. Keep an absolute directory spelling
+# without that trailing separator, including for Basic Environ() path joins.
+private_home = os.path.join(str(workspace), ".")
 for name in ("TEMP", "TMP", "USERPROFILE", "LOCALAPPDATA", "APPDATA"):
-    os.environ[name] = str(workspace)
+    os.environ[name] = private_home
 os.environ["PATH"] = str(program) + os.pathsep + os.environ.get("PATH", "")
 os.environ["SAL_LOK_OPTIONS"] = "unipoll"
 os.environ["SAL_LOG"] = "+WARN+INFO.lok"
