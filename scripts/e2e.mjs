@@ -16,7 +16,7 @@ if (args.length >= 2 && args[0] === '--grep' && args[1] === 'P00-03') {
     const previous = process.env.TAPKIT_TEST_BUILD;
     try {
       process.env.TAPKIT_TEST_BUILD = '1';
-      buildDesktop();
+      await buildDesktop();
       if (
         !readFileSync(join(root, 'packages/core/dist/index.cjs'), 'utf8').includes(
           'installChatFixture',
@@ -28,7 +28,7 @@ if (args.length >= 2 && args[0] === '--grep' && args[1] === 'P00-03') {
       // Always restore a production build, including after failed UI assertions.
       delete process.env.TAPKIT_TEST_BUILD;
       try {
-        buildDesktop();
+        await buildDesktop();
       } finally {
         if (previous !== undefined) process.env.TAPKIT_TEST_BUILD = previous;
       }

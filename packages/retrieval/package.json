@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@tapkit/contracts": "workspace:*",
+    "@tapkit/storage": "workspace:*",
     "@huggingface/transformers": "4.2.0",
     "pdfjs-dist": "6.3.289",
     "mammoth": "1.12.3",

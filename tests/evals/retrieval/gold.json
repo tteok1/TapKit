@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "error-code",
+      "text": "E_CONN_TIMEOUT：网络连接等待30秒后超时，应检查代理。",
+      "query": "E_CONN_TIMEOUT 怎么恢复",
+      "expected": true,
+      "category": "中文错误码"
+    },
+    {
+      "id": "auth-code",
+      "text": "AUTH_EXPIRED 表示凭据过期，需要重新登录。",
+      "query": "AUTH_EXPIRED",
+      "expected": true,
+      "category": "错误码"
+    },
+    {
+      "id": "two-refund",
+      "text": "退款：购买后七天内可以申请原路返还。",
+      "query": "退款",
+      "expected": true,
+      "category": "2字词"
+    },
+    {
+      "id": "two-proxy",
+      "text": "代理：本地连接通过设置中的HTTP代理转发。",
+      "query": "代理",
+      "expected": true,
+      "category": "2字词"
+    },
+    {
+      "id": "two-lock",
+      "text": "门禁：进入研发区域必须刷员工卡。",
+      "query": "门禁",
+      "expected": true,
+      "category": "2字词"
+    },
+    {
+      "id": "syn-refund",
+      "text": "商品退货后，款项会退回原来的支付账户。",
+      "query": "退货的钱会打到哪里",
+      "expected": true,
+      "category": "同义表达"
+    },
+    {
+      "id": "syn-power",
+      "text": "计算机突然断电时，尚未保存的编辑内容可能丢失。",
+      "query": "电脑没电关机之后未保存的文件怎么办",
+      "expected": true,
+      "category": "同义表达"
+    },
+    {
+      "id": "syn-password",
+      "text": "忘记登录口令时，可通过绑定邮箱重设密码。",
+      "query": "登录密码记不起来如何找回",
+      "expected": true,
+      "category": "同义表达"
+    },
+    {
+      "id": "syn-vacation",
+      "text": "员工请休假需要由直属主管批准。",
+      "query": "想休息几天找谁审批",
+      "expected": true,
+      "category": "同义表达"
+    },
+    {
+      "id": "syn-remote",
+      "text": "远程办公员工可以在家完成工作并参加在线会议。",
+      "query": "能不能居家上班",
+      "expected": true,
+      "category": "同义表达"
+    },
+    {
+      "id": "number-budget",
+      "text": "年度预算：128000元，用于设备采购。",
+      "query": "128000元 预算",
+      "expected": true,
+      "category": "数字"
+    },
+    {
+      "id": "number-port",
+      "text": "调试服务使用端口：7688。",
+      "query": "端口7688",
+      "expected": true,
+      "category": "数字"
+    },
+    {
+      "id": "number-timeout",
+      "text": "文件转换最长等待时间：120秒。",
+      "query": "120秒 转换",
+      "expected": true,
+      "category": "数字"
+    },
+    {
+      "id": "number-limit",
+      "text": "单文件容量上限：100 MiB。",
+      "query": "100 MiB 文件",
+      "expected": true,
+      "category": "数字"
+    },
+    {
+      "id": "backup",
+      "text": "每日首次启动前创建备份，并保留最近七份快照。",
+      "query": "备份保留多少份",
+      "expected": true,
+      "category": "中文"
+    },
+    {
+      "id": "sqlite",
+      "text": "SQLite事务保证写入原子性，失败时回滚本次更改。",
+      "query": "SQLite 如何避免一半写入",
+      "expected": true,
+      "category": "代码实体"
+    },
+    {
+      "id": "rrf",
+      "text": "RRF 使用常数k等于60合并两个检索排名。",
+      "query": "RRF 60",
+      "expected": true,
+      "category": "数字实体"
+    },
+    {
+      "id": "units",
+      "text": "响应耗时（单位：毫秒）\n登录：180\n查询：320",
+      "query": "查询耗时 毫秒",
+      "expected": true,
+      "category": "跨段表头"
+    },
+    {
+      "id": "headers",
+      "text": "库存表（单位：件）\n产品甲：52\n产品乙：18",
+      "query": "产品乙库存有多少件",
+      "expected": true,
+      "category": "跨段表头"
+    },
+    {
+      "id": "privacy",
+      "text": "临时会话关闭后清空内存正文，不保存长期记忆。",
+      "query": "临时聊天会不会记住内容",
+      "expected": true,
+      "category": "同义表达"
+    },
+    {
+      "id": "citation",
+      "text": "引用必须绑定不可变文件版本、原文定位和SHA256。",
+      "query": "SHA256 引用",
+      "expected": true,
+      "category": "代码实体"
+    },
+    {
+      "id": "project",
+      "text": "项目知识仅召回当前项目已授权的固定版本资料。",
+      "query": "项目知识的授权范围",
+      "expected": true,
+      "category": "多项目"
+    },
+    {
+      "id": "trash",
+      "text": "回收站内容保留三十天，然后执行托管文件清理。",
+      "query": "删除文件还能保存多久",
+      "expected": true,
+      "category": "同义表达"
+    },
+    {
+      "id": "cancel",
+      "text": "取消任务会中止新派发，并持久化取消请求。",
+      "query": "任务停止怎么记录",
+      "expected": true,
+      "category": "同义表达"
+    },
+    {
+      "id": "unit-price",
+      "text": "咖啡单价：28元每杯，茶单价：16元每杯。",
+      "query": "咖啡28元",
+      "expected": true,
+      "category": "数字"
+    },
+    {
+      "id": "opening",
+      "text": "图书馆每周一闭馆，周二至周日正常开放。",
+      "query": "图书馆哪一天不开门",
+      "expected": true,
+      "category": "同义表达"
+    },
+    {
+      "id": "locator",
+      "text": "PDF页码从零开始存储，界面展示从第一页开始。",
+      "query": "PDF 页码如何保存",
+      "expected": true,
+      "category": "代码实体"
+    },
+    {
+      "id": "cell",
+      "text": "电子表格使用大写A1单元格区域表达精确定位。",
+      "query": "A1 单元格定位",
+      "expected": true,
+      "category": "代码实体"
+    },
+    {
+      "id": "revocation",
+      "text": "资料撤权后，尚未提交的索引任务必须丢弃输出。",
+      "query": "撤回权限后索引还能写入吗",
+      "expected": true,
+      "category": "权限"
+    },
+    {
+      "id": "upgrade",
+      "text": "嵌入模型升级后旧向量失效，按新维度重新构建索引。",
+      "query": "更换嵌入模型应该怎么处理旧向量",
+      "expected": true,
+      "category": "升级"
+    },
+    {
+      "id": "version",
+      "text": "替换资料时旧引用继续打开其固定版本，不自动漂移。",
+      "query": "替换文件后原来引用会变化吗",
+      "expected": true,
+      "category": "旧版本"
+    },
+    {
+      "id": "conflict",
+      "text": "两份资料结论矛盾时必须展示双方证据并说明差异。",
+      "query": "资料说法不一样怎么回答",
+      "expected": true,
+      "category": "冲突"
+    },
+    {
+      "id": "none-code",
+      "text": "",
+      "query": "E_DOES_NOT_EXIST_997 如何解决",
+      "expected": false,
+      "category": "无答案"
+    },
+    {
+      "id": "none-number",
+      "text": "",
+      "query": "888887777元采购额度是多少",
+      "expected": false,
+      "category": "无答案数字"
+    },
+    {
+      "id": "none-entity",
+      "text": "",
+      "query": "UNLISTED_VENDOR_ABC 支持何种协议",
+      "expected": false,
+      "category": "无答案实体"
+    },
+    {
+      "id": "none-topic",
+      "text": "",
+      "query": "土星环的主要化学成分",
+      "expected": false,
+      "category": "无答案"
+    }
+  ],
+  "unacceptable": [
+    "跨项目标记进入召回或模型轨迹",
+    "未知引用ID通过验证",
+    "只截取嵌入窗口前部",
+    "过期或新版处理中错误切换版本",
+    "无答案集虚构来源"
+  ]
+}

@@ -346,7 +346,7 @@ async function start() {
       });
     }
   });
-  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 11 });
+  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 12 });
   worker.start();
   sweepStaging();
   chat.start();

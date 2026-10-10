@@ -9,6 +9,8 @@
   "dependencies": {
     "@tapkit/contracts": "workspace:*",
     "@tapkit/storage": "workspace:*",
+    "@tapkit/retrieval": "workspace:*",
+    "@huggingface/transformers": "4.2.0",
     "@tapkit/providers": "workspace:*",
     "@tapkit/tools": "workspace:*"
   }

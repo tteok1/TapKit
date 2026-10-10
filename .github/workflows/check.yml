@@ -55,7 +55,7 @@ jobs:
         run: |
           .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs build
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:e2e -- --grep "P00-0[12]|P03-0[123]"
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:e2e -- --grep "P00-0[12]|P03-0[123]|P04-01"
       - name: Verify P00-03 and P03 parser as an independent standard user
         if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' && steps.check.outcome == 'success' }}
         shell: pwsh
@@ -80,6 +80,7 @@ jobs:
             docs/evidence/P03-01/native-parser-cases.jsonl
             docs/evidence/P03-02
             docs/evidence/P03-03
+            docs/evidence/P04-01
   startup-diagnostics:
     # A successful bootstrap saves verified archives before the other checks run.
     needs: check

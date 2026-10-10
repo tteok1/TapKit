@@ -7,9 +7,17 @@ export default defineConfig({
     target: 'node24',
     minify: false,
     rollupOptions: {
-      external: ['@tapkit/storage'],
+      external: ['@tapkit/storage', '@huggingface/transformers'],
       output: { format: 'cjs', entryFileNames: 'index.cjs' },
     },
   },
-  ssr: { noExternal: ['@tapkit/contracts', '@tapkit/tools', '@tapkit/providers', 'zod'] },
+  ssr: {
+    noExternal: [
+      '@tapkit/contracts',
+      '@tapkit/tools',
+      '@tapkit/providers',
+      '@tapkit/retrieval',
+      'zod',
+    ],
+  },
 });

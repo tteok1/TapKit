@@ -22,7 +22,7 @@ export async function projectCommand(
   revision?: number,
 ): Promise<Result> {
   const r = await window.tapkit.projectCommand(requestOptions(revision), command, payload);
-  if (!r.ok) throw new Error(r.error.code);
+  if (!r.ok) throw new Error(r.error.code === 'INDEX_NOT_READY' ? t.indexNotReady : r.error.code);
   return ProjectReplySchema.parse(r.data);
 }
 const notify = () => window.dispatchEvent(new Event('tapkit:history-changed'));
@@ -721,7 +721,7 @@ export function ProjectPage({ projectId }: { projectId: string }) {
             <button disabled={busy}>{t.queryAction}</button>
           </form>
           {evidence && (
-            <div role="status">
+            <div role="status" className="project-evidence">
               {evidence.diagnostics.map((v, i) => (
                 <p key={i}>{v}</p>
               ))}
@@ -741,6 +741,9 @@ export function ProjectPage({ projectId }: { projectId: string }) {
                     {t.open}
                   </button>
                   {v.text}
+                  {v.evidence?.context.map((c, j) => (
+                    <span key={j}> · {c.text}</span>
+                  ))}
                 </p>
               ))}
             </div>

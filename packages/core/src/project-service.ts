@@ -14,9 +14,17 @@ import {
   type ProjectView,
   type KnowledgeView,
 } from '@tapkit/contracts';
-import { FileRepository, StorageError, failure, newId } from '@tapkit/storage';
+import { FileRepository, StorageError, failure, newId, selectedMaterial } from '@tapkit/storage';
 import type { HistoryService } from './history-service';
 import { fileMaterial } from './file-material';
+import {
+  HybridIndex,
+  localEmbedder,
+  markConflicts,
+  type Embedder,
+  type Source,
+} from '@tapkit/retrieval';
+import type { EvidenceRef } from '@tapkit/contracts';
 
 type Link = {
   resource_id: string;
@@ -33,6 +41,7 @@ export class ProjectService {
   constructor(
     readonly files: FileRepository,
     readonly history?: HistoryService,
+    readonly embedding: () => Promise<Embedder> = localEmbedder,
   ) {
     this.store = files.store;
   }
@@ -164,19 +173,56 @@ export class ProjectService {
       throw new StorageError('PERMISSION_DENIED');
     return { ...s, versionIds: [...new Set(ids)] };
   }
+  authorizeEvidence(projectId: string, selected: string[] | undefined, e: EvidenceRef) {
+    const link = this.links(projectId).find((l) => l.pinned_version_id === e.sourceVersion);
+    if (!link || (selected && !selected.includes(e.sourceVersion)))
+      throw new StorageError('PERMISSION_DENIED');
+    if (
+      link.active_index_version !== e.indexVersion ||
+      (link.expires_at !== null && link.expires_at <= this.store.now())
+    )
+      throw new StorageError('CONFLICT');
+    this.files.get(link.resource_id, {
+      versionId: e.sourceVersion,
+      owner: { type: 'project', id: projectId },
+    });
+  }
   async query(
     projectId: string,
     query: string,
     selectedVersionIds?: string[],
-    limit = 10,
+    limit = 8,
+    signal?: AbortSignal,
   ): Promise<KnowledgeView> {
+    query = z.string().trim().min(1).max(500).parse(query);
     const links = this.links(projectId),
       selected = selectedVersionIds ?? links.map((l) => l.pinned_version_id);
     if (selected.some((id) => !links.some((l) => l.pinned_version_id === id)))
       throw new StorageError('PERMISSION_DENIED');
-    const hits: KnowledgeView['hits'] = [],
-      diagnostics: string[] = [];
-    const fingerprint = JSON.stringify(links);
+    const diagnostics: string[] = [],
+      sources: Source[] = [],
+      fingerprint = JSON.stringify(links);
+    const assertScope = () => {
+      signal?.throwIfAborted();
+      if (JSON.stringify(this.links(projectId)) !== fingerprint) throw new StorageError('CONFLICT');
+      for (const source of sources) {
+        const link = links.find((l) => l.pinned_version_id === source.versionId)!;
+        if (link.expires_at !== null && link.expires_at <= this.store.now())
+          throw new StorageError('CONFLICT');
+        const file = this.files.get(source.fileId, {
+          versionId: source.versionId,
+          owner: { type: 'project', id: projectId },
+        });
+        if (file.version.parseStatus !== 'ready') throw new StorageError('INDEX_NOT_READY');
+        const current = this.store.db
+          .prepare(
+            'SELECT index_version FROM parsed_documents WHERE file_version_id=? AND profile_id=? AND deleted_at IS NULL',
+          )
+          .get(source.versionId, this.store.profileId) as { index_version: number } | undefined;
+        if (source.documentId && current?.index_version !== source.indexVersion)
+          throw new StorageError('CONFLICT');
+      }
+    };
     for (const l of links.filter((l) => selected.includes(l.pinned_version_id))) {
       if (l.expires_at !== null && l.expires_at <= this.store.now()) {
         diagnostics.push('资料已过期：' + l.resource_id);
@@ -192,50 +238,91 @@ export class ProjectService {
       }
       const indexed = this.store.db
         .prepare(
-          "SELECT index_version FROM parsed_documents WHERE file_version_id=? AND profile_id=? AND status='ready' AND deleted_at IS NULL",
+          "SELECT id,index_version FROM parsed_documents WHERE file_version_id=? AND profile_id=? AND status='ready' AND deleted_at IS NULL",
         )
-        .get(l.pinned_version_id, this.store.profileId) as { index_version: number } | undefined;
+        .get(l.pinned_version_id, this.store.profileId) as
+        { id: string; index_version: number } | undefined;
       const legacy =
         !indexed && file.version.parserVersion === null && l.active_index_version === 1;
       if (!legacy && indexed?.index_version !== l.active_index_version)
         throw new StorageError('CONFLICT');
-      const text = legacy
-        ? ((
-            await fileMaterial(
-              this.files,
-              { kind: 'file', fileId: file.id, versionId: l.pinned_version_id },
-              () => ({ id: projectId, project_id: projectId }),
-            )
-          ).text ?? '')
-        : undefined;
-      const doc = legacy
-        ? {
-            blocks: [
-              { text: text!, locator: { kind: 'text' as const, start: 0, end: text!.length } },
-            ],
-          }
-        : await this.files.parsed(file.id, {
-            versionId: l.pinned_version_id,
-            owner: { type: 'project', id: projectId },
-          });
-      for (const block of doc.blocks)
-        if (block.text.includes(query) && hits.length < limit)
-          hits.push({
-            ref: {
-              kind: 'file',
-              fileId: file.id,
+      sources.push({
+        fileId: file.id,
+        versionId: l.pinned_version_id,
+        indexVersion: l.active_index_version,
+        documentId: indexed?.id ?? null,
+        document: async () => {
+          if (!legacy)
+            return this.files.parsed(file.id, {
               versionId: l.pinned_version_id,
-              locator: block.locator,
-            },
-            text: block.text.slice(0, 16000),
-            indexVersion: l.active_index_version,
+              owner: { type: 'project', id: projectId },
+            });
+          const text =
+            (
+              await fileMaterial(
+                this.files,
+                { kind: 'file', fileId: file.id, versionId: l.pinned_version_id },
+                () => ({ id: projectId, project_id: projectId }),
+              )
+            ).text ?? '';
+          return ParsedDocumentSchema.parse({
+            schemaVersion: 1,
+            parserVersion: 'legacy-text',
+            format: 'text',
+            blocks: [
+              {
+                id: 'legacy',
+                kind: 'text',
+                text,
+                locator: { kind: 'text', start: 0, end: text.length },
+              },
+            ],
+            pages: [],
+            sheets: [],
+            slides: [],
+            entries: [],
+            quality: { needsOcr: false, warnings: [] },
           });
+        },
+      });
       if (l.pending_version_id) diagnostics.push('新版处理中；仍使用完整旧版：' + file.name);
     }
-    // Reject an asynchronous read across a revocation, version switch or classification change.
-    if (JSON.stringify(this.links(projectId)) !== fingerprint) throw new StorageError('CONFLICT');
-    if (!hits.length) diagnostics.push('当前资料无法支持结论；请补充材料。');
-    return KnowledgeViewSchema.parse({ hits, diagnostics: diagnostics.slice(0, 100) });
+    let evidence: EvidenceRef[] = [];
+    if (sources.length) {
+      let embedding: Embedder;
+      try {
+        embedding = await this.embedding();
+      } catch {
+        throw new StorageError('INDEX_NOT_READY');
+      }
+      const index = new HybridIndex(this.store, embedding);
+      evidence = await index.search(query, sources, assertScope, limit, signal);
+      // A warm index still validates the actual derived bytes before evidence leaves Core.
+      for (const e of evidence) {
+        const source = sources.find((s) => s.versionId === e.sourceVersion)!;
+        const doc = await source.document();
+        assertScope();
+        if (
+          e.ref.kind !== 'file' ||
+          !e.ref.locator ||
+          selectedMaterial(doc, e.ref.locator, e.ref.selection?.textRange).hash !== e.hash
+        )
+          throw new StorageError('CONFLICT');
+      }
+      if (markConflicts(evidence))
+        diagnostics.push('资料存在相互矛盾的字段；请核对原文，不能选择其一冒充一致结论。');
+    }
+    assertScope();
+    if (!evidence.length) diagnostics.push('当前资料无法支持结论；请补充材料。');
+    return KnowledgeViewSchema.parse({
+      hits: evidence.map((e) => ({
+        ref: e.ref,
+        text: e.text,
+        indexVersion: e.indexVersion,
+        evidence: e,
+      })),
+      diagnostics: diagnostics.slice(0, 100),
+    });
   }
   impact(projectId: string, fileId?: string) {
     this.get(projectId);

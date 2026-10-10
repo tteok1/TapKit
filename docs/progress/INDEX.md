@@ -1,5 +1,9 @@
 # 开发进度总表
 
+## 2026-10-11 P04-01开始
+
+远程main已fetch和ff-only同步（exit0），基线a43d8d0、起始clean；开发分支codex/p04-01-retrieval。P04-01=in_progress，schema12/ADR0045及固定BGE混合检索/引用已实现；本地check/unit279/integration98/20k perf/Electron5通过，最后校准源码Electron及远程CI待确认。无PR、不合入main；P04-02/03未开始。详见[P04-01](P04-01.md)。
+
 ## 2026-10-11 P03-03 压缩合入 main
 
 用户明确确认“帮我压缩成一个提交然后再合入main”。基线4eff684，源分支codex/p03-03-projects的2个提交（最终23b1100）squash为包含本记录的单一main提交，保留源分支验收历史，不创建PR。最终源分支CI38065599002的check/startup全部success；unit276/integration267/perf1/Electron34、标准P00 22/parser3/preview4及源码摘要检查通过。P03-03=implemented_and_verified，P03-gate=passed，21项需求追加合入证据；业务/测试源码保持已验收59de6d7。main提交的push Actions为合入后检查，当前不开展P04。详见[P03-03](P03-03.md)及docs/evidence/P03-03/main-squash-2026-10-11.json。
@@ -182,7 +186,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P03-01 | 文件导入、版本、资料库与解析流水线 | P02-03, P00-03 | implemented_and_verified      | docs/progress/P03-01.md              |
 | P03-02 | 文件预览、定位与右侧工作面板       | P03-01         | implemented_and_verified      | docs/progress/P03-02.md              |
 | P03-03 | 项目管理、资料范围与索引版本       | P03-02         | implemented_and_verified      | docs/progress/P03-03.md              |
-| P04-01 | 中文混合检索、重排与引用证据       | P03-03         | not_started                   | docs/progress/P04-01.md              |
+| P04-01 | 中文混合检索、重排与引用证据       | P03-03         | in_progress                   | docs/progress/P04-01.md              |
 | P04-02 | 上下文预算、压缩检查点与缓存       | P04-01, P01-03 | not_started                   | docs/progress/P04-02.md              |
 | P04-03 | 自动长期记忆、历史参考与管理       | P04-02         | not_started                   | docs/progress/P04-03.md              |
 | P05-01 | 联网搜索、匿名网页读取与来源归档   | P04-03         | not_started                   | docs/progress/P05-01.md              |

@@ -46,6 +46,8 @@ P03-02当前schema10（2026-10-10，[ADR0042](../adr/0042-fixed-version-preview-
 
 ## 1. 通用类型
 
+P04-01 schema12：[ADR0045](../adr/0045-local-hybrid-retrieval-and-verified-evidence.md)将chunks.document_id绑定parsed_documents（旧托管文本兼容可空），追加policy_revision/previous/next/context/选区和token_count；embeddings按实际config维度写little-endian Float32，整版事务切换。citations保存已核验EvidenceRef及回答标记范围，消息删除清理。原件及来源权限仍复用既有实体。
+
 - ID：应用生成UUIDv7字符串；供应商/工具自己的ID单独保存。UTC时间使用INTEGER毫秒。
 - 除显式说明外，业务对象有 id、profile_id、created_at、updated_at、revision INTEGER默认1、deleted_at可空。profile_id由Core注入，模型和Renderer不得选择其他profile。
 - BOOL用INTEGER CHECK IN(0,1)；JSON文本写入前校验，schema_version必有；金额Decimal用字符串，计费原始量INTEGER，不用浮点累计货币。

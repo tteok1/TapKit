@@ -1,0 +1,4 @@
+$ node scripts/check.mjs
+Formatting checked 383 repository files; 0 failures.
+Dependency boundaries verified
+Runtime/dependency/wheel manifests verified

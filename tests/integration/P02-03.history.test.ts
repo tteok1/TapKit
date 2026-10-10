@@ -294,7 +294,7 @@ describe('P02-03 history lifecycle', () => {
     );
     await migrate(db, backup);
     await migrate(db, backup);
-    expect(db.pragma('user_version', { simple: true })).toBe(11);
+    expect(db.pragma('user_version', { simple: true })).toBe(12);
     expect(db.pragma('foreign_key_check')).toEqual([]);
     expect(db.pragma('integrity_check', { simple: true })).toBe('ok');
     expect(

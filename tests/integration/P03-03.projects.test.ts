@@ -84,10 +84,20 @@ async function fixture() {
         inputs.push(structuredClone(input));
         const attemptId = newId();
         yield { type: 'attempt', attemptId, model: selection, attemptNo: 1 };
+        const knowledge = input.request.messages.findLast(
+          (m) => m.role === 'tool' && m.name === 'knowledge.query',
+        );
+        const evidence =
+          knowledge?.role === 'tool' ? JSON.parse(knowledge.text).hits?.[0]?.evidence : undefined;
+        const replyText = evidence
+          ? '合成回答 [[evidence:' + evidence.id + ']]'
+          : knowledge
+            ? '资料不足，无法支持结论。'
+            : '合成回答';
         yield {
           type: 'model.event',
           attemptId,
-          event: { type: 'text_delta', blockId: 'text', text: '合成回答' },
+          event: { type: 'text_delta', blockId: 'text', text: replyText },
         };
         if (tool) {
           const next = tool;
