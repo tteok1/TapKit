@@ -1,0 +1,292 @@
+$ node scripts/e2e.mjs "--" "--grep" "P00-0[12]|P03-0[123]"
+
+Running 33 tests using 1 worker
+
+(node:42808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 18608
+(node:18608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+P00-01 runtime probe {"nonce":"中文 空格 ABI","process":"core","sqliteVersion":"3.53.4","electronVersion":"44.3.0","nodeAbi":"149","corePid":46244}
+Debugger ending on ws://127.0.0.1:57978/6c85cdd2-7a51-4f29-9cad-f5ff7c657eb9
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok  1 tests\e2e\P00-01.shell.spec.ts:22:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory (1.3s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 37284
+(node:37284) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+Debugger ending on ws://127.0.0.1:52429/e2fbddee-aeb3-465d-9f4c-6e5f389a3aae
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  x   2 tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown (1.2s)
+(node:32132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 45052
+(node:45052) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_HOST_WINDOW 45052
+TAPKIT_CORE_PONG
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:51885/a80fc351-825c-4150-9d8e-19493f69551d
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok  3 tests\e2e\P00-02.foundation.spec.ts:29:1 › P00-02 T01 T05 real two-window CAS and committed event subscription (1.8s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 11448
+(node:11448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+Debugger ending on ws://127.0.0.1:55690/672c5de4-2724-4824-814b-ec7d90fcba15
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok  4 tests\e2e\P00-02.foundation.spec.ts:87:1 › P00-02 T19 real Windows safeStorage round trip, ACL and plaintext exclusion (2.8s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 46100
+(node:46100) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+Debugger ending on ws://127.0.0.1:49924/49f7f708-840a-4ed7-83ff-5a1ab930d8ce
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok  5 tests\e2e\P00-02.foundation.spec.ts:146:1 › P00-02 T19 foreign WebContents cannot invoke app IPC (1.3s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 3916
+(node:3916) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+TAPKIT_CORE_EXIT 1
+Error occurred in handler for 'tapkit:ping': Error: Core unavailable
+    at ForkUtilityProcess.<anonymous> (D:\Tapkit-public\apps\desktop\out\main\index.js:8965:21)
+    at ForkUtilityProcess.emit (node:events:514:28)
+    at UtilityProcess.emit (node:electron/js2c/browser_init:2:95072)
+Error occurred in handler for 'tapkit:ping': Error: Core unavailable
+    at forward (D:\Tapkit-public\apps\desktop\out\main\index.js:8854:49)
+    at D:\Tapkit-public\apps\desktop\out\main\index.js:9136:14
+    at async Session.<anonymous> (node:electron/js2c/browser_init:2:123817)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:51311/55ca87d5-943f-40e0-917e-c023544ec233
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok  6 tests\e2e\P00-02.foundation.spec.ts:165:1 › P00-02 T05 Core kill rebuilds writer; acked settings survive and backup is not duplicated (1.9s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 18824
+(node:18824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+
+TAPKIT_SECOND_INSTANCE
+TAPKIT_HOST_WINDOW 18824
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:56926/9abf4d8f-5083-4587-8cf3-36f457604edd
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok  7 tests\e2e\P00-02.foundation.spec.ts:212:1 › P00-02 single instance activates owner and closing UI keeps Core alive until explicit quit (1.9s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 42172
+(node:42172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+Debugger ending on ws://127.0.0.1:49992/f7eda286-8f7e-4566-b247-d9b32bee45b6
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok  8 tests\e2e\P00-02.foundation.spec.ts:266:1 › P00-02 higher schema shows a recovery prompt and preserves original database (2.5s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:45744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:54824/5af44a4e-f732-4f9c-81fd-f5a72bf543bb
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:46636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:65509/40fb8bb5-7b58-46e3-9eb5-c78e8fb99cc4
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok  9 tests\e2e\P03-01.files.spec.ts:183:1 › P03-01 accepted task usage shows its pinned historical version and follows session trash/restore across restart (5.4s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:13228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:50099/f88a823c-6d28-4572-a635-a39434f8f173
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:37428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:63995/39c8866f-f332-4265-b05a-6a58f275d31c
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 10 tests\e2e\P03-01.files.spec.ts:338:1 › P03-01 T08 navigation sends cancellation while a real committed import reply is delayed and appends it only to the original draft (4.5s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:33064) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:54299/d4d038cf-aa53-4190-b8f7-3045476d9e61
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 11 tests\e2e\P03-01.files.spec.ts:414:1 › P03-01 T08 late session creation after leaving the home composer cannot start a physical import or overwrite the new draft (2.1s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:38996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:62933/3005144e-b604-4c2b-8203-2444f77526f3
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 12 tests\e2e\P03-01.files.spec.ts:465:1 › P03-01 T08 leaving during a real Host selection releases its pending grant without importing or changing the new draft (2.8s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:30084) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:59945/fd2bcd42-e543-455e-b226-e626b1c6032b
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 13 tests\e2e\P03-01.files.spec.ts:518:1 › P03-01 T07 chat physical File uses the real Host token import, preserves source bytes and downloads its pinned original (3.2s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:37520) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:50812/2ed6cd3e-e383-4704-bdc6-a7ce1aac40db
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 14 tests\e2e\P03-01.files.spec.ts:656:1 › P03-01 T07 real Host picker chain imports an immutable source, separates unavailable parsing and downloads its original (2.8s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:46992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:62046/0b527d78-ee85-4b82-b682-98b38713e734
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 15 tests\e2e\P03-01.files.spec.ts:713:1 › P03-01 T08 cancelling one selected Host file releases only that choice and imports the remaining original through the actual UI (1.6s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:33912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:50762/24379c91-d61a-4f20-a325-7ce5e1f1a406
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 16 tests\e2e\P03-01.files.spec.ts:738:1 › P03-01 T08 a persisted synthetic PDF structure needing OCR offers download and a searchable replacement without claiming readable content (4.4s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:41632) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:61583/36a45a0a-c16d-4a43-b453-995b9d3589fb
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 17 tests\e2e\P03-01.files.spec.ts:763:1 › P03-01 T07 image audio and video Host imports show original-only recovery and download exact bytes without offering parse retry (3.1s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:45176) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:63959/a67722c3-edcb-49c1-997a-2dd1d9b39ca5
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:25172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:55567/f4a74d67-b17c-4807-a9ed-948da0f748d1
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 18 tests\e2e\P03-01.files.spec.ts:803:1 › P03-01 T07 real saved-message note is searchable as a generated result in the library and pinned session, and remains downloadable after restart (5.9s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:29424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:55571/96f8310f-13d3-4333-88ce-246f27848029
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 19 tests\e2e\P03-01.files.spec.ts:861:1 › P03-01 T07 genuine DOM File drop traverses preload and retains directory imports after cancelled selections (2.5s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:47004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:52478/da6fcef8-dbfe-4dce-ba46-63b458f1bf7a
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 20 tests\e2e\P03-01.files.spec.ts:904:1 › P03-01 responsive library grid and import instructions remain usable in light, dark and 200-percent layouts (2.7s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:28972) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:57803/7f3a8378-c377-4c35-a367-ba720b9b47a5
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 21 tests\e2e\P03-01.files.spec.ts:965:1 › P03-01 batch download keeps unfinished files selected and stops further dialogs after cancellation (2.5s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:43440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:51240/7558d966-deaa-4430-8646-72b16db7e8a4
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 22 tests\e2e\P03-01.files.spec.ts:1008:1 › P03-01 T07 scoped library downloads and copies its pinned old version after format replacement, metadata edits and restoration (4.6s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:44832) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:57132/266a9773-9573-49ca-abf5-d1a1c9938b46
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 23 tests\e2e\P03-01.files.spec.ts:1110:1 › P03-01 T07 linking a folder file keeps it visible at project and session roots, and shared moves remain navigable in each scope (3.4s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:8172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:60485/4660226f-0059-49bd-a74a-13bd2f6acf8c
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 24 tests\e2e\P03-01.files.spec.ts:1219:1 › P03-01 T07 duplicate skip, explicit replacement, restoration and copy preserve pinned history and original bytes (4.1s)
+TAPKIT_CORE_DIAGNOSTIC
+(node:46040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:62389/febf7435-5df6-4b77-898b-e99ec32b45f6
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:34624) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:49672/62a5fe50-225e-4b3a-bc96-8203403917f1
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  ok 25 tests\e2e\P03-01.files.spec.ts:1323:1 › P03-01 interrupted import survives actual process termination and its recovery notice can be dismissed across Electron restarts (4.8s)
+  ok 26 tests\e2e\P03-02.preview.spec.ts:127:1 › P03-02 Electron pins inline historical refs, remembers PDF/code positions and previews safe Markdown plus real diffs (9.2s)
+  ok 27 tests\e2e\P03-02.preview.spec.ts:199:1 › P03-02 Electron PDF selections support copy, annotations, persisted quotes and three PDF layout samples (9.0s)
+  ok 28 tests\e2e\P03-02.preview.spec.ts:283:1 › P03-02 Electron merged/formula grids, sorting, image rotation, ZIP directories and 200 percent controls remain usable (7.3s)
+  ok 29 tests\e2e\P03-02.preview.spec.ts:359:1 › P03-02 Electron renders six actual isolated Office caches with notes, structural locators, page bounds and presentation (5.8s)
+  ok 30 tests\e2e\P03-02.preview.spec.ts:423:1 › P03-02 Electron preview failure offers real retry, fixed original download/share and scoped external copy (6.7s)
+  ok 31 tests\e2e\P03-03.projects.spec.ts:76:1 › P03-03 project settings, known local note, classification, original query locator and copy are usable in the real renderer (2.6s)
+  ok 32 tests\e2e\P03-03.projects.spec.ts:102:1 › P03-03 project session binding, explicit selected scope, archive and deletion preview persist (2.9s)
+  ok 33 tests\e2e\P03-03.projects.spec.ts:138:1 › P03-03 Core rejects foreign project material and project-only reference while missing evidence is explicit (2.5s)
+
+
+  1) tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown ───
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 2
+
+    @@ -6,10 +6,12 @@
+          "openEntity",
+          "saveConversation",
+          "openArtifactExternal",
+          "copyText",
+          "historyCommand",
+    +     "projectCommand",
+    +     "exportProject",
+          "fileCommand",
+          "artifactCommand",
+          "artifactUrl",
+          "saveOriginal",
+          "chooseAvatar",
+
+      49 |       bridge: Object.keys(window.tapkit),
+      50 |     })),
+    > 51 |   ).toEqual({
+         |     ^
+      52 |     require: 'undefined',
+      53 |     process: 'undefined',
+      54 |     bridge: [
+        at D:\Tapkit-public\tests\e2e\P00-01.shell.spec.ts:51:5
+
+    Error Context: test-results\e2e\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown ────
+  32 passed (2.0m)
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/e2e.mjs:14:21
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.18.0
+[ELIFECYCLE] Command failed with exit code 1.

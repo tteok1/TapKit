@@ -452,11 +452,64 @@ export class FileRepository {
     const v = this.version(id, versionId ?? row.current_version_id);
     if (owner.type === 'library') return;
     const now = this.store.now();
+    let index = this.store.db
+      .prepare(
+        "SELECT index_version FROM parsed_documents WHERE file_version_id=? AND profile_id=? AND deleted_at IS NULL AND status='ready'",
+      )
+      .get(v.id, this.store.profileId) as { index_version: number } | undefined;
+    if (
+      !index &&
+      v.parser_version === null &&
+      v.parse_status === 'ready' &&
+      this.store.db
+        .prepare('SELECT 1 FROM file_search_documents WHERE file_version_id=? AND profile_id=?')
+        .get(v.id, this.store.profileId)
+    )
+      index = { index_version: 1 };
+    if (owner.type === 'project') {
+      const old = this.store.db
+        .prepare(
+          "SELECT pinned_version_id FROM resource_links WHERE resource_type='file' AND resource_id=? AND owner_type='project' AND owner_id=? AND role='source' AND profile_id=? AND deleted_at IS NULL",
+        )
+        .get(id, owner.id, this.store.profileId) as
+        { pinned_version_id: string | null } | undefined;
+      const validOld =
+        old?.pinned_version_id &&
+        this.store.db
+          .prepare(
+            'SELECT 1 FROM file_versions WHERE id=? AND file_id=? AND profile_id=? AND deleted_at IS NULL',
+          )
+          .get(old.pinned_version_id, id, this.store.profileId);
+      if (
+        old &&
+        validOld &&
+        old.pinned_version_id !== v.id &&
+        (v.parse_status !== 'ready' || !index)
+      ) {
+        this.store.db
+          .prepare(
+            "UPDATE resource_links SET pending_version_id=?,updated_at=?,revision=revision+1 WHERE resource_type='file' AND resource_id=? AND owner_type='project' AND owner_id=? AND role='source' AND profile_id=? AND deleted_at IS NULL",
+          )
+          .run(v.id, now, id, owner.id, this.store.profileId);
+        return;
+      }
+    }
     this.store.db
       .prepare(
         "INSERT INTO resource_links(id,profile_id,created_at,updated_at,resource_type,resource_id,owner_type,owner_id,role,pinned_version_id) VALUES(?,?,?,?,'file',?,?,?,'source',?) ON CONFLICT(resource_type,resource_id,owner_type,owner_id,role) DO UPDATE SET deleted_at=NULL,pinned_version_id=excluded.pinned_version_id,updated_at=excluded.updated_at,revision=resource_links.revision+1",
       )
       .run(newId(), this.store.profileId, now, now, id, owner.type, owner.id, v.id);
+    this.store.db
+      .prepare(
+        "UPDATE resource_links SET active_index_version=?,pending_version_id=NULL WHERE resource_type='file' AND resource_id=? AND owner_type=? AND owner_id=? AND role='source' AND profile_id=? AND deleted_at IS NULL",
+      )
+      .run(
+        v.parse_status === 'ready' ? (index?.index_version ?? 0) : 0,
+        id,
+        owner.type,
+        owner.id,
+        this.store.profileId,
+      );
   }
   unlink(ids: string[], owner: FileOwner) {
     this.owner(owner);
@@ -918,6 +971,17 @@ export class FileRepository {
           'INSERT INTO file_search_documents VALUES(?,?,?,?) ON CONFLICT(file_version_id) DO UPDATE SET body=excluded.body',
         )
         .run(versionId, v.file_id, this.store.profileId, body);
+      if (!doc.quality.needsOcr) {
+        // The structure, searchable text and project index pointer commit together.
+        this.store.db
+          .prepare(
+            `UPDATE resource_links SET pinned_version_id=?,pending_version_id=NULL,active_index_version=(SELECT index_version FROM parsed_documents WHERE file_version_id=?),updated_at=?,revision=revision+1
+          WHERE profile_id=? AND resource_type='file' AND resource_id=? AND owner_type='project' AND deleted_at IS NULL
+          AND (pending_version_id=? OR (pinned_version_id=? AND pending_version_id IS NULL))
+          AND EXISTS(SELECT 1 FROM projects p WHERE p.id=owner_id AND p.profile_id=resource_links.profile_id AND p.deleted_at IS NULL)`,
+          )
+          .run(versionId, versionId, now, this.store.profileId, v.file_id, versionId, versionId);
+      }
       this.store.db
         .prepare(
           'UPDATE file_versions SET parse_status=?,parser_version=?,error_code=?,error_reason=? WHERE id=?',

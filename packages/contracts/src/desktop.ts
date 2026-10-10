@@ -161,6 +161,7 @@ export const WorkspaceViewSchema = z.strictObject({
   pendingApprovals: z.number().int().nonnegative(),
 });
 export const SessionCreateSchema = z.strictObject({
+  projectId: IdSchema.optional(),
   mode: z.enum(['chat', 'work']),
   title: z.string().trim().min(1).max(200),
 });

@@ -1,0 +1,160 @@
+$ vitest run --config vitest.config.ts --project integration "P03-03" "P03-01.files" "P03-01.migration" "P03-01.file-material" "P03-01.file-service" "P03-01.file-usage" "P03-02.artifacts" "P02-02.chat" "P02-03.history" "P00-02"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P03-01.files.test.ts (18 tests | 2 failed) 4158ms
+   × P03-01 project scope chooses one source pin for sorting and rejects malformed pins without falling back to the library current version 251ms
+   × P03-01 default pinned reads tolerate an unrelated library replacement but reject repinning during I/O; unscoped current reads still reject replacement 234ms
+ ❯ |integration| tests/integration/P03-01.migration.test.ts (2 tests | 1 failed) 645ms
+   × P03-01 schema9 repairs only live legacy generated-note links to their original version and preserves bytes, invalid pins and leased jobs 406ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P03-01.files.test.ts > P03-01 project scope chooses one source pin for sorting and rejects malformed pins without falling back to the library current version
+AssertionError: expected [ Array(1) ] to deeply equal [ …(2) ]
+
+- Expected
++ Received
+
+  [
+-   "01a0a25d-0400-7179-9588-f5b7f09bc9f3",
+    "01a0a25d-0400-7b4b-a52f-ec8111e2c0db",
+  ]
+
+ ❯ tests/integration/P03-01.files.test.ts:234:72
+    232|     expect(() => files.get(small.id, { owner })).toThrow('NOT_FOUND');
+    233|     files.link(small.id, current.currentVersionId, owner);
+    234|     expect(files.list({ owner, sort: 'size' }).files.map((f) => f.id))…
+       |                                                                        ^
+    235|       small.id,
+    236|       medium.id,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  |integration| tests/integration/P03-01.files.test.ts > P03-01 default pinned reads tolerate an unrelated library replacement but reject repinning during I/O; unscoped current reads still reject replacement
+AssertionError: promise resolved "{ schemaVersion: 1, …(8) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "blocks": [
++     {
++       "id": "line-1",
++       "kind": "text",
++       "locator": {
++         "end": 4,
++         "kind": "text",
++         "start": 0,
++       },
++       "text": "固定结构",
++     },
++   ],
++   "entries": [],
++   "format": "text",
++   "pages": [],
++   "parserVersion": "p03-2",
++   "quality": {
++     "needsOcr": false,
++     "warnings": [],
++   },
++   "schemaVersion": 1,
++   "sheets": [],
++   "slides": [],
+  }
+
+ ❯ tests/integration/P03-01.files.test.ts:282:34
+    280|     });
+    281|   const structure = files.parsed(first.id, { owner });
+    282|   const denied = expect(structure).rejects.toThrow('PERMISSION_DENIED'…
+       |                                  ^
+    283|   files.link(first.id, current.currentVersionId, owner);
+    284|   release();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  |integration| tests/integration/P03-01.migration.test.ts > P03-01 schema9 repairs only live legacy generated-note links to their original version and preserves bytes, invalid pins and leased jobs
+AssertionError: expected [ { …(17) }, { …(17) }, { …(17) } ] to deeply equal [ { …(12) }, { …(12) }, { …(12) } ]
+
+- Expected
++ Received
+
+  [
+    {
++     "active_index_version": 0,
+      "created_at": 1789430400000,
+      "deleted_at": null,
++     "expires_at": null,
++     "folder_id": null,
+      "id": "01a0a25d-0400-7112-9a29-fe6f70094b8e",
+      "owner_id": "01a0a25d-0400-7dfb-8721-30326e34a050",
+      "owner_type": "session",
++     "pending_version_id": null,
+      "pinned_version_id": null,
+      "profile_id": "01a0a25d-0400-7564-8608-037e9636cee3",
+      "resource_id": "01a0a25d-0400-7b07-83b6-b3cc3374d859",
+      "resource_type": "file",
+      "revision": 1,
+      "role": "input",
++     "tags_json": "[]",
+      "updated_at": 1789430400000,
+    },
+    {
++     "active_index_version": 0,
+      "created_at": 1789430400000,
+      "deleted_at": null,
++     "expires_at": null,
++     "folder_id": null,
+      "id": "01a0a25d-0400-7d25-a0de-28d09ba26d22",
+      "owner_id": "01a0a25d-0400-7252-9564-22a31e73f305",
+      "owner_type": "project",
++     "pending_version_id": null,
+      "pinned_version_id": "01a0a25d-0400-7ff1-ac12-2667324df5a1",
+      "profile_id": "01a0a25d-0400-7564-8608-037e9636cee3",
+      "resource_id": "01a0a25d-0400-7b07-83b6-b3cc3374d859",
+      "resource_type": "file",
+      "revision": 1,
+      "role": "input",
++     "tags_json": "[]",
+      "updated_at": 1789430400000,
+    },
+    {
++     "active_index_version": 0,
+      "created_at": 1789430400000,
+      "deleted_at": null,
++     "expires_at": null,
++     "folder_id": null,
+      "id": "01a0a25d-0400-75dd-bb40-cc7ff650f2e1",
+      "owner_id": "01a0a25d-0400-7a60-af57-b24373044049",
+      "owner_type": "session",
++     "pending_version_id": null,
+      "pinned_version_id": null,
+      "profile_id": "01a0a25d-0400-7564-8608-037e9636cee3",
+      "resource_id": "01a0a25d-0400-7f14-ae68-0b3adafaea62",
+      "resource_type": "file",
+      "revision": 1,
+      "role": "input",
++     "tags_json": "[]",
+      "updated_at": 1789430400000,
+    },
+  ]
+
+ ❯ tests/integration/P03-01.migration.test.ts:98:5
+     96|       db.prepare('SELECT * FROM resource_links WHERE id=?').get(id),
+     97|     ),
+     98|   ).toEqual(beforeInvalid);
+       |     ^
+     99|   expect(db.prepare('SELECT * FROM jobs WHERE id=?').get(job.id)).toEq…
+    100|   expect(files.jobs.heartbeat(job)).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed | 8 passed (10)
+      Tests  3 failed | 116 passed (119)
+   Start at  23:02:49
+   Duration  40.07s (tests 87%, import 8%, transform 4%)
+
+[ELIFECYCLE] Command failed with exit code 1.

@@ -1,5 +1,9 @@
 # 开发进度总表
 
+## 2026-10-10 P03-03 开发检查点
+
+main拉取/ff-only退出0，基线4eff684，起始clean；分支codex/p03-03-projects。schema11/ADR0044与项目范围/索引/ZIP已实施；unit276、项目integration14、修复相关integration31通过；Electron相关32/33，preload固定清单更新后失败项1/1通过；概览截图错误已修复并复验。完整原生回归/build/CI待确认，P03-03及gate=in_progress，P04仍not_started。用户禁止PR与合入main；详见[P03-03](P03-03.md)。
+
 ## 2026-10-10 P03-02验收
 
 P03-02=implemented_and_verified，实现源码7012e45及最终源分支eb35f67的CI38033628515全success；本地integration253/Electron5、标准P00 22/parser3/preview4、11源码摘要和9个视觉样本通过。需求16行已同步；见[P03-02交接](P03-02.md)。用户已确认压缩合入main，本提交将codex/p03-02-preview的6个提交squash成一个提交，无PR；源分支保留验收历史。P03-03/gate仍not_started。合入记录见docs/evidence/P03-02/main-squash-2026-10-10.json。
@@ -169,7 +173,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P02-03 | 会话组织、消息分支与全局搜索       | P02-02         | implemented_not_live_verified | docs/progress/P02-03.md              |
 | P03-01 | 文件导入、版本、资料库与解析流水线 | P02-03, P00-03 | implemented_and_verified      | docs/progress/P03-01.md              |
 | P03-02 | 文件预览、定位与右侧工作面板       | P03-01         | implemented_and_verified      | docs/progress/P03-02.md              |
-| P03-03 | 项目管理、资料范围与索引版本       | P03-02         | not_started                   | docs/progress/P03-03.md              |
+| P03-03 | 项目管理、资料范围与索引版本       | P03-02         | in_progress                   | docs/progress/P03-03.md              |
 | P04-01 | 中文混合检索、重排与引用证据       | P03-03         | not_started                   | docs/progress/P04-01.md              |
 | P04-02 | 上下文预算、压缩检查点与缓存       | P04-01, P01-03 | not_started                   | docs/progress/P04-02.md              |
 | P04-03 | 自动长期记忆、历史参考与管理       | P04-02         | not_started                   | docs/progress/P04-03.md              |
@@ -203,7 +207,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P00  | passed                              | docs/progress/P00-gate.md |
 | P01  | failed                              | docs/progress/P01-gate.md |
 | P02  | engineering_passed_external_pending | docs/progress/P02-gate.md |
-| P03  | not_started                         | docs/progress/P03-gate.md |
+| P03  | in_progress                         | docs/progress/P03-gate.md |
 | P04  | not_started                         | docs/progress/P04-gate.md |
 | P05  | not_started                         | docs/progress/P05-gate.md |
 | P06  | not_started                         | docs/progress/P06-gate.md |

@@ -1,5 +1,7 @@
 # 范围、决策与默认行为
 
+2026-10-10 P03-03：[ADR0044](../adr/0044-project-scopes-and-atomic-index-links.md)规定schema11项目/背景范围、resource_links的active/pending索引版本、发送时固定选择、关联自身分类和Host私有ZIP导出。URL保存用户提供的本地正文；网络抓取/自动记忆/工作执行仍按后续任务实施。验收以progress为准。
+
 2026-10-10 P03-02私有路径兼容：[ADR0043](../adr/0043-office-owned-aliases-and-deep-private-paths.md)要求词法验证后的内部Win32长路径句柄，以及Office活跃原生租约提供的短cwd/URI/私有环境；模型payload无新增字段，隔离/ACL/Job/宏与外链策略保留。真实深路径及标准用户未完成前不验收。
 
 2026-10-10 P03-02：[ADR0042](../adr/0042-fixed-version-preview-and-pdf-annotations.md)规定固定版本预览、每窗口受控资产协议、复用AppContainer Office转换、schema10阅读位置/PDF批注和验证过的选区hash；解析版本p03-2补合并区域，历史结构保留。实施/测试状态以progress为准，不视为已验收。

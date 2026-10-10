@@ -1,0 +1,9 @@
+$ vitest run --config vitest.config.ts --project integration "P03-01.files" "P03-01.migration" "P03-03"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  3 passed (3)
+      Tests  31 passed (31)
+   Start at  23:04:22
+   Duration  10.32s (tests 79%, transform 12%, import 8%)

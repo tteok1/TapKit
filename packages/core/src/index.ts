@@ -7,6 +7,7 @@ import {
   ReplySchema,
   FileCommandSchemas,
   ArtifactCommandSchemas,
+  ProjectCommandSchemas,
 } from '@tapkit/contracts';
 import { openStore, BlobStore, FileRepository, StorageError, failure } from '@tapkit/storage';
 import { CoreService } from './service';
@@ -15,6 +16,8 @@ import { FileParser } from './file-parser';
 import { FileSelections } from './file-selections';
 import { FileService } from './file-service';
 import { FileExporter } from './file-exporter';
+import { ProjectService } from './project-service';
+import { ProjectExporter } from './project-exporter';
 import { ArtifactService } from './artifact-service';
 import { isAbsolute } from 'node:path';
 import { randomUUID } from 'node:crypto';
@@ -89,6 +92,8 @@ async function start() {
   const selections = new FileSelections();
   const fileService = new FileService(files, selections);
   const fileExporter = new FileExporter(files);
+  const projects = new ProjectService(files, history);
+  const projectExporter = new ProjectExporter(projects);
   const artifacts = new ArtifactService(
     process.env.TAPKIT_APP_ROOT ?? '',
     files,
@@ -125,6 +130,7 @@ async function start() {
       void temporary.closeWindow(command.windowId);
       void fileService.closeWindow(command.windowId);
       fileExporter.closeWindow(command.windowId);
+      projectExporter.closeWindow(command.windowId);
       artifacts.closeWindow(command.windowId);
       return;
     }
@@ -190,6 +196,42 @@ async function start() {
       );
       return;
     }
+    if (command.type === 'projects.export') {
+      void projectExporter
+        .export(command.windowId, command.projectId, command.revision, command.targetPath)
+        .then(
+          (id) => {
+            if (!closing)
+              port!.postMessage({
+                type: 'reply',
+                id: command.id,
+                reply: ReplySchema.parse({
+                  ok: true,
+                  requestId: command.requestId,
+                  data: { changedIds: [id] },
+                }),
+              });
+          },
+          (error) => {
+            if (!closing)
+              port!.postMessage({
+                type: 'reply',
+                id: command.id,
+                reply: failure(
+                  command.requestId,
+                  error instanceof StorageError
+                    ? error.code
+                    : error?.code === 'EEXIST'
+                      ? 'CONFLICT'
+                      : error?.code === 'ENOSPC'
+                        ? 'DISK_FULL'
+                        : 'INTERNAL_ERROR',
+                ),
+              });
+          },
+        );
+      return;
+    }
     if (command.type === 'files.select') {
       void selections.select(command.windowId, command.paths, command.folder).then(
         (views) => {
@@ -229,6 +271,7 @@ async function start() {
         temporary.stop(),
         fileService.stop(),
         fileExporter.stop(),
+        projectExporter.stop(),
         artifacts.stop(),
         parser.staging.stop(),
       ]).then(async () => {
@@ -275,33 +318,35 @@ async function start() {
           temporary.cancelAccount(account.data.accountId);
         }
       }
-      const result = Object.hasOwn(ArtifactCommandSchemas, command.request.command)
-        ? artifacts.dispatch(command.request)
-        : Object.hasOwn(FileCommandSchemas, command.request.command)
-          ? fileService.dispatch(command.request)
-          : command.request.command === 'sessions.temporary' ||
-              command.request.command === 'sessions.closeTemporary' ||
-              temporary.target(command.request.payload)
-            ? temporary.dispatch(command.request)
-            : (HISTORY_COMMANDS as readonly string[]).includes(command.request.command)
-              ? history.dispatch(command.request)
-              : command.request.command.startsWith('models.') ||
-                  command.request.command === 'usage.list'
-                ? models.dispatch(command.request)
-                : command.request.command.startsWith('providers.') &&
-                    command.request.command !== 'providers.saveApiKey'
-                  ? providers.dispatch(command.request)
-                  : /^(messages\.|drafts\.|inputs\.|runs\.cancel$|chat\.snippets\.)/.test(
-                        command.request.command,
-                      )
-                    ? chat.dispatch(command.request)
-                    : Promise.resolve(service.dispatch(command.request));
+      const result = Object.hasOwn(ProjectCommandSchemas, command.request.command)
+        ? projects.dispatch(command.request)
+        : Object.hasOwn(ArtifactCommandSchemas, command.request.command)
+          ? artifacts.dispatch(command.request)
+          : Object.hasOwn(FileCommandSchemas, command.request.command)
+            ? fileService.dispatch(command.request)
+            : command.request.command === 'sessions.temporary' ||
+                command.request.command === 'sessions.closeTemporary' ||
+                temporary.target(command.request.payload)
+              ? temporary.dispatch(command.request)
+              : (HISTORY_COMMANDS as readonly string[]).includes(command.request.command)
+                ? history.dispatch(command.request)
+                : command.request.command.startsWith('models.') ||
+                    command.request.command === 'usage.list'
+                  ? models.dispatch(command.request)
+                  : command.request.command.startsWith('providers.') &&
+                      command.request.command !== 'providers.saveApiKey'
+                    ? providers.dispatch(command.request)
+                    : /^(messages\.|drafts\.|inputs\.|runs\.cancel$|chat\.snippets\.)/.test(
+                          command.request.command,
+                        )
+                      ? chat.dispatch(command.request)
+                      : Promise.resolve(service.dispatch(command.request));
       void result.then((reply) => {
         if (!closing) port!.postMessage({ type: 'reply', id: command.id, reply });
       });
     }
   });
-  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 10 });
+  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 11 });
   worker.start();
   sweepStaging();
   chat.start();

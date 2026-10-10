@@ -29,6 +29,7 @@ import { LocalAvatar } from './local-avatar';
 import { ChatSurface } from './chat-surface';
 import { HistoryList, SearchView, historyCommand } from './history-ui';
 import { FileLibrary } from './file-library';
+import { ProjectsList, ProjectPage } from './projects-ui';
 import { ArtifactPanel } from '../features/viewer/panel';
 import { useViewer } from '../features/viewer/state';
 import h from '../locales/history.zh-CN.json';
@@ -726,69 +727,15 @@ export function DesktopShell() {
                 />
                 <Route
                   path="/projects"
-                  element={
-                    <section>
-                      <h1>{t.projects}</h1>
-                      <button onClick={() => setDialog('project')}>{t.newProject}</button>
-                      {workspace?.projects.length ? (
-                        <ul>
-                          {workspace.projects.map((p) => (
-                            <li
-                              key={p.id}
-                              draggable
-                              onDragStart={(e) =>
-                                e.dataTransfer.setData(
-                                  'application/x-tapkit-entity',
-                                  JSON.stringify({ type: 'project', id: p.id }),
-                                )
-                              }
-                            >
-                              <Link to={'/projects/' + p.id}>{p.name}</Link>
-                              <button
-                                onClick={() =>
-                                  void window.tapkit
-                                    .openEntity({ type: 'project', id: p.id })
-                                    .catch(() => setError(h.failed))
-                                }
-                              >
-                                {h.newWindow}
-                              </button>
-                              <button
-                                onClick={() =>
-                                  void historyCommand(
-                                    'projects.pin',
-                                    { projectId: p.id, pinned: !p.pinned },
-                                    p.revision,
-                                  )
-                                    .then(refresh)
-                                    .catch(() => setError(h.failed))
-                                }
-                              >
-                                {p.pinned ? h.unpin : h.pin}
-                              </button>
-                            </li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p>{t.noProjects}</p>
-                      )}
-                    </section>
-                  }
+                  element={<ProjectsList onCreate={() => setDialog('project')} />}
                 />
                 <Route
                   path="/projects/:id"
                   element={
-                    <section>
-                      <h1>{locatedEntity?.name ?? h.project}</h1>
-                      <p>{h.projectHint}</p>
-                      <HistoryList
-                        key={location.pathname}
-                        page
-                        projectId={location.pathname.split('/')[2]}
-                        projects={workspace?.projects ?? []}
-                        onNavigate={navigate}
-                      />
-                    </section>
+                    <ProjectPage
+                      key={location.pathname}
+                      projectId={location.pathname.split('/')[2]!}
+                    />
                   }
                 />
                 <Route

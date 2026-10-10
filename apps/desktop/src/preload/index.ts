@@ -42,6 +42,12 @@ const bridge: TapKitBridge = Object.freeze<TapKitBridge>({
   openArtifactExternal: (file) => ipcRenderer.invoke('tapkit:open-artifact-external', file),
   copyText: (text) => ipcRenderer.invoke('tapkit:copy-text', z.string().max(100000).parse(text)),
   historyCommand: (options, command, payload) => invoke(command, options, payload),
+  projectCommand: (options, command, payload) => invoke(command, options, payload),
+  exportProject: (value) =>
+    ipcRenderer.invoke(
+      'tapkit:export-project',
+      z.strictObject({ projectId: IdSchema, revision: z.number().int().positive() }).parse(value),
+    ),
   fileCommand: (options, command, payload) => invoke(command, options, payload),
   artifactCommand: (options, command, payload) => invoke(command, options, payload),
   artifactUrl: async (asset) =>
