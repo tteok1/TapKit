@@ -7,6 +7,7 @@ import { ArtifactService } from '../../packages/core/src/artifact-service';
 import { FileParser } from '../../packages/core/src/file-parser';
 import { NativeSandboxExecutor } from '../../packages/tools/src/execution/native-executor';
 import { previewOfficeFixtures } from '../fixtures/P03-preview-office.mjs';
+import { OfficeWorker } from '../../packages/tools/src/execution/office-worker';
 import type {
   ExecutionCapabilities,
   HelperRequest,
@@ -28,8 +29,28 @@ function observer(
   const native = new NativeSandboxExecutor(root, started);
   return {
     execute: async (request: HelperRequest, options?: { signal?: AbortSignal }) => {
-      const result = await native.execute(request, options),
-        first = result.events[0]!,
+      let result: Awaited<ReturnType<NativeSandboxExecutor['execute']>>;
+      try {
+        result = await native.execute(request, options);
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'unknown';
+        await appendFile(
+          join(evidence, 'native-preview-cases.jsonl'),
+          JSON.stringify({
+            case: label,
+            runId: request.runId,
+            operation: request.operation,
+            status: 'executor_rejected',
+            error: /^[A-Z][A-Z_]*(?::[A-Za-z0-9._:-]+)?$/.test(message)
+              ? message
+              : error instanceof Error
+                ? error.name
+                : 'unknown',
+          }) + '\n',
+        );
+        throw error;
+      }
+      const first = result.events[0]!,
         last = result.events.at(-1)!;
       const workerStages = String(last.data.stdout ?? '')
         .split(/\r?\n/)
@@ -78,10 +99,10 @@ function observer(
 }
 test('P03-02 native preview converts six DOCX/PPTX samples through verified isolation and publishes fixed immutable caches', async () => {
   await mkdir(evidence, { recursive: true });
-  // Match the longer independent standard-user kit path rather than validating
-  // only the short checkout path. Office keeps the same timeout and confinement.
+  // Match the standard-user absolute path length without adding the same padding
+  // again inside its already long kit. Deep native paths have a separate case.
   const base = await mkdtemp(
-      resolve('.test-data', 'P03-02 native samples ' + 'nested-kit-path-'.repeat(4)),
+      resolve('.test-data', 'P03-02 native samples ' + 'x'.repeat(Math.max(0, 76 - root.length))),
     ),
     input = join(base, 'input');
   await previewOfficeFixtures(input);
@@ -239,6 +260,66 @@ test('P03-02 native preview refuses late revoked scope after real Office finishe
     await artifacts?.stop();
     store.close();
   }
+}, 150000);
+
+test('P03-02 native preview converts an Office original in a deep private workspace without accepting caller path aliases', async () => {
+  await mkdir(evidence, { recursive: true });
+  const base = await mkdtemp(resolve('.test-data', 'P03-02 deep Office ')),
+    shortInput = join(base, 'source');
+  await previewOfficeFixtures(shortInput);
+  const deep = join(
+      base,
+      ...Array.from({ length: 5 }, (_, i) => 'private-' + i + '-' + 'x'.repeat(39)),
+    ),
+    inputRoot = join(deep, 'input'),
+    workspace = join(deep, 'workspace');
+  await mkdir(inputRoot, { recursive: true });
+  await mkdir(workspace, { recursive: true });
+  expect(inputRoot.length).toBeGreaterThan(260);
+  expect(workspace.length).toBeGreaterThan(260);
+  const bytes = await readFile(join(shortInput, 'word-1.docx')),
+    filename = 'deep.docx';
+  await writeFile(join(inputRoot, filename), bytes);
+  const fileVersionId = newId(),
+    worker = new OfficeWorker(root, observer('deep-workspace:render')),
+    rendered = await worker.render(
+      { fileVersionId, format: 'pdf' },
+      {
+        fileVersionId,
+        requestId: newId(),
+        runId: newId(),
+        leaseEpoch: 1,
+        filename,
+        inputRoot,
+        workspace,
+        sha256: sha(bytes),
+      },
+    );
+  const pdf = await readFile(rendered.path);
+  expect(pdf.subarray(0, 5).toString()).toBe('%PDF-');
+  expect(sha(pdf)).toBe(rendered.sha256);
+  expect(sha(await readFile(join(inputRoot, filename)))).toBe(sha(bytes));
+  await expect(
+    new NativeSandboxExecutor(root).execute({
+      protocolVersion: 1,
+      operation: 'diagnostic.execute',
+      requestId: newId(),
+      runId: newId(),
+      leaseEpoch: 1,
+      payload: {
+        runtimeRoot: resolve('.runtime/node/node-v24.21.0-win-x64'),
+        executable: resolve('.runtime/node/node-v24.21.0-win-x64/node.exe'),
+        inputRoot: '\\\\?\\' + inputRoot,
+        workspace: shortInput,
+        args: ['-e', 'process.stdout.write("forbidden")'],
+        timeoutMs: 5000,
+        memoryBytes: 268435456,
+        processLimit: 2,
+        outputBytes: 4096,
+        terminal: false,
+      },
+    }),
+  ).rejects.toThrow('APP_CONTAINER_HELPER_FAILED:path.syntax');
 }, 150000);
 test('P03-02 native preview cancels the last observer, drains its Job and retries from the same untouched original', async () => {
   await mkdir(evidence, { recursive: true });

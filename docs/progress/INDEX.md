@@ -2,6 +2,14 @@
 
 ## 2026-10-10 P03-02开始
 
+最新ADR0043/原生短cwd与URI/内部长路径修复native4/4、窄窗口同版重开Electron5/5、check353文件均退出0；九截图与已观察b385f07一致。全量253项及P00安全复验中，独立标准用户和新源码CI待验；未提交这轮修复。
+
+按正确CI诊断变量逐文件完整复验252/252退出0；此结果先于随后长路径/Office短cwd和URI/同版本面板重开修复，后续必须重验。cef6781 CI已失败：unit274、integration251/252、Electron28/30；独立标准预览0/3且9源码摘要匹配。真实314/318字符路径已复现Win32打开和启动cwd边界，ADR0043及四个标准预览案例/11源码摘要正在验证；仍in_progress。
+
+按正确CI诊断变量复验为251/252、退出1；既有15格式及OCR解析用例30秒总时限在并行Office负载下超时，P03-02 native三项均通过。集成文件现单worker逐个执行、用例内两真实Office Job并发和全部时限保持，完整复验中。cef6781 CI集成/Electron阶段失败且标准用户运行中，具体CI错误待完整日志。
+
+最新修复cef678139a69a1a095c96d8d580aee77cc9b5608已commit/push，远程ref一致，CI38025546811运行中；main9fb7f35不变，无PR。完整integration252、加强native3、窄窗口Electron5及check/docs/diff均退出0；九截图与已观察的b385f07字节一致。独立标准用户及同源码CI待验，仍in_progress。
+
 当前未验收：两轮旧源码CI均completed/failure（startup均success），unit274通过、integration249/252、Electron24/30；标准用户P00 22/22、parser3/3通过，preview超时且旧撤权断言存在假阳性，不能作为验收。已修复盘符分配器、同步桥接白名单并等待实际重开页面、按窄窗口抽屉实际关闭动作操作；本地完整integration252/252退出0，窄窗口Electron5/5退出0，更深目录六Office样本诊断通过。标准超时原因仍未证实；已保留有界worker stages/清理stderr并要求转换成功后才撤权。完整native加强断言3/3退出0，新源码CI及独立标准用户待完成；尚未提交修复。以下为历史检查点。
 
 最新源码b385f07已commit/push且远程SHA一致，CI38023237710运行中，状态in_progress；main不变、无PR。分享副本成功后提示、独立下载/分享原件字节断言已实际Electron补验通过。

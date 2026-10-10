@@ -16,9 +16,9 @@ export default defineConfig({
         test: {
           name: 'integration',
           include: ['tests/integration/**/*.test.ts'],
-          // Native cases create real Jobs and Office processes. Bound suite
-          // fan-out while retaining the explicit concurrent preview checks.
-          maxWorkers: 2,
+          // Each native file needs the machine's fixed CPU/IO budget. Run files
+          // independently; preview cases still overlap two real Office Jobs.
+          maxWorkers: 1,
           exclude: ['tests/integration/**/*.perf.test.ts'],
           setupFiles: ['tests/setup.ts'],
           testTimeout: 15_000,

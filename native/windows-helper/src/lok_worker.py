@@ -21,7 +21,9 @@ def emit(stage, **data):
 
 
 def uri(path):
-    return path.resolve().as_uri().encode("utf-8")
+    # Native-owned drive leases already pin these exact directories. Retain the
+    # short aliases in LOK URLs instead of expanding them into deep host paths.
+    return path.absolute().as_uri().encode("utf-8")
 
 
 def method(obj, index, result, *args):
@@ -35,6 +37,8 @@ if not source.is_file() or output.exists():
 
 program = runtime_root / "program"
 os.chdir(workspace)
+for name in ("TEMP", "TMP", "USERPROFILE", "LOCALAPPDATA", "APPDATA"):
+    os.environ[name] = str(workspace)
 os.environ["PATH"] = str(program) + os.pathsep + os.environ.get("PATH", "")
 os.environ["SAL_LOK_OPTIONS"] = "unipoll"
 os.environ["SAL_LOG"] = "+WARN+INFO.lok"
@@ -45,10 +49,12 @@ initialize.argtypes = [c.c_char_p, c.c_char_p]
 initialize.restype = c.c_void_p
 
 profile = workspace / "office-profile"
+emit("initialize_started")
 # Match the verified LibreOffice 26.2.6.3 LOK probe: hook_2 receives the program directory.
 kit = initialize(str(program).encode("utf-8"), uri(profile))
 if not kit:
     raise RuntimeError("OFFICE_LOK_INITIALIZE_FAILED")
+emit("initialize_finished")
 
 wake = threading.Event()
 failures = []

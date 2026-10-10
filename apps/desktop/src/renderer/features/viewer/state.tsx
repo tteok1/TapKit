@@ -41,6 +41,7 @@ export type Selection = {
 type ViewerState = {
   tabs: ViewerTab[];
   active: string;
+  openSequence: number;
   open: (access: ViewerAccess) => Promise<void>;
   close: (key: string) => void;
   activate: (key: string) => void;
@@ -62,6 +63,7 @@ export async function artifactCommand(
 export function ViewerProvider({ children }: { children: ReactNode }) {
   const [tabs, setTabs] = useState<ViewerTab[]>([]),
     [active, setActive] = useState(''),
+    [openSequence, setOpenSequence] = useState(0),
     [pendingSelection, setSelection] = useState<Selection>();
   const current = useRef(tabs);
   current.current = tabs;
@@ -135,6 +137,7 @@ export function ViewerProvider({ children }: { children: ReactNode }) {
         setTabs((old) => (old.some((t) => t.key === key) ? old : [...old, tab]));
       }
       setActive(key);
+      setOpenSequence((value) => value + 1);
       await load(key, pinned);
     },
     [load],
@@ -198,6 +201,7 @@ export function ViewerProvider({ children }: { children: ReactNode }) {
       value={{
         tabs,
         active,
+        openSequence,
         open,
         close,
         activate: setActive,

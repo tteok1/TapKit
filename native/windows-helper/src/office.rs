@@ -459,7 +459,12 @@ pub unsafe fn execute(request: &Request, control: &std::sync::mpsc::Receiver<Vec
         alias_root(&lease.journal.mappings[2]),
         filename.clone(),
     ];
-    let result = crate::sandbox::execute(&isolated, control);
+    let workspace_alias = alias_root(&lease.journal.mappings[1]);
+    let result = crate::sandbox::execute_with_workspace_alias(
+        &isolated,
+        control,
+        Some(&workspace_alias),
+    );
     let cleanup = lease.cleanup();
     match (result, cleanup) {
         (Ok(value), Ok(())) => Ok(value),

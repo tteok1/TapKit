@@ -201,6 +201,7 @@ test('P03-02 Electron PDF selections support copy, annotations, persisted quotes
   const { root, fixtures: f } = await seed(),
     page = await launch(root),
     panel = panelFor(page);
+  await app!.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0]!.setSize(1100, 850));
   await page.getByRole('button', { name: /^预览固定版本会话 / }).click();
   await open(page, f.pdf);
   await rendered(page, 0);

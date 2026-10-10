@@ -28,6 +28,18 @@
         "check": "failure",
         "startupDiagnostics": "success"
       }
+    },
+    {
+      "id": 38025546811,
+      "event": "push",
+      "headSha": "cef678139a69a1a095c96d8d580aee77cc9b5608",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/38025546811",
+      "jobs": {
+        "check": "failure",
+        "startupDiagnostics": "success"
+      }
     }
   ],
   "local": {
@@ -56,7 +68,7 @@
     "pullRequestCreated": false,
     "mainMerged": false
   },
-  "currentSourceSha": "b385f07d6547396e2b8d8a6bdb39ace083f62a9c",
+  "currentSourceSha": "cef678139a69a1a095c96d8d580aee77cc9b5608",
   "failedCI": {
     "unit": {
       "passed": 274,
@@ -94,6 +106,49 @@
     "artifact": {
       "id": 11659187015,
       "sha256": "89e35e606dd518aa3fee95f74705a1ac09c4d1f85ed4185d4497e5383c4e68d4"
+    }
+  },
+  "cefFailure": {
+    "sourceSha": "cef678139a69a1a095c96d8d580aee77cc9b5608",
+    "unit": {
+      "passed": 274,
+      "total": 274
+    },
+    "integration": {
+      "passed": 251,
+      "total": 252,
+      "failed": 1,
+      "reason": "first two Office samples timed out before the LOK loop"
+    },
+    "electron": {
+      "passed": 28,
+      "total": 30,
+      "failed": 2,
+      "reasons": [
+        "closed narrow panel does not reopen for the same active version",
+        "fresh native sample profile absent after integration failure"
+      ]
+    },
+    "standardPreview": {
+      "total": 3,
+      "passed": 0,
+      "failed": 3,
+      "pending": 0,
+      "standardUser": true,
+      "matchedSourceFiles": 9,
+      "missingCases": [
+        "P03-02 native preview converts six DOCX/PPTX samples through verified isolation and publishes fixed immutable caches",
+        "P03-02 native preview refuses late revoked scope after real Office finishes and retains the original",
+        "P03-02 native preview cancels the last observer, drains its Job and retries from the same untouched original"
+      ],
+      "failures": [
+        "first sample DATABASE_RECOVERY_REQUIRED under doubly padded fixture path",
+        "revocation and retry conversions timed out before the LOK loop"
+      ]
+    },
+    "artifact": {
+      "id": 11660891284,
+      "sha256": "a7c493a0a8eb927ef6f7d4cea2897ad2471a12b6572bd874978b5411e4d2c512"
     }
   }
 }

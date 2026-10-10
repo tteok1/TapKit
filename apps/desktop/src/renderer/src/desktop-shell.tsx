@@ -79,7 +79,7 @@ export function DesktopShell() {
   layoutRef.current = layout;
   useEffect(() => {
     if (viewer.active) setLayout((l) => ({ ...l, panelOpen: true }));
-  }, [viewer.active]);
+  }, [viewer.active, viewer.openSequence]);
   useEffect(() => {
     if (sidebarScroll.current) sidebarScroll.current.scrollTop = layoutRef.current.sidebarScroll;
   }, [bootstrap?.profile.id]);

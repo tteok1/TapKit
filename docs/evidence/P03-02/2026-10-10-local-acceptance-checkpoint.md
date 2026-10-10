@@ -24,7 +24,7 @@ PDF样本1/2/3：完整纵向/横向页面、标题、正文、表格边界可�
 
 ## 保留的失败与修复
 
-完整CI后的复现与修复：相同TAPKIT_STARTUP_DIAGNOSTIC=1执行pnpm test:integration --reporter=json --outputFile=test-results/P03-02-full-integration.json，退出1，252项247过/5失败/零pending；P03-02 native3在Office转换准备失败，P00内存耗尽及P03-01原生解析分别15秒/30秒超时。定向临时spy得到office.mapping.driveExhausted，诊断轮native0/3退出1，spy已移除。原循环.zip(roots)只查看前三盘符且占用会错误消费根，修正后锁定Rustrelease构建/部署均退出0；六样本改为两项并发、峰值2/回收0，suite限制2worker但保留全部隔离/时限断言。完整复验test-results/P03-02-full-integration-repaired.json为252/252、零pending、退出0。更深目录六Office样本定向诊断通过（1选中/2未选中，不记全套验收）。全30项Electron首轮29过，窄窗口剩余引用入口关闭抽屉后P03-02五流程5/5、退出0、39.4秒。旧CI标准预览超时原因未证实，需新CI；旧撤权假阳性已补成功转换前提。原生事件增加有界stage及脱敏stderr，无私人原件数据。
+完整CI后的复现与修复：TAPKIT_STARTUP_DIAGNOSTIC=1执行（该单数变量不启用CI诊断，早先同环境说法撤回）pnpm test:integration --reporter=json --outputFile=test-results/P03-02-full-integration.json，退出1，252项247过/5失败/零pending；P03-02 native3在Office转换准备失败，P00内存耗尽及P03-01原生解析分别15秒/30秒超时。定向临时spy得到office.mapping.driveExhausted，诊断轮native0/3退出1，spy已移除。原循环.zip(roots)只查看前三盘符且占用会错误消费根，修正后锁定Rustrelease构建/部署均退出0；六样本改为两项并发、峰值2/回收0，suite限制2worker但保留全部隔离/时限断言。完整复验test-results/P03-02-full-integration-repaired.json为252/252、零pending、退出0。更深目录六Office样本定向诊断通过（1选中/2未选中，不记全套验收）。全30项Electron首轮29过，窄窗口剩余引用入口关闭抽屉后P03-02五流程5/5、退出0、39.4秒。旧CI标准预览超时原因未证实，需新CI；旧撤权假阳性已补成功转换前提。原生事件增加有界stage及脱敏stderr，无私人原件数据。
 
 首次Electron资产CORS失败，声明scheme跨源能力且只允许应用来源；首次Office样本生成布局标识大小写错误，修正为受支持标识；PPTX无害空embeddings目录被误判宏，仅允许零字节目录，真实嵌入内容仍拒绝。实际界面发现全屏无法滚动备注、DOCX段落ID误与块ID比较、快速切换位置保存时序、默认浏览器权限拒绝复制等，均已修复并通过定向回归。测试本身曾使用UUIDv4、隐藏引用卡片入口和过早剪贴板读取，保留失败轮且修正等待/入口，没有降低原生隔离断言。
 
@@ -54,3 +54,6 @@ PDF样本1/2/3：完整纵向/横向页面、标题、正文、表格边界可�
 分享额外补验：提示只在副本写入成功后出现，实际下载与分享分别保存到独立路径，两份字节均与固定原件一致；定向Electron1退出0（6.0秒）。
 
 所有需求状态仍in_progress，独立标准用户真实Office/撤权/取消与完整同源码CI待验，本检查点不冒充完成。P03-03/gate不开始；生产能力须本机自己的有效probe，测试未转植报告启用能力。
+
+
+诊断环境记录更正：早先本地命令设置单数TAPKIT_STARTUP_DIAGNOSTIC，实际CI要求TAPKIT_STARTUP_DIAGNOSTICS。已有通过/失败结果仍有效，但不作为相同诊断环境验证；现按CI变量重跑完整252项，结果待完成。

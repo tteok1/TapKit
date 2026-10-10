@@ -7,6 +7,7 @@ const cases = [
   'P03-02 native preview converts six DOCX/PPTX samples through verified isolation and publishes fixed immutable caches',
   'P03-02 native preview refuses late revoked scope after real Office finishes and retains the original',
   'P03-02 native preview cancels the last observer, drains its Job and retries from the same untouched original',
+  'P03-02 native preview converts an Office original in a deep private workspace without accepting caller path aliases',
 ];
 const destination = join(root, 'docs/evidence/P03-02'),
   startedAt = new Date().toISOString();
@@ -62,6 +63,8 @@ const sources = [
   'native/windows-helper/src/office.rs',
   'native/windows-helper/src/lok_worker.py',
   'tests/integration/P03-02.native-preview.test.ts',
+  'vitest.config.ts',
+  'native/windows-helper/src/sandbox.rs',
 ];
 const sourceHashes = Object.fromEntries(
   await Promise.all(
