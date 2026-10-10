@@ -2,9 +2,11 @@
 
 ## 2026-10-10 P03-02开始
 
-实现/测试检查点7a3adca已commit/push且远程SHA一致，CI38022983397运行中，状态in_progress；main不变、无PR。分享副本真实成功/字节断言补验后再同步最终分支源码。
+当前未验收：两轮旧源码CI均completed/failure（startup均success），unit274通过、integration249/252、Electron24/30；标准用户P00 22/22、parser3/3通过，preview超时且旧撤权断言存在假阳性，不能作为验收。已修复盘符分配器、同步桥接白名单并等待实际重开页面、按窄窗口抽屉实际关闭动作操作；本地完整integration252/252退出0，窄窗口Electron5/5退出0，更深目录六Office样本诊断通过。标准超时原因仍未证实；已保留有界worker stages/清理stderr并要求转换成功后才撤权。完整native加强断言3/3退出0，新源码CI及独立标准用户待完成；尚未提交修复。以下为历史检查点。
 
-最新本地unit20（含既有Office9）/integration11/native3/Electron5全绿，九个完整样本观察已记录，最终横向DOCX样本重验中；独立标准用户及同源码CI待完成，保持in_progress。Git本次代理覆盖fetch成功且main不变。见[本地验收检查点](../evidence/P03-02/2026-10-10-local-acceptance-checkpoint.md)。
+最新源码b385f07已commit/push且远程SHA一致，CI38023237710运行中，状态in_progress；main不变、无PR。分享副本成功后提示、独立下载/分享原件字节断言已实际Electron补验通过。
+
+最新本地unit20（含既有Office9）/integration11/native3/Electron5全绿，九个完整样本观察已记录，最终横向DOCX/native3/OfficeUI1与分享UI1补验通过；独立标准用户及同源码CI待完成，保持in_progress。Git本次代理覆盖fetch成功且main不变。见[本地验收检查点](../evidence/P03-02/2026-10-10-local-acceptance-checkpoint.md)。以下为此前检查点历史，当前状态以本段为准。
 
 后续本地unit11/integration10/native3共24与段落/缓存及相关integration13通过；真实隔离Office六样本、撤回/取消重试通过，但独立标准用户及分支CI待验证。实际Electron扩为5流程，2项通过3项修复中；完整视觉须重取未裁剪截图。保持in_progress，未commit/push/PR/main合并，P03-03/gate不扩展。
 

@@ -59,6 +59,9 @@ const sources = [
   'packages/storage/src/artifacts.ts',
   'packages/retrieval/src/ingest/office.ts',
   'tests/fixtures/P03-preview-office.mjs',
+  'native/windows-helper/src/office.rs',
+  'native/windows-helper/src/lok_worker.py',
+  'tests/integration/P03-02.native-preview.test.ts',
 ];
 const sourceHashes = Object.fromEntries(
   await Promise.all(

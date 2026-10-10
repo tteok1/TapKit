@@ -242,7 +242,7 @@ test('P00-02 single instance activates owner and closing UI keeps Core alive unt
   await expect
     .poll(() => app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows().length))
     .toBe(1);
-  const reopened = (await app.windows())[0]!;
+  const reopened = await app.firstWindow();
   await expect(reopened.getByTestId('core-status')).toHaveText('本地核心已连接');
   expect(
     (await reopened.evaluate(() => window.tapkit.ping({ nonce: 'reactivated' }))).corePid,

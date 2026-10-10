@@ -11,8 +11,8 @@
 | pnpm exec vitest run --config vitest.config.ts --project unit P03-02 P03-01.office --reporter=json --outputFile=test-results/P03-02-unit.json | 20/20，退出0，包含新增预览11项与既有Office解析9项 |
 | pnpm exec vitest run --config vitest.config.ts --project integration P03-02.artifacts --reporter=json --outputFile=test-results/P03-02-artifacts.json | 11/11，退出0；范围/版本/hash、真实段落标识、旧缓存拒绝、diff/网格与持久化/清理 |
 | 相关integration P03-02.artifacts P03-01.migration P03-01.material | 13/13，退出0（新增段落检查之后、列类型补充之前）；test-results/P03-02-related.json |
-| integration P03-02.native-preview | 3/3，退出0；test-results/P03-02-local-native-preview.json、native-preview-cases.jsonl。最新横向样本尺寸修正后正在重验，结果待更新 |
-| pnpm exec playwright test --grep P03-02 | 5/5，退出0，32.9秒；版本/位置/材料、选区/批注、网格/图片/ZIP/200%、六Office、失败恢复。最新横向DOCX尺寸修正后Office流程待复验 |
+| integration P03-02.native-preview | 3/3，退出0；test-results/P03-02-local-native-preview.json、native-preview-cases.jsonl。最终横向样本尺寸修正后3项重验全部通过 |
+| pnpm exec playwright test --grep P03-02 | 5/5，退出0，32.9秒；版本/位置/材料、选区/批注、网格/图片/ZIP/200%、六Office、失败恢复。最终横向DOCX对应Office流程1项补验退出0（5.1秒）；分享反馈和独立副本字节流程1项补验退出0（6.0秒） |
 | pnpm check | 退出0，352文件格式零失败、依赖边界与锁定清单通过 |
 | node scripts/docs-check.mjs / git diff --check | 退出0；37任务状态及已有完成需求证据检查通过 |
 
@@ -20,9 +20,11 @@
 
 PDF样本1/2/3：完整纵向/横向页面、标题、正文、表格边界可见，无活动PDF脚本；页1/末页目录与控件边界通过。DOCX样本1/2/3：中文/英文、表格三列与数字可读，样本2静态图、样本3长段落与末页可到达。PPTX样本1/2/3：标题/正文/表格、4:3与宽屏比例、静态图可见，备注与放映/结构视图通过。截图清单见renderer-visual-samples.json，源为实际Electron/PDF.js canvas，Office缓存来自真实NativeSandboxExecutor。
 
-早期截图被祖先滚动裁剪，已经将页面缩放到视口内重新截图；早期DOCX表格默认网格宽仅100 twips，修正为明确列宽并增加“文件预览”文字断言，实际新页面包含表格。样本2的横向尺寸后续发现重复旋转，已修正生成参数，须重新观察最终样本，不能把早期纵向图当横向验收。
+早期截图被祖先滚动裁剪，已经将页面缩放到视口内重新截图；早期DOCX表格默认网格宽仅100 twips，修正为明确列宽并增加“文件预览”文字断言，实际新页面包含表格。样本2的横向尺寸后续发现重复旋转，修正生成参数后已重新观察最终横向样本，最新截图及宽高断言通过。
 
 ## 保留的失败与修复
+
+完整CI后的复现与修复：相同TAPKIT_STARTUP_DIAGNOSTIC=1执行pnpm test:integration --reporter=json --outputFile=test-results/P03-02-full-integration.json，退出1，252项247过/5失败/零pending；P03-02 native3在Office转换准备失败，P00内存耗尽及P03-01原生解析分别15秒/30秒超时。定向临时spy得到office.mapping.driveExhausted，诊断轮native0/3退出1，spy已移除。原循环.zip(roots)只查看前三盘符且占用会错误消费根，修正后锁定Rustrelease构建/部署均退出0；六样本改为两项并发、峰值2/回收0，suite限制2worker但保留全部隔离/时限断言。完整复验test-results/P03-02-full-integration-repaired.json为252/252、零pending、退出0。更深目录六Office样本定向诊断通过（1选中/2未选中，不记全套验收）。全30项Electron首轮29过，窄窗口剩余引用入口关闭抽屉后P03-02五流程5/5、退出0、39.4秒。旧CI标准预览超时原因未证实，需新CI；旧撤权假阳性已补成功转换前提。原生事件增加有界stage及脱敏stderr，无私人原件数据。
 
 首次Electron资产CORS失败，声明scheme跨源能力且只允许应用来源；首次Office样本生成布局标识大小写错误，修正为受支持标识；PPTX无害空embeddings目录被误判宏，仅允许零字节目录，真实嵌入内容仍拒绝。实际界面发现全屏无法滚动备注、DOCX段落ID误与块ID比较、快速切换位置保存时序、默认浏览器权限拒绝复制等，均已修复并通过定向回归。测试本身曾使用UUIDv4、隐藏引用卡片入口和过早剪贴板读取，保留失败轮且修正等待/入口，没有降低原生隔离断言。
 

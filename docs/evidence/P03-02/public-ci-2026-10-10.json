@@ -5,9 +5,95 @@
   "branch": "codex/p03-02-preview",
   "mainSha": "9fb7f355bdf4eda56862df517e31ebbd8ab592f7",
   "runs": [
-    {"id":38022983397,"event":"push","headSha":"7a3adcaca52c54e49224b70124663b58fd7d875d","status":"in_progress","conclusion":null,"url":"https://github.com/tteok1/TapKit/actions/runs/38022983397"}
+    {
+      "id": 38022983397,
+      "event": "push",
+      "headSha": "7a3adcaca52c54e49224b70124663b58fd7d875d",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/38022983397",
+      "jobs": {
+        "check": "failure",
+        "startupDiagnostics": "success"
+      }
+    },
+    {
+      "id": 38023237710,
+      "event": "push",
+      "headSha": "b385f07d6547396e2b8d8a6bdb39ace083f62a9c",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/38023237710",
+      "jobs": {
+        "check": "failure",
+        "startupDiagnostics": "success"
+      }
+    }
   ],
-  "local": {"previewUnit":11,"relatedOfficeUnit":9,"previewIntegration":11,"nativeIntegration":3,"electron":5,"visualSamples":9,"checkExitCode":0,"docsExitCode":0},
-  "latestRepair": {"change":"share feedback only after a successful immutable copy; verify separate downloaded and shared original bytes","electronTests":1,"exitCode":0,"durationSeconds":6.0},
-  "acceptance": {"independentStandardUser":"pending","sameSourceCI":"pending","pullRequestCreated":false,"mainMerged":false}
+  "local": {
+    "previewUnit": 11,
+    "relatedOfficeUnit": 9,
+    "previewIntegration": 11,
+    "nativeIntegration": 3,
+    "electron": 5,
+    "visualSamples": 9,
+    "checkExitCode": 0,
+    "docsExitCode": 0
+  },
+  "latestRepair": {
+    "nativeAllocator": "Skip occupied drive aliases without consuming a root; preserve existing lease and confinement.",
+    "integrationWorkers": 2,
+    "fullIntegrationPassed": 252,
+    "narrowElectronPassed": 5,
+    "standardUserSourceFiles": 9,
+    "standardUserTimeoutCause": "not established; next CI carries bounded worker stage and sanitized stderr evidence",
+    "strengthenedNativePassed": 3,
+    "checkExitCode": 0
+  },
+  "acceptance": {
+    "independentStandardUser": "pending",
+    "sameSourceCI": "pending",
+    "pullRequestCreated": false,
+    "mainMerged": false
+  },
+  "currentSourceSha": "b385f07d6547396e2b8d8a6bdb39ace083f62a9c",
+  "failedCI": {
+    "unit": {
+      "passed": 274,
+      "total": 274
+    },
+    "integration": {
+      "passed": 249,
+      "total": 252,
+      "failed": 3
+    },
+    "electron": {
+      "passed": 24,
+      "total": 30,
+      "failed": 6
+    },
+    "standardUser": {
+      "P00": {
+        "passed": 22,
+        "total": 22,
+        "pending": 0
+      },
+      "parser": {
+        "passed": 3,
+        "total": 3,
+        "pending": 0
+      },
+      "preview": {
+        "passed": 1,
+        "total": 3,
+        "pending": 0,
+        "validAcceptance": false,
+        "note": "Revocation must verify a successful conversion before revoking; old timeout then revocation was a false positive, and has been corrected."
+      }
+    },
+    "artifact": {
+      "id": 11659187015,
+      "sha256": "89e35e606dd518aa3fee95f74705a1ac09c4d1f85ed4185d4497e5383c4e68d4"
+    }
+  }
 }

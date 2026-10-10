@@ -270,11 +270,12 @@ unsafe fn create_mappings(run_id: &str, roots: [&Path; 3]) -> Result<Vec<Mapping
     let _allocation = allocation_lock()?;
     let root = journal_root()?;
     let mut mappings = Vec::with_capacity(3);
-    for (drive_letter, path) in "ZYXWVUTSRQPONMLKJIHGFED".chars().zip(roots) {
+    for drive_letter in "ZYXWVUTSRQPONMLKJIHGFED".chars() {
         let drive = format!("{drive_letter}:");
         if !query_targets(&drive)?.is_empty() {
             continue;
         }
+        let path = roots[mappings.len()];
         let target_path = path.to_string_lossy().replace('/', "\\");
         if !target_path.as_bytes().get(1..3).is_some_and(|v| v == b":\\") {
             return Err("office.mapping.localPathRequired".into());

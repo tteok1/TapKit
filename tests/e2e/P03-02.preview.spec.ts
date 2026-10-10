@@ -74,7 +74,20 @@ async function launch(root: string) {
   return page;
 }
 const panelFor = (page: Page) => page.getByRole('region', { name: '文件预览', exact: true });
+async function closeNarrowDetail(page: Page) {
+  const detail = page.locator('.detail-panel');
+  if (
+    (await detail.count()) &&
+    (await detail.evaluate((element) => getComputedStyle(element).position === 'absolute'))
+  ) {
+    // The specified narrow layout uses a drawer. Follow its real close action
+    // before choosing another library item; retain all existing viewer tabs.
+    await detail.getByRole('button', { name: '关闭详情', exact: true }).click();
+    await expect(detail).toHaveCount(0);
+  }
+}
 async function open(page: Page, file: FileId) {
+  await closeNarrowDetail(page);
   await page.getByRole('link', { name: '文件', exact: true }).click();
   await page
     .locator('#file-' + file.fileId)
@@ -116,6 +129,7 @@ test('P03-02 Electron pins inline historical refs, remembers PDF/code positions 
   const { root, fixtures: f } = await seed(),
     page = await launch(root),
     panel = panelFor(page);
+  await app!.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0]!.setSize(1100, 850));
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
   await open(page, f.pdf);
@@ -144,6 +158,7 @@ test('P03-02 Electron pins inline historical refs, remembers PDF/code positions 
   await expect(panel.locator('.diff-added').first()).toContainText('line1 = 42');
   await expect(panel.locator('.viewer-diff pre')).toHaveCount(100);
   await page.getByRole('button', { name: /^预览固定版本会话 / }).click();
+  await closeNarrowDetail(page);
   await page.getByText('引用资料（1）', { exact: true }).click();
   await page.locator('.inline-file-card summary').click();
   await expect(page.locator('.inline-file-card pre')).toContainText('Historical PDF text marker');
@@ -354,6 +369,10 @@ test('P03-02 Electron renders six actual isolated Office caches with notes, stru
   for (const sample of manifest.samples) {
     await open(page, sample);
     await rendered(page, 0);
+    const sampleNumber = /-(\d)\./.exec(sample.name)![1];
+    await expect(panel.locator('.pdf-scroll .textLayer')).toContainText(
+      `${sample.name.endsWith('.docx') ? 'DOCX' : 'PPTX'} 样本 ${sampleNumber}`,
+    );
     await expect(panel.locator('.viewer-file')).toContainText('Office结构定位为段落/幻灯片定位');
     if (sample.name.endsWith('.docx'))
       await expect(panel.locator('.pdf-scroll .textLayer')).toContainText('文件预览');

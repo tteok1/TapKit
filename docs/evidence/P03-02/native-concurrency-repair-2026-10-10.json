@@ -1,0 +1,171 @@
+{
+  "task": "P03-02",
+  "status": "in_progress",
+  "recordedAt": "2026-10-10T04:51:48.455Z",
+  "firstFullIntegration": {
+    "command": "pnpm test:integration --reporter=json --outputFile=test-results/P03-02-full-integration.json",
+    "diagnosticsEnabled": true,
+    "exitCode": 1,
+    "total": 252,
+    "passed": 247,
+    "failed": 5,
+    "pending": 0,
+    "failures": [
+      {
+        "title": "memory exhaustion is contained",
+        "reason": "Error: Test timed out in 15000ms."
+      },
+      {
+        "title": "P03-01 native parser publishes text and Office structure from a read-only AppContainer input",
+        "reason": "Error: Test timed out in 30000ms."
+      },
+      {
+        "title": "P03-02 native preview converts six DOCX/PPTX samples through verified isolation and publishes fixed immutable caches",
+        "reason": "AssertionError: expected 'failed' to be 'ready' // Object.is equality"
+      },
+      {
+        "title": "P03-02 native preview refuses late revoked scope after real Office finishes and retains the original",
+        "reason": "Error: promise resolved \"{ file: { …(18) }, …(12) }\" instead of rejecting"
+      },
+      {
+        "title": "P03-02 native preview cancels the last observer, drains its Job and retries from the same untouched original",
+        "reason": "AssertionError: expected false to be true // Object.is equality"
+      }
+    ]
+  },
+  "nativeDiagnosis": {
+    "failedTests": 3,
+    "exitCode": 1,
+    "code": "APP_CONTAINER_HELPER_FAILED:office.mapping.driveExhausted",
+    "temporarySpyRemoved": true
+  },
+  "repair": {
+    "nativeSource": "native/windows-helper/src/office.rs",
+    "nativeSourceSha256": "b432c0168d025fc610015d64a95769cf1a72c19e8b4c4b7d9638b9570e1bf9c4",
+    "candidatePoolUnchanged": true,
+    "mutexLeaseJournalAndJobUnchanged": true,
+    "helperBuildExitCode": 0,
+    "helperSha256": "19da45baff74be03e70da72a6533c975dd02ae870ffe95b57f92b29ccabb176d",
+    "integrationWorkers": 2,
+    "testTimeoutsUnchanged": true,
+    "standardUserSourceHashesIncludeNativeSource": true,
+    "standardUserSourceFiles": 9
+  },
+  "repairedElectron": {
+    "command": "pnpm test:e2e -- --grep P03-02",
+    "diagnosticsEnabled": true,
+    "total": 5,
+    "passed": 5,
+    "exitCode": 0,
+    "durationSeconds": 44.5,
+    "distinctOfficeTitlesAsserted": true
+  },
+  "visualSamples": [
+    {
+      "file": "docs/evidence/P03-02/pdf-sample-1.png",
+      "sha256": "dce2e7e7060903174a3d2fa65ba6434cb35c6d69b44ff4f30037b80a523b1993",
+      "matchesPreviouslyReviewedCommit": "b385f07d6547396e2b8d8a6bdb39ace083f62a9c"
+    },
+    {
+      "file": "docs/evidence/P03-02/pdf-sample-2.png",
+      "sha256": "f53e9a4a345120f600404a71e553acc6f61410c2c16c8bb8712de49b9c7be396",
+      "matchesPreviouslyReviewedCommit": "b385f07d6547396e2b8d8a6bdb39ace083f62a9c"
+    },
+    {
+      "file": "docs/evidence/P03-02/pdf-sample-3.png",
+      "sha256": "83a9eb63dd4bfe34de2a7bd61f6397a87b1e74ca637a3f08be250eecb32b7a91",
+      "matchesPreviouslyReviewedCommit": "b385f07d6547396e2b8d8a6bdb39ace083f62a9c"
+    },
+    {
+      "file": "docs/evidence/P03-02/word-1-docx.png",
+      "sha256": "159410014db9d3c09a54d5e6c4e8be12b9cbc8e56fbf04ad3d13fcc21082b1fb",
+      "matchesPreviouslyReviewedCommit": "b385f07d6547396e2b8d8a6bdb39ace083f62a9c"
+    },
+    {
+      "file": "docs/evidence/P03-02/word-2-docx.png",
+      "sha256": "a20d0ab26e3960b6cd84cf953cf526e52cd710278ac3acbe0489b13f4431159c",
+      "matchesPreviouslyReviewedCommit": "b385f07d6547396e2b8d8a6bdb39ace083f62a9c"
+    },
+    {
+      "file": "docs/evidence/P03-02/word-3-docx.png",
+      "sha256": "03a5009f69a6848166494833677dc02e550b2025d878beec2b93667e64ee5875",
+      "matchesPreviouslyReviewedCommit": "b385f07d6547396e2b8d8a6bdb39ace083f62a9c"
+    },
+    {
+      "file": "docs/evidence/P03-02/slides-1-pptx.png",
+      "sha256": "73151d444b66461e943ab293c2badaa7ce6d2586ea8ef4a5f1b1521ecc131809",
+      "matchesPreviouslyReviewedCommit": "b385f07d6547396e2b8d8a6bdb39ace083f62a9c"
+    },
+    {
+      "file": "docs/evidence/P03-02/slides-2-pptx.png",
+      "sha256": "f29a527d7432b8f713ae1b3d189104c40bec99b39c27790d28da467436beb649",
+      "matchesPreviouslyReviewedCommit": "b385f07d6547396e2b8d8a6bdb39ace083f62a9c"
+    },
+    {
+      "file": "docs/evidence/P03-02/slides-3-pptx.png",
+      "sha256": "f74c1ce154d2f8975266f2eda913bad4ea6d2cc0ad768560d642567485b2c862",
+      "matchesPreviouslyReviewedCommit": "b385f07d6547396e2b8d8a6bdb39ace083f62a9c"
+    }
+  ],
+  "fullRepairedIntegration": {
+    "command": "pnpm test:integration --reporter=json --outputFile=test-results/P03-02-full-integration-repaired.json",
+    "diagnosticsEnabled": true,
+    "exitCode": 0,
+    "total": 252,
+    "passed": 252,
+    "failed": 0,
+    "pending": 0,
+    "reportSha256": "c25f67c9c9905456f86de02531a812c19d34979b5781383656a10f0b3805cfdf"
+  },
+  "sameSourceCI": "pending",
+  "independentStandardUser": "pending",
+  "longPathDiagnostic": {
+    "exitCode": 0,
+    "selected": 1,
+    "passed": 1,
+    "unselected": 2,
+    "durationMs": 153806.95320000002,
+    "note": "Six genuine samples under a longer fixture path passed; does not establish the standard-user timeout cause."
+  },
+  "electronInitialFullRegression": {
+    "total": 30,
+    "passed": 29,
+    "failed": 1,
+    "exitCode": 1,
+    "reason": "At 1100px the detail drawer intercepted the reference summary. The test now closes it via the actual close button before inspecting chat references."
+  },
+  "electronNarrowRepair": {
+    "total": 5,
+    "passed": 5,
+    "exitCode": 0,
+    "command": "pnpm test:e2e -- --grep P03-02",
+    "note": "Actual narrow drawer actions retain fixed-version, position, original bytes, notes, grids and selection assertions."
+  },
+  "rawBaselineRegressionEvidence": {
+    "archive": ".cache/P03-02-baseline-regression-artifacts",
+    "files": 18,
+    "note": "Own regenerated baseline artifacts retained locally; historical published baseline bytes restored."
+  },
+  "finalNative": {
+    "command": "pnpm test:integration P03-02.native-preview --reporter=json --outputFile=test-results/P03-02-native-final-repaired.json",
+    "exitCode": 0,
+    "total": 3,
+    "passed": 3,
+    "pending": 0,
+    "successfulConversionBeforeRevocation": true,
+    "peakConcurrentOfficeRenders": 2,
+    "events": 17,
+    "isolationIdentityMatches": true,
+    "networkCapabilities": 0,
+    "activeProcessesAfterCompletion": 0,
+    "reportSha256": "e63f7242e2ad76a7a6822de6b5d5104fb4e3fb7a1790c900f1e287db46cac200"
+  },
+  "finalCheck": {
+    "command": "pnpm check",
+    "exitCode": 0,
+    "files": 352,
+    "formatFailures": 0,
+    "docsCheckExitCode": 0,
+    "diffCheckExitCode": 0
+  }
+}
