@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "task": "P03-03",
+  "date": "2026-10-11",
+  "timezone": "Asia/Shanghai",
+  "authorization": "帮我压缩成一个提交然后再合入main",
+  "strategy": "squash",
+  "targetBranch": "main",
+  "baseSha": "4eff68438b461eb873e89e9888ded36497a81d80",
+  "sourceBranch": "codex/p03-03-projects",
+  "sourceSha": "23b110069895829656a33c7eefa1653fdc628da1",
+  "sourceCommitCount": 2,
+  "sourceTree": "67db0216cbd3c4631e92508a3c2089d69dd4ffbc",
+  "squashTreeBeforeHandoffSync": "67db0216cbd3c4631e92508a3c2089d69dd4ffbc",
+  "initialSquashTreeMatchesSource": true,
+  "sourceCI": {
+    "runId": 38065599002,
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/tteok1/TapKit/actions/runs/38065599002",
+    "jobs": {
+      "check": "success",
+      "startupDiagnostics": "success"
+    },
+    "unit": 276,
+    "integration": 267,
+    "electron": 34,
+    "perf": 1,
+    "standardUser": {
+      "isolation": 22,
+      "parser": 3,
+      "preview": 4,
+      "sourceHashes": 11,
+      "freshOfficeControls": 6
+    }
+  },
+  "acceptanceStatus": "implemented_and_verified",
+  "stageGate": "passed",
+  "requirementRowsUpdated": 21,
+  "acceptedImplementationSha": "59de6d7cff76d6d3a610320fffa67b0844edec8c",
+  "sourceBranchPreserved": true,
+  "pullRequestCreated": false,
+  "mergeCommitReference": "The commit containing this evidence is the single squash commit on main.",
+  "mainCIReference": "GitHub Actions push run for the commit containing this evidence.",
+  "nextTasks": {
+    "P04-01": "not_started"
+  },
+  "handoffSync": {
+    "acceptedSourceCodeUnchanged": true,
+    "sourceDigestsVerified": 37,
+    "nonTargetRequirementsUnchanged": true,
+    "requirementRowsUpdated": 21,
+    "checks": {
+      "pnpm check": {
+        "exitCode": 0,
+        "formattedFiles": 366
+      },
+      "pnpm docs:check": {
+        "exitCode": 0,
+        "taskStates": 37
+      },
+      "git diff --check": {
+        "exitCode": 0
+      },
+      "git diff --cached --check": {
+        "exitCode": 0
+      }
+    }
+  }
+}

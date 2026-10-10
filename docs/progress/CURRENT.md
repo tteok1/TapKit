@@ -1,7 +1,6 @@
 # 当前接续点
 
-- 2026-10-10：D:/Tapkit-public，main，P03-02=implemented_and_verified；实现源码7012e456869a12916dec3e14843133a5b18abe4d。
-- 源分支最终提交eb35f67的CI38033628515两job全success；unit274/integration253/Electron30/perf1、标准P00 22/parser3/preview4及11摘要通过；本地integration253/Electron5/check与9视觉样本通过。详见P03-02.md和docs/evidence/P03-02。
-- 用户已确认“压缩再合入main”；本提交将codex/p03-02-preview的6个提交squash合入main，基线9fb7f35，无PR。源分支保留验收历史；合入证据见main-squash-2026-10-10.json。
-- P03-01已验证；P03-03/gate仍not_started。下一步建议按P03-03推进项目管理、资料范围和索引版本。
-- P01/P02既有live缺口保持；生产须本机有效probe，不转植CI报告；OCR/媒体理解/屏幕采集延期。
+- 2026-10-11：D:/Tapkit-public，main；用户已确认将codex/p03-03-projects的2个提交squash为本记录所在的单一main提交。基线4eff684，源分支23b1100保留；P03-03=implemented_and_verified，P03-gate=passed。
+- 最终源分支CI38065599002已completed/success，check/startup全部通过；unit276/integration267/perf1/Electron34，标准P00 22/parser3/preview4零缺项。37实现摘要及11原生/预览摘要一致，源码验收CI38063378626证据保留。
+- 合入仅同步交接和21项需求的证据链接，业务/测试源码保持59de6d7。记录见P03-03.md、P03-gate.md及docs/evidence/P03-03/main-squash-2026-10-11.json；main后续CI以包含本记录提交的push Actions为准。
+- 本轮无PR、不开展P04；P01/P02既有live缺口保持，本机能力仍须自身有效probe。下一任务按既定依赖另行授权。

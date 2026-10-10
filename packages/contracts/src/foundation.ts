@@ -3,6 +3,7 @@ import { ChatReplyDataSchema } from './chat';
 import { HistoryReplySchema } from './history';
 import { FileReplySchema } from './files';
 import { ArtifactReplySchema } from './artifacts';
+import { ProjectReplySchema } from './projects';
 export { RunStatusSchema } from './chat';
 import {
   CatalogViewSchema,
@@ -253,6 +254,7 @@ export const BootstrapViewSchema = z.strictObject({
   unreadCount: z.number().int().min(0),
 });
 export const ReplyDataSchema = z.union([
+  ProjectReplySchema,
   ArtifactReplySchema,
   FileReplySchema,
   HistoryReplySchema,

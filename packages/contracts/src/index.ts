@@ -22,6 +22,7 @@ export * from './chat';
 export * from './history';
 export * from './files';
 export * from './artifacts';
+export * from './projects';
 export const PingRequestSchema = z.strictObject({ nonce: z.string().min(1).max(128) });
 export const PingReplySchema = z.strictObject({
   nonce: z.string().min(1).max(128),
@@ -50,6 +51,15 @@ export const CoreCommandSchema = z.discriminatedUnion('type', [
     asset: ArtifactAssetSchema,
   }),
   // Private Host -> Core grant; never accepted by the public request handler.
+  z.strictObject({
+    type: z.literal('projects.export'),
+    id: z.string().uuid(),
+    requestId: IdSchema,
+    windowId: z.string().regex(/^[0-9]{1,8}$/),
+    projectId: IdSchema,
+    revision: z.number().int().positive(),
+    targetPath: z.string().min(1).max(32767),
+  }),
   z.strictObject({
     type: z.literal('files.export'),
     id: z.string().uuid(),
@@ -88,7 +98,7 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('ready'),
     protocolVersion: z.literal(1),
-    schemaVersion: z.literal(10),
+    schemaVersion: z.literal(11),
   }),
   z.strictObject({ type: z.literal('pong'), id: z.string().uuid(), payload: PingReplySchema }),
   z.strictObject({ type: z.literal('reply'), id: z.string().uuid(), reply: ReplySchema }),
@@ -97,6 +107,12 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
 export type PingRequest = z.infer<typeof PingRequestSchema>;
 export type PingReply = z.infer<typeof PingReplySchema>;
 export interface TapKitBridge {
+  exportProject(value: { projectId: string; revision: number }): Promise<Reply>;
+  projectCommand(
+    options: RequestOptions,
+    command: import('./projects').ProjectCommand,
+    payload: unknown,
+  ): Promise<Reply>;
   readonly windowSlot: string;
   readonly initialRoute: string | undefined;
   newWindow(): Promise<void>;

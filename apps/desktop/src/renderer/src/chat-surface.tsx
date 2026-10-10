@@ -24,6 +24,7 @@ import { SessionTools, MessageActions } from './message-history';
 import { importChatFiles, chatFileOwner, type ChatImportView } from './chat-file-import';
 import { useViewer } from '../features/viewer/state';
 import { InlineFileCard } from '../features/viewer/inline-card';
+import { ProjectScopeBar } from './projects-ui';
 const unwrap = (reply: Reply) => {
   if (!reply.ok) throw new Error(reply.error.code);
   return reply.data;
@@ -638,6 +639,15 @@ export function ChatSurface({
     : catalog?.catalog.find((m) => m.status === 'ready');
   return (
     <section className="chat-surface" data-session-id={sessionId}>
+      {sessionId && (
+        <ProjectScopeBar
+          sessionId={sessionId}
+          disabled={
+            !!snapshot?.run &&
+            ['queued', 'running', 'waiting_tool', 'stopping'].includes(snapshot.run.status)
+          }
+        />
+      )}
       {sessionId && (
         <SessionTools
           sessionId={sessionId}

@@ -505,7 +505,7 @@ test('P03-02 migration is repeatable, reader/annotations persist after reopen an
     color: 'yellow',
   });
   await migrate(f.store.db, resolve(f.dir, 'backups'));
-  expect(f.store.db.pragma('user_version', { simple: true })).toBe(10);
+  expect(f.store.db.pragma('user_version', { simple: true })).toBe(11);
   f.store.close();
   const reopened = await openStore(f.dir);
   stores.push(reopened);

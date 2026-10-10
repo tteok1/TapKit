@@ -85,7 +85,7 @@ test('P03-01 schema9 repairs only live legacy generated-note links to their orig
     .prepare('SELECT * FROM resource_links WHERE id IN (?,?) ORDER BY id')
     .all(sessionLink, projectLink);
   await migrate(db, backups);
-  expect(db.pragma('user_version', { simple: true })).toBe(10);
+  expect(db.pragma('user_version', { simple: true })).toBe(11);
   expect(
     db
       .prepare('SELECT * FROM resource_links WHERE id IN (?,?) ORDER BY id')
@@ -95,7 +95,7 @@ test('P03-01 schema9 repairs only live legacy generated-note links to their orig
     [unknownOwner, badPin, untouched].map((id) =>
       db.prepare('SELECT * FROM resource_links WHERE id=?').get(id),
     ),
-  ).toEqual(beforeInvalid);
+  ).toMatchObject(beforeInvalid);
   expect(db.prepare('SELECT * FROM jobs WHERE id=?').get(job.id)).toEqual(oldJob);
   expect(files.jobs.heartbeat(job)).toBe(true);
   for (const owner of [

@@ -1,0 +1,24 @@
+$ node scripts/build.mjs
+rust already prepared 1.98.1
+windowsSdk already prepared 10.0.28000.2705
+msvcCrt already prepared 14.44.35226
+msvcImports already prepared 14.44.35226
+   Compiling tapkit-windows-helper v0.1.0 (D:\Tapkit-public\native\windows-helper)
+    Finished `release` profile [optimized] target(s) in 3.21s
+node:internal/fs/promises:1070
+  return await PromisePrototypeThen(
+         ^
+
+Error: EPERM: operation not permitted, unlink 'D:\Tapkit-public\resources\runtime\helper\tapkit-windows-helper.exe'
+    at async unlink (node:internal/fs/promises:1070:10)
+    at async mayCopyFile (node:internal/fs/cp/cp:247:5)
+    at async buildHelper (file:///D:/Tapkit-public/scripts/helper-build.mjs:60:3)
+    at async file:///D:/Tapkit-public/scripts/build.mjs:3:1 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'unlink',
+  path: 'D:\\Tapkit-public\\resources\\runtime\\helper\\tapkit-windows-helper.exe'
+}
+
+Node.js v24.18.0
+[ELIFECYCLE] Command failed with exit code 1.

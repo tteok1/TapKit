@@ -105,12 +105,21 @@ export class CoreService {
         case 'sessions.create': {
           const p = SessionCreateSchema.parse(request.payload);
           return this.store.receipt(request, () => {
+            if (
+              p.projectId &&
+              !this.store.db
+                .prepare(
+                  'SELECT 1 FROM projects WHERE id=? AND profile_id=? AND deleted_at IS NULL AND archived_at IS NULL',
+                )
+                .get(p.projectId, this.store.profileId)
+            )
+              throw new StorageError('PERMISSION_DENIED');
             const id = newId(),
               branch = newId(),
               now = this.store.now();
             this.store.db
               .prepare(
-                'INSERT INTO sessions(id,profile_id,created_at,updated_at,title,mode,active_branch_id,settings_json,last_activity_at) VALUES(?,?,?,?,?,?,?,?,?)',
+                'INSERT INTO sessions(id,profile_id,created_at,updated_at,title,mode,active_branch_id,settings_json,last_activity_at,project_id) VALUES(?,?,?,?,?,?,?,?,?,?)',
               )
               .run(
                 id,
@@ -122,6 +131,7 @@ export class CoreService {
                 branch,
                 JSON.stringify({ schemaVersion: 1, values: {} }),
                 now,
+                p.projectId ?? null,
               );
             this.store.db
               .prepare(

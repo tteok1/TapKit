@@ -1,0 +1,98 @@
+{
+  "runId": 38063378626,
+  "sourceCommit": "59de6d7cff76d6d3a610320fffa67b0844edec8c",
+  "artifactId": 11674401535,
+  "artifactSha256": "a03eb72e60109ae5461c3d714432962aecbd361e95fef503f0ee94fd88e6680b",
+  "runtime": {
+    "schemaVersion": 1,
+    "executionPolicy": "appcontainer-lok-v1",
+    "startedAt": "2026-10-10T15:38:46.414Z",
+    "endedAt": "2026-10-10T15:43:02.932Z",
+    "command": "pnpm test:integration P00-03 --reporter=json --outputFile=test-results/P00-03-native.json",
+    "exitCode": 0,
+    "standardUser": true,
+    "fingerprint": "6debcda654f0466637af7ed2244fe44929b4f2e52a828d1d0ad222aa26c774c6",
+    "capabilities": {
+      "nativeExecution": {
+        "status": "available"
+      },
+      "officeRender": {
+        "status": "available"
+      },
+      "terminal": {
+        "status": "available"
+      }
+    },
+    "tests": {
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "pending": 0
+    },
+    "missingCases": []
+  },
+  "parser": {
+    "schemaVersion": 1,
+    "task": "P03-01",
+    "startedAt": "2026-10-10T15:43:03.013Z",
+    "endedAt": "2026-10-10T15:43:20.361Z",
+    "command": "pnpm test:integration P03-01.native-parser --reporter=json --outputFile=test-results/P03-01-native-parser.json",
+    "exitCode": 0,
+    "standardUser": true,
+    "adapterSha256": "d45770b9cabc61c5d86a313310b1705928192c95b8bfb18ef1ce4a0e90c52a55",
+    "passed": true,
+    "missingCases": [],
+    "tests": {
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "pending": 0
+    }
+  },
+  "preview": {
+    "schemaVersion": 1,
+    "task": "P03-02",
+    "startedAt": "2026-10-10T15:43:20.433Z",
+    "endedAt": "2026-10-10T15:44:25.347Z",
+    "command": "pnpm test:integration P03-02.native-preview --reporter=json --outputFile=test-results/P03-02-native-preview.json",
+    "exitCode": 0,
+    "standardUser": true,
+    "sourceHashes": {
+      "packages/core/src/artifact-service.ts": "2e225db10a5d6d36f23499f1659f2e7a488bd32b64da19fb3a4f73d15be953c8",
+      "packages/core/src/preview-staging.ts": "ceba7c300a3b30a52a4ebfd502cd547208512e2cbc7c312d667cd7ac9feb6a3d",
+      "packages/contracts/src/artifacts.ts": "1a90f8694c585e0a2c3133ed2f64e6ff31605a42074191fd1e819b6b87d42cd9",
+      "packages/storage/src/artifacts.ts": "73fa8cfbdeb3fec90496ad2d4ba5a509b77c06fbde1fc471c21e9f05d47e80fe",
+      "packages/retrieval/src/ingest/office.ts": "f7d9d0831002425c4b752ea140011cf874f9a4b35714ed21a13c0e51018b3000",
+      "tests/fixtures/P03-preview-office.mjs": "5682fa603b5c3ac96442b1e1c7562b0d620c249b82ff3bda1e5d537b2cd73469",
+      "native/windows-helper/src/office.rs": "092eed65c912b3db9b45c78ff22573c8d73419e88c59e12d66c90e7257c64625",
+      "native/windows-helper/src/lok_worker.py": "6624f2e910bd7135a4d56150149de860566c7471b7ab56175ae4073b04cadcda",
+      "tests/integration/P03-02.native-preview.test.ts": "679aaf317905b1584c9401842a343e99c2e9b1262eefaacc330c9d78ed7440fd",
+      "vitest.config.ts": "1ec0f09c07b59b2368b1bdbe046929eca4daa39c1a64c46b970bc47375c72e38",
+      "native/windows-helper/src/sandbox.rs": "182d352c2be0b258846c457dafbf0992f2b5700f719dbdc540e225f6efab9951"
+    },
+    "passed": true,
+    "missingCases": [],
+    "tests": {
+      "total": 4,
+      "passed": 4,
+      "failed": 0,
+      "pending": 0
+    }
+  },
+  "standardTests": {
+    "passed": 22,
+    "total": 22,
+    "failed": 0,
+    "pending": 0
+  },
+  "sourceDigestCount": 11,
+  "sourceDigestMismatches": 0,
+  "native": {
+    "finished": 23,
+    "started": 23,
+    "remainingProcesses": 0,
+    "identityFailures": 0,
+    "networkFailures": 0
+  },
+  "artifactVerificationPassed": true
+}

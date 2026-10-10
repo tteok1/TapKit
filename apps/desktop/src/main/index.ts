@@ -37,6 +37,7 @@ import {
   HISTORY_COMMANDS,
   FileCommandSchemas,
   ArtifactCommandSchemas,
+  ProjectCommandSchemas,
   ArtifactAssetSchema,
   ArtifactAccessSchema,
   FileGetSchema,
@@ -442,6 +443,7 @@ if (ownsLock) {
       ...HISTORY_COMMANDS,
       ...Object.keys(FileCommandSchemas),
       ...Object.keys(ArtifactCommandSchemas),
+      ...Object.keys(ProjectCommandSchemas),
       'models.catalog',
       'models.preferences.get',
       'models.preferences.set',
@@ -663,6 +665,44 @@ if (ownsLock) {
           requestId: uuid7(),
           windowId: windowSlots.get(event.sender.id)!,
           file: pinned,
+          targetPath: selected.filePath,
+        }),
+      );
+    });
+    ipcMain.handle('tapkit:export-project', async (event, raw: unknown) => {
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      const p = z
+        .strictObject({ projectId: IdSchema, revision: z.number().int().positive() })
+        .parse(raw);
+      await ready;
+      const requestId = uuid7(),
+        windowId = windowSlots.get(event.sender.id)!;
+      const preview = ReplySchema.parse(
+        await forward({
+          type: 'request',
+          request: {
+            protocolVersion: 1,
+            requestId,
+            windowId,
+            command: 'projects.exportPreview',
+            payload: { projectId: p.projectId },
+          },
+        }),
+      );
+      if (!preview.ok) return preview;
+      const selected = await dialog.showSaveDialog(BrowserWindow.fromWebContents(event.sender)!, {
+        defaultPath: 'project-' + p.projectId + '.zip',
+        filters: [{ name: 'ZIP', extensions: ['zip'] }],
+      });
+      if (selected.canceled || !selected.filePath)
+        return ReplySchema.parse({ ok: true, requestId, data: { changedIds: [] } });
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      return ReplySchema.parse(
+        await forward({
+          type: 'projects.export',
+          requestId: uuid7(),
+          windowId,
+          ...p,
           targetPath: selected.filePath,
         }),
       );

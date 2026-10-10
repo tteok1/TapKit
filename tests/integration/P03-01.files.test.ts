@@ -268,6 +268,17 @@ test('P03-01 default pinned reads tolerate an unrelated library replacement but 
   release();
   expect((await reading).bytes.toString()).toBe('固定原件');
   pausedOriginal.mockRestore();
+  // P03-03 stages an unready project replacement. Publish a completed index
+  // before exercising the existing authorization withdrawal race.
+  const nextJob = files.jobs.claim('ready-repin')!;
+  files.beginParse(nextJob, current.currentVersionId);
+  await files.completeParse(
+    nextJob,
+    current.currentVersionId,
+    document('库中新版结构'),
+    new AbortController().signal,
+  );
+  files.jobs.finish(nextJob, 'completed');
   gate = new Promise<void>((resolve) => {
     release = resolve;
   });

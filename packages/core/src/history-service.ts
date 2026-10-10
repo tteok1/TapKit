@@ -514,6 +514,49 @@ export class HistoryService {
       this.store.db.transaction(() => this.purge(s))();
     }
   }
+  copyProjectSessions(
+    sourceProjectId: string,
+    targetProjectId: string,
+    includeAttachments: boolean,
+  ) {
+    this.project(sourceProjectId);
+    this.project(targetProjectId);
+    const rows = this.store.db
+      .prepare('SELECT id FROM sessions WHERE project_id=? AND profile_id=? AND deleted_at IS NULL')
+      .all(sourceProjectId, this.store.profileId) as { id: string }[];
+    for (const row of rows) {
+      const s = this.session(row.id);
+      this.idle(s.id);
+      const head = (
+        this.store.db
+          .prepare('SELECT head_message_id FROM branches WHERE id=?')
+          .get(s.active_branch_id) as { head_message_id: string | null }
+      ).head_message_id;
+      const path = this.path(s.id, head),
+        target = newId(),
+        now = this.store.now();
+      this.store.db
+        .prepare(
+          'INSERT INTO sessions(id,profile_id,created_at,updated_at,title,mode,project_id,settings_json,last_activity_at,title_manual,note,tags_json) VALUES(?,?,?,?,?,?,?,?,?,1,?,?)',
+        )
+        .run(
+          target,
+          this.store.profileId,
+          now,
+          now,
+          s.title,
+          s.mode,
+          targetProjectId,
+          JSON.stringify({ schemaVersion: 1, values: {} }),
+          now,
+          s.note,
+          s.tags_json,
+        );
+      this.branch(s, '主分支', path, target, includeAttachments);
+      if (includeAttachments) this.copyLinks(s.id, target);
+      this.changed(target);
+    }
+  }
   async dispatch(raw: unknown): Promise<Reply> {
     const parsed = RequestSchema.safeParse(raw);
     if (!parsed.success) return failure('', 'VALIDATION_ERROR');
