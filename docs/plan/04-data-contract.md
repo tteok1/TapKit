@@ -1,5 +1,7 @@
 # 数据模型与事务契约
 
+P03-02当前schema10（2026-10-10，[ADR0042](../adr/0042-fixed-version-preview-and-pdf-annotations.md)）：0010_file_preview增加file_versions.preview_renderer_version、reading_positions（profile_id+file_version_id唯一，Locator/scrollTop/zoom/mode）和pdf_annotations（profile/固定版本/批注JSON/CAS revision/软删除）。永久文件删除与删除journal重放清除两表记录，恢复备份不能复活已删除选区。PDF批注含内部0起pageIndex、归一化rects、相对textRange、Core核验的selectedTextHash及用户body/color；旧批注不迁移新版。所有写入在既有receipt事务中提交，不另建run状态。XLSX结构缓存parserVersion升级p03-2，新增有界且不重叠mergedRanges；页视图100行，合并跨页anchor另返回最多200项，不回写或重新计算公式。下方schema9为历史。
+
 当前增量 schema9：[ADR0039](../adr/0039-file-original-only-and-generated-notes.md)只修复旧 generated/note 的空 input 固定引用到原始 version1及缺失版本元数据，其他非法/删除引用不回退。新生成笔记正文索引和固定引用在 receipt 事务内提交，预览 pending。needsOcr 的 PDF 版本 unsupported/OCR_REQUIRED；结构保留，空正文不标已读。[ADR0040](../adr/0040-individual-file-cancellation.md)复用逐项 receipt 与已有 jobs.cancel，按 token/版本取消，不增加同义状态或表。
 
 [ADR0038](../adr/0038-scoped-library-pinned-versions.md)：files.get/list在project/session范围默认取固定版本，格式/状态/大小/正文查询一致；库范围仍取current。显式历史版本再鉴权，错误/无版本引用不回退新版；详情复制传versionId，元数据变更后重新读取范围视图。目录folderId按owner投影：外部/删除目录显示在接收范围根目录，会话统一根目录；共享物理父目录不因引用改变，显式外部目录仍拒绝。schema8及DTO不变。

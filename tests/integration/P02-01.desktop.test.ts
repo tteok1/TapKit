@@ -147,7 +147,7 @@ it('P02-01 T20 migrates a v4 database and legacy preferences without resetting m
   const reopened = await openStore(dir);
   stores.push(reopened);
   expect(reopened.profileId).toBe(id);
-  expect(reopened.db.pragma('user_version', { simple: true })).toBe(9);
+  expect(reopened.db.pragma('user_version', { simple: true })).toBe(10);
   expect(reopened.settings.values.historyEnabled).toBe(false);
   expect(reopened.settings.values.desktop.theme).toBe('system');
   expect(reopened.db.prepare('SELECT id,label FROM provider_accounts').get()).toEqual({

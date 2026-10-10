@@ -29,6 +29,8 @@ import { LocalAvatar } from './local-avatar';
 import { ChatSurface } from './chat-surface';
 import { HistoryList, SearchView, historyCommand } from './history-ui';
 import { FileLibrary } from './file-library';
+import { ArtifactPanel } from '../features/viewer/panel';
+import { useViewer } from '../features/viewer/state';
 import h from '../locales/history.zh-CN.json';
 import { BranchChangeSchema } from '@tapkit/contracts';
 import { SessionDetailsSchema, type SessionRecord } from '@tapkit/contracts';
@@ -41,6 +43,7 @@ function data(reply: Reply) {
   return reply.data;
 }
 export function DesktopShell() {
+  const viewer = useViewer();
   const [bootstrap, setBootstrap] = useState<Bootstrap>(),
     [workspace, setWorkspace] = useState<Workspace>(),
     [accounts, setAccounts] = useState<z.infer<typeof ProviderListSchema>>();
@@ -74,6 +77,9 @@ export function DesktopShell() {
   const temporaryIds = useRef(new Set<string>()),
     previousRoute = useRef(location.pathname);
   layoutRef.current = layout;
+  useEffect(() => {
+    if (viewer.active) setLayout((l) => ({ ...l, panelOpen: true }));
+  }, [viewer.active]);
   useEffect(() => {
     if (sidebarScroll.current) sidebarScroll.current.scrollTop = layoutRef.current.sidebarScroll;
   }, [bootstrap?.profile.id]);
@@ -860,17 +866,23 @@ export function DesktopShell() {
               <button onClick={() => setLayout((l) => ({ ...l, panelOpen: false }))}>
                 关闭详情
               </button>
-              <h2>{selected?.title ?? '本地空间'}</h2>
-              <p>当前资料保存在本机。尚未开放的功能不会执行。</p>
-              <dl>
-                <dt>会话</dt>
-                <dd>{workspace?.sessions.length ?? '—'}</dd>
-                <dt>项目</dt>
-                <dd>{workspace?.projects.length ?? '—'}</dd>
-                <dt>待确认</dt>
-                <dd>{workspace?.pendingApprovals ?? '—'}</dd>
-              </dl>
-              <Link to="/settings/connections">管理模型连接</Link>
+              {viewer.tabs.length ? (
+                <ArtifactPanel />
+              ) : (
+                <>
+                  <h2>{selected?.title ?? '本地空间'}</h2>
+                  <p>当前资料保存在本机。尚未开放的功能不会执行。</p>
+                  <dl>
+                    <dt>会话</dt>
+                    <dd>{workspace?.sessions.length ?? '—'}</dd>
+                    <dt>项目</dt>
+                    <dd>{workspace?.projects.length ?? '—'}</dd>
+                    <dt>待确认</dt>
+                    <dd>{workspace?.pendingApprovals ?? '—'}</dd>
+                  </dl>
+                  <Link to="/settings/connections">管理模型连接</Link>
+                </>
+              )}
             </aside>
           )}
         </div>

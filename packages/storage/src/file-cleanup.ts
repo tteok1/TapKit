@@ -13,6 +13,14 @@ export function eraseFileDerivedContent(store: Store, fileId: string, time: numb
     deleted_at: number | null;
   }[];
   for (const v of versions) {
+    if (store.db.prepare("SELECT 1 FROM sqlite_master WHERE name='pdf_annotations'").get()) {
+      store.db
+        .prepare('DELETE FROM pdf_annotations WHERE profile_id=? AND file_version_id=?')
+        .run(store.profileId, v.id);
+      store.db
+        .prepare('DELETE FROM reading_positions WHERE profile_id=? AND file_version_id=?')
+        .run(store.profileId, v.id);
+    }
     if (v.deleted_at === null) {
       store.db
         .prepare('UPDATE blobs SET reference_count=max(0,reference_count-1) WHERE id=?')

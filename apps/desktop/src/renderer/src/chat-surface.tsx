@@ -22,6 +22,8 @@ import h from '../locales/history.zh-CN.json';
 import { historyCommand } from './history-ui';
 import { SessionTools, MessageActions } from './message-history';
 import { importChatFiles, chatFileOwner, type ChatImportView } from './chat-file-import';
+import { useViewer } from '../features/viewer/state';
+import { InlineFileCard } from '../features/viewer/inline-card';
 const unwrap = (reply: Reply) => {
   if (!reply.ok) throw new Error(reply.error.code);
   return reply.data;
@@ -69,6 +71,7 @@ export function ChatSurface({
   exportRequested?: boolean;
   onNavigate?: ((path: string) => void) | undefined;
 }) {
+  const viewer = useViewer();
   const [snapshot, setSnapshot] = useState<ChatSnapshot>(),
     [text, setText] = useState(seed),
     [refs, setRefs] = useState<ResourceRef[]>([]);
@@ -249,6 +252,31 @@ export function ChatSurface({
   useEffect(() => {
     if (!sessionId) setText(seed);
   }, [seed, sessionId]);
+  useEffect(() => {
+    if (!loaded || !viewer.pendingSelection) return;
+    const selected = viewer.pendingSelection;
+    // Consume only after the current draft has loaded, so quoted refs cannot be
+    // overwritten by an outstanding drafts.get response.
+    viewer.consumeSelection();
+    if (draft.current.attachments.length >= 20) {
+      setError(c.materialLimit);
+      return;
+    }
+    const next = draft.current.attachments.some((ref) => refKey(ref) === refKey(selected.ref))
+      ? draft.current.attachments
+      : [...draft.current.attachments, selected.ref];
+    setRefs(next);
+    change(
+      [
+        draft.current.text,
+        selected.selectedText ? '> ' + selected.selectedText.replace(/\n/g, '\n> ') : '',
+        selected.note,
+      ]
+        .filter(Boolean)
+        .join('\n\n'),
+    );
+    inputRef.current?.focus();
+  }, [loaded, viewer.pendingSelection]);
   useEffect(() => {
     if (sessionId && snapshot && following.current)
       void historyCommand('sessions.read', { sessionId }).catch(() => {});
@@ -752,27 +780,44 @@ export function ChatSurface({
                 <details>
                   <summary>引用资料（{message.attachments.length}）</summary>
                   <div className="chat-sources">
-                    {message.attachments.map((ref, i) => (
-                      <button
-                        key={i}
-                        onClick={() =>
-                          void action(async () => {
-                            const result = ChatMaterialsViewSchema.parse(
-                              unwrap(
-                                await window.tapkit.chatCommand(
-                                  requestOptions(),
-                                  'inputs.references',
-                                  { sessionId: sid.current, refs: [ref] },
+                    {message.attachments.map((ref, i) =>
+                      ref.kind === 'file' && sid.current ? (
+                        <InlineFileCard
+                          key={i}
+                          refValue={ref}
+                          sessionId={sid.current}
+                          index={i + 1}
+                        />
+                      ) : (
+                        <button
+                          key={i}
+                          onClick={() =>
+                            void action(async () => {
+                              const result = ChatMaterialsViewSchema.parse(
+                                unwrap(
+                                  await window.tapkit.chatCommand(
+                                    requestOptions(),
+                                    'inputs.references',
+                                    { sessionId: sid.current, refs: [ref] },
+                                  ),
                                 ),
-                              ),
-                            );
-                            setPreview(result.materials[0]);
-                          })
-                        }
-                      >
-                        引用资料 {i + 1}
-                      </button>
-                    ))}
+                              );
+                              if (ref.kind === 'file' && sid.current) {
+                                const owner = await chatFileOwner(window.tapkit, ref, sid.current);
+                                await viewer.open({
+                                  fileId: ref.fileId,
+                                  versionId: ref.versionId,
+                                  ...(ref.locator ? { locator: ref.locator } : {}),
+                                  ...(owner ? { owner } : {}),
+                                });
+                              } else setPreview(result.materials[0]);
+                            })
+                          }
+                        >
+                          引用资料 {i + 1}
+                        </button>
+                      ),
+                    )}
                   </div>
                 </details>
               )}
@@ -1037,7 +1082,25 @@ export function ChatSurface({
               <span>
                 {m.name} · {m.source} · {c.materialStates[m.state]}
               </span>
-              <button onClick={() => setPreview(m)}>{c.preview}</button>
+              <button
+                onClick={() =>
+                  void action(async () => {
+                    if (m.ref.kind !== 'file' || !sid.current) {
+                      setPreview(m);
+                      return;
+                    }
+                    const owner = await chatFileOwner(window.tapkit, m.ref, sid.current);
+                    await viewer.open({
+                      fileId: m.ref.fileId,
+                      versionId: m.ref.versionId,
+                      ...(m.ref.locator ? { locator: m.ref.locator } : {}),
+                      ...(owner ? { owner } : {}),
+                    });
+                  })
+                }
+              >
+                {c.preview}
+              </button>
               {m.ref.kind === 'file' && (
                 <button
                   disabled={busy}

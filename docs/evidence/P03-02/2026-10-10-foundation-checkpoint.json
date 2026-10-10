@@ -1,0 +1,18 @@
+{
+  "task": "P03-02",
+  "branch": "codex/p03-02-preview",
+  "base": "9fb7f355bdf4eda56862df517e31ebbd8ab592f7",
+  "status": "in_progress",
+  "scope": "Worktree checkpoint; no commit, push, PR or merge. Portable fixtures do not enable native capabilities.",
+  "checks": [
+    {"command": "locked pnpm exec tsc --project apps/desktop/tsconfig.renderer.json --pretty false", "exitCode": 0, "scope": "Provider and library/chat entry wiring before later rectangle/grid edits"},
+    {"command": "locked node scripts/desktop-build.mjs", "exitCode": 0, "scope": "Real Electron production build with locked PDF reading assets"},
+    {"command": "locked pnpm exec playwright test --grep P03-02", "exitCode": 1, "reason": "Initial custom protocol CORS declaration missing; actual PDF load blocked"},
+    {"command": "locked pnpm exec electron-vite build", "cwd": "apps/desktop", "exitCode": 0, "scope": "CORS correction and initial position restoration"},
+    {"command": "locked pnpm exec playwright test --grep P03-02", "exitCode": 0, "testsPassed": 1, "scope": "PDF/Markdown/code portable seeded structures; real Host/Core/renderer; fixed PDF page boundary and parallel tabs, inert Markdown HTML, 100-block code paging"},
+    {"command": "locked pnpm exec vitest run --config vitest.config.ts --project unit P03-02 P00-02.contracts", "exitCode": 0, "testsPassed": 7},
+    {"command": "locked pnpm exec vitest run --config vitest.config.ts --project integration P03-02.artifacts P03-01.migration P03-01.file-material", "exitCode": 0, "testsPassed": 18}
+  ],
+  "visual": {"path": "docs/evidence/P03-02/portable-pdf-page3.png", "review": "Real Electron screenshot inspected. Controls and text visible; canvas lies below viewport, so this is not a PDF layout acceptance sample."},
+  "remaining": ["Complete all sixteen requirements including inline cards, external open, diff, reading scroll restore and annotations-to-chat", "Office conversion lifecycle/recovery and native safety validation", "DOCX/PPTX/PDF three actual visual samples each", "200-percent zoom and exceptional/security paths", "Full prescribed check, source-matching CI and requirement audit"]
+}

@@ -1,5 +1,7 @@
 # 技术架构、工程目录与运行环境
 
+P03-02实现增量（2026-10-10）：见[ADR0042](../adr/0042-fixed-version-preview-and-pdf-annotations.md)。每个Electron窗口使用独立持久Session和资产grant；Renderer只持随机tapkit-artifact URL，Host/Core通过fileId/versionId/owner私有读取并在I/O后复核。资源协议仅响应PDF/静态图片、禁缓存和主动内容，CORS仅允许应用自身来源。Office只读PDF经既有AppContainer/Job/无网络OfficeWorker生成，最多并发2个，版本/renderer版本绑定缓存，最后观察窗口关闭时取消；专属标记暂存树在转换结束/启动/定期回收，未知或reparse树保留。没有新增服务器或原生执行降级。
+
 先读 [决策](02-decisions.md)。本文是一套指定方案，不要求开发者另选技术栈。依赖元数据已查阅，但尚未在新项目中构建验证；P00-01必须完成兼容性试验并提交精确 lockfile。
 
 ## 1. 指定技术

@@ -60,6 +60,7 @@ try {
     ],
     [join(target, 'scripts/runtime-probe.mjs')],
     [join(target, 'scripts/p03-parser-probe.mjs')],
+    [join(target, 'scripts/p03-preview-probe.mjs')],
   ];
   if (!preparedKit) {
     commands.unshift([

@@ -1,4 +1,5 @@
 import {
+  clipboard,
   app,
   BrowserWindow,
   ipcMain,
@@ -7,6 +8,7 @@ import {
   Menu,
   nativeImage,
   dialog,
+  protocol,
   shell,
   type UtilityProcess,
   type IpcMainInvokeEvent,
@@ -34,6 +36,9 @@ import {
   EventEnvelopeSchema,
   HISTORY_COMMANDS,
   FileCommandSchemas,
+  ArtifactCommandSchemas,
+  ArtifactAssetSchema,
+  ArtifactAccessSchema,
   FileGetSchema,
   IdSchema,
   type Reply,
@@ -44,6 +49,20 @@ import { trustedSender } from './security';
 import { AuthSecrets } from './auth/secrets';
 import strings from './zh-CN.json';
 import { avatarDimensions, readAvatarFile } from './avatar';
+import { ArtifactProtocol } from './artifact-protocol';
+import { ExternalArtifact } from './external-artifact';
+protocol.registerSchemesAsPrivileged([
+  {
+    scheme: 'tapkit-artifact',
+    privileges: {
+      standard: true,
+      secure: true,
+      supportFetchAPI: true,
+      stream: true,
+      corsEnabled: true,
+    },
+  },
+]);
 app.setName('TapKit');
 app.setAppUserModelId('io.tapkit.desktop');
 if (!app.isPackaged && process.env.TAPKIT_DATA_DIR) {
@@ -122,6 +141,11 @@ function forward(command: Record<string, unknown>): Promise<unknown> {
           : (command.request as { command?: string } | undefined)?.command === 'providers.check'
             ? 130_000
             : command.type === 'files.export' ||
+                command.type === 'artifacts.read' ||
+                (command.request as { command?: string } | undefined)?.command ===
+                  'artifacts.open' ||
+                (command.request as { command?: string } | undefined)?.command ===
+                  'artifacts.locate' ||
                 (command.request as { command?: string } | undefined)?.command === 'files.import'
               ? 130_000
               : 30_000,
@@ -298,6 +322,7 @@ function uuid7() {
 }
 let nextWindowSlot = 0;
 const windowSlots = new Map<number, string>();
+const artifactProtocols = new Map<number, ArtifactProtocol>();
 function createWindow(initialRoute?: string) {
   const slot = nextWindowSlot++;
   const window = new BrowserWindow({
@@ -309,6 +334,7 @@ function createWindow(initialRoute?: string) {
     backgroundColor: '#f7f8fa',
     show: false,
     webPreferences: {
+      partition: 'persist:tapkit-app-' + slot,
       preload: join(__dirname, '../preload/index.js'),
       additionalArguments: [
         '--tapkit-window-slot=' + slot,
@@ -322,6 +348,29 @@ function createWindow(initialRoute?: string) {
     },
   });
   windows.add(window);
+  const assets = new ArtifactProtocol(
+    async (asset) => {
+      await ready;
+      const reply = ReplySchema.parse(
+        await forward({
+          type: 'artifacts.read',
+          requestId: uuid7(),
+          windowId: String(slot),
+          asset,
+        }),
+      );
+      if (!reply.ok || !('artifactBytes' in reply.data)) throw new Error('PERMISSION_DENIED');
+      return reply.data.artifactBytes;
+    },
+    () => !window.isDestroyed() && windows.has(window),
+    process.env.ELECTRON_RENDERER_URL
+      ? new URL(process.env.ELECTRON_RENDERER_URL).origin
+      : 'file://',
+  );
+  artifactProtocols.set(window.webContents.id, assets);
+  window.webContents.session.protocol.handle('tapkit-artifact', (request) =>
+    assets.handle(request),
+  );
   window.webContents.session.setPermissionRequestHandler((_w, _p, callback) => callback(false));
   window.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
   window.webContents.on('will-navigate', (event, url) => {
@@ -330,6 +379,8 @@ function createWindow(initialRoute?: string) {
   const webContentsId = window.webContents.id;
   windowSlots.set(webContentsId, String(slot));
   window.on('closed', () => {
+    assets.close();
+    artifactProtocols.delete(webContentsId);
     core?.postMessage({ type: 'window.closed', windowId: String(slot) });
     windowSlots.delete(webContentsId);
     windows.delete(window);
@@ -390,6 +441,7 @@ if (ownsLock) {
     const allowed = new Set([
       ...HISTORY_COMMANDS,
       ...Object.keys(FileCommandSchemas),
+      ...Object.keys(ArtifactCommandSchemas),
       'models.catalog',
       'models.preferences.get',
       'models.preferences.set',
@@ -504,6 +556,80 @@ if (ownsLock) {
       if (result.canceled || !result.filePaths.length)
         return ReplySchema.parse({ ok: true, requestId: uuid7(), data: { selections: [] } });
       return grantFiles(event, result.filePaths, folder);
+    });
+    ipcMain.handle('tapkit:artifact-url', async (event, raw: unknown) => {
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      const asset = ArtifactAssetSchema.parse(raw),
+        windowId = windowSlots.get(event.sender.id)!;
+      await ready;
+      const reply = ReplySchema.parse(
+        await forward({
+          type: 'request',
+          request: {
+            protocolVersion: 1,
+            requestId: uuid7(),
+            command: 'files.get',
+            payload: {
+              fileId: asset.fileId,
+              versionId: asset.versionId,
+              ...(asset.owner ? { owner: asset.owner } : {}),
+            },
+            windowId,
+          },
+        }),
+      );
+      if (
+        !reply.ok ||
+        !('file' in reply.data) ||
+        !checkSender(event) ||
+        windowSlots.get(event.sender.id) !== windowId
+      )
+        throw new Error('PERMISSION_DENIED');
+      if (asset.kind === 'preview' && reply.data.file.version.previewStatus !== 'ready')
+        throw new Error('CONFLICT');
+      const handler = artifactProtocols.get(event.sender.id);
+      if (!handler) throw new Error('PERMISSION_DENIED');
+      return handler.grant(asset);
+    });
+    ipcMain.handle('tapkit:open-artifact-external', async (event, raw: unknown) => {
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      const access = ArtifactAccessSchema.parse(raw),
+        windowId = windowSlots.get(event.sender.id)!;
+      await ready;
+      const external = new ExternalArtifact(
+        dataDir,
+        async (file) => {
+          const reply = ReplySchema.parse(
+            await forward({
+              type: 'request',
+              request: {
+                protocolVersion: 1,
+                requestId: uuid7(),
+                command: 'files.get',
+                payload: file,
+                windowId,
+              },
+            }),
+          );
+          if (!reply.ok) throw new Error(reply.error.code);
+          if (!('file' in reply.data)) throw new Error('VALIDATION_ERROR');
+          return reply.data.file;
+        },
+        async (file, targetPath) => {
+          const reply = ReplySchema.parse(
+            await forward({ type: 'files.export', requestId: uuid7(), windowId, file, targetPath }),
+          );
+          if (!reply.ok) throw new Error(reply.error.code);
+        },
+        (path) => shell.openPath(path),
+        () => checkSender(event) && windowSlots.get(event.sender.id) === windowId,
+      );
+      await external.recover();
+      await external.open(access);
+    });
+    ipcMain.handle('tapkit:copy-text', (event, raw: unknown) => {
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      clipboard.writeText(z.string().max(100000).parse(raw));
     });
     ipcMain.handle('tapkit:save-original', async (event, raw: unknown) => {
       if (!checkSender(event)) throw new Error('PERMISSION_DENIED');

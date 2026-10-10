@@ -11,6 +11,8 @@ import {
 } from '@tapkit/contracts';
 import { requestOptions } from './desktop-state';
 import t from '../locales/files.zh-CN.json';
+import viewerText from '../locales/viewer.zh-CN.json';
+import { useViewer } from '../features/viewer/state';
 type FileData = z.infer<typeof FileReplySchema>;
 type ImportView = z.infer<typeof FileImportViewSchema>;
 type Folder = Extract<FileData, { folders: unknown }>['folders'][number];
@@ -57,6 +59,7 @@ export function FileLibrary({
   sessions?: { id: string; title: string }[];
   focusFileId?: string | undefined;
 }) {
+  const viewer = useViewer();
   const [scope, setScope] = useState('library'),
     [folderId, setFolderId] = useState('');
   const [query, setQuery] = useState(''),
@@ -711,6 +714,18 @@ export function FileLibrary({
               <span>
                 {t.expires} {new Date(file.purgeAfter).toLocaleDateString('zh-CN')}
               </span>
+            )}
+            {!trash && (
+              <button
+                disabled={busy}
+                onClick={() =>
+                  void run(() =>
+                    viewer.open({ fileId: file.id, versionId: file.version.id, owner }),
+                  )
+                }
+              >
+                {viewerText.preview}
+              </button>
             )}
             {!trash && (
               <button disabled={busy} onClick={() => void run(() => download(file))}>

@@ -4,7 +4,7 @@ import { LocatorSchema } from './resources';
 import { RunStatusSchema } from './chat';
 import defaults from '../../../resources/catalogs/defaults.json';
 
-export const FILE_PARSER_VERSION = 'p03-1';
+export const FILE_PARSER_VERSION = 'p03-2';
 export const FileLimitsSchema = z.strictObject({
   maxFileBytes: z.number().int().positive().max(104857600),
   maxBatchFiles: z.number().int().positive().max(20),
@@ -394,6 +394,15 @@ export const ParsedDocumentSchema = z
           rows: z.number().int().min(0).max(200000),
           columns: z.number().int().min(0).max(200),
           cells: z.array(cell).max(2000000),
+          mergedRanges: z
+            .array(
+              z
+                .string()
+                .max(64)
+                .regex(/^[A-Z]{1,3}[1-9]\d{0,6}:[A-Z]{1,3}[1-9]\d{0,6}$/),
+            )
+            .max(20000)
+            .optional(),
         }),
       )
       .max(1000),
