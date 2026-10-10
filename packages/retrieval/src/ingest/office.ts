@@ -131,8 +131,14 @@ class OfficePackage {
     const archive = await BoundedArchive.open(bytes, limits),
       pkg = new OfficePackage(archive);
     try {
-      for (const path of archive.entries.keys()) {
-        if (/vbaProject|activeX|embeddings\//i.test(path)) throw new ParseError('MACRO_FORMAT');
+      for (const [path, entry] of archive.entries) {
+        // Generators can include an empty embeddings/ directory without any
+        // OLE payload. Real embedding files and active relationships remain blocked.
+        if (
+          /vbaProject|activeX/i.test(path) ||
+          (/embeddings\//i.test(path) && (!path.endsWith('/') || entry.uncompressedSize !== 0))
+        )
+          throw new ParseError('MACRO_FORMAT');
         if (/\.xml$|\.rels$/i.test(path)) {
           // Inspect every XML part before using any content, including unused relationships.
           const root = await pkg.read(path);
@@ -331,6 +337,7 @@ async function spreadsheet(pkg: OfficePackage, main: string, limits: FileLimits)
       rows: 0,
       columns: 0,
       cells: [],
+      mergedRanges: [],
     };
     const source = await pkg.read(rel.target),
       data = child(source, 'sheetData');
@@ -338,6 +345,31 @@ async function spreadsheet(pkg: OfficePackage, main: string, limits: FileLimits)
     if (!data) throw new ParseError('CORRUPT_FILE');
     const dimension = child(source, 'dimension')?.attributes.ref;
     if (dimension) for (const ref of dimension.split(':')) coordinate(ref, limits);
+    for (const merge of child(source, 'mergeCells')?.children ?? []) {
+      if (
+        merge.name !== 'mergeCell' ||
+        !/^[A-Z]+[1-9]\d*:[A-Z]+[1-9]\d*$/.test(merge.attributes.ref ?? '')
+      )
+        throw new ParseError('CORRUPT_FILE');
+      if (sheet.mergedRanges!.length >= 20000) throw new ParseError('TABLE_LIMIT');
+      const [a, b] = merge.attributes.ref!.split(':').map((ref) => coordinate(ref, limits));
+      if (!a || !b || a.row > b.row || a.column > b.column) throw new ParseError('CORRUPT_FILE');
+      sheet.rows = Math.max(sheet.rows, b.row);
+      sheet.columns = Math.max(sheet.columns, b.column);
+      sheet.mergedRanges!.push(merge.attributes.ref!);
+    }
+    const ends = new Map<number, number>();
+    const ranges = sheet
+      .mergedRanges!.map((range) => {
+        const [a, b] = range.split(':').map((ref) => coordinate(ref, limits));
+        return { a: a!, b: b! };
+      })
+      .sort((x, y) => x.a.row - y.a.row);
+    for (const { a, b } of ranges)
+      for (let c = a.column; c <= b.column; c++) {
+        if ((ends.get(c) ?? 0) >= a.row) throw new ParseError('CORRUPT_FILE');
+        ends.set(c, b.row);
+      }
     const seen = new Set<string>();
     for (const row of data.children) {
       if (row.name !== 'row') continue;

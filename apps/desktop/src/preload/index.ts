@@ -19,6 +19,7 @@ import {
   FileGetSchema,
   ChatFileSelectionSchema,
   FileReplySchema,
+  ArtifactAssetSchema,
   type TapKitBridge,
   type RequestOptions,
 } from '@tapkit/contracts';
@@ -38,8 +39,16 @@ const bridge: TapKitBridge = Object.freeze<TapKitBridge>({
     ?.slice('--tapkit-initial-route='.length),
   openEntity: (entity) => ipcRenderer.invoke('tapkit:open-entity', entity),
   saveConversation: (value) => ipcRenderer.invoke('tapkit:save-conversation', value),
+  openArtifactExternal: (file) => ipcRenderer.invoke('tapkit:open-artifact-external', file),
+  copyText: (text) => ipcRenderer.invoke('tapkit:copy-text', z.string().max(100000).parse(text)),
   historyCommand: (options, command, payload) => invoke(command, options, payload),
   fileCommand: (options, command, payload) => invoke(command, options, payload),
+  artifactCommand: (options, command, payload) => invoke(command, options, payload),
+  artifactUrl: async (asset) =>
+    z
+      .string()
+      .regex(/^tapkit-artifact:\/\/asset\/[a-f0-9]{64}$/)
+      .parse(await ipcRenderer.invoke('tapkit:artifact-url', ArtifactAssetSchema.parse(asset))),
   saveOriginal: async (file) =>
     ReplySchema.parse(await ipcRenderer.invoke('tapkit:save-original', FileGetSchema.parse(file))),
   chooseAvatar: async () => {

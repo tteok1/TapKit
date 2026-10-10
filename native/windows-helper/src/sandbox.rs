@@ -131,7 +131,10 @@ impl PinnedPath {
         let components: Vec<_> = p[3..].split('\\').collect();
         for (i, component) in components.iter().enumerate() {
             current.push(component);
-            let name = w(&current.to_string_lossy());
+            // The caller still supplies a normal, validated local path. Use the
+            // extended form only for this Win32 call so deep private directories
+            // retain the same component handles and reparse checks.
+            let name = w(&format!(r"\\?\{}", current.display()));
             let desired = FILE_READ_ATTRIBUTES.0
                 | if acl_mode > 0 && i + 1 == components.len() {
                     READ_CONTROL.0 | if acl_mode == 2 { WRITE_DAC.0 } else { 0 }
@@ -443,6 +446,16 @@ unsafe fn token_u32(token: HANDLE, class: TOKEN_INFORMATION_CLASS) -> Result<u32
     Ok(value)
 }
 pub unsafe fn execute(r: &Request, control: &Receiver<Vec<u8>>) -> Result<Value> {
+    execute_with_workspace_alias(r, control, None)
+}
+
+/// The fixed Office adapter supplies only the workspace alias of its live lease.
+/// This argument is internal; request ACLs and handle checks use physical roots.
+pub(crate) unsafe fn execute_with_workspace_alias(
+    r: &Request,
+    control: &Receiver<Vec<u8>>,
+    workspace_alias: Option<&str>,
+) -> Result<Value> {
     let p = &r.payload;
     if p.args.len() > 32
         || p.args.iter().any(|a| a.contains('\0') || a.len() > 8192)
@@ -519,7 +532,7 @@ pub unsafe fn execute(r: &Request, control: &Receiver<Vec<u8>>) -> Result<Value>
             if !seen.insert(key) {
                 continue;
             }
-            let name = w(&ancestor.to_string_lossy());
+            let name = w(&format!(r"\\?\{}", ancestor.display()));
             if let Ok(handle) = CreateFileW(
                 PCWSTR(name.as_ptr()),
                 READ_CONTROL.0 | WRITE_DAC.0 | FILE_READ_ATTRIBUTES.0,
@@ -569,6 +582,7 @@ pub unsafe fn execute(r: &Request, control: &Receiver<Vec<u8>>) -> Result<Value>
         stderr_log,
         log_dir,
         profile.sid,
+        workspace_alias,
     )
 }
 unsafe fn execute_process(
@@ -581,6 +595,7 @@ unsafe fn execute_process(
     stderr_log: File,
     log_dir: PathBuf,
     profile_sid: PSID,
+    workspace_alias: Option<&str>,
 ) -> Result<Value> {
     let p = &r.payload;
     let job = Handle(check(CreateJobObjectW(None, PCWSTR::null()), "job.create")?);
@@ -690,7 +705,7 @@ unsafe fn execute_process(
         .join(" ");
     let mut command = w(&cmd);
     let exe_name = w(&p.executable);
-    let cwd = w(&p.workspace);
+    let cwd = w(workspace_alias.unwrap_or(&p.workspace));
     let mut pi = PROCESS_INFORMATION::default();
     let flags = EXTENDED_STARTUPINFO_PRESENT
         | CREATE_SUSPENDED

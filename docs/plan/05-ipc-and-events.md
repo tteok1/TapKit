@@ -1,5 +1,9 @@
 # IPC、事件、任务状态与接口协议
 
+P03-02补充：Host copyText只写入严格字符串（≤100,000字符），每次核验受信Sender，不提供读取剪贴板接口且不开放浏览器权限。artifacts.sheet另返回columnTypes（empty/text/number/boolean/mixed），从原结构缓存值推断，不执行公式；grid读取后记忆原始坐标。
+
+2026-10-10 P03-02：[ADR0042](../adr/0042-fixed-version-preview-and-pdf-annotations.md)追加artifacts.open/cancel/reading/blocks/sheet/diff/locate/selection与annotations.list/upsert/delete的严格DTO，实际定义见packages/contracts/src/artifacts.ts。Host/Core私有artifacts.read仅供窗口资产协议，不进入公共命令白名单；公共预览不接受路径。blocks/diff返回最多100项及offset/total，sheet最多100行、200列，跨页合并anchor另最多200项。Core ready.schemaVersion升级10，ResourceRef.file增加可选selection（selectedTextHash/textRange），selection必须有Locator，正文hash必须由Core固定版本读取验证。Host openArtifactExternal只接受严格固定版本access并用既有私有files.export生成自身副本；无任意路径参数。下方schema9为历史。
+
 2026-10-09 P03-01 当前 Core ready.schemaVersion=9（ADR0039）。files.cancelImport 的 DTO 为 {importRequestId, selectionToken?}，token 必须属于当前窗口批次；未指定仍取消整批。files.cancelParse 的 DTO 仅 {fileVersionId}，只取消本 profile 对应版本的 file.parse jobs（ADR0040）。文件版本的 errorReason 可为 OCR_REQUIRED，表示本版无法读取需 OCR 的正文；下载原件保持可用。其余严格 DTO/窗口、版本和路径边界不变。
 
 [ADR0031](../adr/0031-private-original-download.md)：saveOriginal只传文件/版本/owner ID，由Host保存框发私有files.export路径授权；Core前后核验资源及独占写入，既有目标不覆盖，失败输出仅按自身身份清理。五项合成integration通过，Electron/UI未验。

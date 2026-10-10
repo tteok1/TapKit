@@ -2,6 +2,7 @@ import { z } from 'zod';
 import type { StartLogin } from './providers';
 import { IdSchema } from './identity';
 import { FileGetSchema } from './files';
+import { ArtifactAssetSchema } from './artifacts';
 import {
   RequestSchema,
   SaveApiKeySchema,
@@ -20,6 +21,7 @@ export * from './desktop';
 export * from './chat';
 export * from './history';
 export * from './files';
+export * from './artifacts';
 export const PingRequestSchema = z.strictObject({ nonce: z.string().min(1).max(128) });
 export const PingReplySchema = z.strictObject({
   nonce: z.string().min(1).max(128),
@@ -40,6 +42,13 @@ export const CoreCommandSchema = z.discriminatedUnion('type', [
   z.strictObject({ type: z.literal('shutdown') }),
   z.strictObject({ type: z.literal('window.closed'), windowId: z.string().regex(/^[0-9]{1,8}$/) }),
   z.strictObject({ type: z.literal('request'), id: z.string().uuid(), request: RequestSchema }),
+  z.strictObject({
+    type: z.literal('artifacts.read'),
+    id: z.string().uuid(),
+    requestId: IdSchema,
+    windowId: z.string().regex(/^[0-9]{1,8}$/),
+    asset: ArtifactAssetSchema,
+  }),
   // Private Host -> Core grant; never accepted by the public request handler.
   z.strictObject({
     type: z.literal('files.export'),
@@ -79,7 +88,7 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('ready'),
     protocolVersion: z.literal(1),
-    schemaVersion: z.literal(9),
+    schemaVersion: z.literal(10),
   }),
   z.strictObject({ type: z.literal('pong'), id: z.string().uuid(), payload: PingReplySchema }),
   z.strictObject({ type: z.literal('reply'), id: z.string().uuid(), reply: ReplySchema }),
@@ -106,6 +115,14 @@ export interface TapKitBridge {
     files: File[],
   ): Promise<z.infer<typeof import('./files').ChatFileSelectionSchema>>;
   saveOriginal(file: z.infer<typeof FileGetSchema>): Promise<Reply>;
+  openArtifactExternal(file: import('./artifacts').ArtifactAccess): Promise<void>;
+  copyText(text: string): Promise<void>;
+  artifactCommand(
+    options: RequestOptions,
+    command: import('./artifacts').ArtifactCommand,
+    payload: unknown,
+  ): Promise<Reply>;
+  artifactUrl(asset: z.infer<typeof ArtifactAssetSchema>): Promise<string>;
   fileCommand(
     options: RequestOptions,
     command: import('./files').FileCommand,

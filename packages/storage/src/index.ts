@@ -22,3 +22,4 @@ export * from './usage-ledger';
 export * from './memory';
 export * from './session-cleanup';
 export * from './files';
+export * from './artifacts';

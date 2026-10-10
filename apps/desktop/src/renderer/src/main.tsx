@@ -4,6 +4,7 @@ import { MemoryRouter } from '@tapkit/ui';
 import { DesktopShell } from './desktop-shell';
 import { readLayout } from './desktop-state';
 import './styles.css';
+import { ViewerProvider } from '../features/viewer/state';
 const root = document.getElementById('root');
 if (!root) throw new Error('Missing root element');
 createRoot(root).render(
@@ -11,7 +12,9 @@ createRoot(root).render(
     <MemoryRouter
       initialEntries={[window.tapkit.initialRoute ?? readLayout(window.tapkit.windowSlot).route]}
     >
-      <DesktopShell />
+      <ViewerProvider>
+        <DesktopShell />
+      </ViewerProvider>
     </MemoryRouter>
   </StrictMode>,
 );

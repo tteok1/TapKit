@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 1,
+  "task": "P03-02",
+  "status": "implemented_and_verified",
+  "branch": "main",
+  "runs": [
+    {
+      "id": 38022983397,
+      "event": "push",
+      "headSha": "7a3adcaca52c54e49224b70124663b58fd7d875d",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/38022983397",
+      "jobs": {
+        "check": "failure",
+        "startupDiagnostics": "success"
+      }
+    },
+    {
+      "id": 38023237710,
+      "event": "push",
+      "headSha": "b385f07d6547396e2b8d8a6bdb39ace083f62a9c",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/38023237710",
+      "jobs": {
+        "check": "failure",
+        "startupDiagnostics": "success"
+      }
+    },
+    {
+      "id": 38025546811,
+      "event": "push",
+      "headSha": "cef678139a69a1a095c96d8d580aee77cc9b5608",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/38025546811",
+      "jobs": {
+        "check": "failure",
+        "startupDiagnostics": "success"
+      }
+    },
+    {
+      "id": 38028321221,
+      "event": "push",
+      "headSha": "d680a8b2fccb8b31a56552614cbfb79969e9896f",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/38028321221",
+      "jobs": {
+        "check": "failure",
+        "startupDiagnostics": "success"
+      }
+    },
+    {
+      "id": 38031922547,
+      "event": "push",
+      "headSha": "7012e456869a12916dec3e14843133a5b18abe4d",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/38031922547",
+      "jobs": {
+        "check": "success",
+        "startupDiagnostics": "success"
+      }
+    },
+    {
+      "id": 38033628515,
+      "event": "push",
+      "headSha": "eb35f67dea2d670fa04ba336b0448b515137a33e",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/38033628515",
+      "jobs": {
+        "check": "success",
+        "startupDiagnostics": "success"
+      }
+    }
+  ],
+  "local": {
+    "sourceSha": "7012e456869a12916dec3e14843133a5b18abe4d",
+    "fullIntegrationPassed": 253,
+    "nativeCasesPassed": 4,
+    "electronPassed": 5,
+    "reviewedVisualSamples": 9,
+    "checkExitCode": 0,
+    "docsExitCode": 0
+  },
+  "acceptance": {
+    "status": "implemented_and_verified",
+    "requirements": 16,
+    "sourceSha": "7012e456869a12916dec3e14843133a5b18abe4d",
+    "runId": 38031922547,
+    "mainMerged": true,
+    "pullRequestCreated": false,
+    "manualConfirmationRequiredForMain": false,
+    "standardUserEvidence": "docs/evidence/P03-02/standard-user-acceptance-2026-10-10.json",
+    "manualConfirmationReceived": true,
+    "mergeStrategy": "squash",
+    "mergeEvidence": "docs/evidence/P03-02/main-squash-2026-10-10.json"
+  },
+  "currentSourceSha": "7012e456869a12916dec3e14843133a5b18abe4d",
+  "failedCI": {
+    "unit": {
+      "passed": 274,
+      "total": 274
+    },
+    "integration": {
+      "passed": 249,
+      "total": 252,
+      "failed": 3
+    },
+    "electron": {
+      "passed": 24,
+      "total": 30,
+      "failed": 6
+    },
+    "standardUser": {
+      "P00": {
+        "passed": 22,
+        "total": 22,
+        "pending": 0
+      },
+      "parser": {
+        "passed": 3,
+        "total": 3,
+        "pending": 0
+      },
+      "preview": {
+        "passed": 1,
+        "total": 3,
+        "pending": 0,
+        "validAcceptance": false,
+        "note": "Revocation must verify a successful conversion before revoking; old timeout then revocation was a false positive, and has been corrected."
+      }
+    },
+    "artifact": {
+      "id": 11659187015,
+      "sha256": "89e35e606dd518aa3fee95f74705a1ac09c4d1f85ed4185d4497e5383c4e68d4"
+    }
+  },
+  "cefFailure": {
+    "sourceSha": "cef678139a69a1a095c96d8d580aee77cc9b5608",
+    "unit": {
+      "passed": 274,
+      "total": 274
+    },
+    "integration": {
+      "passed": 251,
+      "total": 252,
+      "failed": 1,
+      "reason": "first two Office samples timed out before the LOK loop"
+    },
+    "electron": {
+      "passed": 28,
+      "total": 30,
+      "failed": 2,
+      "reasons": [
+        "closed narrow panel does not reopen for the same active version",
+        "fresh native sample profile absent after integration failure"
+      ]
+    },
+    "standardPreview": {
+      "total": 3,
+      "passed": 0,
+      "failed": 3,
+      "pending": 0,
+      "standardUser": true,
+      "matchedSourceFiles": 9,
+      "missingCases": [
+        "P03-02 native preview converts six DOCX/PPTX samples through verified isolation and publishes fixed immutable caches",
+        "P03-02 native preview refuses late revoked scope after real Office finishes and retains the original",
+        "P03-02 native preview cancels the last observer, drains its Job and retries from the same untouched original"
+      ],
+      "failures": [
+        "first sample DATABASE_RECOVERY_REQUIRED under doubly padded fixture path",
+        "revocation and retry conversions timed out before the LOK loop"
+      ]
+    },
+    "artifact": {
+      "id": 11660891284,
+      "sha256": "a7c493a0a8eb927ef6f7d4cea2897ad2471a12b6572bd874978b5411e4d2c512"
+    }
+  },
+  "currentRepair": {
+    "sourceSha": "7012e456869a12916dec3e14843133a5b18abe4d",
+    "checkExitCode": 0,
+    "repositoryFiles": 353,
+    "unitPassed": 274,
+    "fullIntegrationPassed": 253,
+    "ciElectronPassed": 30,
+    "localElectronPassed": 5,
+    "performancePassed": 1,
+    "buildExitCode": 0,
+    "standardP00Passed": 22,
+    "standardParserPassed": 3,
+    "standardPreviewPassed": 4,
+    "matchedStandardSourceFiles": 11,
+    "freshOfficePassed": 6,
+    "startupJobs": "success",
+    "reviewedVisualSamples": 9,
+    "integrationWorkers": 1,
+    "internalOfficeJobPeak": 2,
+    "ciStatus": "success"
+  },
+  "d680Failure": {
+    "headSha": "d680a8b2fccb8b31a56552614cbfb79969e9896f",
+    "artifact": {
+      "id": 11662135552,
+      "bytes": 1210815,
+      "sha256": "decb96b94986f3a2985bd7ee1894cf82e65713d5a1d32b408a2def97e9db154e",
+      "extractedEntries": 175
+    },
+    "unit": {
+      "total": 274,
+      "passed": 274
+    },
+    "integration": {
+      "total": 253,
+      "passed": 252,
+      "failed": 1,
+      "pending": 0
+    },
+    "electron": {
+      "total": 30,
+      "passed": 30
+    },
+    "standardUser": {
+      "confirmed": true,
+      "tests": {
+        "total": 22,
+        "passed": 21,
+        "failed": 1,
+        "pending": 0
+      },
+      "missingCases": [
+        "P00-03.office.test.ts: P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an isolated positive control"
+      ],
+      "parserAndPreview": "Not reached because the P00 acceptance failed"
+    },
+    "freshOffice": {
+      "linksPassed": 3,
+      "macroFailed": 3
+    },
+    "failure": "Macro positive control changed its PDF cell but did not leave the required workspace marker file. No safety assertion was weakened.",
+    "check": "success",
+    "build": "success",
+    "performance": "success",
+    "startupDiagnostics": "success"
+  },
+  "localHistorical": {
+    "previewUnit": 11,
+    "relatedOfficeUnit": 9,
+    "previewIntegration": 11,
+    "nativeIntegration": 3,
+    "electron": 5,
+    "visualSamples": 9,
+    "checkExitCode": 0,
+    "docsExitCode": 0
+  },
+  "allocatorRepairHistorical": {
+    "nativeAllocator": "Skip occupied drive aliases without consuming a root; preserve existing lease and confinement.",
+    "integrationWorkers": 2,
+    "fullIntegrationPassed": 252,
+    "narrowElectronPassed": 5,
+    "standardUserSourceFiles": 9,
+    "standardUserTimeoutCause": "not established; next CI carries bounded worker stage and sanitized stderr evidence",
+    "strengthenedNativePassed": 3,
+    "checkExitCode": 0
+  },
+  "baseMainSha": "9fb7f355bdf4eda56862df517e31ebbd8ab592f7",
+  "sourceBranch": "codex/p03-02-preview"
+}

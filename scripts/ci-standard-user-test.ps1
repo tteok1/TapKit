@@ -306,6 +306,10 @@ try {
   if ($parserReport.passed -ne $true -or $parserReport.standardUser -ne $true -or $parserReport.missingCases.Count -ne 0) {
     throw 'Standard-user P03 parser acceptance did not pass every required case.'
   }
+  $previewReportPath = Join-Path $destination 'docs/evidence/P03-02/preview-probe.json'
+  if (!(Test-Path -LiteralPath $previewReportPath -PathType Leaf)) { throw 'Standard-user P03 preview probe report is missing.' }
+  $previewReport = Get-Content -LiteralPath $previewReportPath -Raw | ConvertFrom-Json
+  if ($previewReport.passed -ne $true -or $previewReport.standardUser -ne $true -or $previewReport.missingCases.Count -ne 0) { throw 'Standard-user P03 preview acceptance did not pass every required case.' }
 }
 finally {
   try {
@@ -317,7 +321,11 @@ finally {
       @{ Source = (Join-Path $destination 'docs/evidence/P03-01/parser-probe.json'); Name = 'p03-parser-probe.json' },
       @{ Source = (Join-Path $destination 'docs/evidence/P03-01/parser-probe.log'); Name = 'p03-parser-probe.log' },
       @{ Source = (Join-Path $destination 'docs/evidence/P03-01/native-parser-cases.jsonl'); Name = 'p03-native-parser-cases.jsonl' },
-      @{ Source = (Join-Path $destination 'test-results/P03-01-native-parser.json'); Name = 'p03-native-parser-results.json' }
+      @{ Source = (Join-Path $destination 'test-results/P03-01-native-parser.json'); Name = 'p03-native-parser-results.json' },
+      @{ Source = (Join-Path $destination 'docs/evidence/P03-02/preview-probe.json'); Name = 'p03-preview-probe.json' },
+      @{ Source = (Join-Path $destination 'docs/evidence/P03-02/preview-probe.log'); Name = 'p03-preview-probe.log' },
+      @{ Source = (Join-Path $destination 'docs/evidence/P03-02/native-preview-cases.jsonl'); Name = 'p03-native-preview-cases.jsonl' },
+      @{ Source = (Join-Path $destination 'test-results/P03-02-native-preview.json'); Name = 'p03-native-preview-results.json' }
     )) {
       if (Test-Path -LiteralPath $artifact.Source -PathType Leaf) {
         Copy-Item `

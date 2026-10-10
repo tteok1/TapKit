@@ -16,6 +16,9 @@ export default defineConfig({
         test: {
           name: 'integration',
           include: ['tests/integration/**/*.test.ts'],
+          // Each native file needs the machine's fixed CPU/IO budget. Run files
+          // independently; preview cases still overlap two real Office Jobs.
+          maxWorkers: 1,
           exclude: ['tests/integration/**/*.perf.test.ts'],
           setupFiles: ['tests/setup.ts'],
           testTimeout: 15_000,

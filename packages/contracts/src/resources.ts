@@ -70,12 +70,20 @@ export const LocatorSchema = z.discriminatedUnion('kind', [
     ),
 ]);
 export const ResourceRefSchema = z.discriminatedUnion('kind', [
-  z.strictObject({
-    kind: z.literal('file'),
-    fileId: IdSchema,
-    versionId: IdSchema,
-    locator: LocatorSchema.optional(),
-  }),
+  z
+    .strictObject({
+      kind: z.literal('file'),
+      fileId: IdSchema,
+      versionId: IdSchema,
+      locator: LocatorSchema.optional(),
+      selection: z
+        .strictObject({
+          selectedTextHash: z.string().regex(/^[a-f0-9]{64}$/),
+          textRange: range.optional(),
+        })
+        .optional(),
+    })
+    .refine((v) => !v.selection || !!v.locator),
   z.strictObject({
     kind: z.literal('message'),
     sessionId: IdSchema,

@@ -1,5 +1,17 @@
 # 开发进度总表
 
+## 2026-10-10 P03-02验收
+
+P03-02=implemented_and_verified，实现源码7012e45及最终源分支eb35f67的CI38033628515全success；本地integration253/Electron5、标准P00 22/parser3/preview4、11源码摘要和9个视觉样本通过。需求16行已同步；见[P03-02交接](P03-02.md)。用户已确认压缩合入main，本提交将codex/p03-02-preview的6个提交squash成一个提交，无PR；源分支保留验收历史。P03-03/gate仍not_started。合入记录见docs/evidence/P03-02/main-squash-2026-10-10.json。
+
+## 2026-10-10 main同步与下一步复核
+
+已从origin拉取main并执行ff-only同步，两条命令退出0，返回Already up to date；HEAD/origin/main/FETCH_HEAD均9fb7f355bdf4eda56862df517e31ebbd8ab592f7，ahead/behind为0/0。五份既有未提交文件在Git同步前后SHA256一致，随后仅追加本次文档复核。main CI37963914434已completed/success，check/startup-diagnostics全部成功，覆盖本轮早先运行中观察。P03-01保持implemented_and_verified；下一步按P03-02完成受控固定版本预览、右侧多标签面板、定位/批注和格式验收；P03-03及gate按依赖后续执行。P01完整live与P02外部验收缺口保持，本机仍需自己的有效probe。本轮未改业务、未新建开发分支、未commit/push。证据：docs/evidence/P03-01/main-sync-review-2026-10-10.json。
+
+## 2026-10-10 P03-01 合入 main
+
+用户明确授权由本任务操作后，PR#1已转Ready并以Squash合入main，合并提交9fb7f355bdf4eda56862df517e31ebbd8ab592f7；本地main已快进并与origin/main一致，合并树与c8ab96f相同。合并前最后提交的push CI37959903299和PR CI37959910514均completed/success，check/startup全部通过，最终文档格式失败已闭环。合并后main CI37963914434仍in_progress。P03-01保持implemented_and_verified，24项需求/既有业务及安全验收不变；P03-02/03和gate仍not_started。本地进度/需求/证据记录为未提交交接，随下一次开发接续。证据：docs/evidence/P03-01/public-main-merge-2026-10-10.json。
+
 ## 2026-10-10 收口文档格式失败诊断
 
 P03-01业务/测试仍以ab6edd4的完整双CI验收为准；最终文档提交e85633d的push CI37954965077与PR CI37954970148均在Check阶段因INDEX.md和P03-01.md的Prettier格式失败（323文件/2失败），后续业务/标准用户套件未运行，独立startup均success。本地同一命令已复现退出1。原因是收口Markdown新增空行/表格对齐后只执行docs:check，遗漏最终完整check。现统一格式化受影响进度文档并重跑完整check/docs/diff，本地完整check（323文件/0格式失败）、docs:check（37状态/证据）和diff均退出0；推送后新CI待确认。业务/测试无改动，24项需求状态及R15不变；PR仍Draft，未合并，P03-02/03和gate未开始。证据：docs/evidence/P03-01/public-handoff-format-2026-10-10.json。
@@ -156,7 +168,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P02-02 | 聊天发送、流式消息和只读执行循环   | P02-01         | implemented_not_live_verified | docs/progress/P02-02.md              |
 | P02-03 | 会话组织、消息分支与全局搜索       | P02-02         | implemented_not_live_verified | docs/progress/P02-03.md              |
 | P03-01 | 文件导入、版本、资料库与解析流水线 | P02-03, P00-03 | implemented_and_verified      | docs/progress/P03-01.md              |
-| P03-02 | 文件预览、定位与右侧工作面板       | P03-01         | not_started                   | docs/progress/P03-02.md              |
+| P03-02 | 文件预览、定位与右侧工作面板       | P03-01         | implemented_and_verified      | docs/progress/P03-02.md              |
 | P03-03 | 项目管理、资料范围与索引版本       | P03-02         | not_started                   | docs/progress/P03-03.md              |
 | P04-01 | 中文混合检索、重排与引用证据       | P03-03         | not_started                   | docs/progress/P04-01.md              |
 | P04-02 | 上下文预算、压缩检查点与缓存       | P04-01, P01-03 | not_started                   | docs/progress/P04-02.md              |

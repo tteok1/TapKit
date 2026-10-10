@@ -1,7 +1,8 @@
 import { createRequire } from 'node:module';
+import { resolve } from 'node:path';
 import type { Readable } from 'node:stream';
-const require = createRequire(import.meta.url);
-const { ZipFile } = require('../../packages/tools/node_modules/yazl') as {
+const require = createRequire(resolve('packages/tools/package.json'));
+const { ZipFile } = require('yazl') as {
   ZipFile: new () => {
     addBuffer(bytes: Buffer, name: string, options: { compress: boolean; mode?: number }): void;
     end(): void;

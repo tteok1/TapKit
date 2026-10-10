@@ -1,5 +1,9 @@
 # 范围、决策与默认行为
 
+2026-10-10 P03-02私有路径兼容：[ADR0043](../adr/0043-office-owned-aliases-and-deep-private-paths.md)要求词法验证后的内部Win32长路径句柄，以及Office活跃原生租约提供的短cwd/URI/私有环境；模型payload无新增字段，隔离/ACL/Job/宏与外链策略保留。真实深路径及标准用户未完成前不验收。
+
+2026-10-10 P03-02：[ADR0042](../adr/0042-fixed-version-preview-and-pdf-annotations.md)规定固定版本预览、每窗口受控资产协议、复用AppContainer Office转换、schema10阅读位置/PDF批注和验证过的选区hash；解析版本p03-2补合并区域，历史结构保留。实施/测试状态以progress为准，不视为已验收。
+
 2026-10-09 P03-01：[ADR0041](../adr/0041-isolated-parser-node-entry.md)规定固定受限 Node 主入口/模块加载参数及无解析报告时的启动失败分类；不改 ACL、AppContainer、原件保护或解析上限，候选必须通过真实标准用户与隔离回归。
 
 2026-10-09 P03-01：[ADR0039](../adr/0039-file-original-only-and-generated-notes.md)规定媒体/旧 Office 原件保留、OCR_REQUIRED、确定文本生成笔记与 schema9 旧引用迁移；[ADR0040](../adr/0040-individual-file-cancellation.md)规定按项导入取消/重新选择与固定版本解析取消。真实 native 验收与 R15 保持未收口，不开放延期能力。

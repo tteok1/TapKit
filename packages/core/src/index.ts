@@ -6,6 +6,7 @@ import {
   HISTORY_COMMANDS,
   ReplySchema,
   FileCommandSchemas,
+  ArtifactCommandSchemas,
 } from '@tapkit/contracts';
 import { openStore, BlobStore, FileRepository, StorageError, failure } from '@tapkit/storage';
 import { CoreService } from './service';
@@ -14,6 +15,7 @@ import { FileParser } from './file-parser';
 import { FileSelections } from './file-selections';
 import { FileService } from './file-service';
 import { FileExporter } from './file-exporter';
+import { ArtifactService } from './artifact-service';
 import { isAbsolute } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { ProviderService, type PrivateVault } from './provider-service';
@@ -87,12 +89,22 @@ async function start() {
   const selections = new FileSelections();
   const fileService = new FileService(files, selections);
   const fileExporter = new FileExporter(files);
+  const artifacts = new ArtifactService(
+    process.env.TAPKIT_APP_ROOT ?? '',
+    files,
+    service.executionCapabilities,
+  );
+  const recoveredPreview = await artifacts.staging.sweep();
+  if (recoveredPreview.retained) console.warn('FILE_PREVIEW_STAGING_CLEANUP_PENDING');
   const parser = new FileParser(
     process.env.TAPKIT_APP_ROOT ?? '',
     files,
     service.executionCapabilities,
   );
   const sweepStaging = () => {
+    void artifacts.staging.sweep().then(({ retained }) => {
+      if (retained) console.warn('FILE_PREVIEW_STAGING_CLEANUP_PENDING');
+    });
     void parser.staging.sweep().then(({ retained }) => {
       if (retained) console.warn('FILE_PARSE_STAGING_CLEANUP_PENDING');
     });
@@ -113,6 +125,35 @@ async function start() {
       void temporary.closeWindow(command.windowId);
       void fileService.closeWindow(command.windowId);
       fileExporter.closeWindow(command.windowId);
+      artifacts.closeWindow(command.windowId);
+      return;
+    }
+    if (command.type === 'artifacts.read') {
+      void artifacts.readAsset(command.asset).then(
+        (artifactBytes) => {
+          if (!closing)
+            port!.postMessage({
+              type: 'reply',
+              id: command.id,
+              reply: ReplySchema.parse({
+                ok: true,
+                requestId: command.requestId,
+                data: { artifactBytes },
+              }),
+            });
+        },
+        (error) => {
+          if (!closing)
+            port!.postMessage({
+              type: 'reply',
+              id: command.id,
+              reply: failure(
+                command.requestId,
+                error instanceof StorageError ? error.code : 'INTERNAL_ERROR',
+              ),
+            });
+        },
+      );
       return;
     }
     if (command.type === 'files.export') {
@@ -188,6 +229,7 @@ async function start() {
         temporary.stop(),
         fileService.stop(),
         fileExporter.stop(),
+        artifacts.stop(),
         parser.staging.stop(),
       ]).then(async () => {
         await Promise.all([providers.stop(), models.stop()]);
@@ -233,31 +275,33 @@ async function start() {
           temporary.cancelAccount(account.data.accountId);
         }
       }
-      const result = Object.hasOwn(FileCommandSchemas, command.request.command)
-        ? fileService.dispatch(command.request)
-        : command.request.command === 'sessions.temporary' ||
-            command.request.command === 'sessions.closeTemporary' ||
-            temporary.target(command.request.payload)
-          ? temporary.dispatch(command.request)
-          : (HISTORY_COMMANDS as readonly string[]).includes(command.request.command)
-            ? history.dispatch(command.request)
-            : command.request.command.startsWith('models.') ||
-                command.request.command === 'usage.list'
-              ? models.dispatch(command.request)
-              : command.request.command.startsWith('providers.') &&
-                  command.request.command !== 'providers.saveApiKey'
-                ? providers.dispatch(command.request)
-                : /^(messages\.|drafts\.|inputs\.|runs\.cancel$|chat\.snippets\.)/.test(
-                      command.request.command,
-                    )
-                  ? chat.dispatch(command.request)
-                  : Promise.resolve(service.dispatch(command.request));
+      const result = Object.hasOwn(ArtifactCommandSchemas, command.request.command)
+        ? artifacts.dispatch(command.request)
+        : Object.hasOwn(FileCommandSchemas, command.request.command)
+          ? fileService.dispatch(command.request)
+          : command.request.command === 'sessions.temporary' ||
+              command.request.command === 'sessions.closeTemporary' ||
+              temporary.target(command.request.payload)
+            ? temporary.dispatch(command.request)
+            : (HISTORY_COMMANDS as readonly string[]).includes(command.request.command)
+              ? history.dispatch(command.request)
+              : command.request.command.startsWith('models.') ||
+                  command.request.command === 'usage.list'
+                ? models.dispatch(command.request)
+                : command.request.command.startsWith('providers.') &&
+                    command.request.command !== 'providers.saveApiKey'
+                  ? providers.dispatch(command.request)
+                  : /^(messages\.|drafts\.|inputs\.|runs\.cancel$|chat\.snippets\.)/.test(
+                        command.request.command,
+                      )
+                    ? chat.dispatch(command.request)
+                    : Promise.resolve(service.dispatch(command.request));
       void result.then((reply) => {
         if (!closing) port!.postMessage({ type: 'reply', id: command.id, reply });
       });
     }
   });
-  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 9 });
+  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 10 });
   worker.start();
   sweepStaging();
   chat.start();

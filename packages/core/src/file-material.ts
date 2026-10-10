@@ -1,5 +1,6 @@
 import { ChatMaterialSchema, type ResourceRef } from '@tapkit/contracts';
-import { FileRepository, StorageError } from '@tapkit/storage';
+import { FileRepository, StorageError, selectedMaterial } from '@tapkit/storage';
+import { createHash } from 'node:crypto';
 
 type SessionScope = { id: string; project_id: string | null };
 type FileRef = Extract<ResourceRef, { kind: 'file' }>;
@@ -66,15 +67,22 @@ export async function fileMaterial(
     )
       throw new StorageError('CONFLICT');
     if (document.quality.needsOcr) throw new StorageError('FORMAT_UNSUPPORTED');
-    let size = 0;
-    const parts: string[] = [];
-    for (const block of document.blocks) {
-      size += block.text.length + (parts.length ? 1 : 0);
-      if (size > 100000) throw new StorageError('FILE_TOO_LARGE');
-      parts.push(block.text);
+    if (ref.locator) {
+      const selected = selectedMaterial(document, ref.locator, ref.selection?.textRange);
+      if (ref.selection && selected.hash !== ref.selection.selectedTextHash)
+        throw new StorageError('CONFLICT');
+      text = selected.text;
+    } else {
+      let size = 0;
+      const parts: string[] = [];
+      for (const block of document.blocks) {
+        size += block.text.length + (parts.length ? 1 : 0);
+        if (size > 100000) throw new StorageError('FILE_TOO_LARGE');
+        parts.push(block.text);
+      }
+      if (!parts.length) throw new StorageError('FORMAT_UNSUPPORTED');
+      text = parts.join('\n');
     }
-    if (!parts.length) throw new StorageError('FORMAT_UNSUPPORTED');
-    text = parts.join('\n');
   } else {
     // P02 text attachments remain readable. Missing parsed binary structures cannot fall back to
     // interpreting arbitrary original bytes as text just because their status was marked ready.
@@ -90,10 +98,19 @@ export async function fileMaterial(
     if (text.includes('\u0000')) throw new StorageError('FORMAT_UNSUPPORTED');
     if (text.length > 100000) throw new StorageError('FILE_TOO_LARGE');
   }
-  if (ref.locator) {
+  if (ref.locator && file.version.parserVersion === null) {
     if (ref.locator.kind !== 'text' || ref.locator.end > text.length)
       throw new StorageError('VALIDATION_ERROR');
     text = text.slice(ref.locator.start, ref.locator.end);
+    if (ref.selection) {
+      const range = ref.selection.textRange;
+      if (range) {
+        if (range.end > text.length) throw new StorageError('CONFLICT');
+        text = text.slice(range.start, range.end);
+      }
+      if (createHash('sha256').update(text).digest('hex') !== ref.selection.selectedTextHash)
+        throw new StorageError('CONFLICT');
+    }
   }
   return ChatMaterialSchema.parse({
     ref,
