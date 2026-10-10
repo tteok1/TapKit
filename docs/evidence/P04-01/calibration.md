@@ -11,3 +11,5 @@
 校准后真实运行exit0：Recall@8=32/32、Recall@20=32/32，独立首条引用来源评分32/32，75/75返回证据可定位，4无答案均零来源。评分器只比独立预置预期文档与首条返回来源，不用“Locator能打开”替代来源支持评分；未调用聊天模型。小样本结果仅保证本合成基线，不声称任意自然语言蕴含或真实供应商回答均已通过。
 
 另有实际ChatService合成模型工具循环，合法ID提交verified citation；未知ID/遗漏引用进入partial；无答案说明可completed。已知ID下伪造数字/引文仍拒绝，标题只作为上下文，不单独返回为支持块。真实模型长输入尾部差异、升级重建/取消/撤权/固定版本、表头单位/代码行和多项目另有定向测试。
+
+提交3d60018后的异步边界复查补充真实ChatService回归：在最终引用读取固定版本的await期间执行runs.cancel。测试夹具首次误用messages.cancel，改为实际runs.cancel并断言回执ok后，未修复源码复现completed覆盖cancelled（4通过/1失败，exit1，cancellation-before.log）。在引用授权回调及validateAnswer返回后检查assertAlive，修复后5/5通过、exit0，且取消场景无citation落库、已生成正文保留（cancellation-after.log）。该修复不放宽引用或安全门禁。

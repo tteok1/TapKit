@@ -1,4 +1,4 @@
-import { test, expect } from 'vitest';
+import { test, expect, vi } from 'vitest';
 import { retrievalFixture } from './P04-01.fixture';
 import { ChatService } from '../../packages/core/src/chat-service';
 import { newId } from '../../packages/storage/src';
@@ -9,7 +9,7 @@ import {
 } from '../../packages/contracts/src';
 import type { RoutingInput, RoutedEvent } from '../../packages/providers/src/routing/router';
 
-test.each(['verified', 'unknown', 'missing', 'no-answer'] as const)(
+test.each(['verified', 'unknown', 'missing', 'no-answer', 'cancelled'] as const)(
   'P04-01 T09 real chat tool loop %s evidence gates completion and retains answer',
   async (mode) => {
     const f = await retrievalFixture();
@@ -85,6 +85,8 @@ test.each(['verified', 'unknown', 'missing', 'no-answer'] as const)(
         },
       },
     });
+    let restoreRead: (() => void) | undefined;
+    let cancellationReply: boolean | undefined;
     try {
       const create = f.core.dispatch({
         protocolVersion: 1,
@@ -94,6 +96,28 @@ test.each(['verified', 'unknown', 'missing', 'no-answer'] as const)(
       });
       if (!create.ok) throw new Error(create.error.code);
       const sessionId = (create.data as { entityId: string }).entityId;
+      if (mode === 'cancelled') {
+        const actual = f.blobs.readDerivedVersion.bind(f.blobs);
+        const spy = vi.spyOn(f.blobs, 'readDerivedVersion').mockImplementation(async (...args) => {
+          const value = await actual(...args);
+          if (round >= 2) {
+            const run = f.store.db
+              .prepare("SELECT id FROM runs WHERE session_id=? AND status='running'")
+              .get(sessionId) as { id: string } | undefined;
+            if (run) {
+              const reply = await chat.dispatch({
+                protocolVersion: 1,
+                requestId: newId(),
+                command: 'runs.cancel',
+                payload: { runId: run.id },
+              });
+              cancellationReply = reply.ok;
+            }
+          }
+          return value;
+        });
+        restoreRead = () => spy.mockRestore();
+      }
       chat.start();
       const sent = await chat.dispatch({
         protocolVersion: 1,
@@ -120,10 +144,15 @@ test.each(['verified', 'unknown', 'missing', 'no-answer'] as const)(
       };
       await expect
         .poll(async () => (await snapshot()).run?.status, { timeout: 15000 })
-        .toMatch(/completed|partial|failed/);
+        .toMatch(/completed|partial|failed|cancelled/);
       const result = await snapshot();
+      if (mode === 'cancelled') expect(cancellationReply).toBe(true);
       expect(result.run?.status).toBe(
-        mode === 'unknown' || mode === 'missing' ? 'partial' : 'completed',
+        mode === 'cancelled'
+          ? 'cancelled'
+          : mode === 'unknown' || mode === 'missing'
+            ? 'partial'
+            : 'completed',
       );
       expect(result.messages.some((m) => m.role === 'assistant' && m.text.length > 0)).toBe(true);
       const citations = f.store.db
@@ -141,6 +170,7 @@ test.each(['verified', 'unknown', 'missing', 'no-answer'] as const)(
         );
       } else expect(citations).toHaveLength(0);
     } finally {
+      restoreRead?.();
       await chat.stop();
       f.store.close();
     }

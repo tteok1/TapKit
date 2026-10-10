@@ -1311,6 +1311,7 @@ export class ChatService {
       let messages = await this.context(r, session);
       const evidenceFiles = new FileRepository(this.store, this.blobs);
       const citations = new CitationLedger(evidenceFiles, (e) => {
+        this.assertAlive(r, signal);
         const current = this.session(session.id);
         if (!session.project_id || current.project_id !== session.project_id)
           throw new StorageError('PERMISSION_DENIED');
@@ -1574,6 +1575,7 @@ export class ChatService {
         if (!calls.length) {
           if (!answerText.trim()) throw new StorageError('STREAM_INTERRUPTED');
           const verified = await citations.validateAnswer(answerText, assistant);
+          this.assertAlive(r, signal);
           if (verified.length) {
             this.store.db.prepare('UPDATE messages SET chat_json=? WHERE id=?').run(
               JSON.stringify({

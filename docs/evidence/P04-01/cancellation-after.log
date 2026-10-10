@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project integration "P04-01.chat"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  02:18:39
+   Duration  3.86s (tests 51%, transform 32%, import 17%)
+
