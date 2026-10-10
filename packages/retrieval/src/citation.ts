@@ -77,7 +77,7 @@ export class CitationLedger {
       !/资料不足|无法支持|无法确定|未找到|没有依据|没有证据|无证据|无依据|资料已过期/.test(text)
     )
       throw new StorageError('VALIDATION_ERROR');
-    const verified: { e: EvidenceRef; start: number; end: number }[] = [];
+    const verified: { e: EvidenceRef; start: number; end: number; markerEnd: number }[] = [];
     if (matches.length > 20) throw new StorageError('OUTPUT_LIMIT_REACHED');
     for (const m of matches) {
       const before = text.slice(0, m.index!).replace(/[。；\s]+$/, '');
@@ -85,19 +85,50 @@ export class CitationLedger {
         Math.max(before.lastIndexOf('。'), before.lastIndexOf('\n'), before.lastIndexOf('；')) + 1;
       if (!text.slice(start, m.index!).trim()) throw new StorageError('VALIDATION_ERROR');
       const e = await this.verify(m[1]!);
-      const source = [e.text, ...e.context.map((c) => c.text)].join('\n');
-      const claim = text.slice(start, m.index!);
+      verified.push({ e, start, end: m.index!, markerEnd: m.index! + m[0].length });
+    }
+    for (const start of new Set(verified.map((claim) => claim.start))) {
+      // Multiple actual sources can jointly support a comparison or conflicting values.
+      const group = verified.filter((claim) => claim.start === start);
+      const source = group.flatMap(({ e }) => [e.text, ...e.context.map((c) => c.text)]).join('\n');
+      const claim = text
+        .slice(start, Math.max(...group.map((item) => item.end)))
+        .replace(/\[\[evidence:[^\]]+\]\]/g, '');
       // Deterministic support checks catch invented values or quotations even with a known ID.
       const numbers = claim.match(/\d+(?:\.\d+)?/g) ?? [];
       const sourceNumbers = new Set(source.match(/\d+(?:\.\d+)?/g) ?? []);
       const quotations = [...claim.matchAll(/[“「]([^”」]+)[”」]/g)].map((q) => q[1]!);
       if (numbers.some((n) => !sourceNumbers.has(n)) || quotations.some((q) => !source.includes(q)))
         throw new StorageError('VALIDATION_ERROR');
-      verified.push({ e, start, end: m.index! });
     }
     // Reject alternate forged marker spellings instead of silently treating them as sources.
     if ((text.match(/\[\[evidence:/g) ?? []).length !== matches.length)
       throw new StorageError('VALIDATION_ERROR');
+    if (this.queried) {
+      // A valid marker cannot make other unreferenced conclusions count as verified.
+      let end = 0;
+      const gaps: string[] = [];
+      for (const claim of verified) {
+        gaps.push(text.slice(end, Math.max(end, claim.start)));
+        end = claim.markerEnd;
+      }
+      gaps.push(text.slice(end));
+      for (const gap of gaps)
+        for (const raw of gap.split(/[。；\n!?！？]/)) {
+          const sentence = raw.trim();
+          if (
+            !sentence ||
+            /^[\s*_#>\-:：]+$/.test(sentence) ||
+            /^#{1,6}\s+[^\d]{1,40}$/.test(sentence) ||
+            /^[^\d。；]{1,40}[：:]$/.test(sentence) ||
+            /^(?:根据(?:当前|现有|所选)?(?:资料|证据)[，,:：]?\s*)?(?:当前|现有|所选|目前)?(?:资料不足|无法支持|无法确定|未找到|没有依据|没有证据|无证据|无依据|资料已过期)/.test(
+              sentence,
+            )
+          )
+            continue;
+          throw new StorageError('VALIDATION_ERROR');
+        }
+    }
     if (messageId)
       this.files.store.db.transaction(() => {
         for (const { e, start, end } of verified) {

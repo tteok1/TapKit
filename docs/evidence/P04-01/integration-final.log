@@ -1,0 +1,29 @@
+$ vitest run --config vitest.config.ts --project integration "P04-01" "P03-03"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P04-01.retrieval.test.ts (4 tests | 1 failed) 610701ms
+   × P04-01 T09 real BGE gold set has Recall@20 >=90%, locatable sources 100%, no-answer sources zero 608754ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P04-01.retrieval.test.ts > P04-01 T09 real BGE gold set has Recall@20 >=90%, locatable sources 100%, no-answer sources zero
+Error: Test timed out in 120000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/integration/P04-01.retrieval.test.ts:20:1
+     18|   for (const s of stores.splice(0)) if (s.db.open) s.close();
+     19| });
+     20| test('P04-01 T09 real BGE gold set has Recall@20 >=90%, locatable sour…
+       | ^
+     21|   const f = await retrievalFixture();
+     22|   stores.push(f.store);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 24 passed (25)
+   Start at  02:20:49
+   Duration  621.87s (tests 99%)
+
+[ELIFECYCLE] Command failed with exit code 1.

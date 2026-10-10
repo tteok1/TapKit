@@ -13,3 +13,5 @@
 另有实际ChatService合成模型工具循环，合法ID提交verified citation；未知ID/遗漏引用进入partial；无答案说明可completed。已知ID下伪造数字/引文仍拒绝，标题只作为上下文，不单独返回为支持块。真实模型长输入尾部差异、升级重建/取消/撤权/固定版本、表头单位/代码行和多项目另有定向测试。
 
 提交3d60018后的异步边界复查补充真实ChatService回归：在最终引用读取固定版本的await期间执行runs.cancel。测试夹具首次误用messages.cancel，改为实际runs.cancel并断言回执ok后，未修复源码复现completed覆盖cancelled（4通过/1失败，exit1，cancellation-before.log）。在引用授权回调及validateAnswer返回后检查assertAlive，修复后5/5通过、exit0，且取消场景无citation落库、已生成正文保留（cancellation-after.log）。该修复不放宽引用或安全门禁。
+
+逐结论验收补充：合法引用前后夹带未引用结论均拒绝；允许格式标题、明确资料不足说明。相同结论的多个实际引用合并支持数字/引文核验，不把前一引用ID中的数字当作结论数字，因此7天与30天两来源的冲突说明可合法提交。真实派发/引用与P03范围回归25/25、exit0（integration-citations.log）。首轮本地金标准曾超时（integration-final.log，24通过/1超时，exit1，根因未确认），未改120秒预算；同命令复跑25/25、20.33秒exit0（integration-final-repeat.log），补双来源后20.50秒通过。

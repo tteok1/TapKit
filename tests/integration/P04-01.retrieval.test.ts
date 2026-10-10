@@ -160,6 +160,31 @@ test('P04-01 T09 actual returned citations reject unknown/hash/version IDs and p
   ).rejects.toThrow('VALIDATION_ERROR');
   expect(await ledger.validateAnswer('退款期限为7天 [[evidence:' + e.id + ']]')).toHaveLength(1);
   expect(await ledger.validateAnswer('退款期限为7天。 [[evidence:' + e.id + ']]')).toHaveLength(1);
+  const supported = '退款期限为7天 [[evidence:' + e.id + ']]';
+  await expect(ledger.validateAnswer(supported + '。配送时效为999天。')).rejects.toThrow(
+    'VALIDATION_ERROR',
+  );
+  await expect(ledger.validateAnswer('配送时效为999天。' + supported)).rejects.toThrow(
+    'VALIDATION_ERROR',
+  );
+  expect(
+    await ledger.validateAnswer('### 依据\n' + supported + '。资料不足，无法支持其他结论。'),
+  ).toHaveLength(1);
+  expect(await ledger.validateAnswer('根据当前资料，无法确定配送时效。')).toHaveLength(0);
+  const otherFile = await f.put(project, '退款期限：30天', 'conflicting-refund.txt');
+  const other = (await f.projects.query(project, '退款期限')).hits.find(
+    (hit) => hit.evidence!.sourceVersion === otherFile.currentVersionId,
+  )!.evidence!;
+  ledger.add([other]);
+  expect(
+    await ledger.validateAnswer(
+      '退款期限分别为7天和30天，两份资料存在冲突 [[evidence:' +
+        e.id +
+        ']] [[evidence:' +
+        other.id +
+        ']]',
+    ),
+  ).toHaveLength(2);
   await expect(ledger.validateAnswer('退款期限为999天 [[evidence:' + e.id + ']]')).rejects.toThrow(
     'VALIDATION_ERROR',
   );
