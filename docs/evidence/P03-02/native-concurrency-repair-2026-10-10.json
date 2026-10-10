@@ -347,12 +347,41 @@
       "durationMs": 61710.4723,
       "reportSha256": "48b6b4094e3005afe92afddcc0956eefa718c590ba00ccb441db6c910463e321"
     },
-    "fullIntegration": "running",
-    "ci": "pending",
+    "fullIntegration": {
+      "command": "pnpm test:integration --reporter=json --outputFile=test-results/P03-02-private-home-full-integration.json",
+      "environment": {
+        "TAPKIT_STARTUP_DIAGNOSTICS": "1"
+      },
+      "exitCode": 0,
+      "total": 253,
+      "passed": 253,
+      "failed": 0,
+      "pending": 0,
+      "reportSha256": "80b938f406616c5c41fd49f20e96d1f4fd52c559d87b4792d621d6ea5013a44a",
+      "sourceSha": "7012e456869a12916dec3e14843133a5b18abe4d"
+    },
+    "ci": {
+      "runId": 38031922547,
+      "sourceSha": "7012e456869a12916dec3e14843133a5b18abe4d",
+      "status": "completed",
+      "conclusion": "success",
+      "independentStandardUser": true
+    },
     "check": {
       "exitCode": 0,
       "repositoryFiles": 353,
       "formatFailures": 0
-    }
+    },
+    "electron": {
+      "command": "pnpm test:e2e -- --grep P03-02",
+      "environment": {
+        "TAPKIT_STARTUP_DIAGNOSTICS": "1"
+      },
+      "exitCode": 0,
+      "total": 5,
+      "passed": 5,
+      "result": "5 passed (34.1s)"
+    },
+    "visuallyReviewedSamplesUnchanged": 9
   }
 }

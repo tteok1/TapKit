@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "task": "P03-02",
-  "status": "in_progress",
+  "status": "implemented_and_verified",
   "branch": "codex/p03-02-preview",
   "mainSha": "9fb7f355bdf4eda56862df517e31ebbd8ab592f7",
   "runs": [
@@ -52,35 +52,40 @@
         "check": "failure",
         "startupDiagnostics": "success"
       }
+    },
+    {
+      "id": 38031922547,
+      "event": "push",
+      "headSha": "7012e456869a12916dec3e14843133a5b18abe4d",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/38031922547",
+      "jobs": {
+        "check": "success",
+        "startupDiagnostics": "success"
+      }
     }
   ],
   "local": {
-    "previewUnit": 11,
-    "relatedOfficeUnit": 9,
-    "previewIntegration": 11,
-    "nativeIntegration": 3,
-    "electron": 5,
-    "visualSamples": 9,
+    "sourceSha": "7012e456869a12916dec3e14843133a5b18abe4d",
+    "fullIntegrationPassed": 253,
+    "nativeCasesPassed": 4,
+    "electronPassed": 5,
+    "reviewedVisualSamples": 9,
     "checkExitCode": 0,
     "docsExitCode": 0
   },
-  "latestRepair": {
-    "nativeAllocator": "Skip occupied drive aliases without consuming a root; preserve existing lease and confinement.",
-    "integrationWorkers": 2,
-    "fullIntegrationPassed": 252,
-    "narrowElectronPassed": 5,
-    "standardUserSourceFiles": 9,
-    "standardUserTimeoutCause": "not established; next CI carries bounded worker stage and sanitized stderr evidence",
-    "strengthenedNativePassed": 3,
-    "checkExitCode": 0
-  },
   "acceptance": {
-    "independentStandardUser": "pending",
-    "sameSourceCI": "pending",
+    "status": "implemented_and_verified",
+    "requirements": 16,
+    "sourceSha": "7012e456869a12916dec3e14843133a5b18abe4d",
+    "runId": 38031922547,
+    "mainMerged": false,
     "pullRequestCreated": false,
-    "mainMerged": false
+    "manualConfirmationRequiredForMain": true,
+    "standardUserEvidence": "docs/evidence/P03-02/standard-user-acceptance-2026-10-10.json"
   },
-  "currentSourceSha": "d680a8b2fccb8b31a56552614cbfb79969e9896f",
+  "currentSourceSha": "7012e456869a12916dec3e14843133a5b18abe4d",
   "failedCI": {
     "unit": {
       "passed": 274,
@@ -164,18 +169,25 @@
     }
   },
   "currentRepair": {
-    "nativeCasesPassed": 4,
-    "narrowElectronPassed": 5,
-    "staticCheckFiles": 353,
+    "sourceSha": "7012e456869a12916dec3e14843133a5b18abe4d",
     "checkExitCode": 0,
+    "repositoryFiles": 353,
+    "unitPassed": 274,
+    "fullIntegrationPassed": 253,
+    "ciElectronPassed": 30,
+    "localElectronPassed": 5,
+    "performancePassed": 1,
+    "buildExitCode": 0,
+    "standardP00Passed": 22,
+    "standardParserPassed": 3,
+    "standardPreviewPassed": 4,
+    "matchedStandardSourceFiles": 11,
+    "freshOfficePassed": 6,
+    "startupJobs": "success",
+    "reviewedVisualSamples": 9,
     "integrationWorkers": 1,
-    "internalOfficeJobs": 2,
-    "standardUserRequiredCases": 4,
-    "standardUserSourceFiles": 11,
-    "fullIntegrationExpected": 253,
-    "fullIntegrationStatus": "running",
-    "standardUserStatus": "P00 macro positive control failed; P03 not reached",
-    "ciStatus": "failure"
+    "internalOfficeJobPeak": 2,
+    "ciStatus": "success"
   },
   "d680Failure": {
     "headSha": "d680a8b2fccb8b31a56552614cbfb79969e9896f",
@@ -221,5 +233,25 @@
     "build": "success",
     "performance": "success",
     "startupDiagnostics": "success"
+  },
+  "localHistorical": {
+    "previewUnit": 11,
+    "relatedOfficeUnit": 9,
+    "previewIntegration": 11,
+    "nativeIntegration": 3,
+    "electron": 5,
+    "visualSamples": 9,
+    "checkExitCode": 0,
+    "docsExitCode": 0
+  },
+  "allocatorRepairHistorical": {
+    "nativeAllocator": "Skip occupied drive aliases without consuming a root; preserve existing lease and confinement.",
+    "integrationWorkers": 2,
+    "fullIntegrationPassed": 252,
+    "narrowElectronPassed": 5,
+    "standardUserSourceFiles": 9,
+    "standardUserTimeoutCause": "not established; next CI carries bounded worker stage and sanitized stderr evidence",
+    "strengthenedNativePassed": 3,
+    "checkExitCode": 0
   }
 }

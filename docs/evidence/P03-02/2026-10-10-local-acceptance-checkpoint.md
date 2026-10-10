@@ -1,8 +1,14 @@
-# P03-02 本地验收检查点（仍待同源码CI）
+# P03-02 验收对应与检查点
 
-分支codex/p03-02-preview，基线main9fb7f355bdf4eda56862df517e31ebbd8ab592f7。本文记录真实工作树检查，不能代替独立标准用户和分支CI；禁止PR/main合并。
+分支codex/p03-02-preview，基线main9fb7f355bdf4eda56862df517e31ebbd8ab592f7。最终实现源码7012e456869a12916dec3e14843133a5b18abe4d，CI38031922547两job全部success；16项已验收。禁止PR/main合并，等待人工确认。
 
-## 命令与结果
+## 最终验收
+
+最新源码本地完整integration253/253及Electron5/5均退出0；九个已人工观察的PDF/DOCX/PPTX截图与最终重跑输出字节完全一致。pnpm check353文件、helper构建、docs-check与diff-check均退出0。完整CI为unit274/274、integration253/253、perf1/1、Electron30/30，check/build和startup-diagnostics全部success。独立标准用户P00为22/22、parser3/3、preview4/4，零pending/缺案例，11份预览源码摘要逐一匹配该Git提交；最近18个原生事件身份一致、零网络、回收后零进程。fresh Office宏3/外链3均成功。
+
+[CI证据](public-ci-2026-10-10.json)、[标准用户核验](standard-user-acceptance-2026-10-10.json)、[原生修复及本地命令](native-concurrency-repair-2026-10-10.json)。下面的旧失败及待验文字属于保留的开发历史，不是最终状态；实际状态以上段和progress为准。
+
+## 命令与结果（历史与定向检查）
 
 均用锁定Node24.21.0与pnpm12.4.1执行。
 

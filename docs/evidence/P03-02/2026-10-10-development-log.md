@@ -1,0 +1,82 @@
+# P03-02开发与失败修复历史
+
+以下为验收前逐检查点记录；最终状态见docs/progress/P03-02.md。
+
+# P03-02 文件预览、定位与右侧工作面板
+
+- status：in_progress
+- 日期：2026-10-10（Asia/Shanghai）
+- 目录/分支：D:/Tapkit-public / codex/p03-02-preview
+- 基线：main 9fb7f355bdf4eda56862df517e31ebbd8ab592f7；该提交main CI37963914434全部success。
+- 用户授权：完成P03-02开发、测试并验证分支CI；禁止创建PR或合入main，验收后等待人工确认。
+
+## 需求到实现与证据
+
+16项FR-15-001—010/T01—T06全部保留，实现及本地逐项验证见[验收对应表](../evidence/P03-02/2026-10-10-local-acceptance-checkpoint.md)。当前保持in_progress，独立标准用户与同源码CI未完成。
+
+## 执行检查点
+
+CI38031922547主check已success；归档11663117081摘要验证后，标准P00 22/parser3/preview4、11份Git源码摘要、18个身份/零网络/回收事件及Office fresh6均实证通过。startup-diagnostics仍运行，完整CI结束前保持in_progress。
+
+7012e45完整集成253/253、零pending、退出0；实际Electron五流程退出0且九样本与已人工观察b385f07像素完全一致。CI38031922547单元/集成已通过，独立标准用户及剩余CI步骤仍待验；保持in_progress。
+
+最新7012e456869a12916dec3e14843133a5b18abe4d已commit/push且远程ref一致，CI38031922547正在验证同源码。私有环境路径拼写修复后的helper构建/真实宏正控/check353均退出0；完整253项正在重验，标准P00 22/22、parser3/3、preview4/4与11源码摘要仍待本轮CI实证。main9fb7f35保持，无PR/合并，P03-02=in_progress。
+
+私有环境采用活跃租约绝对目录的点组件拼写；helper release构建、原有宏禁用/允许执行正控1选中和完整check353文件均退出0。所有原断言保留，完整253项重跑中；独立标准用户/修复源码CI待验。旧本地251/253与d680 CI失败保留，不能作为验收。P03-02仍in_progress，无PR/main合并。
+
+d680a8b CI38028321221已completed/failure（startup success）：unit274通过、integration252/253、Electron30/30；唯一集成失败为P00宏正控标记文件缺失。标准P00为21/22因此parser/preview尚未执行；fresh links3通过但macro3失败。真实完整日志及摘要已保留；继续定位私有环境与宏文件路径交互，所有断言保持。
+
+最新修复d680a8b2fccb8b31a56552614cbfb79969e9896f已commit/push，远程ref一致；CI38028321221确认同一headSha并运行中。ADR0043原生短cwd/URI及内部长路径修复native4/4、窄窗口同版重开Electron5/5、check353文件均退出0；九截图与已观察b385f07一致。完整253项复验正在运行，独立标准用户4项/11源码摘要及本轮CI待完成，仍in_progress。main9fb7f35不变，无PR/main合并。
+
+最新ADR0043/原生短cwd与URI/内部长路径修复native4/4、窄窗口同版重开Electron5/5、check353文件均退出0；九截图与已观察b385f07一致。全量253项及P00安全复验中，独立标准用户和新源码CI待验；未提交这轮修复。
+
+按正确CI诊断变量逐文件完整复验252/252退出0；此结果先于随后长路径/Office短cwd和URI/同版本面板重开修复，后续必须重验。cef6781 CI已失败：unit274、integration251/252、Electron28/30；独立标准预览0/3且9源码摘要匹配。真实314/318字符路径已复现Win32打开和启动cwd边界，ADR0043及四个标准预览案例/11源码摘要正在验证；仍in_progress。
+
+按正确CI诊断变量复验为251/252、退出1；既有15格式及OCR解析用例30秒总时限在并行Office负载下超时，P03-02 native三项均通过。集成文件现单worker逐个执行、用例内两真实Office Job并发和全部时限保持，完整复验中。cef6781 CI集成/Electron阶段失败且标准用户运行中，具体CI错误待完整日志。
+
+最新修复cef678139a69a1a095c96d8d580aee77cc9b5608已commit/push，远程ref一致，CI38025546811运行中；main9fb7f35不变，无PR。完整integration252、加强native3、窄窗口Electron5及check/docs/diff均退出0；九截图与已观察的b385f07字节一致。独立标准用户及同源码CI待验，仍in_progress。
+
+- 当前修复检查点：两轮旧源码CI已completed/failure，startup均success；unit274/274、integration249/252、Electron24/30。独立标准P00 22/22、parser3/3通过，preview不能验收：两项真实转换超时，旧撤权流程未先检查Office成功，存在假阳性。现已增加成功转换前提及有界worker stage/脱敏stderr事件。本地完整integration252/252退出0、窄窗口Electron5/5退出0、更深目录六Office样本诊断通过；标准用户超时原因仍待新CI证据。完整native加强断言3/3退出0，不提高任何Office超时/隔离上限。
+
+- 最新b385f07d6547396e2b8d8a6bdb39ace083f62a9c已commit/push，远程ref一致，push CI38023237710运行中；实际分享补验通过。7a3adca的首轮CI38022983397为历史轮次，最终验收以最新源码完整CI为准。main仍9fb7f35，无PR/main合并。以下为保留的历史检查点。
+
+- 7a3adcaca52c54e49224b70124663b58fd7d875d已commit/push，远程ref摘要一致，push CI38022983397运行中；main仍9fb7f35。未创建PR/合入main。继续补强分享实际独立副本字节断言，反馈须真实写入成功后才出现。
+
+- 最新横向样本补验：真实native3退出0，Office实际Electron1退出0（5.1秒），横向截图/表格/图片已观察；本地全部范围通过，独立标准用户与同源码CI仍待验。已准备开发分支提交，禁止PR/main合并。
+
+- 2026-10-10：已重新核对工作区、进度和P03-02规格；fetch origin main退出0，switch -c codex/p03-02-preview origin/main退出0，移除自动继承的main上游。既有P03-01合并/同步文档改动完整携带，未清空或覆盖；未提交或推送。
+- 已确认已有FileVersion/ResourceRef/Locator、文件owner检查、解析结构和AppContainer OfficeWorker可复用；需新增受控预览资产协议、只读转换编排、阅读位置和本地批注，并接入实际界面与CI。
+- 2026-10-10 11:09：新增schema10阅读位置/PDF批注、固定版本DTO与Host窗口隔离协议、Core转换编排和选区核验；接入PDF.js、多标签、资料库/聊天入口及基础格式视图。真实Electron首次发现CORS阻断，修正后基础流程通过。矩形核验和合并网格已继续改动，尚未完整UI验收。证据见[基础检查点](../evidence/P03-02/2026-10-10-foundation-checkpoint.json)。
+
+## 验证记录
+
+完整CI新增失败闭环：旧源码两轮集成/Electron及标准预览失败，完整日志已核对。本地全量252首轮247过5失败；3项预览在Office准备时报APP_CONTAINER_HELPER_FAILED:office.mapping.driveExhausted，另外内存耗尽隔离15秒与既有原生解析30秒在测试文件大量并行下超时。临时测试spy仅用于定位，已移除。原生分配循环不再zip三个根；遍历既有候选盘符且仅选空闲后消耗目录，保持mutex/lease/journal/Job原安全断言。集成suite同时2worker，六Office样本每批两项真实并发且峰值必须2，完整复验252/252退出0；不提高任何超时/资源上限。旧CI的桥接白名单遗漏新增接口、窗口重开读取过早、窄窗口抽屉阻挡均已修复测试操作，本地相同30项首轮29通过、剩余抽屉引用入口补齐后P03-02五项通过。标准预览超时原因尚未确定，不以更深本地目录通过替代独立用户验收。见native-concurrency-repair-2026-10-10.json。
+
+分享补强：仅真实副本写入成功后显示提示，取消/冲突不提示成功；实际下载和分享分别落到独立文件并核对完整原件字节，定向Electron1退出0（6.0秒），完整check退出0。远程CI以[分支记录](../evidence/P03-02/public-ci-2026-10-10.json)为准，尚不能标已验收。
+
+最新检查点见[本地验收对应表](../evidence/P03-02/2026-10-10-local-acceptance-checkpoint.md)：预览/Office相关unit20、最终预览integration11、真实native3、实际Electron5（32.9秒）均退出0；九样本已重取完整截图并观察，最终横向DOCX/native3/OfficeUI1及分享UI1补验通过。仍待独立标准用户及同源码分支CI，状态保持in_progress。Git直接连接重置已定位为未使用用户已配置的本机代理；通过仅本次命令的代理覆盖fetch成功，main仍9fb7f35。以下为历史验证记录。
+
+2026-10-10后续检查点：本地unit11/预览integration10/native3共24项退出0；新段落标识/旧渲染缓存拒绝及迁移/材料相关integration13退出0；完整check退出0（352文件格式零失败、依赖边界/锁定清单）。真实NativeSandboxExecutor隔离六个DOCX/PPTX、撤回权限和取消重试均通过，保持AppContainer身份匹配/零网络/Job清理/原件摘要；生产能力报告未启用，独立标准用户仍待CI。
+
+实际Electron扩为5流程，最新轮表格/公式合并/排序过滤/图片旋转/ZIP/200%及六个真实Office缓存页面2项通过，其余3项仍修复中。已修复空embeddings目录误判、DOCX段落ID比较、全屏滚动和阅读位置时序；发现复制受浏览器默认拒绝权限影响，已新增受信Host有限copyText接口，待新构建复验。Office截图有祖先滚动裁剪，须调整缩放重取后再做9样本完整视觉核对，不能按已有截图宣称视觉验收完成。
+
+基础协议/契约单元7项、预览与迁移/选区相关集成18项通过，命令退出0；实际Electron便携样本流程1项通过（首次CORS失败亦保留）。这些记录只覆盖基础检查点，不代表全任务验收、真实Office隔离验证或视觉样本通过。
+
+## 接口、迁移与决定
+
+[ADR0042](../adr/0042-fixed-version-preview-and-pdf-annotations.md)记录schema10、窗口隔离资产、固定版本与选区哈希、PDF批注和只读Office缓存。Office仍只用已有AppContainer/Job/无网络路线；共享架构/数据字典/命令/交互章节已同步，生命周期由本地集成及native验证。生产能力仍须本机自己的有效probe。
+
+## 未完成、阻塞和恢复
+
+P03-02保持in_progress：实现与实际5流程已通过本地验收，最终横向样本及分享补验通过；独立标准用户安全和同源码CI仍待完成。开发分支最新b385f07已push；未创建PR或合入main。本机仍需有效probe，不复制CI报告启用能力。无模型真实请求；凭据未写入代码、日志、进度或Git。OCR、媒体理解/生成/屏幕采集延期边界保持。
+
+## 给下一个会话
+
+1. 核验b385f07的CI38023237710，检查完整管理员测试、独立标准用户P00/P03解析/P03预览报告及源码摘要、Office隔离事件和启动诊断。
+2. 若有失败按真实日志修复并保留轮次；禁止降低原生安全/范围/原件断言。
+3. 同源码CI和全部16项验收成立后同步需求/进度/证据并推送收口提交，确认最后提交CI成功。
+4. 不创建PR，不合入main，验收后等待人工确认；P03-03/gate仍不开始。
+
+最小必读：docs/plan/tasks/P03-02.md；03§2/4；05 artifacts命令；12§4/6/8批注；15 P03；本任务后续ADR和证据。INDEX/CURRENT/requirements随检查点同步。
+
+诊断环境记录更正：早先本地命令设置单数TAPKIT_STARTUP_DIAGNOSTIC，实际CI要求TAPKIT_STARTUP_DIAGNOSTICS。已有通过/失败结果仍有效，但不作为相同诊断环境验证；现按CI变量重跑完整252项，结果待完成。

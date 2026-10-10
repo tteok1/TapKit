@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "task": "P03-02",
+  "sourceSha": "7012e456869a12916dec3e14843133a5b18abe4d",
+  "runId": 38031922547,
+  "runUrl": "https://github.com/tteok1/TapKit/actions/runs/38031922547",
+  "artifact": {
+    "id": 11663117081,
+    "sha256": "8b4df59f19ef730532aeab979c48cf22b639311d121ede27f9372853c2b5abc5",
+    "bytes": 1222060
+  },
+  "standardUser": true,
+  "p00": {
+    "tests": {
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "pending": 0
+    },
+    "exitCode": 0,
+    "missingCases": []
+  },
+  "parser": {
+    "tests": {
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "pending": 0
+    },
+    "exitCode": 0,
+    "missingCases": []
+  },
+  "preview": {
+    "tests": {
+      "total": 4,
+      "passed": 4,
+      "failed": 0,
+      "pending": 0
+    },
+    "exitCode": 0,
+    "missingCases": [],
+    "startedAt": "2026-10-10T07:02:12.620Z",
+    "endedAt": "2026-10-10T07:03:15.921Z",
+    "sourceHashes": {
+      "packages/core/src/artifact-service.ts": "2e225db10a5d6d36f23499f1659f2e7a488bd32b64da19fb3a4f73d15be953c8",
+      "packages/core/src/preview-staging.ts": "ceba7c300a3b30a52a4ebfd502cd547208512e2cbc7c312d667cd7ac9feb6a3d",
+      "packages/contracts/src/artifacts.ts": "1a90f8694c585e0a2c3133ed2f64e6ff31605a42074191fd1e819b6b87d42cd9",
+      "packages/storage/src/artifacts.ts": "73fa8cfbdeb3fec90496ad2d4ba5a509b77c06fbde1fc471c21e9f05d47e80fe",
+      "packages/retrieval/src/ingest/office.ts": "f7d9d0831002425c4b752ea140011cf874f9a4b35714ed21a13c0e51018b3000",
+      "tests/fixtures/P03-preview-office.mjs": "5682fa603b5c3ac96442b1e1c7562b0d620c249b82ff3bda1e5d537b2cd73469",
+      "native/windows-helper/src/office.rs": "092eed65c912b3db9b45c78ff22573c8d73419e88c59e12d66c90e7257c64625",
+      "native/windows-helper/src/lok_worker.py": "6624f2e910bd7135a4d56150149de860566c7471b7ab56175ae4073b04cadcda",
+      "tests/integration/P03-02.native-preview.test.ts": "679aaf317905b1584c9401842a343e99c2e9b1262eefaacc330c9d78ed7440fd",
+      "vitest.config.ts": "1ec0f09c07b59b2368b1bdbe046929eca4daa39c1a64c46b970bc47375c72e38",
+      "native/windows-helper/src/sandbox.rs": "182d352c2be0b258846c457dafbf0992f2b5700f719dbdc540e225f6efab9951"
+    },
+    "matchedSourceFiles": 11
+  },
+  "native": {
+    "latestEvents": 18,
+    "allAppContainer": true,
+    "allIdentityMatches": true,
+    "allNetworkCapabilitiesZero": true,
+    "allActiveProcessesZero": true,
+    "successfulConversionBeforeRevocation": true,
+    "deepWorkspaceConversion": true,
+    "callerExtendedNamespaceRejectionPassed": true,
+    "cancelledJobs": 1,
+    "untouchedOriginalRetryPassed": true,
+    "twoOfficeJobsPeakAssertionPassed": true
+  },
+  "freshOffice": {
+    "total": 6,
+    "passed": 6,
+    "macroPassed": 3,
+    "linksPassed": 3
+  },
+  "productionCapability": "CI standard-user proof is not transplanted into the local production probe"
+}
