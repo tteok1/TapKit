@@ -1,0 +1,224 @@
+{
+  "sourceCommit": "59de6d7cff76d6d3a610320fffa67b0844edec8c",
+  "runId": 38063378626,
+  "runUrl": "https://github.com/tteok1/TapKit/actions/runs/38063378626",
+  "status": "completed",
+  "conclusion": "success",
+  "observedAt": "2026-10-10 15:51:39 UTC",
+  "jobs": [
+    {
+      "id": 114245995063,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Save verified runtime archives",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Check",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Unit and current-route integration",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Dedicated Core performance checks",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Build and Electron checks",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify P00-03 and P03 parser as an independent standard user",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Repeat fresh-process Office shutdown diagnostics",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 114250673314,
+      "name": "startup-diagnostics",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Repeat fresh-process startup diagnostics",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 11674401535,
+      "name": "windows-p00-evidence",
+      "digest": "sha256:a03eb72e60109ae5461c3d714432962aecbd361e95fef503f0ee94fd88e6680b",
+      "sizeBytes": 1453970
+    }
+  ],
+  "validation": {
+    "unit": 276,
+    "integration": 267,
+    "perf": 1,
+    "electron": 34,
+    "standardUser": 22,
+    "parser": 3,
+    "preview": 4
+  },
+  "logExtract": [
+    "2026-10-10T15:26:52.5574245Z Formatting checked 366 repository files; 0 failures.",
+    "2026-10-10T15:27:08.4099768Z  Test Files  32 passed (32)",
+    "2026-10-10T15:27:08.4101887Z       Tests  276 passed (276)",
+    "2026-10-10T15:33:22.1454407Z  Test Files  34 passed (34)",
+    "2026-10-10T15:33:22.1459856Z       Tests  267 passed (267)",
+    "2026-10-10T15:33:48.7954850Z  Test Files  1 passed (1)",
+    "2026-10-10T15:33:48.7955548Z       Tests  1 passed (1)",
+    "2026-10-10T15:36:42.8634562Z   34 passed (2.2m)",
+    "2026-10-10T15:44:25.5567331Z   \"missingCases\": []",
+    "2026-10-10T15:44:25.5583108Z {\"schemaVersion\":1,\"task\":\"P03-01\",\"startedAt\":\"2026-10-10T15:43:03.013Z\",\"endedAt\":\"2026-10-10T15:43:20.361Z\",\"command\":\"pnpm test:integration P03-01.native-parser --reporter=json --outputFile=test-results/P03-01-native-parser.json\",\"exitCode\":0,\"standardUser\":true,\"adapterSha256\":\"d45770b9cabc61c5d86a313310b1705928192c95b8bfb18ef1ce4a0e90c52a55\",\"passed\":true,\"missingCases\":[],\"tests\":{\"total\":3,\"passed\":3,\"failed\":0,\"pending\":0}}",
+    "2026-10-10T15:44:25.5595848Z {\"schemaVersion\":1,\"task\":\"P03-02\",\"startedAt\":\"2026-10-10T15:43:20.433Z\",\"endedAt\":\"2026-10-10T15:44:25.347Z\",\"command\":\"pnpm test:integration P03-02.native-preview --reporter=json --outputFile=test-results/P03-02-native-preview.json\",\"exitCode\":0,\"standardUser\":true,\"sourceHashes\":{\"packages/core/src/artifact-service.ts\":\"2e225db10a5d6d36f23499f1659f2e7a488bd32b64da19fb3a4f73d15be953c8\",\"packages/core/src/preview-staging.ts\":\"ceba7c300a3b30a52a4ebfd502cd547208512e2cbc7c312d667cd7ac9feb6a3d\",\"packages/contracts/src/artifacts.ts\":\"1a90f8694c585e0a2c3133ed2f64e6ff31605a42074191fd1e819b6b87d42cd9\",\"packages/storage/src/artifacts.ts\":\"73fa8cfbdeb3fec90496ad2d4ba5a509b77c06fbde1fc471c21e9f05d47e80fe\",\"packages/retrieval/src/ingest/office.ts\":\"f7d9d0831002425c4b752ea140011cf874f9a4b35714ed21a13c0e51018b3000\",\"tests/fixtures/P03-preview-office.mjs\":\"5682fa603b5c3ac96442b1e1c7562b0d620c249b82ff3bda1e5d537b2cd73469\",\"native/windows-helper/src/office.rs\":\"092eed65c912b3db9b45c78ff22573c8d73419e88c59e12d66c90e7257c64625\",\"native/windows-helper/src/lok_worker.py\":\"6624f2e910bd7135a4d56150149de860566c7471b7ab56175ae4073b04cadcda\",\"tests/integration/P03-02.native-preview.test.ts\":\"679aaf317905b1584c9401842a343e99c2e9b1262eefaacc330c9d78ed7440fd\",\"vitest.config.ts\":\"1ec0f09c07b59b2368b1bdbe046929eca4daa39c1a64c46b970bc47375c72e38\",\"native/windows-helper/src/sandbox.rs\":\"182d352c2be0b258846c457dafbf0992f2b5700f719dbdc540e225f6efab9951\"},\"passed\":true,\"missingCases\":[],\"tests\":{\"total\":4,\"passed\":4,\"failed\":0,\"pending\":0}}",
+    "2026-10-10T15:44:47.7438215Z  Test Files  1 passed (1)",
+    "2026-10-10T15:44:47.7439228Z       Tests  1 passed | 4 skipped (5)",
+    "2026-10-10T15:45:07.1020221Z  Test Files  1 passed (1)",
+    "2026-10-10T15:45:07.1021030Z       Tests  1 passed | 4 skipped (5)",
+    "2026-10-10T15:45:26.3836020Z  Test Files  1 passed (1)",
+    "2026-10-10T15:45:26.3837505Z       Tests  1 passed | 4 skipped (5)",
+    "2026-10-10T15:45:45.8008549Z  Test Files  1 passed (1)",
+    "2026-10-10T15:45:45.8009394Z       Tests  1 passed | 4 skipped (5)",
+    "2026-10-10T15:46:05.1328252Z  Test Files  1 passed (1)",
+    "2026-10-10T15:46:05.1329933Z       Tests  1 passed | 4 skipped (5)",
+    "2026-10-10T15:46:24.4165845Z  Test Files  1 passed (1)",
+    "2026-10-10T15:46:24.4167711Z       Tests  1 passed | 4 skipped (5)",
+    "2026-10-10T15:50:09.2505628Z TAPKIT_CORE_READY",
+    "2026-10-10T15:50:09.8093806Z TAPKIT_CORE_EXIT 0",
+    "2026-10-10T15:50:09.9905419Z   1 passed (3.5s)",
+    "2026-10-10T15:50:12.8623531Z STARTUP_DIAGNOSTIC_REPEAT 1 storage",
+    "2026-10-10T15:50:16.7179323Z  Test Files  1 passed (1)",
+    "2026-10-10T15:50:16.7802166Z STARTUP_DIAGNOSTIC_REPEAT 1 vault",
+    "2026-10-10T15:50:16.8678167Z $ node scripts/e2e.mjs \"--\" \"--grep\" \"P00-02 T19 real Windows safeStorage round trip\" \"--output\" \"test-results/e2e-startup-repeat-1\"",
+    "2026-10-10T15:50:20.0288019Z TAPKIT_CORE_READY",
+    "2026-10-10T15:50:25.7362673Z TAPKIT_CORE_EXIT 0",
+    "2026-10-10T15:50:25.8926552Z   1 passed (8.2s)",
+    "2026-10-10T15:50:25.9764501Z STARTUP_DIAGNOSTIC_REPEAT 2 storage",
+    "2026-10-10T15:50:27.7917510Z  Test Files  1 passed (1)",
+    "2026-10-10T15:50:27.8659814Z STARTUP_DIAGNOSTIC_REPEAT 2 vault",
+    "2026-10-10T15:50:27.9755463Z $ node scripts/e2e.mjs \"--\" \"--grep\" \"P00-02 T19 real Windows safeStorage round trip\" \"--output\" \"test-results/e2e-startup-repeat-2\"",
+    "2026-10-10T15:50:30.8326860Z TAPKIT_CORE_READY",
+    "2026-10-10T15:50:32.0534209Z TAPKIT_CORE_EXIT 0",
+    "2026-10-10T15:50:32.2156776Z   1 passed (3.2s)",
+    "2026-10-10T15:50:32.2775355Z STARTUP_DIAGNOSTIC_REPEAT 3 storage",
+    "2026-10-10T15:50:33.9040839Z  Test Files  1 passed (1)",
+    "2026-10-10T15:50:33.9654994Z STARTUP_DIAGNOSTIC_REPEAT 3 vault",
+    "2026-10-10T15:50:34.0548497Z $ node scripts/e2e.mjs \"--\" \"--grep\" \"P00-02 T19 real Windows safeStorage round trip\" \"--output\" \"test-results/e2e-startup-repeat-3\"",
+    "2026-10-10T15:50:36.4955916Z TAPKIT_CORE_READY",
+    "2026-10-10T15:50:37.6834413Z TAPKIT_CORE_EXIT 0",
+    "2026-10-10T15:50:37.8283092Z   1 passed (3.0s)",
+    "2026-10-10T15:50:37.9353348Z   path: test-results/e2e-startup-repeat-*",
+    "2026-10-10T15:50:38.8633656Z No files were found with the provided path: test-results/e2e-startup-repeat-*. No artifacts will be uploaded."
+  ]
+}
