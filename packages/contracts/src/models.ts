@@ -109,6 +109,9 @@ export const PriceCatalogSchema = z.strictObject({
     .max(1000),
 });
 export const DescriptorSchema = ModelViewSchema.extend({
+  maxInput: z.number().int().positive().optional(),
+  reasoningWindowTokens: z.number().int().nonnegative().optional(),
+  reasoningIncludedInOutput: z.boolean().optional(),
   accountRevision: z.number().int().positive().nullable().default(null),
   availabilityReason: z.string().max(80).nullable().default(null),
   accountLabel: z.string().max(80),

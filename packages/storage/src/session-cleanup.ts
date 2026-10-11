@@ -5,6 +5,17 @@ export function eraseMessageContent(store: Store, id: string, time: number, keep
     .get(id, store.profileId) as
     { session_id: string; branch_id: string; role: string; run_id: string | null } | undefined;
   if (!m) return;
+  store.db
+    .prepare(
+      'DELETE FROM context_snapshots WHERE run_id IN(SELECT id FROM runs WHERE session_id=?)',
+    )
+    .run(m.session_id);
+  store.db.prepare('DELETE FROM checkpoints WHERE session_id=?').run(m.session_id);
+  store.db
+    .prepare(
+      'UPDATE sessions SET context_seed_json=NULL,context_version=context_version+1 WHERE id=?',
+    )
+    .run(m.session_id);
   store.db.prepare('DELETE FROM message_versions WHERE message_id=?').run(id);
   store.db.prepare('DELETE FROM message_marks WHERE message_id=?').run(id);
   store.db
@@ -72,6 +83,13 @@ export function eraseMessageContent(store: Store, id: string, time: number, keep
 // Called inside the caller's transaction, both for permanent delete and backup tombstone replay.
 export function eraseSessionContent(store: Store, id: string, time: number) {
   const db = store.db;
+  db.prepare(
+    'DELETE FROM context_snapshots WHERE run_id IN(SELECT id FROM runs WHERE session_id=?)',
+  ).run(id);
+  db.prepare('DELETE FROM checkpoints WHERE session_id=?').run(id);
+  db.prepare(
+    'UPDATE sessions SET context_seed_json=NULL,context_version=context_version+1 WHERE id=?',
+  ).run(id);
   db.prepare('DELETE FROM history_search_documents WHERE session_id=?').run(id);
   db.prepare(
     'DELETE FROM message_marks WHERE message_id IN(SELECT id FROM messages WHERE session_id=?)',

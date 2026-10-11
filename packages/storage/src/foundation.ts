@@ -30,6 +30,7 @@ import generatedNoteLinksSql from '../../../migrations/0009_generated_note_links
 import filePreviewSql from '../../../migrations/0010_file_preview.sql?raw';
 import projectsSql from '../../../migrations/0011_projects.sql?raw';
 import retrievalSql from '../../../migrations/0012_retrieval.sql?raw';
+import contextSql from '../../../migrations/0013_context.sql?raw';
 
 let startupTraceSequence = 0;
 function startupTrace(scope: string) {
@@ -113,8 +114,9 @@ export const migrations: Migration[] = [
   { version: 10, sql: filePreviewSql },
   { version: 11, sql: projectsSql },
   { version: 12, sql: retrievalSql },
+  { version: 13, sql: contextSql },
 ];
-export const SCHEMA_VERSION = 12;
+export const SCHEMA_VERSION = 13;
 export async function migrate(db: Database.Database, backupDirectory: string, steps = migrations) {
   const trace = startupTrace('storage.migrate');
   trace('version.begin');

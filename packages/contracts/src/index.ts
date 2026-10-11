@@ -24,6 +24,7 @@ export * from './files';
 export * from './artifacts';
 export * from './projects';
 export * from './retrieval';
+export * from './context';
 export const PingRequestSchema = z.strictObject({ nonce: z.string().min(1).max(128) });
 export const PingReplySchema = z.strictObject({
   nonce: z.string().min(1).max(128),
@@ -99,7 +100,7 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('ready'),
     protocolVersion: z.literal(1),
-    schemaVersion: z.literal(12),
+    schemaVersion: z.literal(13),
   }),
   z.strictObject({ type: z.literal('pong'), id: z.string().uuid(), payload: PingReplySchema }),
   z.strictObject({ type: z.literal('reply'), id: z.string().uuid(), reply: ReplySchema }),

@@ -25,6 +25,12 @@ export type RoutedEvent =
   | { type: 'model.event'; attemptId: string; event: ModelEvent }
   | { type: 'route.error'; error: ProviderError };
 export type RoutingInput = {
+  prepareContext?: (model: ModelDescriptor) => Promise<{
+    messages: CanonicalMessage[];
+    systemModules: { id: string; text: string }[];
+    outputLimit: number;
+    inputTokens: number;
+  }>;
   logicalCallId: string;
   runId: string;
   rootRunId: string;
@@ -111,7 +117,7 @@ export class ModelRouter {
         const available = candidates(
           catalog,
           input.preferences,
-          input.need,
+          input.prepareContext ? { ...input.need, inputTokens: 0, outputTokens: 1 } : input.need,
           input.allowedAccounts,
         ).filter((m) => !visited.has(m.accountId!) && !deps.disabled(m.accountId!));
         const model = available[0];
@@ -155,7 +161,13 @@ export class ModelRouter {
             if (
               !fresh ||
               deps.disabled(selection.accountId) ||
-              compatibility(fresh, input.preferences, input.need).length
+              compatibility(
+                fresh,
+                input.preferences,
+                input.prepareContext
+                  ? { ...input.need, inputTokens: 0, outputTokens: 1 }
+                  : input.need,
+              ).length
             )
               throw new Error('PROVIDER_UNAVAILABLE');
             accountRevision = fresh.accountRevision;
@@ -174,10 +186,28 @@ export class ModelRouter {
                   : input.preferences.reasoning;
             const nextId = deps.id();
             const { nativeStateRef, ...base } = input.request;
+            const prepared = input.prepareContext ? await input.prepareContext(fresh) : undefined;
+            if (
+              prepared &&
+              compatibility(fresh, input.preferences, {
+                ...input.need,
+                inputTokens: prepared.inputTokens,
+                outputTokens: prepared.outputLimit,
+              }).length
+            )
+              throw new Error('BUDGET_EXCEEDED');
             const request: ModelRequest = {
               ...base,
-              messages: canonical,
-              systemModules: [...base.systemModules, ...answerModules(input.preferences)],
+              messages: prepared
+                ? cross
+                  ? rebuildCanonical(prepared.messages)
+                  : prepared.messages
+                : canonical,
+              systemModules: prepared?.systemModules ?? [
+                ...base.systemModules,
+                ...answerModules(input.preferences),
+              ],
+              outputLimit: prepared?.outputLimit ?? base.outputLimit,
               logicalCallId: input.logicalCallId,
               attemptId: nextId,
               accountId: selection.accountId,

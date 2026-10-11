@@ -1,5 +1,7 @@
 # IPC、事件、任务状态与接口协议
 
+2026-10-11 P04-02：[ADR0046](../adr/0046-verifiable-context-checkpoints-and-budget.md)新增context.get/compact/correct/continue；correct要求checkpointId和expectedRevision，追加用户纠正消息与task.steered，下一run递增taskVersion；continue限同项目空会话并显式选择字段，无未完成调用。Host/Core握手schemaVersion=13。
+
 P03-03追加严格ProjectCommandSchemas与ProjectReplySchema；projectCommand开放项目列表/详情/设置/复制/归档/删除预览与确认、资料范围/分类/本地文本快照、knowledge.query和导出预览。修改需CAS，scope变更/规则修改/生命周期需无活动run；会话创建显式projectId。Host→Core私有projects.export接收保存框授权，不属于Renderer公共命令。Core握手schemaVersion=11，业务protocolVersion仍1。详见[ADR0044](../adr/0044-project-scopes-and-atomic-index-links.md)。
 
 P03-02补充：Host copyText只写入严格字符串（≤100,000字符），每次核验受信Sender，不提供读取剪贴板接口且不开放浏览器权限。artifacts.sheet另返回columnTypes（empty/text/number/boolean/mixed），从原结构缓存值推断，不执行公式；grid读取后记忆原始坐标。

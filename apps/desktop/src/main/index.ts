@@ -483,6 +483,10 @@ if (ownsLock) {
       'runs.cancel',
       'chat.snippets.get',
       'chat.snippets.set',
+      'context.get',
+      'context.compact',
+      'context.correct',
+      'context.continue',
     ]);
     ipcMain.handle('tapkit:new-window', (event) => {
       if (!checkSender(event)) throw new Error('PERMISSION_DENIED');

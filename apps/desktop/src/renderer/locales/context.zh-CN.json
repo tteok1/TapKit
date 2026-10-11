@@ -1,0 +1,26 @@
+{
+  "open": "会话摘要",
+  "newTitle": "接续会话",
+  "compact": "生成或更新摘要",
+  "empty": "尚未生成摘要。生成后可查看来源、纠正并选择接续背景。",
+  "correction": "摘要纠正",
+  "correct": "保存纠正",
+  "continue": "在新会话中接续所选背景",
+  "fields": {
+    "goal": "目标",
+    "constraints": "约束",
+    "decisions": "决定",
+    "completed": "已完成",
+    "active": "进行中",
+    "next": "下一步",
+    "artifacts": "产物",
+    "evidence": "证据",
+    "open_questions": "待确认"
+  },
+  "source": "查看原始消息",
+  "cache": "本地装配缓存",
+  "providerCache": "供应商实际缓存 token",
+  "unknown": "未报告",
+  "error": "摘要操作未完成，请重新生成摘要或刷新后再试。",
+  "pending": "有未完成调用，请在原会话核对后再接续。"
+}

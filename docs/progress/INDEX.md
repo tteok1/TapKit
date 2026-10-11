@@ -1,3 +1,7 @@
+## 2026-10-11 P04-02 开发检查点
+
+基线03fc989，main拉取/ff-only与新分支codex/p04-02-context完成；应用检查点、预算、缓存、Core与摘要UI实施中。完整check/docs/diff退出0、unit291、P04-02集成5、Electron1通过；三次压缩金标准100%。失败轮及修复保留，分支CI待执行。当前不可验收，无PR、不合入main；P04-03/gate未开始。
+
 # 开发进度总表
 
 ## 2026-10-11 P04-01 压缩合入 main
@@ -187,7 +191,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P03-02 | 文件预览、定位与右侧工作面板       | P03-01         | implemented_and_verified      | docs/progress/P03-02.md              |
 | P03-03 | 项目管理、资料范围与索引版本       | P03-02         | implemented_and_verified      | docs/progress/P03-03.md              |
 | P04-01 | 中文混合检索、重排与引用证据       | P03-03         | implemented_and_verified      | docs/progress/P04-01.md              |
-| P04-02 | 上下文预算、压缩检查点与缓存       | P04-01, P01-03 | not_started                   | docs/progress/P04-02.md              |
+| P04-02 | 上下文预算、压缩检查点与缓存       | P04-01/P01-03  | in_progress                   | docs/progress/P04-02.md              |
 | P04-03 | 自动长期记忆、历史参考与管理       | P04-02         | not_started                   | docs/progress/P04-03.md              |
 | P05-01 | 联网搜索、匿名网页读取与来源归档   | P04-03         | not_started                   | docs/progress/P05-01.md              |
 | P05-02 | 引用交互、会话导出和本地分享快照   | P05-01, P03-02 | not_started                   | docs/progress/P05-02.md              |

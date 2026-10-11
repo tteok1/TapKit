@@ -71,7 +71,8 @@ async function fresh(script?: Script, start = true) {
     ledger: { hasPreferences: () => false },
     router: {
       async *stream(input: RoutingInput, signal: AbortSignal): AsyncIterable<RoutedEvent> {
-        inputs.push(structuredClone(input));
+        const { prepareContext: _, ...serializable } = input;
+        inputs.push(structuredClone(serializable));
         const n = ++calls;
         if (script) {
           yield* script(n, input, signal);
