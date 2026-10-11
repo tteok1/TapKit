@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { IdSchema } from './identity';
 import { ResourceRefSchema } from './resources';
 import { SelectionSchema } from './models';
+import { ContextViewSchema } from './context';
 
 export const RunStatusSchema = z.enum([
   'queued',
@@ -136,6 +137,7 @@ export const ChatSnippetSchema = z.strictObject({
 });
 export const ChatSnippetsSchema = z.strictObject({ snippets: z.array(ChatSnippetSchema).max(100) });
 export const ChatReplyDataSchema = z.union([
+  ContextViewSchema,
   ChatSnapshotSchema,
   ChatDraftViewSchema,
   ChatSendViewSchema,
@@ -149,6 +151,10 @@ export type ChatRunView = z.infer<typeof ChatRunViewSchema>;
 export type ChatSnapshot = z.infer<typeof ChatSnapshotSchema>;
 export type ChatMaterial = z.infer<typeof ChatMaterialSchema>;
 export type ChatCommand =
+  | 'context.get'
+  | 'context.compact'
+  | 'context.correct'
+  | 'context.continue'
   | 'messages.send'
   | 'messages.list'
   | 'messages.read'

@@ -1195,3 +1195,22 @@ button[aria-pressed='true'] {
   padding: 10px;
   border-bottom: 1px solid var(--border);
 }
+.context-summary {
+  margin: 0.5rem 0;
+}
+.context-summary [role='region'] {
+  max-height: min(60vh, 560px);
+  overflow: auto;
+  padding: 1rem;
+  margin-top: 0.5rem;
+  border: 1px solid #dce4e1;
+  border-radius: 12px;
+}
+.context-summary textarea {
+  display: block;
+  width: 100%;
+  min-height: 80px;
+}
+.context-summary p {
+  overflow-wrap: anywhere;
+}

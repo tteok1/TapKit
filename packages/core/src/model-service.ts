@@ -29,6 +29,7 @@ import {
   type ModelOverrides,
 } from '@tapkit/contracts';
 import priceCatalog from '../../../resources/catalogs/prices.json';
+import { countTokens } from '../../context/src';
 const prices = PriceCatalogSchema.parse(priceCatalog);
 import type { ProviderService } from './provider-service';
 
@@ -148,12 +149,7 @@ export class ModelService {
   }
   private inputBound(request: { messages: unknown; tools: unknown; systemModules: unknown }) {
     // Conservative UTF-8 byte bound plus framing. No unknown tokenizer is labelled actual.
-    return (
-      Buffer.byteLength(JSON.stringify(request.messages)) +
-      Buffer.byteLength(JSON.stringify(request.tools)) +
-      Buffer.byteLength(JSON.stringify(request.systemModules)) +
-      1024
-    );
+    return countTokens(request) + 1024;
   }
   async catalog(): Promise<ModelDescriptor[]> {
     const reply = await this.providers.dispatch({

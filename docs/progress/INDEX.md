@@ -1,3 +1,11 @@
+## 2026-10-11 P04-02 压缩合入 main
+
+用户明确确认验收通过，并授权压缩合入main、推送远程和同步进度，不创建PR。远程main已fetch和ff-only同步（exit0），基线03fc989；codex/p04-02-context的2个提交（最终ac3528b）合为包含本记录的单一main提交，保留源分支历史。P04-02=implemented_and_verified；最终源分支CI38125850408 check/startup全部success，unit291/integration283/perf2/Electron36、标准P00 22/parser3/preview4零缺项、Office及启动各三轮通过。合入前暂存树与源分支完全一致，交接同步只更新文档，业务/测试源码保持已验收版本；main CI以本提交push Actions为准，不另加交接提交。两项需求追加合入证据，P04-03/gate未开始，既有live资源状态和旧P02预览独立缺口保持。详见[P04-02](P04-02.md)及docs/evidence/P04-02/main-squash-2026-10-11.json。
+
+## 2026-10-11 P04-02 验收交接（合入前记录）
+
+基线03fc989，main拉取/ff-only与新分支codex/p04-02-context完成；P04-02=implemented_and_verified，实现496f463的CI38123776382全部success：unit291/integration283/perf2/Electron36、标准用户22/3/4零缺项、Office宏/外链和存储/vault各三轮通过。三次压缩金标准100%，11源码摘要一致，43常规原生隔离报告及强杀恢复用例通过。失败轮、旧P02长粘贴预览独立缺口与既有live资源状态保留。此交接提交只改文档，最终分支push Actions作为人工合入校验；无PR、不合入main，等待人工确认，P04-03/gate未开始。详见[P04-02](P04-02.md)。
+
 # 开发进度总表
 
 ## 2026-10-11 P04-01 压缩合入 main
@@ -187,7 +195,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P03-02 | 文件预览、定位与右侧工作面板       | P03-01         | implemented_and_verified      | docs/progress/P03-02.md              |
 | P03-03 | 项目管理、资料范围与索引版本       | P03-02         | implemented_and_verified      | docs/progress/P03-03.md              |
 | P04-01 | 中文混合检索、重排与引用证据       | P03-03         | implemented_and_verified      | docs/progress/P04-01.md              |
-| P04-02 | 上下文预算、压缩检查点与缓存       | P04-01, P01-03 | not_started                   | docs/progress/P04-02.md              |
+| P04-02 | 上下文预算、压缩检查点与缓存       | P04-01/P01-03  | implemented_and_verified      | docs/progress/P04-02.md              |
 | P04-03 | 自动长期记忆、历史参考与管理       | P04-02         | not_started                   | docs/progress/P04-03.md              |
 | P05-01 | 联网搜索、匿名网页读取与来源归档   | P04-03         | not_started                   | docs/progress/P05-01.md              |
 | P05-02 | 引用交互、会话导出和本地分享快照   | P05-01, P03-02 | not_started                   | docs/progress/P05-02.md              |

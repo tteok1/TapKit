@@ -81,7 +81,8 @@ async function fixture() {
     ledger: { hasPreferences: () => false },
     router: {
       async *stream(input: RoutingInput): AsyncIterable<RoutedEvent> {
-        inputs.push(structuredClone(input));
+        const { prepareContext: _, ...serializable } = input;
+        inputs.push(structuredClone(serializable));
         const attemptId = newId();
         yield { type: 'attempt', attemptId, model: selection, attemptNo: 1 };
         const knowledge = input.request.messages.findLast(

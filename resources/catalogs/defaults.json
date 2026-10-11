@@ -1,5 +1,14 @@
 {
   "schemaVersion": 1,
+  "context": {
+    "evaluateRatio": 0.65,
+    "stopLargeRatio": 0.8,
+    "targetRatio": 0.5,
+    "memoryTokens": 1000,
+    "checkpointTokens": 3000,
+    "nextToolTokens": 2048,
+    "safetyTokens": 1024
+  },
   "files": {
     "maxFileBytes": 104857600,
     "maxBatchFiles": 20,

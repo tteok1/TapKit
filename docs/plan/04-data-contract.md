@@ -1,5 +1,7 @@
 # 数据模型与事务契约
 
+2026-10-11 P04-02：[ADR0046](../adr/0046-verifiable-context-checkpoints-and-budget.md)实现schema13的checkpoints/context_snapshots及sessions.context_seed_json/context_version。来源引用使用ID/revision；删除与权限/版本改变阻止旧检查点/cache；不另建run状态。
+
 P03-03实施契约见[ADR0044](../adr/0044-project-scopes-and-atomic-index-links.md)：schema11追加项目显示/默认值/独立背景开关和memory scope；resource_links保存active_index_version/pending_version_id、folder_id/tags_json/expires_at。projectScope存于会话设置。解析结构、搜索投影与项目active指针在同一事务切换，异步查询前后校验完整关联快照；历史0004不改写。
 
 P03-02当前schema10（2026-10-10，[ADR0042](../adr/0042-fixed-version-preview-and-pdf-annotations.md)）：0010_file_preview增加file_versions.preview_renderer_version、reading_positions（profile_id+file_version_id唯一，Locator/scrollTop/zoom/mode）和pdf_annotations（profile/固定版本/批注JSON/CAS revision/软删除）。永久文件删除与删除journal重放清除两表记录，恢复备份不能复活已删除选区。PDF批注含内部0起pageIndex、归一化rects、相对textRange、Core核验的selectedTextHash及用户body/color；旧批注不迁移新版。所有写入在既有receipt事务中提交，不另建run状态。XLSX结构缓存parserVersion升级p03-2，新增有界且不重叠mergedRanges；页视图100行，合并跨页anchor另返回最多200项，不回写或重新计算公式。下方schema9为历史。

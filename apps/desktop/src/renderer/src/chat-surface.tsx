@@ -25,6 +25,7 @@ import { importChatFiles, chatFileOwner, type ChatImportView } from './chat-file
 import { useViewer } from '../features/viewer/state';
 import { InlineFileCard } from '../features/viewer/inline-card';
 import { ProjectScopeBar } from './projects-ui';
+import { ContextSummary } from './context-summary';
 const unwrap = (reply: Reply) => {
   if (!reply.ok) throw new Error(reply.error.code);
   return reply.data;
@@ -639,6 +640,7 @@ export function ChatSurface({
     : catalog?.catalog.find((m) => m.status === 'ready');
   return (
     <section className="chat-surface" data-session-id={sessionId}>
+      {sessionId && <ContextSummary key={sessionId} sessionId={sessionId} onCreated={onCreated} />}
       {sessionId && (
         <ProjectScopeBar
           sessionId={sessionId}

@@ -1,5 +1,7 @@
 # 五渠道模型接入、订阅适配与降级路由
 
+2026-10-11 P04-02：[ADR0046](../adr/0046-verifiable-context-checkpoints-and-budget.md)为router增加Core-owned prepareContext(model)回调，每个候选模型重新预算；Descriptor可选maxInput/reasoningWindowTokens/reasoningIncludedInOutput，未知tokenizer按UTF-8字节上界，已包含output的推理不重复扣。没有原生compaction的已验证provider，保持应用检查点；跨account/model不迁移opaque状态。
+
 > P01-01实现补充（2026-10-02）：发行包0.85.1公开gitHead为d981de1229ef899957bbe968bc8dcda02a21f477，原53816d7仅为历史静态参考。公开接口、严格SSE补充、手工回调state校验和DPAPI原生状态约束见[ADR0009](../adr/0009-codex-oauth-and-native-state.md)。真实权限以progress/R01证据为准。
 
 ## 1. 关键结论及边界

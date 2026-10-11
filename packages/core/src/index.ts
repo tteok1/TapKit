@@ -336,7 +336,7 @@ async function start() {
                   : command.request.command.startsWith('providers.') &&
                       command.request.command !== 'providers.saveApiKey'
                     ? providers.dispatch(command.request)
-                    : /^(messages\.|drafts\.|inputs\.|runs\.cancel$|chat\.snippets\.)/.test(
+                    : /^(messages\.|drafts\.|inputs\.|runs\.cancel$|context\.|chat\.snippets\.)/.test(
                           command.request.command,
                         )
                       ? chat.dispatch(command.request)
@@ -346,7 +346,7 @@ async function start() {
       });
     }
   });
-  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 12 });
+  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 13 });
   worker.start();
   sweepStaging();
   chat.start();

@@ -1,0 +1,130 @@
+{
+  "task": "P04-02",
+  "status": "implemented_and_verified",
+  "date": "2026-10-11",
+  "timezone": "Asia/Shanghai",
+  "branch": "codex/p04-02-context",
+  "baseline": "03fc9898040726427886520f089928fea3807f9b",
+  "mainSync": {
+    "proxy": "existing system proxy used only as Git per-command option",
+    "cleanAtStart": true,
+    "ffOnlyExit": 0,
+    "fetchExit": 0,
+    "directFailures": 2
+  },
+  "checks": [
+    {
+      "files": 399,
+      "log": "test-results/P04-02/check-repaired.log",
+      "exitCode": 0,
+      "command": "pnpm check"
+    },
+    {
+      "tests": 291,
+      "files": 35,
+      "log": "test-results/P04-02/unit.log",
+      "exitCode": 0,
+      "command": "pnpm test:unit"
+    },
+    {
+      "log": "test-results/P04-02/integration.log",
+      "failed": 7,
+      "passed": 102,
+      "exitCode": 1,
+      "command": "vitest integration: schema/context/model/history/preview/project regression"
+    },
+    {
+      "tests": 18,
+      "log": "test-results/P04-02/integration-repaired.log",
+      "exitCode": 0,
+      "command": "vitest integration P03-03 P04-02 repaired"
+    },
+    {
+      "tests": 5,
+      "log": "test-results/P04-02/context-security.log",
+      "exitCode": 0,
+      "command": "vitest integration P04-02 final file-revocation cases"
+    },
+    {
+      "tests": 1,
+      "log": "test-results/P04-02/e2e-final.log",
+      "exitCode": 0,
+      "command": "pnpm test:e2e -- --grep P04-02"
+    },
+    {
+      "scope": "P04-02 passed; old P02 long-paste preview case uses removed dialog and legacy unparsed file preview; preview service/repository/test unchanged from main; separately recorded, not part of P04 acceptance or prescribed CI selection",
+      "passed": 5,
+      "command": "pnpm test:e2e -- --grep P04-02|P02-02",
+      "exitCode": 1,
+      "failed": 1,
+      "log": "test-results/P04-02/e2e-regression.log"
+    }
+  ],
+  "failures": [
+    "Two direct Git fetch failures; existing proxy fetch succeeded",
+    "First context integration: same-ms checkpoint selection plus fixture missing transaction; fixed",
+    "Second context integration: quadratic literal regex caused 15s timeout; linear extraction retained source size and original timeout",
+    "Gold initially retained full completed last assistant; replaced by validated source index while preserving latest user and tool pairs",
+    "Old chat/project fixture tried structuredClone on new Core-owned function; recording now excludes function only",
+    "First complete check found router formatting; repaired check exit0",
+    "First UI input raced session creation; await session ID and draft ready",
+    "First restart UI check inspected old window; now await Host-created window",
+    "Initial direct ls-remote after successful proxy push failed; proxy ls-remote exit0 matched development SHA496f463 and unchanged main03fc989."
+  ],
+  "gold": {
+    "sha256": "f1be4c0eef6328fb034b831fd4f010aea559cc270f9df8d6b28d625926877fb6",
+    "cases": 3,
+    "path": "tests/evals/compaction/gold.json",
+    "roundsEach": 3,
+    "scorer": "tests/unit/P04-02.context.test.ts",
+    "score": "100% expected user text and exact literal retention"
+  },
+  "visual": {
+    "reviewed": true,
+    "synthetic": true,
+    "path": "docs/evidence/P04-02/summary-corrected.png"
+  },
+  "ci": {
+    "mergedToMain": false,
+    "prCreated": false,
+    "status": "completed",
+    "implementationCommit": "496f46334d5854ca55e9da63bf8d05eec045c44d",
+    "runId": 38123776382,
+    "url": "https://github.com/tteok1/TapKit/actions/runs/38123776382",
+    "conclusion": "success",
+    "evidence": "docs/evidence/P04-02/ci38123776382/run-summary.json",
+    "handoff": "Documentation-only handoff commit push Actions is the final branch merge check; accepted implementation remains 496f463."
+  },
+  "live": {
+    "nativeCompactionEnabled": false,
+    "priorP01Resources": "unchanged",
+    "newCalls": 0
+  },
+  "handoffChecks": {
+    "acceptedSourceUnchanged": true,
+    "requirementRowsUpdated": 2,
+    "check": {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "log": "test-results/P04-02/check-handoff.log",
+      "formattedFiles": 399
+    },
+    "docs": {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": "test-results/P04-02/docs-handoff.log",
+      "taskStates": 37
+    },
+    "diff": {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    "stagedWhitespace": {
+      "command": "git diff --cached --check",
+      "firstExitCode": 2,
+      "reason": "Archived Office JSON gained one extra newline when copied",
+      "repair": "Removed only redundant trailing blank line; original JSON values and results preserved",
+      "finalExitCode": 0
+    }
+  }
+}

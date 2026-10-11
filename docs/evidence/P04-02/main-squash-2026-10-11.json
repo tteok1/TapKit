@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "task": "P04-02",
+  "date": "2026-10-11",
+  "timezone": "Asia/Shanghai",
+  "authorization": "验收通过，把 P04-02 的开发分支压缩成一个提交后合入 main，推送远程并同步开发进度，不创建 PR。",
+  "strategy": "squash",
+  "targetBranch": "main",
+  "baseSha": "03fc9898040726427886520f089928fea3807f9b",
+  "sourceBranch": "codex/p04-02-context",
+  "sourceSha": "ac3528b8e287181404763d21b1722acbf83eb769",
+  "sourceCommitCount": 2,
+  "sourceTree": "565d810896d819b5392ddc0ce76d6fc83bd66eab",
+  "squashTreeBeforeHandoffSync": "565d810896d819b5392ddc0ce76d6fc83bd66eab",
+  "initialSquashTreeMatchesSource": true,
+  "sourceCI": {
+    "runId": 38125850408,
+    "headSha": "ac3528b8e287181404763d21b1722acbf83eb769",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/tteok1/TapKit/actions/runs/38125850408",
+    "jobs": {
+      "check": "success",
+      "startupDiagnostics": "success"
+    },
+    "unit": 291,
+    "integration": 283,
+    "perf": 2,
+    "electron": 36,
+    "standardUser": {
+      "isolation": 22,
+      "parser": 3,
+      "preview": 4,
+      "failed": 0,
+      "pending": 0,
+      "missingCases": []
+    },
+    "officeRoundsPassed": 6,
+    "startup": {
+      "storageRoundsPassed": 3,
+      "vaultRoundsPassed": 3
+    },
+    "artifact": {
+      "id": 11697887859,
+      "sha256": "802b0b1901675419386ebcc9435b40555f4a4cb698f2b6297ffcd8581c6ed78a",
+      "digestVerified": true
+    },
+    "sourceHashesMatched": 11,
+    "nativeIsolatedObservations": 43,
+    "hardKillObservations": 1
+  },
+  "acceptanceStatus": "implemented_and_verified",
+  "acceptedImplementationSha": "496f46334d5854ca55e9da63bf8d05eec045c44d",
+  "sourceBranchPreserved": true,
+  "pullRequestCreated": false,
+  "requirementRowsUpdated": 2,
+  "mergeCommitReference": "The commit containing this evidence is the single squash commit on main.",
+  "mainCIReference": "GitHub Actions push run for the commit containing this evidence.",
+  "nextTasks": {
+    "P04-03": "not_started",
+    "P04-gate": "not_started"
+  },
+  "handoffSync": {
+    "acceptedSourceCodeUnchanged": true,
+    "nonTargetRequirementsUnchanged": true,
+    "nonTargetRequirementRows": 573,
+    "requirementRowsUpdated": 2,
+    "checks": {
+      "pnpm check": {
+        "exitCode": 0,
+        "formattedFiles": 399,
+        "log": "docs/evidence/P04-02/check-main-squash.log"
+      },
+      "pnpm docs:check": {
+        "exitCode": 0,
+        "taskStates": 37
+      },
+      "git diff --check": {
+        "exitCode": 0
+      },
+      "git diff --cached --check": {
+        "exitCode": 0
+      }
+    }
+  }
+}
