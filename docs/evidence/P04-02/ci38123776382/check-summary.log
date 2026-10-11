@@ -1,0 +1,33 @@
+2026-10-11T08:12:10.2329407Z   1 passed (3.1s)
+2026-10-11T08:12:10.4894697Z ##[group]Run .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs check
+2026-10-11T08:12:26.3002130Z ##[group]Run .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:unit
+2026-10-11T08:12:39.6039006Z  Test Files  35 passed (35)
+2026-10-11T08:12:39.6041215Z       Tests  291 passed (291)
+2026-10-11T08:19:34.3308016Z  Test Files  38 passed (38)
+2026-10-11T08:19:34.3310103Z       Tests  283 passed (283)
+2026-10-11T08:19:34.5892215Z ##[group]Run .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:perf
+2026-10-11T08:20:22.1924575Z  Test Files  2 passed (2)
+2026-10-11T08:20:22.1925566Z       Tests  2 passed (2)
+2026-10-11T08:20:22.4655219Z ##[group]Run .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs build
+2026-10-11T08:21:47.9080167Z Running 36 tests using 1 worker
+2026-10-11T08:24:07.8833108Z   36 passed (2.3m)
+2026-10-11T08:24:49.0144869Z ##[group]Run .\scripts\ci-standard-user-test.ps1
+2026-10-11T08:33:15.3817273Z ##[group]Run .\scripts\ci-office-shutdown-diagnostics.ps1
+2026-10-11T08:33:15.8897963Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 1 links
+2026-10-11T08:33:40.3294904Z  Test Files  1 passed (1)
+2026-10-11T08:33:40.3296390Z       Tests  1 passed | 4 skipped (5)
+2026-10-11T08:33:40.4324947Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 2 links
+2026-10-11T08:34:03.0800213Z  Test Files  1 passed (1)
+2026-10-11T08:34:03.0801518Z       Tests  1 passed | 4 skipped (5)
+2026-10-11T08:34:03.1422640Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 3 links
+2026-10-11T08:34:27.8767744Z  Test Files  1 passed (1)
+2026-10-11T08:34:27.8768919Z       Tests  1 passed | 4 skipped (5)
+2026-10-11T08:34:27.9607492Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 1 macro
+2026-10-11T08:34:52.9130115Z  Test Files  1 passed (1)
+2026-10-11T08:34:52.9131749Z       Tests  1 passed | 4 skipped (5)
+2026-10-11T08:34:53.0000653Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 2 macro
+2026-10-11T08:35:15.4399532Z  Test Files  1 passed (1)
+2026-10-11T08:35:15.4400895Z       Tests  1 passed | 4 skipped (5)
+2026-10-11T08:35:15.5029430Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 3 macro
+2026-10-11T08:35:36.2210818Z  Test Files  1 passed (1)
+2026-10-11T08:35:36.2212220Z       Tests  1 passed | 4 skipped (5)

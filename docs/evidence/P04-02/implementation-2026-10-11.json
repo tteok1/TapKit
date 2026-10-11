@@ -1,6 +1,6 @@
 {
   "task": "P04-02",
-  "status": "in_progress",
+  "status": "implemented_and_verified",
   "date": "2026-10-11",
   "timezone": "Asia/Shanghai",
   "branch": "codex/p04-02-context",
@@ -68,7 +68,8 @@
     "Old chat/project fixture tried structuredClone on new Core-owned function; recording now excludes function only",
     "First complete check found router formatting; repaired check exit0",
     "First UI input raced session creation; await session ID and draft ready",
-    "First restart UI check inspected old window; now await Host-created window"
+    "First restart UI check inspected old window; now await Host-created window",
+    "Initial direct ls-remote after successful proxy push failed; proxy ls-remote exit0 matched development SHA496f463 and unchanged main03fc989."
   ],
   "gold": {
     "sha256": "f1be4c0eef6328fb034b831fd4f010aea559cc270f9df8d6b28d625926877fb6",
@@ -86,11 +87,44 @@
   "ci": {
     "mergedToMain": false,
     "prCreated": false,
-    "status": "pending"
+    "status": "completed",
+    "implementationCommit": "496f46334d5854ca55e9da63bf8d05eec045c44d",
+    "runId": 38123776382,
+    "url": "https://github.com/tteok1/TapKit/actions/runs/38123776382",
+    "conclusion": "success",
+    "evidence": "docs/evidence/P04-02/ci38123776382/run-summary.json",
+    "handoff": "Documentation-only handoff commit push Actions is the final branch merge check; accepted implementation remains 496f463."
   },
   "live": {
     "nativeCompactionEnabled": false,
     "priorP01Resources": "unchanged",
     "newCalls": 0
+  },
+  "handoffChecks": {
+    "acceptedSourceUnchanged": true,
+    "requirementRowsUpdated": 2,
+    "check": {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "log": "test-results/P04-02/check-handoff.log",
+      "formattedFiles": 399
+    },
+    "docs": {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": "test-results/P04-02/docs-handoff.log",
+      "taskStates": 37
+    },
+    "diff": {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    "stagedWhitespace": {
+      "command": "git diff --cached --check",
+      "firstExitCode": 2,
+      "reason": "Archived Office JSON gained one extra newline when copied",
+      "repair": "Removed only redundant trailing blank line; original JSON values and results preserved",
+      "finalExitCode": 0
+    }
   }
 }

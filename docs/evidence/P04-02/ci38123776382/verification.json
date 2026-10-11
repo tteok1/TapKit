@@ -1,0 +1,11 @@
+{
+  "standardUserPassed": 29,
+  "missingCases": 0,
+  "sourceHashesChecked": 11,
+  "isolationObservations": 43,
+  "hardKillObservations": 1,
+  "isolationFailures": 0,
+  "auditExitCode": 0,
+  "firstAuditExitCode": 1,
+  "firstAuditReason": "Audit treated the intentional helper-hard-kill event as an ordinary exited report; corrected to its existing distinct schema, without changing CI or tests."
+}

@@ -1,6 +1,6 @@
-## 2026-10-11 P04-02 开发检查点
+## 2026-10-11 P04-02 验收交接
 
-基线03fc989，main拉取/ff-only与新分支codex/p04-02-context完成；应用检查点、预算、缓存、Core与摘要UI实施中。完整check/docs/diff退出0、unit291、P04-02集成5、Electron1通过；三次压缩金标准100%。失败轮及修复保留，分支CI待执行。当前不可验收，无PR、不合入main；P04-03/gate未开始。
+基线03fc989，main拉取/ff-only与新分支codex/p04-02-context完成；P04-02=implemented_and_verified，实现496f463的CI38123776382全部success：unit291/integration283/perf2/Electron36、标准用户22/3/4零缺项、Office宏/外链和存储/vault各三轮通过。三次压缩金标准100%，11源码摘要一致，43常规原生隔离报告及强杀恢复用例通过。失败轮、旧P02长粘贴预览独立缺口与既有live资源状态保留。此交接提交只改文档，最终分支push Actions作为人工合入校验；无PR、不合入main，等待人工确认，P04-03/gate未开始。详见[P04-02](P04-02.md)。
 
 # 开发进度总表
 
@@ -191,7 +191,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P03-02 | 文件预览、定位与右侧工作面板       | P03-01         | implemented_and_verified      | docs/progress/P03-02.md              |
 | P03-03 | 项目管理、资料范围与索引版本       | P03-02         | implemented_and_verified      | docs/progress/P03-03.md              |
 | P04-01 | 中文混合检索、重排与引用证据       | P03-03         | implemented_and_verified      | docs/progress/P04-01.md              |
-| P04-02 | 上下文预算、压缩检查点与缓存       | P04-01/P01-03  | in_progress                   | docs/progress/P04-02.md              |
+| P04-02 | 上下文预算、压缩检查点与缓存       | P04-01/P01-03  | implemented_and_verified      | docs/progress/P04-02.md              |
 | P04-03 | 自动长期记忆、历史参考与管理       | P04-02         | not_started                   | docs/progress/P04-03.md              |
 | P05-01 | 联网搜索、匿名网页读取与来源归档   | P04-03         | not_started                   | docs/progress/P05-01.md              |
 | P05-02 | 引用交互、会话导出和本地分享快照   | P05-01, P03-02 | not_started                   | docs/progress/P05-02.md              |
