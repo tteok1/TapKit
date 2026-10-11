@@ -96,9 +96,18 @@ test('P02-02 T02 two turns use real Core/router/usage; repeated acceptance creat
   await expect(page.locator('.chat-message.assistant')).toContainText(
     '隔离测试回复：第一轮中文问题',
   );
+  await expect(
+    page.getByRole('heading', { name: '隔离测试回复：第一轮中文问题', exact: true }),
+  ).toBeVisible();
+  // ADR0024 charges the automatic title to the originating run/root. Wait for
+  // its visible completion before checking both 60-token fixture settlements.
   await expect
     .poll(async () => (await snapshot(page, sid)).run?.usage)
-    .toEqual({ state: 'actual', tokens: 60 });
+    .toEqual({ state: 'actual', tokens: 120 });
+  const first = await snapshot(page, sid);
+  expect(first.run).toMatchObject({ status: 'completed', calls: 1, tools: 0 });
+  expect(first.messages.filter((m) => m.role === 'user')).toHaveLength(1);
+  expect(first.messages.filter((m) => m.role === 'assistant')).toHaveLength(1);
   const payload = {
     sessionId: sid,
     clientMessageId: newId(),
@@ -113,15 +122,20 @@ test('P02-02 T02 two turns use real Core/router/usage; repeated acceptance creat
   expect(accepted[0]).toEqual(accepted[1]);
   await expect.poll(async () => (await snapshot(page, sid)).run?.status).toBe('completed');
   const saved = await snapshot(page, sid);
+  expect(saved.run).toMatchObject({
+    status: 'completed',
+    calls: 1,
+    usage: { state: 'actual', tokens: 60 },
+  });
   expect(saved.messages.filter((m) => m.role === 'user')).toHaveLength(2);
   expect(saved.messages.filter((m) => m.role === 'assistant')).toHaveLength(2);
   expect(saved.messages.at(-1)?.model?.modelId).toBe('fixture-model');
   await page.screenshot({ path: 'docs/evidence/P02-02/two-turns.png' });
   await app.close();
   const again = await launch();
-  expect((await snapshot(again, sid)).messages.map((m) => m.text)).toEqual(
-    saved.messages.map((m) => m.text),
-  );
+  const restored = await snapshot(again, sid);
+  expect(restored.messages.map((m) => m.text)).toEqual(saved.messages.map((m) => m.text));
+  expect(restored.run?.usage).toEqual(saved.run?.usage);
 });
 
 test('P02-02 T05 IME and Shift+Enter keep draft; queue editing/cancellation, session switching and stopping preserve confirmed text', async () => {

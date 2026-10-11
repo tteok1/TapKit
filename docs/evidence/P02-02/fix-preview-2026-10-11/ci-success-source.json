@@ -258,9 +258,9 @@
   },
   "counts": {
     "unit": 291,
-    "fullIntegration": "success (step outcome; full count not available in connector log fragment)",
-    "performance": "success",
-    "electron": "success (including P02-02)",
+    "fullIntegration": 298,
+    "performance": 2,
+    "electron": 41,
     "startup": {
       "storageRounds": 3,
       "vaultRounds": 3,
@@ -271,5 +271,6 @@
   "realModelRequests": 0,
   "stageStatus": "implemented_not_live_verified",
   "prCreated": false,
-  "mergedToMain": false
+  "mergedToMain": false,
+  "completeLogVerifiedOn": "2026-10-12 Asia/Shanghai"
 }

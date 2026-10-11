@@ -8,6 +8,10 @@
 
 # 开发进度总表
 
+## 2026-10-12 P02-02 自动标题用量回归修复
+
+fix/p02-02-text-attachment-preview：预览源码CI38131096866全success（unit291/integration298/perf2/Electron41）；交接CI38133187106的旧用量断言失败，长粘贴通过。自动标题按ADR0024计入原run/root，旧60断言依赖抢在标题结算前读取。已稳定复现并改为等待实际标题完成后精确校验首轮120、第二轮60及一次前台调用/幂等/重启持久化；本地Electron三轮3/3和标题integration2/2退出0。计费、标题策略、预览业务和隔离代码不变；真实模型联调继续待验，无PR、不合入main，最新push Actions作为最终人工合入校验。详见[P02-02](P02-02.md)。
+
 ## 2026-10-11 P02-02 预览兼容修复验收
 
 最新main 9a9e4ee已fetch/ff-only同步，创建fix/p02-02-text-attachment-preview。旧文本和长粘贴在P03预览面板中缺结构的问题已修复；本地unit15/integration47/Electron10及窄窗口长粘贴1通过，check退出0。源码abde51e的CI38131096866 check/startup全部success，标准用户22/3/4零缺项、Office六轮和启动六项通过；首轮失败及真实关闭抽屉修复证据保留。交接仅更新文档，最终分支push Actions作为人工合入校验。P02-02保持implemented_not_live_verified，用户明确暂不真实模型联调；无PR、不合入main，等待人工确认。详见[P02-02](P02-02.md)及docs/evidence/P02-02/fix-preview-2026-10-11。

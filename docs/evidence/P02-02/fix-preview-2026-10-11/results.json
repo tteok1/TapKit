@@ -3,7 +3,7 @@
   "date": "2026-10-11",
   "branch": "fix/p02-02-text-attachment-preview",
   "baseline": "9a9e4ee14a3fb57ef2bda0278536f3e676cdee1d",
-  "status": "bug_fix_accepted_ci_success",
+  "status": "preview_source_verified_title_test_verified",
   "stageStatus": "implemented_not_live_verified",
   "realModelRequests": 0,
   "prCreated": false,
@@ -126,6 +126,42 @@
     {
       "command": "git diff --check (final handoff)",
       "exitCode": 0
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P02-02 T02 two turns (wait for title; old 60-token assertion)",
+      "exitCode": 1,
+      "failed": 1,
+      "productionBuildRestored": true,
+      "log": "e2e-title-baseline-2026-10-12.log",
+      "note": "Deterministic reproduction: actual run tokens 120 after title settles."
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P02-02 T02 two turns --repeat-each 3",
+      "exitCode": 0,
+      "passed": 3,
+      "productionBuildRestored": true,
+      "log": "e2e-title-final-2026-10-12.log"
+    },
+    {
+      "command": "pnpm test:integration P02-03.history --testNamePattern T06 title",
+      "exitCode": 0,
+      "passed": 2,
+      "skippedUnselected": 16,
+      "log": "integration-title-2026-10-12.log"
+    },
+    {
+      "command": "pnpm check (title regression final)",
+      "exitCode": 0,
+      "log": "check-title-final-2026-10-12.log"
+    },
+    {
+      "command": "pnpm docs:check (title regression final)",
+      "exitCode": 0,
+      "log": "docs-check-title-final-2026-10-12.log"
+    },
+    {
+      "command": "git diff --check (title regression final)",
+      "exitCode": 0
     }
   ],
   "coverage": [
@@ -140,14 +176,15 @@
   "screenshots": [
     "long-paste-preview.png",
     "long-paste-body.png",
-    "narrow-composer.png"
+    "narrow-composer.png",
+    "two-turns-title-final-2026-10-12.png"
   ],
   "sourceSha256": {
     "packages/storage/src/files.ts": "804eb1f4de5ed1e3e26bf554d70ad8df55c1caf8875a5504895a8fe11762275b",
     "packages/storage/src/artifacts.ts": "c038b5eb50189c6d1be62873367ded9fbc1f9224df4fb4ca963d762bb98e4cbc",
     "packages/core/src/file-material.ts": "18bc033c255f8be53d0f36b2a4fa6dcf067017592391c19450557919987ebf35",
     "tests/integration/P02-02.preview.test.ts": "18689e079c31d4a7bf59c31ac4475250075572b552f30871536b97e657daa538",
-    "tests/e2e/P02-02.chat.spec.ts": "639e0f2951a0ed54b4298d13e45497d398165eca9aff85dddf553f2a25a163f7",
+    "tests/e2e/P02-02.chat.spec.ts": "a6297f4ab5daa33703186681c5b44bf1b8ace6525427176fc0c6ef70ee027d80",
     ".github/workflows/check.yml": "193bdee19175b19373f085ba8bd8577e45ac9069aca366fc6fc03b9fd0007664"
   },
   "ci": {
@@ -162,5 +199,6 @@
   },
   "liveGap": "Preserved R01/R13/R14 and P01 gaps; R02-R05 pending; user explicitly deferred live model testing.",
   "logNormalization": "Trailing whitespace and empty EOF lines removed; original command output and failure results retained.",
-  "handoff": "Documentation-only handoff; verified business/test/workflow source unchanged from abde51e. Latest push Actions is the final manual merge check. No PR or main merge."
+  "handoff": "Preview business/storage/Core/workflow sources unchanged from the successful source CI. Title test now waits for real automatic title completion, then checks exact 120/60-token totals, one foreground call and persisted messages/usage. Latest push Actions is the final manual merge check. No PR or main merge.",
+  "failedHandoffEvidence": "ci-failed-handoff.json"
 }

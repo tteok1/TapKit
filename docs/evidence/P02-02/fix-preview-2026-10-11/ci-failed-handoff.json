@@ -1,0 +1,47 @@
+{
+  "runId": 38133187106,
+  "sourceCommit": "eaf632518f27a5d30d3267e90866537d39e10b43",
+  "status": "completed",
+  "conclusion": "failure",
+  "url": "https://github.com/tteok1/TapKit/actions/runs/38133187106",
+  "jobs": [
+    {
+      "id": 114451576983,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "failure",
+      "failedSteps": [
+        "Build and Electron checks"
+      ]
+    },
+    {
+      "id": 114455230701,
+      "name": "startup-diagnostics",
+      "status": "completed",
+      "conclusion": "success",
+      "failedSteps": []
+    }
+  ],
+  "counts": {
+    "unit": 291,
+    "integration": 298,
+    "performance": 2,
+    "electronPassed": 40,
+    "electronFailed": 1
+  },
+  "failure": {
+    "test": "P02-02 T02 two turns",
+    "expectedRunTokens": 60,
+    "actualRunTokens": 120,
+    "reason": "Automatic title uses the originating run/root budget (ADR0024). The old assertion raced the background title's additional 60-token settlement.",
+    "longPastePreview": "passed"
+  },
+  "artifact": {
+    "id": 11700237575,
+    "sha256": "e534d4451d04c93cf6b5dc08a411f6a12f4672ed8c705bf1e46f69677c2e010a",
+    "downloadVerified": true
+  },
+  "realModelRequests": 0,
+  "prCreated": false,
+  "mergedToMain": false
+}
