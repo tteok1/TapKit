@@ -3,7 +3,7 @@
   "date": "2026-10-11",
   "branch": "fix/p02-02-text-attachment-preview",
   "baseline": "9a9e4ee14a3fb57ef2bda0278536f3e676cdee1d",
-  "status": "local_verified_narrow_regression_repaired_ci_pending",
+  "status": "bug_fix_accepted_ci_success",
   "stageStatus": "implemented_not_live_verified",
   "realModelRequests": 0,
   "prCreated": false,
@@ -107,6 +107,25 @@
       "log": "docs-check-narrow-final.log",
       "exitCode": 0,
       "command": "pnpm docs:check (narrow test final)"
+    },
+    {
+      "command": "git diff --check (interim handoff)",
+      "exitCode": 1,
+      "note": "Only extra blank EOF lines in CURRENT.md and P02-02.md; normalized before final check."
+    },
+    {
+      "command": "pnpm check (final handoff)",
+      "exitCode": 0,
+      "log": "check-handoff.log"
+    },
+    {
+      "command": "pnpm docs:check (final handoff)",
+      "exitCode": 0,
+      "log": "docs-check-handoff.log"
+    },
+    {
+      "command": "git diff --check (final handoff)",
+      "exitCode": 0
     }
   ],
   "coverage": [
@@ -132,13 +151,16 @@
     ".github/workflows/check.yml": "193bdee19175b19373f085ba8bd8577e45ac9069aca366fc6fc03b9fd0007664"
   },
   "ci": {
-    "runId": 38129152985,
-    "sourceCommit": "4fe35718e0fdc1160e9acf76629a6eee30aeb36b",
-    "status": "first_run_failed_narrow_drawer_test_repaired",
+    "runId": 38131096866,
+    "firstRunEvidence": "ci-failed-source.json",
+    "sourceCommit": "abde51e5031dfc80b8d87980612d7b553c54474c",
+    "status": "completed",
+    "url": "https://github.com/tteok1/TapKit/actions/runs/38131096866",
     "selection": "P00-0[12]|P02-02|P03-0[123]|P04-0[12]",
-    "url": "https://github.com/tteok1/TapKit/actions/runs/38129152985",
-    "firstRunEvidence": "ci-failed-source.json"
+    "conclusion": "success",
+    "successEvidence": "ci-success-source.json"
   },
   "liveGap": "Preserved R01/R13/R14 and P01 gaps; R02-R05 pending; user explicitly deferred live model testing.",
-  "logNormalization": "Trailing whitespace and empty EOF lines removed; original command output and failure results retained."
+  "logNormalization": "Trailing whitespace and empty EOF lines removed; original command output and failure results retained.",
+  "handoff": "Documentation-only handoff; verified business/test/workflow source unchanged from abde51e. Latest push Actions is the final manual merge check. No PR or main merge."
 }

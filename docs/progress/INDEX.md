@@ -8,9 +8,9 @@
 
 # 开发进度总表
 
-## 2026-10-11 P02-02 预览兼容修复进行中
+## 2026-10-11 P02-02 预览兼容修复验收
 
-最新main 9a9e4ee已fetch/ff-only同步，创建fix/p02-02-text-attachment-preview。修复旧文本和长粘贴在P03预览面板中缺结构的问题；本地unit15/integration47/Electron10及最终长粘贴1通过，check退出0，实现4fe3571已推送；首轮CI38129152985仅窄窗口详情抽屉遮挡导致Electron失败，已适配真实关闭操作并本地1/1复验，新CI待验。P02-02保持implemented_not_live_verified，用户明确暂不真实模型联调；无PR、不合入main。详见P02-02.md及docs/evidence/P02-02/fix-preview-2026-10-11。
+最新main 9a9e4ee已fetch/ff-only同步，创建fix/p02-02-text-attachment-preview。旧文本和长粘贴在P03预览面板中缺结构的问题已修复；本地unit15/integration47/Electron10及窄窗口长粘贴1通过，check退出0。源码abde51e的CI38131096866 check/startup全部success，标准用户22/3/4零缺项、Office六轮和启动六项通过；首轮失败及真实关闭抽屉修复证据保留。交接仅更新文档，最终分支push Actions作为人工合入校验。P02-02保持implemented_not_live_verified，用户明确暂不真实模型联调；无PR、不合入main，等待人工确认。详见[P02-02](P02-02.md)及docs/evidence/P02-02/fix-preview-2026-10-11。
 
 ## 2026-10-11 P04-01 压缩合入 main
 
