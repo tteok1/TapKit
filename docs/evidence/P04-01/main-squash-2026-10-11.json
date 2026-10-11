@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "task": "P04-01",
+  "date": "2026-10-11",
+  "timezone": "Asia/Shanghai",
+  "authorization": "验收通过，把 P04-01 的开发分支压缩成一个提交后合入 main，推送远程并同步开发进度，不创建 PR。",
+  "strategy": "squash",
+  "targetBranch": "main",
+  "baseSha": "a43d8d0bdea902670f7605a641c0fac3a8e3f71f",
+  "sourceBranch": "codex/p04-01-retrieval",
+  "sourceSha": "c01280ff98daa9869452dced872a773e8e93df8a",
+  "sourceCommitCount": 4,
+  "sourceTree": "3dbaad04f1d6db8e60967829e4100a14469e2832",
+  "squashTreeBeforeHandoffSync": "3dbaad04f1d6db8e60967829e4100a14469e2832",
+  "initialSquashTreeMatchesSource": true,
+  "sourceCI": {
+    "runId": 38103938039,
+    "headSha": "c01280ff98daa9869452dced872a773e8e93df8a",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/tteok1/TapKit/actions/runs/38103938039",
+    "jobs": {
+      "check": "success",
+      "startupDiagnostics": "success"
+    },
+    "unit": 279,
+    "integration": 278,
+    "perf": 2,
+    "electron": 35,
+    "standardUser": {
+      "isolation": 22,
+      "parser": 3,
+      "preview": 4,
+      "failed": 0,
+      "pending": 0,
+      "missingCases": []
+    },
+    "T09": {
+      "answerCases": 32,
+      "noAnswerCases": 4,
+      "recallAt20": 1,
+      "firstSourceSupport": 32,
+      "locatable": 75,
+      "totalEvidence": 75,
+      "noAnswerInventedSources": 0,
+      "chunks": 20000,
+      "p95Ms": 828.3256000000001,
+      "budgetMs": 2000
+    },
+    "artifact": {
+      "id": 11689306593,
+      "sha256": "8dc249c9bf643f8867b55a240efb431792c4d6b7fe839c82617fe4aa364cc2b5",
+      "digestVerified": true
+    }
+  },
+  "acceptanceStatus": "implemented_and_verified",
+  "acceptedImplementationSha": "c3192a27273bfe526a371a7a812ac10f1c047194",
+  "sourceBranchPreserved": true,
+  "pullRequestCreated": false,
+  "requirementRowsUpdated": 1,
+  "mergeCommitReference": "The commit containing this evidence is the single squash commit on main.",
+  "mainCIReference": "GitHub Actions push run for the commit containing this evidence.",
+  "nextTasks": {
+    "P04-02": "not_started",
+    "P04-03": "not_started",
+    "P04-gate": "not_started"
+  },
+  "handoffSync": {
+    "acceptedSourceCodeUnchanged": true,
+    "nonTargetRequirementsUnchanged": true,
+    "requirementRowsUpdated": 1,
+    "checks": {
+      "pnpm check": {
+        "exitCode": 0,
+        "formattedFiles": 383,
+        "log": "docs/evidence/P04-01/check-main-squash.log"
+      },
+      "pnpm docs:check": {
+        "exitCode": 0,
+        "taskStates": 37
+      },
+      "git diff --check": {
+        "exitCode": 0
+      },
+      "git diff --cached --check": {
+        "exitCode": 0
+      }
+    },
+    "stagedWhitespaceCheck": {
+      "firstExitCode": 2,
+      "reason": "Three accepted test logs had a redundant blank line at EOF.",
+      "repair": "Removed only the extra trailing blank line; original test results preserved.",
+      "finalExitCode": 0
+    }
+  }
+}

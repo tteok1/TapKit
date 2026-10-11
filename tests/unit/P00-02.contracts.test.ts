@@ -18,7 +18,7 @@ describe('P00-02 contracts and IPC boundaries', () => {
       expect(RequestSchema.safeParse(request).success).toBe(false);
     expect(CoreEventSchema.safeParse({ type: 'ready' }).success).toBe(false);
     expect(
-      CoreEventSchema.safeParse({ type: 'ready', protocolVersion: 1, schemaVersion: 11 }).success,
+      CoreEventSchema.safeParse({ type: 'ready', protocolVersion: 1, schemaVersion: 12 }).success,
     ).toBe(true);
   });
   it('requires exact registered window, main frame and app URL', () => {

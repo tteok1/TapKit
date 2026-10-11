@@ -1,5 +1,7 @@
 # 范围、决策与默认行为
 
+2026-10-11 P04-01：[ADR0045](../adr/0045-local-hybrid-retrieval-and-verified-evidence.md)规定schema12、固定revision/hash的512维CPU BGE ONNX、完整分窗、授权版本先行的混合检索和本轮EvidenceRef验证。保留knowledge.query兼容，bootstrap/构建携带模型。实施与验收以progress为准，P04-02/03不提前实现。
+
 2026-10-10 P03-03：[ADR0044](../adr/0044-project-scopes-and-atomic-index-links.md)规定schema11项目/背景范围、resource_links的active/pending索引版本、发送时固定选择、关联自身分类和Host私有ZIP导出。URL保存用户提供的本地正文；网络抓取/自动记忆/工作执行仍按后续任务实施。验收以progress为准。
 
 2026-10-10 P03-02私有路径兼容：[ADR0043](../adr/0043-office-owned-aliases-and-deep-private-paths.md)要求词法验证后的内部Win32长路径句柄，以及Office活跃原生租约提供的短cwd/URI/私有环境；模型payload无新增字段，隔离/ACL/Job/宏与外链策略保留。真实深路径及标准用户未完成前不验收。

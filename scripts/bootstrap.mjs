@@ -1,7 +1,9 @@
 import { root, nodeExe, pnpm, run } from './lib.mjs';
 import { prepareRuntimes } from './runtime-fetch.mjs';
+import { prepareEmbeddingModel } from './embedding-model.mjs';
 import { join } from 'node:path';
 await prepareRuntimes();
+await prepareEmbeddingModel();
 run(nodeExe(), ['--version']);
 pnpm(['install', '--frozen-lockfile', '--ignore-scripts']);
 // Electron's installer verifies the upstream Electron archive checksum.

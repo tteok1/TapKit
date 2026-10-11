@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "executionPolicy": "appcontainer-lok-v1",
+  "startedAt": "2026-10-10T18:51:16.024Z",
+  "endedAt": "2026-10-10T18:55:30.565Z",
+  "command": "pnpm test:integration P00-03 --reporter=json --outputFile=test-results/P00-03-native.json",
+  "exitCode": 0,
+  "standardUser": true,
+  "fingerprint": "091f2e2a20e77dac7ff32a03790d37b64a32ca5c62d8084465c97df41fe6e1e6",
+  "capabilities": {
+    "nativeExecution": {
+      "status": "available"
+    },
+    "officeRender": {
+      "status": "available"
+    },
+    "terminal": {
+      "status": "available"
+    }
+  },
+  "tests": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "pending": 0
+  },
+  "missingCases": []
+}

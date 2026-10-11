@@ -17,7 +17,7 @@ export const READ_TOOLS = [
       type: 'object',
       properties: {
         query: { type: 'string' },
-        limit: { type: 'integer', minimum: 1, maximum: 20 },
+        limit: { type: 'integer', minimum: 1, maximum: 8 },
       },
       required: ['query'],
       additionalProperties: false,
@@ -71,7 +71,7 @@ export class ReadGateway {
       const p = z
         .strictObject({
           query: z.string().trim().min(1).max(500),
-          limit: z.number().int().min(1).max(20).default(10),
+          limit: z.number().int().min(1).max(8).default(8),
         })
         .parse(args);
       if (!this.deps.knowledge) throw new Error('PERMISSION_DENIED');

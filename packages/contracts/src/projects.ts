@@ -3,6 +3,7 @@ import { IdSchema } from './identity';
 import { AnswerPreferencesSchema, SelectionSchema } from './models';
 import { ResourceRefSchema } from './resources';
 import { FileViewSchema } from './files';
+import { EvidenceRefSchema } from './retrieval';
 
 export const ProjectDefaultsSchema = z.strictObject({
   schemaVersion: z.literal(1).default(1),
@@ -96,6 +97,7 @@ export const KnowledgeViewSchema = z.strictObject({
         ref: ResourceRefSchema,
         text: z.string().max(16000),
         indexVersion: z.number().int().positive(),
+        evidence: EvidenceRefSchema.optional(),
       }),
     )
     .max(20),

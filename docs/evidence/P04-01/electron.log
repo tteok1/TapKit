@@ -1,0 +1,13 @@
+$ node scripts/e2e.mjs "--" "--grep" "P04-01|P03-03"
+
+Running 5 tests using 1 worker
+
+(node:40776) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\e2e\P03-03.projects.spec.ts:77:1 › P03-03 project settings, known local note, classification, original query locator and copy are usable in the real renderer (3.8s)
+  ok 2 tests\e2e\P03-03.projects.spec.ts:103:1 › P03-03 project session binding, explicit selected scope, archive and deletion preview persist (3.5s)
+  ok 3 tests\e2e\P03-03.projects.spec.ts:139:1 › P03-03 Core rejects foreign project material and project-only reference while missing evidence is explicit (3.9s)
+  ok 4 tests\e2e\P03-03.projects.spec.ts:165:1 › P03-03 project ZIP export traverses Host save authorization and shows a refused overwrite (4.0s)
+  ok 5 tests\e2e\P04-01.retrieval.spec.ts:62:1 › P04-01 T09 real Core CPU hybrid evidence opens the original fixed source and no-answer is explicit (2.8s)
+
+  5 passed (19.2s)

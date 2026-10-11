@@ -23,6 +23,8 @@ type ToolResult = {
 
 ## 2. 本版工具签名
 
+P04-01：[ADR0045](../adr/0045-local-hybrid-retrieval-and-verified-evidence.md)保留已有knowledge.query作为knowledge.search的兼容入口；模型工具不接收projectId/profileId，由当前run固定范围注入。结果每项evidence含本轮ID/sourceVersion/Locator/hash；引用标记提交前回查，未知或失效不得完成。
+
 | 名称 | 必须实现的输入与结果 | 权限/超时 |
 |---|---|---|
 | knowledge.search | {query,projectId?,fileVersionIds?,limit=8} → evidence[] | read/15s |

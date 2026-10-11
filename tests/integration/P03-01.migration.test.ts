@@ -85,7 +85,7 @@ test('P03-01 schema9 repairs only live legacy generated-note links to their orig
     .prepare('SELECT * FROM resource_links WHERE id IN (?,?) ORDER BY id')
     .all(sessionLink, projectLink);
   await migrate(db, backups);
-  expect(db.pragma('user_version', { simple: true })).toBe(11);
+  expect(db.pragma('user_version', { simple: true })).toBe(12);
   expect(
     db
       .prepare('SELECT * FROM resource_links WHERE id IN (?,?) ORDER BY id')

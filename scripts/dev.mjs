@@ -18,7 +18,7 @@ if (!isAbsolute(dataDir)) throw new Error('TAPKIT_DATA_DIR must be an absolute p
 mkdirSync(dataDir, { recursive: true });
 // Native helper preparation belongs to bootstrap/build, not each desktop edit.
 // Unverified native execution remains unavailable through the existing capability gate.
-buildCore();
+await buildCore();
 const env = lockedEnv({ TAPKIT_DATA_DIR: dataDir, NO_SANDBOX: '0' });
 delete env.ELECTRON_RUN_AS_NODE;
 console.log('TapKit development profile: ' + dataDir);

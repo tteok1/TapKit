@@ -1,0 +1,32 @@
+$ vitest run --config vitest.config.ts --project integration "P04-01.chat"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P04-01.chat.test.ts (5 tests | 1 failed) 1955ms
+   × P04-01 T09 real chat tool loop cancelled evidence gates completion and retains answer 346ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P04-01.chat.test.ts > P04-01 T09 real chat tool loop cancelled evidence gates completion and retains answer
+AssertionError: expected 'completed' to be 'cancelled' // Object.is equality
+
+Expected: "cancelled"
+Received: "completed"
+
+ ❯ tests/integration/P04-01.chat.test.ts:150:34
+    148|       const result = await snapshot();
+    149|       if (mode === 'cancelled') expect(cancellationReply).toBe(true);
+    150|       expect(result.run?.status).toBe(
+       |                                  ^
+    151|         mode === 'cancelled'
+    152|           ? 'cancelled'
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  02:18:12
+   Duration  3.90s (tests 53%, transform 31%, import 16%)
+
+[ELIFECYCLE] Command failed with exit code 1.
