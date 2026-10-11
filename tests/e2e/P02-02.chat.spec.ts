@@ -195,6 +195,7 @@ test('P02-02 T05 IME and Shift+Enter keep draft; queue editing/cancellation, ses
 test('P02-02 T05 long paste, plain managed attachment, unsupported original, oversize draft and restart remain reviewable', async () => {
   let page = await launch(),
     sid = await session(page);
+  await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0]!.setSize(1100, 850));
   await page.getByLabel('输入草稿').evaluate((node) => {
     const data = new DataTransfer();
     data.setData('text/plain', '长'.repeat(20001));
@@ -208,6 +209,15 @@ test('P02-02 T05 long paste, plain managed attachment, unsupported original, ove
   await expect(page.getByLabel('输入草稿')).toHaveValue('');
   await page.getByRole('button', { name: '预览', exact: true }).click();
   let preview = page.getByRole('region', { name: '文件预览', exact: true });
+  const closePreview = async () => {
+    await preview.getByRole('button', { name: '关闭预览', exact: true }).click();
+    const detail = page.getByRole('complementary', { name: '详情', exact: true });
+    // Closing a preview tab retains the detail drawer. Close the specified
+    // narrow-layout drawer through its real control before returning to chat.
+    await expect(detail).toHaveCSS('position', 'absolute');
+    await detail.getByRole('button', { name: '关闭详情', exact: true }).click();
+    await expect(detail).toHaveCount(0);
+  };
   await expect(preview.getByRole('tab', { name: '粘贴内容.txt · v1', exact: true })).toBeVisible();
   await expect(preview.locator('.viewer-source pre')).toHaveText('长'.repeat(20001));
   await page.screenshot({
@@ -216,7 +226,7 @@ test('P02-02 T05 long paste, plain managed attachment, unsupported original, ove
   await preview.locator('.viewer-source').screenshot({
     path: 'docs/evidence/P02-02/fix-preview-2026-10-11/long-paste-body.png',
   });
-  await preview.getByRole('button', { name: '关闭预览', exact: true }).click();
+  await closePreview();
   await page.locator('input[type=file]').setInputFiles({
     name: 'fixture.docx',
     mimeType: 'application/octet-stream',
@@ -238,6 +248,7 @@ test('P02-02 T05 long paste, plain managed attachment, unsupported original, ove
     .toBe(100001);
   await app.close();
   page = await launch();
+  await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0]!.setSize(1100, 850));
   const restored = (await command(page, 'drafts.get', { sessionId: sid, windowId: '0' })) as Draft;
   expect(restored.text).toBe(excessive);
   await page
@@ -249,7 +260,7 @@ test('P02-02 T05 long paste, plain managed attachment, unsupported original, ove
   await page.getByRole('button', { name: '预览', exact: true }).click();
   preview = page.getByRole('region', { name: '文件预览', exact: true });
   await expect(preview.locator('.viewer-source pre')).toHaveText('长'.repeat(20001));
-  await preview.getByRole('button', { name: '关闭预览', exact: true }).click();
+  await closePreview();
   await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0]!.setSize(960, 700));
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
     true,

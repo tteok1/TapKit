@@ -10,7 +10,7 @@
 
 ## 2026-10-11 P02-02 预览兼容修复进行中
 
-最新main 9a9e4ee已fetch/ff-only同步，创建fix/p02-02-text-attachment-preview。修复旧文本和长粘贴在P03预览面板中缺结构的问题；本地unit15/integration47/Electron10及最终长粘贴1通过，check退出0，分支CI待验。P02-02保持implemented_not_live_verified，用户明确暂不真实模型联调；无PR、不合入main。详见P02-02.md及docs/evidence/P02-02/fix-preview-2026-10-11。
+最新main 9a9e4ee已fetch/ff-only同步，创建fix/p02-02-text-attachment-preview。修复旧文本和长粘贴在P03预览面板中缺结构的问题；本地unit15/integration47/Electron10及最终长粘贴1通过，check退出0，实现4fe3571已推送；首轮CI38129152985仅窄窗口详情抽屉遮挡导致Electron失败，已适配真实关闭操作并本地1/1复验，新CI待验。P02-02保持implemented_not_live_verified，用户明确暂不真实模型联调；无PR、不合入main。详见P02-02.md及docs/evidence/P02-02/fix-preview-2026-10-11。
 
 ## 2026-10-11 P04-01 压缩合入 main
 
