@@ -4,8 +4,6 @@ import { createHash } from 'node:crypto';
 
 type SessionScope = { id: string; project_id: string | null };
 type FileRef = Extract<ResourceRef, { kind: 'file' }>;
-const legacyText =
-  /^(txt|md|markdown|csv|tsv|json|log|py|js|ts|tsx|jsx|html|css|yaml|yml|xml|sql)$/;
 
 /** Reads a fixed, authorized derived structure; never parses original Office/PDF on the host. */
 export async function fileMaterial(
@@ -86,17 +84,8 @@ export async function fileMaterial(
   } else {
     // P02 text attachments remain readable. Missing parsed binary structures cannot fall back to
     // interpreting arbitrary original bytes as text just because their status was marked ready.
-    if (!legacyText.test(file.version.extension)) throw new StorageError('FORMAT_UNSUPPORTED');
-    if (file.version.sizeBytes > 400000) throw new StorageError('FILE_TOO_LARGE');
-    const { bytes } = await files.original(ref.fileId, { versionId: ref.versionId });
+    text = await files.legacyText(ref.fileId, { versionId: ref.versionId });
     get();
-    try {
-      text = new TextDecoder('utf-8', { fatal: true }).decode(bytes);
-    } catch {
-      throw new StorageError('FORMAT_UNSUPPORTED');
-    }
-    if (text.includes('\u0000')) throw new StorageError('FORMAT_UNSUPPORTED');
-    if (text.length > 100000) throw new StorageError('FILE_TOO_LARGE');
   }
   if (ref.locator && file.version.parserVersion === null) {
     if (ref.locator.kind !== 'text' || ref.locator.end > text.length)

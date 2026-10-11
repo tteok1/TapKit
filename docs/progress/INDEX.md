@@ -8,6 +8,10 @@
 
 # 开发进度总表
 
+## 2026-10-11 P02-02 预览兼容修复进行中
+
+最新main 9a9e4ee已fetch/ff-only同步，创建fix/p02-02-text-attachment-preview。修复旧文本和长粘贴在P03预览面板中缺结构的问题；本地unit15/integration47/Electron10及最终长粘贴1通过，check退出0，分支CI待验。P02-02保持implemented_not_live_verified，用户明确暂不真实模型联调；无PR、不合入main。详见P02-02.md及docs/evidence/P02-02/fix-preview-2026-10-11。
+
 ## 2026-10-11 P04-01 压缩合入 main
 
 用户明确确认验收通过，并授权压缩合入main、推送远程和同步进度，不创建PR。远程main已fetch和ff-only同步（exit0），基线a43d8d0；codex/p04-01-retrieval的4个提交（最终c01280f）合为包含本记录的单一main提交，保留源分支历史。P04-01=implemented_and_verified；最终源分支CI38103938039 check/startup全部success，unit279/integration278/perf2/Electron35、标准P00 22/parser3/preview4零缺项；金标准32/32、定位75/75、4无答案零来源；20k P95 828.33ms。合入同步仅更新交接证据，业务与测试源码保持已验收c3192a2；main CI以本提交push Actions为准，不另加交接提交。P04-02/03及gate未开始。详见[P04-01](P04-01.md)及docs/evidence/P04-01/main-squash-2026-10-11.json。

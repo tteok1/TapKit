@@ -1,0 +1,47 @@
+$ vitest run --config vitest.config.ts --project integration "P02-02" "P03-01.file-material" "P03-02.artifacts"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P02-02.preview.test.ts (11 tests | 1 failed) 3007ms
+   × P02-02 T08 legacy preview rejects nul.txt even when marked ready 227ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P02-02.preview.test.ts > P02-02 T08 legacy preview rejects nul.txt even when marked ready
+AssertionError: expected { ok: false, …(2) } to match object { ok: false, …(1) }
+(5 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "error": {
+-     "code": "FORMAT_UNSUPPORTED",
++     "code": "VALIDATION_ERROR",
+    },
+    "ok": false,
+  }
+
+ ❯ tests/integration/P02-02.preview.test.ts:137:19
+
+    135|       .run(access.versionId);
+    136|     const reply = await f.service.dispatch(request('artifacts.open', a…
+    137|     expect(reply).toMatchObject({ ok: false, error: { code } });
+       |                   ^
+    138|   },
+    139| );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 42 passed (43)
+   Start at  17:28:34
+   Duration  17.23s (tests 80%, import 11%, transform 9%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+pnpm exited 1
+At D:\Tapkit-public\scripts\pnpm.ps1:18 char:5
++     throw "pnpm exited $tapkitCommandExit"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1

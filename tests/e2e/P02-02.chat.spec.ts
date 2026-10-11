@@ -207,10 +207,16 @@ test('P02-02 T05 long paste, plain managed attachment, unsupported original, ove
   await expect(page.locator('.chat-materials')).toContainText('粘贴内容.txt');
   await expect(page.getByLabel('输入草稿')).toHaveValue('');
   await page.getByRole('button', { name: '预览', exact: true }).click();
-  await expect(page.getByRole('dialog', { name: '材料预览' }).locator('pre')).toContainText(
-    '长'.repeat(100),
-  );
-  await page.getByRole('dialog').getByRole('button', { name: '取消', exact: true }).click();
+  let preview = page.getByRole('region', { name: '文件预览', exact: true });
+  await expect(preview.getByRole('tab', { name: '粘贴内容.txt · v1', exact: true })).toBeVisible();
+  await expect(preview.locator('.viewer-source pre')).toHaveText('长'.repeat(20001));
+  await page.screenshot({
+    path: 'docs/evidence/P02-02/fix-preview-2026-10-11/long-paste-preview.png',
+  });
+  await preview.locator('.viewer-source').screenshot({
+    path: 'docs/evidence/P02-02/fix-preview-2026-10-11/long-paste-body.png',
+  });
+  await preview.getByRole('button', { name: '关闭预览', exact: true }).click();
   await page.locator('input[type=file]').setInputFiles({
     name: 'fixture.docx',
     mimeType: 'application/octet-stream',
@@ -239,6 +245,11 @@ test('P02-02 T05 long paste, plain managed attachment, unsupported original, ove
     .locator('.history-row[data-session-id="' + sid + '"] .history-link')
     .click();
   await expect(page.getByLabel('输入草稿')).toHaveValue(excessive);
+  await expect(page.locator('.chat-materials')).toContainText('粘贴内容.txt');
+  await page.getByRole('button', { name: '预览', exact: true }).click();
+  preview = page.getByRole('region', { name: '文件预览', exact: true });
+  await expect(preview.locator('.viewer-source pre')).toHaveText('长'.repeat(20001));
+  await preview.getByRole('button', { name: '关闭预览', exact: true }).click();
   await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0]!.setSize(960, 700));
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
     true,

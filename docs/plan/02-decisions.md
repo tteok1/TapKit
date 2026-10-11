@@ -1,5 +1,7 @@
 # 范围、决策与默认行为
 
+2026-10-11 P02-02预览兼容修复：[ADR0047](../adr/0047-legacy-text-attachment-preview.md)复用旧文本严格UTF-8兼容读取，为ready且parserVersion=null的文本固定版本构造只读内存预览；解析文件缺结构仍拒绝，权限与字符位置保留，真实模型联调缺口不提升。
+
 2026-10-11 P04-02：[ADR0046](../adr/0046-verifiable-context-checkpoints-and-budget.md)规定schema13、确定性应用检查点、按模型与根剩余量预算、最多一次重试、摘要纠正和同项目选择接续；原生compaction没有已验证provider，保持禁用。验收以progress为准。
 
 2026-10-11 P04-01：[ADR0045](../adr/0045-local-hybrid-retrieval-and-verified-evidence.md)规定schema12、固定revision/hash的512维CPU BGE ONNX、完整分窗、授权版本先行的混合检索和本轮EvidenceRef验证。保留knowledge.query兼容，bootstrap/构建携带模型。实施与验收以progress为准，P04-02/03不提前实现。

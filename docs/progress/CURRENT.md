@@ -1,6 +1,6 @@
 # 当前接续点
 
-- 2026-10-11：D:/Tapkit-public，main；用户验收通过并授权压缩合入、推送，不创建PR。基线03fc989；源分支codex/p04-02-context最终ac3528b的2个提交压缩为包含本记录的单一main提交，源分支保留。
-- P04-02=implemented_and_verified；最终源分支CI38125850408完整success：unit291/integration283/perf2/Electron36，标准用户22/3/4零缺项与Office/启动各三轮通过；三次压缩金标准100%。
-- 合入同步只更新交接证据，业务/测试源码保持已验收版本；main CI以包含本记录提交的push Actions为准。P04-03/gate未开始，P01/P02既有live缺口保持。
-- 详见P04-02.md及docs/evidence/P04-02/main-squash-2026-10-11.json；扩展旧P02长粘贴预览失败仍单列在原实施证据。
+- 2026-10-11：D:/Tapkit-public，fix/p02-02-text-attachment-preview；远程main已fetch/ff-only（退出0），最新基线9a9e4ee，初始工作区干净。
+- P02-02预览修复本地通过，CI待验：unit15/integration47/Electron10及最终长粘贴1，check退出0；证据见P02-02.md及docs/evidence/P02-02/fix-preview-2026-10-11/results.json。
+- 本次不做真实模型联调；P02状态保持implemented_not_live_verified，既有资源缺口不提升。无PR、不合入main，修复验收后等待人工确认。
+- P04-02已由用户授权压缩合入main（9a9e4ee）；其交接证据见P04-02.md。P04-03/gate未开始。
