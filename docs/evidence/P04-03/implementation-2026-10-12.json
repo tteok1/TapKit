@@ -84,6 +84,12 @@
       "exitCode": 0,
       "files": 414,
       "log": "docs/evidence/P04-03/check-frozen-candidate.log"
+    },
+    {
+      "command": "pnpm test:integration P04-03",
+      "exitCode": 0,
+      "tests": 16,
+      "log": "docs/evidence/P04-03/copy-receipt-regression.log"
     }
   ],
   "failuresPreserved": [

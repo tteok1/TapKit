@@ -332,6 +332,39 @@ test('P04-03 background extraction binds the actual answer account and inherited
     f.store.close();
   }
 });
+test('P04-03 copying a session preserves provenance without copying a memory-write receipt or repeating the write', async () => {
+  const f = await fixture();
+  try {
+    const sid = f.create(),
+      mid = f.add(sid, '记住：我喜欢中文回答');
+    f.store.db.transaction(() => f.memory.explicit(mid))();
+    f.store.db
+      .prepare(
+        "UPDATE messages SET chat_json=json_set(chat_json,'$.memoryOutcome','written') WHERE id=?",
+      )
+      .run(mid);
+    const count = f.store.db
+      .prepare("SELECT count(*) n FROM events WHERE event_type='memory.changed'")
+      .get();
+    const reply = await f.history.dispatch(req('sessions.copy', { sessionId: sid }));
+    expect(reply.ok).toBe(true);
+    if (!reply.ok) throw new Error(reply.error.code);
+    const target = (reply.data as { sessionId: string }).sessionId,
+      copied = f.store.db
+        .prepare(
+          "SELECT source_message_id,chat_json FROM messages WHERE session_id=? AND role='user'",
+        )
+        .get(target) as { source_message_id: string; chat_json: string };
+    expect(copied.source_message_id).toBe(mid);
+    expect(JSON.parse(copied.chat_json).memoryOutcome).toBeUndefined();
+    expect(
+      f.store.db.prepare("SELECT count(*) n FROM events WHERE event_type='memory.changed'").get(),
+    ).toEqual(count);
+    expect(f.memory.list(f.scope).memories).toHaveLength(1);
+  } finally {
+    f.store.close();
+  }
+});
 async function fixture() {
   await mkdir('.test-data', { recursive: true });
   const dir = await mkdtemp(resolve('.test-data', 'P04-03 synthetic ')),

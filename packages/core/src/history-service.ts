@@ -192,6 +192,7 @@ export class HistoryService {
         metadata = JSON.parse(m.chat_json);
       // Preserve display provenance, never copy client request identities/native protocol state.
       delete metadata.payloadHash;
+      delete metadata.memoryOutcome;
       if (!attachments) metadata.attachments = [];
       this.store.db
         .prepare(
