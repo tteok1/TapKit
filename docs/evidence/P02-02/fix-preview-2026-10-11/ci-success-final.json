@@ -1,0 +1,182 @@
+{
+  "task": "P02-02",
+  "verificationDate": "2026-10-12 Asia/Shanghai",
+  "branch": "fix/p02-02-text-attachment-preview",
+  "baseline": "9a9e4ee14a3fb57ef2bda0278536f3e676cdee1d",
+  "head": "f22f4cbe7dfd2c0b0e2bb43fb46f7cc20469cb08",
+  "runId": 38164279404,
+  "url": "https://github.com/tteok1/TapKit/actions/runs/38164279404",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 114543469052,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "conclusion": "success"
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "conclusion": "success"
+        },
+        {
+          "name": "Save verified runtime archives",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Unit and current-route integration",
+          "conclusion": "success"
+        },
+        {
+          "name": "Dedicated Core performance checks",
+          "conclusion": "success"
+        },
+        {
+          "name": "Build and Electron checks",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify P00-03 and P03 parser as an independent standard user",
+          "conclusion": "success"
+        },
+        {
+          "name": "Repeat fresh-process Office shutdown diagnostics",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 114549221692,
+      "name": "startup-diagnostics",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "conclusion": "success"
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "conclusion": "success"
+        },
+        {
+          "name": "Repeat fresh-process startup diagnostics",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "unit": 291,
+    "integration": 298,
+    "performance": 2,
+    "electron": 41,
+    "standardUser": {
+      "foundation": 22,
+      "parser": 3,
+      "preview": 4,
+      "failed": 0,
+      "pending": 0
+    },
+    "office": {
+      "rounds": 6,
+      "exitCodes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "startup": {
+      "storageRounds": 3,
+      "vaultRounds": 3,
+      "passed": 6
+    }
+  },
+  "artifact": {
+    "id": 11712221687,
+    "sha256": "b32d5e9728402ed044f031cd72e0b6e5a4cc5a31673d3946172a847440e3014e",
+    "downloadExitCode": 0
+  },
+  "titleRegression": {
+    "baselineFailed": 1,
+    "localRepeatedPassed": 3,
+    "relatedIntegrationPassed": 2,
+    "rootUsage": {
+      "firstTurnIncludingTitle": 120,
+      "secondTurn": 60
+    },
+    "ciPassed": true
+  },
+  "realModelRequests": 0,
+  "stageStatus": "implemented_not_live_verified",
+  "prCreated": false,
+  "mergedToMain": false,
+  "manualMergeConfirmationRequired": true
+}

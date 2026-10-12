@@ -96,9 +96,18 @@ test('P02-02 T02 two turns use real Core/router/usage; repeated acceptance creat
   await expect(page.locator('.chat-message.assistant')).toContainText(
     '隔离测试回复：第一轮中文问题',
   );
+  await expect(
+    page.getByRole('heading', { name: '隔离测试回复：第一轮中文问题', exact: true }),
+  ).toBeVisible();
+  // ADR0024 charges the automatic title to the originating run/root. Wait for
+  // its visible completion before checking both 60-token fixture settlements.
   await expect
     .poll(async () => (await snapshot(page, sid)).run?.usage)
-    .toEqual({ state: 'actual', tokens: 60 });
+    .toEqual({ state: 'actual', tokens: 120 });
+  const first = await snapshot(page, sid);
+  expect(first.run).toMatchObject({ status: 'completed', calls: 1, tools: 0 });
+  expect(first.messages.filter((m) => m.role === 'user')).toHaveLength(1);
+  expect(first.messages.filter((m) => m.role === 'assistant')).toHaveLength(1);
   const payload = {
     sessionId: sid,
     clientMessageId: newId(),
@@ -113,15 +122,20 @@ test('P02-02 T02 two turns use real Core/router/usage; repeated acceptance creat
   expect(accepted[0]).toEqual(accepted[1]);
   await expect.poll(async () => (await snapshot(page, sid)).run?.status).toBe('completed');
   const saved = await snapshot(page, sid);
+  expect(saved.run).toMatchObject({
+    status: 'completed',
+    calls: 1,
+    usage: { state: 'actual', tokens: 60 },
+  });
   expect(saved.messages.filter((m) => m.role === 'user')).toHaveLength(2);
   expect(saved.messages.filter((m) => m.role === 'assistant')).toHaveLength(2);
   expect(saved.messages.at(-1)?.model?.modelId).toBe('fixture-model');
   await page.screenshot({ path: 'docs/evidence/P02-02/two-turns.png' });
   await app.close();
   const again = await launch();
-  expect((await snapshot(again, sid)).messages.map((m) => m.text)).toEqual(
-    saved.messages.map((m) => m.text),
-  );
+  const restored = await snapshot(again, sid);
+  expect(restored.messages.map((m) => m.text)).toEqual(saved.messages.map((m) => m.text));
+  expect(restored.run?.usage).toEqual(saved.run?.usage);
 });
 
 test('P02-02 T05 IME and Shift+Enter keep draft; queue editing/cancellation, session switching and stopping preserve confirmed text', async () => {
@@ -195,6 +209,7 @@ test('P02-02 T05 IME and Shift+Enter keep draft; queue editing/cancellation, ses
 test('P02-02 T05 long paste, plain managed attachment, unsupported original, oversize draft and restart remain reviewable', async () => {
   let page = await launch(),
     sid = await session(page);
+  await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0]!.setSize(1100, 850));
   await page.getByLabel('输入草稿').evaluate((node) => {
     const data = new DataTransfer();
     data.setData('text/plain', '长'.repeat(20001));
@@ -207,10 +222,25 @@ test('P02-02 T05 long paste, plain managed attachment, unsupported original, ove
   await expect(page.locator('.chat-materials')).toContainText('粘贴内容.txt');
   await expect(page.getByLabel('输入草稿')).toHaveValue('');
   await page.getByRole('button', { name: '预览', exact: true }).click();
-  await expect(page.getByRole('dialog', { name: '材料预览' }).locator('pre')).toContainText(
-    '长'.repeat(100),
-  );
-  await page.getByRole('dialog').getByRole('button', { name: '取消', exact: true }).click();
+  let preview = page.getByRole('region', { name: '文件预览', exact: true });
+  const closePreview = async () => {
+    await preview.getByRole('button', { name: '关闭预览', exact: true }).click();
+    const detail = page.getByRole('complementary', { name: '详情', exact: true });
+    // Closing a preview tab retains the detail drawer. Close the specified
+    // narrow-layout drawer through its real control before returning to chat.
+    await expect(detail).toHaveCSS('position', 'absolute');
+    await detail.getByRole('button', { name: '关闭详情', exact: true }).click();
+    await expect(detail).toHaveCount(0);
+  };
+  await expect(preview.getByRole('tab', { name: '粘贴内容.txt · v1', exact: true })).toBeVisible();
+  await expect(preview.locator('.viewer-source pre')).toHaveText('长'.repeat(20001));
+  await page.screenshot({
+    path: 'docs/evidence/P02-02/fix-preview-2026-10-11/long-paste-preview.png',
+  });
+  await preview.locator('.viewer-source').screenshot({
+    path: 'docs/evidence/P02-02/fix-preview-2026-10-11/long-paste-body.png',
+  });
+  await closePreview();
   await page.locator('input[type=file]').setInputFiles({
     name: 'fixture.docx',
     mimeType: 'application/octet-stream',
@@ -232,6 +262,7 @@ test('P02-02 T05 long paste, plain managed attachment, unsupported original, ove
     .toBe(100001);
   await app.close();
   page = await launch();
+  await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0]!.setSize(1100, 850));
   const restored = (await command(page, 'drafts.get', { sessionId: sid, windowId: '0' })) as Draft;
   expect(restored.text).toBe(excessive);
   await page
@@ -239,6 +270,11 @@ test('P02-02 T05 long paste, plain managed attachment, unsupported original, ove
     .locator('.history-row[data-session-id="' + sid + '"] .history-link')
     .click();
   await expect(page.getByLabel('输入草稿')).toHaveValue(excessive);
+  await expect(page.locator('.chat-materials')).toContainText('粘贴内容.txt');
+  await page.getByRole('button', { name: '预览', exact: true }).click();
+  preview = page.getByRole('region', { name: '文件预览', exact: true });
+  await expect(preview.locator('.viewer-source pre')).toHaveText('长'.repeat(20001));
+  await closePreview();
   await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0]!.setSize(960, 700));
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
     true,

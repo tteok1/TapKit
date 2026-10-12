@@ -1,0 +1,171 @@
+$ vitest run --config vitest.config.ts --project integration "P02-02.preview"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P02-02.preview.test.ts (11 tests | 9 failed) 3009ms
+   × P02-02 T05 long pasted attachments preview exact text and retain fixed-version selections after restart 311ms
+   × P02-02 T08 legacy preview rejects binary.pdf even when marked ready 242ms
+   × P02-02 T08 legacy preview rejects invalid.txt even when marked ready 309ms
+   × P02-02 T08 legacy preview rejects nul.txt even when marked ready 286ms
+   × P02-02 T08 legacy preview rejects long.txt even when marked ready 304ms
+   × P02-02 T08 legacy preview rejects large.txt even when marked ready 326ms
+   × P02-02 T19 legacy preview rejects unlink during original I/O 276ms
+   × P02-02 T19 legacy preview rejects status during original I/O 237ms
+   × P02-02 T19 legacy preview rejects parser during original I/O 213ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P02-02.preview.test.ts > P02-02 T05 long pasted attachments preview exact text and retain fixed-version selections after restart
+Error: NOT_FOUND
+ ❯ BlobStore.readDerivedVersion packages/storage/src/blobs.ts:187:21
+    185|       .get(versionId, this.store.profileId) as
+    186|       { relative_key: string; sha256: string; size_bytes: number } | u…
+    187|     if (!row) throw new StorageError('NOT_FOUND');
+       |                     ^
+    188|     if (!/^blobs\/sha256\/[a-f0-9]{2}\/[a-f0-9]{64}$/.test(row.relativ…
+    189|       throw new StorageError('PERMISSION_DENIED');
+ ❯ FileRepository.parsed packages/storage/src/files.ts:692:36
+ ❯ ArtifactRepository.document packages/storage/src/artifacts.ts:165:23
+ ❯ ArtifactService.open packages/core/src/artifact-service.ts:283:37
+ ❯ tests/integration/P02-02.preview.test.ts:75:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  |integration| tests/integration/P02-02.preview.test.ts > P02-02 T08 legacy preview rejects binary.pdf even when marked ready
+ FAIL  |integration| tests/integration/P02-02.preview.test.ts > P02-02 T08 legacy preview rejects invalid.txt even when marked ready
+AssertionError: expected { ok: false, …(2) } to match object { ok: false, …(1) }
+(5 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "error": {
+-     "code": "FORMAT_UNSUPPORTED",
++     "code": "NOT_FOUND",
+    },
+    "ok": false,
+  }
+
+ ❯ tests/integration/P02-02.preview.test.ts:103:17
+
+    101|   f.store.db.prepare("UPDATE file_versions SET parse_status='ready' WH…
+    102|   const reply = await f.service.dispatch(request('artifacts.open', acc…
+    103|   expect(reply).toMatchObject({ ok: false, error: { code } });
+       |                 ^
+    104| });
+    105|
+ Test Files  1 failed (1)
+      Tests  9 failed | 2 passed (11)
+   Start at  17:27:20
+   Duration  5.46s (tests 57%, transform 26%, import 17%)
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  |integration| tests/integration/P02-02.preview.test.ts > P02-02 T08 legacy preview rejects nul.txt even when marked ready
+AssertionError: expected { ok: false, …(2) } to match object { ok: false, …(1) }
+(5 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "error": {
+-     "code": "FORMAT_UNSUPPORTED",
++     "code": "VALIDATION_ERROR",
+    },
+    "ok": false,
+  }
+
+ ❯ tests/integration/P02-02.preview.test.ts:103:17
+    101|   f.store.db.prepare("UPDATE file_versions SET parse_status='ready' WH…
+    102|   const reply = await f.service.dispatch(request('artifacts.open', acc…
+    103|   expect(reply).toMatchObject({ ok: false, error: { code } });
+       |                 ^
+    104| });
+    105|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  |integration| tests/integration/P02-02.preview.test.ts > P02-02 T08 legacy preview rejects long.txt even when marked ready
+ FAIL  |integration| tests/integration/P02-02.preview.test.ts > P02-02 T08 legacy preview rejects large.txt even when marked ready
+AssertionError: expected { ok: false, …(2) } to match object { ok: false, …(1) }
+(5 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "error": {
+-     "code": "FILE_TOO_LARGE",
++     "code": "NOT_FOUND",
+    },
+    "ok": false,
+  }
+
+ ❯ tests/integration/P02-02.preview.test.ts:103:17
+    101|   f.store.db.prepare("UPDATE file_versions SET parse_status='ready' WH…
+    102|   const reply = await f.service.dispatch(request('artifacts.open', acc…
+    103|   expect(reply).toMatchObject({ ok: false, error: { code } });
+       |                 ^
+    104| });
+    105|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  |integration| tests/integration/P02-02.preview.test.ts > P02-02 T19 legacy preview rejects unlink during original I/O
+AssertionError: expected 'NOT_FOUND' to be 'PERMISSION_DENIED' // Object.is equality
+
+Expected: "PERMISSION_DENIED"
+Received: "NOT_FOUND"
+
+ ❯ tests/integration/P02-02.preview.test.ts:128:28
+    126|   expect(reply).toMatchObject({ ok: false });
+    127|   if (reply.ok) throw new Error('Stale text was exposed');
+    128|   expect(reply.error.code).toBe(change === 'unlink' ? 'PERMISSION_DENI…
+       |                            ^
+    129| });
+    130|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  |integration| tests/integration/P02-02.preview.test.ts > P02-02 T19 legacy preview rejects status during original I/O
+AssertionError: expected 'NOT_FOUND' to be 'INDEX_NOT_READY' // Object.is equality
+
+Expected: "INDEX_NOT_READY"
+Received: "NOT_FOUND"
+
+ ❯ tests/integration/P02-02.preview.test.ts:128:28
+    126|   expect(reply).toMatchObject({ ok: false });
+    127|   if (reply.ok) throw new Error('Stale text was exposed');
+    128|   expect(reply.error.code).toBe(change === 'unlink' ? 'PERMISSION_DENI…
+       |                            ^
+    129| });
+    130|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  |integration| tests/integration/P02-02.preview.test.ts > P02-02 T19 legacy preview rejects parser during original I/O
+AssertionError: expected 'NOT_FOUND' to be 'CONFLICT' // Object.is equality
+
+Expected: "CONFLICT"
+Received: "NOT_FOUND"
+
+ ❯ tests/integration/P02-02.preview.test.ts:128:28
+    126|   expect(reply).toMatchObject({ ok: false });
+    127|   if (reply.ok) throw new Error('Stale text was exposed');
+    128|   expect(reply.error.code).toBe(change === 'unlink' ? 'PERMISSION_DENI…
+       |                            ^
+    129| });
+    130|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+[ELIFECYCLE] Command failed with exit code 1.
+pnpm exited 1
+At D:\Tapkit-public\scripts\pnpm.ps1:18 char:5
++     throw "pnpm exited $tapkitCommandExit"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1

@@ -8,6 +8,18 @@
 
 # 开发进度总表
 
+## 2026-10-12 P02预览修复压缩合入 main
+
+用户明确要求“压缩成一个commit并合入main”。远程main已fetch/ff-only同步（退出0），基线9a9e4ee；fix/p02-02-text-attachment-preview的4个提交（最终f22f4cb）压缩为包含交接记录的单一main提交，保留源分支，不创建PR。最终源分支CI38164279404 check/startup全success，unit291/integration298/perf2/Electron41、标准用户22/3/4零缺项、Office六轮及storage/vault各三轮通过。合入前暂存树与源分支完全相同；交接仅更新文档，main push Actions为合入后检查。P02保持implemented_not_live_verified，真实模型联调继续待验，P04-03/gate未开始。详见[P02-02](P02-02.md)及docs/evidence/P02-02/main-squash-2026-10-12.json。
+
+## 2026-10-12 P02-02 自动标题用量回归修复
+
+fix/p02-02-text-attachment-preview：预览源码CI38131096866全success（unit291/integration298/perf2/Electron41）；交接CI38133187106的旧用量断言失败，长粘贴通过。自动标题按ADR0024计入原run/root，旧60断言依赖抢在标题结算前读取。已稳定复现并改为等待实际标题完成后精确校验首轮120、第二轮60及一次前台调用/幂等/重启持久化；本地Electron三轮3/3和标题integration2/2退出0。计费、标题策略、预览业务和隔离代码不变；真实模型联调继续待验，无PR、不合入main，最新push Actions作为最终人工合入校验。详见[P02-02](P02-02.md)。
+
+## 2026-10-11 P02-02 预览兼容修复验收
+
+最新main 9a9e4ee已fetch/ff-only同步，创建fix/p02-02-text-attachment-preview。旧文本和长粘贴在P03预览面板中缺结构的问题已修复；本地unit15/integration47/Electron10及窄窗口长粘贴1通过，check退出0。源码abde51e的CI38131096866 check/startup全部success，标准用户22/3/4零缺项、Office六轮和启动六项通过；首轮失败及真实关闭抽屉修复证据保留。交接仅更新文档，最终分支push Actions作为人工合入校验。P02-02保持implemented_not_live_verified，用户明确暂不真实模型联调；无PR、不合入main，等待人工确认。详见[P02-02](P02-02.md)及docs/evidence/P02-02/fix-preview-2026-10-11。
+
 ## 2026-10-11 P04-01 压缩合入 main
 
 用户明确确认验收通过，并授权压缩合入main、推送远程和同步进度，不创建PR。远程main已fetch和ff-only同步（exit0），基线a43d8d0；codex/p04-01-retrieval的4个提交（最终c01280f）合为包含本记录的单一main提交，保留源分支历史。P04-01=implemented_and_verified；最终源分支CI38103938039 check/startup全部success，unit279/integration278/perf2/Electron35、标准P00 22/parser3/preview4零缺项；金标准32/32、定位75/75、4无答案零来源；20k P95 828.33ms。合入同步仅更新交接证据，业务与测试源码保持已验收c3192a2；main CI以本提交push Actions为准，不另加交接提交。P04-02/03及gate未开始。详见[P04-01](P04-01.md)及docs/evidence/P04-01/main-squash-2026-10-11.json。

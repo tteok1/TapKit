@@ -1,0 +1,210 @@
+{
+  "task": "P02-02",
+  "date": "2026-10-11",
+  "branch": "fix/p02-02-text-attachment-preview",
+  "baseline": "9a9e4ee14a3fb57ef2bda0278536f3e676cdee1d",
+  "status": "bug_fix_accepted_final_ci_success",
+  "stageStatus": "implemented_not_live_verified",
+  "realModelRequests": 0,
+  "prCreated": false,
+  "mergedToMain": false,
+  "remoteSync": {
+    "fastForwardExitCode": 0,
+    "initialWorktreeClean": true,
+    "mainAndOrigin": "9a9e4ee14a3fb57ef2bda0278536f3e676cdee1d",
+    "note": "Direct network attempts failed; fetch succeeded with the enabled system proxy.",
+    "fetchExitCode": 0
+  },
+  "checks": [
+    {
+      "command": "pnpm test:integration P02-02.preview (initial regression before fix)",
+      "exitCode": 1,
+      "note": "One NUL fixture used Windows reserved name nul.txt; corrected to nul-text.txt. Positive long-paste preview failed NOT_FOUND.",
+      "failed": 9,
+      "log": "baseline-integration.log",
+      "passed": 2
+    },
+    {
+      "command": "pnpm test:integration P02-02 P03-01.file-material P03-02.artifacts (initial fix)",
+      "exitCode": 1,
+      "note": "Only reserved fixture filename mismatch remained.",
+      "failed": 1,
+      "log": "integration.log",
+      "passed": 42
+    },
+    {
+      "passed": 43,
+      "log": "integration-final.log",
+      "exitCode": 0,
+      "command": "pnpm test:integration P02-02 P03-01.file-material P03-02.artifacts (fixture corrected)"
+    },
+    {
+      "passed": 47,
+      "log": "integration-verified.log",
+      "addedRegressionCases": 15,
+      "exitCode": 0,
+      "command": "pnpm test:integration P02-02 P03-01.file-material P03-02.artifacts"
+    },
+    {
+      "passed": 15,
+      "log": "unit.log",
+      "exitCode": 0,
+      "command": "pnpm test:unit P02-02 P03-02"
+    },
+    {
+      "log": "check.log",
+      "note": "Two typed test calls omitted required retry; corrected without changing product behavior.",
+      "exitCode": 1,
+      "command": "pnpm check (initial)"
+    },
+    {
+      "log": "check-final.log",
+      "exitCode": 0,
+      "command": "pnpm check"
+    },
+    {
+      "passed": 10,
+      "log": "e2e.log",
+      "productionBuildRestored": true,
+      "exitCode": 0,
+      "command": "pnpm test:e2e -- --grep P02-02|P03-02"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P02-02 T05 long paste",
+      "exitCode": 0,
+      "note": "Final body screenshot added and visually inspected.",
+      "productionBuildRestored": true,
+      "log": "e2e-preview-final.log",
+      "passed": 1
+    },
+    {
+      "command": "pnpm check (final before commit)",
+      "log": "check-before-commit.log",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm docs:check",
+      "log": "docs-check.log",
+      "exitCode": 0
+    },
+    {
+      "exitCode": 0,
+      "command": "git diff --check"
+    },
+    {
+      "log": "e2e-narrow-final.log",
+      "productionBuildRestored": true,
+      "exitCode": 0,
+      "passed": 1,
+      "command": "pnpm test:e2e -- --grep P02-02 T05 long paste (fixed narrow window)"
+    },
+    {
+      "log": "check-narrow-final.log",
+      "exitCode": 0,
+      "command": "pnpm check (narrow test final)"
+    },
+    {
+      "log": "docs-check-narrow-final.log",
+      "exitCode": 0,
+      "command": "pnpm docs:check (narrow test final)"
+    },
+    {
+      "command": "git diff --check (interim handoff)",
+      "exitCode": 1,
+      "note": "Only extra blank EOF lines in CURRENT.md and P02-02.md; normalized before final check."
+    },
+    {
+      "command": "pnpm check (final handoff)",
+      "exitCode": 0,
+      "log": "check-handoff.log"
+    },
+    {
+      "command": "pnpm docs:check (final handoff)",
+      "exitCode": 0,
+      "log": "docs-check-handoff.log"
+    },
+    {
+      "command": "git diff --check (final handoff)",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P02-02 T02 two turns (wait for title; old 60-token assertion)",
+      "exitCode": 1,
+      "failed": 1,
+      "productionBuildRestored": true,
+      "log": "e2e-title-baseline-2026-10-12.log",
+      "note": "Deterministic reproduction: actual run tokens 120 after title settles."
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P02-02 T02 two turns --repeat-each 3",
+      "exitCode": 0,
+      "passed": 3,
+      "productionBuildRestored": true,
+      "log": "e2e-title-final-2026-10-12.log"
+    },
+    {
+      "command": "pnpm test:integration P02-03.history --testNamePattern T06 title",
+      "exitCode": 0,
+      "passed": 2,
+      "skippedUnselected": 16,
+      "log": "integration-title-2026-10-12.log"
+    },
+    {
+      "command": "pnpm check (title regression final)",
+      "exitCode": 0,
+      "log": "check-title-final-2026-10-12.log"
+    },
+    {
+      "command": "pnpm docs:check (title regression final)",
+      "exitCode": 0,
+      "log": "docs-check-title-final-2026-10-12.log"
+    },
+    {
+      "command": "git diff --check (title regression final)",
+      "exitCode": 0
+    }
+  ],
+  "coverage": [
+    "20001-character long paste and exact complete preview",
+    "restart recovery and immutable historical version",
+    "Core selection hash and chat consumption agree",
+    "literal md/html/csv/ts compatibility without active markup",
+    "invalid UTF-8/NUL/100000-character/400000-byte limit rejection",
+    "scope revocation/deletion/parser-state change during I/O",
+    "parsed files with missing structures never read originals"
+  ],
+  "screenshots": [
+    "long-paste-preview.png",
+    "long-paste-body.png",
+    "narrow-composer.png",
+    "two-turns-title-final-2026-10-12.png"
+  ],
+  "sourceSha256": {
+    "packages/storage/src/files.ts": "804eb1f4de5ed1e3e26bf554d70ad8df55c1caf8875a5504895a8fe11762275b",
+    "packages/storage/src/artifacts.ts": "c038b5eb50189c6d1be62873367ded9fbc1f9224df4fb4ca963d762bb98e4cbc",
+    "packages/core/src/file-material.ts": "18bc033c255f8be53d0f36b2a4fa6dcf067017592391c19450557919987ebf35",
+    "tests/integration/P02-02.preview.test.ts": "18689e079c31d4a7bf59c31ac4475250075572b552f30871536b97e657daa538",
+    "tests/e2e/P02-02.chat.spec.ts": "a6297f4ab5daa33703186681c5b44bf1b8ace6525427176fc0c6ef70ee027d80",
+    ".github/workflows/check.yml": "193bdee19175b19373f085ba8bd8577e45ac9069aca366fc6fc03b9fd0007664"
+  },
+  "ci": {
+    "runId": 38131096866,
+    "firstRunEvidence": "ci-failed-source.json",
+    "sourceCommit": "abde51e5031dfc80b8d87980612d7b553c54474c",
+    "status": "completed",
+    "url": "https://github.com/tteok1/TapKit/actions/runs/38131096866",
+    "selection": "P00-0[12]|P02-02|P03-0[123]|P04-0[12]",
+    "conclusion": "success",
+    "successEvidence": "ci-success-source.json"
+  },
+  "liveGap": "Preserved R01/R13/R14 and P01 gaps; R02-R05 pending; user explicitly deferred live model testing.",
+  "logNormalization": "Trailing whitespace and empty EOF lines removed; original command output and failure results retained.",
+  "handoff": "User confirmed squash merge into main on 2026-10-12. Verified business/test/workflow source remains f22f4cb. The containing squash commit includes progress/evidence updates; its push Actions is the post-merge check. No PR; live model gap preserved.",
+  "failedHandoffEvidence": "ci-failed-handoff.json",
+  "finalSourceCi": {
+    "runId": 38164279404,
+    "sourceCommit": "f22f4cbe7dfd2c0b0e2bb43fb46f7cc20469cb08",
+    "conclusion": "success",
+    "evidence": "ci-success-final.json"
+  }
+}

@@ -1,0 +1,64 @@
+2026-10-11T10:58:50.2166078Z   ok 36 tests\e2e\P03-03.projects.spec.ts:77:1 › P03-03 project settings, known local note, classification, original query locator and copy are usable in the real renderer (2.0s)
+2026-10-11T10:58:52.1036718Z   ok 37 tests\e2e\P03-03.projects.spec.ts:103:1 › P03-03 project session binding, explicit selected scope, archive and deletion preview persist (1.9s)
+2026-10-11T10:58:53.8693824Z   ok 38 tests\e2e\P03-03.projects.spec.ts:139:1 › P03-03 Core rejects foreign project material and project-only reference while missing evidence is explicit (1.8s)
+2026-10-11T10:58:55.1605847Z   ok 39 tests\e2e\P03-03.projects.spec.ts:165:1 › P03-03 project ZIP export traverses Host save authorization and shows a refused overwrite (1.3s)
+2026-10-11T10:58:56.6995496Z   ok 40 tests\e2e\P04-01.retrieval.spec.ts:62:1 › P04-01 T09 real Core CPU hybrid evidence opens the original fixed source and no-answer is explicit (1.5s)
+2026-10-11T10:58:59.7126620Z   ok 41 tests\e2e\P04-02.context.spec.ts:49:1 › P04-02 T12 summary UI three compactions source view correction chosen continuation and restart (3.0s)
+2026-10-11T10:58:59.7347648Z
+2026-10-11T10:58:59.7350987Z
+2026-10-11T10:58:59.7358449Z   1) tests\e2e\P02-02.chat.spec.ts:91:1 › P02-02 T02 two turns use real Core/router/usage; repeated acceptance creates one message and restart retains it
+2026-10-11T10:58:59.7358958Z
+2026-10-11T10:58:59.7359137Z     Error: expect(received).toEqual(expected) // deep equality
+2026-10-11T10:58:59.7359364Z
+2026-10-11T10:58:59.7359510Z     - Expected  - 1
+2026-10-11T10:58:59.7359710Z     + Received  + 1
+2026-10-11T10:58:59.7359821Z
+2026-10-11T10:58:59.7359887Z       Object {
+2026-10-11T10:58:59.7360070Z         "state": "actual",
+2026-10-11T10:58:59.7360277Z     -   "tokens": 60,
+2026-10-11T10:58:59.7360449Z     +   "tokens": 120,
+2026-10-11T10:58:59.7360625Z       }
+2026-10-11T10:58:59.7360702Z
+2026-10-11T10:58:59.7360774Z     Call Log:
+2026-10-11T10:58:59.7361023Z     - Timeout 15000ms exceeded while waiting on the predicate
+2026-10-11T10:58:59.7361239Z
+2026-10-11T10:58:59.7361321Z        99 |   await expect
+2026-10-11T10:58:59.7361623Z       100 |     .poll(async () => (await snapshot(page, sid)).run?.usage)
+2026-10-11T10:58:59.7361913Z     > 101 |     .toEqual({ state: 'actual', tokens: 60 });
+2026-10-11T10:58:59.7362172Z           |      ^
+2026-10-11T10:58:59.7362330Z       102 |   const payload = {
+2026-10-11T10:58:59.7362480Z       103 |     sessionId: sid,
+2026-10-11T10:58:59.7362849Z       104 |     clientMessageId: newId(),
+2026-10-11T10:58:59.7363058Z         at D:\a\TapKit\TapKit\tests\e2e\P02-02.chat.spec.ts:101:6
+2026-10-11T10:58:59.7363192Z
+2026-10-11T10:58:59.7363409Z     Error Context: test-results\e2e\P02-02.chat-P02-02-T02-two-6c799-sage-and-restart-retains-it\error-context.md
+2026-10-11T10:58:59.7363652Z
+2026-10-11T10:58:59.7364066Z     attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+2026-10-11T10:58:59.7364605Z     test-results\e2e\P02-02.chat-P02-02-T02-two-6c799-sage-and-restart-retains-it\trace.zip
+2026-10-11T10:58:59.7364959Z     Usage:
+2026-10-11T10:58:59.7365054Z
+2026-10-11T10:58:59.7365417Z         pnpm exec playwright show-trace test-results\e2e\P02-02.chat-P02-02-T02-two-6c799-sage-and-restart-retains-it\trace.zip
+2026-10-11T10:58:59.7365692Z
+2026-10-11T10:58:59.7365878Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-10-11T10:58:59.7366033Z
+2026-10-11T10:58:59.7366644Z   1 failed
+2026-10-11T10:58:59.7367114Z     tests\e2e\P02-02.chat.spec.ts:91:1 › P02-02 T02 two turns use real Core/router/usage; repeated acceptance creates one message and restart retains it
+2026-10-11T10:58:59.7367528Z   40 passed (2.4m)
+2026-10-11T10:59:00.0343604Z vite v7.3.6 building ssr environment for production...
+2026-10-11T10:59:00.0606001Z transforming...
+2026-10-11T10:59:00.3307316Z node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+2026-10-11T10:59:00.3307843Z
+2026-10-11T10:59:00.3308867Z "// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+2026-10-11T10:59:00.3309431Z
+2026-10-11T10:59:00.3322096Z in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+2026-10-11T10:59:00.3322777Z node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+2026-10-11T10:59:00.3322962Z
+2026-10-11T10:59:00.3323159Z "/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+2026-10-11T10:59:00.3323706Z  * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+2026-10-11T10:59:00.3324054Z  * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+2026-10-11T10:59:00.3324232Z
+2026-10-11T10:59:00.3324742Z in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+2026-10-11T10:59:00.7309888Z ✓ 169 modules transformed.
+2026-10-11T10:59:00.8338588Z rendering chunks...
+2026-10-11T10:59:00.9083474Z packages/retrieval/dist/pdf/cmaps/CNS2-V.bcmap                                0.09 kB
+2026-10-11T10:59:00.9084051Z packages/retrieval/dist/pdf/cmaps/Roman.bcmap                                 0.10 kB

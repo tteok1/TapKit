@@ -1,0 +1,252 @@
+{
+  "runId": 38129152985,
+  "sourceCommit": "4fe35718e0fdc1160e9acf76629a6eee30aeb36b",
+  "status": "completed",
+  "conclusion": "failure",
+  "url": "https://github.com/tteok1/TapKit/actions/runs/38129152985",
+  "jobs": [
+    {
+      "id": 114439679676,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "failure",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T09:39:36Z",
+          "completedAt": "2026-10-11T09:39:37Z"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T09:39:37Z",
+          "completedAt": "2026-10-11T09:39:46Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T09:39:46Z",
+          "completedAt": "2026-10-11T09:40:00Z"
+        },
+        {
+          "number": 4,
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T09:40:00Z",
+          "completedAt": "2026-10-11T09:40:08Z"
+        },
+        {
+          "number": 5,
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T09:40:08Z",
+          "completedAt": "2026-10-11T09:42:52Z"
+        },
+        {
+          "number": 6,
+          "name": "Save verified runtime archives",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-10-11T09:42:52Z",
+          "completedAt": "2026-10-11T09:42:52Z"
+        },
+        {
+          "number": 7,
+          "name": "Check",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T09:42:52Z",
+          "completedAt": "2026-10-11T09:43:04Z"
+        },
+        {
+          "number": 8,
+          "name": "Unit and current-route integration",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T09:43:04Z",
+          "completedAt": "2026-10-11T09:49:25Z"
+        },
+        {
+          "number": 9,
+          "name": "Dedicated Core performance checks",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T09:49:25Z",
+          "completedAt": "2026-10-11T09:50:07Z"
+        },
+        {
+          "number": 10,
+          "name": "Build and Electron checks",
+          "status": "completed",
+          "conclusion": "failure",
+          "startedAt": "2026-10-11T09:50:07Z",
+          "completedAt": "2026-10-11T09:55:07Z"
+        },
+        {
+          "number": 11,
+          "name": "Verify P00-03 and P03 parser as an independent standard user",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T09:55:07Z",
+          "completedAt": "2026-10-11T10:02:00Z"
+        },
+        {
+          "number": 12,
+          "name": "Repeat fresh-process Office shutdown diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:02:00Z",
+          "completedAt": "2026-10-11T10:03:56Z"
+        },
+        {
+          "number": 13,
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:03:56Z",
+          "completedAt": "2026-10-11T10:03:58Z"
+        },
+        {
+          "number": 25,
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-10-11T10:03:58Z",
+          "completedAt": "2026-10-11T10:03:58Z"
+        },
+        {
+          "number": 26,
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:03:58Z",
+          "completedAt": "2026-10-11T10:04:00Z"
+        },
+        {
+          "number": 27,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:04:00Z",
+          "completedAt": "2026-10-11T10:04:00Z"
+        }
+      ]
+    },
+    {
+      "id": 114443992887,
+      "name": "startup-diagnostics",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:04:09Z",
+          "completedAt": "2026-10-11T10:04:11Z"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:04:11Z",
+          "completedAt": "2026-10-11T10:04:21Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:04:21Z",
+          "completedAt": "2026-10-11T10:04:26Z"
+        },
+        {
+          "number": 4,
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:04:26Z",
+          "completedAt": "2026-10-11T10:04:33Z"
+        },
+        {
+          "number": 5,
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:04:33Z",
+          "completedAt": "2026-10-11T10:07:27Z"
+        },
+        {
+          "number": 6,
+          "name": "Repeat fresh-process startup diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:07:27Z",
+          "completedAt": "2026-10-11T10:07:52Z"
+        },
+        {
+          "number": 7,
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:07:52Z",
+          "completedAt": "2026-10-11T10:07:53Z"
+        },
+        {
+          "number": 13,
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:07:53Z",
+          "completedAt": "2026-10-11T10:07:53Z"
+        },
+        {
+          "number": 14,
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:07:53Z",
+          "completedAt": "2026-10-11T10:07:55Z"
+        },
+        {
+          "number": 15,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:07:55Z",
+          "completedAt": "2026-10-11T10:07:55Z"
+        }
+      ]
+    }
+  ],
+  "failure": {
+    "test": "P02-02 T05 long paste",
+    "phase": "Only-save-original continuation after successful preview",
+    "reason": "Detail drawer intercepts pointer events in the narrow CI viewport after the preview tab is closed.",
+    "errorContext": "ci38129152985-e2e-error-context.md"
+  },
+  "artifact": {
+    "id": 11698203043,
+    "sha256": "dbec0631d65d396984809b2df5d592d28d8daa25a1309d78fba2c2abec535bab",
+    "downloadVerified": true,
+    "standardUser": {
+      "foundationPassed": 22,
+      "parserPassed": 3,
+      "previewPassed": 4,
+      "failures": 0
+    },
+    "officeShutdownRounds": 6
+  },
+  "logAccess": "Connector log fragment was insufficient; approved connector artifact download resolved diagnosis. The rejected Git credential command was not executed."
+}

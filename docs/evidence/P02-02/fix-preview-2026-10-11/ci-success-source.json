@@ -1,0 +1,276 @@
+{
+  "runId": 38131096866,
+  "sourceCommit": "abde51e5031dfc80b8d87980612d7b553c54474c",
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/tteok1/TapKit/actions/runs/38131096866",
+  "completedAt": "2026-10-11T10:43:15Z",
+  "jobs": [
+    {
+      "id": 114445422484,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:12:10Z",
+          "completedAt": "2026-10-11T10:12:12Z"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:12:12Z",
+          "completedAt": "2026-10-11T10:12:19Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:12:19Z",
+          "completedAt": "2026-10-11T10:12:25Z"
+        },
+        {
+          "number": 4,
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:12:25Z",
+          "completedAt": "2026-10-11T10:12:32Z"
+        },
+        {
+          "number": 5,
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:12:32Z",
+          "completedAt": "2026-10-11T10:15:38Z"
+        },
+        {
+          "number": 6,
+          "name": "Save verified runtime archives",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-10-11T10:15:38Z",
+          "completedAt": "2026-10-11T10:15:38Z"
+        },
+        {
+          "number": 7,
+          "name": "Check",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:15:38Z",
+          "completedAt": "2026-10-11T10:15:53Z"
+        },
+        {
+          "number": 8,
+          "name": "Unit and current-route integration",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:15:53Z",
+          "completedAt": "2026-10-11T10:23:10Z"
+        },
+        {
+          "number": 9,
+          "name": "Dedicated Core performance checks",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:23:10Z",
+          "completedAt": "2026-10-11T10:23:59Z"
+        },
+        {
+          "number": 10,
+          "name": "Build and Electron checks",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:23:59Z",
+          "completedAt": "2026-10-11T10:29:06Z"
+        },
+        {
+          "number": 11,
+          "name": "Verify P00-03 and P03 parser as an independent standard user",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:29:06Z",
+          "completedAt": "2026-10-11T10:37:49Z"
+        },
+        {
+          "number": 12,
+          "name": "Repeat fresh-process Office shutdown diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:37:49Z",
+          "completedAt": "2026-10-11T10:40:05Z"
+        },
+        {
+          "number": 13,
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:40:05Z",
+          "completedAt": "2026-10-11T10:40:08Z"
+        },
+        {
+          "number": 25,
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:40:08Z",
+          "completedAt": "2026-10-11T10:40:08Z"
+        },
+        {
+          "number": 26,
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:40:08Z",
+          "completedAt": "2026-10-11T10:40:11Z"
+        },
+        {
+          "number": 27,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:40:11Z",
+          "completedAt": "2026-10-11T10:40:11Z"
+        }
+      ]
+    },
+    {
+      "id": 114450378247,
+      "name": "startup-diagnostics",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:40:24Z",
+          "completedAt": "2026-10-11T10:40:25Z"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:40:25Z",
+          "completedAt": "2026-10-11T10:40:31Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:40:31Z",
+          "completedAt": "2026-10-11T10:40:35Z"
+        },
+        {
+          "number": 4,
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:40:35Z",
+          "completedAt": "2026-10-11T10:40:47Z"
+        },
+        {
+          "number": 5,
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:40:47Z",
+          "completedAt": "2026-10-11T10:42:51Z"
+        },
+        {
+          "number": 6,
+          "name": "Repeat fresh-process startup diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:42:51Z",
+          "completedAt": "2026-10-11T10:43:10Z"
+        },
+        {
+          "number": 7,
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:43:10Z",
+          "completedAt": "2026-10-11T10:43:10Z"
+        },
+        {
+          "number": 13,
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:43:10Z",
+          "completedAt": "2026-10-11T10:43:10Z"
+        },
+        {
+          "number": 14,
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:43:10Z",
+          "completedAt": "2026-10-11T10:43:12Z"
+        },
+        {
+          "number": 15,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-11T10:43:12Z",
+          "completedAt": "2026-10-11T10:43:12Z"
+        }
+      ]
+    }
+  ],
+  "verifiedArtifact": {
+    "id": 11699792385,
+    "name": "windows-p00-evidence",
+    "sha256": "fbc3dacbdb45174d544785a71bf29b6e186da3e9726f1d84a7744a5d7fa92ccd",
+    "downloadExitCode": 0,
+    "standardUser": {
+      "foundationPassed": 22,
+      "parserPassed": 3,
+      "previewPassed": 4,
+      "failures": 0,
+      "pending": 0
+    },
+    "officeShutdown": {
+      "rounds": 6,
+      "passed": 6,
+      "exitCodes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "counts": {
+    "unit": 291,
+    "fullIntegration": 298,
+    "performance": 2,
+    "electron": 41,
+    "startup": {
+      "storageRounds": 3,
+      "vaultRounds": 3,
+      "passed": 6
+    }
+  },
+  "firstFailureEvidence": "ci-failed-source.json",
+  "realModelRequests": 0,
+  "stageStatus": "implemented_not_live_verified",
+  "prCreated": false,
+  "mergedToMain": false,
+  "completeLogVerifiedOn": "2026-10-12 Asia/Shanghai"
+}

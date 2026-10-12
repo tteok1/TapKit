@@ -6,6 +6,7 @@ import {
   ReadingPositionSchema,
   LocatorSchema,
   TextRangeSchema,
+  ParsedDocumentSchema,
   IdSchema,
   type ArtifactAccess,
   type AnnotationView,
@@ -160,8 +161,34 @@ export class ArtifactRepository {
     this.access(access);
     return access;
   }
-  document(access: ArtifactAccess) {
-    this.access(access);
+  async document(access: ArtifactAccess) {
+    const file = this.access(access);
+    if (file.version.parserVersion === null && file.version.parseStatus === 'ready') {
+      const text = await this.files.legacyText(access.fileId, {
+        versionId: access.versionId,
+        ...(access.owner ? { owner: access.owner } : {}),
+      });
+      // A read-only text view preserves the old attachment's exact UTF-16 offsets.
+      // It does not publish a parser result, normalize text, or render active markup.
+      return ParsedDocumentSchema.parse({
+        schemaVersion: 1,
+        parserVersion: 'P02-legacy-text-1',
+        format: 'text',
+        blocks: [
+          {
+            id: 'legacy-text',
+            kind: 'text',
+            text,
+            locator: { kind: 'text', start: 0, end: text.length },
+          },
+        ],
+        pages: [],
+        sheets: [],
+        slides: [],
+        entries: [],
+        quality: { needsOcr: false, warnings: [] },
+      });
+    }
     return this.files.parsed(access.fileId, {
       versionId: access.versionId,
       ...(access.owner ? { owner: access.owner } : {}),

@@ -1,0 +1,9 @@
+$ vitest run --config vitest.config.ts --project integration "P02-02" "P03-01.file-material" "P03-02.artifacts"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  4 passed (4)
+      Tests  47 passed (47)
+   Start at  17:34:25
+   Duration  17.93s (tests 81%, import 11%, transform 9%)

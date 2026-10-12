@@ -1,0 +1,91 @@
+{
+  "task": "P02-02",
+  "operation": "main_squash_merge",
+  "date": "2026-10-12",
+  "timezone": "Asia/Shanghai",
+  "repository": "tteok1/TapKit",
+  "userAuthorization": "User explicitly requested squashing into one commit and merging into main; publishing origin/main is within the established repository delivery scope.",
+  "baseline": "9a9e4ee14a3fb57ef2bda0278536f3e676cdee1d",
+  "sourceBranch": "fix/p02-02-text-attachment-preview",
+  "sourceHead": "f22f4cbe7dfd2c0b0e2bb43fb46f7cc20469cb08",
+  "sourceCommitCount": 4,
+  "sourceTree": "7f76c0d124125abb2c35ff2014e7f1fcc27ce8ae",
+  "sourceBranchPreserved": true,
+  "checks": [
+    {
+      "command": "git fetch origin main fix/p02-02-text-attachment-preview (scoped system proxy)",
+      "exitCode": 0
+    },
+    {
+      "command": "git merge --ff-only origin/main",
+      "exitCode": 0
+    },
+    {
+      "command": "git merge --squash fix/p02-02-text-attachment-preview",
+      "exitCode": 0
+    },
+    {
+      "command": "git write-tree compared with source head tree",
+      "exitCode": 0,
+      "equal": true
+    },
+    {
+      "command": "git diff --cached --check (initial squash)",
+      "exitCode": 0
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/pnpm.ps1 check",
+      "exitCode": 0,
+      "evidence": "fix-preview-2026-10-11/check-main-squash-2026-10-12.log"
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/pnpm.ps1 docs:check",
+      "exitCode": 0,
+      "evidence": "fix-preview-2026-10-11/docs-check-main-squash-2026-10-12.log"
+    },
+    {
+      "command": "git diff --check (handoff documents)",
+      "exitCode": 0
+    }
+  ],
+  "sourceCi": {
+    "runId": 38164279404,
+    "url": "https://github.com/tteok1/TapKit/actions/runs/38164279404",
+    "conclusion": "success",
+    "jobs": [
+      "check: success",
+      "startup-diagnostics: success"
+    ],
+    "counts": {
+      "unit": 291,
+      "integration": 298,
+      "performance": 2,
+      "electron": 41,
+      "standardUser": {
+        "foundation": 22,
+        "parser": 3,
+        "preview": 4,
+        "failed": 0,
+        "pending": 0
+      },
+      "officeRounds": 6,
+      "startupStorageRounds": 3,
+      "startupVaultRounds": 3
+    },
+    "artifactSha256": "b32d5e9728402ed044f031cd72e0b6e5a4cc5a31673d3946172a847440e3014e",
+    "evidence": "fix-preview-2026-10-11/ci-success-final.json"
+  },
+  "handoff": {
+    "targetBranch": "main",
+    "commitMethod": "squash",
+    "oneMainCommitForFourSourceCommits": true,
+    "includesProgressAndEvidence": true,
+    "onlyDocumentationChangesAfterVerifiedSource": true,
+    "mainCi": "The containing squash commit's push Actions is the post-merge check; no extra handoff commit."
+  },
+  "stageStatus": "implemented_not_live_verified",
+  "liveModelTesting": "Deferred by user; R01/R13/R14/P01 and R02-R05 gaps preserved.",
+  "realModelRequests": 0,
+  "prCreated": false,
+  "nextStageExpanded": false
+}

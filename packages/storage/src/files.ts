@@ -21,6 +21,8 @@ import { statfs } from 'node:fs/promises';
 
 export { FILE_PARSER_VERSION } from '@tapkit/contracts';
 const RETENTION_MS = 30 * 86400000;
+const legacyTextExtensions =
+  /^(txt|md|markdown|csv|tsv|json|log|py|js|ts|tsx|jsx|html|css|yaml|yml|xml|sql)$/;
 // Prefer the explicit FileRepository source link; keep one deterministic file
 // card even when historical attachment roles also reference this owner.
 const scopedVersionSql = `(SELECT l.pinned_version_id FROM resource_links l
@@ -711,6 +713,34 @@ export class FileRepository {
     )
       throw new StorageError('CONFLICT');
     return { file, bytes };
+  }
+  /** P02's bounded UTF-8 compatibility path; never a fallback for parsed or binary files. */
+  async legacyText(id: string, options: { versionId?: string; owner?: FileOwner } = {}) {
+    const file = this.get(id, options);
+    if (file.version.parseStatus !== 'ready') throw new StorageError('INDEX_NOT_READY');
+    if (file.version.parserVersion !== null) throw new StorageError('CONFLICT');
+    if (!legacyTextExtensions.test(file.version.extension))
+      throw new StorageError('FORMAT_UNSUPPORTED');
+    if (file.version.sizeBytes > 400000) throw new StorageError('FILE_TOO_LARGE');
+    const { bytes } = await this.original(id, { ...options, versionId: file.version.id });
+    const after = this.get(id, { ...options, versionId: file.version.id });
+    if (after.version.parseStatus !== 'ready') throw new StorageError('INDEX_NOT_READY');
+    if (
+      after.version.parserVersion !== null ||
+      (!options.versionId &&
+        (!options.owner || options.owner.type === 'library') &&
+        after.currentVersionId !== file.currentVersionId)
+    )
+      throw new StorageError('CONFLICT');
+    let text: string;
+    try {
+      text = new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+    } catch {
+      throw new StorageError('FORMAT_UNSUPPORTED');
+    }
+    if (text.includes('\u0000')) throw new StorageError('FORMAT_UNSUPPORTED');
+    if (text.length > 100000) throw new StorageError('FILE_TOO_LARGE');
+    return text;
   }
   deletePreviews(ids: string[]) {
     return this.store.db.transaction(() => {
