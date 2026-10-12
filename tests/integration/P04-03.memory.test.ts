@@ -227,6 +227,45 @@ test('P04-03 schema13 to schema14 migration preserves history, dedupes active ke
     db.close();
   }
 });
+test('P04-03 T11 undoing a scope move fences an already extracting candidate in the vacated scope', async () => {
+  const f = await fixture();
+  try {
+    const project = f.project(),
+      sid = f.create(project);
+    f.enqueue(sid, '我喜欢咖啡');
+    await f.drain();
+    f.command('memory.write', { scope: f.scope, predicate: '喜欢', value: '咖啡' });
+    const m = f.memory.list(f.scope).memories[0]!;
+    expect(
+      f.command(
+        'memory.update',
+        { memoryId: m.id, value: '咖啡', scope: { type: 'project', id: project } },
+        m.revision,
+      ).ok,
+    ).toBe(true);
+    const moved = f.memory.list({ type: 'project', id: project }).memories[0]!;
+    f.enqueue(sid, '我喜欢咖啡');
+    let release!: (c: MemoryCandidate[]) => void;
+    f.memory.extractor = () =>
+      new Promise((r) => {
+        release = r;
+      });
+    const job = new JobQueue(f.store).claim(newId())!,
+      pending = f.memory.execute(job, new AbortController().signal);
+    await Promise.resolve();
+    expect(f.command('memory.undo', { changeEventId: moved.changeEventId }).ok).toBe(true);
+    release(conservativeCandidate('我喜欢咖啡'));
+    await pending;
+    expect(f.memory.list({ type: 'project', id: project }).memories).toHaveLength(0);
+    expect(f.memory.list(f.scope).memories[0]!.value).toBe('咖啡');
+    const decision = f.store.db
+      .prepare('SELECT decision FROM memory_candidates WHERE job_id=?')
+      .get(job.id);
+    expect(decision).toEqual({ decision: 'conflict' });
+  } finally {
+    f.store.close();
+  }
+});
 async function fixture() {
   await mkdir('.test-data', { recursive: true });
   const dir = await mkdtemp(resolve('.test-data', 'P04-03 synthetic ')),

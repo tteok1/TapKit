@@ -1049,10 +1049,25 @@ export class MemoryService {
             this.store.db
               .prepare('UPDATE memory_changes SET undone=1 WHERE event_id=?')
               .run((p as { changeEventId: string }).changeEventId);
-            return this.ok(
-              r,
-              this.changed(m.id, m, before.status === 'active' ? 'restored' : 'deleted'),
+            const result = this.changed(
+              m.id,
+              m,
+              before.status === 'active' ? 'restored' : 'deleted',
             );
+            if (m.scope_type !== before.scope_type || m.scope_id !== before.scope_id)
+              this.store.db
+                .prepare(
+                  'INSERT INTO memory_tombstones VALUES(?,?,?,?,?,?) ON CONFLICT(profile_id,scope_type,scope_id,subject,predicate) DO UPDATE SET deleted_before_event_seq=max(deleted_before_event_seq,excluded.deleted_before_event_seq)',
+                )
+                .run(
+                  this.store.profileId,
+                  m.scope_type,
+                  m.scope_id,
+                  m.subject,
+                  m.predicate,
+                  this.seq(),
+                );
+            return this.ok(r, result);
           }
           case 'memory.policy.set': {
             const a = p as { sessionId: string; memoryEnabled: boolean; historyEnabled: boolean },
