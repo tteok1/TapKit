@@ -7,4 +7,3 @@ $ vitest run --config vitest.config.ts --project integration "P04-03"
       Tests  12 passed (12)
    Start at  12:44:43
    Duration  9.26s (tests 66%, transform 18%, import 16%)
-

@@ -1,0 +1,33 @@
+{
+  "task": "P04-03",
+  "status": "in_progress",
+  "date": "2026-10-12",
+  "timezone": "Asia/Shanghai",
+  "branch": "codex/p04-03-memory",
+  "baseline": "97a309f5c0331960ff5ae11a31c3ccbb3c36cec7",
+  "implementationCommit": "523e77ff08c1024bf0c0b424dde5eb3418c7223b",
+  "mainSync": {"cleanAtStart": true,"fetchExitCode": 0,"ffOnlyExitCode": 0,"newBranchExitCode": 0},
+  "localChecks": [
+    {"command":"pnpm check","exitCode":0,"files":414,"log":"docs/evidence/P04-03/check-before-ci.log"},
+    {"command":"pnpm test:unit","exitCode":0,"tests":293,"log":"docs/evidence/P04-03/unit-final.log"},
+    {"command":"pnpm test:integration P04- P02- P03-03","exitCode":0,"tests":91,"log":"docs/evidence/P04-03/related-integration-final.log"},
+    {"command":"pnpm test:integration P04-03","exitCode":0,"tests":12,"log":"docs/evidence/P04-03/memory-final.log"},
+    {"command":"pnpm test:e2e -- --grep P04-03|P02-02 T02 history pagination","exitCode":0,"tests":5,"paginationSeconds":12.9,"log":"docs/evidence/P04-03/electron-pagination-fixed.log"},
+    {"command":"pnpm test:e2e -- --grep P00-01","exitCode":0,"tests":2,"log":"docs/evidence/P04-03/preload-smoke-fixed.log"},
+    {"command":"pnpm docs:check","exitCode":0,"taskRows":37}
+  ],
+  "failuresPreserved": [
+    "Initial unit had 292/293; P00 download test elapsed abnormally 1654s and timed out. Isolated 14/14 and final complete 293/293 passed without changing the test or threshold.",
+    "Initial memory integration7/8 had an overbroad source-deletion fixture assertion; corrected to require removed source absent.",
+    "Expanded memory integration11/12 found omitted prompt wrapper budget; full serialized module count fixed;12/12 passed.",
+    "Electron0/3 waited for empty draft Send to enable; fixed to await completed run. Next1/3 used old session and attempted temporary cross-window access; awaited new session ID and used real temporary entry.3/3 then passed.",
+    "Extended Electron19/20 exposed pagination IPC fanout. Memory and permission events split; current session excluded from automatic historical search. Original45s limit retained; pagination12.9s and memory4/4 passed.",
+    "P00 finite bridge smoke needed memoryCommand in correct key order; actual sandbox/child shutdown2/2 passed without a generic invoke."
+  ],
+  "nativeSources": {"count":11,"baselineGitDiffExitCode":0,"hashes":"docs/evidence/P04-03/native-source-hashes.json","currentMachineProbeNotRun":true,"ciAdministratorAndStandardUserPending":true},
+  "ci": [{"runId":38205112261,"headSha":"523e77ff08c1024bf0c0b424dde5eb3418c7223b","status":"in_progress","url":"https://github.com/tteok1/TapKit/actions/runs/38205112261"}],
+  "live": {"executed":false,"reason":"User explicitly deferred real model integration on2026-10-12.","resourceIds":["R01","R02","R03","R04","R05","R13","R14"],"noResourceStatusRaised":true},
+  "pullRequestCreated":false,
+  "mainMerged":false,
+  "nextStageStarted":false
+}

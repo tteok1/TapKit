@@ -1,0 +1,83 @@
+$ node scripts/e2e.mjs "--" "--grep" "P00-01"
+
+Running 2 tests using 1 worker
+
+(node:22388) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_READY
+TAPKIT_HOST_WINDOW 39564
+(node:39564) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_PONG
+P00-01 runtime probe {"nonce":"中文 空格 ABI","process":"core","sqliteVersion":"3.53.4","electronVersion":"44.3.0","nodeAbi":"149","corePid":41880}
+Debugger ending on ws://127.0.0.1:63865/67de084b-fa3c-49d3-b9a7-44f42f6b7676
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 1 tests\e2e\P00-01.shell.spec.ts:22:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory (2.3s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 36332
+(node:36332) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+Debugger ending on ws://127.0.0.1:59153/51c05f9e-ea37-47a2-97d1-6c62aa0c7c11
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  x  2 tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown (1.6s)
+
+
+  1) tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown ───
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    @@ -6,12 +6,12 @@
+          "openEntity",
+          "saveConversation",
+          "openArtifactExternal",
+          "copyText",
+          "historyCommand",
+    -     "projectCommand",
+          "memoryCommand",
+    +     "projectCommand",
+          "exportProject",
+          "fileCommand",
+          "artifactCommand",
+          "artifactUrl",
+          "saveOriginal",
+
+      49 |       bridge: Object.keys(window.tapkit),
+      50 |     })),
+    > 51 |   ).toEqual({
+         |     ^
+      52 |     require: 'undefined',
+      53 |     process: 'undefined',
+      54 |     bridge: [
+        at D:\Tapkit-public\tests\e2e\P00-01.shell.spec.ts:51:5
+
+    Error Context: test-results\e2e\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P00-01.shell.spec.ts:42:1 › P00-01 sandbox bridge errors and clean child shutdown ────
+  1 passed (4.8s)
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/e2e.mjs:14:21
+
+Node.js v24.18.0
+[ELIFECYCLE] Command failed with exit code 1.

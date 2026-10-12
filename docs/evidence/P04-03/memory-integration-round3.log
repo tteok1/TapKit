@@ -1,0 +1,29 @@
+$ vitest run --config vitest.config.ts --project integration "P04-03"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P04-03.memory.test.ts (12 tests | 1 failed) 5175ms
+   × P04-03 search pagination, scope move, expiry and explicitly saved sensitive fact use the same verified store 738ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P04-03.memory.test.ts > P04-03 search pagination, scope move, expiry and explicitly saved sensitive fact use the same verified store
+Error: BUDGET_EXCEEDED
+ ❯ MemoryService.background packages/core/src/memory-service.ts:732:53
+    730|         }
+    731|       : undefined;
+    732|     if (module && countTokens(module) > 1000) throw new StorageError('…
+       |                                                     ^
+    733|     return {
+    734|       memoryUses: selected,
+ ❯ tests/integration/P04-03.memory.test.ts:171:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 11 passed (12)
+   Start at  12:28:00
+   Duration  7.82s (tests 68%, transform 22%, import 9%)
+
+[ELIFECYCLE] Command failed with exit code 1.
