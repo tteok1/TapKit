@@ -60,6 +60,30 @@
       "exitCode": 0,
       "tests": 13,
       "log": "docs/evidence/P04-03/scope-undo-fence.log"
+    },
+    {
+      "command": "pnpm test:integration P04-03",
+      "exitCode": 0,
+      "tests": 15,
+      "log": "docs/evidence/P04-03/account-root-binding.log"
+    },
+    {
+      "command": "pnpm test:integration P04-03",
+      "exitCode": 0,
+      "tests": 15,
+      "log": "docs/evidence/P04-03/final-15-integration.log"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P04-03",
+      "exitCode": 0,
+      "tests": 4,
+      "log": "docs/evidence/P04-03/electron-final-candidate.log"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "files": 414,
+      "log": "docs/evidence/P04-03/check-frozen-candidate.log"
     }
   ],
   "failuresPreserved": [
@@ -84,6 +108,12 @@
       "headSha": "523e77ff08c1024bf0c0b424dde5eb3418c7223b",
       "status": "in_progress",
       "url": "https://github.com/tteok1/TapKit/actions/runs/38205112261"
+    },
+    {
+      "runId": 38205694915,
+      "headSha": "b020b70457f1dfb4e61415a182d453ff1fc7bad5",
+      "status": "in_progress",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/38205694915"
     }
   ],
   "live": {
@@ -102,5 +132,6 @@
   },
   "pullRequestCreated": false,
   "mainMerged": false,
-  "nextStageStarted": false
+  "nextStageStarted": false,
+  "currentCodeCommit": "b020b70457f1dfb4e61415a182d453ff1fc7bad5"
 }

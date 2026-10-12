@@ -17,13 +17,27 @@ export const implicitEligible = (s: string) =>
   /^我(?:一直|通常|习惯|喜欢|偏好|更喜欢|希望以后)/.test(s.trim());
 export function directMemory(
   text: string,
-): { action: 'write' | 'forget'; predicate: string; value: string } | undefined {
+): { action: 'write' | 'forget'; predicate: string; value: string; previous?: string } | undefined {
   const match = text
     .trim()
     .match(/^(?:请)?(?:帮我)?(记住|更新记忆|纠正记忆|忘记|删除记忆)[：:\s]*(.{1,2000})$/s);
   if (!match) return;
   const value = match[2]!.trim().replace(/[。！]$/, '');
   if (/忘记|删除/.test(match[1]!)) return { action: 'forget', predicate: '', value };
+  const replacement = value.match(/^把(.+?)(?:更新为|改为|更正为|纠正为)(.+)$/s);
+  if (
+    /更新|纠正/.test(match[1]!) &&
+    /^把.*(?:更新为|改为|更正为|纠正为)/s.test(value) &&
+    !replacement
+  )
+    return { action: 'write', predicate: '', value: '' };
+  if (replacement && /更新|纠正/.test(match[1]!))
+    return {
+      action: 'write',
+      predicate: '',
+      value: replacement[2]!.trim(),
+      previous: replacement[1]!.trim(),
+    };
   const pair =
     value.match(/^(?:我)?(喜欢|偏好|更喜欢|名字是|叫|职业是|希望以后)(.+)$/s) ??
     value.match(/^([^：:=]{1,160})[：:=](.+)$/s);

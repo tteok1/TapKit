@@ -19,6 +19,8 @@ export async function memoryCommand(command: MemoryCommand, payload: unknown, re
 }
 const errorText = (e: unknown) =>
   e instanceof Error && e.message === 'CONFLICT' ? t.conflict : t.error;
+const memoryName = (predicate: string) =>
+  /^事实:[a-f0-9]{24}$/.test(predicate) ? t.fact : predicate;
 export function MemoryManager() {
   const [profile, setProfile] = useState(''),
     [projects, setProjects] = useState<{ id: string; name: string }[]>([]),
@@ -149,7 +151,7 @@ export function MemoryManager() {
             aria-label={t.predicate}
             maxLength={160}
             disabled={!!editing}
-            value={editing?.predicate ?? predicate}
+            value={editing ? memoryName(editing.predicate) : predicate}
             onChange={(e) => setPredicate(e.target.value)}
             required
           />
@@ -182,7 +184,7 @@ export function MemoryManager() {
       {!rows.length && <p>{t.empty}</p>}
       {rows.map((m) => (
         <article className="memory-row" key={m.id} data-memory-id={m.id}>
-          <strong>{m.predicate}</strong>
+          <strong>{memoryName(m.predicate)}</strong>
           <p style={{ whiteSpace: 'pre-wrap' }}>{m.value}</p>
           <p>
             {m.explicit ? t.explicit : t.automatic} · {t.updated}{' '}
@@ -310,7 +312,7 @@ export function MemoryPolicy({ sessionId, eventSeq }: { sessionId: string; event
         <div role="region" aria-label={t.policy}>
           <p>{t.scopeHint}</p>
           <p>
-            {t.scope}：{policy.scope.type === 'profile' ? t.personal : policy.scope.id}
+            {t.scope}：{policy.scope.type === 'profile' ? t.personal : t.project}
           </p>
           <p>
             {t.global}：
@@ -442,7 +444,8 @@ export function MemoryMessage({
           {uses && !uses.memoryUses.length && !uses.historyUses.length && <p>{t.noUses}</p>}
           {uses?.memoryUses.map((m) => (
             <p key={m.id}>
-              {m.predicate}：{m.value} <Link to="/settings/personalization">{t.manage}</Link>
+              {memoryName(m.predicate)}：{m.value}{' '}
+              <Link to="/settings/personalization">{t.manage}</Link>
             </p>
           ))}
           {uses?.historyUses.map((h) => (

@@ -266,6 +266,72 @@ test('P04-03 T11 undoing a scope move fences an already extracting candidate in 
     f.store.close();
   }
 });
+test('P04-03 explicit correction of an arbitrary referenced fact retains its identity and rejects an ambiguous or missing target', async () => {
+  const f = await fixture();
+  try {
+    const sid = f.create(),
+      mid = f.add(sid, '记住：我使用合成系统');
+    f.store.db.transaction(() => f.memory.explicit(mid))();
+    const original = f.memory.list(f.scope).memories[0]!;
+    const correction = f.add(sid, '更新记忆：把我使用合成系统改为我使用新的合成系统');
+    expect(f.store.db.transaction(() => f.memory.explicit(correction))()).toBe('written');
+    const updated = f.memory.list(f.scope).memories[0]!;
+    expect(updated.id).toBe(original.id);
+    expect(updated.value).toBe('我使用新的合成系统');
+    expect(updated.sources[0]!.messageId).toBe(correction);
+    const missing = f.add(sid, '更新记忆：把不存在的信息改为错误替换');
+    expect(f.store.db.transaction(() => f.memory.explicit(missing))()).toBe('skipped');
+    const malformed = f.add(sid, '更新记忆：把我使用新的合成系统改为');
+    expect(f.store.db.transaction(() => f.memory.explicit(malformed))()).toBe('skipped');
+    expect(f.memory.list(f.scope).memories).toHaveLength(1);
+    f.command('memory.write', {
+      scope: f.scope,
+      predicate: '重复事实',
+      value: '我使用新的合成系统',
+    });
+    const ambiguous = f.add(sid, '纠正记忆：把我使用新的合成系统改为含糊替换');
+    expect(f.store.db.transaction(() => f.memory.explicit(ambiguous))()).toBe('skipped');
+    expect(f.memory.list(f.scope).memories.every((m) => m.value !== '含糊替换')).toBe(true);
+  } finally {
+    f.store.close();
+  }
+});
+test('P04-03 background extraction binds the actual answer account and inherited root budget and refuses an unrelated ready account', async () => {
+  const f = await fixture();
+  try {
+    const sid = f.create(),
+      parent = f.enqueue(sid, '普通合成目标'),
+      child = f.enqueue(sid, '我喜欢咖啡'),
+      original = (await f.models.catalog())[0]!;
+    const other = DescriptorSchema.parse({
+      ...original,
+      accountId: newId(),
+      modelId: 'unselected',
+    });
+    f.models.catalog = async () => [other, original];
+    f.store.db.prepare('UPDATE runs SET root_run_id=?,task_version=2,model_json=? WHERE id=?').run(
+      parent.rid,
+      JSON.stringify({
+        schemaVersion: 1,
+        selection: { accountId: original.accountId, modelId: original.modelId },
+      }),
+      child.rid,
+    );
+    await f.drain();
+    const input = f.inputs[0]!;
+    expect([...input.allowedAccounts!]).toEqual([original.accountId]);
+    expect(input.rootRunId).toBe(parent.rid);
+    expect(input.runId).toBe(child.rid);
+    expect(input.request.taskVersion).toBe(2);
+    f.models.catalog = async () => [other];
+    await expect(
+      f.chat.extractMemory(sid, child.rid, '我喜欢咖啡', new AbortController().signal),
+    ).rejects.toMatchObject({ code: 'AUTH_REQUIRED' });
+    expect(f.inputs).toHaveLength(1);
+  } finally {
+    f.store.close();
+  }
+});
 async function fixture() {
   await mkdir('.test-data', { recursive: true });
   const dir = await mkdtemp(resolve('.test-data', 'P04-03 synthetic ')),

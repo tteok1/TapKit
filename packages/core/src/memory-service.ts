@@ -406,12 +406,29 @@ export class MemoryService {
     const p = this.policy(m.session_id),
       direct = directMemory(text(m));
     if (!direct) return;
-    if (!p.memoryEnabled || !this.writable(p.scope) || credentialText(direct.value))
+    if (
+      !direct.value ||
+      !p.memoryEnabled ||
+      !this.writable(p.scope) ||
+      credentialText(direct.value)
+    )
       return 'skipped';
     if (direct.action === 'write') {
+      let predicate = direct.predicate;
+      if (direct.previous) {
+        const matches = (
+          this.store.db
+            .prepare(
+              "SELECT * FROM memories WHERE profile_id=? AND scope_type=? AND scope_id=? AND status='active' AND deleted_at IS NULL",
+            )
+            .all(this.store.profileId, p.scope.type, p.scope.id) as Row[]
+        ).filter((r) => value(r) === direct.previous || r.predicate === direct.previous);
+        if (matches.length !== 1) return 'skipped';
+        predicate = matches[0]!.predicate;
+      }
       this.write(
         p.scope,
-        direct.predicate,
+        predicate,
         direct.value,
         true,
         [{ messageId: m.id, revision: m.revision }],

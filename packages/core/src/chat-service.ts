@@ -27,6 +27,7 @@ import {
   ContextContinueSchema,
   ContextViewSchema,
   MemoryCandidateSchema,
+  SelectionSchema,
   type Request,
   type Reply,
   type ResourceRef,
@@ -1911,7 +1912,20 @@ export class ChatService {
     return title;
   }
   async extractMemory(sessionId: string, runId: string, text: string, parentSignal: AbortSignal) {
-    const descriptor = (await this.models.catalog()).find((m) => m.status === 'ready');
+    const run = this.store.db
+      .prepare(
+        'SELECT model_json,root_run_id,task_version FROM runs WHERE id=? AND session_id=? AND profile_id=?',
+      )
+      .get(runId, sessionId, this.store.profileId) as
+      { model_json: string; root_run_id: string; task_version: number } | undefined;
+    if (!run) throw new StorageError('NOT_FOUND');
+    const selected = SelectionSchema.safeParse(JSON.parse(run.model_json).selection),
+      selection = selected.success ? selected.data : this.preferences(sessionId).selection;
+    const descriptor = (await this.models.catalog()).find(
+      (m) =>
+        m.status === 'ready' &&
+        (!selection || (m.accountId === selection.accountId && m.modelId === selection.modelId)),
+    );
     if (!descriptor?.accountId) throw new StorageError('AUTH_REQUIRED');
     const preferences = this.preferences(sessionId, {
       accountId: descriptor.accountId,
@@ -1924,7 +1938,7 @@ export class ChatService {
       {
         logicalCallId: newId(),
         runId,
-        rootRunId: runId,
+        rootRunId: run.root_run_id,
         mode: 'chat',
         foreground: false,
         singleAttempt: true,
@@ -1937,7 +1951,7 @@ export class ChatService {
           needsTools: false,
         },
         request: {
-          taskVersion: 1,
+          taskVersion: run.task_version,
           branchId: this.session(sessionId).active_branch_id,
           messages: [{ role: 'user', text }],
           systemModules: [
