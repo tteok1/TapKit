@@ -1,0 +1,41 @@
+{
+  "task": "UI-01",
+  "date": "2026-10-12",
+  "timezone": "Asia/Shanghai",
+  "authorization": "User explicitly requested merging the already pushed UI development branch into main; main push is included in delivery, with no PR or CI polling.",
+  "repository": "https://github.com/tteok1/TapKit.git",
+  "sourceBranch": "codex/ui-redesign",
+  "sourceCommit": "0d774b718e87a1031b08762a00c5ee2bc5dc6aa4",
+  "mainBaseline": "5268fc03c822388d26cd0a4cf7f157f9a6b3ae1c",
+  "initialWorktree": "clean",
+  "sourceRemoteMatched": true,
+  "mainAheadBehindBeforeMerge": "0/0",
+  "commands": [
+    { "command": "git fetch origin", "exitCode": 0 },
+    { "command": "git switch main", "exitCode": 0 },
+    { "command": "git merge --ff-only origin/main", "exitCode": 0 },
+    { "command": "git merge --no-ff --no-commit codex/ui-redesign", "exitCode": 0 },
+    { "command": "git diff --cached --quiet 0d774b718e87a1031b08762a00c5ee2bc5dc6aa4", "exitCode": 0 },
+    { "command": "pnpm check", "exitCode": 0, "log": "check-main-merge.log" },
+    { "command": "pnpm docs:check", "exitCode": 0, "log": "docs-main-merge.log" },
+    { "command": "git diff --check; git diff --cached --check", "exitCode": 0, "log": "diff-main-merge.log" }
+  ],
+  "mergedTreeBeforeHandoffEqualsSource": true,
+  "mergeHandoffScope": "Progress, requirement and merge-evidence documents only; source branch retained. Delivery merge commit is the commit containing this record.",
+  "sourceChangesAfterUiDelivery": [],
+  "backendChanges": [],
+  "taskStateChanges": 0,
+  "liveStatusChanges": 0,
+  "previousVerification": {
+    "record": "results.json",
+    "unitPassed": 293,
+    "relatedIntegrationPassed": 45,
+    "fullElectronPassedBeforeFinalVisualFixes": 67,
+    "finalUiCasesPassedAfterVisualFixes": 5,
+    "note": "Sources remain identical to the pushed UI source; merge handoff does not claim new live verification."
+  },
+  "pushVerification": "Compare resulting main HEAD with remote refs/heads/main and origin/main; worktree must be clean.",
+  "ciPolling": false,
+  "prCreated": false,
+  "nextStageStarted": false
+}

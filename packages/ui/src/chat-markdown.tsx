@@ -78,12 +78,23 @@ function Code({ text, language }: { text: string; language: string }) {
           const lang = language as keyof typeof shiki.bundledLanguages;
           const highlighter = await shiki.createHighlighter({
             langs: [lang],
-            themes: ['github-dark'],
+            themes: ['github-light', 'github-dark'],
             engine: shiki.createJavaScriptRegexEngine(),
           });
           try {
-            const result = highlighter.codeToTokens(text, { lang, theme: 'github-dark' });
-            if (!stopped) setTokens(result.tokens);
+            const result = highlighter.codeToTokensWithThemes(text, {
+              lang,
+              themes: { light: 'github-light', dark: 'github-dark' },
+            });
+            if (!stopped)
+              setTokens(
+                result.map((line) =>
+                  line.map((token) => ({
+                    content: token.content,
+                    color: `light-dark(${token.variants.light?.color ?? 'var(--ink)'}, ${token.variants.dark?.color ?? 'var(--ink)'})`,
+                  })),
+                ),
+              );
           } finally {
             highlighter.dispose();
           }

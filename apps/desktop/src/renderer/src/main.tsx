@@ -4,6 +4,7 @@ import { MemoryRouter } from '@tapkit/ui';
 import { DesktopShell } from './desktop-shell';
 import { readLayout } from './desktop-state';
 import './styles.css';
+import './design-system.css';
 import { ViewerProvider } from '../features/viewer/state';
 const root = document.getElementById('root');
 if (!root) throw new Error('Missing root element');

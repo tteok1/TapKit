@@ -54,7 +54,9 @@ test('P02-01 T01 empty navigation, real records, keyboard search, draft examples
   await page.getByRole('button', { name: '新建项目', exact: true }).click();
   await page.getByLabel('项目名称').fill('验收项目');
   await page.getByRole('button', { name: '创建项目', exact: true }).click();
-  await expect(page.getByText('验收项目', { exact: true })).toBeVisible();
+  await expect(
+    page.locator('main').getByRole('link', { name: '验收项目', exact: true }),
+  ).toBeVisible();
   await page.getByRole('link', { name: '个人资料与设置', exact: true }).click();
   await page.getByLabel('昵称', { exact: true }).fill('本地验收');
   await page.getByRole('button', { name: '保存设置', exact: true }).click();

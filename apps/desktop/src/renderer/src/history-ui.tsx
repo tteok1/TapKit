@@ -473,6 +473,7 @@ export function HistoryList({
         </div>
       )}
       {!sessions.length && <p>{h.empty}</p>}
+      {!collapsed && !!sessions.length && <h2 className="history-list-title">{h.active}</h2>}
       {sessions
         .filter(() => !section || !sidebar.sections.find((g) => g.id === section)?.collapsed)
         .map(render)}

@@ -16,6 +16,14 @@ main已fetch/ff-only同步，基线97a309f，新分支codex/p04-03-memory；最�
 
 # 开发进度总表
 
+## 2026-10-12 UI-01 合入 main
+
+用户明确授权将已推送的 UI 分支合入 main。远程引用 fetch 和本地 main ff-only 同步退出0，基线5268fc0；codex/ui-redesign 的已验收提交0d774b7无冲突合入，合入交接前暂存树与源分支完全一致。合入提交保留源分支历史，交接只改文档；按用户授权推送 origin/main，不创建PR、不轮询CI、不扩后续阶段。UI-01仅本地前端 implemented_and_verified，原37项任务、live资源缺口和P04-gate保持。详见 [UI-01](UI-01.md)及docs/evidence/UI-redesign/main-merge-2026-10-12.json。
+
+## 2026-10-12 UI-01 前端视觉重设计
+
+用户明确授权全部现有 UI 页面统一重设计；从 main 5268fc0 创建 codex/ui-redesign。采用白色主界面、浅绿边缘与用户气泡、完整会话侧栏和可展开工作台，复用当前窗口图标；所有后台代码与契约保持。补充 UI 修订 implemented_and_verified（仅本地前端），真实 Electron 截图与 unit293/相关integration45/全量Electron67/最终UI复验5通过；原 P00–P04/live 状态不提升、不扩后续阶段。用户随后明确授权提交并推送远程同名分支，本提交包含全部实现及验收交接，不合入main、不建PR、不轮询CI。详见 [UI-01](UI-01.md)。
+
 ## 2026-10-12 P02预览修复压缩合入 main
 
 用户明确要求“压缩成一个commit并合入main”。远程main已fetch/ff-only同步（退出0），基线9a9e4ee；fix/p02-02-text-attachment-preview的4个提交（最终f22f4cb）压缩为包含交接记录的单一main提交，保留源分支，不创建PR。最终源分支CI38164279404 check/startup全success，unit291/integration298/perf2/Electron41、标准用户22/3/4零缺项、Office六轮及storage/vault各三轮通过。合入前暂存树与源分支完全相同；交接仅更新文档，main push Actions为合入后检查。P02保持implemented_not_live_verified，真实模型联调继续待验，P04-03/gate未开始。详见[P02-02](P02-02.md)及docs/evidence/P02-02/main-squash-2026-10-12.json。

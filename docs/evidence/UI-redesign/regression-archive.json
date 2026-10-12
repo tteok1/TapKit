@@ -1,0 +1,288 @@
+{
+  "baseline": "5268fc0",
+  "reason": "Preserve historical captures; new UI regression captures are stored separately. These are functional-state captures; use primary UI-redesign captures for final layout after review fixes.",
+  "records": [
+    {
+      "originalPath": "docs/evidence/P00-02/recovery.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P00-02/recovery.png",
+      "freshSha256": "579175f1c15c575b03fb1630574ef89838c050eaf058c0a0b83b4c8ca6b7d58d",
+      "restoredSha256": "2b15e2c14a06c5cc614ae6943da761c93c4b54f25b90d5c3a8ffd53b28d542fa"
+    },
+    {
+      "originalPath": "docs/evidence/P00-02/regression-shell.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P00-02/regression-shell.png",
+      "freshSha256": "5d3304c6a0fdf668ea4c3d2ad1f606a59f625f8db08d269bf66b73fe86d2d3e3",
+      "restoredSha256": "b9c7bc10863cf8c721bfb10406b19852d4c289413eeae0f539d761ef0bf995e0"
+    },
+    {
+      "originalPath": "docs/evidence/P02-02/fix-preview-2026-10-11/long-paste-body.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P02-02/fix-preview-2026-10-11/long-paste-body.png",
+      "freshSha256": "6d8b4c1f687d501c0df466d48f2ead1afe1aa1347203b7ad1150163d7e2d9982",
+      "restoredSha256": "fdf7d8b3476124ebc7ca166809b4b10c43f2317585f80fa6506bc1691558b822"
+    },
+    {
+      "originalPath": "docs/evidence/P02-02/fix-preview-2026-10-11/long-paste-preview.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P02-02/fix-preview-2026-10-11/long-paste-preview.png",
+      "freshSha256": "d2cadd414276778e81255a9271a5d2d714ee36bfbf17e46c5f24a2990540cec8",
+      "restoredSha256": "3471f250550b1e2ee350a23ec67831c8a854963cd0f1bddf6f3c7b4e06b4a7e4"
+    },
+    {
+      "originalPath": "docs/evidence/P03-01/chat-host-import.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-01/chat-host-import.png",
+      "freshSha256": "aa9aac8aeba2d4bb4f0bf23e882b637a2381af8c1f3378604f3e2c5df5fd28bc",
+      "restoredSha256": "57c125ff4e18202041661640047e33ddbb6b296add56e053da983732a5a2e604"
+    },
+    {
+      "originalPath": "docs/evidence/P03-01/chat-navigation-isolation.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-01/chat-navigation-isolation.png",
+      "freshSha256": "c77d871af5da4a449d03eb70239e80a32a3ad76a773a3abbe48869fc1b2076d0",
+      "restoredSha256": "f2471b95eea3687d847ac5ac6466c9d9818d67409eb393f91f03da8716e9fea6"
+    },
+    {
+      "originalPath": "docs/evidence/P03-01/generated-note-library.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-01/generated-note-library.png",
+      "freshSha256": "e680cb15f3af843833a87bc5ea8a3861de3c0df85544e34d5e94e8f0a4623ab2",
+      "restoredSha256": "b725719ab68ab31a21859d407817bdfe0c0382c91be7efa47ecb26e168910b17"
+    },
+    {
+      "originalPath": "docs/evidence/P03-01/import-recovery.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-01/import-recovery.png",
+      "freshSha256": "ba4e1342724d6db7e8b215fe8da3d88fe9fa63e8dcf8872282cb956026f136ae",
+      "restoredSha256": "ace033686a7f249a96dac25ff61aebbe8dba92e9b6d41c110b49e5ebfcc370de"
+    },
+    {
+      "originalPath": "docs/evidence/P03-01/library-dark-1200.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-01/library-dark-1200.png",
+      "freshSha256": "d431db9d2d56530e4ff93bb599920c80244992ec056e44b25fd2426b72fc2e97",
+      "restoredSha256": "fa4a47c09e4af0a1a69e7e9259ddab6fb4f101b1eeae21da86a98a8e59f227b9"
+    },
+    {
+      "originalPath": "docs/evidence/P03-01/library-dark-200-percent.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-01/library-dark-200-percent.png",
+      "freshSha256": "bfcff5436289dd514926a4bea66c98458e60a64120f13b6f21b0f596a411c2b5",
+      "restoredSha256": "dbe49f531ef546ea6ed445c2f4d81c30b07c43e903534f5e522b4605042c0a78"
+    },
+    {
+      "originalPath": "docs/evidence/P03-01/library-dark-960.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-01/library-dark-960.png",
+      "freshSha256": "290e2f70b7d4b6fd5eb31fa70ad482b9ca555472f5108cacee8a939841b732dd",
+      "restoredSha256": "4b5a5c0af549926ea7764fd037965e3df8cc1a0700e64a67ce28b696be28b6e6"
+    },
+    {
+      "originalPath": "docs/evidence/P03-01/library-light-1200.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-01/library-light-1200.png",
+      "freshSha256": "80d4ee68ee5e4fd06c5e1618583b2041ab758f61bea60ddd10fc57b845a92f83",
+      "restoredSha256": "edb2d9629ebfb17b15b781c16ad003229f1e270312f02d2e182a56f6bfc0aacf"
+    },
+    {
+      "originalPath": "docs/evidence/P03-01/library-light-960.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-01/library-light-960.png",
+      "freshSha256": "853258b5d7053bcd6e4e4f9ec72c89a8f2fcc721dfd5d87565531c07a213f861",
+      "restoredSha256": "66b3de10bf6a96f838a250fbfca116d71f603512f472faa41dd5a250f0b76bc4"
+    },
+    {
+      "originalPath": "docs/evidence/P03-01/media-original-only.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-01/media-original-only.png",
+      "freshSha256": "b48bdd91cee556b665a5d9ce68a674e0d18908b28737e27519eabec9f25be1f7",
+      "restoredSha256": "06471fb6728ef8fb80d96b47083cdae92da7813837cb3977a28fa12b76ce9c00"
+    },
+    {
+      "originalPath": "docs/evidence/P03-01/ocr-original-recovery.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-01/ocr-original-recovery.png",
+      "freshSha256": "9c79df90d91e24879b9d4d1901bfe42142458cef103bc38eee6bd95e4df85707",
+      "restoredSha256": "412bf4dbf0543338bbd3db56b7931fe409b0707319d226354f694d74609c9c38"
+    },
+    {
+      "originalPath": "docs/evidence/P03-01/scoped-folder-root.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-01/scoped-folder-root.png",
+      "freshSha256": "eccf4f14299832b99335774bd1e5359d95e5c0ed4ba388f8622fb13cb5dcd0a8",
+      "restoredSha256": "122cf9124a66a0afb7d35481b7c49e15045b1c787fed3614141221694a56dd62"
+    },
+    {
+      "originalPath": "docs/evidence/P03-01/scoped-pinned-library.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-01/scoped-pinned-library.png",
+      "freshSha256": "a0d92a534dbc48264a22fb105b7c1ecabb42ab3d6b1e5176e12297a5fef0e34d",
+      "restoredSha256": "7ebd29079612bd781463c9c37571d87729dea01ad5352265de0c7a0abb00ad71"
+    },
+    {
+      "originalPath": "docs/evidence/P03-01/task-usage.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-01/task-usage.png",
+      "freshSha256": "ed4bc082a8e2d3c33f9e64145e69cfaa36b8948220998a26c6b6be8aaf760932",
+      "restoredSha256": "37b3d5e6c1a36db15621738f4af9fe2652b0da5b5d1f436b18a8b3548ac8005d"
+    },
+    {
+      "originalPath": "docs/evidence/P03-02/pdf-sample-1.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-02/pdf-sample-1.png",
+      "freshSha256": "b609df1de49f218bf377e90eb691efbfc81768cbee7ff5d72e88a1b5191ef2c0",
+      "restoredSha256": "dce2e7e7060903174a3d2fa65ba6434cb35c6d69b44ff4f30037b80a523b1993"
+    },
+    {
+      "originalPath": "docs/evidence/P03-02/pdf-sample-2.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-02/pdf-sample-2.png",
+      "freshSha256": "3e348c074246a5ebdd081e8e5d5fdc0065f0376e91387f340f47fc4152ec115e",
+      "restoredSha256": "f53e9a4a345120f600404a71e553acc6f61410c2c16c8bb8712de49b9c7be396"
+    },
+    {
+      "originalPath": "docs/evidence/P03-02/pdf-sample-3.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-02/pdf-sample-3.png",
+      "freshSha256": "57d9933cdebfb176c84de33e0b5129f4ff035ed356c2f53ef01ed64037305375",
+      "restoredSha256": "83a9eb63dd4bfe34de2a7bd61f6397a87b1e74ca637a3f08be250eecb32b7a91"
+    },
+    {
+      "originalPath": "docs/evidence/P03-02/slides-1-pptx.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-02/slides-1-pptx.png",
+      "freshSha256": "a8b643c224de6071eeb34b80b6ddfb3c71f3320ca051a0b7f67332d3a6d69f02",
+      "restoredSha256": "73151d444b66461e943ab293c2badaa7ce6d2586ea8ef4a5f1b1521ecc131809"
+    },
+    {
+      "originalPath": "docs/evidence/P03-02/slides-2-pptx.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-02/slides-2-pptx.png",
+      "freshSha256": "5bc0825d4c3d602a8d2b90549a4755f93b80ef5de3bfb96823b53cd3a304e654",
+      "restoredSha256": "f29a527d7432b8f713ae1b3d189104c40bec99b39c27790d28da467436beb649"
+    },
+    {
+      "originalPath": "docs/evidence/P03-02/slides-3-pptx.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-02/slides-3-pptx.png",
+      "freshSha256": "0012ad0cbad65b1037da4ea7cb557b6fd6dfc49986c2a53277fb960fb95fabd5",
+      "restoredSha256": "f74c1ce154d2f8975266f2eda913bad4ea6d2cc0ad768560d642567485b2c862"
+    },
+    {
+      "originalPath": "docs/evidence/P03-02/viewer-200-percent.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-02/viewer-200-percent.png",
+      "freshSha256": "7825c68c507d0b54b7f777babae791d03752f0ff0298dada067898799f56fa7f",
+      "restoredSha256": "340d3674b40a77b85cff0f0628daddad0034e6bc13da3f609b8bf9b5e5a60711"
+    },
+    {
+      "originalPath": "docs/evidence/P03-02/word-1-docx.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-02/word-1-docx.png",
+      "freshSha256": "a82bcbac9a08135d34e097b41f598eb4e2406c3e62bd42e44abf7709e315c2de",
+      "restoredSha256": "159410014db9d3c09a54d5e6c4e8be12b9cbc8e56fbf04ad3d13fcc21082b1fb"
+    },
+    {
+      "originalPath": "docs/evidence/P03-02/word-3-docx.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-02/word-3-docx.png",
+      "freshSha256": "f0ea90eedb851c2035eb40b4fdd882bd2951797e5a31bf40f1b2ee55cde1a9d8",
+      "restoredSha256": "03a5009f69a6848166494833677dc02e550b2025d878beec2b93667e64ee5875"
+    },
+    {
+      "originalPath": "docs/evidence/P03-03/deletion.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-03/deletion.png",
+      "freshSha256": "72d2ddaf4e7383ee7599d5e49db5543bcfc94df3df8b8063ce0a0be6f3cf0de0",
+      "restoredSha256": "597de2d3695daf653b1d3f9f3c010f191f0fea5b7a0f31c586981f0f8aecb6cd"
+    },
+    {
+      "originalPath": "docs/evidence/P03-03/materials.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-03/materials.png",
+      "freshSha256": "8189522cc15c938c9813e7fc30defe7cf3c3e8c38605bd4def902a1e1cf2591b",
+      "restoredSha256": "6279be56e0b1dbac66248b327c848abd426c782fbc7bba893205f240b4ddeb97"
+    },
+    {
+      "originalPath": "docs/evidence/P03-03/scope.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-03/scope.png",
+      "freshSha256": "e51509f76a5da6b162532620c7be58a688d066cb40c5576a6194b471f57a0e91",
+      "restoredSha256": "f0615dfa52dd829c538b82be189c9db224316f576e9a4863b5cedc4826dbcc26"
+    },
+    {
+      "originalPath": "docs/evidence/P03-03/settings.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P03-03/settings.png",
+      "freshSha256": "9d7bacc02878d85ffea8dd29de2d9e4385164507a5fcc5a8dac69e05b1208f25",
+      "restoredSha256": "6e9ea6c3771d473e6e2912c4b68b9c394baf468a9a59e8bbf1ed94e759e4da3d"
+    },
+    {
+      "originalPath": "docs/evidence/P04-01/source-location.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P04-01/source-location.png",
+      "freshSha256": "3266b54dc28b68aaa7d706d1e3bebfdc017cf38cec4aed66b1da84187ee2b63f",
+      "restoredSha256": "4e2fe93542c5548c4898d293a2778e40395d72d015a2e192654e5348bb5f8dcb"
+    },
+    {
+      "originalPath": "docs/evidence/P04-02/summary-corrected.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P04-02/summary-corrected.png",
+      "freshSha256": "c26a38af6bc61e16979f0e0dcb6d54753e952b63ff2841c8b71df5906c70195d",
+      "restoredSha256": "e667457a25295f19341ac7bbf296e1a74fdbadb01389f26e30ee1c87a0c78aa8"
+    },
+    {
+      "originalPath": "docs/evidence/P04-03/automatic-memory.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P04-03/automatic-memory.png",
+      "freshSha256": "a941b5708645a19b9c5dcc85729c5636119f67290a69ab895eefc53264cb0b7e",
+      "restoredSha256": "c45b8fa60b156ca654419332ee770866358ce4581397bd5b8d49e5e8d65d294d"
+    },
+    {
+      "originalPath": "docs/evidence/P04-03/memory-management.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P04-03/memory-management.png",
+      "freshSha256": "3b95f20c0b3dc7c74f5495a69109b5f2379af6f7f7f0f0be4b8d04ae7d8e30b5",
+      "restoredSha256": "6df13dea8aa5d069dedbb15b3b1d1fc08064e24f72f8914b364b90e4612a5353"
+    },
+    {
+      "originalPath": "docs/evidence/P04-03/session-deletion-impact.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P04-03/session-deletion-impact.png",
+      "freshSha256": "ae4821f1cd24e1603b7311d117d5558d4a119e0ac504ad8284be46907b44899f",
+      "restoredSha256": "3c755a3ba32d46b48c88dc02c33b9bc1ed707fa87fde5e01b5d939787077b0c5"
+    },
+    {
+      "originalPath": "docs/evidence/P04-03/temporary-scope.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P04-03/temporary-scope.png",
+      "freshSha256": "1b3bbcbf130b7cb5d64e7e7b7177386b3ffca3384b47aa2a4cdf6bec02987dea",
+      "restoredSha256": "7f6f545f6580dbfd72e5e688a71847e562c5c0e5d8277e976089ea245a542304"
+    },
+    {
+      "originalPath": "docs/evidence/P02-01/connection-error.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P02-01/connection-error.png",
+      "freshSha256": "94093191beda1df3b12592a8d34759179d09001b070f8678d16ac3e9ed5c2f9b",
+      "wasUntrackedTestOutput": true
+    },
+    {
+      "originalPath": "docs/evidence/P02-01/dark-settings.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P02-01/dark-settings.png",
+      "freshSha256": "fd0090e4bffe03c04be24e6cd981702309dbd18c3d4bea60c5956e2a485678b7",
+      "wasUntrackedTestOutput": true
+    },
+    {
+      "originalPath": "docs/evidence/P02-01/light-home-1200.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P02-01/light-home-1200.png",
+      "freshSha256": "2e7eb2438c9e85cea5ae52da56af6d58ef21549a7dd165552ecf3054e5e84849",
+      "wasUntrackedTestOutput": true
+    },
+    {
+      "originalPath": "docs/evidence/P02-01/settings-960-200.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P02-01/settings-960-200.png",
+      "freshSha256": "f749423510ab8a5a4dbd457c8f1e61372461eddf0a08af41214983e811713e98",
+      "wasUntrackedTestOutput": true
+    },
+    {
+      "originalPath": "docs/evidence/P02-02/narrow-composer.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P02-02/narrow-composer.png",
+      "freshSha256": "0637596401404c54e1d4a3b64b9ee41ff9a80dc260147a42bf85334c30393476",
+      "wasUntrackedTestOutput": true
+    },
+    {
+      "originalPath": "docs/evidence/P02-02/safe-markdown.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P02-02/safe-markdown.png",
+      "freshSha256": "1f69fbe95e13e6455c51d4da07dfa742fdd8574335ed48bc3799e5db4fdfb30d",
+      "wasUntrackedTestOutput": true
+    },
+    {
+      "originalPath": "docs/evidence/P02-02/static-diagram.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P02-02/static-diagram.png",
+      "freshSha256": "498662718c2a57c35060816d5e31d29f536ee0617575874e0a3b653247dfb43a",
+      "wasUntrackedTestOutput": true
+    },
+    {
+      "originalPath": "docs/evidence/P02-02/two-turns.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P02-02/two-turns.png",
+      "freshSha256": "fc52a749a53240707de4c956d4bc8e6837020a7392fc857a04abf3bc24f00d34",
+      "wasUntrackedTestOutput": true
+    },
+    {
+      "originalPath": "docs/evidence/P02-03/archived-search-location.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P02-03/archived-search-location.png",
+      "freshSha256": "5ae10c536fa4d5efe61eb5fa59ef9b2f2e8fd28c7af290c3624710872c99c7a3",
+      "wasUntrackedTestOutput": true
+    },
+    {
+      "originalPath": "docs/evidence/P02-03/branches-and-feedback.png",
+      "freshPath": "docs/evidence/UI-redesign/regression/P02-03/branches-and-feedback.png",
+      "freshSha256": "17fb85728761878f66f8c51140115a7dd8e968355ecc75b9ed024527f2870fae",
+      "wasUntrackedTestOutput": true
+    }
+  ]
+}

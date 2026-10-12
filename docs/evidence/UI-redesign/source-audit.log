@@ -1,0 +1,85 @@
+{
+  "baseline": "5268fc03c822388d26cd0a4cf7f157f9a6b3ae1c",
+  "backendChanges": [],
+  "results": [
+    {
+      "file": "apps/desktop/src/renderer/src/desktop-shell.tsx",
+      "originalControls": {
+        "button": 16,
+        "details": 1,
+        "summary": 1,
+        "input": 2,
+        "Route": 13
+      },
+      "currentControls": {
+        "button": 16,
+        "details": 2,
+        "summary": 2,
+        "input": 2,
+        "Route": 13
+      },
+      "missingEvents": 0,
+      "commandsUnchanged": true
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/desktop-settings.tsx",
+      "originalControls": {
+        "input": 7,
+        "select": 2,
+        "button": 7,
+        "textarea": 1
+      },
+      "currentControls": {
+        "input": 7,
+        "select": 2,
+        "button": 7,
+        "textarea": 1
+      },
+      "missingEvents": 0,
+      "commandsUnchanged": true
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/chat-surface.tsx",
+      "originalControls": {
+        "button": 32,
+        "details": 5,
+        "summary": 5,
+        "textarea": 3,
+        "select": 3,
+        "input": 2
+      },
+      "currentControls": {
+        "button": 32,
+        "details": 7,
+        "summary": 7,
+        "textarea": 3,
+        "select": 3,
+        "input": 2
+      },
+      "missingEvents": 0,
+      "commandsUnchanged": true
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/history-ui.tsx",
+      "originalControls": {
+        "input": 7,
+        "button": 42,
+        "select": 7,
+        "textarea": 1,
+        "details": 1,
+        "summary": 1
+      },
+      "currentControls": {
+        "input": 7,
+        "button": 42,
+        "select": 7,
+        "textarea": 1,
+        "details": 1,
+        "summary": 1
+      },
+      "missingEvents": 0,
+      "commandsUnchanged": true
+    }
+  ],
+  "note": "Static inventory supplements actual Electron regressions; it does not replace functional testing."
+}

@@ -1,4 +1,6 @@
 {
+  "moreInputActions": "输入操作",
+  "inputInfo": "输入与工具信息",
   "send": "发送",
   "draft": "输入草稿",
   "sending": "发送中…",

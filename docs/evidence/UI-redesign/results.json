@@ -1,0 +1,368 @@
+{
+  "task": "UI-01",
+  "scope": "Supplementary local frontend redesign; original 37 task/live statuses unchanged",
+  "date": "2026-10-12",
+  "timezone": "Asia/Shanghai",
+  "baseline": "5268fc03c822388d26cd0a4cf7f157f9a6b3ae1c",
+  "branch": "codex/ui-redesign",
+  "head": "5268fc03c822388d26cd0a4cf7f157f9a6b3ae1c",
+  "initialWorktree": "clean",
+  "currentWorktree": "uncommitted",
+  "commitPushMerge": false,
+  "backendChanges": [],
+  "routesRetained": 13,
+  "sourceInventory": "source-boundary.json",
+  "commands": [
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "log": "build-first.log",
+      "note": "Later Electron runs also restore the production build, including ui-final.log."
+    },
+    {
+      "command": "renderer tsc --noEmit",
+      "exitCode": 0,
+      "log": "typecheck-first.log"
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 293,
+      "log": "unit.log"
+    },
+    {
+      "command": "pnpm test:integration P02-01.desktop P03-02.artifacts P03-03.projects P04-03.memory",
+      "exitCode": 0,
+      "passed": 45,
+      "log": "integration.log"
+    },
+    {
+      "command": "pnpm test:e2e",
+      "exitCode": 0,
+      "passed": 67,
+      "log": "e2e-final.log",
+      "note": "Full suite on compact-composer snapshot before the final visual-only review fixes."
+    },
+    {
+      "command": "pnpm test:e2e -- --grep 'P02-01 UI'",
+      "exitCode": 0,
+      "passed": 5,
+      "log": "ui-final.log",
+      "note": "Final source: routes/settings/preview/input, normal and 200% dialog geometry, dark theme, actual primary-action hover/keyboard contrast and successful Save."
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "log": "check-handoff.log"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": "docs-handoff.log"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "log": "diff-handoff.log"
+    }
+  ],
+  "runtime": "Repository-pinned Node v24.21.0 and cached pnpm 12.4.1; unrelated PATH pnpm not used",
+  "nativeUI": "Actual isolated Electron windows; synthetic profiles; animation timing disabled for capture; no live model or credential access",
+  "screenshots": [
+    "api-accounts.png",
+    "composer-input-960-200.png",
+    "composer-light-960-200.png",
+    "conversation-light-1440.png",
+    "file-details-dialog-960-200.png",
+    "file-details-dialog.png",
+    "home-light-1440.png",
+    "input-actions-menu.png",
+    "models-usage.png",
+    "navigation-0.png",
+    "navigation-1.png",
+    "navigation-2.png",
+    "navigation-3.png",
+    "navigation-4.png",
+    "project-0.png",
+    "project-1.png",
+    "project-2.png",
+    "project-3.png",
+    "project-4.png",
+    "project-5.png",
+    "save-hover-contrast.png",
+    "save-keyboard-contrast.png",
+    "search-dialog-960-200.png",
+    "search-dialog.png",
+    "settings-0.png",
+    "settings-1.png",
+    "settings-2.png",
+    "settings-3.png",
+    "settings-4.png",
+    "settings-5.png",
+    "settings-controls-960-200.png",
+    "settings-dark-1440.png",
+    "settings-light-960-200.png",
+    "subscription-accounts.png",
+    "viewer-code.png",
+    "viewer-image.png",
+    "viewer-markdown.png",
+    "viewer-pdf.png",
+    "viewer-sheet.png",
+    "viewer-zip.png",
+    "workbench-1200.png",
+    "workbench-960.png",
+    "workbench-light-1440.png"
+  ],
+  "review": {
+    "initial": "recapture: invalid zoom framing rejected; actual input layout corrected",
+    "newFull": "38 valid primary captures plus named regression states reviewed; three visual findings corrected",
+    "final": "All three scored findings resolved; ship limited to scored-fix scope",
+    "additional": "Primary Save hover finding corrected and recaptured; separately scored resolved with ship limited to that finding",
+    "record": "review.md"
+  },
+  "failureHistory": [
+    "visual-first.log",
+    "zoom-recapture.log",
+    "e2e-regression.log"
+  ],
+  "historicalEvidence": "Original tracked phase screenshots restored byte-for-byte to baseline; new regression captures archived separately with SHA256 in regression-archive.json",
+  "designDocumentation": {
+    "files": [
+      "DESIGN.md",
+      ".impeccable/design.json"
+    ],
+    "roles": 32,
+    "previews": 10,
+    "documenterValidationExitCode": 0
+  },
+  "requirements": {
+    "count": 41,
+    "entries": [
+      {
+        "id": "FR-02-001",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-02-002",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-02-003",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-03-001",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-03-003",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-03-004",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-03-005",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-03-006",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-03-007",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-03-008",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-03-009",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-04-001",
+        "owner": "P02-03",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-05-001",
+        "owner": "P02-03",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-06-001",
+        "owner": "P02-02",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-09-005",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-12-001",
+        "owner": "P03-03",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-13-001",
+        "owner": "P03-01",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-15-001",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-15-002",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-15-003",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-15-004",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-15-005",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-15-006",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-15-007",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-15-008",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-15-009",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-15-010",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-29-001",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-29-002",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-29-005",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-29-006",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-29-007",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-29-009",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-29-010",
+        "owner": "P04-03",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-01-T01",
+        "owner": "P02-01",
+        "status": "implemented_not_live_verified"
+      },
+      {
+        "id": "FR-15-T01",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-15-T02",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-15-T03",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-15-T04",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-15-T05",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      },
+      {
+        "id": "FR-15-T06",
+        "owner": "P03-02",
+        "status": "implemented_and_verified"
+      }
+    ],
+    "statusChanges": 0,
+    "note": "Only UI evidence/test tag/notes appended; all prior scope/status/code references retained."
+  },
+  "sourceSha256": {
+    "apps/desktop/src/renderer/assets/README.md": "dbd5c22d6c008022c2bdcbe6be44afa06f9c8192c1d243dd775c1e790371ff38",
+    "apps/desktop/src/renderer/assets/electron-icon.LICENSE": "5154e165bd6c2cc0cfbcd8916498c7abab0497923bafcd5cb07673fe8480087d",
+    "apps/desktop/src/renderer/assets/tapkit-current-icon.png": "b0f6f06d7e94053dabcc7dd8adc83d925089dbca55df0ca573b267b710e1f79d",
+    "apps/desktop/src/renderer/locales/chat.zh-CN.json": "fe7eb97b0030d8c13b3e591effa6cef2918185307409586da553747881483c60",
+    "apps/desktop/src/renderer/locales/desktop.zh-CN.json": "feb3fd6afea085f9bb998a5f262e19ba51897db2b994f36a62b105092a0ebf6f",
+    "apps/desktop/src/renderer/src/chat-surface.tsx": "99da2ab9503ebf32089cd992b4a5b3b33abaeceb387c1b8ade889627357728ec",
+    "apps/desktop/src/renderer/src/design-system.css": "44546005f5c2b6870b8d4ca256b601456d7e1d63a8aa9c4e2e709d992804487f",
+    "apps/desktop/src/renderer/src/desktop-settings.tsx": "fae6e305b6c1e15cf5860b6320eb5f3b261c072a98055c6bf17e634619d4b96d",
+    "apps/desktop/src/renderer/src/desktop-shell.tsx": "ea7fb284b441f59d4718d146d271a205b1dbbb730744cf61519f32396d1e75e2",
+    "apps/desktop/src/renderer/src/history-ui.tsx": "926f4569c2b7acac171d1a7bd6fa8d4a568e18326073dae51ce94df2f54903d7",
+    "apps/desktop/src/renderer/src/main.tsx": "e78e820c0038f3f5271dfd49fc7520f66abba6ecb683e0cee09d4d87263bb604",
+    "apps/desktop/src/renderer/src/ui-icon.tsx": "f3d051c93c178d23cbb11dadc51eeea91237fb202859eabccd7c79b215654495",
+    "packages/ui/src/chat-markdown.tsx": "56b7e3a9ec9f72dbd75403c904ec873dd7d7c7b324e98ab5880fc4bece86f3b5",
+    "tests/e2e/P01-02.api.spec.ts": "b22190fd5c4bd1b93be7feaf6b2098e91cb57faafa41a95c82b1871295185518",
+    "tests/e2e/P02-01.desktop.spec.ts": "0ae1fca6459cb1eddbc4e6465826e49c6255ab7858b5353215635a8b1370a89e",
+    "tests/e2e/P02-01.ui-redesign.spec.ts": "b7de3dc944109ef221e9b14acdf328c15d8ec9439020f4951b7803093d2bb46f"
+  }
+}

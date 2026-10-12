@@ -64,6 +64,9 @@ test('P01-02 real desktop UI stores both formats with DPAPI, restarts metadata a
     app = await electron.launch({ args: [resolve('apps/desktop')], env });
     page = await app.firstWindow();
     await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+    // A restored window may resume the account route. Use the real home entry
+    // before selecting its account shortcut; keep persistence assertions below.
+    await page.getByRole('link', { name: '首页', exact: true }).click();
     await page.getByRole('link', { name: 'API Key 账户', exact: true }).click();
     await expect(page.getByTestId('api-account')).toHaveCount(2);
     const chosen = page.getByTestId('api-account').filter({ hasText: 'OpenAI fixture' });
