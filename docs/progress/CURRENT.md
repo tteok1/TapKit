@@ -1,6 +1,6 @@
 # 当前接续点
 
-- 2026-10-12：D:/Tapkit-public，main；用户已确认压缩合入并推送。远程main fetch/ff-only退出0，合入基线9a9e4ee；fix分支4个提交（最终f22f4cb）合为本次单一main提交，源分支保留。
-- P02预览修复及自动标题用量回归已验收，最终源分支CI38164279404 check/startup全success：unit291/integration298/perf2/Electron41，标准用户22/3/4零缺项、Office六轮、storage/vault各三轮通过；合入前暂存树与源分支一致，新增交接只改文档。main push Actions为合入后检查。证据见P02-02.md及docs/evidence/P02-02/main-squash-2026-10-12.json。
-- 本次不做真实模型联调；P02状态保持implemented_not_live_verified，既有资源缺口不提升；无PR。
-- P04-02已由用户授权压缩合入main（9a9e4ee）；其交接证据见P04-02.md。P04-03/gate未开始。
+- 2026-10-12：D:/Tapkit-public，main；基线97a309f，fetch/ff-only退出0，起始clean。用户已授权将P04-03源分支的6个提交squash为包含交接记录的单一main提交；源分支codex/p04-03-memory保留。
+- P04-03=implemented_not_live_verified；最终源分支834904b的CI38209793097 check/startup全部success：unit293/integration314/perf2/Electron45。业务/测试源码保持已验收87633cf；合入交接只改文档。
+- 真实模型联调暂缓，既有资源缺口保持；P04-gate=engineering_passed_external_pending。无PR、不扩P05。
+- main push触发合入后CI；按用户要求不监控，等用户通知跑完后再查看。详见[P04-03](P04-03.md)、[P04-gate](P04-gate.md)及docs/evidence/P04-03/main-squash-2026-10-12.json。

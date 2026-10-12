@@ -1,5 +1,7 @@
 # 数据模型与事务契约
 
+2026-10-12 P04-03 schema14：[ADR0048](../adr/0048-evidence-backed-memory-and-history.md)追加0014_memory，保留schema11的memories身份；唯一active键、版本、来源messageId/revision、memory.extract租约任务、generation/谓词墓碑、可冲突的撤销记录、FTS删除同步和仅引用的回答使用记录。不修改历史迁移或run状态。
+
 2026-10-11 P04-02：[ADR0046](../adr/0046-verifiable-context-checkpoints-and-budget.md)实现schema13的checkpoints/context_snapshots及sessions.context_seed_json/context_version。来源引用使用ID/revision；删除与权限/版本改变阻止旧检查点/cache；不另建run状态。
 
 P03-03实施契约见[ADR0044](../adr/0044-project-scopes-and-atomic-index-links.md)：schema11追加项目显示/默认值/独立背景开关和memory scope；resource_links保存active_index_version/pending_version_id、folder_id/tags_json/expires_at。projectScope存于会话设置。解析结构、搜索投影与项目active指针在同一事务切换，异步查询前后校验完整关联快照；历史0004不改写。

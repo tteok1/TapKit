@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "task": "P04-03",
+  "date": "2026-10-12",
+  "timezone": "Asia/Shanghai",
+  "authorization": "压缩成一个提交然后合入main，不监控ci结果；用户会在ci跑完后通知，再查看是否有问题。",
+  "strategy": "squash",
+  "targetBranch": "main",
+  "baseSha": "97a309f5c0331960ff5ae11a31c3ccbb3c36cec7",
+  "sourceBranch": "codex/p04-03-memory",
+  "sourceSha": "834904b0ae6e1f7df8863525edef4fc7e8a1f296",
+  "sourceCommitCount": 6,
+  "sourceTree": "e6c17daab445c47a550e694fba47c80163350c33",
+  "squashTreeBeforeHandoffSync": "e6c17daab445c47a550e694fba47c80163350c33",
+  "initialSquashTreeMatchesSource": true,
+  "sourceCI": {
+    "runId": 38209793097,
+    "headSha": "834904b0ae6e1f7df8863525edef4fc7e8a1f296",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/tteok1/TapKit/actions/runs/38209793097",
+    "jobs": {
+      "check": "success",
+      "startupDiagnostics": "success"
+    },
+    "unit": 293,
+    "integration": 314,
+    "perf": 2,
+    "electron": 45,
+    "verifiedInPreviousTurn": true,
+    "queriedThisTurn": false
+  },
+  "mainSync": {
+    "cleanAtStart": true,
+    "fetchExitCode": 0,
+    "ffOnlyExitCode": 0,
+    "squashExitCode": 0
+  },
+  "acceptanceStatus": "implemented_not_live_verified",
+  "gateStatus": "engineering_passed_external_pending",
+  "acceptedImplementationSha": "87633cf3c7c157e18049af7fc5e1a8ebcece0e3e",
+  "liveDeferredByUser": true,
+  "externalResourceStatusUnchanged": true,
+  "sourceBranchPreserved": true,
+  "pullRequestCreated": false,
+  "requirementRowsUpdated": 10,
+  "mergeCommitReference": "The commit containing this evidence is the single squash commit on main.",
+  "mainCIReference": "GitHub Actions push run for the commit containing this evidence.",
+  "mainCIMonitoring": "Disabled for this task at user request; inspect results only after user notification.",
+  "nextStageStarted": false,
+  "handoffSync": {
+    "acceptedSourceCodeUnchanged": true,
+    "nonTargetRequirementsUnchanged": true,
+    "requirementRowsUpdated": 10,
+    "nonTargetRequirementRows": 564,
+    "checks": {
+      "pnpm check": { "exitCode": 0, "formattedFiles": 414, "log": "docs/evidence/P04-03/check-main-squash.log" },
+      "pnpm docs:check": { "exitCode": 0, "taskStates": 37 },
+      "git diff --check": { "exitCode": 0 },
+      "git diff --cached --check": { "exitCode": 0 },
+      "git diff --cached --quiet source -- apps packages migrations tests scripts .github": { "exitCode": 0 }
+    }
+  }
+}

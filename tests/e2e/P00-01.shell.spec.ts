@@ -60,6 +60,7 @@ test('P00-01 sandbox bridge errors and clean child shutdown', async () => {
       'openArtifactExternal',
       'copyText',
       'historyCommand',
+      'memoryCommand',
       'projectCommand',
       'exportProject',
       'fileCommand',

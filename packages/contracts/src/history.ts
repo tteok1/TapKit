@@ -76,6 +76,7 @@ export const SessionBatchSchema = z.strictObject({
     .max(100)
     .refine((ids) => new Set(ids).size === ids.length),
   archived: z.boolean().optional(),
+  keepExplicitMemories: z.boolean().default(false),
   projectId: IdSchema.nullable().optional(),
   sectionId: IdSchema.nullable().optional(),
 });

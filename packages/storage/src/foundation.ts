@@ -31,6 +31,7 @@ import filePreviewSql from '../../../migrations/0010_file_preview.sql?raw';
 import projectsSql from '../../../migrations/0011_projects.sql?raw';
 import retrievalSql from '../../../migrations/0012_retrieval.sql?raw';
 import contextSql from '../../../migrations/0013_context.sql?raw';
+import memorySql from '../../../migrations/0014_memory.sql?raw';
 
 let startupTraceSequence = 0;
 function startupTrace(scope: string) {
@@ -115,8 +116,9 @@ export const migrations: Migration[] = [
   { version: 11, sql: projectsSql },
   { version: 12, sql: retrievalSql },
   { version: 13, sql: contextSql },
+  { version: 14, sql: memorySql },
 ];
-export const SCHEMA_VERSION = 13;
+export const SCHEMA_VERSION = 14;
 export async function migrate(db: Database.Database, backupDirectory: string, steps = migrations) {
   const trace = startupTrace('storage.migrate');
   trace('version.begin');

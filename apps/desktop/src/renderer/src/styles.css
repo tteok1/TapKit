@@ -1214,3 +1214,41 @@ button[aria-pressed='true'] {
 .context-summary p {
   overflow-wrap: anywhere;
 }
+.memory-manager {
+  margin-top: 24px;
+  padding: 16px;
+  border: 1px solid var(--border, #94a3b8);
+  border-radius: 8px;
+}
+.memory-manager label {
+  display: block;
+  margin: 10px 0;
+}
+.memory-manager input,
+.memory-manager textarea,
+.memory-manager select {
+  max-width: 100%;
+  width: 100%;
+}
+.memory-manager textarea {
+  min-height: 80px;
+}
+.memory-row {
+  border-top: 1px solid var(--border, #94a3b8);
+  padding: 12px 0;
+}
+.memory-manager button,
+.memory-message button {
+  margin: 4px;
+}
+.memory-policy,
+.memory-message {
+  font-size: 0.875rem;
+}
+.memory-policy [role='region'] {
+  padding: 12px;
+}
+.memory-manager pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

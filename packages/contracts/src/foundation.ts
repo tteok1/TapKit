@@ -4,6 +4,7 @@ import { HistoryReplySchema } from './history';
 import { FileReplySchema } from './files';
 import { ArtifactReplySchema } from './artifacts';
 import { ProjectReplySchema } from './projects';
+import { MemoryReplySchema, MemoryScopeSchema } from './memory';
 export { RunStatusSchema } from './chat';
 import {
   CatalogViewSchema,
@@ -155,6 +156,20 @@ export const ReplaySchema = z.strictObject({
   limit: z.number().int().min(1).max(100).default(50),
 });
 export const JobPayloadSchema = z.discriminatedUnion('kind', [
+  z.strictObject({
+    schemaVersion: z.literal(1),
+    kind: z.literal('memory.extract'),
+    sessionId: IdSchema,
+    messageId: IdSchema,
+    sourceRevision: z.number().int().positive(),
+    scope: MemoryScopeSchema,
+    runId: IdSchema,
+    generation: z.number().int().positive(),
+    baseSeq: z.number().int().nonnegative(),
+    settingsRevision: z.number().int().positive(),
+    sessionRevision: z.number().int().positive(),
+    projectRevision: z.number().int().nonnegative(),
+  }),
   z.strictObject({ schemaVersion: z.literal(1), kind: z.literal('blob.gc') }),
   z.strictObject({ schemaVersion: z.literal(1), kind: z.literal('data.backup') }),
   z.strictObject({
@@ -185,6 +200,15 @@ export const SettingsViewSchema = z.strictObject({
   revision: RevisionSchema,
 });
 export const EventPayloadSchema = z.discriminatedUnion('kind', [
+  z.strictObject({
+    kind: z.literal('memory'),
+    memoryId: IdSchema,
+    changeEventId: IdSchema,
+    sessionId: IdSchema.optional(),
+    messageId: IdSchema.optional(),
+    status: z.enum(['written', 'deleted', 'restored']),
+    sensitive: z.boolean(),
+  }),
   z.strictObject({
     kind: z.literal('chat'),
     sessionId: IdSchema,
@@ -225,6 +249,7 @@ export const EventEnvelopeSchema = z.strictObject({
   seq: RevisionSchema,
   schemaVersion: z.literal(1),
   type: z.enum([
+    'memory.changed',
     'settings.updated',
     'provider.updated',
     'job.updated',
@@ -254,6 +279,7 @@ export const BootstrapViewSchema = z.strictObject({
   unreadCount: z.number().int().min(0),
 });
 export const ReplyDataSchema = z.union([
+  MemoryReplySchema,
   ProjectReplySchema,
   ArtifactReplySchema,
   FileReplySchema,

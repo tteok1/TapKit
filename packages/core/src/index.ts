@@ -84,7 +84,12 @@ async function start() {
       target.router.deps.adapter = models.router.deps.adapter;
     }
   });
-  chat.onCompleted = (sessionId, runId) => history.queueTitle(sessionId, runId);
+  chat.onCompleted = (sessionId, runId) => {
+    history.queueTitle(sessionId, runId);
+    store.db.transaction(() => chat.memories.enqueue(sessionId, runId))();
+  };
+  chat.memories.extractor = (sessionId, runId, input, signal) =>
+    chat.extractMemory(sessionId, runId, input.text, signal);
   await history.maintain();
   store.db.prepare("UPDATE title_jobs SET status='failed' WHERE status='running'").run();
   const titleTimer = setInterval(() => void history.titles(), 500);
@@ -119,7 +124,10 @@ async function start() {
     store,
     blobs,
     (event) => port!.postMessage({ type: 'event', event }),
-    (job, signal) => parser.execute(job, signal),
+    (job, signal) =>
+      job.kind === 'memory.extract'
+        ? chat.memories.execute(job, signal)
+        : parser.execute(job, signal),
   );
   let closing = false;
   port!.on('message', ({ data }: { data: unknown }) => {
@@ -336,7 +344,7 @@ async function start() {
                   : command.request.command.startsWith('providers.') &&
                       command.request.command !== 'providers.saveApiKey'
                     ? providers.dispatch(command.request)
-                    : /^(messages\.|drafts\.|inputs\.|runs\.cancel$|context\.|chat\.snippets\.)/.test(
+                    : /^(memory\.|messages\.|drafts\.|inputs\.|runs\.cancel$|context\.|chat\.snippets\.)/.test(
                           command.request.command,
                         )
                       ? chat.dispatch(command.request)
@@ -346,7 +354,7 @@ async function start() {
       });
     }
   });
-  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 13 });
+  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 14 });
   worker.start();
   sweepStaging();
   chat.start();

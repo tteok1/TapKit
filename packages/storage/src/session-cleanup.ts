@@ -1,5 +1,7 @@
 import type { Store } from './foundation';
+import { invalidateMemorySources } from './memory-cleanup';
 export function eraseMessageContent(store: Store, id: string, time: number, keepAsNote = false) {
+  invalidateMemorySources(store, [id]);
   const m = store.db
     .prepare('SELECT session_id,branch_id,role,run_id FROM messages WHERE id=? AND profile_id=?')
     .get(id, store.profileId) as
@@ -82,6 +84,14 @@ export function eraseMessageContent(store: Store, id: string, time: number, keep
 // Numeric usage/operation identities remain; user content and protocol references do not.
 // Called inside the caller's transaction, both for permanent delete and backup tombstone replay.
 export function eraseSessionContent(store: Store, id: string, time: number) {
+  invalidateMemorySources(
+    store,
+    (
+      store.db
+        .prepare('SELECT id FROM messages WHERE session_id=? AND profile_id=?')
+        .all(id, store.profileId) as { id: string }[]
+    ).map((m) => m.id),
+  );
   const db = store.db;
   db.prepare(
     'DELETE FROM context_snapshots WHERE run_id IN(SELECT id FROM runs WHERE session_id=?)',

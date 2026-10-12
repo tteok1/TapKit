@@ -1,0 +1,18 @@
+2026-10-12T05:16:42.1181206Z ##[group]Runner Image Provisioner
+2026-10-12T05:16:42.1196587Z ##[group]Runner Image
+2026-10-12T05:16:44.9906393Z ##[group]Run actions/checkout@v4
+2026-10-12T05:16:58.7575613Z ##[group]Run actions/setup-node@v4
+2026-10-12T05:17:03.5422002Z ##[group]Run actions/cache/restore@v5
+2026-10-12T05:17:11.0627049Z ##[group]Run node scripts/bootstrap.mjs
+2026-10-12T05:20:16.5999096Z   1 passed (3.0s)
+2026-10-12T05:20:16.8399336Z ##[group]Run .\scripts\ci-startup-diagnostics.ps1
+2026-10-12T05:20:19.4948599Z  Test Files  1 passed (1)
+2026-10-12T05:20:19.4949851Z       Tests  1 passed | 18 skipped (19)
+2026-10-12T05:20:25.2500389Z   1 passed (4.8s)
+2026-10-12T05:20:27.0531097Z  Test Files  1 passed (1)
+2026-10-12T05:20:27.0532104Z       Tests  1 passed | 18 skipped (19)
+2026-10-12T05:20:31.1650418Z   1 passed (3.1s)
+2026-10-12T05:20:32.9839832Z  Test Files  1 passed (1)
+2026-10-12T05:20:32.9840854Z       Tests  1 passed | 18 skipped (19)
+2026-10-12T05:20:37.2396182Z   1 passed (3.3s)
+2026-10-12T05:20:37.3521369Z ##[group]Run actions/upload-artifact@v4

@@ -20,6 +20,7 @@ export * from './blobs';
 export * from './jobs';
 export * from './usage-ledger';
 export * from './memory';
+export * from './memory-cleanup';
 export * from './session-cleanup';
 export * from './files';
 export * from './artifacts';

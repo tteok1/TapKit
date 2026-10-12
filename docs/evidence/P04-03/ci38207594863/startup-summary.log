@@ -1,0 +1,21 @@
+2026-10-12T05:43:53.7547119Z ##[group]Runner Image Provisioner
+2026-10-12T05:43:53.7552072Z ##[group]Runner Image
+2026-10-12T05:43:54.6153709Z ##[group]Run actions/checkout@v4
+2026-10-12T05:43:57.5640681Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +87633cf3c7c157e18049af7fc5e1a8ebcece0e3e:refs/remotes/origin/codex/p04-03-memory
+2026-10-12T05:43:59.1756615Z  * [new ref]         87633cf3c7c157e18049af7fc5e1a8ebcece0e3e -> origin/codex/p04-03-memory
+2026-10-12T05:43:59.6186401Z 87633cf3c7c157e18049af7fc5e1a8ebcece0e3e
+2026-10-12T05:44:00.8626331Z ##[group]Run actions/setup-node@v4
+2026-10-12T05:44:05.5578134Z ##[group]Run actions/cache/restore@v5
+2026-10-12T05:44:13.7827281Z ##[group]Run node scripts/bootstrap.mjs
+2026-10-12T05:46:21.9571628Z   1 passed (2.0s)
+2026-10-12T05:46:22.1298554Z ##[group]Run .\scripts\ci-startup-diagnostics.ps1
+2026-10-12T05:46:24.2298154Z  Test Files  1 passed (1)
+2026-10-12T05:46:24.2298863Z       Tests  1 passed | 18 skipped (19)
+2026-10-12T05:46:28.8120288Z   1 passed (4.0s)
+2026-10-12T05:46:30.0469381Z  Test Files  1 passed (1)
+2026-10-12T05:46:30.0470009Z       Tests  1 passed | 18 skipped (19)
+2026-10-12T05:46:32.9111321Z   1 passed (2.1s)
+2026-10-12T05:46:34.0738048Z  Test Files  1 passed (1)
+2026-10-12T05:46:34.0738600Z       Tests  1 passed | 18 skipped (19)
+2026-10-12T05:46:36.8644761Z   1 passed (2.1s)
+2026-10-12T05:46:36.9418573Z ##[group]Run actions/upload-artifact@v4

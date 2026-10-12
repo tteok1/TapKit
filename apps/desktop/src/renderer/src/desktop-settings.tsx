@@ -3,6 +3,8 @@ import { Link } from '@tapkit/ui';
 import { DEFAULT_PERSONALIZATION, SettingsSetSchema, type SettingsValues } from '@tapkit/contracts';
 import t from '../locales/desktop.zh-CN.json';
 import { LocalAvatar } from './local-avatar';
+import { MemoryManager } from './memory-ui';
+import m from '../locales/memory.zh-CN.json';
 export function DesktopSettings({
   page,
   values,
@@ -47,7 +49,7 @@ export function DesktopSettings({
         page === 'personal'
           ? ['personal']
           : page === 'personalization'
-            ? ['personalization']
+            ? ['personalization', 'memoryEnabled', 'historyEnabled']
             : ['desktop', 'network'];
       const patch = Object.fromEntries(keys.map((k) => [k, draft[k as keyof SettingsValues]]));
       SettingsSetSchema.shape.patch.parse(patch);
@@ -361,6 +363,29 @@ export function DesktopSettings({
           >
             恢复个性化默认值
           </button>
+        </>
+      )}
+      {page === 'personalization' && (
+        <>
+          <label>
+            <input
+              type="checkbox"
+              aria-label={m.enabled}
+              checked={draft.memoryEnabled}
+              onChange={(e) => update('memoryEnabled', e.target.checked)}
+            />
+            {m.enabled}
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              aria-label={m.history}
+              checked={draft.historyEnabled}
+              onChange={(e) => update('historyEnabled', e.target.checked)}
+            />
+            {m.history}
+          </label>
+          <MemoryManager />
         </>
       )}
       {page === 'connections' && (
