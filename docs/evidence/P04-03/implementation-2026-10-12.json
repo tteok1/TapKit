@@ -1,6 +1,6 @@
 {
   "task": "P04-03",
-  "status": "in_progress",
+  "status": "implemented_not_live_verified",
   "date": "2026-10-12",
   "timezone": "Asia/Shanghai",
   "branch": "codex/p04-03-memory",
@@ -90,6 +90,12 @@
       "exitCode": 0,
       "tests": 16,
       "log": "docs/evidence/P04-03/copy-receipt-regression.log"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "files": 414,
+      "log": "docs/evidence/P04-03/check-copy-receipt.log"
     }
   ],
   "failuresPreserved": [
@@ -106,20 +112,71 @@
     "baselineGitDiffExitCode": 0,
     "hashes": "docs/evidence/P04-03/native-source-hashes.json",
     "currentMachineProbeNotRun": true,
-    "ciAdministratorAndStandardUserPending": true
+    "ciAdministratorAndStandardUserPending": false,
+    "priorCompleteRunVerified": 38205694915,
+    "standardUserProbe": {
+      "p00": 22,
+      "parser": 3,
+      "preview": 4,
+      "missingCases": 0,
+      "sourceHashesChecked": 11,
+      "isolationObservations": 66,
+      "log": "docs/evidence/P04-03/ci38207594863/verification.json"
+    },
+    "finalCompleteRunVerified": 38207594863
   },
   "ci": [
     {
       "runId": 38205112261,
       "headSha": "523e77ff08c1024bf0c0b424dde5eb3418c7223b",
-      "status": "in_progress",
+      "status": "completed",
+      "conclusion": "failure",
+      "check": "failure",
+      "startup": "success",
+      "reason": "P00 preload expected key list omitted memoryCommand; corrected without broadening bridge.",
+      "log": "docs/evidence/P04-03/ci38205112261/failure-summary.log",
       "url": "https://github.com/tteok1/TapKit/actions/runs/38205112261"
     },
     {
       "runId": 38205694915,
       "headSha": "b020b70457f1dfb4e61415a182d453ff1fc7bad5",
-      "status": "in_progress",
+      "status": "completed",
+      "conclusion": "success",
+      "check": "success",
+      "startup": "success",
+      "tests": {
+        "unit": 293,
+        "integration": 311,
+        "perf": 2,
+        "electron": 45
+      },
+      "evidence": "docs/evidence/P04-03/ci38205694915/verification.json",
       "url": "https://github.com/tteok1/TapKit/actions/runs/38205694915"
+    },
+    {
+      "runId": 38206887782,
+      "headSha": "775ce616467e398f63aa07bffe654e6e5e09ca55",
+      "status": "completed",
+      "conclusion": "success",
+      "check": "success",
+      "startup": "success",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/38206887782"
+    },
+    {
+      "runId": 38207594863,
+      "headSha": "87633cf3c7c157e18049af7fc5e1a8ebcece0e3e",
+      "status": "completed",
+      "conclusion": "success",
+      "check": "success",
+      "startup": "success",
+      "tests": {
+        "unit": 293,
+        "integration": 314,
+        "perf": 2,
+        "electron": 45
+      },
+      "evidence": "docs/evidence/P04-03/ci38207594863/verification.json",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/38207594863"
     }
   ],
   "live": {
@@ -139,5 +196,25 @@
   "pullRequestCreated": false,
   "mainMerged": false,
   "nextStageStarted": false,
-  "currentCodeCommit": "b020b70457f1dfb4e61415a182d453ff1fc7bad5"
+  "currentCodeCommit": "87633cf3c7c157e18049af7fc5e1a8ebcece0e3e",
+  "gateStatus": "engineering_passed_external_pending",
+  "handoff": {
+    "sourceUnchangedFrom": "87633cf3c7c157e18049af7fc5e1a8ebcece0e3e",
+    "targetRequirementRows": 10,
+    "nonTargetRequirementsUnchanged": true,
+    "checks": {
+      "pnpm check": {
+        "exitCode": 0,
+        "log": "docs/evidence/P04-03/check-handoff.log"
+      },
+      "pnpm docs:check": {
+        "exitCode": 0,
+        "taskRows": 37
+      },
+      "git diff --check": {
+        "exitCode": 0
+      }
+    },
+    "finalBranchPushActions": "Final documentation-only commit Actions is the human merge check; no PR or main merge."
+  }
 }

@@ -1,0 +1,12 @@
+{
+  "archiveSha256": "4756102f540ce59e8f0b4f1214d9cd09147a2d05636f8deda70f0e127b0b09e0",
+  "archiveDigestMatchesGitHub": true,
+  "standardUserPassed": 29,
+  "missingCases": 0,
+  "sourceHashesChecked": 11,
+  "isolationObservations": 66,
+  "hardKillObservations": 0,
+  "isolationFailures": 0,
+  "auditExitCode": 0,
+  "scope": "Only this run's ci-evidence/P00-03-standard-user entries; historical evidence in the artifact excluded."
+}

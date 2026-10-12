@@ -1,3 +1,7 @@
+## 2026-10-12 P04-03 工程验收交接
+
+main已fetch/ff-only同步，基线97a309f，新分支codex/p04-03-memory；最终业务/测试源码87633cf的CI38207594863 check/startup全部success（unit293/integration314/perf2/Electron45）。自动/显式记忆、历史参考、管理/撤销、来源清理与项目隔离已验证；T10/T11最终16项、分页原45秒门槛10.0秒通过。归档摘要、11源码摘要及66条标准用户隔离报告核验通过，标准22/3/4零缺项，Office和启动各六轮成功。P04-03=implemented_not_live_verified，P04-gate=engineering_passed_external_pending；用户明确暂缓真实模型联调，既有资源状态保持。交接提交只改文档，最终push Actions为人工合入校验；无PR、不合入main，等待人工确认，不扩P05。详见[P04-03](P04-03.md)及[P04-gate](P04-gate.md)。
+
 ## 2026-10-11 P04-02 压缩合入 main
 
 用户明确确认验收通过，并授权压缩合入main、推送远程和同步进度，不创建PR。远程main已fetch和ff-only同步（exit0），基线03fc989；codex/p04-02-context的2个提交（最终ac3528b）合为包含本记录的单一main提交，保留源分支历史。P04-02=implemented_and_verified；最终源分支CI38125850408 check/startup全部success，unit291/integration283/perf2/Electron36、标准P00 22/parser3/preview4零缺项、Office及启动各三轮通过。合入前暂存树与源分支完全一致，交接同步只更新文档，业务/测试源码保持已验收版本；main CI以本提交push Actions为准，不另加交接提交。两项需求追加合入证据，P04-03/gate未开始，既有live资源状态和旧P02预览独立缺口保持。详见[P04-02](P04-02.md)及docs/evidence/P04-02/main-squash-2026-10-11.json。
@@ -208,7 +212,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P03-03 | 项目管理、资料范围与索引版本       | P03-02         | implemented_and_verified      | docs/progress/P03-03.md              |
 | P04-01 | 中文混合检索、重排与引用证据       | P03-03         | implemented_and_verified      | docs/progress/P04-01.md              |
 | P04-02 | 上下文预算、压缩检查点与缓存       | P04-01/P01-03  | implemented_and_verified      | docs/progress/P04-02.md              |
-| P04-03 | 自动长期记忆、历史参考与管理       | P04-02         | in_progress                   | docs/progress/P04-03.md              |
+| P04-03 | 自动长期记忆、历史参考与管理       | P04-02         | implemented_not_live_verified | docs/progress/P04-03.md              |
 | P05-01 | 联网搜索、匿名网页读取与来源归档   | P04-03         | not_started                   | docs/progress/P05-01.md              |
 | P05-02 | 引用交互、会话导出和本地分享快照   | P05-01, P03-02 | not_started                   | docs/progress/P05-02.md              |
 | P05-03 | 聊天版本端到端验收                 | P05-02         | not_started                   | docs/progress/P05-03.md              |
@@ -240,7 +244,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P01  | failed                              | docs/progress/P01-gate.md |
 | P02  | engineering_passed_external_pending | docs/progress/P02-gate.md |
 | P03  | passed                              | docs/progress/P03-gate.md |
-| P04  | in_progress                         | docs/progress/P04-gate.md |
+| P04  | engineering_passed_external_pending | docs/progress/P04-gate.md |
 | P05  | not_started                         | docs/progress/P05-gate.md |
 | P06  | not_started                         | docs/progress/P06-gate.md |
 | P07  | not_started                         | docs/progress/P07-gate.md |
