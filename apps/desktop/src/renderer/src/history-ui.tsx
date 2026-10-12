@@ -15,6 +15,7 @@ import {
 } from '@tapkit/contracts';
 import { requestOptions } from './desktop-state';
 import h from '../locales/history.zh-CN.json';
+import { MemoryDeletePreview } from './memory-delete';
 export const historyData = (r: Reply) => {
   if (!r.ok) throw new Error(r.error.code);
   return r.data;
@@ -67,6 +68,7 @@ export function HistoryList({
     [menu, setMenu] = useState<string>();
   const [moving, setMoving] = useState(false),
     [batchProject, setBatchProject] = useState('keep');
+  const [deleteIds, setDeleteIds] = useState<string[]>();
   const paged = useRef(false);
   function closeDialog() {
     setEditing(undefined);
@@ -140,6 +142,10 @@ export function HistoryList({
     ids: string[],
     archived?: boolean,
   ) {
+    if (command === 'sessions.trash') {
+      setDeleteIds(ids);
+      return;
+    }
     await historyCommand(command, {
       sessionIds: ids,
       ...(archived === undefined ? {} : { archived }),
@@ -493,6 +499,23 @@ export function HistoryList({
         >
           {h.more}
         </button>
+      )}
+      {deleteIds && (
+        <MemoryDeletePreview
+          sessionIds={deleteIds}
+          busy={busy}
+          onClose={() => setDeleteIds(undefined)}
+          onConfirm={(keep) =>
+            void action(async () => {
+              await historyCommand('sessions.trash', {
+                sessionIds: deleteIds,
+                keepExplicitMemories: keep,
+              });
+              setDeleteIds(undefined);
+              setSelected([]);
+            })
+          }
+        />
       )}
       {(editing || newGroup || groupEdit || confirm || moving) && (
         <dialog

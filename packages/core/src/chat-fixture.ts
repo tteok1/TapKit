@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { DescriptorSchema, type ProviderAdapter } from '@tapkit/contracts';
 import { newId } from '@tapkit/storage';
 import type { ModelService } from './model-service';
+import { conservativeCandidate } from '../../context/src';
 export function installChatFixture(models: ModelService) {
   const store = models.store;
   if (readFileSync(join(store.dataDir, 'P02-02.fixture'), 'utf8') !== 'P02-02 isolated fixture')
@@ -52,9 +53,11 @@ export function installChatFixture(models: ModelService) {
       const last = request.messages.findLast((m) => m.role === 'user');
       const text = last?.role === 'user' ? last.text : '';
       yield { type: 'start', attemptId: request.attemptId };
-      const answer = text.includes('恶意渲染')
-        ? '# 安全标题\n\n|列|值|\n|---|---|\n|中文|1|\n\n$$x^2+1$$\n\n```javascript\nconst value = 1;\n```\n\n```mermaid\ngraph TD\nA[输入] --> B[输出]\n```\n\n[危险链接](javascript:alert(1))\n<img src="https://fixture.invalid/evil.png" onerror="window.fixturePwned=true">'
-        : '隔离测试回复：' + text.slice(0, 80);
+      const answer = request.systemModules.some((m) => m.id === 'tapkit.memory.extract')
+        ? JSON.stringify(conservativeCandidate(text))
+        : text.includes('恶意渲染')
+          ? '# 安全标题\n\n|列|值|\n|---|---|\n|中文|1|\n\n$$x^2+1$$\n\n```javascript\nconst value = 1;\n```\n\n```mermaid\ngraph TD\nA[输入] --> B[输出]\n```\n\n[危险链接](javascript:alert(1))\n<img src="https://fixture.invalid/evil.png" onerror="window.fixturePwned=true">'
+          : '隔离测试回复：' + text.slice(0, 80);
       yield { type: 'text_delta', blockId: 'text', text: answer.slice(0, 5) };
       await new Promise<void>((resolve, reject) => {
         const timer = setTimeout(

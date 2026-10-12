@@ -334,7 +334,8 @@ test.each(['allowGlobalMemory', 'allowGlobalHistory', 'allowGlobalInstructions']
     ] as const)
       f.store.db
         .prepare(
-          'INSERT INTO memories(id,profile_id,created_at,updated_at,subject,predicate,value_json,scope_type,scope_id,valid_from,content_hash) VALUES(?,?,?,?,?,?,?,?,?,?,?)',
+          // Scope fixtures represent deliberately saved facts; implicit P04 memories require sources.
+          'INSERT INTO memories(id,profile_id,created_at,updated_at,subject,predicate,value_json,scope_type,scope_id,valid_from,content_hash,explicit) VALUES(?,?,?,?,?,?,?,?,?,?,?,1)',
         )
         .run(
           newId(),

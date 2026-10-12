@@ -1,0 +1,16 @@
+# ADR0048 有来源的长期记忆与历史参考
+
+- 日期：2026-10-12
+- 任务：P04-03；状态：实施中，验收以progress为准。
+
+schema14增量迁移既有memories；新增唯一active键、memory_versions、memory_changes、memory_tombstones、memory_candidates、memory_uses和删除同步的memory_fts。保留旧值与任务收据，迁移可重跑；schema握手同步14。原文中0005_memory是任务拟定位置，0005已被桌面域占用，故追加0014_memory而不改历史迁移。
+
+显式“记住/更新记忆/纠正记忆/忘记/删除记忆”使用用户消息即时路径；命名事实用“名称：内容”，稳定喜好/名字/职业等使用固定字段，其余明确要求保存的事实按正文摘要键保存。不等待模型审批。管理页创建、编辑、删除、跨个人/项目范围迁移均为用户操作。凭据永不保存；必要敏感事实只允许用户显式保存，并显示写后提示。
+
+普通完成run只为合格的本人稳定偏好排低优先级memory.extract job。生产提取复用现有模型路由，foreground=false、singleAttempt=true、共享原run/root预算，无工具，仅发送当前必要用户发言。模型输出只提候选；Core再次验证逐字quote/value、置信度≥0.85、非临时/第三方/敏感/凭据及两个独立且可访问的用户messageId/revision。复制分支消息不算独立支持；未达门槛记录skipped，没有待批准队列。保守本地提取仅用于同一规则的测试fixture；生产使用已配置模型。
+
+job固定generation、来源revision、设置revision、scope和项目revision，并在模型调用前后及事务/lease提交前核验。写入以scope+subject+predicate唯一active键和revision序列化；显式/手工改动优先，旧job不覆盖。删除建立谓词墓碑、清理索引和使用记录；清空即使零条也增加generation。撤销要求当前revision等于该变更提交revision；来源删除后的旧版本/撤销载荷清理，不可还原已删除来源。会话删除共享Storage来源清理，永久删除journal重放同样执行；仅由该来源支持的记忆默认删除，多来源隐式记忆仍需至少两条支持，明确保留的显式记忆脱离被删除来源。P10继续负责备份全量清理和物理残留语义。
+
+个人与当前会话记忆/历史开关沿既定优先级，项目外记忆/历史/个人长期指令各自独立且默认关闭；projectOnly关闭外部背景与历史。每次模型prepareContext重新获取有效记忆与历史，记忆序列化输入使用UTF-8字节保守上界≤1000 token；显式设置优先，其他记忆按查询相关性选择。历史只读可访问的普通会话活动分支，附messageId/sessionId/revision，不提供任何新权限。回答的memory_uses只存引用，展开时重验最新权限/删除/版本；临时store不读取/写入/提取/上传这些背景。
+
+管理入口：设置→个性化→记忆管理。消息旁写后提示可管理/撤销，回答可展开使用的记忆与历史；删除会话前展示来源影响并选择是否保留显式记忆。智能体范围仍规划中，不创建Agent域或扩展P05。

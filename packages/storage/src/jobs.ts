@@ -36,7 +36,7 @@ export class JobQueue {
       const now = this.store.now();
       const row = this.store.db
         .prepare(
-          "SELECT id FROM jobs WHERE deleted_at IS NULL AND cancel_requested_at IS NULL AND ((status='queued' AND next_attempt_at<=?) OR (status='running' AND lease_expires_at<=?)) ORDER BY next_attempt_at,id LIMIT 1",
+          "SELECT id FROM jobs WHERE deleted_at IS NULL AND cancel_requested_at IS NULL AND ((status='queued' AND next_attempt_at<=?) OR (status='running' AND lease_expires_at<=?)) ORDER BY CASE kind WHEN 'memory.extract' THEN 1 ELSE 0 END,next_attempt_at,id LIMIT 1",
         )
         .get(now, now) as { id: string } | undefined;
       if (!row) return;

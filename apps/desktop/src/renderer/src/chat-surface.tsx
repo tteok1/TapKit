@@ -26,6 +26,7 @@ import { useViewer } from '../features/viewer/state';
 import { InlineFileCard } from '../features/viewer/inline-card';
 import { ProjectScopeBar } from './projects-ui';
 import { ContextSummary } from './context-summary';
+import { MemoryPolicy, MemoryMessage } from './memory-ui';
 const unwrap = (reply: Reply) => {
   if (!reply.ok) throw new Error(reply.error.code);
   return reply.data;
@@ -92,6 +93,8 @@ export function ChatSurface({
   const fileOperation = useRef<AbortController | undefined>(undefined);
   const sceneEpoch = useRef(0);
   const [historyDetails, setHistoryDetails] = useState<SessionDetails>();
+  const [memoryEventSeq, setMemoryEventSeq] = useState(0),
+    [memoryPolicySeq, setMemoryPolicySeq] = useState(0);
   const [snippets, setSnippets] = useState<ReturnType<typeof ChatSnippetsSchema.parse>['snippets']>(
       [],
     ),
@@ -362,8 +365,15 @@ export function ChatSurface({
         requestOptions(),
         { streamId: 'profile', afterSeq: snapshot?.eventSeq ?? 0 },
         (event) => {
+          if (event.payload.kind === 'memory') setMemoryEventSeq(event.seq);
+          if (event.payload.kind === 'settings') setMemoryEventSeq(event.seq);
           if (
-            event.payload.kind === 'chat' &&
+            event.payload.kind === 'settings' ||
+            (event.payload.kind === 'workspace' && event.payload.entityId === sid.current)
+          )
+            setMemoryPolicySeq(event.seq);
+          if (
+            (event.payload.kind === 'chat' || event.payload.kind === 'memory') &&
             event.payload.sessionId === sid.current &&
             event.type !== 'draft.updated'
           )
@@ -642,6 +652,13 @@ export function ChatSurface({
     <section className="chat-surface" data-session-id={sessionId}>
       {sessionId && <ContextSummary key={sessionId} sessionId={sessionId} onCreated={onCreated} />}
       {sessionId && (
+        <MemoryPolicy
+          key={'memory-' + sessionId}
+          sessionId={sessionId}
+          eventSeq={Math.max(memoryEventSeq, memoryPolicySeq)}
+        />
+      )}
+      {sessionId && (
         <ProjectScopeBar
           sessionId={sessionId}
           disabled={
@@ -837,6 +854,15 @@ export function ChatSurface({
                 <p role="status">
                   {c.errors[message.errorCode as keyof typeof c.errors] ?? message.errorCode}
                 </p>
+              )}
+              {sessionId && message.role !== 'tool' && (
+                <MemoryMessage
+                  sessionId={sessionId}
+                  messageId={message.id}
+                  eventSeq={memoryEventSeq}
+                  policySeq={memoryPolicySeq}
+                  role={message.role}
+                />
               )}
               {message.role !== 'tool' && (
                 <div className="message-actions">

@@ -44,6 +44,7 @@ import {
   newId,
   eraseSessionContent,
   eraseMessageContent,
+  invalidateMemorySources,
 } from '@tapkit/storage';
 import type { ChatService } from './chat-service';
 type Session = {
@@ -688,6 +689,15 @@ export class HistoryService {
                   )
                   .run(p.archived === false ? null : this.store.now(), this.store.now(), s.id);
               else if (r.command === 'sessions.trash') {
+                invalidateMemorySources(
+                  this.store,
+                  (
+                    this.store.db
+                      .prepare('SELECT id FROM messages WHERE session_id=?')
+                      .all(s.id) as { id: string }[]
+                  ).map((m) => m.id),
+                  p.keepExplicitMemories,
+                );
                 this.store.db
                   .prepare(
                     'UPDATE sessions SET deleted_at=?,revision=revision+1,updated_at=? WHERE id=?',

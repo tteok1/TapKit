@@ -208,7 +208,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P03-03 | 项目管理、资料范围与索引版本       | P03-02         | implemented_and_verified      | docs/progress/P03-03.md              |
 | P04-01 | 中文混合检索、重排与引用证据       | P03-03         | implemented_and_verified      | docs/progress/P04-01.md              |
 | P04-02 | 上下文预算、压缩检查点与缓存       | P04-01/P01-03  | implemented_and_verified      | docs/progress/P04-02.md              |
-| P04-03 | 自动长期记忆、历史参考与管理       | P04-02         | not_started                   | docs/progress/P04-03.md              |
+| P04-03 | 自动长期记忆、历史参考与管理       | P04-02         | in_progress                   | docs/progress/P04-03.md              |
 | P05-01 | 联网搜索、匿名网页读取与来源归档   | P04-03         | not_started                   | docs/progress/P05-01.md              |
 | P05-02 | 引用交互、会话导出和本地分享快照   | P05-01, P03-02 | not_started                   | docs/progress/P05-02.md              |
 | P05-03 | 聊天版本端到端验收                 | P05-02         | not_started                   | docs/progress/P05-03.md              |
@@ -240,7 +240,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P01  | failed                              | docs/progress/P01-gate.md |
 | P02  | engineering_passed_external_pending | docs/progress/P02-gate.md |
 | P03  | passed                              | docs/progress/P03-gate.md |
-| P04  | not_started                         | docs/progress/P04-gate.md |
+| P04  | in_progress                         | docs/progress/P04-gate.md |
 | P05  | not_started                         | docs/progress/P05-gate.md |
 | P06  | not_started                         | docs/progress/P06-gate.md |
 | P07  | not_started                         | docs/progress/P07-gate.md |

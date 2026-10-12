@@ -25,6 +25,7 @@ export * from './artifacts';
 export * from './projects';
 export * from './retrieval';
 export * from './context';
+export * from './memory';
 export const PingRequestSchema = z.strictObject({ nonce: z.string().min(1).max(128) });
 export const PingReplySchema = z.strictObject({
   nonce: z.string().min(1).max(128),
@@ -100,7 +101,7 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('ready'),
     protocolVersion: z.literal(1),
-    schemaVersion: z.literal(13),
+    schemaVersion: z.literal(14),
   }),
   z.strictObject({ type: z.literal('pong'), id: z.string().uuid(), payload: PingReplySchema }),
   z.strictObject({ type: z.literal('reply'), id: z.string().uuid(), reply: ReplySchema }),
@@ -109,6 +110,11 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
 export type PingRequest = z.infer<typeof PingRequestSchema>;
 export type PingReply = z.infer<typeof PingReplySchema>;
 export interface TapKitBridge {
+  memoryCommand(
+    options: RequestOptions,
+    command: import('./memory').MemoryCommand,
+    payload: unknown,
+  ): Promise<Reply>;
   exportProject(value: { projectId: string; revision: number }): Promise<Reply>;
   projectCommand(
     options: RequestOptions,

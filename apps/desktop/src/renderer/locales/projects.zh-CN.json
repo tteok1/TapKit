@@ -39,7 +39,7 @@
   "globalHistory": "允许项目外普通会话历史",
   "globalInstructions": "允许个人长期指令与背景",
   "independentMemory": "使用项目独立记忆",
-  "memoryHint": "此处设置记忆范围；自动记忆提取与管理将在记忆阶段开放。",
+  "memoryHint": "项目默认只使用自身记忆；可在设置 → 个性化 → 记忆管理中查看、纠正或删除。",
   "save": "保存项目设置",
   "model": "默认模型",
   "inherit": "使用个人默认模型",

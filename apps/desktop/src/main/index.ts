@@ -35,6 +35,7 @@ import {
   ReplaySchema,
   EventEnvelopeSchema,
   HISTORY_COMMANDS,
+  MemoryCommandSchemas,
   FileCommandSchemas,
   ArtifactCommandSchemas,
   ProjectCommandSchemas,
@@ -441,6 +442,7 @@ if (ownsLock) {
     });
     const allowed = new Set([
       ...HISTORY_COMMANDS,
+      ...Object.keys(MemoryCommandSchemas),
       ...Object.keys(FileCommandSchemas),
       ...Object.keys(ArtifactCommandSchemas),
       ...Object.keys(ProjectCommandSchemas),

@@ -1,5 +1,7 @@
 # 范围、决策与默认行为
 
+2026-10-12 P04-03：[ADR0048](../adr/0048-evidence-backed-memory-and-history.md)规定schema14、即时显式记忆、双用户来源的低优先级提取、CAS/墓碑/撤销和逐次授权的历史参考。项目隔离与临时模式保持；真实模型联调按用户要求本轮暂不执行，验收状态见progress。
+
 2026-10-11 P02-02预览兼容修复：[ADR0047](../adr/0047-legacy-text-attachment-preview.md)复用旧文本严格UTF-8兼容读取，为ready且parserVersion=null的文本固定版本构造只读内存预览；解析文件缺结构仍拒绝，权限与字符位置保留，真实模型联调缺口不提升。
 
 2026-10-11 P04-02：[ADR0046](../adr/0046-verifiable-context-checkpoints-and-budget.md)规定schema13、确定性应用检查点、按模型与根剩余量预算、最多一次重试、摘要纠正和同项目选择接续；原生compaction没有已验证provider，保持禁用。验收以progress为准。
