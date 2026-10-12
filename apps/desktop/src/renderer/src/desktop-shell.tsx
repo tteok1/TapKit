@@ -37,6 +37,16 @@ import { BranchChangeSchema } from '@tapkit/contracts';
 import { SessionDetailsSchema, type SessionRecord } from '@tapkit/contracts';
 import { HistoryLocationSchema } from '@tapkit/contracts';
 import { DEFAULT_SETTINGS } from '@tapkit/contracts';
+import { UiIcon, type IconName } from './ui-icon';
+import productIcon from '../assets/tapkit-current-icon.png?url';
+
+const navigationIcons: Record<string, IconName> = {
+  chats: 'chat',
+  work: 'work',
+  projects: 'folder',
+  files: 'file',
+  notifications: 'bell',
+};
 type Bootstrap = z.infer<typeof BootstrapViewSchema>;
 type Workspace = z.infer<typeof WorkspaceViewSchema>;
 function data(reply: Reply) {
@@ -354,12 +364,9 @@ export function DesktopShell() {
   );
   const home = (
     <>
-      <section className="welcome">
-        <div className="home-mark" aria-hidden="true">
-          {branding.mark}
-        </div>
-        <p className="eyebrow">本地空间 · 无需注册</p>
+      <section className="welcome home-welcome">
         <h1>{t.home}</h1>
+        <p className="surface-context">本地空间 · 无需注册</p>
         <p>{workspace?.sessions.length ? '继续一段会话，或从新的目标开始。' : t.emptyHistory}</p>
         {prefs?.showSuggestions && (
           <div className="suggestions">
@@ -405,7 +412,12 @@ export function DesktopShell() {
   );
   return (
     <div
-      className={'desktop-shell ' + (prefs?.compact ? 'compact' : '')}
+      className={
+        'desktop-shell ' +
+        (prefs?.compact ? 'compact ' : '') +
+        (layout.panelOpen ? 'panel-open ' : '') +
+        (routedSessionId ? 'session-screen' : 'home-screen')
+      }
       data-theme={prefs?.theme ?? 'system'}
       style={
         {
@@ -427,9 +439,7 @@ export function DesktopShell() {
       >
         <div className="sidebar-brand">
           <Link to="/" aria-label="TapKit 首页">
-            <span className="mark" aria-hidden="true">
-              {branding.mark}
-            </span>
+            <img className="product-icon" src={productIcon} alt="" />
             {!collapsed && <strong>{branding.name}</strong>}
           </Link>
           <button
@@ -440,11 +450,12 @@ export function DesktopShell() {
                 : setLayout((l) => ({ ...l, collapsed: !l.collapsed }))
             }
           >
-            {collapsed ? '›' : '‹'}
+            <UiIcon name="panel" />
           </button>
         </div>
         <div className="new-actions">
           <button
+            aria-label={h.temporary}
             disabled={busy || !bootstrap}
             onClick={() =>
               void action(async () => {
@@ -454,25 +465,45 @@ export function DesktopShell() {
               })
             }
           >
-            {collapsed ? '临' : h.temporary}
+            <UiIcon name="temporary" />
+            {!collapsed && h.temporary}
           </button>
           <button
+            className="new-chat-primary"
+            aria-label={t.newChat}
             disabled={busy || !bootstrap}
             onClick={() => void newSession('chat')}
             title="Ctrl+N"
           >
-            {collapsed ? '聊' : t.newChat}
+            <UiIcon name="edit" />
+            {!collapsed && t.newChat}
           </button>
-          <button disabled={busy || !bootstrap} onClick={() => void newSession('work')}>
-            {collapsed ? '工' : t.newWork}
+          <button
+            aria-label={t.newWork}
+            disabled={busy || !bootstrap}
+            onClick={() => void newSession('work')}
+          >
+            <UiIcon name="work" />
+            {!collapsed && t.newWork}
           </button>
-          <button disabled={busy || !bootstrap} onClick={() => setDialog('project')}>
-            {collapsed ? '项' : t.newProject}
+          <button
+            aria-label={t.newProject}
+            disabled={busy || !bootstrap}
+            onClick={() => setDialog('project')}
+          >
+            <UiIcon name="plus" />
+            {!collapsed && t.newProject}
           </button>
         </div>
         <nav aria-label="主导航">
-          <button onClick={() => setDialog('search')} title="Ctrl+K">
-            {collapsed ? '⌕' : t.search}
+          <button aria-label={t.search} onClick={() => setDialog('search')} title="Ctrl+K">
+            <UiIcon name="search" />
+            {!collapsed && (
+              <>
+                <span>{t.search}</span>
+                <kbd>Ctrl K</kbd>
+              </>
+            )}
           </button>
           {layout.navigation.map((key) => (
             <Link
@@ -482,7 +513,8 @@ export function DesktopShell() {
               title={t[key]}
               aria-current={location.pathname === '/' + key ? 'page' : undefined}
             >
-              {collapsed ? t[key].slice(0, 1) : t[key]}
+              <UiIcon name={navigationIcons[key]!} />
+              {!collapsed && t[key]}
               {key === 'notifications' && !!workspace?.pendingApprovals && (
                 <span>{workspace.pendingApprovals}</span>
               )}
@@ -535,6 +567,23 @@ export function DesktopShell() {
             setLayout((l) => ({ ...l, sidebarScroll: y }));
           }}
         >
+          {!collapsed && !!workspace?.projects.length && (
+            <section className="sidebar-projects" aria-label={t.projects}>
+              <h2>{t.projects}</h2>
+              {workspace.projects.map((project) => (
+                <Link
+                  key={project.id}
+                  to={'/projects/' + project.id}
+                  aria-current={
+                    location.pathname === '/projects/' + project.id ? 'page' : undefined
+                  }
+                >
+                  <UiIcon name="folder" />
+                  <span>{project.name}</span>
+                </Link>
+              ))}
+            </section>
+          )}
           <HistoryList
             collapsed={collapsed}
             activeId={routedSessionId}
@@ -566,7 +615,8 @@ export function DesktopShell() {
           )}
         </Link>
         <Link to="/settings/general" aria-label="设置">
-          {collapsed ? '⚙' : t.settings}
+          <UiIcon name="settings" />
+          {!collapsed && t.settings}
         </Link>
         {!collapsed && (
           <div
@@ -597,34 +647,60 @@ export function DesktopShell() {
       <div className="workspace">
         <header className="topbar">
           <button aria-label={h.back} onClick={() => navigate(-1)}>
-            ‹
+            <UiIcon name="left" />
           </button>
           <button aria-label={h.forward} onClick={() => navigate(1)}>
-            ›
+            <UiIcon name="right" />
           </button>
-          <Link to="/">首页</Link>
-          <span data-testid="core-status">
-            {bootstrap
-              ? text.ready
-              : error === text.recovery
-                ? text.recovery
-                : error
-                  ? text.failure
-                  : text.checking}
+          <Link to="/" className="home-link">
+            首页
+          </Link>
+          <span className="workspace-title">
+            {selected?.title ??
+              (location.pathname.startsWith('/settings')
+                ? t.settings
+                : location.pathname.startsWith('/projects')
+                  ? t.projects
+                  : location.pathname === '/files'
+                    ? t.files
+                    : location.pathname === '/work'
+                      ? t.work
+                      : location.pathname === '/chats'
+                        ? t.chats
+                        : branding.name)}
           </span>
-          <span className="connection-summary">
-            {accounts
-              ? accounts.accounts.filter((a) => a.status === 'ready').length + ' 个模型账户已连接'
-              : connectionError
-                ? '账户状态不可用'
-                : '账户状态待加载'}
-          </span>
+          <details className="connection-status">
+            <summary aria-label={t.connectionStatus}>
+              <span className={'status-dot ' + (bootstrap ? 'ready' : '')} />
+              {t.connectionStatus}
+            </summary>
+            <div className="connection-popover">
+              <span data-testid="core-status">
+                {bootstrap
+                  ? text.ready
+                  : error === text.recovery
+                    ? text.recovery
+                    : error
+                      ? text.failure
+                      : text.checking}
+              </span>
+              <span className="connection-summary">
+                {accounts
+                  ? accounts.accounts.filter((a) => a.status === 'ready').length +
+                    ' 个模型账户已连接'
+                  : connectionError
+                    ? '账户状态不可用'
+                    : '账户状态待加载'}
+              </span>
+            </div>
+          </details>
           <button
             aria-label="详情面板"
             aria-expanded={layout.panelOpen}
             onClick={() => setLayout((l) => ({ ...l, panelOpen: !l.panelOpen }))}
           >
-            详情
+            <UiIcon name="panel" />
+            <span>{t.workbench}</span>
           </button>
         </header>
         {connectionError && (
@@ -765,9 +841,11 @@ export function DesktopShell() {
                   element={
                     selected ? (
                       <>
-                        <section className="welcome">
-                          <p className="eyebrow">{selected.mode === 'chat' ? '聊天' : '工作'}</p>
+                        <section className="welcome session-welcome">
                           <h1>{selected.title}</h1>
+                          <p className="surface-context">
+                            {selected.mode === 'chat' ? '聊天' : '工作'}
+                          </p>
                           <p>{selected.mode === 'chat' ? t.chatHint : t.workHint}</p>
                         </section>
                         {composer}
@@ -810,9 +888,15 @@ export function DesktopShell() {
                   }
                 }}
               />
-              <button onClick={() => setLayout((l) => ({ ...l, panelOpen: false }))}>
-                关闭详情
-              </button>
+              <header className="workbench-header">
+                <strong>{t.workbench}</strong>
+                <button
+                  aria-label="关闭详情"
+                  onClick={() => setLayout((l) => ({ ...l, panelOpen: false }))}
+                >
+                  <UiIcon name="close" />
+                </button>
+              </header>
               {viewer.tabs.length ? (
                 <ArtifactPanel />
               ) : (

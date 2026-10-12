@@ -1,4 +1,6 @@
 {
+  "workbench": "工作台",
+  "connectionStatus": "连接状态",
   "home": "从这里开始",
   "newChat": "新建聊天",
   "newWork": "新建工作",

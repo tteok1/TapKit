@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:16864) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\e2e\P02-01.ui-redesign.spec.ts:56:1 › P02-01 UI input controls remain reachable from compact menus and keyboard at 200 percent (3.2s)
+
+  1 passed (4.2s)

@@ -1,0 +1,9 @@
+$ vitest run --config vitest.config.ts --project integration "P02-01.desktop" "P03-02.artifacts" "P03-03.projects" "P04-03.memory"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  4 passed (4)
+      Tests  45 passed (45)
+   Start at  21:00:19
+   Duration  20.15s (tests 83%, transform 9%, import 8%)

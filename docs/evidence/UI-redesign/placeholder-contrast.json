@@ -1,0 +1,17 @@
+{
+  "method": "Shared placeholder uses --muted with opacity 1; compare normative foreground/background tokens, supplemented by rendered review",
+  "rows": [
+    {
+      "theme": "light",
+      "foreground": "#66736b",
+      "background": "#ffffff",
+      "contrast": 4.965059010808025
+    },
+    {
+      "theme": "dark",
+      "foreground": "#a3b2a7",
+      "background": "#191e1b",
+      "contrast": 7.630295879549284
+    }
+  ]
+}

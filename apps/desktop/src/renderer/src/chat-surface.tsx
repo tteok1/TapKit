@@ -650,40 +650,44 @@ export function ChatSurface({
     : catalog?.catalog.find((m) => m.status === 'ready');
   return (
     <section className="chat-surface" data-session-id={sessionId}>
-      {sessionId && <ContextSummary key={sessionId} sessionId={sessionId} onCreated={onCreated} />}
-      {sessionId && (
-        <MemoryPolicy
-          key={'memory-' + sessionId}
-          sessionId={sessionId}
-          eventSeq={Math.max(memoryEventSeq, memoryPolicySeq)}
-        />
-      )}
-      {sessionId && (
-        <ProjectScopeBar
-          sessionId={sessionId}
-          disabled={
-            !!snapshot?.run &&
-            ['queued', 'running', 'waiting_tool', 'stopping'].includes(snapshot.run.status)
-          }
-        />
-      )}
-      {sessionId && (
-        <SessionTools
-          sessionId={sessionId}
-          snapshot={snapshot}
-          onDetails={setHistoryDetails}
-          exportRequested={exportRequested}
-          personalization={settings.personalization.enabled}
-          onChanged={refresh}
-          onNavigate={
-            onNavigate ??
-            ((path) => {
-              if (path === '/') onNew();
-              else onCreated(path.split('/')[2]!.split('?')[0]!);
-            })
-          }
-        />
-      )}
+      <div className="conversation-controls">
+        {sessionId && (
+          <ContextSummary key={sessionId} sessionId={sessionId} onCreated={onCreated} />
+        )}
+        {sessionId && (
+          <MemoryPolicy
+            key={'memory-' + sessionId}
+            sessionId={sessionId}
+            eventSeq={Math.max(memoryEventSeq, memoryPolicySeq)}
+          />
+        )}
+        {sessionId && (
+          <ProjectScopeBar
+            sessionId={sessionId}
+            disabled={
+              !!snapshot?.run &&
+              ['queued', 'running', 'waiting_tool', 'stopping'].includes(snapshot.run.status)
+            }
+          />
+        )}
+        {sessionId && (
+          <SessionTools
+            sessionId={sessionId}
+            snapshot={snapshot}
+            onDetails={setHistoryDetails}
+            exportRequested={exportRequested}
+            personalization={settings.personalization.enabled}
+            onChanged={refresh}
+            onNavigate={
+              onNavigate ??
+              ((path) => {
+                if (path === '/') onNew();
+                else onCreated(path.split('/')[2]!.split('?')[0]!);
+              })
+            }
+          />
+        )}
+      </div>
       {snapshot && (
         <div
           className="chat-messages"
@@ -1092,13 +1096,18 @@ export function ChatSurface({
             }
           }}
         />
-        <small>
-          {text.length.toLocaleString('zh-CN')} / 100,000 · {c.limit}
-        </small>
-        <small>
-          本轮工具：
-          {mode === 'chat' && selectedModel?.toolCalls === 'documented' ? c.readTools : c.noTools}
-        </small>
+        <details className="composer-info">
+          <summary>
+            {c.inputInfo} · {text.length.toLocaleString('zh-CN')} / 100,000
+          </summary>
+          <small className="composer-counter">
+            {text.length.toLocaleString('zh-CN')} / 100,000 · {c.limit}
+          </small>
+          <small className="composer-tool-hint">
+            本轮工具：
+            {mode === 'chat' && selectedModel?.toolCalls === 'documented' ? c.readTools : c.noTools}
+          </small>
+        </details>
         {longPaste && (
           <div role="status">
             <p>{c.longPaste}</p>
@@ -1264,8 +1273,15 @@ export function ChatSurface({
           >
             @ {c.refs}
           </button>
-          <button onClick={() => setExpanded(!expanded)}>{expanded ? c.collapse : c.expand}</button>
-          <button onClick={() => change('')}>{c.clear}</button>
+          <details className="composer-more">
+            <summary>{c.moreInputActions}</summary>
+            <div>
+              <button onClick={() => setExpanded(!expanded)}>
+                {expanded ? c.collapse : c.expand}
+              </button>
+              <button onClick={() => change('')}>{c.clear}</button>
+            </div>
+          </details>
           {active && (
             <label>
               {c.delivery}
@@ -1279,6 +1295,7 @@ export function ChatSurface({
             </label>
           )}
           <button
+            className="send-button"
             disabled={!canSend}
             onClick={() => void send()}
             title={!catalog?.catalog.some((m) => m.status === 'ready') ? c.connect : ''}
