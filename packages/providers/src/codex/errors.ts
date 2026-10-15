@@ -31,7 +31,36 @@ export function classifyCodexError(error: unknown, signal?: AbortSignal): Provid
   return { code: 'PROVIDER_UNAVAILABLE', retryable: false };
 }
 export function httpFailure(status: number, rawCode?: string): ProviderError {
-  const upstreamCode = rawCode && /^[a-zA-Z0-9_.-]{1,80}$/.test(rawCode) ? rawCode : undefined;
+  const knownCodes = new Set([
+    'usage_limit_reached',
+    'insufficient_quota',
+    'quota_exceeded',
+    'usage_not_included',
+    'authentication_error',
+    'invalid_api_key',
+    'permission_error',
+    'permission_denied',
+    'rate_limit_error',
+    'rate_limit_exceeded',
+    'overloaded',
+    'overloaded_error',
+    'invalid_request_error',
+    'invalid_request',
+    'model_not_found',
+    'not_implemented',
+    'request_too_large',
+    'expired',
+    'context_length_exceeded',
+    'server_error',
+    'server_is_overloaded',
+    'not_found_error',
+    'slow_down',
+    'content_filter',
+    'cyber_policy',
+  ]);
+  // Unknown symbolic fields are untrusted values, not safe diagnostic text.
+  const upstreamCode =
+    rawCode && (/^[0-9]{1,8}$/.test(rawCode) || knownCodes.has(rawCode)) ? rawCode : undefined;
   const quota = new Set(['usage_limit_reached', 'insufficient_quota', 'quota_exceeded']);
   const code: ProviderError['code'] =
     upstreamCode && quota.has(upstreamCode)

@@ -1,4 +1,4 @@
-import { describe, it, expect, afterEach } from 'vitest';
+import { describe, it, expect, afterEach, vi } from 'vitest';
 import { mkdir, mkdtemp, readdir, writeFile, readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
@@ -55,6 +55,31 @@ const data = (reply: Reply) => {
   if (!reply.ok) throw new Error(reply.error.code);
   return reply.data;
 };
+it('P01-03 catalog metadata does not resolve network routes or refresh an unconfigured subscription account', async () => {
+  const store = await fresh();
+  const id = account(store, 'codex-subscription');
+  store.db
+    .prepare("UPDATE provider_accounts SET auth_type='oauth',status='unconfigured' WHERE id=?")
+    .run(id);
+  const resolver = vi.fn(async () => {
+    throw new Error('NO_NETWORK_IN_CATALOG');
+  });
+  const providers = new ProviderService(
+    store,
+    async (operation) => {
+      if (operation === 'credential.read') return { version: 0 };
+      throw new Error('NO_REAL_CREDENTIALS');
+    },
+    resolver,
+  );
+  try {
+    const reply = await providers.dispatch(req('providers.list', {}));
+    expect(reply.ok).toBe(true);
+    expect(resolver).not.toHaveBeenCalled();
+  } finally {
+    await providers.stop();
+  }
+});
 function account(store: Store, provider = 'deepseek') {
   const id = newId();
   store.db

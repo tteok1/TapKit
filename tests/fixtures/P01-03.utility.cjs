@@ -116,26 +116,28 @@ if (process.parentPort) {
           ).toString('base64url') +
           '.mock';
         const value =
-          message.operation === 'credential.read'
-            ? {
-                version: 1,
-                credential: {
-                  type: 'oauth',
-                  access: token,
-                  refresh: 'mock-refresh',
-                  expires: Date.now() + 3600000,
-                  accountId: 'mock-account',
-                },
-              }
-            : message.operation === 'api-key.read'
-              ? { key: 'fixture-private-key' }
-              : message.operation === 'native.save'
-                ? {
-                    contentHash: createHash('sha256')
-                      .update(JSON.stringify(message.payload))
-                      .digest('hex'),
-                  }
-                : {};
+          message.operation === 'network.proxy.resolve'
+            ? { proxyURL: '' }
+            : message.operation === 'credential.read'
+              ? {
+                  version: 1,
+                  credential: {
+                    type: 'oauth',
+                    access: token,
+                    refresh: 'mock-refresh',
+                    expires: Date.now() + 3600000,
+                    accountId: 'mock-account',
+                  },
+                }
+              : message.operation === 'api-key.read'
+                ? { key: 'fixture-private-key' }
+                : message.operation === 'native.save'
+                  ? {
+                      contentHash: createHash('sha256')
+                        .update(JSON.stringify(message.payload))
+                        .digest('hex'),
+                    }
+                  : {};
         child.postMessage({ type: 'vault.reply', id: message.id, ok: true, value });
       } else if (message.type === 'ready') {
         child.postMessage({

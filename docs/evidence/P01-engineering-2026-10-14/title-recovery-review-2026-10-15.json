@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-15T08:00:52.183Z",
+  "localDate": "2026-10-15",
+  "status": "passed",
+  "scope": "user-triggered explicit AI rename of original failed title, Zhipu Chat/FlashX only",
+  "branch": "codex/p01-02-zhipu-chat-live",
+  "source": "9bbc44f+working-tree",
+  "sourceFilesVerified": 41,
+  "sourceHashMismatches": 0,
+  "userReport": {
+    "previousTitle": "新聊天",
+    "currentTitle": "OK",
+    "screenshot": "title-recovered-live-2026-10-15.png",
+    "screenshotSHA256": "dbd94f5018dba382660f4d7a8d2dc43967f8c69560b72abb64bcd84dfbee854d"
+  },
+  "before": "title-preparation.json",
+  "after": "title-public-state-1792051172074.json",
+  "rootRunId": "01a135b3-7808-7aec-a374-dee5b0fa17cf",
+  "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+  "titleStatus": "completed",
+  "addedRequests": 1,
+  "newAttempt": {
+    "id": "01a13e90-76d3-7354-9cb3-736f70504814",
+    "logicalCallId": "01a13e90-718b-7d4d-b7ad-c39c0837af8f",
+    "status": "completed",
+    "errorCode": null,
+    "source": "actual",
+    "chargedTokens": 57
+  },
+  "priorAttemptsUnchanged": true,
+  "reservedBudgets": 0,
+  "unsettledAttempts": 0,
+  "activeRuns": 0,
+  "activeTitleJobs": 0,
+  "activeMemoryJobs": 0,
+  "titleFailureCleared": true,
+  "agentModelRequests": 0,
+  "agentCredentialReads": 0,
+  "agentNativeContentReads": 0,
+  "subscriptionLive": "deferred_by_user",
+  "gate": "engineering_passed_external_pending",
+  "limitations": [
+    "Does not prove Windows system-proxy branch was selected or resolve every network environment.",
+    "Does not verify subscription or other provider/protocol live resources or prices."
+  ],
+  "checks": {
+    "publicStateReview": {
+      "command": "node docs/evidence/P01-engineering-2026-10-14/review-title-public-state.mjs review",
+      "exitCode": 0
+    }
+  }
+}

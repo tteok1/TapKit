@@ -1,0 +1,226 @@
+{
+  "checkedAt": "2026-10-14T10:59:53.980Z",
+  "stage": "P01",
+  "scope": "non-subscription engineering fixes and synthetic acceptance; subscription live deferred by user",
+  "branch": "codex/p01-02-zhipu-chat-live",
+  "baseline": "9bbc44f+working-tree",
+  "adr": "docs/adr/0051-p01-network-selection-and-title-recovery.md",
+  "checks": {
+    "unit": {
+      "command": "pnpm test:unit P01-02 P01-03 P02-01.desktop",
+      "exitCode": 0,
+      "files": 10,
+      "passed": 208,
+      "log": "unit-final-fixed.log"
+    },
+    "nativePreflightDelta": {
+      "command": "pnpm test:unit P01-02.native-profile",
+      "exitCode": 0,
+      "passed": 3,
+      "log": "unit-native-guard.log"
+    },
+    "integration": {
+      "command": "pnpm test:integration P01-02 P01-03 P02-01.desktop P02-03.history",
+      "exitCode": 0,
+      "files": 8,
+      "passed": 61,
+      "log": "integration-final.log"
+    },
+    "nativeGuardDelta": {
+      "command": "pnpm test:integration P01-02.native-restart",
+      "exitCode": 0,
+      "passed": 4,
+      "log": "integration-native-guard.log"
+    },
+    "e2e": {
+      "command": "pnpm test:e2e -- --grep 'P01-0[23]|P02-01 T22'",
+      "exitCode": 0,
+      "passed": 7,
+      "log": "e2e-final.log",
+      "isolatedElectron": true,
+      "syntheticOnly": true
+    },
+    "check": {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "formattedRepositoryFiles": 436,
+      "log": "check-handoff.log"
+    },
+    "build": {
+      "command": "pnpm build:desktop; production restore in test:e2e finally",
+      "exitCode": 0,
+      "log": "build-desktop.log",
+      "latestRestoreLog": "e2e-final.log",
+      "productionFixtureAbsent": true
+    },
+    "titlePreparation": {
+      "command": "run-title-followup.ps1 -CheckOnly",
+      "exitCode": 0,
+      "log": "title-check-only-final.log",
+      "publicOnly": true,
+      "credentialReads": 0,
+      "nativeContentReads": 0,
+      "modelRequests": 0
+    },
+    "docsCheck": {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": "docs-check-handoff.log",
+      "verifiedTaskStates": 37
+    },
+    "diffCheck": {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  },
+  "fixed": [
+    "explicit API model independently selected from fallback order",
+    "canonical IPv6 special-purpose and tunnel rejection",
+    "automatic Windows proxy resolution through private Host; explicit environment/manual/direct precedence",
+    "cancelled proxy lookup and safe synchronous HTTPS/header setup cleanup",
+    "unknown symbolic upstream error values omitted from diagnostics",
+    "title project/root accounting and actual input compatibility bound",
+    "persisted title status and sanitized diagnostic with transactional workspace events",
+    "UI title status and root usage refresh; explicit one-request rename recovery",
+    "native acceptance rejects queued titles and all active root states"
+  ],
+  "failuresPreserved": [
+    {
+      "log": "unit-reproduced.log",
+      "exitCode": 1,
+      "result": "five bug-reproduction tests failed before fixes"
+    },
+    {
+      "log": "check-initial.log",
+      "exitCode": 1,
+      "fix": "callback binding and unused test import"
+    },
+    {
+      "log": "integration-initial.log",
+      "exitCode": 1,
+      "fix": "title state and events use the same transaction"
+    },
+    {
+      "log": "integration-title.log",
+      "exitCode": 1,
+      "fix": "leaf ErrorCodeSchema removes aggregate reply cycle"
+    },
+    {
+      "log": "integration-title-fixed.log",
+      "exitCode": 1,
+      "fix": "chat_json metadata column and valid synthetic credential identifier"
+    },
+    {
+      "log": "unit-error-privacy-reproduced.log",
+      "exitCode": 0,
+      "result": "initial test passed wrong object argument; replaced by actual string regression, not bug proof"
+    },
+    {
+      "log": "unit-error-privacy-failure.log",
+      "exitCode": 1,
+      "fix": "known error-code allowlist"
+    },
+    {
+      "log": "unit-final.log",
+      "exitCode": 1,
+      "fix": "preserve existing slow_down/content_filter/cyber_policy codes"
+    },
+    {
+      "log": "check-final.log",
+      "exitCode": 1,
+      "fix": "format modified usage fixture"
+    },
+    {
+      "log": "e2e-initial.log",
+      "exitCode": 1,
+      "fix": "network proxy reply in test Host and workspace-triggered title detail refresh"
+    }
+  ],
+  "screenshots": {
+    "visualInspection": true,
+    "files": [
+      "title-failed.png",
+      "title-recovered.png",
+      "e2e-light-home-1200.png",
+      "e2e-settings-960-200.png"
+    ],
+    "originalScreenshotFilesRestored": 4,
+    "evidence": "screen-preservation.json"
+  },
+  "live": {
+    "agentModelRequests": 0,
+    "agentRealKeyReads": 0,
+    "agentNativeContentReads": 0,
+    "userSettingsChanged": false,
+    "subscriptionStatus": "deferred_not_live_verified",
+    "resourcesPending": [
+      "R01",
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R14"
+    ],
+    "priceCatalog": "unknown; money limits remain disabled without verified full pricing",
+    "previousR13Acceptance": "docs/evidence/P01-02/native-live-2026-10-14/review.json",
+    "titleNetworkRecovery": "pending_user_single_title_request",
+    "titleFollowup": "title-followup.md"
+  },
+  "sourceHashes": {
+    "apps/desktop/src/main/system-proxy.ts": "3f322702a3b32b70c585c99297369af80eaa961f214b1bcfe609538a5fbab798",
+    "packages/contracts/src/errors.ts": "5c2bf5499cb7a3caee20bd068ba5f805a5f9b5a4b69cc613cef37c7197691a83",
+    "scripts/api-native-live.mjs": "73a900f3e7118e89166171a725a3d9299da991c6dab139b2dd842406313fb919",
+    "tests/integration/P01-02.native-restart.test.ts": "d8f0bf255957698c3d015ff3177be183f3cd84da7089fc801280a60d1e61944c",
+    "tests/integration/P01-03.network-progress.test.ts": "db3be60cac36f0b3e9349da554cfc079a3c84e34d3de36774578c314e65102db",
+    "tests/live/P01-02.native-acceptance.ts": "81c1fb7287a23d1f97ce358e7b3671ac4943e7919faf787edb0f5c820bf6283d",
+    "tests/live/P01-02.native-profile.ts": "7e3662abbbedf6f8527c11d2f9916cf2c834fb22d1141798eaf4c92eb755f94f",
+    "tests/live/P01-02.native-runner.ts": "8d660d061a12caa4d201bc0f482ec8b3b73d254aac0696ad7b652a19f92e5809",
+    "tests/live/native.vite.config.ts": "14c23b9b151b3a44030cad491773d4e2733773d29cb440e52657d1ebc82d9992",
+    "tests/unit/P01-02.native-prefix.test.ts": "0a76236373969b542683bc69a9fa83878ceb0518f19801a3ff375681d07cb932",
+    "tests/unit/P01-02.native-profile.test.ts": "97d0734a1284447bce2f3658b805eba2b26b0b6c5396eb48be33d3f680d7bc64",
+    "tests/unit/P01-02.system-proxy.test.ts": "e74891966e27493b12085b3530bae65c2c3b02c0e86fa061e848d761e29ef9f3",
+    "apps/desktop/src/main/index.ts": "7661106b8f40e97aabdaa68675b1d25c6aa32359393e07516e36bd93db74d46a",
+    "apps/desktop/src/renderer/locales/chat.zh-CN.json": "4f690c7dad388a69e1e0b53085778fcc5d683a94ec9baffe5d89000ab32b85fb",
+    "apps/desktop/src/renderer/locales/desktop.zh-CN.json": "477d34b1757b7f0f7be715c58240dd941765b8581f932bf8508fad43002093ae",
+    "apps/desktop/src/renderer/locales/zh-CN.json": "b46b7c57d059653be628a3065ad88baf8b6d1bf91a4bcc062e3bd2f377dbc72d",
+    "apps/desktop/src/renderer/src/chat-surface.tsx": "6ddcac1b2627bf2081d7bef08b5c11a8e6e20387e2a5f994b4bdacdf7b8b64d7",
+    "apps/desktop/src/renderer/src/desktop-settings.tsx": "2268a105d7f4f462aae8ccff9e647b2096803bcd6958c58359abc33e55277d7d",
+    "apps/desktop/src/renderer/src/message-history.tsx": "653a8c74e5cedd189470a75c88d50ca3382fe556795504a8f507b8bfb8f6f8c2",
+    "packages/contracts/src/chat.ts": "593419bc62ba5f5dc3f0e80a2b18976bbb51c8f2fc2e8d70ef54ba1cb843041e",
+    "packages/contracts/src/foundation.ts": "575089464324967c7940ab0f986228b683885c5b0fc6bbf94c6d77caba413a8a",
+    "packages/contracts/src/history.ts": "0643910e3298391b17ed3b6eae09b8de3699bed3dbcc25ac56b8e256f3d1b420",
+    "packages/contracts/src/index.ts": "077337ae1964188e35c5e7390d3ba694219432205798127085ad14d921c33bb0",
+    "packages/contracts/src/providers.ts": "2d2d02aaa133e5befcb19ff2ad066c7ebfac62a63fa3409f42e98eba741163cd",
+    "packages/core/src/chat-fixture.ts": "3d34e31a53dfa43c3a385585c013e89e57d84c38b95887cfe93ab108adf58b05",
+    "packages/core/src/chat-service.ts": "853977040848dcf1f51f8399f65e7574d3d3d9cfe839a653a8ba1f55d3ef9be5",
+    "packages/core/src/history-service.ts": "9ea428218c0aa1aa92b741281ea3427f6f66fd9be35ad5d603c67dad9d6beb1b",
+    "packages/core/src/index.ts": "829e9146ef1ed0daf461f5e184838ef3a06f8ff34678e8d22dbb48943b85a2ae",
+    "packages/core/src/provider-service.ts": "fd4509f5c33499f6ad009ad480cddcff6ff6735c7f44fdf7295513fb399b41b6",
+    "packages/providers/src/api/http.ts": "27f03f5bda785b1048a28bcdfd41c543d729d7917addf338c2138d8f62193386",
+    "packages/providers/src/codex/adapter.ts": "fdd49c999019fdd25ca39f09108bafe3a2cfab051dad76b65ad58083468d6e87",
+    "packages/providers/src/codex/errors.ts": "0029ee3cb6126052ca7978cafd327ff58610a25ae5ba7951bf5014a19ff2f1cd",
+    "packages/providers/src/routing/catalog.ts": "fef8ba4d789f650ef00ee9ebb9de0370c9fc0c14218313d0d7ecdc4d0567cd9c",
+    "scripts/live.mjs": "7a16a4dbbd9090398b44b2c390221bc3a3ba4bfc3dcd2b2d8c341978b3dd84ab",
+    "tests/e2e/P02-02.chat.spec.ts": "02c14d3afeaf8974ad4449565c9d0cd1b4a2a93373ac8711992ab2a888d8300c",
+    "tests/fixtures/P01-03.utility.cjs": "733596e5bf05f695917749bddd542f818c4057fe15ccaad96585df12e313666c",
+    "tests/integration/P01-03.usage.test.ts": "33656481be0241652694dfada1c5f81c4208707ceeb028d6ef526e60528fe0ac",
+    "tests/integration/P02-03.history.test.ts": "fbb0880b11fd1df9c424f1a47f92673ba2c9eae4ee1629c335a66ee382b0f5a5",
+    "tests/unit/P01-02.api.test.ts": "e975391bf822c2c63478750aa2df75f77fd9aa3ca43f0c411e868d4b0b2c1408",
+    "tests/unit/P01-02.transport.test.ts": "448cf7ec727dd06f3cbdf27d8215c076c50da84021f8c9ddf6303dbf0a3749ed",
+    "tests/unit/P01-03.routing.test.ts": "eb1919f288347cbbef63157f4b5ae06ac99ba11b96aa67c727e0fb7b15a4b74a"
+  },
+  "gate": "engineering_passed_external_pending",
+  "commitOrPush": false,
+  "ciPolling": false,
+  "nextStageStarted": false,
+  "externalTitleRecovery": {
+    "date": "2026-10-15",
+    "status": "passed",
+    "evidence": "docs/evidence/P01-engineering-2026-10-14/title-recovery-review-2026-10-15.json",
+    "addedRequests": 1,
+    "source": "actual",
+    "chargedTokens": 57,
+    "reservedBudgets": 0,
+    "agentModelRequests": 0
+  }
+}

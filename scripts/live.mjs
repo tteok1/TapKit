@@ -3,8 +3,10 @@ import { basename, isAbsolute, join, relative, resolve } from 'node:path';
 import { createRequire } from 'node:module';
 import { lockedEnv, pnpm, root, run } from './lib.mjs';
 import { apiLiveProviders, runApiLive } from './api-live.mjs';
+import { runApiNativeLive } from './api-native-live.mjs';
 
 const args = process.argv.slice(2).filter((arg) => arg !== '--');
+if (args.includes('--native-restart')) process.exit(runApiNativeLive(args));
 if (args[0] === '--provider' && apiLiveProviders.includes(args[1])) {
   process.exit(runApiLive(args));
 }

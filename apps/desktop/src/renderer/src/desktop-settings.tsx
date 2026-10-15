@@ -257,7 +257,7 @@ export function DesktopSettings({
               '模型网络代理',
               draft.network.mode,
               [
-                ['environment', '继承环境'],
+                ['environment', t.networkAuto],
                 ['direct', '直连'],
                 ['manual', '手动 HTTP / HTTPS 代理'],
               ],
@@ -268,6 +268,8 @@ export function DesktopSettings({
                   proxyURL: v === 'manual' ? draft.network.proxyURL : '',
                 }),
             )}
+            <small>{t.networkAutoHint}</small>
+            <small>{t.networkSafetyHint}</small>
             <label>
               代理地址
               <input

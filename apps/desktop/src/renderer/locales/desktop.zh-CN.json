@@ -1,5 +1,8 @@
 {
   "workbench": "工作台",
+  "networkAuto": "自动（环境变量优先，随后系统代理）",
+  "networkAutoHint": "自动模式使用环境变量或 Windows 系统代理；手动与直连模式覆盖自动设置。代理变更用于后续请求。",
+  "networkSafetyHint": "模型域名需要解析到公网地址；代理的 Fake-IP 模式可能被连接安全检查拒绝。",
   "connectionStatus": "连接状态",
   "home": "从这里开始",
   "newChat": "新建聊天",

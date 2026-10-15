@@ -1,0 +1,27 @@
+{
+  "runtime": {
+    "kind": "runtime",
+    "node": "24.20.0",
+    "electron": "44.3.0",
+    "openssl": "0.0.0",
+    "processType": "utility"
+  },
+  "workerExitCode": 0,
+  "network": {
+    "checkedAt": "2026-10-13T04:24:14.143Z",
+    "endpoint": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+    "credentialUsed": false,
+    "modelRequests": 0,
+    "method": "GET",
+    "productionTransport": true,
+    "publicDNS": true,
+    "nonPublicAddressClass": null,
+    "transportReached": true,
+    "anonymousHttpStatus": 401,
+    "errorCode": null
+  },
+  "credentialUsed": false,
+  "modelRequests": 0,
+  "harnessExitCode": 2,
+  "harnessTimedOut": true
+}

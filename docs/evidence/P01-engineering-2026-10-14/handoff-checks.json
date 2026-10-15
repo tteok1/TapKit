@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-10-14T10:59:53.980Z",
+  "sourceFilesVerified": 41,
+  "sourceHashMismatches": 0,
+  "missingLogs": 0,
+  "docsCheckExit": 0,
+  "codeCheckExit": 0,
+  "diffCheckExit": 0,
+  "productionFixtureMarker": false,
+  "publicJsonPrivacyScan": "no_matches",
+  "modelRequestsByAgent": 0,
+  "subscriptionLive": "deferred_by_user",
+  "liveTitleRecovery": "pending_user_single_attempt",
+  "stage": "engineering_passed_external_pending"
+}

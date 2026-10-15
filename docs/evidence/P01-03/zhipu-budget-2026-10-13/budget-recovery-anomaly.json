@@ -1,0 +1,117 @@
+{
+  "reviewedAt": "2026-10-13T07:55:37.808Z",
+  "task": "P01-03",
+  "sourceReports": [
+    "docs/evidence/P01-03/zhipu-budget-2026-10-13/public-state-1791876712811.json",
+    "docs/evidence/P01-02/zhipu-chat-2026-10-13/app-public-state-1791876712842.json"
+  ],
+  "readOnlyReview": true,
+  "credentialReads": 0,
+  "nativeContentReads": 0,
+  "agentModelRequests": 0,
+  "budgetIntercept": {
+    "assessment": "scoped_budget_acceptance_passed",
+    "run": {
+      "id": "01a13427-ad5d-7416-986e-19f3d5bd40b9",
+      "sessionId": "01a13392-6a63-7f23-b568-a9c8a69548bc",
+      "status": "budget_stopped",
+      "statusReason": "BUDGET_EXCEEDED",
+      "cancelRequestedAt": null,
+      "createdAt": 1791876377949,
+      "startedAt": 1791876377953,
+      "endedAt": 1791876378215,
+      "calls": 1,
+      "tools": 0
+    },
+    "providerAttempts": 0,
+    "ledgerEntries": 0,
+    "earlierSixEntriesUnchanged": true,
+    "restoredDailyTokenLimit": 2000000
+  },
+  "recovery": {
+    "run": {
+      "id": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+      "sessionId": "01a13392-6a63-7f23-b568-a9c8a69548bc",
+      "status": "cancelled",
+      "statusReason": "CANCELLED",
+      "cancelRequestedAt": 1791876483303,
+      "createdAt": 1791876448409,
+      "startedAt": 1791876448411,
+      "endedAt": 1791876483308,
+      "calls": 1,
+      "tools": 0
+    },
+    "durationMs": 34897,
+    "attempts": [
+      {
+        "attemptId": "01a13428-c197-7ebb-801b-ef72d97903d0",
+        "runId": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+        "rootRunId": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+        "logicalCallId": "01a13428-c0bd-727c-81b6-89cb61654024",
+        "attemptNo": 1,
+        "status": "failed",
+        "errorCode": "NETWORK_ERROR",
+        "modelRef": "glm-4.7-flashx",
+        "attemptCreatedAt": 1791876448666,
+        "settledAt": 1791876468707,
+        "inputTokens": null,
+        "outputTokens": null,
+        "cachedSubset": null,
+        "reasoningSubset": null,
+        "chargedTokens": 13914,
+        "source": "estimated",
+        "amountMicros": null,
+        "hasNativeRef": 0,
+        "hasAssistantMessage": 1,
+        "durationMs": 20041
+      },
+      {
+        "attemptId": "01a13429-1473-7090-994d-f96da5a333b3",
+        "runId": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+        "rootRunId": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+        "logicalCallId": "01a13428-c0bd-727c-81b6-89cb61654024",
+        "attemptNo": 2,
+        "status": "cancelled",
+        "errorCode": "CANCELLED",
+        "modelRef": "glm-4.7-flashx",
+        "attemptCreatedAt": 1791876469882,
+        "settledAt": 1791876483307,
+        "inputTokens": null,
+        "outputTokens": null,
+        "cachedSubset": null,
+        "reasoningSubset": null,
+        "chargedTokens": 13914,
+        "source": "estimated",
+        "amountMicros": null,
+        "hasNativeRef": 0,
+        "hasAssistantMessage": 1,
+        "durationMs": 13425
+      }
+    ],
+    "distinctAttemptsSameLogicalCall": true,
+    "duplicateSettlements": 0,
+    "unsettledAttempts": 0,
+    "allReservationsReleased": true,
+    "cause": "first NETWORK_ERROR followed by automatic retry; second request manually cancelled",
+    "underlyingNetworkStage": "unknown; historical requests did not record stage",
+    "twentySecondDeadlineInference": "20.041 seconds is consistent with the pre-response connection deadline; timing alone does not prove DNS/TLS/server cause"
+  },
+  "totals": {
+    "entries": 8,
+    "chargedTokens": 43894,
+    "actualEntries": 5,
+    "estimatedEntries": 3
+  },
+  "actualTokens": 3155,
+  "estimatedTokens": 40739,
+  "estimatePolicy": "missing usage is conservatively charged at each attempt reservation; not actual tokens or a provider invoice",
+  "scope": "single Zhipu ordinary Chat glm-4.7-flashx; task/gate/multi-provider/price/native-reuse status unchanged",
+  "localFix": {
+    "adr": "docs/adr/0049-safe-network-stage-and-attempt-progress.md",
+    "unitPassed": 18,
+    "integrationPassed": 25,
+    "firstElectronPassed": 1,
+    "finalElectron": 1,
+    "results": "network-results.json"
+  }
+}

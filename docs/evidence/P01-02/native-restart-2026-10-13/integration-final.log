@@ -1,0 +1,35 @@
+$ vitest run --config vitest.config.ts --project integration "P01-02.native-restart" "P01-02.api" "P01-03.usage"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P01-02.native-restart.test.ts (4 tests | 1 failed) 16489ms
+   × P01-02 deleted/missing/tampered native state and replayed resume are rejected without a second provider request 9322ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P01-02.native-restart.test.ts > P01-02 deleted/missing/tampered native state and replayed resume are rejected without a second provider request
+SqliteError: FOREIGN KEY constraint failed
+ ❯ tests/integration/P01-02.native-restart.test.ts:183:12
+    181|         store.db
+    182|           .prepare('UPDATE opaque_states SET ' + column + '=? WHERE id…
+    183|           .run(newId(), checkpoint.nativeRef);
+       |            ^
+    184|       }
+    185|       if (fault === 'revoked-account')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 23 passed (24)
+   Start at  23:17:41
+   Duration  23.49s (tests 88%, import 6%, transform 5%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+pnpm exited 1
+At D:\Tapkit-public\scripts\pnpm.ps1:18 char:5
++     throw "pnpm exited $tapkitCommandExit"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1
+ 

@@ -1,7 +1,10 @@
 # 当前接续点
 
-- 2026-10-12：D:/Tapkit-public，main；用户授权将 UI 开发分支合入并推送 main。源分支 codex/ui-redesign=0d774b7，合入前远程 main=5268fc0，fetch/ff-only 与无冲突合入退出0；交接前暂存树与源分支完全一致，合入交接只改文档。
-- UI-01=implemented_and_verified（仅本地前端）：白色内容区、浅绿边缘/用户气泡、完整会话侧栏、可展开右工作台和当前产品图标；unit293、相关integration45、全量Electron67及最终UI复验5通过，真实截图和源边界已核对。详见 [UI-01](UI-01.md)及docs/evidence/UI-redesign/results.json。
-- P04-03=implemented_not_live_verified；最终源分支834904b的CI38209793097 check/startup全部success：unit293/integration314/perf2/Electron45。业务/测试源码保持已验收87633cf；合入交接只改文档。
-- 真实模型联调暂缓，既有资源缺口保持；P04-gate=engineering_passed_external_pending。无PR、不扩P05。
-- 本合入提交保留 UI 源分支与全部验收证据，按用户授权推送 origin/main 并核对 HEAD 与远程一致；不创建PR、不轮询CI、不扩P05。合入检查见 docs/evidence/UI-redesign/main-merge-2026-10-12.json；原工程/live状态保持。
+- 2026-10-15：D:/Tapkit-public，codex/p01-02-zhipu-chat-live，9bbc44f+working-tree；用户授权的P01非订阅已识别工程收口，不扩P05。
+- 本次用户标题恢复实机passed：原“新聊天”→“OK”，同root新增仅1次actual57 tokens，旧2次attempt不变，title completed/失败诊断清除，活跃/预留/未结算0。无需重复标题测试。
+- 41个源码hash仍与10-14工程回归一致：unit208/integration61/Electron7/check436/build exit0；native预检增量unit3/integration4 exit0。本轮只读公开状态和文档检查，不重跑模型。
+- P01-gate=engineering_passed_external_pending；P01-01/02/03=implemented_not_live_verified。R01订阅、R02-R05/R14及其他未验收协议完整live均按用户要求暂缓；价格/金额未核验，Token限额保持可用，金额未知/不启用金额上限。
+- R13仅既定智谱Chat/FlashX的CLI、应用、预算/native及本次标题恢复范围；本次不证明所有网络环境/系统代理分支，不用单项通过提升其他渠道。
+- 证据docs/evidence/P01-engineering-2026-10-14/title-recovery-review-2026-10-15.json及用户截图；Agent真实调用/Key/native正文读取0，无用户配置变更。
+- 2026-10-15暂缓范围和价格机制核对见docs/evidence/P01-engineering-2026-10-14/external-live-deferral-2026-10-15.json；仅记录/解释，无价格录入、真实消费测试或阶段切换。
+- 2026-10-15用户明确授权提交并推送当前P01修复、观察CI并修复失败；仅在源码CI通过后将该轮压缩为单一提交合入并推送main。当前提交前检查中，未发模型请求，不提升订阅/其他供应商协议/价格金额验收状态，不开展P05。证据docs/evidence/P01-engineering-2026-10-14/git-delivery-2026-10-15.json。

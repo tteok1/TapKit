@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { ApiFailure } from '@tapkit/providers';
 import {
   z,
   RequestSchema,
@@ -101,6 +102,7 @@ const meta = (
   calls: NonNullable<Extract<CanonicalMessage, { role: 'assistant' }>['calls']>;
   model: Selection | null;
   errorCode: string | null;
+  diagnosticCode?: ChatMessage['diagnosticCode'];
   payloadHash?: string;
   memoryOutcome?: 'written' | 'deleted' | 'skipped';
   callId?: string;
@@ -169,6 +171,7 @@ export class ChatService {
       attachments: m.attachments ?? [],
       calls: m.calls ?? [],
       errorCode: m.errorCode ?? null,
+      ...(m.diagnosticCode ? { diagnosticCode: m.diagnosticCode } : {}),
       sourceProjectId: m.sourceProjectId ?? null,
       sourceProjectName: m.sourceProjectName ?? null,
       sourceMessageId: row.source_message_id ?? null,
@@ -273,6 +276,13 @@ export class ChatService {
           estimated: number;
         })
       : undefined;
+    const attempts = run
+      ? (this.store.db
+          .prepare(
+            'SELECT count(*) AS n,coalesce(sum(CASE WHEN attempt_no>1 THEN 1 ELSE 0 END),0) AS retries FROM provider_attempts WHERE run_id=? AND profile_id=?',
+          )
+          .get(run.id, this.store.profileId) as { n: number; retries: number })
+      : undefined;
     return ChatSnapshotSchema.parse({
       sessionId: s.id,
       branchId: s.active_branch_id,
@@ -286,6 +296,8 @@ export class ChatService {
             startedAt: run.started_at,
             endedAt: run.ended_at,
             calls: run.calls,
+            attempts: attempts?.n ?? 0,
+            retries: attempts?.retries ?? 0,
             tools: run.tools,
             errorCode: run.status_reason,
             usage: {
@@ -1655,6 +1667,21 @@ export class ChatService {
                   name: e.name,
                   arguments: e.arguments as Record<string, unknown>,
                 });
+              } else if (e.type === 'error' && assistant) {
+                this.store.db.transaction(() => {
+                  const message = this.message(assistant!);
+                  this.store.db
+                    .prepare('UPDATE messages SET chat_json=?,revision=revision+1 WHERE id=?')
+                    .run(
+                      JSON.stringify({
+                        ...meta(message),
+                        errorCode: e.error.code,
+                        diagnosticCode: e.error.diagnosticCode,
+                      }),
+                      assistant!,
+                    );
+                  this.event(session.id, 'message.delta', assistant!, r.id, r.task_version);
+                })();
               } else if (e.type === 'finish') {
                 finished = true;
                 reason = e.reason;
@@ -1856,6 +1883,7 @@ export class ChatService {
     parentSignal?: AbortSignal,
   ): Promise<string> {
     if (this.store.volatile) throw new StorageError('PERMISSION_DENIED');
+    const session = this.session(sessionId);
     const selection =
       this.preferences(sessionId).selection ??
       (await this.models.catalog()).find((m) => m.status === 'ready');
@@ -1875,15 +1903,17 @@ export class ChatService {
         logicalCallId: newId(),
         runId,
         rootRunId: runId,
+        ...(session.project_id ? { projectId: session.project_id } : {}),
         mode: 'chat',
         foreground: false,
         singleAttempt: true,
         preferences,
         allowedAccounts: new Set([selection.accountId]),
-        need: { inputTokens: 4096, outputTokens: 128, attachments: 0, needsTools: false },
+        // ModelService validates the actual serialized input bound before reservation.
+        need: { inputTokens: 0, outputTokens: 128, attachments: 0, needsTools: false },
         request: {
           taskVersion: 1,
-          branchId: this.session(sessionId).active_branch_id,
+          branchId: session.active_branch_id,
           messages: [{ role: 'user', text: text.slice(0, 2000) }],
           systemModules: [
             { id: 'tapkit.title', text: '仅生成不超过30个汉字的会话标题，无引号，无解释。' },
@@ -1894,7 +1924,7 @@ export class ChatService {
       },
       signal,
     )) {
-      if (event.type === 'route.error') throw new StorageError(event.error.code);
+      if (event.type === 'route.error') throw new ApiFailure(event.error);
       if (event.type === 'model.event') {
         if (event.event.type === 'text_delta') result += event.event.text;
         if (event.event.type === 'finish') completed = true;

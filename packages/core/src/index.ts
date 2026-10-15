@@ -8,6 +8,7 @@ import {
   FileCommandSchemas,
   ArtifactCommandSchemas,
   ProjectCommandSchemas,
+  z,
 } from '@tapkit/contracts';
 import { openStore, BlobStore, FileRepository, StorageError, failure } from '@tapkit/storage';
 import { CoreService } from './service';
@@ -58,7 +59,14 @@ async function start() {
       vaultWaiters.set(id, { resolve, reject, timer });
       port!.postMessage({ type: 'vault.request', id, operation, accountId, payload });
     });
-  const providers = new ProviderService(store, vault);
+  const providers = new ProviderService(
+    store,
+    vault,
+    async (url) =>
+      z
+        .strictObject({ proxyURL: z.string().max(2048) })
+        .parse(await vault('network.proxy.resolve', store.profileId, { url })).proxyURL,
+  );
   const models = new ModelService(store, providers);
   if (__TAPKIT_TEST_BUILD__ && process.env.TAPKIT_CHAT_FIXTURE === 'P02-02') {
     const { installChatFixture } = await import('./chat-fixture');

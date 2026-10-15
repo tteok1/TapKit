@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import { IdSchema } from './identity';
 import { SelectionSchema } from './models';
+import { ErrorCodeSchema } from './errors';
+import { ProviderDiagnosticCodeSchema } from './providers';
 export const HISTORY_COMMANDS = [
   'sessions.list',
   'sessions.get',
@@ -158,6 +160,12 @@ export const SearchClearSchema = z.strictObject({
 export const SessionRecordSchema = z.strictObject({
   id: IdSchema,
   title: z.string().max(240),
+  titleStatus: z
+    .enum(['queued', 'running', 'completed', 'failed', 'cancelled'])
+    .nullable()
+    .default(null),
+  titleErrorCode: ErrorCodeSchema.nullable().default(null),
+  titleDiagnosticCode: ProviderDiagnosticCodeSchema.nullable().default(null),
   mode: z.enum(['chat', 'work']),
   revision: z.number().int().positive(),
   branchId: IdSchema,

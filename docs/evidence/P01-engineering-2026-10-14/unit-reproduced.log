@@ -1,0 +1,72 @@
+$ vitest run --config vitest.config.ts --project unit "P01-03.routing" "P01-02.transport"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |unit| tests/unit/P01-02.transport.test.ts (10 tests | 4 failed) 117ms
+   × P01-02 rejects reserved or tunnelling IPv6 2001:0db8::1 before credentials can be dispatched 10ms
+   × P01-02 rejects reserved or tunnelling IPv6 2001:0000:4136:e378:8000:63bf:3fff:fdd2 before credentials can be dispatched 2ms
+   × P01-02 rejects reserved or tunnelling IPv6 2002:7f00:1:: before credentials can be dispatched 1ms
+   × P01-02 rejects reserved or tunnelling IPv6 3fff::1 before credentials can be dispatched 0ms
+ ❯ |unit| tests/unit/P01-03.routing.test.ts (13 tests | 1 failed) 55ms
+   ❯ P01-03 routing, capabilities and scopes (13)
+     × P01-03 honors an explicitly selected API model independently of the fallback order 15ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P01-02.transport.test.ts > P01-02 rejects reserved or tunnelling IPv6 2001:0db8::1 before credentials can be dispatched
+ FAIL  |unit| tests/unit/P01-02.transport.test.ts > P01-02 rejects reserved or tunnelling IPv6 2001:0000:4136:e378:8000:63bf:3fff:fdd2 before credentials can be dispatched
+ FAIL  |unit| tests/unit/P01-02.transport.test.ts > P01-02 rejects reserved or tunnelling IPv6 2002:7f00:1:: before credentials can be dispatched
+ FAIL  |unit| tests/unit/P01-02.transport.test.ts > P01-02 rejects reserved or tunnelling IPv6 3fff::1 before credentials can be dispatched
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/unit/P01-02.transport.test.ts:28:36
+     26| });
+     27| it.each(['2001:0db8::1', '2001:0000:4136:e378:8000:63bf:3fff:fdd2', '2…
+     28|   expect(isPublicAddress(address)).toBe(false);
+       |                                    ^
+     29| });
+     30| function requestFixture() {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  |unit| tests/unit/P01-03.routing.test.ts > P01-03 routing, capabilities and scopes > P01-03 honors an explicitly selected API model independently of the fallback order
+AssertionError: expected [] to deeply equal [ Array(1) ]
+
+- Expected
++ Received
+
+- [
+-   "00000000-0000-7000-8000-000000000001",
+- ]
++ []
+
+ ❯ tests/unit/P01-03.routing.test.ts:159:91
+    157|       apiOrder: ['deepseek'],
+    158|     });
+    159|     expect(candidates(models, request.preferences, request.need).map((…
+       |                                                                                           ^
+    160|     const h = harness(models, [[success], [success]]);
+    161|     await collect(h.router, request);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  5 failed | 18 passed (23)
+   Start at  16:46:43
+   Duration  1.48s (transform 46%, import 41%, tests 11%, setup 2%, worker 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+pnpm exited 1
+At D:\Tapkit-public\scripts\pnpm.ps1:18 char:5
++     throw "pnpm exited $tapkitCommandExit"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1
+ 

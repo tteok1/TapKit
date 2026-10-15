@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project integration "P01-02.zhipu" "P01-02.live"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  2 passed (2)
+      Tests  11 passed (11)
+   Start at  11:01:52
+   Duration  4.33s (tests 39%, import 30%, transform 30%, setup 1%)
+

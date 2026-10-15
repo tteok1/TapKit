@@ -1,0 +1,20 @@
+packages/providers/src/api/http.ts 121ms
+packages/providers/src/routing/catalog.ts 20ms (unchanged)
+packages/core/src/provider-service.ts 54ms
+packages/core/src/index.ts 28ms
+packages/core/src/chat-service.ts 156ms (unchanged)
+packages/core/src/history-service.ts 94ms
+packages/contracts/src/index.ts 15ms (unchanged)
+packages/contracts/src/providers.ts 20ms (unchanged)
+packages/contracts/src/history.ts 18ms
+apps/desktop/src/main/system-proxy.ts 4ms
+apps/desktop/src/main/index.ts 49ms
+apps/desktop/src/renderer/src/desktop-settings.tsx 36ms (unchanged)
+apps/desktop/src/renderer/src/chat-surface.tsx 82ms
+apps/desktop/src/renderer/locales/zh-CN.json 16ms (unchanged)
+apps/desktop/src/renderer/locales/chat.zh-CN.json 3ms (unchanged)
+apps/desktop/src/renderer/locales/desktop.zh-CN.json 2ms (unchanged)
+tests/unit/P01-02.transport.test.ts 22ms
+tests/unit/P01-02.system-proxy.test.ts 4ms
+tests/unit/P01-03.routing.test.ts 27ms
+tests/integration/P02-03.history.test.ts 78ms

@@ -1,4 +1,6 @@
 import { ExecutionCapabilitiesSchema } from './execution';
+import { ErrorCodeSchema } from './errors';
+export { ErrorCodeSchema } from './errors';
 import { ChatReplyDataSchema } from './chat';
 import { HistoryReplySchema } from './history';
 import { FileReplySchema } from './files';
@@ -40,36 +42,6 @@ import { IdSchema } from './identity';
 export { IdSchema } from './identity';
 export const RevisionSchema = z.number().int().min(1).max(Number.MAX_SAFE_INTEGER);
 export const TimeSchema = z.number().int().min(0).max(8_640_000_000_000_000);
-export const ErrorCodeSchema = z.enum([
-  'VALIDATION_ERROR',
-  'NOT_FOUND',
-  'CONFLICT',
-  'FEATURE_NOT_AVAILABLE',
-  'PERMISSION_DENIED',
-  'APPROVAL_REQUIRED',
-  'APPROVAL_STALE',
-  'AUTH_REQUIRED',
-  'AUTH_EXPIRED',
-  'QUOTA_EXHAUSTED',
-  'RATE_LIMITED',
-  'MODEL_UNSUPPORTED',
-  'OUTPUT_LIMIT_REACHED',
-  'PROVIDER_UNAVAILABLE',
-  'NETWORK_ERROR',
-  'STREAM_INTERRUPTED',
-  'TOOL_TIMEOUT',
-  'SIDE_EFFECT_UNKNOWN',
-  'BUDGET_EXCEEDED',
-  'FILE_TOO_LARGE',
-  'FORMAT_UNSUPPORTED',
-  'PARSE_FAILED',
-  'INDEX_NOT_READY',
-  'SANDBOX_UNAVAILABLE',
-  'DISK_FULL',
-  'DATABASE_RECOVERY_REQUIRED',
-  'CANCELLED',
-  'INTERNAL_ERROR',
-]);
 export type ErrorCode = z.infer<typeof ErrorCodeSchema>;
 export const RecoveryActionSchema = z.strictObject({
   kind: z.enum([

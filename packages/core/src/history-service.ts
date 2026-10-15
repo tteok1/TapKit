@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { ApiFailure } from '@tapkit/providers';
 import { appendFileSync, closeSync, fsyncSync, mkdirSync, openSync } from 'node:fs';
 import { join } from 'node:path';
 import {
@@ -26,6 +27,8 @@ import {
   SearchInputSchema,
   SearchClearSchema,
   SessionRecordSchema,
+  ErrorCodeSchema,
+  ProviderDiagnosticCodeSchema,
   SessionDetailsSchema,
   SessionPageSchema,
   SidebarViewSchema,
@@ -130,9 +133,26 @@ export class HistoryService {
     this.store.emit('workspace.updated', { kind: 'workspace', entityId: id });
   }
   record(s: Session) {
+    const job = this.store.db
+      .prepare('SELECT status,run_id FROM title_jobs WHERE session_id=? AND profile_id=?')
+      .get(s.id, this.store.profileId) as { status: string; run_id: string } | undefined;
+    const info =
+      job?.status === 'failed'
+        ? (this.store.db
+            .prepare(
+              "SELECT CASE WHEN json_valid(chat_json) THEN json_extract(chat_json,'$.titleFailure.code') END code, CASE WHEN json_valid(chat_json) THEN json_extract(chat_json,'$.titleFailure.diagnosticCode') END diagnosticCode FROM messages WHERE run_id=? AND session_id=? AND profile_id=? AND role='assistant' AND deleted_at IS NULL ORDER BY rowid DESC LIMIT 1",
+            )
+            .get(job.run_id, s.id, this.store.profileId) as
+            { code: unknown; diagnosticCode: unknown } | undefined)
+        : undefined;
+    const code = ErrorCodeSchema.safeParse(info?.code),
+      diagnostic = ProviderDiagnosticCodeSchema.safeParse(info?.diagnosticCode);
     return SessionRecordSchema.parse({
       id: s.id,
       title: s.title,
+      titleStatus: job?.status ?? null,
+      titleErrorCode: code.success ? code.data : null,
+      titleDiagnosticCode: diagnostic.success ? diagnostic.data : null,
       mode: s.mode,
       revision: s.revision,
       branchId: s.active_branch_id,
@@ -1308,11 +1328,14 @@ export class HistoryService {
         title_manual: number;
       };
     if (row.title_manual && !manual) return;
-    this.store.db
-      .prepare(
-        "INSERT OR IGNORE INTO title_jobs(session_id,profile_id,run_id,expected_revision,status) VALUES(?,?,?,?,'queued')",
-      )
-      .run(s.id, this.store.profileId, runId, s.revision);
+    this.store.db.transaction(() => {
+      const queued = this.store.db
+        .prepare(
+          "INSERT OR IGNORE INTO title_jobs(session_id,profile_id,run_id,expected_revision,status) VALUES(?,?,?,?,'queued')",
+        )
+        .run(s.id, this.store.profileId, runId, s.revision);
+      if (queued.changes) this.changed(s.id);
+    })();
   }
   private titleActive = false;
   private titleSession: string | undefined;
@@ -1329,15 +1352,19 @@ export class HistoryService {
   private async runTitle() {
     if (this.titleActive || this.closing || this.temporary) return;
     const job = this.store.db
-      .prepare("SELECT * FROM title_jobs WHERE status='queued' LIMIT 1")
-      .get() as { session_id: string; run_id: string; expected_revision: number } | undefined;
+      .prepare("SELECT * FROM title_jobs WHERE status='queued' AND profile_id=? LIMIT 1")
+      .get(this.store.profileId) as
+      { session_id: string; run_id: string; expected_revision: number } | undefined;
     if (!job) return;
     this.titleActive = true;
     this.titleSession = job.session_id;
     try {
-      this.store.db
-        .prepare("UPDATE title_jobs SET status='running' WHERE session_id=?")
-        .run(job.session_id);
+      this.store.db.transaction(() => {
+        this.store.db
+          .prepare("UPDATE title_jobs SET status='running' WHERE session_id=?")
+          .run(job.session_id);
+        this.changed(job.session_id);
+      })();
       const s = this.session(job.session_id);
       if (s.revision !== job.expected_revision) throw new StorageError('CONFLICT');
       const row = this.store.db
@@ -1371,10 +1398,41 @@ export class HistoryService {
           .run(s.id);
         this.changed(s.id);
       })();
-    } catch {
-      this.store.db
-        .prepare("UPDATE title_jobs SET status='failed' WHERE session_id=? AND status='running'")
-        .run(job.session_id);
+    } catch (error) {
+      const status =
+        (error instanceof StorageError && error.code === 'CONFLICT') ||
+        this.titleAbort.signal.aborted
+          ? 'cancelled'
+          : 'failed';
+      this.store.db.transaction(() => {
+        const changed = this.store.db
+          .prepare("UPDATE title_jobs SET status=? WHERE session_id=? AND status='running'")
+          .run(status, job.session_id);
+        if (changed.changes) {
+          if (status === 'failed') {
+            const code =
+              error instanceof ApiFailure
+                ? error.detail.code
+                : error instanceof StorageError
+                  ? error.code
+                  : 'INTERNAL_ERROR';
+            const diagnosticCode =
+              error instanceof ApiFailure ? error.detail.diagnosticCode : undefined;
+            // Operational metadata leaves canonical text and content revisions unchanged.
+            this.store.db
+              .prepare(
+                "UPDATE messages SET chat_json=json_set(chat_json,'$.titleFailure',json(?)) WHERE id=(SELECT id FROM messages WHERE run_id=? AND session_id=? AND profile_id=? AND role='assistant' AND deleted_at IS NULL ORDER BY rowid DESC LIMIT 1)",
+              )
+              .run(
+                JSON.stringify({ code, ...(diagnosticCode ? { diagnosticCode } : {}) }),
+                job.run_id,
+                job.session_id,
+                this.store.profileId,
+              );
+          }
+          if (!this.closing) this.changed(job.session_id);
+        }
+      })();
     } finally {
       this.titleActive = false;
       this.titleSession = undefined;

@@ -1,5 +1,11 @@
 # 范围、决策与默认行为
 
+2026-10-14 [ADR0051](../adr/0051-p01-network-selection-and-title-recovery.md)：P01自动环境/系统代理与安全边界、显式模型选择、标题项目计量/持久诊断/显式恢复收口；订阅真实测试按用户要求暂缓，工程与外部验收分开追踪。
+
+2026-10-13 [ADR0050](../adr/0050-bounded-encrypted-native-restart-acceptance.md)：增加P01-02开发专用的加密native双进程验收入口，复用正式Host/ProviderService/router/ledger，最多两次请求，无重试或辅助调用；单账户隔离profile与公开预检，不改普通聊天策略，live结果以progress为准。
+
+2026-10-13 [ADR0049](../adr/0049-safe-network-stage-and-attempt-progress.md)：P01-03 网络故障仅导出固定阶段分类，聊天显示实际请求尝试/自动重试和保守估算说明；不改既定预算、重试次数、传输安全或供应商参数，不把等待和估算当作思考/实际消耗。
+
 2026-10-12 P04-03：[ADR0048](../adr/0048-evidence-backed-memory-and-history.md)规定schema14、即时显式记忆、双用户来源的低优先级提取、CAS/墓碑/撤销和逐次授权的历史参考。项目隔离与临时模式保持；真实模型联调按用户要求本轮暂不执行，验收状态见progress。
 
 2026-10-11 P02-02预览兼容修复：[ADR0047](../adr/0047-legacy-text-attachment-preview.md)复用旧文本严格UTF-8兼容读取，为ready且parserVersion=null的文本固定版本构造只读内存预览；解析文件缺结构仍拒绝，权限与字符位置保留，真实模型联调缺口不提升。

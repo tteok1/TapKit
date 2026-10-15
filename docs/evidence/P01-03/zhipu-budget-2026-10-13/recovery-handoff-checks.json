@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-13",
+  "timezone": "Asia/Shanghai",
+  "scope": "User foreground recovery result, read-only public application metadata, native reuse next-step preparation and progress synchronization",
+  "branch": "codex/p01-02-zhipu-chat-live",
+  "baseline": "9bbc44f+working-tree",
+  "checks": [
+    {
+      "command": "locked Node docs/evidence/P01-02/zhipu-chat-2026-10-13/review-app-public-state.mjs",
+      "exitCode": 0,
+      "output": "docs/evidence/P01-02/zhipu-chat-2026-10-13/app-public-state-1791902397511.json"
+    },
+    {
+      "command": "locked Node bundled pnpm exec prettier --write (specified updated progress and evidence files)",
+      "exitCode": 1,
+      "failure": "pnpm canonicalizing --dir failed with access denied before formatting; direct local Prettier used successfully below"
+    },
+    {
+      "command": "locked Node node_modules/prettier/bin/prettier.cjs --write docs/progress/{CURRENT,INDEX,P01-02,P01-03,RESOURCES}.md (five explicit paths)",
+      "exitCode": 0
+    },
+    {
+      "command": "locked Node node_modules/prettier/bin/prettier.cjs --ignore-path .gitignore --write (native-reuse-next.md, app-public-state-1791902397511.json and network-recovery-review.json explicit paths)",
+      "exitCode": 0
+    },
+    {
+      "command": "locked Node scripts/docs-check.mjs",
+      "exitCode": 0,
+      "taskStates": 37
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "requirementRowsUpdated": ["FR-32-004", "FR-32-006", "FR-32-009"],
+  "newProductTestsExecuted": false,
+  "productChanges": false,
+  "agentModelRequests": 0,
+  "credentialReads": 0,
+  "nativeContentReads": 0,
+  "userConfigurationChanges": false,
+  "commitOrPush": false,
+  "ciPolling": false,
+  "taskStatus": "implemented_not_live_verified",
+  "gate": "failed"
+}

@@ -1,0 +1,21 @@
+{
+  "task": "P01-02",
+  "observedAt": "2026-10-13T04:37:35.595Z",
+  "rows": [
+    {
+      "label": "test1",
+      "status": "unavailable",
+      "checkedAt": "2026-10-13T04:35:45.454Z",
+      "errorCode": "NETWORK_ERROR"
+    }
+  ],
+  "userScreenshot": {
+    "phase": "tools",
+    "code": "NETWORK_ERROR",
+    "outputLimit": 128,
+    "requestReasoning": "disabled"
+  },
+  "textPhasePassedInferredFromControlFlow": true,
+  "credentialRead": false,
+  "modelRequests": 0
+}

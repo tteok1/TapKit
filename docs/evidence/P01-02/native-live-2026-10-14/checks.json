@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-10-14T08:24:43.937Z",
+  "task": "P01-02",
+  "productCodeChangedThisCheckpoint": false,
+  "checks": {
+    "publicStateReview": {
+      "command": "locked Node docs/evidence/P01-02/native-live-2026-10-14/review-public-state.mjs",
+      "exitCode": 0,
+      "log": "review-final.log"
+    },
+    "docs": {
+      "command": "locked Node scripts/docs-check.mjs",
+      "exitCode": 0,
+      "tasks": 37,
+      "log": "docs-check.log"
+    },
+    "format": {
+      "command": "locked Node scripts/check-format.mjs",
+      "exitCode": 0,
+      "checkedFiles": 432,
+      "log": "format-check.log"
+    },
+    "diff": { "command": "git diff --check", "exitCode": 0, "log": "diff-check.log" },
+    "privacy": {
+      "command": "rg -l for synthetic Key, fixed response marker and nativeRef fields in archived JSON",
+      "ripgrepExitCode": 1,
+      "wrapperExitCode": 0,
+      "matches": 0
+    }
+  },
+  "initialReviewFailure": { "exitCode": 1, "log": "review-initial.log", "corrected": true },
+  "testsRerun": false,
+  "engineeringTestsReference": "docs/evidence/P01-02/native-restart-2026-10-13/results.json"
+}

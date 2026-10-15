@@ -93,6 +93,7 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
       'browser.open',
       'api-key.read',
       'api-key.delete',
+      'network.proxy.resolve',
     ]),
     accountId: z.string().uuid(),
     payload: z.unknown(),

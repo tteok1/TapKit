@@ -1,0 +1,139 @@
+{
+  "checkedAt": "2026-10-13T15:52:17.9248962Z",
+  "task": "P01-02",
+  "branch": "codex/p01-02-zhipu-chat-live",
+  "baseline": "9bbc44f+working-tree",
+  "adr": "docs/adr/0050-bounded-encrypted-native-restart-acceptance.md",
+  "implementation": "dedicated Host DPAPI ProviderService ModelService/router/ledger two-process native save/restart/load/reuse acceptance",
+  "codeChanges": "development-only entry and tests; ordinary chat/Renderer/IPC/schema/dependencies unchanged",
+  "checks": {
+    "build": {
+      "command": "pnpm exec vite build --config tests/live/native.vite.config.ts",
+      "exitCode": 0,
+      "log": "build-native-final.log"
+    },
+    "unit": {
+      "command": "pnpm test:unit P01-02.native-profile P01-02.native-prefix P01-02.api P01-01.auth-secrets P01-02.vault",
+      "exitCode": 0,
+      "files": 5,
+      "passed": 71,
+      "log": "unit-complete.log"
+    },
+    "integration": {
+      "command": "pnpm test:integration P01-02.native-restart P01-02.api P01-03.usage",
+      "exitCode": 0,
+      "files": 3,
+      "passed": 24,
+      "nativeTests": 4,
+      "rejectionScenarios": 9,
+      "actualElectronProcesses": true,
+      "syntheticResponses": true,
+      "log": "integration-fixed-final.log",
+      "pureFoundationSameTagIntegrationReplacesUIE2E": true
+    },
+    "check": {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "formattedRepositoryFiles": 432,
+      "log": "check-final.log"
+    },
+    "prepareOnly": {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File docs/evidence/P01-02/native-restart-2026-10-13/run-native.ps1 -PrepareOnly",
+      "exitCode": 0,
+      "credentialReads": 0,
+      "nativeContentReads": 0,
+      "networkRequests": 0,
+      "electronStarted": false,
+      "log": "prepare-only.log"
+    },
+    "docs": {
+      "command": "locked Node scripts/docs-check.mjs",
+      "exitCode": 0,
+      "tasks": 37,
+      "log": "docs-check.log"
+    },
+    "format": {
+      "command": "locked Node scripts/check-format.mjs",
+      "exitCode": 0,
+      "checkedFiles": 432,
+      "log": "format-check.log"
+    },
+    "diff": { "command": "git diff --check", "exitCode": 0, "log": "diff-check.log" },
+    "publicReportPrivacy": {
+      "command": "rg -l for synthetic Key, fixed response marker, and nativeRef fields in archived public reports",
+      "exitCode": 1,
+      "result": "no matches; ripgrep exit 1 means no matches"
+    },
+    "fixtureProcessCleanup": {
+      "remainingMatchingFixtureElectronProcesses": 0,
+      "evidence": "process-cleanup.json",
+      "userApplicationProcessesExcluded": true
+    }
+  },
+  "archivedCases": 12,
+  "archivedPublicReports": 25,
+  "reportIndex": "report-index.json",
+  "failuresPreserved": [
+    {
+      "scope": "restricted direct TypeScript invocation",
+      "exitCode": 1,
+      "result": "dependency links unresolved under restricted context; scoped normal-permission pnpm checks used"
+    },
+    {
+      "log": "typecheck-initial.log",
+      "exitCode": 1,
+      "fix": "resolve official storage through built boundary"
+    },
+    { "log": "typecheck.log", "exitCode": 1, "fix": "fixture ProcessEnv annotation" },
+    {
+      "log": "integration-initial.log",
+      "exitCode": 1,
+      "result": "unresolved external storage caused stuck fixture Electron",
+      "fix": "stopped only matching fixture/Vitest processes and mapped storage external to built module"
+    },
+    {
+      "log": "integration-final.log",
+      "exitCode": 1,
+      "fix": "create a deleted fixture account to preserve SQLite foreign key while testing wrong native account binding"
+    }
+  ],
+  "live": {
+    "executed": false,
+    "agentModelRequests": 0,
+    "agentRealKeyReads": 0,
+    "agentRealNativeContentReads": 0,
+    "originalUserSettingsChanged": false,
+    "resource": "R13",
+    "status": "pending_user_two_request_acceptance",
+    "maximumRequests": 2,
+    "maximumOutputTokensPerRequest": 128,
+    "retries": 0,
+    "automaticTitleOrMemoryRequests": 0,
+    "credentialSource": "existing encrypted Key via official local Host only when user starts live runner",
+    "ledgerScope": "same isolated application profile",
+    "handoff": "acceptance.md",
+    "launcher": "run-native.ps1"
+  },
+  "taskStatus": "in_progress",
+  "gate": "failed",
+  "commitOrPush": false,
+  "ciPolling": false,
+  "sourceHashes": {
+    "scripts/api-native-live.mjs": "73a900f3e7118e89166171a725a3d9299da991c6dab139b2dd842406313fb919",
+    "scripts/live.mjs": "7a16a4dbbd9090398b44b2c390221bc3a3ba4bfc3dcd2b2d8c341978b3dd84ab",
+    "tests/live/P01-02.native-profile.ts": "29ff54ba7dda792bf0e37f67443d1c1405a46c615f9fd570e6795e9abf402074",
+    "tests/live/P01-02.native-acceptance.ts": "81c1fb7287a23d1f97ce358e7b3671ac4943e7919faf787edb0f5c820bf6283d",
+    "tests/live/P01-02.native-runner.ts": "8d660d061a12caa4d201bc0f482ec8b3b73d254aac0696ad7b652a19f92e5809",
+    "tests/live/native.vite.config.ts": "14c23b9b151b3a44030cad491773d4e2733773d29cb440e52657d1ebc82d9992",
+    "tests/unit/P01-02.native-profile.test.ts": "e2161a6a1ff3a948b26416f9ec8a431c67963b532f94771dcd185541e38b29bb",
+    "tests/unit/P01-02.native-prefix.test.ts": "0a76236373969b542683bc69a9fa83878ceb0518f19801a3ff375681d07cb932",
+    "tests/integration/P01-02.native-restart.test.ts": "d8f0bf255957698c3d015ff3177be183f3cd84da7089fc801280a60d1e61944c",
+    "docs/adr/0050-bounded-encrypted-native-restart-acceptance.md": "e62578a72d1da75eea7721a164b686c410c216364b816a967e3c36a6fff06667",
+    "docs/evidence/P01-02/native-restart-2026-10-13/run-native.ps1": "c91227f4bfdabe2f026863d94be9e54abe5a4a2aaceb57e71d125f3e3c6c6df1"
+  },
+  "runnerHashes": {
+    "runner": "6b7cda294949222672f6531bf5782697a5f005da43c91dc46e602470af433db5",
+    "profile": "3329795f5d33d5af6f1466f281fb6733f1d26340c7a7b7512be89d33ff328791"
+  },
+  "handoffFinalizedAt": "2026-10-13T16:10:11.941Z"
+}

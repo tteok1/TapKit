@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-10-15T08:07:55.084Z",
+  "scope": "P01 index status consistency",
+  "changes": [
+    {
+      "task": "P01-01",
+      "previous": "in_progress",
+      "current": "implemented_not_live_verified",
+      "progressFile": "docs/progress/P01-01.md"
+    },
+    {
+      "task": "P01-02",
+      "previous": "in_progress",
+      "current": "implemented_not_live_verified",
+      "progressFile": "docs/progress/P01-02.md"
+    }
+  ],
+  "requirementsRowsVerified": 3,
+  "requirementsAlreadyConsistent": true,
+  "stage": "engineering_passed_external_pending",
+  "codeChanged": false,
+  "modelRequests": 0,
+  "nextRecommendation": "P02/P04 real integration through the verified Zhipu account, then P05-01; deferred external P01 acceptance remains listed, no new stage started"
+}

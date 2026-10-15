@@ -18,6 +18,10 @@ pi的当前仓库是earendil-works/pi，旧badlogic/pi-mono地址发生重定向
 
 ## 2. 公共适配器接口
 
+2026-10-14 [ADR0051](../adr/0051-p01-network-selection-and-title-recovery.md)：自动模式环境优先、随后私有Host按URL解析Windows代理，HTTPS公网DNS固定/TLS保留；新增固定代理/非公网诊断。未知符号错误码不回显，订阅目录读取不做网络解析；native预检拒绝queued标题及等待/暂停/恢复root。
+
+2026-10-13 [ADR0049](../adr/0049-safe-network-stage-and-attempt-progress.md)：响应前网络失败增加固定诊断 dns_failed/dns_timeout/connection_failed/response_headers_timeout，分别表示 DNS 与连接/等待响应头阶段的失败或超时；取消不附故障阶段。保持原超时、TLS/公网 DNS 校验、payload 和重试次数/等待上限，不导出底层错误/地址/代理/凭据。缺 usage 按每次尝试预留保守结算，不能解释为实际消耗。
+
 2026-10-05连接检测证据：[ADR0020](../adr/0020-probe-request-and-usage-evidence.md)补请求准备摘要、实际usage及finish后HTTP信息，文本/工具阶段各自隔离；只有服务报告输出全部为思考且请求准备关闭字段明确时细分诊断，不猜测none执行，不提高预算或放行截断。用户本机本地fixture测试已恢复，真实调用仍独立授权/验证。
 
 2026-10-05后续Responses兼容修复：[ADR0019](../adr/0019-zhipu-responses-json-and-message-compatibility.md)基于官方必填项为精确官方端点的输入消息补type=message（含native回放），补顶层SSE错误码与Responses字符串映射。成功HTTP/JSON最多64KiB有界核验，返回业务错误或non_streaming_response/unrecognized_json等固定分类，不透传正文，不将非流式结果算通过；替代下方ADR0018对应JSON不读正文描述，其他类型、请求预算及网络策略保持。
@@ -122,6 +126,8 @@ NormalizedUsage记录inputTotal、inputCachedSubset、outputTotal、reasoningSub
 API价格是单独有checkedAt和sourceURL的配置；开发阶段不硬编码未经核实价格。金额预算启用要求对应模型/币种完整价格，未知则拒绝启用金额上限，token上限始终有效。订阅显示实际可读到的额度/恢复时间；没有稳定来源时显示“供应商未提供”，不自行伪造百分比。
 
 ## 7. 联调完成条件
+
+2026-10-13：[ADR0050](../adr/0050-bounded-encrypted-native-restart-acceptance.md)新增`test:live --native-restart`开发入口，正式DPAPI保存→独立进程退出→正式Host读取→adapter携旧引用复用，并核对同一隔离应用账本。仅指定智谱Chat/FlashX单账户profile、最多两次请求、首次失败停止；prepare-only不读取凭据/原生正文或联网。合成Electron通过不代替live，普通ChatService保持标准历史策略。
 
 2026-10-04：API单账户完整live入口和智谱overloaded的有界重试分类见[ADR0017](../adr/0017-bounded-api-live-acceptance.md)。正常routing可重试，不改变连接检测单次请求；完整脚本最多6次并首次失败停止。内存native与独立usage报告不能替代磁盘加密或原应用账本核对。Codex用户账户真实调用仍需该用户明确同意。
 

@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project integration "P01-02.native-restart" "--testNamePattern" "real Electron DPAPI"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 3 skipped (4)
+   Start at  23:15:39
+   Duration  4.05s (tests 76%, transform 20%, import 4%)
+

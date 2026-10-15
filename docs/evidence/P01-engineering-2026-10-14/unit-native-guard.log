@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project unit "P01-02.native-profile"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  18:37:36
+   Duration  1.62s (transform 59%, tests 27%, import 13%, setup 1%)
+

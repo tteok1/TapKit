@@ -1,0 +1,22 @@
+$ node scripts/live.mjs "--" "--provider" "openai-compatible" "--account" "test1" "--native-restart" "--prepare-only"
+vite v7.3.6 building ssr environment for production...
+transforming...
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 869 modules transformed.
+rendering chunks...
+.test-data/P01-02-native-runner/shared-CC9p4L6u.cjs  111.29 kB
+.test-data/P01-02-native-runner/profile.cjs          280.32 kB
+.test-data/P01-02-native-runner/runner.cjs           301.58 kB
+✓ built in 2.13s
+{"accountId":"01a13377-f964-786b-bb32-bf916b568ddc","profileId":"01a13376-d6a6-7ca5-90dd-a27bf8a7bf10","accountRevision":6,"config":{"providerId":"openai-compatible","apiFormat":"openai-chat","baseURL":"https://open.bigmodel.cn/api/paas/v4","modelId":"glm-4.7-flashx"},"requests":2,"maximumOutputTokens":256,"nativeStorage":"host-dpapi","ledger":"application","prepareOnly":true}

@@ -1,0 +1,33 @@
+import {DatabaseSync} from 'node:sqlite';
+import {readFileSync,writeFileSync,realpathSync} from 'node:fs';
+import {dirname,basename,join,resolve,relative,isAbsolute} from 'node:path';
+import {fileURLToPath} from 'node:url';
+const directory=dirname(fileURLToPath(import.meta.url)), root=resolve(directory,'../../..');
+const manifest=JSON.parse(readFileSync(join(root,'docs/evidence/P01-02/zhipu-chat-2026-10-13/app-preparation.json'),'utf8'));
+const dataDir=realpathSync(manifest.dataDir);
+if(manifest.root!==root||dirname(dataDir)!==join(root,'.test-data')||!basename(dataDir).startsWith('P01-02-app-zhipu-chat-'))throw Error('Unexpected isolated profile');
+const database=realpathSync(join(dataDir,'db/app.sqlite')), part=relative(dataDir,database);
+if(!part||part.startsWith('..')||isAbsolute(part))throw Error('Unexpected database path');
+const rootRunId='01a135b3-7808-7aec-a374-dee5b0fa17cf';
+const db=new DatabaseSync(database,{readOnly:true});
+let state;
+try{
+ db.exec('BEGIN');
+ const account=db.prepare("SELECT id,revision,status,provider_id providerId,api_format apiFormat,base_url baseURL,model_id modelId FROM provider_accounts WHERE deleted_at IS NULL AND label='test1'").get();
+ if(!account||account.status!=='ready'||account.providerId!=='openai-compatible'||account.apiFormat!=='openai-chat'||account.baseURL!=='https://open.bigmodel.cn/api/paas/v4'||account.modelId!=='glm-4.7-flashx'||db.prepare('SELECT count(*) n FROM provider_accounts WHERE deleted_at IS NULL').get().n!==1)throw Error('Unexpected account binding');
+ const title=db.prepare('SELECT session_id sessionId,status FROM title_jobs WHERE run_id=?').get(rootRunId);
+ if(!title)throw Error('Original title job missing');
+ const attempts=db.prepare('SELECT a.id,a.logical_call_id logicalCallId,a.status,a.error_code errorCode,u.source,u.charged_tokens chargedTokens FROM provider_attempts a LEFT JOIN usage_ledger u ON u.provider_attempt_id=a.id WHERE a.root_run_id=? ORDER BY a.created_at').all(rootRunId);
+ const reserved=db.prepare('SELECT count(*) n FROM budgets WHERE reserved_tokens<>0').get().n;
+ const active=db.prepare("SELECT count(*) n FROM runs WHERE status IN('queued','running','waiting_tool','waiting_user','pausing','paused','recovering') AND deleted_at IS NULL").get().n;
+ const titleActive=db.prepare("SELECT count(*) n FROM title_jobs WHERE status IN('queued','running')").get().n;
+ const memoryActive=db.prepare("SELECT count(*) n FROM jobs WHERE kind='memory.extract' AND status IN('queued','running')").get().n;
+ const unsettled=db.prepare('SELECT count(*) n FROM provider_attempts WHERE id NOT IN (SELECT provider_attempt_id FROM usage_ledger)').get().n;
+ const diagnostic=db.prepare("SELECT json_extract(chat_json,'$.titleFailure.code') code,json_extract(chat_json,'$.titleFailure.diagnosticCode') diagnosticCode FROM messages WHERE run_id=? AND role='assistant' AND deleted_at IS NULL ORDER BY rowid DESC LIMIT 1").get(rootRunId);
+ if(process.argv[2]==='prepare'&&(title.status!=='failed'||reserved||active||titleActive||memoryActive||unsettled))throw Error('Profile is not idle or the original failure has already been handled');
+ state={checkedAt:new Date().toISOString(),task:'P01-03',readOnly:true,credentialReads:0,nativeContentReads:0,modelRequests:0,account,rootRunId,title,attempts,reservedBudgets:reserved,activeRuns:active,activeTitleJobs:titleActive,activeMemoryJobs:memoryActive,unsettledAttempts:unsettled,diagnostic};
+ db.exec('ROLLBACK');
+}finally{db.close();}
+const reportPath=join(directory,process.argv[2]==='prepare'?'title-preparation.json':'title-public-state-'+Date.now()+'.json');
+writeFileSync(reportPath,JSON.stringify(state,null,2)+'\n');
+console.log(JSON.stringify({status:process.argv[2]==='prepare'?'prepared':'reviewed',titleStatus:state.title.status,sessionId:state.title.sessionId,attempts:state.attempts.length,reportPath}));

@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-13T04:16:35.562Z",
+  "databaseExists": true,
+  "credentialRead": false,
+  "modelRequests": 0,
+  "accounts": [
+    {
+      "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "label": "test1",
+      "providerId": "openai-compatible",
+      "apiFormat": "openai-chat",
+      "baseURL": "https://open.bigmodel.cn/api/paas/v4",
+      "modelId": "glm-4.7-flashx",
+      "status": "unavailable",
+      "lastCheckAt": "2026-10-13T04:14:44.654Z",
+      "lastErrorCode": "NETWORK_ERROR"
+    }
+  ],
+  "network": [
+    {
+      "mode": "environment",
+      "proxyConfigured": 0
+    }
+  ],
+  "modelVerification": [
+    {
+      "providerId": "openai-compatible",
+      "modelId": "glm-4.7-flashx",
+      "verification": "failed",
+      "verifiedAt": 1791864884654,
+      "text": 0,
+      "tools": 0
+    }
+  ]
+}

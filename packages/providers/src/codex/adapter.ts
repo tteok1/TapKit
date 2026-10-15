@@ -104,6 +104,7 @@ function canonicalAssistant(message: AssistantMessage): CanonicalMessage {
 export class CodexAdapter implements ProviderAdapter {
   readonly id = 'codex-subscription' as const;
   async refreshAuth(signal: AbortSignal) {
+    await this.beforeRequest?.(signal);
     const old = await this.credentials.read('openai-codex', { signal });
     if (!old || old.type !== 'oauth') throw new Error('AUTH_REQUIRED');
     await this.credentials.modify(
@@ -127,6 +128,7 @@ export class CodexAdapter implements ProviderAdapter {
     private readonly native: NativeStateStore,
     private readonly fetcher: typeof fetch = globalThis.fetch,
     provider: Provider<'openai-codex-responses'> = openaiCodexProvider(),
+    private readonly beforeRequest?: (signal: AbortSignal) => Promise<void>,
   ) {
     this.models = createModels({
       credentials,
@@ -195,6 +197,7 @@ export class CodexAdapter implements ProviderAdapter {
       )
         throw new Error('VALIDATION_ERROR');
       // Resolve auth before pi's lazy stream would flatten a typed failure to text.
+      await this.beforeRequest?.(combined);
       const auth = await this.models.getAuth(model, { signal: combined });
       if (!auth?.auth.apiKey) throw new Error('AUTH_REQUIRED');
       combined.throwIfAborted();
