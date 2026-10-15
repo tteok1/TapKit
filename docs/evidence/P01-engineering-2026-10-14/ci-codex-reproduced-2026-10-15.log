@@ -1,0 +1,183 @@
+$ vitest run --config vitest.config.ts --project integration "P01-01"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P01-01.lifecycle-regression.test.ts (15 tests | 4 failed) 1606ms
+   × P01-01 preserves structured OAuth refresh failure 401/invalid_grant as AUTH_EXPIRED 8ms
+   × P01-01 preserves structured OAuth refresh failure 400/invalid_grant as AUTH_EXPIRED 2ms
+   × P01-01 preserves structured OAuth refresh failure 403/forbidden as PERMISSION_DENIED 2ms
+   × P01-01 preserves structured OAuth refresh failure 429/rate_limited as RATE_LIMITED 1ms
+ ❯ |integration| tests/integration/P01-01.codex.test.ts (26 tests | 2 failed) 220ms
+   ❯ P01-01 pinned pi Codex integration (26)
+     × preserves HTTP 403/region_unsupported with no pi retries 6ms
+     × preserves HTTP 401/token_expired with no pi retries 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P01-01.codex.test.ts > P01-01 pinned pi Codex integration > preserves HTTP 403/region_unsupported with no pi retries
+AssertionError: expected { Object (type, error, ...) } to match object { type: 'error', error: { …(3) } }
+(3 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "error": {
+      "code": "PERMISSION_DENIED",
+      "httpStatus": 403,
+-     "upstreamCode": "region_unsupported",
+    },
+    "type": "error",
+  }
+
+ ❯ tests/integration/P01-01.codex.test.ts:266:27
+    264|     const adapter = new CodexAdapter(accountId, credentials(), nativeS…
+    265|     const events = await collect(adapter);
+    266|     expect(events.at(-1)).toMatchObject({
+       |                           ^
+    267|       type: 'error',
+    268|       error: { code: expected, httpStatus: status, upstreamCode: code …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  |integration| tests/integration/P01-01.codex.test.ts > P01-01 pinned pi Codex integration > preserves HTTP 401/token_expired with no pi retries
+AssertionError: expected { Object (type, error, ...) } to match object { type: 'error', error: { …(3) } }
+(3 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "error": {
+      "code": "AUTH_EXPIRED",
+      "httpStatus": 401,
+-     "upstreamCode": "token_expired",
+    },
+    "type": "error",
+  }
+
+ ❯ tests/integration/P01-01.codex.test.ts:266:27
+    264|     const adapter = new CodexAdapter(accountId, credentials(), nativeS…
+    265|     const events = await collect(adapter);
+    266|     expect(events.at(-1)).toMatchObject({
+       |                           ^
+    267|       type: 'error',
+    268|       error: { code: expected, httpStatus: status, upstreamCode: code …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  |integration| tests/integration/P01-01.lifecycle-regression.test.ts > P01-01 preserves structured OAuth refresh failure 401/invalid_grant as AUTH_EXPIRED
+AssertionError: expected { Object (type, error, ...) } to match object { type: 'error', error: { …(4) } }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "error": {
+      "code": "AUTH_EXPIRED",
+      "httpStatus": 401,
+      "retryable": false,
+-     "upstreamCode": "invalid_grant",
+    },
+    "type": "error",
+  }
+
+ ❯ tests/integration/P01-01.lifecycle-regression.test.ts:254:27
+    252|     for await (const event of adapter.stream(modelRequest(), new Abort…
+    253|       events.push(event);
+    254|     expect(events.at(-1)).toMatchObject({
+       |                           ^
+    255|       type: 'error',
+    256|       error: { code: expected, httpStatus: status, upstreamCode: code,…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  |integration| tests/integration/P01-01.lifecycle-regression.test.ts > P01-01 preserves structured OAuth refresh failure 400/invalid_grant as AUTH_EXPIRED
+AssertionError: expected { Object (type, error, ...) } to match object { type: 'error', error: { …(4) } }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "error": {
+      "code": "AUTH_EXPIRED",
+      "httpStatus": 400,
+      "retryable": false,
+-     "upstreamCode": "invalid_grant",
+    },
+    "type": "error",
+  }
+
+ ❯ tests/integration/P01-01.lifecycle-regression.test.ts:254:27
+    252|     for await (const event of adapter.stream(modelRequest(), new Abort…
+    253|       events.push(event);
+    254|     expect(events.at(-1)).toMatchObject({
+       |                           ^
+    255|       type: 'error',
+    256|       error: { code: expected, httpStatus: status, upstreamCode: code,…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  |integration| tests/integration/P01-01.lifecycle-regression.test.ts > P01-01 preserves structured OAuth refresh failure 403/forbidden as PERMISSION_DENIED
+AssertionError: expected { Object (type, error, ...) } to match object { type: 'error', error: { …(4) } }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "error": {
+      "code": "PERMISSION_DENIED",
+      "httpStatus": 403,
+      "retryable": false,
+-     "upstreamCode": "forbidden",
+    },
+    "type": "error",
+  }
+
+ ❯ tests/integration/P01-01.lifecycle-regression.test.ts:254:27
+    252|     for await (const event of adapter.stream(modelRequest(), new Abort…
+    253|       events.push(event);
+    254|     expect(events.at(-1)).toMatchObject({
+       |                           ^
+    255|       type: 'error',
+    256|       error: { code: expected, httpStatus: status, upstreamCode: code,…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  |integration| tests/integration/P01-01.lifecycle-regression.test.ts > P01-01 preserves structured OAuth refresh failure 429/rate_limited as RATE_LIMITED
+AssertionError: expected { Object (type, error, ...) } to match object { type: 'error', error: { …(4) } }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "error": {
+      "code": "RATE_LIMITED",
+      "httpStatus": 429,
+      "retryable": true,
+-     "upstreamCode": "rate_limited",
+    },
+    "type": "error",
+  }
+
+ ❯ tests/integration/P01-01.lifecycle-regression.test.ts:254:27
+    252|     for await (const event of adapter.stream(modelRequest(), new Abort…
+    253|       events.push(event);
+    254|     expect(events.at(-1)).toMatchObject({
+       |                           ^
+    255|       type: 'error',
+    256|       error: { code: expected, httpStatus: status, upstreamCode: code,…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  2 failed | 2 passed (4)
+      Tests  6 failed | 40 passed (46)
+   Start at  17:20:35
+   Duration  6.44s (tests 40%, import 40%, transform 19%, setup 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.

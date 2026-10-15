@@ -13,6 +13,8 @@ Host使用[Electron Session.resolveProxy](https://www.electronjs.org/docs/latest
 
 HTTP错误仅保留既有已知符号码及最多8位数字码；未知符号字段可能承载私人值，不能因符合字符正则就回显。错误分类、既有繁忙/额度映射与请求次数不因此改变。
 
+2026-10-15首轮全量CI发现既有OAuth/权限错误码在白名单中遗漏，6项合成回归失败；补齐invalid_grant、invalid_token、token_expired、region_unsupported、forbidden、rate_limited，并覆盖invalid_token刷新错误。未知值仍不导出，真实订阅验收继续暂缓；证据见P01-engineering-2026-10-14/ci-fix-2026-10-15.json。
+
 ## 模型选择
 
 用户显式指定的模型不应被API后备顺序过滤。后备顺序继续限制自动候选，显式模型仍必须通过账户ready、能力、权限范围及预算检查；不放宽付费后备授权或五账户/重试上限。

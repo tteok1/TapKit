@@ -1,0 +1,15 @@
+{
+  "observedAt": "2026-10-15T09:03:27.263Z",
+  "branch": "codex/p01-02-zhipu-chat-live",
+  "headSha": "6727f2f0c7dbf49679da71b89cc6777981a02a15",
+  "pushExitCode": 0,
+  "remoteVerifiedSha": "6727f2f0c7dbf49679da71b89cc6777981a02a15",
+  "runId": 38709884248,
+  "url": "https://github.com/tteok1/TapKit/actions/runs/38709884248",
+  "status": "in_progress",
+  "mergeCondition": "Both check and startup-diagnostics complete successfully for this source or its repaired successor",
+  "rawLogsWhitespace": "Original logs preserved; staged diff check excludes docs/evidence/**/*.log only",
+  "gate": "engineering_passed_external_pending",
+  "externalAcceptance": "Deferred scope remains unchanged",
+  "modelRequests": 0
+}
