@@ -1,6 +1,8 @@
 import {
   AccountCredentialStore,
   CodexAdapter,
+  CodexFailure,
+  ApiFailure,
   CodexLogin,
   CodexCredentialSchema,
   CODEX_ADAPTER_VERSION,
@@ -9,6 +11,8 @@ import {
   configureProviderNetwork,
   ApiKeyAdapter,
   apiFetchForNetwork,
+  resolveNetworkProxy,
+  type SystemProxyResolver,
   API_ADAPTER_VERSION,
   type NativeStateStore,
 } from '@tapkit/providers';
@@ -39,26 +43,38 @@ export type PrivateVault = (
     | 'native.purge'
     | 'browser.open'
     | 'api-key.read'
-    | 'api-key.delete',
+    | 'api-key.delete'
+    | 'network.proxy.resolve',
   accountId: string,
   payload: unknown,
 ) => Promise<unknown>;
 export class ProviderService {
+  private closing = false;
   private networkKey = '';
   private restoreNetwork: (() => void) | undefined;
-  private prepareNetwork() {
-    const network = this.store.settings.values.network,
-      key = JSON.stringify(network);
+  private async prepareNetwork(url = 'https://auth.openai.com', signal?: AbortSignal) {
+    if (this.closing) throw new CodexFailure({ code: 'CANCELLED', retryable: false });
+    const network = this.store.settings.values.network;
+    let proxy: string;
+    try {
+      proxy = await resolveNetworkProxy(network, new URL(url), this.resolveSystemProxy, signal);
+    } catch (error) {
+      throw error instanceof ApiFailure ? new CodexFailure(error.detail) : error;
+    }
+    if (this.closing) throw new CodexFailure({ code: 'CANCELLED', retryable: false });
+    const noProxy = proxy
+      ? network.mode === 'environment'
+        ? process.env.NO_PROXY || process.env.no_proxy || ''
+        : ''
+      : '*';
+    const key = JSON.stringify({ network, proxy, noProxy });
     if (this.networkKey !== key) {
       this.restoreNetwork?.();
       this.networkKey = '';
-      this.restoreNetwork = configureProviderNetwork(
-        network.mode === 'environment'
-          ? process.env
-          : network.mode === 'manual'
-            ? { TAPKIT_HTTP_PROXY: network.proxyURL }
-            : { TAPKIT_HTTP_PROXY: '' },
-      );
+      this.restoreNetwork = configureProviderNetwork({
+        TAPKIT_HTTP_PROXY: proxy,
+        NO_PROXY: noProxy,
+      });
       this.networkKey = key;
     }
   }
@@ -74,6 +90,7 @@ export class ProviderService {
   constructor(
     readonly store: Store,
     readonly vault: PrivateVault,
+    private readonly resolveSystemProxy?: SystemProxyResolver,
   ) {}
   private account(accountId: string) {
     const row = this.store.db
@@ -113,7 +130,6 @@ export class ProviderService {
     );
   }
   private channel(accountId: string) {
-    this.prepareNetwork();
     const account = this.account(accountId);
     let channel = this.channels.get(accountId);
     if (!channel) {
@@ -193,7 +209,19 @@ export class ProviderService {
       };
       channel =
         account.providerId === 'codex-subscription'
-          ? new CodexAdapter(accountId, credentials, native)
+          ? new CodexAdapter(
+              accountId,
+              credentials,
+              native,
+              async (input, init) => {
+                const url =
+                  typeof input === 'string' ? input : input instanceof URL ? input.href : input.url;
+                await this.prepareNetwork(url, init?.signal ?? undefined);
+                return globalThis.fetch(input, init);
+              },
+              undefined,
+              (signal) => this.prepareNetwork('https://auth.openai.com', signal),
+            )
           : new ApiKeyAdapter(
               accountId,
               resolveApiConfig(ApiConfigSchema.shape.providerId.parse(account.providerId), {
@@ -208,7 +236,11 @@ export class ProviderService {
                 return result.key;
               },
               native,
-              (input, init) => apiFetchForNetwork(this.store.settings.values.network)(input, init),
+              (input, init) =>
+                apiFetchForNetwork(this.store.settings.values.network, this.resolveSystemProxy)(
+                  input,
+                  init,
+                ),
             );
       this.channels.set(accountId, channel);
     }
@@ -216,7 +248,6 @@ export class ProviderService {
   }
   adapter(accountId: string) {
     if (this.disconnecting.has(accountId)) throw new StorageError('AUTH_REQUIRED');
-    this.prepareNetwork();
     return this.channel(accountId);
   }
   private update(
@@ -290,7 +321,7 @@ export class ProviderService {
         }
         case 'providers.startLogin': {
           const input = StartLoginSchema.parse(request.payload);
-          this.prepareNetwork();
+          await this.prepareNetwork();
           return this.store.receipt(request, () => {
             if ([...this.logins.values()].some((login) => login.view.status === 'waiting'))
               throw new StorageError('CONFLICT');
@@ -403,7 +434,6 @@ export class ProviderService {
         }
         case 'providers.check': {
           const { accountId, modelId } = CheckProviderSchema.parse(request.payload);
-          this.prepareNetwork();
           const account = this.account(accountId);
           if (request.expectedRevision !== account.revision)
             throw new StorageError('CONFLICT', account.revision);
@@ -503,10 +533,14 @@ export class ProviderService {
     return this.ok(request, result);
   }
   async stop() {
+    this.closing = true;
     for (const login of this.logins.values()) login.cancel();
     for (const probe of this.probes.values()) probe.controller.abort();
     await Promise.allSettled([...this.logins.values()].map((login) => login.completed));
     await Promise.allSettled(this.loginCleanup.values());
     await Promise.allSettled([...this.probes.values()].map((probe) => probe.done));
+    this.restoreNetwork?.();
+    this.restoreNetwork = undefined;
+    this.networkKey = '';
   }
 }

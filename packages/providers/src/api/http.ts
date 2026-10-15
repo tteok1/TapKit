@@ -10,8 +10,25 @@ export class ApiFailure extends Error {
   }
 }
 export function isPublicAddress(address: string): boolean {
-  if (isIP(address) === 6)
-    return /^[23]/.test(address) && !address.toLowerCase().startsWith('2001:db8:');
+  if (isIP(address) === 6) {
+    // URL canonicalization removes zero padding and normalizes compressed IPv6.
+    let canonical: string;
+    try {
+      canonical = new URL(`http://[${address}]`).hostname.slice(1, -1);
+    } catch {
+      return false;
+    }
+    const parts = canonical.split(':');
+    const first = parseInt(parts[0]!, 16),
+      second = parseInt(parts[1] || '0', 16);
+    return (
+      first >= 0x2000 &&
+      first < 0x4000 &&
+      !(first === 0x2001 && (second < 0x200 || second === 0xdb8)) &&
+      first !== 0x2002 &&
+      !(first === 0x3fff && second < 0x1000)
+    );
+  }
   if (isIP(address) !== 4) return false;
   const [a, b, c] = address.split('.').map(Number);
   return !(
@@ -29,12 +46,18 @@ export function isPublicAddress(address: string): boolean {
   );
 }
 export function bypassProxy(host: string, port: string, rules: string) {
+  host = host.toLowerCase().replace(/^\[|\]$/g, '');
   return rules.split(',').some((rule) => {
     let name = rule.trim().toLowerCase();
     if (!name) return false;
     if (name === '*') return true;
+    if (name.startsWith('[')) {
+      const end = name.indexOf(']');
+      if (end < 0 || (name.slice(end + 1) && name.slice(end + 1) !== ':' + port)) return false;
+      name = name.slice(1, end);
+    }
     const colon = name.lastIndexOf(':');
-    if (colon >= 0) {
+    if (colon >= 0 && name.indexOf(':') === colon) {
       if (name.slice(colon + 1) !== port) return false;
       name = name.slice(0, colon);
     }
@@ -42,19 +65,86 @@ export function bypassProxy(host: string, port: string, rules: string) {
     return host === name || host.endsWith('.' + name);
   });
 }
+export type SystemProxyResolver = (url: string, signal?: AbortSignal) => Promise<string>;
+type Network = { mode: 'environment' | 'direct' | 'manual'; proxyURL: string };
+export async function resolveNetworkProxy(
+  network: Network,
+  url: URL,
+  resolveSystem?: SystemProxyResolver,
+  signal?: AbortSignal,
+): Promise<string> {
+  signal?.throwIfAborted();
+  if (network.mode === 'direct') return '';
+  const noProxy = process.env.NO_PROXY || process.env.no_proxy || '';
+  if (network.mode === 'environment' && bypassProxy(url.hostname, url.port || '443', noProxy))
+    return '';
+  let proxy =
+    network.mode === 'manual'
+      ? network.proxyURL
+      : (process.env.TAPKIT_HTTP_PROXY ??
+        (process.env.HTTPS_PROXY ||
+          process.env.https_proxy ||
+          process.env.HTTP_PROXY ||
+          process.env.http_proxy));
+  if (proxy === undefined && resolveSystem) {
+    let abort: (() => void) | undefined;
+    try {
+      proxy = await new Promise<string>((resolve, reject) => {
+        abort = () => reject(new ApiFailure({ code: 'CANCELLED', retryable: false }));
+        signal?.addEventListener('abort', abort, { once: true });
+        resolveSystem(url.href, signal).then(resolve, reject);
+      });
+      signal?.throwIfAborted();
+    } catch (error) {
+      throw new ApiFailure(
+        signal?.aborted
+          ? { code: 'CANCELLED', retryable: false }
+          : {
+              code: 'NETWORK_ERROR',
+              retryable: false,
+              diagnosticCode:
+                error instanceof Error && error.message === 'PROXY_UNSUPPORTED'
+                  ? 'proxy_unsupported'
+                  : 'proxy_resolution_failed',
+            },
+      );
+    } finally {
+      if (abort) signal?.removeEventListener('abort', abort);
+    }
+  }
+  if (!proxy) return '';
+  try {
+    const parsed = new URL(proxy);
+    if (
+      !['http:', 'https:'].includes(parsed.protocol) ||
+      parsed.pathname !== '/' ||
+      parsed.search ||
+      parsed.hash
+    )
+      throw new Error();
+  } catch {
+    throw new ApiFailure({
+      code: 'NETWORK_ERROR',
+      retryable: false,
+      diagnosticCode: 'proxy_unsupported',
+    });
+  }
+  return proxy;
+}
 // Resolve once, reject non-public results, then connect to that exact address.
 // Host/SNI preserve the original HTTPS origin, including through CONNECT proxies.
-export function apiFetchForNetwork(network: {
-  mode: 'environment' | 'direct' | 'manual';
-  proxyURL: string;
-}): typeof fetch {
-  return (input, init) => secureRequest(input, init, network);
+export function apiFetchForNetwork(
+  network: Network,
+  resolveSystem?: SystemProxyResolver,
+): typeof fetch {
+  return (input, init) => secureRequest(input, init, network, resolveSystem);
 }
 export const secureApiFetch: typeof fetch = (input, init) => secureRequest(input, init);
 const secureRequest = async (
   input: Parameters<typeof fetch>[0],
   init: Parameters<typeof fetch>[1],
-  network?: { mode: 'environment' | 'direct' | 'manual'; proxyURL: string },
+  network: Network = { mode: 'environment', proxyURL: '' },
+  resolveSystem?: SystemProxyResolver,
 ): Promise<Response> => {
   const url = new URL(
     typeof input === 'string' ? input : input instanceof URL ? input.href : input.url,
@@ -65,102 +155,124 @@ const secureRequest = async (
   const connection = new AbortController();
   const signal = AbortSignal.any([...(init?.signal ? [init.signal] : []), connection.signal]);
   const timer = setTimeout(() => connection.abort(), 20_000);
+  // Export only a fixed stage code; native errors may contain URLs or proxy credentials.
+  const networkFailure = (stage: 'dns' | 'request') =>
+    new ApiFailure(
+      init?.signal?.aborted
+        ? { code: 'CANCELLED', retryable: false }
+        : {
+            code: 'NETWORK_ERROR',
+            retryable: true,
+            diagnosticCode:
+              stage === 'dns'
+                ? connection.signal.aborted
+                  ? 'dns_timeout'
+                  : 'dns_failed'
+                : connection.signal.aborted
+                  ? 'response_headers_timeout'
+                  : 'connection_failed',
+          },
+    );
   let addresses: { address: string; family: number }[];
   try {
     signal.throwIfAborted();
     addresses = await new Promise((resolve, reject) => {
-      const abort = () =>
-        reject(
-          new ApiFailure({
-            code: init?.signal?.aborted ? 'CANCELLED' : 'NETWORK_ERROR',
-            retryable: !init?.signal?.aborted,
-          }),
-        );
+      const abort = () => reject(networkFailure('dns'));
       signal.addEventListener('abort', abort, { once: true });
       lookup(host, { all: true, verbatim: true })
         .then(resolve, reject)
         .finally(() => signal.removeEventListener('abort', abort));
     });
-  } catch (error) {
+  } catch {
     clearTimeout(timer);
-    throw error;
+    throw networkFailure('dns');
   }
   if (!addresses.length || addresses.some((row) => !isPublicAddress(row.address))) {
     clearTimeout(timer);
-    throw new ApiFailure({ code: 'PERMISSION_DENIED', retryable: false });
+    throw new ApiFailure({
+      code: 'PERMISSION_DENIED',
+      retryable: false,
+      diagnosticCode: 'non_public_dns',
+    });
   }
   if (signal.aborted) {
     clearTimeout(timer);
+    throw networkFailure('request');
+  }
+  let proxy: string, agent: Agent;
+  try {
+    proxy = await resolveNetworkProxy(network, url, resolveSystem, signal);
+    agent = new Agent({
+      proxyEnv: { HTTPS_PROXY: proxy, HTTP_PROXY: proxy, NO_PROXY: proxy ? '' : '*' },
+    } as AgentOptions);
+  } catch (error) {
+    clearTimeout(timer);
+    if (init?.signal?.aborted) throw new ApiFailure({ code: 'CANCELLED', retryable: false });
+    if (connection.signal.aborted)
+      throw new ApiFailure({
+        code: 'NETWORK_ERROR',
+        retryable: true,
+        diagnosticCode: 'proxy_resolution_failed',
+      });
+    throw error instanceof ApiFailure ? error : networkFailure('request');
+  }
+  let headers: Record<string, string>;
+  try {
+    headers = Object.fromEntries(new Headers(init?.headers));
+  } catch {
+    clearTimeout(timer);
+    agent.destroy();
     throw new ApiFailure({
-      code: init?.signal?.aborted ? 'CANCELLED' : 'NETWORK_ERROR',
-      retryable: !init?.signal?.aborted,
+      code: 'VALIDATION_ERROR',
+      retryable: false,
+      diagnosticCode: 'provider_setup',
     });
   }
-  const proxy =
-    network?.mode === 'direct'
-      ? ''
-      : network?.mode === 'manual'
-        ? network.proxyURL
-        : process.env.TAPKIT_HTTP_PROXY ||
-          process.env.HTTPS_PROXY ||
-          process.env.https_proxy ||
-          process.env.HTTP_PROXY ||
-          process.env.http_proxy ||
-          '';
-  const noProxy =
-    network?.mode === 'manual' ? '' : process.env.NO_PROXY || process.env.no_proxy || '';
-  const agent = new Agent({
-    proxyEnv: {
-      HTTPS_PROXY: proxy,
-      HTTP_PROXY: proxy,
-      NO_PROXY: bypassProxy(host, url.port || '443', noProxy) ? '*' : '',
-    },
-  } as AgentOptions);
-  const headers = Object.fromEntries(new Headers(init?.headers));
   headers.host = url.host;
   return new Promise<Response>((resolve, reject) => {
-    const req = request(
-      {
-        hostname: addresses[0]!.address,
-        servername: host,
-        port: url.port || 443,
-        path: url.pathname,
-        method: init?.method || 'POST',
-        headers,
-        agent,
-        rejectUnauthorized: true,
-        signal,
-      },
-      (res) => {
+    try {
+      const req = request(
+        {
+          hostname: addresses[0]!.address,
+          servername: host,
+          port: url.port || 443,
+          path: url.pathname,
+          method: init?.method || 'POST',
+          headers,
+          agent,
+          rejectUnauthorized: true,
+          signal,
+        },
+        (res) => {
+          clearTimeout(timer);
+          req.setTimeout(60_000, () => req.destroy(new Error('STREAM_INTERRUPTED')));
+          res.once('close', () => agent.destroy());
+          const responseHeaders = new Headers();
+          for (const [name, value] of Object.entries(res.headers)) {
+            if (value !== undefined)
+              responseHeaders.set(name, Array.isArray(value) ? value.join(',') : value);
+          }
+          const empty = [204, 205, 304].includes(res.statusCode!);
+          if (empty) res.resume();
+          resolve(
+            new Response(empty ? null : (Readable.toWeb(res) as ReadableStream<Uint8Array>), {
+              status: res.statusCode!,
+              headers: responseHeaders,
+            }),
+          );
+        },
+      );
+      req.on('error', () => {
         clearTimeout(timer);
-        req.setTimeout(60_000, () => req.destroy(new Error('STREAM_INTERRUPTED')));
-        res.once('close', () => agent.destroy());
-        const responseHeaders = new Headers();
-        for (const [name, value] of Object.entries(res.headers)) {
-          if (value !== undefined)
-            responseHeaders.set(name, Array.isArray(value) ? value.join(',') : value);
-        }
-        const empty = [204, 205, 304].includes(res.statusCode!);
-        if (empty) res.resume();
-        resolve(
-          new Response(empty ? null : (Readable.toWeb(res) as ReadableStream<Uint8Array>), {
-            status: res.statusCode!,
-            headers: responseHeaders,
-          }),
-        );
-      },
-    );
-    req.on('error', () => {
+        agent.destroy();
+        reject(networkFailure('request'));
+      });
+      req.end(typeof init?.body === 'string' ? init.body : undefined);
+    } catch {
       clearTimeout(timer);
       agent.destroy();
-      reject(
-        new ApiFailure({
-          code: init?.signal?.aborted ? 'CANCELLED' : 'NETWORK_ERROR',
-          retryable: !init?.signal?.aborted,
-        }),
-      );
-    });
-    req.end(typeof init?.body === 'string' ? init.body : undefined);
+      reject(networkFailure('request'));
+    }
   });
 };
 

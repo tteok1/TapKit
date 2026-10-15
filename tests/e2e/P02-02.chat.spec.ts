@@ -87,6 +87,75 @@ test.beforeEach(async () => {
 test.afterEach(async () => {
   if (app) await app.close();
 });
+test('P01-03 background title failure is announced, survives reload and explicit rename clears the failure without replaying chat', async () => {
+  const page = await launch(),
+    sid = await session(page);
+  await page.getByLabel('输入草稿').fill('标题故障验收：只回复OK');
+  await page.getByRole('button', { name: '发送', exact: true }).click();
+  await expect.poll(async () => (await snapshot(page, sid)).run?.status).toBe('completed');
+  await expect(page.getByRole('status').filter({ hasText: '自动标题生成失败' })).toContainText(
+    '等待响应头超时',
+  );
+  await page.screenshot({ path: 'docs/evidence/P01-engineering-2026-10-14/title-failed.png' });
+  await page.reload();
+  await expect(page.getByRole('status').filter({ hasText: '自动标题生成失败' })).toContainText(
+    '等待响应头超时',
+  );
+  const before = (await snapshot(page, sid)).messages.map((m) => ({ id: m.id, text: m.text }));
+  await page.getByRole('button', { name: 'AI 重命名', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: '自动标题生成失败' })).toHaveCount(0);
+  await expect
+    .poll(async () => {
+      const r = await page.evaluate(
+        async ({ id, requestId }) =>
+          window.tapkit.historyCommand({ requestId }, 'sessions.get', { sessionId: id }),
+        { id: sid, requestId: newId() },
+      );
+      return r.ok && 'session' in r.data && r.data.session.titleStatus;
+    })
+    .toBe('completed');
+  expect((await snapshot(page, sid)).messages.map((m) => ({ id: m.id, text: m.text }))).toEqual(
+    before,
+  );
+  await page.screenshot({ path: 'docs/evidence/P01-engineering-2026-10-14/title-recovered.png' });
+});
+
+test('P01-03 P02-02 network retry progress explains estimates and retains diagnostics after restart', async () => {
+  const page = await launch(),
+    sid = await session(page);
+  await page.getByLabel('输入草稿').fill('网络重试诊断');
+  await page.getByRole('button', { name: '发送', exact: true }).click();
+  await expect(page.locator('.chat-progress')).toContainText('请求尝试 2');
+  await expect(page.locator('.chat-progress')).toContainText('自动重试 1');
+  await expect(page.locator('.chat-progress')).toContainText('最近一次请求失败：等待响应头超时');
+  await expect(page.locator('.chat-message.assistant').first()).toContainText('等待响应头超时');
+  await page.getByRole('button', { name: '停止回复', exact: true }).click();
+  await expect(page.locator('.chat-progress')).toContainText('已停止');
+  await expect(page.locator('.chat-progress')).toContainText('保守估算');
+  await expect(page.locator('.chat-progress')).toContainText('每次重试分别入账');
+  const before = await snapshot(page, sid);
+  expect(before.run).toMatchObject({ status: 'cancelled', attempts: 2, retries: 1 });
+  await mkdir('docs/evidence/P01-03/zhipu-budget-2026-10-13', { recursive: true });
+  await page.screenshot({
+    path: 'docs/evidence/P01-03/zhipu-budget-2026-10-13/network-progress-desktop.png',
+    fullPage: true,
+  });
+  await page.setViewportSize({ width: 760, height: 850 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+  await page.screenshot({
+    path: 'docs/evidence/P01-03/zhipu-budget-2026-10-13/network-progress-compact.png',
+    fullPage: true,
+  });
+  await app.close();
+  const restarted = await launch();
+  const after = await snapshot(restarted, sid);
+  expect(after.run).toEqual(before.run);
+  expect(after.messages.find((m) => m.errorCode === 'NETWORK_ERROR')?.diagnosticCode).toBe(
+    'response_headers_timeout',
+  );
+});
 
 test('P02-02 T02 two turns use real Core/router/usage; repeated acceptance creates one message and restart retains it', async () => {
   const page = await launch(),

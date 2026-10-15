@@ -1,0 +1,293 @@
+{
+  "task": "P01-02",
+  "date": "2026-10-13",
+  "timezone": "Asia/Shanghai",
+  "branch": "codex/p01-02-zhipu-chat-live",
+  "baseline": "9bbc44fe8f409f197a8e4d460c9ff3f102821b54",
+  "scope": "User-authorized Zhipu standard API glm-4.7-flashx Chat isolated preparation and user-run safe report review; user enters Key locally",
+  "status": "in_progress",
+  "preparationStatus": "api_suite_passed_application_acceptance_pending",
+  "gateStatus": "failed",
+  "accountLabel": "Zhipu Chat FlashX 2026-10-13",
+  "config": {
+    "providerId": "openai-compatible",
+    "apiFormat": "openai-chat",
+    "baseURL": "https://open.bigmodel.cn/api/paas/v4",
+    "modelId": "glm-4.7-flashx",
+    "reasoning": "off",
+    "thinkingType": "disabled"
+  },
+  "profile": {
+    "manifest": "preparation.json",
+    "fresh": true,
+    "schemaVersion": 14,
+    "accountStatus": "unconfigured",
+    "databaseUnchangedAfterConfigPreflight": true,
+    "credentialStored": false,
+    "vaultCreated": false,
+    "existingProfilesAccessed": false
+  },
+  "commands": [
+    {
+      "command": "git status --short / git branch --show-current / git rev-parse HEAD",
+      "exitCode": 0,
+      "result": "main, clean, baseline 9bbc44f"
+    },
+    {
+      "command": "git switch -c codex/p01-02-zhipu-chat-live (sandbox)",
+      "exitCode": 1,
+      "result": ".git ref permission denied"
+    },
+    {
+      "command": "git switch -c codex/p01-02-zhipu-chat-live (authorized local)",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm exec vite build --config docs/evidence/P01-02/zhipu-chat-2026-10-13/prepare.vite.config.ts (sandbox)",
+      "exitCode": 1,
+      "log": "prepare-build.log",
+      "result": "pnpm workspace canonicalization permission denied"
+    },
+    {
+      "command": "pnpm exec vite build --config docs/evidence/P01-02/zhipu-chat-2026-10-13/prepare.vite.config.ts (authorized local)",
+      "exitCode": 0,
+      "log": "prepare-build-local.log"
+    },
+    {
+      "command": "locked Node .test-data/P01-02-live-prepare-runner/index.cjs D:/Tapkit-public",
+      "exitCode": 0,
+      "log": "prepare-profile.log"
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File docs/evidence/P01-02/zhipu-chat-2026-10-13/run-live.ps1 -PrepareOnly",
+      "exitCode": 0,
+      "log": "preflight.log",
+      "result": "exact account/config binding; no Key or provider requests"
+    },
+    {
+      "command": "pnpm test:integration P01-02.zhipu P01-02.live",
+      "exitCode": 0,
+      "passed": 11,
+      "files": 2,
+      "log": "related-integration.log",
+      "data": "synthetic local HTTP"
+    },
+    {
+      "command": "pnpm test:unit P01-02.zhipu P01-02.live P01-02.transport",
+      "exitCode": 0,
+      "passed": 90,
+      "files": 3,
+      "log": "related-unit.log",
+      "data": "synthetic"
+    },
+    {
+      "command": "network preflight build and anonymous production GET (before TUN off)",
+      "exitCode": 1,
+      "log": "network-preflight.log",
+      "report": "network-preflight.json",
+      "result": "DNS non-public; HTTP not sent; PERMISSION_DENIED"
+    },
+    {
+      "command": "network preflight rebuild and anonymous production GET (after user reported TUN off)",
+      "exitCode": 1,
+      "log": "network-after-tun-off.log",
+      "report": "network-preflight-with-dns.json",
+      "result": "DNS benchmark-range-fake-ip; HTTP not sent; PERMISSION_DENIED"
+    },
+    {
+      "command": "Read-only Windows DNS cache / Resolve-DnsName open.bigmodel.cn -Type A -Server 223.5.5.5 -DnsOnly -NoHostsFile",
+      "exitCode": 0,
+      "result": "diagnostic resolution also returned benchmark range; no settings changed; cause not yet confirmed"
+    },
+    {
+      "command": "PowerShell Parser.ParseFile run-live.ps1",
+      "exitCode": 0,
+      "result": "no AST errors"
+    },
+    {
+      "command": "ipconfig /flushdns",
+      "exitCode": 0,
+      "result": "Temporary Windows DNS cache cleared; DNS servers/proxy settings unchanged"
+    },
+    {
+      "command": "fresh Node network preflight --check-only after DNS flush",
+      "exitCode": 1,
+      "report": "network-after-dns-flush.json",
+      "result": "benchmark-range-fake-ip; PERMISSION_DENIED; HTTP/model requests not sent"
+    },
+    {
+      "command": "target-only hosts file check",
+      "exitCode": 0,
+      "result": "No open.bigmodel.cn hosts override"
+    },
+    {
+      "command": "locked Node network preflight --check-only after user fully disconnected/exited Mesl",
+      "exitCode": 0,
+      "report": "network-after-mesl-exit-20261013-115104.json",
+      "log": "network-after-mesl-exit-20261013-115104.log",
+      "result": "Public DNS; TLS/HTTPS anonymous GET reached HTTP401; no Key or model requests"
+    },
+    {
+      "command": "Read user report; verify exact phases, public account/config, six request audits, usage semantics, eight source SHA256, database SHA256 and archive identity",
+      "exitCode": 0,
+      "report": "live-review-62bb982b.json",
+      "result": "Bounded API suite passed; memory-only native and ledger unverified; user process exit code not observed"
+    },
+    {
+      "command": "Read-only isolated application public account/config/settings/model verification",
+      "exitCode": 0,
+      "report": "app-network-error-public-state-1791864995579.json",
+      "result": "test1 config matched; unavailable NETWORK_ERROR; no manual proxy; no credentials read"
+    },
+    {
+      "command": "locked Node anonymous production network preflight after application failure",
+      "exitCode": 0,
+      "report": "network-after-app-failure-20261013-121558.json",
+      "result": "Public DNS; anonymous HTTPS401; no model request"
+    },
+    {
+      "command": "isolated Electron utilityProcess anonymous preflight",
+      "exitCode": 2,
+      "report": "app-utility-network-observation.json",
+      "result": "Harness timeout; utility worker later observed HTTPS401; complete harness not passed"
+    }
+  ],
+  "officialSources": [
+    {
+      "url": "https://docs.bigmodel.cn/cn/guide/models/text/glm-4.7",
+      "verification": "official model family, streaming/tool support and standard Chat endpoint opened on 2026-10-13"
+    },
+    {
+      "url": "https://docs.bigmodel.cn/cn/guide/capabilities/thinking-mode.md",
+      "verification": "initial web timeout and sandbox DNS failure preserved; authorized public GET succeeded and confirmed GLM-4.7 default thinking plus disabled switch"
+    }
+  ],
+  "modelRequests": 6,
+  "credentialReads": 0,
+  "networkSettingsModified": false,
+  "nativeDiskVerified": false,
+  "ledgerVerified": false,
+  "fullAcceptancePassed": true,
+  "mandatoryChecks": {
+    "status": "passed",
+    "checkExitCode": 0,
+    "formattingFiles": 421,
+    "formattingFailures": 0,
+    "docsCheckExitCode": 0,
+    "taskStates": 37,
+    "diffCheckExitCode": 0,
+    "finalFormatCheckExitCode": 0,
+    "finalDocsCheckExitCode": 0,
+    "finalDiffCheckExitCode": 0,
+    "productRuntimeTestSourceDiffExitCode": 0,
+    "finalLogs": [
+      "format-final.log",
+      "format-check-final.log",
+      "docs-check-final.log",
+      "diff-check-final.log"
+    ],
+    "logs": ["check.log", "docs-check.log", "diff-check.log"]
+  },
+  "next": "User keeps configuration and manually retests; persistent network errors require safe transport-stage diagnostics before downstream acceptance",
+  "publication": {
+    "committed": false,
+    "pushed": false,
+    "pullRequestCreated": false,
+    "ciPolled": false
+  },
+  "proxySoftwareUserReported": "Mesl",
+  "dnsCacheCleared": true,
+  "sourceSha256": {
+    "packages/providers/src/api/adapter.ts": "91c29e62f0cfada28e3614d0ff6e19f93e8ad8f138096370dd14ccedf81ad6ea",
+    "tests/live/P01-02.acceptance.ts": "4cee1883ce62cab9b0489ffe019158855e051034ef097da16d9b60b8aa1a0c00",
+    "tests/live/P01-02.api.ts": "bdd394586db7a54578070330c76f573108b0c1721a713a26f47b68b12d2f541c",
+    "tests/live/P01-02.profile.ts": "17409a07abf1aafb340077dbde1207483a3e1b31ef761c2e79a928a24192f097",
+    "scripts/api-live.mjs": "04585068fd6c345f73fd5c4e856bd19649492fee6c41c933345b41152a8a0fb0",
+    "packages/providers/src/api/zhipu.ts": "818091793f4ca4f8dfc44e0dc63a8d72691da0d34a2253fd3bb9721aa8d7b625",
+    "scripts/api-live-key.ps1": "19b7da999db448b033e3d9aa91adc399836f6d9c08b9a5960144bd72f19ae249",
+    "packages/providers/src/api/http.ts": "01393fc968ea16468984e89579a02d32be1adca21e289761dd2decef84bc50e4"
+  },
+  "latestNetworkPreflight": {
+    "checkedAt": "2026-10-13T03:51:05.137Z",
+    "endpoint": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+    "credentialUsed": false,
+    "modelRequests": 0,
+    "method": "GET",
+    "productionTransport": true,
+    "publicDNS": true,
+    "nonPublicAddressClass": null,
+    "transportReached": true,
+    "anonymousHttpStatus": 401,
+    "errorCode": null
+  },
+  "agentModelRequests": 0,
+  "taskComplete": false,
+  "liveVerification": {
+    "task": "P01-02",
+    "reviewedAt": "2026-10-13T03:56:07.4457454Z",
+    "reviewStatus": "passed",
+    "reviewExitCode": 0,
+    "sourceReport": "D:\\Tapkit-public\\test-results\\P01-02-live\\62bb982b-4940-4d7b-9e0e-e2a2274756a4\\connection-report.json",
+    "archivedReport": "connection-report-62bb982b.json",
+    "reportSha256": "c183b1e82de78034db29d3e7d25eeb99760e97d10dd437c0ca039af35059e958",
+    "userRunCheckedAt": "2026-10-13T03:53:51.768Z",
+    "userRunExitCode": null,
+    "userRunExitCodeObserved": false,
+    "apiSuiteStatus": "passed",
+    "apiSuiteFullAcceptancePassed": true,
+    "taskComplete": false,
+    "passedPhases": [
+      "text",
+      "two-turn-native",
+      "two-turn-canonical",
+      "tool-call",
+      "tool-result",
+      "cancel"
+    ],
+    "publicConfigAndAccountMatched": true,
+    "requestAuditMatched": true,
+    "sourceFingerprintsMatched": true,
+    "databaseUnchanged": true,
+    "databaseSha256": "e290863b668d478dd98271340d23c2f0ad0b73ae13cbae9e4b1d077b4aa485f1",
+    "userModelRequests": 6,
+    "agentModelRequests": 0,
+    "agentCredentialReads": 0,
+    "retries": 0,
+    "completedPhaseUsage": {
+      "completedPhases": 5,
+      "inputTotal": 442.0,
+      "outputTotal": 35.0,
+      "inputCachedSubset": 149.0,
+      "reasoningSubset": 0,
+      "source": "actual",
+      "cancellationUsage": null,
+      "allRequestUsageKnown": false
+    },
+    "nativeStorage": "memory-only",
+    "nativeDiskVerified": false,
+    "ledgerVerified": false,
+    "gateStatus": "failed",
+    "taskStatus": "in_progress",
+    "next": "Application-level encrypted credential/native persistence, restart continuity and usage ledger acceptance before downstream live checks"
+  },
+  "resource": {
+    "id": "R13",
+    "status": "verified",
+    "scope": "Zhipu ordinary API / glm-4.7-flashx / openai-chat only",
+    "otherProvidersAndFormatsVerified": false
+  },
+  "applicationPreparation": {
+    "manifest": "app-preparation.json",
+    "checks": "app-checks.json",
+    "guide": "app-acceptance.md",
+    "launcher": "run-app.ps1",
+    "status": "user_started_application_probe_failed_cause_unconfirmed",
+    "applicationStarted": true,
+    "agentModelRequests": 0
+  },
+  "applicationProbeReview": "app-network-error-review.json",
+  "applicationProbeModelRequestCount": null,
+  "modelRequestsCountScope": "Six independent API suite requests; failed application probe actual dispatch/usage not captured",
+  "latestApplicationProbe": "app-tools-network-error-1791866255595.json",
+  "outputLimitClarification": "app-token-limit-clarification.json"
+}

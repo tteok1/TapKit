@@ -1,0 +1,4 @@
+Command: locked Node docs/evidence/P01-02/native-live-2026-10-14/review-public-state.mjs
+ExitCode: 1
+Error: ERR_SQLITE_ERROR, no such table: opaque_model_blobs
+Correction: use the formal opaque_states table and budgets owner_kind=root. No database writes or model calls occurred; no reports had been archived yet.

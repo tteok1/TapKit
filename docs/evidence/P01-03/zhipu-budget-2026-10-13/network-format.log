@@ -1,0 +1,11 @@
+packages/contracts/src/providers.ts 92ms (unchanged)
+packages/contracts/src/chat.ts 29ms (unchanged)
+packages/providers/src/api/http.ts 53ms (unchanged)
+packages/core/src/chat-service.ts 163ms (unchanged)
+packages/core/src/chat-fixture.ts 9ms (unchanged)
+apps/desktop/src/renderer/src/chat-surface.tsx 125ms
+apps/desktop/src/renderer/locales/chat.zh-CN.json 15ms (unchanged)
+apps/desktop/src/renderer/locales/zh-CN.json 3ms (unchanged)
+tests/unit/P01-02.transport.test.ts 15ms (unchanged)
+tests/integration/P01-03.network-progress.test.ts 11ms
+tests/e2e/P02-02.chat.spec.ts 49ms

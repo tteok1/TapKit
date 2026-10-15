@@ -1,7 +1,9 @@
 # 当前接续点
 
-- 2026-10-12：D:/Tapkit-public，main；用户授权将 UI 开发分支合入并推送 main。源分支 codex/ui-redesign=0d774b7，合入前远程 main=5268fc0，fetch/ff-only 与无冲突合入退出0；交接前暂存树与源分支完全一致，合入交接只改文档。
-- UI-01=implemented_and_verified（仅本地前端）：白色内容区、浅绿边缘/用户气泡、完整会话侧栏、可展开右工作台和当前产品图标；unit293、相关integration45、全量Electron67及最终UI复验5通过，真实截图和源边界已核对。详见 [UI-01](UI-01.md)及docs/evidence/UI-redesign/results.json。
-- P04-03=implemented_not_live_verified；最终源分支834904b的CI38209793097 check/startup全部success：unit293/integration314/perf2/Electron45。业务/测试源码保持已验收87633cf；合入交接只改文档。
-- 真实模型联调暂缓，既有资源缺口保持；P04-gate=engineering_passed_external_pending。无PR、不扩P05。
-- 本合入提交保留 UI 源分支与全部验收证据，按用户授权推送 origin/main 并核对 HEAD 与远程一致；不创建PR、不轮询CI、不扩P05。合入检查见 docs/evidence/UI-redesign/main-merge-2026-10-12.json；原工程/live状态保持。
+- 2026-10-15：D:/Tapkit-public，main；用户授权的P01本轮交付压缩为包含本交接的单一main提交，源分支codex/p01-02-zhipu-chat-live保留3个提交，最终源码f81c3d7。
+- 源CI38715529361的check/startup-diagnostics均success：unit327/integration323/perf2/Electron47、独立标准用户/Office/启动诊断通过。main自动CI与推送引用以GitHub及Git实录核验。
+- 首轮10失败已修复：6项已知OAuth/权限错误码遗漏，4项native测试依赖手工缓存runner；补安全白名单、自行构建及缺入口快速失败，未放宽门槛。
+- 压缩前暂存树=已验源树2d58a0c4b933e8ff0efb283aa14dc693bba82ea9；主提交追加交接仅文档，业务/测试/构建源码与f81c3d7一致，未建PR。
+- P01-gate=engineering_passed_external_pending；P01-01/02/03=implemented_not_live_verified。订阅、其他供应商/协议、价格金额验收继续保留；R13指定Chat/FlashX/native及标题恢复实机范围保持。
+- 证据docs/evidence/P01-engineering-2026-10-14/ci-success-2026-10-15.json、main-squash-2026-10-15.json；Agent真实模型请求/模型Key和native正文读取0，无用户设置或Windows代理变更。
+- 下一建议先P02-02/P02-03真实聊天/历史联动，再P04-03记忆补验；本轮仅Git/CI交付，未开始这些补验或P05。

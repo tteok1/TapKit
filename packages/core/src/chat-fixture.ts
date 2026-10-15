@@ -42,6 +42,7 @@ export function installChatFixture(models: ModelService) {
     quotaRemaining: null,
     quotaResetAt: null,
   });
+  const networkFailures = new Set<string>();
   const adapter: ProviderAdapter = {
     id: 'openai-compatible',
     listModels: async () => [],
@@ -53,6 +54,43 @@ export function installChatFixture(models: ModelService) {
       const last = request.messages.findLast((m) => m.role === 'user');
       const text = last?.role === 'user' ? last.text : '';
       yield { type: 'start', attemptId: request.attemptId };
+      if (
+        request.systemModules.some((m) => m.id === 'tapkit.title') &&
+        text.includes('标题故障验收') &&
+        !networkFailures.has(request.branchId)
+      ) {
+        networkFailures.add(request.branchId);
+        yield {
+          type: 'error',
+          partial: false,
+          error: {
+            code: 'NETWORK_ERROR',
+            retryable: true,
+            diagnosticCode: 'response_headers_timeout',
+          },
+        };
+        return;
+      }
+      if (text.includes('网络重试诊断')) {
+        if (!networkFailures.has(request.logicalCallId)) {
+          networkFailures.add(request.logicalCallId);
+          yield {
+            type: 'error',
+            partial: false,
+            error: {
+              code: 'NETWORK_ERROR',
+              retryable: true,
+              diagnosticCode: 'response_headers_timeout',
+            },
+          };
+          return;
+        }
+        await new Promise<void>((_resolve, reject) => {
+          const cancel = () => reject(new Error('CANCELLED'));
+          if (signal.aborted) cancel();
+          else signal.addEventListener('abort', cancel, { once: true });
+        });
+      }
       const answer = request.systemModules.some((m) => m.id === 'tapkit.memory.extract')
         ? JSON.stringify(conservativeCandidate(text))
         : text.includes('恶意渲染')

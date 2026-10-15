@@ -1,0 +1,35 @@
+{
+  "preparedAt": "2026-10-15T10:21:54.441Z",
+  "target": "main",
+  "parent": "9bbc44fe8f409f197a8e4d460c9ff3f102821b54",
+  "sourceBranch": "codex/p01-02-zhipu-chat-live",
+  "sourceHead": "f81c3d7b0499923b705031ee8dcf7020c8587b56",
+  "sourceCommits": [
+    "6727f2f0c7dbf49679da71b89cc6777981a02a15",
+    "b43c1fb8edfd2ac6be8aefbcc97f7260a4294e1b",
+    "f81c3d7b0499923b705031ee8dcf7020c8587b56"
+  ],
+  "sourceTree": "2d58a0c4b933e8ff0efb283aa14dc693bba82ea9",
+  "preHandoffSquashIndexTree": "2d58a0c4b933e8ff0efb283aa14dc693bba82ea9",
+  "exactSquashTreeMatched": true,
+  "ciRunId": 38715529361,
+  "ciURL": "https://github.com/tteok1/TapKit/actions/runs/38715529361",
+  "ciConclusion": "success",
+  "handoff": "This single main commit includes the delivery notes; source branch history is preserved. Final main SHA is the commit containing this file; no self-referential SHA is embedded.",
+  "postSourceChanges": "Delivery documentation only; checked before commit",
+  "gate": "engineering_passed_external_pending",
+  "externalAcceptance": "User-deferred gaps retained",
+  "modelRequests": 0,
+  "localMainChecks": {
+    "check": {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "log": "main-check-2026-10-15.log"
+    },
+    "docs": {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": "main-docs-2026-10-15.log"
+    }
+  }
+}

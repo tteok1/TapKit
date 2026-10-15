@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-15T08:12:16.670Z",
+  "scope": "Record explicit user deferral and explain existing price/money budget behavior",
+  "liveDeferredByUser": [
+    "R01 subscription (existing)",
+    "R02 DeepSeek",
+    "R03 Hunyuan",
+    "R04 Grok",
+    "R05 Doubao",
+    "R14 incomplete Messages protocol live acceptance",
+    "R13 other unverified protocol branches"
+  ],
+  "preservedVerifiedScope": "Existing Zhipu Chat/FlashX CLI/app/budget/native and title recovery results only",
+  "moneyBudget": {
+    "priceCatalogEntries": 0,
+    "currentBehavior": "Unknown monetary cost; token limits remain usable; reject enabling monetary limits without complete fresh prices",
+    "implementedPricingScope": "Flat input tiers only, separate input/output rates, matching provider/model/baseURL/apiFormat, currency/sourceURL/checkedAt, maximum 30-day freshness",
+    "existingTest": "tests/integration/P01-03.usage.test.ts:476 monetary reservation; :584 unknown price rejection",
+    "newPricingOrSpendingWorkAuthorized": false
+  },
+  "codeChanged": false,
+  "modelRequests": 0,
+  "credentialReads": 0,
+  "nativeContentReads": 0,
+  "gate": "engineering_passed_external_pending"
+}

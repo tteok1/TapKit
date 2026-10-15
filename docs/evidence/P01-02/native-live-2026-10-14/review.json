@@ -1,0 +1,121 @@
+{
+  "checkedAt": "2026-10-14T08:19:59.339Z",
+  "task": "P01-02",
+  "status": "scoped_native_restart_live_passed",
+  "caseId": "8c0fc973-e4c8-4ece-b1c4-4232d0e4a9c4",
+  "sourceReport": "test-results/P01-02-native/8c0fc973-e4c8-4ece-b1c4-4232d0e4a9c4/native-restart-report.json",
+  "sourceReportCheckedAt": "2026-10-14T08:15:24.501Z",
+  "resource": "R13",
+  "config": {
+    "providerId": "openai-compatible",
+    "apiFormat": "openai-chat",
+    "baseURL": "https://open.bigmodel.cn/api/paas/v4",
+    "modelId": "glm-4.7-flashx"
+  },
+  "accountRevision": 6,
+  "actualProcessRestart": true,
+  "distinctPids": [18056, 38532],
+  "encryptedCanonicalRestored": true,
+  "nativeLoadsDuringAdapter": 1,
+  "nativeReuseConfirmed": true,
+  "modelRequestsByUser": 2,
+  "retries": 0,
+  "automaticTitleOrMemoryRequests": 0,
+  "agentModelRequests": 0,
+  "agentRealKeyReads": 0,
+  "agentNativeContentReads": 0,
+  "readOnlyDatabase": true,
+  "ordinaryChatChanged": false,
+  "settingsChanged": false,
+  "checkpointState": "completed",
+  "state": {
+    "rootRunId": "01a1397a-c08d-7c3d-aebb-5280945cb6da",
+    "ledger": [
+      {
+        "attemptId": "01a1397a-c0ac-7a89-91f2-e1feb2dcfc44",
+        "logicalCallId": "01a1397a-c08d-7b8f-9959-756875b3b3f5",
+        "status": "completed",
+        "errorCode": null,
+        "attemptNo": 1,
+        "budgetDay": "2026-10-14",
+        "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+        "source": "actual",
+        "chargedTokens": 48,
+        "inputTokens": 42,
+        "outputTokens": 6,
+        "cachedInputTokens": 2,
+        "reasoningTokens": 0,
+        "amountMicros": null,
+        "currency": null
+      },
+      {
+        "attemptId": "01a1397a-c808-726b-bdbe-0a6ad3d69d6d",
+        "logicalCallId": "01a1397a-c7ed-7c4c-a536-9882a04b68d5",
+        "status": "completed",
+        "errorCode": null,
+        "attemptNo": 1,
+        "budgetDay": "2026-10-14",
+        "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+        "source": "actual",
+        "chargedTokens": 66,
+        "inputTokens": 60,
+        "outputTokens": 6,
+        "cachedInputTokens": 41,
+        "reasoningTokens": 0,
+        "amountMicros": null,
+        "currency": null
+      }
+    ],
+    "scopedActualTokens": 114,
+    "totals": {
+      "entries": 12,
+      "chargedTokens": 46737,
+      "actualTokens": 4154,
+      "estimatedTokens": 42583
+    },
+    "unsettledAttempts": 0,
+    "duplicateSettlements": 0,
+    "reservedBudgets": 0,
+    "rootBudget": {
+      "usedTokens": 114,
+      "reservedTokens": 0
+    },
+    "preferences": {
+      "revision": 4,
+      "dailyTokenLimit": 2000000
+    },
+    "opaqueIndexEntries": 2,
+    "encryptedFilesPresent": 2,
+    "encryptedFileContentsRead": false
+  },
+  "sourceHashes": {
+    "scripts/api-native-live.mjs": "73a900f3e7118e89166171a725a3d9299da991c6dab139b2dd842406313fb919",
+    "scripts/live.mjs": "7a16a4dbbd9090398b44b2c390221bc3a3ba4bfc3dcd2b2d8c341978b3dd84ab",
+    "tests/live/P01-02.native-profile.ts": "29ff54ba7dda792bf0e37f67443d1c1405a46c615f9fd570e6795e9abf402074",
+    "tests/live/P01-02.native-acceptance.ts": "81c1fb7287a23d1f97ce358e7b3671ac4943e7919faf787edb0f5c820bf6283d",
+    "tests/live/P01-02.native-runner.ts": "8d660d061a12caa4d201bc0f482ec8b3b73d254aac0696ad7b652a19f92e5809",
+    "tests/live/native.vite.config.ts": "14c23b9b151b3a44030cad491773d4e2733773d29cb440e52657d1ebc82d9992",
+    "tests/unit/P01-02.native-profile.test.ts": "e2161a6a1ff3a948b26416f9ec8a431c67963b532f94771dcd185541e38b29bb",
+    "tests/unit/P01-02.native-prefix.test.ts": "0a76236373969b542683bc69a9fa83878ceb0518f19801a3ff375681d07cb932",
+    "tests/integration/P01-02.native-restart.test.ts": "d8f0bf255957698c3d015ff3177be183f3cd84da7089fc801280a60d1e61944c",
+    "docs/adr/0050-bounded-encrypted-native-restart-acceptance.md": "e62578a72d1da75eea7721a164b686c410c216364b816a967e3c36a6fff06667",
+    "docs/evidence/P01-02/native-restart-2026-10-13/run-native.ps1": "c91227f4bfdabe2f026863d94be9e54abe5a4a2aaceb57e71d125f3e3c6c6df1"
+  },
+  "reportHashes": {
+    "native-restart-report.json": "d4dcee4514c917b420bb9a68b78ce69104427d5f0cc462d438c4c3e67df18bec",
+    "save-report.json": "428f47e9f7c83914acff4e4abf352d770b52feed7de37c7f5ae15bba07c6932c",
+    "resume-report.json": "72e88cc704352dd5519ec4204ba785f149456263f856d6b875d367ae60a79e82"
+  },
+  "acceptanceScope": "Zhipu openai-compatible/openai-chat/glm-4.7-flashx dedicated two-process Host-DPAPI adapter reuse and same-profile ledger",
+  "excludes": [
+    "ordinary ChatService native selection policy",
+    "other models/protocols/providers",
+    "background title network stability",
+    "price or monetary budget verification",
+    "Codex account acceptance"
+  ],
+  "taskStatus": "in_progress",
+  "p01Gate": "failed",
+  "commitOrPush": false,
+  "ciPolling": false
+}

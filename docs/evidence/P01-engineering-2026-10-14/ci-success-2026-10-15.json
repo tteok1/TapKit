@@ -1,0 +1,271 @@
+{
+  "observedAt": "2026-10-15T10:20:17.578Z",
+  "runId": 38715529361,
+  "sha": "f81c3d7b0499923b705031ee8dcf7020c8587b56",
+  "url": "https://github.com/tteok1/TapKit/actions/runs/38715529361",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 116357160249,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-15T09:47:29Z",
+          "completed_at": "2026-10-15T09:47:31Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-15T09:47:31Z",
+          "completed_at": "2026-10-15T09:47:44Z"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-15T09:47:44Z",
+          "completed_at": "2026-10-15T09:47:49Z"
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-15T09:47:49Z",
+          "completed_at": "2026-10-15T09:47:58Z"
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-15T09:47:58Z",
+          "completed_at": "2026-10-15T09:50:55Z"
+        },
+        {
+          "name": "Save verified runtime archives",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6,
+          "started_at": "2026-10-15T09:50:55Z",
+          "completed_at": "2026-10-15T09:50:55Z"
+        },
+        {
+          "name": "Check",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-15T09:50:55Z",
+          "completed_at": "2026-10-15T09:51:10Z"
+        },
+        {
+          "name": "Unit and current-route integration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-15T09:51:10Z",
+          "completed_at": "2026-10-15T09:58:45Z"
+        },
+        {
+          "name": "Dedicated Core performance checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-15T09:58:45Z",
+          "completed_at": "2026-10-15T09:59:32Z"
+        },
+        {
+          "name": "Build and Electron checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-15T09:59:32Z",
+          "completed_at": "2026-10-15T10:04:51Z"
+        },
+        {
+          "name": "Verify P00-03 and P03 parser as an independent standard user",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-15T10:04:51Z",
+          "completed_at": "2026-10-15T10:13:15Z"
+        },
+        {
+          "name": "Repeat fresh-process Office shutdown diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-15T10:13:15Z",
+          "completed_at": "2026-10-15T10:15:25Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-15T10:15:25Z",
+          "completed_at": "2026-10-15T10:15:28Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-15T10:15:28Z",
+          "completed_at": "2026-10-15T10:15:28Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-15T10:15:28Z",
+          "completed_at": "2026-10-15T10:15:30Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-10-15T10:15:30Z",
+          "completed_at": "2026-10-15T10:15:30Z"
+        }
+      ]
+    },
+    {
+      "id": 116368576254,
+      "name": "startup-diagnostics",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-15T10:15:44Z",
+          "completed_at": "2026-10-15T10:15:45Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-15T10:15:45Z",
+          "completed_at": "2026-10-15T10:15:54Z"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-15T10:15:54Z",
+          "completed_at": "2026-10-15T10:15:59Z"
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-15T10:15:59Z",
+          "completed_at": "2026-10-15T10:16:11Z"
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-15T10:16:11Z",
+          "completed_at": "2026-10-15T10:19:10Z"
+        },
+        {
+          "name": "Repeat fresh-process startup diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-15T10:19:10Z",
+          "completed_at": "2026-10-15T10:19:31Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-15T10:19:31Z",
+          "completed_at": "2026-10-15T10:19:35Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-15T10:19:36Z",
+          "completed_at": "2026-10-15T10:19:36Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-15T10:19:36Z",
+          "completed_at": "2026-10-15T10:19:38Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-15T10:19:38Z",
+          "completed_at": "2026-10-15T10:19:38Z"
+        }
+      ]
+    }
+  ],
+  "scope": "Engineering CI only; user-deferred subscription/provider/protocol/pricing acceptance remains pending",
+  "counts": {
+    "unit": 327,
+    "integration": 323,
+    "performance": 2,
+    "electron": 47
+  },
+  "standardUser": "P00 independent standard-user checks plus parser 3/3 and preview 4/4 passed",
+  "officeShutdown": "Six targeted fresh-process repeats passed; intentional non-target skips remain visible in Actions",
+  "modelRequests": 0,
+  "previousRuns": [
+    {
+      "id": 38709884248,
+      "sha": "6727f2f0c7dbf49679da71b89cc6777981a02a15",
+      "conclusion": "failure",
+      "integration": {
+        "passed": 312,
+        "failed": 10
+      },
+      "causes": [
+        "known diagnostic codes: 6",
+        "missing native runner: 4"
+      ]
+    },
+    {
+      "id": 38712710155,
+      "sha": "b43c1fb8edfd2ac6be8aefbcc97f7260a4294e1b",
+      "conclusion": "failure",
+      "integration": {
+        "passed": 319,
+        "failed": 4
+      },
+      "causes": [
+        "missing native runner: 4"
+      ]
+    }
+  ]
+}

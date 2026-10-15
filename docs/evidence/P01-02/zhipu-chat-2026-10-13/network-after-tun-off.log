@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-13T03:04:18.223Z",
+  "endpoint": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+  "credentialUsed": false,
+  "modelRequests": 0,
+  "method": "GET",
+  "productionTransport": true,
+  "publicDNS": false,
+  "nonPublicAddressClass": "benchmark-range-fake-ip",
+  "transportReached": false,
+  "anonymousHttpStatus": null,
+  "errorCode": "PERMISSION_DENIED"
+}

@@ -128,6 +128,13 @@ export const ProviderListSchema = z.strictObject({
   models: z.array(ModelViewSchema),
 });
 export const ProviderDiagnosticCodeSchema = z.enum([
+  'non_public_dns',
+  'proxy_resolution_failed',
+  'proxy_unsupported',
+  'dns_failed',
+  'dns_timeout',
+  'connection_failed',
+  'response_headers_timeout',
   'request_failed',
   'empty_response',
   'empty_text',

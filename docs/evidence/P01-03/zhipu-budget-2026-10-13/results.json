@@ -1,0 +1,56 @@
+{
+  "preparedAt": "2026-10-13T07:20:19.582Z",
+  "task": "P01-03",
+  "preparation": "preparation.json",
+  "userSteps": "acceptance.md",
+  "liveBudgetTest": "not_run",
+  "unit": {
+    "command": "pnpm test:unit P01-03.routing",
+    "exitCode": 0,
+    "files": 1,
+    "passed": 12,
+    "log": "unit.log"
+  },
+  "integration": {
+    "command": "pnpm test:integration P01-03.usage",
+    "exitCode": 0,
+    "files": 1,
+    "passed": 12,
+    "log": "integration.log",
+    "usesSyntheticResponses": true
+  },
+  "productChanges": false,
+  "agentModelRequests": 0,
+  "credentialReads": 0,
+  "nativeContentReads": 0,
+  "status": "implemented_not_live_verified",
+  "gate": "failed",
+  "validation": {
+    "format": {
+      "command": "pnpm exec prettier --write (changed evidence and progress)",
+      "exitCode": 0,
+      "log": "format.log"
+    },
+    "syntax": {
+      "command": "locked Node --check review-budget-public-state.mjs",
+      "exitCode": 0
+    },
+    "readOnlyReview": {
+      "command": "locked Node --no-warnings review-budget-public-state.mjs",
+      "exitCode": 0,
+      "report": "public-state-1791876098317.json",
+      "assessment": "pending_or_requires_review",
+      "doesNotMeanLivePassed": true
+    },
+    "docs": {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": "docs-check.log"
+    },
+    "diff": {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "log": "diff-check.log"
+    }
+  }
+}

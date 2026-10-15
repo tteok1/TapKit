@@ -234,6 +234,7 @@ it('P01-01 disconnect waits for an already-started credential write then leaves 
 it.each([
   [401, 'invalid_grant', 'AUTH_EXPIRED', false],
   [400, 'invalid_grant', 'AUTH_EXPIRED', false],
+  [400, 'invalid_token', 'AUTH_EXPIRED', false],
   [403, 'forbidden', 'PERMISSION_DENIED', false],
   [429, 'rate_limited', 'RATE_LIMITED', true],
   [503, 'overloaded', 'PROVIDER_UNAVAILABLE', true],

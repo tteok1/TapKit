@@ -14,6 +14,7 @@ import {
   type IpcMainInvokeEvent,
 } from 'electron';
 import { randomUUID } from 'node:crypto';
+import { resolveSystemProxy } from './system-proxy';
 import {
   mkdirSync,
   appendFileSync,
@@ -204,6 +205,27 @@ function startCore() {
     if (!parsed.success || generation !== current) return;
     const message = parsed.data;
     if (message.type === 'vault.request') {
+      if (message.operation === 'network.proxy.resolve') {
+        void resolveSystemProxy(message.payload).then(
+          (value) => {
+            if (core === child)
+              child.postMessage({ type: 'vault.reply', id: message.id, ok: true, value });
+          },
+          (error) => {
+            if (core === child)
+              child.postMessage({
+                type: 'vault.reply',
+                id: message.id,
+                ok: false,
+                value:
+                  error instanceof Error && error.message === 'PROXY_UNSUPPORTED'
+                    ? 'PROXY_UNSUPPORTED'
+                    : 'NETWORK_ERROR',
+              });
+          },
+        );
+        return;
+      }
       void serializeSecrets(() =>
         authSecrets.invoke(message.operation, message.accountId, message.payload),
       ).then(

@@ -1,0 +1,179 @@
+{
+  "task": "P01-02",
+  "status": "passed",
+  "checks": [
+    {
+      "phase": "text",
+      "status": "passed",
+      "usage": {
+        "inputTotal": 20,
+        "outputTotal": 5,
+        "inputCachedSubset": 2,
+        "reasoningSubset": 0,
+        "source": "actual"
+      }
+    },
+    {
+      "phase": "two-turn-native",
+      "status": "passed",
+      "usage": {
+        "inputTotal": 36,
+        "outputTotal": 5,
+        "inputCachedSubset": 19,
+        "reasoningSubset": 0,
+        "source": "actual"
+      }
+    },
+    {
+      "phase": "two-turn-canonical",
+      "status": "passed",
+      "usage": {
+        "inputTotal": 52,
+        "outputTotal": 5,
+        "inputCachedSubset": 35,
+        "reasoningSubset": 0,
+        "source": "actual"
+      }
+    },
+    {
+      "phase": "tool-call",
+      "status": "passed",
+      "usage": {
+        "inputTotal": 226,
+        "outputTotal": 14,
+        "inputCachedSubset": 42,
+        "reasoningSubset": 0,
+        "source": "actual"
+      }
+    },
+    {
+      "phase": "tool-result",
+      "status": "passed",
+      "usage": {
+        "inputTotal": 108,
+        "outputTotal": 6,
+        "inputCachedSubset": 51,
+        "reasoningSubset": 0,
+        "source": "actual"
+      }
+    },
+    {
+      "phase": "cancel",
+      "status": "passed",
+      "usage": null
+    }
+  ],
+  "requests": 6,
+  "limits": {
+    "requests": 6,
+    "outputPerRequest": 128,
+    "totalMs": 300000
+  },
+  "ledgerVerified": false,
+  "accountId": "01a13335-120f-7d03-8058-5ce57e4efd62",
+  "label": "Zhipu Chat FlashX 2026-10-13",
+  "config": {
+    "providerId": "openai-compatible",
+    "apiFormat": "openai-chat",
+    "baseURL": "https://open.bigmodel.cn/api/paas/v4",
+    "modelId": "glm-4.7-flashx"
+  },
+  "runMode": "full",
+  "fullAcceptancePassed": true,
+  "requestAudit": [
+    {
+      "ordinal": 1,
+      "endpointMatchesConfig": true,
+      "modelMatchesConfig": true,
+      "stream": true,
+      "maxOutputTokens": 128,
+      "reasoningEffort": null,
+      "thinkingType": "disabled",
+      "inputShape": "message.content.string",
+      "instructionsPresent": true,
+      "toolCount": 0,
+      "storeFalse": false,
+      "httpStatus": 200
+    },
+    {
+      "ordinal": 2,
+      "endpointMatchesConfig": true,
+      "modelMatchesConfig": true,
+      "stream": true,
+      "maxOutputTokens": 128,
+      "reasoningEffort": null,
+      "thinkingType": "disabled",
+      "inputShape": "message.content.string",
+      "instructionsPresent": true,
+      "toolCount": 0,
+      "storeFalse": false,
+      "httpStatus": 200
+    },
+    {
+      "ordinal": 3,
+      "endpointMatchesConfig": true,
+      "modelMatchesConfig": true,
+      "stream": true,
+      "maxOutputTokens": 128,
+      "reasoningEffort": null,
+      "thinkingType": "disabled",
+      "inputShape": "message.content.string",
+      "instructionsPresent": true,
+      "toolCount": 0,
+      "storeFalse": false,
+      "httpStatus": 200
+    },
+    {
+      "ordinal": 4,
+      "endpointMatchesConfig": true,
+      "modelMatchesConfig": true,
+      "stream": true,
+      "maxOutputTokens": 128,
+      "reasoningEffort": null,
+      "thinkingType": "disabled",
+      "inputShape": "message.content.string",
+      "instructionsPresent": true,
+      "toolCount": 1,
+      "storeFalse": false,
+      "httpStatus": 200
+    },
+    {
+      "ordinal": 5,
+      "endpointMatchesConfig": true,
+      "modelMatchesConfig": true,
+      "stream": true,
+      "maxOutputTokens": 128,
+      "reasoningEffort": null,
+      "thinkingType": "disabled",
+      "inputShape": "message.content.string",
+      "instructionsPresent": true,
+      "toolCount": 0,
+      "storeFalse": false,
+      "httpStatus": 200
+    },
+    {
+      "ordinal": 6,
+      "endpointMatchesConfig": true,
+      "modelMatchesConfig": true,
+      "stream": true,
+      "maxOutputTokens": 128,
+      "reasoningEffort": null,
+      "thinkingType": "disabled",
+      "inputShape": "message.content.string",
+      "instructionsPresent": true,
+      "toolCount": 0,
+      "storeFalse": false,
+      "httpStatus": 200
+    }
+  ],
+  "adapterVersion": "tapkit-api/2",
+  "checkedAt": "2026-10-13T03:53:51.768Z",
+  "nodeVersion": "v24.21.0",
+  "platform": "win32",
+  "network": "production-secure-api-fetch",
+  "proxySetting": "direct-default",
+  "nativeStorage": "memory-only",
+  "credentialSource": "user-secure-prompt",
+  "profileModified": false,
+  "retries": 0
+}

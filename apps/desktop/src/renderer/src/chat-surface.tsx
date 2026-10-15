@@ -19,6 +19,7 @@ import {
 import { requestOptions } from './desktop-state';
 import c from '../locales/chat.zh-CN.json';
 import h from '../locales/history.zh-CN.json';
+import locale from '../locales/zh-CN.json';
 import { historyCommand } from './history-ui';
 import { SessionTools, MessageActions } from './message-history';
 import { importChatFiles, chatFileOwner, type ChatImportView } from './chat-file-import';
@@ -373,8 +374,9 @@ export function ChatSurface({
           )
             setMemoryPolicySeq(event.seq);
           if (
-            (event.payload.kind === 'chat' || event.payload.kind === 'memory') &&
-            event.payload.sessionId === sid.current &&
+            (((event.payload.kind === 'chat' || event.payload.kind === 'memory') &&
+              event.payload.sessionId === sid.current) ||
+              (event.payload.kind === 'workspace' && event.payload.entityId === sid.current)) &&
             event.type !== 'draft.updated'
           )
             void refresh().catch(() => {});
@@ -648,6 +650,9 @@ export function ChatSurface({
         (m) => m.accountId === selection.accountId && m.modelId === selection.modelId,
       )
     : catalog?.catalog.find((m) => m.status === 'ready');
+  const latestFailure = snapshot?.messages.findLast(
+    (m) => m.runId === snapshot.run?.id && m.diagnosticCode,
+  );
   return (
     <section className="chat-surface" data-session-id={sessionId}>
       <div className="conversation-controls">
@@ -673,6 +678,7 @@ export function ChatSurface({
         {sessionId && (
           <SessionTools
             sessionId={sessionId}
+            eventSeq={Math.max(memoryPolicySeq, memoryEventSeq)}
             snapshot={snapshot}
             onDetails={setHistoryDetails}
             exportRequested={exportRequested}
@@ -688,6 +694,13 @@ export function ChatSurface({
           />
         )}
       </div>
+      {historyDetails?.session.titleStatus === 'failed' && (
+        <small role="status">
+          {c.titleFailed}
+          {historyDetails.session.titleDiagnosticCode &&
+            ' · ' + locale.auth.diagnosticReasons[historyDetails.session.titleDiagnosticCode]}
+        </small>
+      )}
       {snapshot && (
         <div
           className="chat-messages"
@@ -857,6 +870,8 @@ export function ChatSurface({
               {message.errorCode && (
                 <p role="status">
                   {c.errors[message.errorCode as keyof typeof c.errors] ?? message.errorCode}
+                  {message.diagnosticCode &&
+                    ' · ' + locale.auth.diagnosticReasons[message.diagnosticCode]}
                 </p>
               )}
               {sessionId && message.role !== 'tool' && (
@@ -926,8 +941,15 @@ export function ChatSurface({
       )}
       {snapshot?.run && (
         <div className="chat-progress" role="status">
-          {c.progress}：{c.statuses[snapshot.run.status]} · 模型回合 {snapshot.run.calls} · 只读工具{' '}
-          {snapshot.run.tools} ·{' '}
+          {c.progress}：{c.statuses[snapshot.run.status]} · 模型回合 {snapshot.run.calls} ·{' '}
+          {c.attempts} {snapshot.run.attempts}
+          {!!snapshot.run.retries && (
+            <>
+              {' '}
+              · {c.retries} {snapshot.run.retries}
+            </>
+          )}{' '}
+          · 只读工具 {snapshot.run.tools} ·{' '}
           {snapshot.run.startedAt
             ? Math.max(
                 0,
@@ -937,10 +959,17 @@ export function ChatSurface({
           秒 · 用量
           {snapshot.run.usage.state === 'pending'
             ? '待结算'
-            : (snapshot.run.usage.state === 'actual' ? '实际' : '估计') +
+            : (snapshot.run.usage.state === 'actual' ? '实际' : c.estimated) +
               ' ' +
               snapshot.run.usage.tokens +
               ' tokens'}
+          {snapshot.run.usage.state === 'estimated' && <p>{c.estimatedHint}</p>}
+          {latestFailure?.diagnosticCode && (
+            <p>
+              {c.latestFailure}：{locale.auth.diagnosticReasons[latestFailure.diagnosticCode]}
+            </p>
+          )}
+          {historyDetails?.session.titleStatus && <small>{c.rootUsageHint}</small>}
           {active && (
             <button
               onClick={() =>

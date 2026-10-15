@@ -1,0 +1,14 @@
+{
+    "status":  "prepared",
+    "dataDir":  "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+    "config":  {
+                   "providerId":  "openai-compatible",
+                   "apiFormat":  "openai-chat",
+                   "baseURL":  "https://open.bigmodel.cn/api/paas/v4",
+                   "modelId":  "glm-4.7-flashx",
+                   "reasoning":  "off"
+               },
+    "networkRequests":  0,
+    "modelRequests":  0,
+    "applicationStarted":  false
+}

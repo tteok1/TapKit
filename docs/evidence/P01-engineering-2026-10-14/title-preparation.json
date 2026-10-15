@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-10-15T07:56:25.110Z",
+  "task": "P01-03",
+  "readOnly": true,
+  "credentialReads": 0,
+  "nativeContentReads": 0,
+  "modelRequests": 0,
+  "account": {
+    "id": "01a13377-f964-786b-bb32-bf916b568ddc",
+    "revision": 6,
+    "status": "ready",
+    "providerId": "openai-compatible",
+    "apiFormat": "openai-chat",
+    "baseURL": "https://open.bigmodel.cn/api/paas/v4",
+    "modelId": "glm-4.7-flashx"
+  },
+  "rootRunId": "01a135b3-7808-7aec-a374-dee5b0fa17cf",
+  "title": {
+    "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+    "status": "failed"
+  },
+  "attempts": [
+    {
+      "id": "01a135b3-7aad-79a2-9fda-3505205b53fa",
+      "logicalCallId": "01a135b3-7853-7345-a159-6475c14fa851",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 885
+    },
+    {
+      "id": "01a135b3-9cee-7a89-98ca-f88c0ce8c389",
+      "logicalCallId": "01a135b3-9c8a-7c3c-afab-1c11ba55488c",
+      "status": "failed",
+      "errorCode": "NETWORK_ERROR",
+      "source": "estimated",
+      "chargedTokens": 1844
+    }
+  ],
+  "reservedBudgets": 0,
+  "activeRuns": 0,
+  "activeTitleJobs": 0,
+  "activeMemoryJobs": 0,
+  "unsettledAttempts": 0,
+  "diagnostic": {
+    "code": null,
+    "diagnosticCode": null
+  }
+}

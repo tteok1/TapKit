@@ -144,6 +144,99 @@ async function fresh() {
   };
 }
 describe('P02-03 history lifecycle', () => {
+  it('P01-03 title failure is visible, survives restart, and only an explicit rename queues one new attempt', async () => {
+    const f = await fresh(),
+      run = await f.send('title failure fixture');
+    f.history.queueTitle(f.session, run.runId!);
+    let calls = 0;
+    const original = f.models.router.deps.adapter;
+    f.models.router.deps.adapter = (id) => ({
+      ...original(id),
+      async *stream() {
+        calls++;
+        yield {
+          type: 'error' as const,
+          error: {
+            code: 'NETWORK_ERROR' as const,
+            retryable: true,
+            diagnosticCode: 'response_headers_timeout' as const,
+          },
+          partial: false,
+        };
+      },
+    });
+    const titleBefore = (await f.details()).session.title;
+    await f.history.titles();
+    expect((await f.details()).session).toMatchObject({
+      title: titleBefore,
+      titleStatus: 'failed',
+      titleErrorCode: 'NETWORK_ERROR',
+      titleDiagnosticCode: 'response_headers_timeout',
+    });
+    expect(calls).toBe(1);
+    await f.history.titles();
+    f.history.queueTitle(f.session, run.runId!);
+    await f.history.titles();
+    expect(calls).toBe(1);
+    const ledger = f.store.db
+      .prepare('SELECT count(*) n FROM usage_ledger WHERE root_run_id=?')
+      .get(run.runId) as { n: number };
+    expect(ledger.n).toBe(2);
+    const reopened = await openStore(f.dir);
+    stores.push(reopened);
+    const history = new HistoryService(reopened, new BlobStore(reopened), f.chat);
+    expect(
+      history.record(reopened.db.prepare('SELECT * FROM sessions WHERE id=?').get(f.session) as any)
+        .titleStatus,
+    ).toBe('failed');
+    reopened.close();
+    f.models.router.deps.adapter = original;
+    data(
+      await f.history.dispatch(
+        req('sessions.title', { sessionId: f.session }, (await f.details()).session.revision),
+      ),
+    );
+    expect((await f.details()).session.titleStatus).toBe('queued');
+    await f.history.titles();
+    expect((await f.details()).session.titleStatus).toBe('completed');
+    expect(
+      f.store.db.prepare('SELECT count(*) n FROM usage_ledger WHERE root_run_id=?').get(run.runId),
+    ).toEqual({ n: 3 });
+    expect(
+      f.store.db.prepare('SELECT count(*) n FROM budgets WHERE reserved_tokens<>0').get(),
+    ).toEqual({ n: 0 });
+  });
+  it('P01-03 short title requests fit small contexts and remain attributed to the owning project and root', async () => {
+    const f = await fresh();
+    const projectId = (
+      data(f.core.dispatch(req('projects.create', { name: 'title usage fixture' }))) as {
+        entityId: string;
+      }
+    ).entityId;
+    f.store.db.prepare('UPDATE sessions SET project_id=? WHERE id=?').run(projectId, f.session);
+    const run = await f.send('short title');
+    const catalog = f.models.router.deps.catalog;
+    f.models.router.deps.catalog = async () =>
+      (await catalog()).map((model) => ({ ...model, contextWindow: 2048, maxOutput: 128 }));
+    f.history.queueTitle(f.session, run.runId!);
+    await f.history.titles();
+    expect((await f.details()).session.titleStatus).toBe('completed');
+    const attempts = f.store.db
+      .prepare(
+        'SELECT project_id,root_run_id,status FROM provider_attempts WHERE run_id=? ORDER BY created_at',
+      )
+      .all(run.runId);
+    expect(attempts).toHaveLength(2);
+    expect(attempts).toEqual(
+      expect.arrayContaining([
+        { project_id: projectId, root_run_id: run.runId, status: 'completed' },
+      ]),
+    );
+    expect(attempts.every((a: any) => a.project_id === projectId)).toBe(true);
+    expect(
+      f.store.db.prepare('SELECT count(*) n FROM budgets WHERE reserved_tokens<>0').get(),
+    ).toEqual({ n: 0 });
+  });
   it('P03-01 generated notes reject a message revision or session scope change during blob I/O without publishing stale content', async () => {
     for (const change of ['revision', 'scope']) {
       const f = await fresh(),

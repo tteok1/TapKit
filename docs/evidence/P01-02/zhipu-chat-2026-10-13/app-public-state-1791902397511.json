@@ -1,0 +1,623 @@
+{
+  "checkedAt": "2026-10-13T14:39:57.498Z",
+  "task": "P01-02",
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "readOnly": true,
+  "credentialRead": false,
+  "nativeContentRead": false,
+  "modelRequests": 0,
+  "accounts": [
+    {
+      "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "providerId": "openai-compatible",
+      "apiFormat": "openai-chat",
+      "baseURL": "https://open.bigmodel.cn/api/paas/v4",
+      "modelId": "glm-4.7-flashx",
+      "status": "ready",
+      "lastCheckAt": 1791866515872,
+      "lastErrorCode": null
+    }
+  ],
+  "ledger": [
+    {
+      "attemptId": "01a13392-8f2c-7fae-a60f-00ab6c8ca69f",
+      "runId": "01a13392-8eff-7785-bca1-4f20ede17824",
+      "rootRunId": "01a13392-8eff-7785-bca1-4f20ede17824",
+      "logicalCallId": "01a13392-8f16-7bb4-b58a-e235b36adfbe",
+      "attemptNo": 1,
+      "status": "completed",
+      "errorCode": null,
+      "modelRef": "glm-4.7-flashx",
+      "attemptCreatedAt": 1791866605361,
+      "settledAt": 1791866624786,
+      "inputTokens": 668,
+      "outputTokens": 2,
+      "cachedSubset": 42,
+      "reasoningSubset": 0,
+      "chargedTokens": 670,
+      "source": "actual",
+      "amountMicros": null,
+      "hasNativeRef": 1,
+      "hasAssistantMessage": 1
+    },
+    {
+      "attemptId": "01a13392-dbe0-7aff-a8a6-fcaa8cabae23",
+      "runId": "01a13392-8eff-7785-bca1-4f20ede17824",
+      "rootRunId": "01a13392-8eff-7785-bca1-4f20ede17824",
+      "logicalCallId": "01a13392-dbb2-748d-9160-06023a487452",
+      "attemptNo": 1,
+      "status": "completed",
+      "errorCode": null,
+      "modelRef": "glm-4.7-flashx",
+      "attemptCreatedAt": 1791866624993,
+      "settledAt": 1791866639982,
+      "inputTokens": 66,
+      "outputTokens": 2,
+      "cachedSubset": 2,
+      "reasoningSubset": 0,
+      "chargedTokens": 68,
+      "source": "actual",
+      "amountMicros": null,
+      "hasNativeRef": 1,
+      "hasAssistantMessage": 0
+    },
+    {
+      "attemptId": "01a13393-1297-786c-93e3-c9e0975588e6",
+      "runId": "01a13393-1266-7744-b7e2-171332458568",
+      "rootRunId": "01a13393-1266-7744-b7e2-171332458568",
+      "logicalCallId": "01a13393-127d-7c38-b87c-4abe779e7c81",
+      "attemptNo": 1,
+      "status": "completed",
+      "errorCode": null,
+      "modelRef": "glm-4.7-flashx",
+      "attemptCreatedAt": 1791866639004,
+      "settledAt": 1791866648191,
+      "inputTokens": 684,
+      "outputTokens": 5,
+      "cachedSubset": 538,
+      "reasoningSubset": 0,
+      "chargedTokens": 689,
+      "source": "actual",
+      "amountMicros": null,
+      "hasNativeRef": 1,
+      "hasAssistantMessage": 1
+    },
+    {
+      "attemptId": "01a13394-6241-7c90-9cdb-f1c9a16243cb",
+      "runId": "01a13394-61bd-765a-8c9f-3bba27c5aaa3",
+      "rootRunId": "01a13394-61bd-765a-8c9f-3bba27c5aaa3",
+      "logicalCallId": "01a13394-61da-73d5-8faf-8319af030e52",
+      "attemptNo": 1,
+      "status": "completed",
+      "errorCode": null,
+      "modelRef": "glm-4.7-flashx",
+      "attemptCreatedAt": 1791866724939,
+      "settledAt": 1791866745131,
+      "inputTokens": 703,
+      "outputTokens": 5,
+      "cachedSubset": 538,
+      "reasoningSubset": 0,
+      "chargedTokens": 708,
+      "source": "actual",
+      "amountMicros": null,
+      "hasNativeRef": 1,
+      "hasAssistantMessage": 1
+    },
+    {
+      "attemptId": "01a13395-2988-76c0-95cd-a64ff53bef24",
+      "runId": "01a13395-295b-7ecb-844a-4f02b569b28d",
+      "rootRunId": "01a13395-295b-7ecb-844a-4f02b569b28d",
+      "logicalCallId": "01a13395-2971-7e76-9dc7-6203ccb70b54",
+      "attemptNo": 1,
+      "status": "completed",
+      "errorCode": null,
+      "modelRef": "glm-4.7-flashx",
+      "attemptCreatedAt": 1791866775949,
+      "settledAt": 1791866788950,
+      "inputTokens": 721,
+      "outputTokens": 299,
+      "cachedSubset": 538,
+      "reasoningSubset": 0,
+      "chargedTokens": 1020,
+      "source": "actual",
+      "amountMicros": null,
+      "hasNativeRef": 1,
+      "hasAssistantMessage": 1
+    },
+    {
+      "attemptId": "01a13417-731a-7149-b921-48cb159f9ec8",
+      "runId": "01a13417-72dc-73f4-bdfd-0fe8fa1dbf25",
+      "rootRunId": "01a13417-72dc-73f4-bdfd-0fe8fa1dbf25",
+      "logicalCallId": "01a13417-72fa-77cd-80bb-51c6dd8d1955",
+      "attemptNo": 1,
+      "status": "cancelled",
+      "errorCode": "CANCELLED",
+      "modelRef": "glm-4.7-flashx",
+      "attemptCreatedAt": 1791875314463,
+      "settledAt": 1791875320652,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cachedSubset": null,
+      "reasoningSubset": null,
+      "chargedTokens": 12911,
+      "source": "estimated",
+      "amountMicros": null,
+      "hasNativeRef": 0,
+      "hasAssistantMessage": 1
+    },
+    {
+      "attemptId": "01a13428-c197-7ebb-801b-ef72d97903d0",
+      "runId": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+      "rootRunId": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+      "logicalCallId": "01a13428-c0bd-727c-81b6-89cb61654024",
+      "attemptNo": 1,
+      "status": "failed",
+      "errorCode": "NETWORK_ERROR",
+      "modelRef": "glm-4.7-flashx",
+      "attemptCreatedAt": 1791876448666,
+      "settledAt": 1791876468707,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cachedSubset": null,
+      "reasoningSubset": null,
+      "chargedTokens": 13914,
+      "source": "estimated",
+      "amountMicros": null,
+      "hasNativeRef": 0,
+      "hasAssistantMessage": 1
+    },
+    {
+      "attemptId": "01a13429-1473-7090-994d-f96da5a333b3",
+      "runId": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+      "rootRunId": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+      "logicalCallId": "01a13428-c0bd-727c-81b6-89cb61654024",
+      "attemptNo": 2,
+      "status": "cancelled",
+      "errorCode": "CANCELLED",
+      "modelRef": "glm-4.7-flashx",
+      "attemptCreatedAt": 1791876469882,
+      "settledAt": 1791876483307,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cachedSubset": null,
+      "reasoningSubset": null,
+      "chargedTokens": 13914,
+      "source": "estimated",
+      "amountMicros": null,
+      "hasNativeRef": 0,
+      "hasAssistantMessage": 1
+    },
+    {
+      "attemptId": "01a135b3-7aad-79a2-9fda-3505205b53fa",
+      "runId": "01a135b3-7808-7aec-a374-dee5b0fa17cf",
+      "rootRunId": "01a135b3-7808-7aec-a374-dee5b0fa17cf",
+      "logicalCallId": "01a135b3-7853-7345-a159-6475c14fa851",
+      "attemptNo": 1,
+      "status": "completed",
+      "errorCode": null,
+      "modelRef": "glm-4.7-flashx",
+      "attemptCreatedAt": 1791902317236,
+      "settledAt": 1791902325750,
+      "inputTokens": 883,
+      "outputTokens": 2,
+      "cachedSubset": 42,
+      "reasoningSubset": 0,
+      "chargedTokens": 885,
+      "source": "actual",
+      "amountMicros": null,
+      "hasNativeRef": 1,
+      "hasAssistantMessage": 1
+    },
+    {
+      "attemptId": "01a135b3-9cee-7a89-98ca-f88c0ce8c389",
+      "runId": "01a135b3-7808-7aec-a374-dee5b0fa17cf",
+      "rootRunId": "01a135b3-7808-7aec-a374-dee5b0fa17cf",
+      "logicalCallId": "01a135b3-9c8a-7c3c-afab-1c11ba55488c",
+      "attemptNo": 1,
+      "status": "failed",
+      "errorCode": "NETWORK_ERROR",
+      "modelRef": "glm-4.7-flashx",
+      "attemptCreatedAt": 1791902326000,
+      "settledAt": 1791902346013,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cachedSubset": null,
+      "reasoningSubset": null,
+      "chargedTokens": 1844,
+      "source": "estimated",
+      "amountMicros": null,
+      "hasNativeRef": 0,
+      "hasAssistantMessage": 0
+    }
+  ],
+  "runs": [
+    {
+      "id": "01a13392-8eff-7785-bca1-4f20ede17824",
+      "sessionId": "01a13392-6a63-7f23-b568-a9c8a69548bc",
+      "status": "completed",
+      "statusReason": null,
+      "cancelRequestedAt": null,
+      "createdAt": 1791866605311,
+      "startedAt": 1791866605314,
+      "endedAt": 1791866624789,
+      "calls": 1,
+      "tools": 0
+    },
+    {
+      "id": "01a13393-1266-7744-b7e2-171332458568",
+      "sessionId": "01a13392-6a63-7f23-b568-a9c8a69548bc",
+      "status": "completed",
+      "statusReason": null,
+      "cancelRequestedAt": null,
+      "createdAt": 1791866638950,
+      "startedAt": 1791866638952,
+      "endedAt": 1791866648193,
+      "calls": 1,
+      "tools": 0
+    },
+    {
+      "id": "01a13394-61bd-765a-8c9f-3bba27c5aaa3",
+      "sessionId": "01a13392-6a63-7f23-b568-a9c8a69548bc",
+      "status": "completed",
+      "statusReason": null,
+      "cancelRequestedAt": null,
+      "createdAt": 1791866724797,
+      "startedAt": 1791866724801,
+      "endedAt": 1791866745133,
+      "calls": 1,
+      "tools": 0
+    },
+    {
+      "id": "01a13395-295b-7ecb-844a-4f02b569b28d",
+      "sessionId": "01a13392-6a63-7f23-b568-a9c8a69548bc",
+      "status": "completed",
+      "statusReason": null,
+      "cancelRequestedAt": null,
+      "createdAt": 1791866775899,
+      "startedAt": 1791866775902,
+      "endedAt": 1791866788952,
+      "calls": 1,
+      "tools": 0
+    },
+    {
+      "id": "01a13417-72dc-73f4-bdfd-0fe8fa1dbf25",
+      "sessionId": "01a13392-6a63-7f23-b568-a9c8a69548bc",
+      "status": "cancelled",
+      "statusReason": "CANCELLED",
+      "cancelRequestedAt": 1791875320646,
+      "createdAt": 1791875314396,
+      "startedAt": 1791875314400,
+      "endedAt": 1791875320653,
+      "calls": 1,
+      "tools": 0
+    },
+    {
+      "id": "01a13427-ad5d-7416-986e-19f3d5bd40b9",
+      "sessionId": "01a13392-6a63-7f23-b568-a9c8a69548bc",
+      "status": "budget_stopped",
+      "statusReason": "BUDGET_EXCEEDED",
+      "cancelRequestedAt": null,
+      "createdAt": 1791876377949,
+      "startedAt": 1791876377953,
+      "endedAt": 1791876378215,
+      "calls": 1,
+      "tools": 0
+    },
+    {
+      "id": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+      "sessionId": "01a13392-6a63-7f23-b568-a9c8a69548bc",
+      "status": "cancelled",
+      "statusReason": "CANCELLED",
+      "cancelRequestedAt": 1791876483303,
+      "createdAt": 1791876448409,
+      "startedAt": 1791876448411,
+      "endedAt": 1791876483308,
+      "calls": 1,
+      "tools": 0
+    },
+    {
+      "id": "01a135b3-7808-7aec-a374-dee5b0fa17cf",
+      "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+      "status": "completed",
+      "statusReason": null,
+      "cancelRequestedAt": null,
+      "createdAt": 1791902316552,
+      "startedAt": 1791902316556,
+      "endedAt": 1791902325753,
+      "calls": 1,
+      "tools": 0
+    }
+  ],
+  "titleJobs": [
+    {
+      "sessionId": "01a13392-6a63-7f23-b568-a9c8a69548bc",
+      "runId": "01a13392-8eff-7785-bca1-4f20ede17824",
+      "status": "completed"
+    },
+    {
+      "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+      "runId": "01a135b3-7808-7aec-a374-dee5b0fa17cf",
+      "status": "failed"
+    }
+  ],
+  "assistantFormatting": [
+    {
+      "id": "01a13392-8f32-7e00-9c25-6b2ecea20137",
+      "runId": "01a13392-8eff-7785-bca1-4f20ede17824",
+      "status": "final",
+      "attemptId": "01a13392-8f2c-7fae-a60f-00ab6c8ca69f",
+      "characterCount": 2,
+      "newlineCount": 0,
+      "commaCount": 0,
+      "matchesAttemptText": 1
+    },
+    {
+      "id": "01a13393-129d-776b-b0aa-e1a1e4258bbd",
+      "runId": "01a13393-1266-7744-b7e2-171332458568",
+      "status": "final",
+      "attemptId": "01a13393-1297-786c-93e3-c9e0975588e6",
+      "characterCount": 5,
+      "newlineCount": 0,
+      "commaCount": 0,
+      "matchesAttemptText": 1
+    },
+    {
+      "id": "01a13394-624c-7c2b-b075-639963f8dcc0",
+      "runId": "01a13394-61bd-765a-8c9f-3bba27c5aaa3",
+      "status": "final",
+      "attemptId": "01a13394-6241-7c90-9cdb-f1c9a16243cb",
+      "characterCount": 5,
+      "newlineCount": 0,
+      "commaCount": 0,
+      "matchesAttemptText": 1
+    },
+    {
+      "id": "01a13395-298f-791a-a9f1-d9febd5d627b",
+      "runId": "01a13395-295b-7ecb-844a-4f02b569b28d",
+      "status": "final",
+      "attemptId": "01a13395-2988-76c0-95cd-a64ff53bef24",
+      "characterCount": 390,
+      "newlineCount": 0,
+      "commaCount": 99,
+      "matchesAttemptText": 1
+    },
+    {
+      "id": "01a13417-7320-7923-b49d-9226a9351624",
+      "runId": "01a13417-72dc-73f4-bdfd-0fe8fa1dbf25",
+      "status": "interrupted",
+      "attemptId": "01a13417-731a-7149-b921-48cb159f9ec8",
+      "characterCount": 850,
+      "newlineCount": 0,
+      "commaCount": 191,
+      "matchesAttemptText": 1
+    },
+    {
+      "id": "01a13428-c19c-7e7c-b0fc-d2b405c5330f",
+      "runId": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+      "status": "interrupted",
+      "attemptId": "01a13428-c197-7ebb-801b-ef72d97903d0",
+      "characterCount": 0,
+      "newlineCount": 0,
+      "commaCount": 0,
+      "matchesAttemptText": 1
+    },
+    {
+      "id": "01a13429-147c-76dd-ab07-cc6c2a6b0d64",
+      "runId": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+      "status": "interrupted",
+      "attemptId": "01a13429-1473-7090-994d-f96da5a333b3",
+      "characterCount": 0,
+      "newlineCount": 0,
+      "commaCount": 0,
+      "matchesAttemptText": 1
+    },
+    {
+      "id": "01a135b3-7ab5-70a3-9d34-1112d531fade",
+      "runId": "01a135b3-7808-7aec-a374-dee5b0fa17cf",
+      "status": "final",
+      "attemptId": "01a135b3-7aad-79a2-9fda-3505205b53fa",
+      "characterCount": 2,
+      "newlineCount": 0,
+      "commaCount": 0,
+      "matchesAttemptText": 1
+    }
+  ],
+  "budgets": [
+    {
+      "ownerKind": "daily",
+      "ownerId": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10:2026-10-13",
+      "usedTokens": 46623,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13392-8eff-7785-bca1-4f20ede17824",
+      "usedTokens": 738,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13393-1266-7744-b7e2-171332458568",
+      "usedTokens": 689,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13394-61bd-765a-8c9f-3bba27c5aaa3",
+      "usedTokens": 708,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13395-295b-7ecb-844a-4f02b569b28d",
+      "usedTokens": 1020,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13417-72dc-73f4-bdfd-0fe8fa1dbf25",
+      "usedTokens": 12911,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+      "usedTokens": 27828,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a135b3-7808-7aec-a374-dee5b0fa17cf",
+      "usedTokens": 2729,
+      "reservedTokens": 0
+    }
+  ],
+  "opaqueBindings": [
+    {
+      "id": "01a1338b-3b75-7542-b0f6-4cd8494733c1",
+      "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "modelRef": "glm-4.7-flashx",
+      "adapterVersion": "tapkit-api/2:openai-chat:0413b53d28826c51b400bc9ebc578639bf6a4ff94d3e43fbcbc468bd51945602",
+      "branchId": "probe",
+      "blobRef": "01a1338b-3b75-7542-b0f6-4cd8494733c1",
+      "createdAt": 1791866125445,
+      "hashPresent": 1,
+      "expectedEncryptedFileExists": true
+    },
+    {
+      "id": "01a13390-4708-7bb1-a80c-9438f44e40cf",
+      "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "modelRef": "glm-4.7-flashx",
+      "adapterVersion": "tapkit-api/2:openai-chat:0413b53d28826c51b400bc9ebc578639bf6a4ff94d3e43fbcbc468bd51945602",
+      "branchId": "probe",
+      "blobRef": "01a13390-4708-7bb1-a80c-9438f44e40cf",
+      "createdAt": 1791866456094,
+      "hashPresent": 1,
+      "expectedEncryptedFileExists": true
+    },
+    {
+      "id": "01a13391-0663-7f9b-88eb-5ec182945102",
+      "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "modelRef": "glm-4.7-flashx",
+      "adapterVersion": "tapkit-api/2:openai-chat:0413b53d28826c51b400bc9ebc578639bf6a4ff94d3e43fbcbc468bd51945602",
+      "branchId": "probe",
+      "blobRef": "01a13391-0663-7f9b-88eb-5ec182945102",
+      "createdAt": 1791866505085,
+      "hashPresent": 1,
+      "expectedEncryptedFileExists": true
+    },
+    {
+      "id": "01a13391-3088-7238-b0e5-4d80226c529b",
+      "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "modelRef": "glm-4.7-flashx",
+      "adapterVersion": "tapkit-api/2:openai-chat:0413b53d28826c51b400bc9ebc578639bf6a4ff94d3e43fbcbc468bd51945602",
+      "branchId": "probe",
+      "blobRef": "01a13391-3088-7238-b0e5-4d80226c529b",
+      "createdAt": 1791866515871,
+      "hashPresent": 1,
+      "expectedEncryptedFileExists": true
+    },
+    {
+      "id": "01a13392-d9ff-78bc-80ec-4e267827ed52",
+      "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "modelRef": "glm-4.7-flashx",
+      "adapterVersion": "tapkit-api/2:openai-chat:0413b53d28826c51b400bc9ebc578639bf6a4ff94d3e43fbcbc468bd51945602",
+      "branchId": "01a13392-6a63-7834-a881-701530a873b0",
+      "blobRef": "01a13392-d9ff-78bc-80ec-4e267827ed52",
+      "createdAt": 1791866624785,
+      "hashPresent": 1,
+      "expectedEncryptedFileExists": true
+    },
+    {
+      "id": "01a13393-1556-7e11-bffe-b20fb9499d58",
+      "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "modelRef": "glm-4.7-flashx",
+      "adapterVersion": "tapkit-api/2:openai-chat:0413b53d28826c51b400bc9ebc578639bf6a4ff94d3e43fbcbc468bd51945602",
+      "branchId": "01a13392-6a63-7834-a881-701530a873b0",
+      "blobRef": "01a13393-1556-7e11-bffe-b20fb9499d58",
+      "createdAt": 1791866639981,
+      "hashPresent": 1,
+      "expectedEncryptedFileExists": true
+    },
+    {
+      "id": "01a13393-3564-7b6e-87f0-94120a991c28",
+      "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "modelRef": "glm-4.7-flashx",
+      "adapterVersion": "tapkit-api/2:openai-chat:0413b53d28826c51b400bc9ebc578639bf6a4ff94d3e43fbcbc468bd51945602",
+      "branchId": "01a13392-6a63-7834-a881-701530a873b0",
+      "blobRef": "01a13393-3564-7b6e-87f0-94120a991c28",
+      "createdAt": 1791866648190,
+      "hashPresent": 1,
+      "expectedEncryptedFileExists": true
+    },
+    {
+      "id": "01a13394-afeb-7eaa-b6f7-13103e074ab8",
+      "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "modelRef": "glm-4.7-flashx",
+      "adapterVersion": "tapkit-api/2:openai-chat:0413b53d28826c51b400bc9ebc578639bf6a4ff94d3e43fbcbc468bd51945602",
+      "branchId": "01a13392-6a63-7834-a881-701530a873b0",
+      "blobRef": "01a13394-afeb-7eaa-b6f7-13103e074ab8",
+      "createdAt": 1791866745128,
+      "hashPresent": 1,
+      "expectedEncryptedFileExists": true
+    },
+    {
+      "id": "01a13395-5b25-7f9e-ac7a-f767c5f9d503",
+      "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "modelRef": "glm-4.7-flashx",
+      "adapterVersion": "tapkit-api/2:openai-chat:0413b53d28826c51b400bc9ebc578639bf6a4ff94d3e43fbcbc468bd51945602",
+      "branchId": "01a13392-6a63-7834-a881-701530a873b0",
+      "blobRef": "01a13395-5b25-7f9e-ac7a-f767c5f9d503",
+      "createdAt": 1791866788948,
+      "hashPresent": 1,
+      "expectedEncryptedFileExists": true
+    },
+    {
+      "id": "01a135b3-9acd-7d07-8b5e-25076a64eb82",
+      "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "modelRef": "glm-4.7-flashx",
+      "adapterVersion": "tapkit-api/2:openai-chat:0413b53d28826c51b400bc9ebc578639bf6a4ff94d3e43fbcbc468bd51945602",
+      "branchId": "01a135b3-5464-7f79-a190-cf8ec9a69640",
+      "blobRef": "01a135b3-9acd-7d07-8b5e-25076a64eb82",
+      "createdAt": 1791902325748,
+      "hashPresent": 1,
+      "expectedEncryptedFileExists": true
+    }
+  ],
+  "runDeltaCounts": [
+    {
+      "runId": "01a13392-8eff-7785-bca1-4f20ede17824",
+      "count": 1
+    },
+    {
+      "runId": "01a13393-1266-7744-b7e2-171332458568",
+      "count": 2
+    },
+    {
+      "runId": "01a13394-61bd-765a-8c9f-3bba27c5aaa3",
+      "count": 2
+    },
+    {
+      "runId": "01a13395-295b-7ecb-844a-4f02b569b28d",
+      "count": 63
+    },
+    {
+      "runId": "01a13417-72dc-73f4-bdfd-0fe8fa1dbf25",
+      "count": 139
+    },
+    {
+      "runId": "01a135b3-7808-7aec-a374-dee5b0fa17cf",
+      "count": 1
+    }
+  ],
+  "ledgerTotals": [
+    {
+      "entries": 10,
+      "chargedTokens": 46623,
+      "actualEntries": 6,
+      "estimatedEntries": 4
+    }
+  ],
+  "unsettledAttempts": [],
+  "duplicateSettlements": []
+}

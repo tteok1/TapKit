@@ -3,6 +3,7 @@ import { IdSchema } from './identity';
 import { ResourceRefSchema } from './resources';
 import { SelectionSchema } from './models';
 import { ContextViewSchema } from './context';
+import { ProviderDiagnosticCodeSchema } from './providers';
 
 export const RunStatusSchema = z.enum([
   'queued',
@@ -77,6 +78,7 @@ export const ChatMessageSchema = z.strictObject({
   attachments: ChatRefsSchema,
   calls: z.array(ChatCallSchema).max(12),
   errorCode: z.string().max(80).nullable(),
+  diagnosticCode: ProviderDiagnosticCodeSchema.optional(),
   sourceProjectId: IdSchema.nullable().default(null),
   sourceProjectName: z.string().max(80).nullable().default(null),
   sourceMessageId: IdSchema.nullable().default(null),
@@ -88,6 +90,8 @@ export const ChatRunViewSchema = z.strictObject({
   startedAt: z.number().int().nonnegative().nullable(),
   endedAt: z.number().int().nonnegative().nullable(),
   calls: z.number().int().nonnegative(),
+  attempts: z.number().int().nonnegative().default(0),
+  retries: z.number().int().nonnegative().default(0),
   tools: z.number().int().nonnegative(),
   errorCode: z.string().max(80).nullable(),
   usage: z.strictObject({

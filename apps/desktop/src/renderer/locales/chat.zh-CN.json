@@ -1,5 +1,7 @@
 {
   "moreInputActions": "输入操作",
+  "titleFailed": "自动标题生成失败，当前标题已保留。可使用“AI 重命名”再次生成。",
+  "rootUsageHint": "请求次数与用量包含标题等辅助请求；保守估算不代表供应商实际扣费。",
   "inputInfo": "输入与工具信息",
   "send": "发送",
   "draft": "输入草稿",
@@ -57,6 +59,11 @@
   "retry": "重新填写",
   "process": "只读工具过程",
   "progress": "当前进展",
+  "attempts": "请求尝试",
+  "retries": "自动重试",
+  "estimated": "保守估算",
+  "latestFailure": "最近一次请求失败",
+  "estimatedHint": "供应商未返回用量时按预留估算，可能高于实际消耗；每次重试分别入账。",
   "queue": "排队消息",
   "edit": "编辑",
   "cancel": "取消",
@@ -65,6 +72,7 @@
   "noMessages": "发送一个问题开始对话。",
   "disabledMedia": "图像理解、OCR和音视频解析暂未支持；可保存和下载原件。",
   "errors": {
+    "NETWORK_ERROR": "网络请求失败，已生成内容保留。",
     "AUTH_REQUIRED": "请先在设置中连接并检测模型。",
     "MODEL_UNSUPPORTED": "当前模型或输出偏好不兼容，请在模型设置中调整。",
     "BUDGET_EXCEEDED": "本轮上下文或预算达到上限；内容已保留。",

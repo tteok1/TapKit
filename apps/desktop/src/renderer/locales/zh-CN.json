@@ -88,7 +88,7 @@
     "toolsPhase": "工具检测",
     "upstreamCode": "服务错误码",
     "responseType": "响应类型",
-    "requestLimit": "发送上限",
+    "requestLimit": "输出上限",
     "requestReasoning": "思考设置",
     "usageInput": "输入用量",
     "usageOutput": "输出用量",
@@ -102,6 +102,13 @@
       "missing": "缺失"
     },
     "diagnosticReasons": {
+      "non_public_dns": "域名解析包含非公网地址，连接已拒绝；请检查代理 DNS 模式并恢复公网解析",
+      "proxy_resolution_failed": "系统代理解析失败或超时，请检查系统代理设置或选择手动代理",
+      "proxy_unsupported": "代理配置无法使用，请选择 HTTP / HTTPS 代理或直连",
+      "dns_failed": "域名解析失败",
+      "dns_timeout": "域名解析超时",
+      "connection_failed": "连接或等待响应时失败",
+      "response_headers_timeout": "等待响应头超时（含连接、TLS及服务端等待）",
       "request_failed": "网络请求失败，请检查网络连接",
       "empty_response": "服务未返回响应流",
       "empty_text": "服务已完成响应，但没有返回正文，文本检测未通过",

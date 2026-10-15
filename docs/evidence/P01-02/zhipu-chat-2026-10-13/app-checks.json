@@ -1,0 +1,52 @@
+{
+  "task": "P01-02",
+  "checkedAt": "2026-10-13T04:07:38.9306455Z",
+  "status": "prepared_not_live_verified",
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "freshDirectoryStillEmpty": true,
+  "applicationStarted": false,
+  "agentModelRequests": 0,
+  "agentCredentialReads": 0,
+  "nativeDiskVerified": false,
+  "ledgerVerified": false,
+  "commands": [
+    {
+      "command": "PowerShell Parser.ParseFile run-app.ps1",
+      "exitCode": 0,
+      "result": "No AST errors"
+    },
+    {
+      "command": "run-app.ps1 -CheckOnly",
+      "exitCode": 0,
+      "log": "app-check-only.log",
+      "result": "Profile and locked local dependencies matched; no network or app startup"
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "log": "app-build-desktop.log",
+      "result": "Storage/Core/Host/Renderer built; application not launched"
+    },
+    {
+      "command": "pnpm exec prettier --ignore-path NUL --write (nine updated Markdown/JSON files)",
+      "exitCode": 0,
+      "log": "format-app-preparation.log"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": "docs-check-app-preparation.log",
+      "result": "37 task states and evidence links verified"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "log": "diff-check-app-preparation.log"
+    },
+    {
+      "command": "git diff --exit-code -- apps packages migrations scripts tests runtime-lock.json pnpm-lock.yaml",
+      "exitCode": 0,
+      "result": "Product/runtime/test source unchanged"
+    }
+  ]
+}

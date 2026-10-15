@@ -1,0 +1,115 @@
+{
+  "checkedAt": "2026-10-13T08:30:51.812Z",
+  "task": "P01-03",
+  "branch": "codex/p01-02-zhipu-chat-live",
+  "baseline": "9bbc44f+working-tree",
+  "scope": "budget interception and network-failure/retry progress diagnostics",
+  "liveReview": "budget-recovery-anomaly.json",
+  "liveBudgetIntercept": "scoped_passed",
+  "liveRecovery": "network_error_then_retry_cancelled",
+  "underlyingLiveNetworkCause": "unknown",
+  "status": "implemented_not_live_verified",
+  "gate": "failed",
+  "agentModelRequests": 0,
+  "credentialReads": 0,
+  "nativeContentReads": 0,
+  "checks": {
+    "unit": {
+      "command": "pnpm test:unit P01-02.transport P01-03.routing",
+      "exitCode": 0,
+      "files": 2,
+      "passed": 18,
+      "log": "network-unit.log"
+    },
+    "integration": {
+      "command": "pnpm test:integration P01-03.network-progress P01-03.usage P02-02.chat",
+      "exitCode": 0,
+      "files": 3,
+      "passed": 25,
+      "log": "network-integration.log",
+      "syntheticResponses": true
+    },
+    "check": {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "log": "network-check-final.log",
+      "firstLog": "network-check.log"
+    },
+    "e2e": {
+      "command": "pnpm test:e2e -- --grep 'P01-03 P02-02 network retry'",
+      "exitCode": 0,
+      "passed": 1,
+      "log": "network-e2e-final.log",
+      "firstLog": "network-e2e.log",
+      "syntheticMarkedProfile": true,
+      "restart": true,
+      "viewportWidth": 760,
+      "productionBuildRestored": true,
+      "productionFixtureAbsent": true
+    },
+    "finalDocumentation": {
+      "format": {
+        "command": "pnpm exec prettier --write (specified changed docs/evidence)",
+        "exitCode": 0,
+        "log": "network-doc-format.log"
+      },
+      "formatCheck": {
+        "command": "locked Node scripts/check-format.mjs",
+        "exitCode": 0,
+        "files": 423,
+        "log": "network-format-check.log"
+      },
+      "docs": {
+        "command": "pnpm docs:check",
+        "exitCode": 0,
+        "taskStates": 37,
+        "log": "network-docs-check.log"
+      },
+      "diff": {
+        "command": "git diff --check",
+        "exitCode": 0,
+        "log": "network-diff-check.log"
+      }
+    }
+  },
+  "visualReview": {
+    "images": [
+      "network-progress-desktop.png",
+      "network-progress-compact.png"
+    ],
+    "newProgressAndFailureTextReadable": true,
+    "globalHorizontalOverflow": false,
+    "scope": "changed chat progress only; narrow sidebar layout remains a pre-existing limitation"
+  },
+  "adr": "docs/adr/0049-safe-network-stage-and-attempt-progress.md",
+  "schemaChange": false,
+  "ipcVersionChange": false,
+  "dependenciesChanged": false,
+  "payloadOrDeadlineChanges": false,
+  "retryLimitsChanged": false,
+  "dnsClassificationChange": "native DNS failures normalize to retryable NETWORK_ERROR/dns_failed using the existing bounded network retry policy",
+  "skill": {
+    "name": "ui-ux-pro-max",
+    "query": "loading retry progress feedback",
+    "domain": "ux",
+    "results": 3,
+    "python": "bundled workspace runtime",
+    "initialSystemPythonUnavailable": true
+  },
+  "next": "user fully exits and restarts the same isolated app, sends one short message in a fresh chat; observe the new diagnostic if failure recurs",
+  "sourceHashes": {
+    "packages/contracts/src/providers.ts": "71190cc20997f9f419c0e7374adc252d05499f6b4e7d5c0f2f818ee7e12d1e28",
+    "packages/contracts/src/chat.ts": "593419bc62ba5f5dc3f0e80a2b18976bbb51c8f2fc2e8d70ef54ba1cb843041e",
+    "packages/providers/src/api/http.ts": "44c8609f26e1b32dc1ad231655aff2a6ff47aea0a264151489abcac98c8e0bc6",
+    "packages/core/src/chat-service.ts": "9e627839dc349cd314deeaebfa31ccc54791d7a847ad730808314e427b15d6f9",
+    "packages/core/src/chat-fixture.ts": "32810f7d6f48e82e7b191d2923f643c49deff8521088cd4897b6ff5b3d805dab",
+    "apps/desktop/src/renderer/src/chat-surface.tsx": "8f31b1310b83b451598be1a1d5791cc612e429c5809a53a5e489472e703bcc7b",
+    "apps/desktop/src/renderer/locales/chat.zh-CN.json": "b13eecbc46b132d7b60ae1e8b7104b6212af0a58b8cbc8deff6b185f82463d27",
+    "apps/desktop/src/renderer/locales/zh-CN.json": "952959ff237e9fbe1a70915521f173e0a25b9fcffdcf43de608bc8955d81a501",
+    "tests/unit/P01-02.transport.test.ts": "5cc5374318961955eec506a1ed6e78b37e1dc788d45ca7ca60d7156546515d8a",
+    "tests/integration/P01-03.network-progress.test.ts": "db3be60cac36f0b3e9349da554cfc079a3c84e34d3de36774578c314e65102db",
+    "tests/e2e/P02-02.chat.spec.ts": "fe1664e6c23cec7a5a2460e519eee8f9686ce8a13484e39c6546ec5de798ddbf"
+  },
+  "handoff": "network-followup.md",
+  "completedAt": "2026-10-13T08:35:21.937Z"
+}

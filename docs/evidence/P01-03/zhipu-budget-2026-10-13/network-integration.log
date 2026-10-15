@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project integration "P01-03.network-progress" "P01-03.usage" "P02-02.chat"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  3 passed (3)
+      Tests  25 passed (25)
+   Start at  15:49:08
+   Duration  14.27s (tests 74%, import 13%, transform 12%)
+

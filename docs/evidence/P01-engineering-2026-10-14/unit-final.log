@@ -1,0 +1,52 @@
+$ vitest run --config vitest.config.ts --project unit "P01-02" "P01-03" "P02-01.desktop"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |unit| tests/unit/P01-02.zhipu.test.ts (75 tests | 1 failed) 172ms
+   ❯ P01-02 Zhipu Responses request and error compatibility (9)
+     × classifies Responses JSON and top-level SSE error slow_down 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P01-02.zhipu.test.ts > P01-02 Zhipu Responses request and error compatibility > classifies Responses JSON and top-level SSE error slow_down
+AssertionError: expected { Object (type, error, ...) } to match object { type: 'error', error: { …(6) } }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+@@ -3,9 +3,8 @@
+      "code": "RATE_LIMITED",
+      "diagnosticCode": "upstream_error",
+      "httpStatus": 200,
+      "responseType": "json",
+      "retryable": true,
+-     "upstreamCode": "slow_down",
+    },
+    "type": "error",
+  }
+
+ ❯ tests/unit/P01-02.zhipu.test.ts:154:30
+    152|         });
+    153|         const items = await collect(channel, modelRequest(config));
+    154|         expect(items.at(-1)).toMatchObject({
+       |                              ^
+    155|           type: 'error',
+    156|           error: {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 9 passed (10)
+      Tests  1 failed | 207 passed (208)
+   Start at  18:06:40
+   Duration  3.16s (import 53%, transform 35%, tests 10%, setup 2%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+pnpm exited 1
+At D:\Tapkit-public\scripts\pnpm.ps1:18 char:5
++     throw "pnpm exited $tapkitCommandExit"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1
+ 

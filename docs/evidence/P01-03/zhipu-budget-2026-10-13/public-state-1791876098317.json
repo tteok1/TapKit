@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-10-13T07:21:38.314Z",
+  "task": "P01-03",
+  "readOnly": true,
+  "credentialRead": false,
+  "messageContentRead": false,
+  "nativeContentRead": false,
+  "modelRequests": 0,
+  "preferences": {
+    "revision": 2,
+    "dailyTokenLimit": 2000000
+  },
+  "totals": {
+    "attempts": 6,
+    "tokens": 16066
+  },
+  "newRuns": [],
+  "newAttempts": [],
+  "budgets": [
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13392-8eff-7785-bca1-4f20ede17824",
+      "usedTokens": 738,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "daily",
+      "ownerId": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10:2026-10-13",
+      "usedTokens": 16066,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13393-1266-7744-b7e2-171332458568",
+      "usedTokens": 689,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13394-61bd-765a-8c9f-3bba27c5aaa3",
+      "usedTokens": 708,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13395-295b-7ecb-844a-4f02b569b28d",
+      "usedTokens": 1020,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13417-72dc-73f4-bdfd-0fe8fa1dbf25",
+      "usedTokens": 12911,
+      "reservedTokens": 0
+    }
+  ],
+  "observed": {
+    "blockedRunSeen": false,
+    "ledgerUnchanged": true,
+    "restored": true,
+    "preferenceSavesObserved": false,
+    "reservationsReleased": true
+  },
+  "assessment": "pending_or_requires_review"
+}

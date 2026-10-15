@@ -1,0 +1,38 @@
+{
+  "startedAt": "2026-10-15T08:59:07.176Z",
+  "branch": "codex/p01-02-zhipu-chat-live",
+  "baseline": "9bbc44fe8f409f197a8e4d460c9ff3f102821b54",
+  "sourceFilesVerified": 41,
+  "sourceHashMismatches": 0,
+  "status": "source_ci_passed_squash_including_handoff",
+  "authorization": "User requested commit/push, observe and fix CI, then squash into one commit and merge/push main only after CI passes",
+  "gate": "engineering_passed_external_pending",
+  "modelRequests": 0,
+  "precommitChecks": {
+    "check": {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "log": "check-precommit-fixed-2026-10-15.log"
+    },
+    "docs": {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": "docs-precommit-2026-10-15.log"
+    },
+    "diff": {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    "initialFailure": {
+      "log": "check-precommit-2026-10-15.log",
+      "cause": "RESOURCES table formatting after user deferral notes",
+      "fixedBy": "format RESOURCES.md only"
+    }
+  },
+  "finalSource": "f81c3d7b0499923b705031ee8dcf7020c8587b56",
+  "sourcePushVerified": true,
+  "sourceCIRun": 38715529361,
+  "sourceCIConclusion": "success",
+  "target": "main",
+  "mainDeliveryEvidence": "main-squash-2026-10-15.json"
+}

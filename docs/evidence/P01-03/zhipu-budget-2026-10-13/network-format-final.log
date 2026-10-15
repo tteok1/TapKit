@@ -1,0 +1,4 @@
+apps/desktop/src/renderer/src/chat-surface.tsx 211ms
+apps/desktop/src/renderer/locales/chat.zh-CN.json 13ms (unchanged)
+tests/e2e/P02-02.chat.spec.ts 54ms (unchanged)
+docs/adr/0049-safe-network-stage-and-attempt-progress.md 26ms (unchanged)

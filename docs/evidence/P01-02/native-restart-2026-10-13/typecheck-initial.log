@@ -1,0 +1,8 @@
+tests/live/P01-02.native-acceptance.ts(8,35): error TS2307: Cannot find module '@tapkit/storage' or its corresponding type declarations.
+pnpm exited 1
+At D:\Tapkit-public\scripts\pnpm.ps1:18 char:5
++     throw "pnpm exited $tapkitCommandExit"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1
+ 

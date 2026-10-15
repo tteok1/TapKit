@@ -1,5 +1,7 @@
 # IPC、事件、任务状态与接口协议
 
+2026-10-13 [ADR0049](../adr/0049-safe-network-stage-and-attempt-progress.md)：ChatMessage 可选 diagnosticCode 沿用 ProviderDiagnosticCode 固定枚举；ChatRunView 增加 attempts/retries（旧 DTO 默认 0），由本 run 的 provider_attempts 计数，包含辅助调用。普通聊天 error 的固定码存既有 chat_json，通过既有 message.delta 通知；不透传底层错误、地址或凭据，不改 schema14/IPC v1。
+
 2026-10-12 P04-03：[ADR0048](../adr/0048-evidence-backed-memory-and-history.md)新增严格memoryCommand：memory.list/write/update/delete/clear/undo/policy/policy.set/used/source/notices/sessionImpact。update/delete及会话设置需expectedRevision；批量来源影响支持sessionIds；sessions.trash提供keepExplicitMemories，默认false。每次写memory.changed只发ID/状态，不复制记忆正文。当前Host/Core握手schemaVersion=14，protocolVersion=1。
 
 2026-10-11 P04-02：[ADR0046](../adr/0046-verifiable-context-checkpoints-and-budget.md)新增context.get/compact/correct/continue；correct要求checkpointId和expectedRevision，追加用户纠正消息与task.steered，下一run递增taskVersion；continue限同项目空会话并显式选择字段，无未完成调用。Host/Core握手schemaVersion=13。
@@ -66,6 +68,8 @@ type EventEnvelope = {
 Core事件持久化以后才发送；UI lastSeq续接，重复eventId/seq忽略，缺口重新拉取。每50毫秒或4KiB合并一个token增量，增量先落消息草稿与事件事务再推UI，避免每token一个数据库事务。崩溃允许丢失尚未被UI确认的上游字节，不丢已ack消息。
 
 ## 2. 接口清单
+
+2026-10-14 [ADR0051](../adr/0051-p01-network-selection-and-title-recovery.md)：仅Core↔Host的network.proxy.resolve接收公开HTTPS URL并返回proxyURL/DIRECT，不接受Renderer调用或携带Key/正文。SessionRecord追加可为空的titleStatus/titleErrorCode/titleDiagnosticCode，workspace事件与状态同事务。
 
 DTO中的EntityView是不含凭据、绝对内部路径、native reasoning的可显示字段；EntityRef固定{id,revision}。所有update带expectedRevision；失败CONFLICT返回当前revision和重新加载动作，不能last-write-wins。
 

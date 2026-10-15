@@ -127,7 +127,12 @@ export function candidates(
         a.modelId.localeCompare(b.modelId)
       );
     })
-    .filter((m) => m.providerId === 'codex-subscription' || p.apiOrder.includes(m.providerId));
+    .filter(
+      (m) =>
+        selected === selectionKey({ accountId: m.accountId!, modelId: m.modelId }) ||
+        m.providerId === 'codex-subscription' ||
+        p.apiOrder.includes(m.providerId),
+    );
 }
 // The approval/execution ledger remains Core-owned. Provider native state is never copied.
 // Closed historical calls become labelled evidence, rather than pretending a new provider emitted them.

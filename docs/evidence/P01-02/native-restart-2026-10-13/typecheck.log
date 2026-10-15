@@ -1,0 +1,9 @@
+tests/integration/P01-02.native-restart.test.ts(138,16): error TS2339: Property 'ELECTRON_RUN_AS_NODE' does not exist on type '{}'.
+tests/integration/P01-02.native-restart.test.ts(139,16): error TS2339: Property 'NODE_OPTIONS' does not exist on type '{}'.
+pnpm exited 1
+At D:\Tapkit-public\scripts\pnpm.ps1:18 char:5
++     throw "pnpm exited $tapkitCommandExit"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1
+ 

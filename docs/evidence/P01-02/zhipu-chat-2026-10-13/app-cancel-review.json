@@ -1,0 +1,66 @@
+{
+  "reviewedAt": "2026-10-13T07:20:19.539Z",
+  "task": "P01-02",
+  "publicState": "app-public-state-1791875448617.json",
+  "previousState": "app-public-state-1791867618947.json",
+  "readOnlyReviewExitCode": 0,
+  "userReport": {
+    "stopDuringGeneration": true,
+    "partialTextPreserved": true,
+    "fullExitAndRestartSuccessful": true,
+    "ledgerStableAfterRestart": true
+  },
+  "cancellation": {
+    "runId": "01a13417-72dc-73f4-bdfd-0fe8fa1dbf25",
+    "attemptId": "01a13417-731a-7149-b921-48cb159f9ec8",
+    "runStatus": "cancelled",
+    "attemptStatus": "cancelled",
+    "errorCode": "CANCELLED",
+    "cancelRequestedAt": 1791875320646,
+    "partialMessageStatus": "interrupted",
+    "partialCharacterCount": 850,
+    "partialTextMatchesAttempt": true,
+    "scopedAppCancellationVerified": true
+  },
+  "ledger": {
+    "entries": 6,
+    "actualEntries": 5,
+    "estimatedEntries": 1,
+    "previousActualTokens": 3155,
+    "cancelEstimatedTokens": 12911,
+    "totalTokens": 16066,
+    "actualCancelUsage": {
+      "input": null,
+      "output": null,
+      "cached": null,
+      "reasoning": null
+    },
+    "reservationAtDispatch": 12911,
+    "estimatePolicy": "missing_final_usage_settles_at_reserved_tokens",
+    "dailyUsed": 16066,
+    "dailyReserved": 0,
+    "allRootReserved": 0,
+    "previousEntriesUnchanged": true,
+    "duplicateSettlements": 0,
+    "unsettledAttempts": 0,
+    "amount": "unknown_no_price",
+    "modelUsageEstimateIsNotActualConsumption": true
+  },
+  "nativeState": {
+    "indices": 9,
+    "filesExist": true,
+    "contentsRead": false,
+    "reuseAfterRestart": "not_independently_verified",
+    "ordinaryChatSource": "canonical history; chat-service router request contains no nativeStateRef",
+    "cancelDidNotCreateNativeRef": true
+  },
+  "boundaries": {
+    "agentModelRequests": 0,
+    "credentialReads": 0,
+    "nativeContentReads": 0,
+    "productChangesThisTurn": false,
+    "P01_02": "in_progress",
+    "P01_gate": "failed",
+    "nextScopedTest": "P01-03 daily token limit"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-10-15T09:23:33.676Z",
+  "failedSource": "6727f2f0c7dbf49679da71b89cc6777981a02a15",
+  "failedRun": 38709884248,
+  "url": "https://github.com/tteok1/TapKit/actions/runs/38709884248",
+  "cause": "Known OAuth/permission symbolic upstream codes omitted by shared diagnostic allowlist; six existing synthetic assertions lost upstreamCode metadata",
+  "localReproduction": {
+    "command": "pnpm test:integration P01-01",
+    "exitCode": 1,
+    "failed": 6,
+    "passed": 40,
+    "log": "ci-codex-reproduced-2026-10-15.log"
+  },
+  "fixedCodes": [
+    "invalid_grant",
+    "invalid_token",
+    "token_expired",
+    "region_unsupported",
+    "forbidden",
+    "rate_limited"
+  ],
+  "newRegression": "400 invalid_token preserves AUTH_EXPIRED and known upstreamCode without private text",
+  "checks": {
+    "providerIntegration": {
+      "command": "pnpm test:integration P01-01 P01-02 P01-03",
+      "exitCode": 0,
+      "passed": 83,
+      "log": "ci-provider-integration-fixed-2026-10-15.log",
+      "beforeAdditionalInvalidTokenCase": true
+    },
+    "unit": {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 327,
+      "log": "ci-unit-fixed-2026-10-15.log"
+    },
+    "codexIntegration": {
+      "command": "pnpm test:integration P01-01",
+      "exitCode": 0,
+      "passed": 47,
+      "log": "ci-codex-fixed-2026-10-15.log"
+    },
+    "check": {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "log": "ci-check-fixed-2026-10-15.log"
+    },
+    "docs": {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": "ci-docs-fixed-2026-10-15.log"
+    }
+  },
+  "status": "local_checks_passed_remote_pending",
+  "realSubscriptionTesting": "deferred_by_user",
+  "modelRequests": 0
+}

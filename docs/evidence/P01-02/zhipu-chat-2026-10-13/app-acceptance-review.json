@@ -1,0 +1,109 @@
+{
+  "task": "P01-02",
+  "reviewedAt": "2026-10-13T04:59:06.548Z",
+  "publicState": "app-public-state-1791867618947.json",
+  "commands": [
+    {
+      "command": "locked Node --check review-app-public-state.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "locked Node --no-warnings review-app-public-state.mjs",
+      "exitCode": 0
+    }
+  ],
+  "userReport": {
+    "otherAppStepsSuccessful": true,
+    "restartWithHistoryAndNoKeyReentryReported": true,
+    "finalNumberResponseObservedOnly": true,
+    "stopClickedDuringGeneration": false
+  },
+  "account": {
+    "status": "ready",
+    "lastCheckAt": "2026-10-13T04:41:55.872Z",
+    "lastErrorCode": null
+  },
+  "formatting": {
+    "savedNewlines": 0,
+    "savedCommas": 99,
+    "matchesProviderAttemptText": true,
+    "conclusion": "model_did_not_follow_one_number_per_line",
+    "rendererLostNewlines": false
+  },
+  "ledger": {
+    "scope": "five_normal_application_attempts_in_isolated_profile",
+    "verified": true,
+    "entries": 5,
+    "actualEntries": 5,
+    "estimatedEntries": 0,
+    "inputTokens": 2842,
+    "outputTokens": 313,
+    "chargedTokens": 3155,
+    "cachedSubset": 1658,
+    "reasoningSubset": 0,
+    "subsetsAddedAgain": false,
+    "titleTokens": 68,
+    "titleChargedToFirstRoot": true,
+    "firstRootTokens": 738,
+    "dailyBudgetTokens": 3155,
+    "reservedTokens": 0,
+    "duplicateSettlements": 0,
+    "unsettledAttempts": 0,
+    "amount": "unknown_no_price",
+    "ledgerRecheckAfterFinalRestart": "not_independently_verified",
+    "connectionProbesAndCLINotIncludedInThisLedgerScope": true
+  },
+  "nativePersistence": {
+    "indexBindingsPresent": 9,
+    "expectedEncryptedFilesPresent": 9,
+    "sourceUsesSafeStorage": true,
+    "encryptedBytesRead": false,
+    "decryptionPerformed": false,
+    "reuseAfterRestart": "not_independently_verified"
+  },
+  "appCancellation": {
+    "status": "not_run",
+    "allFourRunsCompleted": true,
+    "cancelRequestedAtAllNull": true,
+    "cliCancellationEvidencePreserved": true,
+    "nextStep": "app-cancel-followup.md"
+  },
+  "boundaries": {
+    "credentialReads": 0,
+    "nativeContentReads": 0,
+    "agentModelRequests": 0,
+    "providerRuntimeCodeChangedThisReview": false,
+    "P01_02": "in_progress",
+    "P01_gate": "failed",
+    "otherTaskStatesChanged": false
+  },
+  "streamingObservation": {
+    "persistedDeltaEvents": [
+      {
+        "runId": "01a13392-8eff-7785-bca1-4f20ede17824",
+        "count": 1
+      },
+      {
+        "runId": "01a13393-1266-7744-b7e2-171332458568",
+        "count": 2
+      },
+      {
+        "runId": "01a13394-61bd-765a-8c9f-3bba27c5aaa3",
+        "count": 2
+      },
+      {
+        "runId": "01a13395-295b-7ecb-844a-4f02b569b28d",
+        "count": 63
+      }
+    ],
+    "uiDisplayTiming": "not_independently_observed"
+  },
+  "localFormatting": {
+    "firstAttemptExitCode": 1,
+    "firstFailure": "sandbox_canonicalizing_workdir_access_denied",
+    "retryExitCode": 0,
+    "log": "format-app-review-final.log",
+    "automaticApprovalRejected": false
+  },
+  "validationReport": "app-review-checks.json"
+}

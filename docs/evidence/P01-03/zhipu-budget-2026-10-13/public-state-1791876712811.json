@@ -1,0 +1,99 @@
+{
+  "checkedAt": "2026-10-13T07:31:52.810Z",
+  "task": "P01-03",
+  "readOnly": true,
+  "credentialRead": false,
+  "messageContentRead": false,
+  "nativeContentRead": false,
+  "modelRequests": 0,
+  "preferences": {
+    "revision": 4,
+    "dailyTokenLimit": 2000000
+  },
+  "totals": {
+    "attempts": 8,
+    "tokens": 43894
+  },
+  "newRuns": [
+    {
+      "id": "01a13427-ad5d-7416-986e-19f3d5bd40b9",
+      "status": "budget_stopped",
+      "statusReason": "BUDGET_EXCEEDED",
+      "calls": 1,
+      "tools": 0
+    },
+    {
+      "id": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+      "status": "cancelled",
+      "statusReason": "CANCELLED",
+      "calls": 1,
+      "tools": 0
+    }
+  ],
+  "newAttempts": [
+    {
+      "id": "01a13428-c197-7ebb-801b-ef72d97903d0",
+      "runId": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+      "status": "failed",
+      "errorCode": "NETWORK_ERROR"
+    },
+    {
+      "id": "01a13429-1473-7090-994d-f96da5a333b3",
+      "runId": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+      "status": "cancelled",
+      "errorCode": "CANCELLED"
+    }
+  ],
+  "budgets": [
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13392-8eff-7785-bca1-4f20ede17824",
+      "usedTokens": 738,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "daily",
+      "ownerId": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10:2026-10-13",
+      "usedTokens": 43894,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13393-1266-7744-b7e2-171332458568",
+      "usedTokens": 689,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13394-61bd-765a-8c9f-3bba27c5aaa3",
+      "usedTokens": 708,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13395-295b-7ecb-844a-4f02b569b28d",
+      "usedTokens": 1020,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13417-72dc-73f4-bdfd-0fe8fa1dbf25",
+      "usedTokens": 12911,
+      "reservedTokens": 0
+    },
+    {
+      "ownerKind": "root",
+      "ownerId": "01a13428-c098-766e-a7eb-8ff8a9cc5b31",
+      "usedTokens": 27828,
+      "reservedTokens": 0
+    }
+  ],
+  "observed": {
+    "blockedRunSeen": true,
+    "ledgerUnchanged": false,
+    "restored": true,
+    "preferenceSavesObserved": true,
+    "reservationsReleased": true
+  },
+  "assessment": "pending_or_requires_review"
+}

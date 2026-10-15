@@ -1,0 +1,103 @@
+$ vitest run --config vitest.config.ts --project integration "P01-02" "P01-03" "P02-01.desktop" "P02-03.history"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P02-03.history.test.ts (20 tests | 5 failed) 9413ms
+   ❯ P02-03 history lifecycle (20)
+     × P01-03 title failure is visible, survives restart, and only an explicit rename queues one new attempt 440ms
+     × P01-03 short title requests fit small contexts and remain attributed to the owning project and root 400ms
+     × T06 title jobs have one request and manual rename wins a job race 421ms
+     × T20 purge cannot race a running title request, including a job cancelled by manual rename 370ms
+     × T06 title rate limiting makes exactly one request with no retry or second job 394ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > P01-03 title failure is visible, survives restart, and only an explicit rename queues one new attempt
+Error: Events must be committed with their state
+ ❯ Store.emit packages/storage/src/foundation.ts:285:39
+    283|     causationId?: string,
+    284|   ): EventEnvelope {
+    285|     if (!this.db.inTransaction) throw new Error('Events must be commit…
+       |                                       ^
+    286|     const row = this.db
+    287|       .prepare("SELECT coalesce(max(seq),0)+1 AS seq FROM events WHERE…
+ ❯ HistoryService.changed packages/core/src/history-service.ts:130:16
+ ❯ HistoryService.queueTitle packages/core/src/history-service.ts:1322:30
+ ❯ tests/integration/P02-03.history.test.ts:150:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > P01-03 short title requests fit small contexts and remain attributed to the owning project and root
+Error: Events must be committed with their state
+ ❯ Store.emit packages/storage/src/foundation.ts:285:39
+    283|     causationId?: string,
+    284|   ): EventEnvelope {
+    285|     if (!this.db.inTransaction) throw new Error('Events must be commit…
+       |                                       ^
+    286|     const row = this.db
+    287|       .prepare("SELECT coalesce(max(seq),0)+1 AS seq FROM events WHERE…
+ ❯ HistoryService.changed packages/core/src/history-service.ts:130:16
+ ❯ HistoryService.queueTitle packages/core/src/history-service.ts:1322:30
+ ❯ tests/integration/P02-03.history.test.ts:219:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T06 title jobs have one request and manual rename wins a job race
+Error: Events must be committed with their state
+ ❯ Store.emit packages/storage/src/foundation.ts:285:39
+    283|     causationId?: string,
+    284|   ): EventEnvelope {
+    285|     if (!this.db.inTransaction) throw new Error('Events must be commit…
+       |                                       ^
+    286|     const row = this.db
+    287|       .prepare("SELECT coalesce(max(seq),0)+1 AS seq FROM events WHERE…
+ ❯ HistoryService.changed packages/core/src/history-service.ts:130:16
+ ❯ HistoryService.queueTitle packages/core/src/history-service.ts:1322:30
+ ❯ tests/integration/P02-03.history.test.ts:966:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T20 purge cannot race a running title request, including a job cancelled by manual rename
+Error: Events must be committed with their state
+ ❯ Store.emit packages/storage/src/foundation.ts:285:39
+    283|     causationId?: string,
+    284|   ): EventEnvelope {
+    285|     if (!this.db.inTransaction) throw new Error('Events must be commit…
+       |                                       ^
+    286|     const row = this.db
+    287|       .prepare("SELECT coalesce(max(seq),0)+1 AS seq FROM events WHERE…
+ ❯ HistoryService.changed packages/core/src/history-service.ts:130:16
+ ❯ HistoryService.queueTitle packages/core/src/history-service.ts:1322:30
+ ❯ tests/integration/P02-03.history.test.ts:993:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T06 title rate limiting makes exactly one request with no retry or second job
+Error: Events must be committed with their state
+ ❯ Store.emit packages/storage/src/foundation.ts:285:39
+    283|     causationId?: string,
+    284|   ): EventEnvelope {
+    285|     if (!this.db.inTransaction) throw new Error('Events must be commit…
+       |                                       ^
+    286|     const row = this.db
+    287|       .prepare("SELECT coalesce(max(seq),0)+1 AS seq FROM events WHERE…
+ ❯ HistoryService.changed packages/core/src/history-service.ts:130:16
+ ❯ HistoryService.queueTitle packages/core/src/history-service.ts:1322:30
+ ❯ tests/integration/P02-03.history.test.ts:1069:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed | 7 passed (8)
+      Tests  5 failed | 55 passed (60)
+   Start at  17:14:31
+   Duration  53.33s (tests 89%, import 7%, transform 4%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+pnpm exited 1
+At D:\Tapkit-public\scripts\pnpm.ps1:18 char:5
++     throw "pnpm exited $tapkitCommandExit"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1
+ 

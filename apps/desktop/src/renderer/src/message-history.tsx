@@ -18,6 +18,7 @@ export function SessionTools({
   onChanged,
   onNavigate,
   onDetails,
+  eventSeq,
   exportRequested,
   personalization,
 }: {
@@ -28,6 +29,7 @@ export function SessionTools({
   onDetails: (value: SessionDetails) => void;
   exportRequested: boolean;
   personalization: boolean;
+  eventSeq: number;
 }) {
   const [details, setDetails] = useState<ReturnType<typeof SessionDetailsSchema.parse>>(),
     [error, setError] = useState(''),
@@ -71,7 +73,7 @@ export function SessionTools({
     return () => {
       alive = false;
     };
-  }, [sessionId, snapshot?.eventSeq]);
+  }, [sessionId, snapshot?.eventSeq, eventSeq]);
   async function action(work: () => Promise<unknown>) {
     setBusy(true);
     setError('');

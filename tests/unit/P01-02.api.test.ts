@@ -1,4 +1,13 @@
 import { describe, it, expect, vi } from 'vitest';
+import { apiHttpFailure } from '../../packages/providers/src/api/errors';
+it.each(['sk_private_secret_1234567890', 'private-error-value', 'account.user.secret'])(
+  'P01-02 does not export an unrecognized symbolic error code that could contain private values',
+  (code) => {
+    const error = apiHttpFailure(200, code);
+    expect(error.upstreamCode).toBeUndefined();
+    expect(JSON.stringify(error)).not.toContain(code);
+  },
+);
 import {
   API_PRESETS,
   SaveApiKeySchema,

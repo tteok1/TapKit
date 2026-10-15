@@ -149,6 +149,21 @@ const collect = async (
   return events;
 };
 describe('P01-03 routing, capabilities and scopes', () => {
+  it('P01-03 honors an explicitly selected API model independently of the fallback order', async () => {
+    const models = [model(1, 'openai-compatible'), model(2, 'deepseek')];
+    const request = input(models, {
+      selection: { accountId: id(1), modelId: 'model-1' },
+      onlyThisModel: true,
+      apiOrder: ['deepseek'],
+    });
+    expect(candidates(models, request.preferences, request.need).map((m) => m.accountId)).toEqual([
+      id(1),
+    ]);
+    const h = harness(models, [[success], [success]]);
+    await collect(h.router, request);
+    expect(h.requests.map((r) => r.accountId)).toEqual([id(1)]);
+    expect(h.switches).toHaveLength(0);
+  });
   it('real Codex force-refresh is serialized and cancelled refresh cannot write credentials', async () => {
     const store = credentials();
     let calls = 0;

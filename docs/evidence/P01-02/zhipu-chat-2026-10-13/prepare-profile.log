@@ -1,0 +1,93 @@
+{
+  "task": "P01-02",
+  "preparedAt": "2026-10-13T03:01:18.677Z",
+  "root": "D:\\Tapkit-public",
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-live-zhipu-chat-20261013-K1ncxd",
+  "profileId": "01a13335-120f-7dae-896c-e734c9a42f00",
+  "accountId": "01a13335-120f-7d03-8058-5ce57e4efd62",
+  "accountLabel": "Zhipu Chat FlashX 2026-10-13",
+  "config": {
+    "providerId": "openai-compatible",
+    "apiFormat": "openai-chat",
+    "baseURL": "https://open.bigmodel.cn/api/paas/v4",
+    "modelId": "glm-4.7-flashx"
+  },
+  "accountStatus": "unconfigured",
+  "schemaVersion": 14,
+  "credentialStored": false,
+  "vaultCreated": false,
+  "modelRequests": 0,
+  "migrations": [
+    {
+      "file": "0001_core.sql",
+      "version": 1,
+      "sha256": "77dd9061ced298dbc33eb8af0b63195cb236cf920fd41915c4aa79f5a96f682b"
+    },
+    {
+      "file": "0002_codex.sql",
+      "version": 2,
+      "sha256": "b0003d7bd65d9e4358068893c37353d8f1db426411360deda77e808409c35fc8"
+    },
+    {
+      "file": "0003_api_providers.sql",
+      "version": 3,
+      "sha256": "42d00efe40c297da2de0e9d8bfd172b17b52da8c1109ff4c3f7ffdff59c4c1df"
+    },
+    {
+      "file": "0004_usage.sql",
+      "version": 4,
+      "sha256": "4816f43ba6e7382f56846b5a3a536115b73f2d7543e5af2cae4310ec71acc563"
+    },
+    {
+      "file": "0005_desktop.sql",
+      "version": 5,
+      "sha256": "8289935682b74a5db2443b4b604c422cf9af3473367c0548d551ccc8d9dccb30"
+    },
+    {
+      "file": "0006_chat.sql",
+      "version": 6,
+      "sha256": "1d686491fda3fc3e3faebf11a538b5f060025fc0bf0832fd019d81cca540c300"
+    },
+    {
+      "file": "0007_chat_history.sql",
+      "version": 7,
+      "sha256": "12c56adbcb09808a4ce8d5c35286cfebf3ee8a9df5f717c2f7601ed34b2b330e"
+    },
+    {
+      "file": "0008_files.sql",
+      "version": 8,
+      "sha256": "0c61c1719107794152e3c29f46c3febdfe4263ec911e39b4d04c6332e8a0fe01"
+    },
+    {
+      "file": "0009_generated_note_links.sql",
+      "version": 9,
+      "sha256": "b1c3a3effc5926720f8d91b112527c8dd367ca6ee428e07fed344177ef9021ae"
+    },
+    {
+      "file": "0010_file_preview.sql",
+      "version": 10,
+      "sha256": "f6c241918fd1c18ad98e2a5d19a1300ba267278129ca5f4ba46388c5f97cde74"
+    },
+    {
+      "file": "0011_projects.sql",
+      "version": 11,
+      "sha256": "9e7f5c9a0658efbba4c633268ee4d2f4d63d06d796c427bb77ac7b19c4572ab9"
+    },
+    {
+      "file": "0012_retrieval.sql",
+      "version": 12,
+      "sha256": "6b9d480b5ea81f2079acfbebc812e27c7a439fff17cd25ff77c7c2dee6e32a94"
+    },
+    {
+      "file": "0013_context.sql",
+      "version": 13,
+      "sha256": "c1518779cc197aa1e1510c76f6bbe1f8650c4aace2561d28f8d2ec7ba1ffed12"
+    },
+    {
+      "file": "0014_memory.sql",
+      "version": 14,
+      "sha256": "c31e6ba40af63ff474fbf31d55ac84c0c5b957408259a1bcf2e211a5412be7d6"
+    }
+  ],
+  "databaseSha256": "e290863b668d478dd98271340d23c2f0ad0b73ae13cbae9e4b1d077b4aa485f1"
+}

@@ -1,0 +1,21 @@
+{
+  "task": "P01-02",
+  "preparedAt": "2026-10-13T04:05:15.8144048Z",
+  "root": "D:\\Tapkit-public",
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "freshEmptyDirectory": true,
+  "initializedBy": "normal application startup",
+  "credentialStored": false,
+  "modelRequests": 0,
+  "accountLabel": "Zhipu App FlashX 2026-10-13",
+  "config": {
+    "providerId": "openai-compatible",
+    "apiFormat": "openai-chat",
+    "baseURL": "https://open.bigmodel.cn/api/paas/v4",
+    "modelId": "glm-4.7-flashx",
+    "reasoning": "off"
+  },
+  "nativeDiskVerified": false,
+  "ledgerVerified": false,
+  "actualAppStarted": false
+}

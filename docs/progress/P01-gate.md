@@ -1,5 +1,31 @@
 # P01 阶段工程交付与验收
 
+## 2026-10-15 工程CI通过，外部验收缺口保留
+
+gate_status：engineering_passed_external_pending。用户授权的P01交付已完成源码推送与CI修复：最终源分支codex/p01-02-zhipu-chat-live / f81c3d7，CI38715529361的check及startup-diagnostics均success；unit327/integration323/perf2/Electron47，标准用户/Office/启动诊断通过。首轮6项已知错误码与4项干净runner入口失败已修复并保留证据。本次按授权将3个源提交压缩为包含本交接的单一main提交，压缩暂存树与已验源码完全一致，新增交接仅文档，源分支保留、无PR。P01-gate仍engineering_passed_external_pending，各任务implemented_not_live_verified；订阅/其他渠道协议/价格金额缺口按用户要求保留，既有R13真实验证范围不扩大，未开展P02/P04补验或P05。证据docs/evidence/P01-engineering-2026-10-14/ci-success-2026-10-15.json和main-squash-2026-10-15.json。
+
+## 2026-10-15 其他供应商及协议完整实测按用户要求暂缓
+
+用户明确将DeepSeek、混元、Grok、豆包及其他尚未完成的协议完整实测暂缓，资源R02-R05/R14和R13未验收协议分支保留未验收，不催配Key、不发真实请求；R01订阅继续暂缓。既有R13智谱Chat/FlashX通过范围及标题恢复结果保留。P01工程状态不变，gate=engineering_passed_external_pending，不以暂缓记为通过。用户另询问价格/金额预算含义与验证方法，本轮仅核对和解释；价格目录仍空，Token预算已验证，未知金额不显示、金额上限不启用；未授权录入价格或执行消费测试。证据docs/evidence/P01-engineering-2026-10-14/external-live-deferral-2026-10-15.json。
+
+## 2026-10-15 标题恢复外部缺口关闭
+
+gate_status：engineering_passed_external_pending；P01-01/02/03仍为implemented_not_live_verified。2026-10-15用户报告并截图确认原“新聊天”标题变为“OK”。只读原profile公开状态核对title_jobs=completed，同root仅新增1条completed/actual57 tokens；旧2条attempt不变，失败诊断已清除，活跃run/title/memory、预留与未结算均0。41个源码hash与工程回归一致；本轮仅记录及只读核验，Agent模型请求/Key与native正文读取0。原标题显式恢复实机缺口关闭，不证明所有网络环境或系统代理分支；订阅R01按用户要求暂缓，其他渠道和价格资源仍待验，阶段gate保持engineering_passed_external_pending。证据docs/evidence/P01-engineering-2026-10-14/title-recovery-review-2026-10-15.json。无需重复标题请求，不扩阶段、未commit/push。 2026-10-14及更早的“标题网络待验/下一步复测”仅为历史快照。
+
+## 2026-10-14 当前工程收口
+
+- gate_status：engineering_passed_external_pending；P01-01/P01-02/P01-03=implemented_not_live_verified。
+- 用户要求订阅真实测试暂缓，R01及旧登录报告保留未验收；当前识别的非订阅工程缺口已修复并达到相关检查，不宣称五渠道完整通过。
+- unit208、integration61、隔离Electron7、check436/build均exit0；native预检修正后unit3/integration4 exit0，合成后备/预算与DPAPI不是供应商真实报告。
+- 交付与失败修正见docs/evidence/P01-engineering-2026-10-14/results.json和review.md；正式Core无fixture，旧图已恢复，当前来源为codex/p01-02-zhipu-chat-live / 9bbc44f+working-tree。
+- 外部待验：R01订阅/旧登录报告，R02-R05/R14完整渠道，未核验价格/金额，本机标题网络恢复。R13旧指定范围事实不替代这些缺口。
+- 下一实际步骤仅为用户在原failed会话显式AI重命名一次，最大128输出、无自动重试；只读准备已确认绑定/空闲，尚未发请求。未知价格/余额保持未知，Token预算有效。
+- 原生隔离门禁保持既有源码范围，不由模型通过放行；无commit/push/PR/CI轮询，不自动进入P05。以下为历史阶段检查点，旧failed或入口缺失结论不覆盖本段。
+
+## 2026-10-14 指定R13真实验收检查点
+
+gate_status：failed保持，P01-02=in_progress、P01-03=implemented_not_live_verified。指定智谱普通Chat/FlashX已有CLI六阶段、应用常规/取消/重启账本及预算拦截证据；本次专用DPAPI双进程native实际复用补验passed，同profile两条actual48/66、预留0无重复。证据docs/evidence/P01-02/native-live-2026-10-14/review.json。该范围缺口已关闭，其他渠道/Codex、价格、后台标题网络及各自工程/资源尾项仍不随单个case提升，不开展下一阶段或重复真人请求；下方旧待验描述为历史。
+
 2026-10-05当前复核：gate_status：failed，P01正式验收0/3；P01-01/02=in_progress、P01-03=implemented_not_live_verified。当前codex/p02-01 / aebd898与origin一致。完整API live入口及overloaded分类已补，下方入口缺失描述为历史；Codex新登录报告、系统代理/Fake-IP边界、逐渠道完整live与真实账本仍待收口。R02-R05 pending、R01/R13/R14 configured均不等于完整通过；FlashX Responses沿用ADR0021。P02-01已本地实现而未提升P01/P00门禁。复核及证据见docs/evidence/P01-02/P01-review-2026-10-05.md；本次只静态核对/文档同步，既有测试结果不记为本轮重跑。
 
 2026-10-04 20:35交付更新：用户已明确授权将当前分支的最新源码、测试、ADR、证据、P01进度和更新后的交接文档提交并推送至origin（private-archive:TapKit log，远程结果取实际push/引用核验。停止用户本机后续测试和Codex调用需先同意的要求保持；本次不运行测试、调用模型或改本机配置。任务及P01-gate状态不提升，以下未提交/待用户测试描述仅为此前历史。

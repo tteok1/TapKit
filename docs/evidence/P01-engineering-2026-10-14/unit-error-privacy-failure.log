@@ -1,0 +1,82 @@
+$ vitest run --config vitest.config.ts --project unit "P01-02.api"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |unit| tests/unit/P01-02.api.test.ts (64 tests | 3 failed) 117ms
+   × P01-02 does not export an unrecognized symbolic error code that could contain private values 7ms
+   × P01-02 does not export an unrecognized symbolic error code that could contain private values 1ms
+   × P01-02 does not export an unrecognized symbolic error code that could contain private values 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P01-02.api.test.ts > P01-02 does not export an unrecognized symbolic error code that could contain private values
+AssertionError: expected 'sk_private_secret_1234567890' to be undefined
+
+- Expected:
+undefined
+
++ Received:
+"sk_private_secret_1234567890"
+
+ ❯ tests/unit/P01-02.api.test.ts:5:30
+      3| it.each(['sk_private_secret_1234567890', 'private-error-value', 'accou…
+      4|   const error = apiHttpFailure(200, code);
+      5|   expect(error.upstreamCode).toBeUndefined();
+       |                              ^
+      6|   expect(JSON.stringify(error)).not.toContain(code);
+      7| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  |unit| tests/unit/P01-02.api.test.ts > P01-02 does not export an unrecognized symbolic error code that could contain private values
+AssertionError: expected 'private-error-value' to be undefined
+
+- Expected:
+undefined
+
++ Received:
+"private-error-value"
+
+ ❯ tests/unit/P01-02.api.test.ts:5:30
+      3| it.each(['sk_private_secret_1234567890', 'private-error-value', 'accou…
+      4|   const error = apiHttpFailure(200, code);
+      5|   expect(error.upstreamCode).toBeUndefined();
+       |                              ^
+      6|   expect(JSON.stringify(error)).not.toContain(code);
+      7| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  |unit| tests/unit/P01-02.api.test.ts > P01-02 does not export an unrecognized symbolic error code that could contain private values
+AssertionError: expected 'account.user.secret' to be undefined
+
+- Expected:
+undefined
+
++ Received:
+"account.user.secret"
+
+ ❯ tests/unit/P01-02.api.test.ts:5:30
+      3| it.each(['sk_private_secret_1234567890', 'private-error-value', 'accou…
+      4|   const error = apiHttpFailure(200, code);
+      5|   expect(error.upstreamCode).toBeUndefined();
+       |                              ^
+      6|   expect(JSON.stringify(error)).not.toContain(code);
+      7| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 61 passed (64)
+   Start at  18:05:34
+   Duration  1.54s (import 46%, transform 45%, tests 9%, setup 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+pnpm exited 1
+At D:\Tapkit-public\scripts\pnpm.ps1:18 char:5
++     throw "pnpm exited $tapkitCommandExit"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1
+ 

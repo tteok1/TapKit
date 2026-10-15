@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-13T03:51:05.137Z",
+  "endpoint": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+  "credentialUsed": false,
+  "modelRequests": 0,
+  "method": "GET",
+  "productionTransport": true,
+  "publicDNS": true,
+  "nonPublicAddressClass": null,
+  "transportReached": true,
+  "anonymousHttpStatus": 401,
+  "errorCode": null
+}

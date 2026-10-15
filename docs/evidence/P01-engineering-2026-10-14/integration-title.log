@@ -1,0 +1,38 @@
+$ vitest run --config vitest.config.ts --project integration "P01-03.usage" "P02-03.history"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P02-03.history.test.ts (0 test)
+ ❯ |integration| tests/integration/P01-03.usage.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P01-03.usage.test.ts [ tests/integration/P01-03.usage.test.ts ]
+ FAIL  |integration| tests/integration/P02-03.history.test.ts [ tests/integration/P02-03.history.test.ts ]
+TypeError: Cannot read properties of undefined (reading 'nullable')
+ ❯ packages/contracts/src/history.ts:167:35
+    165|     .nullable()
+    166|     .default(null),
+    167|   titleErrorCode: ErrorCodeSchema.nullable().default(null),
+       |                                   ^
+    168|   titleDiagnosticCode: ProviderDiagnosticCodeSchema.nullable().default…
+    169|   mode: z.enum(['chat', 'work']),
+ ❯ packages/contracts/src/foundation.ts:3:1
+ ❯ packages/contracts/src/index.ts:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  no tests
+   Start at  17:27:06
+   Duration  1.49s (transform 50%, setup 35%, worker 14%, environment 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+pnpm exited 1
+At D:\Tapkit-public\scripts\pnpm.ps1:18 char:5
++     throw "pnpm exited $tapkitCommandExit"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (pnpm exited 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : pnpm exited 1
+ 

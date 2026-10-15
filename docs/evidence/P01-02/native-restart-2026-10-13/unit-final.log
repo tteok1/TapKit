@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project unit "P01-02.native-profile" "P01-02.native-prefix" "P01-02.api" "P01-01.auth-secrets" "P01-02.vault"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  5 passed (5)
+      Tests  70 passed (70)
+   Start at  23:18:25
+   Duration  2.23s (import 58%, transform 34%, tests 6%, setup 2%, worker 1%)
+
