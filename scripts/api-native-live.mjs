@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
@@ -12,6 +12,8 @@ export function runNativeProcesses({
   selectionHash,
   fixture = false,
 }) {
+  const runnerPath = join(root, '.test-data/P01-02-native-runner/runner.cjs');
+  if (!existsSync(runnerPath)) throw new Error('P01-02 native runner must be built before launch');
   const caseId = randomUUID();
   const reportDir = join(root, 'test-results/P01-02-native', caseId);
   mkdirSync(reportDir, { recursive: true });
@@ -29,7 +31,7 @@ export function runNativeProcesses({
     const result = spawnSync(
       require('electron'),
       [
-        join(root, '.test-data/P01-02-native-runner/runner.cjs'),
+        runnerPath,
         phase,
         directory,
         provider,

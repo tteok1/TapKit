@@ -1,4 +1,4 @@
-import { it, expect, vi } from 'vitest';
+import { beforeAll, it, expect, vi } from 'vitest';
 import { mkdir, mkdtemp, writeFile, readFile, unlink } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -8,8 +8,14 @@ import { openStore, newId } from '../../packages/storage/src';
 import { resolveApiConfig } from '../../packages/contracts/src';
 import { nativeSelectionHash, NATIVE_FIXTURE_MARKER } from '../live/P01-02.native-profile';
 import { runNativeProcesses } from '../../scripts/api-native-live.mjs';
-import { lockedEnv } from '../../scripts/lib.mjs';
+import { lockedEnv, pnpm } from '../../scripts/lib.mjs';
 const require = createRequire(import.meta.url);
+
+// A clean checkout has no ignored live-runner bundle. Build the fixture's own
+// entry point before spawning Electron instead of relying on a prior manual run.
+beforeAll(() => {
+  pnpm(['exec', 'vite', 'build', '--config', 'tests/live/native.vite.config.ts']);
+}, 60_000);
 
 async function fixture(setting = {}) {
   vi.useRealTimers();

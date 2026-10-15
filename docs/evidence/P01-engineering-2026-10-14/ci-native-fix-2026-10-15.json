@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-10-15T09:47:19.091Z",
+  "failedRun": 38709884248,
+  "failedSource": "6727f2f0c7dbf49679da71b89cc6777981a02a15",
+  "firstCompleteResult": {
+    "unit": 327,
+    "integration": {
+      "total": 322,
+      "passed": 312,
+      "failed": 10,
+      "knownCodeFailures": 6,
+      "nativeFixtureFailures": 4
+    },
+    "performance": 2,
+    "electron": 47,
+    "standardUser": "passed",
+    "officeShutdown": "passed",
+    "startupDiagnostics": "passed"
+  },
+  "cause": "Integration test launched Electron with an ignored runner.cjs that only existed after a manual live-bundle build. Clean CI had no runner, no phase report, and four 120-second child timeouts.",
+  "fix": [
+    "beforeAll builds native.vite.config.ts from source before any Electron spawn",
+    "runNativeProcesses rejects missing runner before launching Electron"
+  ],
+  "cleanLocalCheck": {
+    "command": "pnpm test:integration P01-02.native-restart",
+    "runnerAbsentBefore": true,
+    "oldRunnerPreserved": true,
+    "runnerRebuiltByTest": true,
+    "passed": 4,
+    "exitCode": 0,
+    "seconds": 52.93,
+    "log": "ci-native-clean-fixed-2026-10-15.log"
+  },
+  "staticCheck": {
+    "command": "pnpm check",
+    "exitCode": 0,
+    "log": "ci-native-check-2026-10-15.log"
+  },
+  "timeoutsOrAssertionsRelaxed": false,
+  "userNativeLiveReport": "Prior passed R13 report remains in its original scope; live CLI already built its runner",
+  "modelRequests": 0,
+  "status": "ready_for_full_ci"
+}
