@@ -166,7 +166,7 @@ test('P02-02 T02 two turns use real Core/router/usage; repeated acceptance creat
     '隔离测试回复：第一轮中文问题',
   );
   await expect(
-    page.getByRole('heading', { name: '隔离测试回复：第一轮中文问题', exact: true }),
+    page.locator('.topbar').getByText('隔离测试回复：第一轮中文问题', { exact: true }),
   ).toBeVisible();
   // ADR0024 charges the automatic title to the originating run/root. Wait for
   // its visible completion before checking both 60-token fixture settlements.

@@ -1,0 +1,119 @@
+{
+  "observedAt": "2026-10-21T07:00:04Z",
+  "sourceCommit": "04d5bf927bad03d6c01e15884528249f5adbdb66",
+  "runId": 39556346116,
+  "url": "https://github.com/tteok1/TapKit/actions/runs/39556346116",
+  "passedCounts": {
+    "unit": 352,
+    "integration": 342,
+    "unitFiles": 45,
+    "integrationFiles": 44,
+    "observedSource": "04d5bf927bad03d6c01e15884528249f5adbdb66",
+    "run": 39556346116
+  },
+  "jobs": {
+    "jobs": [
+      {
+        "id": 119076887689,
+        "name": "check",
+        "status": "in_progress",
+        "conclusion": null,
+        "run_id": 39556346116,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Restore locked runtime archives",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Bootstrap locked runtime and native dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Save verified runtime archives",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 6
+          },
+          {
+            "name": "Check",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Unit and current-route integration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Dedicated Core performance checks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Build and Electron checks",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 10
+          },
+          {
+            "name": "Verify P00-03 and P03 parser as an independent standard user",
+            "status": "in_progress",
+            "conclusion": null,
+            "number": 11
+          },
+          {
+            "name": "Repeat fresh-process Office shutdown diagnostics",
+            "status": "pending",
+            "conclusion": null,
+            "number": 12
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 13
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 25
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 26
+          }
+        ]
+      }
+    ]
+  },
+  "conclusion": "Original bootstrap JSON import error fixed; additional Build/Electron failure is awaiting log publication. Full CI has not passed."
+}

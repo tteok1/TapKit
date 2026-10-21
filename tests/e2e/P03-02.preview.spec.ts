@@ -159,7 +159,7 @@ test('P03-02 Electron pins inline historical refs, remembers PDF/code positions 
   await expect(panel.locator('.viewer-diff pre')).toHaveCount(100);
   await page.getByRole('button', { name: /^预览固定版本会话 / }).click();
   await closeNarrowDetail(page);
-  await page.getByText('引用资料（1）', { exact: true }).click();
+  await page.getByText('引用来源（1）', { exact: true }).click();
   await page.locator('.inline-file-card summary').click();
   await expect(page.locator('.inline-file-card pre')).toContainText('Historical PDF text marker');
   await page.getByRole('button', { name: '在右侧展开', exact: true }).click();

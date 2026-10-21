@@ -1,0 +1,63 @@
+2026-10-21T06:52:56.6755168Z   1) tests\e2e\P02-02.chat.spec.ts:160:1 › P02-02 T02 two turns use real Core/router/usage; repeated acceptance creates one message and restart retains it 
+2026-10-21T06:52:56.6756636Z 
+2026-10-21T06:52:56.6756941Z     Error: expect(locator).toBeVisible() failed
+2026-10-21T06:52:56.6757359Z 
+2026-10-21T06:52:56.6758486Z     Locator: getByRole('heading', { name: '隔离测试回复：第一轮中文问题', exact: true })
+2026-10-21T06:52:56.6759235Z     Expected: visible
+2026-10-21T06:52:56.6759989Z     Timeout: 15000ms
+2026-10-21T06:52:56.6760661Z     Error: element(s) not found
+2026-10-21T06:52:56.6760966Z 
+2026-10-21T06:52:56.6761104Z     Call log:
+2026-10-21T06:52:56.6762296Z       - Expect "toBeVisible" getByRole('heading', { name: '隔离测试回复：第一轮中文问题', exact: true }) with timeout 15000ms
+2026-10-21T06:52:56.6763826Z       - waiting for getByRole('heading', { name: '隔离测试回复：第一轮中文问题', exact: true })
+2026-10-21T06:52:56.6764401Z 
+2026-10-21T06:52:56.6764411Z 
+2026-10-21T06:52:56.6764579Z       168 |   await expect(
+2026-10-21T06:52:56.6766521Z       169 |     page.getByRole('heading', { name: '隔离测试回复：第一轮中文问题', exact: true }),
+2026-10-21T06:52:56.6767274Z     > 170 |   ).toBeVisible();
+2026-10-21T06:52:56.6767715Z           |     ^
+2026-10-21T06:52:56.6768402Z       171 |   // ADR0024 charges the automatic title to the originating run/root. Wait for
+2026-10-21T06:52:56.6769524Z       172 |   // its visible completion before checking both 60-token fixture settlements.
+2026-10-21T06:52:56.6770308Z       173 |   await expect
+2026-10-21T06:52:56.6770900Z         at D:\a\TapKit\TapKit\tests\e2e\P02-02.chat.spec.ts:170:5
+2026-10-21T06:52:56.6771311Z 
+2026-10-21T06:52:56.6771888Z     Error Context: test-results\e2e\P02-02.chat-P02-02-T02-two-6c799-sage-and-restart-retains-it\error-context.md
+2026-10-21T06:52:56.6772383Z 
+2026-10-21T06:52:56.6773206Z     attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+2026-10-21T06:52:56.6774048Z     test-results\e2e\P02-02.chat-P02-02-T02-two-6c799-sage-and-restart-retains-it\trace.zip
+2026-10-21T06:52:56.6774498Z     Usage:
+2026-10-21T06:52:56.6774604Z 
+2026-10-21T06:52:56.6775185Z         pnpm exec playwright show-trace test-results\e2e\P02-02.chat-P02-02-T02-two-6c799-sage-and-restart-retains-it\trace.zip
+2026-10-21T06:52:56.6776124Z 
+2026-10-21T06:52:56.6777279Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-10-21T06:52:56.6777830Z 
+2026-10-21T06:52:56.6779131Z   2) tests\e2e\P03-02.preview.spec.ts:127:1 › P03-02 Electron pins inline historical refs, remembers PDF/code positions and previews safe Markdown plus real diffs 
+2026-10-21T06:52:56.6780329Z 
+2026-10-21T06:52:56.6780659Z     TimeoutError: locator.click: Timeout 30000ms exceeded.
+2026-10-21T06:52:56.6781274Z     Call log:
+2026-10-21T06:52:56.6782019Z       - waiting for getByText('引用资料（1）', { exact: true })
+2026-10-21T06:52:56.6782451Z 
+2026-10-21T06:52:56.6782460Z 
+2026-10-21T06:52:56.6783191Z       160 |   await page.getByRole('button', { name: /^预览固定版本会话 / }).click();
+2026-10-21T06:52:56.6783971Z       161 |   await closeNarrowDetail(page);
+2026-10-21T06:52:56.6792673Z     > 162 |   await page.getByText('引用资料（1）', { exact: true }).click();
+2026-10-21T06:52:56.6793444Z           |                                                    ^
+2026-10-21T06:52:56.6794551Z       163 |   await page.locator('.inline-file-card summary').click();
+2026-10-21T06:52:56.6795496Z       164 |   await expect(page.locator('.inline-file-card pre')).toContainText('Historical PDF text marker');
+2026-10-21T06:52:56.6796518Z       165 |   await page.getByRole('button', { name: '在右侧展开', exact: true }).click();
+2026-10-21T06:52:56.6797459Z         at D:\a\TapKit\TapKit\tests\e2e\P03-02.preview.spec.ts:162:52
+2026-10-21T06:52:56.6797739Z 
+2026-10-21T06:52:56.6798145Z     Error Context: test-results\e2e\P03-02.preview-P03-02-Elec-afc9c-fe-Markdown-plus-real-diffs\error-context.md
+2026-10-21T06:52:56.6798618Z 
+2026-10-21T06:52:56.6799028Z     attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+2026-10-21T06:52:56.6799702Z     test-results\e2e\P03-02.preview-P03-02-Elec-afc9c-fe-Markdown-plus-real-diffs\trace.zip
+2026-10-21T06:52:56.6800153Z     Usage:
+2026-10-21T06:52:56.6800260Z 
+2026-10-21T06:52:56.6800739Z         pnpm exec playwright show-trace test-results\e2e\P03-02.preview-P03-02-Elec-afc9c-fe-Markdown-plus-real-diffs\trace.zip
+2026-10-21T06:52:56.6801248Z 
+2026-10-21T06:52:56.6801583Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-10-21T06:52:56.6801882Z 
+2026-10-21T06:52:56.6801971Z   2 failed
+2026-10-21T06:52:56.6802712Z     tests\e2e\P02-02.chat.spec.ts:160:1 › P02-02 T02 two turns use real Core/router/usage; repeated acceptance creates one message and restart retains it 
+2026-10-21T06:52:56.6804057Z     tests\e2e\P03-02.preview.spec.ts:127:1 › P03-02 Electron pins inline historical refs, remembers PDF/code positions and previews safe Markdown plus real diffs 
+2026-10-21T06:52:56.6804803Z   45 passed (3.8m)
