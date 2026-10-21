@@ -1,0 +1,101 @@
+{
+  "task": "P02-03",
+  "round": "E-search-and-locate",
+  "status": "prepared_waiting_two_user_searches",
+  "checkedAt": "2026-10-17T14:16:05.062Z",
+  "startedAfter": 1792246497407,
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "caseId": "01a149b9-04f4-7d9c-9487-44b0b62e3b25",
+  "session": {
+    "id": "01a14a2b-364a-7034-986d-79c884ee51a3",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "revision": 3,
+    "titleManual": 1,
+    "titleSHA256": "a054b9ea5a0429d459302ced792c709a0e095afb2ba942e1d0d3689655ee9359",
+    "noteSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tagsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "archivedAt": null,
+    "titleMatchesExpected": 1
+  },
+  "messages": [
+    {
+      "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "contentSHA256": "26d08c0117a2160250ef6a4a7bbf58e3af422cbcb8f98713b5cffa68fa198b93"
+    },
+    {
+      "id": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "contentSHA256": "9b64af603d2349dd9f8e2b91ea598e7e57cdfcb85c05df982e23a6e90ae67bff"
+    }
+  ],
+  "branch": {
+    "id": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "headMessageId": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+    "revision": 1
+  },
+  "globalCounts": {
+    "runs": 25,
+    "attempts": 41,
+    "tools": 2,
+    "ledger": 41
+  },
+  "priorAcceptance": "manual-title-review-1792246565060.json",
+  "titleQuery": "P02验收-分叉副本-1017",
+  "messageQuery": "P02E-1017R",
+  "titleSearch": {
+    "scope": {
+      "type": "all"
+    },
+    "types": [
+      "session"
+    ],
+    "expectedHits": [
+      {
+        "id": "01a14a2b-364a-7034-986d-79c884ee51a3",
+        "type": "session",
+        "sessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+        "branchId": null
+      }
+    ]
+  },
+  "messageSearch": {
+    "scope": {
+      "type": "session",
+      "id": "01a14a2b-364a-7034-986d-79c884ee51a3"
+    },
+    "types": [
+      "message"
+    ],
+    "expectedHits": [
+      {
+        "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+        "type": "message",
+        "sessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+        "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f"
+      }
+    ]
+  },
+  "historyBaseline": [],
+  "preflightLimit": "Read-only FTS/index ID preflight only. Did not call app search or write search history; UI behavior, highlighting and navigation remain unverified.",
+  "instructions": "From renamed copy, open 搜索/Ctrl+K. First select 全局 + 会话, query exact prepared title, click 查找 then the unique result. On reopened copy search again with 当前会话 + 消息 and P02E-1017R, inspect highlight then click the matching question. Confirm the title remains the renamed copy and exact message is located. Report both; no model send, archive or changes to source conversation.",
+  "acceptance": "User title-search and scoped message search return expected IDs and highlight/locate the copied user message, appropriate recent query metadata changes, message/branch hashes preserved and no model/tool/run/settlement. Scope excludes archived queries, sorting, search deletion/history privacy, other-project permissions and all search requirements.",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false
+}

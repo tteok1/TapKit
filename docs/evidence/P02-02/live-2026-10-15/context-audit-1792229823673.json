@@ -1,0 +1,48 @@
+{
+  "task": "P02-02",
+  "localDate": "2026-10-17",
+  "checkedAt": "2026-10-17T09:37:03.671Z",
+  "readOnlyDatabase": true,
+  "audit": [
+    {
+      "runId": "01a1490a-b34b-7af6-8ee9-994e1a354c30",
+      "userMessageId": "01a1490a-b34a-754f-845d-93dd449b7237",
+      "userRole": "user",
+      "userStatus": "final",
+      "userContentLength": 251,
+      "contextSnapshots": 3,
+      "snapshotsIncludingCurrentUser": 3,
+      "priorAssistantMessages": 6
+    },
+    {
+      "runId": "01a14933-e4c4-7558-909c-f5543422ca9c",
+      "userMessageId": "01a14933-e4c3-7957-9364-2b7960c686f8",
+      "userRole": "user",
+      "userStatus": "final",
+      "userContentLength": 251,
+      "contextSnapshots": 2,
+      "snapshotsIncludingCurrentUser": 2,
+      "priorAssistantMessages": 8
+    }
+  ],
+  "settingsMetadata": [
+    {
+      "key": "modelPreferences",
+      "personalizationEnabled": 0,
+      "personalInstructionLength": 0
+    },
+    {
+      "key": "preferences",
+      "personalizationEnabled": 1,
+      "personalInstructionLength": 0
+    }
+  ],
+  "cleanControlMarker": {
+    "value": "P02C5-5e1a8917-40c8-4e13-9343-94663d7bf074",
+    "existingMessageMatches": 0
+  },
+  "interpretation": "Context source references include the current user message. This is not an archived raw serialized request; do not overclaim verbatim outgoing content. Local full-stack fixture checks exact latest user content after repeated prior refusals.",
+  "messageBodiesExported": false,
+  "credentialsOrNativeRead": 0,
+  "modelRequests": 0
+}

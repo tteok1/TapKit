@@ -1,0 +1,48 @@
+{
+  "task": "P02-03",
+  "dependency": "P00-03/P03-01",
+  "localDate": "2026-10-19",
+  "checkedAt": "2026-10-19T09:57:43.178Z",
+  "completedAt": "2026-10-19T10:04:04.454Z",
+  "command": "locked Node scripts/runtime-probe.mjs --scope=current-user",
+  "exitCode": 0,
+  "signal": null,
+  "probeExitCode": 0,
+  "standardUser": false,
+  "verification": {
+    "scope": "current-user",
+    "identity": {
+      "userSidHash": "89d3515d56b0f7fb4f2e9d5ab5438c2590534473cc30f033f476b0408a4d96d7",
+      "integritySid": "S-1-16-8192",
+      "administratorsGroup": true
+    }
+  },
+  "capabilities": {
+    "nativeExecution": {
+      "status": "available"
+    },
+    "officeRender": {
+      "status": "available"
+    },
+    "terminal": {
+      "status": "available"
+    }
+  },
+  "missingCases": [],
+  "historicalReportsPreserved": [
+    {
+      "path": "docs/evidence/P00-03/runtime-probe.json",
+      "sha256": "d15b9df5a44b94ab07c287402773eb9c9c4a1444d0163c014bf382d2556913b5",
+      "restoredOriginalBytes": true
+    },
+    {
+      "path": "docs/evidence/P00-03/runtime-probe.log",
+      "sha256": "676025b58f127d2fb012010be80221ccc46d81e765ab2529df186a9425213eaf",
+      "restoredOriginalBytes": true
+    }
+  ],
+  "note": "Run the official probe with the recorded explicit scope; preserve historical tracked reports byte-for-byte; the generated local capability report stays at resources/runtime/capabilities.json. Never fabricate available state or standard-user acceptance.",
+  "agentModelRequests": 0,
+  "businessDatabaseWrites": 0,
+  "credentialOrModelNativeReads": 0
+}

@@ -1,0 +1,13 @@
+{
+  "task": "P02-02",
+  "round": "C5",
+  "checkedAt": "2026-10-17T09:38:54.460Z",
+  "status": "waiting_one_blank_regular_chat",
+  "profileId": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10",
+  "sessions": [],
+  "marker": "P02C5-5e1a8917-40c8-4e13-9343-94663d7bf074",
+  "existingMarkerMatches": 0,
+  "modelRequests": 0,
+  "databaseWrites": 0,
+  "messageBodiesExported": false
+}

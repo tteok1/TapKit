@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-21",
+  "timezone": "Asia/Shanghai",
+  "branch": "main",
+  "head": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "toolchain": "Repository locked Node24.21.0/pnpm12.4.1",
+  "sources": [
+    {
+      "path": "apps/desktop/src/renderer/src/desktop-shell.tsx",
+      "beforeSHA256": "ea7fb284b441f59d4718d146d271a205b1dbbb730744cf61519f32396d1e75e2",
+      "afterSHA256": "8c4a2452d99f521148a448d1e8bdb0f42ec30d16d27771c0878ecfb91fcff53c"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/chat-surface.tsx",
+      "beforeSHA256": "1da2dccac5f38479d249c8f846a6984183d5b7fd42cd7539140d08f5db595cde",
+      "afterSHA256": "0650862d42a2800be38ba1d1bd7561bc105c233c42efb5851822b600f688c9f0"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/styles.css",
+      "beforeSHA256": "cb659e84e7500df16330cec3760c60d5cdcda569ce32be52ae2143fbe1d26ea7",
+      "afterSHA256": "e3239eb345043edf0b0e0a31f05187ad8dd49d31f72f1d1cd16bc1265eced2bd"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/design-system.css",
+      "beforeSHA256": "51c6f233a799c99dd4713783e80d2a785153d708ac7c0851881e6be277455d4d",
+      "afterSHA256": "638cf62c2cb3ee82447f21d09e049328925401fbff152deb19fbb01e613a3981"
+    }
+  ],
+  "backendSourcePolicy": "validateUiRefresh passed against the active reviewed snapshot",
+  "checks": [
+    {
+      "command": "pnpm test:e2e -- tests/e2e/P02-03.chat-simplify.spec.ts tests/e2e/P02-01.ui-redesign.spec.ts tests/e2e/P02-02.chat.spec.ts --grep 'P02-03 T22 simplified|P02-01 UI simplified|P02-02 T05 IME'",
+      "exitCode": 1,
+      "passed": 5,
+      "failed": 1,
+      "log": "e2e.log",
+      "failure": "Old UI helper waited only 15 seconds for startup. Existing product watchdog permits 120 seconds. No UI assertion reached in that case."
+    },
+    {
+      "command": "pnpm exec playwright test tests/e2e/P02-01.ui-redesign.spec.ts --grep 'P02-01 UI simplified'",
+      "exitCode": 0,
+      "passed": 1,
+      "log": "input-repeat.log",
+      "note": "After aligning the test wait; direct test on restored production build, empty isolated profile, no model requests."
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "formattedFiles": 458,
+      "log": "final-check.log"
+    }
+  ],
+  "distinctPassingCases": 6,
+  "screenshotConfigurations": 4,
+  "sidebarMetrics": [
+    {
+      "path": "sidebar-1440x900-100.json",
+      "scrollTop": 500,
+      "clientHeight": 885,
+      "scrollHeight": 3118,
+      "nestedScrollers": [],
+      "historyScrollTop": 0,
+      "savedScroll": 500
+    },
+    {
+      "path": "sidebar-960x640-100.json",
+      "scrollTop": 500,
+      "clientHeight": 625,
+      "scrollHeight": 3118,
+      "nestedScrollers": [],
+      "historyScrollTop": 0,
+      "savedScroll": 500
+    },
+    {
+      "path": "sidebar-1440x900-200.json",
+      "scrollTop": 250,
+      "clientHeight": 435,
+      "scrollHeight": 2149,
+      "nestedScrollers": [],
+      "historyScrollTop": 0,
+      "savedScroll": 250
+    },
+    {
+      "path": "sidebar-960x640-200.json",
+      "scrollTop": 250,
+      "clientHeight": 305,
+      "scrollHeight": 2149,
+      "nestedScrollers": [],
+      "historyScrollTop": 0,
+      "savedScroll": 250
+    }
+  ],
+  "production": {
+    "restored": true,
+    "coreMatchesReviewedBuild": true,
+    "hostMatchesReviewedBuild": true,
+    "snapshotActivationPending": false,
+    "originalWindowRestarted": true,
+    "refreshCommand": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File docs/evidence/P02-02/live-2026-10-15/run-app.ps1 -RefreshUiBuild",
+    "launchReceipt": "normal-reopen.json"
+  },
+  "historicalEvidenceOverwritten": false,
+  "originalProfileModified": false,
+  "realModelRequests": 0,
+  "commitPush": false,
+  "taskAndGateStates": "unchanged; UI engineering checks do not accept pending real-model tests",
+  "docsCheck": {
+    "command": "pnpm docs:check",
+    "exitCode": 0,
+    "log": "docs-check.log"
+  }
+}

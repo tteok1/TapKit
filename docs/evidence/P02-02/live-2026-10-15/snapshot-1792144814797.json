@@ -1,0 +1,383 @@
+{
+  "task": "P02-02",
+  "capturedAt": 1792144814797,
+  "checkedAt": "2026-10-16T10:00:14.797Z",
+  "status": "observations_only_requires_review",
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "readOnlyDatabase": true,
+  "credentialReads": 0,
+  "nativeContentReads": 0,
+  "messageBodiesExported": false,
+  "modelRequests": 0,
+  "account": {
+    "id": "01a13377-f964-786b-bb32-bf916b568ddc",
+    "revision": 10,
+    "status": "ready",
+    "providerId": "openai-compatible",
+    "apiFormat": "openai-chat",
+    "baseURL": "https://open.bigmodel.cn/api/paas/v4",
+    "modelId": "glm-4.7-flashx",
+    "lastErrorCode": null,
+    "lastCheckAt": 1792144488441
+  },
+  "accountReady": true,
+  "launchMode": "acceptance",
+  "preferences": {
+    "revision": 4,
+    "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+    "modelId": "glm-4.7-flashx",
+    "onlyThisModel": 1,
+    "mode": "quick",
+    "reasoning": "off",
+    "allowPaidFallback": 0,
+    "dailyTokenLimit": 2000000
+  },
+  "targetSession": {
+    "id": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+    "mode": "chat",
+    "branchId": "01a135b3-5464-7f79-a190-cf8ec9a69640",
+    "projectId": null,
+    "titleIsOK": 1
+  },
+  "workload": {
+    "activeRuns": 0,
+    "pendingInputs": 0,
+    "activeTitles": 0,
+    "activeMemoryJobs": 0,
+    "reservedBudgets": 0,
+    "unsettledAttempts": 0
+  },
+  "eventSeq": 1118,
+  "ledgerTotals": {
+    "entries": 20,
+    "tokens": 87149,
+    "actualTokens": 16342,
+    "estimatedTokens": 70807
+  },
+  "priorLedgerHash": "e16049295cac8e421a8030a27b1274219b187eb4c1c79318bf548e27228f289f",
+  "duplicateSettlements": [],
+  "newRuns": [
+    {
+      "id": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+      "rootRunId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "taskVersion": 1,
+      "status": "completed",
+      "statusReason": null,
+      "createdAt": 1792070901016,
+      "startedAt": 1792070901020,
+      "endedAt": 1792070949733,
+      "calls": 1,
+      "tools": 0
+    },
+    {
+      "id": "01a14425-afe1-7c77-b13b-2767d649aad8",
+      "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+      "rootRunId": "01a14425-afe1-7c77-b13b-2767d649aad8",
+      "taskVersion": 1,
+      "status": "completed",
+      "statusReason": null,
+      "createdAt": 1792144682977,
+      "startedAt": 1792144682980,
+      "endedAt": 1792144702907,
+      "calls": 1,
+      "tools": 0
+    },
+    {
+      "id": "01a14426-61bb-79c6-ae7f-3282aba61f2e",
+      "sessionId": "01a14426-4cdf-7ae3-acd0-0d093a87ed48",
+      "rootRunId": "01a14426-61bb-79c6-ae7f-3282aba61f2e",
+      "taskVersion": 1,
+      "status": "completed",
+      "statusReason": null,
+      "createdAt": 1792144728507,
+      "startedAt": 1792144728510,
+      "endedAt": 1792144745891,
+      "calls": 1,
+      "tools": 0
+    },
+    {
+      "id": "01a14426-a5a6-7c54-8b58-bca6b98bcf26",
+      "sessionId": "01a14426-4cdf-7ae3-acd0-0d093a87ed48",
+      "rootRunId": "01a14426-a5a6-7c54-8b58-bca6b98bcf26",
+      "taskVersion": 1,
+      "status": "completed",
+      "statusReason": null,
+      "createdAt": 1792144745894,
+      "startedAt": 1792144745896,
+      "endedAt": 1792144747788,
+      "calls": 1,
+      "tools": 0
+    }
+  ],
+  "newInputs": [
+    {
+      "id": "01a14426-7ce1-76e1-982e-ca2f013c4291",
+      "sessionId": "01a14426-4cdf-7ae3-acd0-0d093a87ed48",
+      "kind": "followup",
+      "status": "accepted",
+      "revision": 2,
+      "targetRunId": "01a14426-61bb-79c6-ae7f-3282aba61f2e",
+      "targetTaskVersion": 1,
+      "userMessageId": "01a14426-7ce1-7673-9ead-2b29188e28ca",
+      "characterCount": 23,
+      "createdAt": 1792144735457,
+      "updatedAt": 1792144745895
+    }
+  ],
+  "newMessages": [
+    {
+      "id": "01a13fbf-dd16-76a1-8e1b-666c8f89d22d",
+      "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+      "runId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "role": "user",
+      "status": "final",
+      "clientMessageId": "01a13fbf-d3df-7911-9cdf-d68fde1548c8",
+      "attemptId": null,
+      "contentJsonLength": 136,
+      "createdAt": 1792070901014
+    },
+    {
+      "id": "01a13fbf-e078-7bd4-b394-bed44c4a52bc",
+      "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+      "runId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "role": "assistant",
+      "status": "interrupted",
+      "clientMessageId": null,
+      "attemptId": "01a13fbf-e069-7fef-9d73-4c46b5af9c4b",
+      "contentJsonLength": 56,
+      "createdAt": 1792070901880
+    },
+    {
+      "id": "01a13fc0-3484-7e75-afb3-cf9475532959",
+      "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+      "runId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "role": "assistant",
+      "status": "interrupted",
+      "clientMessageId": null,
+      "attemptId": "01a13fc0-347b-758b-a6ba-06ea12d1dc97",
+      "contentJsonLength": 56,
+      "createdAt": 1792070923396
+    },
+    {
+      "id": "01a13fc0-8efd-71a7-a1e5-f4856ca015b0",
+      "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+      "runId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "role": "assistant",
+      "status": "final",
+      "clientMessageId": null,
+      "attemptId": "01a13fc0-8ef4-7db2-a7b5-7f3dc72cf0ae",
+      "contentJsonLength": 58,
+      "createdAt": 1792070946557
+    },
+    {
+      "id": "01a14425-afe0-77a9-a2ea-eeecf3961cee",
+      "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+      "runId": "01a14425-afe1-7c77-b13b-2767d649aad8",
+      "role": "user",
+      "status": "final",
+      "clientMessageId": "01a14425-ab3c-719c-a28e-643dd240d147",
+      "attemptId": null,
+      "contentJsonLength": 136,
+      "createdAt": 1792144682976
+    },
+    {
+      "id": "01a14425-b074-7552-9cdf-2c85c0514f32",
+      "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+      "runId": "01a14425-afe1-7c77-b13b-2767d649aad8",
+      "role": "assistant",
+      "status": "final",
+      "clientMessageId": null,
+      "attemptId": "01a14425-b065-7c7b-80d3-5d68aae16cbe",
+      "contentJsonLength": 2460,
+      "createdAt": 1792144683124
+    },
+    {
+      "id": "01a14426-61bb-79e9-871d-c222be3dffe1",
+      "sessionId": "01a14426-4cdf-7ae3-acd0-0d093a87ed48",
+      "runId": "01a14426-61bb-79c6-ae7f-3282aba61f2e",
+      "role": "user",
+      "status": "final",
+      "clientMessageId": "01a14426-5572-7cf8-b075-63450027dbc8",
+      "attemptId": null,
+      "contentJsonLength": 136,
+      "createdAt": 1792144728507
+    },
+    {
+      "id": "01a14426-6299-7f72-9af1-a0500106574f",
+      "sessionId": "01a14426-4cdf-7ae3-acd0-0d093a87ed48",
+      "runId": "01a14426-61bb-79c6-ae7f-3282aba61f2e",
+      "role": "assistant",
+      "status": "final",
+      "clientMessageId": null,
+      "attemptId": "01a14426-6288-7f6e-938d-f36fed3eb29d",
+      "contentJsonLength": 2480,
+      "createdAt": 1792144728729
+    },
+    {
+      "id": "01a14426-7ce1-7673-9ead-2b29188e28ca",
+      "sessionId": "01a14426-4cdf-7ae3-acd0-0d093a87ed48",
+      "runId": "01a14426-a5a6-7c54-8b58-bca6b98bcf26",
+      "role": "user",
+      "status": "final",
+      "clientMessageId": "01a14426-71b2-714a-b82d-5685786feea0",
+      "attemptId": null,
+      "contentJsonLength": 79,
+      "createdAt": 1792144735457
+    },
+    {
+      "id": "01a14426-a5d5-7fe6-840a-43c6fa0b6a6a",
+      "sessionId": "01a14426-4cdf-7ae3-acd0-0d093a87ed48",
+      "runId": "01a14426-a5a6-7c54-8b58-bca6b98bcf26",
+      "role": "assistant",
+      "status": "final",
+      "clientMessageId": null,
+      "attemptId": "01a14426-a5ca-7e2a-b147-caa7a2207c51",
+      "contentJsonLength": 60,
+      "createdAt": 1792144745941
+    }
+  ],
+  "newTools": [],
+  "newAttempts": [
+    {
+      "id": "01a13fbf-e069-7fef-9d73-4c46b5af9c4b",
+      "runId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "rootRunId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "logicalCallId": "01a13fbf-dd6b-7134-a6af-d1fab48a3960",
+      "attemptNo": 1,
+      "status": "failed",
+      "errorCode": "NETWORK_ERROR",
+      "modelRef": "glm-4.7-flashx",
+      "createdAt": 1792070901879,
+      "source": "estimated",
+      "inputTokens": null,
+      "outputTokens": null,
+      "chargedTokens": 14112
+    },
+    {
+      "id": "01a13fc0-347b-758b-a6ba-06ea12d1dc97",
+      "runId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "rootRunId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "logicalCallId": "01a13fbf-dd6b-7134-a6af-d1fab48a3960",
+      "attemptNo": 2,
+      "status": "failed",
+      "errorCode": "NETWORK_ERROR",
+      "modelRef": "glm-4.7-flashx",
+      "createdAt": 1792070923394,
+      "source": "estimated",
+      "inputTokens": null,
+      "outputTokens": null,
+      "chargedTokens": 14112
+    },
+    {
+      "id": "01a13fc0-8ef4-7db2-a7b5-7f3dc72cf0ae",
+      "runId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "rootRunId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "logicalCallId": "01a13fbf-dd6b-7134-a6af-d1fab48a3960",
+      "attemptNo": 3,
+      "status": "completed",
+      "errorCode": null,
+      "modelRef": "glm-4.7-flashx",
+      "createdAt": 1792070946555,
+      "source": "actual",
+      "inputTokens": 1803,
+      "outputTokens": 2,
+      "chargedTokens": 1805
+    },
+    {
+      "id": "01a14425-b065-7c7b-80d3-5d68aae16cbe",
+      "runId": "01a14425-afe1-7c77-b13b-2767d649aad8",
+      "rootRunId": "01a14425-afe1-7c77-b13b-2767d649aad8",
+      "logicalCallId": "01a14425-affb-7ed8-8430-d0d6611ecbdf",
+      "attemptNo": 1,
+      "status": "completed",
+      "errorCode": null,
+      "modelRef": "glm-4.7-flashx",
+      "createdAt": 1792144683123,
+      "source": "actual",
+      "inputTokens": 1861,
+      "outputTokens": 1326,
+      "chargedTokens": 3187
+    },
+    {
+      "id": "01a14426-6288-7f6e-938d-f36fed3eb29d",
+      "runId": "01a14426-61bb-79c6-ae7f-3282aba61f2e",
+      "rootRunId": "01a14426-61bb-79c6-ae7f-3282aba61f2e",
+      "logicalCallId": "01a14426-61e4-77c9-b93a-2104b416b1e7",
+      "attemptNo": 1,
+      "status": "completed",
+      "errorCode": null,
+      "modelRef": "glm-4.7-flashx",
+      "createdAt": 1792144728728,
+      "source": "actual",
+      "inputTokens": 3042,
+      "outputTokens": 1343,
+      "chargedTokens": 4385
+    },
+    {
+      "id": "01a14426-a5ca-7e2a-b147-caa7a2207c51",
+      "runId": "01a14426-a5a6-7c54-8b58-bca6b98bcf26",
+      "rootRunId": "01a14426-a5a6-7c54-8b58-bca6b98bcf26",
+      "logicalCallId": "01a14426-a5b5-780e-aa4d-1bece00bb303",
+      "attemptNo": 1,
+      "status": "completed",
+      "errorCode": null,
+      "modelRef": "glm-4.7-flashx",
+      "createdAt": 1792144745940,
+      "source": "actual",
+      "inputTokens": 2517,
+      "outputTokens": 3,
+      "chargedTokens": 2520
+    },
+    {
+      "id": "01a14426-a712-7012-b3b5-0c292055f206",
+      "runId": "01a14426-61bb-79c6-ae7f-3282aba61f2e",
+      "rootRunId": "01a14426-61bb-79c6-ae7f-3282aba61f2e",
+      "logicalCallId": "01a14426-a6d2-70cc-8ed9-0d9049b8291b",
+      "attemptNo": 1,
+      "status": "completed",
+      "errorCode": null,
+      "modelRef": "glm-4.7-flashx",
+      "createdAt": 1792144746260,
+      "source": "actual",
+      "inputTokens": 106,
+      "outputTokens": 128,
+      "chargedTokens": 234
+    }
+  ],
+  "eventCounts": [
+    {
+      "type": "draft.updated",
+      "n": 28
+    },
+    {
+      "type": "message.accepted",
+      "n": 11
+    },
+    {
+      "type": "message.delta",
+      "n": 720
+    },
+    {
+      "type": "message.final",
+      "n": 4
+    },
+    {
+      "type": "provider.updated",
+      "n": 4
+    },
+    {
+      "type": "run.status",
+      "n": 8
+    },
+    {
+      "type": "workspace.updated",
+      "n": 7
+    }
+  ],
+  "priorLedgerUnchanged": true,
+  "sourceCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "productChanges": "",
+  "coreBuildSHA256": "24ce079eb809ae4137a7c25a00f4873d055af24cd625132dd71c401ca41a67c7",
+  "mainBuildSHA256": "47c48ff7b47d65304f0df667482d29d11b8fba46a38300e119d34815d0e81ea1"
+}

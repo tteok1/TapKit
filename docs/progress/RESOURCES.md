@@ -1,5 +1,15 @@
 # 外部资源状态
 
+2026-10-17 R13/P02-02限定智谱普通Chat/FlashX的A/B/C增量补验已分别记录，C实际只读网关/配对终答/结算闭环通过；强当前用户ID语义未达、旧无调用唯一诱因未定，其他渠道/协议继续暂缓，不提升全任务或gate。证据docs/evidence/P02-02/live-2026-10-15/round-c5-acceptance-2026-10-17.json。接续P02-03仅准备消息编辑/分支保留，尚未live通过。
+
+## 2026-10-16 R13原账户检测恢复成功
+
+用户报告检测成功，原test1公开状态ready/lastErrorCode=null，偏好revision4保持；上次unavailable为历史快照。指定Chat/FlashX历史verified范围保留；随后P02队列A按用户回执验收通过，自动接续/单次结算另有独立证明，编辑/取消的独立记录边界见round-a-acceptance-2026-10-16.json；立即补充前台已验；自动标题原root遗漏仅隔离回归修复，不重发真实标题，工具闭环仍待验，不推广其他渠道或协议。无需重复检测、重启或已通过live；见docs/evidence/P02-02/live-2026-10-15/connection-restored-2026-10-16.json及同目录A记录。
+
+## 2026-10-16 R13当前连接异常与恢复入口
+
+P02-02启动截图后，只读确认原test1智谱普通Chat/FlashX同一账户及配置保留，但最近一次检测NETWORK_ERROR，当前status=unavailable。旧补验启动器误强制ready已修正，允许打开正常应用恢复连接，不改数据库状态、不读Key或自动调用。具体网络阶段未知，不判定Key失效；历史R13 verified范围保留，当前可用性待用户对原账户手动检测一次。基线后1个run在2次网络失败后完成，没有队列记录；不提升P02验收、不重跑已通过测试或其他渠道。见docs/evidence/P02-02/live-2026-10-15/startup-recovery-2026-10-16.json。
+
 ## 2026-10-15 工程CI与真实资源状态分开记录
 
 用户授权的P01交付已完成源码推送与CI修复：最终源分支codex/p01-02-zhipu-chat-live / f81c3d7，CI38715529361的check及startup-diagnostics均success；unit327/integration323/perf2/Electron47，标准用户/Office/启动诊断通过。首轮6项已知错误码与4项干净runner入口失败已修复并保留证据。本次按授权将3个源提交压缩为包含本交接的单一main提交，压缩暂存树与已验源码完全一致，新增交接仅文档，源分支保留、无PR。P01-gate仍engineering_passed_external_pending，各任务implemented_not_live_verified；订阅/其他渠道协议/价格金额缺口按用户要求保留，既有R13真实验证范围不扩大，未开展P02/P04补验或P05。证据docs/evidence/P01-engineering-2026-10-14/ci-success-2026-10-15.json和main-squash-2026-10-15.json。

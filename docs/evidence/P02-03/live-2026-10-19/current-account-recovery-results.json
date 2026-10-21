@@ -1,0 +1,176 @@
+{
+  "task": "P02-03",
+  "dependency": "P00-03/P03-01",
+  "localDate": "2026-10-19",
+  "checkedAt": "2026-10-19T10:11:54.681Z",
+  "status": "current_administrator_account_attachment_recovered",
+  "userPriority": "Administrator-account functionality first; independent standard-user acceptance deferred by user",
+  "standardUserAcceptance": "deferred_not_passed",
+  "verificationScope": {
+    "scope": "current-user",
+    "identity": {
+      "userSidHash": "89d3515d56b0f7fb4f2e9d5ab5438c2590534473cc30f033f476b0408a4d96d7",
+      "integritySid": "S-1-16-8192",
+      "administratorsGroup": true
+    }
+  },
+  "standardUser": false,
+  "fingerprint": "4d6d6387232f418cd1bd31b0dbd0a3ed0e6f9f18ab40184f0c5aa9569c9f1d8c",
+  "nativeTests": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "pending": 0
+  },
+  "parserTests": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "pending": 0
+  },
+  "parserAdapterSha256": "c04238c9aa02312b1ba8bb9f6b4d551b2d1833a5c78b0334ae4eb474df4110f4",
+  "missingNativeCases": [],
+  "missingParserCases": [],
+  "productionCoreCapabilities": {
+    "nativeExecution": {
+      "status": "available"
+    },
+    "officeRender": {
+      "status": "available"
+    },
+    "terminal": {
+      "status": "available"
+    }
+  },
+  "originalAttachment": {
+    "fileId": "01a15360-64af-7c6c-a4db-eecb96a56a90",
+    "versionId": "01a15360-64b0-7d54-b3c6-1b88974c3987",
+    "sha256": "fad042541edee25d5f4664dd954ecc410b87bcaf43a3be43d4a19886750155cf",
+    "bytes": 154,
+    "before": "failed",
+    "after": "ready",
+    "parserVersion": "p03-2",
+    "retryCount": 1,
+    "retryRequestId": "e8108b77-7e00-7c4b-814c-8ac849d96dc2",
+    "reuploaded": false,
+    "parsed": {
+      "parserVersion": "p03-2",
+      "format": "text",
+      "blocks": 5,
+      "hasExpectedSyntheticMarker": true,
+      "blobSha256": "f0ceb5d446cdb1ee1d83a9fe98efd9cbd90812b655fbeeaec85bf28cb3f73df1"
+    }
+  },
+  "protectedProfileStateUnchanged": true,
+  "protectedCounts": {
+    "sessions": 8,
+    "messages": 61,
+    "accounts": 1,
+    "modelPreferences": 1,
+    "ledger": 41,
+    "runs": 25,
+    "attempts": 41,
+    "tools": 2
+  },
+  "initialHarnessFailure": {
+    "report": "original-attachment-retry.json",
+    "exitCode": 1,
+    "retryCount": 0,
+    "appClosed": true,
+    "cause": "Readiness span is inside a folded details element; visible wait timed out although Core was connected. Corrected harness checks attached matching status; no product change or native re-run."
+  },
+  "productionRecovery": {
+    "report": "original-attachment-retry-confirmed.json",
+    "exitCode": 0,
+    "profileMatches": true,
+    "appClosed": true,
+    "manualUiButtonClickClaimed": false
+  },
+  "syntheticEvidencePrefixes": [
+    {
+      "path": "docs/evidence/P00-03/native-cases.jsonl",
+      "originalBytes": 927833,
+      "prefixUnchanged": true,
+      "appendedBytes": 89112
+    },
+    {
+      "path": "docs/evidence/P03-01/native-parser-cases.jsonl",
+      "originalBytes": 13737,
+      "prefixUnchanged": true,
+      "appendedBytes": 13733
+    }
+  ],
+  "buildArtifacts": {
+    "oldArtifacts": 619,
+    "currentArtifacts": 619,
+    "changed": [
+      "packages/core/dist/index.cjs"
+    ],
+    "removed": [],
+    "rendererUnchanged": true
+  },
+  "verification": [
+    {
+      "command": "pnpm test:unit P00-03.execution P00-03.capability-report P00-03.office-worker",
+      "exitCode": 0,
+      "passed": 14
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "formattedFiles": 450
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0
+    },
+    {
+      "command": "runtime-probe.mjs --scope=current-user",
+      "exitCode": 0,
+      "passed": 22
+    },
+    {
+      "command": "p03-parser-probe.mjs --scope=current-user",
+      "exitCode": 0,
+      "passed": 3
+    },
+    {
+      "command": "run-app.ps1 -CheckOnly",
+      "exitCode": 0,
+      "artifacts": 619
+    },
+    {
+      "command": "profile-protection.mjs after",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "result": "All 37 task states and evidence links verified"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "result": "Only preserved historical CRLF normalization warning"
+    }
+  ],
+  "modelRequests": 0,
+  "manualSqlWrites": 0,
+  "accountOrKeyConfigurationChanges": 0,
+  "rawMessageBodyOrKeyOrModelNativeExported": false,
+  "systemAccountsCreated": 0,
+  "systemPolicyChanges": 0,
+  "manualOriginalDirectoryAclOverrides": 0,
+  "stagesPromoted": false,
+  "committedOrPushed": false,
+  "remaining": "All new T01-T30 manual reports still pending; attachment prerequisite now unblocked, previously accepted variants stay accepted. Known project/group UI entry gaps remain development-side pending; standard-user seed not run.",
+  "normalReopen": {
+    "report": "normal-reopen.json",
+    "launcherSession": 28769,
+    "status": "running_exit_not_observed",
+    "originalProfileMatches": true,
+    "coreOpenedReceipt": true,
+    "traceAttemptRows": 0
+  },
+  "nextAction": "Continue the existing P02 batch checklist under the original administrator account; use the now-ready existing synthetic attachment, skip previously passed variants, report remaining outcomes together. Independent standard-user acceptance remains deferred."
+}

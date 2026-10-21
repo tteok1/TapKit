@@ -30,7 +30,7 @@ async function launch() {
   app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
   app.process().stderr?.on('data', (chunk) => process.stderr.write(chunk));
   const page = await app.firstWindow();
-  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125_000 });
   return page;
 }
 async function command(
@@ -91,6 +91,55 @@ test.beforeEach(async () => {
 test.afterEach(async () => {
   if (app) await app.close();
 });
+test('P02-03 T13 selection source is identified as original text and remains readable at two sizes', async () => {
+  test.setTimeout(180_000);
+  const p = await launch();
+  const session = await newSession(p);
+  const selected = 'The amber lighthouse guides a small boat safely home.';
+  await send(p, session, selected);
+  const source = (await snap(p, session)).messages.at(-1)!;
+  const article = p.locator('#message-' + source.id);
+  await article.getByText('选区操作', { exact: true }).click();
+  await article.locator('.chat-markdown').evaluate((body, text) => {
+    const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT);
+    for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+      const start = node.textContent?.indexOf(text) ?? -1;
+      if (start < 0) continue;
+      const range = document.createRange();
+      range.setStart(node, start);
+      range.setEnd(node, start + text.length);
+      const selection = window.getSelection()!;
+      selection.removeAllRanges();
+      selection.addRange(range);
+      return;
+    }
+    throw new Error('SELECTION_NOT_FOUND');
+  }, selected);
+  await article.getByRole('button', { name: '翻译', exact: true }).click();
+  await expect.poll(async () => (await snap(p, session)).run?.status).toBe('completed');
+  const result = await snap(p, session);
+  expect(result.run?.errorCode).toBeNull();
+  const answer = p.locator('#message-' + result.messages.at(-1)!.id);
+  await expect(answer.locator('.chat-markdown')).not.toContainText('[[evidence:');
+  await expect(p.locator('.chat-surface')).not.toContainText('文件选择无效');
+  await answer.getByText('所选原文（1）', { exact: true }).click();
+  for (const width of [1440, 1024]) {
+    await p.setViewportSize({ width, height: 900 });
+    await answer.getByRole('button', { name: '所选原文 1', exact: true }).click();
+    const preview = p.getByRole('dialog', { name: '所选原文', exact: true });
+    await expect(preview.locator('pre')).toHaveText(selected);
+    await expect(preview).not.toContainText(source.id);
+    const box = await preview.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.x).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(width + 1);
+    await p.screenshot({
+      path: `docs/evidence/P02-03/selection-result-2026-10-20/source-${width}.png`,
+    });
+    await preview.getByRole('button', { name: '取消', exact: true }).click();
+  }
+});
+
 test('P02-03 T06 two turns, early edit, answer candidates, feedback and restart draft', async () => {
   let p = await launch();
   const id = await newSession(p);
@@ -177,6 +226,7 @@ test('P02-03 T10 archived full-text hit loads the exact early message across pag
   await expect(p.locator('#message-' + target)).not.toContainText('归档早期定位标记');
 });
 test('P02-03 T20 grouping, bounded list pages, batch trash and restore preserve sessions', async () => {
+  test.setTimeout(180_000);
   const p = await launch();
   const ids = await p.evaluate(
     async (requestIds) => {

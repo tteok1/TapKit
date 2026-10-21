@@ -1,0 +1,61 @@
+{
+  "task": "P02-03",
+  "localDate": "2026-10-17",
+  "checkedAt": "2026-10-17T11:56:12.956Z",
+  "sourceCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "productChanges": "M packages/core/src/chat-service.ts\n M packages/core/src/context-service.ts\n M packages/core/src/index.ts\n M packages/core/src/provider-service.ts\n M packages/providers/src/api/adapter.ts\n M packages/providers/src/index.ts\n?? packages/core/src/tool-trace.ts\n?? packages/providers/src/api/tool-trace.ts\n?? packages/providers/src/api/zhipu-tools.ts",
+  "sourcePath": "packages/core/src/chat-service.ts",
+  "sourceSHA256": "4a3507ed44879faa9d3ce6b4bcba6e0a6e13b6d4e819ad11e8b8ef1e61df62b3",
+  "sources": [
+    {
+      "path": "packages/core/src/chat-service.ts",
+      "sha256": "4a3507ed44879faa9d3ce6b4bcba6e0a6e13b6d4e819ad11e8b8ef1e61df62b3"
+    },
+    {
+      "path": "packages/core/src/context-service.ts",
+      "sha256": "3d3de429da7e8404ae145319f71f6116087624603821da004522f496ff3698e7"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "4469b03a78602adf7a75af45a81cc0cd2a93fecedf614aae04874ca2bd0e8200"
+    },
+    {
+      "path": "packages/core/src/provider-service.ts",
+      "sha256": "0e53a3dca2230649204b3f433e47b1d4d865237e83eec63f9a8ef17449d0e3bc"
+    },
+    {
+      "path": "packages/providers/src/api/adapter.ts",
+      "sha256": "7c508882d00331602140b9c914d15960ee0e1096de1232828372eb19f4d16fe3"
+    },
+    {
+      "path": "packages/providers/src/index.ts",
+      "sha256": "e3d13a26c24fa73e88939c5c8dfe67caa9d73580ba5375ce2794fb3e1ca8ae8f"
+    },
+    {
+      "path": "packages/core/src/tool-trace.ts",
+      "sha256": "5e1f4da2d01299cb71e529d142bb26850b818f00d181c300c4d1be8943d1b58f"
+    },
+    {
+      "path": "packages/providers/src/api/tool-trace.ts",
+      "sha256": "70ff99d737743b351a4870a28695214afd47e4d3aeb29a5e2bfe9285871d51f4"
+    },
+    {
+      "path": "packages/providers/src/api/zhipu-tools.ts",
+      "sha256": "7af0f1a3a5ffa5ef2a79f24d386a9fcf614ee2a507ffc3a6db12b07926d72b29"
+    }
+  ],
+  "coreBuildSHA256": "10ebc9558940425e3a2f0911d75dbf559d76b9f3d4c11a0a346ccec9ea4e6052",
+  "mainBuildSHA256": "47c48ff7b47d65304f0df667482d29d11b8fba46a38300e119d34815d0e81ea1",
+  "reviewedScope": "Preserved title-root repair and Zhipu wire aliases/opt-in trace, plus ADR0054 role isolation of source background and source-data/1 context provenance. No new IPC/schema/settings/tool authorization/native binding version.",
+  "validation": "docs/evidence/P02-03/live-2026-10-17/background-priority-fix-2026-10-17.json",
+  "uiEvidence": "ui-read-1792238137698.json",
+  "tests": {
+    "redFailed": 3,
+    "integrationPassed": 49,
+    "unitPassed": 11,
+    "checkFiles": 445,
+    "checkExitCode": 0,
+    "buildDesktopExitCode": 0
+  },
+  "productionCoreHasFixture": false
+}

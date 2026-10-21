@@ -1,0 +1,24 @@
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |unit| tests/unit/P02-02.chat.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P02-02.chat.test.ts [ tests/unit/P02-02.chat.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{2af9539f-4b28-42d2-afcd-cc048aba51e6}\AC\Temp\KfO47nVT7pNPjez1rlh7Q\ssr\5cded63746ead27ea7119273e93c5aefe436c250'
+ ❯ packages/tools/src/read-gateway.ts:1:1
+      1| import { z, IdSchema, type ResourceRef } from '@tapkit/contracts';
+       | ^
+      2|
+      3| const fileInput = z.strictObject({
+ ❯ tests/unit/P02-02.chat.test.ts:2:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 passed (2)
+   Start at  18:10:55
+   Duration  744ms (transform 67%, import 25%, setup 5%, worker 2%, tests 1%)
+

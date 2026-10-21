@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "executionPolicy": "appcontainer-lok-v1",
+  "startedAt": "2026-10-19T09:01:23.926Z",
+  "endedAt": "2026-10-19T09:02:08.606Z",
+  "command": "pnpm test:integration P00-03 --reporter=json --outputFile=test-results/P00-03-native.json",
+  "exitCode": 1,
+  "standardUser": true,
+  "fingerprint": "15953979e84533874d87ea3b5f77634acac25e4b09c3291776ec39eb89d66863",
+  "capabilities": {
+    "nativeExecution": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    },
+    "officeRender": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    },
+    "terminal": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    }
+  },
+  "tests": {
+    "total": 22,
+    "passed": 6,
+    "failed": 16,
+    "pending": 0
+  },
+  "missingCases": [
+    "P00-03.sandbox.test.ts: Node reads only input and writes workspace; runtime and input are read only; environment is private",
+    "P00-03.sandbox.test.ts: execution lease cleanup allows the next helper invocation",
+    "P00-03.sandbox.test.ts: concurrent runs keep independent AppContainer identities and workspace ACLs",
+    "P00-03.sandbox.test.ts: hard-killing the helper stops job descendants and recovers its ACL/profile lease",
+    "P00-03.sandbox.test.ts: Python starts and spawns a child in AppContainer",
+    "P00-03.sandbox.test.ts: network denies public, loopback and metadata connections",
+    "P00-03.sandbox.test.ts: cancel kills descendants",
+    "P00-03.sandbox.test.ts: timeout, output flood and fork limits are enforced",
+    "P00-03.sandbox.test.ts: memory exhaustion is contained",
+    "P00-03.sandbox.test.ts: UNC, ADS, traversal, aliases and junction input paths fail closed",
+    "P00-03.sandbox.test.ts: ConPTY is interactive while still in AppContainer",
+    "P00-03.office.test.ts: P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppContainer route",
+    "P00-03.office.test.ts: P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an isolated positive control",
+    "P00-03.office.test.ts: P00-03 T19 OfficeWorker preserves cached external-link data with an isolated refresh control",
+    "P00-03.office.test.ts: P00-03 T08 OfficeWorker fails closed on a corrupt document and remains usable",
+    "P00-03.office.test.ts: P00-03 Office hard kill recovers only its recorded mapped drives on the next helper run"
+  ]
+}
+
+NATIVE_ACCEPTANCE_FAILURES [{"title":"P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppContainer route","reason":"Error: APP_CONTAINER_HELPER_FAILED:path.open.office.runtime.component.2:0x80070005"},{"title":"P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an isolated positive control","reason":"Error: APP_CONTAINER_HELPER_FAILED:path.open.office.runtime.component.2:0x80070005"},{"title":"P00-03 T19 OfficeWorker preserves cached external-link data with an isolated refresh control","reason":"Error: APP_CONTAINER_HELPER_FAILED:path.open.office.runtime.component.2:0x80070005"},{"title":"P00-03 T08 OfficeWorker fails closed on a corrupt document and remains usable","reason":"Error: expected [Function] to throw error including 'OFFICE_EXECUTION_FAILED' but got 'APP_CONTAINER_HELPER_FAILED:path.open…'"},{"title":"P00-03 Office hard kill recovers only its recorded mapped drives on the next helper run","reason":"Error: Helper failed before started: {\"protocolVersion\":1,\"requestId\":\"0132b940-4b1f-7aed-86f7-643abe37553f\",\"runId\":\"650ce50f-b534-71bf-bbf9-feefa5848a90\",\"leaseEpoch\":1,\"event\":\"failed\",\"data\":{\"code\":\"SANDBOX_UNAVAILABLE\",\"stage\":\"path.open.office.runtime.component.2:0x80070005\"}}"},{"title":"Node reads only input and writes workspace; runtime and input are read only; environment is private","reason":"AssertionError: helper events: [{\"protocolVersion\":1,\"requestId\":\"b758b150-4913-78dd-a4db-c6ed2c392b5d\",\"runId\":\"bae40a50-d1dd-7221-afbb-efabda650d66\",\"leaseEpoch\":1,\"event\":\"failed\",\"data\":{\"code\":\"SANDBOX_UNAVAILABLE\",\"stage\":\"path.open.runtime.component.3:0x80070005\"}}]: expected 1 to be +0 // Object.is equality"},{"title":"execution lease cleanup allows the next helper invocation","reason":"AssertionError: helper events: [{\"protocolVersion\":1,\"requestId\":\"b2d6e811-cbb5-76cf-947b-8865c6d24171\",\"runId\":\"244b2ee4-873e-7bd2-8068-f0bac9bd788e\",\"leaseEpoch\":1,\"event\":\"failed\",\"data\":{\"code\":\"SANDBOX_UNAVAILABLE\",\"stage\":\"path.open.runtime.component.3:0x80070005\"}}]: expected 1 to be +0 // Object.is equality"},{"title":"concurrent runs keep independent AppContainer identities and workspace ACLs","reason":"Error: Both helpers did not reach started before one finished"},{"title":"hard-killing the helper stops job descendants and recovers its ACL/profile lease","reason":"Error: Helper failed before started: {\"protocolVersion\":1,\"requestId\":\"5034ddf4-cb50-7e39-b0ed-d8bf2105b522\",\"runId\":\"fe7a3ae5-0cf5-7fdb-8a9d-c3b53c0ed6c0\",\"leaseEpoch\":1,\"event\":\"failed\",\"data\":{\"code\":\"SANDBOX_UNAVAILABLE\",\"stage\":\"path.open.runtime.component.3:0x80070005\"}}"},{"title":"Python starts and spawns a child in AppContainer","reason":"AssertionError: helper events: [{\"protocolVersion\":1,\"requestId\":\"e1af00e0-1976-7159-a23e-11a8fc9836ca\",\"runId\":\"0ce6a4b2-dd9d-71ef-be93-0766729aa252\",\"leaseEpoch\":1,\"event\":\"failed\",\"data\":{\"code\":\"SANDBOX_UNAVAILABLE\",\"stage\":\"path.open.runtime.component.2:0x80070005\"}}]: expected 1 to be +0 // Object.is equality"},{"title":"network denies public, loopback and metadata connections","reason":"AssertionError: helper events: [{\"protocolVersion\":1,\"requestId\":\"4759ca70-bb79-7209-b66d-c799ed8c659b\",\"runId\":\"f6bc4b6d-d92d-786d-9854-61e3c79c1f76\",\"leaseEpoch\":1,\"event\":\"failed\",\"data\":{\"code\":\"SANDBOX_UNAVAILABLE\",\"stage\":\"path.open.runtime.component.3:0x80070005\"}}]: expected 1 to be +0 // Object.is equality"},{"title":"cancel kills descendants","reason":"AssertionError: helper events: [{\"protocolVersion\":1,\"requestId\":\"4737c1eb-ab6b-7d2a-9818-5c56dc6b6461\",\"runId\":\"366af9ff-f98d-7b84-8721-0853fd67097a\",\"leaseEpoch\":1,\"event\":\"failed\",\"data\":{\"code\":\"SANDBOX_UNAVAILABLE\",\"stage\":\"path.open.runtime.component.3:0x80070005\"}}]: expected 1 to be +0 // Object.is equality"},{"title":"timeout, output flood and fork limits are enforced","reason":"AssertionError: helper events: [{\"protocolVersion\":1,\"requestId\":\"b7e33cfd-7429-75d3-9134-ffd4b7504817\",\"runId\":\"8a531d40-a01b-76ce-b544-4e0b6baed4c1\",\"leaseEpoch\":1,\"event\":\"failed\",\"data\":{\"code\":\"SANDBOX_UNAVAILABLE\",\"stage\":\"path.open.runtime.component.3:0x80070005\"}}]: expected 1 to be +0 // Object.is equality"},{"title":"memory exhaustion is contained","reason":"AssertionError: helper events: [{\"protocolVersion\":1,\"requestId\":\"4e83bf84-9ff9-7618-942e-e4aeeae5dfe5\",\"runId\":\"411c1352-ced4-73d9-8a4a-7ae11c93b5c5\",\"leaseEpoch\":1,\"event\":\"failed\",\"data\":{\"code\":\"SANDBOX_UNAVAILABLE\",\"stage\":\"path.open.runtime.component.2:0x80070005\"}}]: expected 1 to be +0 // Object.is equality"},{"title":"UNC, ADS, traversal, aliases and junction input paths fail closed","reason":"AssertionError: expected 'path.open.runtime.component.3:0x80070…' to be 'path.syntax' // Object.is equality"},{"title":"ConPTY is interactive while still in AppContainer","reason":"AssertionError: helper events: [{\"protocolVersion\":1,\"requestId\":\"512b00c6-4e82-757a-a615-0a11222f157c\",\"runId\":\"235ac865-5613-76ab-915c-e45d5373c795\",\"leaseEpoch\":1,\"event\":\"failed\",\"data\":{\"code\":\"SANDBOX_UNAVAILABLE\",\"stage\":\"path.open.runtime.component.3:0x80070005\"}}]: expected 1 to be +0 // Object.is equality"}]

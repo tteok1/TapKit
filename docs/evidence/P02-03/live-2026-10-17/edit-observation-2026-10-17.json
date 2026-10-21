@@ -1,0 +1,123 @@
+{
+  "task": "P02-03",
+  "round": "A-edit-branch",
+  "checkedAt": "2026-10-17T11:50:16.434Z",
+  "status": "not_accepted_wrong_answer_branch_creation_and_old_data_preserved",
+  "branches": [
+    {
+      "id": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "parentId": null,
+      "headId": "01a1498f-fcc3-74dd-93f5-dab471deeb98",
+      "revision": 5
+    },
+    {
+      "id": "01a149b1-1b36-73c3-a172-614da1fe30e7",
+      "parentId": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "headId": "01a149b1-1ecd-7755-9276-80951e8ee32c",
+      "revision": 3
+    }
+  ],
+  "runs": [
+    {
+      "id": "01a149b1-1b37-738c-af7f-362ed8ec4318",
+      "sessionId": "01a1498f-dbb2-7fa8-8829-be6b985c7926",
+      "userMessageId": "01a149b1-1b36-7b1a-857b-02aed9aa94f4",
+      "status": "completed",
+      "calls": 1,
+      "tools": 0,
+      "createdAt": 1792237706039,
+      "rootRunId": "01a149b1-1b37-738c-af7f-362ed8ec4318",
+      "branchId": "01a149b1-1b36-73c3-a172-614da1fe30e7",
+      "userParentId": null,
+      "inputMatchesExpected": 1,
+      "contextSnapshots": 2,
+      "contextSourceIncludesUser": 2,
+      "replyIsNoToolText": 1,
+      "replyMatchesExpected": 0
+    }
+  ],
+  "historyUses": [
+    {
+      "kind": "history",
+      "sourceId": "01a14426-7ce1-7673-9ead-2b29188e28ca",
+      "sourceSessionId": "01a14426-4cdf-7ae3-acd0-0d093a87ed48",
+      "sourceRole": "user",
+      "includesPreviousNoToolPhrase": 0,
+      "includesOnlyReplyInstruction": 1
+    },
+    {
+      "kind": "history",
+      "sourceId": "01a1442b-fda6-7f45-8642-683f86fc32a5",
+      "sourceSessionId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+      "sourceRole": "user",
+      "includesPreviousNoToolPhrase": 0,
+      "includesOnlyReplyInstruction": 1
+    },
+    {
+      "kind": "history",
+      "sourceId": "01a1442c-3408-7b10-ad9f-4acf6c815a4d",
+      "sourceSessionId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+      "sourceRole": "user",
+      "includesPreviousNoToolPhrase": 0,
+      "includesOnlyReplyInstruction": 1
+    },
+    {
+      "kind": "history",
+      "sourceId": "01a148cc-917f-7aae-80c6-8817942c44ce",
+      "sourceSessionId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+      "sourceRole": "user",
+      "includesPreviousNoToolPhrase": 1,
+      "includesOnlyReplyInstruction": 1
+    },
+    {
+      "kind": "history",
+      "sourceId": "01a148d8-f09d-70c3-ad44-da8052095ad7",
+      "sourceSessionId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+      "sourceRole": "user",
+      "includesPreviousNoToolPhrase": 1,
+      "includesOnlyReplyInstruction": 1
+    }
+  ],
+  "oldMessages": [
+    {
+      "id": "01a1498f-e8eb-7693-abc8-9dccfb56fdbf",
+      "revisionPreserved": 1,
+      "statusPreserved": 1,
+      "branchPreserved": 1,
+      "parentPreserved": 1,
+      "lengthPreserved": 1
+    },
+    {
+      "id": "01a1498f-e9eb-76ac-8489-36974d486439",
+      "revisionPreserved": 1,
+      "statusPreserved": 1,
+      "branchPreserved": 1,
+      "parentPreserved": 1,
+      "lengthPreserved": 1
+    },
+    {
+      "id": "01a1498f-fc8b-7e31-9767-1bce6ef71092",
+      "revisionPreserved": 1,
+      "statusPreserved": 1,
+      "branchPreserved": 1,
+      "parentPreserved": 1,
+      "lengthPreserved": 1
+    },
+    {
+      "id": "01a1498f-fcc3-74dd-93f5-dab471deeb98",
+      "revisionPreserved": 1,
+      "statusPreserved": 1,
+      "branchPreserved": 1,
+      "parentPreserved": 1,
+      "lengthPreserved": 1
+    }
+  ],
+  "oldLedgerUnchanged": true,
+  "source": "snapshot-1792237776793.json",
+  "trace": "tool-trace-review-1792237777038.json",
+  "modelRequests": 0,
+  "databaseWrites": 0,
+  "messageBodiesExported": false,
+  "credentialOrNativeReads": 0,
+  "finding": "Latest edited input is exact and branch exists; source refs include it. Recalled5 old user instructions include2 no-tool phrases. Source text was promoted into system by assembly. This is a confirmed role-boundary defect; sole causal attribution awaits repaired live comparison."
+}

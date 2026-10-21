@@ -1,0 +1,18 @@
+{
+  "task": "P02-03",
+  "purpose": "One authorized retry of the already saved synthetic attachment through production Host/Core APIs",
+  "startedAt": "2026-10-19T10:05:56.757Z",
+  "dataDirectoryMatches": true,
+  "nativeCapabilities": null,
+  "before": null,
+  "after": null,
+  "retryRequestId": null,
+  "retryCount": 0,
+  "modelRequests": 0,
+  "manualSqlWrites": 0,
+  "accountOrKeyConfigurationChanges": 0,
+  "screenshotsOrMessageBodiesExported": false,
+  "failure": "locator.waitFor: Timeout 120000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('core-status').filter({ hasText: '本地核心已连接' }) to be visible\u001b[22m\n\u001b[2m    209 × locator resolved to hidden <span data-testid=\"core-status\">本地核心已连接</span>\u001b[22m\n",
+  "appClosed": true,
+  "endedAt": "2026-10-19T10:07:58.451Z"
+}

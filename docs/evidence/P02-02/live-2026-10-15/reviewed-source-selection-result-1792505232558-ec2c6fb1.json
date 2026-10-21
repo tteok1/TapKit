@@ -1,0 +1,131 @@
+{
+  "task": "P02-03",
+  "localDate": "2026-10-20",
+  "checkedAt": "2026-10-20T14:06:26.808Z",
+  "sourceCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "productChanges": "M apps/desktop/src/main/index.ts\n M apps/desktop/src/renderer/locales/chat.zh-CN.json\n M apps/desktop/src/renderer/src/chat-surface.tsx\n M apps/desktop/src/renderer/src/design-system.css\n M apps/desktop/src/renderer/src/history-ui.tsx\n M apps/desktop/src/renderer/src/styles.css\n M packages/core/src/chat-service.ts\n M packages/core/src/context-service.ts\n M packages/core/src/history-service.ts\n M packages/core/src/index.ts\n M packages/core/src/provider-service.ts\n M packages/providers/src/api/adapter.ts\n M packages/providers/src/index.ts\n M packages/tools/src/execution/index.ts\n?? apps/desktop/src/main/core-startup.ts\n?? packages/core/src/selection-output.ts\n?? packages/core/src/tool-trace.ts\n?? packages/providers/src/api/tool-trace.ts\n?? packages/providers/src/api/zhipu-tools.ts",
+  "sourcePath": "packages/core/src/chat-service.ts",
+  "sourceSHA256": "ec2c6fb1a0d464a2260934db2c04bea489193a1a589d43526f0605468d8c8905",
+  "sources": [
+    {
+      "path": "apps/desktop/src/main/core-startup.ts",
+      "sha256": "899c515c0a57def5b7364e98196bbf96df7740c6fa6d42fe086a969179dd8721"
+    },
+    {
+      "path": "apps/desktop/src/main/index.ts",
+      "sha256": "0a310ef08c72f430208168c6de71e727a9783cfd202493ecec08d3ae86c210ae"
+    },
+    {
+      "path": "apps/desktop/src/renderer/locales/chat.zh-CN.json",
+      "sha256": "e9ceb49e3288e6fd5a09be79d0b08767687800bb4206bcab0dc4f76e55475ad4"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/chat-surface.tsx",
+      "sha256": "1da2dccac5f38479d249c8f846a6984183d5b7fd42cd7539140d08f5db595cde"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/design-system.css",
+      "sha256": "51c6f233a799c99dd4713783e80d2a785153d708ac7c0851881e6be277455d4d"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/history-ui.tsx",
+      "sha256": "2934facafb6b659731ff73232f2d2c0ef0bbb9dfd2c099ac34e463c2a129818d"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/styles.css",
+      "sha256": "cb659e84e7500df16330cec3760c60d5cdcda569ce32be52ae2143fbe1d26ea7"
+    },
+    {
+      "path": "packages/core/src/chat-service.ts",
+      "sha256": "ec2c6fb1a0d464a2260934db2c04bea489193a1a589d43526f0605468d8c8905"
+    },
+    {
+      "path": "packages/core/src/context-service.ts",
+      "sha256": "b40fe45c2a8de104ff6f430cd519532cfc57700ee76bcef549fc6807c3d0881e"
+    },
+    {
+      "path": "packages/core/src/history-service.ts",
+      "sha256": "b4ed9a53b339935683a7588a97675c065d560a754bd74d3452f1cff864cb46f8"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "4469b03a78602adf7a75af45a81cc0cd2a93fecedf614aae04874ca2bd0e8200"
+    },
+    {
+      "path": "packages/core/src/provider-service.ts",
+      "sha256": "0e53a3dca2230649204b3f433e47b1d4d865237e83eec63f9a8ef17449d0e3bc"
+    },
+    {
+      "path": "packages/core/src/selection-output.ts",
+      "sha256": "9ade590ba05ca6e2dcc2dcc5388198c3b6ad31104684d9d9b6f43e806526593a"
+    },
+    {
+      "path": "packages/core/src/tool-trace.ts",
+      "sha256": "5e1f4da2d01299cb71e529d142bb26850b818f00d181c300c4d1be8943d1b58f"
+    },
+    {
+      "path": "packages/providers/src/api/adapter.ts",
+      "sha256": "7c508882d00331602140b9c914d15960ee0e1096de1232828372eb19f4d16fe3"
+    },
+    {
+      "path": "packages/providers/src/api/tool-trace.ts",
+      "sha256": "70ff99d737743b351a4870a28695214afd47e4d3aeb29a5e2bfe9285871d51f4"
+    },
+    {
+      "path": "packages/providers/src/api/zhipu-tools.ts",
+      "sha256": "7af0f1a3a5ffa5ef2a79f24d386a9fcf614ee2a507ffc3a6db12b07926d72b29"
+    },
+    {
+      "path": "packages/providers/src/index.ts",
+      "sha256": "e3d13a26c24fa73e88939c5c8dfe67caa9d73580ba5375ce2794fb3e1ca8ae8f"
+    },
+    {
+      "path": "packages/tools/src/execution/index.ts",
+      "sha256": "dfd19f4bd748b4ab8de826170a536ca5efbe31006c815112c4d83e338751c96e"
+    }
+  ],
+  "coreBuildSHA256": "d3a8c3a442e26ee7064e3133cf5cd7e6f534e2798cbb84bfccea6439649c041c",
+  "mainBuildSHA256": "db330ae5b86aa0194d82cec7fd4cde3ab31702873389ff0d8475b071d3fbbf7a",
+  "reviewedScope": "ADR0056 selection-v2: provider text-only original, selection output projection and evidence separation, explicit source labels and generic validation error. Existing Host/provider/runtime and unrelated UI sources frozen.",
+  "validation": "docs/evidence/P02-03/selection-result-2026-10-20/results.json",
+  "uiEvidence": "docs/evidence/P02-03/selection-result-2026-10-20/e2e-targeted.log",
+  "tests": {
+    "unitPassed": 2,
+    "integrationPassed": 42,
+    "e2ePassed": 1,
+    "e2eWindowSizes": [
+      1440,
+      1024
+    ],
+    "checkFiles": 457,
+    "checkExitCode": 0,
+    "buildDesktopExitCode": 0
+  },
+  "productionCoreHasFixture": false,
+  "runtimeSources": [
+    {
+      "path": "scripts/execution-verification.mjs",
+      "sha256": "e702bec557b8165ddfb2519f00811d5eda4ca8cdcc4d2b5b2c15dd68331fd3f3"
+    },
+    {
+      "path": "scripts/runtime-inventory.mjs",
+      "sha256": "019742ec340cccba2777dd08187543fd9d14accdcadf34e74050c061255b43ab"
+    },
+    {
+      "path": "scripts/runtime-probe.mjs",
+      "sha256": "8e7faca977cbaf5718d65daea96c7adfefbd50029b7184eab016ab8f0e3eed6f"
+    },
+    {
+      "path": "scripts/p03-parser-probe.mjs",
+      "sha256": "67c1066d50bfdcc24346f2361c1a882946fb9c33ce0df2d2c46ec0af87b17b5d"
+    }
+  ],
+  "rendererFingerprint": "8f10517f08489a30dd4d76c6a4a2401d06aa5593b29c41efc8c86cb5d6a8268a",
+  "previousValidation": {
+    "checkExitCode": 0,
+    "buildDesktopExitCode": 0
+  },
+  "at": "2026-10-20T14:04:04.708Z",
+  "priorManifest": "verified-build-selection-1792485608048-aa1ce975.json",
+  "supersedesMetadata": "reviewed-source-selection-result-1792505186808-ec2c6fb1.json"
+}

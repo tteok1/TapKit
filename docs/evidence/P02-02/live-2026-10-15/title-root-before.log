@@ -1,0 +1,54 @@
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P02-03.history.test.ts (22 tests | 2 failed | 20 skipped) 1418ms
+   ❯ P02-03 history lifecycle (22)
+     × P02-02 automatic title after an inherited continuation uses the original root and task version 745ms
+     × P02-02 automatic title cannot escape an exhausted inherited root budget 671ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > P02-02 automatic title after an inherited continuation uses the original root and task version
+AssertionError: expected { …(2) } to deeply equal { …(2) }
+
+- Expected
++ Received
+
+  {
+-   "root_run_id": "01a0a25d-0400-7c54-99b7-4f3558d72929",
++   "root_run_id": "01a0a25d-0464-7049-92d1-3dedaf7d2d54",
+    "status": "completed",
+  }
+
+ ❯ tests/integration/P02-03.history.test.ts:253:19
+    251|       .prepare('SELECT root_run_id,status FROM provider_attempts WHERE…
+    252|       .get(continuation.runId);
+    253|     expect(title).toEqual({ root_run_id: root.runId, status: 'complete…
+       |                   ^
+    254|     expect(f.inputs.at(-1)?.taskVersion).toBe(2);
+    255|     expect(f.store.db.prepare('SELECT count(*) n FROM budgets WHERE re…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > P02-02 automatic title cannot escape an exhausted inherited root budget
+AssertionError: expected 'completed' to be 'failed' // Object.is equality
+
+Expected: "failed"
+Received: "completed"
+
+ ❯ tests/integration/P02-03.history.test.ts:270:53
+    268|     f.history.queueTitle(f.session, continuation.runId!);
+    269|     await f.history.titles();
+    270|     expect((await f.details()).session.titleStatus).toBe('failed');
+       |                                                     ^
+    271|     expect((await f.details()).session.titleErrorCode).toBe('BUDGET_EX…
+    272|     expect(f.store.db.prepare('SELECT count(*) n FROM provider_attempt…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 20 skipped (22)
+   Start at  18:08:50
+   Duration  4.20s (transform 42%, tests 36%, import 22%)
+

@@ -1,0 +1,84 @@
+{
+  "checkedAt": "2026-10-16T10:44:45.712Z",
+  "task": "P02-02",
+  "mode": "development renderer with existing production Host; public read only; user confirmed prior app fully exited",
+  "host": {
+    "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+    "appPath": "D:\\Tapkit-public\\apps\\desktop",
+    "packaged": false
+  },
+  "modelRequests": 0,
+  "secretBodiesExported": false,
+  "outcomes": [
+    {
+      "command": "providers.list",
+      "ok": true,
+      "keys": [
+        "accounts",
+        "models"
+      ],
+      "accounts": 1,
+      "readyAccounts": 1,
+      "catalog": null,
+      "messages": null
+    },
+    {
+      "command": "models.catalog",
+      "ok": true,
+      "keys": [
+        "catalog",
+        "priceVersion",
+        "sessions"
+      ],
+      "accounts": null,
+      "readyAccounts": null,
+      "catalog": 1,
+      "messages": null
+    },
+    {
+      "command": "messages.list",
+      "ok": true,
+      "keys": [
+        "sessionId",
+        "branchId",
+        "messages",
+        "nextCursor",
+        "run",
+        "pending",
+        "eventSeq",
+        "selection",
+        "tools"
+      ],
+      "accounts": null,
+      "readyAccounts": null,
+      "catalog": null,
+      "messages": 6
+    }
+  ],
+  "initialUi": {
+    "historyRows": 0,
+    "coreConnected": false,
+    "coreUnavailable": false,
+    "sourceErrorOverlay": false
+  },
+  "schemaChecks": [
+    {
+      "command": "bootstrap",
+      "parsed": true
+    },
+    {
+      "command": "providers.list",
+      "parsed": true
+    },
+    {
+      "command": "messages.list",
+      "parsed": true
+    }
+  ],
+  "diagnosticFailure": {
+    "name": "TimeoutError",
+    "timeout": true,
+    "detailExported": false
+  },
+  "pageErrors": []
+}

@@ -1,0 +1,63 @@
+{
+  "checkedAt": "2026-10-19T14:21:31.370Z",
+  "launcherSession": 23166,
+  "launcherStatus": "running_exit_not_observed",
+  "caseId": "01a15486-4b7d-7e16-826e-0f9c1cc774ac",
+  "profileId": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10",
+  "originalProfileMatches": true,
+  "coreOpenedReceipt": true,
+  "attemptRows": 0,
+  "openedAfterMs": 22722,
+  "publicIpcUpdatedAfterLaunch": true,
+  "replies": [
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    },
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    },
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    }
+  ],
+  "modelRequestsByAgent": 0
+}

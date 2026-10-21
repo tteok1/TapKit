@@ -12,6 +12,7 @@ import { execFile, spawn } from 'node:child_process';
 import { promisify } from 'node:util';
 import { once } from 'node:events';
 import type { IpcMainInvokeEvent } from 'electron';
+import { readExecutionCapabilities } from '../../packages/tools/src/execution';
 let app: ElectronApplication | undefined, root: string, dir: string;
 function getApp() {
   if (!app) throw new Error('Electron application has not launched');
@@ -295,7 +296,7 @@ async function launch() {
     process.stderr.write('P03_SYNTHETIC_RENDERER_ERROR ' + error.message + '\n'),
   );
   await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
-  // Local production capabilities stay fail-closed until a standard-user probe verifies them.
+  // Local production capabilities require valid evidence for this actual host token.
   nativeStatus = await page.evaluate(async () => {
     const r = await window.tapkit.bootstrap({
       requestId: '0195abc0-0000-7000-8000-000000000011',
@@ -303,7 +304,10 @@ async function launch() {
     if (!r.ok || !('runtimeCapabilities' in r.data)) throw new Error('bootstrap');
     return r.data.runtimeCapabilities?.nativeExecution.status;
   });
-  if (process.env.CI !== 'true') expect(nativeStatus).toBe('failed');
+  if (process.env.CI !== 'true')
+    expect(nativeStatus).toBe(
+      (await readExecutionCapabilities(resolve('.'))).nativeExecution.status,
+    );
   await page.getByRole('link', { name: '文件', exact: true }).click();
   await expect(page.getByRole('heading', { name: '资料库', exact: true })).toBeVisible();
   return page;

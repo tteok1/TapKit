@@ -1,0 +1,231 @@
+{
+  "task": "P02-03",
+  "round": "B-regenerate",
+  "checkedAt": "2026-10-17T13:52:59.643Z",
+  "status": "passed_live_scoped_regenerate_and_version_switch",
+  "caseId": "01a149b9-04f4-7d9c-9487-44b0b62e3b25",
+  "session": {
+    "id": "01a14969-e3c4-77ee-b768-6fc59b1451d6",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+    "revision": 13,
+    "titleSHA256": "bf2da8762f6105a4e8c0e684053707e894f53ce0b3f3e2b920dce92f7a60daa1",
+    "titleManual": 0
+  },
+  "checks": {
+    "oneCompletedRegenerate": true,
+    "exactPromptAndReply": true,
+    "oneCandidateForPreviousAnswer": true,
+    "copiedUserProvenance": true,
+    "allOldMessagesAndBranchesPreserved": true,
+    "oldLedgerHashPreserved": true,
+    "requestAndRetryAccounting": true,
+    "contextVersionAndCurrentUser": true,
+    "oneSuccessfulRegenerateReceipt": true,
+    "oldAndNewVersionSwitches": true,
+    "noReplayFromSwitching": true,
+    "completeTraceForEachAttempt": true,
+    "idleNoUnsettledOrDuplicates": true
+  },
+  "branches": [
+    {
+      "id": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "parentId": null,
+      "forkMessageId": null,
+      "candidateFor": null,
+      "headMessageId": "01a1498f-0dde-7e27-b7c3-403a7e7c3216",
+      "revision": 6
+    },
+    {
+      "id": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "parentId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "forkMessageId": "01a1498e-a6d7-79cc-9c74-7994ef8dbf6f",
+      "candidateFor": null,
+      "headMessageId": "01a149c6-7bec-7200-856b-14ef4488e230",
+      "revision": 3
+    },
+    {
+      "id": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+      "parentId": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "forkMessageId": "01a149c6-7bec-7200-856b-14ef4488e230",
+      "candidateFor": "01a149c6-7bec-7200-856b-14ef4488e230",
+      "headMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "revision": 3
+    }
+  ],
+  "runs": [
+    {
+      "id": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "status": "completed",
+      "calls": 1,
+      "tools": 0,
+      "rootRunId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "taskVersion": 1,
+      "userMessageId": "01a14a20-e0b2-7d7b-92f3-761f9f7f7f37",
+      "assistantMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "createdAt": 1792245031091,
+      "branchId": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+      "sourceMessageId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "promptMatchesExpected": 1,
+      "replyMatchesExpected": 1
+    }
+  ],
+  "attempts": [
+    {
+      "attemptId": "01a14a20-e132-7787-b8ed-e2a2b4bde639",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "rootRunId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "logicalCallId": "01a14a20-e100-7f52-bf50-dada66985a1e",
+      "attemptNo": 1,
+      "status": "failed",
+      "errorCode": "NETWORK_ERROR",
+      "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "modelRef": "glm-4.7-flashx",
+      "source": "estimated",
+      "inputTokens": null,
+      "outputTokens": null,
+      "chargedTokens": 14335,
+      "settlementCount": 1
+    },
+    {
+      "attemptId": "01a14a21-3857-7004-9643-c088af437c21",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "rootRunId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "logicalCallId": "01a14a20-e100-7f52-bf50-dada66985a1e",
+      "attemptNo": 2,
+      "status": "completed",
+      "errorCode": null,
+      "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "modelRef": "glm-4.7-flashx",
+      "source": "actual",
+      "inputTokens": 1332,
+      "outputTokens": 4,
+      "chargedTokens": 1336,
+      "settlementCount": 1
+    }
+  ],
+  "contexts": [
+    {
+      "id": "01a14a20-e10b-7766-a417-e00e1dc06849",
+      "logicalCallId": "01a14a20-e100-7f52-bf50-dada66985a1e",
+      "promptVersion": "chat-p04-2:source-data/1",
+      "currentUserRefCount": 1
+    },
+    {
+      "id": "01a14a20-e13b-7b28-a264-3299576498bd",
+      "logicalCallId": "01a14a20-e100-7f52-bf50-dada66985a1e",
+      "promptVersion": "chat-p04-2:source-data/1",
+      "currentUserRefCount": 1
+    },
+    {
+      "id": "01a14a21-3861-71de-80a6-c0359de7186d",
+      "logicalCallId": "01a14a20-e100-7f52-bf50-dada66985a1e",
+      "promptVersion": "chat-p04-2:source-data/1",
+      "currentUserRefCount": 1
+    }
+  ],
+  "receipts": [
+    {
+      "sequence": 327,
+      "requestId": "01a14a20-e0aa-7d1d-808e-fd4be1941954",
+      "command": "messages.regenerate",
+      "state": "completed",
+      "recordedAt": 1792245031093,
+      "ok": 1,
+      "branchId": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9"
+    },
+    {
+      "sequence": 330,
+      "requestId": "01a14a21-a781-709f-833d-f035c7065a8c",
+      "command": "messages.switchBranch",
+      "state": "completed",
+      "recordedAt": 1792245081986,
+      "ok": 1,
+      "branchId": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "runId": null
+    },
+    {
+      "sequence": 332,
+      "requestId": "01a14a21-bedc-7458-932f-a871b10ed5f4",
+      "command": "messages.switchBranch",
+      "state": "completed",
+      "recordedAt": 1792245087966,
+      "ok": 1,
+      "branchId": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+      "runId": null
+    },
+    {
+      "sequence": 334,
+      "requestId": "01a14a21-e4bf-71f4-9e6c-c1d3f50f299b",
+      "command": "messages.switchBranch",
+      "state": "completed",
+      "recordedAt": 1792245097664,
+      "ok": 1,
+      "branchId": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "runId": null
+    },
+    {
+      "sequence": 335,
+      "requestId": "01a14a21-ed16-76ed-bb1d-ccdc616f59f1",
+      "command": "messages.switchBranch",
+      "state": "completed",
+      "recordedAt": 1792245099799,
+      "ok": 1,
+      "branchId": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+      "runId": null
+    }
+  ],
+  "oldMessages": [
+    {
+      "id": "01a1498e-a6d7-79cc-9c74-7994ef8dbf6f",
+      "preserved": true
+    },
+    {
+      "id": "01a1498e-a864-7434-a9dc-fa25b6801d25",
+      "preserved": true
+    },
+    {
+      "id": "01a1498e-fba9-76ef-a5d7-3fdc67284d94",
+      "preserved": true
+    },
+    {
+      "id": "01a1498f-0dc1-777c-bc8e-27c19cd5762d",
+      "preserved": true
+    },
+    {
+      "id": "01a1498f-0dde-7e27-b7c3-403a7e7c3216",
+      "preserved": true
+    },
+    {
+      "id": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "preserved": true
+    },
+    {
+      "id": "01a149c6-7bec-7200-856b-14ef4488e230",
+      "preserved": true
+    }
+  ],
+  "oldBranches": [
+    {
+      "id": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "preserved": true
+    },
+    {
+      "id": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "preserved": true
+    }
+  ],
+  "actualTokens": 1336,
+  "estimatedTokens": 14335,
+  "humanConfirmation": "符合预期。可以继续下一项验收",
+  "baseline": "regenerate-baseline-2026-10-17.json",
+  "source": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792245120059.json",
+  "trace": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792245120644.json",
+  "limits": "One same-account/model regeneration with bounded existing retry, old/new answer switching. Failed estimated usage is retained and not presented as actual vendor consumption. Other channels/protocols and full task/stage acceptance remain pending.",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false
+}

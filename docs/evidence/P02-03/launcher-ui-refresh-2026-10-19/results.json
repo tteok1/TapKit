@@ -1,0 +1,151 @@
+{
+  "task": "P02-03",
+  "dependencyTask": "P00-02",
+  "localDate": "2026-10-19",
+  "recordedAt": "2026-10-19T12:26:25.186Z",
+  "root": "D:/Tapkit-public",
+  "branch": "main",
+  "sourceCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "status": "launcher_and_core_startup_verified_manual_acceptance_unchanged",
+  "causes": [
+    {
+      "cause": "Old reviewed source snapshot rejected the two current UI CSS changes",
+      "reproducedCommand": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File docs/evidence/P02-02/live-2026-10-15/run-app.ps1 -CheckOnly",
+      "exitCode": 1
+    },
+    {
+      "cause": "Host 15000ms watchdog terminated Core while verifying the full runtime before ready",
+      "coldFingerprintMs": 67215,
+      "warmFingerprintMs": 14597,
+      "fingerprintMatches": true,
+      "firstLaunchEvidence": "docs/evidence/P02-03/launcher-ui-refresh-2026-10-19/normal-reopen.json",
+      "firstLaunchSession": 98224,
+      "firstLaunchExitCode": 1
+    }
+  ],
+  "changes": {
+    "uiRefresh": "Explicit -RefreshUiBuild runs locked check/production build, freezes reviewed non-UI/runtime code and Core/Host binaries, then activates new source/artifact snapshots",
+    "coreStartup": "Complete current-policy report with an available capability selects a bounded 120000ms Host watchdog; missing/failed/malformed/obsolete reports retain 15000ms. Core still checks every runtime byte and actual account",
+    "activeSourceReview": "reviewed-source-startup-1792412478278.json",
+    "activeBuildManifest": "verified-build-startup-1792412478278.json",
+    "reviewedSources": 14,
+    "artifactCount": 619,
+    "coreBuildSHA256": "f2da17371483727bb8de205bc4d0508ee06d83ab3909ab6aa2da645d3f0ee8a5",
+    "mainBuildSHA256": "db330ae5b86aa0194d82cec7fd4cde3ab31702873389ff0d8475b071d3fbbf7a",
+    "rendererFingerprint": "49008421b9d7c6f660e5ed8d85fd8f91efc91c0d8327ba6c447df57841dea2f2",
+    "priorCoreBinaryPreserved": true,
+    "priorBackendRuntimeSourcesPreserved": true,
+    "existingUserCssChangesPreserved": true
+  },
+  "checks": [
+    {
+      "command": "Locked node --check for build-review.mjs / refresh-ui-build.mjs / inspect.mjs / verified-build.mjs",
+      "exitCode": 0
+    },
+    { "command": "PowerShell AST parse of run-app.ps1", "exitCode": 0 },
+    {
+      "command": "validateUiRefresh positive current UI delta and three negative hash/path cases",
+      "exitCode": 0,
+      "acceptedCurrentUi": true,
+      "rejectedKnownBackendMutation": true,
+      "rejectedUnknownBackendPath": true,
+      "rejectedRuntimeMutation": true,
+      "mechanism": "In-memory injected hashes/paths; no mutation of product sources or profile"
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File docs/evidence/P02-02/live-2026-10-15/run-app.ps1 -RefreshUiBuild -CheckOnly",
+      "exitCode": 0,
+      "checkFiles": 451,
+      "checkExitCode": 0,
+      "buildDesktopExitCode": 0,
+      "log": "docs/evidence/P02-03/launcher-ui-refresh-2026-10-19/refresh.log"
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File docs/evidence/P02-02/live-2026-10-15/run-app.ps1 -RefreshUiBuild -CheckOnly",
+      "context": "Running-app negative guard",
+      "exitCode": 1,
+      "expectedFailure": true,
+      "refusedBeforeBuild": true,
+      "log": "docs/evidence/P02-03/launcher-ui-refresh-2026-10-19/running-app-guard.log"
+    },
+    {
+      "command": "Read-only full runtime fingerprint with original desktop identity, cold and warm",
+      "exitCode": 0,
+      "evidence": [
+        "docs/evidence/P02-03/launcher-ui-refresh-2026-10-19/runtime-hash-timing.json",
+        "docs/evidence/P02-03/launcher-ui-refresh-2026-10-19/runtime-hash-warm-timing.json"
+      ]
+    },
+    {
+      "command": ".runtime/node/node-v24.21.0-win-x64/node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:unit P00-02.core-startup",
+      "exitCode": 0,
+      "passed": 3,
+      "failed": 0
+    },
+    {
+      "command": ".runtime/node/node-v24.21.0-win-x64/node.exe .cache/tools/pnpm/package/bin/pnpm.mjs check",
+      "exitCode": 0,
+      "files": 453,
+      "failures": 0,
+      "log": "docs/evidence/P02-03/launcher-ui-refresh-2026-10-19/startup-check.log"
+    },
+    {
+      "command": ".runtime/node/node-v24.21.0-win-x64/node.exe .cache/tools/pnpm/package/bin/pnpm.mjs build:desktop",
+      "exitCode": 0,
+      "log": "docs/evidence/P02-03/launcher-ui-refresh-2026-10-19/startup-build.log"
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File docs/evidence/P02-02/live-2026-10-15/run-app.ps1 -CheckOnly",
+      "context": "Final Host/source/artifact snapshot",
+      "exitCode": 0
+    }
+  ],
+  "normalReopen": {
+    "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File docs/evidence/P02-02/live-2026-10-15/run-app.ps1",
+    "checkedAt": "2026-10-19T12:22:39.102Z",
+    "launcherSession": 55667,
+    "launcherStatus": "running_exit_not_observed",
+    "caseId": "01a1541c-4cf9-7577-97b6-8fd63b55fa39",
+    "profileId": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10",
+    "coreOpenedReceipt": true,
+    "attemptRows": 0,
+    "originalProfileMatches": true,
+    "openedAfterMs": 20733,
+    "modelRequestsByAgent": 0,
+    "mainProcesses": 1,
+    "coreNodeServices": 1,
+    "publicListReplyCount": 12,
+    "publicListRepliesAllSucceeded": true,
+    "exitCode": null,
+    "evidence": [
+      "docs/evidence/P02-03/launcher-ui-refresh-2026-10-19/normal-reopen-confirmed.json",
+      "docs/evidence/P02-03/launcher-ui-refresh-2026-10-19/reopen-public-ipc.json"
+    ]
+  },
+  "scope": {
+    "originalDataDir": "D:/Tapkit-public/.test-data/P01-02-app-zhipu-chat-20261013-7444d6df",
+    "originalProfileRetained": true,
+    "modelRequestsByAgent": 0,
+    "originalBusinessSqlWritesByAgent": 0,
+    "keysOrNativeOrPrivateBodiesExported": false,
+    "layoutEvidenceReused": "docs/evidence/P02-03/dialog-layout-2026-10-19/results.json",
+    "layoutTestsRerun": false,
+    "nativeOrParserVerificationRerun": false,
+    "standardUserAcceptance": "deferred_by_user",
+    "manualP02BatchOutcomes": "unchanged_awaiting_user",
+    "gates": "unchanged",
+    "commitOrPush": false,
+    "limitation": "Bounded startup allowance resolves premature termination; full-runtime cold IO is still slow and no performance gate is claimed"
+  },
+  "finalDocumentationChecks": {
+    "status": "passed",
+    "commands": [
+      {
+        "command": ".runtime/node/node-v24.21.0-win-x64/node.exe .cache/tools/pnpm/package/bin/pnpm.mjs docs:check",
+        "exitCode": 0,
+        "result": "All 37 task states, started handoffs and completed requirement evidence links verified"
+      },
+      { "command": "git diff --check", "exitCode": 0 }
+    ]
+  }
+}

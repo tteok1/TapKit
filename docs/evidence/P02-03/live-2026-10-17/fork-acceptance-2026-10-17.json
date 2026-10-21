@@ -1,0 +1,43 @@
+{
+  "task": "P02-03",
+  "round": "C-fork-session",
+  "localDate": "2026-10-17",
+  "status": "passed_live_scoped_selected_successful_message_fork",
+  "review": "fork-review-1792246280701.json",
+  "newSessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+  "copiedMessageCount": 2,
+  "finding": "The copied question and selected successful answer match the prepared parent path, content SHA and canonical provenance. The timeout card is a zero-text failed retry sibling, not an ancestor of that successful answer; it remains in the original conversation and its numeric ledger. This is path-based selection, not a blanket failure-status exclusion rule.",
+  "originalMessageHashesPreserved": 10,
+  "originalBranchesPreserved": 3,
+  "originalLedgerEntriesPreserved": 7,
+  "newRuns": 0,
+  "newAttempts": 0,
+  "newTools": 0,
+  "newSettlements": 0,
+  "limits": "Only this successful reply fork is accepted. Forking a failed reply, whole-session backup, all message types, attachments and all providers were not live tested. Original failed-edit conversation was not retried.",
+  "next": {
+    "round": "D-manual-title",
+    "status": "prepared_waiting_user",
+    "baseline": "manual-title-baseline-2026-10-17.json",
+    "expectedTitle": "P02验收-分叉副本-1017",
+    "modelRequestsExpected": 0
+  },
+  "checks": [
+    { "command": "locked Node inspect.mjs snapshot", "exitCode": 0, "report": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792246207204.json" },
+    { "command": "locked Node read-tool-trace.mjs", "exitCode": 0, "report": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792246207823.json" },
+    { "command": "locked Node review-fork.mjs snapshot-1792246207204.json tool-trace-review-1792246207823.json", "exitCode": 0, "result": "All 12 scoped checks true" },
+    { "command": "locked Node record-fork-handoff.mjs fork-review-1792246280701.json", "exitCode": 0, "result": "C scope recorded; one unique synthetic manual-title baseline prepared without modifying the app database" },
+    { "command": "locked pnpm docs:check", "exitCode": 0, "result": "All 37 task states, started handoffs and completed requirement evidence links verified" },
+    { "command": "git diff --check", "exitCode": 0 },
+    { "command": "locked Node --check review-fork.mjs and record-fork-handoff.mjs", "exitCode": 0 }
+  ],
+  "productChangesThisTurn": 0,
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false,
+  "taskStatus": "implemented_not_live_verified",
+  "stageGate": "engineering_passed_external_pending",
+  "otherProvidersAndProtocols": "deferred",
+  "committedOrPushed": false
+}

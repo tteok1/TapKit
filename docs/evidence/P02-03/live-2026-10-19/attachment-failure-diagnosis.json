@@ -1,0 +1,53 @@
+{
+  "task": "P02-03",
+  "dependency": "P03-01/P00-03",
+  "localDate": "2026-10-19",
+  "checkedAt": "2026-10-19T09:05:26.489Z",
+  "observation": "original_saved_parser_unavailable",
+  "file": {
+    "fileId": "01a15360-64af-7c6c-a4db-eecb96a56a90",
+    "fileStatus": "failed",
+    "versionId": "01a15360-64b0-7d54-b3c6-1b88974c3987",
+    "sizeBytes": 154,
+    "sha256": "fad042541edee25d5f4664dd954ecc410b87bcaf43a3be43d4a19886750155cf",
+    "parseStatus": "failed",
+    "previewStatus": "pending",
+    "errorCode": "SANDBOX_UNAVAILABLE",
+    "errorReason": "SANDBOX_UNAVAILABLE"
+  },
+  "jobs": [
+    {
+      "id": "01a15360-64b3-7073-91de-6eb14c8e356c",
+      "kind": "file.parse",
+      "status": "failed",
+      "attempts": 3,
+      "errorCode": null,
+      "createdAt": 1792400188595,
+      "fileVersionId": "01a15360-64b0-7d54-b3c6-1b88974c3987"
+    }
+  ],
+  "syntheticOriginal": {
+    "bytes": 154,
+    "sourceSHA256": "fad042541edee25d5f4664dd954ecc410b87bcaf43a3be43d4a19886750155cf",
+    "managedBlobSHA256": "fad042541edee25d5f4664dd954ecc410b87bcaf43a3be43d4a19886750155cf",
+    "managedBlobMatchesSource": true
+  },
+  "capabilitiesFileWasMissingBeforeRecovery": true,
+  "sourceReferences": [
+    "packages/core/src/file-parser.ts:102",
+    "packages/tools/src/execution/index.ts:168",
+    "packages/core/src/index.ts:43"
+  ],
+  "nativeRecovery": "native-recovery/summary.json; outside-tool-sandbox probe pending",
+  "globalCounts": {
+    "runs": 25,
+    "attempts": 41,
+    "tools": 2,
+    "ledger": 41
+  },
+  "batchBaselineCountsUnchanged": true,
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrModelNativeReads": 0,
+  "messageBodiesExported": false
+}

@@ -1,0 +1,121 @@
+{
+  "task": "P02-02",
+  "round": "A",
+  "localDate": "2026-10-16",
+  "status": "passed_user_acceptance",
+  "publicState": "snapshot-1792144814797.json",
+  "userReport": {
+    "allRequestedStepsPassed": true,
+    "authorizedRecordingPassed": true,
+    "queueEditingAndCancellation": "passed_by_user_report",
+    "navigationPreservedGeneration": "passed_by_user_report",
+    "retainedFollowupExecutedOnce": "passed_by_user_report_and_metadata"
+  },
+  "independentVerification": {
+    "queueInput": {
+      "id": "01a14426-7ce1-76e1-982e-ca2f013c4291",
+      "sessionId": "01a14426-4cdf-7ae3-acd0-0d093a87ed48",
+      "kind": "followup",
+      "status": "accepted",
+      "revision": 2,
+      "targetRunId": "01a14426-61bb-79c6-ae7f-3282aba61f2e",
+      "targetTaskVersion": 1,
+      "userMessageId": "01a14426-7ce1-7673-9ead-2b29188e28ca",
+      "characterCount": 23,
+      "createdAt": 1792144735457,
+      "updatedAt": 1792144745895
+    },
+    "mainRun": {
+      "id": "01a14426-61bb-79c6-ae7f-3282aba61f2e",
+      "sessionId": "01a14426-4cdf-7ae3-acd0-0d093a87ed48",
+      "rootRunId": "01a14426-61bb-79c6-ae7f-3282aba61f2e",
+      "taskVersion": 1,
+      "status": "completed",
+      "statusReason": null,
+      "createdAt": 1792144728507,
+      "startedAt": 1792144728510,
+      "endedAt": 1792144745891,
+      "calls": 1,
+      "tools": 0
+    },
+    "followupRun": {
+      "id": "01a14426-a5a6-7c54-8b58-bca6b98bcf26",
+      "sessionId": "01a14426-4cdf-7ae3-acd0-0d093a87ed48",
+      "rootRunId": "01a14426-a5a6-7c54-8b58-bca6b98bcf26",
+      "taskVersion": 1,
+      "status": "completed",
+      "statusReason": null,
+      "createdAt": 1792144745894,
+      "startedAt": 1792144745896,
+      "endedAt": 1792144747788,
+      "calls": 1,
+      "tools": 0
+    },
+    "followupAttempts": [
+      {
+        "id": "01a14426-a5ca-7e2a-b147-caa7a2207c51",
+        "runId": "01a14426-a5a6-7c54-8b58-bca6b98bcf26",
+        "rootRunId": "01a14426-a5a6-7c54-8b58-bca6b98bcf26",
+        "logicalCallId": "01a14426-a5b5-780e-aa4d-1bece00bb303",
+        "attemptNo": 1,
+        "status": "completed",
+        "errorCode": null,
+        "modelRef": "glm-4.7-flashx",
+        "createdAt": 1792144745940,
+        "source": "actual",
+        "inputTokens": 2517,
+        "outputTokens": 3,
+        "chargedTokens": 2520
+      }
+    ],
+    "followupStartedAfterMain": true,
+    "followupStartGapMs": 5,
+    "oneForegroundAttemptAndOneSettlement": true,
+    "workload": {
+      "activeRuns": 0,
+      "pendingInputs": 0,
+      "activeTitles": 0,
+      "activeMemoryJobs": 0,
+      "reservedBudgets": 0,
+      "unsettledAttempts": 0
+    },
+    "priorLedgerUnchanged": true,
+    "duplicateSettlements": []
+  },
+  "evidenceLimitations": [
+    "This profile snapshot contains one accepted queue row and no cancelled queue row. Queue editing/cancellation is recorded as the user-reported pass, not independently verified database evidence.",
+    "Navigation/UI continuity is confirmed by the human report, not independently timed or screenshotted.",
+    "No whole-task, cross-provider or phase-gate promotion."
+  ],
+  "agentModelRequests": 0,
+  "credentialReads": 0,
+  "nativeContentReads": 0,
+  "applicationWrites": 0,
+  "checks": [
+    {
+      "command": "locked Node --no-warnings docs/evidence/P02-02/live-2026-10-15/inspect.mjs snapshot",
+      "exitCode": 0
+    },
+    {
+      "command": "locked Node --input-type=module -e $p02RoundARecord",
+      "exitCode": 0,
+      "assertions": "one accepted queued followup; queued during active parent; starts after parent; one completed actual attempt; no workload/duplicates; old ledger stable"
+    }
+  ],
+  "next": "Round B immediate steer; C read-only tool loop remains untested",
+  "finalChecks": [
+    {
+      "command": "locked pnpm exec prettier --ignore-path .gitignore --write round-a-acceptance-2026-10-16.json round-b-start-2026-10-16.json checks.json acceptance.md CURRENT.md INDEX.md P02-02.md RESOURCES.md",
+      "exitCode": 0
+    },
+    {
+      "command": "locked Node scripts/docs-check.mjs",
+      "exitCode": 0,
+      "result": "37 task states/evidence links verified; FR-06-020/021 updated without whole-task promotion"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ]
+}

@@ -1,0 +1,323 @@
+{
+  "task": "P02-03",
+  "localDate": "2026-10-19",
+  "status": "planning_coverage_only_not_test_results",
+  "currentTaskRequirements": 44,
+  "manualRows": 36,
+  "requirements": [
+    {
+      "requirementId": "FR-04-001",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T10",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-04-002",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T09/T10",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-04-003",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T09",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-04-004",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T07/T09",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-04-005",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T09",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-04-006",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T09条件项",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-04-007",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T10",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-04-008",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T08",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-04-009",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T05",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-04-010",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T01剩余删组",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-04-011",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T06",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-04-012",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T06/T17/T23/T24",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-04-013",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T07",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-04-014",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T01",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-04-015",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T11",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-04-016",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T08/T16未验变体",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-05-001",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T19/T20",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-05-002",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T19",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-05-003",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "passed_scoped_existing_search_highlight",
+      "casesOrBoundary": "passed_scoped_existing_search_highlight",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-05-004",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T19项目文件定位变体",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-05-005",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T20未验范围短词",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-05-006",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T21单项删除；全清保留独立fixture",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-05-007",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "agent_owned_permissions_engineering_evidence",
+      "casesOrBoundary": "agent_owned_permissions_engineering_evidence",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-07-011",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T12",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-07-012",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "passed_scoped_edit_A",
+      "casesOrBoundary": "passed_scoped_edit_A",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-07-013",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "passed_scoped_regenerate_B",
+      "casesOrBoundary": "passed_scoped_regenerate_B",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-07-014",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "deferred_other_models",
+      "casesOrBoundary": "deferred_other_models",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-07-015",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "passed_scoped_successful_fork_C",
+      "casesOrBoundary": "passed_scoped_successful_fork_C",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-07-016",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T02；快捷后续问题无独立入口不伪造",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-07-017",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T13a—f",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-07-018",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T14/T15/T18",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-07-020",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T14",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-07-021",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T27/T28",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-08-001",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T22 AI入口及手工优先竞态",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-08-002",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "passed_scoped_historical_conversation_continue",
+      "casesOrBoundary": "passed_scoped_historical_conversation_continue",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-08-003",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T03整会话/附件变体",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-08-004",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T04",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-08-005",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "passed_scoped_archive_restore_F",
+      "casesOrBoundary": "passed_scoped_archive_restore_F",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-08-006",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T24/T25/T26批量变体",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-08-007",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T26批量恢复及T30合成永久删除",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-08-009",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T17/T23/T24",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-08-010",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T17",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-08-013",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T29",
+      "source": "docs/progress/requirements.csv"
+    },
+    {
+      "requirementId": "FR-08-014",
+      "implementationStatus": "implemented_not_live_verified",
+      "classification": "manual_batch_prepared_not_accepted",
+      "casesOrBoundary": "T08窗口草稿变体；已过普通重启不重测",
+      "source": "docs/progress/requirements.csv"
+    }
+  ],
+  "knownEntryGaps": [
+    "Ungrouped project first group membership UI entry not found; project pin/group reorder are not user-executable from this setup",
+    "Independent quick-follow-up suggestion button not found; T02 tests actual quote-selection action only"
+  ],
+  "agentModelRequests": 0,
+  "newAcceptedItems": 0
+}

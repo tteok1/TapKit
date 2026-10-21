@@ -1,3 +1,295 @@
+## 2026-10-21 用户授权当前main全部提交与推送
+
+范围包括本次UI及此前已存在的Core/Provider/隔离/启动修复、测试和证据。候选555文件约16.8MB，常见凭据/数据库文件检查无命中；unit352、相关集成39、check458退出0，沙箱联接权限失败原样保留，沙箱外完整unit通过。Git直连失败后使用当前Windows既有代理成功获取origin/main，提交前本地/远端基线一致；无永久网络配置变更。见[全量交付检查点](../evidence/P02-03/git-delivery-2026-10-21/preflight.json)。本段为提交前记录，最终提交/远端状态由Git核对；不提升原真人/阶段状态，不改写历史验收基线。
+
+## 2026-10-21 侧栏单一滚动与聊天页精简
+
+用户明确要求后已直接用原脚本-RefreshUiBuild刷新并启动：619产物UI快照激活，原profile窗口和Core/12公开列表回执正常，attempt0，无强杀/模型请求。session48710仍运行/退出未观测；[启动回执](../evidence/P02-03/chat-simplify-2026-10-21/normal-reopen.json)。原真人结果与任务/gate状态保持。
+
+按用户截图在当前main取消会话列表内层滚动，整栏滚动/保存位置；删除正文重复标题区、草稿可见标签、模式选择器、输入操作菜单及提示词管理UI。顶部标题、输入无障碍/键盘/发送链路和提示词数据/API/斜杠展开保留。新增四种尺寸/缩放组合的真实UI回归，原菜单测试更新为键盘验证；实际命令与结果见[本轮证据](../evidence/P02-03/chat-simplify-2026-10-21/verification.md)及同目录results.json。原profile未重启，新UI需原脚本-RefreshUiBuild；真人T13a及阶段状态保持，无commit/push。
+
+## 2026-10-20 T13a选区来源与知识证据分离，追加修复已加载
+
+本次真人轮原英文范围仍正确，已生成中文译文，但输出前缀包含来源messageId的evidence标记；随后知识引用校验拒绝，run为partial/VALIDATION_ERROR，界面错误文案误称文件选择。只读诊断保存ID/范围/状态与hash，不导出Key/native或私人正文。ADR0056补selection-v2：供应商仅收JSON原文，来源ID仍由Core核验并持久化；无工具的选区结果不进入知识引用校验或citations表。流式投影清理额外内部标记，原文中的协议示例保留；普通知识引用防伪与权限不变。界面明确“所选原文”，来源预览仍走正式命令；通用校验错误不再一律说文件。
+
+新增unit2、相关integration42、定向Electron1（实际选区按钮与两尺寸原句预览）及check457均exit0。首轮临时SSR缓存ENOENT和无关测试发现JSON导入错误原样保留；固定任务TEMP/TMP并限定测试文件后通过，未要求用户重做其他已过项。E2E结束恢复生产构建exit0，19源码/619产物新快照已激活；Host/preload/runtime及其他UI源码保持。
+
+用户已退出且进程0/旧session98586实际exit0；正常脚本两项预检exit0，原profile11.080秒opened、12公开列表成功/attempt0。8条旧消息hash、分支、账户及15sessions/93messages/1account/30runs/49attempts/2tools/49ledger保持，无Agent真实模型请求/手写原业务库。当前session62166运行中/退出未观测。下一仅在“P02批测-操作-1019”重选原英文翻译一次，核对新结果语义、已完成、无编码/文件错误；旧失败保留。见[追加修复证据](../evidence/P02-03/selection-result-2026-10-20/results.json)。T13a及任务/gate不提前提升，管理员优先、非管理员与其他渠道暂缓保持，无commit/push。
+
+## 2026-10-20 T13选区修复生产构建已加载，待单次翻译复验
+
+用户确认已完全退出，实际本仓库进程0、旧启动session23166退出0。复核三个Core修复文件与测试文件hash均与已过50个不同集成用例、15个unit及最终455文件检查的版本一致；未重跑已过范围。其他已审查后台/runtime源码及renderer指纹冻结，生产build:desktop实际exit0，619产物只有Core变化，Host/preload/renderer保持。新16源码审查快照reviewed-source-selection-1792485608048-aa1ce975.json已激活，正常脚本的公开profile/账户及产物预检均exit0，不用UI-only刷新批准后台。
+
+从原验收profile打开后，Core33.626秒收到opened，12条公开列表回执均成功，trace attempt0/无Agent模型请求。原“操作”会话既有消息字段hash、账户以及15会话/91消息/1账户/29runs/48attempts/2tools/48ledger保持，无手工SQL写入或Key/native/私人正文导出。当前session42667运行中、退出码未观测，不记exit0。
+
+[构建/激活与原目录回执](../evidence/P02-03/selection-operation-2026-10-19/results.json)。下一仅由用户在“P02批测-操作-1019”重新选中原英文，执行一次选区翻译并确认中文语义；保留旧失败，不自动重发，不重做已过项。工程构建已加载不等同真实翻译已通过，T13a及其余未验变体保持待验；管理员优先、非管理员及其他渠道暂缓，任务/gate不提升，无commit/push。
+
+## 2026-10-19 T13选区翻译延续旧固定回复，源码修复待退出重建
+
+只读核对用户指定“P02批测-操作-1019”会话最后一轮：来源版本1、UTF-16范围27—80准确对应原英文；新用户消息是翻译请求，新attempt1/completed，结果与上一轮固定回复一致，无checkpoint，但普通上下文仍带旧会话及5条背景使用。无选区抓错或旧UI回复误读证据；不声称从元数据读到供应商内部决策。证据只存ID/范围/hash/分类和计数，不导出Key/native或私人正文。
+
+[ADR0056](../adr/0056-selection-operation-context.md)实现Core内部动作来源标记与独立选区装配：只发本轮动作和再次核验的JSON原文，保留既有项目/回答偏好，不带其他历史/自动背景/检查点，不提供工具，意外工具在执行前拒绝；预算不足直接停止，不压缩补入旧目标。原会话/失败回复保留，普通后续仍使用历史。收据绑定原transform请求，修复委托send导致的重放CONFLICT；Renderer伪造动作字段拒绝，无IPC/DB迁移。
+
+新增五动作装配/引用/历史保持/重放与普通后续回归先红5项后绿；异常覆盖过期版本/范围、伪造来源、预算及意外工具。相关integration初次49/50通过，剩余工具用例已正确拒绝且tool_calls0，只因既有partial语义误断言failed；修正测试后只重跑该项1/1通过，共50不同用例分别通过。另unit15/15、check454及最终455文件均exit0。第一次中间装配修复暴露收据冲突5项失败也保留；不隐去过程或冒称第一次整轮全绿。
+
+当前尚待用户托盘退出session23166及旧终端，异步操作已请求；在此前只做只读原库诊断及独立合成测试，不重建/改运行产物或发真实模型请求。接续需构建新Core、核对已有UI/后台runtime冻结范围、生成独立新审查快照并从原目录重开；不能用UI-only刷新自动批准后台变化。之后用户仅重选原英文执行一次翻译，检查译文语义，旧失败保留，不重测已过项。见[本轮证据](../evidence/P02-03/selection-operation-2026-10-19/results.json)。T13a真人复验及其余未验变体保持待验，P02-03/gate不提升，管理员优先/非管理员及其他渠道暂缓，无commit/push。
+
+## 2026-10-19 选中分组折叠后侧栏会话消失修复
+
+用户截图中左侧只剩“最近”、聊天页仍有所有会话。独立生产界面复现为选中分组后折叠：旧section筛选不清，渲染又过滤全部行，左0/右5；不是记录丢失。HistoryList现先核对分组公开元数据，当前组已折叠/删除则回默认范围、清除旧批量选择，避免向已删section请求列表；选择折叠组先经原CAS命令展开再筛选，去除二次隐藏会话行的旧过滤。
+
+定向工程回归含1440×900/960×640的创建后保留最近、选中折叠回默认、点击折叠组展开、跨视图删组后恢复全部行及实际滚动可达；既有135会话分页/分组/回收恢复用例也通过。三条用例跨两次运行分别通过：首次2通过/1失败仅因滚动可见比0.9998649未达恰好1，按小数像素容差改为0.99后只重跑1440，1/1通过且脚本exit0/生产恢复完成。真实缺陷负向exit1以及初次15秒测试启动等待失败均保留；测试等待对齐现有Host启动预算，没有修改Core或原生执行授权。既有用户CSS与后台/runtime源码保持。
+
+启动器check454文件、生产build:desktop及两项预检均exit0；新快照619产物、后台/runtime源码及Core/Host产物与用户CSS哈希保持。原profile22.722秒收到Core opened，12条公开列表回执均成功/attempt0，session23166运行中/退出码未观测；旧session55667用户托盘退出后实际exit0。见[实际命令/结果](../evidence/P02-03/sidebar-groups-2026-10-19/results.json)与[修复说明](../evidence/P02-03/sidebar-groups-2026-10-19/verification.md)。原真人批测、任务和gate状态保持，不将合成回归冒充用户T07/T01整体通过；管理员优先、非管理员暂缓，无模型请求/密钥正文导出/手工写原业务库/commit或push。
+
+## 2026-10-19 新UI启动脚本与Core启动等待修复
+
+旧启动器冻结了变更前的源码/产物，用户两处CSS改动因此触发拒绝。现新增显式 `-RefreshUiBuild`：先确认已退出本checkout的TapKit，固定HEAD、既有非UI源码和Core/Host/runtime哈希，通过check及生产build:desktop后写新快照并切换active-build指针；普通启动仍校验原profile与账户，不换目录。已验证UI变化允许及后台/未知后台/runtime变化拒绝、运行中拒绝刷新。旧布局10/10与24份几何截图沿用，未重复真人功能。
+
+刷新后实开暴露另一启动问题：完整运行时指纹冷读67.215秒、热读14.597秒，Host原15秒看门狗在Core ready前终止进程。P00-02依赖修复仅对结构完整且当前策略的available报告给120秒启动等待，其余仍15秒；Core逐字节/账户校验及隔离不变。新增unit3/3、check453文件、build:desktop和启动预检均退出0。失败首次重开保留（session98224最终exit1）；修复后原profile20.733秒收到Core opened，Main/Core服务各1、12条sessions.list/sidebar.list公开回执均成功，trace attempt0。session55667仍运行/退出码未观测，不把实开写成exit0；无Agent模型请求/Key或正文导出。
+
+[实际命令/结果](../evidence/P02-03/launcher-ui-refresh-2026-10-19/results.json)、[启动说明](../evidence/P02-03/launcher-ui-refresh-2026-10-19/verification.md)。原账户/数据目录、批测清单及已过范围保持，管理员优先/非管理员暂缓和所有任务/gate状态保持，无commit/push。
+
+## 2026-10-19 当前main弹窗越界修复
+
+按用户要求直接在当前main移除history-dialog旧位移与新版居中的冲突，并将非原生删除影响确认框纳入统一视口居中。新增P02-03 T22覆盖两尺寸×100%/200%及大字体、六类表单的边界/居中/滚动/键盘关闭；定向E2E10/10及24份表单几何/截图通过，旧transform定向注入350px偏移被断言检出（exit1）。最终检查/构建与命令见[修复证据](../evidence/P02-03/dialog-layout-2026-10-19/verification.md)及同目录results.json。P02-03和gate、原真人批测/标准用户约定保持；保留既有改动，无commit/push。
+
+## 2026-10-19 管理员账户附件前置恢复，标准用户按用户要求暂缓
+
+用户明确要求优先完成当前管理员账户功能。ADR0055已实现显式current-user探测，报告真实standardUser=false、medium integrity/管理员组，并以SID哈希和权限状态绑定；默认标准用户探测/CI保持。相关unit14/14、完整check450文件、生产build:desktop均退出0；同一账户原生隔离22/22、解析3/3均零失败/跳过/缺项，能力报告及生产Core bootstrap三能力available。运行时指纹4d6d6387232f418cd1bd31b0dbd0a3ed0e6f9f18ab40184f0c5aa9569c9f1d8c；原AppContainer/ACL/Job/无网络/资源上限及变化拒绝不放宽。
+
+原profile正式Host/Core的files.retryParse仅执行一次，原154字节合成附件01a15360-64af-7c6c-a4db-eecb96a56a90、version01a15360-64b0-7d54-b3c6-1b88974c3987不变；failed→ready、parser p03-2、同一SHA，解析text5块且合成口令匹配，无重传。原8会话/61消息/1账户/模型偏好/25runs/41attempts/2tools/41ledger的内容及关键字段整体SHA保持，无Agent模型请求或手工SQL写入。旧9项修复源码字节保持，619产物仅Core变化、界面资源不变；不重复已过人工项。
+
+首次核对脚本因连接状态在折叠details内而等待可见超时，exit1/retry0/正常关闭；修正为检查已连接状态节点后，生产核对exit0/retry1/正常关闭，不隐去失败或计作两次附件重试。此为正式API恢复证据，不冒称用户已点过重试按钮或T03/T26整体通过。新人工T01—T30仍待统一回报，附件前置解除；项目初次入组/置顶等入口缺口仍由开发侧处理。其他渠道/协议/模型暂缓，原C5强用户ID语义not_met及原失败会话同输入复验not_performed保留，P02和既有阶段状态不提升。
+
+[恢复与实际命令/退出码](../evidence/P02-03/live-2026-10-19/current-account-recovery-results.json)、[原件单次重试](../evidence/P02-03/live-2026-10-19/original-attachment-retry-confirmed.json)、[原数据保持及合成解析](../evidence/P02-03/live-2026-10-19/profile-protection-after.json)、[ADR0055](../adr/0055-current-account-native-verification.md)。原profile正常重新打开，session28769仍运行/退出码未观测，新trace opened1/attempt0；见[正常重开回执](../evidence/P02-03/live-2026-10-19/normal-reopen.json)。标准用户seed保留但不运行，旧指纹不能证明新源码；当前只回原管理员账户继续[批测清单](../evidence/P02-03/live-2026-10-19/batch-checklist.md)，不创建系统账户/改策略或手工放宽原目录ACL，无commit/push。
+
+## 2026-10-19 已准备标准用户附件前置验证副本，待用户实跑
+
+用户确认有现成非管理员 Windows 账户。已用既有 standard-user-kit 流程准备独立 seed：D:/TapKit/.test-data/P02-standard-user-20261019-4f9e，仅源码/锁定运行时/helper，无原 profile/聊天/Key/vault/业务库；27907个常规文件、无reparse，原目录复制前后与seed的执行指纹均为15953979e84533874d87ea3b5f77634acac25e4b09c3291776ec39eb89d66863。启动入口会拒绝管理员组（包括medium UAC窗口），由用户登录既有标准账户运行后在其LOCALAPPDATA创建自有副本、冻结依赖并使用独立store，执行原native22项和parser3项；P03-02预览及已过P02人工功能不重测。无系统账户创建/系统策略或原目录手工ACL放宽。
+
+[用户单条启动命令与回执说明](../evidence/P02-03/live-2026-10-19/standard-user-verification.md)、[副本准备记录](../evidence/P02-03/live-2026-10-19/standard-user-seed-preparation.json)。末尾RESULT及脱敏日志回到seed的returns/本次ID；仅准备且管理员拒绝分支已验证，不等同标准用户测试通过。尚未安装原目录capabilities、未恢复原附件/重启应用/发送模型请求/写原业务库，需求与P02/P03既有状态保持。用户回报后先核对真实报告及原目录适用指纹/解析器，再安排已保存原件的单次内容重试；不重传或提前记附件通过。
+
+## 2026-10-19 批测附件原件完整，本机标准用户隔离验证缺失
+
+用户反馈合成TXT附件“原件已保存154/154、处理失败”。只读核对file 01a15360-64af-7c6c-a4db-eecb96a56a90 / version 01a15360-64b0-7d54-b3c6-1b88974c3987，原件托管blob与合成源SHA完全一致，失败为SANDBOX_UNAVAILABLE、file.parse已自动尝试3次；原验收库25runs/41attempts/2tools/41ledger未增加，未发模型请求。起因是本机resources/runtime/capabilities.json缺失，启动时能力返回PROBE_REQUIRED，FileParser按既定边界失败关闭，并非上传丢失或TXT损坏。批测准备前漏查该本机前置条件，清单现已修正。
+
+原样执行runtime-probe：工具沙箱内22项中6通过/16因runtime目录0x80070005拒绝访问失败；经批准在工具沙箱外运行同一原始脚本，原生测试22/22、failed0/pending0/missing0，test exit0，但probe exit1，因为当前账户属于Administrators组（medium integrity），standardUser=false。capabilities如实保持failed/STANDARD_USER_VERIFICATION_REQUIRED；没有改门禁、手填available、系统账户/策略或手工ACL放宽。两份历史P00 runtime-probe报告原字节已恢复，新结果单独留本目录native-recovery及native-recovery-outside-tool-sandbox。固定合成测试会创建临时库/worker对象，未手写原验收业务库。
+
+[排查结论](../evidence/P02-03/live-2026-10-19/attachment-investigation-results.json)及attachment-failure-diagnosis.json。当前附件读取尚未恢复，不能把管理员组环境22项通过当标准用户本机gate通过，也不把后续附件用例提前验收。需独立非管理员Windows用户的有效本机验证；现有标准用户kit流程可供后续使用，但本轮未创建账户/扩大目录权限或复制CI报告。继续沿用原Chat/FlashX账号，其他渠道/模型仍暂缓。
+
+批测可改用纯文本种子：只从新种子草稿移除失败附件引用，保留已托管原件，发送原准备提示词；T03附件开关变体/T26附件恢复记阻塞，整会话正文复制及无附件的其他项仍可执行；T17材料清单和T20文件上下文仅按实际样本记条件项。重复上传/内容重试或单纯重启不会补齐标准用户验证。P02-03仍implemented_not_live_verified、gate保持engineering_passed_external_pending；无产品修改/重建/应用重启/commit/push。
+
+## 2026-10-19 按用户要求改为统一批量人工验收，等待逐项结果
+
+用户要求一次列出所有待测试内容，测完统一报告成功/失败，接续方式从逐项提问改为批量清单。已核对当前任务与实际UI入口，清单T01—T30（T13分a—f）覆盖当前P02-03剩余人工功能及未覆盖变体；用独立合成种子/A/B/操作/删后续/留说明副本、两空项目和分组分开用途，永久删除合成B放最后，选区/AI命名/项目规则/临时发送标明模型调用。已过P02-02有限范围、停止/普通重启及P02-03已过范围不重做，其他渠道/协议/模型继续暂缓；C5强当前用户ID语义not_met和原失败会话同输入复验not_performed仍保留。
+
+入口审查补充：当前只渲染已入组项目的拖动/置顶，未找到未分组项目首次入组起点；T05项目子项/T06项目入组及重排列开发侧待查。独立快捷后续问题按钮也未找到，T02仅验引用选区追问。该发现不把工程实现状态自动改成通过，也不让用户凭空寻找入口。
+
+[完整操作和通过标准](../evidence/P02-03/live-2026-10-19/batch-checklist.md)、[统一回报模板](../evidence/P02-03/live-2026-10-19/report-template.md)、同目录synthetic-attachment-1019.txt。当前旧测试分组仍在/revision4、命名副本revision8/两消息、原会话revision13/10消息；基线batch-baseline-1792399136427.json固定这些保护目标的元数据/消息hash/分支、旧pending删组基线、receipt388、25runs/41attempts/2tools/41ledger及用量总量，账户ready且空闲。仅准备并发给用户，不把任何T项记通过；T01删组依旧待用户结果。正文未导出、Key/native读取/模型请求/业务库写入0，本轮没有产品改动、构建、重启、commit/push。
+
+用户结果必须区分通过/失败/此前已通过/入口不可用/条件不足/受前项阻塞/未测；依赖失败不拦无关项，异常不盲目重复请求，结果后统一日志核对。T29普通搜索主动保存的查询字符串与临时正文不落盘证据分开。隔离/幂等/CAS/半工具JSON/恶意Markdown/万级性能/旧备份墓碑/精确竞态等由Agent结合既有工程证据处理，不要求用户造数据或重复全套。任务仍implemented_not_live_verified、P02/P01 gate仍engineering_passed_external_pending，不自动扩P04/P05。
+
+## 2026-10-18 同组改名有限通过，待删除分组保留会话
+
+用户确认“符合预期”。H改名14项（含用户UI回执）通过：同一group 01a14cb1-4dde-7e06-aa3d-a97ac9146b0d的名称SHA匹配“P02验收分组-1018-改名”，成员及排序不变。实际有3条成功sidebar.update目标收据，而非原准备时预期的一条；按packages/storage/src/foundation.ts的receipt规范重算已知合成请求指纹，sequence384精确匹配name=新名/expectedRevision1，385匹配collapsed=true/expectedRevision2，386匹配collapsed=false/expectedRevision3。故只有一次改名，另两次是折叠/展开，最终group revision4/collapsed0，不误记为三次改名或revision异常。指纹只在内存比对并导出匹配标签，无私人正文/Key/native内容。
+
+目标副本01a14a2b-364a-7034-986d-79c884ee51a3仍是组内唯一成员，原sidebar关联/sort key保持，其他分组/成员不变；session revision8、标题/备注/标签/项目/归档删除状态及两消息content SHA/来源/版本/分支全部保持，有更新后的sessions.read（sequence387）。用户确认改名列表、打开副本和两问答正常，后台不声称完整UI点击遥测。projection仍session1+message2、资源/附件/记忆来源仍0；原会话未归档/未删除且原标题与旧7账本hash保持。全局25runs/41attempts/2tools/41ledger和actual52958/estimated151455/total204413 tokens不增，无活动/预留/未结算/重复。
+
+下一H只删除这个自定义组并验证会话回默认列表：聊天页面该分组标题旁⋯→“删除分组，内容回到默认列表”一次；确认组消失，点“默认列表”打开“P02验收-分叉副本-1017”，确认原标题及两消息完整，不删除会话或移入回收站、不发送/重生成/重启。group-delete-baseline-2026-10-18.json固定group ID/revision4/唯一成员/session revision8/hash/分支/索引/用量和收据基线388。预期一条同group sidebar.remove成功收据、group行移除、原sidebar_item.section_id按ON DELETE SET NULL回null，session保持active/revision8及内容；当前仍未删除，H删组保留内容及H整体仍待验收。
+
+证据[改名核对](../evidence/P02-03/live-2026-10-18/group-rename-review-1792303543587.json)及同目录group-delete-baseline-2026-10-18.json、acceptance.md。本轮仅证据/进度更新，无产品修改/重建/重启/Agent模型请求/业务库手写，未commit/push；不重跑已验P02-02有限范围及P02-03 A—G/H先前检查点。其他渠道/协议及其他模型重答继续暂缓；C5强当前用户ID语义not_met与原失败编辑会话同输入复验not_performed保留。P02-03仍implemented_not_live_verified，P02/P01 gate仍engineering_passed_external_pending，未扩P04/P05。
+
+## 2026-10-18 自定义分组创建与移入有限通过，待同组改名
+
+用户确认“符合预期”。H第一检查点16项（含用户UI回执）通过：新建“P02验收分组-1018”返回分组01a14cb1-4dde-7e06-aa3d-a97ac9146b0d，revision1；只有一次成功sidebar.create（sequence378）和一次目标sidebar.move（sequence380，updatedIds仅副本/failed0）。中间sessions.update（sequence379）符合编辑弹窗保存流程，副本revision7→8而原标题/备注/标签hash和项目/归档删除状态均保持；随后sessions.read（sequence381）佐证已重新打开。组内恰一成员，目标01a14a2b-364a-7034-986d-79c884ee51a3只有一个分组关联，其他分组/成员基线保持。用户确认新分组列表和副本标题/两问答正常；后台不伪称持久记录了完整筛选/点击路径。
+
+两消息content SHA/来源/版本及分支保持，session1+message2搜索projection和合成消息命中ID保持。资源/附件/记忆来源仍0，原会话未归档/未删除且原标题和旧7账本hash保持；全局25runs/41attempts/2tools/41ledger、actual52958/estimated151455/total204413 tokens不变，无活动/预留/未结算/重复。仅同一普通副本经编辑下拉框新建/移入自定义组有限live通过，不概括拖拽/批量/项目移动、排序或置顶；H整体的改名、删除保留会话尚未通过。
+
+下一H只改同一分组名称为“P02验收分组-1018-改名”：聊天页面点击分组标题旁“⋯”，改“分组名称”并保存一次；选择改名后的组打开原副本，确认原标题和两消息，保留分组待只读核对，不删除组/移动成员/发送或重生成。group-rename-baseline-2026-10-18.json已固定group ID/revision1/hash/成员，session revision8/消息hash/分支/执行用量及收据基线382；新名重名0。预期同一group ID/revision2/一条sidebar.update，session revision8及成员不变；改名尚未执行或验收。删除分组与内容回默认列表将在后续独立检查点进行。
+
+证据[创建移入核对](../evidence/P02-03/live-2026-10-18/group-create-review-1792288198683.json)及同目录group-rename-baseline-2026-10-18.json、acceptance.md。本轮无产品修改/重建/重启/Agent模型请求/Key或native读取/正文导出/业务库手写，未commit/push。已验P02-02有限范围和P02-03 A—G及本H检查点不重测，其他渠道/协议及其他模型重答继续暂缓；C5强当前用户ID语义not_met与原失败编辑会话同输入复验not_performed仍保留。P02-03仍implemented_not_live_verified，P02/P01 gate仍engineering_passed_external_pending，未扩P04/P05。
+
+## 2026-10-18 回收站恢复及索引重建有限通过，准备自定义分组
+
+用户确认“符合预期，都正常”。恢复只读核对及用户UI回执共12项通过：副本01a14a2b-364a-7034-986d-79c884ee51a3只有一次成功sessions.restore目标收据（sequence374、updatedIds1/failed0），deleted_at恢复null、revision6→7，最近1/归档0/回收站0，并有其后的sessions.read。两条消息content SHA/来源/版本、分支与原标题/其他元数据均保持；搜索projection重建为session1+message2，合成标题和P02E-1017R消息索引均命中同一目标ID。查询历史在恢复后更新，用户确认当前会话+消息筛选及点击定位正常；后台未记录scope/实际返回列表/高亮范围/点击参数，不伪称完整UI遥测。原会话未归档/未删除、原标题与旧7账本hash保持；全局25runs/41attempts/2tools/41ledger及用量不增，无活动/预留/未结算/重复。
+
+合并上一软删除检查点，G仅此无附件/资源/记忆来源的单副本“移入回收站—保留内容—恢复—索引重建/定位”有限live通过，不概括永久或批量删除、非零依赖恢复。下一H第一步只创建“P02验收分组-1018”，把“P02验收-分叉副本-1017”通过会话编辑弹窗的分组下拉框移入，点新分组打开确认原标题及两消息，保留分组待核对；不在本次步骤中改名或删除分组。只读预检现有分组0/100、重名0、目标尚无分组；group-baseline-2026-10-18.json固定恢复后的revision7/消息hash/分支/索引/执行数及原分组清单、其他成员hash。会话编辑保存会正常产生sessions.update（即使标题等值未变）再sidebar.move，预期revision7→8；不能将准备当作创建/移入/改名/删组通过。
+
+证据[恢复核对](../evidence/P02-03/live-2026-10-18/restore-review-1792287228504.json)、同目录group-baseline-2026-10-18.json及[当前清单](../evidence/P02-03/live-2026-10-18/acceptance.md)。无本轮产品修改/重建/重启/Agent模型请求/Key或native读取/正文导出/业务库手写，未commit/push。已验P02-02有限范围及P02-03 A—G不重测；其他渠道/协议及其他模型重答继续暂缓。原失败编辑会话同输入复验仍not_performed、C5强当前用户ID语义not_met仍保留。P02-03仍implemented_not_live_verified，P02/P01 gate仍engineering_passed_external_pending，未扩P04/P05。
+
+## 2026-10-18 回收站软删除检查点有限通过，待恢复及消息索引重建
+
+用户确认记忆影响/最近移出/回收站可见符合预期。只读核对10项通过：命名副本01a14a2b-364a-7034-986d-79c884ee51a3只有一次成功sessions.trash目标收据（updatedIds1/failed0、无restore/purge），当前deleted_at非空、revision5→6，最近0/归档0/回收站1。两条消息content SHA/来源/版本和原分支、标题/其他元数据仍保留；该session的搜索projection0、完整合成标题FTS0，已从普通搜索移除。关联资源/附件/该副本记忆来源仍0，原会话active且原标题/旧7账本hash保持，全局25runs/41attempts/2tools/41ledger及用量不变，空闲/无预留/未结算/重复。只标G移入回收站中间检查点有限通过；恢复尚未执行，G整体不通过。无批量/永久删除、文件引用恢复或非零记忆影响验收。
+
+下一只恢复同一副本：左侧聊天→回收站，勾选其左侧复选框，点列表“恢复”一次；切最近打开，确认原标题/两问答。再Ctrl+K当前会话+消息查P02E-1017R并点击定位，验证回收站恢复后的本地消息索引重建，不重测先前未删除状态的索引。restore-baseline-2026-10-18.json固定当前deleted/revision6/hash/分支/旧trash收据/执行数和预期session1+message2的搜索projection、唯一user ID；当前projection仍0，不把预期当已恢复。本步不永久删除/发消息/重生成或重启。
+
+证据[软删除核对](../evidence/P02-03/live-2026-10-18/trash-review-1792286750191.json)及同目录restore-baseline-2026-10-18.json/acceptance.md。用户观察支撑弹窗与列表UI，后台只佐证持久状态与索引，不伪称完整UI遥测。无本轮产品修改/重建/重启/Agent模型请求/Key或native读取/正文导出/业务库手写，未commit/push。已验P02-02有限范围及P02-03 A—F不重测，其他渠道/协议及其他模型重答暂缓；P02-03仍implemented_not_live_verified，P02/P01 gate仍engineering_passed_external_pending，未进入P04/P05。
+
+## 2026-10-18 归档消息定位与取消归档有限通过，准备回收站检查点
+
+用户确认“定位和恢复都正常”。只读核对11项通过：归档消息P02E-1017R查询历史时间在归档检查点之后、取消归档收据之前；当时归档索引预检已有唯一副本user ID，实际UI定位由用户确认，不伪称完整scope/点击遥测。随后该副本仅一次成功sessions.archive取消操作（target updatedIds精确1/failed0），archived_at恢复null、revision4→5、最近成员1/归档0，并有恢复后的sessions.read收据。标题/其他元数据、两问答SHA/来源/分支、原会话标题及旧7账本保持，全局25runs/41attempts/2tools/41ledger与用量总量不变，无活动/预留/未结算/重复。与10-17归档/标题开关检查点合并，F仅此副本归档—归档搜索定位—取消归档恢复范围有限通过，不提升完整任务或所有搜索/权限场景。
+
+下一G只将“P02验收-分叉副本-1017”（01a14a2b-364a-7034-986d-79c884ee51a3）移入回收站，先留在回收站核对，再给恢复步骤。准备基线trash-baseline-2026-10-18.json固定active/revision5/两问答hash/分支/计数/原会话指针；只读预检附件引用0/资源关联0/该副本消息支持的记忆0。用户右键此副本选“移入回收站”，确认弹窗的记忆影响预期三项0，点“删除会话并处理记忆”一次；若计数不同先停。确认最近列表移出且“聊天→回收站”可见后报告，保留中间状态。不做永久删除、不发送/重生成/AI命名或重新检测。仅准备G，尚未执行/通过；原会话不在操作范围。
+
+证据[恢复核对](../evidence/P02-03/live-2026-10-18/unarchive-review-1792286469572.json)及[当前清单](../evidence/P02-03/live-2026-10-18/acceptance.md)。旧10-17步骤转历史，不重复已过P02-02有限范围和P02-03 A—F。无本轮产品修改/重建/重启/Agent模型请求/Key或native读取/正文导出/业务库手写，未commit/push。其他渠道/协议及其他模型重答继续暂缓，P02-03仍implemented_not_live_verified，P02/P01 gate仍engineering_passed_external_pending；P04真实补验/P05未开展。
+
+## 2026-10-17 归档与标题过滤中间状态有限通过，待归档消息定位及取消归档
+
+用户确认归档/最近列表移出/“包括归档”两种搜索均符合预期。只读核对10项通过：仅命名副本01a14a2b-364a-7034-986d-79c884ee51a3有一次成功sessions.archive收据（updatedIds精确一项、failed0），当前revision3→4、archived_at非空；最近成员0/归档成员1，当前索引包括归档恰命中该副本、排除归档0命中，合成标题查询时间已更新。标题/其他元数据、两问答content SHA/来源/分支、原会话未归档及旧7账本hash保持，全局25runs/41attempts/2tools/41ledger与用量总量不变，无活动/预留/未结算/重复。UI开关实际可见结果由用户确认，SQL只佐证当前状态/命中ID；不冒称持久记录了每次查询参数。F第一检查点有限通过，取消归档未做，F整体不提升。
+
+下一利用当前归档状态补T06尚未真人验过的“归档消息定位”，然后取消归档；不重做已过标题过滤。只读消息索引预检：当前会话/消息/包括归档、查询P02E-1017R唯一命中副本user 01a14a2b-364a-7fa8-8786-a762815c152b，未调用app搜索或写查询历史，也不算UI通过。用户关闭搜索，左侧聊天→归档打开该副本，Ctrl+K当前会话+消息勾“包括归档”查P02E-1017R并点击定位；再回归档列表右键该副本选“取消归档”一次，最近列表打开确认原标题和问答保留。unarchive-baseline-2026-10-17.json固定归档状态/revision4/两消息hash/分支/旧收据/查询历史与执行计数，下一核对恢复null/revision5和一条新目标收据；归档消息UI定位仍须用户确认，不伪造遥测。
+
+证据[归档检查点](../evidence/P02-03/live-2026-10-17/archive-review-1792247838763.json)及同目录unarchive-baseline-2026-10-17.json。无本轮产品修改/重建/重启/Agent模型请求/Key或native读取/正文导出/业务库手写，未commit/push。已验P02-02范围及本任务A—E不重测，其他渠道/协议与其他模型重答暂缓。P02-03仍implemented_not_live_verified，P02/P01 gate仍engineering_passed_external_pending，不扩P04/P05。
+
+## 2026-10-17 标题与限定会话消息搜索有限通过，准备归档筛选检查点
+
+用户确认两次搜索/高亮/跳转都正常。只读核对8项通过：新标题和P02E-1017R的两个合成查询历史ID/lastUsed均为本轮新增；当前唯一索引ID仍分别为副本会话和其中user消息，目标分支/会话元数据与两条问答content SHA/来源完全保持，全局25runs/41attempts/2tools/41ledger不变，trace无新attempt且空闲/无预留/未结算/重复。E按这两个查询有限通过。search_history只存query与更新时间，不存实际scope/types/返回hits/高亮范围或点击locator，本次没有新导航read收据；实际范围、高亮和目的地由用户确认，当前唯一索引与hash只作佐证，不伪称已有独立请求/点击遥测。排序/归档/历史删除/跨项目权限不因此通过。
+
+下一F只对副本“P02验收-分叉副本-1017”（01a14a2b-364a-7034-986d-79c884ee51a3）右键“归档”，先保持归档。Ctrl+K全局/会话查精确标题，“包括归档”勾选应1命中，取消后再次查找应0。用户报告后Agent只读核对archived_at/归档收据/两种过滤ID与原hash/账本/零新增执行；中间状态通过再给取消归档/最近列表恢复步骤，不提前把完整F记通过。基线archive-baseline-2026-10-17.json已保留revision3/archived null、两问答hash/分支/查询历史与全局计数；尚未归档或验收。无需发送/重生成/AI命名或重启。
+
+证据[搜索核对](../evidence/P02-03/live-2026-10-17/search-review-1792246998295.json)与同目录archive-baseline-2026-10-17.json/acceptance.md。无本轮产品修改/重建/重启/Agent模型请求/Key或native读取/正文导出/业务库手写，未commit/push。已验A—D及P02-02有限范围不重测；其他渠道/协议与其他模型重答暂缓。P02-03仍implemented_not_live_verified，P02/P01 gate仍engineering_passed_external_pending，不扩P04/P05。
+
+## 2026-10-17 副本手动命名与重新进入有限通过，准备搜索定位
+
+用户确认符合预期；只读核对8项通过：副本01a14a2b-364a-7034-986d-79c884ee51a3一次sessions.update成功，标题精确为“P02验收-分叉副本-1017”、title_manual1、revision2→3；保存后的sessions.read收据与用户离开重开观察一致。两条问答content SHA/来源/版本、原分支/备注/tags/project均保持，原会话标题hash和旧7账本hash保持。无sessions.title或新模型/工具/执行/结算，全局25runs/41attempts/2tools/41ledger仍不变，无活跃/预留/未结算或重复。FR-08-001仅手动命名/持久化范围有限通过，不冒称自动标题竞争、AI重命名或完整需求live通过。
+
+下一E只验标题和限定会话消息搜索/高亮/定位。只读FTS及索引ID预检已确认全局+类型会话+精确新标题仅命中该副本；当前会话+类型消息+“P02E-1017R”仅命中副本user消息01a14a2b-364a-7fa8-8786-a762815c152b，分支01a14a2b-364a-7954-bffb-b26027e9a06f。没有调用search.query或写搜索历史，SQL预检不算UI验收。用户先Ctrl+K全局/会话查完整新标题并点击结果，再在打开的副本Ctrl+K当前会话/消息查P02E-1017R，检查片段高亮后点击命中问题；确认仍定位此副本、不跳原会话且问答正常。两次本地查询不应发模型/工具请求；不发送消息、不归档或改其他会话。search-baseline-2026-10-17.json记录预期命中ID、消息hash/分支/global计数及既有合成查询历史ID/时间，下一核对实际查询历史与用户UI回执。排序、归档检索、删除搜索历史及跨项目权限仍未本轮真人验收，不用这两次查询概括全部搜索要求。
+
+证据[手动命名核对](../evidence/P02-03/live-2026-10-17/manual-title-review-1792246565060.json)及同目录search-baseline-2026-10-17.json/acceptance.md。无本轮产品修改/重建/重启/Agent模型请求/Key或native读取/正文导出/业务库手写，未commit/push。P02-03仍implemented_not_live_verified，P02/P01 gate仍engineering_passed_external_pending；P02-02及本任务A/B/C已验范围不重测，其他渠道/协议与其他模型重答继续暂缓，不扩P04/P05。
+
+## 2026-10-17 成功答复分叉路径与失败提示区别确认，C有限通过
+
+用户指出原会话同时显示“编辑分支成功”和响应头超时提示，副本只有成功回复。只读核对当前副本01a14a2b-364a-7034-986d-79c884ee51a3为一次sessions.fork生成的独立会话，1主分支/2条消息；按所选最终助手消息的parent链复制本轮问题与成功答复，内容SHA与规范source_message_id映射均一致。原会话3分支/10消息及7条账本hash完整保持，全局runs25/attempts41/tools2/ledger41未增加，trace没有新增attempt，空闲/无重复或未结算。C按此成功消息分叉场景有限通过，不将其他消息类型/附件/完整备份冒称已验。
+
+超时卡片对应原失败attempt 01a14a20-e132-7787-b8ed-e2a2b4bde639，NETWORK_ERROR/response_headers_timeout、interrupted、生成正文长度0、estimated14335仍留原账本。失败和成功助手消息共用同一user父节点，互为替代尝试；失败节点不是成功消息的祖先，所以不在成功路径副本中。UI由errorCode/diagnosticCode显示固定提示，它不是额外的模型正文。此结论来自实际ID/parent/status/hash/失败字段及既有HistoryService.path/branch与ChatService重试换父规则；并非新增“过滤所有失败消息”的策略。若选择失败节点本身分叉，源码会沿它自己的路径复制；该变体本轮未真人验收，不重复制造网络故障。用户所见差异符合当前从消息分叉的语义，原失败记录未被删除，也不因副本导航重放或重复结算。
+
+证据[分叉核对](../evidence/P02-03/live-2026-10-17/fork-review-1792246280701.json)、同目录fork-baseline-2026-10-17.json。没有产品改动/重建/重启/Agent模型请求/Key或native读取/正文导出/业务库手写，未commit/push。P02-03仍implemented_not_live_verified，P02/P01 gate保持engineering_passed_external_pending；已过A/B及P02-02范围不重测，其他渠道/协议和其他模型重答暂缓。
+
+下一D仅手动重命名这个副本为“P02验收-分叉副本-1017”，保存一次，离开再打开确认标题/2条问答保留、原会话标题不变；不点AI重命名或发消息。已留manual-title-baseline-2026-10-17.json的副本revision/hash/分支/全局计数，唯一标题冲突0；本步尚未执行或通过。后续搜索/组织等继续逐项，不扩P04/P05。
+
+## 2026-10-17 同模型重生成与版本切换有限通过，准备分叉会话
+
+用户确认“符合预期。可以继续下一项验收”，只读元数据与脱敏trace核对13项通过：原C5会话的编辑分支下仅一次messages.regenerate，创建candidateFor/forkMessageId均指向原助手答复的新“回答版本”和独立run；复制的user有原来源ID、精确P02E-1017R问题，最终仍答“编辑分支成功”。旧7条消息的content SHA/来源/状态/版本与旧2分支/5条账本hash保持；主/编辑/回答版本三层仍保留。旧编辑分支和新回答版本来回切换多次，无新增run/工具或额外结算。
+
+该run为1逻辑回合/tools0，实际2attempt：先NETWORK_ERROR/无HTTP响应，随后既有自动重试HTTP200/text/stop成功。两条各结算一次，均同原root与logicalCall；失败estimated14335保留，不当供应商实际消耗，成功actual1336（input1332/output4）。不是两次重生成或版本切换重放。上下文快照均source-data/1并含当前user，任务/队列/标题/记忆job/预留/未结算/重复结算均0。FR-07-013按此普通智谱Chat/FlashX场景有限通过，其他模型重答及其他渠道继续暂缓，任务与阶段全量状态不提升。
+
+下一C仅验FR-07-015“从此消息分叉会话”。当前回答版本branch 01a14a20-e0b2-79d3-910d-870e54a7c052，最终助手消息01a14a21-3867-7d47-be04-8574e4fc38df；生产界面按钮精确文案“从此消息分叉会话”。单击一次应开独立新会话并保留该消息之前路径，新标题带“ · 副本”；回原会话确认三个旧分支仍在，再回副本。只导航、不发送/重生成/AI命名。基线fork-baseline-2026-10-17.json保存原会话/3分支/10消息hash/7账本、可见路径来源hash、现有session IDs及全局run/attempt/tool/ledger计数；复制与导航预期0模型/工具/结算，尚未执行也不记通过。
+
+证据[重生成核对](../evidence/P02-03/live-2026-10-17/regenerate-review-1792245179643.json)、同目录fork-baseline-2026-10-17.json及acceptance.md。Agent模型请求/Key或native读取/正文导出/业务库手写0，无本轮产品修改/重建/重启或commit/push。P02-03仍implemented_not_live_verified，P02/P01 gate仍engineering_passed_external_pending；原P02-02已验范围和P02-03 A保留不重测，不进入P04/P05。
+
+## 2026-10-17 P02-03实际C5会话编辑与分支切换有限通过，准备重生成
+
+本轮实际操作发生在会话01a14969-e3c4-77ee-b768-6fc59b1451d6（原C5准备会话），不是原失败会话01a1498f-dbb2-7fa8-8829-be6b985c7926。单次messages.edit收据对应新branch/run，精确P02E-1017R问题与“编辑分支成功”答复均通过SQL布尔核对；1回合/1attempt/HTTP200-text-stop/tools0，actual1336（input1332/output4），单次结算且同root。两个context快照属于同一logicalCall，均为chat-p04-2:source-data/1且含当前用户引用，不是两次请求。
+
+实际C5原主分支5条消息（含此前NETWORK_ERROR的interrupted助手）ID/role/status/length保留，原英文问题与准备原文/最终ID与此前工具首结果精确比较通过，原4条账本各字段保持。没有为该备用会话预先采集全正文hash，不能声称此前正文逐字节hash全量不变；真人界面观察与这些比较支持有限保留验收。原失败会话6条消息hash/2分支/4旧账本仍保持且没有新请求，因此“原失败会话同输入复验”是not_performed，不能当已验证。用户操作和收据均确认编辑完成后切回主分支，再回编辑分支，旧内容与新问答保留；无重放。A按实际会话有限通过。
+
+全profile仅新增此1run/1attempt/0tools，无额外标题/重试/重复结算，任务/队列/记忆job/预留/未结算均0。未调用模型、未读Key/native正文、未导出聊天正文、未手写业务库，未改产品或重建/重启，未commit/push。原P02-02 A/B/C已验范围保留，其他渠道/协议仍暂缓；本轮不是所有会话上下文服从率、原工具不调用唯一因果或完整P02-03/gate通过。P02-03=implemented_not_live_verified、gate=engineering_passed_external_pending保持。
+
+下一B仅在当前P02E-1017R编辑分支的“编辑分支成功”助手答复下点击“重新生成”一次，待完成后切旧编辑分支/新回答版本并保留两者；同账户同模型，正文相同正常，tools0预期。准备基线regenerate-baseline-2026-10-17.json，不自动代发。
+
+证据[实际会话核对](../evidence/P02-03/live-2026-10-17/edit-actual-session-review-1792244926378.json)，同目录edit-retest-review-1792239439169.json核对原计划会话无新请求。初始诊断计数误假定旧消息4条/快照1份，已按此前C5的5消息和同logicalCall多次装配更正，保留中间报告，不算产品失败。
+
+## 2026-10-17 编辑答复错误定位，历史数据角色隔离工程通过，待复验
+
+## 2026-10-17 P02-03实际C5会话编辑答复通过，待切回编辑分支
+
+本轮实际操作发生在会话01a14969-e3c4-77ee-b768-6fc59b1451d6（原C5准备会话），不是原失败会话01a1498f-dbb2-7fa8-8829-be6b985c7926。单次messages.edit收据对应新branch/run，精确P02E-1017R问题与“编辑分支成功”答复均通过SQL布尔核对；1回合/1attempt/HTTP200-text-stop/tools0，actual1336（input1332/output4），单次结算且同root。两个context快照属于同一logicalCall，均为chat-p04-2:source-data/1且含当前用户引用，不是两次请求。
+
+实际C5原主分支5条消息（含此前NETWORK_ERROR的interrupted助手）ID/role/status/length保留，原英文问题与准备原文/最终ID与此前工具首结果精确比较通过，原4条账本各字段保持。没有为该备用会话预先采集全正文hash，不能声称此前正文逐字节hash全量不变；真人界面观察与这些比较支持有限保留验收。原失败会话6条消息hash/2分支/4旧账本仍保持且没有新请求，因此“原失败会话同输入复验”是not_performed，不能当已验证。已确认编辑完成后切回主分支；尚无再次切回新编辑分支的收据，当前活动仍为主分支，A闭环暂不整体通过。已请用户只切回新编辑分支确认，无需重复发送或重测已过内容。
+
+全profile仅新增此1run/1attempt/0tools，无额外标题/重试/重复结算，任务/队列/记忆job/预留/未结算均0。未调用模型、未读Key/native正文、未导出聊天正文、未手写业务库，未改产品或重建/重启，未commit/push。原P02-02 A/B/C已验范围保留，其他渠道/协议仍暂缓；本轮不是所有会话上下文服从率、原工具不调用唯一因果或完整P02-03/gate通过。P02-03=implemented_not_live_verified、gate=engineering_passed_external_pending保持。
+
+下一只在刚才实际C5会话顶部选新“编辑分支”，确认P02E-1017R问题和“编辑分支成功”仍在；不重新保存/发送/重生成。收到后只读复核切换无新增run/attempt/工具，再记录A并准备B重生成。
+
+证据[实际会话核对](../evidence/P02-03/live-2026-10-17/edit-actual-session-review-1792239527944.json)，同目录edit-retest-review-1792239439169.json核对原计划会话无新请求。初始诊断计数误假定旧消息4条/快照1份，已按此前C5的5消息和同logicalCall多次装配更正，保留中间报告，不算产品失败。
+
+首次A编辑新问题完全匹配、产生新branch/run，旧主分支4条消息和旧账本2576保持；新run completed/1回合/tools0/actual1259，但正文是“未执行工具”，不验收。当前问题本不需要工具，不能将该正文当程序状态提示或据tools0认定故障。公开引用确认自动召回5条旧用户指令，2条含该旧诊断短语；源码把history.background/memory.background原文拼进system。这是明确装配缺陷，与症状吻合；不以元数据声称模型选择的唯一因果已证明。
+
+按ADR0054将两类源原文移到本轮消息之前的JSON user背景，可信产品/项目/个人指令保留；来源/授权/计数与pinned压缩沿用，当前显式用户原文最后，快照prompt_version附source-data/1。没有关闭历史/记忆或修改真实业务库、工具策略/预算/重试/账户/IPC/DB/native版本。三项先红后绿，相关integration49/unit11/check445文件/build:desktop均退出0；包括旧分支/标题原root、上下文、记忆和工具闭环回归。合成传输探针证明角色缺陷修复，不替代真人模型服从率。生产UI原账户1/编辑分支2条消息读取正常，9源码/619产物固定；用户确认退出后精确残留进程被停止，旧启动器exit1保留，不记正常退出。
+
+修复版已打开原profile，新case 01a149b9-04f4-7d9c-9487-44b0b62e3b25的opened/attempts0已核对，无新增run/工具/预留。Agent模型请求/Key或native正文读取/正文导出/业务库手写0，未commit/push。下一仅用户在原主分支再编辑原英文问题为“P02E-1017R：请只回复‘编辑分支成功’。”保存一次，完成后切主/新编辑分支检查保留；不用工具，tools0正常，仍答错就停。现2分支/6消息/4旧账本actual3835基线均保留，用hash核对旧正文与账本。P02-03=implemented_not_live_verified、gate保持engineering_passed_external_pending，既有P02-02 A/B/C有限通过不重测，其他渠道暂缓。
+
+证据[错误观察](../evidence/P02-03/live-2026-10-17/edit-observation-2026-10-17.json)、[工程修复](../evidence/P02-03/live-2026-10-17/background-priority-fix-2026-10-17.json)、同目录edit-retest-baseline-2026-10-17.json及acceptance.md。启动exec99040仍等待正常退出，不记exit0。
+
+## 2026-10-17 P02-02只读闭环有限通过，准备P02-03消息编辑
+
+用户截图正常后，脱敏trace/公开DB确认C完整提议→canonical history.search→固定query/limit1/精确原新会话scope→succeeded/side_effect none→callId配对结果→下一模型终答，旧账本不变，无重复/未结算/预留。两个独立run/不同clientMessageId分别工具1次，不冒充自动重复发送。原准备会话的run有一次NETWORK_ERROR重试（actual2103含标题213，另estimated12358非实际消耗）；截图另会话run是2前台回合+1自动标题，actual2364+212=2576，三次attempt不是三次前台或重复工具。标题及原root归属保持。
+
+返回ID与真实工具首结果一致，但它是包含marker的助手提议消息ID，非初始推测的用户消息ID。现有history.search检索final user/assistant且最新优先，因此最初对“唯一marker一定命中用户”的预期不成立；保留原预期并明确强当前用户ID语义not_met，不将它标为通过。原P02-02 C需求是实际只读循环和结果终答，此范围passed_live_scoped_readonly_loop；不降低工具/权限/结算验收标准。准备时旧关键词0匹配、记忆0，运行后history-use行存在，加上新会话/英文/查询多变量，先前无调用唯一诱因仍未确定，不称全场景修复或所有渠道可用。
+
+本轮A/B/C有限补验已分别记录，P02-02仍implemented_not_live_verified，P02/P01 gate仍engineering_passed_external_pending；其他渠道/协议/订阅继续暂缓。无本轮产品修改/重启/检测/Agent模型请求/Key或native正文读取/正文导出/业务库手写，未commit/push。证据[本轮验收](../evidence/P02-02/live-2026-10-15/round-c5-acceptance-2026-10-17.json)、同目录round-c5-review-2026-10-17.json及用户截图。
+
+下一P02-03仅准备A消息编辑→新分支→切回原分支→回到编辑分支。沿用截图会话01a1498f-dbb2-7fa8-8829-be6b985c7926，基线1分支/4消息/旧3条actual共2576，原用户消息01a1498f-e8eb-7693-abc8-9dccfb56fdbf；不重跑工具或改其他渠道。用户编辑已发送英文提问为“P02E-1017：请只回复‘编辑分支成功’。”并保存一次，完成后切主/编辑分支核对旧内容与新内容，Agent再检查原版本/账本保持及切换不重放。仅准备未通过，具体以docs/evidence/P02-03/live-2026-10-17/acceptance.md及edit-baseline-2026-10-17.json为准，后续重生成/搜索/组织等逐项给步骤，不扩P04/P05。
+
+## 2026-10-17 C5空白会话与背景隔离预检通过，待一次用户请求
+
+用户已新建普通聊天；只读核对session 01a14969-e3c4-77ee-b768-6fc59b1451d6零消息、无项目/接续背景，原账户ready/revision15、Chat/FlashX及偏好revision4保持；生产619产物摘要一致、任务/队列/预留/未结算均0。现有trace仍只有C4三个attempt，没有新增模型请求。合成marker未出现；提示词全部28个关键词对所有旧消息0匹配，active memories0/个人指令长度0，避免自动历史背景重新引入旧拒绝。
+
+同账户/模型/构建下只发一条新session限定的C5，精确英文提示在acceptance.md；只读工具history.search预期limit1/仅本session，结果对应本次消息ID，再核对终答及结算。此对照同时改变会话/合成查询/英文表述，不能据成功证明旧会话是唯一原因，也不据失败断言FlashX不支持工具。普通自动标题若触发单列辅助账本；不重测已通过项或其他渠道。无产品改动/重启/检测/Agent模型请求/Key或native正文读取/正文导出/业务库手写；任务/gate保持，未commit/push。
+
+证据docs/evidence/P02-02/live-2026-10-15/clean-control-preflight-1792233054679.json、c5-prompt-preflight-1792233116793.json、snapshot-1792233054773.json、tool-trace-review-1792233055005.json、round-c5-start-2026-10-17.json。
+
+## 2026-10-17 C4别名已生效但仍无提议，待空白会话对照
+
+C4同case两个独立run均completed/tools0；首run一次NETWORK_ERROR后有界重试成功，另一run独立完成。脱敏trace确认全部发送files_read/history_search，两个HTTP200响应均4帧/3文本帧/stop，没有标准工具字段或交付事件。actual合计9680，失败attempt的estimated29408不当实际消耗/费用；无活跃任务/队列/预留/重复/未结算，旧账本保持。点号错误确实存在且已修，但不是本现象的充分解释，不把当前问题说成已解决或FlashX不支持工具。
+
+只读上下文来源指针均含本轮用户，SQL布尔确认输入含wire工具名/测试查询，无自定义个人指令；不导出正文。新增全链合成回归覆盖三次旧拒绝后最新用户原文仍完整交给fetch并执行配对工具，integration3/check444文件均退出0。它不证明真实模型为何选择不调用，也不追溯证明原wire消息原文。本轮无产品改动/重建/重启/Agent模型请求或真实Key/native正文读取/业务库手写。
+
+下一用同账户/模型/生产构建的空白普通聊天隔离旧会话影响；仅假设、待验证。已请用户点击“新建聊天”后先不发送，待读取新session ID/零消息/无项目/唯一合成marker预检，再给一条严格新会话范围的对照请求；不在B继续重发，不猜改auto/推理或切其他渠道。新会话创建是必要用户操作，不是live通过。A/B不重测，任务implemented_not_live_verified/gate engineering_passed_external_pending保持，未commit/push。证据[本轮C4](../evidence/P02-02/live-2026-10-15/round-c4-observation-2026-10-17.json)、同目录context-audit-1792229898556.json及tool-context-integration-2026-10-17.log。
+
+## 2026-10-17 C3边界已定位，工具名契约修复，等待C4
+
+C3用户仍回复“未执行工具”。case 01a148d5-78ba-7c16-a063-4deeacafe15f关联run 01a148d8-f09e-70ac-b585-d31b07f723a7/attempt 01a148d8-f1b8-7313-b506-4d1778969ebe：真实序列化请求带files.read/history.search，HTTP200/4个已解析SSE帧/3个文本帧/stop，没有标准工具字段或归一化tool_end；DB completed/1回合/tools0、actual4768，账本无重复/未结算/预留。C3不通过，不是界面隐藏了已执行工具，也没有标准tool_calls被解析器丢弃的证据。
+
+核对智谱官方FunctionObject.name规则^[a-zA-Z0-9_-]+$、1—64，确认带点号的内部名称直接发送是本地接口契约错误。按ADR0053仅精确智谱普通Chat在声明/assistant历史/私有前缀中转为files_read/history_search/knowledge_query，响应仅按本次实际声明解码后沿用完整参数/网关权限校验；canonical/账本/callId不变。旧/新合成native前缀经新Adapter实例恢复均通过，幂等兼容处理保留schema/binding版本，不读取真实native或改写历史。无tool_choice/模型/预算/重试/用户设置变化；trace仅新增三个固定wire别名。此修复不证明点号是上游不调用的唯一原因或FlashX不支持工具。
+
+两项完整Core回归先红后绿；最终unit76/integration6/check443文件/build:desktop及原目录生产UI公开读退出0，UI显示原账户1/B会话12条。用户确认退出后仍有上次精确进程残留，空闲快照确认后仅停止该main；旧启动器exit1保留，不冒称正常退出。新生产UI诊断正常关闭。8源码/619产物重新绑定，旧构建摘要保留。Agent模型请求/Key/native正文/聊天正文读取及业务库手写0。
+
+已打开原profile修正版，case 01a148e1-f1f9-7112-af33-833873fe91e9的opened且attempts0回执已核对，启动进程95232仍等待退出。下一仅用户按acceptance.md当前C4发一次history_search，Agent检查完整提议→canonical网关→配对结果→终答及结算，不通过就停，不继续盲重发。A/B已验范围保留，其他真人渠道/协议继续暂缓；P02-02=implemented_not_live_verified，gate=engineering_passed_external_pending，未commit/push。
+
+证据[本轮C3观察](../evidence/P02-02/live-2026-10-15/round-c3-observation-2026-10-17.json)、[工具名修复](../evidence/P02-02/live-2026-10-15/tool-name-fix-2026-10-17.json)、同目录round-c4-start-2026-10-17.json及official-tool-name-contract-2026-10-17.json。
+
+## 2026-10-17 C2仍无工具，脱敏诊断生产版已就绪，待C3一次取证
+
+用户截图回“未执行工具”，公开DB确认C2同B会话completed/1回合/1attempt/tools0、actual4673，旧账本不变、无活跃任务/队列/重复/预留/未结算。C/C2均不验收，不再只换提示词盲测。用户已从托盘完全退出并结束终端后，按ADR0052加入仅智谱Chat的可选边界trace：精确profile/新case显式启用，默认关闭，只记录固定工具名/计数/HTTP及终结枚举/有效attempt ID；不记录Key/URL/正文/参数/推理/native。回调/写入失败不影响请求，拒绝错profile/非法case/重复case/链接，日志1MiB后停止。无wire、IPC/DB版本、工具权限/选择、预算/重试/代理/设置或native绑定版本变更。
+
+unit67/integration6/check441文件/build:desktop均退出0，新生产UI原账户1/B会话10条正常。沙箱账户CheckOnly被Git ownership拒绝；以当前Windows用户从原目录复核退出0，没有改safe.directory或ACL。7源码/619产物摘要固定，生产Core无fixture。已用新启动器打开原profile，case 01a148d5-78ba-7c16-a063-4deeacafe15f 的opened回执已核对且attempts0；Agent真实模型请求/Key/native/正文读取及业务库手工改写0。正常启动/导航维护写入与脱敏日志另计，启动进程仍等待正常退出，不误记exit0。
+
+证据docs/evidence/P02-02/live-2026-10-15/tool-trace-implementation-2026-10-17.json、round-c2-observation-2026-10-17.json、round-c3-start-2026-10-17.json。下一用户只在原B会话发一条同范围history.search，Agent核对真实出站工具元信息/入站形状/交付计数及账本；无调用也能定位边界，不凭回答认定通过。历史两次原始请求/响应未读取，根因仍待C3；A/B及其他渠道暂缓、任务/gate保持，未commit/push。
+
+## 2026-10-17 P02-02工具边界模拟通过，准备C2一次补验
+
+公开原账户ready、工具probed生效、历史开启/非临时；新增真实ChatService/ModelRouter/ApiKeyAdapter/ReadGateway/账本两项合成检查通过：完整提议执行一次并回传ID，只有结果文字则tools0。首次工具状态期望写成completed改为既有succeeded，格式错误修正后最终integration2/check437文件退出0；619份生产产物保持，无本轮产品代码/接口/依赖变更，不重建/重启或检测。原C真实根因仍未证实，当前capabilities_json旧flags不作为根因；无真人请求/Key/native/正文读取/业务库改写。下一用户只在原B会话发送一次返回messageId的C2，仍tools0就停。证据docs/evidence/P02-02/live-2026-10-15/tool-boundary-2026-10-17.json及round-c2-start-2026-10-17.json；A/B及其他渠道暂缓保持，任务/gate不提升，未commit/push。
+
+## 2026-10-16 P02-02 C未产生工具记录，暂不验收
+
+用户截图文本称找到3条，但UI与只读DB均tools0；原B会话1回合/1attempt completed、actual4574，没有工具消息/账本行，旧账本不变、无重复/预留/未结算。不能据文本认定history.search执行，也未确定工具开放或provider解析哪处导致。记录docs/evidence/P02-02/live-2026-10-15/round-c-observation-2026-10-16.json；先不重发，下一核对实际工具开放/provider事件路径。A/B及其他渠道暂缓、任务/gate保持；Agent模型请求/Key/native/正文读取0，无产品改动或commit/push。
+
+## 2026-10-16 P02-02原数据与生产界面读取确认，C待验
+
+用户报告空历史/账户后已完全退出；只读原profile仍有ready账户1/会话4/消息32。生产Host原目录与公开列表正常，实际UI显示B会话6条及账户1，无账户不可用提示；dev对照出现catalog INTERNAL_ERROR/账户不可用提示，底层原因未定，不称数据清空或产品根因已修。启动器固定原目录和619份生产构建摘要，清除子进程dev renderer/fixture/RunAsNode标记；UI取证及用户原目录-CheckOnly通过，中间诊断失败保留。报告docs/evidence/P02-02/live-2026-10-15/ui-read-recovery-2026-10-16.json。无新模型请求/正文导出或账户配置变化，正常应用可能写布局/草稿；A/B保留，生产应用已打开，C仅显式B合成会话history.search待用户操作，任务/gate及其他渠道暂缓保持，未commit/push。
+
+## 2026-10-16 P02-02立即补充前台通过，标题预算修复，准备C
+
+用户报告B正常；公开记录确认旧请求取消/部分正文interrupted，新run同原root/taskVersion2、actual2022。另有先前followup独立执行，账本无重复/未结算/预留、旧账本摘要保持。自动标题235 actual另用了补充run新root，已按既有ADR0051修复所属校验/原root/版本，不改历史账本或接口/依赖/设置。2项回归先红后绿，相关integration47/unit6最终通过，首轮TEMP缓存失败保留；最终check436文件/build:desktop退出0、生产Core无fixture。证据docs/evidence/P02-02/live-2026-10-15/round-b-acceptance-2026-10-16.json及title-root-repair-2026-10-16.json。下一C只验显式合成会话限定的history.search真实闭环；重开加载补丁，无需重复检测/A/B/标题，不扩P02-03/P04/P05或其他渠道，任务/gate保持，未commit/push。
+
+## 2026-10-16 P02-02队列A用户验收通过，接续B立即补充
+
+用户确认编辑/取消、切页继续及保留项单次执行均正常并授权记录通过。A=passed_user_acceptance：保留项排队发生于主run活动期间，主结束后5ms启动，只有一次实际attempt/结算2520 tokens；无活跃任务/队列/预留/重复/未结算，旧账本摘要保持。该profile快照未见cancelled队列行，编辑/取消与切页分别注明来自用户回执，不伪称全量独立取证。报告docs/evidence/P02-02/live-2026-10-15/round-a-acceptance-2026-10-16.json；下一仅B立即补充，C工具闭环随后，不重测A/已通过项，不扩P02-03/P04/P05或其他渠道。任务/gate保持，Agent模型请求/Key/native正文读取0，未commit/push。
+
+## 2026-10-16 P02-02连接恢复，继续队列补验
+
+用户报告检测成功，原test1公开状态ready/lastErrorCode=null，偏好revision4不变；无活跃任务/队列/预留/未结算，旧账本摘要保持。证据docs/evidence/P02-02/live-2026-10-15/connection-restored-2026-10-16.json，快照命令exit0。本轮不重启/再次检测；先A队列编辑/取消/自动接续及切页，B/C待A核验后给步骤。已通过内容和其他渠道暂缓保持，P02状态/gate不提升，Agent模型请求/Key/native正文读取0，未commit/push。
+
+## 2026-10-16 P02-02启动预检修复，连接恢复待用户
+
+用户截图启动失败；只读确认原test1同ID/Chat/FlashX/地址及偏好保留，最近一次检测NETWORK_ERROR使status=unavailable。旧验收脚本把ready误作应用启动必要条件，已分离配置绑定与健康状态，允许正常UI恢复连接，仍保持原profile/唯一账户/模型/单模型/无后备/空闲校验，不写账户状态或自动发请求。策略9项及从C:/Users/20105执行-CheckOnly均退出0；报告docs/evidence/P02-02/live-2026-10-15/startup-recovery-2026-10-16.json。基线后1个run完成、3次attempt（2网络失败、1成功），没有排队记录；旧账本不变、无预留/重复/未结算。当前只请用户对原账户手动检测一次并反馈诊断，不重发长测试、不重跑已通过项。P02-02/gate保持，其他渠道暂缓；Agent本轮模型请求/Key/native正文读取0，无产品代码或用户设置变更，未commit/push。
+
+## 2026-10-15 P02-02增量live补验准备
+
+用户授权仅补P02-02，沿用现有智谱Chat/FlashX，其他渠道/协议继续暂缓；两轮续聊、重启、停止/部分正文、账本、专用native及标题恢复复用既有证据。main / 3178a8b，既有隔离profile公开预检通过且无活跃任务/队列/预留/未结算；本轮准备不发模型请求、不读Key/native正文、不改产品代码/设置。先用户操作A（队列编辑/取消/自动接续和切页继续），核对后再给B立即补充/C只读工具闭环。支持脚本首轮事件列名错误已修正，prepare退出0，失败与最终检查保留于docs/evidence/P02-02/live-2026-10-15/checks.json。P02-02仍implemented_not_live_verified，P02-gate保持engineering_passed_external_pending，不扩P02-03/P04/P05；未commit/push。P01最新gate按P01-gate.md同步为engineering_passed_external_pending，旧failed仅历史。
+
 ## 2026-10-15 P01最终源码CI通过、单提交合入main
 
 用户授权的P01交付已完成源码推送与CI修复：最终源分支codex/p01-02-zhipu-chat-live / f81c3d7，CI38715529361的check及startup-diagnostics均success；unit327/integration323/perf2/Electron47，标准用户/Office/启动诊断通过。首轮6项已知错误码与4项干净runner入口失败已修复并保留证据。本次按授权将3个源提交压缩为包含本交接的单一main提交，压缩暂存树与已验源码完全一致，新增交接仅文档，源分支保留、无PR。P01-gate仍engineering_passed_external_pending，各任务implemented_not_live_verified；订阅/其他渠道协议/价格金额缺口按用户要求保留，既有R13真实验证范围不扩大，未开展P02/P04补验或P05。证据docs/evidence/P01-engineering-2026-10-14/ci-success-2026-10-15.json和main-squash-2026-10-15.json。
@@ -325,7 +617,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | 阶段 | gate_status                         | 收口报告（收口时创建）    |
 | ---- | ----------------------------------- | ------------------------- |
 | P00  | passed                              | docs/progress/P00-gate.md |
-| P01  | failed                              | docs/progress/P01-gate.md |
+| P01  | engineering_passed_external_pending | docs/progress/P01-gate.md |
 | P02  | engineering_passed_external_pending | docs/progress/P02-gate.md |
 | P03  | passed                              | docs/progress/P03-gate.md |
 | P04  | engineering_passed_external_pending | docs/progress/P04-gate.md |

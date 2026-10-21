@@ -1,0 +1,101 @@
+{
+  "checkedAt": "2026-10-16T10:49:30.119Z",
+  "task": "P02-02",
+  "mode": "development renderer with existing production Host; public read only; user confirmed prior app fully exited",
+  "host": {
+    "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+    "appPath": "D:\\Tapkit-public\\apps\\desktop",
+    "packaged": false
+  },
+  "modelRequests": 0,
+  "secretBodiesExported": false,
+  "outcomes": [
+    {
+      "command": "providers.list",
+      "ok": true,
+      "keys": [
+        "accounts",
+        "models"
+      ],
+      "accounts": 1,
+      "readyAccounts": 1,
+      "catalog": null,
+      "messages": null
+    },
+    {
+      "command": "models.catalog",
+      "ok": false,
+      "code": "INTERNAL_ERROR"
+    },
+    {
+      "command": "messages.list",
+      "ok": true,
+      "keys": [
+        "sessionId",
+        "branchId",
+        "messages",
+        "nextCursor",
+        "run",
+        "pending",
+        "eventSeq",
+        "selection",
+        "tools"
+      ],
+      "accounts": null,
+      "readyAccounts": null,
+      "catalog": null,
+      "messages": 6
+    }
+  ],
+  "build": {
+    "packages/core/dist/index.cjs": "edce2c838c2271816992c69ac1751846d3a2b302fb3862aaf01bdc5a3b8db6b4",
+    "apps/desktop/out/main/index.js": "47c48ff7b47d65304f0df667482d29d11b8fba46a38300e119d34815d0e81ea1",
+    "apps/desktop/out/preload/index.js": "b1b68eae7b2bec47a6a07964efc22a3db71e7e3a0fe25a5a30f89e2239cb45b7",
+    "apps/desktop/out/renderer/index.html": "91d7a1e604ac72d6f35e373c779cff7b47f0429fb4228d67612cf821755e8d3d"
+  },
+  "initialUi": {
+    "historyRows": 4,
+    "coreConnected": true,
+    "coreUnavailable": false,
+    "sourceErrorOverlay": false,
+    "rootChildElements": 1
+  },
+  "schemaChecks": [
+    {
+      "command": "bootstrap",
+      "parsed": true
+    },
+    {
+      "command": "providers.list",
+      "parsed": true
+    },
+    {
+      "command": "messages.list",
+      "parsed": true
+    }
+  ],
+  "chatUi": {
+    "messages": 6,
+    "chatError": false,
+    "connectionUnavailable": true
+  },
+  "diagnosticFailure": {
+    "stage": "open_connections",
+    "name": "Error",
+    "timeout": false,
+    "detailExported": false
+  },
+  "failureUi": {
+    "settingsRendered": true,
+    "chatRendered": false,
+    "apiRendered": false,
+    "fixedSettingsLinks": [
+      "/settings/general",
+      "/settings/connections",
+      "/settings/general",
+      "/settings/connections"
+    ]
+  },
+  "pageErrors": [],
+  "status": "diagnostic_incomplete"
+}

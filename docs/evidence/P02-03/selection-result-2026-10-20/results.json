@@ -1,0 +1,123 @@
+{
+  "task": "P02-03",
+  "localDate": "2026-10-20",
+  "requirements": [
+    "FR-07-017",
+    "FR-08-010"
+  ],
+  "status": "production_loaded_pending_user_single_translation",
+  "diagnosis": "diagnosis.json",
+  "decision": "docs/adr/0056-selection-operation-context.md",
+  "originalProfileBaseline": "original-profile-before.json",
+  "sourceBinding": "source-binding.json",
+  "buildActivation": "build-activation.json",
+  "normalReopen": "normal-reopen.json",
+  "profilePreservation": "original-profile-after.json",
+  "oldLauncherSession": {
+    "id": 98586,
+    "exitCode": 0
+  },
+  "currentLauncherSession": {
+    "id": 62166,
+    "status": "running_exit_not_observed",
+    "exitCode": null
+  },
+  "checks": [
+    {
+      "command": "Locked pnpm test:unit P02-03.selection-output",
+      "exitCode": 0,
+      "passed": 2,
+      "log": "unit.log"
+    },
+    {
+      "command": "Locked pnpm test:integration P02-03.history P04-01.chat P04-01.retrieval with TEMP/TMP fixed to a workspace test directory",
+      "exitCode": 0,
+      "passed": 42,
+      "log": "integration-shared-temp.log"
+    },
+    {
+      "command": "Locked pnpm check",
+      "exitCode": 0,
+      "files": 457,
+      "log": "check.log"
+    },
+    {
+      "command": "Locked pnpm test:e2e -- tests/e2e/P02-03.history.spec.ts --grep 'P02-03 T13 selection source'",
+      "exitCode": 0,
+      "passed": 1,
+      "windowSizes": [
+        1440,
+        1024
+      ],
+      "log": "e2e-targeted.log",
+      "chromiumSandbox": true,
+      "isolatedSyntheticProfile": true,
+      "realModelRequests": 0,
+      "productionBuildRestored": true,
+      "productionFixtureAbsent": true,
+      "screenshots": [
+        "source-1440.png",
+        "source-1024.png"
+      ]
+    }
+  ],
+  "earlierFailuresRetained": [
+    {
+      "log": "integration.log",
+      "exitCode": 1,
+      "passed": 4,
+      "suitesNotLoaded": 2,
+      "reason": "Sandbox temporary SSR cache ENOENT"
+    },
+    {
+      "log": "integration-serial.log",
+      "exitCode": 1,
+      "passed": 33,
+      "suitesNotLoaded": 2,
+      "reason": "Same SSR cache missing across test workers"
+    },
+    {
+      "log": "retrieval-regression.log",
+      "exitCode": 1,
+      "passed": 5,
+      "suitesNotLoaded": 1,
+      "reason": "Same SSR cache missing; fixed task-specific TEMP/TMP for final green invocation"
+    },
+    {
+      "log": "e2e.log",
+      "exitCode": 1,
+      "testsExecuted": 0,
+      "reason": "Unrelated test discovery imported defaults.json without JSON type attribute; targeted test file completed successfully. Recovery production build completed."
+    }
+  ],
+  "coverage": [
+    "Actual screenshot run: correct translation with message-ID evidence prefix followed by partial VALIDATION_ERROR",
+    "Five actions retain only the verified range; provider messages exclude source ID; source link remains persisted",
+    "Prefix/suffix generated markers cleaned during streaming and before persistence; source code examples preserved literally",
+    "No knowledge citations or tool calls recorded for selection transformations",
+    "Ordinary knowledge chat still rejects missing or fabricated evidence and verifies actual permitted sources",
+    "Real desktop selection button, completed run, explicit source label, exact source preview and viewport fit at two widths"
+  ],
+  "manualNext": "In the original P02批测-操作-1019 session, select the same English sentence and click Translate once. Check the new response has the correct translation, completed status and no internal marker or file error; source preview remains available.",
+  "historicalFailuresPreserved": true,
+  "liveAcceptance": "pending_user_single_translation",
+  "taskAndGateStatusUnchanged": true,
+  "administratorFirst": true,
+  "nonAdministratorAndOtherChannelsDeferred": true,
+  "agentOriginalDatabaseWrites": 0,
+  "agentRealModelRequests": 0,
+  "commitOrPush": false,
+  "finalChecks": [
+    {
+      "command": "Locked pnpm docs:check",
+      "exitCode": 0,
+      "log": "docs-check.log",
+      "taskStates": 37
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "note": "Only a pre-existing runtime-probe.log CRLF normalization warning"
+    }
+  ]
+}

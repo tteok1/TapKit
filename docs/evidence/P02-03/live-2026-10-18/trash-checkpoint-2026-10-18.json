@@ -1,0 +1,43 @@
+{
+  "task": "P02-03",
+  "round": "G-trash-checkpoint",
+  "localDate": "2026-10-18",
+  "status": "passed_live_scoped_trash_checkpoint_restore_pending",
+  "review": "trash-review-1792286750191.json",
+  "humanConfirmation": "符合预期",
+  "targetSessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+  "currentRevision": 6,
+  "softDeleted": true,
+  "recentMembership": 0,
+  "trashMembership": 1,
+  "retainedMessages": 2,
+  "messageHashesAndBranchPreserved": true,
+  "ordinarySearchProjectionCount": 0,
+  "uniqueTitleFTSHits": 0,
+  "newModelRequestsToolsAndSettlements": 0,
+  "limits": "Single synthetic copy with no attachment/resource/memory sources. Recovery is not yet accepted; permanent and batch deletion are excluded.",
+  "next": {
+    "round": "G-restore-from-trash",
+    "status": "prepared_waiting_user_restore_and_local_message_search",
+    "baseline": "restore-baseline-2026-10-18.json",
+    "expected": "Select only this copy in 聊天 → 回收站, click 恢复 once, reopen from 最近, then search P02E-1017R in 当前会话 + 消息 to confirm rebuilt index/location. No model sends or permanent deletion."
+  },
+  "checks": [
+    { "command": "locked Node inspect.mjs snapshot", "exitCode": 0, "report": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792286685621.json" },
+    { "command": "locked Node read-tool-trace.mjs", "exitCode": 0, "report": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792286686186.json" },
+    { "command": "locked Node review-trash.mjs snapshot-1792286685621.json tool-trace-review-1792286686186.json --prepare-restore", "exitCode": 0, "result": "10 scoped checks true; restore baseline prepared without app mutation" },
+    { "command": "locked Node record-trash-handoff.mjs trash-review-1792286750191.json", "exitCode": 0 },
+    { "command": "locked pnpm docs:check", "exitCode": 0, "result": "All 37 task states, started handoffs and completed requirement evidence links verified" },
+    { "command": "git diff --check", "exitCode": 0 },
+    { "command": "locked Node --check review-trash.mjs and record-trash-handoff.mjs", "exitCode": 0 }
+  ],
+  "productChangesThisTurn": 0,
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false,
+  "taskStatus": "implemented_not_live_verified",
+  "stageGate": "engineering_passed_external_pending",
+  "otherProvidersAndProtocols": "deferred",
+  "committedOrPushed": false
+}

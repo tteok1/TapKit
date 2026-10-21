@@ -1,0 +1,73 @@
+{
+  "localDate": "2026-10-21",
+  "checkedAt": "2026-10-20T18:17:57.6282778Z",
+  "launcherSession": 48710,
+  "launcherStatus": "running_exit_not_observed",
+  "exitCode": null,
+  "caseId": "01a15a88-0abf-71a1-b38e-7cadc3f452c8",
+  "profileId": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10",
+  "coreOpenedReceipt": true,
+  "attemptRows": 0,
+  "windowPid": 33780,
+  "windowTitle": "TapKit",
+  "windowHandleNonzero": true,
+  "windowVerifiedBy": "Read-only Get-Process outside tool sandbox",
+  "publicIpcUpdatedAfterLaunch": true,
+  "replies": [
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    },
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    },
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    },
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    },
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    },
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    }
+  ],
+  "activeBuild": "verified-build-ui-1792520224685-e1b00c92.json",
+  "sourceReview": "reviewed-source-ui-1792520224685-e1b00c92.json",
+  "verifiedArtifacts": 619,
+  "refreshScriptCompleted": true,
+  "uiSnapshotActivated": true,
+  "forcedProcessTermination": false,
+  "modelRequestsByAgent": 0
+}

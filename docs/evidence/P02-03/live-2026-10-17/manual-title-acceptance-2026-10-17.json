@@ -1,0 +1,39 @@
+{
+  "task": "P02-03",
+  "round": "D-manual-title",
+  "localDate": "2026-10-17",
+  "status": "passed_live_scoped_manual_title_and_reopen",
+  "review": "manual-title-review-1792246565060.json",
+  "humanConfirmation": "符合预期，可以继续下一项测试",
+  "sessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+  "title": "P02验收-分叉副本-1017",
+  "newModelRequestsToolsAndSettlements": 0,
+  "limits": "Manual title on this copy and leaving/reopening only. Automatic-title races, explicit AI rename and full FR-08-001 acceptance remain unverified.",
+  "next": {
+    "round": "E-search-and-locate",
+    "status": "prepared_waiting_user",
+    "baseline": "search-baseline-2026-10-17.json",
+    "titleSearch": "全局 + 会话 + P02验收-分叉副本-1017",
+    "messageSearch": "当前会话 + 消息 + P02E-1017R",
+    "preflight": "Read-only FTS/index IDs: one expected hit for each; UI highlighting and location not yet tested",
+    "expectedNewModelRequestsToolsAndSettlements": 0
+  },
+  "checks": [
+    { "command": "locked Node inspect.mjs snapshot", "exitCode": 0, "report": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792246497407.json" },
+    { "command": "locked Node read-tool-trace.mjs", "exitCode": 0, "report": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792246498623.json" },
+    { "command": "locked Node review-manual-title.mjs snapshot-1792246497407.json tool-trace-review-1792246498623.json --prepare-search", "exitCode": 0, "result": "8 scoped checks true; prepared two synthetic search cases through SELECT only; no application search history written" },
+    { "command": "locked Node record-manual-title-handoff.mjs manual-title-review-1792246565060.json", "exitCode": 0 },
+    { "command": "locked pnpm docs:check", "exitCode": 0, "result": "All 37 task states, started handoffs and completed requirement evidence links verified" },
+    { "command": "git diff --check", "exitCode": 0 },
+    { "command": "locked Node --check review-manual-title.mjs and record-manual-title-handoff.mjs", "exitCode": 0 }
+  ],
+  "productChangesThisTurn": 0,
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false,
+  "taskStatus": "implemented_not_live_verified",
+  "stageGate": "engineering_passed_external_pending",
+  "otherProvidersAndProtocols": "deferred",
+  "committedOrPushed": false
+}

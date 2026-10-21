@@ -79,7 +79,7 @@ export function DesktopShell() {
   const location = useLocation(),
     navigate = useNavigate(),
     scroll = useRef<HTMLElement>(null),
-    sidebarScroll = useRef<HTMLDivElement>(null),
+    sidebarScroll = useRef<HTMLElement>(null),
     input = useRef<HTMLTextAreaElement>(null),
     modal = useRef<HTMLDialogElement>(null),
     previousFocus = useRef<HTMLElement | null>(null),
@@ -436,6 +436,11 @@ export function DesktopShell() {
           (narrow && sidebarDrawer ? ' sidebar-drawer' : '')
         }
         aria-label="侧栏"
+        ref={sidebarScroll}
+        onScroll={(e) => {
+          const y = Math.min(10000000, e.currentTarget.scrollTop);
+          setLayout((l) => ({ ...l, sidebarScroll: y }));
+        }}
       >
         <div className="sidebar-brand">
           <Link to="/" aria-label="TapKit 首页">
@@ -559,14 +564,7 @@ export function DesktopShell() {
             </details>
           )}
         </nav>
-        <div
-          className="history"
-          ref={sidebarScroll}
-          onScroll={(e) => {
-            const y = Math.min(10000000, e.currentTarget.scrollTop);
-            setLayout((l) => ({ ...l, sidebarScroll: y }));
-          }}
-        >
+        <div className="history">
           {!collapsed && !!workspace?.projects.length && (
             <section className="sidebar-projects" aria-label={t.projects}>
               <h2>{t.projects}</h2>
@@ -840,16 +838,7 @@ export function DesktopShell() {
                   path="/sessions/:id"
                   element={
                     selected ? (
-                      <>
-                        <section className="welcome session-welcome">
-                          <h1>{selected.title}</h1>
-                          <p className="surface-context">
-                            {selected.mode === 'chat' ? '聊天' : '工作'}
-                          </p>
-                          <p>{selected.mode === 'chat' ? t.chatHint : t.workHint}</p>
-                        </section>
-                        {composer}
-                      </>
+                      composer
                     ) : (
                       <section>
                         <h1>会话未找到</h1>

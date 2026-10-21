@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-20T08:40:08.048Z",
+  "localDate": "2026-10-20",
+  "buildExitCode": 0,
+  "sourceReview": "reviewed-source-selection-1792485608048-aa1ce975.json",
+  "buildManifest": "verified-build-selection-1792485608048-aa1ce975.json",
+  "reviewedSources": 16,
+  "artifactCount": 619,
+  "changedArtifacts": [
+    "packages/core/dist/index.cjs"
+  ],
+  "uiAndHostArtifactsPreserved": true,
+  "unrelatedBackendAndRuntimeSourcesPreserved": true,
+  "fixtureAbsent": true,
+  "selectionImplementationPresent": true,
+  "modelRequestsByAgent": 0,
+  "originalWritesByAgent": 0
+}

@@ -1,0 +1,28 @@
+{
+  "capturedAt": "2026-10-19T09:57:31.120Z",
+  "unit": {
+    "exitCode": 0,
+    "passed": 14
+  },
+  "check": {
+    "exitCode": 0,
+    "formattedFiles": 450
+  },
+  "buildDesktop": {
+    "exitCode": 0
+  },
+  "userConfirmedAppExit": true,
+  "syntheticCaseLogPrefixes": [
+    {
+      "path": "docs/evidence/P00-03/native-cases.jsonl",
+      "bytes": 927833,
+      "sha256": "9b49627be0e2b7caa8356cb6f8927bf6c8e70b5d542e5926a2ccf6085a3b9b4b"
+    },
+    {
+      "path": "docs/evidence/P03-01/native-parser-cases.jsonl",
+      "bytes": 13737,
+      "sha256": "4c4ee3093de450260bc6b4e9ef534bccd723b8217df6205a61885883c15e49d7"
+    }
+  ],
+  "standardUserAcceptance": "deferred_by_user"
+}

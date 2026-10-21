@@ -1,0 +1,172 @@
+{
+  "task": "P02-03",
+  "round": "B-regenerate",
+  "status": "prepared_waiting_one_user_regenerate",
+  "checkedAt": "2026-10-17T13:48:46.373Z",
+  "startedAfter": 1792244920402,
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "caseId": "01a149b9-04f4-7d9c-9487-44b0b62e3b25",
+  "session": {
+    "id": "01a14969-e3c4-77ee-b768-6fc59b1451d6",
+    "branchId": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+    "revision": 7
+  },
+  "branches": [
+    {
+      "id": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "parentId": null,
+      "forkMessageId": null,
+      "headMessageId": "01a1498f-0dde-7e27-b7c3-403a7e7c3216",
+      "revision": 6
+    },
+    {
+      "id": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "parentId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "forkMessageId": "01a1498e-a6d7-79cc-9c74-7994ef8dbf6f",
+      "headMessageId": "01a149c6-7bec-7200-856b-14ef4488e230",
+      "revision": 3
+    }
+  ],
+  "messages": [
+    {
+      "id": "01a1498e-a6d7-79cc-9c74-7994ef8dbf6f",
+      "branchId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "revision": 1,
+      "sourceMessageId": null,
+      "contentJsonLength": 388,
+      "contentSHA256": "b3c2d02e72029ac1f369693f68ebe50746af641d726f95ef97c9b25bc9529168"
+    },
+    {
+      "id": "01a1498e-a864-7434-a9dc-fa25b6801d25",
+      "branchId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "parentId": "01a1498e-a6d7-79cc-9c74-7994ef8dbf6f",
+      "role": "assistant",
+      "status": "interrupted",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "revision": 3,
+      "sourceMessageId": null,
+      "contentJsonLength": 56,
+      "contentSHA256": "ad0488465c4a0342aec704083ba00f045643cd3ec88ad0702e651b93b2fa1ddf"
+    },
+    {
+      "id": "01a1498e-fba9-76ef-a5d7-3fdc67284d94",
+      "branchId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "parentId": "01a1498e-a6d7-79cc-9c74-7994ef8dbf6f",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "revision": 11,
+      "sourceMessageId": null,
+      "contentJsonLength": 163,
+      "contentSHA256": "b68cb7661cdba4408ec82f195994ed9b353257792a6a5ee931ff6444cf827489"
+    },
+    {
+      "id": "01a1498f-0dc1-777c-bc8e-27c19cd5762d",
+      "branchId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "parentId": "01a1498e-fba9-76ef-a5d7-3fdc67284d94",
+      "role": "tool",
+      "status": "final",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "revision": 1,
+      "sourceMessageId": null,
+      "contentJsonLength": 324,
+      "contentSHA256": "3d216c38aff760c134ccd02833eb8e240fbe7b0e310a5554d9194166dd0eada3"
+    },
+    {
+      "id": "01a1498f-0dde-7e27-b7c3-403a7e7c3216",
+      "branchId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "parentId": "01a1498f-0dc1-777c-bc8e-27c19cd5762d",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "revision": 9,
+      "sourceMessageId": null,
+      "contentJsonLength": 92,
+      "contentSHA256": "4441caef184353eaa068b03cd2b6d63e29d7314caeb82e6819e8e51a81e036aa"
+    },
+    {
+      "id": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "branchId": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a149c6-78aa-78a5-befb-d255faec60b7",
+      "revision": 1,
+      "sourceMessageId": null,
+      "contentJsonLength": 80,
+      "contentSHA256": "26d08c0117a2160250ef6a4a7bbf58e3af422cbcb8f98713b5cffa68fa198b93"
+    },
+    {
+      "id": "01a149c6-7bec-7200-856b-14ef4488e230",
+      "branchId": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "parentId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a149c6-78aa-78a5-befb-d255faec60b7",
+      "revision": 4,
+      "sourceMessageId": null,
+      "contentJsonLength": 62,
+      "contentSHA256": "9b64af603d2349dd9f8e2b91ea598e7e57cdfcb85c05df982e23a6e90ae67bff"
+    }
+  ],
+  "oldLedger": [
+    {
+      "attemptId": "01a1498e-a85c-75d3-95cb-cc9c8bf20839",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "status": "failed",
+      "errorCode": "NETWORK_ERROR",
+      "source": "estimated",
+      "chargedTokens": 12358
+    },
+    {
+      "attemptId": "01a1498e-fb9f-7cc9-a1ee-17c16cfc5565",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 876
+    },
+    {
+      "attemptId": "01a1498f-0dd6-72a3-91df-6a0f2c59d2d4",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 1014
+    },
+    {
+      "attemptId": "01a1498f-1a36-7338-b8d2-9e06833fa908",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 213
+    },
+    {
+      "attemptId": "01a149c6-7bda-76b9-a51d-de1cfc284898",
+      "runId": "01a149c6-78aa-78a5-befb-d255faec60b7",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 1336
+    }
+  ],
+  "oldLedgerSHA256": "046528f7071a6b40214a51111e445999ddab0ebc14e92c101eca31517f0cac36",
+  "targetAssistantMessageId": "01a149c6-7bec-7200-856b-14ef4488e230",
+  "targetUserMessageId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+  "targetBranchId": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+  "prompt": "P02E-1017R：请只回复“编辑分支成功”。",
+  "expectedReply": "编辑分支成功",
+  "expectedPromptVersion": "chat-p04-2:source-data/1",
+  "priorAcceptance": "edit-actual-session-review-1792244926378.json",
+  "instructions": "Stay on the successful edited branch whose question starts P02E-1017R. Click 重新生成 under its completed 编辑分支成功 assistant answer exactly once. Wait, then switch top branch dropdown between the previous edit branch and the new 回答版本. Both versions must remain; content may be identical for this literal prompt. Do not use other-model regenerate or send/edit again. Stop on error.",
+  "acceptance": "One new candidate branch linked to target assistant and one new run/actual settlement, original branch/message hashes and old ledger preserved; current prompt retained, tools0 expected. Switching does not create further work.",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false
+}

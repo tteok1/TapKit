@@ -1,0 +1,68 @@
+{
+  "task": "P02-03",
+  "round": "H-group-create-and-move",
+  "localDate": "2026-10-18",
+  "checkedAt": "2026-10-18T01:51:04.439Z",
+  "status": "passed_live_scoped_group_create_and_move_rename_delete_pending",
+  "review": "group-create-review-1792288198683.json",
+  "humanConfirmation": "符合预期",
+  "groupId": "01a14cb1-4dde-7e06-aa3d-a97ac9146b0d",
+  "groupRevision": 1,
+  "targetSessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+  "sessionRevision": 8,
+  "singleTargetMembership": true,
+  "messageHashesAndBranchPreserved": true,
+  "newModelRequestsToolsAndSettlements": 0,
+  "limits": "One synthetic ordinary chat copied into one custom group via edit/save; not drag/drop, bulk move, project move, pin/reorder, group rename or deletion acceptance.",
+  "next": {
+    "round": "H-group-rename",
+    "status": "prepared_waiting_one_user_group_rename",
+    "baseline": "group-rename-baseline-2026-10-18.json",
+    "renamedGroupName": "P02验收分组-1018-改名",
+    "renamed": false,
+    "deleted": false
+  },
+  "checks": [
+    {
+      "command": "locked Node inspect.mjs snapshot",
+      "exitCode": 0,
+      "report": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792288145877.json"
+    },
+    {
+      "command": "locked Node read-tool-trace.mjs",
+      "exitCode": 0,
+      "report": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792288145876.json"
+    },
+    {
+      "command": "locked Node review-group-create.mjs snapshot-1792288145877.json tool-trace-review-1792288145876.json --prepare-rename",
+      "exitCode": 0,
+      "result": "16 checks true; rename baseline prepared without application mutation"
+    },
+    {
+      "command": "locked Node record-group-create-handoff.mjs group-create-review-1792288198683.json",
+      "exitCode": 0
+    },
+    {
+      "command": "locked pnpm docs:check",
+      "exitCode": 0,
+      "result": "All 37 task states, started handoffs and completed requirement evidence links verified"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "locked Node --check review-group-create.mjs and record-group-create-handoff.mjs",
+      "exitCode": 0
+    }
+  ],
+  "productChangesThisTurn": 0,
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false,
+  "taskStatus": "implemented_not_live_verified",
+  "stageGate": "engineering_passed_external_pending",
+  "otherProvidersAndProtocols": "deferred",
+  "committedOrPushed": false
+}

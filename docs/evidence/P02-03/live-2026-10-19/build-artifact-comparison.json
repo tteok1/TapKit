@@ -1,0 +1,9 @@
+{
+  "oldArtifacts": 619,
+  "currentArtifacts": 619,
+  "changed": [
+    "packages/core/dist/index.cjs"
+  ],
+  "removed": [],
+  "rendererUnchanged": true
+}

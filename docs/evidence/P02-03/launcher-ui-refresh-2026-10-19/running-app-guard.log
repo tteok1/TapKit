@@ -1,0 +1,7 @@
+Exit TapKit from the tray before using -RefreshUiBuild.
+At D:\Tapkit-public\docs\evidence\P02-02\live-2026-10-15\run-app.ps1:12 char:22
++ ... 2Running) { throw 'Exit TapKit from the tray before using -RefreshUiB ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Exit TapKit fro...RefreshUiBuild.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Exit TapKit from the tray before using -RefreshUiBuild.
+ 

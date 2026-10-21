@@ -1,0 +1,23 @@
+{
+  "task": "P02-02",
+  "round": "C3",
+  "localDate": "2026-10-17",
+  "status": "not_accepted_no_standard_upstream_tool_proposal",
+  "caseId": "01a148d5-78ba-7c16-a063-4deeacafe15f",
+  "readiness": "tool-trace-review-1792223332153.json",
+  "baseline": "snapshot-1792223332134.json",
+  "startedAfter": 1792223332134,
+  "targetSessionId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+  "prompt": "请实际调用一次 history.search，参数为 {\"query\":\"补充已生效\",\"limit\":1,\"sessionIds\":[\"01a1442b-3b71-78b6-b3a3-f47c8df370cf\"]}。收到工具结果后，仅返回第一条结果的 messageId；没有匹配则回复“无匹配”。如果未实际调用工具，只回复“未执行工具”，不要猜测或沿用上次的结果。不调用其他工具。",
+  "requestBudget": "One user send; existing production root/time/usage caps and retry policy unchanged. No agent live requests.",
+  "instructions": "Use already-open production app, same B session and saved account. Do not detect/reconfigure/restart or repeat A/B. Send once; after response report text and tool count, then agent reads safe trace. Do not send another request on failure.",
+  "diagnosisRules": [
+    "No history.search in serialized request: inspect capability/filter/request preparation path.",
+    "HTTP200 finished plus no standard tool proposal fields: received stream did not contain a standard tool call; do not infer execution from text.",
+    "Tool fields observed but deliveredToolEnds0: inspect unsupported shape/validation/normalization/native-save boundary, using fixed error metadata.",
+    "deliveredToolEnds>0: correlate public run/tool rows, side_effect and result/answer pairing."
+  ],
+  "sensitiveBodiesLogged": false,
+  "agentModelRequests": 0,
+  "observation": "round-c3-observation-2026-10-17.json"
+}

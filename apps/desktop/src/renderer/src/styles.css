@@ -563,9 +563,9 @@ button:focus-visible {
   background: var(--accent-surface);
 }
 .history {
-  overflow-y: auto;
-  min-height: 160px;
-  flex: 1 0 160px;
+  overflow: visible;
+  min-height: 0;
+  flex: 0 0 auto;
 }
 .history h2 {
   color: var(--muted);
@@ -1039,8 +1039,6 @@ button[aria-pressed='true'] {
 }
 .history-dialog {
   position: fixed;
-  inset: 10vh auto auto 50%;
-  transform: translateX(-50%);
   width: min(640px, 90vw);
   max-height: 80vh;
   overflow: auto;

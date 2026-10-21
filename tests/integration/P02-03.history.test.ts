@@ -144,6 +144,263 @@ async function fresh() {
   };
 }
 describe('P02-03 history lifecycle', () => {
+  it.each(['translate', 'explain', 'expand', 'shorten', 'rewrite'] as const)(
+    'T13 selection operation %s uses only its verified range and current action, without losing history',
+    async (action) => {
+      const f = await fresh();
+      const selected = 'The amber lighthouse guides a small boat safely home.';
+      const sourceText = 'OUTSIDE_BEFORE\n' + selected + '\nOUTSIDE_AFTER';
+      const session = f.chat.session(f.session);
+      f.chat.insertMessage(session, 'user', 'Synthetic source question.', 'final', null);
+      const sourceId = f.chat.insertMessage(session, 'assistant', sourceText, 'final', null);
+      f.chat.insertMessage(session, 'user', '请只回复“引用成功1019”。', 'final', null);
+      f.chat.insertMessage(session, 'assistant', '引用成功1019', 'final', null);
+      const before = await f.snapshot();
+      const background = vi.spyOn(f.chat.memories, 'background');
+      const seed = vi.spyOn(f.chat.contexts, 'background');
+      const range = {
+        start: sourceText.indexOf(selected),
+        end: sourceText.indexOf(selected) + selected.length,
+      };
+      const request = req('messages.transform', {
+        sessionId: f.session,
+        messageId: sourceId,
+        version: 1,
+        range,
+        action,
+      });
+      const sent = data(await f.history.dispatch(request));
+      await expect.poll(async () => (await f.snapshot()).run?.status).toBe('completed');
+      expect(f.inputs).toHaveLength(1);
+      expect(background).not.toHaveBeenCalled();
+      expect(seed).not.toHaveBeenCalled();
+      const input = f.inputs[0]!;
+      expect(input.messages).toHaveLength(1);
+      expect(input.messages[0]!.role).toBe('user');
+      expect(input.messages[0]!.text).toContain(selected);
+      expect(input.messages[0]!.text).not.toMatch(/OUTSIDE_BEFORE|OUTSIDE_AFTER|引用成功1019/);
+      expect(JSON.stringify(input.messages)).not.toContain(sourceId);
+      expect(input.systemModules.find((m) => m.id === 'message.selection')?.text).toContain(action);
+      expect(input.tools).toEqual([]);
+      expect(input.systemModules.some((m) => /^(history|memory)\.background$/.test(m.id))).toBe(
+        false,
+      );
+      const after = await f.snapshot();
+      expect(after.messages.slice(0, before.messages.length)).toEqual(before.messages);
+      expect(after.messages).toHaveLength(before.messages.length + 2);
+      expect(after.messages.at(-2)?.attachments).toEqual([
+        { kind: 'message', sessionId: f.session, messageId: sourceId, version: 1, range },
+      ]);
+      expect(data(await f.history.dispatch(request))).toEqual(sent);
+      expect(f.inputs).toHaveLength(1);
+      expect(f.store.db.prepare('SELECT count(*) n FROM memory_uses').get()).toEqual({ n: 0 });
+      expect(
+        f.store.db
+          .prepare('SELECT prompt_version FROM context_snapshots ORDER BY rowid DESC LIMIT 1')
+          .get(),
+      ).toMatchObject({ prompt_version: expect.stringContaining('selection-v2') });
+      if (action === 'translate') {
+        await f.send('普通聊天后续问题。');
+        expect(f.inputs.at(-1)!.messages.some((m) => m.text.includes('引用成功1019'))).toBe(true);
+        expect(f.inputs.at(-1)!.tools.length).toBeGreaterThan(0);
+      }
+    },
+  );
+
+  it.each(['prefix', 'suffix', 'literal'] as const)(
+    'T13 selection result %s marker never becomes file evidence or an incorrect partial failure',
+    async (mode) => {
+      const f = await fresh();
+      const literal = '[[evidence:example]]';
+      const selected =
+        mode === 'literal'
+          ? 'Explain the token ' + literal
+          : 'The amber lighthouse guides a small boat safely home.';
+      const source = f.chat.insertMessage(
+        f.chat.session(f.session),
+        'assistant',
+        selected,
+        'final',
+        null,
+      );
+      const marker = '[[evidence:' + source + ']]';
+      const translated =
+        mode === 'literal' ? '标记 ' + literal : '琥珀色的灯塔指引着一艘小船安全归家。';
+      const emitted =
+        mode === 'prefix'
+          ? marker + '\n' + translated
+          : mode === 'suffix'
+            ? translated + marker
+            : translated;
+      const originalAdapter = f.models.router.deps.adapter;
+      const observed: string[] = [];
+      f.models.router.deps.adapter = (id) => ({
+        ...originalAdapter(id),
+        async *stream(input) {
+          expect(JSON.stringify(input.messages)).not.toContain(source);
+          expect(input.tools).toEqual([]);
+          for (const char of emitted) {
+            yield { type: 'text_delta' as const, blockId: 'text', text: char };
+            await new Promise((resolve) => setTimeout(resolve, 1));
+            observed.push((await f.snapshot()).messages.at(-1)?.text ?? '');
+          }
+          yield { type: 'finish' as const, reason: 'stop' as const, nativeStateRef: '' };
+        },
+      });
+      data(
+        await f.history.dispatch(
+          req('messages.transform', {
+            sessionId: f.session,
+            messageId: source,
+            version: 1,
+            range: { start: 0, end: selected.length },
+            action: 'translate',
+          }),
+        ),
+      );
+      await expect.poll(async () => (await f.snapshot()).run?.status).toBe('completed');
+      const snapshot = await f.snapshot();
+      expect(snapshot.run).toMatchObject({ errorCode: null, calls: 1, tools: 0 });
+      expect(snapshot.messages.at(-1)?.text).toBe(translated);
+      expect(snapshot.messages.at(-1)?.attachments).toEqual([
+        {
+          kind: 'message',
+          sessionId: f.session,
+          messageId: source,
+          version: 1,
+          range: { start: 0, end: selected.length },
+        },
+      ]);
+      if (mode !== 'literal')
+        expect(observed.some((text) => text.includes(source) || text.includes('[[evidence:'))).toBe(
+          false,
+        );
+      expect(f.store.db.prepare('SELECT count(*) n FROM citations').get()).toEqual({ n: 0 });
+      expect(f.store.db.prepare('SELECT count(*) n FROM tool_calls').get()).toEqual({ n: 0 });
+      const persisted = f.store.db
+        .prepare('SELECT content_json FROM messages WHERE id=?')
+        .get(snapshot.messages.at(-1)!.id);
+      expect(persisted).toEqual({
+        content_json: JSON.stringify({
+          schemaVersion: 1,
+          blocks: [{ kind: 'text', text: translated }],
+        }),
+      });
+      expect(f.vault()).toBe(0);
+    },
+  );
+
+  it('T13 selection operation rejects stale ranges and renderer-forged origin without requests', async () => {
+    const f = await fresh();
+    const source = f.chat.insertMessage(
+      f.chat.session(f.session),
+      'assistant',
+      'English source.',
+      'final',
+      null,
+    );
+    const payload = {
+      sessionId: f.session,
+      messageId: source,
+      version: 1,
+      range: { start: 0, end: 7 },
+      action: 'translate',
+    };
+    expect(
+      await f.history.dispatch(req('messages.transform', { ...payload, version: 999 })),
+    ).toMatchObject({ ok: false, error: { code: 'CONFLICT' } });
+    expect(
+      await f.history.dispatch(
+        req('messages.transform', { ...payload, range: { start: 0, end: 1000 } }),
+      ),
+    ).toMatchObject({ ok: false, error: { code: 'VALIDATION_ERROR' } });
+    expect(
+      await f.chat.dispatch(
+        req('messages.send', {
+          sessionId: f.session,
+          clientMessageId: newId(),
+          text: '普通输入',
+          mode: 'chat',
+          attachments: [],
+          selectionOperation: 'translate',
+        }),
+      ),
+    ).toMatchObject({ ok: false, error: { code: 'VALIDATION_ERROR' } });
+    expect(f.inputs).toHaveLength(0);
+    expect((await f.snapshot()).messages).toHaveLength(1);
+  });
+
+  it('T13 selection operation fails its own budget instead of compacting unrelated old history', async () => {
+    const f = await fresh();
+    const originalCatalog = f.models.catalog;
+    f.models.catalog = async () =>
+      (await originalCatalog()).map((m) => ({ ...m, contextWindow: 1024, maxOutput: 128 }));
+    const text = 'A very large selected sentence. '.repeat(1500);
+    const source = f.chat.insertMessage(
+      f.chat.session(f.session),
+      'assistant',
+      text,
+      'final',
+      null,
+    );
+    const compact = vi.spyOn(f.chat.contexts, 'compact');
+    data(
+      await f.history.dispatch(
+        req('messages.transform', {
+          sessionId: f.session,
+          messageId: source,
+          version: 1,
+          range: { start: 0, end: text.length },
+          action: 'translate',
+        }),
+      ),
+    );
+    await expect.poll(async () => (await f.snapshot()).run?.status).toBe('budget_stopped');
+    expect((await f.snapshot()).run?.errorCode).toBe('BUDGET_EXCEEDED');
+    expect(f.inputs).toHaveLength(0);
+    expect(compact).not.toHaveBeenCalled();
+    expect(f.store.db.prepare('SELECT count(*) n FROM checkpoints').get()).toEqual({ n: 0 });
+  });
+
+  it('T13 selection operation rejects unexpected tool output before dispatching any tool', async () => {
+    const f = await fresh();
+    const originalAdapter = f.models.router.deps.adapter;
+    f.models.router.deps.adapter = (id) => ({
+      ...originalAdapter(id),
+      async *stream() {
+        yield {
+          type: 'tool_end' as const,
+          callId: 'unexpected',
+          name: 'history.search',
+          arguments: { query: 'old' },
+        };
+        yield { type: 'finish' as const, reason: 'tool_calls' as const, nativeStateRef: '' };
+      },
+    });
+    const source = f.chat.insertMessage(
+      f.chat.session(f.session),
+      'assistant',
+      'English source.',
+      'final',
+      null,
+    );
+    data(
+      await f.history.dispatch(
+        req('messages.transform', {
+          sessionId: f.session,
+          messageId: source,
+          version: 1,
+          range: { start: 0, end: 7 },
+          action: 'translate',
+        }),
+      ),
+    );
+    // The existing run contract retains an already started model turn as partial.
+    await expect.poll(async () => (await f.snapshot()).run?.status).toBe('partial');
+    expect((await f.snapshot()).run?.errorCode).toBe('PERMISSION_DENIED');
+    expect(f.store.db.prepare('SELECT count(*) n FROM tool_calls').get()).toEqual({ n: 0 });
+  });
+
   it('P01-03 title failure is visible, survives restart, and only an explicit rename queues one new attempt', async () => {
     const f = await fresh(),
       run = await f.send('title failure fixture');
@@ -233,6 +490,51 @@ describe('P02-03 history lifecycle', () => {
       ]),
     );
     expect(attempts.every((a: any) => a.project_id === projectId)).toBe(true);
+    expect(
+      f.store.db.prepare('SELECT count(*) n FROM budgets WHERE reserved_tokens<>0').get(),
+    ).toEqual({ n: 0 });
+  });
+  it('P02-02 automatic title after an inherited continuation uses the original root and task version', async () => {
+    const f = await fresh(),
+      root = await f.send('original root'),
+      continuation = await f.send('continued goal');
+    f.store.db
+      .prepare('UPDATE runs SET root_run_id=?,task_version=2 WHERE id=?')
+      .run(root.runId, continuation.runId);
+    f.history.queueTitle(f.session, continuation.runId!);
+    await f.history.titles();
+    expect((await f.details()).session.titleStatus).toBe('completed');
+    const title = f.store.db
+      .prepare(
+        'SELECT root_run_id,status FROM provider_attempts WHERE run_id=? ORDER BY rowid DESC LIMIT 1',
+      )
+      .get(continuation.runId);
+    expect(title).toEqual({ root_run_id: root.runId, status: 'completed' });
+    expect(f.inputs.at(-1)?.taskVersion).toBe(2);
+    expect(
+      f.store.db.prepare('SELECT count(*) n FROM budgets WHERE reserved_tokens<>0').get(),
+    ).toEqual({ n: 0 });
+  });
+  it('P02-02 automatic title cannot escape an exhausted inherited root budget', async () => {
+    const f = await fresh(),
+      root = await f.send('original root'),
+      continuation = await f.send('continued goal');
+    f.store.db
+      .prepare('UPDATE runs SET root_run_id=?,task_version=2 WHERE id=?')
+      .run(root.runId, continuation.runId);
+    expect(
+      f.store.db
+        .prepare(
+          "UPDATE budgets SET used_tokens=json_extract(limits_json,'$.tokens') WHERE owner_kind='root' AND owner_id=?",
+        )
+        .run(root.runId).changes,
+    ).toBe(1);
+    const before = f.store.db.prepare('SELECT count(*) n FROM provider_attempts').get();
+    f.history.queueTitle(f.session, continuation.runId!);
+    await f.history.titles();
+    expect((await f.details()).session.titleStatus).toBe('failed');
+    expect((await f.details()).session.titleErrorCode).toBe('BUDGET_EXCEEDED');
+    expect(f.store.db.prepare('SELECT count(*) n FROM provider_attempts').get()).toEqual(before);
     expect(
       f.store.db.prepare('SELECT count(*) n FROM budgets WHERE reserved_tokens<>0').get(),
     ).toEqual({ n: 0 });

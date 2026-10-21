@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-10-20T14:07:53.789Z",
+  "localDate": "2026-10-20",
+  "launcherSession": 62166,
+  "launcherStatus": "running_exit_not_observed",
+  "exitCode": null,
+  "caseId": "01a159a3-4c0b-772d-97bf-ba34d3a845f4",
+  "profileId": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10",
+  "coreOpenedReceipt": true,
+  "attemptRows": 0,
+  "openedAfterMs": 11080,
+  "publicIpcUpdatedAfterLaunch": true,
+  "replies": [
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    },
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    },
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    },
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    },
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    },
+    {
+      "command": "sidebar.list",
+      "ok": true
+    },
+    {
+      "command": "sessions.list",
+      "ok": true
+    }
+  ],
+  "modelRequestsByAgent": 0
+}

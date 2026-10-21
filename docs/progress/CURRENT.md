@@ -1,9 +1,20 @@
 # 当前接续点
 
-- 2026-10-15：D:/Tapkit-public，main；用户授权的P01本轮交付压缩为包含本交接的单一main提交，源分支codex/p01-02-zhipu-chat-live保留3个提交，最终源码f81c3d7。
-- 源CI38715529361的check/startup-diagnostics均success：unit327/integration323/perf2/Electron47、独立标准用户/Office/启动诊断通过。main自动CI与推送引用以GitHub及Git实录核验。
-- 首轮10失败已修复：6项已知OAuth/权限错误码遗漏，4项native测试依赖手工缓存runner；补安全白名单、自行构建及缺入口快速失败，未放宽门槛。
-- 压缩前暂存树=已验源树2d58a0c4b933e8ff0efb283aa14dc693bba82ea9；主提交追加交接仅文档，业务/测试/构建源码与f81c3d7一致，未建PR。
-- P01-gate=engineering_passed_external_pending；P01-01/02/03=implemented_not_live_verified。订阅、其他供应商/协议、价格金额验收继续保留；R13指定Chat/FlashX/native及标题恢复实机范围保持。
-- 证据docs/evidence/P01-engineering-2026-10-14/ci-success-2026-10-15.json、main-squash-2026-10-15.json；Agent真实模型请求/模型Key和native正文读取0，无用户设置或Windows代理变更。
-- 下一建议先P02-02/P02-03真实聊天/历史联动，再P04-03记忆补验；本轮仅Git/CI交付，未开始这些补验或P05。
+- 2026-10-21 全量Git交付检查点：用户明确授权将当前main全部未提交内容commit并push至既有origin/main（含此前Core/Provider/隔离/启动修复、UI、测试和证据），无需再确认。提交前候选555文件/约16.8MB，无常见凭据或数据库文件命中；unit352、相关integration39及check458均exit0，细节见docs/evidence/P02-03/git-delivery-2026-10-21/preflight.json。本条为提交前检查点，最终SHA与远端一致性以Git查询为准；所有任务/gate及未完成真人范围保持。原验收启动基线绑定提交前3178a8b，后续重开验收应按新提交复核，当前已运行窗口不受影响。
+- 2026-10-21 用户要求直接启动：原run-app.ps1 -RefreshUiBuild已完成check/build/两项预检并激活619产物UI快照；原profile窗口TapKit已打开，Core opened1、12公开回执成功、attempt0。未强杀旧进程、未发送模型请求；启动session48710运行/退出未观测。见docs/evidence/P02-03/chat-simplify-2026-10-21/normal-reopen.json；UI已加载，T13a真人结果及原任务/gate不提升。
+- 2026-10-21 UI精简：当前main将侧栏改为整栏单一滚动并迁移位置保存；删除正文重复标题区、草稿可见标签、模式选择器、输入操作和提示词管理UI。顶部导航标题及提示词数据/API/斜杠能力保留。工程回归/生产构建见docs/evidence/P02-03/chat-simplify-2026-10-21/results.json；原窗口不强行关闭，新UI用原run-app.ps1 -RefreshUiBuild加载。T13a真人复验和原阶段状态/暂缓范围保持，无commit/push。
+- 2026-10-20 T13a追加修复已从原profile打开：最新真人轮已生成中文译文，但messageId被模型当作evidence输出，引用账本拒绝后partial/VALIDATION_ERROR被误报文件错误。ADR0056补selection-v2：模型只收原文不收来源ID；选区结果不走知识引用校验，流式清理额外编码并保留字面示例；来源明确“所选原文”。unit2/集成42/定向Electron1（两尺寸）及check457均exit0；首轮缓存/发现错误日志保留，最终生产构建恢复成功。新19源码/619产物已审查，Host/preload/runtime及其他UI源码保持；原profile11.080秒opened/12公开回执成功/attempt0，15sessions/93messages/1account/30runs/49attempts/2tools/49ledger与8条旧消息hash/分支/账户保持，旧启动98586实际exit0，当前62166运行/退出未观测。证据docs/evidence/P02-03/selection-result-2026-10-20/results.json；下一只在原“操作”会话重选原英文点翻译一次，检查新结果无编码、无文件错误且已完成。旧失败保留，T13a真人复验和整体状态不提前通过，其他已过项/管理员优先与暂缓范围保持，无commit/push。
+- 2026-10-20 T13选区修复版已构建并从原profile打开：用户确认退出且进程0/旧session23166实际exit0；此前50项集成/15项unit/455文件检查的源码hash复核一致，未重测。生产build:desktop及两项预检exit0，新审查16源码/619产物仅Core变化，UI/Host及其他后台runtime保持。Core33.626秒opened、公开列表12条均成功/attempt0；原操作会话旧消息/账户及15sessions/91messages/1account/29runs/48attempts/2tools/48ledger保持。当前session42667运行中/退出未观测；证据docs/evidence/P02-03/selection-operation-2026-10-19/results.json。下一仅让用户在“P02批测-操作-1019”重选原英文点一次翻译，旧失败保留，T13a语义待回报；其他已过项不重做，原管理员优先/非管理员及其他渠道暂缓，任务/gate不提升，无commit/push。
+- 2026-10-19 分组侧栏缺陷已修复：选中后折叠保留旧筛选并隐藏全部行，独立复现左0/右5；现折叠/移除选中组回默认列表，点击折叠组先展开。两尺寸侧栏和既有分页/分组共3个工程用例分别通过；首轮启动前置超时与99.986%可见比例精度失败保留，最后1440脚本exit0。check454/生产构建/预检退出0，新快照619产物，原profile22.722秒opened、公开列表回执12条均成功/attempt0；session23166运行中/退出未观测；证据docs/evidence/P02-03/sidebar-groups-2026-10-19/results.json。原T01—T30等待用户回报，不重复已过真人项，管理员优先/非管理员暂缓及状态保持。
+- 2026-10-19 启动接续：已刷新新UI生产快照；原脚本新增-RefreshUiBuild，仅允许UI变化并冻结已验Core/Host/runtime。另修复完整运行时哈希超过旧15秒就被Host终止的问题：仅有效available报告使用120秒看门狗，Core原校验不变。unit3/3、check453、build:desktop及预检退出0；原profile实开20.733秒后Core ready，列表IPC正常、attempt0。此前session55667已由用户托盘退出/实际exit0；当前重开见首条。证据docs/evidence/P02-03/launcher-ui-refresh-2026-10-19/results.json。保留UI改动及既有10/10布局证据，不重测真人功能；管理员优先/非管理员暂缓、任务/gate状态保持。
+- 2026-10-19 用户最新UI修复：当前main直接修正多处表单越界；移除history-dialog旧translateX并统一视口居中。新增P02-03 T22两尺寸×两缩放/大字体；定向E2E10/10、24份表单几何/截图通过，旧位移350px负向断言检出。最终检查/构建见docs/evidence/P02-03/dialog-layout-2026-10-19/results.json。原真人批测、管理员优先/非管理员暂缓及所有任务/gate状态保持，无commit/push。
+- 2026-10-19：D:/Tapkit-public，main / 3178a8b；保留全部既有未提交改动，无commit/push授权。当前P02-03增量验收，沿用原智谱普通Chat / glm-4.7-flashx；其他渠道、协议和其他模型继续暂缓，不扩P04/P05。
+- 用户最新要求：管理员账户功能优先，非管理员验收暂缓；不要再要求切账户或运行已备标准用户seed，旧seed指纹也已过期。此缺口记未验，不当成通过。
+- ADR0055已区分当前账户能力与标准用户验收：显式--scope=current-user完整隔离测试通过后绑定SID哈希/完整性/管理员组，standardUser=false如实保持；默认标准探测和CI不变，换账户/权限/指纹或检查不完整拒绝。无AppContainer/ACL/Job/网络/资源上限放宽。
+- 当前管理员组/medium：相关unit14、check450、build:desktop、native22、parser3全部退出0；真实生产Core三能力available。证据docs/evidence/P02-03/live-2026-10-19/current-account-recovery-results.json。
+- 原154字节synthetic-attachment-1019.txt已通过正式Host/Core单次内容重试恢复ready，原ID/version/SHA保持，p03-2/text5块/合成口令匹配，无重传。首次脚本只因折叠连接状态可见性等待超时且retry0，修正后retry1成功，保留两份回执。
+- 原8会话/61消息/1账户/模型偏好及25runs/41attempts/2tools/41ledger的关键字段与内容SHA保持，无模型请求/Key或native正文导出/手工SQL写入。原9项修复源码保持，619产物仅Core变化，界面资源不变，不重复已过内容。
+- 接续用户一次性批测：docs/evidence/P02-03/live-2026-10-19/batch-checklist.md、report-template.md。附件前置已解除；已有草稿引用直接继续，移除过引用则选择已保存同名文件。新T01—T30（T13a—f）均待逐项回报，不提前记通过。结果到齐再统一核对回执/ID/消息SHA/数字账本；工程异常/性能/隔离沿用证据或必要验证，不让用户造大数据。
+- 已过P02-02 A/B/C有限范围、停止/普通重启及P02-03 A—G/H创建移入改名不重做；C5强当前用户ID语义not_met、原失败会话同输入复验not_performed保持。H删组由T01接续。原会话及命名副本保持；详细基线/历史见INDEX及evidence。
+- 已知开发侧入口缺口：未分组项目首次入组起点未找到，T05项目置顶/T06项目入组/重排列待处理；独立快捷后续问题按钮未找到，T02只验引用选区追问。用户不需反复找这些入口。
+- P02-03/P02-02仍implemented_not_live_verified，P02/P01 gate仍engineering_passed_external_pending，历史P00/P03工程状态保持；当前范围通过不等同标准用户或完整发布验收。当前原profile启动回执见首条；无人为清库/reset/改账户或系统策略，无commit/push。

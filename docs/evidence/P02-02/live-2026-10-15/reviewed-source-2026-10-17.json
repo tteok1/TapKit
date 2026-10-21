@@ -1,0 +1,50 @@
+{
+  "task": "P02-02",
+  "localDate": "2026-10-17",
+  "sourceCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "productChanges": "M packages/core/src/chat-service.ts\n M packages/core/src/index.ts\n M packages/core/src/provider-service.ts\n M packages/providers/src/api/adapter.ts\n M packages/providers/src/index.ts\n?? packages/core/src/tool-trace.ts\n?? packages/providers/src/api/tool-trace.ts",
+  "sourcePath": "packages/core/src/chat-service.ts",
+  "sourceSHA256": "956a84821fd3d7082fae5830818308f07e89c9d9c341ccc830d85ac83bc062cd",
+  "sources": [
+    {
+      "path": "packages/core/src/chat-service.ts",
+      "sha256": "956a84821fd3d7082fae5830818308f07e89c9d9c341ccc830d85ac83bc062cd"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "4469b03a78602adf7a75af45a81cc0cd2a93fecedf614aae04874ca2bd0e8200"
+    },
+    {
+      "path": "packages/core/src/provider-service.ts",
+      "sha256": "0e53a3dca2230649204b3f433e47b1d4d865237e83eec63f9a8ef17449d0e3bc"
+    },
+    {
+      "path": "packages/providers/src/api/adapter.ts",
+      "sha256": "f6de3292fa599c5c29c63db36096deb0389a1705edbc960ef57959548f3dcc24"
+    },
+    {
+      "path": "packages/providers/src/index.ts",
+      "sha256": "e3d13a26c24fa73e88939c5c8dfe67caa9d73580ba5375ce2794fb3e1ca8ae8f"
+    },
+    {
+      "path": "packages/core/src/tool-trace.ts",
+      "sha256": "5e1f4da2d01299cb71e529d142bb26850b818f00d181c300c4d1be8943d1b58f"
+    },
+    {
+      "path": "packages/providers/src/api/tool-trace.ts",
+      "sha256": "11485e2b501261f23dd8a0002f0902c8391241c706795621b561f5cd8198b120"
+    }
+  ],
+  "coreBuildSHA256": "27417a056ce59425b80b62866e84883172b76c91e542b3a1b744a128f7605884",
+  "mainBuildSHA256": "47c48ff7b47d65304f0df667482d29d11b8fba46a38300e119d34815d0e81ea1",
+  "reviewedScope": "Existing title root repair plus ADR0052 opt-in metadata-only Zhipu tool trace. No wire parameters, tool choices, public IPC, DB schema, native version, permissions or user settings changed.",
+  "validation": "tool-trace-implementation-2026-10-17.json",
+  "uiEvidence": "ui-read-1792223241245.json",
+  "tests": {
+    "unit": 67,
+    "integration": 6,
+    "checkExitCode": 0,
+    "buildDesktopExitCode": 0
+  },
+  "productionCoreHasFixture": false
+}

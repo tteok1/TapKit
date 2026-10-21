@@ -1,0 +1,81 @@
+{
+  "task": "P02-02",
+  "localDate": "2026-10-15",
+  "scope": "Chat/FlashX incremental live preparation only; user round A pending",
+  "sourceCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "productSourceChanged": false,
+  "applicationStartedByAgent": false,
+  "agentModelRequests": 0,
+  "credentialReads": 0,
+  "nativeContentReads": 0,
+  "applicationDatabaseWrites": 0,
+  "settingsChanged": false,
+  "checks": [
+    {
+      "command": "locked Node --check docs/evidence/P02-02/live-2026-10-15/inspect.mjs",
+      "exitCode": 0,
+      "phase": "initial"
+    },
+    {
+      "command": "PowerShell Parser.ParseFile run-app.ps1; reject syntax errors",
+      "exitCode": 0,
+      "phase": "initial"
+    },
+    {
+      "command": "locked Node --no-warnings docs/evidence/P02-02/live-2026-10-15/inspect.mjs prepare",
+      "exitCode": 1,
+      "phase": "first_attempt",
+      "error": "ERR_SQLITE_ERROR: no such column: occurred_at",
+      "resolution": "Use existing events.seq watermark. Read-only transaction closed; no baseline written, application start or model request."
+    },
+    {
+      "command": "locked Node --no-warnings docs/evidence/P02-02/live-2026-10-15/inspect.mjs prepare",
+      "exitCode": 0,
+      "phase": "corrected",
+      "result": "baseline.json: idle profile, no active runs/titles/memory jobs/pending inputs/reservations/unsettled attempts"
+    }
+  ],
+  "finalChecks": [
+    {
+      "command": "locked pnpm exec prettier --write CURRENT.md INDEX.md P02-02.md",
+      "exitCode": 0
+    },
+    {
+      "command": "locked pnpm exec prettier --ignore-path .gitignore --write inspect.mjs acceptance.md baseline.json checks.json",
+      "exitCode": 0
+    },
+    {
+      "command": "locked Node --check docs/evidence/P02-02/live-2026-10-15/inspect.mjs",
+      "exitCode": 0,
+      "phase": "after_format"
+    },
+    {
+      "command": "PowerShell Parser.ParseFile run-app.ps1; reject syntax errors",
+      "exitCode": 0,
+      "phase": "final"
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File docs/evidence/P02-02/live-2026-10-15/run-app.ps1 -CheckOnly",
+      "exitCode": 0,
+      "report": "check-1792070093726.json"
+    },
+    {
+      "command": "locked Node --no-warnings docs/evidence/P02-02/live-2026-10-15/inspect.mjs snapshot",
+      "exitCode": 0,
+      "report": "snapshot-1792070119228.json",
+      "result": "No new runs/tools/attempts; old ledger unchanged; no active workload; observations only, no live pass"
+    },
+    {
+      "command": "locked Node scripts/docs-check.mjs",
+      "exitCode": 0,
+      "result": "37 task states and evidence links verified; 31 P02-02 requirement rows synchronized without changing status"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "latestFollowup": "round-b-acceptance-2026-10-16.json",
+  "liveStatus": "A user accepted; B foreground passed, automatic title root repaired locally; C waiting_user",
+  "passedLiveEvidence": "Existing P01 evidence reused at original scope; no new live passes claimed"
+}

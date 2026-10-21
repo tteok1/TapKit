@@ -1,0 +1,66 @@
+{
+  "task": "P02-03",
+  "round": "D-manual-title",
+  "status": "prepared_waiting_one_user_manual_rename",
+  "checkedAt": "2026-10-17T14:12:24.795Z",
+  "startedAfter": 1792246344796,
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "caseId": "01a149b9-04f4-7d9c-9487-44b0b62e3b25",
+  "session": {
+    "id": "01a14a2b-364a-7034-986d-79c884ee51a3",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "revision": 2,
+    "titleManual": 1,
+    "titleSHA256": "6a7aa5a0a4148933f25eedd6196d9aa0309b442b339588c2fa17c2a19f031a36",
+    "noteSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tagsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "archivedAt": null
+  },
+  "messages": [
+    {
+      "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "contentSHA256": "26d08c0117a2160250ef6a4a7bbf58e3af422cbcb8f98713b5cffa68fa198b93"
+    },
+    {
+      "id": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "contentSHA256": "9b64af603d2349dd9f8e2b91ea598e7e57cdfcb85c05df982e23a6e90ae67bff"
+    }
+  ],
+  "branch": {
+    "id": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "headMessageId": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+    "revision": 1
+  },
+  "expectedTitle": "P02验收-分叉副本-1017",
+  "titleConflicts": 0,
+  "sourceForkAcceptance": "fork-review-1792246280701.json",
+  "globalCounts": {
+    "runs": 25,
+    "attempts": 41,
+    "tools": 2,
+    "ledger": 41
+  },
+  "sourceSessionBaseline": "fork-baseline-2026-10-17.json",
+  "instructions": "On the new copy only, use the left sidebar row ellipsis to open its edit dialog (or right-click -> 重命名). Change 会话标题 to the expected synthetic title and Save once. Leave and reopen to confirm it persists, both messages remain and original conversation title is unchanged. No AI rename, message send, regeneration or restart.",
+  "acceptance": "One manual sessions.update success for this copy, exact title and title_manual1, old message hashes/branch/note/tags/project preserved; no new run/model/tool/settlement. Manual title only, not automatic-title race or full FR-08-001 live acceptance.",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false
+}

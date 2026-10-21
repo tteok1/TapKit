@@ -1,0 +1,172 @@
+{
+  "task": "P02-02",
+  "checkedAt": "2026-10-16T10:52:30.472Z",
+  "status": "original_store_present_production_ui_verified",
+  "userReport": "History and saved accounts appeared empty after the acceptance dev launcher; user explicitly confirmed tray exit and terminal closure.",
+  "sourceCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "scope": "Same existing isolated Zhipu Chat/FlashX profile. Public lists and synthetic B conversation UI only; no model requests.",
+  "originalStore": {
+    "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+    "profiles": 1,
+    "accounts": 1,
+    "readyAccounts": 1,
+    "sessions": 4,
+    "messages": 32,
+    "messageJsonCharacters": 9959,
+    "bConversationId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+    "bConversationMessages": 6
+  },
+  "productionProof": {
+    "report": "ui-read-1792147750807.json",
+    "exitCode": 0,
+    "hostDataDirMatches": true,
+    "publicCommands": [
+      "providers.list",
+      "models.catalog",
+      "messages.list"
+    ],
+    "allRepliesOk": true,
+    "chatUiMessages": 6,
+    "accountUiCards": 1,
+    "emptyAccountMarker": false,
+    "connectionUnavailable": false,
+    "pageErrors": 0
+  },
+  "developmentObservation": {
+    "report": "ui-read-1792147814315.json",
+    "exitCode": 1,
+    "providersListOk": true,
+    "messagesListOk": true,
+    "modelsCatalogError": "INTERNAL_ERROR",
+    "rendererSchemaChecksPassed": [
+      "bootstrap",
+      "providers.list",
+      "messages.list"
+    ],
+    "chatMessages": 6,
+    "connectionUnavailable": true,
+    "apiUiNotCompleted": true,
+    "navigationHarnessError": "The banner and settings both contain /settings/connections; scope selector to desktop-settings. This is not a product navigation conclusion.",
+    "rootCause": "Not determined. No evidence of a deleted account or missing stored messages; do not claim a particular product root cause is fixed."
+  },
+  "launcherChange": {
+    "script": "run-app.ps1",
+    "preflight": "verified-build.mjs",
+    "manifest": "verified-build-2026-10-16.json",
+    "filesPinned": 619,
+    "launch": "Normal interactive Electron with verified compiled production artifacts and original dataDir; no dev watch/rebuild/server.",
+    "clearedChildEnvironment": [
+      "TAPKIT_CHAT_FIXTURE",
+      "TAPKIT_TEST_BUILD",
+      "ELECTRON_RUN_AS_NODE",
+      "ELECTRON_RENDERER_URL"
+    ],
+    "restoresParentEnvironment": true,
+    "accountReconfiguration": false,
+    "systemSettingsChanged": false
+  },
+  "checks": [
+    {
+      "command": "locked node inspect-ui-read.mjs",
+      "context": "workspace sandbox",
+      "exitCode": 1,
+      "result": "Process failed to launch; reran as current Windows user without changing ACLs."
+    },
+    {
+      "command": "locked node inspect-ui-read.mjs",
+      "context": "current Windows user, production UI, final keyboard navigation",
+      "exitCode": 0,
+      "evidence": "ui-read-1792147750807.json"
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:/Tapkit-public/docs/evidence/P02-02/live-2026-10-15/run-app.ps1 -CheckOnly",
+      "cwd": "C:/Users/20105",
+      "exitCode": 0,
+      "evidence": "check-1792147633076.json"
+    },
+    {
+      "command": "locked node inspect.mjs check",
+      "exitCode": 0,
+      "evidence": "check-1792147853763.json"
+    }
+  ],
+  "intermediateDiagnostics": [
+    {
+      "report": "ui-read-1792147461908.json",
+      "processExitCode": 0,
+      "acceptedAsPass": false,
+      "reason": "Initial standalone renderer harness had wrong cwd; no UI conclusion."
+    },
+    {
+      "report": "ui-read-1792147496750.json",
+      "processExitCode": 0,
+      "acceptedAsPass": false,
+      "reason": "Same initial harness cwd; diagnostic process exit 0 did not mean UI passed."
+    },
+    {
+      "report": "ui-read-1792147564347.json",
+      "processExitCode": 0,
+      "acceptedAsPass": false,
+      "reason": "Corrected cwd; chat and schemas passed, click navigation timed out."
+    },
+    {
+      "report": "ui-read-1792147688814.json",
+      "processExitCode": 1,
+      "acceptedAsPass": false,
+      "reason": "Production list/chat passed; click navigation timed out. Final normal keyboard navigation passed."
+    }
+  ],
+  "invariants": {
+    "accountStatus": "ready",
+    "preferencesRevision": 4,
+    "newRunsSinceOriginalBaseline": 7,
+    "newToolsSinceOriginalBaseline": 0,
+    "priorLedgerUnchanged": true,
+    "duplicateSettlements": [],
+    "workload": {
+      "activeRuns": 0,
+      "pendingInputs": 0,
+      "activeTitles": 0,
+      "activeMemoryJobs": 0,
+      "reservedBudgets": 0,
+      "unsettledAttempts": 0
+    }
+  },
+  "privacy": {
+    "agentModelRequests": 0,
+    "messageBodiesExported": false,
+    "toolBodiesExported": false,
+    "secretBodiesExported": false,
+    "nativeContentsRead": false,
+    "manualBusinessDatabaseWrites": 0,
+    "normalApplicationWrites": "Normal startup/navigation may maintain backup, layout, read state, drafts or maintenance data; not claimed to be globally write-free."
+  },
+  "next": "Only round C history.search in the explicitly scoped synthetic B session remains pending. Preserve accepted A/B and all deferred providers/protocols; no commit/push.",
+  "screenshot": "user-empty-ui-2026-10-16.png",
+  "finalChecks": {
+    "docsCheck": {
+      "command": "locked node scripts/docs-check.mjs",
+      "exitCode": 0,
+      "result": "37 task states/evidence links verified"
+    },
+    "syntax": {
+      "command": "locked node --check inspect-ui-read.mjs and verified-build.mjs; PowerShell Parser.ParseFile run-app.ps1",
+      "exitCode": 0
+    },
+    "format": {
+      "command": "locked pnpm exec prettier --ignore-path .gitignore --write selected recovery scripts/records",
+      "exitCode": 0
+    },
+    "diff": {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    "checkOnly": {
+      "command": "run-app.ps1 -CheckOnly",
+      "cwd": "C:/Users/20105",
+      "exitCode": 0,
+      "evidence": "check-1792147970516.json"
+    }
+  },
+  "openForUser": "production-launch-2026-10-16.json"
+}

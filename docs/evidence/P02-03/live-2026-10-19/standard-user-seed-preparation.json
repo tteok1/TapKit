@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "purpose": "P02-03 attachment dependency only",
+  "createdAt": "2026-10-19T09:32:53.158Z",
+  "executionFingerprint": "15953979e84533874d87ea3b5f77634acac25e4b09c3291776ec39eb89d66863",
+  "entryHashes": {
+    "scripts/local-standard-user-attachment.mjs": "2dd9e087d6ee5e75a4da15207c2b526844e16bd99006174fdc46b92ecfe04ec1",
+    "scripts/standard-user-kit.mjs": "90ca1b6212a76d43508045ff856847c6e2abf1447d16296cb3381280b1a21d05",
+    "scripts/standard-user-test.mjs": "9ec55c44943a03c1372fa171df979db9bd41944ce9cc3f5efe4e41337ab041d0",
+    "scripts/p03-parser-probe.mjs": "2ba54893ff01df86dbfe22b83d011385a74026ae66e1eaea8d03d65aa261d497",
+    "run-standard-user.ps1": "a48720b9f5be5dd9def5eb6408ddb0e89184c30f335427a7344c3b6e71ddba6b",
+    "pnpm-lock.yaml": "62372e5c1994241e5add22821e8b1a15df9f1372248a06a9e364f6d145b36f15",
+    "native-lock.json": "09fbaf4cce326df26f5e9eff66d070d4a68e353b8257bb5e4dc8cd078d8eb81b",
+    "package.json": "eacbfea4b95c3a9438e2789b12bc2423cf50e6a2aa63d23eb2ebe803803c518a",
+    ".npmrc": "380f478ad3a312bc54d598d4ebab4d3b31238b628f20eb52d72fcaf5abf13a05",
+    "packages/retrieval/vite.worker.config.ts": "e5abd58401576e8d460c2ba8ffd925c89c6276ffe857797bae7f2bf60b2ed1a0"
+  },
+  "audit": {
+    "files": 27907,
+    "bytes": 2072108775,
+    "existingProfiles": 0,
+    "applicationNodeModules": 0,
+    "reparsePoints": 0,
+    "originalBusinessDataCopied": false
+  },
+  "scope": [
+    "existing P00-03 native 22 cases",
+    "existing P03-01 native parser 3 cases"
+  ],
+  "excluded": [
+    "P03-02 preview",
+    "model requests",
+    "original profile",
+    "original application startup",
+    "OS account creation",
+    "manual ACL changes"
+  ],
+  "seed": "D:/TapKit/.test-data/P02-standard-user-20261019-4f9e",
+  "status": "deferred_by_user",
+  "launcher": "D:\\TapKit\\.test-data\\P02-standard-user-20261019-4f9e\\run-standard-user.ps1",
+  "sourceFingerprintBefore": "15953979e84533874d87ea3b5f77634acac25e4b09c3291776ec39eb89d66863",
+  "sourceFingerprintAfter": "15953979e84533874d87ea3b5f77634acac25e4b09c3291776ec39eb89d66863",
+  "tool": "D:\\Tapkit-public\\docs\\evidence\\P02-03\\live-2026-10-19\\prepare-standard-user-seed.mjs",
+  "preparationAttempts": [
+    {
+      "command": "prepare-standard-user-seed.mjs",
+      "exitCode": 1,
+      "result": "Copy completed; audit rejected bundled runtime/npm node_modules. No private data found; audit narrowed to exclude legitimate locked runtime and pinned pnpm bundled packages."
+    },
+    {
+      "command": "prepare-standard-user-seed.mjs --finalize-existing-seed",
+      "exitCode": 0,
+      "result": "Existing owned seed retained; full no-profile/no-application-dependency/reparse audit and original-before/after/seed runtime fingerprint equality passed."
+    }
+  ],
+  "verification": [
+    {
+      "command": "locked Node --check standard-user-attachment.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "locked Node --check prepare-standard-user-seed.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "PowerShell Parser.ParseFile run-standard-user.ps1",
+      "exitCode": 0
+    },
+    {
+      "command": "seed locked Node local-standard-user-attachment.mjs --verify-seed",
+      "exitCode": 0,
+      "result": "Entry hashes and execution fingerprint verified; no test or install operations"
+    },
+    {
+      "command": "desktop administrator-group entry refusal check",
+      "exitCode": 0,
+      "childExitCode": 1,
+      "result": "Expected STANDARD_USER_REQUIRED before return directory/copy/install/tests"
+    },
+    {
+      "command": "locked pnpm docs:check",
+      "exitCode": 0,
+      "result": "All 37 task states, handoffs and evidence links verified"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "result": "Only pre-existing CRLF normalization warning for preserved historical runtime-probe.log"
+    }
+  ],
+  "standardUserTestsExecuted": false,
+  "productionCapabilitiesInstalled": false,
+  "originalAttachmentRecovered": false,
+  "nextAction": "Do not run the standard-user launcher now. User prioritizes administrator-account functions; source fingerprint changed under ADR0055, so this old seed cannot prove the current workspace."
+}

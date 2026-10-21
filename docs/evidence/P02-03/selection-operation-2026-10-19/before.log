@@ -1,0 +1,62 @@
+$ vitest run --config vitest.config.ts --project integration "P02-03.history" "-t" "T13 selection operation"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P02-03.history.test.ts (27 tests | 5 failed | 22 skipped) 2162ms
+   ❯ P02-03 history lifecycle (27)
+     × T13 selection operation translate uses only its verified range and current action, without losing history 422ms
+     × T13 selection operation explain uses only its verified range and current action, without losing history 421ms
+     × T13 selection operation expand uses only its verified range and current action, without losing history 435ms
+     × T13 selection operation shorten uses only its verified range and current action, without losing history 437ms
+     × T13 selection operation rewrite uses only its verified range and current action, without losing history 445ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T13 selection operation translate uses only its verified range and current action, without losing history
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T13 selection operation expand uses only its verified range and current action, without losing history
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T13 selection operation shorten uses only its verified range and current action, without losing history
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T13 selection operation rewrite uses only its verified range and current action, without losing history
+AssertionError: expected [ { role: 'user', …(1) }, …(4) ] to have a length of 1 but got 5
+
+- Expected
++ Received
+
+- 1
++ 5
+
+ ❯ tests/integration/P02-03.history.test.ts:174:30
+    172|       expect(f.inputs).toHaveLength(1);
+    173|       const input = f.inputs[0]!;
+    174|       expect(input.messages).toHaveLength(1);
+       |                              ^
+    175|       expect(input.messages[0]!.role).toBe('user');
+    176|       expect(input.messages[0]!.text).toContain(selected);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T13 selection operation explain uses only its verified range and current action, without losing history
+AssertionError: expected [ { role: 'user', …(1) }, …(4) ] to have a length of 1 but got 5
+
+- Expected
++ Received
+
+- 1
++ 5
+
+ ❯ tests/integration/P02-03.history.test.ts:174:30
+    172|       expect(f.inputs).toHaveLength(1);
+    173|       const input = f.inputs[0]!;
+    174|       expect(input.messages).toHaveLength(1);
+       |                              ^
+    175|       expect(input.messages[0]!.role).toBe('user');
+    176|       expect(input.messages[0]!.text).toContain(selected);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 22 skipped (27)
+   Start at  22:36:07
+   Duration  4.63s (tests 49%, transform 34%, import 18%)
+
+[ELIFECYCLE] Command failed with exit code 1.

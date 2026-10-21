@@ -1,0 +1,41 @@
+{
+  "task": "P02-02",
+  "localDate": "2026-10-16",
+  "userReportedConnectionPassed": true,
+  "publicState": "snapshot-1792144524147.json",
+  "account": {
+    "id": "01a13377-f964-786b-bb32-bf916b568ddc",
+    "revision": 10,
+    "status": "ready",
+    "providerId": "openai-compatible",
+    "apiFormat": "openai-chat",
+    "baseURL": "https://open.bigmodel.cn/api/paas/v4",
+    "modelId": "glm-4.7-flashx",
+    "lastErrorCode": null,
+    "lastCheckAt": 1792144488441
+  },
+  "preferencesRevision": 4,
+  "workload": {
+    "activeRuns": 0,
+    "pendingInputs": 0,
+    "activeTitles": 0,
+    "activeMemoryJobs": 0,
+    "reservedBudgets": 0,
+    "unsettledAttempts": 0
+  },
+  "priorLedgerUnchanged": true,
+  "queueRoundStartedAfter": 1792144524147,
+  "previousRunsExcluded": ["01a13fbf-dd18-7def-9d20-34914dff0d3a"],
+  "status": "connection_restored_queue_round_A_still_unverified",
+  "next": "Keep current application open, use the existing OK chat for queue editing/cancellation/automatic followup and navigation; no restart or extra connection check.",
+  "agentModelRequests": 0,
+  "credentialReads": 0,
+  "nativeContentReads": 0,
+  "applicationWrites": 0,
+  "checks": [
+    {
+      "command": "locked Node --no-warnings docs/evidence/P02-02/live-2026-10-15/inspect.mjs snapshot",
+      "exitCode": 0
+    }
+  ]
+}

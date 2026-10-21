@@ -1,0 +1,42 @@
+
+Running 1 test using 1 worker
+
+(node:22036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+(node:19224) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:52754/c40f4a66-6fa1-404f-9be7-f0d40026a181
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  x  1 tests\e2e\P02-03.dialogs.spec.ts:31:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent (14.8s)
+
+
+  1) tests\e2e\P02-03.dialogs.spec.ts:31:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent ────────
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 3
+    Received:   350
+
+      142 |     expect(box.right).toBeLessThanOrEqual(box.viewportWidth);
+      143 |     expect(box.bottom).toBeLessThanOrEqual(box.viewportHeight);
+    > 144 |     expect(Math.abs(box.cx - box.viewportWidth / 2)).toBeLessThan(3);
+          |                                                      ^
+      145 |     expect(Math.abs(box.cy - box.viewportHeight / 2)).toBeLessThan(3);
+      146 |     expect(box.scrollWidth).toBeLessThanOrEqual(box.clientWidth + 1);
+      147 |     if (name === 'session-info' && zoom === 2)
+        at fits (D:\Tapkit-public\tests\e2e\P02-03.dialogs.spec.ts:144:54)
+        at D:\Tapkit-public\tests\e2e\P02-03.dialogs.spec.ts:76:5
+
+    Error Context: test-results\e2e\P02-03.dialogs-P02-03-T22--7ea3d-fit-1440x900-at-100-percent\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P02-03.dialogs-P02-03-T22--7ea3d-fit-1440x900-at-100-percent\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\e2e\P02-03.dialogs-P02-03-T22--7ea3d-fit-1440x900-at-100-percent\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P02-03.dialogs.spec.ts:31:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent ─────────

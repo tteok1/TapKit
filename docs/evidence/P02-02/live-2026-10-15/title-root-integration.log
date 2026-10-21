@@ -1,0 +1,19 @@
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P01-03.usage.test.ts (0 test)
+ ❯ |integration| tests/integration/P02-03.history.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P01-03.usage.test.ts [ tests/integration/P01-03.usage.test.ts ]
+ FAIL  |integration| tests/integration/P02-03.history.test.ts [ tests/integration/P02-03.history.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{0f26b908-729a-4339-8492-0a3c76527b32}\AC\Temp\urvWjzBYk6L5o-ZOMMMju\ssr\f3d9718b4387735a9e2aa3bdbdb65a2bb00ad833'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  2 failed | 1 passed (3)
+      Tests  12 passed (12)
+   Start at  18:10:55
+   Duration  7.51s (tests 67%, transform 21%, import 12%)
+

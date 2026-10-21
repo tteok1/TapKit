@@ -1,0 +1,84 @@
+{
+  "checkedAt": "2026-10-17T07:47:12.847Z",
+  "task": "P02-02",
+  "mode": "production UI; public read only; user confirmed prior app fully exited",
+  "host": {
+    "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+    "appPath": "D:\\Tapkit-public\\apps\\desktop",
+    "packaged": false
+  },
+  "modelRequests": 0,
+  "secretBodiesExported": false,
+  "outcomes": [
+    {
+      "command": "providers.list",
+      "ok": true,
+      "keys": [
+        "accounts",
+        "models"
+      ],
+      "accounts": 1,
+      "readyAccounts": 1,
+      "catalog": null,
+      "messages": null
+    },
+    {
+      "command": "models.catalog",
+      "ok": true,
+      "keys": [
+        "catalog",
+        "priceVersion",
+        "sessions"
+      ],
+      "accounts": null,
+      "readyAccounts": null,
+      "catalog": 1,
+      "messages": null
+    },
+    {
+      "command": "messages.list",
+      "ok": true,
+      "keys": [
+        "sessionId",
+        "branchId",
+        "messages",
+        "nextCursor",
+        "run",
+        "pending",
+        "eventSeq",
+        "selection",
+        "tools"
+      ],
+      "accounts": null,
+      "readyAccounts": null,
+      "catalog": null,
+      "messages": 10
+    }
+  ],
+  "build": {
+    "packages/core/dist/index.cjs": "27417a056ce59425b80b62866e84883172b76c91e542b3a1b744a128f7605884",
+    "apps/desktop/out/main/index.js": "47c48ff7b47d65304f0df667482d29d11b8fba46a38300e119d34815d0e81ea1",
+    "apps/desktop/out/preload/index.js": "b1b68eae7b2bec47a6a07964efc22a3db71e7e3a0fe25a5a30f89e2239cb45b7",
+    "apps/desktop/out/renderer/index.html": "91d7a1e604ac72d6f35e373c779cff7b47f0429fb4228d67612cf821755e8d3d"
+  },
+  "initialUi": {
+    "historyRows": 0,
+    "coreConnected": false,
+    "coreUnavailable": false,
+    "sourceErrorOverlay": false,
+    "rootChildElements": 1
+  },
+  "chatUi": {
+    "messages": 10,
+    "chatError": false,
+    "connectionUnavailable": false
+  },
+  "accountUi": {
+    "accounts": 1,
+    "empty": false,
+    "connectionUnavailable": false,
+    "loadFailed": false
+  },
+  "pageErrors": [],
+  "status": "passed_public_ui_read"
+}

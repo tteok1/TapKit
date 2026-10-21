@@ -1,0 +1,47 @@
+{
+  "capturedAt": "2026-10-19T10:10:17.468Z",
+  "readOnly": true,
+  "rawBodyOrCredentialExported": false,
+  "protectedState": {
+    "sessions": {
+      "rows": 8,
+      "sha256": "639e3f0d930edba28ea9a802767a2f8086eb6517bf882c1430a78ce3c5a68994"
+    },
+    "messages": {
+      "rows": 61,
+      "sha256": "c557f91f3a024b5ffbf164d20fed347b551f26b96f0f0828506ea071487ebf5b"
+    },
+    "accounts": {
+      "rows": 1,
+      "sha256": "1ccfb88cf6e5fedabda16ed0152e84369859a828948ae1bd436a3a5e221250ac"
+    },
+    "modelPreferences": {
+      "rows": 1,
+      "sha256": "901e3b1691d1866415ae56b0830832594b928041589c56a243714a1691317e8e"
+    },
+    "ledger": {
+      "rows": 41,
+      "sha256": "98f59e06d57e1711d66059b825da31283e9a668e7c5b16c2f1b7a1fc6ad50bff"
+    },
+    "runs": {
+      "rows": 25,
+      "sha256": "3f24ee337e9e6da78fb21e078e8096da1838cd9c3f11d9c9dc21ea91b4b077c1"
+    },
+    "attempts": {
+      "rows": 41,
+      "sha256": "189f9dfc026615df577dd1fed52897cc325162ce8bf3a08290898fe8f66ce558"
+    },
+    "tools": {
+      "rows": 2,
+      "sha256": "e995005e99e35ce0fe6fc3cbbaf85987e1b1715a74e6a88db8d4f7b560b73706"
+    }
+  },
+  "syntheticParsed": {
+    "parserVersion": "p03-2",
+    "format": "text",
+    "blocks": 5,
+    "hasExpectedSyntheticMarker": true,
+    "blobSha256": "f0ceb5d446cdb1ee1d83a9fe98efd9cbd90812b655fbeeaec85bf28cb3f73df1"
+  },
+  "protectedStateUnchanged": true
+}

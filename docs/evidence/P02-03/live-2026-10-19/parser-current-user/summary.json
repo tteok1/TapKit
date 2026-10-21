@@ -1,0 +1,26 @@
+{
+  "command": "locked Node scripts/p03-parser-probe.mjs --scope=current-user",
+  "exitCode": 0,
+  "signal": null,
+  "standardUser": false,
+  "verification": {
+    "scope": "current-user",
+    "identity": {
+      "userSidHash": "89d3515d56b0f7fb4f2e9d5ab5438c2590534473cc30f033f476b0408a4d96d7",
+      "integritySid": "S-1-16-8192",
+      "administratorsGroup": true
+    }
+  },
+  "passed": true,
+  "tests": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "pending": 0
+  },
+  "missingCases": [],
+  "adapterSha256": "c04238c9aa02312b1ba8bb9f6b4d551b2d1833a5c78b0334ae4eb474df4110f4",
+  "historicalReports": [],
+  "agentModelRequests": 0,
+  "originalProfileWrites": 0
+}

@@ -1,0 +1,133 @@
+{
+  "task": "P02-03",
+  "localDate": "2026-10-19",
+  "branch": "main",
+  "recordedAt": "2026-10-19T14:15:25.221Z",
+  "status": "fixed_verified_and_original_profile_reopened",
+  "defect": "Selecting then collapsing a group retained its filter while hiding every session row; the independent chat-page default list remained intact",
+  "reproduction": {
+    "command": "pnpm test:e2e -- tests/e2e/P02-03.sidebar.spec.ts --grep \"P02-03 T20 sidebar.*1440\"",
+    "exitCode": 1,
+    "expectedFailure": true,
+    "sidebarRows": 0,
+    "mainRows": 5,
+    "log": "before-collapse.log",
+    "screenshot": "before-collapse-1440x900.png"
+  },
+  "changes": [
+    {
+      "path": "apps/desktop/src/renderer/src/history-ui.tsx",
+      "sha256": "2934facafb6b659731ff73232f2d2c0ef0bbb9dfd2c099ac34e463c2a129818d"
+    },
+    {
+      "path": "tests/e2e/P02-03.sidebar.spec.ts",
+      "sha256": "a4c5d50ad6bb3723efad83f3afbb1f94e55333f11fe263dfc141abc20042b405"
+    },
+    {
+      "path": "tests/e2e/P02-03.history.spec.ts",
+      "sha256": "fc382934d680b088b9a0c386d7bd1178a09ef84a384d271a03e25861f2586afe"
+    }
+  ],
+  "behavior": [
+    "Resolve current sidebar metadata before listing a selected group; reset collapsed or removed selection and batch selection to default scope",
+    "Selecting a collapsed group first expands it through the original revision-checked command",
+    "Render returned rows rather than applying the obsolete hidden-group filter"
+  ],
+  "relatedRegression": {
+    "command": "pnpm test:e2e -- tests/e2e/P02-03.sidebar.spec.ts tests/e2e/P02-03.history.spec.ts --grep \"P02-03 T20 (sidebar|grouping)\"",
+    "exitCode": 1,
+    "passed": 2,
+    "failed": 1,
+    "passingCases": [
+      "existing grouping / bounded pagination / batch trash and restore",
+      "sidebar 960x640"
+    ],
+    "failingCase": "sidebar 1440x900 exact viewport ratio assertion after all collapse/removal behavior passed",
+    "measuredViewportRatio": 0.999864935874939,
+    "finalThreshold": 0.99,
+    "log": "after.log"
+  },
+  "finalWindowRegression": {
+    "command": "pnpm test:e2e -- tests/e2e/P02-03.sidebar.spec.ts --grep \"P02-03 T20 sidebar.*1440\"",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "productionBuildRestored": true,
+    "log": "final-1440.log"
+  },
+  "priorHarnessIssues": [
+    {
+      "issue": "Initial output redirection directory absent",
+      "testsStarted": false,
+      "reportedShellExitCode": 0,
+      "testExitCode": null
+    },
+    {
+      "issue": "Initial test readiness expectation was 15 seconds during full runtime startup verification",
+      "exitCode": 1,
+      "testsReachedSidebarAssertion": false,
+      "log": "startup-precondition.log",
+      "correction": "Test readiness budget aligned with existing Host 120s startup watchdog; no product authorization change"
+    }
+  ],
+  "scope": {
+    "isolatedSyntheticProfilesOnly": true,
+    "chromiumSandbox": true,
+    "modelRequestsByAgent": 0,
+    "originalProfileSqlWritesByAgent": 0,
+    "secretsOrPrivateBodiesExported": false,
+    "existingUserCssPreserved": true,
+    "backendAndRuntimeChanges": 0,
+    "priorAcceptedManualTestsRerun": false,
+    "administratorFirst": true,
+    "standardUserAcceptance": "deferred_by_user",
+    "taskAndGateStatuses": "unchanged",
+    "commitOrPush": false
+  },
+  "previousOriginalLauncherSession": {
+    "sessionId": 55667,
+    "userConfirmedTrayExit": true,
+    "observedExitCode": 0
+  },
+  "activation": {
+    "status": "opened",
+    "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:/Tapkit-public/docs/evidence/P02-02/live-2026-10-15/run-app.ps1 -RefreshUiBuild",
+    "launcherSession": 23166,
+    "launcherExitCode": null,
+    "launcherStatus": "running_exit_not_observed",
+    "checkExitCode": 0,
+    "checkFiles": 454,
+    "checkFailures": 0,
+    "buildDesktopExitCode": 0,
+    "publicPreflightExitCode": 0,
+    "verifiedBuildPreflightExitCode": 0,
+    "sourceReview": "reviewed-source-ui-1792419448723-9584e7f4.json",
+    "buildManifest": "verified-build-ui-1792419448723-9584e7f4.json",
+    "reviewedSources": 15,
+    "artifactCount": 619,
+    "priorBackendAndRuntimeSourceHashesPreserved": true,
+    "priorCoreAndHostBinaryHashesPreserved": true,
+    "userCssHashesPreserved": true,
+    "productionFixtureAbsent": true,
+    "log": "refresh-and-reopen.log",
+    "reopenProof": "normal-reopen.json",
+    "profileId": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10",
+    "coreOpenedReceipt": true,
+    "openedAfterMs": 22722,
+    "publicListReplies": 12,
+    "publicListRepliesAllSucceeded": true,
+    "attemptRows": 0
+  },
+  "documentationChecks": {
+    "status": "passed",
+    "commands": [
+      {
+        "command": "Locked pnpm docs:check",
+        "exitCode": 0,
+        "result": "37 task states, handoffs and completed requirement evidence links verified"
+      },
+      { "command": "git diff --check", "exitCode": 0 }
+    ]
+  },
+  "distinctRelatedPassingCases": 3
+}

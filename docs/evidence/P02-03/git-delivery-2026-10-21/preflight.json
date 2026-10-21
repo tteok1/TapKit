@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-21",
+  "timezone": "Asia/Shanghai",
+  "branch": "main",
+  "baseCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "destination": "https://github.com/tteok1/TapKit.git",
+  "destinationRef": "refs/heads/main",
+  "userRequest": "User explicitly requested committing and pushing all current branch contents, including the previously disclosed mixed changes.",
+  "checkpoint": "Pre-commit validation; final commit and remote equality are verified with Git after this checkpoint.",
+  "initialCandidateFiles": 555,
+  "initialCandidateBytes": 16818627,
+  "stagedFilesIncludingDeliveryEvidence": 561,
+  "docsCheckExitCode": 0,
+  "credentialPatternFindings": 0,
+  "databaseOrCredentialFileFindings": 0,
+  "oversizeFilesAbove10MiB": 0,
+  "auditScope": "All changed/staged tracked files and non-ignored untracked files. Common private-key, API-token, provider-key and credential JSON patterns; this is a bounded pattern audit.",
+  "validation": [
+    { "command": "pnpm test:unit", "exitCode": 1, "passed": 351, "failed": 1, "log": "unit-tool-sandbox.log", "reason": "Tool sandbox denied the existing P03-02 staging junction fixture with EPERM before its assertion." },
+    { "command": "pnpm test:unit", "exitCode": 0, "passed": 352, "failed": 0, "log": "unit-outside.log", "scope": "Same complete suite outside the tool sandbox, no test relaxation." },
+    { "command": "pnpm test:integration P02-03.history P02-02.zhipu-tools P02-03.background-priority", "exitCode": 0, "passed": 39, "log": "integration.log" },
+    { "command": "pnpm check", "exitCode": 0, "formattedFiles": 458, "log": "check.log" }
+  ],
+  "network": {
+    "initialFetchAttempts": [
+      { "exitCode": 1, "reason": "Tool sandbox could not write .git/FETCH_HEAD." },
+      { "exitCode": 128, "reason": "Direct HTTPS connection reset." },
+      { "exitCode": 1, "reason": "Command-scoped HTTP/1.1 direct connection failed." }
+    ],
+    "successfulFetch": "Existing Windows loopback proxy supplied with command-scoped http.proxy; permanent configuration unchanged.",
+    "fetchExitCode": 0,
+    "beforeCommitAhead": 0,
+    "beforeCommitBehind": 0
+  },
+  "priorEngineeringEvidence": [
+    "../chat-simplify-2026-10-21/results.json",
+    "../dialog-layout-2026-10-19/results.json",
+    "../selection-result-2026-10-20/results.json",
+    "../live-2026-10-19/current-account-recovery-results.json"
+  ],
+  "manualAndStageStatuses": "Unchanged; commit/push is not acceptance of deferred or unverified functionality.",
+  "acceptanceLauncherNote": "The existing manual acceptance launcher is deliberately pinned to the pre-commit baseline. A future acceptance reopening must review the new HEAD and preserve the original evidence; the running application is unaffected."
+}

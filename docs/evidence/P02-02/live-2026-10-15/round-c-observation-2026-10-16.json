@@ -1,0 +1,71 @@
+{
+  "task": "P02-02",
+  "round": "C",
+  "checkedAt": "2026-10-16T11:26:55.014Z",
+  "status": "attempted_tool_path_not_exercised",
+  "snapshot": "snapshot-1792149917434.json",
+  "userScreenshot": "round-c-no-tool-user-2026-10-16.png",
+  "observedReply": "检索完成：找到3条",
+  "run": {
+    "id": "01a14474-5eeb-71fa-a793-28486f9dae9d",
+    "sessionId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+    "rootRunId": "01a14474-5eeb-71fa-a793-28486f9dae9d",
+    "taskVersion": 1,
+    "status": "completed",
+    "statusReason": null,
+    "createdAt": 1792149839596,
+    "startedAt": 1792149839599,
+    "endedAt": 1792149850853,
+    "calls": 1,
+    "tools": 0
+  },
+  "attempts": [
+    {
+      "id": "01a14474-5fb2-71a3-a604-026786f3716e",
+      "runId": "01a14474-5eeb-71fa-a793-28486f9dae9d",
+      "rootRunId": "01a14474-5eeb-71fa-a793-28486f9dae9d",
+      "logicalCallId": "01a14474-5f12-794e-b74c-7a0c41656966",
+      "attemptNo": 1,
+      "status": "completed",
+      "errorCode": null,
+      "modelRef": "glm-4.7-flashx",
+      "createdAt": 1792149839803,
+      "source": "actual",
+      "inputTokens": 4567,
+      "outputTokens": 7,
+      "chargedTokens": 4574
+    }
+  ],
+  "applicationToolRows": 0,
+  "messageRoles": ["user", "assistant"],
+  "actualTokens": 4574,
+  "uiLocation": {
+    "count": "回复下方的当前进展 → 只读工具 N",
+    "records": "消息区中单独的只读工具过程消息，可展开查看；位于工具调用与最终回复之间。",
+    "availableTools": "顶部当前资料、工具与个性化设置只列可用工具，不证明执行。"
+  },
+  "conclusion": "UI count0 agrees with persisted run.tools0 and no tool rows. The text claiming 3 results is insufficient evidence of a real history.search call. C is not accepted.",
+  "notProven": [
+    "Whether the exact outgoing real-provider request offered history.search in this attempt.",
+    "Whether upstream omitted tool_calls or a provider/parser boundary did not surface them.",
+    "The read-only gateway/result/final-answer live loop has not been exercised."
+  ],
+  "invariants": {
+    "workload": {
+      "activeRuns": 0,
+      "pendingInputs": 0,
+      "activeTitles": 0,
+      "activeMemoryJobs": 0,
+      "reservedBudgets": 0,
+      "unsettledAttempts": 0
+    },
+    "priorLedgerUnchanged": true,
+    "duplicateSettlements": []
+  },
+  "agentModelRequests": 0,
+  "secretBodiesExported": false,
+  "messageBodiesRead": false,
+  "nativeContentsRead": false,
+  "scope": "Read-only public metadata plus user-provided screenshot; no rerun, account changes, provider switch or product source changes.",
+  "next": "Do not repeat the same message yet. Preserve A/B acceptance; inspect tool offering/provider event path before arranging another bounded C attempt."
+}

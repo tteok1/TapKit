@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project integration "tests/integration/P02-02.zhipu-tools.test.ts" "tests/integration/P01-02.zhipu.test.ts" "--no-cache" "--fsModuleCache=false"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  2 passed (2)
+      Tests  6 passed (6)
+   Start at  15:58:34
+   Duration  5.30s (tests 46%, transform 30%, import 24%)
+

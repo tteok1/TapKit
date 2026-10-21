@@ -81,8 +81,7 @@ export function ChatSurface({
     [refs, setRefs] = useState<ResourceRef[]>([]);
   const [error, setError] = useState(''),
     [busy, setBusy] = useState(false),
-    [loaded, setLoaded] = useState(!sessionId),
-    [expanded, setExpanded] = useState(false);
+    [loaded, setLoaded] = useState(!sessionId);
   const [catalog, setCatalog] = useState<ReturnType<typeof CatalogViewSchema.parse>>(),
     [selection, setSelection] = useState<Selection | null>(null),
     [delivery, setDelivery] = useState<'followup' | 'steer'>('followup');
@@ -97,10 +96,8 @@ export function ChatSurface({
   const [memoryEventSeq, setMemoryEventSeq] = useState(0),
     [memoryPolicySeq, setMemoryPolicySeq] = useState(0);
   const [snippets, setSnippets] = useState<ReturnType<typeof ChatSnippetsSchema.parse>['snippets']>(
-      [],
-    ),
-    [snippetName, setSnippetName] = useState(''),
-    [snippetText, setSnippetText] = useState('');
+    [],
+  );
   const [editing, setEditing] = useState<{
       id: string;
       text: string;
@@ -354,9 +351,9 @@ export function ChatSurface({
     const input = inputRef.current;
     if (input) {
       input.style.height = 'auto';
-      input.style.height = Math.min(expanded ? 500 : 180, Math.max(66, input.scrollHeight)) + 'px';
+      input.style.height = Math.min(180, Math.max(66, input.scrollHeight)) + 'px';
     }
-  }, [text, expanded]);
+  }, [text]);
   useEffect(() => {
     if (!sid.current) return;
     let stopped = false,
@@ -824,7 +821,12 @@ export function ChatSurface({
               )}
               {!!message.attachments.length && (
                 <details>
-                  <summary>引用资料（{message.attachments.length}）</summary>
+                  <summary>
+                    {message.attachments.every((ref) => ref.kind === 'message' && ref.range)
+                      ? '所选原文'
+                      : '引用来源'}
+                    （{message.attachments.length}）
+                  </summary>
                   <div className="chat-sources">
                     {message.attachments.map((ref, i) =>
                       ref.kind === 'file' && sid.current ? (
@@ -860,7 +862,12 @@ export function ChatSurface({
                             })
                           }
                         >
-                          引用资料 {i + 1}
+                          {ref.kind === 'message'
+                            ? ref.range
+                              ? '所选原文'
+                              : '引用消息'
+                            : '引用资料'}{' '}
+                          {i + 1}
                         </button>
                       ),
                     )}
@@ -1048,9 +1055,9 @@ export function ChatSurface({
           void addFiles([...e.dataTransfer.files]);
         }}
       >
-        <label htmlFor="draft-input">{c.draft}</label>
         <textarea
           id="draft-input"
+          aria-label={c.draft}
           ref={inputRef}
           disabled={!loaded}
           value={text}
@@ -1238,17 +1245,6 @@ export function ChatSurface({
         )}
         <div className="composer-bar">
           <label>
-            模式
-            <select
-              value={mode}
-              onChange={(e) => onMode(e.target.value as 'chat' | 'work')}
-              disabled={!!sessionId}
-            >
-              <option value="chat">聊天</option>
-              <option value="work">工作</option>
-            </select>
-          </label>
-          <label>
             {c.model}
             <select
               aria-label="本轮模型"
@@ -1302,15 +1298,6 @@ export function ChatSurface({
           >
             @ {c.refs}
           </button>
-          <details className="composer-more">
-            <summary>{c.moreInputActions}</summary>
-            <div>
-              <button onClick={() => setExpanded(!expanded)}>
-                {expanded ? c.collapse : c.expand}
-              </button>
-              <button onClick={() => change('')}>{c.clear}</button>
-            </div>
-          </details>
           {active && (
             <label>
               {c.delivery}
@@ -1344,66 +1331,6 @@ export function ChatSurface({
           )}
         </div>
         {mode === 'work' && <p>{c.workPending}</p>}
-        {!historyDetails?.session.temporary && (
-          <details>
-            <summary>{c.snippets}</summary>
-            <p>{c.commands}</p>
-            {snippets.map((s) => (
-              <div key={s.id}>
-                <button onClick={() => change(s.text)}>{s.name}</button>
-                <button
-                  onClick={() =>
-                    void action(async () => {
-                      const next = snippets.filter((v) => v.id !== s.id);
-                      unwrap(
-                        await window.tapkit.chatCommand(requestOptions(), 'chat.snippets.set', {
-                          snippets: next,
-                        }),
-                      );
-                      setSnippets(next);
-                    })
-                  }
-                >
-                  {c.deleteSnippet}
-                </button>
-              </div>
-            ))}
-            <label>
-              {c.snippetName}
-              <input
-                value={snippetName}
-                maxLength={80}
-                onChange={(e) => setSnippetName(e.target.value)}
-              />
-            </label>
-            <label>
-              {c.snippetText}
-              <textarea
-                value={snippetText}
-                maxLength={8000}
-                onChange={(e) => setSnippetText(e.target.value)}
-              />
-            </label>
-            <button
-              disabled={!snippetName.trim() || !snippetText || snippets.length >= 100}
-              onClick={() =>
-                void action(async () => {
-                  const next = [...snippets, { id: id(), name: snippetName, text: snippetText }];
-                  unwrap(
-                    await window.tapkit.chatCommand(requestOptions(), 'chat.snippets.set', {
-                      snippets: next,
-                    }),
-                  );
-                  setSnippets(next);
-                  setSnippetName('');
-                  setSnippetText('');
-                })
-              }
-            >
-              {c.saveSnippet}
-            </button>
-          </details>
-        )}
       </section>
       {error && (
         <div role="alert">
@@ -1451,8 +1378,11 @@ export function ChatSurface({
         </div>
       )}
       {preview && (
-        <div role="dialog" aria-label="材料预览">
-          <h3>{preview.name}</h3>
+        <div
+          role="dialog"
+          aria-label={preview.ref.kind === 'message' && preview.ref.range ? '所选原文' : '材料预览'}
+        >
+          <h3>{preview.ref.kind === 'message' && preview.ref.range ? '所选原文' : preview.name}</h3>
           <p>
             {preview.source} · {c.materialStates[preview.state]}
           </p>

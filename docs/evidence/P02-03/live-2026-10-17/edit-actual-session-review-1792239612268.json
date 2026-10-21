@@ -1,0 +1,166 @@
+{
+  "task": "P02-03",
+  "round": "A-actual-C5-session-edit",
+  "checkedAt": "2026-10-17T12:20:12.267Z",
+  "status": "observed_requires_review",
+  "caseId": "01a149b9-04f4-7d9c-9487-44b0b62e3b25",
+  "session": {
+    "id": "01a14969-e3c4-77ee-b768-6fc59b1451d6",
+    "branchId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+    "revision": 6
+  },
+  "branches": [
+    {
+      "id": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "parentId": null,
+      "forkMessageId": null,
+      "headMessageId": "01a1498f-0dde-7e27-b7c3-403a7e7c3216",
+      "revision": 6
+    },
+    {
+      "id": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "parentId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "forkMessageId": "01a1498e-a6d7-79cc-9c74-7994ef8dbf6f",
+      "headMessageId": "01a149c6-7bec-7200-856b-14ef4488e230",
+      "revision": 3
+    }
+  ],
+  "run": {
+    "id": "01a149c6-78aa-78a5-befb-d255faec60b7",
+    "status": "completed",
+    "calls": 1,
+    "tools": 0,
+    "userMessageId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+    "assistantMessageId": "01a149c6-7bec-7200-856b-14ef4488e230",
+    "rootRunId": "01a149c6-78aa-78a5-befb-d255faec60b7",
+    "branchId": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+    "parentId": null,
+    "inputMatchesExpected": 1,
+    "replyMatchesExpected": 1,
+    "replyIsOldNoToolPhrase": 0
+  },
+  "contexts": [
+    {
+      "id": "01a149c6-790c-7e67-aa72-25b99d189a43",
+      "promptVersion": "chat-p04-2:source-data/1",
+      "logicalCallId": "01a149c6-7900-7db1-9336-b8b383c69741",
+      "currentUserRefCount": 1
+    },
+    {
+      "id": "01a149c6-7be2-7f52-b23b-c7ee9aeebb6e",
+      "promptVersion": "chat-p04-2:source-data/1",
+      "logicalCallId": "01a149c6-7900-7db1-9336-b8b383c69741",
+      "currentUserRefCount": 1
+    }
+  ],
+  "attempts": [
+    {
+      "attemptId": "01a149c6-7bda-76b9-a51d-de1cfc284898",
+      "status": "completed",
+      "errorCode": null,
+      "rootRunId": "01a149c6-78aa-78a5-befb-d255faec60b7",
+      "attemptNo": 1,
+      "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "modelRef": "glm-4.7-flashx",
+      "source": "actual",
+      "inputTokens": 1332,
+      "outputTokens": 4,
+      "chargedTokens": 1336,
+      "settlementCount": 1
+    }
+  ],
+  "receipts": [
+    {
+      "sequence": 321,
+      "requestId": "01a149c6-78a5-7c74-a599-933627c0b0b5",
+      "command": "messages.edit",
+      "state": "completed",
+      "recordedAt": 1792239106219,
+      "ok": 1,
+      "branchId": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "runId": "01a149c6-78aa-78a5-befb-d255faec60b7"
+    },
+    {
+      "sequence": 324,
+      "requestId": "01a149c7-8606-757b-a361-08cc71bfe830",
+      "command": "messages.switchBranch",
+      "state": "completed",
+      "recordedAt": 1792239175177,
+      "ok": 1,
+      "branchId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "runId": null
+    }
+  ],
+  "checks": {
+    "usedActualC5SessionNotPlannedFailedSession": true,
+    "oneNewEditBranchWithOriginalUserFork": true,
+    "oneNewPromptAndAnswer": true,
+    "originalMainMetadataAndRecordedSemanticsPreserved": true,
+    "originalFourLedgerEntriesPreserved": true,
+    "repairedContextVersionAndUserRef": true,
+    "oneCompletedRunWithToolsZero": true,
+    "oneActualSettlement": true,
+    "editReceiptMatches": true,
+    "switchedMainThenEditedBranch": false,
+    "noAdditionalReplayOrTool": true,
+    "traceSuccessfulTextOnly": true,
+    "idleAndNoUnsettledOrDuplicates": true
+  },
+  "oldMessages": [
+    {
+      "id": "01a1498e-a6d7-79cc-9c74-7994ef8dbf6f",
+      "metadataPreserved": true
+    },
+    {
+      "id": "01a1498e-a864-7434-a9dc-fa25b6801d25",
+      "metadataPreserved": true
+    },
+    {
+      "id": "01a1498e-fba9-76ef-a5d7-3fdc67284d94",
+      "metadataPreserved": true
+    },
+    {
+      "id": "01a1498f-0dc1-777c-bc8e-27c19cd5762d",
+      "metadataPreserved": true
+    },
+    {
+      "id": "01a1498f-0dde-7e27-b7c3-403a7e7c3216",
+      "metadataPreserved": true
+    }
+  ],
+  "oldAttempts": [
+    {
+      "attemptId": "01a1498e-a85c-75d3-95cb-cc9c8bf20839",
+      "preserved": true
+    },
+    {
+      "attemptId": "01a1498e-fb9f-7cc9-a1ee-17c16cfc5565",
+      "preserved": true
+    },
+    {
+      "attemptId": "01a1498f-0dd6-72a3-91df-6a0f2c59d2d4",
+      "preserved": true
+    },
+    {
+      "attemptId": "01a1498f-1a36-7338-b8d2-9e06833fa908",
+      "preserved": true
+    }
+  ],
+  "originalSemantics": {
+    "promptMatchesPriorPreparation": 1,
+    "originalAnswerMatchesRecordedToolResult": 1
+  },
+  "newActualTokens": 1336,
+  "plannedSessionId": "01a1498f-dbb2-7fa8-8829-be6b985c7926",
+  "plannedSessionOutcome": "No new edit/run there; all six message hashes and both branches preserved in edit-retest-review-1792239439169.json. The original failed-session answer retest remains not_performed.",
+  "preservationLimit": "Actual C5 main has earlier IDs/roles/status/length and prepared input/recorded final-result comparisons, plus user visual confirmation; no pre-edit full-body SHA was captured for this alternate session. Do not claim byte-for-byte pre/post body hashing for it. Current hashes are only a baseline for the next check.",
+  "causalLimit": "Successful edit in another existing conversation corroborates current bounded behavior; it does not prove the original failed conversation is now fixed or a sole cause of earlier no-tool choices.",
+  "humanObservation": "User reports the requested test results appear as expected.",
+  "source": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792239590690.json",
+  "trace": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792239372992.json",
+  "baselineSnapshot": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792238242914.json",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false
+}

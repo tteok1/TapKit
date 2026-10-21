@@ -1,0 +1,143 @@
+{
+  "task": "P02-03",
+  "round": "A-edit-retest",
+  "status": "waiting_user_one_edit_retest_fixed_app_open",
+  "checkedAt": "2026-10-17T11:56:44.391Z",
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "session": {
+    "id": "01a1498f-dbb2-7fa8-8829-be6b985c7926",
+    "branchId": "01a149b1-1b36-73c3-a172-614da1fe30e7",
+    "revision": 7
+  },
+  "branches": [
+    {
+      "id": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "parentId": null,
+      "headMessageId": "01a1498f-fcc3-74dd-93f5-dab471deeb98",
+      "revision": 5
+    },
+    {
+      "id": "01a149b1-1b36-73c3-a172-614da1fe30e7",
+      "parentId": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "headMessageId": "01a149b1-1ecd-7755-9276-80951e8ee32c",
+      "revision": 3
+    }
+  ],
+  "messages": [
+    {
+      "id": "01a1498f-e8eb-7693-abc8-9dccfb56fdbf",
+      "branchId": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a1498f-e8eb-76d0-97fa-35c119e58492",
+      "revision": 1,
+      "contentSHA256": "b3c2d02e72029ac1f369693f68ebe50746af641d726f95ef97c9b25bc9529168"
+    },
+    {
+      "id": "01a1498f-e9eb-76ac-8489-36974d486439",
+      "branchId": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "parentId": "01a1498f-e8eb-7693-abc8-9dccfb56fdbf",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a1498f-e8eb-76d0-97fa-35c119e58492",
+      "revision": 2,
+      "contentSHA256": "ad0488465c4a0342aec704083ba00f045643cd3ec88ad0702e651b93b2fa1ddf"
+    },
+    {
+      "id": "01a1498f-fc8b-7e31-9767-1bce6ef71092",
+      "branchId": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "parentId": "01a1498f-e9eb-76ac-8489-36974d486439",
+      "role": "tool",
+      "status": "final",
+      "runId": "01a1498f-e8eb-76d0-97fa-35c119e58492",
+      "revision": 1,
+      "contentSHA256": "3d216c38aff760c134ccd02833eb8e240fbe7b0e310a5554d9194166dd0eada3"
+    },
+    {
+      "id": "01a1498f-fcc3-74dd-93f5-dab471deeb98",
+      "branchId": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "parentId": "01a1498f-fc8b-7e31-9767-1bce6ef71092",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a1498f-e8eb-76d0-97fa-35c119e58492",
+      "revision": 8,
+      "contentSHA256": "4441caef184353eaa068b03cd2b6d63e29d7314caeb82e6819e8e51a81e036aa"
+    },
+    {
+      "id": "01a149b1-1b36-7b1a-857b-02aed9aa94f4",
+      "branchId": "01a149b1-1b36-73c3-a172-614da1fe30e7",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a149b1-1b37-738c-af7f-362ed8ec4318",
+      "revision": 1,
+      "contentSHA256": "097f2b8796fc0ec20175dae088fb3cef9c58879f26001b0d323ee096bdf977fd"
+    },
+    {
+      "id": "01a149b1-1ecd-7755-9276-80951e8ee32c",
+      "branchId": "01a149b1-1b36-73c3-a172-614da1fe30e7",
+      "parentId": "01a149b1-1b36-7b1a-857b-02aed9aa94f4",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a149b1-1b37-738c-af7f-362ed8ec4318",
+      "revision": 5,
+      "contentSHA256": "6f1eeb8bddb3be8567880d7320b6e6416820f120a03ed7ffe74510e61ba84429"
+    }
+  ],
+  "oldLedger": [
+    {
+      "attemptId": "01a1498f-e9dd-7a6a-9b01-dea13ca9dbe0",
+      "runId": "01a1498f-e8eb-76d0-97fa-35c119e58492",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 1113
+    },
+    {
+      "attemptId": "01a1498f-fcb4-70e8-90b0-ec00ffe15075",
+      "runId": "01a1498f-e8eb-76d0-97fa-35c119e58492",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 1251
+    },
+    {
+      "attemptId": "01a14990-0f22-7e51-ac33-23a163c11a2a",
+      "runId": "01a1498f-e8eb-76d0-97fa-35c119e58492",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 212
+    },
+    {
+      "attemptId": "01a149b1-1ec0-793e-b52f-a4b9b13ea156",
+      "runId": "01a149b1-1b37-738c-af7f-362ed8ec4318",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 1259
+    }
+  ],
+  "oldLedgerSHA256": "70502324b4f0692373b8027e5afa21ea5c515067ddb69aab80a094ba05f641fc",
+  "originalBranchId": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+  "originalUserMessageId": "01a1498f-e8eb-7693-abc8-9dccfb56fdbf",
+  "prompt": "P02E-1017R：请只回复“编辑分支成功”。",
+  "instructions": "After repaired app is opened and trace readiness checked, use top branch dropdown to select original 主分支1. Edit its original English user message (not a bottom-composer send) to the new prompt and Save once. Wait; verify expected answer. Then switch main/new edit branches to confirm original preserved and no requests from switches. Do not regenerate or repeat on failure.",
+  "repair": "background-priority-fix-2026-10-17.json",
+  "oldFailure": "edit-observation-2026-10-17.json",
+  "acceptance": "One new branch/run from the edit; literal current prompt preserved and expected final answer. Old main and failed edit branch, content hashes and old four ledger entries unchanged. Switching branches does not replay any tool/model work. tools0 is expected for this plain-answer prompt.",
+  "existingAcceptedScope": "P02-02 A/B/C retained; other channels/protocols deferred. No task or stage promotion from preparation.",
+  "agentModelRequests": 0,
+  "messageBodiesExported": false,
+  "credentialOrNativeBodiesRead": 0,
+  "databaseWrites": 0,
+  "caseId": "01a149b9-04f4-7d9c-9487-44b0b62e3b25",
+  "readiness": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792238242810.json",
+  "baselineSnapshot": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792238242914.json",
+  "startedAfter": 1792238242914,
+  "expectedPromptVersion": "chat-p04-2:source-data/1",
+  "launchExecSession": 99040,
+  "launchStatus": "running_waiting_app_exit",
+  "launchExitCode": null
+}

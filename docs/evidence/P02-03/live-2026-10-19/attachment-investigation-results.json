@@ -1,0 +1,125 @@
+{
+  "task": "P02-03",
+  "dependency": "P03-01/P00-03",
+  "localDate": "2026-10-19",
+  "checkedAt": "2026-10-19T09:16:21.048Z",
+  "status": "blocked_local_standard_user_verification_not_attachment_corruption",
+  "diagnosis": "attachment-failure-diagnosis.json",
+  "syntheticFileId": "01a15360-64af-7c6c-a4db-eecb96a56a90",
+  "syntheticVersionId": "01a15360-64b0-7d54-b3c6-1b88974c3987",
+  "sourceAndManagedBlobMatch": true,
+  "originalBytes": 154,
+  "initialCause": "resources/runtime/capabilities.json absent; readExecutionCapabilities returns PROBE_REQUIRED; FileParser fails closed with SANDBOX_UNAVAILABLE",
+  "insideToolSandbox": {
+    "summary": "native-recovery/summary.json",
+    "exitCode": 1,
+    "standardUser": true,
+    "tests": {
+      "total": 22,
+      "passed": 6,
+      "failed": 16,
+      "pending": 0
+    },
+    "failureClass": "runtime directory open access denied 0x80070005"
+  },
+  "outsideToolSandbox": {
+    "summary": "native-recovery-outside-tool-sandbox/summary.json",
+    "exitCode": 1,
+    "nativeTestExitCode": 0,
+    "tests": {
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "pending": 0
+    },
+    "standardUser": false,
+    "accountHasAdministratorsGroup": true,
+    "mediumIntegrity": true,
+    "missingCases": [],
+    "reason": "STANDARD_USER_VERIFICATION_REQUIRED"
+  },
+  "currentCapabilities": {
+    "nativeExecution": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "STANDARD_USER_VERIFICATION_REQUIRED"
+    },
+    "officeRender": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "STANDARD_USER_VERIFICATION_REQUIRED"
+    },
+    "terminal": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "STANDARD_USER_VERIFICATION_REQUIRED"
+    }
+  },
+  "behavior": "Original file remains saved; repeated content retry cannot recover while parser capability is unavailable. Old Core also caches startup capabilities; a restart becomes relevant only after a genuine valid local standard-user probe.",
+  "batchWorkaround": "Remove only the failed attachment reference from the new seed draft; keep managed original. Prepare the synthetic seed using text alone. T03 attachment-toggle variants and T26 attachment recovery remain blocked; whole-session text copy, tags, message actions, generated notes, export, project rules and temporary text tests may continue. T17 material-list and T20 file-context variants are partial/conditional, never falsely passed.",
+  "operatorPreparationMiss": "Batch seed upload was assigned before checking local native parsing capability; corrected checklist prerequisite.",
+  "historicalNativeReportsPreserved": true,
+  "agentModelRequests": 0,
+  "acceptanceProfileDatabaseWrites": 0,
+  "testFixturesCreated": true,
+  "systemAccountsCreated": 0,
+  "systemPolicyChanges": 0,
+  "manualAclOverrides": 0,
+  "credentialOrModelNativeReads": 0,
+  "productChanges": 0,
+  "newAcceptedItems": 0,
+  "committedOrPushed": false,
+  "verification": [
+    {
+      "command": "read-only synthetic file/blob/parse-job query",
+      "exitCode": 0,
+      "result": "154 bytes and exact SHA match; failed SANDBOX_UNAVAILABLE; parse attempts3; model ledger counts unchanged"
+    },
+    {
+      "command": "locked Node probe-native-recovery.mjs",
+      "exitCode": 1,
+      "result": "Tool sandbox: standard user, native tests6/22; runtime path permission denied"
+    },
+    {
+      "command": "outside-tool-sandbox locked Node probe-native-recovery.mjs native-recovery-outside-tool-sandbox",
+      "exitCode": 1,
+      "result": "Native tests22/22 and no missing cases, test exit0; probe rejected standardUser=false"
+    },
+    {
+      "command": "outside-tool-sandbox read-only whoami groups classification",
+      "exitCode": 0,
+      "result": "Administrators group true; medium integrity true; standardUser false"
+    },
+    {
+      "command": "locked pnpm docs:check",
+      "exitCode": 0,
+      "result": "All 37 task states verified"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "locked Node --check probe-native-recovery.mjs",
+      "exitCode": 0
+    }
+  ],
+  "nativeCaseLogReview": "native-case-append-review.json",
+  "pendingUserInformation": "No standard-user action requested now; user prioritizes current administrator-account batch tests.",
+  "standardUserVerificationPreparation": {
+    "status": "prepared_not_executed",
+    "seed": "D:/TapKit/.test-data/P02-standard-user-20261019-4f9e",
+    "preparation": "standard-user-seed-preparation.json",
+    "instructions": "standard-user-verification.md",
+    "scope": "original native22 + parser3; no preview/model requests",
+    "productionCapabilitiesInstalled": false,
+    "attachmentRecovered": false
+  },
+  "supersededBy": "current-account-recovery-results.json",
+  "latestOutcome": {
+    "status": "current_administrator_account_attachment_recovered",
+    "standardUserAcceptance": "deferred_by_user",
+    "attachmentRecovered": true,
+    "report": "current-account-recovery-results.json"
+  }
+}

@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project integration "tests/integration/P02-03.background-priority.test.ts" "tests/integration/P02-03.history.test.ts" "tests/integration/P04-02.context.test.ts" "tests/integration/P04-03.memory.test.ts" "tests/integration/P02-02.zhipu-tools.test.ts" "--no-cache" "--fsModuleCache=false"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  5 passed (5)
+      Tests  49 passed (49)
+   Start at  19:52:11
+   Duration  23.85s (tests 82%, import 11%, transform 7%)
+

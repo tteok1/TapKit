@@ -1,0 +1,35 @@
+
+Running 1 test using 1 worker
+
+(node:36400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[36388:1019/190441.307:ERROR:content\browser\gpu\gpu_process_host.cc:1035] GPU process exited unexpectedly: exit_code=-1073741515
+[36388:1019/190441.366:ERROR:content\browser\gpu\gpu_process_host.cc:1035] GPU process exited unexpectedly: exit_code=-1073741515
+[36388:1019/190441.415:ERROR:content\browser\gpu\gpu_process_host.cc:1035] GPU process exited unexpectedly: exit_code=-1073741515
+[36388:1019/190441.465:ERROR:content\browser\gpu\gpu_process_host.cc:1035] GPU process exited unexpectedly: exit_code=-1073741515
+[36388:1019/190441.518:ERROR:content\browser\gpu\gpu_process_host.cc:1035] GPU process exited unexpectedly: exit_code=-1073741515
+TAPKIT_CORE_DIAGNOSTIC
+[36388:1019/190441.569:ERROR:content\browser\gpu\gpu_process_host.cc:1035] GPU process exited unexpectedly: exit_code=-1073741515
+[36388:1019/190441.629:ERROR:content\browser\gpu\gpu_process_host.cc:1035] GPU process exited unexpectedly: exit_code=-1073741515
+[36388:1019/190441.691:ERROR:content\browser\gpu\gpu_process_host.cc:1035] GPU process exited unexpectedly: exit_code=-1073741515
+[36388:1019/190441.743:ERROR:content\browser\gpu\gpu_process_host.cc:1035] GPU process exited unexpectedly: exit_code=-1073741515
+[36388:1019/190441.743:FATAL:content\browser\gpu\gpu_data_manager_impl_private.cc:417] GPU process isn't usable. Goodbye.
+  x  1 tests\e2e\P02-03.dialogs.spec.ts:31:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent (5.6s)
+
+
+  1) tests\e2e\P02-03.dialogs.spec.ts:31:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent ────────
+
+    Error: Target crashed
+
+    Error Context: test-results\e2e\P02-03.dialogs-P02-03-T22--7ea3d-fit-1440x900-at-100-percent\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P02-03.dialogs-P02-03-T22--7ea3d-fit-1440x900-at-100-percent\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P02-03.dialogs-P02-03-T22--7ea3d-fit-1440x900-at-100-percent\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P02-03.dialogs.spec.ts:31:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent ─────────

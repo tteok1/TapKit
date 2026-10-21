@@ -1,0 +1,39 @@
+{
+  "capturedAt": "2026-10-20T08:38:29.995Z",
+  "profileId": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10",
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "session": {
+    "id": "01a15472-9232-77bb-9fb2-42fe05500c75",
+    "revision": 4,
+    "active_branch_id": "01a15472-9232-7a80-80ea-09386c28eaad"
+  },
+  "originalMessageIds": [
+    "01a15472-9232-7bbb-a8ea-de42bd615146",
+    "01a15472-9232-7f71-a0bf-3c97523dcd7b",
+    "01a15472-9233-798f-b30b-fc87953231c4",
+    "01a15472-9233-7b03-bd3f-3a568c4fb097",
+    "01a1548e-dd97-754c-a7d1-0de5e640b382",
+    "01a1548e-df27-7fc3-b719-99503add5d2c"
+  ],
+  "targetMessageFieldsSHA256": "077f0f2a22540826aedd3c6373cc0914e32c9f967450d09d9ada9aec52bf35c3",
+  "publicCounts": {
+    "sessions": 15,
+    "messages": 91,
+    "provider_accounts": 1,
+    "runs": 29,
+    "provider_attempts": 48,
+    "tool_calls": 2,
+    "usage_ledger": 48
+  },
+  "accounts": [
+    {
+      "id": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "revision": 22,
+      "status": "ready",
+      "api_format": "openai-chat",
+      "model_id": "glm-4.7-flashx"
+    }
+  ],
+  "originalWritesByAgent": 0,
+  "modelRequestsByAgent": 0
+}

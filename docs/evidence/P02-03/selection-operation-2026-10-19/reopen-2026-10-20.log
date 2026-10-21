@@ -1,0 +1,6 @@
+{"status":"prepared_not_live_verified","launchMode":"acceptance","lastErrorCode":null,"reportPath":"D:\\Tapkit-public\\docs\\evidence\\P02-02\\live-2026-10-15\\check-1792485633920.json","workload":{"activeRuns":0,"pendingInputs":0,"activeTitles":0,"activeMemoryJobs":0,"reservedBudgets":0,"unsettledAttempts":0},"newRuns":21,"newTools":2,"modelRequests":0}
+{"status":"verified_production_build","files":619,"uiEvidence":"Prior sidebar/dialog UI evidence retained byte-for-byte; selection behavior covered by related integration, live translation pending.","modelRequests":0}
+Tool trace case: 01a15878-31ab-712f-ae03-919dde5e0b7f
+Acceptance data directory: D:\Tapkit-public\.test-data\P01-02-app-zhipu-chat-20261013-7444d6df
+Loading the current reviewed production build. Use the existing saved Chat/FlashX account; do not re-enter the Key.
+Continue the pending P02 batch checklist. Current-account verification remains in effect; previously accepted tests stay recorded.

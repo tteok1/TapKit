@@ -1,0 +1,103 @@
+{
+  "task": "P02-03",
+  "round": "A-edit-branch",
+  "status": "prepared_waiting_one_user_edit",
+  "checkedAt": "2026-10-17T11:16:52.111Z",
+  "sourceCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "session": {
+    "id": "01a1498f-dbb2-7fa8-8829-be6b985c7926",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+    "revision": 3
+  },
+  "branches": [
+    {
+      "id": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "parentId": null,
+      "headMessageId": "01a1498f-fcc3-74dd-93f5-dab471deeb98",
+      "revision": 5
+    }
+  ],
+  "messages": [
+    {
+      "id": "01a1498f-e8eb-7693-abc8-9dccfb56fdbf",
+      "branchId": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a1498f-e8eb-76d0-97fa-35c119e58492",
+      "revision": 1,
+      "contentLength": 388
+    },
+    {
+      "id": "01a1498f-e9eb-76ac-8489-36974d486439",
+      "branchId": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "parentId": "01a1498f-e8eb-7693-abc8-9dccfb56fdbf",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a1498f-e8eb-76d0-97fa-35c119e58492",
+      "revision": 2,
+      "contentLength": 56
+    },
+    {
+      "id": "01a1498f-fc8b-7e31-9767-1bce6ef71092",
+      "branchId": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "parentId": "01a1498f-e9eb-76ac-8489-36974d486439",
+      "role": "tool",
+      "status": "final",
+      "runId": "01a1498f-e8eb-76d0-97fa-35c119e58492",
+      "revision": 1,
+      "contentLength": 324
+    },
+    {
+      "id": "01a1498f-fcc3-74dd-93f5-dab471deeb98",
+      "branchId": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "parentId": "01a1498f-fc8b-7e31-9767-1bce6ef71092",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a1498f-e8eb-76d0-97fa-35c119e58492",
+      "revision": 8,
+      "contentLength": 92
+    }
+  ],
+  "originalUserMessageId": "01a1498f-e8eb-7693-abc8-9dccfb56fdbf",
+  "oldLedger": [
+    {
+      "attemptId": "01a1498f-e9dd-7a6a-9b01-dea13ca9dbe0",
+      "runId": "01a1498f-e8eb-76d0-97fa-35c119e58492",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 1113
+    },
+    {
+      "attemptId": "01a1498f-fcb4-70e8-90b0-ec00ffe15075",
+      "runId": "01a1498f-e8eb-76d0-97fa-35c119e58492",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 1251
+    },
+    {
+      "attemptId": "01a14990-0f22-7e51-ac33-23a163c11a2a",
+      "runId": "01a1498f-e8eb-76d0-97fa-35c119e58492",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 212
+    }
+  ],
+  "oldLedgerSHA256": "cb09bd55ff1df70e91dfe0f15fb99c5db90d2de2696eb1c35bd8458fe9fa3f0e",
+  "titleStatus": "completed",
+  "priorAcceptance": "docs/evidence/P02-02/live-2026-10-15/round-c5-acceptance-2026-10-17.json",
+  "prompt": "P02E-1017：请只回复“编辑分支成功”。",
+  "instructions": "In the current screenshot conversation, use Edit on its first English user message and replace with prompt; Save once. Wait until complete, switch top message-branch dropdown to original main branch and verify old English/tool answer preserved; switch back to edit branch and verify new prompt/reply. Do not send as a new bottom-composer message, regenerate, rename with AI, change model or repeat on error.",
+  "expected": "One new branch and one new run caused by edit; original message/branch/old attempts preserved. Switching branches creates no new model/tool run or settlement. New final answer should be 编辑分支成功. Normal existing retries are separately recorded, not guessed duplicate runs.",
+  "deferred": "Regenerate/other models/remaining organization/history acceptance later; other live providers/protocols stay deferred. No P04/P05.",
+  "modelRequests": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false,
+  "databaseWrites": 0
+}

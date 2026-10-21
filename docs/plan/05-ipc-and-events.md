@@ -1,5 +1,13 @@
 # IPC、事件、任务状态与接口协议
 
+2026-10-19 [ADR0055](../adr/0055-current-account-native-verification.md)：仅内部本机能力报告增加schema2/current-user验证范围及令牌分类绑定；公共IPC协议v1和ExecutionCapabilities形状不变。换账户/权限、旧fingerprint或不完整检查失败关闭；不宣称标准用户验收通过。
+
+2026-10-17 P02-03：[ADR0054](../adr/0054-source-background-is-not-system-instructions.md)将history.background/memory.background原文移到较早的背景user消息；无IPC/DB字段变化，context_snapshots.prompt_version附source-data/1区分装配，不把历史正文提升为系统指令。
+
+2026-10-17 P02-02：[ADR0053](../adr/0053-zhipu-chat-tool-name-aliases.md)只改变智谱Chat私有wire函数名，IPC、canonical、网关和工具账本仍用files.read/history.search/knowledge.query；双向映射不增加字段，原callId配对和native绑定保持。
+
+2026-10-17 P02-02：[ADR0052](../adr/0052-opt-in-zhipu-tool-boundary-trace.md)增加内部可选的智谱工具边界trace sink及按profile/case显式开启的本机白名单日志；不增加Renderer IPC、业务事件或DB字段，不传递原始协议/参数/正文/推理/凭据。opened仅证明诊断就绪，工具执行仍以网关和账本为准。
+
 2026-10-13 [ADR0049](../adr/0049-safe-network-stage-and-attempt-progress.md)：ChatMessage 可选 diagnosticCode 沿用 ProviderDiagnosticCode 固定枚举；ChatRunView 增加 attempts/retries（旧 DTO 默认 0），由本 run 的 provider_attempts 计数，包含辅助调用。普通聊天 error 的固定码存既有 chat_json，通过既有 message.delta 通知；不透传底层错误、地址或凭据，不改 schema14/IPC v1。
 
 2026-10-12 P04-03：[ADR0048](../adr/0048-evidence-backed-memory-and-history.md)新增严格memoryCommand：memory.list/write/update/delete/clear/undo/policy/policy.set/used/source/notices/sessionImpact。update/delete及会话设置需expectedRevision；批量来源影响支持sessionIds；sessions.trash提供keepExplicitMemories，默认false。每次写memory.changed只发ID/状态，不复制记忆正文。当前Host/Core握手schemaVersion=14，protocolVersion=1。
@@ -36,32 +44,48 @@ P01-02补充（2026-10-04）：providers.saveApiKey接收六个API provider、la
 
 > P01-01补充：providers.loginStatus以loginId返回当前脱敏登录状态（不进业务日志）；startLogin可带label，check可带modelId；check/disconnect必须携带账户expectedRevision。credential/native读写及browser.open只在Host/Core私有消息通道，Renderer无对应方法。参见[ADR0009](../adr/0009-codex-oauth-and-native-state.md)。
 
-
 > P02-01 实施（2026-10-05，ADR0022）：Core/Host 当前握手 schemaVersion=5。新增 desktop.workspace → {eventSeq,sessions,projects,files,pendingApprovals}（会话含 revision/pinned/unread，三个列表最多各100）；sessions.create {mode:chat|work,title}、projects.create {name}、sessions.pin {sessionId,pinned} → {entityId}，pin 必须 expectedRevision。workspace.updated 仅 entityId，新的 settings.updated 仅 revision，界面重读快照；历史完整设置事件仍可解析。settings.preferences 增加 desktop/personal/personalization/network，严格 patch、旧值补默认、个人作用域 CAS。Host 有有限 newWindow/chooseAvatar/chooseDirectory；Renderer 无任意路径读取。AccountView 可选 credentialHint 仅尾4位，由 Host 保存新 Key 时生成，不读取旧 Key 补值。详见 [ADR0022](../adr/0022-desktop-settings-and-metadata.md)。
 
 ## 1. 请求与响应
 
 所有公开命令名、字段、错误在packages/contracts定义；以下是v1必需接口。Host只为app origin的顶层frame转发，Core重新校验资源与状态。
 
-~~~typescript
+```typescript
 type Request<T> = {
-  protocolVersion: 1; requestId: string; command: string;
-  expectedRevision?: number; payload: T;
+  protocolVersion: 1;
+  requestId: string;
+  command: string;
+  expectedRevision?: number;
+  payload: T;
 };
 type Reply<T> =
   | { ok: true; requestId: string; data: T; revision?: number }
-  | { ok: false; requestId: string; error: {
-      code: ErrorCode; message: string; retryable: boolean;
-      fieldErrors?: Record<string,string>; recoveryActions: RecoveryAction[];
-      traceId: string; currentRevision?: number; // CAS冲突时的当前版本
-  }};
-type Page<T> = { items: T[]; nextCursor: string|null };
+  | {
+      ok: false;
+      requestId: string;
+      error: {
+        code: ErrorCode;
+        message: string;
+        retryable: boolean;
+        fieldErrors?: Record<string, string>;
+        recoveryActions: RecoveryAction[];
+        traceId: string;
+        currentRevision?: number; // CAS冲突时的当前版本
+      };
+    };
+type Page<T> = { items: T[]; nextCursor: string | null };
 type EventEnvelope = {
-  eventId: string; streamId: string; seq: number; schemaVersion: 1;
-  type: string; runId?: string; taskVersion?: number;
-  occurredAt: number; payload: unknown;
+  eventId: string;
+  streamId: string;
+  seq: number;
+  schemaVersion: 1;
+  type: string;
+  runId?: string;
+  taskVersion?: number;
+  occurredAt: number;
+  payload: unknown;
 };
-~~~
+```
 
 参数除约定可空字段外拒绝null；缺省仅由schema提供。默认分页50、最大100，cursor为(base sortValue,id,filterHash)的base64url JSON并验证；不能将cursor作为权限凭证。写请求requestId在profile内去重24小时，结果未知时UI用原ID查询而非随机ID重发。
 
@@ -73,61 +97,61 @@ Core事件持久化以后才发送；UI lastSeq续接，重复eventId/seq忽略�
 
 DTO中的EntityView是不含凭据、绝对内部路径、native reasoning的可显示字段；EntityRef固定{id,revision}。所有update带expectedRevision；失败CONFLICT返回当前revision和重新加载动作，不能last-write-wins。
 
-| 命令 | payload → data |
-|---|---|
-| app.bootstrap | {} → {profile,settings,capabilities,recoveringRuns,unreadCount} |
-| settings.get/set | {scope:{type,id},keys?} / {scope,patch} → {values,revision} |
-| providers.list | {} → {accounts:AccountView[],models:ModelView[]}；AccountView可选hasCredential为脱敏布尔，供区分已登录未检测与已注销；无凭据内容 |
-| providers.saveApiKey | {providerId,label,key,baseUrl?,modelId?} → {accountId,status}；secret输入不进入业务event |
-| providers.startLogin | {providerId:"codex-subscription",method:"browser"|"device_code"} → {loginId} |
-| providers.answerLogin/cancelLogin | {loginId,promptId,value} / {loginId} → {status} |
-| providers.check/disconnect | {accountId} → {status,models?} |
-| providers.setFallbackOrder | {accountIds,autoOnQuotaExhausted} → {revision} |
-| sessions.create/list/get | {projectId?,mode,title?} / {projectId?,archived?,cursor?,limit?} / {sessionId} → SessionView/Page |
-| sessions.update | {sessionId,patch:{title?,tags?,note?,projectId?,settings?}} → SessionView |
-| sessions.archive/trash/restore | {sessionIds,archived?} → {updatedIds,failed:EntityFailure[]} |
-| sessions.fork/copy | {sessionId,fromMessageId?,includeAttachments:true|false} → {sessionId,branchId} |
-| messages.list | {sessionId,branchId,cursor?,limit?} → Page<MessageView> |
-| messages.send | {sessionId,text,attachments:ResourceRef[],clientMessageId,mode,modelRef?} → {messageId,runId?,queuedInputId?} |
-| messages.edit/regenerate | {messageId,text?,modelRef?} → {branchId,runId}；edit必须提供text |
-| messages.delete | {messageId,descendants:"branch"|"keep-as-note"} → {branchId,affectedIds} |
-| messages.feedback/bookmark | {messageId,rating?:"up"|"down",note?,bookmark?} → {id} |
-| drafts.get/save | {sessionId,windowId,text?,attachments?} → DraftView |
-| inputs.list/update/cancel | {sessionId} / {inputId,text?,attachments?} / {inputId} → PendingInputView/Page |
-| search.query | {query,scope:{type:"all"|"project"|"session"|"file",id?},types,sort,cursor?} → Page<SearchHit> |
-| sidebar.list/mutate | {} / {action:"create"|"rename"|"move"|"reorder"|"remove",sectionId?,entityRef?,name?,orderedIds?} → SidebarView |
-| projects.create/list/get/update | {name,description?,icon?,color?} / {cursor?} / {projectId} / {projectId,patch} → ProjectView/Page |
-| projects.copy/archive/trash | {projectId,includeFiles?,sessionDisposition?:"detach"|"trash"} → ProjectView/DeletionPreview |
-| files.pick/import | {allowDirectories?} / {selectionTokens,destination:{type,id},duplicate:"keep"|"replace"|"skip"} → {jobIds,fileIds}；只接受Host文件选择token |
-| files.list/get | {owner?,type?,cursor?} / {fileId,versionId?} → Page/FileView |
-| files.rename/move/copy/link | {fileId,name?,folderId?,owner?,versionId?} → FileView |
-| files.unlink/trash/restore/purge | {fileIds,owner?} → {updatedIds,failed:EntityFailure[]} |
-| files.retryParse | {fileVersionId} → {jobId} |
-| artifacts.open/export | {fileId,versionId?,locator?} / {fileIds,format,destinationToken,includeSources?} → {viewId}/{jobId} |
-| knowledge.query | {projectId?,query,selectedVersionIds?,limit?} → {hits:EvidenceRef[],indexStatus} |
-| memory.list/update/delete | {scope,query?,cursor?} / {memoryId,value,expectedRevision} / {memoryIds} → Page/MemoryView/DeletionPreview |
-| memory.undo | {changeEventId} → {memoryId,status}；检查新修改，冲突不覆盖 |
-| runs.create | {sessionId,goal,acceptance,refs,planFirst,budgetOverrides?} → {taskId,runId} |
-| runs.list/get | {projectId?,status?,cursor?} / {runId} → Page/RunView |
-| runs.steer | {runId,text,refs,clientRequestId} → {eventId,taskVersion} |
-| runs.pause/resume/cancel | {runId,reason?} → {status,requestedAt} |
-| runs.retry | {runId,failedStepIds?,reuseVerifiedArtifacts:true} → {newRunId} |
-| runs.setPlan | {runId,steps:PlanStepInput[],executeStepIds?} → {taskVersion,planRevision} |
-| runs.accept | {taskId,decision:"accepted"|"changes_requested",feedback?} → {acceptanceStatus} |
-| approvals.list/decide | {runId?} / {approvalId,decision,argsHash,contentVersionHash} → Page/ApprovalView |
-| approvals.editDraft | {approvalId,newBusinessArgs} → {newApprovalId,preview}；旧审批失效 |
-| grants.list/revoke | {} / {grantIds} → Page/{affectedRuns} |
-| notifications.list/read | {cursor?} / {ids?,all?} → Page/{unreadCount} |
-| browser.open/observe/action/close | {runId,url} / {tabId} / BrowserAction / {tabId} → TabView/BrowserSnapshot/ActionResult |
-| code.attach/status/diff | {projectId,selectionToken} / {projectId} / {runId,path?} → CodeProjectView/RepoStatus/DiffView |
-| code.accept/revert/comment | {runId,paths,expectedHashes} / 同前 / {runId,path,line,side,body} → {results} |
-| terminal.start/input/resize/stop | {runId,runtime,cwdRef} / {processId,text} / {processId,cols,rows} / {processId} → ProcessView/Ack |
-| github.connect/createPR/checkPR | {token,repoAllowlist} / {runId,repo,base,head,title,body,draft:true} / {repo,prNumber} → AccountView/PRView |
-| canvas.open/save/aiEdit/apply | {fileId} / {documentId,content,baseVersion} / {documentId,selection,request,baseVersion} / {proposalId,accept} → CanvasView/Proposal |
-| data.export/backup/restore/clear | {categories,destinationToken} / {destinationToken?} / {selectionToken} / {categories,includeBackups} → {jobId,impactPreview?} |
-| diagnostics.bundle | {includeContent:false|true,destinationToken} → {fileId}；默认false |
-| jobs.cancel | {jobId} → {status}；只取消已注册的基础后台作业，不是定时任务 |
-| events.subscribe/replay | {streamId,afterSeq} → subscriptionId/Page<EventEnvelope> |
+| 命令                              | payload → data                                                                                                                       |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| app.bootstrap                     | {} → {profile,settings,capabilities,recoveringRuns,unreadCount}                                                                      |
+| settings.get/set                  | {scope:{type,id},keys?} / {scope,patch} → {values,revision}                                                                          |
+| providers.list                    | {} → {accounts:AccountView[],models:ModelView[]}；AccountView可选hasCredential为脱敏布尔，供区分已登录未检测与已注销；无凭据内容     |
+| providers.saveApiKey              | {providerId,label,key,baseUrl?,modelId?} → {accountId,status}；secret输入不进入业务event                                             |
+| providers.startLogin              | {providerId:"codex-subscription",method:"browser"                                                                                    | "device_code"} → {loginId}                          |
+| providers.answerLogin/cancelLogin | {loginId,promptId,value} / {loginId} → {status}                                                                                      |
+| providers.check/disconnect        | {accountId} → {status,models?}                                                                                                       |
+| providers.setFallbackOrder        | {accountIds,autoOnQuotaExhausted} → {revision}                                                                                       |
+| sessions.create/list/get          | {projectId?,mode,title?} / {projectId?,archived?,cursor?,limit?} / {sessionId} → SessionView/Page                                    |
+| sessions.update                   | {sessionId,patch:{title?,tags?,note?,projectId?,settings?}} → SessionView                                                            |
+| sessions.archive/trash/restore    | {sessionIds,archived?} → {updatedIds,failed:EntityFailure[]}                                                                         |
+| sessions.fork/copy                | {sessionId,fromMessageId?,includeAttachments:true                                                                                    | false} → {sessionId,branchId}                       |
+| messages.list                     | {sessionId,branchId,cursor?,limit?} → Page<MessageView>                                                                              |
+| messages.send                     | {sessionId,text,attachments:ResourceRef[],clientMessageId,mode,modelRef?} → {messageId,runId?,queuedInputId?}                        |
+| messages.edit/regenerate          | {messageId,text?,modelRef?} → {branchId,runId}；edit必须提供text                                                                     |
+| messages.delete                   | {messageId,descendants:"branch"                                                                                                      | "keep-as-note"} → {branchId,affectedIds}            |
+| messages.feedback/bookmark        | {messageId,rating?:"up"                                                                                                              | "down",note?,bookmark?} → {id}                      |
+| drafts.get/save                   | {sessionId,windowId,text?,attachments?} → DraftView                                                                                  |
+| inputs.list/update/cancel         | {sessionId} / {inputId,text?,attachments?} / {inputId} → PendingInputView/Page                                                       |
+| search.query                      | {query,scope:{type:"all"                                                                                                             | "project"                                           | "session"                                           | "file",id?},types,sort,cursor?} → Page<SearchHit> |
+| sidebar.list/mutate               | {} / {action:"create"                                                                                                                | "rename"                                            | "move"                                              | "reorder"                                         | "remove",sectionId?,entityRef?,name?,orderedIds?} → SidebarView |
+| projects.create/list/get/update   | {name,description?,icon?,color?} / {cursor?} / {projectId} / {projectId,patch} → ProjectView/Page                                    |
+| projects.copy/archive/trash       | {projectId,includeFiles?,sessionDisposition?:"detach"                                                                                | "trash"} → ProjectView/DeletionPreview              |
+| files.pick/import                 | {allowDirectories?} / {selectionTokens,destination:{type,id},duplicate:"keep"                                                        | "replace"                                           | "skip"} → {jobIds,fileIds}；只接受Host文件选择token |
+| files.list/get                    | {owner?,type?,cursor?} / {fileId,versionId?} → Page/FileView                                                                         |
+| files.rename/move/copy/link       | {fileId,name?,folderId?,owner?,versionId?} → FileView                                                                                |
+| files.unlink/trash/restore/purge  | {fileIds,owner?} → {updatedIds,failed:EntityFailure[]}                                                                               |
+| files.retryParse                  | {fileVersionId} → {jobId}                                                                                                            |
+| artifacts.open/export             | {fileId,versionId?,locator?} / {fileIds,format,destinationToken,includeSources?} → {viewId}/{jobId}                                  |
+| knowledge.query                   | {projectId?,query,selectedVersionIds?,limit?} → {hits:EvidenceRef[],indexStatus}                                                     |
+| memory.list/update/delete         | {scope,query?,cursor?} / {memoryId,value,expectedRevision} / {memoryIds} → Page/MemoryView/DeletionPreview                           |
+| memory.undo                       | {changeEventId} → {memoryId,status}；检查新修改，冲突不覆盖                                                                          |
+| runs.create                       | {sessionId,goal,acceptance,refs,planFirst,budgetOverrides?} → {taskId,runId}                                                         |
+| runs.list/get                     | {projectId?,status?,cursor?} / {runId} → Page/RunView                                                                                |
+| runs.steer                        | {runId,text,refs,clientRequestId} → {eventId,taskVersion}                                                                            |
+| runs.pause/resume/cancel          | {runId,reason?} → {status,requestedAt}                                                                                               |
+| runs.retry                        | {runId,failedStepIds?,reuseVerifiedArtifacts:true} → {newRunId}                                                                      |
+| runs.setPlan                      | {runId,steps:PlanStepInput[],executeStepIds?} → {taskVersion,planRevision}                                                           |
+| runs.accept                       | {taskId,decision:"accepted"                                                                                                          | "changes_requested",feedback?} → {acceptanceStatus} |
+| approvals.list/decide             | {runId?} / {approvalId,decision,argsHash,contentVersionHash} → Page/ApprovalView                                                     |
+| approvals.editDraft               | {approvalId,newBusinessArgs} → {newApprovalId,preview}；旧审批失效                                                                   |
+| grants.list/revoke                | {} / {grantIds} → Page/{affectedRuns}                                                                                                |
+| notifications.list/read           | {cursor?} / {ids?,all?} → Page/{unreadCount}                                                                                         |
+| browser.open/observe/action/close | {runId,url} / {tabId} / BrowserAction / {tabId} → TabView/BrowserSnapshot/ActionResult                                               |
+| code.attach/status/diff           | {projectId,selectionToken} / {projectId} / {runId,path?} → CodeProjectView/RepoStatus/DiffView                                       |
+| code.accept/revert/comment        | {runId,paths,expectedHashes} / 同前 / {runId,path,line,side,body} → {results}                                                        |
+| terminal.start/input/resize/stop  | {runId,runtime,cwdRef} / {processId,text} / {processId,cols,rows} / {processId} → ProcessView/Ack                                    |
+| github.connect/createPR/checkPR   | {token,repoAllowlist} / {runId,repo,base,head,title,body,draft:true} / {repo,prNumber} → AccountView/PRView                          |
+| canvas.open/save/aiEdit/apply     | {fileId} / {documentId,content,baseVersion} / {documentId,selection,request,baseVersion} / {proposalId,accept} → CanvasView/Proposal |
+| data.export/backup/restore/clear  | {categories,destinationToken} / {destinationToken?} / {selectionToken} / {categories,includeBackups} → {jobId,impactPreview?}        |
+| diagnostics.bundle                | {includeContent:false                                                                                                                | true,destinationToken} → {fileId}；默认false        |
+| jobs.cancel                       | {jobId} → {status}；只取消已注册的基础后台作业，不是定时任务                                                                         |
+| events.subscribe/replay           | {streamId,afterSeq} → subscriptionId/Page<EventEnvelope>                                                                             |
 
 所有文件选择token只在Host临时表中保存canonical路径、用途、过期时间5分钟、发起windowId；不能序列化成模型可重新使用的目录权限。导入token消费一次；目录持续授权另写grant。
 
@@ -135,16 +159,16 @@ DTO中的EntityView是不含凭据、绝对内部路径、native reasoning的可
 
 状态枚举：queued、running、waiting_tool、waiting_user、pausing、paused、recovering、completed、partial、failed、budget_stopped、cancelled。UI可归类显示，但数据库不得把partial和completed合并。
 
-| 当前 | 允许转移 | 守卫 |
-|---|---|---|
-| queued | running/cancelled/paused | 获得租约和根预算才running |
-| running | waiting_tool/waiting_user/pausing/recovering/completed/partial/failed/budget_stopped/cancelled | completed需要验收且无pending/unknown调用 |
-| waiting_tool | running/pausing/recovering/waiting_user/cancelled | 结果按callId关联，unknown进入waiting_user核对 |
-| waiting_user | running/paused/cancelled/budget_stopped | 回答匹配taskVersion；过时批准拒绝 |
-| pausing | paused/waiting_user/recovering/cancelled | 持久化在途调用状态，不能伪造未执行 |
-| paused | queued/cancelled | resume后重新鉴权/核预算 |
-| recovering | queued/waiting_user/failed/cancelled | 核对副作用、进程、文件、lease epoch |
-| terminal states | 不原地继续 | 追加修改/重试创建新run，保留历史 |
+| 当前            | 允许转移                                                                                       | 守卫                                          |
+| --------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| queued          | running/cancelled/paused                                                                       | 获得租约和根预算才running                     |
+| running         | waiting_tool/waiting_user/pausing/recovering/completed/partial/failed/budget_stopped/cancelled | completed需要验收且无pending/unknown调用      |
+| waiting_tool    | running/pausing/recovering/waiting_user/cancelled                                              | 结果按callId关联，unknown进入waiting_user核对 |
+| waiting_user    | running/paused/cancelled/budget_stopped                                                        | 回答匹配taskVersion；过时批准拒绝             |
+| pausing         | paused/waiting_user/recovering/cancelled                                                       | 持久化在途调用状态，不能伪造未执行            |
+| paused          | queued/cancelled                                                                               | resume后重新鉴权/核预算                       |
+| recovering      | queued/waiting_user/failed/cancelled                                                           | 核对副作用、进程、文件、lease epoch           |
+| terminal states | 不原地继续                                                                                     | 追加修改/重试创建新run，保留历史              |
 
 租约每5秒续，15秒过期；抢占时lease_epoch+1；所有结果提交CAS校验epoch。DB锁竞争失败不当作任务失败，有限重试后进入recovering。Windows重启后不自动重放unknown工具。
 
@@ -173,6 +197,5 @@ P01-02智谱诊断补充（2026-10-04，ADR0016）：新增OUTPUT_LIMIT_REACHED�
 RecoveryAction为{kind:"retry"|"reconnect"|"choose_model"|"open_settings"|"download_original"|"review_result"|"resume"|"export_data",targetId?,label}；只提供真实已实现动作。错误消息脱敏，traceId用于本地定位；不向Renderer透传堆栈、令牌、完整请求。
 
 P00-02 协议细化见 [ADR 0005](../adr/0005-foundation-protocol-and-recovery.md)：Host↔Core ready 握手包含 protocolVersion=1 和 schemaVersion=1；基础阶段仅注册已实现命令，其他接口随所属任务启用。
-
 
 > 2026-10-04 P01-03：P01-03有限IPC：models.catalog、models.preferences.get/set、models.preview、models.diagnostic/cancel、usage.list；均UUIDv7与strict schema。诊断仅固定文本，不接收renderer工具/prompt/nativeState。provider.switched/model.preferences.updated进入outbox。Core ready schemaVersion=4；注销取消使用该账户的检测。

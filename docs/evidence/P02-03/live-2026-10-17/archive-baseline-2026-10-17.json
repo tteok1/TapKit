@@ -1,0 +1,98 @@
+{
+  "task": "P02-03",
+  "round": "F-archive-search",
+  "status": "prepared_waiting_archive_filter_checkpoint",
+  "checkedAt": "2026-10-17T14:23:18.297Z",
+  "startedAfter": 1792246998297,
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "caseId": "01a149b9-04f4-7d9c-9487-44b0b62e3b25",
+  "session": {
+    "id": "01a14a2b-364a-7034-986d-79c884ee51a3",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "revision": 3,
+    "titleManual": 1,
+    "titleSHA256": "a054b9ea5a0429d459302ced792c709a0e095afb2ba942e1d0d3689655ee9359",
+    "noteSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tagsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "archivedAt": null,
+    "titleMatchesExpected": 1
+  },
+  "messages": [
+    {
+      "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "contentSHA256": "26d08c0117a2160250ef6a4a7bbf58e3af422cbcb8f98713b5cffa68fa198b93"
+    },
+    {
+      "id": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "contentSHA256": "9b64af603d2349dd9f8e2b91ea598e7e57cdfcb85c05df982e23a6e90ae67bff"
+    }
+  ],
+  "branch": {
+    "id": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "headMessageId": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+    "revision": 1
+  },
+  "globalCounts": {
+    "runs": 25,
+    "attempts": 41,
+    "tools": 2,
+    "ledger": 41
+  },
+  "titleQuery": "P02验收-分叉副本-1017",
+  "historyBaseline": [
+    {
+      "id": "01a14a3c-db20-779e-98b4-00ad4bc79e52",
+      "updatedAt": 1792246864672,
+      "isTitleQuery": 1,
+      "isMessageQuery": 0
+    },
+    {
+      "id": "01a14a3d-9cc9-77af-aaa1-49f4fea32610",
+      "updatedAt": 1792246914249,
+      "isTitleQuery": 0,
+      "isMessageQuery": 1
+    }
+  ],
+  "priorAcceptance": "search-review-1792246998295.json",
+  "expectedArchivedSearch": {
+    "scope": {
+      "type": "all"
+    },
+    "types": [
+      "session"
+    ],
+    "includeArchivedTrue": [
+      {
+        "id": "01a14a2b-364a-7034-986d-79c884ee51a3",
+        "type": "session",
+        "sessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+        "branchId": null
+      }
+    ],
+    "includeArchivedFalse": []
+  },
+  "checkpoint": "User archives only this synthetic named copy, performs title search with 包括归档 checked and unchecked, then leaves it archived for metadata review. Cancellation of archive follows the intermediate check; never delete or archive original conversation.",
+  "instructions": "Right-click the named copy sidebar row and select 归档. Open 搜索/Ctrl+K, 全局 + 会话, query the prepared title: 包括归档 checked should find the copy; unchecked and 查找 again should have zero hits. Report both and leave the copy archived; do not restore it until this intermediate state is checked. No sends/regeneration/AI rename.",
+  "acceptance": "Intermediate archived_at non-null, one successful archive receipt linked by updatedIds to the copy, exact title/index/message hashes retained, user confirms includeArchived contrast, no execution/settlement. Then a separate restore checkpoint verifies 取消归档 and recent-list reappearance. Preparation is not acceptance.",
+  "sourceSessionBaseline": "fork-baseline-2026-10-17.json",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false
+}

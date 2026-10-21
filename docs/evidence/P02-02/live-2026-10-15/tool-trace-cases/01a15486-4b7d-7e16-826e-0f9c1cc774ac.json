@@ -1,0 +1,10 @@
+{
+  "task": "P02-02",
+  "round": "C3",
+  "preparedAt": "2026-10-19T14:17:29.725Z",
+  "caseId": "01a15486-4b7d-7e16-826e-0f9c1cc774ac",
+  "profileId": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10",
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "tracePath": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df\\logs\\tool-trace-01a15486-4b7d-7e16-826e-0f9c1cc774ac.jsonl",
+  "modelRequests": 0
+}

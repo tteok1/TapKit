@@ -1,0 +1,226 @@
+{
+  "task": "P02-03",
+  "round": "H-group-rename",
+  "localDate": "2026-10-18",
+  "checkedAt": "2026-10-18T06:05:43.587Z",
+  "status": "passed_live_scoped_group_rename_delete_pending",
+  "checks": {
+    "sameGroupWithPrescribedNewName": true,
+    "oneRenameAndExplainedCollapseExpand": true,
+    "allThreeTargetUpdatesSuccessful": true,
+    "noOtherGroupOrSessionMutation": true,
+    "targetAndUnrelatedMembershipPreserved": true,
+    "sessionRevisionAndMetadataPreserved": true,
+    "bothMessageHashesAndBranchPreserved": true,
+    "projectionPreserved": true,
+    "reopenedAfterRenameAndControls": true,
+    "resourceReferencesPreserved": true,
+    "originalSourceAndLedgerPreserved": true,
+    "noExecutionOrUsageChange": true,
+    "idleNoUnsettledOrDuplicate": true,
+    "userConfirmsRenamedListingAndContent": true
+  },
+  "group": {
+    "id": "01a14cb1-4dde-7e06-aa3d-a97ac9146b0d",
+    "revision": 4,
+    "collapsed": 0,
+    "sortKey": 1792288050654,
+    "nameSHA256": "9ae5fbc3b61aa76faad978b461a4ae899711f42e075ffec1582226bb92d9ed90"
+  },
+  "sections": [
+    {
+      "id": "01a14cb1-4dde-7e06-aa3d-a97ac9146b0d",
+      "revision": 4,
+      "collapsed": 0,
+      "sortKey": 1792288050654,
+      "nameSHA256": "9ae5fbc3b61aa76faad978b461a4ae899711f42e075ffec1582226bb92d9ed90"
+    }
+  ],
+  "sidebarItem": [
+    {
+      "type": "session",
+      "entityId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+      "sectionId": "01a14cb1-4dde-7e06-aa3d-a97ac9146b0d",
+      "sortKey": 1792288106627
+    }
+  ],
+  "groupMembers": [
+    {
+      "type": "session",
+      "entityId": "01a14a2b-364a-7034-986d-79c884ee51a3"
+    }
+  ],
+  "groupUpdates": [
+    {
+      "sequence": 384,
+      "requestId": "01a14d9c-00eb-77e6-834a-129691c47ff8",
+      "command": "sidebar.update",
+      "ownerSessionId": null,
+      "state": "completed",
+      "recordedAt": 1792303431917,
+      "ok": 1,
+      "updatedIdsJSON": "[\"01a14cb1-4dde-7e06-aa3d-a97ac9146b0d\"]",
+      "failedCount": 0,
+      "expectedRevision": 1,
+      "fingerprintMatches": [
+        "prescribed_rename"
+      ]
+    },
+    {
+      "sequence": 385,
+      "requestId": "01a14d9c-2cce-7397-8fd2-de43cf3d3614",
+      "command": "sidebar.update",
+      "ownerSessionId": null,
+      "state": "completed",
+      "recordedAt": 1792303443152,
+      "ok": 1,
+      "updatedIdsJSON": "[\"01a14cb1-4dde-7e06-aa3d-a97ac9146b0d\"]",
+      "failedCount": 0,
+      "expectedRevision": 2,
+      "fingerprintMatches": [
+        "collapse"
+      ]
+    },
+    {
+      "sequence": 386,
+      "requestId": "01a14d9c-2f10-7b7f-834f-33edd10f9f83",
+      "command": "sidebar.update",
+      "ownerSessionId": null,
+      "state": "completed",
+      "recordedAt": 1792303443729,
+      "ok": 1,
+      "updatedIdsJSON": "[\"01a14cb1-4dde-7e06-aa3d-a97ac9146b0d\"]",
+      "failedCount": 0,
+      "expectedRevision": 3,
+      "fingerprintMatches": [
+        "expand"
+      ]
+    }
+  ],
+  "receipts": [
+    {
+      "sequence": 384,
+      "requestId": "01a14d9c-00eb-77e6-834a-129691c47ff8",
+      "command": "sidebar.update",
+      "ownerSessionId": null,
+      "state": "completed",
+      "recordedAt": 1792303431917,
+      "ok": 1,
+      "updatedIdsJSON": "[\"01a14cb1-4dde-7e06-aa3d-a97ac9146b0d\"]",
+      "failedCount": 0
+    },
+    {
+      "sequence": 385,
+      "requestId": "01a14d9c-2cce-7397-8fd2-de43cf3d3614",
+      "command": "sidebar.update",
+      "ownerSessionId": null,
+      "state": "completed",
+      "recordedAt": 1792303443152,
+      "ok": 1,
+      "updatedIdsJSON": "[\"01a14cb1-4dde-7e06-aa3d-a97ac9146b0d\"]",
+      "failedCount": 0
+    },
+    {
+      "sequence": 386,
+      "requestId": "01a14d9c-2f10-7b7f-834f-33edd10f9f83",
+      "command": "sidebar.update",
+      "ownerSessionId": null,
+      "state": "completed",
+      "recordedAt": 1792303443729,
+      "ok": 1,
+      "updatedIdsJSON": "[\"01a14cb1-4dde-7e06-aa3d-a97ac9146b0d\"]",
+      "failedCount": 0
+    },
+    {
+      "sequence": 387,
+      "requestId": "01a14d9c-380d-7af9-9047-f45e74984c29",
+      "command": "sessions.read",
+      "ownerSessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+      "state": "completed",
+      "recordedAt": 1792303446035,
+      "ok": 1,
+      "updatedIdsJSON": "[\"01a14a2b-364a-7034-986d-79c884ee51a3\"]",
+      "failedCount": 0
+    }
+  ],
+  "session": {
+    "id": "01a14a2b-364a-7034-986d-79c884ee51a3",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "revision": 8,
+    "titleManual": 1,
+    "titleSHA256": "a054b9ea5a0429d459302ced792c709a0e095afb2ba942e1d0d3689655ee9359",
+    "noteSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tagsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "archivedAt": null,
+    "deletedAt": null,
+    "titleMatchesExpected": 1
+  },
+  "messages": [
+    {
+      "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "contentSHA256": "26d08c0117a2160250ef6a4a7bbf58e3af422cbcb8f98713b5cffa68fa198b93"
+    },
+    {
+      "id": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "contentSHA256": "9b64af603d2349dd9f8e2b91ea598e7e57cdfcb85c05df982e23a6e90ae67bff"
+    }
+  ],
+  "branch": {
+    "id": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "headMessageId": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+    "revision": 1
+  },
+  "projection": [
+    {
+      "type": "message",
+      "n": 2
+    },
+    {
+      "type": "session",
+      "n": 1
+    }
+  ],
+  "resourceState": {
+    "linkedResources": 0,
+    "attachmentRefs": 0,
+    "memorySourceRefs": 0
+  },
+  "globalCounts": {
+    "runs": 25,
+    "attempts": 41,
+    "tools": 2,
+    "ledger": 41
+  },
+  "ledgerTotals": {
+    "entries": 41,
+    "tokens": 204413,
+    "actualTokens": 52958,
+    "estimatedTokens": 151455
+  },
+  "humanConfirmation": "符合预期",
+  "evidenceBoundary": "User confirms renamed group listing, opening the same copy and intact title/two messages. Canonical receipt hashes exactly match the prescribed synthetic rename at revision1, collapse(true) at revision2 and expand(false) at revision3. Only match labels, IDs and public metadata are exported; no complete UI route telemetry is claimed.",
+  "limits": "One custom group and one synthetic ordinary chat. Final group revision4 is explained by one rename and collapse/expand controls; not three renames. Group deletion/content return is still pending; no batch/project/drag/reorder acceptance.",
+  "baseline": "group-rename-baseline-2026-10-18.json",
+  "source": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792303462448.json",
+  "trace": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792303463044.json",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false
+}

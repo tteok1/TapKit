@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project integration "P02-03.history" "-t" "T13 selection operation rejects unexpected tool"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 29 skipped (30)
+   Start at  22:41:25
+   Duration  2.46s (transform 60%, import 24%, tests 15%)
+

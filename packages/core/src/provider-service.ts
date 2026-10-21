@@ -15,6 +15,7 @@ import {
   type SystemProxyResolver,
   API_ADAPTER_VERSION,
   type NativeStateStore,
+  type ZhipuToolTraceSink,
 } from '@tapkit/providers';
 import { Store, newId, failure, StorageError } from '@tapkit/storage';
 import {
@@ -91,6 +92,7 @@ export class ProviderService {
     readonly store: Store,
     readonly vault: PrivateVault,
     private readonly resolveSystemProxy?: SystemProxyResolver,
+    private readonly toolTrace?: ZhipuToolTraceSink,
   ) {}
   private account(accountId: string) {
     const row = this.store.db
@@ -241,6 +243,7 @@ export class ProviderService {
                   input,
                   init,
                 ),
+              this.toolTrace,
             );
       this.channels.set(accountId, channel);
     }

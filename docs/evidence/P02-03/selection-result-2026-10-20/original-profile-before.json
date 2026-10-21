@@ -1,0 +1,94 @@
+{
+  "checkedAt": "2026-10-20T14:05:18.759Z",
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "sessionId": "01a15472-9232-77bb-9fb2-42fe05500c75",
+  "session": {
+    "id": "01a15472-9232-77bb-9fb2-42fe05500c75",
+    "revision": 4,
+    "active_branch_id": "01a15472-9232-7a80-80ea-09386c28eaad"
+  },
+  "accounts": [
+    {
+      "id": "01a13377-f964-786b-bb32-bf916b568ddc",
+      "revision": 22,
+      "status": "ready",
+      "api_format": "openai-chat",
+      "model_id": "glm-4.7-flashx"
+    }
+  ],
+  "counts": {
+    "sessions": 15,
+    "messages": 93,
+    "provider_accounts": 1,
+    "runs": 30,
+    "provider_attempts": 49,
+    "tool_calls": 2,
+    "usage_ledger": 49
+  },
+  "messages": [
+    {
+      "id": "01a15472-9232-7bbb-a8ea-de42bd615146",
+      "revision": 1,
+      "role": "assistant",
+      "status": "final",
+      "contentSHA256": "e28cee53581ac1fdddabd85e00b1527ce6078dc86a0228737225f26f08bf1bf2",
+      "metadataSHA256": "aa21162b2228f73090dca05f175718fd8c0b49ab1691e9e84939c2d469b816e0"
+    },
+    {
+      "id": "01a15472-9232-7f71-a0bf-3c97523dcd7b",
+      "revision": 1,
+      "role": "user",
+      "status": "final",
+      "contentSHA256": "d7ef5b63c9eab34fd9f5b41c4386dc632edc6ab17ee7b435a713ab7113d77382",
+      "metadataSHA256": "cdaca836a5c11959cd9750b0b183fc87dbc77754f77341e9b3509ba180da47ea"
+    },
+    {
+      "id": "01a15472-9233-798f-b30b-fc87953231c4",
+      "revision": 1,
+      "role": "assistant",
+      "status": "final",
+      "contentSHA256": "0fd45744821e0d7522867b8497e0798832eb8db22b966954e28e64b9d3537e1b",
+      "metadataSHA256": "aa21162b2228f73090dca05f175718fd8c0b49ab1691e9e84939c2d469b816e0"
+    },
+    {
+      "id": "01a15472-9233-7b03-bd3f-3a568c4fb097",
+      "revision": 1,
+      "role": "user",
+      "status": "final",
+      "contentSHA256": "73e40fbaed143820d8377c9d1bb269dc8399a560a1c18214c166fc2f2c2900d3",
+      "metadataSHA256": "cdaca836a5c11959cd9750b0b183fc87dbc77754f77341e9b3509ba180da47ea"
+    },
+    {
+      "id": "01a1548e-dd97-754c-a7d1-0de5e640b382",
+      "revision": 1,
+      "role": "user",
+      "status": "final",
+      "contentSHA256": "ba9b5288be23936b5d61315d9e605c4530ac4e4a6dc575a383d2c739493b86b2",
+      "metadataSHA256": "e99e86ef2fe9632a49791adeddf2c3816f5a78ef401b10df9984fce7f4ea97c0"
+    },
+    {
+      "id": "01a1548e-df27-7fc3-b719-99503add5d2c",
+      "revision": 5,
+      "role": "assistant",
+      "status": "final",
+      "contentSHA256": "0fd45744821e0d7522867b8497e0798832eb8db22b966954e28e64b9d3537e1b",
+      "metadataSHA256": "f7de0cb5ed2b001118c2272dadcfd45579854d4ac223f83a69a9cfb7b7bb84bc"
+    },
+    {
+      "id": "01a15994-be71-774d-8dc6-4d0845b089d8",
+      "revision": 1,
+      "role": "user",
+      "status": "final",
+      "contentSHA256": "ba9b5288be23936b5d61315d9e605c4530ac4e4a6dc575a383d2c739493b86b2",
+      "metadataSHA256": "853a5146d92ac66590a6c6f1f65c2e34eb9718e9c6dff2b0aab448300400211f"
+    },
+    {
+      "id": "01a15994-bf4a-723d-ae9d-d400a4d5f0ab",
+      "revision": 12,
+      "role": "assistant",
+      "status": "final",
+      "contentSHA256": "61ddd861ca2eddc6dbda97076fa4df1bd89dc807a62911d72dac99ea3303f773",
+      "metadataSHA256": "f7de0cb5ed2b001118c2272dadcfd45579854d4ac223f83a69a9cfb7b7bb84bc"
+    }
+  ]
+}

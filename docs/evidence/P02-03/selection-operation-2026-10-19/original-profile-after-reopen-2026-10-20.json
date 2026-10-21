@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-20T08:42:04.359Z",
+  "profileId": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10",
+  "originalMessageCount": 6,
+  "originalMessageFieldsUnchanged": true,
+  "accountsUnchanged": true,
+  "counts": {
+    "sessions": 15,
+    "messages": 91,
+    "provider_accounts": 1,
+    "runs": 29,
+    "provider_attempts": 48,
+    "tool_calls": 2,
+    "usage_ledger": 48
+  },
+  "countsUnchanged": true,
+  "originalWritesByAgent": 0,
+  "modelRequestsByAgent": 0
+}

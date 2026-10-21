@@ -1,0 +1,127 @@
+{
+  "task": "P02-03",
+  "round": "H-group-rename",
+  "localDate": "2026-10-18",
+  "status": "prepared_waiting_one_user_group_rename",
+  "checkedAt": "2026-10-18T01:49:58.684Z",
+  "startedAfter": 1792288198684,
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "caseId": "01a149b9-04f4-7d9c-9487-44b0b62e3b25",
+  "profileId": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10",
+  "group": {
+    "id": "01a14cb1-4dde-7e06-aa3d-a97ac9146b0d",
+    "revision": 1,
+    "collapsed": 0,
+    "sortKey": 1792288050654,
+    "nameSHA256": "39d8464ba199e3d4e25a701ab26692088bcd3289825a744a4127d803fae678d9"
+  },
+  "originalGroupName": "P02验收分组-1018",
+  "renamedGroupName": "P02验收分组-1018-改名",
+  "nameConflictCount": 0,
+  "session": {
+    "id": "01a14a2b-364a-7034-986d-79c884ee51a3",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "revision": 8,
+    "titleManual": 1,
+    "titleSHA256": "a054b9ea5a0429d459302ced792c709a0e095afb2ba942e1d0d3689655ee9359",
+    "noteSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tagsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "archivedAt": null,
+    "deletedAt": null,
+    "titleMatchesExpected": 1
+  },
+  "messages": [
+    {
+      "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "contentSHA256": "26d08c0117a2160250ef6a4a7bbf58e3af422cbcb8f98713b5cffa68fa198b93"
+    },
+    {
+      "id": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "contentSHA256": "9b64af603d2349dd9f8e2b91ea598e7e57cdfcb85c05df982e23a6e90ae67bff"
+    }
+  ],
+  "branch": {
+    "id": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "headMessageId": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+    "revision": 1
+  },
+  "sidebarItem": [
+    {
+      "type": "session",
+      "entityId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+      "sectionId": "01a14cb1-4dde-7e06-aa3d-a97ac9146b0d",
+      "sortKey": 1792288106627
+    }
+  ],
+  "sections": [
+    {
+      "id": "01a14cb1-4dde-7e06-aa3d-a97ac9146b0d",
+      "revision": 1,
+      "collapsed": 0,
+      "sortKey": 1792288050654,
+      "nameSHA256": "39d8464ba199e3d4e25a701ab26692088bcd3289825a744a4127d803fae678d9"
+    }
+  ],
+  "otherSidebarItemCount": 0,
+  "otherSidebarItemsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "groupMembers": [
+    {
+      "type": "session",
+      "entityId": "01a14a2b-364a-7034-986d-79c884ee51a3"
+    }
+  ],
+  "resourcePreflight": {
+    "linkedResources": 0,
+    "attachmentRefs": 0,
+    "memorySourceRefs": 0
+  },
+  "globalCounts": {
+    "runs": 25,
+    "attempts": 41,
+    "tools": 2,
+    "ledger": 41
+  },
+  "ledgerTotals": {
+    "entries": 41,
+    "tokens": 204413,
+    "actualTokens": 52958,
+    "estimatedTokens": 151455
+  },
+  "projection": [
+    {
+      "type": "message",
+      "n": 2
+    },
+    {
+      "type": "session",
+      "n": 1
+    }
+  ],
+  "titleQuery": "P02验收-分叉副本-1017",
+  "messageQuery": "P02E-1017R",
+  "receiptSequenceBaseline": 382,
+  "sourceSessionBaseline": "docs/evidence/P02-03/live-2026-10-17/fork-baseline-2026-10-17.json",
+  "priorAcceptance": "group-create-review-1792288198683.json",
+  "instructions": "Open 聊天; click the ⋯ beside the group P02验收分组-1018, change 分组名称 to P02验收分组-1018-改名 and 保存 once. Click the renamed group, open P02验收-分叉副本-1017 and confirm title/two messages. Leave the group in place and report; do not delete, move, send or regenerate yet.",
+  "expected": "Same group ID, name SHA matches prescribed new name and revision1→2, one successful sidebar.update targeting group; member identity and session revision8/metadata/messages/branch remain unchanged; zero new execution/usage. Group deletion/content return remains pending.",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false
+}

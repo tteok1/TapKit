@@ -1,0 +1,155 @@
+{
+  "task": "P02-03",
+  "requirement": "FR-07-017",
+  "localDate": "2026-10-19",
+  "branch": "main",
+  "recordedAt": "2026-10-19T14:46:16.828Z",
+  "status": "production_built_and_loaded_pending_user_translation",
+  "diagnosis": "actual-selection-diagnosis.json",
+  "changes": [
+    {
+      "path": "packages/core/src/chat-service.ts",
+      "sha256": "8af26af73db8bb69efa9d96a45bfac68198979e501d61b0a80ccfab502e1d058"
+    },
+    {
+      "path": "packages/core/src/context-service.ts",
+      "sha256": "b40fe45c2a8de104ff6f430cd519532cfc57700ee76bcef549fc6807c3d0881e"
+    },
+    {
+      "path": "packages/core/src/history-service.ts",
+      "sha256": "b4ed9a53b339935683a7588a97675c065d560a754bd74d3452f1cff864cb46f8"
+    },
+    {
+      "path": "tests/integration/P02-03.history.test.ts",
+      "sha256": "b1983e66ec6540526288b59110e512c472fb7e9b1494c4cbe486495980ee59de"
+    }
+  ],
+  "adr": "docs/adr/0056-selection-operation-context.md",
+  "checks": [
+    {
+      "command": "Locked pnpm test:integration P02-03.history -t \"T13 selection operation\"",
+      "exitCode": 1,
+      "expectedNegative": true,
+      "failed": 5,
+      "log": "before.log"
+    },
+    {
+      "command": "Same focused five operations after initial implementation",
+      "exitCode": 1,
+      "failed": 5,
+      "cause": "Transform/send receipt fingerprint mismatch on idempotent replay",
+      "log": "after-targeted.log"
+    },
+    {
+      "command": "Same focused five operations after receipt fix",
+      "exitCode": 0,
+      "passed": 5,
+      "log": "after-targeted-final.log"
+    },
+    {
+      "command": "Locked pnpm test:integration P02-03.history P02-03.background-priority P04-02.context P02-02.chat",
+      "exitCode": 1,
+      "passed": 49,
+      "failed": 1,
+      "cause": "Tool denied with the existing partial run semantics; test wrongly expected failed",
+      "log": "integration.log"
+    },
+    {
+      "command": "Locked pnpm test:integration P02-03.history -t \"T13 selection operation rejects unexpected tool\"",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "log": "unexpected-tool-final.log"
+    },
+    {
+      "command": "Locked pnpm test:unit P02-02.chat P04-02.context",
+      "exitCode": 0,
+      "passed": 15,
+      "log": "unit.log"
+    },
+    { "command": "Locked pnpm check", "exitCode": 0, "files": 454, "log": "check.log" },
+    {
+      "command": "Locked pnpm check after handoff documentation",
+      "exitCode": 0,
+      "files": 455,
+      "log": "final-check.log"
+    }
+  ],
+  "distinctRelatedIntegrationPassingCases": 50,
+  "productionBuild": {
+    "status": "passed",
+    "command": ".runtime/node/node-v24.21.0-win-x64/node.exe .cache/tools/pnpm/package/bin/pnpm.mjs build:desktop",
+    "exitCode": 0,
+    "localDate": "2026-10-20",
+    "log": "build-2026-10-20.log",
+    "testedSourceHashesRechecked": true,
+    "passedTestsRerun": false
+  },
+  "activation": {
+    "status": "opened",
+    "localDate": "2026-10-20",
+    "oldLauncherSession": 23166,
+    "oldLauncherExitCode": 0,
+    "processesVerifiedExited": true,
+    "newSourceReview": "reviewed-source-selection-1792485608048-aa1ce975.json",
+    "newBuildManifest": "verified-build-selection-1792485608048-aa1ce975.json",
+    "reviewedSources": 16,
+    "artifactCount": 619,
+    "changedArtifacts": ["packages/core/dist/index.cjs"],
+    "otherArtifactsPreserved": true,
+    "publicPreflightExitCode": 0,
+    "verifiedBuildPreflightExitCode": 0,
+    "launcherSession": 42667,
+    "launcherStatus": "running_exit_not_observed",
+    "launcherExitCode": null,
+    "caseId": "01a15878-31ab-712f-ae03-919dde5e0b7f",
+    "coreOpenedReceipt": true,
+    "openedAfterMs": 33626,
+    "publicReplies": 12,
+    "publicRepliesAllSucceeded": true,
+    "attemptRows": 0,
+    "reopenProof": "normal-reopen-2026-10-20.json",
+    "sourceAndArtifactProof": "reviewed-build-activation-2026-10-20.json",
+    "log": "reopen-2026-10-20.log"
+  },
+  "liveVerification": {
+    "status": "awaiting_user_single_translation",
+    "nextAction": "In P02批测-操作-1019 select the original English sentence and use Selection operation > Translate once. Check a Chinese translation with the same meaning; preserve the old failure. No other accepted test needs repetition."
+  },
+  "scope": {
+    "originalProfile": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10",
+    "originalWritesByAgent": 0,
+    "realModelRequestsByAgent": 0,
+    "keysOrNativeOrPrivateBodiesExported": false,
+    "syntheticTransportIsNotRealTranslationEvidence": true,
+    "otherChannels": "deferred",
+    "standardUserAcceptance": "deferred_by_user",
+    "priorAcceptedManualTestsRerun": false,
+    "taskAndGateStates": "unchanged",
+    "commitOrPush": false
+  },
+  "documentationChecks": {
+    "status": "passed",
+    "localDate": "2026-10-20",
+    "commands": [
+      { "command": "Locked pnpm docs:check", "exitCode": 0 },
+      { "command": "git diff --check", "exitCode": 0 }
+    ]
+  },
+  "loadedOnLocalDate": "2026-10-20",
+  "originalProfileProtection": {
+    "proof": "original-profile-after-reopen-2026-10-20.json",
+    "targetOriginalMessagesUnchanged": true,
+    "accountsUnchanged": true,
+    "publicCountsUnchanged": true,
+    "publicCounts": {
+      "sessions": 15,
+      "messages": 91,
+      "provider_accounts": 1,
+      "runs": 29,
+      "provider_attempts": 48,
+      "tool_calls": 2,
+      "usage_ledger": 48
+    }
+  }
+}

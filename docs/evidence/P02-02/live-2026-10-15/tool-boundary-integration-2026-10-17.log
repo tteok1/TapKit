@@ -1,0 +1,42 @@
+$ vitest run --config vitest.config.ts --project integration "tests/integration/P02-02.zhipu-tools.test.ts" "--no-cache" "--fsModuleCache=false"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P02-02.zhipu-tools.test.ts (2 tests | 1 failed) 662ms
+   × P02-02 Zhipu Chat/FlashX tool_call crosses the real provider/router/gateway boundary without inferring calls from text 392ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P02-02.zhipu-tools.test.ts > P02-02 Zhipu Chat/FlashX tool_call crosses the real provider/router/gateway boundary without inferring calls from text
+AssertionError: expected [ { …(4) } ] to deeply equal [ { …(4) } ]
+
+- Expected
++ Received
+
+  [
+    {
+      "call_id": "synthetic-history-call",
+      "side_effect": "none",
+-     "status": "completed",
++     "status": "succeeded",
+      "tool_name": "history.search",
+    },
+  ]
+
+ ❯ tests/integration/P02-02.zhipu-tools.test.ts:192:26
+    190|         .all(sent.runId);
+
+    191|       if (mode === 'tool_call') {
+    192|         expect(toolRows).toEqual([
+       |                          ^
+    193|           {
+    194|             call_id: callId,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  15:31:16
+   Duration  2.74s (import 40%, transform 34%, tests 26%, setup 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.

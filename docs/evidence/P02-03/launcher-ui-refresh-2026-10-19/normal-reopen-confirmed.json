@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-10-19T12:22:39.102Z",
+  "launcherSession": 55667,
+  "launcherStatus": "running_exit_not_observed",
+  "caseId": "01a1541c-4cf9-7577-97b6-8fd63b55fa39",
+  "profileId": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10",
+  "coreOpenedReceipt": true,
+  "attemptRows": 0,
+  "originalProfileMatches": true,
+  "openedAfterMs": 20733,
+  "modelRequestsByAgent": 0
+}

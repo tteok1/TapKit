@@ -89,7 +89,7 @@
     "CORRUPT_FILE": "文件损坏或读取失败，请检查原件或替换文件。",
     "DISK_FULL": "本地空间不足；已完成项保留，请清理空间后重新选择未完成项。",
     "SOURCE_CHANGED": "源文件已改变，请重新选择。",
-    "VALIDATION_ERROR": "文件选择无效，请重新选择。",
+    "VALIDATION_ERROR": "本次操作未通过校验；内容已保留，请重新选择内容后重试。",
     "SIDE_EFFECT_UNKNOWN": "导入结果需要核对，请到资料库查看导入历史后再操作。"
   },
   "statuses": {

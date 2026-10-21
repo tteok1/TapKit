@@ -81,16 +81,24 @@ export function HistoryList({
   filter.current = state + section;
   const refresh = useCallback(async () => {
     const token = state + section;
-    const [s, b] = await Promise.all([
-      historyCommand('sessions.list', {
-        state,
-        ...(section ? { sectionId: section } : {}),
-        ...(modeFilter ? { mode: modeFilter } : {}),
-        ...(projectId ? { projectId } : {}),
-        limit: 50,
-      }),
-      historyCommand('sidebar.list'),
-    ]);
+    const groups = SidebarViewSchema.parse(await historyCommand('sidebar.list'));
+    if (filter.current !== token) return;
+    // A collapsed or removed group cannot remain the list's active filter.
+    // Resolve this before sessions.list, which rejects a removed section ID.
+    if (section && !groups.sections.some((g) => g.id === section && !g.collapsed)) {
+      setSidebar(groups);
+      paged.current = false;
+      setSelected([]);
+      setSection('');
+      return;
+    }
+    const s = await historyCommand('sessions.list', {
+      state,
+      ...(section ? { sectionId: section } : {}),
+      ...(modeFilter ? { mode: modeFilter } : {}),
+      ...(projectId ? { projectId } : {}),
+      limit: 50,
+    });
     if (filter.current !== token) return;
     const result = SessionPageSchema.parse(s);
     setSessions((previous) =>
@@ -99,7 +107,7 @@ export function HistoryList({
         : result.sessions,
     );
     if (!paged.current) setCursor(result.nextCursor);
-    setSidebar(SidebarViewSchema.parse(b));
+    setSidebar(groups);
   }, [state, section, modeFilter, projectId]);
   useEffect(() => {
     void refresh().catch(() => setError(h.failed));
@@ -353,7 +361,19 @@ export function HistoryList({
               </button>
               <button
                 aria-pressed={section === g.id}
-                onClick={() => ((paged.current = false), setSection(g.id))}
+                onClick={() =>
+                  void action(async () => {
+                    if (g.collapsed)
+                      await historyCommand(
+                        'sidebar.update',
+                        { sectionId: g.id, collapsed: false },
+                        g.revision,
+                      );
+                    paged.current = false;
+                    setSelected([]);
+                    setSection(g.id);
+                  })
+                }
               >
                 {g.name} ({g.count}) · {h.unread} {g.unread} · {h.running} {g.running}
               </button>
@@ -474,9 +494,7 @@ export function HistoryList({
       )}
       {!sessions.length && <p>{h.empty}</p>}
       {!collapsed && !!sessions.length && <h2 className="history-list-title">{h.active}</h2>}
-      {sessions
-        .filter(() => !section || !sidebar.sections.find((g) => g.id === section)?.collapsed)
-        .map(render)}
+      {sessions.map(render)}
       {cursor && (
         <button
           disabled={busy}

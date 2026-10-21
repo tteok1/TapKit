@@ -1,0 +1,66 @@
+{
+  "task": "P02-02",
+  "capturedAt": 1792070093726,
+  "checkedAt": "2026-10-15T13:14:53.726Z",
+  "status": "prepared_not_live_verified",
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "readOnlyDatabase": true,
+  "credentialReads": 0,
+  "nativeContentReads": 0,
+  "messageBodiesExported": false,
+  "modelRequests": 0,
+  "account": {
+    "id": "01a13377-f964-786b-bb32-bf916b568ddc",
+    "revision": 6,
+    "status": "ready",
+    "providerId": "openai-compatible",
+    "apiFormat": "openai-chat",
+    "baseURL": "https://open.bigmodel.cn/api/paas/v4",
+    "modelId": "glm-4.7-flashx"
+  },
+  "preferences": {
+    "revision": 4,
+    "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+    "modelId": "glm-4.7-flashx",
+    "onlyThisModel": 1,
+    "mode": "quick",
+    "reasoning": "off",
+    "allowPaidFallback": 0,
+    "dailyTokenLimit": 2000000
+  },
+  "targetSession": {
+    "id": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+    "mode": "chat",
+    "branchId": "01a135b3-5464-7f79-a190-cf8ec9a69640",
+    "projectId": null,
+    "titleIsOK": 1
+  },
+  "workload": {
+    "activeRuns": 0,
+    "pendingInputs": 0,
+    "activeTitles": 0,
+    "activeMemoryJobs": 0,
+    "reservedBudgets": 0,
+    "unsettledAttempts": 0
+  },
+  "eventSeq": 336,
+  "ledgerTotals": {
+    "entries": 13,
+    "tokens": 46794,
+    "actualTokens": 4211,
+    "estimatedTokens": 42583
+  },
+  "priorLedgerHash": "e16049295cac8e421a8030a27b1274219b187eb4c1c79318bf548e27228f289f",
+  "duplicateSettlements": [],
+  "newRuns": [],
+  "newInputs": [],
+  "newMessages": [],
+  "newTools": [],
+  "newAttempts": [],
+  "eventCounts": [],
+  "priorLedgerUnchanged": true,
+  "sourceCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "productChanges": "",
+  "coreBuildSHA256": "24ce079eb809ae4137a7c25a00f4873d055af24cd625132dd71c401ca41a67c7",
+  "mainBuildSHA256": "64f49329887711d3a590799eaf58dcc9027f8aa47c044c9fdf1adbc445f544cd"
+}

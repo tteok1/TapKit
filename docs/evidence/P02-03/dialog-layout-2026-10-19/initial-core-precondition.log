@@ -1,0 +1,51 @@
+
+Running 1 test using 1 worker
+
+(node:27992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+(node:30716) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:49774/d6a7f85e-d381-4d68-afee-e71a2034d555
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+  x  1 tests\e2e\P02-03.dialogs.spec.ts:31:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent (26.0s)
+
+
+  1) tests\e2e\P02-03.dialogs.spec.ts:31:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent ────────
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('core-status')
+    Expected: "本地核心已连接"
+    Received: "正在检查本地核心…"
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('core-status') with timeout 15000ms
+      - waiting for getByTestId('core-status')
+        30 × locator resolved to <span data-testid="core-status">正在检查本地核心…</span>
+           - unexpected value "正在检查本地核心…"
+
+
+      43 |     app.process().stderr?.on('data', (chunk) => process.stderr.write(chunk));
+      44 |     const page = await app.firstWindow();
+    > 45 |     await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+         |                                                   ^
+      46 |     await app.evaluate(
+      47 |       ({ BrowserWindow }, dimensions) =>
+      48 |         BrowserWindow.getAllWindows()[0]!.setContentSize(...dimensions),
+        at D:\Tapkit-public\tests\e2e\P02-03.dialogs.spec.ts:45:51
+
+    Error Context: test-results\e2e\P02-03.dialogs-P02-03-T22--7ea3d-fit-1440x900-at-100-percent\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P02-03.dialogs-P02-03-T22--7ea3d-fit-1440x900-at-100-percent\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P02-03.dialogs-P02-03-T22--7ea3d-fit-1440x900-at-100-percent\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P02-03.dialogs.spec.ts:31:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent ─────────

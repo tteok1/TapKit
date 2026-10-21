@@ -1,0 +1,29 @@
+{
+  "task": "P02-02",
+  "round": "B",
+  "localDate": "2026-10-16",
+  "status": "waiting_user",
+  "publicBaseline": "snapshot-1792144814797.json",
+  "startedAfter": 1792144814797,
+  "expectedSessionId": "01a14426-4cdf-7ae3-acd0-0d093a87ed48",
+  "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+  "modelId": "glm-4.7-flashx",
+  "preconditions": {
+    "activeRuns": 0,
+    "pendingInputs": 0,
+    "activeTitles": 0,
+    "activeMemoryJobs": 0,
+    "reservedBudgets": 0,
+    "unsettledAttempts": 0
+  },
+  "productSourceCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "expectation": [
+    "Original response receives cancellation and remains interrupted.",
+    "Steer is accepted once; replacement run shares original task/root budget and advances taskVersion.",
+    "Replacement output follows the new instruction; old output does not continue into new answer.",
+    "No extra followup queued, duplicate settlements or remaining reservations."
+  ],
+  "agentModelRequests": 0,
+  "credentialReads": 0,
+  "nativeContentReads": 0
+}

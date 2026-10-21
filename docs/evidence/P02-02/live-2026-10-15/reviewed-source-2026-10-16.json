@@ -1,0 +1,19 @@
+{
+  "task": "P02-02",
+  "localDate": "2026-10-16",
+  "sourceCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "productChanges": "M packages/core/src/chat-service.ts",
+  "sourcePath": "packages/core/src/chat-service.ts",
+  "sourceSHA256": "956a84821fd3d7082fae5830818308f07e89c9d9c341ccc830d85ac83bc062cd",
+  "coreBuildSHA256": "edce2c838c2271816992c69ac1751846d3a2b302fb3862aaf01bdc5a3b8db6b4",
+  "mainBuildSHA256": "47c48ff7b47d65304f0df667482d29d11b8fba46a38300e119d34815d0e81ea1",
+  "validation": "title-root-repair-2026-10-16.json",
+  "reviewedScope": "Only original-root attribution/taskVersion/owning-run lookup in automatic title; existing ADR0051 contract; no new interface/dependency/schema/permissions.",
+  "tests": {
+    "integration": 47,
+    "unit": 6,
+    "checkExitCode": 0,
+    "buildDesktopExitCode": 0
+  },
+  "productionCoreHasFixture": false
+}

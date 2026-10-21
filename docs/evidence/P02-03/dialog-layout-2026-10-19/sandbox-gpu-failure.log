@@ -1,0 +1,24 @@
+
+Running 1 test using 1 worker
+
+(node:19924) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\e2e\P02-03.dialogs.spec.ts:31:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent (5.9s)
+
+
+  1) tests\e2e\P02-03.dialogs.spec.ts:31:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent ────────
+
+    Error: Target crashed
+
+    Error Context: test-results\e2e\P02-03.dialogs-P02-03-T22--7ea3d-fit-1440x900-at-100-percent\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P02-03.dialogs-P02-03-T22--7ea3d-fit-1440x900-at-100-percent\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P02-03.dialogs-P02-03-T22--7ea3d-fit-1440x900-at-100-percent\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P02-03.dialogs.spec.ts:31:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent ─────────

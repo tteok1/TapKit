@@ -1,0 +1,85 @@
+{
+  "task": "P02-02",
+  "localDate": "2026-10-16",
+  "sourceCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "sourcePath": "packages/core/src/chat-service.ts",
+  "beforeSHA256": "853977040848dcf1f51f8399f65e7574d3d3d9cfe839a653a8ba1f55d3ef9be5",
+  "afterSHA256": "956a84821fd3d7082fae5830818308f07e89c9d9c341ccc830d85ac83bc062cd",
+  "contract": "Existing ADR0051 original-root title budget; no decision/interface/schema/dependency changes.",
+  "change": "Automatic title resolves owning run root/taskVersion instead of treating continuation run ID as a new root; unknown or foreign run rejects before model dispatch.",
+  "historyPolicy": "No profile/account/settings/budget/ledger corrections or extra real title requests.",
+  "checks": [
+    {
+      "command": "locked pnpm exec vitest run --config vitest.config.ts --project integration tests/integration/P02-03.history.test.ts -t 'P02-02 automatic title'",
+      "exitCode": 1,
+      "log": "title-root-before.log",
+      "result": "2 regressions failed: wrong title root and exhausted-root bypass reproduced"
+    },
+    {
+      "command": "locked pnpm exec vitest run --config vitest.config.ts --project integration tests/integration/P02-03.history.test.ts -t 'P02-02 automatic title'",
+      "exitCode": 0,
+      "log": "title-root-after.log",
+      "result": "2 regressions passed"
+    },
+    {
+      "command": "locked pnpm exec vitest run --config vitest.config.ts --project integration tests/integration/P02-02.chat.test.ts tests/integration/P02-03.history.test.ts tests/integration/P01-03.usage.test.ts",
+      "exitCode": 1,
+      "log": "title-root-integration.log",
+      "result": "12 passed; 2 suites could not load sandbox TEMP/ssr cache files"
+    },
+    {
+      "command": "locked pnpm exec vitest run --config vitest.config.ts --project unit tests/unit/P02-02.chat.test.ts tests/unit/P02-03.contracts.test.ts",
+      "exitCode": 1,
+      "log": "title-root-unit.log",
+      "result": "2 passed; 1 suite could not load sandbox TEMP/ssr cache file"
+    },
+    {
+      "command": "task-local TEMP/TMP; locked pnpm exec vitest run --config vitest.config.ts --project integration --no-cache --fsModuleCache=false tests/integration/P02-02.chat.test.ts tests/integration/P02-03.history.test.ts tests/integration/P01-03.usage.test.ts",
+      "exitCode": 0,
+      "log": "title-root-integration-final.log",
+      "result": "47 passed; no assertions weakened"
+    },
+    {
+      "command": "task-local TEMP/TMP; locked pnpm exec vitest run --config vitest.config.ts --project unit --no-cache --fsModuleCache=false tests/unit/P02-02.chat.test.ts tests/unit/P02-03.contracts.test.ts",
+      "exitCode": 0,
+      "log": "title-root-unit-final.log",
+      "result": "6 passed"
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/pnpm.ps1 check",
+      "exitCode": 0,
+      "log": "title-root-check.log",
+      "result": "Typechecks, formatting 436 files, boundaries and manifests passed"
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/pnpm.ps1 build:desktop",
+      "exitCode": 1,
+      "log": "title-root-build.log",
+      "result": "Sandbox EPERM writing existing packages/retrieval/dist/pdf/cmaps; no ACL changed"
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/pnpm.ps1 build:desktop",
+      "exitCode": 0,
+      "log": "title-root-build-final.log",
+      "context": "Current Windows user after sandbox file-permission failure",
+      "result": "Production build restored; Core has no installChatFixture and contains inherited-root lookup"
+    },
+    {
+      "command": "locked Node --check docs/evidence/P02-02/live-2026-10-15/inspect.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File docs/evidence/P02-02/live-2026-10-15/run-app.ps1 -CheckOnly",
+      "exitCode": 0,
+      "report": "check-1792146461640.json",
+      "result": "Exact reviewed source accepted; account ready, idle; no application start or request"
+    }
+  ],
+  "finalCheck": "passed",
+  "e2e": "Not repeated: backend attribution only, no UI/IPC change; real SQLite/Core/router integration covers this repair. User live remains on isolated profile; no fixture build used there.",
+  "agentModelRequests": 0,
+  "credentialReads": 0,
+  "nativeContentReads": 0,
+  "applicationDatabaseWrites": 0,
+  "sourceReview": "reviewed-source-2026-10-16.json"
+}

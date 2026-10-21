@@ -1,0 +1,76 @@
+{
+  "task": "P02-03",
+  "localDate": "2026-10-17",
+  "status": "engineering_verified_waiting_user_live_retest",
+  "observation": "edit-observation-2026-10-17.json",
+  "runId": "01a149b1-1b37-738c-af7f-362ed8ec4318",
+  "attemptId": "01a149b1-1ec0-793e-b52f-a4b9b13ea156",
+  "actualTokens": 1259,
+  "observed": "New edited user input exact; new branch exists and old branch/messages/ledger preserved. HTTP200 only text/stop/tools0; answer 未执行工具 rather than 编辑分支成功. Five recalled old user instructions, two contain the prior no-tool phrase.",
+  "defect": "Memory/history source text was joined into trusted system wire. Verified request-role priority defect; consistency with live symptom does not independently prove all model choices.",
+  "repair": "History/memory source modules become one JSON user data message pinned before actual current user; trusted system rules stay separate. Same permissions/retrieval/source references/token budget; prompt provenance adds source-data/1.",
+  "checks": [
+    {
+      "command": "test:integration P02-03.background-priority --no-cache --fsModuleCache=false",
+      "exitCode": 1,
+      "failed": 3,
+      "log": "background-priority-red.log"
+    },
+    {
+      "command": "test:integration P02-03.background-priority P02-03.history P04-02.context P04-03.memory P02-02.zhipu-tools --no-cache --fsModuleCache=false",
+      "exitCode": 0,
+      "passed": 49,
+      "log": "background-priority-integration.log"
+    },
+    {
+      "command": "test:unit P04-02.context --no-cache --fsModuleCache=false",
+      "exitCode": 0,
+      "passed": 11,
+      "log": "background-priority-unit.log"
+    },
+    {
+      "command": "check",
+      "exitCode": 0,
+      "files": 445,
+      "log": "background-priority-check.log"
+    },
+    {
+      "command": "build:desktop",
+      "exitCode": 0,
+      "log": "background-priority-build.log"
+    },
+    {
+      "command": "inspect-ui-read.mjs --session-id 01a1498f-dbb2-7fa8-8829-be6b985c7926",
+      "exitCode": 0,
+      "evidence": "docs/evidence/P02-02/live-2026-10-15/ui-read-1792238137698.json"
+    }
+  ],
+  "fixtureLimit": "Fixed synthetic transport makes the bad-role condition observable, not a simulation of real LLM obedience. New live answer is still pending.",
+  "priorBranchEvidence": "edit-baseline-2026-10-17.json",
+  "priorC": "docs/evidence/P02-02/live-2026-10-15/round-c5-acceptance-2026-10-17.json",
+  "launchCleanup": "User confirmed tray/terminal exit; original-profile snapshot1792238042396 idle. Verified residual main31372/parent30832 stopped before build; prior launcher95232 exit1 recorded, not a normal-exit pass. Repaired production public UI diagnostic then exited normally.",
+  "reviewedSources": "docs/evidence/P02-02/live-2026-10-15/reviewed-source-context-priority-2026-10-17.json",
+  "verifiedBuild": "docs/evidence/P02-02/live-2026-10-15/verified-build-context-priority-2026-10-17.json",
+  "sourceDataSystemRoleInvariant": "history.background and memory.background text is never in prepared systemModules; wrapper remains counted source data before explicit user messages.",
+  "taskStatus": "implemented_not_live_verified",
+  "stageStatus": "engineering_passed_external_pending",
+  "agentModelRequests": 0,
+  "credentialOrNativeBodiesRead": 0,
+  "messageBodiesExported": false,
+  "manualBusinessDatabaseWrites": 0,
+  "commitOrPush": false,
+  "finalVerification": {
+    "docsCheck": {
+      "exitCode": 0,
+      "tasks": 37
+    },
+    "gitDiffCheck": {
+      "exitCode": 0
+    },
+    "checkOnly": "docs/evidence/P02-02/live-2026-10-15/check-1792238208220.json",
+    "launchPreflight": "docs/evidence/P02-02/live-2026-10-15/check-1792238224248.json",
+    "traceReadiness": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792238242810.json",
+    "postLaunchSnapshot": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792238242914.json",
+    "pendingUserRetest": "edit-retest-baseline-2026-10-17.json"
+  }
+}

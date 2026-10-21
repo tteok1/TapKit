@@ -1,0 +1,204 @@
+{
+  "task": "P02-02",
+  "capturedAt": 1792144323424,
+  "checkedAt": "2026-10-16T09:52:03.424Z",
+  "status": "connection_recovery_required",
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "readOnlyDatabase": true,
+  "credentialReads": 0,
+  "nativeContentReads": 0,
+  "messageBodiesExported": false,
+  "modelRequests": 0,
+  "account": {
+    "id": "01a13377-f964-786b-bb32-bf916b568ddc",
+    "revision": 9,
+    "status": "unavailable",
+    "providerId": "openai-compatible",
+    "apiFormat": "openai-chat",
+    "baseURL": "https://open.bigmodel.cn/api/paas/v4",
+    "modelId": "glm-4.7-flashx",
+    "lastErrorCode": "NETWORK_ERROR",
+    "lastCheckAt": 1792071695109
+  },
+  "accountReady": false,
+  "launchMode": "connection_recovery",
+  "preferences": {
+    "revision": 4,
+    "accountId": "01a13377-f964-786b-bb32-bf916b568ddc",
+    "modelId": "glm-4.7-flashx",
+    "onlyThisModel": 1,
+    "mode": "quick",
+    "reasoning": "off",
+    "allowPaidFallback": 0,
+    "dailyTokenLimit": 2000000
+  },
+  "targetSession": {
+    "id": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+    "mode": "chat",
+    "branchId": "01a135b3-5464-7f79-a190-cf8ec9a69640",
+    "projectId": null,
+    "titleIsOK": 1
+  },
+  "workload": {
+    "activeRuns": 0,
+    "pendingInputs": 0,
+    "activeTitles": 0,
+    "activeMemoryJobs": 0,
+    "reservedBudgets": 0,
+    "unsettledAttempts": 0
+  },
+  "eventSeq": 362,
+  "ledgerTotals": {
+    "entries": 16,
+    "tokens": 76823,
+    "actualTokens": 6016,
+    "estimatedTokens": 70807
+  },
+  "priorLedgerHash": "e16049295cac8e421a8030a27b1274219b187eb4c1c79318bf548e27228f289f",
+  "duplicateSettlements": [],
+  "newRuns": [
+    {
+      "id": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+      "rootRunId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "taskVersion": 1,
+      "status": "completed",
+      "statusReason": null,
+      "createdAt": 1792070901016,
+      "startedAt": 1792070901020,
+      "endedAt": 1792070949733,
+      "calls": 1,
+      "tools": 0
+    }
+  ],
+  "newInputs": [],
+  "newMessages": [
+    {
+      "id": "01a13fbf-dd16-76a1-8e1b-666c8f89d22d",
+      "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+      "runId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "role": "user",
+      "status": "final",
+      "clientMessageId": "01a13fbf-d3df-7911-9cdf-d68fde1548c8",
+      "attemptId": null,
+      "contentJsonLength": 136,
+      "createdAt": 1792070901014
+    },
+    {
+      "id": "01a13fbf-e078-7bd4-b394-bed44c4a52bc",
+      "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+      "runId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "role": "assistant",
+      "status": "interrupted",
+      "clientMessageId": null,
+      "attemptId": "01a13fbf-e069-7fef-9d73-4c46b5af9c4b",
+      "contentJsonLength": 56,
+      "createdAt": 1792070901880
+    },
+    {
+      "id": "01a13fc0-3484-7e75-afb3-cf9475532959",
+      "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+      "runId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "role": "assistant",
+      "status": "interrupted",
+      "clientMessageId": null,
+      "attemptId": "01a13fc0-347b-758b-a6ba-06ea12d1dc97",
+      "contentJsonLength": 56,
+      "createdAt": 1792070923396
+    },
+    {
+      "id": "01a13fc0-8efd-71a7-a1e5-f4856ca015b0",
+      "sessionId": "01a135b3-5464-79db-ab29-b23ef4a5f450",
+      "runId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "role": "assistant",
+      "status": "final",
+      "clientMessageId": null,
+      "attemptId": "01a13fc0-8ef4-7db2-a7b5-7f3dc72cf0ae",
+      "contentJsonLength": 58,
+      "createdAt": 1792070946557
+    }
+  ],
+  "newTools": [],
+  "newAttempts": [
+    {
+      "id": "01a13fbf-e069-7fef-9d73-4c46b5af9c4b",
+      "runId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "rootRunId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "logicalCallId": "01a13fbf-dd6b-7134-a6af-d1fab48a3960",
+      "attemptNo": 1,
+      "status": "failed",
+      "errorCode": "NETWORK_ERROR",
+      "modelRef": "glm-4.7-flashx",
+      "createdAt": 1792070901879,
+      "source": "estimated",
+      "inputTokens": null,
+      "outputTokens": null,
+      "chargedTokens": 14112
+    },
+    {
+      "id": "01a13fc0-347b-758b-a6ba-06ea12d1dc97",
+      "runId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "rootRunId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "logicalCallId": "01a13fbf-dd6b-7134-a6af-d1fab48a3960",
+      "attemptNo": 2,
+      "status": "failed",
+      "errorCode": "NETWORK_ERROR",
+      "modelRef": "glm-4.7-flashx",
+      "createdAt": 1792070923394,
+      "source": "estimated",
+      "inputTokens": null,
+      "outputTokens": null,
+      "chargedTokens": 14112
+    },
+    {
+      "id": "01a13fc0-8ef4-7db2-a7b5-7f3dc72cf0ae",
+      "runId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "rootRunId": "01a13fbf-dd18-7def-9d20-34914dff0d3a",
+      "logicalCallId": "01a13fbf-dd6b-7134-a6af-d1fab48a3960",
+      "attemptNo": 3,
+      "status": "completed",
+      "errorCode": null,
+      "modelRef": "glm-4.7-flashx",
+      "createdAt": 1792070946555,
+      "source": "actual",
+      "inputTokens": 1803,
+      "outputTokens": 2,
+      "chargedTokens": 1805
+    }
+  ],
+  "eventCounts": [
+    {
+      "type": "draft.updated",
+      "n": 12
+    },
+    {
+      "type": "message.accepted",
+      "n": 4
+    },
+    {
+      "type": "message.delta",
+      "n": 3
+    },
+    {
+      "type": "message.final",
+      "n": 1
+    },
+    {
+      "type": "provider.updated",
+      "n": 3
+    },
+    {
+      "type": "run.status",
+      "n": 2
+    },
+    {
+      "type": "workspace.updated",
+      "n": 1
+    }
+  ],
+  "priorLedgerUnchanged": true,
+  "sourceCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "productChanges": "",
+  "coreBuildSHA256": "24ce079eb809ae4137a7c25a00f4873d055af24cd625132dd71c401ca41a67c7",
+  "mainBuildSHA256": "47c48ff7b47d65304f0df667482d29d11b8fba46a38300e119d34815d0e81ea1"
+}

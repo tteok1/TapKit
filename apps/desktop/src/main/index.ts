@@ -15,6 +15,7 @@ import {
 } from 'electron';
 import { randomUUID } from 'node:crypto';
 import { resolveSystemProxy } from './system-proxy';
+import { readCoreStartupTimeout } from './core-startup';
 import {
   mkdirSync,
   appendFileSync,
@@ -194,10 +195,13 @@ function startCore() {
     },
   );
   core = child;
-  const timer = setTimeout(() => {
-    rejectReady(new Error('Core startup timeout'));
-    child.kill();
-  }, 15_000);
+  const timer = setTimeout(
+    () => {
+      rejectReady(new Error('Core startup timeout'));
+      child.kill();
+    },
+    readCoreStartupTimeout(join(__dirname, '../../../..')),
+  );
   child.stdout?.on('data', () => {});
   child.stderr?.on('data', () => console.error('TAPKIT_CORE_DIAGNOSTIC'));
   child.on('message', (raw: unknown) => {

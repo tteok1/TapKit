@@ -1,0 +1,19 @@
+$ vitest run --config vitest.config.ts --project integration "P04-01.chat" "P04-01.retrieval" "--maxWorkers=1"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P04-01.retrieval.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P04-01.retrieval.test.ts [ tests/integration/P04-01.retrieval.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{8aae5df8-7350-43e2-a106-b3e476254a08}\AC\Temp\ND6UmO2rxbhy8-jnxeqAA\ssr\f3d9718b4387735a9e2aa3bdbdb65a2bb00ad833'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  5 passed (5)
+   Start at  22:01:53
+   Duration  4.81s (tests 49%, transform 34%, import 17%)
+
+[ELIFECYCLE] Command failed with exit code 1.

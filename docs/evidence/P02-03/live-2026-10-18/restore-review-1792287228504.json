@@ -1,0 +1,161 @@
+{
+  "task": "P02-03",
+  "round": "G-restore-from-trash",
+  "localDate": "2026-10-18",
+  "checkedAt": "2026-10-18T01:33:48.504Z",
+  "status": "passed_live_scoped_trash_restore_lifecycle",
+  "checks": {
+    "restoredRecentNotTrash": true,
+    "oneSuccessfulRestoreOnlyReceipt": true,
+    "titleAndMetadataPreserved": true,
+    "bothMessageHashesAndBranchPreserved": true,
+    "searchProjectionAndExpectedFTSHitRebuilt": true,
+    "queryUpdatedAfterRestore": true,
+    "reopenedAfterRestore": true,
+    "noDependentResourcesOrMemorySources": true,
+    "originalSourceAndLedgerPreserved": true,
+    "noExecutionOrUsageChange": true,
+    "idleNoUnsettledOrDuplicate": true,
+    "userConfirmsRestoredContentAndSearchLocation": true
+  },
+  "session": {
+    "id": "01a14a2b-364a-7034-986d-79c884ee51a3",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "revision": 7,
+    "titleManual": 1,
+    "titleSHA256": "a054b9ea5a0429d459302ced792c709a0e095afb2ba942e1d0d3689655ee9359",
+    "noteSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tagsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "archivedAt": null,
+    "deletedAt": null,
+    "titleMatchesExpected": 1
+  },
+  "messages": [
+    {
+      "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "contentSHA256": "26d08c0117a2160250ef6a4a7bbf58e3af422cbcb8f98713b5cffa68fa198b93"
+    },
+    {
+      "id": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "contentSHA256": "9b64af603d2349dd9f8e2b91ea598e7e57cdfcb85c05df982e23a6e90ae67bff"
+    }
+  ],
+  "branch": {
+    "id": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "headMessageId": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+    "revision": 1
+  },
+  "receipts": [
+    {
+      "sequence": 374,
+      "requestId": "01a14ca0-314d-7189-a3b8-61847d5ef59e",
+      "command": "sessions.restore",
+      "state": "completed",
+      "recordedAt": 1792286929231,
+      "ok": 1,
+      "updatedCount": 1,
+      "failedCount": 0
+    }
+  ],
+  "readReceipts": [
+    {
+      "sequence": 376,
+      "requestId": "01a14ca0-8236-7b9f-8a72-b123c649b788",
+      "command": "sessions.read",
+      "state": "completed",
+      "recordedAt": 1792286950024,
+      "ok": 1
+    }
+  ],
+  "membership": {
+    "recentCount": 1,
+    "archivedCount": 0,
+    "trashCount": 0
+  },
+  "projection": [
+    {
+      "type": "message",
+      "n": 2
+    },
+    {
+      "type": "session",
+      "n": 1
+    }
+  ],
+  "titleHits": [
+    {
+      "id": "01a14a2b-364a-7034-986d-79c884ee51a3",
+      "type": "session",
+      "sessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+      "branchId": null
+    }
+  ],
+  "messageHits": [
+    {
+      "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "type": "message",
+      "sessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f"
+    }
+  ],
+  "messageHistory": [
+    {
+      "id": "01a14a3d-9cc9-77af-aaa1-49f4fea32610",
+      "updatedAt": 1792286961273
+    }
+  ],
+  "oldMessages": [
+    {
+      "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "preserved": true
+    },
+    {
+      "id": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+      "preserved": true
+    }
+  ],
+  "resourceState": {
+    "linkedResources": 0,
+    "attachmentRefs": 0,
+    "memorySourceRefs": 0
+  },
+  "globalCounts": {
+    "runs": 25,
+    "attempts": 41,
+    "tools": 2,
+    "ledger": 41
+  },
+  "ledgerTotals": {
+    "entries": 41,
+    "tokens": 204413,
+    "actualTokens": 52958,
+    "estimatedTokens": 151455
+  },
+  "humanConfirmation": "符合预期，都正常",
+  "evidenceBoundary": "User confirms restored title/two messages, prescribed current-session/message filter and clicked location. Durable receipts/index/query chronology independently corroborate recovery; search_history does not record filters, hits, highlight ranges or click parameters.",
+  "limits": "Single synthetic copy with zero attachments/resources/memory-source refs. No permanent deletion, batch operation or nonzero dependency recovery acceptance. Only this G lifecycle is closed; task/stage remains externally pending.",
+  "baseline": "restore-baseline-2026-10-18.json",
+  "priorTrashCheckpoint": "trash-review-1792286750191.json",
+  "source": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792286981654.json",
+  "trace": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792286982239.json",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false
+}

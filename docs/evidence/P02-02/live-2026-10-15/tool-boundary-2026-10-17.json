@@ -1,0 +1,143 @@
+{
+  "task": "P02-02",
+  "localDate": "2026-10-17",
+  "status": "synthetic_boundary_passed_live_c_still_pending",
+  "sourceCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "productSourceChangedThisTurn": false,
+  "testAdded": "tests/integration/P02-02.zhipu-tools.test.ts",
+  "publicPreflight": {
+    "report": "check-1792222336875.json",
+    "exitCode": 0,
+    "accountReady": true,
+    "accountRevision": 10,
+    "model": "glm-4.7-flashx",
+    "format": "openai-chat",
+    "catalogVersion": "tapkit-api/2:openai-chat:01a13377-f964-786b-bb32-bf916b568ddc",
+    "verification": "probed",
+    "effectiveToolCalls": "documented",
+    "historyEnabled": true,
+    "sessionHistoryOverride": null,
+    "sessionTemporary": false,
+    "sessionProject": null,
+    "workload": {
+      "activeRuns": 0,
+      "pendingInputs": 0,
+      "activeTitles": 0,
+      "activeMemoryJobs": 0,
+      "reservedBudgets": 0,
+      "unsettledAttempts": 0
+    },
+    "newRuns": 8,
+    "newTools": 0,
+    "preferencesRevision": 4
+  },
+  "publicMetadataCaveat": "The catalog capabilities_json text/tools flags retain old false values after an upsert; current readiness/verification are updated to ready/probed. Current provider catalog computes toolCalls from verification. No live capability flag or old report was rewritten, and this stale cache is not identified as the cause of C.",
+  "localProof": {
+    "cases": 2,
+    "realProviderRequests": 0,
+    "syntheticVaultOnly": true,
+    "stack": [
+      "ChatService",
+      "ModelService",
+      "ModelRouter",
+      "ApiKeyAdapter",
+      "ReadGateway",
+      "SQLite usage/tool ledgers"
+    ],
+    "positive": {
+      "outgoingTools": [
+        "files.read",
+        "history.search"
+      ],
+      "thinking": "disabled",
+      "fragmentedArgumentsParsed": true,
+      "explicitSameSession": true,
+      "toolResultPairedByCallId": true,
+      "returnedMessageIdMatchesSubmittedUserMessage": true,
+      "modelRounds": 2,
+      "toolRows": 1,
+      "toolStatus": "succeeded",
+      "sideEffect": "none",
+      "actualSyntheticTokens": 30
+    },
+    "negative": {
+      "outgoingHistoryToolPresent": true,
+      "plainTextClaimsThreeMatches": true,
+      "modelRounds": 1,
+      "toolRows": 0,
+      "actualSyntheticTokens": 15,
+      "noTextToToolExecution": true
+    },
+    "leftPendingOrReserved": false
+  },
+  "checks": [
+    {
+      "command": "Read-only public SQLite policy probe",
+      "exitCode": 1,
+      "reason": "Diagnostic query initially used is_temporary; actual session column is temporary. Corrected read-only query exited0; no live DB writes."
+    },
+    {
+      "command": "locked pnpm test:integration tests/integration/P02-02.zhipu-tools.test.ts --no-cache --fsModuleCache=false",
+      "exitCode": 1,
+      "evidence": "tool-boundary-integration-2026-10-17.log",
+      "reason": "Test initially expected completed; existing tool-call contract uses succeeded. Exact expectation corrected; no product implementation changed."
+    },
+    {
+      "command": "same targeted integration after correcting tool-call terminal status expectation",
+      "exitCode": 0,
+      "passed": 2,
+      "evidence": "tool-boundary-integration-final-2026-10-17.log"
+    },
+    {
+      "command": "locked pnpm check",
+      "exitCode": 1,
+      "evidence": "tool-boundary-check-2026-10-17.log",
+      "reason": "New test formatting after expectation edit; formatted and reran."
+    },
+    {
+      "command": "locked pnpm check",
+      "exitCode": 0,
+      "repositoryFiles": 437,
+      "evidence": "tool-boundary-check-final-2026-10-17.log"
+    },
+    {
+      "command": "locked node verified-build.mjs",
+      "exitCode": 0,
+      "productionArtifacts": 619,
+      "unchanged": true
+    }
+  ],
+  "references": [
+    {
+      "url": "https://docs.bigmodel.cn/cn/guide/capabilities/function-calling",
+      "finding": "Official documentation states tool_choice defaults to auto and only auto is supported; do not add a forced required/function choice to obtain a passing test."
+    },
+    {
+      "url": "https://docs.bigmodel.cn/cn/guide/capabilities/stream-tool",
+      "finding": "Official stream documentation describes delta.tool_calls and states tool_stream changes argument delivery only, not tool execution."
+    }
+  ],
+  "limits": [
+    "These mocks prove the current local stack can offer and execute a documented tool. They do not recover the exact outgoing request or raw response from the earlier real attempt.",
+    "The earlier tools0 live attempt remains not accepted. Do not claim the model, upstream or parser has been identified as the historical root cause.",
+    "Other providers/protocols and accepted A/B are unchanged. No product rebuild or application restart is needed for a test-only change."
+  ],
+  "agentModelRequests": 0,
+  "credentialBodiesRead": 0,
+  "nativeContentsRead": 0,
+  "realMessageBodiesRead": 0,
+  "manualLiveDatabaseWrites": 0,
+  "next": "One bounded user-operated C2 attempt asks for a returned messageId rather than a guessed match count; inspect persisted tool/callId/result and final-answer pairing afterwards. No repeated send on failure.",
+  "commitOrPush": false,
+  "finalDocumentationChecks": {
+    "docsCheck": {
+      "command": "locked node scripts/docs-check.mjs",
+      "exitCode": 0,
+      "tasks": 37
+    },
+    "diffCheck": {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  }
+}

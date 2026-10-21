@@ -1,0 +1,57 @@
+{
+  "task": "P02-03",
+  "localDate": "2026-10-19",
+  "checkedAt": "2026-10-19T08:46:20.631Z",
+  "status": "prepared_waiting_user_batched_results_not_acceptance",
+  "userInstruction": "一次列出所有待测试内容，用户一次测完统一回报成功失败",
+  "checklist": "batch-checklist.md",
+  "reportTemplate": "report-template.md",
+  "attachment": "synthetic-attachment-1019.txt",
+  "baseline": "batch-baseline-1792399136427.json",
+  "coverage": "batch-coverage.json",
+  "requirementsCovered": 44,
+  "manualRequirementRows": 36,
+  "priorAcceptedOrAgentOwnedOrDeferredRows": 8,
+  "caseRange": "T01-T30; T13a-f",
+  "knownEntryGaps": [
+    "Ungrouped project first group membership UI entry not found; project pin/group reorder are not user-executable from this setup",
+    "Independent quick-follow-up suggestion button not found; T02 tests actual quote-selection action only"
+  ],
+  "checks": [
+    {
+      "command": "locked Node inspect.mjs snapshot",
+      "exitCode": 0,
+      "report": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792398961138.json"
+    },
+    {
+      "command": "locked Node prepare metadata baseline in read-only transaction",
+      "exitCode": 0
+    },
+    {
+      "command": "locked Node validate 30 case headings and all 44 P02-03 requirement classifications",
+      "exitCode": 0
+    },
+    {
+      "command": "locked Node / Prettier selected checklist/template/progress files",
+      "exitCode": 0
+    },
+    {
+      "command": "locked pnpm docs:check",
+      "exitCode": 0,
+      "result": "All 37 task states, started handoffs and completed requirement evidence links verified"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "newAcceptedItems": 0,
+  "productChanges": 0,
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false,
+  "committedOrPushed": false,
+  "taskStatus": "implemented_not_live_verified",
+  "stageGate": "engineering_passed_external_pending"
+}

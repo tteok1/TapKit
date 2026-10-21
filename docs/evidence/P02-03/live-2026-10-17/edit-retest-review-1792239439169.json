@@ -1,0 +1,103 @@
+{
+  "task": "P02-03",
+  "round": "A-edit-retest",
+  "checkedAt": "2026-10-17T12:17:19.168Z",
+  "status": "observed_requires_review",
+  "caseId": "01a149b9-04f4-7d9c-9487-44b0b62e3b25",
+  "session": {
+    "id": "01a1498f-dbb2-7fa8-8829-be6b985c7926",
+    "branchId": "01a149b1-1b36-73c3-a172-614da1fe30e7",
+    "revision": 7
+  },
+  "checks": {
+    "exactlyOneNewBranch": false,
+    "exactlyTwoNewMessages": false,
+    "oneCompletedPlainAnswerRun": false,
+    "exactPromptAndExpectedReply": false,
+    "repairedContextVersionAndCurrentUserRef": false,
+    "allOldBranchesAndMessagesPreserved": true,
+    "oldLedgerUnchanged": true,
+    "oneSuccessfulActualSettlement": false,
+    "editReceiptMatchesRunAndBranch": false,
+    "switchedMainThenEditedBranch": false,
+    "noRunAttemptOrToolReplay": false,
+    "traceMatchesOneSuccessfulTextResponse": false,
+    "idleAndNoDuplicateSettlement": true,
+    "originalAccountAndPreferences": true
+  },
+  "branches": [
+    {
+      "id": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "parentId": null,
+      "headMessageId": "01a1498f-fcc3-74dd-93f5-dab471deeb98",
+      "revision": 5
+    },
+    {
+      "id": "01a149b1-1b36-73c3-a172-614da1fe30e7",
+      "parentId": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "headMessageId": "01a149b1-1ecd-7755-9276-80951e8ee32c",
+      "revision": 3
+    }
+  ],
+  "runs": [],
+  "contexts": [],
+  "attempts": [],
+  "receipts": [],
+  "oldMessages": [
+    {
+      "id": "01a1498f-e8eb-7693-abc8-9dccfb56fdbf",
+      "preserved": true
+    },
+    {
+      "id": "01a1498f-e9eb-76ac-8489-36974d486439",
+      "preserved": true
+    },
+    {
+      "id": "01a1498f-fc8b-7e31-9767-1bce6ef71092",
+      "preserved": true
+    },
+    {
+      "id": "01a1498f-fcc3-74dd-93f5-dab471deeb98",
+      "preserved": true
+    },
+    {
+      "id": "01a149b1-1b36-7b1a-857b-02aed9aa94f4",
+      "preserved": true
+    },
+    {
+      "id": "01a149b1-1ecd-7755-9276-80951e8ee32c",
+      "preserved": true
+    }
+  ],
+  "oldBranches": [
+    {
+      "id": "01a1498f-dbb2-7e5d-b157-9fecbe8fb1c1",
+      "preserved": true
+    },
+    {
+      "id": "01a149b1-1b36-73c3-a172-614da1fe30e7",
+      "preserved": true
+    }
+  ],
+  "oldLedgerUnchanged": true,
+  "oldActualTokens": 3835,
+  "newActualTokens": 0,
+  "workload": {
+    "activeRuns": 0,
+    "pendingInputs": 0,
+    "activeTitles": 0,
+    "activeMemoryJobs": 0,
+    "reservedBudgets": 0,
+    "unsettledAttempts": 0
+  },
+  "source": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792239373074.json",
+  "trace": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792239372992.json",
+  "baseline": "edit-retest-baseline-2026-10-17.json",
+  "repair": "background-priority-fix-2026-10-17.json",
+  "humanObservation": "User reports the requested reply, branch preservation and switching appear as expected; metadata checks independently corroborate the bounded scope.",
+  "limits": "One ordinary Zhipu Chat/FlashX edit and main/edit branch switching only; not blanket model instruction-following, all providers, remaining P02-03 features or full task/stage acceptance. Tools0 is expected here.",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false
+}

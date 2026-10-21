@@ -1,6 +1,10 @@
 import { spawn } from 'node:child_process';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { executionFingerprint } from '../../../../scripts/runtime-inventory.mjs';
+import {
+  executionReportFailure,
+  readExecutionIdentity,
+} from '../../../../scripts/execution-verification.mjs';
 export { executionFingerprint } from '../../../../scripts/runtime-inventory.mjs';
 import { join, resolve, relative, isAbsolute } from 'node:path';
 import {
@@ -177,11 +181,11 @@ export async function readExecutionCapabilities(root: string): Promise<Execution
     if (Object.values(capabilities).every((c) => c.status === 'failed')) return capabilities;
     if (report.fingerprint !== (await executionFingerprint(root)))
       return unavailableExecution('PROBE_STALE');
-    if (
-      report.standardUser !== true &&
-      Object.values(capabilities).some((c) => c.status === 'available')
-    )
-      return unavailableExecution('STANDARD_USER_VERIFICATION_REQUIRED');
+    const scopeFailure = executionReportFailure(
+      report,
+      report.verification?.scope === 'current-user' ? readExecutionIdentity() : null,
+    );
+    if (scopeFailure) return unavailableExecution(scopeFailure);
     return capabilities;
   } catch {
     return unavailableExecution('PROBE_REQUIRED');

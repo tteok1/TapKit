@@ -1,0 +1,109 @@
+{
+  "task": "P02-03",
+  "round": "F-cancel-archive",
+  "status": "prepared_waiting_archived_message_location_and_one_unarchive",
+  "checkedAt": "2026-10-17T14:37:18.764Z",
+  "startedAfter": 1792247838764,
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "caseId": "01a149b9-04f4-7d9c-9487-44b0b62e3b25",
+  "session": {
+    "id": "01a14a2b-364a-7034-986d-79c884ee51a3",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "revision": 4,
+    "titleManual": 1,
+    "titleSHA256": "a054b9ea5a0429d459302ced792c709a0e095afb2ba942e1d0d3689655ee9359",
+    "noteSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tagsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "archivedAt": 1792247727818,
+    "titleMatchesExpected": 1
+  },
+  "messages": [
+    {
+      "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "contentSHA256": "26d08c0117a2160250ef6a4a7bbf58e3af422cbcb8f98713b5cffa68fa198b93"
+    },
+    {
+      "id": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "contentSHA256": "9b64af603d2349dd9f8e2b91ea598e7e57cdfcb85c05df982e23a6e90ae67bff"
+    }
+  ],
+  "branch": {
+    "id": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "headMessageId": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+    "revision": 1
+  },
+  "globalCounts": {
+    "runs": 25,
+    "attempts": 41,
+    "tools": 2,
+    "ledger": 41
+  },
+  "ledgerTotals": {
+    "entries": 41,
+    "tokens": 204413,
+    "actualTokens": 52958,
+    "estimatedTokens": 151455
+  },
+  "titleQuery": "P02验收-分叉副本-1017",
+  "archiveReceipt": {
+    "sequence": 365,
+    "requestId": "01a14a4a-06c8-772c-a78e-e089723f86e7",
+    "command": "sessions.archive",
+    "state": "completed",
+    "recordedAt": 1792247727819,
+    "ok": 1,
+    "updatedCount": 1,
+    "failedCount": 0
+  },
+  "priorAcceptance": "archive-review-1792247838763.json",
+  "sourceSessionBaseline": "fork-baseline-2026-10-17.json",
+  "instructions": "Close search, open left 聊天 and its 归档 filter, then open only the named copy. Ctrl+K 当前会话 + 消息, keep 包括归档 checked, search P02E-1017R and click its one result to confirm archived user-message location. Then in the 归档 list right-click P02验收-分叉副本-1017 and choose 取消归档 once. Switch to 最近, open it, verify both messages and title persist. Report both new cases; no sends/regeneration/restart or repeating passed title-filter tests.",
+  "acceptance": "One subsequent successful sessions.archive receipt for this target, archived_at null/revision+1/recent membership, prior hashes/title/branch/old ledger and global usage preserved, user confirms list restoration. Until checked F remains incomplete. Before cancellation, additionally confirm user-visible archived message location using the prepared one-result query; the unchanged-state index preflight is corroboration, not actual UI telemetry. Do not repeat already-passed archived title toggles.",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false,
+  "archivedMessageSearch": {
+    "query": "P02E-1017R",
+    "scope": {
+      "type": "session",
+      "id": "01a14a2b-364a-7034-986d-79c884ee51a3"
+    },
+    "types": [
+      "message"
+    ],
+    "includeArchived": true,
+    "expectedHits": [
+      {
+        "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+        "type": "message",
+        "sessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+        "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f"
+      }
+    ],
+    "preflight": "Read-only index ID check while currently archived; not a UI pass. Actual scope/highlight/click remain for user confirmation."
+  },
+  "messageQueryHistoryBaseline": [
+    {
+      "id": "01a14a3d-9cc9-77af-aaa1-49f4fea32610",
+      "updatedAt": 1792246914249
+    }
+  ],
+  "previousInstructions": "Close search, open left 聊天 page and its 归档 filter. Right-click only P02验收-分叉副本-1017 and choose 取消归档 once. Switch to 最近, open it, verify its two messages and title are intact. Report result. No sends/regeneration/recheck/restart."
+}

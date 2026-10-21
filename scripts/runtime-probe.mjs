@@ -2,9 +2,16 @@ import { spawnSync } from 'node:child_process';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { executionFingerprint } from './runtime-inventory.mjs';
 import { requiredCases } from './p00-03-required-cases.mjs';
+import {
+  verificationScope,
+  readExecutionIdentity,
+  isStandardUser,
+  verificationScopeFailure,
+} from './execution-verification.mjs';
 import { join } from 'node:path';
 import { root, nodeExe, lockedEnv } from './lib.mjs';
 const destination = join(root, 'docs/evidence/P00-03');
+const scope = verificationScope(process.argv.slice(2));
 await mkdir(destination, { recursive: true });
 const startedAt = new Date().toISOString();
 const executionPolicy = 'appcontainer-lok-v1';
@@ -52,14 +59,8 @@ const failedAssertions = (results?.testResults ?? []).flatMap((file) =>
 );
 if (failedAssertions.length)
   console.error('NATIVE_ACCEPTANCE_FAILURES', JSON.stringify(failedAssertions.slice(0, 30)));
-const groupProbe = spawnSync('whoami.exe', ['/groups', '/fo', 'csv', '/nh'], {
-  encoding: 'utf8',
-  windowsHide: true,
-});
-const standardUser =
-  groupProbe.status === 0 &&
-  !groupProbe.stdout.includes('S-1-5-32-544') &&
-  groupProbe.stdout.includes('S-1-16-8192');
+const identity = readExecutionIdentity();
+const standardUser = isStandardUser(identity);
 const fingerprint = await executionFingerprint(root);
 const passedCases = new Set(
   (results?.testResults ?? []).flatMap((file) =>
@@ -84,16 +85,14 @@ const reason =
     ? 'PROBE_SOURCE_CHANGED_DURING_RUN'
     : !cleanRun
       ? 'NATIVE_ACCEPTANCE_FAILED'
-      : !standardUser
-        ? 'STANDARD_USER_VERIFICATION_REQUIRED'
-        : missingCases.length > 0
-          ? 'P00_ACCEPTANCE_INCOMPLETE'
-          : null;
+      : missingCases.length > 0
+        ? 'P00_ACCEPTANCE_INCOMPLETE'
+        : verificationScopeFailure(scope, identity);
 const state = reason
   ? { status: 'failed', code: 'SANDBOX_UNAVAILABLE', reason }
   : { status: 'available' };
 const report = {
-  schemaVersion: 1,
+  schemaVersion: scope === 'current-user' ? 2 : 1,
   executionPolicy,
   startedAt,
   endedAt: new Date().toISOString(),
@@ -101,6 +100,9 @@ const report = {
     'pnpm test:integration P00-03 --reporter=json --outputFile=test-results/P00-03-native.json',
   exitCode: test.status,
   standardUser,
+  ...(scope === 'current-user'
+    ? { verification: { scope, identity }, standardUserAcceptance: 'not_verified_in_this_scope' }
+    : {}),
   fingerprint,
   capabilities: { nativeExecution: state, officeRender: state, terminal: state },
   tests: results

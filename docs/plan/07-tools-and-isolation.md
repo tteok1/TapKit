@@ -1,23 +1,37 @@
 # 工具网关、Windows执行隔离与网络策略
 
+2026-10-19 [ADR0055](../adr/0055-current-account-native-verification.md)按用户最新要求覆盖本轮本机能力前置：管理员账户优先，独立标准用户暂缓。显式current-user可在完整隔离测试通过、fingerprint及当前账户/权限绑定一致后仅向同一范围提供能力；standardUser如实记录，标准用户/阶段完整验收仍独立。原AppContainer/ACL/Job/无网络/资源限制和默认标准用户探测不变。
+
+2026-10-17 P02-03：[ADR0054](../adr/0054-source-background-is-not-system-instructions.md)隔离历史/记忆数据和可信系统指令；背景仍经原权限/版本校验、计入预算，不授权工具或覆盖本轮要求。工具结果配对/原生网关和只读side_effect保持。
+
+2026-10-17 P02-02：[ADR0053](../adr/0053-zhipu-chat-tool-name-aliases.md)将智谱Chat wire别名解码回本次已声明的canonical工具名后再校验参数/授权；未知名、别名冲突及不完整参数拒绝。不新增工具权限或从文字推断执行，其他端点/协议保持。
+
+2026-10-17 P02-02：[ADR0052](../adr/0052-opt-in-zhipu-tool-boundary-trace.md)规定工具边界诊断只记录白名单名称/计数/固定状态，默认关闭、精确profile/case绑定。诊断不扩大工具授权、不执行文本中的伪调用，不读取或记录原始响应、推理、Key/native；模拟通过不能替代真实完整工具闭环。
+
 ## 1. 工具契约
 
-~~~typescript
+```typescript
 type ToolSpec = {
-  name:string; version:string; description:string;
-  mode:"read"|"artifact_write"|"workspace_write"|"external_write"|"execute";
-  inputSchema:JsonSchema; outputSchema:JsonSchema;
-  retry:"safe"|"reconcile_first"|"never";
-  timeoutMs:number; maxOutputBytes:number;
+  name: string;
+  version: string;
+  description: string;
+  mode: 'read' | 'artifact_write' | 'workspace_write' | 'external_write' | 'execute';
+  inputSchema: JsonSchema;
+  outputSchema: JsonSchema;
+  retry: 'safe' | 'reconcile_first' | 'never';
+  timeoutMs: number;
+  maxOutputBytes: number;
 };
 type ToolResult = {
-  callId:string; status:"success"|"partial"|"failed"|"pending"|"unknown";
-  data?:unknown; artifacts:ArtifactRef[];
-  error?:{code:string;retryable:boolean;fieldErrors?:Record<string,string>};
-  sideEffect:"none"|"committed"|"not_committed"|"unknown";
-  continuation?:{handle:string;pollAfterMs?:number};
+  callId: string;
+  status: 'success' | 'partial' | 'failed' | 'pending' | 'unknown';
+  data?: unknown;
+  artifacts: ArtifactRef[];
+  error?: { code: string; retryable: boolean; fieldErrors?: Record<string, string> };
+  sideEffect: 'none' | 'committed' | 'not_committed' | 'unknown';
+  continuation?: { handle: string; pollAfterMs?: number };
 };
-~~~
+```
 
 网关注入profile、taskVersion、runId、rootBudget、credentialRef；模型只能传业务字段。注册表编译时固定，延迟工具发现从内置目录检索元信息，不开放市场安装。十几个工具以内按模式固定小集合，目录扩大才按需加载。
 
@@ -25,45 +39,45 @@ type ToolResult = {
 
 P04-01：[ADR0045](../adr/0045-local-hybrid-retrieval-and-verified-evidence.md)保留已有knowledge.query作为knowledge.search的兼容入口；模型工具不接收projectId/profileId，由当前run固定范围注入。结果每项evidence含本轮ID/sourceVersion/Locator/hash；引用标记提交前回查，未知或失效不得完成。
 
-| 名称 | 必须实现的输入与结果 | 权限/超时 |
-|---|---|---|
-| knowledge.search | {query,projectId?,fileVersionIds?,limit=8} → evidence[] | read/15s |
-| files.read | {fileVersionId,locator?,maxChars=16000} → text,locator,hash | read/10s |
-| history.search | {query,sessionIds?,limit=5} → messageRefs[] | read/10s；遵循项目隔离 |
-| web.search | {query,days?,domains?,excludeDomains?,maxResults=8} → title,url,snippet,fetchedAt | read/30s |
-| web.read | {url,selectorHint?,maxChars=20000} → sourceId,title,text,links | read/30s；不以搜索摘要代替全文 |
-| browser.observe | {tabId} → snapshotId,navigationEpoch,nodes[] | read/10s |
-| browser.act | {tabId,snapshotId,nodeId,action:"click"|"fill"|"select"|"press"|"navigate",value?,url?} → state/evidence | action分类/20s |
-| artifacts.create | {kind,filename,contentRef,format,sourceRefs[]} → fileId,versionId | artifact_write/120s |
-| office.render | {fileVersionId,format:"pdf"|"png"} → previewRefs[] | execute固定转换器/120s |
-| data.analyze | {fileVersionIds[],scriptRef,expectedOutputs[]} → tables,charts,files | execute/120s |
-| workspace.read | {workspaceId,path,startLine?,endLine?} → text,hash | read/10s |
-| workspace.applyPatch | {workspaceId,patch,baseHashes} → changes,conflicts | workspace_write/20s |
-| exec.run | {workspaceId,runtime:"node"|"python"|"powershell",argv[],cwd,timeoutMs?} → processId,exitCode,logRef | execute/120s默认，上限10min |
-| exec.poll/cancel | {processId,offset?} → state,delta,exitCode | read/10s或cancel |
-| git.inspect | {workspaceId,kind:"status"|"diff"|"log",path?} → structured | read/15s |
-| git.commit | {workspaceId,paths[],message,expectedHashes} → commitSha | workspace_write需具体审阅/30s |
-| github.createPR | {repo,base,head,title,body,draft:true} → prNumber,url | external_write/30s，先核对 |
-| plan.update | {steps[],reason} → planRevision | 内核动作；不可绕过用户锁定步骤 |
-| user.ask | {question,choices?,contextRef?} → questionId | waiting_user，不反复轮询模型 |
-| task.delegate | {goal,inputRefs,outputSchema,acceptance,toolAllowlist,budget} → subtaskId | work only/depth1 |
-| tools.find | {query,maxResults=5} → metadata[] | 内置注册表，不返回secret或第三方脚本 |
+| 名称                 | 必须实现的输入与结果                                                              | 权限/超时                            |
+| -------------------- | --------------------------------------------------------------------------------- | ------------------------------------ |
+| knowledge.search     | {query,projectId?,fileVersionIds?,limit=8} → evidence[]                           | read/15s                             |
+| files.read           | {fileVersionId,locator?,maxChars=16000} → text,locator,hash                       | read/10s                             |
+| history.search       | {query,sessionIds?,limit=5} → messageRefs[]                                       | read/10s；遵循项目隔离               |
+| web.search           | {query,days?,domains?,excludeDomains?,maxResults=8} → title,url,snippet,fetchedAt | read/30s                             |
+| web.read             | {url,selectorHint?,maxChars=20000} → sourceId,title,text,links                    | read/30s；不以搜索摘要代替全文       |
+| browser.observe      | {tabId} → snapshotId,navigationEpoch,nodes[]                                      | read/10s                             |
+| browser.act          | {tabId,snapshotId,nodeId,action:"click"                                           | "fill"                               | "select"                                                        | "press"                     | "navigate",value?,url?} → state/evidence | action分类/20s |
+| artifacts.create     | {kind,filename,contentRef,format,sourceRefs[]} → fileId,versionId                 | artifact_write/120s                  |
+| office.render        | {fileVersionId,format:"pdf"                                                       | "png"} → previewRefs[]               | execute固定转换器/120s                                          |
+| data.analyze         | {fileVersionIds[],scriptRef,expectedOutputs[]} → tables,charts,files              | execute/120s                         |
+| workspace.read       | {workspaceId,path,startLine?,endLine?} → text,hash                                | read/10s                             |
+| workspace.applyPatch | {workspaceId,patch,baseHashes} → changes,conflicts                                | workspace_write/20s                  |
+| exec.run             | {workspaceId,runtime:"node"                                                       | "python"                             | "powershell",argv[],cwd,timeoutMs?} → processId,exitCode,logRef | execute/120s默认，上限10min |
+| exec.poll/cancel     | {processId,offset?} → state,delta,exitCode                                        | read/10s或cancel                     |
+| git.inspect          | {workspaceId,kind:"status"                                                        | "diff"                               | "log",path?} → structured                                       | read/15s                    |
+| git.commit           | {workspaceId,paths[],message,expectedHashes} → commitSha                          | workspace_write需具体审阅/30s        |
+| github.createPR      | {repo,base,head,title,body,draft:true} → prNumber,url                             | external_write/30s，先核对           |
+| plan.update          | {steps[],reason} → planRevision                                                   | 内核动作；不可绕过用户锁定步骤       |
+| user.ask             | {question,choices?,contextRef?} → questionId                                      | waiting_user，不反复轮询模型         |
+| task.delegate        | {goal,inputRefs,outputSchema,acceptance,toolAllowlist,budget} → subtaskId         | work only/depth1                     |
+| tools.find           | {query,maxResults=5} → metadata[]                                                 | 内置注册表，不返回secret或第三方脚本 |
 
 资源ID再鉴权，scope来自当前context不是模型填入的projectId。结果外置并返回引用，UI最多64KiB；模型单工具结果默认8k token，超限可分页读取。
 
 ## 3. 授权矩阵
 
-| 动作 | 默认处理 |
-|---|---|
-| 读用户本轮提供的文件/当前项目资料 | 直接执行 |
-| 查询公开网页 | 联网设置开启时直接执行；外部网页不能要求读取别的本机数据 |
-| 生成新应用内产物 | 直接执行，自动版本化，不覆盖原文件 |
-| 修改已授权工作区、运行其中测试 | 工作模式内直接推进；受OS沙箱与网络规则限制 |
-| 引用新的外部目录、扩大网络目的地/数据范围 | 形成具体权限申请 |
-| git commit、push、创建PR | 展示目标、差异/提交说明、仓库后批准；可按明确范围保存持续授权 |
-| 匿名网页提交表单/发送内容 | 展示完整目标、字段与内容摘要，单次批准；无法判断副作用时不自动点击 |
-| 删除用户原始文件、覆盖未托管文件 | 本版不提供模型直接操作，先另存或用户手工操作 |
-| 付款、购买、发布网站 | 本版没有工具实现，不以浏览器脚本绕过 |
+| 动作                                      | 默认处理                                                           |
+| ----------------------------------------- | ------------------------------------------------------------------ |
+| 读用户本轮提供的文件/当前项目资料         | 直接执行                                                           |
+| 查询公开网页                              | 联网设置开启时直接执行；外部网页不能要求读取别的本机数据           |
+| 生成新应用内产物                          | 直接执行，自动版本化，不覆盖原文件                                 |
+| 修改已授权工作区、运行其中测试            | 工作模式内直接推进；受OS沙箱与网络规则限制                         |
+| 引用新的外部目录、扩大网络目的地/数据范围 | 形成具体权限申请                                                   |
+| git commit、push、创建PR                  | 展示目标、差异/提交说明、仓库后批准；可按明确范围保存持续授权      |
+| 匿名网页提交表单/发送内容                 | 展示完整目标、字段与内容摘要，单次批准；无法判断副作用时不自动点击 |
+| 删除用户原始文件、覆盖未托管文件          | 本版不提供模型直接操作，先另存或用户手工操作                       |
+| 付款、购买、发布网站                      | 本版没有工具实现，不以浏览器脚本绕过                               |
 
 审批绑定account/profile/toolVersion/argsHash/resourceHash/contentVersionHash/taskVersion/expiry；默认10分钟有效、一次性消费。审批前准备可审阅内容，批准后立即复查目标。用户编辑待执行内容生成新审批记录，旧记录expired。拒绝/撤销后取消尚未派发调用；已提交动作只核对真实结果。
 

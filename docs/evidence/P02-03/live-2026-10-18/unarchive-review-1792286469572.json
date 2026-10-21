@@ -1,0 +1,122 @@
+{
+  "task": "P02-03",
+  "round": "F-archived-message-and-unarchive",
+  "localDate": "2026-10-18",
+  "checkedAt": "2026-10-18T01:21:09.572Z",
+  "status": "passed_live_scoped_archive_search_location_and_unarchive",
+  "checks": {
+    "restoredStateAndRecentMembership": true,
+    "oneSubsequentSuccessfulUnarchiveReceipt": true,
+    "titleAndOtherMetadataPreserved": true,
+    "bothMessageHashesAndBranchPreserved": true,
+    "archivedMessageQueryRecordedBeforeRestore": true,
+    "currentIndexMatchesPreparedCopiedMessage": true,
+    "userConfirmsArchivedLocationAndRestore": true,
+    "openedRestoredTarget": true,
+    "originalSourceAndLedgerPreserved": true,
+    "noExecutionOrUsageChange": true,
+    "idleNoUnsettledOrDuplicate": true
+  },
+  "session": {
+    "id": "01a14a2b-364a-7034-986d-79c884ee51a3",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "revision": 5,
+    "titleManual": 1,
+    "titleSHA256": "a054b9ea5a0429d459302ced792c709a0e095afb2ba942e1d0d3689655ee9359",
+    "noteSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tagsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "archivedAt": null,
+    "deletedAt": null,
+    "titleMatchesExpected": 1
+  },
+  "branch": {
+    "id": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "headMessageId": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+    "revision": 1
+  },
+  "receipts": [
+    {
+      "sequence": 370,
+      "requestId": "01a14c97-07c2-70e6-accb-6b46ee291d18",
+      "command": "sessions.archive",
+      "state": "completed",
+      "recordedAt": 1792286328857,
+      "ok": 1,
+      "updatedCount": 1,
+      "failedCount": 0
+    }
+  ],
+  "readReceipts": [
+    {
+      "sequence": 368,
+      "requestId": "01a14c96-3ce4-79d7-9b06-4f838829d102",
+      "recordedAt": 1792286276921,
+      "state": "completed"
+    },
+    {
+      "sequence": 372,
+      "requestId": "01a14c97-326a-77bf-99c0-198bfabfde86",
+      "recordedAt": 1792286339754,
+      "state": "completed"
+    }
+  ],
+  "messageHistory": [
+    {
+      "id": "01a14a3d-9cc9-77af-aaa1-49f4fea32610",
+      "updatedAt": 1792286313650
+    }
+  ],
+  "currentMessageIndex": [
+    {
+      "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "type": "message",
+      "sessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f"
+    }
+  ],
+  "membership": {
+    "recentCount": 1,
+    "archivedCount": 0
+  },
+  "oldMessages": [
+    {
+      "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "preserved": true
+    },
+    {
+      "id": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+      "preserved": true
+    }
+  ],
+  "globalCounts": {
+    "runs": 25,
+    "attempts": 41,
+    "tools": 2,
+    "ledger": 41
+  },
+  "ledgerTotals": {
+    "entries": 41,
+    "tokens": 204413,
+    "actualTokens": 52958,
+    "estimatedTokens": 151455
+  },
+  "humanConfirmation": "定位和恢复都正常",
+  "priorCheckpoint": "docs/evidence/P02-03/live-2026-10-17/archive-review-1792247838763.json",
+  "evidenceBoundary": "Archived state and its message index were captured before this step; the marker query timestamp precedes the cancellation receipt, and the user confirms archived-message location. Runtime query filters, highlight ranges and clicked locator are not independently logged. Actual current restoration and post-restore read are corroborated by durable metadata.",
+  "limits": "This synthetic copy archive/search/location/unarchive cycle only. Full search/privacy/cross-project behavior, other providers and full P02-03/stage are not passed.",
+  "baseline": "docs/evidence/P02-03/live-2026-10-17/unarchive-baseline-2026-10-17.json",
+  "source": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792286364379.json",
+  "trace": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792286364380.json",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false,
+  "trashPreparation": {
+    "preparedOnly": true,
+    "linkedResources": 0,
+    "attachmentRefs": 0,
+    "memorySourceRefs": 0
+  }
+}

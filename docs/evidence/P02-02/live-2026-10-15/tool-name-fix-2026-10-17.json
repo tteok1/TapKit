@@ -1,0 +1,69 @@
+{
+  "task": "P02-02",
+  "localDate": "2026-10-17",
+  "status": "engineering_verified_waiting_one_user_live_attempt",
+  "c3Observation": "round-c3-observation-2026-10-17.json",
+  "officialContract": "official-tool-name-contract-2026-10-17.json",
+  "adr": "docs/adr/0053-zhipu-chat-tool-name-aliases.md",
+  "defect": "Canonical dotted names violated official FunctionObject.name regex; original HTTP200 lacked tool proposals. Sole causal attribution still unproven.",
+  "repair": "Map three read-tool names in declarations and assistant history/private prefixes; only names declared in this request may decode before canonical argument validation. Trace adds fixed aliases only.",
+  "nativeCompatibility": "Schema/binding version unchanged: canonical names unchanged and old/new private wire prefixes both re-encoded idempotently. Fresh-adapter fixture regression covers both; no real native body read.",
+  "red": {
+    "command": "test:integration tests/integration/P02-02.zhipu-tools.test.ts --no-cache --fsModuleCache=false",
+    "exitCode": 1,
+    "failed": 2,
+    "log": "tool-name-red-2026-10-17.log"
+  },
+  "checks": [
+    {
+      "command": "test:unit P02-02.zhipu-tool-names P02-02.tool-trace P01-02.api --no-cache --fsModuleCache=false",
+      "exitCode": 0,
+      "passed": 76,
+      "log": "tool-name-unit-2026-10-17.log"
+    },
+    {
+      "command": "test:integration P02-02.zhipu-tools P01-02.zhipu --no-cache --fsModuleCache=false",
+      "exitCode": 0,
+      "passed": 6,
+      "log": "tool-name-integration-2026-10-17.log"
+    },
+    {
+      "command": "check",
+      "exitCode": 0,
+      "files": 443,
+      "log": "tool-name-check-2026-10-17.log"
+    },
+    {
+      "command": "build:desktop",
+      "exitCode": 0,
+      "log": "tool-name-build-2026-10-17.log"
+    },
+    {
+      "command": "inspect-ui-read.mjs",
+      "exitCode": 0,
+      "report": "ui-read-1792224049335.json",
+      "accounts": 1,
+      "messages": 12
+    }
+  ],
+  "launchCleanup": "User confirmed full exit; scoped process check still found prior launch main29272/parent26352. Read-only workload snapshot1792223948886 was idle. Stopped only verified main; prior launcher46803 exited1, not a normal-exit pass. UI diagnostic for repaired build then closed normally.",
+  "diagnosticFailures": [
+    "Sandbox public-document socket access and CIM process read denied; current Windows user read-only retries succeeded. No policy/global config change."
+  ],
+  "sourceReview": "reviewed-source-tool-names-2026-10-17.json",
+  "verifiedBuild": "verified-build-tool-names-2026-10-17.json",
+  "finalVerification": {
+    "docsCheck": { "exitCode": 0, "tasks": 37 },
+    "gitDiffCheck": { "exitCode": 0 },
+    "checkOnly": { "exitCode": 0, "report": "check-1792224101842.json" },
+    "launchPreflight": "check-1792224129091.json",
+    "traceReadiness": "tool-trace-review-1792224143685.json",
+    "postLaunchSnapshot": "snapshot-1792224143778.json",
+    "pendingUserAttempt": "round-c4-start-2026-10-17.json"
+  },
+  "agentModelRequests": 0,
+  "keyOrNativeBodiesRead": 0,
+  "messageBodiesRead": 0,
+  "manualBusinessDatabaseWrites": 0,
+  "currentScope": "C only; A/B reused, other real providers/protocols deferred. No commit/push. Task implemented_not_live_verified and stage engineering_passed_external_pending remain."
+}

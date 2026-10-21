@@ -1,0 +1,43 @@
+
+Running 1 test using 1 worker
+
+(node:11304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34248) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+
+(node:29940) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:49405/f60b893a-63a6-4a73-989d-9d30ef5b8c8c
+For help, see: https://nodejs.org/learn/getting-started/debugging
+  x  1 tests\e2e\P02-03.dialogs.spec.ts:31:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent (46.6s)
+
+
+  1) tests\e2e\P02-03.dialogs.spec.ts:31:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent ────────
+
+    TimeoutError: locator.click: Timeout 30000ms exceeded.
+    Call log:
+      - waiting for locator('.screen-scroll .history-manager').locator('.history-row').filter({ hasText: '弹窗布局回归' }).getByRole('button', { name: '弹窗布局回归', exact: true })
+
+
+       97 |       },
+       98 |       { requestId: newId(), id },
+    >  99 |     );
+          |       ^
+      100 |     await list.getByRole('button', { name: '回收站', exact: true }).click();
+      101 |     await row.getByRole('button', { name: title, exact: true }).click();
+      102 |     await fits(page, list.getByRole('dialog'), 'purge');
+        at D:\Tapkit-public\tests\e2e\P02-03.dialogs.spec.ts:99:65
+
+    Error Context: test-results\e2e\P02-03.dialogs-P02-03-T22--7ea3d-fit-1440x900-at-100-percent\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P02-03.dialogs-P02-03-T22--7ea3d-fit-1440x900-at-100-percent\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\e2e\P02-03.dialogs-P02-03-T22--7ea3d-fit-1440x900-at-100-percent\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P02-03.dialogs.spec.ts:31:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent ─────────

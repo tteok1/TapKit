@@ -1,0 +1,161 @@
+{
+  "task": "P02-02",
+  "round": "B",
+  "localDate": "2026-10-16",
+  "status": "foreground_steer_passed_user_and_metadata; automatic_title_root_repair_regressions_passed",
+  "publicState": "snapshot-1792145160741.json",
+  "userReportedAllNormal": true,
+  "independentVerification": {
+    "steer": {
+      "id": "01a1442c-3409-7752-ae31-18c9f3dd4b32",
+      "sessionId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+      "kind": "steer",
+      "status": "accepted",
+      "revision": 2,
+      "targetRunId": "01a1442b-e7b1-755f-a37a-93fb270bb064",
+      "targetTaskVersion": 1,
+      "userMessageId": "01a1442c-3408-7b10-ad9f-4acf6c815a4d",
+      "characterCount": 44,
+      "createdAt": 1792145110025,
+      "updatedAt": 1792145110035
+    },
+    "parentRun": {
+      "id": "01a1442b-e7b1-755f-a37a-93fb270bb064",
+      "sessionId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+      "rootRunId": "01a1442b-e7b1-755f-a37a-93fb270bb064",
+      "taskVersion": 1,
+      "status": "cancelled",
+      "statusReason": "CANCELLED",
+      "createdAt": 1792145090481,
+      "startedAt": 1792145090484,
+      "endedAt": 1792145110031,
+      "calls": 1,
+      "tools": 0
+    },
+    "continuationRun": {
+      "id": "01a1442c-3412-7e25-a863-6eaa2c30ebdf",
+      "sessionId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+      "rootRunId": "01a1442b-e7b1-755f-a37a-93fb270bb064",
+      "taskVersion": 2,
+      "status": "completed",
+      "statusReason": null,
+      "createdAt": 1792145110034,
+      "startedAt": 1792145110037,
+      "endedAt": 1792145111997,
+      "calls": 1,
+      "tools": 0
+    },
+    "interruptedAssistant": {
+      "id": "01a1442b-e82e-77df-a8bc-ace6a2708065",
+      "sessionId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+      "runId": "01a1442b-e7b1-755f-a37a-93fb270bb064",
+      "role": "assistant",
+      "status": "interrupted",
+      "clientMessageId": null,
+      "attemptId": "01a1442b-e811-7a93-a5ca-2fef7437b000",
+      "contentJsonLength": 1574,
+      "createdAt": 1792145090606
+    },
+    "foregroundAttempts": [
+      {
+        "id": "01a1442b-e811-7a93-a5ca-2fef7437b000",
+        "runId": "01a1442b-e7b1-755f-a37a-93fb270bb064",
+        "rootRunId": "01a1442b-e7b1-755f-a37a-93fb270bb064",
+        "logicalCallId": "01a1442b-e7df-708f-b838-064fac06718d",
+        "attemptNo": 1,
+        "status": "cancelled",
+        "errorCode": "CANCELLED",
+        "modelRef": "glm-4.7-flashx",
+        "createdAt": 1792145090605,
+        "source": "estimated",
+        "inputTokens": null,
+        "outputTokens": null,
+        "chargedTokens": 24547
+      },
+      {
+        "id": "01a1442c-357c-75c7-8313-c97c6ede51a0",
+        "runId": "01a1442c-3412-7e25-a863-6eaa2c30ebdf",
+        "rootRunId": "01a1442b-e7b1-755f-a37a-93fb270bb064",
+        "logicalCallId": "01a1442c-3479-7f20-a752-361190f7832b",
+        "attemptNo": 1,
+        "status": "completed",
+        "errorCode": null,
+        "modelRef": "glm-4.7-flashx",
+        "createdAt": 1792145110408,
+        "source": "actual",
+        "inputTokens": 2018,
+        "outputTokens": 4,
+        "chargedTokens": 2022
+      }
+    ],
+    "sameOriginalRoot": true,
+    "taskVersionAdvanced": true,
+    "workload": {
+      "activeRuns": 0,
+      "pendingInputs": 0,
+      "activeTitles": 0,
+      "activeMemoryJobs": 0,
+      "reservedBudgets": 0,
+      "unsettledAttempts": 0
+    },
+    "priorLedgerUnchanged": true,
+    "duplicateSettlements": []
+  },
+  "otherInputs": [
+    {
+      "id": "01a1442b-fda7-769a-8d79-40b618bc4724",
+      "sessionId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+      "kind": "followup",
+      "status": "accepted",
+      "revision": 2,
+      "targetRunId": "01a1442b-e7b1-755f-a37a-93fb270bb064",
+      "targetTaskVersion": 1,
+      "userMessageId": "01a1442b-fda6-7f45-8642-683f86fc32a5",
+      "characterCount": 44,
+      "createdAt": 1792145096103,
+      "updatedAt": 1792145112001
+    }
+  ],
+  "otherInputExplanation": "A separately accepted followup was queued before the steer and executed afterwards as its own run/attempt. It is a separate user submission, not duplicate settlement.",
+  "automaticTitleObservation": {
+    "attempts": [
+      {
+        "id": "01a1442c-3bf3-7c53-93a1-ef265887064f",
+        "runId": "01a1442c-3412-7e25-a863-6eaa2c30ebdf",
+        "rootRunId": "01a1442c-3412-7e25-a863-6eaa2c30ebdf",
+        "logicalCallId": "01a1442c-3be1-7600-9508-f7cf6c3955fd",
+        "attemptNo": 1,
+        "status": "completed",
+        "errorCode": null,
+        "modelRef": "glm-4.7-flashx",
+        "createdAt": 1792145112051,
+        "source": "actual",
+        "inputTokens": 107,
+        "outputTokens": 128,
+        "chargedTokens": 235
+      }
+    ],
+    "issue": "Automatic title used continuation run ID as root instead of inherited root; 235 actual tokens remain recorded in original historical ledger without rewriting.",
+    "repair": "generateTitle now validates owning run/session/profile and uses its persisted root_run_id and task_version, following ADR0051.",
+    "validation": "title-root-repair-2026-10-16.json; synthetic original-root attribution and exhausted-root denial passed; real title request not repeated"
+  },
+  "limitations": [
+    "Visible answer correctness and partial-text continuity use the human report; bodies are not exported.",
+    "Old cancelled usage is estimated 24547 tokens, not measured provider consumption or money.",
+    "No new live verification of the automatic-title repair; no historical ledger edits; whole task/gate remains pending C and deferred channels."
+  ],
+  "agentModelRequests": 0,
+  "credentialReads": 0,
+  "nativeContentReads": 0,
+  "applicationDatabaseWrites": 0,
+  "checks": [
+    {
+      "command": "locked Node --no-warnings docs/evidence/P02-02/live-2026-10-15/inspect.mjs snapshot",
+      "exitCode": 0
+    },
+    {
+      "command": "locked Node --input-type=module -e $p02SteerRecord",
+      "exitCode": 0
+    }
+  ]
+}

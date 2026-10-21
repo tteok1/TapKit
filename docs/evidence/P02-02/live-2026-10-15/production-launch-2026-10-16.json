@@ -1,0 +1,22 @@
+{
+  "task": "P02-02",
+  "checkedAt": "2026-10-16T10:53:54.963Z",
+  "status": "production_launcher_open_for_user",
+  "launchPreflight": "check-1792147987008.json",
+  "launcherProcess": "PowerShell waiting for interactive Electron normal exit; not recorded as exit0 before user closes it",
+  "auditModifiedAt": "2026-10-16T10:53:53.209Z",
+  "publicAuditSinceLaunch": {
+    "sessions.list:true:": 18,
+    "sidebar.list:true:": 18,
+    "search.history:true:": 1,
+    "app.bootstrap:true:": 2,
+    "desktop.workspace:true:": 3,
+    "providers.list:true:": 3,
+    "events.subscribe:true:": 2
+  },
+  "postLaunchSnapshot": "snapshot-1792148012572.json",
+  "agentModelRequests": 0,
+  "messageBodiesExported": false,
+  "secretBodiesExported": false,
+  "next": "User sends C prompt once in B synthetic conversation; A/B unchanged"
+}

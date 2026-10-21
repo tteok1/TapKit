@@ -1,0 +1,24 @@
+{
+  "task": "P02-02",
+  "round": "C4",
+  "localDate": "2026-10-17",
+  "status": "not_accepted_alias_fix_confirmed_but_no_upstream_tool_proposal",
+  "caseId": "01a148e1-f1f9-7112-af33-833873fe91e9",
+  "readiness": "tool-trace-review-1792224143685.json",
+  "baseline": "snapshot-1792224143778.json",
+  "startedAfter": 1792224143778,
+  "targetSessionId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+  "prompt": "   请调用一次历史检索工具（接口函数名 history_search，TapKit 中显示为 history.search），参数为 {\"query\":\"补充已生效\",\"limit\":1,\"sessionIds\":[\"01a1442b-3b71-78b6-b3a3-f47c8df370cf\"]}。收到真实工具结果后，仅返回第一条 messageRef 的 messageId；没有匹配则回复“无匹配”。如果未调用，回复“未执行工具”。不调用其他工具。",
+  "sourceReview": "reviewed-source-tool-names-2026-10-17.json",
+  "verifiedBuild": "verified-build-tool-names-2026-10-17.json",
+  "requestBudget": "One user send; existing root/time/usage caps and retry policy unchanged. No agent live requests.",
+  "instructions": "Use reopened original-profile production app and existing B session/account. No recheck/reconfiguration/A-B repeats. Stop after response even on tools0; then agent correlates trace with canonical gateway/result/answer/settlement.",
+  "startupProcess": {
+    "execSession": 95232,
+    "status": "running_waiting_normal_app_exit",
+    "exitCode": null
+  },
+  "agentModelRequests": 0,
+  "secretOrMessageBodiesExported": false,
+  "observation": "round-c4-observation-2026-10-17.json"
+}

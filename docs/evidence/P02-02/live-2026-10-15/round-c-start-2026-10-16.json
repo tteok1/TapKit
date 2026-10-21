@@ -1,0 +1,48 @@
+{
+  "task": "P02-02",
+  "round": "C",
+  "localDate": "2026-10-16",
+  "status": "attempted_without_application_tool_record_not_accepted",
+  "publicBaseline": "check-1792146461640.json",
+  "startedAfter": 1792146461640,
+  "targetSessionId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+  "tool": "history.search",
+  "arguments": {
+    "query": "补充已生效",
+    "limit": 3,
+    "sessionIds": ["01a1442b-3b71-78b6-b3a3-f47c8df370cf"]
+  },
+  "publicPolicyPreflight": {
+    "standaloneNonTemporary": true,
+    "profileHistoryEnabled": true,
+    "sessionHistoryOverride": null,
+    "existingMarkerMatches": 4
+  },
+  "expected": [
+    "One complete history.search proposal dispatches with side_effect=none.",
+    "Tool result remains within the explicitly selected test session and is paired by callId.",
+    "Subsequent model round produces a final answer based on messageRefs count.",
+    "No pending/unknown tool call, duplicate ledger settlement or reservation remains."
+  ],
+  "scope": "Only the authorized synthetic B conversation; no global history/files/other providers.",
+  "agentModelRequests": 0,
+  "credentialReads": 0,
+  "nativeContentReads": 0,
+  "sourceReview": "reviewed-source-2026-10-16.json",
+  "sourceCoreBuildSHA256": "edce2c838c2271816992c69ac1751846d3a2b302fb3862aaf01bdc5a3b8db6b4",
+  "checkedWorkload": {
+    "activeRuns": 0,
+    "pendingInputs": 0,
+    "activeTitles": 0,
+    "activeMemoryJobs": 0,
+    "reservedBudgets": 0,
+    "unsettledAttempts": 0
+  },
+  "preflightCommand": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File docs/evidence/P02-02/live-2026-10-15/run-app.ps1 -CheckOnly",
+  "preflightExitCode": 0,
+  "startupRecovery": "ui-read-recovery-2026-10-16.json",
+  "productionBuild": "verified-build-2026-10-16.json",
+  "recoveryPreflight": "check-1792147633076.json",
+  "productionLaunch": "production-launch-2026-10-16.json",
+  "observation": "round-c-observation-2026-10-16.json"
+}

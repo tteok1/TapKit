@@ -1,0 +1,39 @@
+{
+  "task": "P02-03",
+  "round": "E-search-and-locate",
+  "localDate": "2026-10-17",
+  "status": "passed_live_scoped_search_with_user_UI_confirmation",
+  "review": "search-review-1792246998295.json",
+  "humanConfirmation": "都正常，可以进行下一项验收",
+  "persistentEvidence": "Both prescribed synthetic queries were newly recorded; target session metadata, branch, two message hashes and current unique index IDs are preserved.",
+  "UIEvidenceBoundary": "Scope, returned hits, highlighting and actual clicked locator are confirmed by the user; query-history persistence does not log these fields and there are no new navigation receipts. Do not describe index verification as independent UI telemetry.",
+  "newModelRequestsToolsAndSettlements": 0,
+  "ledgerTotalsUnchanged": true,
+  "next": {
+    "round": "F-archive-search",
+    "status": "prepared_waiting_user_archive_filter_checkpoint",
+    "baseline": "archive-baseline-2026-10-17.json",
+    "targetSessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+    "title": "P02验收-分叉副本-1017",
+    "expected": "After user archives this copy, 全局 + 会话 search finds one hit with 包括归档 and zero without it. Leave archived for intermediate metadata review; cancel archive only after that review. No sends or model requests."
+  },
+  "checks": [
+    { "command": "locked Node inspect.mjs snapshot", "exitCode": 0, "report": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792246942249.json" },
+    { "command": "locked Node read-tool-trace.mjs", "exitCode": 0, "report": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792246942947.json" },
+    { "command": "locked Node review-search.mjs snapshot-1792246942249.json tool-trace-review-1792246942947.json --prepare-archive", "exitCode": 0, "result": "8 scoped checks true; archive checkpoint baseline prepared without app mutation" },
+    { "command": "locked Node record-search-handoff.mjs search-review-1792246998295.json", "exitCode": 0 },
+    { "command": "Compare snapshots 1792246497407 and 1792246942249 ledgerTotals", "exitCode": 0, "result": "Unchanged: entries41 tokens204413 actual52958 estimated151455" },
+    { "command": "locked pnpm docs:check", "exitCode": 0, "result": "All 37 task states, started handoffs and completed requirement evidence links verified" },
+    { "command": "git diff --check", "exitCode": 0 },
+    { "command": "locked Node --check review-search.mjs and record-search-handoff.mjs", "exitCode": 0 }
+  ],
+  "productChangesThisTurn": 0,
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false,
+  "taskStatus": "implemented_not_live_verified",
+  "stageGate": "engineering_passed_external_pending",
+  "otherProvidersAndProtocols": "deferred",
+  "committedOrPushed": false
+}

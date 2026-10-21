@@ -1,0 +1,91 @@
+{
+  "task": "P02-03",
+  "round": "H-group-rename",
+  "localDate": "2026-10-18",
+  "checkedAt": "2026-10-18T06:06:57.284Z",
+  "status": "passed_live_scoped_group_rename_delete_pending",
+  "review": "group-rename-review-1792303543587.json",
+  "humanConfirmation": "符合预期",
+  "groupId": "01a14cb1-4dde-7e06-aa3d-a97ac9146b0d",
+  "groupRevision": 4,
+  "oneRenameAndOneCollapseExpandPair": true,
+  "receiptFingerprintMatches": [
+    {
+      "sequence": 384,
+      "expectedRevision": 1,
+      "match": [
+        "prescribed_rename"
+      ]
+    },
+    {
+      "sequence": 385,
+      "expectedRevision": 2,
+      "match": [
+        "collapse"
+      ]
+    },
+    {
+      "sequence": 386,
+      "expectedRevision": 3,
+      "match": [
+        "expand"
+      ]
+    }
+  ],
+  "targetSessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+  "sessionRevision": 8,
+  "singleTargetMembership": true,
+  "messageHashesAndBranchPreserved": true,
+  "newModelRequestsToolsAndSettlements": 0,
+  "limits": "One custom group and one synthetic ordinary chat. Final group revision4 is explained by one rename and collapse/expand controls; not three renames. Group deletion/content return is still pending; no batch/project/drag/reorder acceptance.",
+  "next": {
+    "round": "H-group-delete-preserve-chat",
+    "status": "prepared_waiting_one_user_group_delete_and_default_list_open",
+    "baseline": "group-delete-baseline-2026-10-18.json",
+    "groupName": "P02验收分组-1018-改名",
+    "deleted": false
+  },
+  "checks": [
+    {
+      "command": "locked Node inspect.mjs snapshot",
+      "exitCode": 0,
+      "report": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792303462448.json"
+    },
+    {
+      "command": "locked Node read-tool-trace.mjs",
+      "exitCode": 0,
+      "report": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792303463044.json"
+    },
+    {
+      "command": "locked Node review-group-rename.mjs snapshot-1792303462448.json tool-trace-review-1792303463044.json --prepare-delete",
+      "exitCode": 0,
+      "result": "14 checks true; group-delete baseline prepared without application mutation"
+    },
+    {
+      "command": "locked Node record-group-rename-handoff.mjs group-rename-review-1792303543587.json",
+      "exitCode": 0
+    },
+    {
+      "command": "locked pnpm docs:check",
+      "exitCode": 0,
+      "result": "All 37 task states, started handoffs and completed requirement evidence links verified"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "locked Node --check review-group-rename.mjs and record-group-rename-handoff.mjs",
+      "exitCode": 0
+    }
+  ],
+  "productChangesThisTurn": 0,
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false,
+  "taskStatus": "implemented_not_live_verified",
+  "stageGate": "engineering_passed_external_pending",
+  "otherProvidersAndProtocols": "deferred",
+  "committedOrPushed": false
+}

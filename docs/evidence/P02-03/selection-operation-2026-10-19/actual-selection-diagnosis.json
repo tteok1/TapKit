@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-10-19T14:42:14.352Z",
+  "sessionId": "01a15472-9232-77bb-9fb2-42fe05500c75",
+  "userMessageId": "01a1548e-dd97-754c-a7d1-0de5e640b382",
+  "assistantMessageId": "01a1548e-df27-7fc3-b719-99503add5d2c",
+  "runId": "01a1548e-dd97-723d-9111-b66e54132fee",
+  "sourceMessageId": "01a15472-9232-7bbb-a8ea-de42bd615146",
+  "sourceRevision": 1,
+  "range": {
+    "start": 27,
+    "end": 80
+  },
+  "selectedTextSHA256": "5216705ae113122a0461f922b5728d3508e736e29b3c73a3ec4152f591a72fe0",
+  "selectionMatchesRequestedEnglish": true,
+  "newUserIsTranslateAction": true,
+  "responseMatchesPreviousAssistant": true,
+  "responseSHA256": "661820efb1c74ecd77780d24bacb68173b3c8e9ae70addf258d67785999d559c",
+  "storedSelectionOrigin": null,
+  "run": {
+    "status": "completed",
+    "checkpoint_id": null
+  },
+  "providerAttemptCount": 1,
+  "backgroundUseCount": 5,
+  "promptVersions": ["chat-p04-2:source-data/1"],
+  "originalCounts": {
+    "sessions": 15,
+    "messages": 91,
+    "provider_accounts": 1,
+    "runs": 29,
+    "provider_attempts": 48,
+    "tool_calls": 2,
+    "usage_ledger": 48
+  },
+  "originalWritesByAgent": 0,
+  "modelRequestsByAgent": 0,
+  "privateBodiesOrKeysOrNativeExported": false
+}

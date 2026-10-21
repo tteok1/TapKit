@@ -993,26 +993,30 @@ export class HistoryService {
             shorten: '缩写',
             rewrite: '改写',
           };
-          return this.chat.dispatch({
-            ...r,
-            command: 'messages.send',
-            payload: {
-              sessionId: p.sessionId,
-              clientMessageId: r.requestId,
-              text: `请${names[p.action]}所引用的选中内容。`,
-              attachments: [
-                {
-                  kind: 'message',
-                  sessionId: p.sessionId,
-                  messageId: m.id,
-                  version: m.revision,
-                  range: { start: p.range.start, end: p.range.end },
-                },
-              ],
-              mode: 'chat',
-              ...(p.modelRef ? { modelRef: p.modelRef } : {}),
+          r.payload = p;
+          return this.chat.dispatch(
+            {
+              ...r,
+              command: 'messages.send',
+              payload: {
+                sessionId: p.sessionId,
+                clientMessageId: r.requestId,
+                text: `请${names[p.action]}所引用的选中内容。`,
+                attachments: [
+                  {
+                    kind: 'message',
+                    sessionId: p.sessionId,
+                    messageId: m.id,
+                    version: m.revision,
+                    range: { start: p.range.start, end: p.range.end },
+                  },
+                ],
+                mode: 'chat',
+                ...(p.modelRef ? { modelRef: p.modelRef } : {}),
+              },
             },
-          });
+            { selectionOperation: p.action, request: r },
+          );
         }
         case 'messages.saveNote': {
           if (this.temporary) throw new StorageError('PERMISSION_DENIED');

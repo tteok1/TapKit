@@ -1,0 +1,46 @@
+{
+  "task": "P02-03",
+  "dependency": "P00-03/P03-01",
+  "localDate": "2026-10-19",
+  "checkedAt": "2026-10-19T09:04:13.871Z",
+  "completedAt": "2026-10-19T09:10:12.895Z",
+  "command": "locked Node scripts/runtime-probe.mjs",
+  "exitCode": 1,
+  "signal": null,
+  "probeExitCode": 0,
+  "standardUser": false,
+  "capabilities": {
+    "nativeExecution": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "STANDARD_USER_VERIFICATION_REQUIRED"
+    },
+    "officeRender": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "STANDARD_USER_VERIFICATION_REQUIRED"
+    },
+    "terminal": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "STANDARD_USER_VERIFICATION_REQUIRED"
+    }
+  },
+  "missingCases": [],
+  "historicalReportsPreserved": [
+    {
+      "path": "docs/evidence/P00-03/runtime-probe.json",
+      "sha256": "d15b9df5a44b94ab07c287402773eb9c9c4a1444d0163c014bf382d2556913b5",
+      "restoredOriginalBytes": true
+    },
+    {
+      "path": "docs/evidence/P00-03/runtime-probe.log",
+      "sha256": "676025b58f127d2fb012010be80221ccc46d81e765ab2529df186a9425213eaf",
+      "restoredOriginalBytes": true
+    }
+  ],
+  "note": "Run the original unchanged probe; preserve historical tracked reports byte-for-byte; the generated local capability report stays at resources/runtime/capabilities.json. Never fabricate available state.",
+  "agentModelRequests": 0,
+  "businessDatabaseWrites": 0,
+  "credentialOrModelNativeReads": 0
+}

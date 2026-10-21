@@ -1,0 +1,77 @@
+{
+  "task": "P02-03",
+  "round": "G-trash-restore-lifecycle",
+  "localDate": "2026-10-18",
+  "checkedAt": "2026-10-18T01:35:07.246Z",
+  "status": "passed_live_scoped_trash_restore_lifecycle",
+  "review": "restore-review-1792287228504.json",
+  "humanConfirmation": "符合预期，都正常",
+  "targetSessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+  "currentRevision": 7,
+  "restored": true,
+  "messageHashesAndBranchPreserved": true,
+  "projection": [
+    {
+      "type": "message",
+      "n": 2
+    },
+    {
+      "type": "session",
+      "n": 1
+    }
+  ],
+  "newModelRequestsToolsAndSettlements": 0,
+  "limits": "Single synthetic copy with zero attachments/resources/memory-source refs. No permanent deletion, batch operation or nonzero dependency recovery acceptance. Only this G lifecycle is closed; task/stage remains externally pending.",
+  "next": {
+    "round": "H-group-create-and-move",
+    "status": "prepared_waiting_user_create_group_and_move_one_copy",
+    "baseline": "group-baseline-2026-10-18.json",
+    "groupName": "P02验收分组-1018",
+    "groupCreated": false,
+    "moved": false,
+    "renameOrDeletePerformed": false
+  },
+  "checks": [
+    {
+      "command": "locked Node inspect.mjs snapshot",
+      "exitCode": 0,
+      "report": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792286981654.json"
+    },
+    {
+      "command": "locked Node read-tool-trace.mjs",
+      "exitCode": 0,
+      "report": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792286982239.json"
+    },
+    {
+      "command": "locked Node review-restore.mjs snapshot-1792286981654.json tool-trace-review-1792286982239.json --prepare-group",
+      "exitCode": 0,
+      "result": "12 checks true; group baseline prepared without application mutation"
+    },
+    {
+      "command": "locked Node record-restore-handoff.mjs restore-review-1792287228504.json",
+      "exitCode": 0
+    },
+    {
+      "command": "locked pnpm docs:check",
+      "exitCode": 0,
+      "result": "All 37 task states, started handoffs and completed requirement evidence links verified"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "locked Node --check review-restore.mjs and record-restore-handoff.mjs",
+      "exitCode": 0
+    }
+  ],
+  "productChangesThisTurn": 0,
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false,
+  "taskStatus": "implemented_not_live_verified",
+  "stageGate": "engineering_passed_external_pending",
+  "otherProvidersAndProtocols": "deferred",
+  "committedOrPushed": false
+}

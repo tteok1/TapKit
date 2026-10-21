@@ -3,6 +3,13 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { root, nodeExe, lockedEnv } from './lib.mjs';
+import {
+  verificationScope,
+  readExecutionIdentity,
+  isStandardUser,
+  verificationScopeFailure,
+} from './execution-verification.mjs';
+const scope = verificationScope(process.argv.slice(2));
 
 // Independent P03 evidence. This probe never writes production capabilities.
 const requiredCases = [
@@ -46,14 +53,8 @@ const assertions = (tests?.testResults ?? []).flatMap((f) => f.assertionResults 
 const missingCases = requiredCases.filter(
   (title) => !assertions.some((a) => a.title === title && a.status === 'passed'),
 );
-const groups = spawnSync('whoami.exe', ['/groups', '/fo', 'csv', '/nh'], {
-  encoding: 'utf8',
-  windowsHide: true,
-});
-const standardUser =
-  groups.status === 0 &&
-  !groups.stdout.includes('S-1-5-32-544') &&
-  groups.stdout.includes('S-1-16-8192');
+const identity = readExecutionIdentity();
+const standardUser = isStandardUser(identity);
 let adapterSha256 = null;
 try {
   adapterSha256 = createHash('sha256')
@@ -64,14 +65,14 @@ try {
 }
 const passed =
   result.status === 0 &&
-  standardUser &&
+  verificationScopeFailure(scope, identity) === null &&
   adapterSha256 &&
   missingCases.length === 0 &&
   tests?.numTotalTests === requiredCases.length &&
   tests.numFailedTests === 0 &&
   tests.numPendingTests === 0;
 const report = {
-  schemaVersion: 1,
+  schemaVersion: scope === 'current-user' ? 2 : 1,
   task: 'P03-01',
   startedAt,
   endedAt: new Date().toISOString(),
@@ -79,6 +80,9 @@ const report = {
     'pnpm test:integration P03-01.native-parser --reporter=json --outputFile=test-results/P03-01-native-parser.json',
   exitCode: result.status,
   standardUser,
+  ...(scope === 'current-user'
+    ? { verification: { scope, identity }, standardUserAcceptance: 'not_verified_in_this_scope' }
+    : {}),
   adapterSha256,
   passed: !!passed,
   missingCases,

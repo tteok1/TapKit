@@ -1,0 +1,95 @@
+{
+  "task": "P02-02",
+  "checkedAt": "2026-10-17T09:33:42.721Z",
+  "caseId": "01a148e1-f1f9-7112-af33-833873fe91e9",
+  "opened": true,
+  "attempts": [
+    {
+      "attemptId": "01a1490a-b4c5-7d3b-9a37-31cb20a311e3",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 2,
+        "knownToolNames": [
+          "files_read",
+          "history_search"
+        ],
+        "otherToolCount": 0,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": null,
+        "knownToolNames": [],
+        "finishReasons": [],
+        "outcome": "error",
+        "frames": 0,
+        "deltaToolItems": 0,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "otherToolNameItems": 0,
+        "deliveredToolEnds": 0
+      },
+      "classification": "request_failed_or_incomplete"
+    },
+    {
+      "attemptId": "01a1490b-0803-7b29-8977-fbb151dc39d1",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 2,
+        "knownToolNames": [
+          "files_read",
+          "history_search"
+        ],
+        "otherToolCount": 0,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "knownToolNames": [],
+        "finishReasons": [
+          "stop"
+        ],
+        "outcome": "finished",
+        "frames": 4,
+        "deltaToolItems": 0,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 3,
+        "otherToolNameItems": 0,
+        "deliveredToolEnds": 0
+      },
+      "classification": "no_standard_tool_proposal_in_received_frames"
+    },
+    {
+      "attemptId": "01a14933-e5e0-7585-9c85-731dce788d4a",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 2,
+        "knownToolNames": [
+          "files_read",
+          "history_search"
+        ],
+        "otherToolCount": 0,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "knownToolNames": [],
+        "finishReasons": [
+          "stop"
+        ],
+        "outcome": "finished",
+        "frames": 4,
+        "deltaToolItems": 0,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 3,
+        "otherToolNameItems": 0,
+        "deliveredToolEnds": 0
+      },
+      "classification": "no_standard_tool_proposal_in_received_frames"
+    }
+  ],
+  "modelRequestsByReader": 0,
+  "secretOrMessageBodiesExported": false
+}

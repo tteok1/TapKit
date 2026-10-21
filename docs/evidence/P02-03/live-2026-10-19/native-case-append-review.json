@@ -1,0 +1,7 @@
+{
+  "path": "docs/evidence/P00-03/native-cases.jsonl",
+  "historicalCommittedPrefixPreserved": true,
+  "normalizedHistoricalSHA256": "115d7a0b925cb19f04cae0782adb3db589d429c8c95c5a6c67527d01363f65f2",
+  "newSyntheticLines": 39,
+  "note": "Original fixed probe appends synthetic native events; no prior event overwritten. No model-native protocol or account data read."
+}

@@ -1,0 +1,99 @@
+{
+  "task": "P02-03",
+  "round": "H-group-create-and-move",
+  "localDate": "2026-10-18",
+  "status": "prepared_waiting_user_create_group_and_move_one_copy",
+  "checkedAt": "2026-10-18T01:33:48.506Z",
+  "startedAfter": 1792287228506,
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "caseId": "01a149b9-04f4-7d9c-9487-44b0b62e3b25",
+  "profileId": "01a13376-d6a6-7ca5-90dd-a27bf8a7bf10",
+  "session": {
+    "id": "01a14a2b-364a-7034-986d-79c884ee51a3",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "revision": 7,
+    "titleManual": 1,
+    "titleSHA256": "a054b9ea5a0429d459302ced792c709a0e095afb2ba942e1d0d3689655ee9359",
+    "noteSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tagsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "archivedAt": null,
+    "deletedAt": null,
+    "titleMatchesExpected": 1
+  },
+  "messages": [
+    {
+      "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "contentSHA256": "26d08c0117a2160250ef6a4a7bbf58e3af422cbcb8f98713b5cffa68fa198b93"
+    },
+    {
+      "id": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "contentSHA256": "9b64af603d2349dd9f8e2b91ea598e7e57cdfcb85c05df982e23a6e90ae67bff"
+    }
+  ],
+  "branch": {
+    "id": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "headMessageId": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+    "revision": 1
+  },
+  "resourcePreflight": {
+    "linkedResources": 0,
+    "attachmentRefs": 0,
+    "memorySourceRefs": 0
+  },
+  "globalCounts": {
+    "runs": 25,
+    "attempts": 41,
+    "tools": 2,
+    "ledger": 41
+  },
+  "ledgerTotals": {
+    "entries": 41,
+    "tokens": 204413,
+    "actualTokens": 52958,
+    "estimatedTokens": 151455
+  },
+  "projection": [
+    {
+      "type": "message",
+      "n": 2
+    },
+    {
+      "type": "session",
+      "n": 1
+    }
+  ],
+  "titleQuery": "P02验收-分叉副本-1017",
+  "messageQuery": "P02E-1017R",
+  "groupName": "P02验收分组-1018",
+  "nameConflictCount": 0,
+  "sections": [],
+  "sidebarItem": [],
+  "otherSidebarItemCount": 0,
+  "otherSidebarItemsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "receiptSequenceBaseline": 376,
+  "sourceSessionBaseline": "docs/evidence/P02-03/live-2026-10-17/fork-baseline-2026-10-17.json",
+  "priorAcceptance": "restore-review-1792287228504.json",
+  "instructions": "Open 聊天; 新建分组 → name P02验收分组-1018 → 保存. For P02验收-分叉副本-1017 open ⋯/编辑, choose 分组 dropdown P02验收分组-1018 and 保存 once. Click the group, open the copy and confirm title/two messages. Leave the group in place and report; do not rename/delete group or send/regenerate/model calls yet.",
+  "expectedWritesByUserApplication": "One sidebar.create returns new group entityId; session edit/save may create one sessions.update revision7→8 with unchanged metadata hashes, then one sidebar.move targeting only this session and group. Session remains ordinary/unarchived/not deleted; messages/branch/ledger unchanged. Group creation/move/rename/delete not yet accepted.",
+  "nextCheckpointOnly": "First create and move; group rename/delete-preserves-content is a later checkpoint.",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false
+}

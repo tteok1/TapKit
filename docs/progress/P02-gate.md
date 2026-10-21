@@ -1,5 +1,7 @@
 # P02 阶段交付与验收记录
 
+2026-10-17 R13/P02-02限定智谱普通Chat/FlashX的A/B/C增量补验已分别记录，C实际只读网关/配对终答/结算闭环通过；强当前用户ID语义未达、旧无调用唯一诱因未定，其他渠道/协议继续暂缓，不提升全任务或gate。证据docs/evidence/P02-02/live-2026-10-15/round-c5-acceptance-2026-10-17.json。接续P02-03仅准备消息编辑/分支保留，尚未live通过。
+
 - 阶段：P02；执行会话：Codex本地开发；日期：2026-10-05（Asia/Shanghai）。
 - 目录/分支：D:/TapKit / codex/p02-01；基线HEAD f7e0156，P02-03实现提交69df004已推送并核对远程；[Git交付](../evidence/P02-03/git-delivery-2026-10-05.json)。
 - gate_status：engineering_passed_external_pending；本地工程链已通过，真实外部资源仍待验收。

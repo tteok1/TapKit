@@ -1,0 +1,132 @@
+{
+  "task": "P02-02",
+  "localDate": "2026-10-17",
+  "status": "diagnostic_production_open_ready_no_live_request_yet",
+  "decision": "docs/adr/0052-opt-in-zhipu-tool-boundary-trace.md",
+  "scope": "Only opt-in safe metadata for existing Zhipu Chat account; historical C/C2 raw request/response not reconstructed. Existing title-root repair retained.",
+  "c2Observation": "round-c2-observation-2026-10-17.json",
+  "diagnostic": {
+    "defaultOff": true,
+    "requiresMatchingProfileAndFreshUuidCase": true,
+    "caseId": "01a148d5-78ba-7c16-a063-4deeacafe15f",
+    "requestFields": "Known tool-name whitelist and counts, explicit/omitted tool choice, fetch invocation",
+    "responseFields": "HTTP status, parsed frame shape counts, known tool names, bounded finish enums, delivered tool_end count and fixed outcome",
+    "omitted": [
+      "URLs",
+      "headers/Key",
+      "account labels",
+      "messages",
+      "tool arguments/results",
+      "reasoning",
+      "raw errors",
+      "response IDs/call IDs",
+      "native state"
+    ],
+    "strictSchemaAtRecorderAndWriter": true,
+    "readScriptReconstructsOnlyWhitelistedFields": true,
+    "localOnly": true,
+    "maximumFileBytesBeforeAppend": 1048576,
+    "observerFailuresDoNotChangeRequests": true,
+    "noWireParametersChanged": true,
+    "noIpcOrDatabaseSchemaChanged": true,
+    "noAdapterNativeVersionChanged": true
+  },
+  "checks": [
+    {
+      "command": "locked pnpm test:unit tests/unit/P02-02.tool-trace.test.ts tests/unit/P01-02.api.test.ts --no-cache --fsModuleCache=false",
+      "exitCode": 0,
+      "passed": 67,
+      "evidence": "tool-trace-unit-2026-10-17.log"
+    },
+    {
+      "command": "locked pnpm test:integration tests/integration/P02-02.zhipu-tools.test.ts tests/integration/P01-02.zhipu.test.ts --no-cache --fsModuleCache=false",
+      "exitCode": 0,
+      "passed": 6,
+      "evidence": "tool-trace-integration-2026-10-17.log"
+    },
+    {
+      "command": "locked pnpm check",
+      "exitCode": 0,
+      "repositoryFiles": 441,
+      "evidence": "tool-trace-check-2026-10-17.log"
+    },
+    {
+      "command": "locked pnpm build:desktop",
+      "context": "current Windows user; user confirmed tray/terminal exit",
+      "exitCode": 0,
+      "evidence": "tool-trace-build-2026-10-17.log"
+    },
+    {
+      "command": "locked node inspect-ui-read.mjs",
+      "exitCode": 0,
+      "evidence": "ui-read-1792223241245.json",
+      "result": "Original profile, ready account1, B messages10 rendered, no UI errors; normal close."
+    },
+    {
+      "command": "run-app.ps1 -CheckOnly",
+      "context": "sandbox account",
+      "exitCode": 1,
+      "reason": "Git rejected repository ownership for the sandbox account. No global safe.directory or ACL changes were made."
+    },
+    {
+      "command": "run-app.ps1 -CheckOnly",
+      "context": "current Windows user, original C:/Users/20105 cwd",
+      "exitCode": 0,
+      "evidence": "check-1792223294896.json"
+    },
+    {
+      "command": "locked node --check prepare-tool-trace.mjs/read-tool-trace.mjs; PowerShell Parser.ParseFile run-app.ps1",
+      "exitCode": 0
+    },
+    {
+      "command": "locked node read-tool-trace.mjs",
+      "exitCode": 0,
+      "evidence": "tool-trace-review-1792223332153.json",
+      "result": "opened receipt matches original profile and fresh case; attempts empty, no automatic model request."
+    }
+  ],
+  "production": {
+    "sourceReview": "reviewed-source-2026-10-17.json",
+    "buildManifest": "verified-build-2026-10-17.json",
+    "reviewedProductFiles": 7,
+    "pinnedBuildArtifacts": 619,
+    "hasFixture": false,
+    "launcherPreflight": "check-1792223311628.json",
+    "caseManifest": "tool-trace-cases/01a148d5-78ba-7c16-a063-4deeacafe15f.json",
+    "processState": "Interactive production app is open; launcher waits for normal exit, not claimed exit0 yet."
+  },
+  "postLaunch": {
+    "snapshot": "snapshot-1792223332134.json",
+    "newRuns": 9,
+    "newTools": 0,
+    "workload": {
+      "activeRuns": 0,
+      "pendingInputs": 0,
+      "activeTitles": 0,
+      "activeMemoryJobs": 0,
+      "reservedBudgets": 0,
+      "unsettledAttempts": 0
+    },
+    "priorLedgerUnchanged": true,
+    "duplicateSettlements": []
+  },
+  "agentModelRequests": 0,
+  "credentialBodiesRead": 0,
+  "nativeContentsRead": 0,
+  "realMessageBodiesRead": 0,
+  "manualBusinessDatabaseWrites": 0,
+  "normalApplicationWrites": "Normal startup/navigation may update maintenance/layout/drafts/read state. Trace adds only the safe case file.",
+  "realAcceptance": "C and C2 remain not accepted. C3 is one user-operated request with actual boundary metadata; no more prompt-only retries.",
+  "otherScope": "A/B acceptance, other providers/protocol deferral and stage gates remain unchanged; no commit/push.",
+  "finalDocumentationChecks": {
+    "docsCheck": {
+      "command": "locked node scripts/docs-check.mjs",
+      "exitCode": 0,
+      "tasks": 37
+    },
+    "diffCheck": {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  }
+}

@@ -24,6 +24,8 @@ import {
 } from './http';
 import { validArguments } from './arguments';
 import { isZhipuChat, isZhipuResponses } from './zhipu';
+import { zhipuToolName, zhipuToolNames, zhipuToolMessages } from './zhipu-tools';
+import { ZhipuToolTraceRecorder, type ZhipuToolTraceSink } from './tool-trace';
 
 export const API_ADAPTER_VERSION = 'tapkit-api/2';
 type Wire = Record<string, any>; // Provider JSON remains private and never enters Renderer.
@@ -153,6 +155,7 @@ export class ApiKeyAdapter implements ProviderAdapter {
     private readonly readKey: () => Promise<string | undefined>,
     private readonly native: NativeStateStore,
     private readonly fetcher: typeof fetch = secureApiFetch,
+    private readonly toolTrace?: ZhipuToolTraceSink,
   ) {
     this.config = ApiConfigSchema.parse(config);
     this.id = this.config.providerId;
@@ -208,6 +211,10 @@ export class ApiKeyAdapter implements ProviderAdapter {
     let key: string | undefined,
       partial = false;
     let responseDiagnostic: Pick<ProviderError, 'httpStatus' | 'responseType'> = {};
+    const trace =
+      this.toolTrace && isZhipuChat(this.config)
+        ? new ZhipuToolTraceRecorder(input.attemptId, this.toolTrace)
+        : undefined;
     try {
       combined.throwIfAborted();
       if (input.accountId !== this.accountId || input.model.providerId !== this.id)
@@ -221,6 +228,7 @@ export class ApiKeyAdapter implements ProviderAdapter {
       )
         throw new ApiFailure({ code: 'VALIDATION_ERROR', retryable: false });
       validateToolPairing(input.messages);
+      const zhipuNames = isZhipuChat(this.config) ? zhipuToolNames(input.tools) : undefined;
       key = await this.readKey();
       if (!key) throw new ApiFailure({ code: 'AUTH_REQUIRED', retryable: false });
       const format = this.config.apiFormat;
@@ -260,6 +268,7 @@ export class ApiKeyAdapter implements ProviderAdapter {
             ? { ...message, type: 'message' }
             : message,
         );
+      if (zhipuNames) messages = zhipuToolMessages(messages);
       const system = input.systemModules.map((module) => module.text).join('\n\n');
       const body: Wire = { model: this.config.modelId, stream: true };
       if (format === 'anthropic-messages')
@@ -302,7 +311,12 @@ export class ApiKeyAdapter implements ProviderAdapter {
             ? { max_completion_tokens: input.outputLimit }
             : { max_tokens: input.outputLimit }),
           ...(input.tools.length
-            ? { tools: input.tools.map((tool) => ({ type: 'function', function: tool })) }
+            ? {
+                tools: input.tools.map((tool) => ({
+                  type: 'function',
+                  function: zhipuNames ? { ...tool, name: zhipuToolName(tool.name) } : tool,
+                })),
+              }
             : {}),
         });
       if (format === 'openai-chat' && this.id === 'deepseek')
@@ -357,6 +371,7 @@ export class ApiKeyAdapter implements ProviderAdapter {
         },
       });
       try {
+        trace?.prepared(prepared);
         response = await this.fetcher(url, {
           method: 'POST',
           headers,
@@ -375,6 +390,7 @@ export class ApiKeyAdapter implements ProviderAdapter {
         httpStatus: response.status,
         responseType: classifyResponseType(response.headers.get('content-type')),
       };
+      trace?.http(response.status);
       observe?.(responseDiagnostic);
       if (!response.ok) {
         let code: string | undefined;
@@ -452,6 +468,7 @@ export class ApiKeyAdapter implements ProviderAdapter {
         }
         if (!raw || typeof raw !== 'object') continue;
         const event = raw as Wire;
+        trace?.frame(event);
         if (event.type === 'error' || event.error || event.type === 'response.failed')
           throw new ApiFailure({
             ...apiHttpFailure(
@@ -474,7 +491,18 @@ export class ApiKeyAdapter implements ProviderAdapter {
           if (typeof change?.content === 'string') delta = change.content;
           if (typeof change?.reasoning_content === 'string') reasoning += change.reasoning_content;
           for (const item of change?.tool_calls ?? []) {
-            const call = getCall(String(item.index), item.id, item.function?.name);
+            const wireName = item.function?.name;
+            if (wireName && zhipuNames && !zhipuNames.has(wireName))
+              throw new ApiFailure({
+                code: 'STREAM_INTERRUPTED',
+                retryable: false,
+                diagnosticCode: 'invalid_tool_arguments',
+              });
+            const call = getCall(
+              String(item.index),
+              item.id,
+              wireName && zhipuNames ? zhipuNames.get(wireName) : wireName,
+            );
             const part = item.function?.arguments ?? '';
             call.arguments += part;
             yield { type: 'tool_delta', callId: call.id, name: call.name, argumentsDelta: part };
@@ -660,6 +688,7 @@ export class ApiKeyAdapter implements ProviderAdapter {
         ...(validCalls.length ? { calls: validCalls } : {}),
       };
       let wireAssistant = convert([assistant], format);
+      if (zhipuNames) wireAssistant = zhipuToolMessages(wireAssistant);
       if (format === 'openai-chat' && this.id === 'deepseek' && reasoning)
         wireAssistant[0]!.reasoning_content = reasoning;
       if (format === 'anthropic-messages' && reason !== 'length') {
@@ -677,11 +706,15 @@ export class ApiKeyAdapter implements ProviderAdapter {
         wire: [...messages, ...wireAssistant],
       });
       combined.throwIfAborted();
-      for (const call of validCalls)
+      for (const call of validCalls) {
+        trace?.delivered();
         yield { type: 'tool_end', callId: call.id, name: call.name, arguments: call.arguments };
+      }
       yield { type: 'usage', usage: usage(rawUsage, format) };
+      trace?.finish();
       yield { type: 'finish', reason, nativeStateRef: ref };
     } catch (error) {
+      trace?.fail(combined.aborted);
       yield {
         type: 'error',
         error: {
@@ -693,6 +726,7 @@ export class ApiKeyAdapter implements ProviderAdapter {
         partial,
       };
     } finally {
+      trace?.publish();
       controller.abort();
       key = undefined;
     }

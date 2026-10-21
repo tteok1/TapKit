@@ -1,0 +1,137 @@
+{
+  "task": "P02-02",
+  "round": "C5",
+  "checkedAt": "2026-10-17T10:31:56.792Z",
+  "status": "prompt_ready_one_user_send",
+  "sessionId": "01a14969-e3c4-77ee-b768-6fc59b1451d6",
+  "prompt": "Retrieve this utterance's identifier through the supplied readonly lookup function. Locate the exact literal P02C5-5e1a8917-40c8-4e13-9343-94663d7bf074 solely within conversation 01a14969-e3c4-77ee-b768-6fc59b1451d6, requesting one match. After receiving the function result, output the first identifier. Perform exactly one lookup.",
+  "latest": {
+    "mode": "chat",
+    "projectId": null,
+    "noContextSeed": 1,
+    "messages": 0
+  },
+  "matches": [
+    {
+      "key": "retrieve",
+      "matches": 0
+    },
+    {
+      "key": "this",
+      "matches": 0
+    },
+    {
+      "key": "utterance",
+      "matches": 0
+    },
+    {
+      "key": "identifier",
+      "matches": 0
+    },
+    {
+      "key": "through",
+      "matches": 0
+    },
+    {
+      "key": "the",
+      "matches": 0
+    },
+    {
+      "key": "supplied",
+      "matches": 0
+    },
+    {
+      "key": "readonly",
+      "matches": 0
+    },
+    {
+      "key": "lookup",
+      "matches": 0
+    },
+    {
+      "key": "function",
+      "matches": 0
+    },
+    {
+      "key": "locate",
+      "matches": 0
+    },
+    {
+      "key": "exact",
+      "matches": 0
+    },
+    {
+      "key": "literal",
+      "matches": 0
+    },
+    {
+      "key": "p02c5-5e1a8917-40c8-4e13-9343-94663d7bf074",
+      "matches": 0
+    },
+    {
+      "key": "solely",
+      "matches": 0
+    },
+    {
+      "key": "within",
+      "matches": 0
+    },
+    {
+      "key": "conversation",
+      "matches": 0
+    },
+    {
+      "key": "01a14969-e3c4-77ee-b768-6fc59b1451d6",
+      "matches": 0
+    },
+    {
+      "key": "requesting",
+      "matches": 0
+    },
+    {
+      "key": "one",
+      "matches": 0
+    },
+    {
+      "key": "match",
+      "matches": 0
+    },
+    {
+      "key": "after",
+      "matches": 0
+    },
+    {
+      "key": "receiving",
+      "matches": 0
+    },
+    {
+      "key": "result",
+      "matches": 0
+    },
+    {
+      "key": "output",
+      "matches": 0
+    },
+    {
+      "key": "first",
+      "matches": 0
+    },
+    {
+      "key": "perform",
+      "matches": 0
+    },
+    {
+      "key": "exactly",
+      "matches": 0
+    }
+  ],
+  "activeMemories": 0,
+  "settings": {
+    "historyEnabled": 1,
+    "instructionLength": 0
+  },
+  "limitation": "Fresh conversation plus distinct synthetic query/English phrasing is a bounded context-isolation control, not a single-variable proof of the original cause. Global automatic background stays enabled; zero keyword matches prevents old-message inclusion for this prompt at this baseline.",
+  "messageBodiesExported": false,
+  "databaseWrites": 0,
+  "agentModelRequests": 0
+}

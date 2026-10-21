@@ -1,0 +1,54 @@
+{
+  "task": "P02-03",
+  "purpose": "One authorized retry of the already saved synthetic attachment through production Host/Core APIs",
+  "startedAt": "2026-10-19T10:09:22.503Z",
+  "dataDirectoryMatches": true,
+  "nativeCapabilities": {
+    "nativeExecution": {
+      "status": "available"
+    },
+    "officeRender": {
+      "status": "available"
+    },
+    "terminal": {
+      "status": "available"
+    }
+  },
+  "before": {
+    "fileId": "01a15360-64af-7c6c-a4db-eecb96a56a90",
+    "name": "synthetic-attachment-1019.txt",
+    "currentVersionId": "01a15360-64b0-7d54-b3c6-1b88974c3987",
+    "status": "failed",
+    "revision": 8,
+    "versionId": "01a15360-64b0-7d54-b3c6-1b88974c3987",
+    "sha256": "fad042541edee25d5f4664dd954ecc410b87bcaf43a3be43d4a19886750155cf",
+    "sizeBytes": 154,
+    "parseStatus": "failed",
+    "parserVersion": null,
+    "errorCode": "SANDBOX_UNAVAILABLE",
+    "errorReason": "SANDBOX_UNAVAILABLE"
+  },
+  "after": {
+    "fileId": "01a15360-64af-7c6c-a4db-eecb96a56a90",
+    "name": "synthetic-attachment-1019.txt",
+    "currentVersionId": "01a15360-64b0-7d54-b3c6-1b88974c3987",
+    "status": "ready",
+    "revision": 10,
+    "versionId": "01a15360-64b0-7d54-b3c6-1b88974c3987",
+    "sha256": "fad042541edee25d5f4664dd954ecc410b87bcaf43a3be43d4a19886750155cf",
+    "sizeBytes": 154,
+    "parseStatus": "ready",
+    "parserVersion": "p03-2",
+    "errorCode": null,
+    "errorReason": null
+  },
+  "retryRequestId": "e8108b77-7e00-7c4b-814c-8ac849d96dc2",
+  "retryCount": 1,
+  "modelRequests": 0,
+  "manualSqlWrites": 0,
+  "accountOrKeyConfigurationChanges": 0,
+  "screenshotsOrMessageBodiesExported": false,
+  "failure": null,
+  "appClosed": true,
+  "endedAt": "2026-10-19T10:09:36.683Z"
+}

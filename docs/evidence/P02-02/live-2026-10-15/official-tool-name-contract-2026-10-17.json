@@ -1,0 +1,7 @@
+{
+  "source": "https://docs.bigmodel.cn/api-reference/模型-api/对话补全",
+  "markdownSource": "https://docs.bigmodel.cn/api-reference/模型-api/对话补全.md",
+  "checkedAt": "2026-10-17T08:00:52.5603087Z",
+  "excerpt": "    FunctionObject:\n      type: object\n      properties:\n        name:\n          type: string\n          description: 要调用的函数名称。必须是 `a-z、A-Z、0-9`，或包含下划线和破折号，最大长度为 `64`。\n          minLength: 1\n          maxLength: 64\n          pattern: ^[a-zA-Z0-9_-]+$\n        description:\n          type: string\n          description: 函数功能的描述，供模型选择何时以及如何调用函数。\n        parameters:\n          $ref: '#/components/schemas/FunctionParameters'\n      required:",
+  "conclusion": "FunctionObject.name excludes dots; minimum1 maximum64; only letters/digits/underscore/dash."
+}

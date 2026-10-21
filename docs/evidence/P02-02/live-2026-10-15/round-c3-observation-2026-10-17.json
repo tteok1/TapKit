@@ -1,0 +1,84 @@
+{
+  "task": "P02-02",
+  "round": "C3",
+  "localDate": "2026-10-17",
+  "status": "not_accepted_no_standard_upstream_tool_proposal",
+  "userReply": "未执行工具",
+  "caseId": "01a148d5-78ba-7c16-a063-4deeacafe15f",
+  "traceReview": "tool-trace-review-1792223637212.json",
+  "snapshot": "snapshot-1792223637727.json",
+  "run": {
+    "id": "01a148d8-f09e-70ac-b585-d31b07f723a7",
+    "sessionId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+    "rootRunId": "01a148d8-f09e-70ac-b585-d31b07f723a7",
+    "taskVersion": 1,
+    "status": "completed",
+    "statusReason": null,
+    "createdAt": 1792223539358,
+    "startedAt": 1792223539362,
+    "endedAt": 1792223542455,
+    "calls": 1,
+    "tools": 0
+  },
+  "attempt": {
+    "id": "01a148d8-f1b8-7313-b506-4d1778969ebe",
+    "runId": "01a148d8-f09e-70ac-b585-d31b07f723a7",
+    "rootRunId": "01a148d8-f09e-70ac-b585-d31b07f723a7",
+    "logicalCallId": "01a148d8-f0d0-7255-8652-cb4d1561ddb2",
+    "attemptNo": 1,
+    "status": "completed",
+    "errorCode": null,
+    "modelRef": "glm-4.7-flashx",
+    "createdAt": 1792223539654,
+    "source": "actual",
+    "inputTokens": 4764,
+    "outputTokens": 4,
+    "chargedTokens": 4768
+  },
+  "protocol": {
+    "attemptId": "01a148d8-f1b8-7313-b506-4d1778969ebe",
+    "request": {
+      "fetchInvoked": true,
+      "toolCount": 2,
+      "knownToolNames": [
+        "files.read",
+        "history.search"
+      ],
+      "otherToolCount": 0,
+      "toolChoice": "omitted"
+    },
+    "response": {
+      "httpStatus": 200,
+      "knownToolNames": [],
+      "finishReasons": [
+        "stop"
+      ],
+      "outcome": "finished",
+      "frames": 4,
+      "deltaToolItems": 0,
+      "messageToolItems": 0,
+      "legacyFunctionFrames": 0,
+      "textFrames": 3,
+      "otherToolNameItems": 0,
+      "deliveredToolEnds": 0
+    },
+    "classification": "no_standard_tool_proposal_in_received_frames"
+  },
+  "applicationToolRows": 0,
+  "workload": {
+    "activeRuns": 0,
+    "pendingInputs": 0,
+    "activeTitles": 0,
+    "activeMemoryJobs": 0,
+    "reservedBudgets": 0,
+    "unsettledAttempts": 0
+  },
+  "priorLedgerUnchanged": true,
+  "duplicateSettlements": [],
+  "finding": "Serialized request supplied both canonical dotted names. HTTP200 parsed SSE had only text/stop and zero tool fields or delivered calls. No hidden executed call or discarded standard tool_calls evidenced.",
+  "contractDefect": "Official FunctionObject.name pattern excludes dots; local request used files.read/history.search. ADR0053 fixes the verified contract violation; it is not yet proven to be the sole cause of the upstream no-call choice.",
+  "next": "Use locally verified alias repair for one bounded user-operated attempt; no further unchanged-prompt retries on the old build. A/B unchanged, other live channels deferred, task/gate unchanged.",
+  "agentModelRequests": 0,
+  "keyOrNativeBodiesRead": 0,
+  "messageBodiesRead": 0
+}

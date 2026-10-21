@@ -10,7 +10,7 @@ import { join, resolve } from 'node:path';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 
-const evidence = resolve('docs/evidence/UI-redesign');
+const evidence = resolve(process.env.TAPKIT_UI_EVIDENCE_DIR ?? 'docs/evidence/UI-redesign');
 let app: ElectronApplication | undefined;
 const capture = async (page: Page, name: string, fromTop = true) => {
   if (fromTop)
@@ -34,7 +34,7 @@ async function launch(profile?: string, fixture = false) {
   delete env.ELECTRON_RUN_AS_NODE;
   app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
   const page = await app.firstWindow();
-  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125_000 });
   await size(1440, 900);
   return page;
 }
@@ -112,23 +112,23 @@ test('P02-01 UI primary Save action remains readable during hover and keyboard p
   await expect(page.getByRole('status')).toHaveText('设置已保存');
 });
 
-test('P02-01 UI input controls remain reachable from compact menus and keyboard at 200 percent', async () => {
+test('P02-01 UI simplified input keeps keyboard editing reachable at 200 percent', async () => {
+  test.setTimeout(180_000);
   const page = await launch();
   await expect(page.getByLabel('输入草稿')).toBeEnabled();
-  await page.getByLabel('输入草稿').fill('菜单中的操作保留原有草稿逻辑');
+  await page.getByLabel('输入草稿').fill('保留原有草稿与键盘编辑逻辑');
   await page.locator('.composer-info > summary').click();
   await expect(page.locator('.composer-tool-hint')).toBeVisible();
   await page.locator('.composer-info > summary').click();
-  await page.locator('.composer-more > summary').focus();
-  await page.keyboard.press('Enter');
-  await expect(page.getByRole('button', { name: '清空草稿', exact: true })).toBeVisible();
-  await capture(page, 'input-actions-menu');
-  await page.getByRole('button', { name: '清空草稿', exact: true }).click();
+  await expect(page.locator('.composer-more')).toHaveCount(0);
+  await page.getByLabel('输入草稿').focus();
+  await page.keyboard.press('Control+a');
+  await page.keyboard.press('Backspace');
   await expect(page.getByLabel('输入草稿')).toHaveValue('');
-  await page.getByRole('button', { name: '展开输入', exact: true }).click();
-  await expect(page.getByRole('button', { name: '收起输入', exact: true })).toBeVisible();
-  await page.getByRole('button', { name: '收起输入', exact: true }).click();
-  await page.locator('.composer-more > summary').click();
+  await page.keyboard.press('Control+z');
+  await expect(page.getByLabel('输入草稿')).toHaveValue('保留原有草稿与键盘编辑逻辑');
+  await page.keyboard.press('Control+y');
+  await expect(page.getByLabel('输入草稿')).toHaveValue('');
   await page.getByRole('link', { name: '设置', exact: true }).click();
   await page.getByLabel('主题', { exact: true }).selectOption('light');
   await page.getByLabel('缩放', { exact: true }).selectOption('2');

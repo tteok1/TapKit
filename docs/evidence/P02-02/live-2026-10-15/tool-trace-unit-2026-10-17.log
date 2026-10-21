@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project unit "tests/unit/P02-02.tool-trace.test.ts" "tests/unit/P01-02.api.test.ts" "--no-cache" "--fsModuleCache=false"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  2 passed (2)
+      Tests  67 passed (67)
+   Start at  15:43:09
+   Duration  1.12s (import 57%, transform 34%, tests 7%, setup 1%)
+

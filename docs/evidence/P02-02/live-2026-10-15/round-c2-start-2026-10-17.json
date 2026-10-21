@@ -1,0 +1,29 @@
+{
+  "task": "P02-02",
+  "round": "C2",
+  "localDate": "2026-10-17",
+  "status": "not_accepted_no_application_tool_call",
+  "baseline": "check-1792222336875.json",
+  "startedAfter": 1792222336875,
+  "targetSessionId": "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+  "tool": "history.search",
+  "arguments": {
+    "query": "补充已生效",
+    "limit": 1,
+    "sessionIds": ["01a1442b-3b71-78b6-b3a3-f47c8df370cf"]
+  },
+  "prompt": "P02T-1017：请先实际调用一次 history.search，参数为 {\"query\":\"补充已生效\",\"limit\":1,\"sessionIds\":[\"01a1442b-3b71-78b6-b3a3-f47c8df370cf\"]}。收到工具结果后，仅返回第一条 messageRef 的 messageId；没有匹配则回复“无匹配”。如果未实际调用工具，只回复“未执行工具”，不要猜测或沿用上次的“找到3条”。不调用其他工具。",
+  "localProof": "tool-boundary-2026-10-17.json",
+  "productionBuild": "verified-build-2026-10-16.json",
+  "productCodeChangedThisTurn": false,
+  "noRestartRequired": true,
+  "expected": [
+    "A complete same-session history.search call is persisted with side_effect=none and succeeded status.",
+    "Tool result is paired by callId and returns at most one authorized messageRef.",
+    "Following model answer matches that actual messageId or actual empty-result status.",
+    "No pending tool, duplicate settlement or reservation remains."
+  ],
+  "sendOnceStopOnFailure": true,
+  "automaticLiveRequests": 0,
+  "observation": "round-c2-observation-2026-10-17.json"
+}

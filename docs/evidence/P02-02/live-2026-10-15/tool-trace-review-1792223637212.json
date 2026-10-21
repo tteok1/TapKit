@@ -1,0 +1,39 @@
+{
+  "task": "P02-02",
+  "checkedAt": "2026-10-17T07:53:57.211Z",
+  "caseId": "01a148d5-78ba-7c16-a063-4deeacafe15f",
+  "opened": true,
+  "attempts": [
+    {
+      "attemptId": "01a148d8-f1b8-7313-b506-4d1778969ebe",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 2,
+        "knownToolNames": [
+          "files.read",
+          "history.search"
+        ],
+        "otherToolCount": 0,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "knownToolNames": [],
+        "finishReasons": [
+          "stop"
+        ],
+        "outcome": "finished",
+        "frames": 4,
+        "deltaToolItems": 0,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 3,
+        "otherToolNameItems": 0,
+        "deliveredToolEnds": 0
+      },
+      "classification": "no_standard_tool_proposal_in_received_frames"
+    }
+  ],
+  "modelRequestsByReader": 0,
+  "secretOrMessageBodiesExported": false
+}

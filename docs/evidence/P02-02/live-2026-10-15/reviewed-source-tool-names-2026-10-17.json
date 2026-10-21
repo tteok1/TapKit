@@ -1,0 +1,56 @@
+{
+  "task": "P02-02",
+  "localDate": "2026-10-17",
+  "sourceCommit": "3178a8ba224a3bc55432f80ea799da848094bd45",
+  "productChanges": "M packages/core/src/chat-service.ts\n M packages/core/src/index.ts\n M packages/core/src/provider-service.ts\n M packages/providers/src/api/adapter.ts\n M packages/providers/src/index.ts\n?? packages/core/src/tool-trace.ts\n?? packages/providers/src/api/tool-trace.ts\n?? packages/providers/src/api/zhipu-tools.ts",
+  "sourcePath": "packages/core/src/chat-service.ts",
+  "sourceSHA256": "956a84821fd3d7082fae5830818308f07e89c9d9c341ccc830d85ac83bc062cd",
+  "sources": [
+    {
+      "path": "packages/core/src/chat-service.ts",
+      "sha256": "956a84821fd3d7082fae5830818308f07e89c9d9c341ccc830d85ac83bc062cd"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "4469b03a78602adf7a75af45a81cc0cd2a93fecedf614aae04874ca2bd0e8200"
+    },
+    {
+      "path": "packages/core/src/provider-service.ts",
+      "sha256": "0e53a3dca2230649204b3f433e47b1d4d865237e83eec63f9a8ef17449d0e3bc"
+    },
+    {
+      "path": "packages/providers/src/api/adapter.ts",
+      "sha256": "7c508882d00331602140b9c914d15960ee0e1096de1232828372eb19f4d16fe3"
+    },
+    {
+      "path": "packages/providers/src/index.ts",
+      "sha256": "e3d13a26c24fa73e88939c5c8dfe67caa9d73580ba5375ce2794fb3e1ca8ae8f"
+    },
+    {
+      "path": "packages/core/src/tool-trace.ts",
+      "sha256": "5e1f4da2d01299cb71e529d142bb26850b818f00d181c300c4d1be8943d1b58f"
+    },
+    {
+      "path": "packages/providers/src/api/tool-trace.ts",
+      "sha256": "70ff99d737743b351a4870a28695214afd47e4d3aeb29a5e2bfe9285871d51f4"
+    },
+    {
+      "path": "packages/providers/src/api/zhipu-tools.ts",
+      "sha256": "7af0f1a3a5ffa5ef2a79f24d386a9fcf614ee2a507ffc3a6db12b07926d72b29"
+    }
+  ],
+  "coreBuildSHA256": "6bb9cd2f33a97753e6d813c3114f742ef31e71cb62c680c540054b7ec81d9fe1",
+  "mainBuildSHA256": "47c48ff7b47d65304f0df667482d29d11b8fba46a38300e119d34815d0e81ea1",
+  "reviewedScope": "Existing title repair and opt-in trace plus ADR0053 exact Zhipu Chat tool aliases; canonical permissions/native schema remain compatible. No actual provider request by agent.",
+  "validation": "tool-name-fix-2026-10-17.json",
+  "uiEvidence": "ui-read-1792224049335.json",
+  "tests": {
+    "unit": 76,
+    "integration": 6,
+    "checkFiles": 443,
+    "checkExitCode": 0,
+    "buildDesktopExitCode": 0
+  },
+  "productionCoreHasFixture": false,
+  "checkedAt": "2026-10-17T08:01:31.830Z"
+}

@@ -1,0 +1,221 @@
+{
+  "task": "P02-03",
+  "round": "C-fork-session",
+  "checkedAt": "2026-10-17T14:11:20.700Z",
+  "status": "passed_live_scoped_selected_message_fork",
+  "checks": {
+    "oneForkReceiptAndNewSession": true,
+    "copySessionMetadata": true,
+    "independentMainBranch": true,
+    "exactSelectedAncestryCopied": true,
+    "onlyExpectedSuccessfulPromptAndAnswer": true,
+    "originalSessionPreserved": true,
+    "originalMessagesAndBranchesPreserved": true,
+    "originalLedgerPreserved": true,
+    "failureIsPreservedSiblingOutsideCopyPath": true,
+    "noNewExecutionOrSettlement": true,
+    "noNewTraceAttempts": true,
+    "idleNoUnsettledOrDuplicates": true
+  },
+  "source": {
+    "id": "01a14969-e3c4-77ee-b768-6fc59b1451d6",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+    "revision": 13,
+    "titleSHA256": "bf2da8762f6105a4e8c0e684053707e894f53ce0b3f3e2b920dce92f7a60daa1",
+    "titleManual": 0
+  },
+  "copy": {
+    "id": "01a14a2b-364a-7034-986d-79c884ee51a3",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "revision": 2,
+    "titleManual": 1,
+    "titleMatchesCopy": 1,
+    "noteMatches": 1,
+    "tagsMatch": 1
+  },
+  "sourceBranches": [
+    {
+      "id": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "parentId": null,
+      "forkMessageId": null,
+      "candidateFor": null,
+      "headMessageId": "01a1498f-0dde-7e27-b7c3-403a7e7c3216",
+      "revision": 6
+    },
+    {
+      "id": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "parentId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "forkMessageId": "01a1498e-a6d7-79cc-9c74-7994ef8dbf6f",
+      "candidateFor": null,
+      "headMessageId": "01a149c6-7bec-7200-856b-14ef4488e230",
+      "revision": 3
+    },
+    {
+      "id": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+      "parentId": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "forkMessageId": "01a149c6-7bec-7200-856b-14ef4488e230",
+      "candidateFor": "01a149c6-7bec-7200-856b-14ef4488e230",
+      "headMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "revision": 3
+    }
+  ],
+  "copiedBranches": [
+    {
+      "id": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": null,
+      "forkMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "candidateFor": null,
+      "headMessageId": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+      "revision": 1
+    }
+  ],
+  "copiedMessages": [
+    {
+      "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "sourceMessageId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "contentSHA256": "26d08c0117a2160250ef6a4a7bbf58e3af422cbcb8f98713b5cffa68fa198b93",
+      "clientMessageId": null,
+      "attemptId": null,
+      "errorCode": null
+    },
+    {
+      "id": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "sourceMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "contentSHA256": "9b64af603d2349dd9f8e2b91ea598e7e57cdfcb85c05df982e23a6e90ae67bff",
+      "clientMessageId": null,
+      "attemptId": null,
+      "errorCode": null
+    }
+  ],
+  "mapping": [
+    {
+      "originalMessageId": "01a14a20-e0b2-7d7b-92f3-761f9f7f7f37",
+      "expectedProvenance": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "copiedMessageId": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "matches": true
+    },
+    {
+      "originalMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "expectedProvenance": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "copiedMessageId": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+      "matches": true
+    }
+  ],
+  "oldMessages": [
+    {
+      "id": "01a1498e-a6d7-79cc-9c74-7994ef8dbf6f",
+      "preserved": true
+    },
+    {
+      "id": "01a1498e-a864-7434-a9dc-fa25b6801d25",
+      "preserved": true
+    },
+    {
+      "id": "01a1498e-fba9-76ef-a5d7-3fdc67284d94",
+      "preserved": true
+    },
+    {
+      "id": "01a1498f-0dc1-777c-bc8e-27c19cd5762d",
+      "preserved": true
+    },
+    {
+      "id": "01a1498f-0dde-7e27-b7c3-403a7e7c3216",
+      "preserved": true
+    },
+    {
+      "id": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "preserved": true
+    },
+    {
+      "id": "01a149c6-7bec-7200-856b-14ef4488e230",
+      "preserved": true
+    },
+    {
+      "id": "01a14a20-e0b2-7d7b-92f3-761f9f7f7f37",
+      "preserved": true
+    },
+    {
+      "id": "01a14a20-e13f-7073-9f69-d6d141575355",
+      "preserved": true
+    },
+    {
+      "id": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "preserved": true
+    }
+  ],
+  "oldBranches": [
+    {
+      "id": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "preserved": true
+    },
+    {
+      "id": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "preserved": true
+    },
+    {
+      "id": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+      "preserved": true
+    }
+  ],
+  "failureExplanation": [
+    {
+      "id": "01a14a20-e13f-7073-9f69-d6d141575355",
+      "parentId": "01a14a20-e0b2-7d7b-92f3-761f9f7f7f37",
+      "status": "interrupted",
+      "attemptId": "01a14a20-e132-7787-b8ed-e2a2b4bde639",
+      "errorCode": "NETWORK_ERROR",
+      "diagnosticCode": "response_headers_timeout",
+      "generatedTextLength": 0,
+      "attemptStatus": "failed",
+      "attemptError": "NETWORK_ERROR",
+      "source": "estimated",
+      "chargedTokens": 14335,
+      "samePromptParentAsSelected": true,
+      "isAncestorOfSelected": false,
+      "presentInCopy": false,
+      "preservedInOriginal": true
+    }
+  ],
+  "globalCounts": {
+    "runs": 25,
+    "attempts": 41,
+    "tools": 2,
+    "ledger": 41
+  },
+  "receipts": [
+    {
+      "sequence": 336,
+      "requestId": "01a14a2b-3649-7473-87cf-371996ed2c11",
+      "command": "sessions.fork",
+      "state": "completed",
+      "recordedAt": 1792245708363,
+      "ok": 1,
+      "targetSessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+      "targetBranchId": "01a14a2b-364a-7954-bffb-b26027e9a06f"
+    }
+  ],
+  "finding": "Fork copies the selected successful reply and its parent chain. The timeout card is a distinct failed retry attempt sharing the same user parent, with zero generated text; it is not an ancestor of the selected final reply. It and its estimate remain in the original conversation/ledger. This is not a status filter: selecting an interrupted reply itself would include that selected path.",
+  "humanObservation": "User sees successful reply plus timeout card in original, and only the successful reply in the newly forked copy; asked whether that difference is expected.",
+  "limits": "Bounded fork from this successful reply only. No full-session backup, arbitrary attempt-tree copy, all message types, attachments, other providers or global task/stage pass claimed.",
+  "baseline": "fork-baseline-2026-10-17.json",
+  "sourceSnapshot": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792246207204.json",
+  "trace": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792246207823.json",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false
+}

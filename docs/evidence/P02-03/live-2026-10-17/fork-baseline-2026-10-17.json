@@ -1,0 +1,262 @@
+{
+  "task": "P02-03",
+  "round": "C-fork-session",
+  "status": "prepared_waiting_one_user_fork",
+  "checkedAt": "2026-10-17T13:52:59.644Z",
+  "startedAfter": 1792245120059,
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "caseId": "01a149b9-04f4-7d9c-9487-44b0b62e3b25",
+  "sourceSession": {
+    "id": "01a14969-e3c4-77ee-b768-6fc59b1451d6",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+    "revision": 13,
+    "titleSHA256": "bf2da8762f6105a4e8c0e684053707e894f53ce0b3f3e2b920dce92f7a60daa1",
+    "titleManual": 0
+  },
+  "sourceBranchId": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+  "sourceMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+  "sourcePath": [
+    {
+      "id": "01a14a20-e0b2-7d7b-92f3-761f9f7f7f37",
+      "branchId": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "contentSHA256": "26d08c0117a2160250ef6a4a7bbf58e3af422cbcb8f98713b5cffa68fa198b93"
+    },
+    {
+      "id": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "branchId": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+      "parentId": "01a14a20-e0b2-7d7b-92f3-761f9f7f7f37",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 4,
+      "sourceMessageId": null,
+      "contentSHA256": "9b64af603d2349dd9f8e2b91ea598e7e57cdfcb85c05df982e23a6e90ae67bff"
+    }
+  ],
+  "branches": [
+    {
+      "id": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "parentId": null,
+      "forkMessageId": null,
+      "candidateFor": null,
+      "headMessageId": "01a1498f-0dde-7e27-b7c3-403a7e7c3216",
+      "revision": 6
+    },
+    {
+      "id": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "parentId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "forkMessageId": "01a1498e-a6d7-79cc-9c74-7994ef8dbf6f",
+      "candidateFor": null,
+      "headMessageId": "01a149c6-7bec-7200-856b-14ef4488e230",
+      "revision": 3
+    },
+    {
+      "id": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+      "parentId": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "forkMessageId": "01a149c6-7bec-7200-856b-14ef4488e230",
+      "candidateFor": "01a149c6-7bec-7200-856b-14ef4488e230",
+      "headMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "revision": 3
+    }
+  ],
+  "messages": [
+    {
+      "id": "01a1498e-a6d7-79cc-9c74-7994ef8dbf6f",
+      "branchId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "revision": 1,
+      "sourceMessageId": null,
+      "contentSHA256": "b3c2d02e72029ac1f369693f68ebe50746af641d726f95ef97c9b25bc9529168"
+    },
+    {
+      "id": "01a1498e-a864-7434-a9dc-fa25b6801d25",
+      "branchId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "parentId": "01a1498e-a6d7-79cc-9c74-7994ef8dbf6f",
+      "role": "assistant",
+      "status": "interrupted",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "revision": 3,
+      "sourceMessageId": null,
+      "contentSHA256": "ad0488465c4a0342aec704083ba00f045643cd3ec88ad0702e651b93b2fa1ddf"
+    },
+    {
+      "id": "01a1498e-fba9-76ef-a5d7-3fdc67284d94",
+      "branchId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "parentId": "01a1498e-a6d7-79cc-9c74-7994ef8dbf6f",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "revision": 11,
+      "sourceMessageId": null,
+      "contentSHA256": "b68cb7661cdba4408ec82f195994ed9b353257792a6a5ee931ff6444cf827489"
+    },
+    {
+      "id": "01a1498f-0dc1-777c-bc8e-27c19cd5762d",
+      "branchId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "parentId": "01a1498e-fba9-76ef-a5d7-3fdc67284d94",
+      "role": "tool",
+      "status": "final",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "revision": 1,
+      "sourceMessageId": null,
+      "contentSHA256": "3d216c38aff760c134ccd02833eb8e240fbe7b0e310a5554d9194166dd0eada3"
+    },
+    {
+      "id": "01a1498f-0dde-7e27-b7c3-403a7e7c3216",
+      "branchId": "01a14969-e3c4-79e4-837d-65783be6d5d0",
+      "parentId": "01a1498f-0dc1-777c-bc8e-27c19cd5762d",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "revision": 9,
+      "sourceMessageId": null,
+      "contentSHA256": "4441caef184353eaa068b03cd2b6d63e29d7314caeb82e6819e8e51a81e036aa"
+    },
+    {
+      "id": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "branchId": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a149c6-78aa-78a5-befb-d255faec60b7",
+      "revision": 1,
+      "sourceMessageId": null,
+      "contentSHA256": "26d08c0117a2160250ef6a4a7bbf58e3af422cbcb8f98713b5cffa68fa198b93"
+    },
+    {
+      "id": "01a149c6-7bec-7200-856b-14ef4488e230",
+      "branchId": "01a149c6-78a9-7fd7-98d8-34db8dfc33b0",
+      "parentId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a149c6-78aa-78a5-befb-d255faec60b7",
+      "revision": 4,
+      "sourceMessageId": null,
+      "contentSHA256": "9b64af603d2349dd9f8e2b91ea598e7e57cdfcb85c05df982e23a6e90ae67bff"
+    },
+    {
+      "id": "01a14a20-e0b2-7d7b-92f3-761f9f7f7f37",
+      "branchId": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "contentSHA256": "26d08c0117a2160250ef6a4a7bbf58e3af422cbcb8f98713b5cffa68fa198b93"
+    },
+    {
+      "id": "01a14a20-e13f-7073-9f69-d6d141575355",
+      "branchId": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+      "parentId": "01a14a20-e0b2-7d7b-92f3-761f9f7f7f37",
+      "role": "assistant",
+      "status": "interrupted",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 3,
+      "sourceMessageId": null,
+      "contentSHA256": "ad0488465c4a0342aec704083ba00f045643cd3ec88ad0702e651b93b2fa1ddf"
+    },
+    {
+      "id": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "branchId": "01a14a20-e0b2-79d3-910d-870e54a7c052",
+      "parentId": "01a14a20-e0b2-7d7b-92f3-761f9f7f7f37",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 4,
+      "sourceMessageId": null,
+      "contentSHA256": "9b64af603d2349dd9f8e2b91ea598e7e57cdfcb85c05df982e23a6e90ae67bff"
+    }
+  ],
+  "oldLedger": [
+    {
+      "attemptId": "01a1498e-a85c-75d3-95cb-cc9c8bf20839",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "status": "failed",
+      "errorCode": "NETWORK_ERROR",
+      "source": "estimated",
+      "chargedTokens": 12358
+    },
+    {
+      "attemptId": "01a1498e-fb9f-7cc9-a1ee-17c16cfc5565",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 876
+    },
+    {
+      "attemptId": "01a1498f-0dd6-72a3-91df-6a0f2c59d2d4",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 1014
+    },
+    {
+      "attemptId": "01a1498f-1a36-7338-b8d2-9e06833fa908",
+      "runId": "01a1498e-a6d8-7ef4-9d9b-3280458dd204",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 213
+    },
+    {
+      "attemptId": "01a149c6-7bda-76b9-a51d-de1cfc284898",
+      "runId": "01a149c6-78aa-78a5-befb-d255faec60b7",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 1336
+    },
+    {
+      "attemptId": "01a14a20-e132-7787-b8ed-e2a2b4bde639",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "status": "failed",
+      "errorCode": "NETWORK_ERROR",
+      "source": "estimated",
+      "chargedTokens": 14335
+    },
+    {
+      "attemptId": "01a14a21-3857-7004-9643-c088af437c21",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "status": "completed",
+      "errorCode": null,
+      "source": "actual",
+      "chargedTokens": 1336
+    }
+  ],
+  "oldLedgerSHA256": "199cf023edb5b1c0850c5c7568ab8cd6f7cf0c888a6960ade48d50bcb148f0ff",
+  "priorAcceptance": "regenerate-review-1792245179643.json",
+  "sessionIds": [
+    "01a13392-6a63-7f23-b568-a9c8a69548bc",
+    "01a135b3-5464-79db-ab29-b23ef4a5f450",
+    "01a14426-4cdf-7ae3-acd0-0d093a87ed48",
+    "01a1442b-3b71-78b6-b3a3-f47c8df370cf",
+    "01a14969-e3c4-77ee-b768-6fc59b1451d6",
+    "01a1498f-dbb2-7fa8-8829-be6b985c7926"
+  ],
+  "globalCounts": {
+    "runs": 25,
+    "attempts": 41,
+    "tools": 2,
+    "ledger": 41
+  },
+  "instructions": "On current new 回答版本, click 从此消息分叉会话 once under the final 编辑分支成功 assistant answer. The new conversation should open with the question and answer through that point. Use the top 后退 arrow to verify the original, then 前进 to return to the copy. Do not send anything, rename with AI or regenerate. Report preservation and errors.",
+  "acceptance": "One sessions.fork receipt/new session and its copied path with sourceMessageId/hash provenance, original session branches/messages/ledger unchanged; no new model/tool/run/settlement from fork or navigation. Preparation is not acceptance.",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false
+}

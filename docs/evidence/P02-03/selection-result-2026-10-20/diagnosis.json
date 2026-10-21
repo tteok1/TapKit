@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-20T14:05:18.759Z",
+  "run": {
+    "id": "01a15994-be74-7da2-bb5c-7f4cc2047c3a",
+    "status": "partial",
+    "status_reason": "VALIDATION_ERROR",
+    "calls": 1,
+    "tools": 0,
+    "started_at": 1792504282744,
+    "ended_at": 1792504286768
+  },
+  "sessionId": "01a15472-9232-77bb-9fb2-42fe05500c75",
+  "answerId": "01a15994-bf4a-723d-ae9d-d400a4d5f0ab",
+  "answerSHA256": "6409f7e20b864a880d7842703e0eda241e48ffbfe6b0cbbfd42bbe2a7723d7e1",
+  "sourceRef": {
+    "kind": "message",
+    "sessionId": "01a15472-9232-77bb-9fb2-42fe05500c75",
+    "messageId": "01a15472-9232-7bbb-a8ea-de42bd615146",
+    "version": 1,
+    "range": {
+      "start": 27,
+      "end": 80
+    }
+  },
+  "startsWithMessageIdAsEvidence": true,
+  "translationBodyMatches": true,
+  "contexts": [
+    {
+      "prompt_version": "chat-p04-2:source-data/1:selection-v1",
+      "ordered_refs_json": "[{\"id\":\"01a15994-be71-774d-8dc6-4d0845b089d8\",\"revision\":1},{\"id\":\"01a15472-9232-7bbb-a8ea-de42bd615146\",\"revision\":1,\"range\":{\"start\":27,\"end\":80}}]"
+    },
+    {
+      "prompt_version": "chat-p04-2:source-data/1:selection-v1",
+      "ordered_refs_json": "[{\"id\":\"01a15994-be71-774d-8dc6-4d0845b089d8\",\"revision\":1},{\"id\":\"01a15472-9232-7bbb-a8ea-de42bd615146\",\"revision\":1,\"range\":{\"start\":27,\"end\":80}}]"
+    }
+  ],
+  "diagnosis": "Pure selection transform retained its source message reference; provider emitted that message ID as a knowledge evidence marker. CitationLedger rejected the marker before run completion. Renderer mapped every VALIDATION_ERROR to a file-picker error.",
+  "originalDatabaseWrites": 0,
+  "agentModelRequests": 0
+}

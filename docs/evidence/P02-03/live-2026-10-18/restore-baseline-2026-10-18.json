@@ -1,0 +1,106 @@
+{
+  "task": "P02-03",
+  "round": "G-restore-from-trash",
+  "localDate": "2026-10-18",
+  "status": "prepared_waiting_one_user_restore_and_message_search",
+  "checkedAt": "2026-10-18T01:25:50.193Z",
+  "startedAfter": 1792286750193,
+  "dataDir": "D:\\Tapkit-public\\.test-data\\P01-02-app-zhipu-chat-20261013-7444d6df",
+  "caseId": "01a149b9-04f4-7d9c-9487-44b0b62e3b25",
+  "session": {
+    "id": "01a14a2b-364a-7034-986d-79c884ee51a3",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "revision": 6,
+    "titleManual": 1,
+    "titleSHA256": "a054b9ea5a0429d459302ced792c709a0e095afb2ba942e1d0d3689655ee9359",
+    "noteSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tagsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "archivedAt": null,
+    "deletedAt": 1792286643781,
+    "titleMatchesExpected": 1
+  },
+  "messages": [
+    {
+      "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": null,
+      "role": "user",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a149c6-78aa-7f29-aed3-d74081ed8a20",
+      "contentSHA256": "26d08c0117a2160250ef6a4a7bbf58e3af422cbcb8f98713b5cffa68fa198b93"
+    },
+    {
+      "id": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+      "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+      "parentId": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "role": "assistant",
+      "status": "final",
+      "runId": "01a14a20-e0b3-7800-9c1d-59c2c805bfa9",
+      "revision": 1,
+      "sourceMessageId": "01a14a21-3867-7d47-be04-8574e4fc38df",
+      "contentSHA256": "9b64af603d2349dd9f8e2b91ea598e7e57cdfcb85c05df982e23a6e90ae67bff"
+    }
+  ],
+  "branch": {
+    "id": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "headMessageId": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+    "revision": 1
+  },
+  "globalCounts": {
+    "runs": 25,
+    "attempts": 41,
+    "tools": 2,
+    "ledger": 41
+  },
+  "ledgerTotals": {
+    "entries": 41,
+    "tokens": 204413,
+    "actualTokens": 52958,
+    "estimatedTokens": 151455
+  },
+  "titleQuery": "P02验收-分叉副本-1017",
+  "messageQuery": "P02E-1017R",
+  "messageQueryHistoryBaseline": [
+    {
+      "id": "01a14a3d-9cc9-77af-aaa1-49f4fea32610",
+      "updatedAt": 1792286313650
+    }
+  ],
+  "expectedMessageHit": {
+    "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+    "type": "message",
+    "sessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+    "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f"
+  },
+  "expectedSearchProjectionAfterRestore": {
+    "session": 1,
+    "message": 2
+  },
+  "trashReceipt": {
+    "sequence": 373,
+    "requestId": "01a14c9b-d644-7b84-b4c0-253720d28b15",
+    "command": "sessions.trash",
+    "state": "completed",
+    "recordedAt": 1792286643783,
+    "ok": 1,
+    "updatedCount": 1,
+    "failedCount": 0
+  },
+  "resourcePreflight": {
+    "linkedResources": 0,
+    "attachmentRefs": 0,
+    "memorySourceRefs": 0
+  },
+  "sourceSessionBaseline": "docs/evidence/P02-03/live-2026-10-17/fork-baseline-2026-10-17.json",
+  "priorAcceptance": "trash-review-1792286750191.json",
+  "instructions": "In 聊天 → 回收站, select the checkbox for P02验收-分叉副本-1017 and click 恢复 once. Switch to 最近 and open it; verify title and both messages remain. Ctrl+K 当前会话 + 消息, search P02E-1017R and click its result to verify restored index/location. Report recovery and search. No permanent deletion or model sends/regeneration.",
+  "acceptance": "One subsequent sessions.restore receipt; deleted_at null/revision+1, active list and rebuilt projection/FTS contain the same session/messages, hashes/branch/title/old ledger unchanged, user confirms restored content and local message location with zero new executions. Until reviewed full G is pending.",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false
+}

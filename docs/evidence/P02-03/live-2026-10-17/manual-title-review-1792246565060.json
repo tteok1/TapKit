@@ -1,0 +1,96 @@
+{
+  "task": "P02-03",
+  "round": "D-manual-title",
+  "checkedAt": "2026-10-17T14:16:05.060Z",
+  "status": "passed_live_scoped_manual_title_and_reopen",
+  "checks": {
+    "oneManualRenameReceipt": true,
+    "exactManualTitlePersisted": true,
+    "otherMetadataAndBranchPreserved": true,
+    "bothMessageHashesAndProvenancePreserved": true,
+    "originalTitleAndLedgerPreserved": true,
+    "reopenReceiptAfterRename": true,
+    "noAIOrExecution": true,
+    "idleNoUnsettledOrDuplicate": true
+  },
+  "session": {
+    "id": "01a14a2b-364a-7034-986d-79c884ee51a3",
+    "mode": "chat",
+    "projectId": null,
+    "branchId": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "revision": 3,
+    "titleManual": 1,
+    "titleSHA256": "a054b9ea5a0429d459302ced792c709a0e095afb2ba942e1d0d3689655ee9359",
+    "noteSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tagsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "archivedAt": null,
+    "titleMatchesExpected": 1
+  },
+  "branch": {
+    "id": "01a14a2b-364a-7954-bffb-b26027e9a06f",
+    "headMessageId": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+    "revision": 1
+  },
+  "receipts": [
+    {
+      "sequence": 355,
+      "requestId": "01a14a36-9c1d-79d5-9cc3-c4f0c11d2ee9",
+      "command": "sessions.update",
+      "state": "completed",
+      "recordedAt": 1792246455330,
+      "ok": 1,
+      "sessionId": "01a14a2b-364a-7034-986d-79c884ee51a3",
+      "replyTitleMatchesExpected": 1
+    },
+    {
+      "sequence": 358,
+      "requestId": "01a14a36-c9f6-712b-a35a-f192143dc4b2",
+      "command": "sessions.read",
+      "state": "completed",
+      "recordedAt": 1792246467122,
+      "ok": 1,
+      "sessionId": null,
+      "replyTitleMatchesExpected": null
+    },
+    {
+      "sequence": 364,
+      "requestId": "01a14a36-e486-72f9-8a0f-a5bf0a3742fd",
+      "command": "sessions.read",
+      "state": "completed",
+      "recordedAt": 1792246473930,
+      "ok": 1,
+      "sessionId": null,
+      "replyTitleMatchesExpected": null
+    }
+  ],
+  "oldMessages": [
+    {
+      "id": "01a14a2b-364a-7fa8-8786-a762815c152b",
+      "preserved": true
+    },
+    {
+      "id": "01a14a2b-364a-7d96-893c-1cd35f86e2d2",
+      "preserved": true
+    }
+  ],
+  "globalCounts": {
+    "runs": 25,
+    "attempts": 41,
+    "tools": 2,
+    "ledger": 41
+  },
+  "humanConfirmation": "符合预期，可以继续下一项测试",
+  "baseline": "manual-title-baseline-2026-10-17.json",
+  "source": "docs/evidence/P02-02/live-2026-10-15/snapshot-1792246497407.json",
+  "trace": "docs/evidence/P02-02/live-2026-10-15/tool-trace-review-1792246498623.json",
+  "limits": "Manual rename and leave/reopen on this forked copy only; no automatic-title race, explicit AI rename, all-provider or full-task acceptance implied.",
+  "agentModelRequests": 0,
+  "databaseWrites": 0,
+  "credentialOrNativeReads": 0,
+  "messageBodiesExported": false,
+  "searchPreflight": {
+    "titleHitCount": 1,
+    "messageHitCount": 1,
+    "preparedOnly": true
+  }
+}

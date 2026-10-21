@@ -27,6 +27,7 @@ import { ModelService } from './model-service';
 import { ChatService } from './chat-service';
 import { HistoryService } from './history-service';
 import { TemporaryService } from './temporary-service';
+import { createToolTraceWriter } from './tool-trace';
 const port = process.parentPort;
 declare const __TAPKIT_TEST_BUILD__: boolean;
 if (!port) throw new Error('Core requires Electron utilityProcess parentPort');
@@ -66,6 +67,7 @@ async function start() {
       z
         .strictObject({ proxyURL: z.string().max(2048) })
         .parse(await vault('network.proxy.resolve', store.profileId, { url })).proxyURL,
+    createToolTraceWriter(dataDir!, store.profileId),
   );
   const models = new ModelService(store, providers);
   if (__TAPKIT_TEST_BUILD__ && process.env.TAPKIT_CHAT_FIXTURE === 'P02-02') {
