@@ -24,7 +24,7 @@ import {
   ProviderIdSchema,
   ApiOptionsSchema,
 } from './providers';
-import defaults from '../../../resources/catalogs/defaults.json';
+import defaults from '../../../resources/catalogs/defaults.json' with { type: 'json' };
 import {
   DesktopSettingsSchema,
   PersonalSettingsSchema,

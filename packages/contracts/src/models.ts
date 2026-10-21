@@ -7,7 +7,7 @@ import {
   ApiBaseURLSchema,
   ApiFormatSchema,
 } from './providers';
-import defaults from '../../../resources/catalogs/defaults.json';
+import defaults from '../../../resources/catalogs/defaults.json' with { type: 'json' };
 
 export const SelectionSchema = z.strictObject({
   accountId: IdSchema,

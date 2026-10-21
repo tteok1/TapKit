@@ -1,3 +1,7 @@
+## 2026-10-21 CI JSON导入修复
+
+main / 1b60d455推送已完成，运行39554896228的bootstrap在Playwright全量收集时报defaults.json缺JSON导入属性。补齐四处contracts、check加入全量发现，P00启动等待对齐既有指纹预算；81发现/unit352/integration5/Electron2/生产桌面构建退出0。失败和成功日志均见[本轮证据](../evidence/P00-01/ci-json-import-2026-10-21/results.json)；修复待提交推送与远端复验，原真人和阶段状态保持。
+
 ## 2026-10-21 用户授权当前main全部提交与推送
 
 范围包括本次UI及此前已存在的Core/Provider/隔离/启动修复、测试和证据。候选555文件约16.8MB，常见凭据/数据库文件检查无命中；unit352、相关集成39、check458退出0，沙箱联接权限失败原样保留，沙箱外完整unit通过。Git直连失败后使用当前Windows既有代理成功获取origin/main，提交前本地/远端基线一致；无永久网络配置变更。见[全量交付检查点](../evidence/P02-03/git-delivery-2026-10-21/preflight.json)。本段为提交前记录，最终提交/远端状态由Git核对；不提升原真人/阶段状态，不改写历史验收基线。

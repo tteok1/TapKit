@@ -3,6 +3,8 @@ import { mkdir, mkdtemp } from 'node:fs/promises';
 import { resolve } from 'node:path';
 let app: ElectronApplication;
 let dataDir: string;
+// A verified native runtime can spend up to 120 seconds rechecking its fingerprints.
+test.describe.configure({ timeout: 180_000 });
 test.beforeEach(async () => {
   await mkdir('.test-data', { recursive: true });
   dataDir = await mkdtemp(resolve('.test-data', '中文 用户 空格-'));
@@ -22,7 +24,7 @@ test.afterEach(async () => {
 test('P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory', async () => {
   const page = await app.firstWindow();
   await expect(page.getByRole('heading', { name: '从这里开始' })).toBeVisible();
-  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125_000 });
   const reply = await page.evaluate(() => window.tapkit.ping({ nonce: '中文 空格 ABI' }));
   expect(reply.nonce).toBe('中文 空格 ABI');
   expect(reply.process).toBe('core');
@@ -41,7 +43,7 @@ test('P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory', a
 });
 test('P00-01 sandbox bridge errors and clean child shutdown', async () => {
   const page = await app.firstWindow();
-  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125_000 });
   expect(
     await page.evaluate(() => ({
       require: typeof (window as unknown as Record<string, unknown>).require,

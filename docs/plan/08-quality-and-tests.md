@@ -11,7 +11,7 @@ P00-01创建以下根脚本，不能在任务结束时只写“建议测试”�
 | pnpm bootstrap                             | 依照lock准备开发依赖、运行时和本地fixture                                                                                   |
 | pnpm dev                                   | 先编译Storage/Core，再启动Electron+Core+Renderer热更新，监听main/preload及providers/tools；不重复编译原生helper（ADR 0010） |
 | pnpm build:desktop / pnpm test:dev         | 桌面分项构建 / 真实双击与dev入口、同profile重启、正常退出冒烟；不替代完整build或原生安全验收                                |
-| pnpm check                                 | typecheck + lint + 包依赖方向 + schema/manifest验证                                                                         |
+| pnpm check                                 | typecheck + lint + 包依赖方向 + schema/manifest验证 + 全量Playwright测试收集（不启动Electron）                                 |
 | pnpm test:unit                             | Vitest单元，固定时钟和种子                                                                                                  |
 | pnpm test:integration                      | 真实SQLite/文件/helper/本地mock HTTP，无供应商密钥                                                                          |
 | pnpm test:e2e -- --grep Pxx                | Playwright测试开发构建，按任务标签过滤                                                                                      |

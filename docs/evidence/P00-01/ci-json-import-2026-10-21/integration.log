@@ -1,0 +1,19 @@
+$ vitest run --config vitest.config.ts --project integration "P00-01"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P00-01.mock-http.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P00-01.mock-http.test.ts [ tests/integration/P00-01.mock-http.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{482c2e54-b632-42c1-9e6a-b4d9ea257a89}\AC\Temp\Dmkb3ZqvYcZir7h3Q0dyo\ssr\f3d9718b4387735a9e2aa3bdbdb65a2bb00ad833'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 passed (1)
+   Start at  14:31:35
+   Duration  1.07s (tests 78%, transform 15%, import 3%, setup 3%, worker 2%)
+
+[ELIFECYCLE] Command failed with exit code 1.

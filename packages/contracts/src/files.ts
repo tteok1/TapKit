@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { IdSchema } from './identity';
 import { LocatorSchema } from './resources';
 import { RunStatusSchema } from './chat';
-import defaults from '../../../resources/catalogs/defaults.json';
+import defaults from '../../../resources/catalogs/defaults.json' with { type: 'json' };
 
 export const FILE_PARSER_VERSION = 'p03-2';
 export const FileLimitsSchema = z.strictObject({

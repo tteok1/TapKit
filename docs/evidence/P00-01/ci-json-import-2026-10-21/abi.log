@@ -1,0 +1,65 @@
+$ node scripts/e2e.mjs "--" "--grep" "P00-01.*ABI"
+
+Running 1 test using 1 worker
+
+(node:32824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 9580
+(node:9580) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:52878/13b6bcdc-353b-4058-98b3-705fe7db4bf8
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_READY
+TAPKIT_CORE_EXIT 0
+  x  1 tests\e2e\P00-01.shell.spec.ts:22:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory (23.2s)
+
+
+  1) tests\e2e\P00-01.shell.spec.ts:22:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('core-status')
+    Expected: "本地核心已连接"
+    Received: "正在检查本地核心…"
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('core-status') with timeout 15000ms
+      - waiting for getByTestId('core-status')
+        33 × locator resolved to <span data-testid="core-status">正在检查本地核心…</span>
+           - unexpected value "正在检查本地核心…"
+
+
+      23 |   const page = await app.firstWindow();
+      24 |   await expect(page.getByRole('heading', { name: '从这里开始' })).toBeVisible();
+    > 25 |   await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+         |                                                 ^
+      26 |   const reply = await page.evaluate(() => window.tapkit.ping({ nonce: '中文 空格 ABI' }));
+      27 |   expect(reply.nonce).toBe('中文 空格 ABI');
+      28 |   expect(reply.process).toBe('core');
+        at D:\Tapkit-public\tests\e2e\P00-01.shell.spec.ts:25:49
+
+    Error Context: test-results\e2e\P00-01.shell-P00-01-ABI-El-2cf44--and-Chinese-data-directory\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P00-01.shell-P00-01-ABI-El-2cf44--and-Chinese-data-directory\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P00-01.shell-P00-01-ABI-El-2cf44--and-Chinese-data-directory\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P00-01.shell.spec.ts:22:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory 
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/e2e.mjs:14:21
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.

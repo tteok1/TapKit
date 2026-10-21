@@ -1,5 +1,7 @@
 # 当前接续点
 
+- 2026-10-21 CI修复检查点：main / 1b60d455的运行39554896228在bootstrap测试收集时报JSON缺少type属性；四处contracts导入已修复，check新增全量E2E收集。81用例发现、unit352、P00-01 integration5、真实Electron2及生产桌面构建退出0；P00基础等待对齐既有120秒指纹校验。见docs/evidence/P00-01/ci-json-import-2026-10-21/results.json，修复待提交推送/远端复验；原真人与gate状态保持。
+
 - 2026-10-21 全量Git交付检查点：用户明确授权将当前main全部未提交内容commit并push至既有origin/main（含此前Core/Provider/隔离/启动修复、UI、测试和证据），无需再确认。提交前候选555文件/约16.8MB，无常见凭据或数据库文件命中；unit352、相关integration39及check458均exit0，细节见docs/evidence/P02-03/git-delivery-2026-10-21/preflight.json。本条为提交前检查点，最终SHA与远端一致性以Git查询为准；所有任务/gate及未完成真人范围保持。原验收启动基线绑定提交前3178a8b，后续重开验收应按新提交复核，当前已运行窗口不受影响。
 - 2026-10-21 用户要求直接启动：原run-app.ps1 -RefreshUiBuild已完成check/build/两项预检并激活619产物UI快照；原profile窗口TapKit已打开，Core opened1、12公开回执成功、attempt0。未强杀旧进程、未发送模型请求；启动session48710运行/退出未观测。见docs/evidence/P02-03/chat-simplify-2026-10-21/normal-reopen.json；UI已加载，T13a真人结果及原任务/gate不提升。
 - 2026-10-21 UI精简：当前main将侧栏改为整栏单一滚动并迁移位置保存；删除正文重复标题区、草稿可见标签、模式选择器、输入操作和提示词管理UI。顶部导航标题及提示词数据/API/斜杠能力保留。工程回归/生产构建见docs/evidence/P02-03/chat-simplify-2026-10-21/results.json；原窗口不强行关闭，新UI用原run-app.ps1 -RefreshUiBuild加载。T13a真人复验和原阶段状态/暂缓范围保持，无commit/push。

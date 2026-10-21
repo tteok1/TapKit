@@ -1,0 +1,5 @@
+Listing tests:
+
+TypeError: Module "file:///D:/Tapkit-public/resources/catalogs/defaults.json" needs an import attribute of "type: json"
+    at eval (<anonymous>:1:1)
+Total: 0 tests in 0 files

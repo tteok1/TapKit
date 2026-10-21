@@ -1,0 +1,22 @@
+2026-10-21T06:24:54.3801480Z ✓ built in 28.34s
+2026-10-21T06:24:54.6323882Z $ node scripts/e2e.mjs "--" "--grep" "P00-01.*ABI"
+2026-10-21T06:24:56.6679612Z TypeError: Module "file:///D:/a/TapKit/TapKit/resources/catalogs/defaults.json" needs an import attribute of "type: json"
+2026-10-21T06:24:56.6680308Z     at eval (<anonymous>:1:1)
+2026-10-21T06:24:56.6689663Z 
+2026-10-21T06:24:56.7161767Z file:///D:/a/TapKit/TapKit/scripts/lib.mjs:24
+2026-10-21T06:24:56.7163802Z   if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+2026-10-21T06:24:56.7165267Z                                  ^
+2026-10-21T06:24:56.7165585Z 
+2026-10-21T06:24:56.7166003Z Error: D:\a\TapKit\TapKit\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+2026-10-21T06:24:56.7166527Z     at run (file:///D:/a/TapKit/TapKit/scripts/lib.mjs:24:34)
+2026-10-21T06:24:56.7167002Z     at pnpm (file:///D:/a/TapKit/TapKit/scripts/lib.mjs:27:3)
+2026-10-21T06:24:56.7167402Z     at file:///D:/a/TapKit/TapKit/scripts/e2e.mjs:14:21
+2026-10-21T06:24:56.7167637Z 
+2026-10-21T06:24:56.7167721Z Node.js v24.21.0
+2026-10-21T06:24:56.7240655Z [ELIFECYCLE] Command failed with exit code 1.
+2026-10-21T06:24:56.7878733Z file:///D:/a/TapKit/TapKit/scripts/lib.mjs:24
+2026-10-21T06:24:56.7879511Z   if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+2026-10-21T06:24:56.7880591Z                                  ^
+2026-10-21T06:24:56.7880862Z 
+2026-10-21T06:24:56.7881232Z Error: D:\a\TapKit\TapKit\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+2026-10-21T06:24:56.7881874Z     at run (file:///D:/a/TapKit/TapKit/scripts/lib.mjs:24:34)

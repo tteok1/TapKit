@@ -1,0 +1,108 @@
+{
+  "task": "P00-01 CI regression repair",
+  "date": "2026-10-21",
+  "branch": "main",
+  "baseCommit": "1b60d455e1aa89051921a7c2527c869db9ae22e8",
+  "failedRun": {
+    "id": 39554896228,
+    "url": "https://github.com/tteok1/TapKit/actions/runs/39554896228",
+    "jobId": 119072268847,
+    "step": "Bootstrap locked runtime and native dependencies",
+    "error": "defaults.json needs an import attribute of type: json"
+  },
+  "rootCause": "Playwright imports all E2E modules during collection even with an ABI --grep. Four shared contracts imported defaults.json without a JSON attribute under locked Node 24.21.0.",
+  "changes": [
+    "Explicit type: json attributes in four contracts imports",
+    "pnpm check performs full Playwright discovery without launching Electron",
+    "P00-01 startup expectations allow the existing 120-second native fingerprint validation budget"
+  ],
+  "checks": [
+    {
+      "command": "pnpm exec playwright test --list --grep P00-01.*ABI",
+      "phase": "before fix",
+      "exitCode": 1,
+      "result": "same JSON import error, zero tests collected",
+      "log": "discovery-before.log"
+    },
+    {
+      "command": "pnpm exec playwright test --list",
+      "phase": "after JSON attributes",
+      "exitCode": 0,
+      "result": "81 tests in 20 files",
+      "log": "discovery-after.log"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "result": "458 repository files, type checks / lint / boundaries / manifests and full 81-test collection passed",
+      "log": "check.log"
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "result": "352 tests in 45 files passed",
+      "log": "unit.log"
+    },
+    {
+      "command": "pnpm test:integration P00-01",
+      "exitCode": 0,
+      "result": "5 tests in 2 files passed",
+      "log": "integration-outside.log"
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0,
+      "result": "production build passed",
+      "log": "build-outside.log"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P00-01.*ABI",
+      "phase": "after imports, before startup-wait correction",
+      "exitCode": 1,
+      "result": "old 15-second core-status expectation timed out while Core completed verification",
+      "log": "abi.log"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P00-01",
+      "exitCode": 0,
+      "result": "2 real Electron tests passed: ABI/Chinese path and sandbox/bridge/clean shutdown",
+      "log": "shell-after.log"
+    },
+    {
+      "command": "pnpm check",
+      "phase": "final source/documentation state",
+      "exitCode": 0,
+      "result": "458 repository files and full 81-test discovery passed",
+      "log": "final-check.log"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "result": "all 37 task states and evidence links verified",
+      "log": "docs-check.log"
+    }
+  ],
+  "localEnvironmentFailures": [
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 1,
+      "reason": "tool sandbox denied writing existing retrieval/dist/pdf/cmaps directory; outside-sandbox retry passed",
+      "log": "build.log"
+    },
+    {
+      "command": "pnpm test:integration P00-01",
+      "exitCode": 1,
+      "reason": "tool sandbox temporary SSR cache ENOENT; project-local TEMP/TMP outside-sandbox retry passed",
+      "log": "integration.log"
+    }
+  ],
+  "runtime": {
+    "node": "24.21.0",
+    "pnpm": "12.4.1",
+    "electron": "44.3.0",
+    "electronNodeAbi": "149",
+    "sqlite": "3.53.4"
+  },
+  "boundaries": "No dependency version, lockfile, runtime security, credentials, real provider invocation or live/gate status changed. Historic regression-shell.png restored byte-for-byte.",
+  "remoteVerification": "pending repair commit/push"
+}

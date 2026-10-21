@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { IdSchema } from './identity';
-import defaults from '../../../resources/catalogs/defaults.json';
+import defaults from '../../../resources/catalogs/defaults.json' with { type: 'json' };
 export const CONTEXT_LIMITS = z
   .strictObject({
     evaluateRatio: z.literal(0.65),
