@@ -1,0 +1,112 @@
+[
+  {
+    "case": "P02-02.chat-P02-02-T02-mal-c1e21-atic-sandbox-Mermaid-render",
+    "failure": [
+      "Error: expect(locator).toHaveText(expected) failed",
+      "Locator:  getByTestId('core-status')",
+      "Timeout:  15000ms"
+    ]
+  },
+  {
+    "case": "P02-02.chat-P02-02-T05-lon-19ddc-d-restart-remain-reviewable",
+    "failure": [
+      "Error: expect(locator).toHaveText(expected) failed",
+      "Locator:  getByTestId('core-status')",
+      "Timeout:  15000ms"
+    ]
+  },
+  {
+    "case": "P03-01.files-P03-01-accept-6ae05-rash-restore-across-restart",
+    "failure": [
+      "Error: expect(locator).toHaveText(expected) failed",
+      "Locator:  getByTestId('core-status')",
+      "Timeout:  15000ms"
+    ]
+  },
+  {
+    "case": "P03-01.files-P03-01-batch--6e614--dialogs-after-cancellation",
+    "failure": [
+      "Error: expect(locator).toHaveText(expected) failed",
+      "Locator:  getByTestId('core-status')",
+      "Timeout:  15000ms"
+    ]
+  },
+  {
+    "case": "P03-01.files-P03-01-interr-84550-ed-across-Electron-restarts",
+    "failure": [
+      "Error: expect(locator).toHaveText(expected) failed",
+      "Locator:  getByTestId('core-status')",
+      "Timeout:  15000ms"
+    ]
+  },
+  {
+    "case": "P03-01.files-P03-01-respon-7cd6e-ark-and-200-percent-layouts",
+    "failure": [
+      "Error: expect(locator).toHaveText(expected) failed",
+      "Locator:  getByTestId('core-status')",
+      "Timeout:  15000ms"
+    ]
+  },
+  {
+    "case": "P03-01.files-P03-01-T07-du-0a371--history-and-original-bytes",
+    "failure": [
+      "Error: expect(locator).toHaveText(expected) failed",
+      "Locator:  getByTestId('core-status')",
+      "Timeout:  15000ms"
+    ]
+  },
+  {
+    "case": "P03-01.files-P03-01-T07-ge-b89ca--after-cancelled-selections",
+    "failure": [
+      "Error: expect(locator).toHaveText(expected) failed",
+      "Locator:  getByTestId('core-status')",
+      "Timeout:  15000ms"
+    ]
+  },
+  {
+    "case": "P03-01.files-P03-01-T07-li-b3f20-ain-navigable-in-each-scope",
+    "failure": [
+      "Error: expect(locator).toHaveText(expected) failed",
+      "Locator:  getByTestId('core-status')",
+      "Timeout:  15000ms"
+    ]
+  },
+  {
+    "case": "P03-01.files-P03-01-T07-re-6309c--downloadable-after-restart",
+    "failure": [
+      "Test timeout of 45000ms exceeded.",
+      "Error: expect(locator).toHaveText(expected) failed",
+      "Locator:  getByTestId('core-status')"
+    ]
+  },
+  {
+    "case": "P03-01.files-P03-01-T07-sc-f4c21-adata-edits-and-restoration",
+    "failure": [
+      "Error: expect(locator).toHaveText(expected) failed",
+      "Locator:  getByTestId('core-status')",
+      "Timeout:  15000ms"
+    ]
+  },
+  {
+    "case": "P03-01.files-P03-01-T08-na-e9cff--only-to-the-original-draft",
+    "failure": [
+      "Test timeout of 45000ms exceeded."
+    ]
+  },
+  {
+    "case": "P03-02.preview-P03-02-Elec-afc9c-fe-Markdown-plus-real-diffs",
+    "failure": [
+      "Error: expect(locator).toHaveText(expected) failed",
+      "Locator:  getByTestId('core-status')",
+      "Timeout:  15000ms"
+    ]
+  },
+  {
+    "case": "P03-02.preview-P03-02-Elec-cb08c-nd-three-PDF-layout-samples",
+    "failure": [
+      "Error: expect(locator).toHaveText(expected) failed",
+      "Locator:  getByTestId('core-status')",
+      "Timeout:  15000ms"
+    ]
+  }
+]

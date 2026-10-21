@@ -1,0 +1,45 @@
+2026-10-21T07:11:13.4570694Z ##[group]Runner Image Provisioner
+2026-10-21T07:11:13.4580901Z ##[group]Runner Image
+2026-10-21T07:11:14.7414895Z ##[group]Run actions/checkout@v4
+2026-10-21T07:11:24.6204980Z ##[group]Run actions/setup-node@v4
+2026-10-21T07:11:31.8625584Z ##[group]Run actions/cache/restore@v5
+2026-10-21T07:11:40.4542317Z ##[group]Run node scripts/bootstrap.mjs
+2026-10-21T07:14:36.9067443Z   1 passed (3.4s)
+2026-10-21T07:14:36.9712977Z BOOTSTRAP_OK
+2026-10-21T07:14:37.2403533Z ##[group]Run .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs check
+2026-10-21T07:14:53.0427149Z Formatting checked 458 repository files; 0 failures.
+2026-10-21T07:14:53.7020474Z Dependency boundaries verified
+2026-10-21T07:14:54.1578733Z Runtime/dependency/wheel manifests verified
+2026-10-21T07:14:55.2543781Z Total: 81 tests in 20 files
+2026-10-21T07:14:55.4123811Z ##[group]Run .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:unit
+2026-10-21T07:15:10.1410217Z  Test Files  45 passed (45)
+2026-10-21T07:15:10.1412492Z       Tests  352 passed (352)
+2026-10-21T07:22:32.3647220Z Dependency boundaries verified
+2026-10-21T07:22:32.3849335Z  Test Files  44 passed (44)
+2026-10-21T07:22:32.3851643Z       Tests  342 passed (342)
+2026-10-21T07:22:32.6630257Z ##[group]Run .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:perf
+2026-10-21T07:23:19.8458014Z  Test Files  2 passed (2)
+2026-10-21T07:23:19.8459288Z       Tests  2 passed (2)
+2026-10-21T07:23:20.1092099Z ##[group]Run .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs build
+2026-10-21T07:27:49.1684367Z   47 passed (3.2m)
+2026-10-21T07:28:30.8397697Z ##[group]Run .\scripts\ci-standard-user-test.ps1
+2026-10-21T07:36:59.4471350Z ##[group]Run .\scripts\ci-office-shutdown-diagnostics.ps1
+2026-10-21T07:36:59.9195185Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 1 links
+2026-10-21T07:37:22.7905152Z  Test Files  1 passed (1)
+2026-10-21T07:37:22.7907079Z       Tests  1 passed | 4 skipped (5)
+2026-10-21T07:37:22.9033631Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 2 links
+2026-10-21T07:37:43.7719175Z  Test Files  1 passed (1)
+2026-10-21T07:37:43.7720403Z       Tests  1 passed | 4 skipped (5)
+2026-10-21T07:37:43.8364227Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 3 links
+2026-10-21T07:38:04.6526158Z  Test Files  1 passed (1)
+2026-10-21T07:38:04.6527623Z       Tests  1 passed | 4 skipped (5)
+2026-10-21T07:38:04.7165024Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 1 macro
+2026-10-21T07:38:28.0968930Z  Test Files  1 passed (1)
+2026-10-21T07:38:28.0970579Z       Tests  1 passed | 4 skipped (5)
+2026-10-21T07:38:28.1808503Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 2 macro
+2026-10-21T07:38:48.2155605Z  Test Files  1 passed (1)
+2026-10-21T07:38:48.2157112Z       Tests  1 passed | 4 skipped (5)
+2026-10-21T07:38:48.2703046Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 3 macro
+2026-10-21T07:39:07.6171901Z  Test Files  1 passed (1)
+2026-10-21T07:39:07.6173306Z       Tests  1 passed | 4 skipped (5)
+2026-10-21T07:39:07.7476215Z ##[group]Run actions/upload-artifact@v4

@@ -29,5 +29,5 @@
     "id": 12326633304,
     "sha256": "1eb66bf0cfad6be6c746a1edb7ab831f095dad91ee67cfcf5f40af7ff4aa8c99"
   },
-  "validation": "Local CI-filter Electron regression running; final source CI required. No application implementation or assertions on behavior removed."
+  "validation": "Source 46e4e81 passed all 47 Electron tests in CI39560228079; both workflow jobs succeeded. Additional local full run remains recorded as 33 passed / 14 timed out in local-full-result.json. No application implementation or assertions on behavior removed."
 }

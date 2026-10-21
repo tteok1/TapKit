@@ -104,5 +104,10 @@
     "sqlite": "3.53.4"
   },
   "boundaries": "No dependency version, lockfile, runtime security, credentials, real provider invocation or live/gate status changed. Historic regression-shell.png restored byte-for-byte.",
-  "remoteVerification": "pending repair commit/push"
+  "remoteVerification": {
+    "sourceCommit": "46e4e817a17b13e9f80261b03e79d118cab96f27",
+    "runId": 39560228079,
+    "conclusion": "success",
+    "evidence": "final-verification.json"
+  }
 }

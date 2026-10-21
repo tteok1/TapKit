@@ -1,0 +1,239 @@
+{
+  "date": "2026-10-21",
+  "branch": "main",
+  "sourceCommit": "46e4e817a17b13e9f80261b03e79d118cab96f27",
+  "repairCommits": [
+    "04d5bf927bad03d6c01e15884528249f5adbdb66",
+    "46e4e817a17b13e9f80261b03e79d118cab96f27"
+  ],
+  "run": {
+    "id": 39560228079,
+    "url": "https://github.com/tteok1/TapKit/actions/runs/39560228079",
+    "status": "completed",
+    "conclusion": "success",
+    "verificationSource": "Connected GitHub workflow jobs and job logs; all jobs completed successfully",
+    "anonymousRunMetadata": "Direct anonymous run-metadata requests failed with transport EOF/rate limiting; no credentials were extracted",
+    "jobs": [
+      {
+        "id": 119089428848,
+        "name": "check",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39560228079,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Restore locked runtime archives",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Bootstrap locked runtime and native dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Save verified runtime archives",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 6
+          },
+          {
+            "name": "Check",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Unit and current-route integration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Dedicated Core performance checks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Build and Electron checks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Verify P00-03 and P03 parser as an independent standard user",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Repeat fresh-process Office shutdown diagnostics",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 25
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 26
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 27
+          }
+        ]
+      },
+      {
+        "id": 119100154006,
+        "name": "startup-diagnostics",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39560228079,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Restore locked runtime archives",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Bootstrap locked runtime and native dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Repeat fresh-process startup diagnostics",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          }
+        ]
+      }
+    ]
+  },
+  "remoteTests": {
+    "unit": {
+      "passed": 352,
+      "files": 45
+    },
+    "integration": {
+      "passed": 342,
+      "files": 44
+    },
+    "performance": {
+      "passed": 2,
+      "files": 2
+    },
+    "electron": {
+      "passed": 47,
+      "total": 47
+    },
+    "independentStandardUser": "success",
+    "officeShutdownSelectedRounds": {
+      "passed": 6,
+      "total": 6
+    },
+    "startupDiagnosticPairs": {
+      "passed": 3,
+      "total": 3
+    }
+  },
+  "fixes": [
+    "Add type: json to four shared contracts JSON imports",
+    "Run full Playwright collection in check",
+    "Align P00-01 core startup expectations to the existing 120-second verification budget",
+    "Assert auto-generated title in retained topbar",
+    "Use renamed reference-source summary while retaining historical version assertions"
+  ],
+  "localResults": "See results.json for passed scoped checks; local-full-result.json truthfully records 33 passed / 14 timed out in an additional local full run",
+  "sourceManifest": "final-source-manifest.json",
+  "workflowArtifact": {
+    "id": 12328727764,
+    "name": "windows-p00-evidence",
+    "digest": "sha256:3e93da481f553e8449b6bda0c2ac6d0f4dee359123cb330a32ad950972d2b0eb",
+    "headSha": "46e4e817a17b13e9f80261b03e79d118cab96f27"
+  },
+  "followup": "Only documentation/evidence will be committed after this source verification. Application and test tree must remain identical to sourceCommit.",
+  "scope": "No live/gate status promotion, no provider call, no runtime security change. Historical evidence restored and original user instance retained."
+}

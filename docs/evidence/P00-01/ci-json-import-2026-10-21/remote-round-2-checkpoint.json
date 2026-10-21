@@ -1,0 +1,114 @@
+{
+  "observedAt": "2026-10-21T07:30:04Z",
+  "runId": 39560228079,
+  "url": "https://github.com/tteok1/TapKit/actions/runs/39560228079",
+  "sourceCommit": "46e4e817a17b13e9f80261b03e79d118cab96f27",
+  "jobs": {
+    "jobs": [
+      {
+        "id": 119089428848,
+        "name": "check",
+        "status": "in_progress",
+        "conclusion": null,
+        "run_id": 39560228079,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Restore locked runtime archives",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Bootstrap locked runtime and native dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Save verified runtime archives",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 6
+          },
+          {
+            "name": "Check",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Unit and current-route integration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Dedicated Core performance checks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Build and Electron checks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Verify P00-03 and P03 parser as an independent standard user",
+            "status": "in_progress",
+            "conclusion": null,
+            "number": 11
+          },
+          {
+            "name": "Repeat fresh-process Office shutdown diagnostics",
+            "status": "pending",
+            "conclusion": null,
+            "number": 12
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 13
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 25
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 26
+          }
+        ]
+      }
+    ]
+  },
+  "appAndTestTreeMatchesSourceCommit": true,
+  "verificationCommand": "git diff --exit-code 46e4e817a17b13e9f80261b03e79d118cab96f27 -- apps packages scripts tests .github package.json pnpm-lock.yaml",
+  "verificationExitCode": 0,
+  "conclusion": "Bootstrap, Check, unit/integration, perf and Build/Electron have succeeded; independent standard-user step in progress; full workflow not complete."
+}

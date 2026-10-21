@@ -1,8 +1,8 @@
-## 2026-10-21 CI JSON导入修复
+## 2026-10-21 CI修复已通过远端完整验证
 
-远端检查点：04d5bf9已推送；CI39556346116的bootstrap/Check/unit352/integration342/perf2及独立标准用户/Office六轮成功，Electron45过/2失败。日志与合成UI快照确认均为过期定位：删除的正文标题改验保留的topbar实际自动标题，引用资料标签同步引用来源，行为断言保留。本地CI同过滤47项运行中，第二轮修复待推送/远端复验；见[断言修复证据](../evidence/P00-01/ci-json-import-2026-10-21/ui-assertions.json)，原验收状态保持。
+main代码提交04d5bf9、46e4e81已推送；[CI39560228079](https://github.com/tteok1/TapKit/actions/runs/39560228079)的check与startup-diagnostics均success，unit352/integration342/perf2/Electron47、独立标准用户、Office六轮及三轮启动复测通过。补齐四处JSON导入属性、check全量发现和基础启动等待，并同步两处旧UI定位，实际自动标题/账本/历史版本断言保持。[最终证据](../evidence/P00-01/ci-json-import-2026-10-21/final-verification.json)绑定源码46e4及8文件SHA；后置只有文档证据。
 
-main / 1b60d455推送已完成，运行39554896228的bootstrap在Playwright全量收集时报defaults.json缺JSON导入属性。补齐四处contracts、check加入全量发现，P00启动等待对齐既有指纹预算；81发现/unit352/integration5/Electron2/生产桌面构建退出0。失败和成功日志均见[本轮证据](../evidence/P00-01/ci-json-import-2026-10-21/results.json)；修复待提交推送与远端复验，原真人和阶段状态保持。
+额外本机整轮33过/14超时未记全绿，详情与失败原样保留；生产和历史证据已恢复，原用户窗口保持。P00及原真人/gate状态不提升，当前P02-03批测与暂缓范围不扩张。
 
 ## 2026-10-21 用户授权当前main全部提交与推送
 

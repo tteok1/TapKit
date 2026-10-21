@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-21",
+  "sourceCommit": "46e4e817a17b13e9f80261b03e79d118cab96f27",
+  "command": "pnpm test:e2e -- --grep P00-0[12]|P02-02|P03-0[123]|P04-0[123]",
+  "exitCode": 1,
+  "total": 47,
+  "passed": 33,
+  "failed": 14,
+  "duration": "17.7m",
+  "failureSummary": {
+    "coreStatus15SecondExpectation": 13,
+    "wholeTest45SecondBudget": 1
+  },
+  "changedTitleAssertion": "passed, including usage/idempotency/restart assertions",
+  "changedHistoricalReferenceAssertion": "blocked locally by core-status startup wait before the selector was reached; remote verification required",
+  "productionRestore": {
+    "completed": true,
+    "rendererBuild": "built in 37.50s",
+    "fullScriptExitCode": 1
+  },
+  "historicalEvidence": "All tracked evidence restored; git status shows only new task evidence. New two-turn screenshot moved into local-generated within this task.",
+  "remainingElectronProcesses": {
+    "originalHost": 33780,
+    "children": [
+      7968,
+      35300,
+      36520,
+      6320
+    ],
+    "testInstances": 0
+  },
+  "limitations": "This is a failed full local run, not a clean E2E pass. Available native runtime fingerprint validation differs from CI's initial profile; existing P02/P03 waits remain 15 seconds. The 45-second whole-test timeout has no separately established root cause. Do not use this run to claim remote CI success.",
+  "log": "local-full-ci-e2e.log",
+  "failureDetails": "local-full-failures.json"
+}

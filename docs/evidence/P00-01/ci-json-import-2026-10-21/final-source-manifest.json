@@ -1,0 +1,34 @@
+[
+  {
+    "path": "packages/contracts/src/context.ts",
+    "sha256": "a2dd3f9cbdd5fc7481bc5e701af9deeb2a286a6951884dbf5e620217463babf0"
+  },
+  {
+    "path": "packages/contracts/src/files.ts",
+    "sha256": "c2921d28af4334a9e1fbba647e347b6cacf5110fe74a5c59af3116e5ff5ea5fb"
+  },
+  {
+    "path": "packages/contracts/src/foundation.ts",
+    "sha256": "d264aa6274f093545269c785dc587af6667d97c06a870cc696469333f99d2ce1"
+  },
+  {
+    "path": "packages/contracts/src/models.ts",
+    "sha256": "f0027ab2d9aa6dfbb0459688ba5848471fbcbee652bb0b63e2db90d7c037302a"
+  },
+  {
+    "path": "scripts/check.mjs",
+    "sha256": "df84282c5313e3956f71dc16abab9f1f3bccaf0c2eee7af05a56058d650ea6af"
+  },
+  {
+    "path": "tests/e2e/P00-01.shell.spec.ts",
+    "sha256": "91e3591bd025df238f525dfe41a4e095a755ca4dbfa3d46c9a015045f29fd27d"
+  },
+  {
+    "path": "tests/e2e/P02-02.chat.spec.ts",
+    "sha256": "f15e6eda5ca77fa264d9511f138f06f7fc4bd6c7dd09819b1f39f52d81c70f47"
+  },
+  {
+    "path": "tests/e2e/P03-02.preview.spec.ts",
+    "sha256": "acd43360c615a6042ca36f5b95ec830e0fada59099809449c23d2b0332e33b6b"
+  }
+]
