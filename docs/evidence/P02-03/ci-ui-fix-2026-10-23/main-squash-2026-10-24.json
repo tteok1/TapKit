@@ -1,0 +1,53 @@
+{
+  "target": "main",
+  "parent": "394418f19575ac6039c98e872e2312a3b62c0b7d",
+  "sourceBranch": "ui_fix",
+  "sourceHead": "9611f1d5364b4f7f9f7452f45f157a24ddd24b37",
+  "sourceCommits": [
+    "cb5b09922491491c666ea3b9b23270eaf93c2288",
+    "a6396bc1dc2abca10fd0a4b2b9de94f872c6ba87",
+    "00238f7a34dd70334958c602b311f02a8fdc16e2",
+    "9611f1d5364b4f7f9f7452f45f157a24ddd24b37"
+  ],
+  "sourceTree": "875d7255343af3cb5d2fed741afe6d38c098a235",
+  "preHandoffSquashIndexTree": "875d7255343af3cb5d2fed741afe6d38c098a235",
+  "exactSquashTreeMatched": true,
+  "ciSourceCommit": "00238f7a34dd70334958c602b311f02a8fdc16e2",
+  "nonDocumentDeltaAfterCI": [],
+  "date": "2026-10-24",
+  "ciRunId": 39980168043,
+  "ciURL": "https://github.com/tteok1/TapKit/actions/runs/39980168043",
+  "ciConclusion": "success",
+  "validatedCounts": {
+    "unit": 360,
+    "integration": 351,
+    "performance": 2,
+    "electron": 50
+  },
+  "sourceBranchPreserved": true,
+  "postSourceChanges": "Handoff documentation only; checked before commit",
+  "mainCommit": "The single main commit containing this receipt; no self-referential SHA embedded",
+  "liveAndStageGates": "unchanged",
+  "modelRequests": 0,
+  "localMainChecks": {
+    "check": {
+      "command": [
+        "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+        "check"
+      ],
+      "exitCode": 0,
+      "seconds": 22.1
+    },
+    "docs:check": {
+      "command": [
+        "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+        "docs:check"
+      ],
+      "exitCode": 0,
+      "seconds": 0.5
+    }
+  },
+  "requirementScopeAndStatusesUnchanged": true
+}

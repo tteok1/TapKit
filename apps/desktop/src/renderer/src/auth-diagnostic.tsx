@@ -203,7 +203,7 @@ export function AuthDiagnostic() {
           {text.auth.login}
         </button>
         <button
-          title={text.auth.refresh}
+          data-tooltip={text.auth.refresh}
           aria-label={text.auth.refresh}
           onClick={() => void run(reload)}
           disabled={busy}
@@ -264,7 +264,7 @@ export function AuthDiagnostic() {
                 />
                 <button
                   aria-label={text.auth.submit}
-                  title={text.auth.submit}
+                  data-tooltip={text.auth.submit}
                   disabled={busy || !callback}
                 >
                   <ArrowRight size={16} />
@@ -318,31 +318,33 @@ export function AuthDiagnostic() {
                   </option>
                 ))}
             </select>
-            <button
-              disabled={
-                busy ||
-                checking !== undefined ||
-                login?.status === 'waiting' ||
-                account.hasCredential === false
-              }
-              onClick={() => void check(account)}
-            >
-              <RefreshCw size={16} />
-              {checking === account.accountId ? text.auth.checking : text.auth.check}
-            </button>
-            <button
-              disabled={busy || checking !== undefined}
-              onClick={() => void disconnect(account)}
-            >
-              {account.hasCredential === false ? <X size={16} /> : <LogOut size={16} />}
-              {disconnecting === account.accountId
-                ? account.hasCredential === false
-                  ? text.auth.clearingAccount
-                  : text.auth.disconnecting
-                : account.hasCredential === false
-                  ? text.auth.clearAccount
-                  : text.auth.disconnect}
-            </button>
+            <span className="action-group">
+              <button
+                disabled={
+                  busy ||
+                  checking !== undefined ||
+                  login?.status === 'waiting' ||
+                  account.hasCredential === false
+                }
+                onClick={() => void check(account)}
+              >
+                <RefreshCw size={16} />
+                {checking === account.accountId ? text.auth.checking : text.auth.check}
+              </button>
+              <button
+                disabled={busy || checking !== undefined}
+                onClick={() => void disconnect(account)}
+              >
+                {account.hasCredential === false ? <X size={16} /> : <LogOut size={16} />}
+                {disconnecting === account.accountId
+                  ? account.hasCredential === false
+                    ? text.auth.clearingAccount
+                    : text.auth.disconnecting
+                  : account.hasCredential === false
+                    ? text.auth.clearAccount
+                    : text.auth.disconnect}
+              </button>
+            </span>
           </div>
         ))}
       </div>

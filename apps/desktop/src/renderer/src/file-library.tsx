@@ -448,12 +448,14 @@ export function FileLibrary({
     <section className="file-library" aria-label={t.title}>
       <header>
         <h1>{t.title}</h1>
-        <button disabled={busy || trash} onClick={() => void selectFiles()}>
-          {t.chooseFiles}
-        </button>
-        <button disabled={busy || trash} onClick={() => void selectFiles(true)}>
-          {t.chooseFolder}
-        </button>
+        <span className="action-group">
+          <button disabled={busy || trash} onClick={() => void selectFiles()}>
+            {t.chooseFiles}
+          </button>
+          <button disabled={busy || trash} onClick={() => void selectFiles(true)}>
+            {t.chooseFolder}
+          </button>
+        </span>
       </header>
       <p>{t.supported}</p>
       <p>
@@ -603,12 +605,14 @@ export function FileLibrary({
           </span>
           {trash ? (
             <>
-              <button disabled={busy} onClick={() => void batch('restore')}>
-                {t.restore}
-              </button>
-              <button disabled={busy} onClick={() => void previewRemoval('purge')}>
-                {t.purge}
-              </button>
+              <span className="action-group">
+                <button disabled={busy} onClick={() => void batch('restore')}>
+                  {t.restore}
+                </button>
+                <button disabled={busy} onClick={() => void previewRemoval('purge')}>
+                  {t.purge}
+                </button>
+              </span>
             </>
           ) : (
             <>
@@ -624,20 +628,22 @@ export function FileLibrary({
                   {folderOptions}
                 </select>
               </label>
-              <button disabled={busy} onClick={() => void batch('move')}>
-                {t.move}
-              </button>
-              <button disabled={busy} onClick={() => void previewRemoval('trash')}>
-                {t.delete}
-              </button>
-              {owner.type !== 'library' && (
-                <button disabled={busy} onClick={() => void previewRemoval('unlink')}>
-                  {t.unlink}
+              <span className="action-group">
+                <button disabled={busy} onClick={() => void batch('move')}>
+                  {t.move}
                 </button>
-              )}
-              <button disabled={busy} onClick={() => void batch('clearPreview')}>
-                {t.clearPreview}
-              </button>
+                <button disabled={busy} onClick={() => void previewRemoval('trash')}>
+                  {t.delete}
+                </button>
+                {owner.type !== 'library' && (
+                  <button disabled={busy} onClick={() => void previewRemoval('unlink')}>
+                    {t.unlink}
+                  </button>
+                )}
+                <button disabled={busy} onClick={() => void batch('clearPreview')}>
+                  {t.clearPreview}
+                </button>
+              </span>
             </>
           )}
         </div>
@@ -687,7 +693,11 @@ export function FileLibrary({
                 }}
               />
             </label>
-            <button className="file-name" title={file.name} onClick={() => void openDetail(file)}>
+            <button
+              className="file-name"
+              data-tooltip={file.name}
+              onClick={() => void openDetail(file)}
+            >
               {file.name}
             </button>
             <span>
@@ -715,23 +725,25 @@ export function FileLibrary({
                 {t.expires} {new Date(file.purgeAfter).toLocaleDateString('zh-CN')}
               </span>
             )}
-            {!trash && (
-              <button
-                disabled={busy}
-                onClick={() =>
-                  void run(() =>
-                    viewer.open({ fileId: file.id, versionId: file.version.id, owner }),
-                  )
-                }
-              >
-                {viewerText.preview}
-              </button>
-            )}
-            {!trash && (
-              <button disabled={busy} onClick={() => void run(() => download(file))}>
-                {t.download}
-              </button>
-            )}
+            <span className="action-group">
+              {!trash && (
+                <button
+                  disabled={busy}
+                  onClick={() =>
+                    void run(() =>
+                      viewer.open({ fileId: file.id, versionId: file.version.id, owner }),
+                    )
+                  }
+                >
+                  {viewerText.preview}
+                </button>
+              )}
+              {!trash && (
+                <button disabled={busy} onClick={() => void run(() => download(file))}>
+                  {t.download}
+                </button>
+              )}
+            </span>
           </li>
         ))}
       </ul>
@@ -798,19 +810,21 @@ export function FileLibrary({
             return (
               <li key={s.token}>
                 <strong>{s.relativePath}</strong> · {bytes(s.sizeBytes)}
-                {(!importView || item?.status === 'waiting' || item?.status === 'reading') && (
-                  <button
-                    disabled={busy && !importRequestId.current}
-                    onClick={() => void cancelFile(s.token)}
-                  >
-                    {t.cancelFile}
-                  </button>
-                )}
-                {item && ['failed', 'cancelled'].includes(item.status) && (
-                  <button disabled={busy} onClick={() => void selectFiles(false)}>
-                    {t.reselectFile}
-                  </button>
-                )}
+                <span className="action-group">
+                  {(!importView || item?.status === 'waiting' || item?.status === 'reading') && (
+                    <button
+                      disabled={busy && !importRequestId.current}
+                      onClick={() => void cancelFile(s.token)}
+                    >
+                      {t.cancelFile}
+                    </button>
+                  )}
+                  {item && ['failed', 'cancelled'].includes(item.status) && (
+                    <button disabled={busy} onClick={() => void selectFiles(false)}>
+                      {t.reselectFile}
+                    </button>
+                  )}
+                </span>
                 {duplicate === 'replace' && (
                   <label>
                     {t.replaceTarget}
@@ -847,29 +861,31 @@ export function FileLibrary({
           })}
         </ul>
         {error && <p role="alert">{error}</p>}
-        <button
-          disabled={
-            busy ||
-            selections.length === 0 ||
-            !!importView ||
-            (duplicate === 'replace' && selections.some((s) => !replacements[s.token]))
-          }
-          onClick={() => void importFiles()}
-        >
-          {t.startImport}
-        </button>
-        {busy && importRequestId.current && (
+        <span className="action-group">
           <button
-            onClick={() =>
-              void command('files.cancelImport', { importRequestId: importRequestId.current })
+            disabled={
+              busy ||
+              selections.length === 0 ||
+              !!importView ||
+              (duplicate === 'replace' && selections.some((s) => !replacements[s.token]))
             }
+            onClick={() => void importFiles()}
           >
-            {t.cancelImport}
+            {t.startImport}
           </button>
-        )}
-        <button disabled={busy} onClick={() => void closeUpload()}>
-          {t.close}
-        </button>
+          {busy && importRequestId.current && (
+            <button
+              onClick={() =>
+                void command('files.cancelImport', { importRequestId: importRequestId.current })
+              }
+            >
+              {t.cancelImport}
+            </button>
+          )}
+          <button disabled={busy} onClick={() => void closeUpload()}>
+            {t.close}
+          </button>
+        </span>
       </dialog>
       <dialog
         ref={detailDialog}
@@ -915,80 +931,84 @@ export function FileLibrary({
                   {t.name}
                   <input value={name} maxLength={240} onChange={(e) => setName(e.target.value)} />
                 </label>
-                <button
-                  disabled={busy || !name.trim()}
-                  onClick={() =>
-                    void run(async () => {
-                      await command('files.rename', { fileId: detail.id, name }, detail.revision);
-                      await refreshDetail(detail.id);
-                    })
-                  }
-                >
-                  {t.rename}
-                </button>
-                <button
-                  disabled={
-                    busy ||
-                    (name.includes('.') ? name.split('.').at(-1)!.toLowerCase() : '') !==
-                      detail.version.extension
-                  }
-                  onClick={() =>
-                    void run(() =>
-                      command('files.copy', {
-                        fileId: detail.id,
-                        versionId: detail.version.id,
-                        name,
-                        owner,
-                        ...(destinationFolder ? { folderId: destinationFolder } : {}),
-                      }),
-                    )
-                  }
-                >
-                  {t.copy}
-                </button>
+                <span className="action-group">
+                  <button
+                    disabled={busy || !name.trim()}
+                    onClick={() =>
+                      void run(async () => {
+                        await command('files.rename', { fileId: detail.id, name }, detail.revision);
+                        await refreshDetail(detail.id);
+                      })
+                    }
+                  >
+                    {t.rename}
+                  </button>
+                  <button
+                    disabled={
+                      busy ||
+                      (name.includes('.') ? name.split('.').at(-1)!.toLowerCase() : '') !==
+                        detail.version.extension
+                    }
+                    onClick={() =>
+                      void run(() =>
+                        command('files.copy', {
+                          fileId: detail.id,
+                          versionId: detail.version.id,
+                          name,
+                          owner,
+                          ...(destinationFolder ? { folderId: destinationFolder } : {}),
+                        }),
+                      )
+                    }
+                  >
+                    {t.copy}
+                  </button>
+                </span>
                 {(name.includes('.') ? name.split('.').at(-1)!.toLowerCase() : '') !==
                   detail.version.extension && (
                   <p>
                     {t.copyFormatHint} {detail.version.extension.toUpperCase()}
                   </p>
                 )}
-                <button
-                  disabled={busy}
-                  onClick={() =>
-                    void run(async () => {
-                      await command(
-                        'files.favorite',
-                        { fileId: detail.id, favorite: !detail.favorite },
-                        detail.revision,
-                      );
-                      await refreshDetail(detail.id);
-                    })
-                  }
-                >
-                  {detail.favorite ? t.unfavorite : t.favorite}
-                </button>
-                <button
-                  disabled={busy || !['failed', 'cancelled'].includes(detail.version.parseStatus)}
-                  onClick={() =>
-                    void run(async () => {
-                      await command('files.retryParse', { fileVersionId: detail.version.id });
-                      await refreshDetail(detail.id);
-                    })
-                  }
-                >
-                  {t.retryParse}
-                </button>
-                <button
-                  disabled={busy || !['pending', 'parsing'].includes(detail.version.parseStatus)}
-                  onClick={() =>
-                    void run(async () => {
-                      await command('files.cancelParse', { fileVersionId: detail.version.id });
-                      await refreshDetail(detail.id);
-                    })
-                  }
-                >
-                  {t.cancelParse}
-                </button>
+                <span className="action-group">
+                  <button
+                    disabled={busy}
+                    onClick={() =>
+                      void run(async () => {
+                        await command(
+                          'files.favorite',
+                          { fileId: detail.id, favorite: !detail.favorite },
+                          detail.revision,
+                        );
+                        await refreshDetail(detail.id);
+                      })
+                    }
+                  >
+                    {detail.favorite ? t.unfavorite : t.favorite}
+                  </button>
+                  <button
+                    disabled={busy || !['failed', 'cancelled'].includes(detail.version.parseStatus)}
+                    onClick={() =>
+                      void run(async () => {
+                        await command('files.retryParse', { fileVersionId: detail.version.id });
+                        await refreshDetail(detail.id);
+                      })
+                    }
+                  >
+                    {t.retryParse}
+                  </button>
+                  <button
+                    disabled={busy || !['pending', 'parsing'].includes(detail.version.parseStatus)}
+                    onClick={() =>
+                      void run(async () => {
+                        await command('files.cancelParse', { fileVersionId: detail.version.id });
+                        await refreshDetail(detail.id);
+                      })
+                    }
+                  >
+                    {t.cancelParse}
+                  </button>
+                </span>
                 <label>
                   {t.linkTarget}
                   <select value={linkScope} onChange={(e) => setLinkScope(e.target.value)}>
@@ -1029,42 +1049,44 @@ export function FileLibrary({
               {versions.map((v) => (
                 <li key={v.id}>
                   {t.version} {v.version} · {v.name} · {state(v.parseStatus)}
-                  <button
-                    disabled={busy || trash}
-                    onClick={() => void run(() => download(detail, v.id))}
-                  >
-                    {t.download}
-                  </button>
-                  <button
-                    disabled={busy || trash || v.id === detail.currentVersionId}
-                    onClick={() =>
-                      void run(async () => {
-                        await command(
-                          'files.restoreVersion',
-                          { fileId: detail.id, versionId: v.id },
-                          detail.revision,
-                        );
-                        await refreshDetail(detail.id, true);
-                      })
-                    }
-                  >
-                    {t.restoreVersion}
-                  </button>
-                  <button
-                    disabled={busy || trash}
-                    onClick={() =>
-                      void run(() =>
-                        command('files.copy', {
-                          fileId: detail.id,
-                          versionId: v.id,
-                          name: v.name,
-                          owner,
-                        }),
-                      )
-                    }
-                  >
-                    {t.copy}
-                  </button>
+                  <span className="action-group">
+                    <button
+                      disabled={busy || trash}
+                      onClick={() => void run(() => download(detail, v.id))}
+                    >
+                      {t.download}
+                    </button>
+                    <button
+                      disabled={busy || trash || v.id === detail.currentVersionId}
+                      onClick={() =>
+                        void run(async () => {
+                          await command(
+                            'files.restoreVersion',
+                            { fileId: detail.id, versionId: v.id },
+                            detail.revision,
+                          );
+                          await refreshDetail(detail.id, true);
+                        })
+                      }
+                    >
+                      {t.restoreVersion}
+                    </button>
+                    <button
+                      disabled={busy || trash}
+                      onClick={() =>
+                        void run(() =>
+                          command('files.copy', {
+                            fileId: detail.id,
+                            versionId: v.id,
+                            name: v.name,
+                            owner,
+                          }),
+                        )
+                      }
+                    >
+                      {t.copy}
+                    </button>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -1139,22 +1161,24 @@ export function FileLibrary({
             onChange={(e) => setFolderName(e.target.value)}
           />
         </label>
-        <button
-          disabled={busy || !folderName.trim()}
-          onClick={() =>
-            void run(async () => {
-              await command('folders.create', {
-                name: folderName,
-                parentId: folderId || null,
-                owner,
-              });
-              setNewFolder(false);
-            })
-          }
-        >
-          {t.save}
-        </button>
-        <button onClick={() => setNewFolder(false)}>{t.cancel}</button>
+        <span className="action-group">
+          <button
+            disabled={busy || !folderName.trim()}
+            onClick={() =>
+              void run(async () => {
+                await command('folders.create', {
+                  name: folderName,
+                  parentId: folderId || null,
+                  owner,
+                });
+                setNewFolder(false);
+              })
+            }
+          >
+            {t.save}
+          </button>
+          <button onClick={() => setNewFolder(false)}>{t.cancel}</button>
+        </span>
       </dialog>
       <dialog
         ref={removeDialog}
@@ -1173,22 +1197,24 @@ export function FileLibrary({
             )
             .join(' · ')}
         </p>
-        <button
-          disabled={busy}
-          onClick={() =>
-            void run(async () => {
-              if (!remove) return;
-              await command(`files.${remove}`, { fileIds: impact.map((f) => f.id), owner });
-              setSelected((ids) => ids.filter((id) => !impact.some((f) => f.id === id)));
-              setRemove(undefined);
-            })
-          }
-        >
-          {t.confirm}
-        </button>
-        <button disabled={busy} onClick={() => setRemove(undefined)}>
-          {t.cancel}
-        </button>
+        <span className="action-group">
+          <button
+            disabled={busy}
+            onClick={() =>
+              void run(async () => {
+                if (!remove) return;
+                await command(`files.${remove}`, { fileIds: impact.map((f) => f.id), owner });
+                setSelected((ids) => ids.filter((id) => !impact.some((f) => f.id === id)));
+                setRemove(undefined);
+              })
+            }
+          >
+            {t.confirm}
+          </button>
+          <button disabled={busy} onClick={() => setRemove(undefined)}>
+            {t.cancel}
+          </button>
+        </span>
       </dialog>
     </section>
   );

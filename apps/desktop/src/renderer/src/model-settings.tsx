@@ -310,26 +310,28 @@ export function ModelSettings() {
                   .join(' / ')}
                 ；供应商剩余额度与恢复时间未知。
               </p>
-              <button disabled={busy || !m.accountId} onClick={() => choose(m)}>
-                {values.selection && key(values.selection) === key(m) ? '已选择' : '选择模型'}
-              </button>
-              {m.accountId && (
-                <button
-                  disabled={busy}
-                  aria-label={`收藏 ${m.displayName} ${m.accountLabel}`}
-                  aria-pressed={values.favorites.some((f) => key(f) === key(m))}
-                  onClick={() =>
-                    setValues((v) => ({
-                      ...v,
-                      favorites: v.favorites.some((f) => key(f) === key(m))
-                        ? v.favorites.filter((f) => key(f) !== key(m))
-                        : [...v.favorites, { accountId: m.accountId!, modelId: m.modelId }],
-                    }))
-                  }
-                >
-                  收藏
+              <span className="action-group">
+                <button disabled={busy || !m.accountId} onClick={() => choose(m)}>
+                  {values.selection && key(values.selection) === key(m) ? '已选择' : '选择模型'}
                 </button>
-              )}
+                {m.accountId && (
+                  <button
+                    disabled={busy}
+                    aria-label={`收藏 ${m.displayName} ${m.accountLabel}`}
+                    aria-pressed={values.favorites.some((f) => key(f) === key(m))}
+                    onClick={() =>
+                      setValues((v) => ({
+                        ...v,
+                        favorites: v.favorites.some((f) => key(f) === key(m))
+                          ? v.favorites.filter((f) => key(f) !== key(m))
+                          : [...v.favorites, { accountId: m.accountId!, modelId: m.modelId }],
+                      }))
+                    }
+                  >
+                    收藏
+                  </button>
+                )}
+              </span>
               {m.status !== 'ready' && (
                 <p>
                   <Link to={m.providerId === 'codex-subscription' ? '/dev/codex' : '/dev/api'}>
@@ -643,23 +645,25 @@ export function ModelSettings() {
         ))}
       </div>
       <p>{preview?.paidNotice}</p>
-      <button
-        disabled={busy || !preview?.candidates.length || Boolean(preview.issues.length)}
-        onClick={() => void run()}
-      >
-        调用模型检测（可能计费）
-      </button>
-      {callId && (
+      <span className="action-group">
         <button
-          onClick={() =>
-            void invoke('models.cancel', { logicalCallId: callId }).catch((error) =>
-              setMessage(error.message),
-            )
-          }
+          disabled={busy || !preview?.candidates.length || Boolean(preview.issues.length)}
+          onClick={() => void run()}
         >
-          取消检测
+          调用模型检测（可能计费）
         </button>
-      )}
+        {callId && (
+          <button
+            onClick={() =>
+              void invoke('models.cancel', { logicalCallId: callId }).catch((error) =>
+                setMessage(error.message),
+              )
+            }
+          >
+            取消检测
+          </button>
+        )}
+      </span>
       <p role="status">{busy ? '正在处理…' : message}</p>
       {result && (
         <div data-testid="routing-result">

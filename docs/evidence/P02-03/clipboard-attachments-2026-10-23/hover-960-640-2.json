@@ -1,0 +1,81 @@
+{
+  "innerWidth": 961,
+  "innerHeight": 641,
+  "rect": {
+    "x": 813,
+    "y": 247.46875,
+    "width": 56,
+    "height": 56,
+    "top": 247.46875,
+    "right": 869,
+    "bottom": 303.46875,
+    "left": 813
+  },
+  "scroller": {
+    "x": 46,
+    "y": 253.734375,
+    "width": 869,
+    "height": 49.953125,
+    "top": 253.734375,
+    "right": 915,
+    "bottom": 303.6875,
+    "left": 46
+  },
+  "active": "BODY",
+  "hit": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-copy ui-icon\" aria-hidden=\"true\"><rect width=\"14\" height=\"14\" x=\"8\" y=\"8\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg>",
+  "events": [
+    {
+      "type": "pointerout",
+      "target": "DIV"
+    },
+    {
+      "type": "pointerout",
+      "target": "DIV"
+    },
+    {
+      "type": "pointerout",
+      "target": "DIV"
+    },
+    {
+      "type": "pointerout",
+      "target": "DIV"
+    },
+    {
+      "type": "pointerover",
+      "target": "svg",
+      "tooltip": "复制代码"
+    },
+    {
+      "type": "pointerover",
+      "target": "svg",
+      "tooltip": "复制代码"
+    },
+    {
+      "type": "pointerover",
+      "target": "svg",
+      "tooltip": "复制代码"
+    },
+    {
+      "type": "pointerover",
+      "target": "svg",
+      "tooltip": "复制代码"
+    },
+    {
+      "type": "scroll",
+      "target": "DIV"
+    },
+    {
+      "type": "scroll",
+      "target": "DIV"
+    },
+    {
+      "type": "scroll",
+      "target": "DIV"
+    },
+    {
+      "type": "scroll",
+      "target": "DIV"
+    }
+  ],
+  "hint": "<span id=\"_r_0_\" popover=\"manual\" role=\"tooltip\" class=\"rounded-tooltip\" style=\"left: 635.5px; top: 155.633px;\">复制表格</span>"
+}

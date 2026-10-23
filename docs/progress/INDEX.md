@@ -1,3 +1,77 @@
+## 2026-10-24 ui_fix单提交main交付
+
+2026-10-24 用户授权将ui_fix四个提交压成一个提交合入main。压缩暂存树与源头9611f1d完整树一致，之后仅补本次交接文档；产品和测试与CI57已验源码00238f7一致（unit360/integration351/perf2/Electron50及原生/Office/启动诊断通过）。源分支保留，原profile/live/gate不变；本次main提交即包含本记录的提交。证据ci-ui-fix-2026-10-23/main-squash-2026-10-24.json。
+
+## 2026-10-24 ui_fix CI57复验通过
+
+2026-10-24 ui_fix CI57全部通过：源码00238f7，unit360/integration351/perf2/Electron50，标准用户原生/Office/启动诊断全部success。修复仅测试准备、能力断言及冷启动预算，产品109源码/原生产构建不变；证据ci-ui-fix-2026-10-23/ci57-success.json。已推送ui_fix，不合main，原profile/live/gate保持。
+
+## 2026-10-23 ui_fix CI56续修（验证中）
+
+CI56原3项修复通过；新增P01-02回放15秒超时与附件首次发送用例未等待Ctrl+N切换首页。仅给六渠道HTTP协议完整性测试60秒预算，并在输入前断言新任务页、草稿和发送后的原用户正文；不改产品、传输deadline或隔离检查。HTTP8/8、附件专项2/2通过，最终检查/远程复验进行中；证据ci-ui-fix-2026-10-23。原live/gate/profile保持，不合main。
+
+## 2026-10-23 ui_fix CI55修复（验证中）
+
+P02-02关联P02-01/P03-01。CI55在cb5b099上Electron47过/3失败，其他检查和startup诊断通过。修正刷新后回首页时重新打开同一会话的测试准备，附件按实际nativeExecution能力核验解析状态、明确错误原因和原件哈希；不放宽生产隔离门槛，不修改UI/业务。相关5项本地E2E同轮通过，后续提交同分支核对远程CI；证据 docs/evidence/P02-03/ci-ui-fix-2026-10-23。原live/gate/profile保持，不合main。
+
+## 2026-10-23 ui_fix提交推送授权
+
+用户要求提交本分支当前累计内容并推送远程，暂不合入main。提交范围包括前述UI、翻译/选区、复制/附件修复、测试、ADR和验收证据；编译缓存排除。产品源码与最后已验构建保持，原profile/live/gate不变。本次Git交接仅发布ui_fix，未授权写入main。
+
+## 2026-10-23 全局表单与平整列表（本地完成）
+
+P02-01关联P02-03，ADR0062：共享柔和聚焦、主题下拉、圆形选择、胶囊操作/间距和无标题框同行列表。545控件属性/事件比对不变；unit12、生产Electron同轮11/11通过，包含浅深色/小窗口/200%。最终检查、109源码/626产物与原启动命令校验见 docs/evidence/P02-03/forms-theme-2026-10-23/verification.md。原功能/profile/live/gate保持，无真实请求/commit/push。
+
+## 2026-10-23 原生复制与紧凑附件（本地完成）
+
+ADR0061；P02-02关联P03-01，原生完整复制/有界2,000,000、TSV/选区/代码空白/公式；柔和聚焦/紧凑圆角附件、真实状态与逐项关闭，排除迟到/解析移除引用，小窗口200%保持可达。unit62、integration111通过；10个不同Electron用例分轮通过，最终补验2/2，早期失败保留。最终检查、生产快照与原启动入口校验见 docs/evidence/P02-03/clipboard-attachments-2026-10-23/verification.md 和 results.json。原profile、全部既有改动及Core/翻译/live/gate保持，无真实请求/commit/push。
+
+## 2026-10-23 图标与长按导航排序（本地完成）
+
+用户恢复此前暂停的三项需求。ADR0060：七类图标改用弧线轮廓；移除导航调整面板及隐藏能力，改长按450ms拖动/键盘排序并保存，恢复旧隐藏项；设置分类移除归档/回收站图标。仅前端，旧路由和Core不变。12项相关unit、3项生产产物Electron用例同轮通过，check/docs:check/diff检查与最新生产启动校验见证据，证据 docs/evidence/P02-03/navigation-icons-2026-10-23/verification.md；原窗口/profile、全部既有改动及真人/gate状态保持，无真实请求或commit/push。
+
+## 2026-10-22 分组展开与悬停提示续修（本地完成）
+
+按用户六项细节要求实施 ADR0059：标语略上移、推荐删除尾箭头、模式说明在下方；分组标题/更多菜单/排列子菜单同行，勾选右置。侧栏分组内实际加载会话并随箭头展开/收起，未分组显示在最近，完整历史页保持；sectionId=null 查询范围扩展无迁移。全部自有原生 title 提示（含发送/复制/文件公式等）改为共享圆角委托层，键盘及禁用控件可用。
+
+unit354通过；相关integration88分轮通过（87+补验1）；8个不同Electron用例分轮通过（首轮6/8、第二轮2/3、最终补验2/2，含复制提示增强）。测试范围遗漏、复用焦点和排序保存等待问题均已修正并保留失败回执；无产品源码后置修改。最终检查/生产快照/原启动入口见 docs/evidence/P02-03/group-tooltips-2026-10-22/verification.md。保留原窗口/profile及全部既有改动，无真实请求、commit/push或gate提升。
+
+## 2026-10-22 P02-01 统一新建任务页
+
+## 2026-10-22 外壳细节本地完成
+
+P02-01 按 ADR0058 调整首页/侧栏/设置历史管理及排序；unit354 / integration88 退出0；18个不同 Electron 用例分轮通过（最终200%补验2/2），最终检查/生产快照及原启动入口见证据。见 P02-01 及 docs/evidence/P02-03/shell-details-2026-10-22，原状态保持。
+
+ui_fix / 394418f 完成用户首页设计；三模式共用草稿、推荐隐藏/恢复、底部输入与框内设置模型、侧栏入口合一，工作只保存草稿，ADR0057。unit354 / integration85 退出0，桌面18个不同用例分轮通过（首轮14/18，补验6/6）；工作草稿交接竞态已修。进展见 [P02-01](P02-01.md)，最终检查/构建/启动与历史截图恢复范围见 [证据](../evidence/P02-03/unified-start-2026-10-22/verification.md)。原窗口/profile、翻译与全部功能/live/gate状态保持，无真实请求或 commit/push。
+
+## 2026-10-22 翻译目标与回显检查收尾
+
+2026-10-22 翻译修复收尾：selection-v3把目标语言明确到本轮指令/系统模块/回答偏好；明显跨语言自然句原样回显提示TRANSLATION_UNCHANGED，不自动重试。unit354、相关集成47及桌面3个不同用例分轮通过；恢复后仅补验窗口，实际1441/961（Windows取整1px）无越界，旧无效截图与失败保留。最终check/docs、生产源码/619产物与原启动命令校验见[证据](../evidence/P02-03/translation-target-2026-10-21/verification.md)。保留原窗口/profile，重开载入新Core；真人翻译/gate不提升，无commit/push。
+
+## 2026-10-21 ui_fix选区浮条触发遗漏
+
+- 2026-10-21 用户明确要求暂停，等待其自行测试回报；停止后续修改/检查/启动。翻译WIP已保留：selection-v3目标语言/回显错误、契约和测试；unit354、相关集成47分轮及桌面3分轮已验，最后隔离测试1/1结束并恢复生产（final.json exit0）。尚未跑本轮最终check/docs:check、未生成已验构建results或更新启动指针；旧run-app.ps1会因源码/产物与旧结果不一致拒绝重开。当前已开原窗口仍为上轮v2，未加载本轮代码；不要把其自测当v3验收。下一步仅在用户要求继续后接续静态检查/生产审查/原命令激活，真人/gate不提升，无commit/push。
+
+- 2026-10-21 翻译原文回显修复进行中：只读核对23:21真实轮为translate、原文范围27—80/53字符正确，与昨日成功同selection-v2及上下文统计；近期UI未改Core翻译。新selection-v3明确目标并对跨语言自然句原样返回提示TRANSLATION_UNCHANGED，不自动重试；unit354通过，相关集成43通过后修正4个测试事务准备并补验4通过，非单轮全绿。桌面/生产/静态待收口；保留旧回复和原profile，不发真实请求/不提升真人或gate。
+
+- 2026-10-21 录屏选区续修：本地查看录屏并用真实拖选复现空白起点/正文外尾部终点遗漏；现按实际可见选区核验单一消息并裁去布局空白，原Range/版本/权限保持。最终Electron同轮3/3（八种松手与移开鼠标、原拖选/双击/Shift、输入与跨消息排除、真实翻译及复制/四尺寸缩放）通过，失败准备及首修记录保留；静态检查/生产恢复/原启动命令验证见[本轮证据](../evidence/P02-03/selection-release-2026-10-21/verification.md)。原窗口/profile保留，真人/gate不提升，无commit/push。
+
+正文正反拖选后松开到旁边空白时，旧pointerup按松开DOM误判并隐藏浮条；现按拖选起点和实际Range核验，下一帧读取并消除迟到选择/滚动的干扰。定向3个用例分轮通过：原T13和四尺寸缩放复制/选区2项，新边缘/双击/Shift/输入排除/翻译1项；首轮失败及错误键盘测试假设保留。生产恢复，旧启动入口通过本地已验结果指针加载本轮UI。[证据与交接](../evidence/P02-03/selection-trigger-2026-10-21/verification.md)，原窗口/profile和真人/gate状态保持，无新commit/push。
+
+## 2026-10-21 ui_fix旧会话重复读取与启动排查
+
+移除回复协议名与进展辅助计费说明；首次snapshot完成后从其eventSeq订阅，消除每次进旧会话的历史事件重放与消息读取风暴。12轮会话三次打开均由101次读取降到1次，可见消息DOM就绪1029–1133ms降到151–306ms；分支/草稿恢复及复制/选区定向Electron3/3通过，生产恢复。开发入口每次编译，Core本地完整性读取另测16.9秒；提供已验产物启动器，不在每次启动时编译。[本轮证据及启动方式](../evidence/P02-03/session-load-2026-10-21/verification.md)保留失败基线、前后采样及负载限制。原窗口/profile与真人/gate状态保持，无新commit/push。
+
+## 2026-10-21 ui_fix补充：复制图标与光标选区浮条
+
+按用户补充截图，将代码/表格复制改为右上角图标与hover说明（表格按hover/聚焦显示），压缩底栏与输入底部；五种选区操作改为正文选中后在光标附近横向显示，继续原范围/版本校验。稳定共享Markdown组件避免状态刷新重挂载；隔离Electron最终6/6通过，涵盖两尺寸/两缩放的真实鼠标与翻译来源，生产构建恢复。结果与首轮失败诊断见[本轮证据](../evidence/P02-03/inline-selection-2026-10-21/verification.md)，不提升原真人/gate状态，无新commit/push。
+
+## 2026-10-21 ui_fix紧凑聊天与固定底栏
+
+用户已要求启动自查：原profile最新UI窗口已打开，实际窗口及公开IPC确认，见[启动回执](../evidence/P02-03/compact-chat-2026-10-21/manual-launch.json)。
+
+基于main/394418f创建的`ui_fix`进行P02-03 UI增量：固定头像/设置、图钉说明、图标/更多菜单、紧凑间距、连续滚动条、单行自动增高输入；保持既有路由/命令，补防止后台刷新覆盖未保存记忆勾选。11项相关Electron用例分轮通过，结果见[本轮记录](../evidence/P02-03/compact-chat-2026-10-21/verification.md)。无新commit/push，原真人与所有任务/gate状态保持。
+
 ## 2026-10-21 CI修复已通过远端完整验证
 
 main代码提交04d5bf9、46e4e81已推送；[CI39560228079](https://github.com/tteok1/TapKit/actions/runs/39560228079)的check与startup-diagnostics均success，unit352/integration342/perf2/Electron47、独立标准用户、Office六轮及三轮启动复测通过。补齐四处JSON导入属性、check全量发现和基础启动等待，并同步两处旧UI定位，实际自动标题/账本/历史版本断言保持。[最终证据](../evidence/P00-01/ci-json-import-2026-10-21/final-verification.json)绑定源码46e4及8文件SHA；后置只有文档证据。

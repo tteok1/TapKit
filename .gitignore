@@ -9,6 +9,7 @@ release/
 playwright-report/
 test-results/
 coverage/
+*.tsbuildinfo
 resources/runtime/*
 !resources/runtime/.gitkeep
 resources/models/*

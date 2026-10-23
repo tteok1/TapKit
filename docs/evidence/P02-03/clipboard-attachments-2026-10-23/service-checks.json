@@ -1,0 +1,17 @@
+{
+  "check": {
+    "command": "pnpm check",
+    "exitCode": 1,
+    "seconds": 1.47
+  },
+  "unit": {
+    "command": "pnpm exec vitest run --config vitest.config.ts --project unit P02-02 P03-01 P02-03",
+    "exitCode": 0,
+    "seconds": 3.35
+  },
+  "integration": {
+    "command": "pnpm test:integration P02-02 P03-01",
+    "exitCode": 1,
+    "seconds": 62.12
+  }
+}

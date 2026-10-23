@@ -23,7 +23,7 @@ test.afterEach(async () => {
 });
 test('P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory', async () => {
   const page = await app.firstWindow();
-  await expect(page.getByRole('heading', { name: '从这里开始' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '你的想法，从这里开始' })).toBeVisible();
   await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125_000 });
   const reply = await page.evaluate(() => window.tapkit.ping({ nonce: '中文 空格 ABI' }));
   expect(reply.nonce).toBe('中文 空格 ABI');

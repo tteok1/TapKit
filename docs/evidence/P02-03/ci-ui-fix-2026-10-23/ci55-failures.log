@@ -1,0 +1,121 @@
+2026-10-23T11:54:54.0933692Z   1) tests\e2e\P02-02.chat.spec.ts:91:1 › P01-03 background title failure is announced, survives reload and explicit rename clears the failure without replaying chat 
+2026-10-23T11:54:54.0934336Z 
+2026-10-23T11:54:54.0934492Z     Error: expect(locator).toContainText(expected) failed
+2026-10-23T11:54:54.0934671Z 
+2026-10-23T11:54:54.0934999Z     Locator: getByRole('status').filter({ hasText: '自动标题生成失败' })
+2026-10-23T11:54:54.0935493Z     Expected substring: "等待响应头超时"
+2026-10-23T11:54:54.0935701Z     Timeout: 15000ms
+2026-10-23T11:54:54.0935896Z     Error: element(s) not found
+2026-10-23T11:54:54.0936028Z 
+2026-10-23T11:54:54.0936128Z     Call log:
+2026-10-23T11:54:54.0936508Z       - Expect "toContainText" getByRole('status').filter({ hasText: '自动标题生成失败' }) with timeout 15000ms
+2026-10-23T11:54:54.0936952Z       - waiting for getByRole('status').filter({ hasText: '自动标题生成失败' })
+2026-10-23T11:54:54.0937141Z 
+2026-10-23T11:54:54.0937145Z 
+2026-10-23T11:54:54.0937381Z       100 |   await page.screenshot({ path: 'docs/evidence/P01-engineering-2026-10-14/title-failed.png' });
+2026-10-23T11:54:54.0937727Z       101 |   await page.reload();
+2026-10-23T11:54:54.0938135Z     > 102 |   await expect(page.getByRole('status').filter({ hasText: '自动标题生成失败' })).toContainText(
+2026-10-23T11:54:54.0938487Z           |                                                                          ^
+2026-10-23T11:54:54.0938747Z       103 |     '等待响应头超时',
+2026-10-23T11:54:54.0938947Z       104 |   );
+2026-10-23T11:54:54.0939248Z       105 |   const before = (await snapshot(page, sid)).messages.map((m) => ({ id: m.id, text: m.text }));
+2026-10-23T11:54:54.0939661Z         at D:\a\TapKit\TapKit\tests\e2e\P02-02.chat.spec.ts:102:74
+2026-10-23T11:54:54.0939813Z 
+2026-10-23T11:54:54.0940083Z     Error Context: test-results\e2e\P02-02.chat-P01-03-backgro-1e83d-lure-without-replaying-chat\error-context.md
+2026-10-23T11:54:54.0940366Z 
+2026-10-23T11:54:54.0940617Z     attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+2026-10-23T11:54:54.0941046Z     test-results\e2e\P02-02.chat-P01-03-backgro-1e83d-lure-without-replaying-chat\trace.zip
+2026-10-23T11:54:54.0941335Z     Usage:
+2026-10-23T11:54:54.0941430Z 
+2026-10-23T11:54:54.0941708Z         pnpm exec playwright show-trace test-results\e2e\P02-02.chat-P01-03-backgro-1e83d-lure-without-replaying-chat\trace.zip
+2026-10-23T11:54:54.0941990Z 
+2026-10-23T11:54:54.0942202Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-10-23T11:54:54.0942389Z 
+2026-10-23T11:54:54.0942982Z   2) tests\e2e\P02-02.chat.spec.ts:211:1 › P02-02 T05 IME and Shift+Enter keep draft; queue editing/cancellation, session switching and stopping preserve confirmed text 
+2026-10-23T11:54:54.0943412Z 
+2026-10-23T11:54:54.0943572Z     Error: expect(locator).toBeVisible() failed
+2026-10-23T11:54:54.0943792Z 
+2026-10-23T11:54:54.0943917Z     Locator: locator('.chat-messages')
+2026-10-23T11:54:54.0944237Z     Expected: visible
+2026-10-23T11:54:54.0944487Z     Timeout: 15000ms
+2026-10-23T11:54:54.0944786Z     Error: element(s) not found
+2026-10-23T11:54:54.0944981Z 
+2026-10-23T11:54:54.0945086Z     Call log:
+2026-10-23T11:54:54.0945432Z       - Expect "toBeVisible" locator('.chat-messages') with timeout 15000ms
+2026-10-23T11:54:54.0945846Z       - waiting for locator('.chat-messages')
+2026-10-23T11:54:54.0946004Z 
+2026-10-23T11:54:54.0946007Z 
+2026-10-23T11:54:54.0946089Z       243 |   );
+2026-10-23T11:54:54.0946273Z       244 |   await page.reload();
+2026-10-23T11:54:54.0946546Z     > 245 |   await expect(page.locator('.chat-messages')).toBeVisible();
+2026-10-23T11:54:54.0946849Z           |                                                ^
+2026-10-23T11:54:54.0947218Z       246 |   await input.fill('慢速原问题');
+2026-10-23T11:54:54.0947438Z       247 |   await input.press('Enter');
+2026-10-23T11:54:54.0947738Z       248 |   await expect(input).toHaveValue('慢速原问题\n');
+2026-10-23T11:54:54.0948112Z         at D:\a\TapKit\TapKit\tests\e2e\P02-02.chat.spec.ts:245:48
+2026-10-23T11:54:54.0948483Z 
+2026-10-23T11:54:54.0948841Z     Error Context: test-results\e2e\P02-02.chat-P02-02-T05-IME-e37a5-ing-preserve-confirmed-text\error-context.md
+2026-10-23T11:54:54.0949436Z 
+2026-10-23T11:54:54.0949725Z     attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+2026-10-23T11:54:54.0950137Z     test-results\e2e\P02-02.chat-P02-02-T05-IME-e37a5-ing-preserve-confirmed-text\trace.zip
+2026-10-23T11:54:54.0950437Z     Usage:
+2026-10-23T11:54:54.0950540Z 
+2026-10-23T11:54:54.0950833Z         pnpm exec playwright show-trace test-results\e2e\P02-02.chat-P02-02-T05-IME-e37a5-ing-preserve-confirmed-text\trace.zip
+2026-10-23T11:54:54.0951140Z 
+2026-10-23T11:54:54.0951333Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-10-23T11:54:54.0951522Z 
+2026-10-23T11:54:54.0951937Z   3) tests\e2e\P02-02.clipboard-attachments.spec.ts:178:1 › P02-02 rounded attachment cards show progress, cancel one late upload and fit focus and zoom layouts 
+2026-10-23T11:54:54.0952301Z 
+2026-10-23T11:54:54.0952414Z     Error: expect(locator).toContainText(expected) failed
+2026-10-23T11:54:54.0952579Z 
+2026-10-23T11:54:54.0952799Z     Locator: locator('.composer').locator('.composer-attachment').filter({ hasText: 'keep-this.txt' })
+2026-10-23T11:54:54.0953281Z     Expected substring: "已就绪"
+2026-10-23T11:54:54.0953826Z     Received string:    "keep-this.txtTXT · 18 B · 处理失败预览下载原件重试读取"
+2026-10-23T11:54:54.0954084Z     Timeout: 15000ms
+2026-10-23T11:54:54.0954174Z 
+2026-10-23T11:54:54.0954270Z     Call log:
+2026-10-23T11:54:54.0954645Z       - Expect "toContainText" locator('.composer').locator('.composer-attachment').filter({ hasText: 'keep-this.txt' }) with timeout 15000ms
+2026-10-23T11:54:54.0955189Z       - waiting for locator('.composer').locator('.composer-attachment').filter({ hasText: 'keep-this.txt' })
+2026-10-23T11:54:54.0955623Z         - locator resolved to <div class="composer-attachment">…</div>
+2026-10-23T11:54:54.0955953Z         - unexpected value "keep-this.txtTXT · 18 B · 读取中"
+2026-10-23T11:54:54.0956300Z         33 × locator resolved to <div class="composer-attachment">…</div>
+2026-10-23T11:54:54.0956652Z            - unexpected value "keep-this.txtTXT · 18 B · 处理失败预览下载原件重试读取"
+2026-10-23T11:54:54.0956835Z 
+2026-10-23T11:54:54.0956838Z 
+2026-10-23T11:54:54.0957004Z       256 |   await app.evaluate(() => Reflect.get(globalThis, 'cardRelease')());
+2026-10-23T11:54:54.0957488Z       257 |   await expect(cards.filter({ hasText: 'cancel-this.txt' })).toHaveCount(0);
+2026-10-23T11:54:54.0958417Z     > 258 |   await expect(cards.filter({ hasText: 'keep-this.txt' })).toContainText('已就绪');
+2026-10-23T11:54:54.0960856Z           |                                                            ^
+2026-10-23T11:54:54.0961490Z       259 |   await expect(cards).toHaveCount(2);
+2026-10-23T11:54:54.0962757Z       260 |   const sid = (await page.locator('.chat-surface').getAttribute('data-session-id'))!;
+2026-10-23T11:54:54.0963243Z       261 |   await expect
+2026-10-23T11:54:54.0963503Z         at D:\a\TapKit\TapKit\tests\e2e\P02-02.clipboard-attachments.spec.ts:258:60
+2026-10-23T11:54:54.0963709Z 
+2026-10-23T11:54:54.0963962Z     Error Context: test-results\e2e\P02-02.clipboard-attachmen-46e54--fit-focus-and-zoom-layouts\error-context.md
+2026-10-23T11:54:54.0964269Z 
+2026-10-23T11:54:54.0964513Z     Error Context: test-results\e2e\P02-02.clipboard-attachmen-46e54--fit-focus-and-zoom-layouts\error-context.md
+2026-10-23T11:54:54.0964767Z 
+2026-10-23T11:54:54.0965061Z     attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+2026-10-23T11:54:54.0965460Z     test-results\e2e\P02-02.clipboard-attachmen-46e54--fit-focus-and-zoom-layouts\trace.zip
+2026-10-23T11:54:54.0965725Z     Usage:
+2026-10-23T11:54:54.0965799Z 
+2026-10-23T11:54:54.0966049Z         pnpm exec playwright show-trace test-results\e2e\P02-02.clipboard-attachmen-46e54--fit-focus-and-zoom-layouts\trace.zip
+2026-10-23T11:54:54.0966329Z 
+2026-10-23T11:54:54.0966519Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-10-23T11:54:54.0966683Z 
+2026-10-23T11:54:54.0966727Z   3 failed
+2026-10-23T11:54:54.0967186Z     tests\e2e\P02-02.chat.spec.ts:91:1 › P01-03 background title failure is announced, survives reload and explicit rename clears the failure without replaying chat 
+2026-10-23T11:54:54.0967904Z     tests\e2e\P02-02.chat.spec.ts:211:1 › P02-02 T05 IME and Shift+Enter keep draft; queue editing/cancellation, session switching and stopping preserve confirmed text 
+2026-10-23T11:54:54.0968832Z     tests\e2e\P02-02.clipboard-attachments.spec.ts:178:1 › P02-02 rounded attachment cards show progress, cancel one late upload and fit focus and zoom layouts 
+2026-10-23T11:54:54.0969221Z   47 passed (3.1m)
+2026-10-23T11:54:54.4245922Z [36mvite v7.3.6 [32mbuilding ssr environment for production...[36m[39m
+2026-10-23T11:54:54.4539085Z transforming...
+2026-10-23T11:54:54.7274303Z [33mnode_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+2026-10-23T11:54:54.7274557Z 
+2026-10-23T11:54:54.7274966Z "// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+2026-10-23T11:54:54.7275330Z 
+2026-10-23T11:54:54.7276252Z in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.[39m
+2026-10-23T11:54:54.7490014Z [33mnode_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+2026-10-23T11:54:54.7490309Z 
+2026-10-23T11:54:54.7490550Z "/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+2026-10-23T11:54:54.7491027Z  * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it

@@ -1,0 +1,13 @@
+{
+  "command": [
+    "test:e2e",
+    "tests/e2e/P02-03.selection-release.spec.ts",
+    "tests/e2e/P02-03.selection-trigger.spec.ts",
+    "tests/e2e/P02-03.inline-selection.spec.ts",
+    "--grep",
+    "P02-03"
+  ],
+  "exitCode": 1,
+  "elapsedSeconds": 165.99,
+  "historicalEvidenceRestored": true
+}

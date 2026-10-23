@@ -1,0 +1,18 @@
+[
+  {
+    "requestedWidth": 1440,
+    "width": 1441,
+    "height": 901,
+    "left": 430,
+    "right": 1240,
+    "scrollWidth": 1441
+  },
+  {
+    "requestedWidth": 960,
+    "width": 961,
+    "height": 901,
+    "left": 280,
+    "right": 910,
+    "scrollWidth": 961
+  }
+]

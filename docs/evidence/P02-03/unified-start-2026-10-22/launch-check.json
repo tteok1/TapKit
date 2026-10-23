@@ -1,0 +1,8 @@
+{
+  "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File docs/evidence/P02-03/session-load-2026-10-21/run-app.ps1 -CheckOnly",
+  "exitCode": 0,
+  "elapsedMilliseconds": 1574,
+  "output": "Verified current UI build and existing local profile; no application started.",
+  "applicationStarted": false,
+  "originalWindowClosed": false
+}

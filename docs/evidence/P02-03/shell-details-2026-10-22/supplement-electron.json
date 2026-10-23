@@ -1,0 +1,14 @@
+{
+  "command": [
+    "test:e2e",
+    "tests/e2e/P02-01.shell-details.spec.ts",
+    "tests/e2e/P02-01.ui-redesign.spec.ts",
+    "tests/e2e/P02-03.chat-simplify.spec.ts",
+    "--grep",
+    "P02-01 shell details home|P02-03 T22 compact chat|P02-01 UI redesign covers navigation"
+  ],
+  "exitCode": 1,
+  "elapsedSeconds": 333.53,
+  "historicalEvidenceRestoreExitCode": 0,
+  "persistentBackup": ".test-data\\compact-chat\\evidence-backup-1792665433"
+}

@@ -1,0 +1,402 @@
+/* Shared controls for every form, toolbar and detail page. Native semantics stay intact. */
+.desktop-shell :is(input, textarea, select) {
+  color: var(--ink);
+  background-color: var(--surface);
+  border-radius: 12px;
+  transition:
+    background-color 160ms ease,
+    box-shadow 180ms ease;
+}
+.desktop-shell
+  :is(
+    input:not([type='checkbox'], [type='radio'], [type='range'], [type='color']),
+    textarea,
+    select
+  ):focus {
+  outline: none;
+  border-color: var(--border);
+  box-shadow: var(--field-focus-shadow);
+}
+.desktop-shell .history-title-search input:focus,
+.desktop-shell .composer textarea#draft-input:focus {
+  box-shadow: none;
+}
+.desktop-shell .history-title-search:focus-within {
+  outline: none;
+}
+.desktop-shell select:is(:focus, :open):enabled {
+  outline: none;
+  border-color: var(--border);
+  box-shadow: var(--field-focus-shadow);
+}
+
+/* Chromium's customizable picker keeps labels, values, disabled options and keyboard behavior. */
+@supports (appearance: base-select) {
+  .desktop-shell select:not([multiple], [size]),
+  .desktop-shell select:not([multiple], [size])::picker(select) {
+    appearance: base-select;
+  }
+  .desktop-shell select:not([multiple], [size]) {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-inline-size: 0;
+    cursor: pointer;
+  }
+  .desktop-shell select::picker-icon {
+    width: 14px;
+    height: 14px;
+    color: var(--muted);
+    content: '';
+    background: currentColor;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+  }
+  .desktop-shell select:open::picker-icon {
+    rotate: 180deg;
+  }
+  .desktop-shell select::picker(select) {
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 6px;
+    margin-block: 6px;
+    min-inline-size: anchor-size(self-inline);
+    max-inline-size: calc(100vw / var(--ui-zoom) - 24px);
+    max-block-size: min(320px, calc(100dvh / var(--ui-zoom) - 32px));
+    box-shadow: var(--shadow);
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted) transparent;
+  }
+  .desktop-shell select option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 36px;
+    padding: 8px 12px;
+    margin-block: 2px;
+    border-radius: 10px;
+    color: var(--ink);
+    background: transparent;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+  }
+  .desktop-shell select option:is(:hover, :focus-visible):enabled {
+    outline: none;
+    background: var(--hover);
+  }
+  .desktop-shell select option:checked {
+    background: var(--accent-surface);
+    color: var(--accent);
+  }
+  .desktop-shell select option::checkmark {
+    order: 1;
+    margin-inline-start: auto;
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+  .desktop-shell select option:disabled {
+    color: var(--muted);
+    opacity: 0.55;
+    cursor: default;
+  }
+  .desktop-shell select:disabled {
+    opacity: 0.55;
+    cursor: default;
+  }
+}
+
+/* A circular checkbox remains a checkbox: independent multi-selection is unchanged. */
+.desktop-shell input:is([type='checkbox'], [type='radio']) {
+  appearance: none;
+  display: inline-grid;
+  place-content: center;
+  width: 18px;
+  height: 18px;
+  min-height: 18px;
+  flex: 0 0 18px;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--muted);
+  border-radius: 50%;
+  background: var(--surface);
+  vertical-align: middle;
+  cursor: pointer;
+}
+.desktop-shell input:is([type='checkbox'], [type='radio']):checked,
+.desktop-shell input[type='checkbox']:indeterminate {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.desktop-shell input:is([type='checkbox'], [type='radio'])::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: var(--surface);
+  transform: scale(0);
+}
+.desktop-shell input[type='checkbox']:checked::after {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m3 8 3 3 7-7' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  transform: scale(1);
+}
+.desktop-shell input[type='checkbox']:indeterminate::after {
+  height: 2px;
+  width: 9px;
+  border-radius: 999px;
+  transform: scale(1);
+}
+.desktop-shell input[type='radio']:checked::after {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  transform: scale(1);
+}
+.desktop-shell input:is([type='checkbox'], [type='radio']):disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* One pill shape and one spacing scale for text actions, without changing menu/icon layouts. */
+.desktop-shell button {
+  border-radius: 999px;
+}
+.desktop-shell
+  :is(
+    dialog,
+    [role='dialog'],
+    .memory-manager,
+    .memory-row,
+    .project-scope,
+    .project-materials li,
+    .account-row,
+    .api-form,
+    .context-summary [role='region'],
+    .pending-inputs > div,
+    .chat-surface [role='status'],
+    .search-view details > div,
+    .viewer-annotations,
+    .viewer-annotations article,
+    .model-settings
+  )
+  > button:not(.icon-button) {
+  margin-block: 5px;
+  margin-inline: 0 var(--control-gap);
+  padding-inline: 14px;
+}
+.desktop-shell
+  :is(
+    .action-group,
+    .history-filters,
+    .history-batch,
+    .project-actions,
+    .file-actions,
+    .file-pagination,
+    .viewer-controls,
+    .auth-toolbar,
+    .settings-actions
+  ) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--control-gap);
+}
+.desktop-shell .action-group > button {
+  margin: 0;
+}
+.desktop-shell .action-group {
+  display: inline-flex;
+  max-width: 100%;
+  vertical-align: middle;
+}
+.desktop-shell
+  :is(
+    dialog,
+    [role='dialog'],
+    .memory-manager,
+    .memory-row,
+    .project-scope,
+    .project-materials li,
+    .viewer-annotations,
+    .viewer-annotations article
+  )
+  > .action-group {
+  margin-block: 5px;
+  margin-inline-end: var(--control-gap);
+}
+.desktop-shell .action-group > button {
+  padding-inline: 14px;
+  border-radius: 999px;
+}
+.desktop-shell
+  :is(
+    .history-filters,
+    .history-batch,
+    .project-actions,
+    .file-actions,
+    .file-pagination,
+    .settings-actions,
+    .file-library > header
+  )
+  > button {
+  padding-inline: 15px;
+}
+.desktop-shell .history-page > button {
+  margin-block: 6px 12px;
+  margin-inline-end: var(--control-gap);
+}
+.desktop-shell .conversation-controls {
+  column-gap: var(--control-gap);
+}
+.desktop-shell .conversation-controls > button,
+.desktop-shell .conversation-controls .session-tools button {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 13px;
+}
+.desktop-shell :is(.history-menu, .action-popover-panel) button {
+  border-radius: 10px;
+  margin: 0;
+}
+.desktop-shell .chat-copy {
+  border-radius: 50%;
+}
+
+/* Detail lists share a flat row: title, metadata, selection and actions stay aligned. */
+.desktop-shell .history-page .history-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 12px;
+  padding: 12px 6px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.desktop-shell .history-page .history-row::after,
+.desktop-shell .file-list .file-card::after,
+.desktop-shell .projects-page > ul:not(.project-materials) > li::after,
+.desktop-shell .memory-row::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border) 7%,
+    var(--border) 93%,
+    transparent
+  );
+  pointer-events: none;
+}
+.desktop-shell .history-page .history-row:hover,
+.desktop-shell .history-page .history-row:has(> input:checked) {
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--subtle) 7%,
+    var(--subtle) 93%,
+    transparent
+  );
+}
+.desktop-shell .history-page .history-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: none;
+  background: transparent;
+  padding: 10px 0;
+  text-align: left;
+}
+.desktop-shell .history-session-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.desktop-shell .history-page .history-session-title {
+  white-space: nowrap;
+}
+.desktop-shell .history-page .history-link small {
+  display: inline;
+  margin: 0;
+  flex: 0 1 auto;
+  max-width: 45%;
+  font-size: 0.8em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.desktop-shell .history-page .session-row-actions {
+  gap: 8px;
+}
+.desktop-shell .history-page .history-group {
+  border: 0;
+  padding: 0;
+  margin-block: 12px;
+}
+.desktop-shell .history-page .history-group-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.desktop-shell .history-page .history-group-header > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  min-height: 32px;
+  padding: 6px;
+}
+.desktop-shell .history-page .history-group-header > .history-group-name {
+  justify-content: flex-start;
+  min-width: 0;
+  padding-inline: 8px;
+}
+.desktop-shell .history-page .history-group-name[aria-pressed='true'] {
+  background: var(--accent-surface);
+}
+.desktop-shell .file-list .file-card,
+.desktop-shell .projects-page > ul:not(.project-materials) > li,
+.desktop-shell .memory-row {
+  position: relative;
+  border: 0;
+  border-radius: 0;
+}
+.desktop-shell .file-list .file-card {
+  column-gap: 14px;
+}
+.desktop-shell .file-list .file-name {
+  padding-inline: 0;
+}
+.desktop-shell .projects-page > ul:not(.project-materials) > li > button {
+  margin-inline-end: var(--control-gap);
+  padding-inline: 14px;
+}
+@media (forced-colors: active) {
+  .desktop-shell input:is([type='checkbox'], [type='radio']) {
+    appearance: auto;
+  }
+  .desktop-shell input:is([type='checkbox'], [type='radio'])::after {
+    content: none;
+  }
+  .desktop-shell :is(input, textarea, select):focus,
+  .desktop-shell :is(.composer, .history-title-search):focus-within {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .desktop-shell :is(input, textarea, select) {
+    transition: none;
+  }
+}

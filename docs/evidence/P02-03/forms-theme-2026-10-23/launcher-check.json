@@ -1,0 +1,14 @@
+{
+  "command": [
+    "C:/Users/20105/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe",
+    "-NoProfile",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "D:\\Tapkit-public\\docs\\evidence\\P02-03\\session-load-2026-10-21\\run-app.ps1",
+    "-CheckOnly"
+  ],
+  "exitCode": 0,
+  "seconds": 1.21,
+  "applicationStarted": false
+}

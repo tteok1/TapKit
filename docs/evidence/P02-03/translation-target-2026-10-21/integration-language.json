@@ -1,0 +1,11 @@
+{
+  "command": [
+    "test:integration",
+    "P02-03.history",
+    "-t",
+    "T13 translation resolves"
+  ],
+  "exitCode": 0,
+  "elapsedSeconds": 5.94,
+  "historicalEvidenceRestored": true
+}

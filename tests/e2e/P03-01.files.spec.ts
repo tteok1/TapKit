@@ -1,3 +1,4 @@
+import { openSessionFixture } from './session-fixture';
 import {
   test,
   expect,
@@ -13,6 +14,7 @@ import { promisify } from 'node:util';
 import { once } from 'node:events';
 import type { IpcMainInvokeEvent } from 'electron';
 import { readExecutionCapabilities } from '../../packages/tools/src/execution';
+test.setTimeout(180_000);
 let app: ElectronApplication | undefined, root: string, dir: string;
 function getApp() {
   if (!app) throw new Error('Electron application has not launched');
@@ -132,7 +134,7 @@ async function latestSession(page: Page) {
 async function newChatSession(page: Page) {
   const surface = page.locator('.chat-surface'),
     previous = (await surface.count()) ? await surface.getAttribute('data-session-id') : null;
-  await page.keyboard.press('Control+n');
+  await openSessionFixture(page);
   // The previous composer stays enabled while session creation/refresh is pending.
   // Wait for the displayed session before typing into its loaded draft.
   await expect(surface).toHaveAttribute('data-session-id', /.+/);
@@ -295,7 +297,7 @@ async function launch() {
   page.on('pageerror', (error) =>
     process.stderr.write('P03_SYNTHETIC_RENDERER_ERROR ' + error.message + '\n'),
   );
-  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125_000 });
   // Local production capabilities require valid evidence for this actual host token.
   nativeStatus = await page.evaluate(async () => {
     const r = await window.tapkit.bootstrap({
@@ -358,7 +360,9 @@ test('P03-01 T08 navigation sends cancellation while a real committed import rep
     await expect
       .poll(() => getApp().evaluate(() => (globalThis as unknown as GateGlobal).p03ReplyGate?.held))
       .toBe(true);
-    await expect(page.getByRole('button', { name: '取消文件导入', exact: true })).toBeVisible();
+    await expect(
+      page.getByRole('button', { name: '移除附件 导航前资料.txt', exact: true }),
+    ).toHaveCount(1);
     const nextSession = await newChatSession(page);
     expect(nextSession).not.toBe(originalSession);
     await page.getByLabel('输入草稿').fill('新会话问题不能覆盖');
@@ -419,12 +423,14 @@ test('P03-01 T08 late session creation after leaving the home composer cannot st
   const source = join(root, '已取消的首页资料.txt');
   await writeFile(source, '取消创建后的物理源不应导入');
   const page = await launch();
-  await page.getByRole('link', { name: '首页', exact: true }).click();
+  await page.keyboard.press('Control+n');
   await expect(page.getByLabel('输入草稿')).toBeEnabled();
   await page.getByLabel('输入草稿').fill('首页尚未创建的输入');
+  await page.getByRole('radio', { name: '工作', exact: true }).click();
   await holdRealReply('sessions.create');
   try {
     await page.locator('input[type=file]').setInputFiles(source);
+    await page.getByRole('button', { name: '保存工作草稿', exact: true }).click();
     await expect
       .poll(() => getApp().evaluate(() => (globalThis as unknown as GateGlobal).p03ReplyGate?.held))
       .toBe(true);
@@ -548,16 +554,7 @@ test('P03-01 T07 chat physical File uses the real Host token import, preserves s
     }),
   ).toEqual({ virtual: { selections: [], virtualIndexes: [0] }, forgedRejected: true });
   await page.locator('input[type=file]').setInputFiles(source);
-  await expect(page.getByRole('region', { name: '聊天文件导入进度', exact: true })).toContainText(
-    '原件已保存',
-  );
-  const material = page
-    .locator('.composer')
-    .locator('div')
-    .filter({
-      has: page.getByRole('button', { name: '下载原件', exact: true }),
-    })
-    .last();
+  const material = page.locator('.composer-attachment').filter({ hasText: '聊天物理原件.TXT' });
   await expect(material).toContainText('聊天物理原件.TXT');
   await expect(material).toContainText(nativeStatus === 'available' ? '已就绪' : '处理失败');
   await expect(page.getByLabel('输入草稿')).toHaveValue('保留此问题');
@@ -595,7 +592,9 @@ test('P03-01 T07 chat physical File uses the real Host token import, preserves s
   expect(record.fileVersion).toBe(record.draftVersion);
   expect(record.text).toBe('保留此问题');
   await picker([], join(root, '聊天固定原件.txt'));
-  await material.getByRole('button', { name: '下载原件', exact: true }).click();
+  await material.hover();
+  await material.getByRole('button', { name: '附件操作 聊天物理原件.TXT', exact: true }).click();
+  await page.getByRole('button', { name: '下载原件', exact: true }).click();
   await expect
     .poll(() => readFile(join(root, '聊天固定原件.txt'), 'utf8').catch(() => ''))
     .toBe(text);
@@ -637,7 +636,9 @@ test('P03-01 T07 chat physical File uses the real Host token import, preserves s
     return projectId;
   }, record);
   await picker([], join(root, '项目固定原件.txt'));
-  await material.getByRole('button', { name: '下载原件', exact: true }).click();
+  await material.hover();
+  await material.getByRole('button', { name: '附件操作 聊天物理原件.TXT', exact: true }).click();
+  await page.getByRole('button', { name: '下载原件', exact: true }).click();
   await expect
     .poll(() => readFile(join(root, '项目固定原件.txt'), 'utf8').catch(() => ''))
     .toBe(text);
@@ -653,7 +654,9 @@ test('P03-01 T07 chat physical File uses the real Host token import, preserves s
     { record, projectId },
   );
   await picker([], join(root, '撤权拒绝.txt'));
-  await material.getByRole('button', { name: '下载原件', exact: true }).click();
+  await material.hover();
+  await material.getByRole('button', { name: '附件操作 聊天物理原件.TXT', exact: true }).click();
+  await page.getByRole('button', { name: '下载原件', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('无权读取该材料');
   await expect(readFile(join(root, '撤权拒绝.txt'))).rejects.toMatchObject({ code: 'ENOENT' });
 });

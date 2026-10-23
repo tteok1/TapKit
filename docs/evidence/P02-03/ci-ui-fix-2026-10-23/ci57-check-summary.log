@@ -1,0 +1,15 @@
+2026-10-23T15:43:12.5627124Z   P02-02.chat.spec.ts:92:1 › P01-03 background title failure is announced, survives reload and explicit rename clears the failure without replaying chat
+2026-10-23T15:43:12.5629373Z   P02-02.chat.spec.ts:214:1 › P02-02 T05 IME and Shift+Enter keep draft; queue editing/cancellation, session switching and stopping preserve confirmed text
+2026-10-23T15:43:12.5634047Z   P02-02.clipboard-attachments.spec.ts:188:1 › P02-02 rounded attachment cards show progress, cancel one late upload and fit focus and zoom layouts
+2026-10-23T15:43:12.5635282Z   P02-02.clipboard-attachments.spec.ts:376:1 › P02-02 removing a parsing card during first send excludes it from the actual model input
+2026-10-23T15:43:26.0766532Z  Test Files  47 passed (47)
+2026-10-23T15:43:26.0768394Z       Tests  360 passed (360)
+2026-10-23T15:50:40.0483926Z  Test Files  44 passed (44)
+2026-10-23T15:50:40.0485906Z       Tests  351 passed (351)
+2026-10-23T15:51:16.7375541Z  Test Files  2 passed (2)
+2026-10-23T15:51:16.7376259Z       Tests  2 passed (2)
+2026-10-23T15:52:38.6856390Z   ok  9 tests\e2e\P02-02.chat.spec.ts:92:1 › P01-03 background title failure is announced, survives reload and explicit rename clears the failure without replaying chat (3.5s)
+2026-10-23T15:52:47.8703668Z   ok 12 tests\e2e\P02-02.chat.spec.ts:214:1 › P02-02 T05 IME and Shift+Enter keep draft; queue editing/cancellation, session switching and stopping preserve confirmed text (2.2s)
+2026-10-23T15:53:12.1850000Z   ok 17 tests\e2e\P02-02.clipboard-attachments.spec.ts:188:1 › P02-02 rounded attachment cards show progress, cancel one late upload and fit focus and zoom layouts (2.9s)
+2026-10-23T15:53:14.3204224Z   ok 18 tests\e2e\P02-02.clipboard-attachments.spec.ts:376:1 › P02-02 removing a parsing card during first send excludes it from the actual model input (2.1s)
+2026-10-23T15:55:07.2185433Z   50 passed (2.7m)

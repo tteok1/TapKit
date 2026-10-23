@@ -1,0 +1,210 @@
+$ vitest run --config vitest.config.ts --project unit
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |unit| tests/unit/P01-02.transport.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-03.office-worker.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-03.capability-report.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-01.archive-parser.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-02.diff.test.ts (0 test)
+ ❯ |unit| tests/unit/P04-02.context.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-02.native-profile.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-03.pdf-parser.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-02.vault.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-02.external.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-01.auth-secrets.test.ts (0 test)
+ ❯ |unit| tests/unit/P02-02.zhipu-tool-names.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-02.merge-parser.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-02.protocol.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-03.routing.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-01.text-parser.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-01.transport.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-01.chat-import.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-01.files-contract.test.ts (0 test)
+ ❯ |unit| tests/unit/P02-02.tool-trace.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-02.system-proxy.test.ts (0 test)
+ ❯ |unit| tests/unit/P02-01.desktop.test.ts (0 test)
+ ❯ |unit| tests/unit/P02-02.chat.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-03.execution.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-03.runtime-probe.test.ts (0 test)
+ ❯ |unit| tests/unit/P04-03.memory.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-02.contracts.test.ts (0 test)
+ ❯ |unit| tests/unit/P04-02.routing.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-03.projects.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-02.api.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-02.office-samples.test.ts (0 test)
+ ❯ |unit| tests/unit/P02-03.contracts.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-01.contracts.test.ts (0 test)
+ ❯ |unit| tests/unit/P04-01.retrieval.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-03.execution-scope.test.ts (0 test)
+ ❯ |unit| tests/unit/P02-03.selection-output.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-02.native-prefix.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-02.live.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-02.core-startup.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-03.standard-user-kit.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-02.staging.test.ts (2 tests | 1 failed) 62ms
+   × P03-02 private staging rejects a junction before writing into its external target 10ms
+ ❯ |unit| tests/unit/P01-02.zhipu.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-01.office-parser.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 42 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P00-01.contracts.test.ts [ tests/unit/P00-01.contracts.test.ts ]
+ FAIL  |unit| tests/unit/P00-02.contracts.test.ts [ tests/unit/P00-02.contracts.test.ts ]
+ FAIL  |unit| tests/unit/P00-02.core-startup.test.ts [ tests/unit/P00-02.core-startup.test.ts ]
+ FAIL  |unit| tests/unit/P00-03.capability-report.test.ts [ tests/unit/P00-03.capability-report.test.ts ]
+ FAIL  |unit| tests/unit/P00-03.execution-scope.test.ts [ tests/unit/P00-03.execution-scope.test.ts ]
+ FAIL  |unit| tests/unit/P00-03.execution.test.ts [ tests/unit/P00-03.execution.test.ts ]
+ FAIL  |unit| tests/unit/P00-03.office-worker.test.ts [ tests/unit/P00-03.office-worker.test.ts ]
+ FAIL  |unit| tests/unit/P00-03.runtime-probe.test.ts [ tests/unit/P00-03.runtime-probe.test.ts ]
+ FAIL  |unit| tests/unit/P00-03.standard-user-kit.test.ts [ tests/unit/P00-03.standard-user-kit.test.ts ]
+ FAIL  |unit| tests/unit/P01-01.auth-secrets.test.ts [ tests/unit/P01-01.auth-secrets.test.ts ]
+ FAIL  |unit| tests/unit/P01-01.transport.test.ts [ tests/unit/P01-01.transport.test.ts ]
+ FAIL  |unit| tests/unit/P01-02.native-prefix.test.ts [ tests/unit/P01-02.native-prefix.test.ts ]
+ FAIL  |unit| tests/unit/P01-02.system-proxy.test.ts [ tests/unit/P01-02.system-proxy.test.ts ]
+ FAIL  |unit| tests/unit/P01-02.transport.test.ts [ tests/unit/P01-02.transport.test.ts ]
+ FAIL  |unit| tests/unit/P01-03.routing.test.ts [ tests/unit/P01-03.routing.test.ts ]
+ FAIL  |unit| tests/unit/P02-01.desktop.test.ts [ tests/unit/P02-01.desktop.test.ts ]
+ FAIL  |unit| tests/unit/P02-02.chat.test.ts [ tests/unit/P02-02.chat.test.ts ]
+ FAIL  |unit| tests/unit/P02-02.tool-trace.test.ts [ tests/unit/P02-02.tool-trace.test.ts ]
+ FAIL  |unit| tests/unit/P02-02.zhipu-tool-names.test.ts [ tests/unit/P02-02.zhipu-tool-names.test.ts ]
+ FAIL  |unit| tests/unit/P02-03.contracts.test.ts [ tests/unit/P02-03.contracts.test.ts ]
+ FAIL  |unit| tests/unit/P02-03.selection-output.test.ts [ tests/unit/P02-03.selection-output.test.ts ]
+ FAIL  |unit| tests/unit/P03-01.archive-parser.test.ts [ tests/unit/P03-01.archive-parser.test.ts ]
+ FAIL  |unit| tests/unit/P03-01.chat-import.test.ts [ tests/unit/P03-01.chat-import.test.ts ]
+ FAIL  |unit| tests/unit/P03-01.files-contract.test.ts [ tests/unit/P03-01.files-contract.test.ts ]
+ FAIL  |unit| tests/unit/P03-01.text-parser.test.ts [ tests/unit/P03-01.text-parser.test.ts ]
+ FAIL  |unit| tests/unit/P03-02.diff.test.ts [ tests/unit/P03-02.diff.test.ts ]
+ FAIL  |unit| tests/unit/P03-02.external.test.ts [ tests/unit/P03-02.external.test.ts ]
+ FAIL  |unit| tests/unit/P03-02.merge-parser.test.ts [ tests/unit/P03-02.merge-parser.test.ts ]
+ FAIL  |unit| tests/unit/P03-02.protocol.test.ts [ tests/unit/P03-02.protocol.test.ts ]
+ FAIL  |unit| tests/unit/P03-03.projects.test.ts [ tests/unit/P03-03.projects.test.ts ]
+ FAIL  |unit| tests/unit/P04-01.retrieval.test.ts [ tests/unit/P04-01.retrieval.test.ts ]
+ FAIL  |unit| tests/unit/P04-02.context.test.ts [ tests/unit/P04-02.context.test.ts ]
+ FAIL  |unit| tests/unit/P04-02.routing.test.ts [ tests/unit/P04-02.routing.test.ts ]
+ FAIL  |unit| tests/unit/P04-03.memory.test.ts [ tests/unit/P04-03.memory.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{a5f86070-50ca-42e6-9bf3-58a1dc39d63c}\AC\Temp\_Udz7wVa9RNjuUazyQ4DE\ssr\f3d9718b4387735a9e2aa3bdbdb65a2bb00ad833'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/43]⎯
+
+ FAIL  |unit| tests/unit/P00-03.pdf-parser.test.ts [ tests/unit/P00-03.pdf-parser.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{a5f86070-50ca-42e6-9bf3-58a1dc39d63c}\AC\Temp\_Udz7wVa9RNjuUazyQ4DE\ssr\5cded63746ead27ea7119273e93c5aefe436c250'
+ ❯ tests/integration/office-security-control.ts:8:1
+      6| import { pathToFileURL } from 'node:url';
+      7| import { randomUUID } from 'node:crypto';
+      8| import { HelperRequestSchema } from '../../packages/contracts/src';
+       | ^
+      9| import { prepareOfficeProfile, runtimePaths } from '../../packages/too…
+     10| import { NativeSandboxExecutor } from '../../packages/tools/src/execut…
+ ❯ tests/unit/P00-03.pdf-parser.test.ts:3:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/43]⎯
+
+ FAIL  |unit| tests/unit/P01-02.api.test.ts [ tests/unit/P01-02.api.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{a5f86070-50ca-42e6-9bf3-58a1dc39d63c}\AC\Temp\_Udz7wVa9RNjuUazyQ4DE\ssr\5cded63746ead27ea7119273e93c5aefe436c250'
+ ❯ tests/unit/P01-02.api.test.ts:11:1
+      9|   },
+     10| );
+     11| import {
+       | ^
+     12|   API_PRESETS,
+     13|   SaveApiKeySchema,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/43]⎯
+
+ FAIL  |unit| tests/unit/P01-02.live.test.ts [ tests/unit/P01-02.live.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{a5f86070-50ca-42e6-9bf3-58a1dc39d63c}\AC\Temp\_Udz7wVa9RNjuUazyQ4DE\ssr\5cded63746ead27ea7119273e93c5aefe436c250'
+ ❯ tests/live/P01-02.profile.ts:4:1
+      2| import { basename, isAbsolute, join, relative, resolve } from 'node:pa…
+      3| import { DatabaseSync } from 'node:sqlite';
+      4| import { ApiConfigSchema, IdSchema, resolveApiConfig } from '../../pac…
+       | ^
+      5| import type { ApiLiveSelection } from './P01-02.acceptance';
+      6|
+ ❯ tests/unit/P01-02.live.test.ts:8:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/43]⎯
+
+ FAIL  |unit| tests/unit/P01-02.native-profile.test.ts [ tests/unit/P01-02.native-profile.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{a5f86070-50ca-42e6-9bf3-58a1dc39d63c}\AC\Temp\_Udz7wVa9RNjuUazyQ4DE\ssr\5cded63746ead27ea7119273e93c5aefe436c250'
+ ❯ tests/live/P01-02.native-profile.ts:5:1
+      3| import { createHash } from 'node:crypto';
+      4| import { DatabaseSync } from 'node:sqlite';
+      5| import { ApiConfigSchema, IdSchema, resolveApiConfig, z } from '../../…
+       | ^
+      6|
+      7| export const NATIVE_FIXTURE_MARKER = 'P01-02 isolated encrypted native…
+ ❯ tests/unit/P01-02.native-profile.test.ts:4:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/43]⎯
+
+ FAIL  |unit| tests/unit/P01-02.vault.test.ts [ tests/unit/P01-02.vault.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{a5f86070-50ca-42e6-9bf3-58a1dc39d63c}\AC\Temp\_Udz7wVa9RNjuUazyQ4DE\ssr\5cded63746ead27ea7119273e93c5aefe436c250'
+ ❯ apps/desktop/src/main/vault.ts:6:1
+      4| import { execFile } from 'node:child_process';
+      5| import { promisify } from 'node:util';
+      6| import { IdSchema, SaveApiKeySchema } from '@tapkit/contracts';
+       | ^
+      7| export const ApiCredentialDocumentSchema = SaveApiKeySchema.extend({
+      8|   accountId: IdSchema.optional(),
+ ❯ tests/unit/P01-02.vault.test.ts:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/43]⎯
+
+ FAIL  |unit| tests/unit/P01-02.zhipu.test.ts [ tests/unit/P01-02.zhipu.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{a5f86070-50ca-42e6-9bf3-58a1dc39d63c}\AC\Temp\_Udz7wVa9RNjuUazyQ4DE\ssr\e326e1b6792390543f8ef356fc2a16121bc8077b'
+ ❯ packages/providers/src/codex/transport.ts:1:1
+      1| import { CodexFailure, httpFailure } from './errors';
+       | ^
+      2| import type { ProviderError, NormalizedUsage } from '@tapkit/contracts…
+      3|
+ ❯ packages/providers/src/codex/adapter.ts:24:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/43]⎯
+
+ FAIL  |unit| tests/unit/P03-01.office-parser.test.ts [ tests/unit/P03-01.office-parser.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{a5f86070-50ca-42e6-9bf3-58a1dc39d63c}\AC\Temp\_Udz7wVa9RNjuUazyQ4DE\ssr\5cded63746ead27ea7119273e93c5aefe436c250'
+ ❯ tests/unit/P03-01.office-parser.test.ts:4:1
+      2| import { createHash } from 'node:crypto';
+      3| import ExcelJS from '../../packages/retrieval/node_modules/exceljs';
+      4| import { FILE_LIMITS } from '../../packages/contracts/src';
+       | ^
+      5| import { parseOfficeFile } from '../../packages/retrieval/src/ingest/o…
+      6| import {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/43]⎯
+
+ FAIL  |unit| tests/unit/P03-02.office-samples.test.ts [ tests/unit/P03-02.office-samples.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{a5f86070-50ca-42e6-9bf3-58a1dc39d63c}\AC\Temp\_Udz7wVa9RNjuUazyQ4DE\ssr\5cded63746ead27ea7119273e93c5aefe436c250'
+ ❯ packages/retrieval/src/ingest/office.ts:3:1
+      1| import { posix } from 'node:path';
+      2| import { XMLParser, XMLValidator } from 'fast-xml-parser';
+      3| import {
+       | ^
+      4|   FILE_LIMITS,
+      5|   FileLimitsSchema,
+ ❯ tests/unit/P03-02.office-samples.test.ts:5:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/43]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P03-02.staging.test.ts > P03-02 private staging rejects a junction before writing into its external target
+Error: EPERM: operation not permitted, symlink 'D:\Tapkit-public\.test-data\P03-02 staging outside 0995I6' -> 'D:\Tapkit-public\.test-data\P03-02 staging junction 119yls\tmp'
+ ❯ tests/unit/P03-02.staging.test.ts:25:3
+     23|   const root = await mkdtemp(resolve('.test-data', 'P03-02 staging jun…
+     24|     outside = await mkdtemp(resolve('.test-data', 'P03-02 staging outs…
+     25|   await symlink(outside, join(root, 'tmp'), 'junction');
+       |   ^
+     26|   const service = new PreviewStaging({ dataDir: root, profileId } as S…
+     27|   await expect(service.create(versionId)).rejects.toThrow('PERMISSION_…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/43]⎯
+
+
+ Test Files  43 failed | 2 passed (45)
+      Tests  1 failed | 19 passed (20)
+   Start at  16:55:46
+   Duration  10.97s (tests 55%, transform 35%, import 5%, worker 3%, setup 2%)
+
+[ELIFECYCLE] Command failed with exit code 1.

@@ -227,104 +227,106 @@ export function ApiDiagnostic() {
             <p>{account.apiFormat ? text.api.formats[account.apiFormat] : ''}</p>
             <p>{account.baseURL}</p>
           </div>
-          <button
-            disabled={busy || !account.modelId || account.hasCredential === false}
-            onClick={() =>
-              void run(async () => {
-                const result = ProbeViewSchema.parse(
+          <span className="action-group">
+            <button
+              disabled={busy || !account.modelId || account.hasCredential === false}
+              onClick={() =>
+                void run(async () => {
+                  const result = ProbeViewSchema.parse(
+                    data(
+                      await window.tapkit.checkProvider(options(account.revision), {
+                        accountId: account.accountId,
+                        modelId: account.modelId!,
+                      }),
+                    ),
+                  );
+                  setNotice(
+                    account.label +
+                      '：' +
+                      (result.status === 'ready'
+                        ? text.auth.probePassed
+                        : text.auth.probeFailed +
+                          ' (' +
+                          (result.errorCode ?? 'MODEL_UNSUPPORTED') +
+                          ')') +
+                      (result.diagnostic
+                        ? ' · ' +
+                          (result.diagnostic.phase === 'text'
+                            ? text.auth.textPhase
+                            : text.auth.toolsPhase) +
+                          '：' +
+                          text.auth.diagnosticReasons[result.diagnostic.reason] +
+                          (result.diagnostic.httpStatus
+                            ? ' [HTTP ' + result.diagnostic.httpStatus + ']'
+                            : '') +
+                          (result.diagnostic.responseType
+                            ? ' [' +
+                              text.auth.responseType +
+                              ' ' +
+                              text.auth.responseTypes[result.diagnostic.responseType] +
+                              ']'
+                            : '') +
+                          (result.diagnostic.upstreamCode
+                            ? ' [' +
+                              text.auth.upstreamCode +
+                              ' ' +
+                              result.diagnostic.upstreamCode +
+                              ']'
+                            : '') +
+                          (result.diagnostic.request
+                            ? ' [' +
+                              text.auth.requestLimit +
+                              ' ' +
+                              result.diagnostic.request.outputLimit +
+                              ' Token] [' +
+                              text.auth.requestReasoning +
+                              ' ' +
+                              result.diagnostic.request.reasoning +
+                              ']'
+                            : '') +
+                          (result.diagnostic.usage
+                            ? ' [' +
+                              text.auth.usageInput +
+                              ' ' +
+                              (result.diagnostic.usage.inputTotal ?? text.auth.unknownUsage) +
+                              '] [' +
+                              text.auth.usageOutput +
+                              ' ' +
+                              (result.diagnostic.usage.outputTotal ?? text.auth.unknownUsage) +
+                              '] [' +
+                              text.auth.usageReasoning +
+                              ' ' +
+                              (result.diagnostic.usage.reasoningSubset ?? text.auth.unknownUsage) +
+                              ']'
+                            : '')
+                        : ''),
+                  );
+                  await reload();
+                })
+              }
+            >
+              <RefreshCw size={16} />
+              {text.auth.check}
+            </button>
+            <button
+              disabled={busy}
+              onClick={() =>
+                void run(async () => {
                   data(
-                    await window.tapkit.checkProvider(options(account.revision), {
-                      accountId: account.accountId,
-                      modelId: account.modelId!,
-                    }),
-                  ),
-                );
-                setNotice(
-                  account.label +
-                    '：' +
-                    (result.status === 'ready'
-                      ? text.auth.probePassed
-                      : text.auth.probeFailed +
-                        ' (' +
-                        (result.errorCode ?? 'MODEL_UNSUPPORTED') +
-                        ')') +
-                    (result.diagnostic
-                      ? ' · ' +
-                        (result.diagnostic.phase === 'text'
-                          ? text.auth.textPhase
-                          : text.auth.toolsPhase) +
-                        '：' +
-                        text.auth.diagnosticReasons[result.diagnostic.reason] +
-                        (result.diagnostic.httpStatus
-                          ? ' [HTTP ' + result.diagnostic.httpStatus + ']'
-                          : '') +
-                        (result.diagnostic.responseType
-                          ? ' [' +
-                            text.auth.responseType +
-                            ' ' +
-                            text.auth.responseTypes[result.diagnostic.responseType] +
-                            ']'
-                          : '') +
-                        (result.diagnostic.upstreamCode
-                          ? ' [' +
-                            text.auth.upstreamCode +
-                            ' ' +
-                            result.diagnostic.upstreamCode +
-                            ']'
-                          : '') +
-                        (result.diagnostic.request
-                          ? ' [' +
-                            text.auth.requestLimit +
-                            ' ' +
-                            result.diagnostic.request.outputLimit +
-                            ' Token] [' +
-                            text.auth.requestReasoning +
-                            ' ' +
-                            result.diagnostic.request.reasoning +
-                            ']'
-                          : '') +
-                        (result.diagnostic.usage
-                          ? ' [' +
-                            text.auth.usageInput +
-                            ' ' +
-                            (result.diagnostic.usage.inputTotal ?? text.auth.unknownUsage) +
-                            '] [' +
-                            text.auth.usageOutput +
-                            ' ' +
-                            (result.diagnostic.usage.outputTotal ?? text.auth.unknownUsage) +
-                            '] [' +
-                            text.auth.usageReasoning +
-                            ' ' +
-                            (result.diagnostic.usage.reasoningSubset ?? text.auth.unknownUsage) +
-                            ']'
-                          : '')
-                      : ''),
-                );
-                await reload();
-              })
-            }
-          >
-            <RefreshCw size={16} />
-            {text.auth.check}
-          </button>
-          <button
-            disabled={busy}
-            onClick={() =>
-              void run(async () => {
-                data(
-                  await window.tapkit.disconnectProvider(
-                    options(account.revision),
-                    account.accountId,
-                  ),
-                );
-                setNotice(text.api.cleared);
-                await reload();
-              })
-            }
-          >
-            <X size={16} />
-            {text.auth.clearAccount}
-          </button>
+                    await window.tapkit.disconnectProvider(
+                      options(account.revision),
+                      account.accountId,
+                    ),
+                  );
+                  setNotice(text.api.cleared);
+                  await reload();
+                })
+              }
+            >
+              <X size={16} />
+              {text.auth.clearAccount}
+            </button>
+          </span>
         </div>
       ))}
       {notice && <p role="status">{notice}</p>}

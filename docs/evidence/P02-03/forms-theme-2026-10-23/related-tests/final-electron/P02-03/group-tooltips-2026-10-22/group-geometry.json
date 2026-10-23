@@ -1,0 +1,23 @@
+{
+  "aligned": [
+    {
+      "x": 20,
+      "y": 325.6875,
+      "center": 339.6875
+    },
+    {
+      "x": 48,
+      "y": 325.6875,
+      "center": 339.6875
+    },
+    {
+      "x": 197,
+      "y": 325.6875,
+      "center": 339.6875
+    }
+  ],
+  "grouped": 53,
+  "initialPage": 50,
+  "root": 1,
+  "collapsePersisted": true
+}

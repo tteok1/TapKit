@@ -214,7 +214,7 @@ function PageCanvas({
               <span
                 key={a.id + index}
                 className={'pdf-annotation ' + a.color}
-                title={a.body}
+                data-tooltip={a.body}
                 style={{
                   left: r.x * 100 + '%',
                   top: r.y * 100 + '%',

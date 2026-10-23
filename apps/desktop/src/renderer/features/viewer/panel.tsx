@@ -330,7 +330,7 @@ function GridReader({
                             if (e.key === 'Enter')
                               onSelect({ kind: 'sheet', sheetId, range: address });
                           }}
-                          title={cell?.formula ? t.formula + ': ' + cell.formula : undefined}
+                          data-tooltip={cell?.formula ? t.formula + ': ' + cell.formula : undefined}
                           className={address === range ? 'cell-selected' : ''}
                         >
                           {cell?.formula && !cell.calculated
@@ -983,16 +983,18 @@ function FileView({ tab }: { tab: ViewerTab }) {
             <DiffReader access={access} />
           )}
           {(view.format === 'docx' || view.format === 'pptx') && <p>{t.paragraphOnly}</p>}
-          {view.format === 'pptx' && url && (
-            <button onClick={() => setPresentation((value) => !value)}>
-              {presentation ? t.exitPresentation : t.presentation}
-            </button>
-          )}
-          {presentation && (
-            <button className="presentation-close" onClick={() => setPresentation(false)}>
-              {t.exitPresentation}
-            </button>
-          )}
+          <span className="action-group">
+            {view.format === 'pptx' && url && (
+              <button onClick={() => setPresentation((value) => !value)}>
+                {presentation ? t.exitPresentation : t.presentation}
+              </button>
+            )}
+            {presentation && (
+              <button className="presentation-close" onClick={() => setPresentation(false)}>
+                {t.exitPresentation}
+              </button>
+            )}
+          </span>
           {url && ['pdf', 'docx', 'pptx'].includes(view.format) && mode === 'preview' && (
             <div className={presentation ? 'viewer-presentation' : ''}>
               <PdfReader
@@ -1111,61 +1113,63 @@ function FileView({ tab }: { tab: ViewerTab }) {
               ))}
             </select>
           </label>
-          <button
-            disabled={!selected && !editing}
-            onClick={() =>
-              void action(async () => {
-                const ref = selected?.ref,
-                  locator =
-                    ref?.kind === 'file' && ref.locator?.kind === 'pdf'
-                      ? ref.locator
-                      : editing?.locator;
-                if (!locator) throw new Error('VALIDATION_ERROR');
-                const result = await artifactCommand('annotations.upsert', {
-                  fileVersionId: access.versionId,
-                  ...(access.owner ? { owner: access.owner } : {}),
-                  locator,
-                  selectedTextHash: selected?.selectedTextHash ?? editing!.selectedTextHash,
-                  ...(selected?.textRange
-                    ? { textRange: selected.textRange }
-                    : editing?.textRange
-                      ? { textRange: editing.textRange }
-                      : {}),
-                  body,
-                  color,
-                  ...(editing ? { id: editing.id, expectedRevision: editing.revision } : {}),
-                });
-                if ('annotation' in result) {
-                  const annotation = AnnotationViewSchema.parse(result.annotation);
-                  setAnnotations((old) => [
-                    ...old.filter((a) => a.id !== annotation.id),
-                    annotation,
-                  ]);
-                  setEditing(undefined);
-                  setBody('');
-                  setNotice(t.annotationsSaved);
-                }
-              })
-            }
-          >
-            {t.addAnnotation}
-          </button>
-          <button
-            onClick={() =>
-              void action(() =>
-                window.tapkit.saveConversation({
-                  name: 'annotations.json',
-                  text: JSON.stringify(
-                    { schemaVersion: 1, fileVersionId: access.versionId, annotations },
-                    null,
-                    2,
-                  ),
-                }),
-              )
-            }
-          >
-            {t.exportAnnotations}
-          </button>
+          <span className="action-group">
+            <button
+              disabled={!selected && !editing}
+              onClick={() =>
+                void action(async () => {
+                  const ref = selected?.ref,
+                    locator =
+                      ref?.kind === 'file' && ref.locator?.kind === 'pdf'
+                        ? ref.locator
+                        : editing?.locator;
+                  if (!locator) throw new Error('VALIDATION_ERROR');
+                  const result = await artifactCommand('annotations.upsert', {
+                    fileVersionId: access.versionId,
+                    ...(access.owner ? { owner: access.owner } : {}),
+                    locator,
+                    selectedTextHash: selected?.selectedTextHash ?? editing!.selectedTextHash,
+                    ...(selected?.textRange
+                      ? { textRange: selected.textRange }
+                      : editing?.textRange
+                        ? { textRange: editing.textRange }
+                        : {}),
+                    body,
+                    color,
+                    ...(editing ? { id: editing.id, expectedRevision: editing.revision } : {}),
+                  });
+                  if ('annotation' in result) {
+                    const annotation = AnnotationViewSchema.parse(result.annotation);
+                    setAnnotations((old) => [
+                      ...old.filter((a) => a.id !== annotation.id),
+                      annotation,
+                    ]);
+                    setEditing(undefined);
+                    setBody('');
+                    setNotice(t.annotationsSaved);
+                  }
+                })
+              }
+            >
+              {t.addAnnotation}
+            </button>
+            <button
+              onClick={() =>
+                void action(() =>
+                  window.tapkit.saveConversation({
+                    name: 'annotations.json',
+                    text: JSON.stringify(
+                      { schemaVersion: 1, fileVersionId: access.versionId, annotations },
+                      null,
+                      2,
+                    ),
+                  }),
+                )
+              }
+            >
+              {t.exportAnnotations}
+            </button>
+          </span>
           {annotations.map((annotation) => (
             <article key={annotation.id}>
               <button
@@ -1177,46 +1181,48 @@ function FileView({ tab }: { tab: ViewerTab }) {
                 {t.page} {annotation.locator.pageIndex + 1}
               </button>
               <p>{annotation.body}</p>
-              <button
-                onClick={() => {
-                  setSelected(undefined);
-                  setEditing(annotation);
-                  setBody(annotation.body);
-                  setColor(annotation.color);
-                }}
-              >
-                {t.editAnnotation}
-              </button>
-              <button
-                onClick={() =>
-                  void action(async () => {
-                    const result = await artifactCommand('artifacts.selection', {
-                      ...access,
-                      locator: annotation.locator,
-                      expectedTextHash: annotation.selectedTextHash,
-                      ...(annotation.textRange ? { textRange: annotation.textRange } : {}),
-                    });
-                    if ('selection' in result)
-                      viewer.quote({ ...result.selection, note: annotation.body });
-                  })
-                }
-              >
-                {t.annotationQuote}
-              </button>
-              <button
-                onClick={() =>
-                  void action(async () => {
-                    await artifactCommand('annotations.delete', {
-                      fileVersionId: access.versionId,
-                      ...(access.owner ? { owner: access.owner } : {}),
-                      ids: [annotation.id],
-                    });
-                    setAnnotations((old) => old.filter((a) => a.id !== annotation.id));
-                  })
-                }
-              >
-                {t.deleteAnnotation}
-              </button>
+              <span className="action-group">
+                <button
+                  onClick={() => {
+                    setSelected(undefined);
+                    setEditing(annotation);
+                    setBody(annotation.body);
+                    setColor(annotation.color);
+                  }}
+                >
+                  {t.editAnnotation}
+                </button>
+                <button
+                  onClick={() =>
+                    void action(async () => {
+                      const result = await artifactCommand('artifacts.selection', {
+                        ...access,
+                        locator: annotation.locator,
+                        expectedTextHash: annotation.selectedTextHash,
+                        ...(annotation.textRange ? { textRange: annotation.textRange } : {}),
+                      });
+                      if ('selection' in result)
+                        viewer.quote({ ...result.selection, note: annotation.body });
+                    })
+                  }
+                >
+                  {t.annotationQuote}
+                </button>
+                <button
+                  onClick={() =>
+                    void action(async () => {
+                      await artifactCommand('annotations.delete', {
+                        fileVersionId: access.versionId,
+                        ...(access.owner ? { owner: access.owner } : {}),
+                        ids: [annotation.id],
+                      });
+                      setAnnotations((old) => old.filter((a) => a.id !== annotation.id));
+                    })
+                  }
+                >
+                  {t.deleteAnnotation}
+                </button>
+              </span>
             </article>
           ))}
         </details>
@@ -1243,17 +1249,19 @@ export function ArtifactPanel() {
       <div role="tablist" className="viewer-tabs">
         {viewer.tabs.map((tab) => (
           <span key={tab.key}>
-            <button
-              role="tab"
-              aria-selected={tab.key === viewer.active}
-              onClick={() => viewer.activate(tab.key)}
-            >
-              {tab.view?.file.version.name ?? t.loading}
-              {tab.view ? ' · v' + tab.view.file.version.version : ''}
-            </button>
-            <button aria-label={t.closeTab} onClick={() => viewer.close(tab.key)}>
-              ×
-            </button>
+            <span className="action-group">
+              <button
+                role="tab"
+                aria-selected={tab.key === viewer.active}
+                onClick={() => viewer.activate(tab.key)}
+              >
+                {tab.view?.file.version.name ?? t.loading}
+                {tab.view ? ' · v' + tab.view.file.version.version : ''}
+              </button>
+              <button aria-label={t.closeTab} onClick={() => viewer.close(tab.key)}>
+                ×
+              </button>
+            </span>
           </span>
         ))}
       </div>

@@ -1,0 +1,62 @@
+$ vitest run --config vitest.config.ts --project integration "P02-03.history" "-t" "T13 translation resolves|T13 unchanged foreign prose"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P02-03.history.test.ts (38 tests | 5 failed | 33 skipped) 1689ms
+   ❯ P02-03 history lifecycle (38)
+     × T13 translation resolves auto to zh-CN for the selected original 349ms
+     × T13 translation resolves auto to en for the selected original 308ms
+     × T13 translation resolves zh-CN to zh-CN for the selected original 318ms
+     × T13 translation resolves en to en for the selected original 320ms
+     × T13 unchanged foreign prose is not completed as a successful translation or automatically retried 392ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T13 translation resolves auto to zh-CN for the selected original
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T13 translation resolves auto to en for the selected original
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T13 translation resolves zh-CN to zh-CN for the selected original
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T13 translation resolves en to en for the selected original
+Error: Events must be committed with their state
+ ❯ Store.emit packages/storage/src/foundation.ts:285:39
+    283|     causationId?: string,
+    284|   ): EventEnvelope {
+    285|     if (!this.db.inTransaction) throw new Error('Events must be commit…
+       |                                       ^
+    286|     const row = this.db
+    287|       .prepare("SELECT coalesce(max(seq),0)+1 AS seq FROM events WHERE…
+ ❯ UsageLedger.setPreferences packages/storage/src/usage-ledger.ts:136:16
+ ❯ tests/integration/P02-03.history.test.ts:220:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T13 unchanged foreign prose is not completed as a successful translation or automatically retried
+AssertionError: expected { …(11) } to match object { status: 'partial', …(1) }
+(11 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "errorCode": "TRANSLATION_UNCHANGED",
+-   "status": "partial",
++   "errorCode": null,
++   "status": "completed",
+  }
+
+ ❯ tests/integration/P02-03.history.test.ts:257:26
+    255|     await expect.poll(async()=>['completed','partial','failed'].includ…
+    256|     const snapshot=await f.snapshot();
+    257|     expect(snapshot.run).toMatchObject({status:'partial',errorCode:'TR…
+       |                          ^
+    258|     expect(snapshot.messages.at(-1)).toMatchObject({text:selected,stat…
+    259|     expect(data(await f.history.dispatch(request))).toEqual(accepted);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 33 skipped (38)
+   Start at  23:26:54
+   Duration  4.55s (transform 42%, tests 39%, import 18%)
+
+[ELIFECYCLE] Command failed with exit code 1.

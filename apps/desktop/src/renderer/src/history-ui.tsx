@@ -16,6 +16,8 @@ import {
 import { requestOptions } from './desktop-state';
 import h from '../locales/history.zh-CN.json';
 import { MemoryDeletePreview } from './memory-delete';
+import { UiIcon } from './ui-icon';
+import { ActionPopover, IconButton } from './action-popover';
 export const historyData = (r: Reply) => {
   if (!r.ok) throw new Error(r.error.code);
   return r.data;
@@ -37,8 +39,16 @@ export function HistoryList({
   page = false,
   modeFilter,
   projectId,
+  stateFilter,
+  query = '',
+  sort = 'updated',
+  onSort,
 }: {
-  modeFilter?: 'chat' | 'work';
+  modeFilter?: 'chat' | 'work' | undefined;
+  stateFilter?: 'archived' | 'trash';
+  query?: string;
+  sort?: 'updated' | 'manual';
+  onSort?: (sort: 'updated' | 'manual') => Promise<void>;
   projectId?: string | undefined;
   collapsed?: boolean;
   activeId?: string | undefined;
@@ -49,7 +59,7 @@ export function HistoryList({
   const [sessions, setSessions] = useState<SessionRecord[]>([]),
     [cursor, setCursor] = useState<string | null>(null),
     [sidebar, setSidebar] = useState<SidebarView>({ sections: [] }),
-    [state, setState] = useState<'active' | 'archived' | 'trash' | 'all'>('active'),
+    [pageState, setState] = useState<'active' | 'archived' | 'trash' | 'all'>('active'),
     [section, setSection] = useState('');
   const [error, setError] = useState(''),
     [busy, setBusy] = useState(false),
@@ -69,7 +79,28 @@ export function HistoryList({
   const [moving, setMoving] = useState(false),
     [batchProject, setBatchProject] = useState('keep');
   const [deleteIds, setDeleteIds] = useState<string[]>();
+  const state = stateFilter ?? pageState;
+  const [sortMenu, setSortMenu] = useState(false);
   const paged = useRef(false);
+  const groupPaged = useRef(new Set<string>());
+  const refreshSequence = useRef(0);
+  const [groupPages, setGroupPages] = useState<
+    Record<
+      string,
+      {
+        sessions: SessionRecord[];
+        nextCursor: string | null;
+      }
+    >
+  >({});
+  const filterKey = JSON.stringify([state, section, modeFilter, projectId, query, sort]);
+  useEffect(() => {
+    paged.current = false;
+    setSelected([]);
+    setCursor(null);
+    groupPaged.current.clear();
+    setGroupPages({});
+  }, [filterKey]);
   function closeDialog() {
     setEditing(undefined);
     setNewGroup(false);
@@ -78,11 +109,12 @@ export function HistoryList({
     setMoving(false);
   }
   const filter = useRef('');
-  filter.current = state + section;
+  filter.current = filterKey;
   const refresh = useCallback(async () => {
-    const token = state + section;
+    const token = filterKey;
+    const sequence = ++refreshSequence.current;
     const groups = SidebarViewSchema.parse(await historyCommand('sidebar.list'));
-    if (filter.current !== token) return;
+    if (filter.current !== token || sequence !== refreshSequence.current) return;
     // A collapsed or removed group cannot remain the list's active filter.
     // Resolve this before sessions.list, which rejects a removed section ID.
     if (section && !groups.sections.some((g) => g.id === section && !g.collapsed)) {
@@ -92,14 +124,31 @@ export function HistoryList({
       setSection('');
       return;
     }
-    const s = await historyCommand('sessions.list', {
+    const input = {
       state,
-      ...(section ? { sectionId: section } : {}),
+      sort,
+      query,
+      ...(page ? (section ? { sectionId: section } : {}) : { sectionId: null }),
       ...(modeFilter ? { mode: modeFilter } : {}),
       ...(projectId ? { projectId } : {}),
       limit: 50,
-    });
-    if (filter.current !== token) return;
+    };
+    const [s, children] = await Promise.all([
+      historyCommand('sessions.list', input),
+      page
+        ? Promise.resolve([])
+        : Promise.all(
+            groups.sections
+              .filter((g) => !g.collapsed)
+              .map(async (g) => ({
+                id: g.id,
+                result: SessionPageSchema.parse(
+                  await historyCommand('sessions.list', { ...input, sectionId: g.id }),
+                ),
+              })),
+          ),
+    ]);
+    if (filter.current !== token || sequence !== refreshSequence.current) return;
     const result = SessionPageSchema.parse(s);
     setSessions((previous) =>
       paged.current
@@ -107,8 +156,23 @@ export function HistoryList({
         : result.sessions,
     );
     if (!paged.current) setCursor(result.nextCursor);
+    setGroupPages((previous) =>
+      Object.fromEntries(
+        children.map(({ id, result }) => [
+          id,
+          groupPaged.current.has(id) && previous[id]
+            ? {
+                ...previous[id],
+                sessions: previous[id].sessions.map(
+                  (s) => result.sessions.find((n) => n.id === s.id) ?? s,
+                ),
+              }
+            : result,
+        ]),
+      ),
+    );
     setSidebar(groups);
-  }, [state, section, modeFilter, projectId]);
+  }, [filterKey, page]);
   useEffect(() => {
     void refresh().catch(() => setError(h.failed));
     const callback = () => void refresh().catch(() => {});
@@ -127,6 +191,7 @@ export function HistoryList({
       await work();
       if (reload) {
         paged.current = false;
+        groupPaged.current.clear();
         await refresh();
       }
       window.dispatchEvent(new Event('tapkit:history-changed'));
@@ -162,9 +227,12 @@ export function HistoryList({
     setConfirm(undefined);
   }
   const entity = (id: string) => ({ type: 'session' as const, id });
+  const allSessions = page
+    ? sessions
+    : [...sessions, ...Object.values(groupPages).flatMap((p) => p.sessions)];
   const render = (s: SessionRecord) => (
     <div
-      className="session-row history-row"
+      className={'session-row history-row' + (menu === s.id ? ' row-menu-open' : '')}
       data-session-id={s.id}
       key={s.id}
       draggable
@@ -172,15 +240,45 @@ export function HistoryList({
         e.dataTransfer.setData('application/x-tapkit-entity', JSON.stringify(entity(s.id)))
       }
       onDragOver={(e) => e.preventDefault()}
+      onKeyDown={(e) => {
+        if (sort !== 'manual' || page || !e.altKey || !['ArrowUp', 'ArrowDown'].includes(e.key))
+          return;
+        e.preventDefault();
+        const peers = allSessions.filter(
+          (x) => x.sectionId === s.sectionId && x.pinned === s.pinned,
+        );
+        const index = peers.findIndex((x) => x.id === s.id);
+        const target = index + (e.key === 'ArrowUp' ? -1 : 1);
+        if (!peers[target]) return;
+        [peers[index], peers[target]] = [peers[target]!, peers[index]!];
+        void action(() =>
+          historyCommand('sidebar.reorder', {
+            sectionId: s.sectionId,
+            ordered: peers.map((x) => entity(x.id)),
+          }),
+        );
+      }}
       onDrop={(e) => {
         e.preventDefault();
         e.stopPropagation();
+        if (sort !== 'manual' || page) return;
         try {
           const dragged = JSON.parse(e.dataTransfer.getData('application/x-tapkit-entity')) as {
             type: 'session' | 'project';
             id: string;
           };
-          const ordered = sessions.map((x) => entity(x.id)).filter((x) => x.id !== dragged.id);
+          const source = allSessions.find((x) => x.id === dragged.id);
+          if (
+            !source ||
+            dragged.type !== 'session' ||
+            source.sectionId !== s.sectionId ||
+            source.pinned !== s.pinned
+          )
+            return;
+          const ordered = allSessions
+            .filter((x) => x.sectionId === s.sectionId)
+            .map((x) => entity(x.id))
+            .filter((x) => x.id !== dragged.id);
           ordered.splice(
             Math.max(
               0,
@@ -189,9 +287,7 @@ export function HistoryList({
             0,
             dragged as { type: 'session'; id: string },
           );
-          void action(() =>
-            historyCommand('sidebar.reorder', { sectionId: section || null, ordered }),
-          );
+          void action(() => historyCommand('sidebar.reorder', { sectionId: s.sectionId, ordered }));
         } catch {
           setError(h.failed);
         }
@@ -215,41 +311,70 @@ export function HistoryList({
       )}
       <button
         className="history-link"
-        title={s.title}
+        data-tooltip={s.title}
         aria-current={s.id === activeId ? 'page' : undefined}
+        aria-keyshortcuts={sort === 'manual' && !page ? 'Alt+ArrowUp Alt+ArrowDown' : undefined}
         onClick={() => {
           if (state !== 'trash') onNavigate('/sessions/' + s.id);
           else setConfirm([s.id]);
         }}
       >
-        {collapsed ? (s.mode === 'chat' ? '聊' : '工') : s.title}
-        {s.unread && <span aria-label={h.unread}> ●</span>}
-        {s.running && <span aria-label={h.running}> ◷</span>}
+        <span className="history-session-title">
+          {collapsed ? (s.mode === 'chat' ? '聊' : '工') : s.title}
+          {s.unread && <span aria-label={h.unread}> ●</span>}
+          {s.running && <span aria-label={h.running}> ◷</span>}
+        </span>
         {!collapsed && <small>{new Date(s.updatedAt).toLocaleString('zh-CN')}</small>}
       </button>
       {!collapsed && (
-        <>
-          <button
-            className="pin-button"
-            aria-label={(s.pinned ? h.unpin : h.pin) + s.title}
-            disabled={busy || state === 'trash'}
-            onClick={() =>
-              void action(() =>
-                window.tapkit
-                  .desktopCommand(requestOptions(s.revision), 'sessions.pin', {
-                    sessionId: s.id,
-                    pinned: !s.pinned,
-                  })
-                  .then(historyData),
-              )
-            }
-          >
-            {s.pinned ? '◆' : '◇'}
-          </button>
-          <button aria-label={h.editSession + s.title} onClick={() => edit(s)}>
-            ⋯
-          </button>
-        </>
+        <span className="session-row-actions">
+          {stateFilter ? (
+            <button
+              className="history-restore"
+              disabled={busy}
+              onClick={() =>
+                void action(() =>
+                  batch(state === 'trash' ? 'sessions.restore' : 'sessions.archive', [s.id], false),
+                )
+              }
+            >
+              {state === 'trash' ? h.restore : h.unarchive}
+            </button>
+          ) : (
+            <IconButton
+              icon="pin"
+              className="pin-button"
+              label={(s.pinned ? h.unpin : h.pin) + s.title}
+              tooltip={s.pinned ? '取消置顶聊天' : '置顶聊天'}
+              aria-pressed={s.pinned}
+              disabled={busy || state === 'trash'}
+              onClick={() =>
+                void action(() =>
+                  window.tapkit
+                    .desktopCommand(requestOptions(s.revision), 'sessions.pin', {
+                      sessionId: s.id,
+                      pinned: !s.pinned,
+                    })
+                    .then(historyData),
+                )
+              }
+            />
+          )}
+          {stateFilter ? (
+            <IconButton
+              icon="trash"
+              label={(state === 'trash' ? h.purge : h.remove) + s.title}
+              disabled={busy}
+              onClick={() =>
+                state === 'trash'
+                  ? setConfirm([s.id])
+                  : void action(() => batch('sessions.trash', [s.id]))
+              }
+            />
+          ) : (
+            <IconButton icon="more" label={h.editSession + s.title} onClick={() => edit(s)} />
+          )}
+        </span>
       )}
       {menu === s.id && (
         <div role="menu" className="history-menu">
@@ -291,169 +416,291 @@ export function HistoryList({
     </div>
   );
   return (
-    <section className="history-manager" aria-label={h.history}>
+    <section className={'history-manager' + (page ? ' history-page' : '')} aria-label={h.history}>
       {!collapsed && (
         <>
-          <div className="history-filters">
-            {(['active', 'archived', 'trash', 'all'] as const).map((v) => (
+          {page && !stateFilter && (
+            <div className="history-filters">
+              {(['active', 'archived', 'trash', 'all'] as const).map((v) => (
+                <button
+                  key={v}
+                  aria-pressed={state === v}
+                  onClick={() => {
+                    paged.current = false;
+                    setState(v);
+                    setSelected([]);
+                  }}
+                >
+                  {h[v]}
+                </button>
+              ))}
+            </div>
+          )}
+          <span className="action-group">
+            {page && !stateFilter && (
+              <button onClick={() => setNewGroup(true)}>{h.newGroup}</button>
+            )}
+            {!stateFilter && section && (
               <button
-                key={v}
-                aria-pressed={state === v}
+                className="history-reset-group"
                 onClick={() => {
                   paged.current = false;
-                  setState(v);
-                  setSelected([]);
+                  setSection('');
                 }}
               >
-                {h[v]}
+                返回所有会话
               </button>
-            ))}
-          </div>
-          <button onClick={() => setNewGroup(true)}>{h.newGroup}</button>
-          <button aria-pressed={!section} onClick={() => ((paged.current = false), setSection(''))}>
-            {h.groupNone}
-          </button>
-          {sidebar.sections.map((g, i) => (
-            <div
-              key={g.id}
-              className="history-group"
-              draggable
-              onDragStart={(e) => e.dataTransfer.setData('application/x-tapkit-group', g.id)}
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={(e) => {
-                e.preventDefault();
-                const groupId = e.dataTransfer.getData('application/x-tapkit-group');
-                if (groupId) {
-                  const ids = sidebar.sections.map((x) => x.id).filter((id) => id !== groupId);
-                  ids.splice(i, 0, groupId);
-                  void action(() =>
-                    historyCommand('sidebar.reorder', {
-                      sectionId: null,
-                      ordered: [],
-                      sectionIds: ids,
-                    }),
-                  );
-                  return;
-                }
-                try {
-                  const value = JSON.parse(e.dataTransfer.getData('application/x-tapkit-entity'));
-                  void action(() =>
-                    historyCommand('sidebar.move', { entity: value, sectionId: g.id }),
-                  );
-                } catch {
-                  setError(h.failed);
-                }
-              }}
-            >
-              <button
-                aria-label={(g.collapsed ? h.groupExpand : h.groupCollapse) + g.name}
-                onClick={() =>
-                  void action(() =>
-                    historyCommand(
-                      'sidebar.update',
-                      { sectionId: g.id, collapsed: !g.collapsed },
-                      g.revision,
-                    ),
-                  )
-                }
-              >
-                {g.collapsed ? '▸' : '▾'}
-              </button>
-              <button
-                aria-pressed={section === g.id}
-                onClick={() =>
-                  void action(async () => {
-                    if (g.collapsed)
-                      await historyCommand(
-                        'sidebar.update',
-                        { sectionId: g.id, collapsed: false },
-                        g.revision,
+            )}
+          </span>
+          {!stateFilter && (
+            <>
+              {sidebar.sections.map((g, i) => (
+                <div
+                  key={g.id}
+                  className="history-group"
+                  data-section-id={g.id}
+                  draggable
+                  onDragStart={(e) => {
+                    if (!(e.target as Element).closest('.history-row,.history-group-project'))
+                      e.dataTransfer.setData('application/x-tapkit-group', g.id);
+                  }}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    const groupId = e.dataTransfer.getData('application/x-tapkit-group');
+                    if (groupId) {
+                      const ids = sidebar.sections.map((x) => x.id).filter((id) => id !== groupId);
+                      ids.splice(i, 0, groupId);
+                      void action(() =>
+                        historyCommand('sidebar.reorder', {
+                          sectionId: null,
+                          ordered: [],
+                          sectionIds: ids,
+                        }),
                       );
-                    paged.current = false;
-                    setSelected([]);
-                    setSection(g.id);
-                  })
-                }
-              >
-                {g.name} ({g.count}) · {h.unread} {g.unread} · {h.running} {g.running}
-              </button>
-              <button
-                aria-label={h.rename + g.name}
-                onClick={() => {
-                  setGroupEdit(g);
-                  setGroupName(g.name);
-                }}
-              >
-                ⋯
-              </button>
-              {!g.collapsed &&
-                g.projects.map((p) => (
-                  <div
-                    key={p.id}
-                    draggable
-                    onDragStart={(e) => {
-                      e.stopPropagation();
-                      e.dataTransfer.setData(
-                        'application/x-tapkit-entity',
-                        JSON.stringify({ type: 'project', id: p.id }),
+                      return;
+                    }
+                    try {
+                      const value = JSON.parse(
+                        e.dataTransfer.getData('application/x-tapkit-entity'),
                       );
-                    }}
-                    onDragOver={(e) => e.preventDefault()}
-                    onDrop={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      try {
-                        const dragged = JSON.parse(
-                          e.dataTransfer.getData('application/x-tapkit-entity'),
-                        );
-                        if (
-                          dragged.type !== 'project' ||
-                          !g.projects.some((x) => x.id === dragged.id)
-                        )
-                          return;
-                        const ordered = g.projects
-                          .filter((x) => x.id !== dragged.id)
-                          .map((x) => ({ type: 'project' as const, id: x.id }));
-                        ordered.splice(
-                          Math.max(
-                            0,
-                            ordered.findIndex((x) => x.id === p.id),
-                          ),
-                          0,
-                          dragged,
-                        );
-                        void action(() =>
-                          historyCommand('sidebar.reorder', { sectionId: g.id, ordered }),
-                        );
-                      } catch {
-                        setError(h.failed);
-                      }
-                    }}
-                  >
-                    <button onClick={() => onNavigate('/projects/' + p.id)}>{p.name}</button>
+                      void action(() =>
+                        historyCommand('sidebar.move', { entity: value, sectionId: g.id }),
+                      );
+                    } catch {
+                      setError(h.failed);
+                    }
+                  }}
+                >
+                  <div className="history-group-header">
                     <button
-                      aria-label={(p.pinned ? h.unpin : h.pin) + p.name}
+                      aria-label={(g.collapsed ? h.groupExpand : h.groupCollapse) + g.name}
+                      data-tooltip={(g.collapsed ? h.groupExpand : h.groupCollapse) + g.name}
+                      aria-expanded={!g.collapsed}
+                      aria-controls={'group-' + g.id}
+                      disabled={busy}
                       onClick={() =>
                         void action(() =>
                           historyCommand(
-                            'projects.pin',
-                            { projectId: p.id, pinned: !p.pinned },
-                            p.revision,
+                            'sidebar.update',
+                            { sectionId: g.id, collapsed: !g.collapsed },
+                            g.revision,
                           ),
                         )
                       }
                     >
-                      {p.pinned ? '◆' : '◇'}
+                      <UiIcon name={g.collapsed ? 'right' : 'chevronDown'} />
                     </button>
                     <button
-                      onClick={() => void window.tapkit.openEntity({ type: 'project', id: p.id })}
+                      className="history-group-name"
+                      data-tooltip={g.name}
+                      disabled={busy}
+                      aria-expanded={page ? undefined : !g.collapsed}
+                      aria-pressed={section === g.id}
+                      onClick={() =>
+                        void action(async () => {
+                          if (!page || g.collapsed)
+                            await historyCommand(
+                              'sidebar.update',
+                              { sectionId: g.id, collapsed: page ? false : !g.collapsed },
+                              g.revision,
+                            );
+                          paged.current = false;
+                          setSelected([]);
+                          if (page) setSection(section === g.id ? '' : g.id);
+                        })
+                      }
                     >
-                      {h.newWindow}
+                      <span>
+                        {g.name} ({g.count}) · {h.unread} {g.unread} · {h.running} {g.running}
+                      </span>
+                    </button>
+                    <button
+                      aria-label={h.rename + g.name}
+                      data-tooltip={h.rename + g.name}
+                      onClick={() => {
+                        setGroupEdit(g);
+                        setGroupName(g.name);
+                      }}
+                    >
+                      <UiIcon name="more" />
                     </button>
                   </div>
-                ))}
+                  {!g.collapsed && (
+                    <div className="history-group-contents" id={'group-' + g.id}>
+                      {!page && groupPages[g.id]?.sessions.map(render)}
+                      {!page && groupPages[g.id]?.nextCursor && (
+                        <button
+                          disabled={busy}
+                          onClick={() =>
+                            void action(async () => {
+                              const current = groupPages[g.id]!;
+                              const next = SessionPageSchema.parse(
+                                await historyCommand('sessions.list', {
+                                  state,
+                                  sort,
+                                  query,
+                                  sectionId: g.id,
+                                  limit: 50,
+                                  cursor: current.nextCursor,
+                                  ...(modeFilter ? { mode: modeFilter } : {}),
+                                  ...(projectId ? { projectId } : {}),
+                                }),
+                              );
+                              groupPaged.current.add(g.id);
+                              setGroupPages((pages) => ({
+                                ...pages,
+                                [g.id]: {
+                                  sessions: [...current.sessions, ...next.sessions].slice(-100),
+                                  nextCursor: next.nextCursor,
+                                },
+                              }));
+                            }, false)
+                          }
+                        >
+                          {h.more}
+                        </button>
+                      )}
+                      {!page &&
+                        groupPages[g.id]?.sessions.length === 0 &&
+                        g.projects.length === 0 && <p>{h.empty}</p>}
+                      {g.projects.map((p) => (
+                        <div
+                          className="history-group-project"
+                          key={p.id}
+                          draggable
+                          onDragStart={(e) => {
+                            e.stopPropagation();
+                            e.dataTransfer.setData(
+                              'application/x-tapkit-entity',
+                              JSON.stringify({ type: 'project', id: p.id }),
+                            );
+                          }}
+                          onDragOver={(e) => e.preventDefault()}
+                          onDrop={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            try {
+                              const dragged = JSON.parse(
+                                e.dataTransfer.getData('application/x-tapkit-entity'),
+                              );
+                              if (
+                                dragged.type !== 'project' ||
+                                !g.projects.some((x) => x.id === dragged.id)
+                              )
+                                return;
+                              const ordered = g.projects
+                                .filter((x) => x.id !== dragged.id)
+                                .map((x) => ({ type: 'project' as const, id: x.id }));
+                              ordered.splice(
+                                Math.max(
+                                  0,
+                                  ordered.findIndex((x) => x.id === p.id),
+                                ),
+                                0,
+                                dragged,
+                              );
+                              void action(() =>
+                                historyCommand('sidebar.reorder', { sectionId: g.id, ordered }),
+                              );
+                            } catch {
+                              setError(h.failed);
+                            }
+                          }}
+                        >
+                          <button onClick={() => onNavigate('/projects/' + p.id)}>{p.name}</button>
+                          <button
+                            aria-label={(p.pinned ? h.unpin : h.pin) + p.name}
+                            onClick={() =>
+                              void action(() =>
+                                historyCommand(
+                                  'projects.pin',
+                                  { projectId: p.id, pinned: !p.pinned },
+                                  p.revision,
+                                ),
+                              )
+                            }
+                          >
+                            {p.pinned ? '◆' : '◇'}
+                          </button>
+                          <button
+                            onClick={() =>
+                              void window.tapkit.openEntity({ type: 'project', id: p.id })
+                            }
+                          >
+                            {h.newWindow}
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </>
+          )}
+          {!page && (
+            <div className="history-list-heading">
+              <h2 className="history-list-title">{h.active}</h2>
+              <ActionPopover label="会话列表选项" icon="more" onOpen={() => setSortMenu(false)}>
+                {sortMenu ? (
+                  <>
+                    <button data-popover-keep-open onClick={() => setSortMenu(false)}>
+                      <UiIcon name="left" />
+                      <span>会话排列顺序</span>
+                    </button>
+                    {(['updated', 'manual'] as const).map((value) => (
+                      <button
+                        key={value}
+                        aria-pressed={sort === value}
+                        disabled={busy}
+                        onClick={() =>
+                          void action(async () => {
+                            await onSort?.(value);
+                            paged.current = false;
+                          })
+                        }
+                      >
+                        <span>{value === 'updated' ? '最近更新' : '手动排序'}</span>
+                        {sort === value && <UiIcon name="check" />}
+                      </button>
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    <button onClick={() => setNewGroup(true)}>
+                      <UiIcon name="plus" />
+                      <span>{h.newGroup}</span>
+                    </button>
+                    <button data-popover-keep-open onClick={() => setSortMenu(true)}>
+                      <UiIcon name="sort" />
+                      <span>会话排列顺序</span>
+                      <UiIcon name="right" />
+                    </button>
+                  </>
+                )}
+              </ActionPopover>
             </div>
-          ))}
+          )}
         </>
       )}
       {error && (
@@ -476,24 +723,50 @@ export function HistoryList({
               {h.move}
             </button>
           )}
-          <button onClick={() => void action(() => batch('sessions.archive', selected))}>
-            {h.archive}
-          </button>
-          <button onClick={() => void action(() => batch('sessions.trash', selected))}>
-            {h.remove}
-          </button>
+          {state !== 'trash' && (
+            <>
+              <span className="action-group">
+                <button
+                  disabled={busy}
+                  onClick={() =>
+                    void action(() => batch('sessions.archive', selected, state !== 'archived'))
+                  }
+                >
+                  {state === 'archived' ? h.unarchive : h.archive}
+                </button>
+                <button
+                  disabled={busy}
+                  onClick={() => void action(() => batch('sessions.trash', selected))}
+                >
+                  {h.remove}
+                </button>
+              </span>
+            </>
+          )}
           {state === 'trash' && (
             <>
-              <button onClick={() => void action(() => batch('sessions.restore', selected))}>
-                {h.restore}
-              </button>
-              <button onClick={() => setConfirm(selected)}>{h.purge}</button>
+              <span className="action-group">
+                <button onClick={() => void action(() => batch('sessions.restore', selected))}>
+                  {h.restore}
+                </button>
+                <button onClick={() => setConfirm(selected)}>{h.purge}</button>
+              </span>
             </>
           )}
         </div>
       )}
-      {!sessions.length && <p>{h.empty}</p>}
-      {!collapsed && !!sessions.length && <h2 className="history-list-title">{h.active}</h2>}
+      {!sessions.length && (page || !sidebar.sections.length) && (
+        <p>
+          {query
+            ? '没有找到匹配的会话。'
+            : stateFilter === 'archived'
+              ? '暂无已归档的聊天。'
+              : stateFilter === 'trash'
+                ? '回收站是空的。'
+                : h.empty}
+        </p>
+      )}
+
       {sessions.map(render)}
       {cursor && (
         <button
@@ -503,7 +776,9 @@ export function HistoryList({
               const next = SessionPageSchema.parse(
                 await historyCommand('sessions.list', {
                   state,
-                  ...(section ? { sectionId: section } : {}),
+                  sort,
+                  query,
+                  ...(page ? (section ? { sectionId: section } : {}) : { sectionId: null }),
                   ...(modeFilter ? { mode: modeFilter } : {}),
                   ...(projectId ? { projectId } : {}),
                   cursor,
@@ -636,95 +911,99 @@ export function HistoryList({
                 />
                 {h.attachments}
               </label>
-              <button
-                disabled={busy}
-                onClick={() =>
-                  void action(async () => {
-                    await historyCommand(
-                      'sessions.update',
-                      {
-                        sessionId: editing.id,
-                        patch: {
-                          title,
-                          note,
-                          tags: tags
-                            .split(',')
-                            .map((v) => v.trim())
-                            .filter(Boolean),
-                          projectId: project || null,
+              <span className="action-group">
+                <button
+                  disabled={busy}
+                  onClick={() =>
+                    void action(async () => {
+                      await historyCommand(
+                        'sessions.update',
+                        {
+                          sessionId: editing.id,
+                          patch: {
+                            title,
+                            note,
+                            tags: tags
+                              .split(',')
+                              .map((v) => v.trim())
+                              .filter(Boolean),
+                            projectId: project || null,
+                          },
                         },
-                      },
-                      editing.revision,
-                    );
-                    if (group !== 'keep')
-                      await historyCommand('sidebar.move', {
-                        entity: entity(editing.id),
-                        sectionId: group || null,
-                      });
-                    setEditing(undefined);
-                  })
-                }
-              >
-                {h.save}
-              </button>
-              <button
-                disabled={busy}
-                onClick={() =>
-                  void action(async () => {
-                    const next = BranchChangeSchema.parse(
-                      await historyCommand('sessions.copy', {
-                        sessionId: editing.id,
-                        includeAttachments: attachments,
-                      }),
-                    );
-                    setEditing(undefined);
-                    onNavigate('/sessions/' + next.sessionId);
-                  })
-                }
-              >
-                {h.copySession}
-              </button>
-              <button
-                onClick={() => void action(() => window.tapkit.openEntity(entity(editing.id)))}
-              >
-                {h.newWindow}
-              </button>
-              <button
-                onClick={() =>
-                  void action(async () => {
-                    await batch('sessions.archive', [editing.id], !editing.archivedAt);
-                    setEditing(undefined);
-                  })
-                }
-              >
-                {editing.archivedAt ? h.unarchive : h.archive}
-              </button>
-              <button
-                onClick={() =>
-                  void action(async () => {
-                    await batch('sessions.trash', [editing.id]);
-                    setEditing(undefined);
-                  })
-                }
-              >
-                {h.remove}
-              </button>
+                        editing.revision,
+                      );
+                      if (group !== 'keep')
+                        await historyCommand('sidebar.move', {
+                          entity: entity(editing.id),
+                          sectionId: group || null,
+                        });
+                      setEditing(undefined);
+                    })
+                  }
+                >
+                  {h.save}
+                </button>
+                <button
+                  disabled={busy}
+                  onClick={() =>
+                    void action(async () => {
+                      const next = BranchChangeSchema.parse(
+                        await historyCommand('sessions.copy', {
+                          sessionId: editing.id,
+                          includeAttachments: attachments,
+                        }),
+                      );
+                      setEditing(undefined);
+                      onNavigate('/sessions/' + next.sessionId);
+                    })
+                  }
+                >
+                  {h.copySession}
+                </button>
+                <button
+                  onClick={() => void action(() => window.tapkit.openEntity(entity(editing.id)))}
+                >
+                  {h.newWindow}
+                </button>
+                <button
+                  onClick={() =>
+                    void action(async () => {
+                      await batch('sessions.archive', [editing.id], !editing.archivedAt);
+                      setEditing(undefined);
+                    })
+                  }
+                >
+                  {editing.archivedAt ? h.unarchive : h.archive}
+                </button>
+                <button
+                  onClick={() =>
+                    void action(async () => {
+                      await batch('sessions.trash', [editing.id]);
+                      setEditing(undefined);
+                    })
+                  }
+                >
+                  {h.remove}
+                </button>
+              </span>
             </>
           ) : confirm ? (
             <>
               <p>{h.purgeHint}</p>
-              <button
-                disabled={busy}
-                onClick={() => void action(() => batch('sessions.restore', confirm))}
-              >
-                {h.restore}
-              </button>
-              <button
-                disabled={busy}
-                onClick={() => void action(() => batch('sessions.purge', confirm))}
-              >
-                {h.purge}
-              </button>
+              <span className="action-group">
+                <button
+                  disabled={busy}
+                  onClick={() => void action(() => batch('sessions.restore', confirm))}
+                >
+                  {h.restore}
+                </button>
+                <button
+                  disabled={busy}
+                  onClick={() => void action(() => batch('sessions.purge', confirm))}
+                >
+                  {h.purge}
+                </button>
+              </span>
             </>
           ) : (
             <>
@@ -732,41 +1011,43 @@ export function HistoryList({
                 {h.groupName}
                 <input value={groupName} onChange={(e) => setGroupName(e.target.value)} />
               </label>
-              <button
-                onClick={() =>
-                  void action(async () => {
-                    if (groupEdit)
-                      await historyCommand(
-                        'sidebar.update',
-                        { sectionId: groupEdit.id, name: groupName },
-                        groupEdit.revision,
-                      );
-                    else await historyCommand('sidebar.create', { name: groupName });
-                    setNewGroup(false);
-                    setGroupEdit(undefined);
-                    setGroupName('');
-                  })
-                }
-              >
-                {h.save}
-              </button>
-              {groupEdit && (
+              <span className="action-group">
                 <button
                   onClick={() =>
                     void action(async () => {
-                      await historyCommand(
-                        'sidebar.remove',
-                        { sectionId: groupEdit.id },
-                        groupEdit.revision,
-                      );
-                      if (section === groupEdit.id) ((paged.current = false), setSection(''));
+                      if (groupEdit)
+                        await historyCommand(
+                          'sidebar.update',
+                          { sectionId: groupEdit.id, name: groupName },
+                          groupEdit.revision,
+                        );
+                      else await historyCommand('sidebar.create', { name: groupName });
+                      setNewGroup(false);
                       setGroupEdit(undefined);
+                      setGroupName('');
                     })
                   }
                 >
-                  {h.deleteGroup}
+                  {h.save}
                 </button>
-              )}
+                {groupEdit && (
+                  <button
+                    onClick={() =>
+                      void action(async () => {
+                        await historyCommand(
+                          'sidebar.remove',
+                          { sectionId: groupEdit.id },
+                          groupEdit.revision,
+                        );
+                        if (section === groupEdit.id) ((paged.current = false), setSection(''));
+                        setGroupEdit(undefined);
+                      })
+                    }
+                  >
+                    {h.deleteGroup}
+                  </button>
+                )}
+              </span>
             </>
           )}
           <button onClick={closeDialog}>{h.cancel}</button>
@@ -962,24 +1243,26 @@ export function SearchView({
         <summary>{h.searchHistory}</summary>
         {queries.map((q) => (
           <div key={q.id}>
-            <button
-              onClick={() => {
-                setQuery(q.query);
-                void search(undefined, q.query);
-              }}
-            >
-              {q.query}
-            </button>
-            <button
-              aria-label={h.deleteQuery + q.query}
-              onClick={() =>
-                void historyCommand('search.clear', { ids: [q.id] }).then(() =>
-                  setQueries((items) => items.filter((i) => i.id !== q.id)),
-                )
-              }
-            >
-              {h.deleteQuery}
-            </button>
+            <span className="action-group">
+              <button
+                onClick={() => {
+                  setQuery(q.query);
+                  void search(undefined, q.query);
+                }}
+              >
+                {q.query}
+              </button>
+              <button
+                aria-label={h.deleteQuery + q.query}
+                onClick={() =>
+                  void historyCommand('search.clear', { ids: [q.id] }).then(() =>
+                    setQueries((items) => items.filter((i) => i.id !== q.id)),
+                  )
+                }
+              >
+                {h.deleteQuery}
+              </button>
+            </span>
           </div>
         ))}
         <button

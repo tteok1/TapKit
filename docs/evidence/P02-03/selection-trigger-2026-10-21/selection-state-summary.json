@@ -1,0 +1,10 @@
+{
+  "readOnly": true,
+  "matchingAssistantMessages": 6,
+  "statusGroups": {
+    "final/completed": 2,
+    "final/null": 4
+  },
+  "privateTextExported": false,
+  "agentModelRequests": 0
+}

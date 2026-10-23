@@ -1,0 +1,17 @@
+{
+  "command": [
+    "test:e2e",
+    "tests/e2e/P02-01.ui-redesign.spec.ts",
+    "tests/e2e/P02-01.unified-start.spec.ts",
+    "tests/e2e/P02-02.chat.spec.ts",
+    "tests/e2e/P03-01.files.spec.ts",
+    "--grep",
+    "P02-01 UI simplified|P02-01 unified start shares|P02-01 UI redesign preserves|P02-02 T05 IME|P03-01 T08 (navigation|leaving during)"
+  ],
+  "exitCode": 0,
+  "elapsedSeconds": 273.19,
+  "historicalEvidenceRestoreExitCode": 1,
+  "persistentBackup": ".test-data\\compact-chat\\evidence-backup-1792660657",
+  "historicalEvidenceRestoreRetryExitCode": 0,
+  "restoreRetryMethod": "Native atomic File.Replace with retained backups; mapped PNGs cannot be truncated in place"
+}

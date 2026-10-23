@@ -1,0 +1,44 @@
+{
+  "windowMs": 544,
+  "coreReadyMs": 15010,
+  "samples": [
+    {
+      "turns": 12,
+      "open": 0,
+      "displayMs": 151,
+      "listRequests": 1
+    },
+    {
+      "turns": 2,
+      "open": 0,
+      "displayMs": 172,
+      "listRequests": 1
+    },
+    {
+      "turns": 12,
+      "open": 1,
+      "displayMs": 304,
+      "listRequests": 1
+    },
+    {
+      "turns": 2,
+      "open": 1,
+      "displayMs": 172,
+      "listRequests": 1
+    },
+    {
+      "turns": 12,
+      "open": 2,
+      "displayMs": 306,
+      "listRequests": 1
+    },
+    {
+      "turns": 2,
+      "open": 2,
+      "displayMs": 173,
+      "listRequests": 1
+    }
+  ],
+  "isolatedFixture": true,
+  "realProviderCalls": 0
+}

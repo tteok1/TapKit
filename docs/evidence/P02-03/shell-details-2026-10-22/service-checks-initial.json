@@ -1,0 +1,16 @@
+{
+  "unit": {
+    "command": "pnpm test:unit",
+    "exitCode": 0,
+    "elapsedSeconds": 10.57
+  },
+  "integration": {
+    "command": "pnpm exec vitest run --config vitest.config.ts --project integration P02-01 P02-02.chat P02-03.history P03-03 P04-03",
+    "exitCode": 0,
+    "elapsedSeconds": 44.81
+  },
+  "diff-check": {
+    "command": "git diff --check",
+    "exitCode": 0
+  }
+}

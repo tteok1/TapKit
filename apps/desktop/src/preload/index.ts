@@ -1,6 +1,7 @@
 import { contextBridge, ipcRenderer, webUtils } from 'electron';
 import {
   z,
+  ClipboardTextSchema,
   PingRequestSchema,
   PingReplySchema,
   RequestSchema,
@@ -40,7 +41,7 @@ const bridge: TapKitBridge = Object.freeze<TapKitBridge>({
   openEntity: (entity) => ipcRenderer.invoke('tapkit:open-entity', entity),
   saveConversation: (value) => ipcRenderer.invoke('tapkit:save-conversation', value),
   openArtifactExternal: (file) => ipcRenderer.invoke('tapkit:open-artifact-external', file),
-  copyText: (text) => ipcRenderer.invoke('tapkit:copy-text', z.string().max(100000).parse(text)),
+  copyText: (text) => ipcRenderer.invoke('tapkit:copy-text', ClipboardTextSchema.parse(text)),
   historyCommand: (options, command, payload) => invoke(command, options, payload),
   memoryCommand: (options, command, payload) => invoke(command, options, payload),
   projectCommand: (options, command, payload) => invoke(command, options, payload),

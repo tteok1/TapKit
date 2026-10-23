@@ -1,0 +1,13 @@
+{
+  "command": [
+    "test:e2e",
+    "tests/e2e/P02-03.translation.spec.ts",
+    "tests/e2e/P02-03.history.spec.ts",
+    "tests/e2e/P02-03.selection-release.spec.ts",
+    "--grep",
+    "P02-03 (translation echo|T13 selection source|selection release)"
+  ],
+  "exitCode": 1,
+  "elapsedSeconds": 152.87,
+  "historicalEvidenceRestored": true
+}

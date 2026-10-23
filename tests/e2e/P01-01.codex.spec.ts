@@ -21,7 +21,12 @@ test('P01-01 unconfigured diagnostics uses private Core catalog and a finite pre
   try {
     const page = await app.firstWindow();
     await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
-    await page.getByRole('link', { name: 'Codex 连接诊断' }).click();
+    await page.getByRole('link', { name: '设置', exact: true }).click();
+    await page
+      .getByRole('navigation', { name: '设置分类' })
+      .getByRole('link', { name: '模型连接', exact: true })
+      .click();
+    await page.getByRole('link', { name: 'Codex 订阅账户', exact: true }).click();
     await expect(page.getByTestId('codex-empty')).toHaveText('未配置');
     await expect(page.getByRole('combobox', { name: '登录方式' })).toHaveValue('browser');
     await page.getByRole('combobox', { name: '登录方式' }).selectOption('device_code');
@@ -87,7 +92,12 @@ for (const empty of [false, true])
       try {
         const page = await app.firstWindow();
         await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
-        await page.getByRole('link', { name: 'Codex 连接诊断' }).click();
+        await page.getByRole('link', { name: '设置', exact: true }).click();
+        await page
+          .getByRole('navigation', { name: '设置分类' })
+          .getByRole('link', { name: '模型连接', exact: true })
+          .click();
+        await page.getByRole('link', { name: 'Codex 订阅账户', exact: true }).click();
         const logout = page.getByRole('button', {
           name: empty ? '清除账户记录' : '注销',
           exact: true,

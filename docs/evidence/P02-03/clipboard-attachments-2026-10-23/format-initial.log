@@ -1,0 +1,9 @@
+packages/ui/src/clipboard.tsx 88ms (unchanged)
+apps/desktop/src/renderer/src/composer-attachment.tsx 10ms (unchanged)
+apps/desktop/src/renderer/src/chat-file-import.ts 30ms
+tests/unit/P02-02.clipboard.test.ts 4ms
+tests/unit/P03-01.chat-import.test.ts 34ms
+tests/e2e/P02-02.clipboard-attachments.spec.ts 32ms
+tests/e2e/P02-02.chat.spec.ts 47ms
+tests/e2e/P03-01.files.spec.ts 117ms
+tests/e2e/P02-01.unified-start.spec.ts 26ms

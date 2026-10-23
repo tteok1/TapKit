@@ -1,0 +1,10 @@
+{
+  "command": [
+    "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+    "D:\\Tapkit-public\\.test-data\\compact-chat\\core-fixture-clipboard-inline.mjs"
+  ],
+  "exitCode": 1,
+  "elapsedSeconds": 53.85,
+  "historicalEvidenceRestoreExitCode": 0,
+  "persistentBackup": ".test-data\\compact-chat\\evidence-backup-1792746755"
+}

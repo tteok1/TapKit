@@ -1,0 +1,14 @@
+{
+  "command": [
+    "exec",
+    "playwright",
+    "test",
+    "tests/e2e/P02-01.navigation.spec.ts",
+    "--grep",
+    "P02-01 navigation"
+  ],
+  "exitCode": 0,
+  "elapsedSeconds": 71.21,
+  "historicalEvidenceRestoreExitCode": 0,
+  "persistentBackup": ".test-data\\compact-chat\\evidence-backup-1792692398"
+}

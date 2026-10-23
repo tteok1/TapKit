@@ -1,3 +1,4 @@
+import { openSessionFixture } from './session-fixture';
 import {
   test,
   expect,
@@ -47,7 +48,7 @@ test.afterEach(async () => {
   app = undefined;
 });
 test('P04-02 T12 summary UI three compactions source view correction chosen continuation and restart', async () => {
-  await page.keyboard.press('Control+n');
+  await openSessionFixture(page);
   await expect(page.locator('.chat-surface')).toHaveAttribute('data-session-id', /[0-9a-f-]{36}/);
   await expect(page.getByLabel('输入草稿')).toBeEnabled();
   await page

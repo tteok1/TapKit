@@ -1,3 +1,4 @@
+import { openSessionFixture } from './session-fixture';
 import {
   test,
   expect,
@@ -41,7 +42,7 @@ async function command(cmd: MemoryCommand, payload: unknown, revision?: number) 
 }
 async function create() {
   const previous = await page.locator('.chat-surface').getAttribute('data-session-id');
-  await page.keyboard.press('Control+n');
+  await openSessionFixture(page);
   await expect(page.locator('.chat-surface')).toHaveAttribute('data-session-id', /[0-9a-f-]{36}/);
   if (previous)
     await expect(page.locator('.chat-surface')).not.toHaveAttribute('data-session-id', previous);
@@ -184,7 +185,7 @@ test('P04-03 T10 answer used memories, session switches and temporary mode have 
   await send('记住：我喜欢简短中文回答');
   await send('请用中文回答');
   const answer = page.locator('.chat-message.assistant').last();
-  await answer.getByText('使用的记忆与历史参考', { exact: true }).click();
+  await answer.getByRole('button', { name: '使用的记忆与历史参考', exact: true }).click();
   await expect(answer).toContainText('简短中文回答');
   await page.getByRole('button', { name: '记忆与历史范围', exact: true }).click();
   const policy = page.getByRole('region', { name: '记忆与历史范围' });
@@ -192,14 +193,27 @@ test('P04-03 T10 answer used memories, session switches and temporary mode have 
   await policy.getByLabel('参考历史会话').uncheck();
   await policy.getByRole('button', { name: '保存当前会话记忆设置' }).click();
   await expect(policy.getByRole('button', { name: '保存当前会话记忆设置' })).toBeEnabled();
+  await expect(policy.getByLabel('使用与保存跨会话记忆')).not.toBeChecked();
+  await expect(policy.getByLabel('参考历史会话')).not.toBeChecked();
+  await expect
+    .poll(async () => {
+      const saved = (await command('memory.policy', {
+        sessionId: await page.locator('.chat-surface').getAttribute('data-session-id'),
+      })) as { memoryEnabled: boolean; historyEnabled: boolean };
+      return [saved.memoryEnabled, saved.historyEnabled];
+    })
+    .toEqual([false, false]);
   await send('再次用中文回答');
   await page
     .locator('.chat-message.assistant')
     .last()
-    .getByText('使用的记忆与历史参考', { exact: true })
+    .getByRole('button', { name: '使用的记忆与历史参考', exact: true })
     .click();
   await expect(page.locator('.chat-message.assistant').last()).toContainText('未采用可用');
-  await page.getByRole('button', { name: '临时聊天', exact: true }).click();
+  await page.getByRole('button', { name: '新建任务', exact: true }).click();
+  await page.getByRole('radio', { name: '临时聊天', exact: true }).click();
+  await page.getByLabel('输入草稿').fill('隔离临时测试');
+  await page.getByRole('button', { name: '发送', exact: true }).click();
   await expect(page.locator('.memory-policy')).toContainText('临时聊天：不读取');
   await page.screenshot({ path: 'docs/evidence/P04-03/temporary-scope.png' });
 });

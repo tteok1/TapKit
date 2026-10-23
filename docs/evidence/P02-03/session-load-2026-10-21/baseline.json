@@ -1,0 +1,11 @@
+{
+  "command": [
+    "test:e2e",
+    "tests/e2e/P02-03.session-load.spec.ts",
+    "--grep",
+    "P02-03 old sessions"
+  ],
+  "exitCode": 1,
+  "elapsedSeconds": 133.4,
+  "historicalEvidenceRestored": true
+}

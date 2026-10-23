@@ -26,6 +26,8 @@ export * from './projects';
 export * from './retrieval';
 export * from './context';
 export * from './memory';
+// Covers the largest draft/message without trimming or truncating text.
+export const ClipboardTextSchema = z.string().max(2_000_000);
 export const PingRequestSchema = z.strictObject({ nonce: z.string().min(1).max(128) });
 export const PingReplySchema = z.strictObject({
   nonce: z.string().min(1).max(128),

@@ -1,0 +1,11 @@
+{
+  "integration-correction": {
+    "command": "pnpm exec vitest run --config vitest.config.ts --project integration P02-03.history -t recent/manual orders keep pins first",
+    "exitCode": 0,
+    "elapsedSeconds": 5.05
+  },
+  "diff-check": {
+    "command": "git diff --check",
+    "exitCode": 0
+  }
+}

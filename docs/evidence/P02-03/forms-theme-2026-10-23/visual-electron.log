@@ -1,0 +1,8 @@
+
+Running 5 tests using 1 worker
+
+(node:22936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\e2e\P02-01.form-controls.spec.ts:148:3 › P02-01 themed forms preserve native choices and fit 1440x900 1 light (45.9s)
+(node:45376) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

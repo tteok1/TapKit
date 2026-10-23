@@ -1,0 +1,37 @@
+$ vitest run --config vitest.config.ts --project integration "P02-03.history" "P04-01.chat" "P04-01.retrieval"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P02-03.history.test.ts (38 tests | 4 failed) 17744ms
+   ❯ P02-03 history lifecycle (38)
+     × T13 translation resolves auto to zh-CN for the selected original 303ms
+     × T13 translation resolves auto to en for the selected original 261ms
+     × T13 translation resolves zh-CN to zh-CN for the selected original 292ms
+     × T13 translation resolves en to en for the selected original 283ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T13 translation resolves auto to zh-CN for the selected original
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T13 translation resolves auto to en for the selected original
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T13 translation resolves zh-CN to zh-CN for the selected original
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T13 translation resolves en to en for the selected original
+Error: Events must be committed with their state
+ ❯ Store.emit packages/storage/src/foundation.ts:285:39
+    283|     causationId?: string,
+    284|   ): EventEnvelope {
+    285|     if (!this.db.inTransaction) throw new Error('Events must be commit…
+       |                                       ^
+    286|     const row = this.db
+    287|       .prepare("SELECT coalesce(max(seq),0)+1 AS seq FROM events WHERE…
+ ❯ UsageLedger.setPreferences packages/storage/src/usage-ledger.ts:136:16
+ ❯ tests/integration/P02-03.history.test.ts:246:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  4 failed | 43 passed (47)
+   Start at  23:27:42
+   Duration  42.82s (tests 87%, import 8%, transform 5%)
+
+[ELIFECYCLE] Command failed with exit code 1.

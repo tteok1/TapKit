@@ -46,7 +46,7 @@ for (const [width, height] of [
   [1440, 900],
   [960, 640],
 ] as const) {
-  test(`P02-03 T20 sidebar recent survives selected group collapse and removal ${width}x${height}`, async () => {
+  test(`P02-03 T20 sidebar grouped conversations expand, collapse and survive removal ${width}x${height}`, async () => {
     test.setTimeout(180_000);
     await mkdir('.test-data', { recursive: true });
     await mkdir(evidence, { recursive: true });
@@ -91,7 +91,11 @@ for (const [width, height] of [
     await expect(sidebar.locator('.history-row')).toHaveCount(5);
     await expect(main.locator('.history-row')).toHaveCount(5);
 
-    await sidebar.getByRole('button', { name: '新建分组', exact: true }).click();
+    await sidebar.getByRole('button', { name: '会话列表选项', exact: true }).click();
+    await page
+      .getByRole('region', { name: '会话列表选项', exact: true })
+      .getByRole('button', { name: '新建分组', exact: true })
+      .click();
     const dialog = sidebar.getByRole('dialog');
     await dialog.getByLabel('分组名称').fill(groupName);
     await dialog.getByRole('button', { name: '保存', exact: true }).click();
@@ -102,19 +106,19 @@ for (const [width, height] of [
     await command(page, 'sessions.move', { sessionIds: ids.slice(0, 2), sectionId: groupId });
     const group = sidebar.locator('.history-group').filter({ hasText: groupName });
     const select = group.getByRole('button', { name: new RegExp('^' + groupName + ' [(]2[)]') });
-    await select.click();
-    await expect(sidebar.locator('.history-row')).toHaveCount(2);
+    await expect(group.locator('.history-row')).toHaveCount(2);
+    await expect(sidebar.locator('.history-row')).toHaveCount(5);
     await expect(main.locator('.history-row')).toHaveCount(5);
     await group.getByRole('button', { name: '折叠分组' + groupName, exact: true }).click();
     await expect(
       group.getByRole('button', { name: '展开分组' + groupName, exact: true }),
     ).toBeVisible();
     try {
-      await expect(sidebar.getByRole('button', { name: '默认列表', exact: true })).toHaveAttribute(
-        'aria-pressed',
-        'true',
+      await expect(sidebar.getByRole('button', { name: '返回所有会话', exact: true })).toHaveCount(
+        0,
       );
-      await expect(sidebar.locator('.history-row')).toHaveCount(5);
+      await expect(group.locator('.history-row')).toHaveCount(0);
+      await expect(sidebar.locator('.history-row')).toHaveCount(3);
     } finally {
       const count = await sidebar.locator('.history-row').count();
       const label = (count ? 'after' : 'before') + `-collapse-${width}x${height}`;
@@ -134,7 +138,8 @@ for (const [width, height] of [
     await expect(
       group.getByRole('button', { name: '折叠分组' + groupName, exact: true }),
     ).toBeVisible();
-    await expect(sidebar.locator('.history-row')).toHaveCount(2);
+    await expect(group.locator('.history-row')).toHaveCount(2);
+    await expect(sidebar.locator('.history-row')).toHaveCount(5);
     await sidebar.locator('.history-link').first().scrollIntoViewIfNeeded();
     await expect(sidebar.locator('.history-link').first()).toBeInViewport({ ratio: 0.99 });
     const current = (await command(page, 'sidebar.list')) as SidebarView;
@@ -145,10 +150,7 @@ for (const [width, height] of [
       current.sections.find((g) => g.id === groupId)!.revision,
     );
     await expect(group).toHaveCount(0);
-    await expect(sidebar.getByRole('button', { name: '默认列表', exact: true })).toHaveAttribute(
-      'aria-pressed',
-      'true',
-    );
+    await expect(sidebar.getByRole('button', { name: '返回所有会话', exact: true })).toHaveCount(0);
     await expect(sidebar.locator('.history-row')).toHaveCount(5);
     await expect(main.locator('.history-row')).toHaveCount(5);
     await expect(sidebar.getByRole('alert')).toHaveCount(0);

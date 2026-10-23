@@ -46,7 +46,7 @@ it('P02-01 T01 persists CAS settings, profile nickname and personal preferences 
       scope,
       patch: {
         personal,
-        desktop: { ...store.settings.values.desktop, theme: 'dark' },
+        desktop: { ...store.settings.values.desktop, theme: 'dark', historySort: 'manual' },
         network: { mode: 'direct', proxyURL: '' },
       },
     },
@@ -78,6 +78,7 @@ it('P02-01 T01 persists CAS settings, profile nickname and personal preferences 
   const reopened = await openStore(dir);
   stores.push(reopened);
   expect(reopened.settings.values.network.mode).toBe('direct');
+  expect(reopened.settings.values.desktop.historySort).toBe('manual');
   expect(reopened.settings.values.historyEnabled).toBe(false);
   expect(reopened.replay(0, 100).items).toHaveLength(2);
   expect(JSON.stringify(reopened.replay(0, 100))).not.toContain('测试用户');

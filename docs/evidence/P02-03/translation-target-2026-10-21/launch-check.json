@@ -1,0 +1,8 @@
+{
+  "command": "run-app.ps1 -CheckOnly",
+  "exitCode": 0,
+  "elapsedMilliseconds": 572,
+  "reviewPath": "docs/evidence/P02-03/translation-target-2026-10-21/results.json",
+  "applicationStarted": false,
+  "originalWindowClosed": false
+}

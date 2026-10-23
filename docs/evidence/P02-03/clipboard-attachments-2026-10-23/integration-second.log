@@ -1,0 +1,137 @@
+$ vitest run --config vitest.config.ts --project integration "P02-02" "P03-01"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P03-01.native-parser.test.ts (3 tests | 3 failed) 1147ms
+   × P03-01 native parser publishes text and Office structure from a read-only AppContainer input 406ms
+   × P03-01 native parser rejects corrupt and hostile Office packages while originals remain downloadable 340ms
+   × P03-01 native parser cancellation and helper kill preserve the version and allow one fenced retry 397ms
+ ❯ |integration| tests/integration/P03-01.file-exporter.test.ts (5 tests | 1 failed) 9215ms
+   × P03-01 invalid scope and junction save parents never create an output 352ms
+ ❯ |integration| tests/integration/P03-01.parser-process.test.ts (6 tests | 6 skipped) 1674ms
+ ❯ |integration| tests/integration/P03-01.file-staging.test.ts (5 tests | 1 failed) 3941ms
+   × P03-01 nested and root junctions never make recursive cleanup reach outside private staging 374ms
+ ❯ |integration| tests/integration/P03-01.file-selections.test.ts (6 tests | 1 failed) 1214ms
+   × P03-01 junctions through selected parents cannot broaden a Host selection 6ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P03-01.parser-process.test.ts [ tests/integration/P03-01.parser-process.test.ts ]
+Error: Command failed: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe D:\Tapkit-public\node_modules\vite\bin\vite.js build --config packages/retrieval/vite.worker.config.ts --outDir D:\Tapkit-public\.test-data\P03-01 isolated bundle UHHF0R
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✗ Build failed in 1.10s
+error during build:
+EPERM: operation not permitted, mkdir 'D:\Tapkit-public\.test-data\P03-01 isolated bundle UHHF0R\pdf\cmaps'
+    at async mkdir (node:internal/fs/promises:1564:10)
+    at async writeOutputFile (file:///D:/Tapkit-public/node_modules/.pnpm/rollup@4.63.2/node_modules/rollup/dist/es/shared/node-entry.js:23911:5)
+    at async Queue.work (file:///D:/Tapkit-public/node_modules/.pnpm/rollup@4.63.2/node_modules/rollup/dist/es/shared/node-entry.js:22974:32)
+
+ ❯ writeOutputFile node_modules/.pnpm/rollup@4.63.2/node_modules/rollup/dist/es/shared/node-entry.js:23911:5
+ ❯ Queue.work node_modules/.pnpm/rollup@4.63.2/node_modules/rollup/dist/es/shared/node-entry.js:22974:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P03-01.file-exporter.test.ts > P03-01 invalid scope and junction save parents never create an output
+Error: EPERM: operation not permitted, symlink 'D:\Tapkit-public\.test-data\P03-01 original download UQcC0u' -> 'D:\Tapkit-public\.test-data\P03-01 original download UQcC0u-junction'
+ ❯ tests/integration/P03-01.file-exporter.test.ts:74:3
+     72|   await expect(readFile(path)).rejects.toMatchObject({ code: 'ENOENT' …
+     73|   const link = `${f.root}-junction`;
+     74|   await symlink(f.root, link, 'junction');
+       |   ^
+     75|   await expect(
+     76|     f.exporter.export('1', { fileId: f.file.id }, join(link, '越界.txt')…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  |integration| tests/integration/P03-01.file-selections.test.ts > P03-01 junctions through selected parents cannot broaden a Host selection
+Error: EPERM: operation not permitted, symlink 'D:\Tapkit-public\.test-data\P03-01 selected source ZiVJZR' -> 'D:\Tapkit-public\.test-data\P03-01 selected source ZiVJZR-junction'
+ ❯ tests/integration/P03-01.file-selections.test.ts:91:3
+     89|     path = await put('inside.txt');
+     90|   const junction = `${root}-junction`;
+     91|   await symlink(root, junction, 'junction');
+       |   ^
+     92|   await expect(manager.select('1', [join(junction, 'inside.txt')])).re…
+     93|     code: 'PERMISSION_DENIED',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  |integration| tests/integration/P03-01.file-staging.test.ts > P03-01 nested and root junctions never make recursive cleanup reach outside private staging
+Error: EPERM: operation not permitted, symlink 'D:\Tapkit-public\.test-data\P03-01 staging safe cleanup SZlvCv\outside' -> 'D:\Tapkit-public\.test-data\P03-01 staging safe cleanup SZlvCv\profile\tmp\ingest\01a0a25d-0400-7fc3-a911-80b0374c54dd\workspace'
+ ❯ tests/integration/P03-01.file-staging.test.ts:158:3
+    156|   await mkdir(outside);
+    157|   await writeFile(join(outside, 'sentinel.txt'), '外部合成原件');
+    158|   await symlink(
+       |   ^
+    159|     outside,
+    160|     join(f.directory, 'workspace'),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  |integration| tests/integration/P03-01.native-parser.test.ts > P03-01 native parser publishes text and Office structure from a read-only AppContainer input
+Error: APP_CONTAINER_HELPER_FAILED:execution.recovery.journalCommit
+ ❯ NativeSandboxExecutor.execute packages/tools/src/execution/native-executor.ts:32:13
+     30|             ? finished.data.code
+     31|             : 'unknown';
+     32|       throw new SandboxError(`APP_CONTAINER_HELPER_FAILED:${stage}`);
+       |             ^
+     33|     }
+     34|     if (
+ ❯ Object.execute tests/integration/P03-01.native-parser.test.ts:56:22
+ ❯ FileParser.execute packages/core/src/file-parser.ts:166:22
+ ❯ tests/integration/P03-01.native-parser.test.ts:151:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  |integration| tests/integration/P03-01.native-parser.test.ts > P03-01 native parser rejects corrupt and hostile Office packages while originals remain downloadable
+AssertionError: expected [Function] to throw error including 'EMPTY_FILE' but got 'APP_CONTAINER_HELPER_FAILED:execution…'
+
+Expected: "EMPTY_FILE"
+Received: "APP_CONTAINER_HELPER_FAILED:execution.recovery.journalCommit"
+
+ ❯ tests/integration/P03-01.native-parser.test.ts:212:67
+    210|     const file = await put(name, bytes),
+    211|       job = claim(files);
+    212|     await expect(parser.execute(job, new AbortController().signal)).re…
+       |                                                                   ^
+    213|     expect(files.jobs.finish(job, 'failed')).toBe(true);
+    214|     expect(files.get(file.id).version).toMatchObject({
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  |integration| tests/integration/P03-01.native-parser.test.ts > P03-01 native parser cancellation and helper kill preserve the version and allow one fenced retry
+AssertionError: expected 'failed' to be 'cancelled' // Object.is equality
+
+Expected: "cancelled"
+Received: "failed"
+
+ ❯ tests/integration/P03-01.native-parser.test.ts:243:50
+    241|     ),
+    242|   ).rejects.toThrow();
+    243|   expect(files.get(file.id).version.parseStatus).toBe('cancelled');
+       |                                                  ^
+    244|   expect(await blobs.readVersion(file.currentVersionId)).toEqual(bytes…
+    245|   await cleaned(store);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  5 failed | 10 passed (15)
+      Tests  6 failed | 99 passed | 6 skipped (111)
+   Start at  16:24:08
+   Duration  61.14s (tests 84%, import 11%, transform 4%)
+
+[ELIFECYCLE] Command failed with exit code 1.

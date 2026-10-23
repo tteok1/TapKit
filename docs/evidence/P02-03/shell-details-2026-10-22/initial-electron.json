@@ -1,0 +1,15 @@
+{
+  "command": [
+    "test:e2e",
+    "tests/e2e/P02-01.shell-details.spec.ts",
+    "tests/e2e/P02-01.desktop.spec.ts",
+    "tests/e2e/P02-01.unified-start.spec.ts",
+    "tests/e2e/P02-03.sidebar.spec.ts",
+    "--grep",
+    "P02-01|P02-03 T20 sidebar"
+  ],
+  "exitCode": 1,
+  "elapsedSeconds": 358.39,
+  "historicalEvidenceRestoreExitCode": 0,
+  "persistentBackup": ".test-data\\compact-chat\\evidence-backup-1792664439"
+}

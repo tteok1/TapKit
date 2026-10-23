@@ -1,0 +1,13 @@
+{
+  "command": [
+    "test:e2e",
+    "tests/e2e/P02-03.session-load.spec.ts",
+    "tests/e2e/P02-03.history.spec.ts",
+    "tests/e2e/P02-03.inline-selection.spec.ts",
+    "--grep",
+    "P02-03 old sessions|P02-03 T06 two turns|P02-03 inline copy"
+  ],
+  "exitCode": 0,
+  "elapsedSeconds": 170.25,
+  "historicalEvidenceRestored": true
+}

@@ -1,0 +1,542 @@
+vite v7.3.6 building ssr environment for production...
+transforming...
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 171 modules transformed.
+rendering chunks...
+packages/retrieval/dist/pdf/cmaps/CNS2-V.bcmap                                0.09 kB
+packages/retrieval/dist/pdf/cmaps/Roman.bcmap                                 0.10 kB
+packages/retrieval/dist/pdf/cmaps/Katakana.bcmap                              0.10 kB
+packages/retrieval/dist/pdf/cmaps/ETenms-B5-H.bcmap                           0.10 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UCS2-HW-H.bcmap                      0.12 kB
+packages/retrieval/dist/pdf/cmaps/Hiragana.bcmap                              0.12 kB
+packages/retrieval/dist/pdf/cmaps/Hankaku.bcmap                               0.13 kB
+packages/retrieval/dist/pdf/cmaps/B5-V.bcmap                                  0.14 kB
+packages/retrieval/dist/pdf/cmaps/CNS1-V.bcmap                                0.14 kB
+packages/retrieval/dist/pdf/cmaps/B5pc-V.bcmap                                0.14 kB
+packages/retrieval/dist/pdf/cmaps/HKdla-B5-V.bcmap                            0.15 kB
+packages/retrieval/dist/pdf/cmaps/HKdlb-B5-V.bcmap                            0.15 kB
+packages/retrieval/dist/pdf/cmaps/HKgccs-B5-V.bcmap                           0.15 kB
+packages/retrieval/dist/pdf/cmaps/HKm314-B5-V.bcmap                           0.15 kB
+packages/retrieval/dist/pdf/cmaps/HKm471-B5-V.bcmap                           0.15 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UCS2-V.bcmap                         0.16 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UTF16-V.bcmap                        0.16 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UTF8-V.bcmap                         0.16 kB
+packages/retrieval/dist/pdf/cmaps/ETHK-B5-V.bcmap                             0.16 kB
+packages/retrieval/dist/pdf/cmaps/ETen-B5-V.bcmap                             0.16 kB
+packages/retrieval/dist/pdf/cmaps/HKscs-B5-V.bcmap                            0.16 kB
+packages/retrieval/dist/pdf/cmaps/KSC-V.bcmap                                 0.16 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UTF32-V.bcmap                        0.16 kB
+packages/retrieval/dist/pdf/cmaps/KSC-EUC-V.bcmap                             0.16 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UTF16-V.bcmap                         0.16 kB
+packages/retrieval/dist/pdf/cmaps/KSC-Johab-V.bcmap                           0.17 kB
+packages/retrieval/dist/pdf/cmaps/KSCms-UHC-V.bcmap                           0.17 kB
+packages/retrieval/dist/pdf/cmaps/KSCpc-EUC-V.bcmap                           0.17 kB
+packages/retrieval/dist/pdf/cmaps/V.bcmap                                     0.17 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UTF32-V.bcmap                         0.17 kB
+packages/retrieval/dist/pdf/cmaps/78-V.bcmap                                  0.17 kB
+packages/retrieval/dist/pdf/cmaps/KSCms-UHC-HW-V.bcmap                        0.17 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UTF8-V.bcmap                          0.17 kB
+packages/retrieval/dist/pdf/cmaps/EUC-V.bcmap                                 0.17 kB
+packages/retrieval/dist/pdf/cmaps/RKSJ-V.bcmap                                0.17 kB
+packages/retrieval/dist/pdf/cmaps/ETenms-B5-V.bcmap                           0.17 kB
+packages/retrieval/dist/pdf/cmaps/78-EUC-V.bcmap                              0.17 kB
+packages/retrieval/dist/pdf/cmaps/78-RKSJ-V.bcmap                             0.17 kB
+packages/retrieval/dist/pdf/cmaps/GB-V.bcmap                                  0.18 kB
+packages/retrieval/dist/pdf/cmaps/GBT-V.bcmap                                 0.18 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UTF16-V.bcmap                         0.18 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UCS2-V.bcmap                          0.18 kB
+packages/retrieval/dist/pdf/cmaps/GB-EUC-V.bcmap                              0.18 kB
+packages/retrieval/dist/pdf/cmaps/WP-Symbol.bcmap                             0.18 kB
+packages/retrieval/dist/pdf/cmaps/GBK-EUC-V.bcmap                             0.18 kB
+packages/retrieval/dist/pdf/cmaps/GBT-EUC-V.bcmap                             0.18 kB
+packages/retrieval/dist/pdf/cmaps/GBKp-EUC-V.bcmap                            0.18 kB
+packages/retrieval/dist/pdf/cmaps/GBpc-EUC-V.bcmap                            0.18 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UTF8-V.bcmap                          0.18 kB
+packages/retrieval/dist/pdf/cmaps/GBTpc-EUC-V.bcmap                           0.18 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UTF32-V.bcmap                         0.18 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UCS2-V.bcmap                          0.19 kB
+packages/retrieval/dist/pdf/cmaps/Ext-V.bcmap                                 0.22 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-GB1-0.bcmap                           0.22 kB
+packages/retrieval/dist/pdf/cmaps/Ext-RKSJ-V.bcmap                            0.22 kB
+packages/retrieval/dist/pdf/cmaps/GBK2K-V.bcmap                               0.22 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-0.bcmap                        0.23 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-1.bcmap                        0.23 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-2.bcmap                        0.23 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Korea1-0.bcmap                        0.24 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-3.bcmap                        0.24 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-GB1-1.bcmap                           0.25 kB
+packages/retrieval/dist/pdf/cmaps/NWP-V.bcmap                                 0.25 kB
+packages/retrieval/dist/pdf/cmaps/90pv-RKSJ-V.bcmap                           0.26 kB
+packages/retrieval/dist/pdf/cmaps/Add-V.bcmap                                 0.28 kB
+packages/retrieval/dist/pdf/cmaps/Add-RKSJ-V.bcmap                            0.29 kB
+packages/retrieval/dist/pdf/cmaps/78ms-RKSJ-V.bcmap                           0.29 kB
+packages/retrieval/dist/pdf/cmaps/90ms-RKSJ-V.bcmap                           0.29 kB
+packages/retrieval/dist/pdf/cmaps/90msp-RKSJ-V.bcmap                          0.29 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-0.bcmap                          0.32 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-4.bcmap                        0.34 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-1.bcmap                          0.37 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-2.bcmap                          0.38 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Korea1-1.bcmap                        0.39 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Korea1-2.bcmap                        0.39 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-3.bcmap                          0.40 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-4.bcmap                          0.41 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-5.bcmap                          0.41 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-6.bcmap                          0.41 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-5.bcmap                        0.43 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-GB1-2.bcmap                           0.47 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-GB1-3.bcmap                           0.47 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-6.bcmap                        0.49 kB
+packages/retrieval/dist/pdf/cmaps/CNS2-H.bcmap                                0.50 kB
+packages/retrieval/dist/pdf/cmaps/GB-H.bcmap                                  0.53 kB
+packages/retrieval/dist/pdf/cmaps/RKSJ-H.bcmap                                0.53 kB
+packages/retrieval/dist/pdf/cmaps/GB-EUC-H.bcmap                              0.55 kB
+packages/retrieval/dist/pdf/cmaps/H.bcmap                                     0.55 kB
+packages/retrieval/dist/pdf/cmaps/GBpc-EUC-H.bcmap                            0.56 kB
+packages/retrieval/dist/pdf/cmaps/EUC-H.bcmap                                 0.58 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-GB1-4.bcmap                           0.60 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-GB1-5.bcmap                           0.63 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UTF16-V.bcmap                        0.64 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS2004-UTF16-V.bcmap                    0.65 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UCS2-V.bcmap                         0.66 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UTF32-V.bcmap                        0.68 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UTF8-V.bcmap                         0.68 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UCS2-HW-V.bcmap                      0.68 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS2004-UTF32-V.bcmap                    0.68 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS2004-UTF8-V.bcmap                     0.68 kB
+packages/retrieval/dist/pdf/cmaps/UniJISX0213-UTF32-V.bcmap                   0.68 kB
+packages/retrieval/dist/pdf/cmaps/UniJISX02132004-UTF32-V.bcmap               0.69 kB
+packages/retrieval/dist/pdf/cmaps/UniJISPro-UCS2-V.bcmap                      0.69 kB
+packages/retrieval/dist/pdf/cmaps/UniJISPro-UCS2-HW-V.bcmap                   0.71 kB
+packages/retrieval/dist/pdf/cmaps/CNS1-H.bcmap                                0.71 kB
+packages/retrieval/dist/pdf/cmaps/90msp-RKSJ-H.bcmap                          0.72 kB
+packages/retrieval/dist/pdf/cmaps/90ms-RKSJ-H.bcmap                           0.72 kB
+packages/retrieval/dist/pdf/cmaps/UniJISPro-UTF8-V.bcmap                      0.73 kB
+packages/retrieval/dist/pdf/cmaps/83pv-RKSJ-H.bcmap                           0.91 kB
+packages/retrieval/dist/pdf/cmaps/90pv-RKSJ-H.bcmap                           0.98 kB
+packages/retrieval/dist/pdf/cmaps/B5-H.bcmap                                  1.09 kB
+packages/retrieval/dist/pdf/cmaps/B5pc-H.bcmap                                1.10 kB
+packages/retrieval/dist/pdf/cmaps/ETen-B5-H.bcmap                             1.13 kB
+packages/retrieval/dist/pdf/standard_fonts/LICENSE_FOXIT                      1.55 kB
+packages/retrieval/dist/pdf/cmaps/HKm314-B5-H.bcmap                           1.77 kB
+packages/retrieval/dist/pdf/cmaps/CNS-EUC-H.bcmap                             1.78 kB
+packages/retrieval/dist/pdf/cmaps/KSC-H.bcmap                                 1.83 kB
+packages/retrieval/dist/pdf/cmaps/KSC-EUC-H.bcmap                             1.85 kB
+packages/retrieval/dist/pdf/cmaps/CNS-EUC-V.bcmap                             1.92 kB
+packages/retrieval/dist/pdf/cmaps/KSCpc-EUC-H.bcmap                           2.02 kB
+packages/retrieval/dist/pdf/cmaps/LICENSE                                     2.08 kB
+packages/retrieval/dist/pdf/cmaps/HKm471-B5-H.bcmap                           2.17 kB
+packages/retrieval/dist/pdf/cmaps/HKgccs-B5-H.bcmap                           2.29 kB
+packages/retrieval/dist/pdf/cmaps/78-H.bcmap                                  2.38 kB
+packages/retrieval/dist/pdf/cmaps/78-RKSJ-H.bcmap                             2.40 kB
+packages/retrieval/dist/pdf/cmaps/78-EUC-H.bcmap                              2.40 kB
+packages/retrieval/dist/pdf/cmaps/Add-RKSJ-H.bcmap                            2.41 kB
+packages/retrieval/dist/pdf/cmaps/HKdlb-B5-H.bcmap                            2.41 kB
+packages/retrieval/dist/pdf/cmaps/Add-H.bcmap                                 2.42 kB
+packages/retrieval/dist/pdf/cmaps/Ext-H.bcmap                                 2.54 kB
+packages/retrieval/dist/pdf/cmaps/Ext-RKSJ-H.bcmap                            2.54 kB
+packages/retrieval/dist/pdf/cmaps/78ms-RKSJ-H.bcmap                           2.65 kB
+packages/retrieval/dist/pdf/cmaps/HKdla-B5-H.bcmap                            2.65 kB
+packages/retrieval/dist/pdf/cmaps/NWP-H.bcmap                                 2.77 kB
+packages/retrieval/dist/pdf/cmaps/KSCms-UHC-H.bcmap                           2.79 kB
+packages/retrieval/dist/pdf/cmaps/KSCms-UHC-HW-H.bcmap                        2.79 kB
+packages/retrieval/dist/pdf/cmaps/ETHK-B5-H.bcmap                             4.43 kB
+packages/retrieval/dist/pdf/cmaps/HKscs-B5-H.bcmap                            4.44 kB
+packages/retrieval/dist/pdf/cmaps/GBT-H.bcmap                                 7.27 kB
+packages/retrieval/dist/pdf/cmaps/GBT-EUC-H.bcmap                             7.29 kB
+packages/retrieval/dist/pdf/cmaps/GBTpc-EUC-H.bcmap                           7.30 kB
+packages/retrieval/dist/pdf/cmaps/GBKp-EUC-H.bcmap                           14.69 kB
+packages/retrieval/dist/pdf/cmaps/GBK-EUC-H.bcmap                            14.69 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitSymbol.pfb                   16.73 kB
+packages/retrieval/dist/pdf/cmaps/KSC-Johab-H.bcmap                          16.79 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitFixed.pfb                    17.60 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitFixedBold.pfb                18.06 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitFixedItalic.pfb              18.75 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitFixedBoldItalic.pfb          19.15 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitSerifBold.pfb                19.40 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitSerif.pfb                    19.47 kB
+packages/retrieval/dist/pdf/cmaps/GBK2K-H.bcmap                              19.66 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitSerifBoldItalic.pfb          20.73 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitSerifItalic.pfb              21.23 kB
+packages/retrieval/dist/pdf/standard_fonts/LICENSE_LIBERATION                22.15 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Korea1-UCS2.bcmap                    23.29 kB
+packages/retrieval/dist/pdf/assets.json                                      24.07 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UCS2-H.bcmap                        25.44 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UCS2-H.bcmap                         25.78 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UTF16-H.bcmap                        26.33 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UTF32-H.bcmap                        26.45 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UTF8-H.bcmap                         27.79 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitDingbats.pfb                 29.51 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-GB1-UCS2.bcmap                       33.97 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UTF16-H.bcmap                       39.44 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS2004-UTF16-H.bcmap                   39.53 kB
+packages/retrieval/dist/pdf/cmaps/UniJISX0213-UTF32-H.bcmap                  40.52 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UTF32-H.bcmap                       40.54 kB
+packages/retrieval/dist/pdf/cmaps/UniJISX02132004-UTF32-H.bcmap              40.61 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS2004-UTF32-H.bcmap                   40.63 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-UCS2.bcmap                    40.95 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-UCS2.bcmap                      41.19 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UTF8-H.bcmap                        41.70 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS2004-UTF8-H.bcmap                    41.78 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UCS2-H.bcmap                         43.37 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UTF16-H.bcmap                        44.09 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UTF32-H.bcmap                        45.74 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UTF8-H.bcmap                         46.84 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UCS2-H.bcmap                        48.28 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UTF16-H.bcmap                       50.42 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UTF32-H.bcmap                       52.68 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UTF8-H.bcmap                        53.63 kB
+packages/retrieval/dist/pdf/standard_fonts/LiberationSans-BoldItalic.ttf    135.12 kB
+packages/retrieval/dist/pdf/standard_fonts/LiberationSans-Bold.ttf          137.05 kB
+packages/retrieval/dist/pdf/standard_fonts/LiberationSans-Regular.ttf       139.51 kB
+packages/retrieval/dist/pdf/standard_fonts/LiberationSans-Italic.ttf        162.04 kB
+packages/retrieval/dist/pdf/pdf.mjs                                       1,047.46 kB
+packages/retrieval/dist/pdf/pdf.worker.mjs                                2,395.54 kB
+packages/retrieval/dist/parse.cjs                                           493.87 kB
+✓ built in 1.24s
+vite v7.3.6 building ssr environment for production...
+transforming...
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 139 modules transformed.
+rendering chunks...
+packages/storage/dist/index.cjs  444.89 kB
+✓ built in 743ms
+vite v7.3.6 building ssr environment for production...
+transforming...
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 915 modules transformed.
+rendering chunks...
+packages/core/dist/assets/chat-fixture-BCyRWTV4.cjs              5.51 kB
+packages/core/dist/assets/openai-codex-responses-DY8BZBbE.cjs  111.31 kB
+packages/core/dist/index.cjs                                   973.64 kB
+✓ built in 2.17s
+
+Running 1 test using 1 worker
+
+(node:43072) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\e2e\P02-03.inline-selection.spec.ts:78:1 › P02-03 inline copy icons and contextual selection actions preserve copied content and source ranges (38.6s)
+
+
+  1) tests\e2e\P02-03.inline-selection.spec.ts:78:1 › P02-03 inline copy icons and contextual selection actions preserve copied content and source ranges 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: getByRole('tooltip')
+    Expected: "复制代码"
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" getByRole('tooltip') with timeout 15000ms
+      - waiting for getByRole('tooltip')
+
+
+      146 |     await expect(copyCode).toHaveAttribute('data-tooltip', '复制代码');
+      147 |     await copyCode.hover();
+    > 148 |     await expect(page.getByRole('tooltip')).toHaveText('复制代码');
+          |                                             ^
+      149 |     await expect(page.getByRole('tooltip')).toHaveCSS('border-radius', '10px');
+      150 |     await expect(copyCode).not.toHaveAttribute('title');
+      151 |     await copyCode.click();
+        at D:\Tapkit-public\tests\e2e\P02-03.inline-selection.spec.ts:148:45
+
+    Error Context: test-results\e2e\P02-03.inline-selection-P0-0bb10-d-content-and-source-ranges\error-context.md
+
+    Error Context: test-results\e2e\P02-03.inline-selection-P0-0bb10-d-content-and-source-ranges\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P02-03.inline-selection-P0-0bb10-d-content-and-source-ranges\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P02-03.inline-selection-P0-0bb10-d-content-and-source-ranges\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P02-03.inline-selection.spec.ts:78:1 › P02-03 inline copy icons and contextual selection actions preserve copied content and source ranges 
+vite v7.3.6 building ssr environment for production...
+transforming...
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 171 modules transformed.
+rendering chunks...
+packages/retrieval/dist/pdf/cmaps/CNS2-V.bcmap                                0.09 kB
+packages/retrieval/dist/pdf/cmaps/Roman.bcmap                                 0.10 kB
+packages/retrieval/dist/pdf/cmaps/Katakana.bcmap                              0.10 kB
+packages/retrieval/dist/pdf/cmaps/ETenms-B5-H.bcmap                           0.10 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UCS2-HW-H.bcmap                      0.12 kB
+packages/retrieval/dist/pdf/cmaps/Hiragana.bcmap                              0.12 kB
+packages/retrieval/dist/pdf/cmaps/Hankaku.bcmap                               0.13 kB
+packages/retrieval/dist/pdf/cmaps/B5-V.bcmap                                  0.14 kB
+packages/retrieval/dist/pdf/cmaps/CNS1-V.bcmap                                0.14 kB
+packages/retrieval/dist/pdf/cmaps/B5pc-V.bcmap                                0.14 kB
+packages/retrieval/dist/pdf/cmaps/HKdla-B5-V.bcmap                            0.15 kB
+packages/retrieval/dist/pdf/cmaps/HKdlb-B5-V.bcmap                            0.15 kB
+packages/retrieval/dist/pdf/cmaps/HKgccs-B5-V.bcmap                           0.15 kB
+packages/retrieval/dist/pdf/cmaps/HKm314-B5-V.bcmap                           0.15 kB
+packages/retrieval/dist/pdf/cmaps/HKm471-B5-V.bcmap                           0.15 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UCS2-V.bcmap                         0.16 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UTF16-V.bcmap                        0.16 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UTF8-V.bcmap                         0.16 kB
+packages/retrieval/dist/pdf/cmaps/ETHK-B5-V.bcmap                             0.16 kB
+packages/retrieval/dist/pdf/cmaps/ETen-B5-V.bcmap                             0.16 kB
+packages/retrieval/dist/pdf/cmaps/HKscs-B5-V.bcmap                            0.16 kB
+packages/retrieval/dist/pdf/cmaps/KSC-V.bcmap                                 0.16 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UTF32-V.bcmap                        0.16 kB
+packages/retrieval/dist/pdf/cmaps/KSC-EUC-V.bcmap                             0.16 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UTF16-V.bcmap                         0.16 kB
+packages/retrieval/dist/pdf/cmaps/KSC-Johab-V.bcmap                           0.17 kB
+packages/retrieval/dist/pdf/cmaps/KSCms-UHC-V.bcmap                           0.17 kB
+packages/retrieval/dist/pdf/cmaps/KSCpc-EUC-V.bcmap                           0.17 kB
+packages/retrieval/dist/pdf/cmaps/V.bcmap                                     0.17 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UTF32-V.bcmap                         0.17 kB
+packages/retrieval/dist/pdf/cmaps/78-V.bcmap                                  0.17 kB
+packages/retrieval/dist/pdf/cmaps/KSCms-UHC-HW-V.bcmap                        0.17 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UTF8-V.bcmap                          0.17 kB
+packages/retrieval/dist/pdf/cmaps/EUC-V.bcmap                                 0.17 kB
+packages/retrieval/dist/pdf/cmaps/RKSJ-V.bcmap                                0.17 kB
+packages/retrieval/dist/pdf/cmaps/ETenms-B5-V.bcmap                           0.17 kB
+packages/retrieval/dist/pdf/cmaps/78-EUC-V.bcmap                              0.17 kB
+packages/retrieval/dist/pdf/cmaps/78-RKSJ-V.bcmap                             0.17 kB
+packages/retrieval/dist/pdf/cmaps/GB-V.bcmap                                  0.18 kB
+packages/retrieval/dist/pdf/cmaps/GBT-V.bcmap                                 0.18 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UTF16-V.bcmap                         0.18 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UCS2-V.bcmap                          0.18 kB
+packages/retrieval/dist/pdf/cmaps/GB-EUC-V.bcmap                              0.18 kB
+packages/retrieval/dist/pdf/cmaps/WP-Symbol.bcmap                             0.18 kB
+packages/retrieval/dist/pdf/cmaps/GBK-EUC-V.bcmap                             0.18 kB
+packages/retrieval/dist/pdf/cmaps/GBT-EUC-V.bcmap                             0.18 kB
+packages/retrieval/dist/pdf/cmaps/GBKp-EUC-V.bcmap                            0.18 kB
+packages/retrieval/dist/pdf/cmaps/GBpc-EUC-V.bcmap                            0.18 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UTF8-V.bcmap                          0.18 kB
+packages/retrieval/dist/pdf/cmaps/GBTpc-EUC-V.bcmap                           0.18 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UTF32-V.bcmap                         0.18 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UCS2-V.bcmap                          0.19 kB
+packages/retrieval/dist/pdf/cmaps/Ext-V.bcmap                                 0.22 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-GB1-0.bcmap                           0.22 kB
+packages/retrieval/dist/pdf/cmaps/Ext-RKSJ-V.bcmap                            0.22 kB
+packages/retrieval/dist/pdf/cmaps/GBK2K-V.bcmap                               0.22 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-0.bcmap                        0.23 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-1.bcmap                        0.23 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-2.bcmap                        0.23 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Korea1-0.bcmap                        0.24 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-3.bcmap                        0.24 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-GB1-1.bcmap                           0.25 kB
+packages/retrieval/dist/pdf/cmaps/NWP-V.bcmap                                 0.25 kB
+packages/retrieval/dist/pdf/cmaps/90pv-RKSJ-V.bcmap                           0.26 kB
+packages/retrieval/dist/pdf/cmaps/Add-V.bcmap                                 0.28 kB
+packages/retrieval/dist/pdf/cmaps/Add-RKSJ-V.bcmap                            0.29 kB
+packages/retrieval/dist/pdf/cmaps/78ms-RKSJ-V.bcmap                           0.29 kB
+packages/retrieval/dist/pdf/cmaps/90ms-RKSJ-V.bcmap                           0.29 kB
+packages/retrieval/dist/pdf/cmaps/90msp-RKSJ-V.bcmap                          0.29 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-0.bcmap                          0.32 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-4.bcmap                        0.34 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-1.bcmap                          0.37 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-2.bcmap                          0.38 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Korea1-1.bcmap                        0.39 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Korea1-2.bcmap                        0.39 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-3.bcmap                          0.40 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-4.bcmap                          0.41 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-5.bcmap                          0.41 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-6.bcmap                          0.41 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-5.bcmap                        0.43 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-GB1-2.bcmap                           0.47 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-GB1-3.bcmap                           0.47 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-6.bcmap                        0.49 kB
+packages/retrieval/dist/pdf/cmaps/CNS2-H.bcmap                                0.50 kB
+packages/retrieval/dist/pdf/cmaps/GB-H.bcmap                                  0.53 kB
+packages/retrieval/dist/pdf/cmaps/RKSJ-H.bcmap                                0.53 kB
+packages/retrieval/dist/pdf/cmaps/GB-EUC-H.bcmap                              0.55 kB
+packages/retrieval/dist/pdf/cmaps/H.bcmap                                     0.55 kB
+packages/retrieval/dist/pdf/cmaps/GBpc-EUC-H.bcmap                            0.56 kB
+packages/retrieval/dist/pdf/cmaps/EUC-H.bcmap                                 0.58 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-GB1-4.bcmap                           0.60 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-GB1-5.bcmap                           0.63 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UTF16-V.bcmap                        0.64 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS2004-UTF16-V.bcmap                    0.65 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UCS2-V.bcmap                         0.66 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UTF32-V.bcmap                        0.68 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UTF8-V.bcmap                         0.68 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UCS2-HW-V.bcmap                      0.68 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS2004-UTF32-V.bcmap                    0.68 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS2004-UTF8-V.bcmap                     0.68 kB
+packages/retrieval/dist/pdf/cmaps/UniJISX0213-UTF32-V.bcmap                   0.68 kB
+packages/retrieval/dist/pdf/cmaps/UniJISX02132004-UTF32-V.bcmap               0.69 kB
+packages/retrieval/dist/pdf/cmaps/UniJISPro-UCS2-V.bcmap                      0.69 kB
+packages/retrieval/dist/pdf/cmaps/UniJISPro-UCS2-HW-V.bcmap                   0.71 kB
+packages/retrieval/dist/pdf/cmaps/CNS1-H.bcmap                                0.71 kB
+packages/retrieval/dist/pdf/cmaps/90msp-RKSJ-H.bcmap                          0.72 kB
+packages/retrieval/dist/pdf/cmaps/90ms-RKSJ-H.bcmap                           0.72 kB
+packages/retrieval/dist/pdf/cmaps/UniJISPro-UTF8-V.bcmap                      0.73 kB
+packages/retrieval/dist/pdf/cmaps/83pv-RKSJ-H.bcmap                           0.91 kB
+packages/retrieval/dist/pdf/cmaps/90pv-RKSJ-H.bcmap                           0.98 kB
+packages/retrieval/dist/pdf/cmaps/B5-H.bcmap                                  1.09 kB
+packages/retrieval/dist/pdf/cmaps/B5pc-H.bcmap                                1.10 kB
+packages/retrieval/dist/pdf/cmaps/ETen-B5-H.bcmap                             1.13 kB
+packages/retrieval/dist/pdf/standard_fonts/LICENSE_FOXIT                      1.55 kB
+packages/retrieval/dist/pdf/cmaps/HKm314-B5-H.bcmap                           1.77 kB
+packages/retrieval/dist/pdf/cmaps/CNS-EUC-H.bcmap                             1.78 kB
+packages/retrieval/dist/pdf/cmaps/KSC-H.bcmap                                 1.83 kB
+packages/retrieval/dist/pdf/cmaps/KSC-EUC-H.bcmap                             1.85 kB
+packages/retrieval/dist/pdf/cmaps/CNS-EUC-V.bcmap                             1.92 kB
+packages/retrieval/dist/pdf/cmaps/KSCpc-EUC-H.bcmap                           2.02 kB
+packages/retrieval/dist/pdf/cmaps/LICENSE                                     2.08 kB
+packages/retrieval/dist/pdf/cmaps/HKm471-B5-H.bcmap                           2.17 kB
+packages/retrieval/dist/pdf/cmaps/HKgccs-B5-H.bcmap                           2.29 kB
+packages/retrieval/dist/pdf/cmaps/78-H.bcmap                                  2.38 kB
+packages/retrieval/dist/pdf/cmaps/78-RKSJ-H.bcmap                             2.40 kB
+packages/retrieval/dist/pdf/cmaps/78-EUC-H.bcmap                              2.40 kB
+packages/retrieval/dist/pdf/cmaps/Add-RKSJ-H.bcmap                            2.41 kB
+packages/retrieval/dist/pdf/cmaps/HKdlb-B5-H.bcmap                            2.41 kB
+packages/retrieval/dist/pdf/cmaps/Add-H.bcmap                                 2.42 kB
+packages/retrieval/dist/pdf/cmaps/Ext-H.bcmap                                 2.54 kB
+packages/retrieval/dist/pdf/cmaps/Ext-RKSJ-H.bcmap                            2.54 kB
+packages/retrieval/dist/pdf/cmaps/78ms-RKSJ-H.bcmap                           2.65 kB
+packages/retrieval/dist/pdf/cmaps/HKdla-B5-H.bcmap                            2.65 kB
+packages/retrieval/dist/pdf/cmaps/NWP-H.bcmap                                 2.77 kB
+packages/retrieval/dist/pdf/cmaps/KSCms-UHC-H.bcmap                           2.79 kB
+packages/retrieval/dist/pdf/cmaps/KSCms-UHC-HW-H.bcmap                        2.79 kB
+packages/retrieval/dist/pdf/cmaps/ETHK-B5-H.bcmap                             4.43 kB
+packages/retrieval/dist/pdf/cmaps/HKscs-B5-H.bcmap                            4.44 kB
+packages/retrieval/dist/pdf/cmaps/GBT-H.bcmap                                 7.27 kB
+packages/retrieval/dist/pdf/cmaps/GBT-EUC-H.bcmap                             7.29 kB
+packages/retrieval/dist/pdf/cmaps/GBTpc-EUC-H.bcmap                           7.30 kB
+packages/retrieval/dist/pdf/cmaps/GBKp-EUC-H.bcmap                           14.69 kB
+packages/retrieval/dist/pdf/cmaps/GBK-EUC-H.bcmap                            14.69 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitSymbol.pfb                   16.73 kB
+packages/retrieval/dist/pdf/cmaps/KSC-Johab-H.bcmap                          16.79 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitFixed.pfb                    17.60 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitFixedBold.pfb                18.06 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitFixedItalic.pfb              18.75 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitFixedBoldItalic.pfb          19.15 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitSerifBold.pfb                19.40 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitSerif.pfb                    19.47 kB
+packages/retrieval/dist/pdf/cmaps/GBK2K-H.bcmap                              19.66 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitSerifBoldItalic.pfb          20.73 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitSerifItalic.pfb              21.23 kB
+packages/retrieval/dist/pdf/standard_fonts/LICENSE_LIBERATION                22.15 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Korea1-UCS2.bcmap                    23.29 kB
+packages/retrieval/dist/pdf/assets.json                                      24.07 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UCS2-H.bcmap                        25.44 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UCS2-H.bcmap                         25.78 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UTF16-H.bcmap                        26.33 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UTF32-H.bcmap                        26.45 kB
+packages/retrieval/dist/pdf/cmaps/UniKS-UTF8-H.bcmap                         27.79 kB
+packages/retrieval/dist/pdf/standard_fonts/FoxitDingbats.pfb                 29.51 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-GB1-UCS2.bcmap                       33.97 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UTF16-H.bcmap                       39.44 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS2004-UTF16-H.bcmap                   39.53 kB
+packages/retrieval/dist/pdf/cmaps/UniJISX0213-UTF32-H.bcmap                  40.52 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UTF32-H.bcmap                       40.54 kB
+packages/retrieval/dist/pdf/cmaps/UniJISX02132004-UTF32-H.bcmap              40.61 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS2004-UTF32-H.bcmap                   40.63 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-Japan1-UCS2.bcmap                    40.95 kB
+packages/retrieval/dist/pdf/cmaps/Adobe-CNS1-UCS2.bcmap                      41.19 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS-UTF8-H.bcmap                        41.70 kB
+packages/retrieval/dist/pdf/cmaps/UniJIS2004-UTF8-H.bcmap                    41.78 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UCS2-H.bcmap                         43.37 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UTF16-H.bcmap                        44.09 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UTF32-H.bcmap                        45.74 kB
+packages/retrieval/dist/pdf/cmaps/UniGB-UTF8-H.bcmap                         46.84 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UCS2-H.bcmap                        48.28 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UTF16-H.bcmap                       50.42 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UTF32-H.bcmap                       52.68 kB
+packages/retrieval/dist/pdf/cmaps/UniCNS-UTF8-H.bcmap                        53.63 kB
+packages/retrieval/dist/pdf/standard_fonts/LiberationSans-BoldItalic.ttf    135.12 kB
+packages/retrieval/dist/pdf/standard_fonts/LiberationSans-Bold.ttf          137.05 kB
+packages/retrieval/dist/pdf/standard_fonts/LiberationSans-Regular.ttf       139.51 kB
+packages/retrieval/dist/pdf/standard_fonts/LiberationSans-Italic.ttf        162.04 kB
+packages/retrieval/dist/pdf/pdf.mjs                                       1,047.46 kB
+packages/retrieval/dist/pdf/pdf.worker.mjs                                2,395.54 kB
+packages/retrieval/dist/parse.cjs                                           493.87 kB
+✓ built in 1.54s
+vite v7.3.6 building ssr environment for production...
+transforming...
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 139 modules transformed.
+rendering chunks...
+packages/storage/dist/index.cjs  444.89 kB
+✓ built in 814ms
+vite v7.3.6 building ssr environment for production...
+transforming...
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 914 modules transformed.
+rendering chunks...
+packages/core/dist/assets/openai-codex-responses-DY8BZBbE.cjs  111.31 kB
+packages/core/dist/index.cjs                                   973.17 kB
+✓ built in 2.03s
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/.test-data/compact-chat/core-fixture-clipboard-inline.mjs:18:3
+
+Node.js v24.21.0

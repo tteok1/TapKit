@@ -1,0 +1,401 @@
+{
+  "readOnly": true,
+  "modelCallsByAgent": 0,
+  "databaseWritesByAgent": 0,
+  "rawPrivateTextExported": false,
+  "recentTranslations": [
+    {
+      "createdAt": "2026-10-21T15:21:04.441Z",
+      "operation": "translate",
+      "questionMatches": true,
+      "project": {
+        "present": false
+      },
+      "requestMessageSha256": "31e437653ec4d13b1c76d588e4ad92763a078c1b55111a5bbde80306c65f48bf",
+      "run": {
+        "status": "completed",
+        "reason": null,
+        "calls": 1,
+        "tools": 0
+      },
+      "sources": [
+        {
+          "range": {
+            "start": 27,
+            "end": 80
+          },
+          "length": 53,
+          "sha256": "5216705ae113122a0461f922b5728d3508e736e29b3c73a3ec4152f591a72fe0",
+          "matchesScreenshot": true
+        }
+      ],
+      "answers": [
+        {
+          "status": "final",
+          "sha256": "5216705ae113122a0461f922b5728d3508e736e29b3c73a3ec4152f591a72fe0",
+          "length": 53,
+          "equalsSelectedOriginal": true,
+          "containsChinese": false,
+          "errorCode": null
+        }
+      ],
+      "contexts": [
+        {
+          "promptVersion": "chat-p04-2:source-data/1:selection-v2",
+          "refs": [
+            {
+              "isUser": true,
+              "isSelectedSource": false
+            },
+            {
+              "isUser": false,
+              "isSelectedSource": true,
+              "range": {
+                "start": 27,
+                "end": 80
+              }
+            }
+          ],
+          "stats": {
+            "inputTokens": 3686,
+            "effective": 64000,
+            "output": 8192,
+            "reasoning": 0,
+            "nextTool": 2048,
+            "safety": 1024,
+            "total": 14950,
+            "ratio": 0.05759375,
+            "evaluate": false,
+            "stopLargeResults": false,
+            "target": 32000,
+            "fits": true
+          }
+        },
+        {
+          "promptVersion": "chat-p04-2:source-data/1:selection-v2",
+          "refs": [
+            {
+              "isUser": true,
+              "isSelectedSource": false
+            },
+            {
+              "isUser": false,
+              "isSelectedSource": true,
+              "range": {
+                "start": 27,
+                "end": 80
+              }
+            }
+          ],
+          "stats": {
+            "inputTokens": 3686,
+            "effective": 64000,
+            "output": 8192,
+            "reasoning": 0,
+            "nextTool": 2048,
+            "safety": 1024,
+            "total": 14950,
+            "ratio": 0.05759375,
+            "evaluate": false,
+            "stopLargeResults": false,
+            "target": 32000,
+            "fits": true
+          }
+        }
+      ],
+      "settings": [
+        {
+          "scope": "profile",
+          "key": "modelPreferences",
+          "answer": {
+            "language": "auto",
+            "length": "normal",
+            "tone": "natural",
+            "format": "auto"
+          },
+          "personalization": {
+            "hasInstructions": false,
+            "instructionLength": 0
+          }
+        },
+        {
+          "scope": "profile",
+          "key": "preferences",
+          "personalization": {
+            "enabled": true,
+            "chat": {
+              "language": "auto",
+              "length": "normal",
+              "tone": "natural",
+              "format": "auto"
+            },
+            "hasInstructions": false,
+            "instructionLength": 0
+          }
+        }
+      ]
+    },
+    {
+      "createdAt": "2026-10-20T14:16:11.527Z",
+      "operation": "translate",
+      "questionMatches": true,
+      "project": {
+        "present": false
+      },
+      "requestMessageSha256": "31e437653ec4d13b1c76d588e4ad92763a078c1b55111a5bbde80306c65f48bf",
+      "run": {
+        "status": "completed",
+        "reason": null,
+        "calls": 1,
+        "tools": 0
+      },
+      "sources": [
+        {
+          "range": {
+            "start": 27,
+            "end": 80
+          },
+          "length": 53,
+          "sha256": "5216705ae113122a0461f922b5728d3508e736e29b3c73a3ec4152f591a72fe0",
+          "matchesScreenshot": true
+        }
+      ],
+      "answers": [
+        {
+          "status": "final",
+          "sha256": "138963df86977cd3816344213c2ff6544c34969d56b8c354051ba50f6d0685fb",
+          "length": 15,
+          "equalsSelectedOriginal": false,
+          "containsChinese": true,
+          "errorCode": null
+        }
+      ],
+      "contexts": [
+        {
+          "promptVersion": "chat-p04-2:source-data/1:selection-v2",
+          "refs": [
+            {
+              "isUser": true,
+              "isSelectedSource": false
+            },
+            {
+              "isUser": false,
+              "isSelectedSource": true,
+              "range": {
+                "start": 27,
+                "end": 80
+              }
+            }
+          ],
+          "stats": {
+            "inputTokens": 3686,
+            "effective": 64000,
+            "output": 8192,
+            "reasoning": 0,
+            "nextTool": 2048,
+            "safety": 1024,
+            "total": 14950,
+            "ratio": 0.05759375,
+            "evaluate": false,
+            "stopLargeResults": false,
+            "target": 32000,
+            "fits": true
+          }
+        },
+        {
+          "promptVersion": "chat-p04-2:source-data/1:selection-v2",
+          "refs": [
+            {
+              "isUser": true,
+              "isSelectedSource": false
+            },
+            {
+              "isUser": false,
+              "isSelectedSource": true,
+              "range": {
+                "start": 27,
+                "end": 80
+              }
+            }
+          ],
+          "stats": {
+            "inputTokens": 3686,
+            "effective": 64000,
+            "output": 8192,
+            "reasoning": 0,
+            "nextTool": 2048,
+            "safety": 1024,
+            "total": 14950,
+            "ratio": 0.05759375,
+            "evaluate": false,
+            "stopLargeResults": false,
+            "target": 32000,
+            "fits": true
+          }
+        }
+      ],
+      "settings": [
+        {
+          "scope": "profile",
+          "key": "modelPreferences",
+          "answer": {
+            "language": "auto",
+            "length": "normal",
+            "tone": "natural",
+            "format": "auto"
+          },
+          "personalization": {
+            "hasInstructions": false,
+            "instructionLength": 0
+          }
+        },
+        {
+          "scope": "profile",
+          "key": "preferences",
+          "personalization": {
+            "enabled": true,
+            "chat": {
+              "language": "auto",
+              "length": "normal",
+              "tone": "natural",
+              "format": "auto"
+            },
+            "hasInstructions": false,
+            "instructionLength": 0
+          }
+        }
+      ]
+    },
+    {
+      "createdAt": "2026-10-20T13:51:22.737Z",
+      "operation": "translate",
+      "questionMatches": true,
+      "project": {
+        "present": false
+      },
+      "requestMessageSha256": "31e437653ec4d13b1c76d588e4ad92763a078c1b55111a5bbde80306c65f48bf",
+      "run": {
+        "status": "partial",
+        "reason": "VALIDATION_ERROR",
+        "calls": 1,
+        "tools": 0
+      },
+      "sources": [
+        {
+          "range": {
+            "start": 27,
+            "end": 80
+          },
+          "length": 53,
+          "sha256": "5216705ae113122a0461f922b5728d3508e736e29b3c73a3ec4152f591a72fe0",
+          "matchesScreenshot": true
+        }
+      ],
+      "answers": [
+        {
+          "status": "final",
+          "sha256": "6409f7e20b864a880d7842703e0eda241e48ffbfe6b0cbbfd42bbe2a7723d7e1",
+          "length": 68,
+          "equalsSelectedOriginal": false,
+          "containsChinese": true,
+          "errorCode": null
+        }
+      ],
+      "contexts": [
+        {
+          "promptVersion": "chat-p04-2:source-data/1:selection-v1",
+          "refs": [
+            {
+              "isUser": true,
+              "isSelectedSource": false
+            },
+            {
+              "isUser": false,
+              "isSelectedSource": true,
+              "range": {
+                "start": 27,
+                "end": 80
+              }
+            }
+          ],
+          "stats": {
+            "inputTokens": 3668,
+            "effective": 64000,
+            "output": 8192,
+            "reasoning": 0,
+            "nextTool": 2048,
+            "safety": 1024,
+            "total": 14932,
+            "ratio": 0.0573125,
+            "evaluate": false,
+            "stopLargeResults": false,
+            "target": 32000,
+            "fits": true
+          }
+        },
+        {
+          "promptVersion": "chat-p04-2:source-data/1:selection-v1",
+          "refs": [
+            {
+              "isUser": true,
+              "isSelectedSource": false
+            },
+            {
+              "isUser": false,
+              "isSelectedSource": true,
+              "range": {
+                "start": 27,
+                "end": 80
+              }
+            }
+          ],
+          "stats": {
+            "inputTokens": 3668,
+            "effective": 64000,
+            "output": 8192,
+            "reasoning": 0,
+            "nextTool": 2048,
+            "safety": 1024,
+            "total": 14932,
+            "ratio": 0.0573125,
+            "evaluate": false,
+            "stopLargeResults": false,
+            "target": 32000,
+            "fits": true
+          }
+        }
+      ],
+      "settings": [
+        {
+          "scope": "profile",
+          "key": "modelPreferences",
+          "answer": {
+            "language": "auto",
+            "length": "normal",
+            "tone": "natural",
+            "format": "auto"
+          },
+          "personalization": {
+            "hasInstructions": false,
+            "instructionLength": 0
+          }
+        },
+        {
+          "scope": "profile",
+          "key": "preferences",
+          "personalization": {
+            "enabled": true,
+            "chat": {
+              "language": "auto",
+              "length": "normal",
+              "tone": "natural",
+              "format": "auto"
+            },
+            "hasInstructions": false,
+            "instructionLength": 0
+          }
+        }
+      ]
+    }
+  ]
+}
