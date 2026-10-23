@@ -153,6 +153,10 @@ describe('P01-02 real HTTP, history and SQLite', () => {
         });
         expect(bodies).toHaveLength(2);
       },
+      // This checks protocol/state integrity across two real loopback requests,
+      // not latency. Allow cold HTTP initialization on the hosted Windows image;
+      // the adapter's own transport deadlines and every assertion remain active.
+      60_000,
     );
   it('migrates v2 API/Codex/opaque history, backs up, reopens and rolls back failed v3 rebuild', async () => {
     const directory = await mkdtemp(resolve('.test-data', 'P01-02-migration-'));

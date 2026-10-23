@@ -1,0 +1,72 @@
+2026-10-23T12:38:12.2102261Z ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+2026-10-23T12:38:12.2102500Z 
+2026-10-23T12:38:12.2105411Z  FAIL   integration  tests/integration/P01-02.api.test.ts > P01-02 real HTTP, history and SQLite > deepseek replays two-turn tool pairing and private native state over mock HTTP
+2026-10-23T12:38:12.2110654Z Error: Test timed out in 15000ms.
+2026-10-23T12:38:12.2111296Z If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+2026-10-23T12:38:12.2112496Z  ❯ tests/integration/P01-02.api.test.ts:52:5
+2026-10-23T12:38:12.2176670Z      50|     'anthropic-compatible',
+2026-10-23T12:38:12.2177172Z      51|   ] as const)
+2026-10-23T12:38:12.2177539Z      52|     it(
+2026-10-23T12:38:12.2177871Z        |     ^
+2026-10-23T12:38:12.2178540Z      53|       provider + ' replays two-turn tool pairing and private native st…
+2026-10-23T12:38:12.2179149Z      54|       async () => {
+2026-10-23T12:38:12.2179387Z 
+2026-10-23T12:38:12.2180887Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+2026-10-23T12:38:12.2181184Z 
+2026-10-23T12:38:12.2183475Z 
+2026-10-23T12:38:12.2189110Z  Test Files  1 failed | 43 passed (44)
+2026-10-23T12:38:12.2191834Z       Tests  1 failed | 350 passed (351)
+2026-10-23T12:38:12.2192462Z    Start at  12:30:31
+2026-10-23T12:38:12.2200089Z    Duration  460.93s (tests 97%, import 3%)
+2026-10-23T12:38:12.2212739Z 
+2026-10-23T12:38:12.2231623Z 
+2026-10-23T12:38:12.2253210Z ##[error]Error: Test timed out in 15000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/integration/P01-02.api.test.ts:52:5
+
+
+2026-10-23T12:38:12.3161112Z [ELIFECYCLE] Command failed with exit code 1.
+2026-10-23T12:42:46.9251785Z   1) tests\e2e\P02-02.clipboard-attachments.spec.ts:376:1 › P02-02 removing a parsing card during first send excludes it from the actual model input 
+2026-10-23T12:42:46.9252297Z 
+2026-10-23T12:42:46.9252467Z     Error: expect(locator).toContainText(expected) failed
+2026-10-23T12:42:46.9252669Z 
+2026-10-23T12:42:46.9252829Z     Locator: locator('.chat-message.assistant .chat-markdown')
+2026-10-23T12:42:46.9253627Z     Expected substring: "Keep the question"
+2026-10-23T12:42:46.9254023Z     Timeout: 15000ms
+2026-10-23T12:42:46.9254329Z     Error: element(s) not found
+2026-10-23T12:42:46.9254534Z 
+2026-10-23T12:42:46.9254981Z     Call log:
+2026-10-23T12:42:46.9255532Z       - Expect "toContainText" locator('.chat-message.assistant .chat-markdown') with timeout 15000ms
+2026-10-23T12:42:46.9256098Z       - waiting for locator('.chat-message.assistant .chat-markdown')
+2026-10-23T12:42:46.9256317Z 
+2026-10-23T12:42:46.9256322Z 
+2026-10-23T12:42:46.9256403Z       428 |     .click();
+2026-10-23T12:42:46.9256740Z       429 |   await app.evaluate(() => Reflect.set(globalThis, 'readingProjection', false));
+2026-10-23T12:42:46.9257380Z     > 430 |   await expect(page.locator('.chat-message.assistant .chat-markdown')).toContainText(
+2026-10-23T12:42:46.9257773Z           |                                                                        ^
+2026-10-23T12:42:46.9258037Z       431 |     'Keep the question',
+2026-10-23T12:42:46.9258244Z       432 |   );
+2026-10-23T12:42:46.9258497Z       433 |   const attachments = await page.evaluate(async () => {
+2026-10-23T12:42:46.9258907Z         at D:\a\TapKit\TapKit\tests\e2e\P02-02.clipboard-attachments.spec.ts:430:72
+2026-10-23T12:42:46.9259160Z 
+2026-10-23T12:42:46.9259487Z     Error Context: test-results\e2e\P02-02.clipboard-attachmen-4140b-from-the-actual-model-input\error-context.md
+2026-10-23T12:42:46.9259825Z 
+2026-10-23T12:42:46.9260298Z     attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+2026-10-23T12:42:46.9260820Z     test-results\e2e\P02-02.clipboard-attachmen-4140b-from-the-actual-model-input\trace.zip
+2026-10-23T12:42:46.9261195Z     Usage:
+2026-10-23T12:42:46.9261282Z 
+2026-10-23T12:42:46.9261633Z         pnpm exec playwright show-trace test-results\e2e\P02-02.clipboard-attachmen-4140b-from-the-actual-model-input\trace.zip
+2026-10-23T12:42:46.9262000Z 
+2026-10-23T12:42:46.9262277Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-10-23T12:42:46.9262489Z 
+2026-10-23T12:42:46.9262571Z   1 failed
+2026-10-23T12:42:46.9263289Z     tests\e2e\P02-02.clipboard-attachments.spec.ts:376:1 › P02-02 removing a parsing card during first send excludes it from the actual model input 
+2026-10-23T12:42:46.9263780Z   49 passed (2.9m)
+2026-10-23T12:42:47.3078034Z vite v7.3.6 building ssr environment for production...
+2026-10-23T12:42:47.3425598Z transforming...
+2026-10-23T12:42:47.6738769Z node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+2026-10-23T12:42:47.6739322Z 
+2026-10-23T12:42:47.6739759Z "/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+2026-10-23T12:42:47.6740628Z  * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+2026-10-23T12:42:47.6741408Z  * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+2026-10-23T12:42:47.6741858Z 

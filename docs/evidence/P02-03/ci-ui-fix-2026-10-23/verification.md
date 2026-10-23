@@ -23,3 +23,13 @@ CI55的Check、unit360、integration351、性能、标准用户原生验证、Of
 109份产品源码哈希不变；原启动入口run-app.ps1 -CheckOnly退出0，626生产产物与既有已验快照一致，测试fixture未残留。最终check首轮仅进度文档格式失败（check-final.log），格式修正后复查；未引入产品修改。
 
 最终pnpm check退出0（check-final2.log/json，收集105个E2E用例）；pnpm docs:check退出0（docs-final.log/json）；排除原始证据的git diff --check退出0。当前提交只包含3个E2E文件及本次进度/证据，待推送ui_fix并复验完整远程工作流。
+
+## CI56复验和补修
+
+a6396bc已推送ui_fix。CI56原3项失败全部通过，unit360、性能、标准用户原生、Office和启动诊断通过。integration350过/1失败：P01-02.api第一轮DeepSeek回放明确Test timed out in 15000ms；Electron49过/1失败：解析期间移除附件的首次发送用例没有等Ctrl+N导航完成即填同名输入框，失败快照是空草稿首页。摘要及原错误见ci56-summary.json、ci56-failures.log。
+
+补修仅测试：六渠道两轮HTTP协议完整性用例单独60秒预算，生产deadline不变；首次发送先断言新任务页切换，再验证填入文本，并增加发送后原用户正文完整断言。原工具配对/native状态/跨scope拒绝及移除附件不进入消息断言不变。原HTTP对照8/8（p01-http-baseline），修改后开启CI诊断8/8（ci56-http-final），均退出0。附件专项复验与最终检查/远程结果待补。
+
+附件专项最终2/2通过（ci56-navigation-regression.log/json，测试45.2秒，脚本退出0）；生产恢复构建完成，2份历史附件截图按原字节还原。该运行的脚本墙钟为9706.42秒，日志中间存在长等待；不据此推定主机状态或用例耗时，实际断言45.2秒以Playwright记录为准。仅补充注释措辞，不更改已验行为。
+
+补修最终pnpm check、pnpm docs:check均退出0（ci56-check、ci56-docs回执）；109源码哈希仍不变，原run-app.ps1 -CheckOnly退出0，生产产物与原已验快照一致。准备推送同分支，完整远程CI待复验；不合main。

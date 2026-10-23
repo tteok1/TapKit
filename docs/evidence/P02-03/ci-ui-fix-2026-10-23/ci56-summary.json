@@ -1,0 +1,24 @@
+{
+  "runId": 39953295693,
+  "runNumber": 56,
+  "head": "a6396bc1dc2abca10fd0a4b2b9de94f872c6ba87",
+  "url": "https://github.com/tteok1/TapKit/actions/runs/39953295693",
+  "unit": {
+    "passed": 360
+  },
+  "integration": {
+    "passed": 350,
+    "failed": 1,
+    "error": "P01-02.api loopback HTTP test exceeded 15000ms"
+  },
+  "electron": {
+    "passed": 49,
+    "failed": 1,
+    "error": "first-send parsing removal test did not wait for Ctrl+N navigation before filling"
+  },
+  "originalCI55FailuresPassed": true,
+  "standardUser": "success",
+  "officeShutdown": "success",
+  "startupDiagnostics": "success",
+  "productChanged": false
+}

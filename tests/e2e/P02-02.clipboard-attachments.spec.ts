@@ -376,8 +376,12 @@ test('P02-02 rounded attachment cards show progress, cancel one late upload and 
 test('P02-02 removing a parsing card during first send excludes it from the actual model input', async () => {
   const page = await launch();
   await page.keyboard.press('Control+n');
+  // Shortcut navigation commits asynchronously. The old conversation also
+  // has this input label, so filling it before navigation can lose the question.
+  await expect(page.getByRole('region', { name: '新建任务', exact: true })).toBeVisible();
   const input = page.getByLabel('输入草稿', { exact: true });
   await input.fill('Keep the question after removing its material.');
+  await expect(input).toHaveValue('Keep the question after removing its material.');
   await input.evaluate((el) => {
     const data = new DataTransfer();
     data.items.add(
@@ -429,6 +433,9 @@ test('P02-02 removing a parsing card during first send excludes it from the actu
   await app.evaluate(() => Reflect.set(globalThis, 'readingProjection', false));
   await expect(page.locator('.chat-message.assistant .chat-markdown')).toContainText(
     'Keep the question',
+  );
+  await expect(page.locator('.chat-message.user .chat-user-text')).toHaveText(
+    'Keep the question after removing its material.',
   );
   const attachments = await page.evaluate(async () => {
     const sessionId = document.querySelector<HTMLElement>('.chat-surface')!.dataset.sessionId!;
