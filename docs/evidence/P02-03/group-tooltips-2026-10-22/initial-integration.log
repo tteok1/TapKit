@@ -1,0 +1,35 @@
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P02-03.history.test.ts (42 tests | 1 failed) 21847ms
+   × P02-01 shell details: recent/manual orders keep pins first, group orders independent and cursors bound to filters 363ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-01 shell details: recent/manual orders keep pins first, group orders independent and cursors bound to filters
+AssertionError: expected [ Array(1) ] to deeply equal [ Array(1) ]
+
+- Expected
++ Received
+
+  [
+-   "01a0a25d-0400-76ac-ab79-5864af8bc8a3",
++   "01a0a25d-0400-7311-a583-9955573d9855",
+  ]
+
+ ❯ tests/integration/P02-03.history.test.ts:1793:47
+    1791|   // null selects only ungrouped rows; omission still means the comple…
+    1792|   const ungrouped = await list({ sectionId: null, sort: 'manual', limi…
+    1793|   expect(ungrouped.sessions.map((s) => s.id)).toEqual([b]);
+       |                                               ^
+    1794|   expect(ungrouped.nextCursor).toBeTruthy();
+    1795|   const ungroupedNext = await list({
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 87 passed (88)
+   Start at  19:55:33
+   Duration  46.84s (tests 89%, import 7%, transform 5%)
+

@@ -16,6 +16,11 @@ test('P01-02 real desktop UI stores both formats with DPAPI, restarts metadata a
     app = await electron.launch({ args: [resolve('apps/desktop')], env });
     let page = await app.firstWindow();
     await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+    await page.getByRole('link', { name: '设置', exact: true }).click();
+    await page
+      .getByRole('navigation', { name: '设置分类' })
+      .getByRole('link', { name: '模型连接', exact: true })
+      .click();
     await page.getByRole('link', { name: 'API Key 账户', exact: true }).click();
     await expect(page.getByTestId('api-empty')).toBeVisible();
     for (const [preset, label, model] of [
@@ -66,7 +71,12 @@ test('P01-02 real desktop UI stores both formats with DPAPI, restarts metadata a
     await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
     // A restored window may resume the account route. Use the real home entry
     // before selecting its account shortcut; keep persistence assertions below.
-    await page.getByRole('link', { name: '首页', exact: true }).click();
+    await page.keyboard.press('Control+n');
+    await page.getByRole('link', { name: '设置', exact: true }).click();
+    await page
+      .getByRole('navigation', { name: '设置分类' })
+      .getByRole('link', { name: '模型连接', exact: true })
+      .click();
     await page.getByRole('link', { name: 'API Key 账户', exact: true }).click();
     await expect(page.getByTestId('api-account')).toHaveCount(2);
     const chosen = page.getByTestId('api-account').filter({ hasText: 'OpenAI fixture' });
@@ -80,6 +90,11 @@ test('P01-02 real desktop UI stores both formats with DPAPI, restarts metadata a
       ),
     ).toHaveLength(1);
     await page.getByRole('link', { name: '运行状态', exact: true }).click();
+    await page.getByRole('link', { name: '设置', exact: true }).click();
+    await page
+      .getByRole('navigation', { name: '设置分类' })
+      .getByRole('link', { name: '模型连接', exact: true })
+      .click();
     await page.getByRole('link', { name: 'Codex 连接诊断', exact: true }).click();
     await expect(page.getByTestId('codex-empty')).toBeVisible();
     expect(
@@ -87,6 +102,11 @@ test('P01-02 real desktop UI stores both formats with DPAPI, restarts metadata a
     ).toBe(false);
     // Clear the other account; no network or real API key is used by this UI test.
     await page.getByRole('link', { name: '运行状态', exact: true }).click();
+    await page.getByRole('link', { name: '设置', exact: true }).click();
+    await page
+      .getByRole('navigation', { name: '设置分类' })
+      .getByRole('link', { name: '模型连接', exact: true })
+      .click();
     await page.getByRole('link', { name: 'API Key 账户', exact: true }).click();
     await page.getByRole('button', { name: '清除账户记录', exact: true }).click();
     await expect(page.getByTestId('api-empty')).toBeVisible();
@@ -118,6 +138,11 @@ test('P01-02 API diagnostic displays probe phase, business code and truncation t
   try {
     const page = await app.firstWindow();
     await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+    await page.getByRole('link', { name: '设置', exact: true }).click();
+    await page
+      .getByRole('navigation', { name: '设置分类' })
+      .getByRole('link', { name: '模型连接', exact: true })
+      .click();
     await page.getByRole('link', { name: 'API Key 账户', exact: true }).click();
     await page.getByLabel('账户名称').fill('Zhipu fixture');
     await page.getByLabel('模型', { exact: true }).fill('glm-4.7-flash');

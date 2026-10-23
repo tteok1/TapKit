@@ -36,6 +36,11 @@ test('P01-03 real desktop model preferences, compatibility, scope and usage pers
         );
       store.close();
     }, resolve('packages/storage/dist/index.cjs'));
+    await page.getByRole('link', { name: '设置', exact: true }).click();
+    await page
+      .getByRole('navigation', { name: '设置分类' })
+      .getByRole('link', { name: '模型连接', exact: true })
+      .click();
     await page.getByRole('link', { name: 'API Key 账户', exact: true }).click();
     await page.getByLabel('服务预设').selectOption('openai-compatible');
     await page.getByLabel('账户名称').fill('Models fixture');
@@ -115,6 +120,11 @@ test('P01-03 real desktop model preferences, compatibility, scope and usage pers
     await expect(page.getByLabel('输出格式')).toHaveValue('auto');
     await expect(page.getByLabel('允许自动切换到 API，并接受供应商费用')).toBeChecked();
     await page.getByRole('link', { name: '运行状态', exact: true }).click();
+    await page.getByRole('link', { name: '设置', exact: true }).click();
+    await page
+      .getByRole('navigation', { name: '设置分类' })
+      .getByRole('link', { name: '模型连接', exact: true })
+      .click();
     await page.getByRole('link', { name: 'API Key 账户', exact: true }).click();
     await page.getByRole('button', { name: '清除账户记录', exact: true }).click();
     await expect(page.getByTestId('api-empty')).toBeVisible();

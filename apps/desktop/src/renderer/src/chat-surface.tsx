@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState, type RefObject } from 'react';
-import { ChatMarkdown } from '@tapkit/ui';
+import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
+import { ActionPopover, IconButton } from './action-popover';
+import { UiIcon } from './ui-icon';
+import { ChatMarkdown, CopyButton } from '@tapkit/ui';
 import {
   ChatSnapshotSchema,
   ChatDraftViewSchema,
@@ -7,7 +9,9 @@ import {
   ChatMaterialsViewSchema,
   ChatSnippetsSchema,
   CatalogViewSchema,
+  PreviewViewSchema,
   CreatedEntitySchema,
+  BranchChangeSchema,
   type ChatSnapshot,
   type SessionDetails,
   type ChatMaterial,
@@ -22,8 +26,10 @@ import h from '../locales/history.zh-CN.json';
 import locale from '../locales/zh-CN.json';
 import { historyCommand } from './history-ui';
 import { SessionTools, MessageActions } from './message-history';
-import { importChatFiles, chatFileOwner, type ChatImportView } from './chat-file-import';
+import { SelectionToolbar } from './selection-toolbar';
+import { importChatFiles, chatFileOwner, type ChatFileProgress } from './chat-file-import';
 import { useViewer } from '../features/viewer/state';
+import { ComposerAttachment } from './composer-attachment';
 import { InlineFileCard } from '../features/viewer/inline-card';
 import { ProjectScopeBar } from './projects-ui';
 import { ContextSummary } from './context-summary';
@@ -61,6 +67,9 @@ export function ChatSurface({
   targetMessageId,
   exportRequested = false,
   onNavigate,
+  temporary = false,
+  onTemporaryCreated,
+  onBusy,
 }: {
   sessionId?: string | undefined;
   mode: 'chat' | 'work';
@@ -74,6 +83,9 @@ export function ChatSurface({
   targetMessageId?: string | undefined;
   exportRequested?: boolean;
   onNavigate?: ((path: string) => void) | undefined;
+  temporary?: boolean;
+  onTemporaryCreated?: (id: string) => void;
+  onBusy?: (busy: boolean) => void;
 }) {
   const viewer = useViewer();
   const [snapshot, setSnapshot] = useState<ChatSnapshot>(),
@@ -84,12 +96,60 @@ export function ChatSurface({
     [loaded, setLoaded] = useState(!sessionId);
   const [catalog, setCatalog] = useState<ReturnType<typeof CatalogViewSchema.parse>>(),
     [selection, setSelection] = useState<Selection | null>(null),
+    [defaultSelection, setDefaultSelection] = useState<Selection | null>(null),
     [delivery, setDelivery] = useState<'followup' | 'steer'>('followup');
   const [materials, setMaterials] = useState<ChatMaterial[]>([]),
     [choices, setChoices] = useState<ChatMaterial[]>(),
     [longPaste, setLongPaste] = useState(''),
     [preview, setPreview] = useState<ChatMaterial>();
-  const [fileImport, setFileImport] = useState<ChatImportView>();
+  const [uploads, setUploads] = useState<
+    { file: File; progress: ChatFileProgress; ref?: ResourceRef }[]
+  >([]);
+  const attachmentSignals = useRef(new Map<File, AbortController>());
+  const removedDuringSend = useRef(new Set<string>());
+  function importControls(files: File[]) {
+    const signals = new Map<File, AbortSignal>();
+    for (const file of files) {
+      const controller = new AbortController();
+      attachmentSignals.current.set(file, controller);
+      signals.set(file, controller.signal);
+    }
+    setUploads(
+      files.map((file) => ({
+        file,
+        progress: { status: 'waiting', readBytes: 0, totalBytes: file.size },
+      })),
+    );
+    return {
+      signals,
+      onProgress: (file: File, progress: ChatFileProgress) => {
+        if (alive.current)
+          setUploads((rows) => rows.map((row) => (row.file === file ? { ...row, progress } : row)));
+      },
+    };
+  }
+  function imported(file: File, ref: ResourceRef) {
+    if (!alive.current) return;
+    setUploads((rows) => rows.map((row) => (row.file === file ? { ...row, ref } : row)));
+    setPendingFiles((files) => files.filter((item) => item !== file));
+  }
+  function removeUpload(file: File) {
+    attachmentSignals.current.get(file)?.abort();
+    setUploads((rows) => rows.filter((row) => row.file !== file));
+    setPendingFiles((files) => files.filter((item) => item !== file));
+  }
+  const [pendingFiles, setPendingFiles] = useState<File[]>([]);
+  const createdKind = useRef<string | undefined>(undefined);
+  const handedOff = useRef(false);
+  const draftLoaded = useRef(!sessionId);
+  function openCreated(target: string) {
+    if (!alive.current) return;
+    handedOff.current = true;
+    onCreated(target);
+  }
+  useEffect(() => {
+    onBusy?.(busy);
+  }, [busy, onBusy]);
   const fileOperation = useRef<AbortController | undefined>(undefined);
   const sceneEpoch = useRef(0);
   const [historyDetails, setHistoryDetails] = useState<SessionDetails>();
@@ -117,6 +177,25 @@ export function ChatSurface({
     upload = useRef<HTMLInputElement>(null),
     undo = useRef<string[]>([]),
     redo = useRef<string[]>([]);
+  useLayoutEffect(() => {
+    const input = inputRef.current;
+    if (!input) return;
+    let width = 0;
+    const resize = () => {
+      input.style.height = '0px';
+      input.style.height =
+        Math.min(input.scrollHeight, parseFloat(getComputedStyle(input).maxHeight)) + 'px';
+    };
+    resize();
+    const observer = new ResizeObserver(() => {
+      if (input.clientWidth !== width) {
+        width = input.clientWidth;
+        resize();
+      }
+    });
+    observer.observe(input);
+    return () => observer.disconnect();
+  }, [text, inputRef, settings.desktop.zoom]);
   const historyLoaded = useRef(false);
   const shownWindow = useRef({ branchId: snapshot?.branchId, count: 100 });
   shownWindow.current = { branchId: snapshot?.branchId, count: snapshot?.messages.length ?? 100 };
@@ -125,6 +204,7 @@ export function ChatSurface({
     !['completed', 'partial', 'failed', 'budget_stopped', 'cancelled'].includes(
       snapshot.run.status,
     );
+  const snapshotReady = snapshot !== undefined;
   draft.current = { text, attachments: refs };
   const readableError = (e: unknown) =>
     c.errors[(e instanceof Error ? e.message : 'INTERNAL_ERROR') as keyof typeof c.errors] ??
@@ -212,6 +292,7 @@ export function ChatSurface({
   useEffect(() => {
     alive.current = true;
     sid.current = sessionId;
+    draftLoaded.current = !sessionId;
     revision.current = 1;
     void window.tapkit
       .modelCommand(requestOptions(), 'models.catalog', {})
@@ -236,6 +317,7 @@ export function ChatSurface({
           ),
         );
         if (!alive.current) return;
+        draftLoaded.current = true;
         revision.current = d.revision;
         setText(d.text);
         setRefs(d.attachments);
@@ -249,7 +331,9 @@ export function ChatSurface({
       sceneEpoch.current++;
       alive.current = false;
       fileOperation.current?.abort();
-      void saveDraft().catch(() => {});
+      if (!sessionId && createdKind.current === 'temporary' && sid.current && !handedOff.current)
+        void historyCommand('sessions.closeTemporary', { sessionId: sid.current }).catch(() => {});
+      if (draftLoaded.current && !handedOff.current) void saveDraft().catch(() => {});
     };
   }, [sessionId]);
   useEffect(() => {
@@ -348,20 +432,15 @@ export function ChatSurface({
     return () => clearTimeout(timer);
   }, [text, refs, loaded]);
   useEffect(() => {
-    const input = inputRef.current;
-    if (input) {
-      input.style.height = 'auto';
-      input.style.height = Math.min(180, Math.max(66, input.scrollHeight)) + 'px';
-    }
-  }, [text]);
-  useEffect(() => {
-    if (!sid.current) return;
+    // Start from the loaded snapshot's cursor. Subscribing from zero on every
+    // mount replays old chat events and reloads the entire message list per event.
+    if (!sid.current || !snapshot) return;
     let stopped = false,
       off: (() => void) | undefined;
     void window.tapkit
       .subscribeEvents(
         requestOptions(),
-        { streamId: 'profile', afterSeq: snapshot?.eventSeq ?? 0 },
+        { streamId: 'profile', afterSeq: snapshot.eventSeq },
         (event) => {
           if (event.payload.kind === 'memory') setMemoryEventSeq(event.seq);
           if (event.payload.kind === 'settings') setMemoryEventSeq(event.seq);
@@ -392,10 +471,10 @@ export function ChatSurface({
       off?.();
       clearInterval(timer);
     };
-  }, [sessionId, active]);
+  }, [sessionId, active, snapshotReady]);
   useEffect(() => {
     const target = sid.current;
-    if (!target || !refs.length) {
+    if (!refs.length) {
       setMaterials([]);
       return;
     }
@@ -404,7 +483,7 @@ export function ChatSurface({
     const read = async () => {
       try {
         const reply = await window.tapkit.chatCommand(requestOptions(), 'inputs.references', {
-          sessionId: target,
+          ...(target ? { sessionId: target } : {}),
           refs,
         });
         if (!alive.current || cancelled) return;
@@ -423,8 +502,24 @@ export function ChatSurface({
     };
   }, [refs, sessionId]);
   async function ensureSession() {
-    if (sid.current) return sid.current;
+    const kind = temporary ? 'temporary' : mode;
+    if (sid.current && (sessionId || createdKind.current === kind)) return sid.current;
+    if (sid.current && createdKind.current === 'temporary')
+      await historyCommand('sessions.closeTemporary', { sessionId: sid.current });
+    sid.current = undefined;
+    revision.current = 1;
     const epoch = sceneEpoch.current;
+    if (temporary) {
+      const created = BranchChangeSchema.parse(await historyCommand('sessions.temporary'));
+      onTemporaryCreated?.(created.sessionId);
+      if (!alive.current || sceneEpoch.current !== epoch) {
+        await historyCommand('sessions.closeTemporary', { sessionId: created.sessionId });
+        throw new Error('CANCELLED');
+      }
+      sid.current = created.sessionId;
+      createdKind.current = kind;
+      return created.sessionId;
+    }
     const created = CreatedEntitySchema.parse(
       unwrap(
         await window.tapkit.desktopCommand(requestOptions(), 'sessions.create', {
@@ -435,19 +530,25 @@ export function ChatSurface({
     );
     if (!alive.current || sceneEpoch.current !== epoch) throw new Error('CANCELLED');
     sid.current = created.entityId;
+    createdKind.current = kind;
     return created.entityId;
   }
   async function addFiles(files: File[], removeText?: string) {
     if (!files.length || fileOperation.current || busy) return;
-    if (files.length + draft.current.attachments.length > 20) {
+    if (files.length + draft.current.attachments.length + pendingFiles.length > 20) {
       setError(c.materialLimit);
+      return;
+    }
+    if (!sessionId) {
+      setPendingFiles((current) => [...current, ...files]);
+      if (removeText) change(draft.current.text.replace(removeText, ''));
       return;
     }
     const controller = new AbortController();
     fileOperation.current = controller;
     setBusy(true);
     setError('');
-    setFileImport(undefined);
+    setUploads([]);
     const epoch = sceneEpoch.current;
     try {
       const target = await ensureSession();
@@ -456,9 +557,9 @@ export function ChatSurface({
         files,
         target,
         controller.signal,
-        (view) => {
-          if (alive.current && sid.current === target) setFileImport(view);
-        },
+        () => {},
+        imported,
+        importControls(files),
       );
       if (result.refs.length) {
         // Serialize with pending draft writes. After navigation, append to the
@@ -527,9 +628,8 @@ export function ChatSurface({
     if (
       busy ||
       fileOperation.current ||
-      mode !== 'chat' ||
       text.length > 100000 ||
-      (!text.trim() && !refs.length)
+      (!text.trim() && !refs.length && !pendingFiles.length)
     )
       return;
     if (text.trim() === '/help') {
@@ -552,10 +652,84 @@ export function ChatSurface({
     }
     setBusy(true);
     setError('');
+    removedDuringSend.current.clear();
     const current = { text: draft.current.text, attachments: [...draft.current.attachments] };
+    const remaining = () =>
+      current.attachments.filter((ref) => !removedDuringSend.current.has(refKey(ref)));
+    const visibleMaterials = (items: ChatMaterial[]) =>
+      items.filter((item) => !removedDuringSend.current.has(refKey(item.ref)));
     try {
       const target = await ensureSession();
-      await saveDraft(current);
+      if (pendingFiles.length) {
+        const controller = new AbortController();
+        fileOperation.current = controller;
+        const result = await importChatFiles(
+          window.tapkit,
+          pendingFiles,
+          target,
+          controller.signal,
+          () => {},
+          imported,
+          importControls(pendingFiles),
+        );
+        current.attachments.push(...result.refs);
+        setRefs(current.attachments);
+        draft.current = { text: draft.current.text, attachments: current.attachments };
+        await saveDraft(draft.current);
+        if (result.cancelled || result.errors.length) {
+          setError(
+            result.cancelled
+              ? c.importCancelled
+              : c.importPartial + ' ' + readableError(new Error(result.errors[0])),
+          );
+          return;
+        }
+      }
+      current.attachments = remaining();
+      await saveDraft({ ...draft.current, attachments: current.attachments });
+      if (mode === 'work') {
+        await saveTail.current;
+        if (!sessionId) openCreated(target);
+        return;
+      }
+      // Imports may still be parsing. Keep the draft and let the existing
+      // material status/retry flow handle that state instead of losing files.
+      if (current.attachments.length) {
+        let view = ChatMaterialsViewSchema.parse(
+          unwrap(
+            await window.tapkit.chatCommand(requestOptions(), 'inputs.references', {
+              sessionId: target,
+              refs: remaining(),
+            }),
+          ),
+        );
+        const deadline = Date.now() + 120_000;
+        while (
+          !sessionId &&
+          view.materials.some((item) => item.state === 'parsing' || item.state === 'uploading') &&
+          Date.now() < deadline
+        ) {
+          if (!alive.current || fileOperation.current?.signal.aborted) throw new Error('CANCELLED');
+          setMaterials(visibleMaterials(view.materials));
+          await new Promise((resolve) => setTimeout(resolve, 500));
+          view = ChatMaterialsViewSchema.parse(
+            unwrap(
+              await window.tapkit.chatCommand(requestOptions(), 'inputs.references', {
+                sessionId: target,
+                refs: remaining(),
+              }),
+            ),
+          );
+        }
+        if (!alive.current || fileOperation.current?.signal.aborted) throw new Error('CANCELLED');
+        setMaterials(visibleMaterials(view.materials));
+        if (visibleMaterials(view.materials).some((item) => item.state !== 'ready')) {
+          if (!sessionId) openCreated(target);
+          return;
+        }
+      }
+      current.attachments = remaining();
+      if (!current.text.trim() && !current.attachments.length) return;
       const payload = {
         sessionId: target,
         clientMessageId: clientId.current,
@@ -573,7 +747,7 @@ export function ChatSurface({
         unwrap(await window.tapkit.chatCommand(requestOptions(), 'messages.send', payload)),
       );
       // Clear only the acknowledged draft. Typing during the request remains intact.
-      if (draft.current.text === current.text) {
+      if (alive.current && draft.current.text === current.text) {
         setText('');
         onDraft('');
         setRefs([]);
@@ -582,11 +756,12 @@ export function ChatSurface({
       }
       clientId.current = id();
       sentPayload.current = '';
-      if (!sessionId) onCreated(target);
-      else await refresh();
+      if (!sessionId) openCreated(target);
+      else if (alive.current) await refresh();
     } catch (e) {
-      setError(readableError(e));
+      if (alive.current) setError(readableError(e));
     } finally {
+      fileOperation.current = undefined;
       setBusy(false);
     }
   }
@@ -637,21 +812,48 @@ export function ChatSurface({
   const canSend =
     loaded &&
     !busy &&
-    mode === 'chat' &&
-    !!catalog?.catalog.some((m) => m.status === 'ready') &&
+    (mode === 'work' || !!catalog?.catalog.some((m) => m.status === 'ready')) &&
     text.length <= 100000 &&
-    (!!text.trim() || refs.length > 0) &&
+    (!!text.trim() || refs.length > 0 || pendingFiles.length > 0) &&
     refs.every((r) => materials.some((m) => refKey(m.ref) === refKey(r) && m.state === 'ready'));
-  const selectedModel = selection
+  useEffect(() => {
+    let current = true;
+    setDefaultSelection(null);
+    void window.tapkit
+      .modelCommand(requestOptions(), 'models.preview', sessionId ? { sessionId } : {})
+      .then((reply) => {
+        const preview = PreviewViewSchema.parse(unwrap(reply));
+        if (current) setDefaultSelection(preview.candidates[0] ?? preview.effective.selection);
+      })
+      .catch(() => {});
+    return () => {
+      current = false;
+    };
+  }, [sessionId, catalog]);
+  const effectiveSelection = selection ?? defaultSelection;
+  const noModel =
+    !!catalog &&
+    !catalog.catalog.some((model) => model.accountId && model.status !== 'unconfigured');
+  const selectedModel = effectiveSelection
     ? catalog?.catalog.find(
-        (m) => m.accountId === selection.accountId && m.modelId === selection.modelId,
+        (m) =>
+          m.accountId === effectiveSelection.accountId && m.modelId === effectiveSelection.modelId,
       )
-    : catalog?.catalog.find((m) => m.status === 'ready');
+    : undefined;
   const latestFailure = snapshot?.messages.findLast(
     (m) => m.runId === snapshot.run?.id && m.diagnosticCode,
   );
   return (
     <section className="chat-surface" data-session-id={sessionId}>
+      {sessionId && (
+        <SelectionToolbar
+          key={sessionId}
+          sessionId={sessionId}
+          messages={snapshot?.messages ?? []}
+          active={active}
+          onChanged={refresh}
+        />
+      )}
       <div className="conversation-controls">
         {sessionId && (
           <ContextSummary key={sessionId} sessionId={sessionId} onCreated={onCreated} />
@@ -767,17 +969,8 @@ export function ChatSurface({
                   {message.role === 'user' ? '你' : message.role === 'tool' ? c.process : 'TapKit'}
                 </strong>
                 <small>
-                  {[
-                    catalog?.catalog.find(
-                      (m) =>
-                        m.accountId === message.model?.accountId &&
-                        m.modelId === message.model?.modelId,
-                    )?.providerId,
-                    message.model?.modelId,
-                  ]
-                    .filter(Boolean)
-                    .join(' · ')}{' '}
-                  · {new Date(message.createdAt).toLocaleTimeString('zh-CN')} ·{' '}
+                  {message.model?.modelId && message.model.modelId + ' · '}
+                  {new Date(message.createdAt).toLocaleTimeString('zh-CN')} ·{' '}
                   {message.status === 'streaming'
                     ? '正在回答'
                     : message.status === 'final'
@@ -804,8 +997,8 @@ export function ChatSurface({
                   <pre>{message.text}</pre>
                 </details>
               ) : message.role === 'assistant' ? (
-                <details open>
-                  <summary>{message.text.length > 20000 ? '展开或收起长回复' : '回复正文'}</summary>
+                <details open className="answer-body">
+                  <summary hidden={message.text.length <= 20000}>展开或收起长回复</summary>
                   <ChatMarkdown
                     text={message.text}
                     streaming={message.status === 'streaming'}
@@ -819,117 +1012,126 @@ export function ChatSurface({
               ) : (
                 <p className="chat-user-text">{message.text}</p>
               )}
-              {!!message.attachments.length && (
-                <details>
-                  <summary>
-                    {message.attachments.every((ref) => ref.kind === 'message' && ref.range)
-                      ? '所选原文'
-                      : '引用来源'}
-                    （{message.attachments.length}）
-                  </summary>
-                  <div className="chat-sources">
-                    {message.attachments.map((ref, i) =>
-                      ref.kind === 'file' && sid.current ? (
-                        <InlineFileCard
-                          key={i}
-                          refValue={ref}
-                          sessionId={sid.current}
-                          index={i + 1}
-                        />
-                      ) : (
-                        <button
-                          key={i}
-                          onClick={() =>
-                            void action(async () => {
-                              const result = ChatMaterialsViewSchema.parse(
-                                unwrap(
-                                  await window.tapkit.chatCommand(
-                                    requestOptions(),
-                                    'inputs.references',
-                                    { sessionId: sid.current, refs: [ref] },
+              <div className="message-footer">
+                {!!message.attachments.length && (
+                  <ActionPopover
+                    icon="file"
+                    label={
+                      (message.attachments.every((ref) => ref.kind === 'message' && ref.range)
+                        ? '所选原文'
+                        : '引用来源') +
+                      '（' +
+                      message.attachments.length +
+                      '）'
+                    }
+                  >
+                    <div className="chat-sources">
+                      {message.attachments.map((ref, i) =>
+                        ref.kind === 'file' && sid.current ? (
+                          <InlineFileCard
+                            key={i}
+                            refValue={ref}
+                            sessionId={sid.current}
+                            index={i + 1}
+                          />
+                        ) : (
+                          <button
+                            key={i}
+                            onClick={() =>
+                              void action(async () => {
+                                const result = ChatMaterialsViewSchema.parse(
+                                  unwrap(
+                                    await window.tapkit.chatCommand(
+                                      requestOptions(),
+                                      'inputs.references',
+                                      { sessionId: sid.current, refs: [ref] },
+                                    ),
                                   ),
-                                ),
-                              );
-                              if (ref.kind === 'file' && sid.current) {
-                                const owner = await chatFileOwner(window.tapkit, ref, sid.current);
-                                await viewer.open({
-                                  fileId: ref.fileId,
-                                  versionId: ref.versionId,
-                                  ...(ref.locator ? { locator: ref.locator } : {}),
-                                  ...(owner ? { owner } : {}),
-                                });
-                              } else setPreview(result.materials[0]);
-                            })
+                                );
+                                if (ref.kind === 'file' && sid.current) {
+                                  const owner = await chatFileOwner(
+                                    window.tapkit,
+                                    ref,
+                                    sid.current,
+                                  );
+                                  await viewer.open({
+                                    fileId: ref.fileId,
+                                    versionId: ref.versionId,
+                                    ...(ref.locator ? { locator: ref.locator } : {}),
+                                    ...(owner ? { owner } : {}),
+                                  });
+                                } else setPreview(result.materials[0]);
+                              })
+                            }
+                          >
+                            {ref.kind === 'message'
+                              ? ref.range
+                                ? '所选原文'
+                                : '引用消息'
+                              : '引用资料'}{' '}
+                            {i + 1}
+                          </button>
+                        ),
+                      )}
+                    </div>
+                  </ActionPopover>
+                )}
+                {message.errorCode && (
+                  <p role="status">
+                    {c.errors[message.errorCode as keyof typeof c.errors] ?? message.errorCode}
+                    {message.diagnosticCode &&
+                      ' · ' + locale.auth.diagnosticReasons[message.diagnosticCode]}
+                  </p>
+                )}
+                {sessionId && message.role !== 'tool' && (
+                  <MemoryMessage
+                    sessionId={sessionId}
+                    messageId={message.id}
+                    eventSeq={memoryEventSeq}
+                    policySeq={memoryPolicySeq}
+                    role={message.role}
+                  />
+                )}
+                {message.role !== 'tool' && (
+                  <div className="message-actions">
+                    <CopyButton label={c.copy} text={message.text} />
+                    <IconButton
+                      icon="quote"
+                      label={c.quote}
+                      disabled={message.status === 'streaming' || message.status === 'queued'}
+                      onMouseDown={(e) => e.preventDefault()}
+                      onClick={() => void quote(message)}
+                    />
+                    {sessionId && (
+                      <MessageActions
+                        details={historyDetails}
+                        sessionId={sessionId}
+                        message={message}
+                        active={active}
+                        selection={selection}
+                        onChanged={refresh}
+                        onNavigate={(path) => onCreated(path.split('/')[2]!)}
+                      />
+                    )}
+                    {['failed', 'interrupted'].includes(message.status) && (
+                      <button
+                        onClick={() => {
+                          const user = snapshot.messages.find(
+                            (m) => m.role === 'user' && m.runId === message.runId,
+                          );
+                          if (user) {
+                            change(user.text);
+                            setRefs(user.attachments);
+                            inputRef.current?.focus();
                           }
-                        >
-                          {ref.kind === 'message'
-                            ? ref.range
-                              ? '所选原文'
-                              : '引用消息'
-                            : '引用资料'}{' '}
-                          {i + 1}
-                        </button>
-                      ),
+                        }}
+                      >
+                        {c.retry}
+                      </button>
                     )}
                   </div>
-                </details>
-              )}
-              {message.errorCode && (
-                <p role="status">
-                  {c.errors[message.errorCode as keyof typeof c.errors] ?? message.errorCode}
-                  {message.diagnosticCode &&
-                    ' · ' + locale.auth.diagnosticReasons[message.diagnosticCode]}
-                </p>
-              )}
-              {sessionId && message.role !== 'tool' && (
-                <MemoryMessage
-                  sessionId={sessionId}
-                  messageId={message.id}
-                  eventSeq={memoryEventSeq}
-                  policySeq={memoryPolicySeq}
-                  role={message.role}
-                />
-              )}
-              {message.role !== 'tool' && (
-                <div className="message-actions">
-                  {sessionId && (
-                    <MessageActions
-                      details={historyDetails}
-                      sessionId={sessionId}
-                      message={message}
-                      active={active}
-                      selection={selection}
-                      onChanged={refresh}
-                      onNavigate={(path) => onCreated(path.split('/')[2]!)}
-                    />
-                  )}
-                  <button onClick={() => void navigator.clipboard.writeText(message.text)}>
-                    {c.copy}
-                  </button>
-                  <button
-                    disabled={message.status === 'streaming' || message.status === 'queued'}
-                    onClick={() => void quote(message)}
-                  >
-                    {c.quote}
-                  </button>
-                  {['failed', 'interrupted'].includes(message.status) && (
-                    <button
-                      onClick={() => {
-                        const user = snapshot.messages.find(
-                          (m) => m.role === 'user' && m.runId === message.runId,
-                        );
-                        if (user) {
-                          change(user.text);
-                          setRefs(user.attachments);
-                          inputRef.current?.focus();
-                        }
-                      }}
-                    >
-                      {c.retry}
-                    </button>
-                  )}
-                </div>
-              )}
+                )}
+              </div>
             </article>
           ))}
         </div>
@@ -976,7 +1178,6 @@ export function ChatSurface({
               {c.latestFailure}：{locale.auth.diagnosticReasons[latestFailure.diagnosticCode]}
             </p>
           )}
-          {historyDetails?.session.titleStatus && <small>{c.rootUsageHint}</small>}
           {active && (
             <button
               onClick={() =>
@@ -1005,18 +1206,20 @@ export function ChatSurface({
           {snapshot.pending.map((p) => (
             <div key={p.id}>
               <span>{p.text.slice(0, 120)}</span>
-              <button onClick={() => setEditing({ ...p })}>{c.edit}</button>
-              <button
-                onClick={() =>
-                  void action(() =>
-                    window.tapkit
-                      .chatCommand(requestOptions(p.revision), 'inputs.cancel', { inputId: p.id })
-                      .then(unwrap),
-                  )
-                }
-              >
-                {c.cancel}
-              </button>
+              <span className="action-group">
+                <button onClick={() => setEditing({ ...p })}>{c.edit}</button>
+                <button
+                  onClick={() =>
+                    void action(() =>
+                      window.tapkit
+                        .chatCommand(requestOptions(p.revision), 'inputs.cancel', { inputId: p.id })
+                        .then(unwrap),
+                    )
+                  }
+                >
+                  {c.cancel}
+                </button>
+              </span>
             </div>
           ))}
         </details>
@@ -1028,23 +1231,25 @@ export function ChatSurface({
             value={editing.text}
             onChange={(e) => setEditing({ ...editing, text: e.target.value })}
           />
-          <button
-            onClick={() =>
-              void action(async () => {
-                unwrap(
-                  await window.tapkit.chatCommand(
-                    requestOptions(editing.revision),
-                    'inputs.update',
-                    { inputId: editing.id, text: editing.text, attachments: editing.attachments },
-                  ),
-                );
-                setEditing(undefined);
-              })
-            }
-          >
-            {c.save}
-          </button>
-          <button onClick={() => setEditing(undefined)}>{c.cancel}</button>
+          <span className="action-group">
+            <button
+              onClick={() =>
+                void action(async () => {
+                  unwrap(
+                    await window.tapkit.chatCommand(
+                      requestOptions(editing.revision),
+                      'inputs.update',
+                      { inputId: editing.id, text: editing.text, attachments: editing.attachments },
+                    ),
+                  );
+                  setEditing(undefined);
+                })
+              }
+            >
+              {c.save}
+            </button>
+            <button onClick={() => setEditing(undefined)}>{c.cancel}</button>
+          </span>
         </div>
       )}
       <section
@@ -1061,8 +1266,8 @@ export function ChatSurface({
           ref={inputRef}
           disabled={!loaded}
           value={text}
-          rows={3}
-          placeholder="写下你的问题…"
+          rows={2}
+          placeholder={noModel ? '请先配置模型再使用...' : '写下你的问题...'}
           onChange={(e) => change(e.target.value)}
           onKeyDown={(e) => {
             if (e.nativeEvent.isComposing || e.keyCode === 229) return;
@@ -1132,231 +1337,281 @@ export function ChatSurface({
             }
           }}
         />
-        <details className="composer-info">
-          <summary>
-            {c.inputInfo} · {text.length.toLocaleString('zh-CN')} / 100,000
-          </summary>
-          <small className="composer-counter">
-            {text.length.toLocaleString('zh-CN')} / 100,000 · {c.limit}
-          </small>
-          <small className="composer-tool-hint">
-            本轮工具：
-            {mode === 'chat' && selectedModel?.toolCalls === 'documented' ? c.readTools : c.noTools}
-          </small>
-        </details>
         {longPaste && (
           <div role="status">
             <p>{c.longPaste}</p>
-            <button
-              onClick={() => {
-                const pasted = longPaste;
-                void addFiles([new File([pasted], '粘贴内容.txt', { type: 'text/plain' })], pasted);
-                setLongPaste('');
-              }}
-            >
-              {c.convert}
-            </button>
-            <button onClick={() => setLongPaste('')}>{c.keepText}</button>
+            <span className="action-group">
+              <button
+                onClick={() => {
+                  const pasted = longPaste;
+                  void addFiles(
+                    [new File([pasted], '粘贴内容.txt', { type: 'text/plain' })],
+                    pasted,
+                  );
+                  setLongPaste('');
+                }}
+              >
+                {c.convert}
+              </button>
+              <button onClick={() => setLongPaste('')}>{c.keepText}</button>
+            </span>
           </div>
         )}
-        <div className="chat-materials">
-          {materials.map((m, i) => (
-            <div key={refKey(m.ref)}>
-              <span>
-                {m.name} · {m.source} · {c.materialStates[m.state]}
-              </span>
-              <button
-                onClick={() =>
-                  void action(async () => {
-                    if (m.ref.kind !== 'file' || !sid.current) {
-                      setPreview(m);
-                      return;
-                    }
-                    const owner = await chatFileOwner(window.tapkit, m.ref, sid.current);
-                    await viewer.open({
-                      fileId: m.ref.fileId,
-                      versionId: m.ref.versionId,
-                      ...(m.ref.locator ? { locator: m.ref.locator } : {}),
-                      ...(owner ? { owner } : {}),
-                    });
-                  })
-                }
-              >
-                {c.preview}
-              </button>
-              {m.ref.kind === 'file' && (
-                <button
-                  disabled={busy}
-                  onClick={() =>
-                    void action(async () => {
-                      if (m.ref.kind !== 'file' || !sid.current) return;
-                      const owner = await chatFileOwner(window.tapkit, m.ref, sid.current);
-                      unwrap(
-                        await window.tapkit.saveOriginal({
-                          fileId: m.ref.fileId,
-                          versionId: m.ref.versionId,
-                          ...(owner ? { owner } : {}),
-                        }),
-                      );
-                    })
+        <div className="chat-materials composer-attachments" aria-label="已选附件">
+          {[
+            ...pendingFiles,
+            ...uploads.map((row) => row.file).filter((file) => !pendingFiles.includes(file)),
+          ].map((file, index) => {
+            const row = uploads.find((row) => row.file === file);
+            if (row?.ref && materials.some((m) => refKey(m.ref) === refKey(row.ref!))) return null;
+            const state = row?.progress;
+            const status = !state
+              ? '待上传'
+              : state.status === 'reading'
+                ? '上传中' +
+                  (state.totalBytes
+                    ? ' ' +
+                      Math.min(100, Math.floor((state.readBytes / state.totalBytes) * 100)) +
+                      '%'
+                    : '')
+                : state.status === 'imported'
+                  ? '读取中'
+                  : state.status === 'failed'
+                    ? readableError(new Error(state.errorCode ?? 'INTERNAL_ERROR'))
+                    : state.status === 'cancelled'
+                      ? '已取消'
+                      : '等待上传';
+            return (
+              <ComposerAttachment
+                key={index}
+                name={file.name}
+                size={file.size}
+                status={status}
+                working={!!state && ['waiting', 'reading'].includes(state.status)}
+                onRemove={() => removeUpload(file)}
+              />
+            );
+          })}
+          {materials.map((m) => (
+            <ComposerAttachment
+              key={refKey(m.ref)}
+              name={m.name}
+              size={uploads.find((row) => row.ref && refKey(row.ref) === refKey(m.ref))?.file.size}
+              status={c.materialStates[m.state]}
+              working={m.state === 'uploading' || m.state === 'parsing'}
+              onRemove={() => {
+                removedDuringSend.current.add(refKey(m.ref));
+                const next = draft.current.attachments.filter(
+                  (ref) => refKey(ref) !== refKey(m.ref),
+                );
+                draft.current = { ...draft.current, attachments: next };
+                setRefs(next);
+                void saveDraft(draft.current).catch((e) => setError(readableError(e)));
+                setMaterials((current) =>
+                  current.filter((material) => refKey(material.ref) !== refKey(m.ref)),
+                );
+                setUploads((rows) =>
+                  rows.filter((row) => !row.ref || refKey(row.ref) !== refKey(m.ref)),
+                );
+              }}
+              onPreview={() =>
+                void action(async () => {
+                  if (m.ref.kind !== 'file' || !sid.current) {
+                    setPreview(m);
+                    return;
                   }
-                >
-                  {c.downloadOriginal}
-                </button>
-              )}
-              {m.ref.kind === 'file' && m.state === 'failed' && (
-                <button
-                  disabled={busy}
-                  onClick={() =>
-                    void action(async () => {
-                      if (m.ref.kind !== 'file') return;
-                      unwrap(
-                        await window.tapkit.fileCommand(requestOptions(), 'files.retryParse', {
-                          fileVersionId: m.ref.versionId,
-                        }),
-                      );
-                      setRefs([...draft.current.attachments]);
-                    })
-                  }
-                >
-                  {c.retryRead}
-                </button>
-              )}
-              <button disabled={busy} onClick={() => setRefs(refs.filter((_, j) => i !== j))}>
-                {m.state === 'unsupported' ? c.keepOriginal : c.remove}
-              </button>
-            </div>
+                  const owner = await chatFileOwner(window.tapkit, m.ref, sid.current);
+                  await viewer.open({
+                    fileId: m.ref.fileId,
+                    versionId: m.ref.versionId,
+                    ...(m.ref.locator ? { locator: m.ref.locator } : {}),
+                    ...(owner ? { owner } : {}),
+                  });
+                })
+              }
+              onDownload={
+                m.ref.kind !== 'file'
+                  ? undefined
+                  : () =>
+                      void action(async () => {
+                        if (m.ref.kind !== 'file' || !sid.current) return;
+                        const owner = await chatFileOwner(window.tapkit, m.ref, sid.current);
+                        unwrap(
+                          await window.tapkit.saveOriginal({
+                            fileId: m.ref.fileId,
+                            versionId: m.ref.versionId,
+                            ...(owner ? { owner } : {}),
+                          }),
+                        );
+                      })
+              }
+              onRetry={
+                m.ref.kind !== 'file' || m.state !== 'failed'
+                  ? undefined
+                  : () =>
+                      void action(async () => {
+                        if (m.ref.kind !== 'file') return;
+                        unwrap(
+                          await window.tapkit.fileCommand(requestOptions(), 'files.retryParse', {
+                            fileVersionId: m.ref.versionId,
+                          }),
+                        );
+                        setRefs([...draft.current.attachments]);
+                      })
+              }
+            />
           ))}
         </div>
-        {materials.some((m) => m.state !== 'ready') && <p>{c.materialPending}</p>}
-        {fileImport && (
-          <section aria-label={c.importProgress}>
-            <p>{c.importOriginal}</p>
-            {fileImport.items.map((item) => (
-              <div key={item.token}>
-                {item.name} · {c.importStates[item.status]} · {item.readBytes}/{item.totalBytes}
-                {item.errorCode && <span> · {readableError(new Error(item.errorCode))}</span>}
-              </div>
-            ))}
-          </section>
-        )}
-        {fileOperation.current && (
-          <button onClick={() => fileOperation.current?.abort()}>{c.cancelImport}</button>
-        )}
         <div className="composer-bar">
-          <label>
-            {c.model}
-            <select
-              aria-label="本轮模型"
-              value={selection ? selection.accountId + '|' + selection.modelId : ''}
+          <ActionPopover label="添加附件或引用资料" icon="plus" className="composer-add">
+            <button onClick={() => upload.current?.click()} disabled={busy}>
+              {c.attach}
+            </button>
+            <input
+              hidden
+              ref={upload}
+              type="file"
+              multiple
               onChange={(e) => {
-                const [accountId, modelId] = e.target.value.split('|');
-                setSelection(accountId && modelId ? { accountId, modelId } : null);
+                void addFiles([...(e.target.files ?? [])]);
+                e.target.value = '';
               }}
+            />
+            <button
+              onClick={() =>
+                void action(async () => {
+                  const result = ChatMaterialsViewSchema.parse(
+                    unwrap(
+                      await window.tapkit.chatCommand(
+                        requestOptions(),
+                        'inputs.references',
+                        sessionId ? { sessionId } : {},
+                      ),
+                    ),
+                  );
+                  setChoices(result.materials);
+                })
+              }
             >
-              <option value="">{c.automatic}</option>
+              @ {c.refs}
+            </button>
+          </ActionPopover>
+          <ActionPopover
+            label={c.inputInfo}
+            icon="info"
+            className="composer-info"
+            trigger={
+              <>
+                <UiIcon name="info" />
+                <span>{c.inputInfo}</span>
+              </>
+            }
+          >
+            <p>
+              {text.length.toLocaleString('zh-CN')} / 100,000 · {c.limit}
+            </p>
+            <p>
+              本轮工具：
+              {mode === 'chat' && selectedModel?.toolCalls === 'documented'
+                ? c.readTools
+                : c.noTools}
+            </p>
+            {active && (
+              <label>
+                {c.delivery}
+                <select
+                  value={delivery}
+                  onChange={(e) => setDelivery(e.target.value as 'followup' | 'steer')}
+                >
+                  <option value="followup">{c.followup}</option>
+                  <option value="steer">{c.steer}</option>
+                </select>
+              </label>
+            )}
+          </ActionPopover>
+          {noModel ? (
+            <button
+              className="composer-model-settings"
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent('tapkit:connect-model'))}
+            >
+              设置模型
+              <UiIcon name="chevronDown" />
+            </button>
+          ) : (
+            <ActionPopover
+              label="本轮模型"
+              className="composer-model"
+              trigger={
+                <>
+                  <span>{selectedModel?.modelId ?? c.connect}</span>
+                  <UiIcon name="chevronDown" />
+                </>
+              }
+            >
+              <button aria-pressed={!selection} onClick={() => setSelection(null)}>
+                {c.automatic}
+              </button>
               {catalog?.catalog
                 .filter((m) => m.accountId)
                 .map((m) => (
-                  <option
+                  <button
                     key={m.accountId + '|' + m.modelId}
                     disabled={m.status !== 'ready'}
-                    value={m.accountId + '|' + m.modelId}
+                    aria-pressed={
+                      selection?.accountId === m.accountId && selection?.modelId === m.modelId
+                    }
+                    onClick={() => setSelection({ accountId: m.accountId!, modelId: m.modelId })}
                   >
                     {m.providerId} · {m.modelId}
-                  </option>
+                  </button>
                 ))}
-            </select>
-          </label>
-          <button onClick={() => upload.current?.click()} disabled={busy}>
-            {c.attach}
-          </button>
-          <input
-            hidden
-            ref={upload}
-            type="file"
-            multiple
-            onChange={(e) => {
-              void addFiles([...(e.target.files ?? [])]);
-              e.target.value = '';
-            }}
-          />
-          <button
-            onClick={() =>
-              void action(async () => {
-                const target = await ensureSession();
-                const result = ChatMaterialsViewSchema.parse(
-                  unwrap(
-                    await window.tapkit.chatCommand(requestOptions(), 'inputs.references', {
-                      sessionId: target,
-                    }),
-                  ),
-                );
-                setChoices(result.materials);
-              })
-            }
-          >
-            @ {c.refs}
-          </button>
-          {active && (
-            <label>
-              {c.delivery}
-              <select
-                value={delivery}
-                onChange={(e) => setDelivery(e.target.value as 'followup' | 'steer')}
-              >
-                <option value="followup">{c.followup}</option>
-                <option value="steer">{c.steer}</option>
-              </select>
-            </label>
+            </ActionPopover>
           )}
           <button
-            className="send-button"
+            className="send-button icon-button"
+            aria-label={busy ? c.sending : mode === 'work' ? '保存工作草稿' : c.send}
             disabled={!canSend}
             onClick={() => void send()}
-            title={!catalog?.catalog.some((m) => m.status === 'ready') ? c.connect : ''}
+            data-tooltip={
+              mode === 'work'
+                ? c.workPending
+                : !catalog?.catalog.some((m) => m.status === 'ready')
+                  ? c.connect
+                  : c.send
+            }
           >
-            {busy ? c.sending : c.send}
+            <UiIcon name="arrow" />
           </button>
-          {!catalog?.catalog.some((m) => m.status === 'ready') && (
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                window.dispatchEvent(new CustomEvent('tapkit:connect-model'));
-              }}
-            >
-              {c.connect}
-            </a>
-          )}
         </div>
-        {mode === 'work' && <p>{c.workPending}</p>}
       </section>
       {error && (
         <div role="alert">
           {error}
-          <button onClick={() => void action(refresh)}>{c.refresh}</button>
-          {error === c.draftConflict && (
-            <button
-              onClick={() =>
-                void action(async () => {
-                  const d = ChatDraftViewSchema.parse(
-                    unwrap(
-                      await window.tapkit.chatCommand(requestOptions(), 'drafts.get', {
-                        sessionId: sid.current,
-                        windowId: window.tapkit.windowSlot,
-                      }),
-                    ),
-                  );
-                  revision.current = d.revision;
-                  setText(d.text);
-                  setRefs(d.attachments);
-                })
-              }
-            >
-              {c.reloadDraft}
-            </button>
-          )}
+          <span className="action-group">
+            <button onClick={() => void action(refresh)}>{c.refresh}</button>
+            {error === c.draftConflict && (
+              <button
+                onClick={() =>
+                  void action(async () => {
+                    const d = ChatDraftViewSchema.parse(
+                      unwrap(
+                        await window.tapkit.chatCommand(requestOptions(), 'drafts.get', {
+                          sessionId: sid.current,
+                          windowId: window.tapkit.windowSlot,
+                        }),
+                      ),
+                    );
+                    revision.current = d.revision;
+                    setText(d.text);
+                    setRefs(d.attachments);
+                  })
+                }
+              >
+                {c.reloadDraft}
+              </button>
+            )}
+          </span>
         </div>
       )}
       {choices && (
@@ -1365,9 +1620,12 @@ export function ChatSurface({
           {choices.map((m) => (
             <button
               key={refKey(m.ref)}
-              disabled={refs.length >= 20}
+              disabled={refs.length + pendingFiles.length >= 20}
               onClick={() => {
-                if (!refs.some((r) => refKey(r) === refKey(m.ref))) setRefs([...refs, m.ref]);
+                if (!refs.some((r) => refKey(r) === refKey(m.ref))) {
+                  setRefs([...refs, m.ref]);
+                  if (!sessionId) setMaterials((items) => [...items, m]);
+                }
                 setChoices(undefined);
               }}
             >
@@ -1387,8 +1645,12 @@ export function ChatSurface({
             {preview.source} · {c.materialStates[preview.state]}
           </p>
           <pre>{preview.text ?? c.disabledMedia}</pre>
-          {preview.text && <button onClick={() => quoteMaterial(preview)}>仅引用选中的文本</button>}
-          <button onClick={() => setPreview(undefined)}>{c.cancel}</button>
+          <span className="action-group">
+            {preview.text && (
+              <button onClick={() => quoteMaterial(preview)}>仅引用选中的文本</button>
+            )}
+            <button onClick={() => setPreview(undefined)}>{c.cancel}</button>
+          </span>
         </div>
       )}
     </section>

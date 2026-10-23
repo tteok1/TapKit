@@ -1,0 +1,17 @@
+{
+  "format": {
+    "command": "pnpm exec prettier --write packages/ui/src/clipboard.tsx apps/desktop/src/renderer/src/composer-attachment.tsx apps/desktop/src/renderer/src/chat-file-import.ts tests/unit/P02-02.clipboard.test.ts tests/unit/P03-01.chat-import.test.ts tests/e2e/P02-02.clipboard-attachments.spec.ts tests/e2e/P02-02.chat.spec.ts tests/e2e/P03-01.files.spec.ts tests/e2e/P02-01.unified-start.spec.ts",
+    "exitCode": 0,
+    "seconds": 0.88
+  },
+  "check": {
+    "command": "pnpm check",
+    "exitCode": 1,
+    "seconds": 1.6
+  },
+  "unit": {
+    "command": "pnpm exec vitest run --config vitest.config.ts --project unit P02-02 P03-01 P02-03",
+    "exitCode": 0,
+    "seconds": 3.86
+  }
+}

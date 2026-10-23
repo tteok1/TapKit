@@ -1,0 +1,15 @@
+{
+  "command": [
+    "test:e2e",
+    "tests/e2e/P02-01.group-tooltips.spec.ts",
+    "tests/e2e/P02-01.shell-details.spec.ts",
+    "tests/e2e/P02-03.sidebar.spec.ts",
+    "tests/e2e/P02-03.inline-selection.spec.ts",
+    "--grep",
+    "P02"
+  ],
+  "exitCode": 1,
+  "elapsedSeconds": 329.29,
+  "historicalEvidenceRestoreExitCode": 0,
+  "persistentBackup": ".test-data\\compact-chat\\evidence-backup-1792670429"
+}

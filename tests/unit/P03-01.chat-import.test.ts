@@ -92,15 +92,18 @@ test('P03-01 partial physical import preserves its pinned result and reports the
       },
     });
   });
+  const imported = vi.fn();
   const result = await importChatFiles(
     b,
     sources,
     sessionId,
     new AbortController().signal,
     () => {},
+    imported,
   );
   expect(result.refs).toEqual([{ kind: 'file', fileId, versionId }]);
   expect(result.errors).toEqual(['DISK_FULL']);
+  expect(imported).toHaveBeenCalledExactlyOnceWith(sources[0], { kind: 'file', fileId, versionId });
   expect(b.chatCommand).not.toHaveBeenCalled();
   expect(b.fileCommand).toHaveBeenLastCalledWith(expect.anything(), 'files.releaseSelection', {
     selectionTokens: [token, token2],
@@ -242,4 +245,95 @@ test('P03-01 malformed virtual index grants do not read bytes and still release 
   expect(b.fileCommand).toHaveBeenLastCalledWith(expect.anything(), 'files.releaseSelection', {
     selectionTokens: [token],
   });
+});
+test('P03-01 closing one physical card cancels only its token and excludes a late committed ref', async () => {
+  const b = bridge(),
+    sources = [file(), file()],
+    one = new AbortController();
+  vi.mocked(b.selectChatFiles).mockResolvedValue({
+    selections: [selection(), selection(token2)],
+    virtualIndexes: [],
+  });
+  let complete!: (value: Reply) => void,
+    started!: () => void,
+    requestId = '';
+  const active = new Promise<void>((resolve) => {
+    started = resolve;
+  });
+  vi.mocked(b.fileCommand).mockImplementation(async (options, command, payload) => {
+    if (command === 'files.import') {
+      requestId = options.requestId;
+      started();
+      return new Promise<Reply>((resolve) => {
+        complete = resolve;
+      });
+    }
+    if (command === 'files.cancelImport') {
+      expect(payload).toEqual({ importRequestId: requestId, selectionToken: token });
+      complete(
+        reply({
+          import: {
+            requestId,
+            status: 'completed',
+            items: [token, token2].map((token) => ({
+              token,
+              status: 'imported',
+              readBytes: 14,
+              totalBytes: 14,
+              fileId,
+              versionId,
+              errorCode: null,
+            })),
+          },
+        }),
+      );
+    }
+    return reply({ changedIds: [] });
+  });
+  const imported = vi.fn();
+  const pending = importChatFiles(
+    b,
+    sources,
+    sessionId,
+    new AbortController().signal,
+    () => {},
+    imported,
+    { signals: new Map([[sources[0]!, one.signal]]) },
+  );
+  await active;
+  one.abort();
+  const result = await pending;
+  expect(result).toEqual({
+    refs: [{ kind: 'file', fileId, versionId }],
+    errors: [],
+    cancelled: false,
+  });
+  expect(imported).toHaveBeenCalledExactlyOnceWith(sources[1], result.refs[0]);
+  expect(b.fileCommand).toHaveBeenLastCalledWith(expect.anything(), 'files.releaseSelection', {
+    selectionTokens: [token, token2],
+  });
+});
+test('P03-01 closing a virtual card during attach ignores its late result while keeping the next card', async () => {
+  const b = bridge(),
+    sources = [file(), file()],
+    one = new AbortController();
+  vi.mocked(b.selectChatFiles).mockResolvedValue({ selections: [], virtualIndexes: [0, 1] });
+  const original = vi.mocked(b.chatCommand).getMockImplementation()!;
+  vi.mocked(b.chatCommand).mockImplementation(async (...args) => {
+    one.abort();
+    return original(...args);
+  });
+  const result = await importChatFiles(
+    b,
+    sources,
+    sessionId,
+    new AbortController().signal,
+    () => {},
+    () => {},
+    { signals: new Map([[sources[0]!, one.signal]]) },
+  );
+  expect(result.refs).toHaveLength(1);
+  expect(result.errors).toEqual([]);
+  expect(result.cancelled).toBe(false);
+  expect(b.chatCommand).toHaveBeenCalledTimes(2);
 });

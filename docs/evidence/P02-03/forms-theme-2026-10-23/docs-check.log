@@ -1,0 +1,16 @@
+$ node scripts/docs-check.mjs
+node:internal/fs/promises:1312
+  return await PromisePrototypeThen(
+         ^
+
+Error: ENOENT: no such file or directory, access 'D:\Tapkit-public\docs\evidence\P02-03\forms-theme-2026-10-23\verification.md'
+    at async access (node:internal/fs/promises:1312:10)
+    at async file:///D:/Tapkit-public/scripts/docs-check.mjs:36:32 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'access',
+  path: 'D:\\Tapkit-public\\docs\\evidence\\P02-03\\forms-theme-2026-10-23\\verification.md'
+}
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.

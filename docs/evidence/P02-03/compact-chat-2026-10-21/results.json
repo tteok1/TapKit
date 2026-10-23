@@ -1,0 +1,60 @@
+{
+  "branch": "ui_fix",
+  "baseCommit": "394418f19575ac6039c98e872e2312a3b62c0b7d",
+  "status": "local_ui_verified",
+  "electron": {
+    "initial": {
+      "passed": 7,
+      "failed": 4,
+      "exitCode": 1
+    },
+    "final": {
+      "passed": 3,
+      "failed": 2,
+      "exitCode": 1
+    },
+    "responsiveSupplement": {
+      "passed": 2,
+      "failed": 0,
+      "exitCode": 0
+    },
+    "distinctVerifiedCases": 11,
+    "singleGreenRun": false
+  },
+  "productionFixtureAbsent": true,
+  "historicalEvidenceRestored": true,
+  "realProviderCalls": 0,
+  "originalProfileTouched": false,
+  "committed": false,
+  "pushed": false,
+  "rendererSha256": {
+    "action-popover.tsx": "d10eeb513842e07f2d0d6e1d618c438a75a64f0e8faad1dc68a876f0869d7ff7",
+    "chat-surface.tsx": "b3627d286b73bc1351c39a48015f5606ac087abdf9b9e60c7783b822a2ecb884",
+    "design-system.css": "ddfd4d6a8112aa492a84cffab87a68bfa0b5ed6f61f63cbb39cbcf6ee90ec1f7",
+    "desktop-shell.tsx": "fef33c9b56b3bef3da26dcb56eebb502e765353b40d8a855aa09f779232a2f13",
+    "history-ui.tsx": "0d4baec30dc53e2237946c94264e3537f3ba1f28675ebc4107d560482b6d42a5",
+    "memory-ui.tsx": "b19b3099348b48dc91e540d891c2c0cfc0fb1458e9f3b81ee58247c1667747c1",
+    "message-history.tsx": "37f607e8976bbe70fb71b75b795c2a7f4df4a8dd105c2274f1bb8a46db612d81",
+    "ui-icon.tsx": "e6a549eaa5abf47d788f621898b4a5bb9dbd867fde6c18c90ed1d3ccb5ca8f21"
+  },
+  "checks": {
+    "check": {
+      "exitCode": 0,
+      "command": "pnpm check"
+    },
+    "docs-check": {
+      "exitCode": 0,
+      "command": "pnpm docs:check"
+    }
+  },
+  "visualReview": {
+    "batch": "desktop / narrow / 200 percent light and dark",
+    "screenshots": [
+      "chat-1440x900-100.png",
+      "chat-1440x900-200.png",
+      "chat-960x640-100.png",
+      "chat-960x640-200.png"
+    ],
+    "result": "passed"
+  }
+}

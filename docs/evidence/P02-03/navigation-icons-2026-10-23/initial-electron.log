@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:4100) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\e2e\P02-01.navigation.spec.ts:99:1 › P02-01 navigation long press reorders without opening a page, and persists on restart (37.4s)
+  ok 2 tests\e2e\P02-01.navigation.spec.ts:142:1 › P02-01 navigation cancels early moves and Escape, supports keyboard sorting and restores hidden entries (16.2s)
+  ok 3 tests\e2e\P02-01.navigation.spec.ts:188:1 › P02-01 navigation rounded icons and long press remain usable in a narrow dark 200 percent drawer (14.8s)
+
+  3 passed (1.1m)

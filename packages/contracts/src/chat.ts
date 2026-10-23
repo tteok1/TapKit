@@ -133,7 +133,10 @@ export const ChatMutationViewSchema = z.strictObject({
 export const ChatMaterialsViewSchema = z.strictObject({
   materials: z.array(ChatMaterialSchema).max(100),
 });
-export const ChatRefsGetSchema = ChatSessionSchema.extend({ refs: ChatRefsSchema.optional() });
+export const ChatRefsGetSchema = z.strictObject({
+  sessionId: IdSchema.optional(),
+  refs: ChatRefsSchema.optional(),
+});
 export const ChatSnippetSchema = z.strictObject({
   id: IdSchema,
   name: z.string().trim().min(1).max(80),

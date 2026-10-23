@@ -83,6 +83,7 @@
     "FILE_TOO_LARGE": "文件或文本超出限额；原输入已保留。",
     "STREAM_INTERRUPTED": "回复中断，已确认内容保留。",
     "OUTPUT_LIMIT_REACHED": "回复达到输出上限，已生成内容保留。",
+    "TRANSLATION_UNCHANGED": "翻译未完成：模型原样返回了所选内容。请重试或换一个模型。",
     "CANCELLED": "回复已停止。",
     "INTERNAL_ERROR": "本地核心暂不可用；草稿已保留。",
     "SANDBOX_UNAVAILABLE": "受限内容读取组件暂不可用；原件仍可下载。",

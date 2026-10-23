@@ -1,0 +1,14 @@
+{
+  "exitCode": 1,
+  "passed": 14,
+  "failed": 4,
+  "command": "pnpm test:e2e (18 selected cases; see run-start-e2e.py command and e2e-regression.log)",
+  "failures": [
+    "old info popover locator used dialog instead of region",
+    "work draft cleared during handoff",
+    "physical navigation test exceeded total 45-second timeout after restart",
+    "Host selection test core startup exceeded 15-second assertion"
+  ],
+  "restoreError": "Python OSError 22 while restoring tracked UI-redesign/save-keyboard-contrast.png; native PowerShell repair follows",
+  "historicalUntrackedScreenshotBytesNotProvenAfterRestoreException": true
+}

@@ -1,0 +1,81 @@
+{
+  "nativeAccessibleDocumentNames": [
+    {
+      "file": "packages/ui/src/chat-markdown.tsx",
+      "line": 165,
+      "source": "title=\"静态图表\""
+    }
+  ],
+  "authoredHintLocations": [
+    {
+      "file": "apps/desktop/src/renderer/src/auth-diagnostic.tsx",
+      "line": 206
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/auth-diagnostic.tsx",
+      "line": 267
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/chat-surface.tsx",
+      "line": 1516
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/desktop-shell.tsx",
+      "line": 449
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/desktop-shell.tsx",
+      "line": 463
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/desktop-shell.tsx",
+      "line": 554
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/desktop-shell.tsx",
+      "line": 562
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/file-library.tsx",
+      "line": 692
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/history-ui.tsx",
+      "line": 314
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/history-ui.tsx",
+      "line": 492
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/history-ui.tsx",
+      "line": 510
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/history-ui.tsx",
+      "line": 534
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/selection-toolbar.tsx",
+      "line": 257
+    },
+    {
+      "file": "apps/desktop/src/renderer/features/viewer/panel.tsx",
+      "line": 333
+    },
+    {
+      "file": "apps/desktop/src/renderer/features/viewer/pdf-reader.tsx",
+      "line": 217
+    },
+    {
+      "file": "packages/ui/src/chat-markdown.tsx",
+      "line": 25
+    },
+    {
+      "file": "packages/ui/src/tooltip.tsx",
+      "line": 13
+    }
+  ],
+  "sourceHintMigrationComplete": true,
+  "sharedLayer": "packages/ui/src/tooltip.tsx"
+}

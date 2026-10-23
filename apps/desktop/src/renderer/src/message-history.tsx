@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { ActionPopover, IconButton } from './action-popover';
 import {
   SessionDetailsSchema,
   ChatMaterialsViewSchema,
@@ -175,26 +176,28 @@ export function SessionTools({
           </label>
           {!details.session.temporary && (
             <>
-              <button
-                disabled={busy}
-                onClick={() =>
-                  void action(async () => {
-                    const current = SessionDetailsSchema.parse(
-                      await historyCommand('sessions.get', { sessionId }),
-                    );
-                    return historyCommand(
-                      'sessions.title',
-                      { sessionId },
-                      current.session.revision,
-                    );
-                  })
-                }
-              >
-                {h.titleAI}
-              </button>
-              <button disabled={busy} onClick={() => void action(prepareExport)}>
-                {h.share}
-              </button>
+              <span className="action-group">
+                <button
+                  disabled={busy}
+                  onClick={() =>
+                    void action(async () => {
+                      const current = SessionDetailsSchema.parse(
+                        await historyCommand('sessions.get', { sessionId }),
+                      );
+                      return historyCommand(
+                        'sessions.title',
+                        { sessionId },
+                        current.session.revision,
+                      );
+                    })
+                  }
+                >
+                  {h.titleAI}
+                </button>
+                <button disabled={busy} onClick={() => void action(prepareExport)}>
+                  {h.share}
+                </button>
+              </span>
             </>
           )}
           <details>
@@ -233,21 +236,23 @@ export function SessionTools({
         <div role="dialog" aria-label={h.share}>
           <p>{h.shareHint}</p>
           <textarea readOnly value={share} />
-          <button
-            disabled={busy}
-            onClick={() =>
-              void action(async () => {
-                await window.tapkit.saveConversation({
-                  name: (details?.session.title ?? '会话') + '.md',
-                  text: share,
-                });
-                setShare(undefined);
-              })
-            }
-          >
-            {h.export}
-          </button>
-          <button onClick={() => setShare(undefined)}>{h.cancel}</button>
+          <span className="action-group">
+            <button
+              disabled={busy}
+              onClick={() =>
+                void action(async () => {
+                  await window.tapkit.saveConversation({
+                    name: (details?.session.title ?? '会话') + '.md',
+                    text: share,
+                  });
+                  setShare(undefined);
+                })
+              }
+            >
+              {h.export}
+            </button>
+            <button onClick={() => setShare(undefined)}>{h.cancel}</button>
+          </span>
         </div>
       )}
     </section>
@@ -304,132 +309,30 @@ export function MessageActions({
       d.session.revision,
     );
   }
-  async function transform(actionName: 'translate' | 'explain' | 'expand' | 'shorten' | 'rewrite') {
-    const selection = window.getSelection(),
-      article = document.getElementById('message-' + message.id),
-      body = article?.querySelector('.chat-markdown,.chat-user-text');
-    if (
-      !selection ||
-      !body ||
-      !selection.rangeCount ||
-      !body.contains(selection.anchorNode) ||
-      !body.contains(selection.focusNode) ||
-      !selection.toString()
-    ) {
-      setError(h.selectionHint);
-      return;
-    }
-    const text = selection.toString(),
-      start = message.text.indexOf(text);
-    if (start < 0) {
-      setError(h.selectionHint);
-      return;
-    }
-    if (message.text.indexOf(text, start + 1) >= 0) {
-      setError(h.selectionUnique);
-      return;
-    }
-    await action(() =>
-      historyCommand('messages.transform', {
-        sessionId,
-        messageId: message.id,
-        version: message.revision,
-        range: { start, end: start + text.length },
-        action: actionName,
-      }),
-    );
-  }
   return (
     <div className="message-history-actions">
       {message.role === 'user' && (
-        <button
+        <IconButton
+          icon="edit"
+          label={h.editMessage}
           disabled={active || busy}
           onClick={() => {
             setValue(message.text);
             setMode('edit');
           }}
-        >
-          {h.editMessage}
-        </button>
+        />
       )}
       {message.role === 'assistant' && (
         <>
-          <button
+          <IconButton
+            icon="refresh"
+            label={h.regenerate}
             disabled={active || busy}
             onClick={() => void action(() => mutation('messages.regenerate', {}))}
-          >
-            {h.regenerate}
-          </button>
-          <button
-            disabled={active || busy || !selection}
-            onClick={() =>
-              void action(() => mutation('messages.regenerate', { modelRef: selection }))
-            }
-          >
-            {h.otherModel}
-          </button>
-        </>
-      )}
-      <button
-        disabled={active || busy || details?.session.temporary}
-        onClick={() =>
-          void action(async () => {
-            const branch = BranchChangeSchema.parse(
-              await historyCommand('sessions.fork', {
-                sessionId,
-                fromMessageId: message.id,
-                includeAttachments: true,
-              }),
-            );
-            onNavigate('/sessions/' + branch.sessionId);
-          })
-        }
-      >
-        {h.fork}
-      </button>
-      <button
-        disabled={busy}
-        onClick={() =>
-          void action(async () => {
-            await historyCommand('messages.mark', {
-              sessionId,
-              messageId: message.id,
-              bookmark: !bookmarked,
-            });
-          })
-        }
-      >
-        {bookmarked ? h.unbookmark : h.bookmark}
-      </button>
-      <button
-        disabled={busy || details?.session.temporary}
-        onClick={() =>
-          void action(() =>
-            historyCommand('messages.saveNote', { sessionId, messageId: message.id }),
-          )
-        }
-      >
-        {h.saveNote}
-      </button>
-      {details?.session.projectId && !details.session.temporary && (
-        <button
-          disabled={busy}
-          onClick={() =>
-            void action(() =>
-              historyCommand('messages.saveNote', {
-                sessionId,
-                messageId: message.id,
-                projectId: details.session.projectId,
-              }),
-            )
-          }
-        >
-          {h.saveProjectNote}
-        </button>
-      )}
-      {message.role === 'assistant' && (
-        <>
-          <button
+          />
+          <IconButton
+            icon="up"
+            label={h.up}
             aria-pressed={mark?.rating === 'up'}
             disabled={busy}
             onClick={() =>
@@ -437,10 +340,10 @@ export function MessageActions({
                 historyCommand('messages.mark', { sessionId, messageId: message.id, rating: 'up' }),
               )
             }
-          >
-            {h.up}
-          </button>
-          <button
+          />
+          <IconButton
+            icon="down"
+            label={h.down}
             aria-pressed={mark?.rating === 'down'}
             disabled={busy}
             onClick={() =>
@@ -452,9 +355,79 @@ export function MessageActions({
                 }),
               )
             }
+          />
+        </>
+      )}
+      <IconButton
+        icon="bookmark"
+        label={bookmarked ? h.unbookmark : h.bookmark}
+        aria-pressed={bookmarked}
+        disabled={busy}
+        onClick={() =>
+          void action(() =>
+            historyCommand('messages.mark', {
+              sessionId,
+              messageId: message.id,
+              bookmark: !bookmarked,
+            }),
+          )
+        }
+      />
+      <ActionPopover label="更多消息操作" icon="more">
+        {message.role === 'assistant' && (
+          <button
+            disabled={active || busy || !selection}
+            onClick={() =>
+              void action(() => mutation('messages.regenerate', { modelRef: selection }))
+            }
           >
-            {h.down}
+            {h.otherModel}
           </button>
+        )}
+        <button
+          disabled={active || busy || details?.session.temporary}
+          onClick={() =>
+            void action(async () => {
+              const branch = BranchChangeSchema.parse(
+                await historyCommand('sessions.fork', {
+                  sessionId,
+                  fromMessageId: message.id,
+                  includeAttachments: true,
+                }),
+              );
+              onNavigate('/sessions/' + branch.sessionId);
+            })
+          }
+        >
+          {h.fork}
+        </button>
+        <button
+          disabled={busy || details?.session.temporary}
+          onClick={() =>
+            void action(() =>
+              historyCommand('messages.saveNote', { sessionId, messageId: message.id }),
+            )
+          }
+        >
+          {h.saveNote}
+        </button>
+        {details?.session.projectId && !details.session.temporary && (
+          <button
+            disabled={busy}
+            onClick={() =>
+              void action(() =>
+                historyCommand('messages.saveNote', {
+                  sessionId,
+                  messageId: message.id,
+                  projectId: details.session.projectId,
+                }),
+              )
+            }
+          >
+            {h.saveProjectNote}
+          </button>
+        )}
+        {message.role === 'assistant' && (
           <button
             onClick={() => {
               setValue('');
@@ -463,39 +436,26 @@ export function MessageActions({
           >
             {h.feedback}
           </button>
-        </>
-      )}
-      <details>
-        <summary>{h.transform}</summary>
-        {(['translate', 'explain', 'expand', 'shorten', 'rewrite'] as const).map((v) => (
-          <button
-            key={v}
-            disabled={active || busy}
-            onMouseDown={(e) => e.preventDefault()}
-            onClick={() => void transform(v)}
-          >
-            {h[v]}
-          </button>
-        ))}
-      </details>
-      <button
-        disabled={active || busy}
-        onClick={() =>
-          void action(async () => {
-            setPreview(
-              DeletePreviewSchema.parse(
-                await historyCommand('messages.deletePreview', {
-                  sessionId,
-                  messageId: message.id,
-                }),
-              ),
-            );
-            setMode('delete');
-          }, true)
-        }
-      >
-        {h.deleteMessage}
-      </button>
+        )}
+        <button
+          disabled={active || busy}
+          onClick={() =>
+            void action(async () => {
+              setPreview(
+                DeletePreviewSchema.parse(
+                  await historyCommand('messages.deletePreview', {
+                    sessionId,
+                    messageId: message.id,
+                  }),
+                ),
+              );
+              setMode('delete');
+            }, true)
+          }
+        >
+          {h.deleteMessage}
+        </button>
+      </ActionPopover>
       {error && <span role="alert">{error}</span>}
       {mode && (
         <div
@@ -511,20 +471,22 @@ export function MessageActions({
                 {h.deleteHint}
                 {preview?.laterCount ?? 0}
               </p>
-              <button
-                onClick={() =>
-                  void action(() => mutation('messages.delete', { descendants: 'branch' }))
-                }
-              >
-                {h.deleteSuffix}
-              </button>
-              <button
-                onClick={() =>
-                  void action(() => mutation('messages.delete', { descendants: 'keep-as-note' }))
-                }
-              >
-                {h.deleteNote}
-              </button>
+              <span className="action-group">
+                <button
+                  onClick={() =>
+                    void action(() => mutation('messages.delete', { descendants: 'branch' }))
+                  }
+                >
+                  {h.deleteSuffix}
+                </button>
+                <button
+                  onClick={() =>
+                    void action(() => mutation('messages.delete', { descendants: 'keep-as-note' }))
+                  }
+                >
+                  {h.deleteNote}
+                </button>
+              </span>
             </>
           ) : (
             <>

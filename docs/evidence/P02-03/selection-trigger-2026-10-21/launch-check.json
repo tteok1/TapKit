@@ -1,0 +1,7 @@
+{
+  "command": "session-load-2026-10-21/run-app.ps1 -CheckOnly",
+  "review": "selection-trigger-2026-10-21/results.json",
+  "exitCode": 0,
+  "elapsedMs": 598,
+  "applicationStarted": false
+}

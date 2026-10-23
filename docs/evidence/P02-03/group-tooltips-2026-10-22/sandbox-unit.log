@@ -1,0 +1,28 @@
+$ vitest run --config vitest.config.ts --project unit
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |unit| tests/unit/P03-02.staging.test.ts (2 tests | 1 failed) 117ms
+   × P03-02 private staging rejects a junction before writing into its external target 15ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P03-02.staging.test.ts > P03-02 private staging rejects a junction before writing into its external target
+Error: EPERM: operation not permitted, symlink 'D:\Tapkit-public\.test-data\P03-02 staging outside ajDb5h' -> 'D:\Tapkit-public\.test-data\P03-02 staging junction IU8EgQ\tmp'
+ ❯ tests/unit/P03-02.staging.test.ts:25:3
+     23|   const root = await mkdtemp(resolve('.test-data', 'P03-02 staging jun…
+     24|     outside = await mkdtemp(resolve('.test-data', 'P03-02 staging outs…
+     25|   await symlink(outside, join(root, 'tmp'), 'junction');
+       |   ^
+     26|   const service = new PreviewStaging({ dataDir: root, profileId } as S…
+     27|   await expect(service.create(versionId)).rejects.toThrow('PERMISSION_…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 44 passed (45)
+      Tests  1 failed | 353 passed (354)
+   Start at  19:54:25
+   Duration  10.73s (import 51%, transform 25%, tests 21%, setup 2%, worker 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.

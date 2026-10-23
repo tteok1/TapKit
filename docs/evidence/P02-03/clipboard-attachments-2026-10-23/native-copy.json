@@ -1,0 +1,11 @@
+{
+  "browserPermissionDenied": true,
+  "fullUserLength": 65004,
+  "unicodeExact": true,
+  "codeWhitespaceExact": true,
+  "selectionAndKeyboardExact": true,
+  "tableTSVExact": true,
+  "mathVisible": true,
+  "maximumAccepted": 2000000,
+  "oversizeRejected": true
+}

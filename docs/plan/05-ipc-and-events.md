@@ -1,5 +1,13 @@
 # IPC、事件、任务状态与接口协议
 
+2026-10-22 [ADR0059](../adr/0059-group-expansion-and-shared-tooltips.md)：sessions.list.sectionId 可选 ID/null；省略=全部，ID=该组，null=未分组，范围参与游标签名。侧栏组内独立分页并实际展开/收起；无数据库迁移。
+
+2026-10-22 [ADR0058](../adr/0058-rounded-shell-and-history-navigation.md)：DesktopSettings.historySort=`updated|manual`（旧数据默认 updated）；sessions.list 增加 sort（同默认）与 query（默认空、最多240字面子串），排序/查询参与分页签名，始终置顶优先。SessionRecord.sectionId 可空，旧响应默认 null。排序偏好复用 settings.set/CAS，拖拽复用 sidebar.reorder，各组独立且不改归属；归档/回收站设置页复用原生命周期命令及删除确认。无DB迁移或公共权限扩大。
+
+2026-10-22 P02-01 [ADR0057](../adr/0057-unified-task-start.md)：inputs.references 接受 `{sessionId?, refs?}`；省略 sessionId 时仅查询当前 profile 可明确选择的资料与历史消息，供统一新建页草稿使用，不创建会话。有目标会话时保留项目隔离及版本/权限校验；无会话的项目整体引用拒绝，发送时按最终目标会话重新核验。无 DB 迁移或新 Renderer 权限，物理 File 仍走 Host 单次选择令牌。
+
+2026-10-22 P02-01 [ADR0057](../adr/0057-unified-task-start.md)：inputs.references 接受 `{sessionId?, refs?}`；省略 sessionId 时仅查询当前 profile 可明确选择的资料与历史消息，供统一新建页草稿使用，不创建会话。有目标会话时保留项目隔离及版本/权限校验；无会话的项目整体引用拒绝，发送时按最终目标会话重新核验。无 DB 迁移或新 Renderer 权限，物理 File 仍走 Host 单次选择令牌。
+
 2026-10-19 [ADR0055](../adr/0055-current-account-native-verification.md)：仅内部本机能力报告增加schema2/current-user验证范围及令牌分类绑定；公共IPC协议v1和ExecutionCapabilities形状不变。换账户/权限、旧fingerprint或不完整检查失败关闭；不宣称标准用户验收通过。
 
 2026-10-17 P02-03：[ADR0054](../adr/0054-source-background-is-not-system-instructions.md)将history.background/memory.background原文移到较早的背景user消息；无IPC/DB字段变化，context_snapshots.prompt_version附source-data/1区分装配，不把历史正文提升为系统指令。
@@ -184,6 +192,8 @@ UI展示过程使用结构化动作摘要，不读取opaque_states。plan.descri
 
 ## 5. 错误码和恢复动作
 
+2026-10-21选区翻译补充（ADR0056）：新增TRANSLATION_UNCHANGED，表示需要跨语言转换的明确自然句被原样回显；保留原始返回/来源，轮次partial并展示翻译未完成，不自动重试。无新IPC、迁移或协议版本变化。
+
 P01-02检测证据补充（2026-10-05，[ADR0020](../adr/0020-probe-request-and-usage-evidence.md)）：ProbeView.diagnostic新增可选request（outputLimit、stream、none/disabled/unspecified）与规范化usage（可空的输入/输出/缓存/思考计数及source）；固定reason增加reasoning_output_truncated，只有关闭参数明确且服务报告输出全部为思考时使用。未知计数为null，不填零；准备摘要不等于供应商实收，HTTP仅来自实际响应，正文/头/Key不透传；IPC版本和数据库结构保持。
 
 P01-02 JSON核验更新（2026-10-05，[ADR0019](../adr/0019-zhipu-responses-json-and-message-compatibility.md)）：diagnostic固定reason新增non_streaming_response及unrecognized_json；JSON正文最多64KiB仅内存解析，IPC沿用受限upstreamCode、HTTP状态与responseType，不增加原始正文或对象字段。非流式Response不能检测通过，错误业务码不得被HTTP200掩盖。
@@ -192,10 +202,12 @@ P01-02安全响应诊断补充（2026-10-05，[ADR0018](../adr/0018-safe-api-res
 
 P01-02智谱诊断补充（2026-10-04，ADR0016）：新增OUTPUT_LIMIT_REACHED，表示单次响应输出被截断，区别于BUDGET_EXCEEDED和供应商QUOTA_EXHAUSTED；ProbeView诊断新增output_truncated/empty_text，沿用受限字符集upstreamCode展示服务错误码，禁止透传原始错误message或body。
 
-固定错误码：VALIDATION_ERROR、NOT_FOUND、CONFLICT、FEATURE_NOT_AVAILABLE、PERMISSION_DENIED、APPROVAL_REQUIRED、APPROVAL_STALE、AUTH_REQUIRED、AUTH_EXPIRED、QUOTA_EXHAUSTED、RATE_LIMITED、MODEL_UNSUPPORTED、PROVIDER_UNAVAILABLE、NETWORK_ERROR、STREAM_INTERRUPTED、TOOL_TIMEOUT、SIDE_EFFECT_UNKNOWN、BUDGET_EXCEEDED、FILE_TOO_LARGE、FORMAT_UNSUPPORTED、PARSE_FAILED、INDEX_NOT_READY、SANDBOX_UNAVAILABLE、DISK_FULL、DATABASE_RECOVERY_REQUIRED、CANCELLED、INTERNAL_ERROR。
+固定错误码：VALIDATION_ERROR、NOT_FOUND、CONFLICT、FEATURE_NOT_AVAILABLE、PERMISSION_DENIED、APPROVAL_REQUIRED、APPROVAL_STALE、AUTH_REQUIRED、AUTH_EXPIRED、QUOTA_EXHAUSTED、RATE_LIMITED、MODEL_UNSUPPORTED、TRANSLATION_UNCHANGED、PROVIDER_UNAVAILABLE、NETWORK_ERROR、STREAM_INTERRUPTED、TOOL_TIMEOUT、SIDE_EFFECT_UNKNOWN、BUDGET_EXCEEDED、FILE_TOO_LARGE、FORMAT_UNSUPPORTED、PARSE_FAILED、INDEX_NOT_READY、SANDBOX_UNAVAILABLE、DISK_FULL、DATABASE_RECOVERY_REQUIRED、CANCELLED、INTERNAL_ERROR。
 
 RecoveryAction为{kind:"retry"|"reconnect"|"choose_model"|"open_settings"|"download_original"|"review_result"|"resume"|"export_data",targetId?,label}；只提供真实已实现动作。错误消息脱敏，traceId用于本地定位；不向Renderer透传堆栈、令牌、完整请求。
 
 P00-02 协议细化见 [ADR 0005](../adr/0005-foundation-protocol-and-recovery.md)：Host↔Core ready 握手包含 protocolVersion=1 和 schemaVersion=1；基础阶段仅注册已实现命令，其他接口随所属任务启用。
 
 > 2026-10-04 P01-03：P01-03有限IPC：models.catalog、models.preferences.get/set、models.preview、models.diagnostic/cancel、usage.list；均UUIDv7与strict schema。诊断仅固定文本，不接收renderer工具/prompt/nativeState。provider.switched/model.preferences.updated进入outbox。Core ready schemaVersion=4；注销取消使用该账户的检测。
+
+2026-10-23 ADR0061：既有 tapkit:copy-text 由可信顶层 sender 调用，preload/Host 共用 ClipboardTextSchema（字符串最多2,000,000个UTF-16单元），完整写入、不截断，超限拒绝；无剪贴板读取桥接及Web权限扩展。附件逐项取消复用 files.cancelImport 的可选 selectionToken，其余批次和导航取消语义保持。

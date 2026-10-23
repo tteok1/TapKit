@@ -159,7 +159,7 @@ test('P03-02 Electron pins inline historical refs, remembers PDF/code positions 
   await expect(panel.locator('.viewer-diff pre')).toHaveCount(100);
   await page.getByRole('button', { name: /^预览固定版本会话 / }).click();
   await closeNarrowDetail(page);
-  await page.getByText('引用来源（1）', { exact: true }).click();
+  await page.getByRole('button', { name: '引用来源（1）', exact: true }).click();
   await page.locator('.inline-file-card summary').click();
   await expect(page.locator('.inline-file-card pre')).toContainText('Historical PDF text marker');
   await page.getByRole('button', { name: '在右侧展开', exact: true }).click();
@@ -288,7 +288,7 @@ test('P03-02 Electron merged/formula grids, sorting, image rotation, ZIP directo
   await open(page, f.sheet);
   await expect(panel.locator('td').filter({ hasText: '未计算' })).toContainText('B1/0');
   await expect(panel.locator('td[rowspan="2"][colspan="3"]')).toHaveText('合并标题');
-  await expect(panel.locator('td[title="公式: B1*2"]')).toContainText('8');
+  await expect(panel.locator('td[data-tooltip="公式: B1*2"]')).toContainText('8');
   await open(page, f.csv);
   await panel.getByLabel('列', { exact: true }).fill('2');
   await panel.locator('input[type="checkbox"]').check();

@@ -1,0 +1,12 @@
+{
+  "status": "paused_at_user_request",
+  "productionRestored": true,
+  "productionFixtureAbsent": true,
+  "testsStillRunning": false,
+  "finalChecksCompleted": false,
+  "verifiedLauncherPointerUpdated": false,
+  "originalWindowClosed": false,
+  "realProviderCallsByAgent": 0,
+  "committed": false,
+  "pushed": false
+}

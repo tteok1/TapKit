@@ -1,3 +1,5 @@
+import { SidebarNavigation } from './sidebar-navigation';
+import { TooltipLayer } from './tooltip';
 import {
   useCallback,
   useEffect,
@@ -12,7 +14,6 @@ import {
   SettingsViewSchema,
   WorkspaceViewSchema,
   ProviderListSchema,
-  CreatedEntitySchema,
   type SettingsValues,
   type Reply,
   type z,
@@ -21,32 +22,27 @@ import { AuthDiagnostic } from './auth-diagnostic';
 import { ApiDiagnostic } from './api-diagnostic';
 import { ModelSettings } from './model-settings';
 import { DesktopSettings } from './desktop-settings';
+import { SettingsNavigation } from './settings-navigation';
+import { IconButton } from './action-popover';
 import { readLayout, writeLayout, requestOptions, type WindowLayout } from './desktop-state';
 import t from '../locales/desktop.zh-CN.json';
 import text from '../locales/zh-CN.json';
 import branding from '../../../../../resources/branding.json';
 import { LocalAvatar } from './local-avatar';
 import { ChatSurface } from './chat-surface';
+import { StartPage, type StartMode } from './start-page';
 import { HistoryList, SearchView, historyCommand } from './history-ui';
 import { FileLibrary } from './file-library';
 import { ProjectsList, ProjectPage } from './projects-ui';
 import { ArtifactPanel } from '../features/viewer/panel';
 import { useViewer } from '../features/viewer/state';
 import h from '../locales/history.zh-CN.json';
-import { BranchChangeSchema } from '@tapkit/contracts';
 import { SessionDetailsSchema, type SessionRecord } from '@tapkit/contracts';
 import { HistoryLocationSchema } from '@tapkit/contracts';
 import { DEFAULT_SETTINGS } from '@tapkit/contracts';
-import { UiIcon, type IconName } from './ui-icon';
+import { UiIcon } from './ui-icon';
 import productIcon from '../assets/tapkit-current-icon.png?url';
 
-const navigationIcons: Record<string, IconName> = {
-  chats: 'chat',
-  work: 'work',
-  projects: 'folder',
-  files: 'file',
-  notifications: 'bell',
-};
 type Bootstrap = z.infer<typeof BootstrapViewSchema>;
 type Workspace = z.infer<typeof WorkspaceViewSchema>;
 function data(reply: Reply) {
@@ -65,8 +61,9 @@ export function DesktopShell() {
   const [layout, setLayout] = useState<WindowLayout>(() => readLayout(window.tapkit.windowSlot)),
     [error, setError] = useState(''),
     [busy, setBusy] = useState(false),
+    [composerBusy, setComposerBusy] = useState(false),
     [draft, setDraft] = useState(''),
-    [mode, setMode] = useState<'chat' | 'work'>('chat');
+    [mode, setMode] = useState<StartMode>('chat');
   const [dialog, setDialog] = useState<'search' | 'project' | null>(null),
     [projectName, setProjectName] = useState('');
   const [viewport, setViewport] = useState(window.innerWidth),
@@ -79,7 +76,7 @@ export function DesktopShell() {
   const location = useLocation(),
     navigate = useNavigate(),
     scroll = useRef<HTMLElement>(null),
-    sidebarScroll = useRef<HTMLElement>(null),
+    sidebarScroll = useRef<HTMLDivElement>(null),
     input = useRef<HTMLTextAreaElement>(null),
     modal = useRef<HTMLDialogElement>(null),
     previousFocus = useRef<HTMLElement | null>(null),
@@ -221,20 +218,11 @@ export function DesktopShell() {
       setBusy(false);
     }
   }
-  async function newSession(nextMode: 'chat' | 'work') {
-    await action(async () => {
-      const created = CreatedEntitySchema.parse(
-        data(
-          await window.tapkit.desktopCommand(requestOptions(), 'sessions.create', {
-            mode: nextMode,
-            title: nextMode === 'chat' ? '新聊天' : '新工作',
-          }),
-        ),
-      );
-      await refresh();
-      setMode(nextMode);
-      navigate('/sessions/' + created.entityId);
-    });
+  function newTask() {
+    if (location.pathname === '/' && composerBusy) return;
+    setMode('chat');
+    navigate('/');
+    requestAnimationFrame(() => input.current?.focus());
   }
   useEffect(() => {
     function key(event: KeyboardEvent) {
@@ -244,12 +232,12 @@ export function DesktopShell() {
       } else if (event.ctrlKey && event.key.toLowerCase() === 'n') {
         event.preventDefault();
         if (event.shiftKey) void window.tapkit.newWindow().catch(() => setError(t.error));
-        else void newSession('chat');
+        else newTask();
       }
     }
     document.addEventListener('keydown', key);
     return () => document.removeEventListener('keydown', key);
-  }, [busy, refresh]);
+  }, [busy, refresh, composerBusy, location.pathname]);
   useEffect(() => {
     const connect = () => navigate('/settings/connections');
     window.addEventListener('tapkit:connect-model', connect);
@@ -343,7 +331,10 @@ export function DesktopShell() {
       key={routedSessionId ?? '/'}
       sessionId={routedSessionId}
       exportRequested={new URLSearchParams(location.search).get('export') === '1'}
-      mode={selected?.mode ?? mode}
+      mode={selected?.mode ?? (mode === 'work' ? 'work' : 'chat')}
+      temporary={!routedSessionId && mode === 'temporary'}
+      onTemporaryCreated={(id) => temporaryIds.current.add(id)}
+      onBusy={setComposerBusy}
       seed={draft}
       settings={settings ?? DEFAULT_SETTINGS}
       inputRef={input}
@@ -353,8 +344,9 @@ export function DesktopShell() {
         drafts.current[location.pathname] = value;
       }}
       onMode={setMode}
-      onNew={() => void newSession('chat')}
+      onNew={newTask}
       onCreated={(id) => {
+        if (!routedSessionId) delete drafts.current[location.pathname];
         void refresh();
         navigate('/sessions/' + id);
       }}
@@ -363,52 +355,24 @@ export function DesktopShell() {
     />
   );
   const home = (
-    <>
-      <section className="welcome home-welcome">
-        <h1>{t.home}</h1>
-        <p className="surface-context">本地空间 · 无需注册</p>
-        <p>{workspace?.sessions.length ? '继续一段会话，或从新的目标开始。' : t.emptyHistory}</p>
-        {prefs?.showSuggestions && (
-          <div className="suggestions">
-            {t.examples.map((example, i) => (
-              <button
-                key={example}
-                onClick={() => {
-                  setDraft(example);
-                  drafts.current[location.pathname] = example;
-                  setMode(i === 1 ? 'work' : 'chat');
-                  input.current?.focus();
-                }}
-              >
-                {example}
-              </button>
-            ))}
-            <button
-              className="quiet"
-              onClick={() =>
-                void action(() => save({ desktop: { ...prefs, showSuggestions: false } }))
-              }
-            >
-              隐藏示例
-            </button>
-          </div>
-        )}
-      </section>
+    <StartPage
+      mode={mode}
+      onMode={setMode}
+      busy={composerBusy}
+      showSuggestions={prefs?.showSuggestions ?? true}
+      onSuggestions={() =>
+        void action(() =>
+          save({ desktop: { ...prefs!, showSuggestions: !prefs?.showSuggestions } }),
+        )
+      }
+      onExample={(example) => {
+        setDraft(example);
+        drafts.current[location.pathname] = example;
+        input.current?.focus();
+      }}
+    >
       {composer}
-      <section className="start-links">
-        <Link to="/dev/api">{text.api.title}</Link>
-        <Link to="/dev/codex">{text.auth.title}</Link>
-        <Link to="/settings/models">模型与用量</Link>
-      </section>
-      {prefs?.showPlanned && (
-        <section className="planned">
-          <h2>{t.planned}</h2>
-          {t.future.map((name) => (
-            <span key={name}>{name} · 规划中</span>
-          ))}
-        </section>
-      )}
-    </>
+    </StartPage>
   );
   return (
     <div
@@ -416,12 +380,16 @@ export function DesktopShell() {
         'desktop-shell ' +
         (prefs?.compact ? 'compact ' : '') +
         (layout.panelOpen ? 'panel-open ' : '') +
-        (routedSessionId ? 'session-screen' : 'home-screen')
+        (routedSessionId
+          ? 'session-screen'
+          : location.pathname === '/'
+            ? 'home-screen start-screen'
+            : 'home-screen')
       }
       data-theme={prefs?.theme ?? 'system'}
       style={
         {
-          '--sidebar-width': (collapsed ? 64 : layout.sidebarWidth) + 'px',
+          '--sidebar-width': layout.sidebarWidth + 'px',
           '--panel-width': layout.panelWidth + 'px',
           '--ui-font':
             (prefs?.fontSize === 'large' ? 16 : prefs?.fontSize === 'small' ? 12 : 14) + 'px',
@@ -429,6 +397,7 @@ export function DesktopShell() {
         } as CSSProperties
       }
     >
+      <TooltipLayer />
       <aside
         className={
           'sidebar ' +
@@ -436,186 +405,110 @@ export function DesktopShell() {
           (narrow && sidebarDrawer ? ' sidebar-drawer' : '')
         }
         aria-label="侧栏"
-        ref={sidebarScroll}
-        onScroll={(e) => {
-          const y = Math.min(10000000, e.currentTarget.scrollTop);
-          setLayout((l) => ({ ...l, sidebarScroll: y }));
-        }}
+        hidden={collapsed}
       >
-        <div className="sidebar-brand">
-          <Link to="/" aria-label="TapKit 首页">
-            <img className="product-icon" src={productIcon} alt="" />
-            {!collapsed && <strong>{branding.name}</strong>}
-          </Link>
-          <button
-            aria-label={collapsed ? '展开侧栏' : '收起侧栏'}
-            onClick={() =>
-              narrow
-                ? setSidebarDrawer(!sidebarDrawer)
-                : setLayout((l) => ({ ...l, collapsed: !l.collapsed }))
-            }
-          >
-            <UiIcon name="panel" />
-          </button>
-        </div>
-        <div className="new-actions">
-          <button
-            aria-label={h.temporary}
-            disabled={busy || !bootstrap}
-            onClick={() =>
-              void action(async () => {
-                const next = BranchChangeSchema.parse(await historyCommand('sessions.temporary'));
-                temporaryIds.current.add(next.sessionId);
-                navigate('/sessions/' + next.sessionId);
-              })
-            }
-          >
-            <UiIcon name="temporary" />
-            {!collapsed && h.temporary}
-          </button>
-          <button
-            className="new-chat-primary"
-            aria-label={t.newChat}
-            disabled={busy || !bootstrap}
-            onClick={() => void newSession('chat')}
-            title="Ctrl+N"
-          >
-            <UiIcon name="edit" />
-            {!collapsed && t.newChat}
-          </button>
-          <button
-            aria-label={t.newWork}
-            disabled={busy || !bootstrap}
-            onClick={() => void newSession('work')}
-          >
-            <UiIcon name="work" />
-            {!collapsed && t.newWork}
-          </button>
-          <button
-            aria-label={t.newProject}
-            disabled={busy || !bootstrap}
-            onClick={() => setDialog('project')}
-          >
-            <UiIcon name="plus" />
-            {!collapsed && t.newProject}
-          </button>
-        </div>
-        <nav aria-label="主导航">
-          <button aria-label={t.search} onClick={() => setDialog('search')} title="Ctrl+K">
-            <UiIcon name="search" />
-            {!collapsed && (
-              <>
-                <span>{t.search}</span>
-                <kbd>Ctrl K</kbd>
-              </>
-            )}
-          </button>
-          {layout.navigation.map((key) => (
-            <Link
-              key={key}
-              to={'/' + key}
-              aria-label={t[key]}
-              title={t[key]}
-              aria-current={location.pathname === '/' + key ? 'page' : undefined}
+        <div
+          className="sidebar-scroll"
+          ref={sidebarScroll}
+          onScroll={(e) => {
+            const y = Math.min(10000000, e.currentTarget.scrollTop);
+            setLayout((l) => ({ ...l, sidebarScroll: y }));
+          }}
+        >
+          <div className="sidebar-brand">
+            <span className="sidebar-brand-name">
+              <img className="product-icon" src={productIcon} alt="" />
+              <strong>{branding.name}</strong>
+            </span>
+            <span className="sidebar-tools">
+              <IconButton
+                icon="bell"
+                label={t.notifications}
+                onClick={() => navigate('/notifications')}
+              />
+              <IconButton
+                icon="search"
+                label={t.search}
+                tooltip={t.search + '（Ctrl+K）'}
+                onClick={() => setDialog('search')}
+              />
+            </span>
+          </div>
+          <div className="new-actions">
+            <button
+              className="new-chat-primary"
+              aria-label={t.newTask}
+              disabled={busy || !bootstrap || (!routedSessionId && composerBusy)}
+              onClick={newTask}
+              data-tooltip="Ctrl+N"
             >
-              <UiIcon name={navigationIcons[key]!} />
-              {!collapsed && t[key]}
-              {key === 'notifications' && !!workspace?.pendingApprovals && (
-                <span>{workspace.pendingApprovals}</span>
-              )}
-            </Link>
-          ))}
-          {!collapsed && (
-            <details>
-              <summary>{h.navigation}</summary>
-              {(['chats', 'work', 'projects', 'files', 'notifications'] as const).map((key) => (
-                <div key={key}>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={layout.navigation.includes(key)}
-                      onChange={(e) =>
-                        setLayout((l) => ({
-                          ...l,
-                          navigation: e.target.checked
-                            ? [...l.navigation, key]
-                            : l.navigation.filter((k) => k !== key),
-                        }))
-                      }
-                    />
-                    {t[key]}
-                  </label>
-                  <button
-                    aria-label={h.moveUp + t[key]}
-                    disabled={layout.navigation.indexOf(key) <= 0}
-                    onClick={() =>
-                      setLayout((l) => {
-                        const navigation = [...l.navigation],
-                          i = navigation.indexOf(key);
-                        [navigation[i - 1], navigation[i]] = [navigation[i]!, navigation[i - 1]!];
-                        return { ...l, navigation };
-                      })
+              <UiIcon name="edit" />
+              {!collapsed && t.newTask}
+            </button>
+          </div>
+          <SidebarNavigation
+            order={layout.navigation}
+            onReorder={(navigation) =>
+              setLayout((l) => ({ ...l, navigation: [...navigation, 'notifications'] }))
+            }
+          />
+          <div className="history">
+            {!collapsed && !!workspace?.projects.length && (
+              <section className="sidebar-projects" aria-label={t.projects}>
+                <h2>{t.projects}</h2>
+                {workspace.projects.map((project) => (
+                  <Link
+                    key={project.id}
+                    to={'/projects/' + project.id}
+                    aria-current={
+                      location.pathname === '/projects/' + project.id ? 'page' : undefined
                     }
                   >
-                    {h.moveUp}
-                  </button>
-                </div>
-              ))}
-            </details>
-          )}
-        </nav>
-        <div className="history">
-          {!collapsed && !!workspace?.projects.length && (
-            <section className="sidebar-projects" aria-label={t.projects}>
-              <h2>{t.projects}</h2>
-              {workspace.projects.map((project) => (
-                <Link
-                  key={project.id}
-                  to={'/projects/' + project.id}
-                  aria-current={
-                    location.pathname === '/projects/' + project.id ? 'page' : undefined
-                  }
-                >
-                  <UiIcon name="folder" />
-                  <span>{project.name}</span>
-                </Link>
-              ))}
-            </section>
-          )}
-          <HistoryList
-            collapsed={collapsed}
-            activeId={routedSessionId}
-            onNavigate={navigate}
-            projects={workspace?.projects ?? []}
-          />
+                    <UiIcon name="folder" />
+                    <span>{project.name}</span>
+                  </Link>
+                ))}
+              </section>
+            )}
+            <HistoryList
+              collapsed={collapsed}
+              sort={prefs?.historySort ?? 'updated'}
+              onSort={async (historySort) => {
+                if (prefs) await save({ desktop: { ...prefs, historySort } });
+              }}
+              activeId={routedSessionId}
+              onNavigate={navigate}
+              projects={workspace?.projects ?? []}
+            />
+          </div>
+          <div className="sidebar-status">
+            {!collapsed && (
+              <>
+                <small>{t.runHint}</small>
+                <small>
+                  {t.approval}：{workspace?.pendingApprovals ?? '—'}
+                </small>
+              </>
+            )}
+          </div>
         </div>
-        <div className="sidebar-status">
-          {!collapsed && (
-            <>
-              <small>{t.runHint}</small>
-              <small>
-                {t.approval}：{workspace?.pendingApprovals ?? '—'}
-              </small>
-            </>
-          )}
+        <div className="sidebar-footer">
+          <Link
+            className="profile-link"
+            to="/settings/personal"
+            aria-label="个人资料与设置"
+            data-tooltip="个人资料与设置"
+          >
+            {personal?.avatar ? (
+              <img src={personal.avatar} alt="" width="28" height="28" />
+            ) : (
+              <LocalAvatar />
+            )}
+          </Link>
+          <Link to="/settings/general" aria-label="设置" data-tooltip="设置">
+            <UiIcon name="settings" />
+          </Link>
         </div>
-        <Link className="profile-link" to="/settings/personal" aria-label="个人资料与设置">
-          {personal?.avatar ? (
-            <img src={personal.avatar} alt="" width="28" height="28" />
-          ) : (
-            <LocalAvatar />
-          )}
-          {!collapsed && (
-            <span>
-              {personal?.nickname ?? '本地用户'}
-              <small>个人资料与设置</small>
-            </span>
-          )}
-        </Link>
-        <Link to="/settings/general" aria-label="设置">
-          <UiIcon name="settings" />
-          {!collapsed && t.settings}
-        </Link>
         {!collapsed && (
           <div
             role="separator"
@@ -644,15 +537,20 @@ export function DesktopShell() {
       </aside>
       <div className="workspace">
         <header className="topbar">
-          <button aria-label={h.back} onClick={() => navigate(-1)}>
-            <UiIcon name="left" />
-          </button>
-          <button aria-label={h.forward} onClick={() => navigate(1)}>
-            <UiIcon name="right" />
-          </button>
-          <Link to="/" className="home-link">
-            首页
-          </Link>
+          <span
+            className={'sidebar-toggle-anchor' + (narrow && sidebarDrawer ? ' drawer-open' : '')}
+          >
+            <IconButton
+              icon="sidebar"
+              label={collapsed ? '展开侧栏' : '收起侧栏'}
+              aria-expanded={!collapsed}
+              onClick={() =>
+                narrow
+                  ? setSidebarDrawer(!sidebarDrawer)
+                  : setLayout((l) => ({ ...l, collapsed: !l.collapsed }))
+              }
+            />
+          </span>
           <span className="workspace-title">
             {selected?.title ??
               (location.pathname.startsWith('/settings')
@@ -747,13 +645,14 @@ export function DesktopShell() {
                 <Route
                   path="/settings/models"
                   element={
-                    <>
-                      <nav className="settings-tabs">
-                        <Link to="/settings/general">返回设置</Link>
-                        <Link to="/settings/connections">模型连接</Link>
-                      </nav>
-                      <ModelSettings />
-                    </>
+                    <section className="desktop-settings">
+                      <h1>{t.models}</h1>
+                      <p>{t.scope}</p>
+                      <SettingsNavigation page="models" />
+                      <div className="settings-body">
+                        <ModelSettings />
+                      </div>
+                    </section>
                   }
                 />
                 <Route
@@ -766,6 +665,8 @@ export function DesktopShell() {
                         revision={bootstrap!.settings.revision}
                         save={save}
                         reload={refresh}
+                        onNavigate={navigate}
+                        projects={workspace?.projects ?? []}
                       />
                     ) : (
                       <p>正在读取设置…</p>
@@ -777,6 +678,7 @@ export function DesktopShell() {
                   element={
                     <HistoryList
                       page
+                      sort={prefs?.historySort ?? 'updated'}
                       modeFilter="chat"
                       activeId={routedSessionId}
                       onNavigate={navigate}
@@ -792,6 +694,7 @@ export function DesktopShell() {
                       <p>{t.runHint}</p>
                       <HistoryList
                         page
+                        sort={prefs?.historySort ?? 'updated'}
                         modeFilter="work"
                         onNavigate={navigate}
                         projects={workspace?.projects ?? []}

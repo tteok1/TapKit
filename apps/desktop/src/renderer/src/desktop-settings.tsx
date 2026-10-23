@@ -5,18 +5,24 @@ import t from '../locales/desktop.zh-CN.json';
 import { LocalAvatar } from './local-avatar';
 import { MemoryManager } from './memory-ui';
 import m from '../locales/memory.zh-CN.json';
+import { SettingsNavigation } from './settings-navigation';
+import { HistorySettings } from './history-settings';
 export function DesktopSettings({
   page,
   values,
   revision,
   save,
   reload,
+  onNavigate,
+  projects,
 }: {
   page: string;
   values: SettingsValues;
   revision: number;
   save: (patch: Partial<SettingsValues>, revision?: number) => Promise<void>;
   reload: () => Promise<void>;
+  onNavigate: (path: string) => void;
+  projects: { id: string; name: string }[];
 }) {
   const [draft, setDraft] = useState(values),
     [dirty, setDirty] = useState(false),
@@ -105,24 +111,11 @@ export function DesktopSettings({
     <section className="desktop-settings">
       <h1>{t[page as 'personal'] ?? t.settings}</h1>
       <p>{t.scope}</p>
-      <nav className="settings-tabs" aria-label="设置分类">
-        {(
-          [
-            'personal',
-            'general',
-            'personalization',
-            'connections',
-            'models',
-            'privacy',
-            'agreement',
-          ] as const
-        ).map((key) => (
-          <Link key={key} to={'/settings/' + key} aria-current={page === key ? 'page' : undefined}>
-            {t[key]}
-          </Link>
-        ))}
-      </nav>
+      <SettingsNavigation page={page} />
       <div className="settings-body">
+        {(page === 'archived' || page === 'trash') && (
+          <HistorySettings key={page} state={page} projects={projects} onNavigate={onNavigate} />
+        )}
         {page === 'personal' && (
           <>
             <div className="avatar-editor">
@@ -236,21 +229,23 @@ export function DesktopSettings({
             <label>
               默认目录
               <input readOnly value={desktop.defaultDirectory} placeholder="尚未选择" />
-              <button
-                onClick={() =>
-                  void window.tapkit
-                    .chooseDirectory()
-                    .then((path) => {
-                      if (path) update('desktop', { ...desktop, defaultDirectory: path });
-                    })
-                    .catch(() => setNotice(t.error))
-                }
-              >
-                选择目录
-              </button>
-              <button onClick={() => update('desktop', { ...desktop, defaultDirectory: '' })}>
-                清空目录
-              </button>
+              <span className="action-group">
+                <button
+                  onClick={() =>
+                    void window.tapkit
+                      .chooseDirectory()
+                      .then((path) => {
+                        if (path) update('desktop', { ...desktop, defaultDirectory: path });
+                      })
+                      .catch(() => setNotice(t.error))
+                  }
+                >
+                  选择目录
+                </button>
+                <button onClick={() => update('desktop', { ...desktop, defaultDirectory: '' })}>
+                  清空目录
+                </button>
+              </span>
               <small>只保存偏好，实际文件访问仍需授权。</small>
             </label>
             {select(

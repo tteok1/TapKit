@@ -1,0 +1,11 @@
+{
+  "command": [
+    "test:integration",
+    "P02-03.history",
+    "P04-01.chat",
+    "P04-01.retrieval"
+  ],
+  "exitCode": 1,
+  "elapsedSeconds": 44.58,
+  "historicalEvidenceRestored": true
+}

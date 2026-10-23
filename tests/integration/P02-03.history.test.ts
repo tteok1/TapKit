@@ -144,6 +144,59 @@ async function fresh() {
   };
 }
 describe('P02-03 history lifecycle', () => {
+  it('P02-01 shared start can select profile materials without creating a conversation; stale and project refs still fail', async () => {
+    const f = await fresh();
+    const attachment = data(
+      await f.chat.dispatch(
+        req('inputs.attach', {
+          sessionId: f.session,
+          name: 'start-draft.txt',
+          bytes: Buffer.from('synthetic start attachment').toString('base64'),
+        }),
+      ),
+    ) as { ref: import('../../packages/contracts/src').ResourceRef };
+    const session = f.chat.session(f.session);
+    const messageId = f.chat.insertMessage(
+      session,
+      'assistant',
+      'Synthetic selected message.',
+      'final',
+      null,
+    );
+    const before = f.store.db.prepare('SELECT count(*) n FROM sessions').get();
+    const listed = data(await f.chat.dispatch(req('inputs.references'))) as {
+      materials: { ref: unknown; text?: string }[];
+    };
+    expect(listed.materials).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ ref: attachment.ref, text: 'synthetic start attachment' }),
+        expect.objectContaining({
+          ref: { kind: 'message', sessionId: f.session, messageId, version: 1 },
+          text: 'Synthetic selected message.',
+        }),
+      ]),
+    );
+    const selected = data(
+      await f.chat.dispatch(req('inputs.references', { refs: [attachment.ref] })),
+    ) as { materials: { text?: string }[] };
+    expect(selected.materials[0]?.text).toBe('synthetic start attachment');
+    expect(f.store.db.prepare('SELECT count(*) n FROM sessions').get()).toEqual(before);
+    const stale = await f.chat.dispatch(
+      req('inputs.references', {
+        refs: [{ kind: 'message', sessionId: f.session, messageId, version: 2 }],
+      }),
+    );
+    expect(stale.ok ? null : stale.error.code).toBe('CONFLICT');
+    const projectId = (
+      data(f.core.dispatch(req('projects.create', { name: 'Start scope test' }))) as {
+        entityId: string;
+      }
+    ).entityId;
+    const outside = await f.chat.dispatch(
+      req('inputs.references', { refs: [{ kind: 'project', projectId }] }),
+    );
+    expect(outside.ok ? null : outside.error.code).toBe('PERMISSION_DENIED');
+  });
   it.each(['translate', 'explain', 'expand', 'shorten', 'rewrite'] as const)(
     'T13 selection operation %s uses only its verified range and current action, without losing history',
     async (action) => {
@@ -198,7 +251,7 @@ describe('P02-03 history lifecycle', () => {
         f.store.db
           .prepare('SELECT prompt_version FROM context_snapshots ORDER BY rowid DESC LIMIT 1')
           .get(),
-      ).toMatchObject({ prompt_version: expect.stringContaining('selection-v2') });
+      ).toMatchObject({ prompt_version: expect.stringContaining('selection-v3') });
       if (action === 'translate') {
         await f.send('普通聊天后续问题。');
         expect(f.inputs.at(-1)!.messages.some((m) => m.text.includes('引用成功1019'))).toBe(true);
@@ -206,6 +259,135 @@ describe('P02-03 history lifecycle', () => {
       }
     },
   );
+
+  it.each([
+    {
+      language: 'auto' as const,
+      source: 'The amber lighthouse guides a small boat safely home.',
+      target: 'zh-CN',
+      label: '简体中文',
+      result: '琥珀色的灯塔引导一艘小船安全归家。',
+    },
+    {
+      language: 'auto' as const,
+      source: '琥珀色的灯塔引导一艘小船安全归家。',
+      target: 'en',
+      label: '英文',
+      result: 'The amber lighthouse guides a small boat safely home.',
+    },
+    {
+      language: 'zh-CN' as const,
+      source: 'The amber lighthouse guides a small boat safely home.',
+      target: 'zh-CN',
+      label: '简体中文',
+      result: '琥珀色的灯塔引导一艘小船安全归家。',
+    },
+    {
+      language: 'en' as const,
+      source: 'The amber lighthouse guides a small boat safely home.',
+      target: 'en',
+      label: '英文',
+      result: 'The amber lighthouse guides a small boat safely home.',
+    },
+  ])(
+    'T13 translation resolves $language to $target for the selected original',
+    async ({ language, source, target, label, result }) => {
+      const f = await fresh();
+      const scope = { type: 'session' as const, id: f.session };
+      const preference = f.models.ledger.preferences(scope);
+      preference.values.answer.language = language;
+      f.store.db.transaction(() =>
+        f.models.ledger.setPreferences(scope, preference.values, preference.revision),
+      )();
+      const sourceId = f.chat.insertMessage(
+        f.chat.session(f.session),
+        'assistant',
+        source,
+        'final',
+        null,
+      );
+      const captured: ModelRequest[] = [];
+      const adapter = f.models.router.deps.adapter;
+      f.models.router.deps.adapter = (id) => ({
+        ...adapter(id),
+        async *stream(input) {
+          captured.push(structuredClone(input));
+          yield { type: 'text_delta' as const, blockId: 'text', text: result };
+          yield { type: 'finish' as const, reason: 'stop' as const, nativeStateRef: '' };
+        },
+      });
+      data(
+        await f.history.dispatch(
+          req('messages.transform', {
+            sessionId: f.session,
+            messageId: sourceId,
+            version: 1,
+            range: { start: 0, end: source.length },
+            action: 'translate',
+          }),
+        ),
+      );
+      await expect.poll(async () => (await f.snapshot()).run?.status).toBe('completed');
+      expect(captured).toHaveLength(1);
+      expect(captured[0]!.messages).toHaveLength(1);
+      expect(captured[0]!.messages[0]!.text).toContain('本轮目标语言：' + label);
+      expect(captured[0]!.messages[0]!.text).toContain(JSON.stringify({ text: source }));
+      expect(captured[0]!.systemModules.find((m) => m.id === 'answer-preferences')?.text).toContain(
+        '语言 ' + target,
+      );
+      expect(captured[0]!.systemModules.find((m) => m.id === 'message.selection')?.text).toContain(
+        '目标语言：' + label,
+      );
+      expect(captured[0]!.tools).toEqual([]);
+      expect(f.models.ledger.preferences(scope).values.answer.language).toBe(language);
+      expect((await f.snapshot()).messages.at(-1)?.text).toBe(result);
+    },
+  );
+
+  it('T13 unchanged foreign prose is not completed as a successful translation or automatically retried', async () => {
+    const f = await fresh();
+    const selected = 'The amber lighthouse guides a small boat safely home.';
+    const sourceId = f.chat.insertMessage(
+      f.chat.session(f.session),
+      'assistant',
+      selected,
+      'final',
+      null,
+    );
+    let calls = 0;
+    const adapter = f.models.router.deps.adapter;
+    f.models.router.deps.adapter = (id) => ({
+      ...adapter(id),
+      async *stream() {
+        calls++;
+        yield { type: 'text_delta' as const, blockId: 'text', text: selected };
+        yield { type: 'finish' as const, reason: 'stop' as const, nativeStateRef: '' };
+      },
+    });
+    const request = req('messages.transform', {
+      sessionId: f.session,
+      messageId: sourceId,
+      version: 1,
+      range: { start: 0, end: selected.length },
+      action: 'translate',
+    });
+    const accepted = data(await f.history.dispatch(request));
+    await expect
+      .poll(async () =>
+        ['completed', 'partial', 'failed'].includes((await f.snapshot()).run?.status ?? ''),
+      )
+      .toBe(true);
+    const snapshot = await f.snapshot();
+    expect(snapshot.run).toMatchObject({ status: 'partial', errorCode: 'TRANSLATION_UNCHANGED' });
+    expect(snapshot.messages.at(-1)).toMatchObject({
+      text: selected,
+      status: 'interrupted',
+      errorCode: 'TRANSLATION_UNCHANGED',
+    });
+    expect(data(await f.history.dispatch(request))).toEqual(accepted);
+    expect(calls).toBe(1);
+    expect(snapshot.messages.find((m) => m.id === sourceId)?.text).toBe(selected);
+  });
 
   it.each(['prefix', 'suffix', 'literal'] as const)(
     'T13 selection result %s marker never becomes file evidence or an incorrect partial failure',
@@ -1515,4 +1697,201 @@ describe('P02-03 history lifecycle', () => {
     expect(bytes.includes(Buffer.from(marker))).toBe(false);
     expect(await readdir(f.dir)).not.toContain('tmp');
   });
+});
+
+it('P02-01 shell details: recent/manual orders keep pins first, group orders independent and cursors bound to filters', async () => {
+  const f = await fresh();
+  const make = (title: string) =>
+    (data(f.core.dispatch(req('sessions.create', { mode: 'chat', title }))) as { entityId: string })
+      .entityId;
+  const a = make('排序甲'),
+    b = make('排序乙'),
+    c = make('排序丙'),
+    d = make('排序丁');
+  const group = (
+    data(await f.history.dispatch(req('sidebar.create', { name: '独立排序' }))) as {
+      entityId: string;
+    }
+  ).entityId;
+  data(await f.history.dispatch(req('sessions.move', { sessionIds: [c, d], sectionId: group })));
+  for (const [i, id] of [a, b, c, d].entries())
+    f.store.db.prepare('UPDATE sessions SET last_activity_at=? WHERE id=?').run(1000 + i, id);
+  const list = async (payload: object = {}) =>
+    SessionPageSchema.parse(data(await f.history.dispatch(req('sessions.list', payload))));
+  data(
+    await f.history.dispatch(
+      req('sidebar.reorder', {
+        sectionId: null,
+        ordered: [
+          { type: 'session', id: a },
+          { type: 'session', id: b },
+        ],
+      }),
+    ),
+  );
+  data(
+    await f.history.dispatch(
+      req('sidebar.reorder', {
+        sectionId: group,
+        ordered: [
+          { type: 'session', id: c },
+          { type: 'session', id: d },
+        ],
+      }),
+    ),
+  );
+  expect((await list({ sort: 'updated', sectionId: group })).sessions.map((s) => s.id)).toEqual([
+    d,
+    c,
+  ]);
+  expect((await list({ sort: 'manual', sectionId: group })).sessions.map((s) => s.id)).toEqual([
+    c,
+    d,
+  ]);
+  data(
+    await f.history.dispatch(
+      req('sidebar.reorder', {
+        sectionId: null,
+        ordered: [
+          { type: 'session', id: b },
+          { type: 'session', id: a },
+        ],
+      }),
+    ),
+  );
+  expect((await list({ sort: 'manual', sectionId: group })).sessions.map((s) => s.id)).toEqual([
+    c,
+    d,
+  ]);
+  expect((await f.details(c)).session.sectionId).toBe(group);
+  data(
+    f.core.dispatch(
+      req('sessions.pin', { sessionId: c, pinned: true }, (await f.details(c)).session.revision),
+    ),
+  );
+  expect((await list({ sort: 'updated', sectionId: group })).sessions.map((s) => s.id)).toEqual([
+    c,
+    d,
+  ]);
+  data(
+    await f.history.dispatch(
+      req('sidebar.reorder', {
+        sectionId: group,
+        ordered: [
+          { type: 'session', id: d },
+          { type: 'session', id: c },
+        ],
+      }),
+    ),
+  );
+  expect((await list({ sort: 'manual', sectionId: group })).sessions.map((s) => s.id)).toEqual([
+    c,
+    d,
+  ]);
+  // null selects only ungrouped rows; omission still means the complete history.
+  const ungrouped = await list({ sectionId: null, sort: 'manual', query: '排序', limit: 1 });
+  expect(ungrouped.sessions.map((s) => s.id)).toEqual([b]);
+  expect(ungrouped.nextCursor).toBeTruthy();
+  const ungroupedNext = await list({
+    sectionId: null,
+    query: '排序',
+    sort: 'manual',
+    limit: 1,
+    cursor: ungrouped.nextCursor,
+  });
+  expect(ungroupedNext.sessions.map((s) => s.id)).toEqual([a]);
+  expect(ungroupedNext.nextCursor).toBeNull();
+  expect(
+    await f.history.dispatch(
+      req('sessions.list', {
+        sort: 'manual',
+        query: '排序',
+        limit: 1,
+        cursor: ungrouped.nextCursor,
+      }),
+    ),
+  ).toMatchObject({ ok: false, error: { code: 'VALIDATION_ERROR' } });
+  const first = await list({ sort: 'updated', query: '排序', limit: 2 });
+  expect(first.sessions).toHaveLength(2);
+  expect(first.nextCursor).toBeTruthy();
+  expect(
+    await f.history.dispatch(
+      req('sessions.list', { sort: 'manual', query: '排序', limit: 2, cursor: first.nextCursor }),
+    ),
+  ).toMatchObject({ ok: false, error: { code: 'VALIDATION_ERROR' } });
+  const second = await list({ sort: 'updated', query: '排序', limit: 2, cursor: first.nextCursor });
+  expect(new Set([...first.sessions, ...second.sessions].map((s) => s.id)).size).toBe(4);
+  expect(
+    await f.history.dispatch(
+      req('sidebar.reorder', { sectionId: group, ordered: [{ type: 'session', id: a }] }),
+    ),
+  ).toMatchObject({ ok: false, error: { code: 'CONFLICT' } });
+});
+
+it('P02-01 shell details: archived/trash title filters are literal, profile scoped and independent of current page', async () => {
+  const f = await fresh();
+  const ids = [];
+  for (let i = 0; i < 53; i++) {
+    const id = (
+      data(
+        f.core.dispatch(
+          req('sessions.create', {
+            mode: i === 52 ? 'work' : 'chat',
+            title: i === 52 ? '归档筛选 100%_目标' : '普通归档 ' + i,
+          }),
+        ),
+      ) as { entityId: string }
+    ).entityId;
+    ids.push(id);
+  }
+  data(await f.history.dispatch(req('sessions.archive', { sessionIds: ids, archived: true })));
+  const list = async (payload: object) =>
+    SessionPageSchema.parse(data(await f.history.dispatch(req('sessions.list', payload))));
+  expect(
+    (await list({ state: 'archived', query: '100%_', mode: 'work' })).sessions.map((s) => s.id),
+  ).toEqual([ids[52]]);
+  expect((await list({ state: 'active', query: '100%_' })).sessions).toHaveLength(0);
+  data(await f.history.dispatch(req('sessions.trash', { sessionIds: [ids[52]] })));
+  expect((await list({ state: 'archived', query: '100%_' })).sessions).toHaveLength(0);
+  expect((await list({ state: 'trash', query: '100%_' })).sessions.map((s) => s.id)).toEqual([
+    ids[52],
+  ]);
+  data(await f.history.dispatch(req('sessions.restore', { sessionIds: [ids[52]] })));
+  expect((await list({ state: 'archived', query: '100%_' })).sessions).toHaveLength(1);
+  expect((await list({ state: 'trash', query: '100%_' })).sessions).toHaveLength(0);
+  expect((await list({ state: 'archived', query: "' OR 1=1 --" })).sessions).toHaveLength(0);
+});
+
+it('P02-01 shell details: reordering a visible manual page preserves every unseen session slot', async () => {
+  const f = await fresh();
+  const ids: string[] = [];
+  for (let i = 0; i < 56; i++) {
+    const id = (
+      data(f.core.dispatch(req('sessions.create', { mode: 'chat', title: '分页排序 ' + i }))) as {
+        entityId: string;
+      }
+    ).entityId;
+    ids.push(id);
+    f.store.db.prepare('UPDATE sessions SET last_activity_at=? WHERE id=?').run(1000 + i, id);
+  }
+  const list = async () =>
+    SessionPageSchema.parse(
+      data(
+        await f.history.dispatch(
+          req('sessions.list', { sort: 'manual', query: '分页排序', limit: 100 }),
+        ),
+      ),
+    ).sessions.map((s) => s.id);
+  const before = await list();
+  expect(before).toEqual([...ids].reverse());
+  const visible = before.slice(0, 50).reverse();
+  data(
+    await f.history.dispatch(
+      req('sidebar.reorder', {
+        sectionId: null,
+        ordered: visible.map((id) => ({ type: 'session', id })),
+      }),
+    ),
+  );
+  expect(await list()).toEqual([...visible, ...before.slice(50)]);
 });

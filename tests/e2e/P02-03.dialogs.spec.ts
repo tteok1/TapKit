@@ -68,6 +68,8 @@ for (const [width, height, zoom] of [
       },
       { requestId: newId(), title },
     );
+    if (await page.getByRole('button', { name: '展开侧栏', exact: true }).count())
+      await page.getByRole('button', { name: '展开侧栏', exact: true }).click();
     await page.getByRole('link', { name: '聊天', exact: true }).click();
     const list = page.locator('.screen-scroll .history-manager');
     const row = list.locator('.history-row').filter({ hasText: title });

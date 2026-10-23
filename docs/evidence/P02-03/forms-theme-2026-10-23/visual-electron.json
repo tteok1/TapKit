@@ -1,0 +1,16 @@
+{
+  "command": [
+    "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+    "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+    "exec",
+    "playwright",
+    "test",
+    "tests/e2e/P02-01.form-controls.spec.ts",
+    "--grep",
+    "themed forms|global controls"
+  ],
+  "exitCode": 4294967295,
+  "seconds": 94.04,
+  "historicalEvidenceRestoreExitCode": 0,
+  "persistentBackup": ".test-data\\forms-theme\\evidence-backup-1792750298"
+}

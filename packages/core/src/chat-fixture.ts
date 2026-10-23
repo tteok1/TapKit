@@ -91,11 +91,18 @@ export function installChatFixture(models: ModelService) {
           else signal.addEventListener('abort', cancel, { once: true });
         });
       }
-      const answer = request.systemModules.some((m) => m.id === 'tapkit.memory.extract')
-        ? JSON.stringify(conservativeCandidate(text))
-        : text.includes('恶意渲染')
-          ? '# 安全标题\n\n|列|值|\n|---|---|\n|中文|1|\n\n$$x^2+1$$\n\n```javascript\nconst value = 1;\n```\n\n```mermaid\ngraph TD\nA[输入] --> B[输出]\n```\n\n[危险链接](javascript:alert(1))\n<img src="https://fixture.invalid/evil.png" onerror="window.fixturePwned=true">'
-          : '隔离测试回复：' + text.slice(0, 80);
+      const echoTranslation =
+        process.env.TAPKIT_TRANSLATION_ECHO_FIXTURE === '1' &&
+        request.systemModules.some(
+          (m) => m.id === 'message.selection' && m.text.includes('动作代码：translate'),
+        );
+      const answer = echoTranslation
+        ? (JSON.parse(text.slice(text.lastIndexOf('\n') + 1)).text as string)
+        : request.systemModules.some((m) => m.id === 'tapkit.memory.extract')
+          ? JSON.stringify(conservativeCandidate(text))
+          : text.includes('恶意渲染')
+            ? '# 安全标题\n\n|列|值|\n|---|---|\n|中文|1|\n\n$$x^2+1$$\n\n```javascript\nconst value = 1;\n```\n\n```mermaid\ngraph TD\nA[输入] --> B[输出]\n```\n\n[危险链接](javascript:alert(1))\n<img src="https://fixture.invalid/evil.png" onerror="window.fixturePwned=true">'
+            : '隔离测试回复：' + text.slice(0, 80);
       yield { type: 'text_delta', blockId: 'text', text: answer.slice(0, 5) };
       await new Promise<void>((resolve, reject) => {
         const timer = setTimeout(

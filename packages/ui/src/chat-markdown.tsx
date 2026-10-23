@@ -1,11 +1,31 @@
-import { useEffect, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
+import { CopyButton, tableToTSV, tableCellText } from './clipboard';
+import ReactMarkdown, { type Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 import { safeChatURL, safeMermaidText } from './chat-safety';
 export { safeChatURL } from './chat-safety';
+function Table({ children }: { children: ReactNode }) {
+  const table = useRef<HTMLTableElement>(null);
+  return (
+    <div className="chat-table">
+      <CopyButton
+        label="复制表格"
+        text={() => {
+          if (!table.current) throw new Error('TABLE_UNAVAILABLE');
+          return tableToTSV(
+            [...table.current.rows].map((row) => [...row.cells].map(tableCellText)),
+          );
+        }}
+      />
+      <div className="chat-table-scroll">
+        <table ref={table}>{children}</table>
+      </div>
+    </div>
+  );
+}
 function Code({ text, language }: { text: string; language: string }) {
   const [tokens, setTokens] = useState<{ content: string; color?: string }[][]>();
   const [diagram, setDiagram] = useState('');
@@ -109,7 +129,7 @@ function Code({ text, language }: { text: string; language: string }) {
     <div className="chat-code">
       <div>
         <span>{language || '代码'}</span>
-        <button onClick={() => void navigator.clipboard.writeText(text)}>复制代码</button>
+        <CopyButton label="复制代码" text={text} />
       </div>
       {diagram && (
         <iframe
@@ -131,7 +151,7 @@ function Code({ text, language }: { text: string; language: string }) {
                       {token.content}
                     </span>
                   ))}
-                  {'\n'}
+                  {i < tokens.length - 1 ? '\n' : ''}
                 </span>
               ))
             : text}
@@ -140,6 +160,40 @@ function Code({ text, language }: { text: string; language: string }) {
     </div>
   );
 }
+const OpenLinkContext = createContext<((url: string) => void) | undefined>(undefined);
+function MarkdownLink({ href, children }: { href?: string | undefined; children?: ReactNode }) {
+  const onLink = useContext(OpenLinkContext);
+  return href ? (
+    <a
+      href={href}
+      onClick={(event) => {
+        event.preventDefault();
+        onLink?.(href);
+      }}
+    >
+      {children}
+    </a>
+  ) : (
+    <span>{children}</span>
+  );
+}
+const markdownComponents: Components = {
+  a: MarkdownLink,
+  img: ({ alt }) => (
+    <span className="chat-media">图片：{alt || '外部图片'}（外部图片未自动加载）</span>
+  ),
+  pre: ({ children }) => <>{children}</>,
+  code: ({ className, children }) =>
+    className || String(children).includes('\n') ? (
+      <Code
+        language={className?.replace('language-', '') ?? ''}
+        text={String(children).replace(/\n$/, '')}
+      />
+    ) : (
+      <code>{children}</code>
+    ),
+  table: ({ children }) => <Table>{children}</Table>,
+};
 export function ChatMarkdown({
   text,
   streaming,
@@ -152,61 +206,17 @@ export function ChatMarkdown({
   if (streaming) return <pre className="chat-stream">{text}</pre>;
   return (
     <div className="chat-markdown">
-      <ReactMarkdown
-        skipHtml
-        remarkPlugins={[remarkGfm, remarkMath]}
-        rehypePlugins={[[rehypeKatex, { trust: false, strict: 'warn' }]]}
-        urlTransform={safeChatURL}
-        components={{
-          a: ({ href, children }) =>
-            href ? (
-              <a
-                href={href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onLink?.(href);
-                }}
-              >
-                {children}
-              </a>
-            ) : (
-              <span>{children}</span>
-            ),
-          img: ({ alt }) => (
-            <span className="chat-media">图片：{alt || '外部图片'}（外部图片未自动加载）</span>
-          ),
-          pre: ({ children }) => <>{children}</>,
-          code: ({ className, children }) =>
-            className || String(children).includes('\n') ? (
-              <Code
-                language={className?.replace('language-', '') ?? ''}
-                text={String(children).replace(/\n$/, '')}
-              />
-            ) : (
-              <code>{children}</code>
-            ),
-          table: ({ children }) => (
-            <div className="chat-table">
-              <button
-                onClick={(e) => {
-                  const table = e.currentTarget.parentElement?.querySelector('table');
-                  if (table)
-                    void navigator.clipboard.writeText(
-                      [...table.rows]
-                        .map((r) => [...r.cells].map((c) => c.innerText).join('\t'))
-                        .join('\n'),
-                    );
-                }}
-              >
-                复制表格
-              </button>
-              <table>{children}</table>
-            </div>
-          ),
-        }}
-      >
-        {text}
-      </ReactMarkdown>
+      <OpenLinkContext.Provider value={onLink}>
+        <ReactMarkdown
+          skipHtml
+          remarkPlugins={[remarkGfm, remarkMath]}
+          rehypePlugins={[[rehypeKatex, { trust: false, strict: 'warn' }]]}
+          urlTransform={safeChatURL}
+          components={markdownComponents}
+        >
+          {text}
+        </ReactMarkdown>
+      </OpenLinkContext.Provider>
     </div>
   );
 }

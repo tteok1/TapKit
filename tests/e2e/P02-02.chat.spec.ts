@@ -1,3 +1,4 @@
+import { openSessionFixture } from './session-fixture';
 import {
   test,
   expect,
@@ -52,7 +53,7 @@ async function launch() {
   expect(fixture, 'P02-02 requires the explicit test build with a marked isolated profile').toBe(
     true,
   );
-  await page.keyboard.press('Control+n');
+  await openSessionFixture(page);
   await expect(page.locator('.chat-messages')).toBeVisible();
   await expect(page.getByLabel('输入草稿')).toBeEnabled();
   return page;
@@ -256,7 +257,7 @@ test('P02-02 T05 IME and Shift+Enter keep draft; queue editing/cancellation, ses
   await expect(page.locator('.chat-queue')).toContainText('编辑后的排队问题');
   await page.locator('.chat-queue').getByRole('button', { name: '取消', exact: true }).click();
   await expect(page.locator('.chat-queue')).not.toBeAttached();
-  await page.keyboard.press('Control+n');
+  await openSessionFixture(page);
   expect((await snapshot(page, sid)).run?.status).toBe('running');
   const before = await snapshot(page, sid);
   await command(page, 'runs.cancel', { runId: before.run!.id });
@@ -290,7 +291,10 @@ test('P02-02 T05 long paste, plain managed attachment, unsupported original, ove
   await page.getByRole('button', { name: '转为文本附件', exact: true }).click();
   await expect(page.locator('.chat-materials')).toContainText('粘贴内容.txt');
   await expect(page.getByLabel('输入草稿')).toHaveValue('');
-  await page.getByRole('button', { name: '预览', exact: true }).click();
+  await page
+    .locator('.composer-attachment')
+    .getByRole('button', { name: '粘贴内容.txt', exact: true })
+    .click();
   let preview = page.getByRole('region', { name: '文件预览', exact: true });
   const closePreview = async () => {
     await preview.getByRole('button', { name: '关闭预览', exact: true }).click();
@@ -317,7 +321,7 @@ test('P02-02 T05 long paste, plain managed attachment, unsupported original, ove
   });
   await expect(page.locator('.chat-materials')).toContainText('fixture.docx');
   await expect(page.getByRole('button', { name: '发送', exact: true })).toBeDisabled();
-  await page.getByRole('button', { name: '仅保存原件继续', exact: true }).click();
+  await page.getByRole('button', { name: '移除附件 fixture.docx', exact: true }).click();
   await expect(page.locator('.chat-materials')).not.toContainText('fixture.docx');
   const excessive = '中'.repeat(100001);
   await page.getByLabel('输入草稿').fill(excessive);
@@ -340,7 +344,10 @@ test('P02-02 T05 long paste, plain managed attachment, unsupported original, ove
     .click();
   await expect(page.getByLabel('输入草稿')).toHaveValue(excessive);
   await expect(page.locator('.chat-materials')).toContainText('粘贴内容.txt');
-  await page.getByRole('button', { name: '预览', exact: true }).click();
+  await page
+    .locator('.composer-attachment')
+    .getByRole('button', { name: '粘贴内容.txt', exact: true })
+    .click();
   preview = page.getByRole('region', { name: '文件预览', exact: true });
   await expect(preview.locator('.viewer-source pre')).toHaveText('长'.repeat(20001));
   await closePreview();

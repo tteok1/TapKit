@@ -64,6 +64,7 @@ type Session = {
   updated_at: number;
   tags_json: string;
   note: string;
+  sidebar_section_id?: string | null;
 };
 type Message = {
   id: string;
@@ -157,6 +158,16 @@ export class HistoryService {
       revision: s.revision,
       branchId: s.active_branch_id,
       projectId: s.project_id,
+      sectionId:
+        s.sidebar_section_id === undefined
+          ? ((
+              this.store.db
+                .prepare(
+                  "SELECT section_id FROM sidebar_items WHERE profile_id=? AND entity_type='session' AND entity_id=?",
+                )
+                .get(this.store.profileId, s.id) as { section_id: string | null } | undefined
+            )?.section_id ?? null)
+          : s.sidebar_section_id,
       pinned: s.pinned_at !== null,
       unread: s.unread_event_seq > 0,
       running: this.running(s.id),
@@ -260,13 +271,19 @@ export class HistoryService {
       clauses.push('s.mode=?');
       args.push(p.mode);
     }
-    if (p.sectionId) {
+    if (p.sectionId === null) clauses.push('i.section_id IS NULL');
+    else if (p.sectionId) {
       this.section(p.sectionId);
       clauses.push('i.section_id=?');
       args.push(p.sectionId);
     }
     if (p.pinned !== undefined)
       clauses.push(p.pinned ? 's.pinned_at IS NOT NULL' : 's.pinned_at IS NULL');
+    if (p.query) {
+      clauses.push('instr(lower(s.title),lower(?))>0');
+      args.push(p.query);
+    }
+    const order = p.sort === 'manual' ? 'coalesce(i.sort_key,0),' : '';
     const signature = createHash('sha256')
       .update(JSON.stringify({ ...p, cursor: undefined }))
       .digest('hex');
@@ -283,7 +300,7 @@ export class HistoryService {
     }
     const rows = this.store.db
       .prepare(
-        `SELECT s.* FROM sessions s LEFT JOIN sidebar_items i ON i.entity_id=s.id AND i.entity_type='session' AND i.profile_id=s.profile_id WHERE ${clauses.join(' AND ')} ORDER BY s.pinned_at DESC,coalesce(i.sort_key,0),s.last_activity_at DESC,s.id DESC LIMIT ? OFFSET ?`,
+        `SELECT s.*,i.section_id AS sidebar_section_id FROM sessions s LEFT JOIN sidebar_items i ON i.entity_id=s.id AND i.entity_type='session' AND i.profile_id=s.profile_id WHERE ${clauses.join(' AND ')} ORDER BY (s.pinned_at IS NOT NULL) DESC,${order}s.last_activity_at DESC,s.id DESC LIMIT ? OFFSET ?`,
       )
       .all(...args, p.limit + 1, offset) as Session[];
     return SessionPageSchema.parse({
@@ -1151,12 +1168,43 @@ export class HistoryService {
             for (const id of p.sectionIds) this.section(id);
           }
           return this.store.receipt(r, () => {
-            for (const [n, e] of p.ordered.entries())
-              this.store.db
+            // A visible page is only a subset of a group. Replace its occupied
+            // slots within the complete order so unseen rows don't jump ahead
+            // when older items still have the default sort key.
+            const groups = new Map<string | null, string[]>();
+            for (const e of p.ordered.filter((entry) => entry.type === 'session')) {
+              const row = this.store.db
                 .prepare(
-                  'INSERT INTO sidebar_items(profile_id,entity_type,entity_id,section_id,sort_key) VALUES(?,?,?,?,?) ON CONFLICT(profile_id,entity_type,entity_id) DO UPDATE SET sort_key=excluded.sort_key',
+                  "SELECT section_id FROM sidebar_items WHERE profile_id=? AND entity_type='session' AND entity_id=?",
                 )
-                .run(this.store.profileId, e.type, e.id, p.sectionId, n);
+                .get(this.store.profileId, e.id) as { section_id: string | null } | undefined;
+              const group = row?.section_id ?? null;
+              groups.set(group, [...(groups.get(group) ?? []), e.id]);
+            }
+            for (const [group, requested] of groups) {
+              const existing = this.store.db
+                .prepare(
+                  "SELECT s.id FROM sessions s LEFT JOIN sidebar_items i ON i.entity_id=s.id AND i.entity_type='session' AND i.profile_id=s.profile_id WHERE s.profile_id=? AND i.section_id IS ? ORDER BY coalesce(i.sort_key,0),s.last_activity_at DESC,s.id DESC",
+                )
+                .all(this.store.profileId, group) as { id: string }[];
+              const selected = new Set(requested);
+              let index = 0;
+              const ordered = existing.map((row) =>
+                selected.has(row.id) ? requested[index++]! : row.id,
+              );
+              const write = this.store.db.prepare(
+                "INSERT INTO sidebar_items(profile_id,entity_type,entity_id,section_id,sort_key) VALUES(?,'session',?,?,?) ON CONFLICT(profile_id,entity_type,entity_id) DO UPDATE SET sort_key=excluded.sort_key",
+              );
+              for (const [n, id] of ordered.entries())
+                write.run(this.store.profileId, id, group, n);
+            }
+            for (const [n, e] of p.ordered.entries())
+              if (e.type === 'project')
+                this.store.db
+                  .prepare(
+                    'INSERT INTO sidebar_items(profile_id,entity_type,entity_id,section_id,sort_key) VALUES(?,?,?,?,?) ON CONFLICT(profile_id,entity_type,entity_id) DO UPDATE SET sort_key=excluded.sort_key',
+                  )
+                  .run(this.store.profileId, e.type, e.id, p.sectionId, n);
             for (const [n, id] of (p.sectionIds ?? []).entries())
               this.store.db
                 .prepare('UPDATE sidebar_sections SET sort_key=?,revision=revision+1 WHERE id=?')

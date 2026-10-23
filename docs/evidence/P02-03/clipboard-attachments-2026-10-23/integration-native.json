@@ -1,0 +1,5 @@
+{
+  "command": "pnpm test:integration P02-02 P03-01",
+  "exitCode": 0,
+  "seconds": 83.94
+}

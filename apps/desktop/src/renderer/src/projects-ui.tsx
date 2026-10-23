@@ -89,22 +89,24 @@ export function ProjectsList({ onCreate }: { onCreate: () => void }) {
           <li key={p.id}>
             <span style={{ color: p.color }}>●</span> <Link to={'/projects/' + p.id}>{p.name}</Link>
             <p>{p.description}</p>
-            <button
-              onClick={() =>
-                void historyCommand(
-                  'projects.pin',
-                  { projectId: p.id, pinned: !p.pinned },
-                  p.revision,
-                )
-                  .then(() => load())
-                  .catch(() => setError(t.conflict))
-              }
-            >
-              {p.pinned ? t.unpin : t.pin}
-            </button>
-            <button onClick={() => void window.tapkit.openEntity({ type: 'project', id: p.id })}>
-              {t.newWindow}
-            </button>
+            <span className="action-group">
+              <button
+                onClick={() =>
+                  void historyCommand(
+                    'projects.pin',
+                    { projectId: p.id, pinned: !p.pinned },
+                    p.revision,
+                  )
+                    .then(() => load())
+                    .catch(() => setError(t.conflict))
+                }
+              >
+                {p.pinned ? t.unpin : t.pin}
+              </button>
+              <button onClick={() => void window.tapkit.openEntity({ type: 'project', id: p.id })}>
+                {t.newWindow}
+              </button>
+            </span>
           </li>
         ))}
       </ul>
@@ -778,29 +780,31 @@ export function ProjectPage({ projectId }: { projectId: string }) {
               </label>
             </>
           )}
-          <button
-            disabled={busy}
-            onClick={() =>
-              void act(async () => {
-                await projectCommand(
-                  removeId ? 'projects.removeMaterial' : 'projects.trash',
-                  removeId
-                    ? { projectId, fileId: removeId }
-                    : {
-                        projectId,
-                        sessionDisposition: trashSessions ? 'trash' : 'detach',
-                        trashExclusiveFiles: trashFiles,
-                      },
-                  project.revision,
-                );
-                setImpact(undefined);
-                if (!removeId) navigate('/projects');
-              }, !!removeId)
-            }
-          >
-            {removeId ? t.confirmRemove : t.confirmDelete}
-          </button>
-          <button onClick={() => setImpact(undefined)}>{t.cancel}</button>
+          <span className="action-group">
+            <button
+              disabled={busy}
+              onClick={() =>
+                void act(async () => {
+                  await projectCommand(
+                    removeId ? 'projects.removeMaterial' : 'projects.trash',
+                    removeId
+                      ? { projectId, fileId: removeId }
+                      : {
+                          projectId,
+                          sessionDisposition: trashSessions ? 'trash' : 'detach',
+                          trashExclusiveFiles: trashFiles,
+                        },
+                    project.revision,
+                  );
+                  setImpact(undefined);
+                  if (!removeId) navigate('/projects');
+                }, !!removeId)
+              }
+            >
+              {removeId ? t.confirmRemove : t.confirmDelete}
+            </button>
+            <button onClick={() => setImpact(undefined)}>{t.cancel}</button>
+          </span>
         </div>
       )}
     </section>
@@ -842,14 +846,16 @@ function MaterialRow({
           {t.pending}：{m.pendingStatus}
         </p>
       )}
-      <button onClick={onOpen}>{t.open}</button>
-      <button disabled={busy} onClick={onReplace}>
-        {t.replace}
-      </button>
-      <button onClick={onHistory}>{t.history}</button>
-      <button disabled={busy} onClick={onRemove}>
-        {t.remove}
-      </button>
+      <span className="action-group">
+        <button onClick={onOpen}>{t.open}</button>
+        <button disabled={busy} onClick={onReplace}>
+          {t.replace}
+        </button>
+        <button onClick={onHistory}>{t.history}</button>
+        <button disabled={busy} onClick={onRemove}>
+          {t.remove}
+        </button>
+      </span>
       <label>
         {t.folder}
         <select value={folder} onChange={(e) => setFolder(e.target.value)}>
@@ -933,12 +939,17 @@ export function ProjectScopeBar({ sessionId, disabled }: { sessionId: string; di
         />
         {t.projectOnly}
       </label>
-      <button disabled={disabled} onClick={() => setScope({ ...scope, selectedVersionIds: null })}>
-        {t.all}
-      </button>
-      <button disabled={disabled} onClick={() => setScope({ ...scope, selectedVersionIds: [] })}>
-        {t.none}
-      </button>
+      <span className="action-group">
+        <button
+          disabled={disabled}
+          onClick={() => setScope({ ...scope, selectedVersionIds: null })}
+        >
+          {t.all}
+        </button>
+        <button disabled={disabled} onClick={() => setScope({ ...scope, selectedVersionIds: [] })}>
+          {t.none}
+        </button>
+      </span>
       {materials.map((m) => (
         <label key={m.file.id}>
           <input
@@ -964,33 +975,35 @@ export function ProjectScopeBar({ sessionId, disabled }: { sessionId: string; di
           {m.file.name} · {t.states[m.state]}
         </label>
       ))}
-      <button
-        disabled={disabled}
-        onClick={() =>
-          void projectCommand('projects.sessionScope', { sessionId, scope }, revision)
-            .then((r) => {
-              if ('scope' in r) {
-                setScope(r.scope);
-                setRevision(r.revision);
-                notify();
-                setError('');
-              }
-            })
-            .catch(() => setError(t.conflict))
-        }
-      >
-        {t.selected}
-      </button>
-      <button
-        disabled={disabled}
-        onClick={() =>
-          void readScope()
-            .then(applyScope)
-            .catch(() => setError(t.failed))
-        }
-      >
-        {t.reload}
-      </button>
+      <span className="action-group">
+        <button
+          disabled={disabled}
+          onClick={() =>
+            void projectCommand('projects.sessionScope', { sessionId, scope }, revision)
+              .then((r) => {
+                if ('scope' in r) {
+                  setScope(r.scope);
+                  setRevision(r.revision);
+                  notify();
+                  setError('');
+                }
+              })
+              .catch(() => setError(t.conflict))
+          }
+        >
+          {t.selected}
+        </button>
+        <button
+          disabled={disabled}
+          onClick={() =>
+            void readScope()
+              .then(applyScope)
+              .catch(() => setError(t.failed))
+          }
+        >
+          {t.reload}
+        </button>
+      </span>
       {error && <p role="alert">{error}</p>}
     </details>
   );

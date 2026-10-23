@@ -1,0 +1,11 @@
+{
+  "check": {
+    "command": "pnpm check",
+    "exitCode": 1,
+    "elapsedSeconds": 12.39
+  },
+  "diff-check": {
+    "command": "git diff --check",
+    "exitCode": 0
+  }
+}

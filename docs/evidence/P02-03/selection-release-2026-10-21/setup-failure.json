@@ -1,0 +1,11 @@
+{
+  "command": [
+    "test:e2e",
+    "tests/e2e/P02-03.selection-release.spec.ts",
+    "--grep",
+    "P02-03 selection release"
+  ],
+  "exitCode": 1,
+  "elapsedSeconds": 127.11,
+  "historicalEvidenceRestored": true
+}

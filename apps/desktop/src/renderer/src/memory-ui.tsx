@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { ActionPopover } from './action-popover';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from '@tapkit/ui';
 import {
   BootstrapViewSchema,
@@ -166,20 +167,22 @@ export function MemoryManager() {
             required
           />
         </label>
-        <button disabled={busy || !scopeId} type="submit">
-          {editing ? t.save : t.add}
-        </button>
-        {editing && (
-          <button
-            type="button"
-            onClick={() => {
-              setEditing(undefined);
-              setValue('');
-            }}
-          >
-            {t.close}
+        <span className="action-group">
+          <button disabled={busy || !scopeId} type="submit">
+            {editing ? t.save : t.add}
           </button>
-        )}
+          {editing && (
+            <button
+              type="button"
+              onClick={() => {
+                setEditing(undefined);
+                setValue('');
+              }}
+            >
+              {t.close}
+            </button>
+          )}
+        </span>
       </form>
       {!rows.length && <p>{t.empty}</p>}
       {rows.map((m) => (
@@ -191,23 +194,25 @@ export function MemoryManager() {
             {new Date(m.updatedAt).toLocaleString('zh-CN')}
           </p>
           {m.sensitive && <p>{t.sensitive}</p>}
-          <button
-            disabled={busy}
-            onClick={() => {
-              setEditing(m);
-              setValue(m.value);
-            }}
-          >
-            {t.edit}
-          </button>
-          <button
-            disabled={busy}
-            onClick={() =>
-              void action(() => memoryCommand('memory.delete', { memoryId: m.id }, m.revision))
-            }
-          >
-            {t.delete}
-          </button>
+          <span className="action-group">
+            <button
+              disabled={busy}
+              onClick={() => {
+                setEditing(m);
+                setValue(m.value);
+              }}
+            >
+              {t.edit}
+            </button>
+            <button
+              disabled={busy}
+              onClick={() =>
+                void action(() => memoryCommand('memory.delete', { memoryId: m.id }, m.revision))
+              }
+            >
+              {t.delete}
+            </button>
+          </span>
           {m.sources.map((s) => (
             <button
               key={s.messageId}
@@ -237,29 +242,33 @@ export function MemoryManager() {
           <button onClick={() => setSource('')}>{t.close}</button>
         </div>
       )}
-      <button disabled={busy} onClick={() => setClear('scope')}>
-        {t.clear}
-      </button>
-      <button disabled={busy} onClick={() => setClear('all')}>
-        {t.clearAll}
-      </button>
+      <span className="action-group">
+        <button disabled={busy} onClick={() => setClear('scope')}>
+          {t.clear}
+        </button>
+        <button disabled={busy} onClick={() => setClear('all')}>
+          {t.clearAll}
+        </button>
+      </span>
       {clear && (
         <div role="dialog" aria-label={t.confirmClear}>
           <p>{t.clearHint}</p>
-          <button
-            disabled={busy}
-            onClick={() =>
-              void action(async () => {
-                const r = await memoryCommand('memory.clear', clear === 'scope' ? { scope } : {});
-                setClear(undefined);
-                setUndo(undefined);
-                return r;
-              })
-            }
-          >
-            {t.confirmClear}
-          </button>
-          <button onClick={() => setClear(undefined)}>{t.close}</button>
+          <span className="action-group">
+            <button
+              disabled={busy}
+              onClick={() =>
+                void action(async () => {
+                  const r = await memoryCommand('memory.clear', clear === 'scope' ? { scope } : {});
+                  setClear(undefined);
+                  setUndo(undefined);
+                  return r;
+                })
+              }
+            >
+              {t.confirmClear}
+            </button>
+            <button onClick={() => setClear(undefined)}>{t.close}</button>
+          </span>
         </div>
       )}
       {undo && (
@@ -280,6 +289,7 @@ export function MemoryManager() {
   );
 }
 export function MemoryPolicy({ sessionId, eventSeq }: { sessionId: string; eventSeq: number }) {
+  const dirty = useRef(false);
   const [open, setOpen] = useState(false),
     [policy, setPolicy] = useState<z.infer<typeof MemoryPolicySchema>>(),
     [error, setError] = useState(''),
@@ -293,8 +303,11 @@ export function MemoryPolicy({ sessionId, eventSeq }: { sessionId: string; event
         if (alive) {
           const p = MemoryPolicySchema.parse(data);
           setPolicy(p);
-          setMemory(p.memoryEnabled);
-          setHistory(p.historyEnabled);
+          // Background title/workspace updates must not replace unsaved checkbox edits.
+          if (!dirty.current) {
+            setMemory(p.memoryEnabled);
+            setHistory(p.historyEnabled);
+          }
         }
       })
       .catch((e) => {
@@ -327,7 +340,11 @@ export function MemoryPolicy({ sessionId, eventSeq }: { sessionId: string; event
                   aria-label={t.enabled}
                   type="checkbox"
                   checked={memory}
-                  onChange={(e) => setMemory(e.target.checked)}
+                  disabled={busy}
+                  onChange={(e) => {
+                    dirty.current = true;
+                    setMemory(e.target.checked);
+                  }}
                 />
                 {t.enabled}
               </label>
@@ -336,7 +353,11 @@ export function MemoryPolicy({ sessionId, eventSeq }: { sessionId: string; event
                   aria-label={t.history}
                   type="checkbox"
                   checked={history}
-                  onChange={(e) => setHistory(e.target.checked)}
+                  disabled={busy}
+                  onChange={(e) => {
+                    dirty.current = true;
+                    setHistory(e.target.checked);
+                  }}
                 />
                 {t.history}
               </label>
@@ -350,7 +371,13 @@ export function MemoryPolicy({ sessionId, eventSeq }: { sessionId: string; event
                     { sessionId, memoryEnabled: memory, historyEnabled: history },
                     policy.revision,
                   )
-                    .then((r) => setPolicy(MemoryPolicySchema.parse(r)))
+                    .then((r) => {
+                      dirty.current = false;
+                      const saved = MemoryPolicySchema.parse(r);
+                      setPolicy(saved);
+                      setMemory(saved.memoryEnabled);
+                      setHistory(saved.historyEnabled);
+                    })
                     .catch((e) => setError(errorText(e)))
                     .finally(() => setBusy(false));
                 }}
@@ -432,15 +459,15 @@ export function MemoryMessage({
           </p>
         ))}
       {role === 'assistant' && (
-        <details
-          onToggle={(e) => {
-            if (e.currentTarget.open)
-              void memoryCommand('memory.used', { sessionId, messageId })
-                .then((r) => setUses(MemoryUseSchema.parse(r)))
-                .catch((e) => setError(errorText(e)));
+        <ActionPopover
+          label={t.uses}
+          icon="memory"
+          onOpen={() => {
+            void memoryCommand('memory.used', { sessionId, messageId })
+              .then((r) => setUses(MemoryUseSchema.parse(r)))
+              .catch((e) => setError(errorText(e)));
           }}
         >
-          <summary>{t.uses}</summary>
           {uses && !uses.memoryUses.length && !uses.historyUses.length && <p>{t.noUses}</p>}
           {uses?.memoryUses.map((m) => (
             <p key={m.id}>
@@ -454,7 +481,7 @@ export function MemoryMessage({
               <Link to={'/sessions/' + h.sessionId + '?message=' + h.messageId}>{t.source}</Link>
             </p>
           ))}
-        </details>
+        </ActionPopover>
       )}
       {error && <p role="alert">{error}</p>}
     </div>

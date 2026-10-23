@@ -58,12 +58,14 @@ export function MemoryDeletePreview({
         />
         {t.keepExplicit}
       </label>
-      <button disabled={busy || !impact} onClick={() => onConfirm(keep)}>
-        {t.deleteSessionConfirm}
-      </button>
-      <button disabled={busy} onClick={onClose}>
-        {t.close}
-      </button>
+      <span className="action-group">
+        <button disabled={busy || !impact} onClick={() => onConfirm(keep)}>
+          {t.deleteSessionConfirm}
+        </button>
+        <button disabled={busy} onClick={onClose}>
+          {t.close}
+        </button>
+      </span>
     </div>
   );
 }

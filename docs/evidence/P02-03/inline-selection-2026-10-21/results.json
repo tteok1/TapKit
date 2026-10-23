@@ -1,0 +1,75 @@
+{
+  "branch": "ui_fix",
+  "baseCommit": "394418f19575ac6039c98e872e2312a3b62c0b7d",
+  "status": "local_ui_verified",
+  "electron": {
+    "finalPassed": 6,
+    "finalFailed": 0,
+    "exitCode": 0,
+    "receipt": "electron-complete.json",
+    "priorFailuresRetained": true
+  },
+  "checks": {
+    "check": {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "elapsedSeconds": 18.16
+    },
+    "docs:check": {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "elapsedSeconds": 0.41
+    },
+    "diff-check": {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  },
+  "sourceSha256": {
+    "apps/desktop/src/renderer/src/action-popover.tsx": "d10eeb513842e07f2d0d6e1d618c438a75a64f0e8faad1dc68a876f0869d7ff7",
+    "apps/desktop/src/renderer/src/chat-surface.tsx": "586f504d4e01b206657cf01683f6fa487441f3c33995865749dd2d080831ca89",
+    "apps/desktop/src/renderer/src/design-system.css": "9357f399669a4797ef94c97ddbb0b7641468deaf4411060807af1fa60e1d6588",
+    "apps/desktop/src/renderer/src/desktop-shell.tsx": "fef33c9b56b3bef3da26dcb56eebb502e765353b40d8a855aa09f779232a2f13",
+    "apps/desktop/src/renderer/src/history-ui.tsx": "0d4baec30dc53e2237946c94264e3537f3ba1f28675ebc4107d560482b6d42a5",
+    "apps/desktop/src/renderer/src/memory-ui.tsx": "b19b3099348b48dc91e540d891c2c0cfc0fb1458e9f3b81ee58247c1667747c1",
+    "apps/desktop/src/renderer/src/message-history.tsx": "a5eafceff67dd9be86aa604216f5e9a9242fb373107b7c384284a66f131a98f2",
+    "apps/desktop/src/renderer/src/selection-toolbar.tsx": "a0e583835987fab6f453811fdeb37afc09d6d10f1a8012f71df26fd0ac3f3681",
+    "apps/desktop/src/renderer/src/ui-icon.tsx": "e6a549eaa5abf47d788f621898b4a5bb9dbd867fde6c18c90ed1d3ccb5ca8f21",
+    "packages/ui/src/chat-markdown.tsx": "150ecd716f8221b765ca4f7339fa571658f02d07ec2499c3f2a6dca02b812233",
+    "tests/e2e/P02-03.chat-simplify.spec.ts": "2139b5b923a790fb1cc6cf4d8d41152fef1fa7f017a9d72455cba53b03352e2d",
+    "tests/e2e/P02-03.history.spec.ts": "58d00147403da3879d2b2e2771a6b4094461535d396980b7958476a5965f57a5",
+    "tests/e2e/P02-03.inline-selection.spec.ts": "3ae8d20cf0f3bdf93cc6b27f2acf698f77181b9a4918daadc121a7c93f958967",
+    "tests/e2e/P03-02.preview.spec.ts": "10d465054877dbad7f8d2814ee60e9af910d99d2629b7c2bc5e731e24a23bc8e",
+    "tests/e2e/P04-03.memory.spec.ts": "a1a4cbafdfafd74b222e18efd9e937951e066227b16dfe86ad4d3679aa43fdd0"
+  },
+  "production": {
+    "fixtureAbsent": true,
+    "coreSha256": "d3a8c3a442e26ee7064e3133cf5cd7e6f534e2798cbb84bfccea6439649c041c",
+    "hostSha256": "db330ae5b86aa0194d82cec7fd4cde3ab31702873389ff0d8475b071d3fbbf7a",
+    "coreHostUnchanged": true,
+    "rendererAssetsSha256": {
+      "apps/desktop/out/renderer/assets/index-C9kvCWML.js": "ab17932684856760229e88cf7c3c6c4b03a6f9cf734849768301d00cd6bb6efd",
+      "apps/desktop/out/renderer/assets/index-CGxdk6vh.js": "d5282e9fdbf6471d13e43a1e42d6c41481eb5946c3a2e4025c9618f328757ffa",
+      "apps/desktop/out/renderer/assets/index-CXfIyklw.css": "301ad5dbe45c65a1b4a643147bc6ec820d107ae6699e837b175b91833706dd64"
+    }
+  },
+  "visualReview": {
+    "result": "passed",
+    "initialBatch": [
+      "selection-1440-100.png",
+      "selection-960-100.png",
+      "selection-1440-200.png"
+    ],
+    "finalRecheck": [
+      "selection-1440-100.png",
+      "selection-960-200.png"
+    ]
+  },
+  "historicalEvidenceRestored": true,
+  "realProviderCalls": 0,
+  "originalProfileTouched": false,
+  "originalWindowReloaded": false,
+  "taskGateStatesPromoted": false,
+  "committed": false,
+  "pushed": false
+}

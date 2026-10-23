@@ -1,0 +1,11 @@
+{
+  "operation": "readExecutionCapabilities",
+  "durationMs": 16913,
+  "statuses": {
+    "nativeExecution": "available",
+    "officeRender": "available",
+    "terminal": "available"
+  },
+  "readOnly": true,
+  "realProviderCalls": 0
+}

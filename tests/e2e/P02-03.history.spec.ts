@@ -1,3 +1,4 @@
+import { openSessionFixture } from './session-fixture';
 import {
   test,
   expect,
@@ -66,7 +67,7 @@ const snap = async (p: Page, id: string) =>
 const details = async (p: Page, id: string) =>
   (await command(p, 'sessions.get', { sessionId: id })) as SessionDetails;
 async function newSession(page: Page) {
-  await page.keyboard.press('Control+n');
+  await openSessionFixture(page);
   await expect(page.locator('.chat-surface')).toHaveAttribute('data-session-id', /[0-9a-f-]{36}/);
   return (await page.locator('.chat-surface').getAttribute('data-session-id'))!;
 }
@@ -99,7 +100,6 @@ test('P02-03 T13 selection source is identified as original text and remains rea
   await send(p, session, selected);
   const source = (await snap(p, session)).messages.at(-1)!;
   const article = p.locator('#message-' + source.id);
-  await article.getByText('选区操作', { exact: true }).click();
   await article.locator('.chat-markdown').evaluate((body, text) => {
     const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT);
     for (let node = walker.nextNode(); node; node = walker.nextNode()) {
@@ -115,16 +115,20 @@ test('P02-03 T13 selection source is identified as original text and remains rea
     }
     throw new Error('SELECTION_NOT_FOUND');
   }, selected);
-  await article.getByRole('button', { name: '翻译', exact: true }).click();
+  const toolbar = p.getByRole('toolbar', { name: '选区操作', exact: true });
+  await expect(toolbar).toBeVisible();
+  await toolbar.getByRole('button', { name: '翻译', exact: true }).click();
   await expect.poll(async () => (await snap(p, session)).run?.status).toBe('completed');
   const result = await snap(p, session);
   expect(result.run?.errorCode).toBeNull();
   const answer = p.locator('#message-' + result.messages.at(-1)!.id);
   await expect(answer.locator('.chat-markdown')).not.toContainText('[[evidence:');
   await expect(p.locator('.chat-surface')).not.toContainText('文件选择无效');
-  await answer.getByText('所选原文（1）', { exact: true }).click();
+  await answer.getByRole('button', { name: '所选原文（1）', exact: true }).click();
   for (const width of [1440, 1024]) {
     await p.setViewportSize({ width, height: 900 });
+    if (!(await answer.getByRole('button', { name: '所选原文 1', exact: true }).isVisible()))
+      await answer.getByRole('button', { name: '所选原文（1）', exact: true }).click();
     await answer.getByRole('button', { name: '所选原文 1', exact: true }).click();
     const preview = p.getByRole('dialog', { name: '所选原文', exact: true });
     await expect(preview.locator('pre')).toHaveText(selected);
@@ -195,6 +199,11 @@ test('P02-03 T06 two turns, early edit, answer candidates, feedback and restart 
   await p.screenshot({ path: 'docs/evidence/P02-03/branches-and-feedback.png' });
   await app.close();
   p = await launch();
+  await expect(p.getByRole('heading', { name: '你的想法，从这里开始', exact: true })).toBeVisible();
+  await p
+    .locator('.sidebar')
+    .locator('[data-session-id="' + id + '"] .history-link')
+    .click();
   await expect(p.getByLabel('输入草稿')).toHaveValue('重启后保留的草稿');
   expect((await snap(p, id)).branchId).toBe(original.branchId);
 });
@@ -205,7 +214,7 @@ test('P02-03 T10 archived full-text hit loads the exact early message across pag
   const target = (await snap(p, id)).messages[0]!.id;
   for (let i = 0; i < 51; i++) await send(p, id, '后续普通问题' + i);
   await command(p, 'sessions.archive', { sessionIds: [id] });
-  await p.keyboard.press('Control+n');
+  await openSessionFixture(p);
   await p.keyboard.press('Control+k');
   await p.getByLabel('搜索标题与正文').fill('归档早期定位标记');
   await p.getByLabel('结果类型').selectOption('message');
@@ -216,6 +225,10 @@ test('P02-03 T10 archived full-text hit loads the exact early message across pag
   await expect(p.locator('#message-' + target)).toBeVisible();
   await expect(p.locator('#message-' + target)).toHaveClass(/located-message/);
   await p.screenshot({ path: 'docs/evidence/P02-03/archived-search-location.png' });
+  await p
+    .locator('#message-' + target)
+    .getByRole('button', { name: '更多消息操作', exact: true })
+    .click();
   await p
     .locator('#message-' + target)
     .getByRole('button', { name: '删除消息', exact: true })
@@ -273,12 +286,16 @@ test('P02-03 T20 grouping, bounded list pages, batch trash and restore preserve 
 });
 test('P02-03 T10 temporary chat clears on leave and restart, without persistent body or draft', async () => {
   let p = await launch();
-  await p.getByRole('button', { name: '临时聊天', exact: true }).click();
+  await p.getByRole('button', { name: '新建任务', exact: true }).click();
+  await p.getByRole('radio', { name: '临时聊天', exact: true }).click();
+  await p.getByLabel('输入草稿').fill('临时唯一正文标记');
+  await p.getByRole('button', { name: '发送', exact: true }).click();
+  await expect(p.locator('.chat-surface')).toHaveAttribute('data-session-id', /[0-9a-f-]{36}/);
   await expect(
     p.locator('.session-tools').getByText(/正文、草稿、附件和协议状态只在内存中/),
   ).toBeVisible();
   const id = (await p.locator('.chat-surface').getAttribute('data-session-id'))!;
-  await send(p, id, '临时唯一正文标记');
+  await expect.poll(async () => (await snap(p, id)).run?.status).toBe('completed');
   await p.getByLabel('输入草稿').fill('临时唯一草稿标记');
   await p.keyboard.press('Control+k');
   await expect(p.locator('.search-view')).not.toBeAttached();

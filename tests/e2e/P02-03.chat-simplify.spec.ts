@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-const evidence = resolve('docs/evidence/P02-03/chat-simplify-2026-10-21');
+const evidence = resolve('docs/evidence/P02-03/inline-selection-2026-10-21');
 const newId = () => {
   const id = randomUUID();
   return id.slice(0, 14) + '7' + id.slice(15);
@@ -20,7 +20,7 @@ for (const [width, height, zoom] of [
   [1440, 900, 2],
   [960, 640, 2],
 ] as const) {
-  test(`P02-03 T22 simplified chat and one sidebar scroller ${width}x${height} at ${zoom * 100} percent`, async () => {
+  test(`P02-03 T22 compact chat, fixed footer and continuous scroller ${width}x${height} at ${zoom * 100} percent`, async () => {
     test.setTimeout(180_000);
     await mkdir('.test-data', { recursive: true });
     await mkdir(evidence, { recursive: true });
@@ -46,6 +46,8 @@ for (const [width, height, zoom] of [
     );
     await page.getByRole('link', { name: '设置', exact: true }).click();
     await page.getByLabel('缩放', { exact: true }).selectOption(String(zoom));
+    if (width === 1440 && zoom === 2)
+      await page.getByLabel('主题', { exact: true }).selectOption('dark');
     await page.getByRole('button', { name: '保存设置', exact: true }).click();
     const title = '界面精简会话 0';
     const ids = await page.evaluate(
@@ -71,8 +73,10 @@ for (const [width, height, zoom] of [
       },
       { requests: Array.from({ length: 41 }, newId), snippetId: newId() },
     );
+    if (await page.getByRole('button', { name: '展开侧栏', exact: true }).count())
+      await page.getByRole('button', { name: '展开侧栏', exact: true }).click();
     const sidebar = page.getByRole('complementary', { name: '侧栏', exact: true });
-    await sidebar.getByTitle(title, { exact: true }).click();
+    await sidebar.locator(`[data-tooltip="${title}"]`).click();
     await expect(page.locator('.chat-surface')).toHaveAttribute('data-session-id', ids[0]!);
     await expect(page.locator('.workspace-title')).toHaveText(title);
     await expect(page.locator('.session-welcome')).toHaveCount(0);
@@ -88,10 +92,42 @@ for (const [width, height, zoom] of [
     await expect(composer.getByText('模式', { exact: true })).toHaveCount(0);
     await expect(composer.getByText('输入操作', { exact: true })).toHaveCount(0);
     await expect(composer.getByText('常用提示词', { exact: true })).toHaveCount(0);
-    await expect(composer.getByLabel('本轮模型')).toBeEnabled();
-    await expect(composer.getByRole('button', { name: '添加附件', exact: true })).toBeEnabled();
+    await expect(composer.getByRole('button', { name: '本轮模型', exact: true })).toBeEnabled();
+    const add = composer.getByRole('button', { name: '添加附件或引用资料', exact: true });
+    await add.click();
+    const additions = composer.getByRole('region', { name: '添加附件或引用资料', exact: true });
+    await expect(additions.getByRole('button', { name: '添加附件', exact: true })).toBeEnabled();
+    await expect(additions.getByRole('button', { name: '@ 引用资料', exact: true })).toBeEnabled();
+    const popoverBounds = await additions.boundingBox();
+    expect(popoverBounds!.x).toBeGreaterThanOrEqual(0);
+    expect(popoverBounds!.y).toBeGreaterThanOrEqual(0);
+    expect(popoverBounds!.x + popoverBounds!.width).toBeLessThanOrEqual(width + 1);
+    expect(popoverBounds!.y + popoverBounds!.height).toBeLessThanOrEqual(height + 1);
+    await page.keyboard.press('Escape');
+    await expect(additions).toBeHidden();
+    await composer.getByRole('button', { name: '本轮模型', exact: true }).click();
+    await composer
+      .getByRole('region', { name: '本轮模型', exact: true })
+      .getByRole('button', { name: /fixture-model/ })
+      .click();
+    await expect(composer.getByRole('button', { name: '本轮模型', exact: true })).toContainText(
+      'fixture-model',
+    );
+    if (await page.getByRole('button', { name: '展开侧栏', exact: true }).count())
+      await page.getByRole('button', { name: '展开侧栏', exact: true }).click();
+    const pin = sidebar.getByRole('button', { name: '置顶' + title, exact: true });
+    await pin.hover();
+    await expect(page.getByRole('tooltip', { name: '置顶聊天', exact: true })).toBeVisible();
+    await pin.click();
+    await expect(
+      sidebar.getByRole('button', { name: '取消置顶' + title, exact: true }),
+    ).toHaveAttribute('aria-pressed', 'true');
+    const footer = sidebar.locator('.sidebar-footer');
+    await expect(footer).toHaveText('');
+    const footerBefore = await footer.boundingBox();
+    const scroller = sidebar.locator('.sidebar-scroll');
 
-    await sidebar.evaluate((el) => {
+    await scroller.evaluate((el) => {
       el.scrollTop = 0;
     });
     const brandTop = await sidebar
@@ -100,11 +136,11 @@ for (const [width, height, zoom] of [
     const bounds = (await sidebar.boundingBox())!;
     await page.mouse.move(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
     await page.mouse.wheel(0, 500);
-    await expect.poll(() => sidebar.evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
+    await expect.poll(() => scroller.evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
     expect(
       await sidebar.locator('.sidebar-brand').evaluate((el) => el.getBoundingClientRect().top),
     ).toBeLessThan(brandTop);
-    const metrics = await sidebar.evaluate((el) => ({
+    const metrics = await scroller.evaluate((el) => ({
       scrollTop: el.scrollTop,
       clientHeight: el.clientHeight,
       scrollHeight: el.scrollHeight,
@@ -123,23 +159,34 @@ for (const [width, height, zoom] of [
     expect(metrics.nestedScrollers).toEqual([]);
     expect(metrics.historyScrollTop).toBe(0);
     expect(metrics.savedScroll).toBeGreaterThan(0);
-    await sidebar.getByRole('link', { name: '设置', exact: true }).scrollIntoViewIfNeeded();
+    expect(await footer.boundingBox()).toEqual(footerBefore);
+    await expect(footer.getByRole('link', { name: '个人资料与设置', exact: true })).toBeInViewport({
+      ratio: 0.99,
+    });
     await expect(sidebar.getByRole('link', { name: '设置', exact: true })).toBeInViewport({
       ratio: 0.99,
     });
-    await sidebar.evaluate((el) => {
+    await scroller.evaluate((el) => {
       el.scrollTop = 0;
-    });
-    await page.screenshot({
-      path: resolve(evidence, `chat-${width}x${height}-${zoom * 100}.png`),
-      animations: 'disabled',
     });
     await writeFile(
       resolve(evidence, `sidebar-${width}x${height}-${zoom * 100}.json`),
       JSON.stringify(metrics, null, 2) + '\n',
     );
 
+    if (zoom === 2) await page.getByRole('button', { name: '收起侧栏', exact: true }).click();
     const input = page.getByRole('textbox', { name: '输入草稿', exact: true });
+    const initial = await input.evaluate((el) => el.clientHeight);
+    await input.fill(Array.from({ length: 6 }, () => '输入框随内容增高').join('\n'));
+    expect(await input.evaluate((el) => el.clientHeight)).toBeGreaterThan(initial);
+    await input.fill(Array.from({ length: 80 }, () => '达到高度上限后滚动').join('\n'));
+    const capped = await input.evaluate((el) => ({
+      height: el.clientHeight,
+      max: parseFloat(getComputedStyle(el).maxHeight),
+      scroll: el.scrollHeight,
+    }));
+    expect(capped.height).toBeLessThanOrEqual(capped.max + 1);
+    expect(capped.scroll).toBeGreaterThan(capped.height);
     await input.fill('/retained');
     await composer.getByRole('button', { name: '发送', exact: true }).click();
     await expect(input).toHaveValue('保留的常用提示词内容');
@@ -149,5 +196,65 @@ for (const [width, height, zoom] of [
       '隔离测试回复：界面精简后的发送回归',
     );
     await expect(page.locator('.chat-message.user')).toHaveCount(1);
+    const answer = page.locator('.chat-message.assistant').last();
+    await answer.getByRole('button', { name: '复制回复', exact: true }).hover();
+    await expect(page.getByRole('tooltip', { name: '复制回复', exact: true })).toBeVisible();
+    await answer.getByRole('button', { name: '收藏', exact: true }).click();
+    await expect(answer.getByRole('button', { name: '取消收藏', exact: true })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    );
+    await answer.getByRole('button', { name: '点赞', exact: true }).click();
+    await expect(answer.getByRole('button', { name: '点赞', exact: true })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    );
+    await answer.getByRole('button', { name: '更多消息操作', exact: true }).click();
+    const more = answer.getByRole('region', { name: '更多消息操作', exact: true });
+    await expect(more.getByRole('button', { name: '删除消息', exact: true })).toBeVisible();
+    const moreBounds = await more.boundingBox();
+    expect(moreBounds!.x).toBeGreaterThanOrEqual(0);
+    expect(moreBounds!.y).toBeGreaterThanOrEqual(0);
+    expect(moreBounds!.x + moreBounds!.width).toBeLessThanOrEqual(width + 1);
+    expect(moreBounds!.y + moreBounds!.height).toBeLessThanOrEqual(height + 1);
+    await page.keyboard.press('Escape');
+    const inputHeight = await input.evaluate((el) => el.clientHeight);
+    expect(inputHeight).toBeLessThanOrEqual(initial);
+    await composer.scrollIntoViewIfNeeded();
+    const spacing = await page.locator('.chat-surface').evaluate((el) => {
+      const controls = el.querySelector('.conversation-controls')!.getBoundingClientRect();
+      const main = el.closest('main')!.getBoundingClientRect();
+      const progress = el.querySelector('.chat-progress')!.getBoundingClientRect();
+      const composer = el.querySelector('.composer')!.getBoundingClientRect();
+      return {
+        top:
+          controls.top -
+          main.top +
+          el.closest('main')!.scrollTop * (main.width / el.closest('main')!.offsetWidth),
+        gap: composer.top - progress.bottom,
+      };
+    });
+    expect(spacing.top).toBeLessThanOrEqual(14 * zoom);
+    expect(spacing.gap).toBeLessThanOrEqual(8 * zoom + 1);
+    const row = await composer.locator('.composer-bar').evaluate((el) => ({
+      width: el.clientWidth,
+      scrollWidth: el.scrollWidth,
+      tops: [...el.children].map((child) => child.getBoundingClientRect().top),
+    }));
+    expect(row.scrollWidth).toBeLessThanOrEqual(row.width + 1);
+    const lowerGap = await composer.evaluate(
+      (el) =>
+        el.getBoundingClientRect().bottom -
+        el.querySelector('.composer-bar')!.getBoundingClientRect().bottom,
+    );
+    expect(lowerGap).toBeLessThanOrEqual(8 * zoom);
+    const footerHeight = footerBefore!.height;
+    expect(footerHeight).toBeLessThanOrEqual(38 * zoom);
+
+    expect(Math.max(...row.tops) - Math.min(...row.tops)).toBeLessThanOrEqual(5);
+    await page.screenshot({
+      path: resolve(evidence, `chat-${width}x${height}-${zoom * 100}.png`),
+      animations: 'disabled',
+    });
   });
 }

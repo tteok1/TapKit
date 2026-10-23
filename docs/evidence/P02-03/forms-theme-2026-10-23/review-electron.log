@@ -1,0 +1,49 @@
+
+Running 2 tests using 1 worker
+
+(node:29688) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\e2e\P02-01.form-controls.spec.ts:148:3 › P02-01 themed forms preserve native choices and fit 1440x900 1 light (35.5s)
+(node:43840) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 tests\e2e\P02-01.form-controls.spec.ts:271:1 › P02-01 global controls share styles across settings models files projects memory and search (25.3s)
+
+
+  1) tests\e2e\P02-01.form-controls.spec.ts:148:3 › P02-01 themed forms preserve native choices and fit 1440x900 1 light 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  locator('main .history-page').getByRole('dialog').getByRole('combobox', { name: '移入项目', exact: true })
+    Expected: ""
+    Received: "01a16841-3047-7b3a-a563-e2d9f8e2d136"
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveValue" locator('main .history-page').getByRole('dialog').getByRole('combobox', { name: '移入项目', exact: true }) with timeout 15000ms
+      - waiting for locator('main .history-page').getByRole('dialog').getByRole('combobox', { name: '移入项目', exact: true })
+        33 × locator resolved to <select>…</select>
+           - unexpected value "01a16841-3047-7b3a-a563-e2d9f8e2d136"
+
+
+      228 |     await page.keyboard.press('ArrowUp');
+      229 |     await page.keyboard.press('Enter');
+    > 230 |     await expect(project).toHaveValue('');
+          |                           ^
+      231 |     await project.selectOption(projectId);
+      232 |     const save = dialog.getByRole('button', { name: '保存', exact: true });
+      233 |     await save.scrollIntoViewIfNeeded();
+        at D:\Tapkit-public\tests\e2e\P02-01.form-controls.spec.ts:230:27
+
+    Error Context: test-results\e2e\P02-01.form-controls-P02-0-37950-es-and-fit-1440x900-1-light\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P02-01.form-controls-P02-0-37950-es-and-fit-1440x900-1-light\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P02-01.form-controls-P02-0-37950-es-and-fit-1440x900-1-light\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P02-01.form-controls.spec.ts:148:3 › P02-01 themed forms preserve native choices and fit 1440x900 1 light 
+  1 passed (1.0m)

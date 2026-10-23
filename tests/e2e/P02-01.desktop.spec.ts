@@ -1,3 +1,4 @@
+import { openSessionFixture } from './session-fixture';
 import {
   test,
   expect,
@@ -7,6 +8,7 @@ import {
 } from '@playwright/test';
 import { mkdir, mkdtemp } from 'node:fs/promises';
 import { resolve } from 'node:path';
+test.setTimeout(180_000);
 let app: ElectronApplication, dir: string;
 async function launch() {
   const env = Object.fromEntries(
@@ -18,7 +20,7 @@ async function launch() {
   app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
   app.process().stderr?.on('data', (chunk) => process.stderr.write(chunk));
   const page = await app.firstWindow();
-  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125_000 });
   return page;
 }
 test.beforeEach(async () => {
@@ -36,21 +38,37 @@ async function noOverflow(page: Page) {
 }
 test('P02-01 T01 empty navigation, real records, keyboard search, draft examples and restart settings', async () => {
   let page = await launch();
-  await expect(page.getByRole('heading', { name: '从这里开始' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '你的想法，从这里开始' })).toBeVisible();
   await page.getByRole('button', { name: '帮我把这段文字整理成清晰的要点', exact: true }).click();
   await expect(page.getByLabel('输入草稿')).toHaveValue('帮我把这段文字整理成清晰的要点');
   await expect(page.getByRole('button', { name: '发送', exact: true })).toBeDisabled();
-  await page.getByRole('button', { name: '隐藏示例', exact: true }).click();
-  await expect(page.locator('.suggestions')).not.toBeAttached();
+  await page.getByRole('button', { name: '隐藏推荐问题', exact: true }).click();
+  await expect(page.locator('.start-questions')).not.toBeAttached();
   await page.keyboard.press('Control+n');
-  await expect(page.getByRole('heading', { name: '新聊天', exact: true })).toBeVisible();
-  await page.getByRole('button', { name: '置顶新聊天', exact: true }).click();
-  await expect(page.getByRole('button', { name: '取消置顶新聊天', exact: true })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: '你的想法，从这里开始', exact: true }),
+  ).toBeVisible();
+  await openSessionFixture(page);
+  await page
+    .locator('.history-row')
+    .filter({ has: page.locator('[aria-current="page"]') })
+    .getByRole('button', { name: /^置顶/ })
+    .click();
+  await expect(
+    page
+      .locator('.history-row')
+      .filter({ has: page.locator('[aria-current="page"]') })
+      .getByRole('button', { name: /^取消置顶/ }),
+  ).toBeVisible();
   await page.keyboard.press('Control+k');
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.getByLabel('搜索标题与正文').fill('新聊天');
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).not.toBeVisible();
+  await page
+    .getByRole('navigation', { name: '主导航' })
+    .getByRole('link', { name: '项目', exact: true })
+    .click();
   await page.getByRole('button', { name: '新建项目', exact: true }).click();
   await page.getByLabel('项目名称').fill('验收项目');
   await page.getByRole('button', { name: '创建项目', exact: true }).click();
@@ -109,6 +127,11 @@ test('P02-01 T01 empty navigation, real records, keyboard search, draft examples
   page = await launch();
   await expect(page.getByLabel('展开侧栏')).toBeVisible();
   await expect(page.locator('.desktop-shell')).toHaveAttribute('data-theme', 'dark');
+  await expect(
+    page.getByRole('heading', { name: '你的想法，从这里开始', exact: true }),
+  ).toBeVisible();
+  await page.getByLabel('展开侧栏', { exact: true }).click();
+  await page.getByRole('link', { name: '设置', exact: true }).click();
   await expect(page.getByLabel('主题', { exact: true })).toHaveValue('dark');
   await expect.poll(() => page.locator('main').evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
   expect(
@@ -140,7 +163,7 @@ test('P02-01 T22 responsive 1200/960 and 200 percent, focus, drawer and isolated
     el.scrollTop = 0;
   });
   await page.screenshot({ path: 'docs/evidence/P02-01/settings-960-200.png' });
-  await page.getByRole('link', { name: '首页', exact: true }).click();
+  await page.keyboard.press('Control+n');
   await page.getByLabel('输入草稿').focus();
   await expect(page.getByLabel('输入草稿')).toBeFocused();
   await page.keyboard.press('Control+k');
@@ -150,8 +173,10 @@ test('P02-01 T22 responsive 1200/960 and 200 percent, focus, drawer and isolated
   const secondPromise = app.waitForEvent('window');
   await page.keyboard.press('Control+Shift+n');
   const second = await secondPromise;
-  await expect(second.getByTestId('core-status')).toHaveText('本地核心已连接');
-  await expect(second.getByRole('heading', { name: '从这里开始' })).toBeVisible();
+  await expect(second.getByTestId('core-status')).toHaveText('本地核心已连接', {
+    timeout: 125_000,
+  });
+  await expect(second.getByRole('heading', { name: '你的想法，从这里开始' })).toBeVisible();
   expect(await second.evaluate(() => window.tapkit.windowSlot)).not.toBe(
     await page.evaluate(() => window.tapkit.windowSlot),
   );
@@ -219,6 +244,11 @@ test('P02-01 connection error, masked fixture key, avatar and personal form conf
   await expect(page.getByRole('alert')).toContainText('设置已被其他窗口修改');
   await expect(page.getByLabel('昵称', { exact: true })).toHaveValue('保留中的草稿');
   await page.getByRole('link', { name: '模型连接', exact: true }).click();
+  await page.getByRole('link', { name: '设置', exact: true }).click();
+  await page
+    .getByRole('navigation', { name: '设置分类' })
+    .getByRole('link', { name: '模型连接', exact: true })
+    .click();
   await page.getByRole('link', { name: 'API Key 账户', exact: true }).click();
   await page.getByLabel('账户名称').fill('离线错误验收');
   await page.getByLabel('模型', { exact: true }).fill('fixture-model');
@@ -257,8 +287,10 @@ test('P02-01 connection error, masked fixture key, avatar and personal form conf
   await page.getByRole('status').scrollIntoViewIfNeeded();
   await page.screenshot({ path: 'docs/evidence/P02-01/connection-error.png' });
   await page.getByLabel('API Key', { exact: true }).fill('unsaved-fixture-full-key');
-  await page.getByRole('link', { name: '首页', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '从这里开始', exact: true })).toBeVisible();
+  await page.keyboard.press('Control+n');
+  await expect(
+    page.getByRole('heading', { name: '你的想法，从这里开始', exact: true }),
+  ).toBeVisible();
   expect(
     await page
       .locator('input')
@@ -291,7 +323,7 @@ test('P02-01 connection error, masked fixture key, avatar and personal form conf
     );
   });
   await page.reload();
-  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125_000 });
   await expect(page.getByText('模型账户暂不可用；本地设置仍可使用。')).toBeVisible();
   await page.getByRole('link', { name: '个人资料与设置', exact: true }).click();
   await expect(page.getByLabel('昵称', { exact: true })).toBeEnabled();

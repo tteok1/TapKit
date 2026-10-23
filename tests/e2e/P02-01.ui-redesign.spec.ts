@@ -1,3 +1,4 @@
+import { openSessionFixture } from './session-fixture';
 import {
   test,
   expect,
@@ -117,9 +118,9 @@ test('P02-01 UI simplified input keeps keyboard editing reachable at 200 percent
   const page = await launch();
   await expect(page.getByLabel('输入草稿')).toBeEnabled();
   await page.getByLabel('输入草稿').fill('保留原有草稿与键盘编辑逻辑');
-  await page.locator('.composer-info > summary').click();
-  await expect(page.locator('.composer-tool-hint')).toBeVisible();
-  await page.locator('.composer-info > summary').click();
+  await page.getByRole('button', { name: '输入与工具信息', exact: true }).click();
+  await expect(page.getByRole('region', { name: '输入与工具信息', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '输入与工具信息', exact: true }).click();
   await expect(page.locator('.composer-more')).toHaveCount(0);
   await page.getByLabel('输入草稿').focus();
   await page.keyboard.press('Control+a');
@@ -134,7 +135,7 @@ test('P02-01 UI simplified input keeps keyboard editing reachable at 200 percent
   await page.getByLabel('缩放', { exact: true }).selectOption('2');
   await page.getByRole('button', { name: '保存设置', exact: true }).click();
   await size(960, 640);
-  await page.getByRole('link', { name: '首页', exact: true }).click();
+  await page.keyboard.press('Control+n');
   await expect(page.getByLabel('输入草稿')).toBeEnabled();
   await page.getByLabel('输入草稿').fill('在 200% 缩放下，输入和发送操作均可通过键盘到达。');
   await page.getByLabel('输入草稿').scrollIntoViewIfNeeded();
@@ -154,6 +155,10 @@ test('P02-01 UI redesign covers navigation, six project views, settings and diag
     await page.locator('.product-icon').evaluate((el) => (el as HTMLImageElement).naturalWidth),
   ).toBeGreaterThan(0);
   await capture(page, 'home-light-1440');
+  await page
+    .getByRole('navigation', { name: '主导航' })
+    .getByRole('link', { name: '项目', exact: true })
+    .click();
   await page.getByRole('button', { name: '新建项目', exact: true }).click();
   await page.getByLabel('项目名称', { exact: true }).fill('界面验收项目');
   await page.getByRole('button', { name: '创建项目', exact: true }).click();
@@ -204,7 +209,7 @@ test('P02-01 UI redesign covers navigation, six project views, settings and diag
     .getByRole('link', { name: '模型与用量', exact: true })
     .click();
   await capture(page, 'models-usage');
-  for (const [index, name] of ['聊天', '工作', '项目', '文件', '通知'].entries()) {
+  for (const [index, name] of ['聊天', '工作', '项目', '文件'].entries()) {
     await page
       .getByRole('navigation', { name: '主导航' })
       .getByRole('link', { name, exact: true })
@@ -212,6 +217,8 @@ test('P02-01 UI redesign covers navigation, six project views, settings and diag
     await capture(page, 'navigation-' + index);
     await fits(page);
   }
+  await page.getByRole('button', { name: '通知', exact: true }).click();
+  await expect(page.locator('main')).toContainText('通知');
   await page.keyboard.press('Control+k');
   await expect(page.getByLabel('搜索标题与正文')).toBeFocused();
   await centeredDialog(page, '搜索');
@@ -224,7 +231,7 @@ test('P02-01 UI redesign covers navigation, six project views, settings and diag
 test('P02-01 UI redesign preserves full conversation list, send/stop controls, themes and narrow zoom workbench', async () => {
   test.setTimeout(150000);
   const page = await launch(undefined, true);
-  await page.keyboard.press('Control+n');
+  await openSessionFixture(page);
   await expect(page.locator('.chat-surface')).toHaveAttribute('data-session-id', /[0-9a-f-]{36}/);
   await expect(page.locator('.chat-messages')).toBeVisible();
   await expect(page.getByLabel('输入草稿')).toBeEnabled();
@@ -257,7 +264,7 @@ test('P02-01 UI redesign preserves full conversation list, send/stop controls, t
   await fits(page);
   await page.getByLabel('主题', { exact: true }).scrollIntoViewIfNeeded();
   await capture(page, 'settings-controls-960-200', false);
-  await page.getByRole('link', { name: '首页', exact: true }).click();
+  await page.keyboard.press('Control+n');
   await page.getByLabel('输入草稿').scrollIntoViewIfNeeded();
   await page.getByLabel('输入草稿').focus();
   await expect(page.getByLabel('输入草稿')).toBeFocused();

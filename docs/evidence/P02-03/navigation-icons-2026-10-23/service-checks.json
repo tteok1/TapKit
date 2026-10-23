@@ -1,0 +1,16 @@
+{
+  "unit": {
+    "command": "pnpm exec vitest run --config vitest.config.ts --project unit P02-01",
+    "exitCode": 0,
+    "elapsedSeconds": 2.36
+  },
+  "build": {
+    "command": "pnpm build:desktop",
+    "exitCode": 0,
+    "elapsedSeconds": 35.02
+  },
+  "diff-check": {
+    "command": "git diff --check",
+    "exitCode": 0
+  }
+}

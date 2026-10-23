@@ -1,0 +1,20 @@
+[
+  {
+    "direction": "forward",
+    "visible": true,
+    "release": {
+      "x": 1262,
+      "y": 542.0859375
+    },
+    "releaseElementClass": "screen-scroll"
+  },
+  {
+    "direction": "backward",
+    "visible": true,
+    "release": {
+      "x": 418,
+      "y": 542.0859375
+    },
+    "releaseElementClass": "screen-scroll"
+  }
+]

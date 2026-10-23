@@ -1,0 +1,9 @@
+{
+  "command": "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File docs/evidence/P02-03/session-load-2026-10-21/run-app.ps1 -CheckOnly",
+  "host": "C:\\Users\\20105\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+  "exitCode": 0,
+  "elapsedSeconds": 1.23,
+  "appStarted": false,
+  "originalWindowClosed": false,
+  "legacyHostAttempt": "launch-check-windows-powershell.json"
+}

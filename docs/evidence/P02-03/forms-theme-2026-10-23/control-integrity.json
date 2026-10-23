@@ -1,0 +1,132 @@
+{
+  "status": "passed",
+  "files": [
+    {
+      "file": "apps/desktop/src/renderer/src/action-popover.tsx",
+      "controls": 2
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/composer-attachment.tsx",
+      "controls": 5
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/history-settings.tsx",
+      "controls": 8
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/selection-toolbar.tsx",
+      "controls": 2
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/settings-navigation.tsx",
+      "controls": 1
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/sidebar-navigation.tsx",
+      "controls": 1
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/start-page.tsx",
+      "controls": 3
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/tooltip.tsx",
+      "controls": 0
+    },
+    {
+      "file": "packages/ui/src/clipboard.tsx",
+      "controls": 1
+    },
+    {
+      "file": "packages/ui/src/tooltip.tsx",
+      "controls": 0
+    },
+    {
+      "file": "apps/desktop/src/renderer/features/viewer/inline-card.tsx",
+      "controls": 1
+    },
+    {
+      "file": "apps/desktop/src/renderer/features/viewer/panel.tsx",
+      "controls": 53
+    },
+    {
+      "file": "apps/desktop/src/renderer/features/viewer/pdf-reader.tsx",
+      "controls": 6
+    },
+    {
+      "file": "apps/desktop/src/renderer/features/viewer/state.tsx",
+      "controls": 0
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/api-diagnostic.tsx",
+      "controls": 16
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/auth-diagnostic.tsx",
+      "controls": 14
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/chat-surface.tsx",
+      "controls": 31
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/context-summary.tsx",
+      "controls": 7
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/desktop-settings.tsx",
+      "controls": 24
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/desktop-shell.tsx",
+      "controls": 17
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/file-library.tsx",
+      "controls": 76
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/history-ui.tsx",
+      "controls": 83
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/local-avatar.tsx",
+      "controls": 0
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/main.tsx",
+      "controls": 0
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/memory-delete.tsx",
+      "controls": 3
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/memory-ui.tsx",
+      "controls": 30
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/message-history.tsx",
+      "controls": 25
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/model-settings.tsx",
+      "controls": 54
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/projects-ui.tsx",
+      "controls": 80
+    },
+    {
+      "file": "apps/desktop/src/renderer/src/ui-icon.tsx",
+      "controls": 0
+    },
+    {
+      "file": "packages/ui/src/chat-markdown.tsx",
+      "controls": 2
+    }
+  ],
+  "controlCount": 545,
+  "handlersValuesDisabledAndNamesUnchanged": true,
+  "hostCorePreloadContractsUnchanged": true
+}

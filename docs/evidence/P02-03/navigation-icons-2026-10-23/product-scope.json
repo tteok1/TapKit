@@ -1,0 +1,12 @@
+{
+  "changedSincePreviousReview": [
+    "apps/desktop/src/renderer/src/design-system.css",
+    "apps/desktop/src/renderer/src/desktop-shell.tsx",
+    "apps/desktop/src/renderer/src/desktop-state.ts",
+    "apps/desktop/src/renderer/src/settings-navigation.tsx",
+    "apps/desktop/src/renderer/src/sidebar-navigation.tsx",
+    "apps/desktop/src/renderer/src/ui-icon.tsx",
+    "packages/ui/src/index.ts"
+  ],
+  "coreAndContractSourcesUnchanged": true
+}

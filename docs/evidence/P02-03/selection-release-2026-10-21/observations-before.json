@@ -1,0 +1,922 @@
+[
+  {
+    "scenario": "after-text",
+    "start": {
+      "x": 430.5,
+      "y": 574.6875
+    },
+    "end": {
+      "x": 794.8203125,
+      "y": 574.6875
+    },
+    "text": "The amber lighthouse guides a small boat safely home.",
+    "events": [
+      {
+        "type": "pointerdown",
+        "target": "",
+        "text": ""
+      },
+      {
+        "type": "selectionchange",
+        "text": "The ",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 4
+      },
+      {
+        "type": "selectionchange",
+        "text": "The ambe",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 8
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lig",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 13
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lightho",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 17
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse g",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 22
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guide",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 26
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a s",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 31
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small ",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 36
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat ",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 41
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat safel",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 46
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat safely ho",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 50
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 53
+      },
+      {
+        "type": "pointerup",
+        "target": "",
+        "text": "The amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 53
+      }
+    ],
+    "beforeMove": true,
+    "afterMove": true
+  },
+  {
+    "scenario": "before-text",
+    "start": {
+      "x": 782.8203125,
+      "y": 574.6875
+    },
+    "end": {
+      "x": 418.5,
+      "y": 574.6875
+    },
+    "text": "The amber lighthouse guides a small boat safely home.",
+    "events": [
+      {
+        "type": "pointerdown",
+        "target": "",
+        "text": ""
+      },
+      {
+        "type": "selectionchange",
+        "text": "",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 53,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "ome.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 49,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "ely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 44,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "t safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 39,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "l boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 34,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 30,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "es a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 25,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": " guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 20,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "ouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 16,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "ghthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 12,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "ber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 6,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "e amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 2,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 53
+      },
+      {
+        "type": "pointerup",
+        "target": "screen-scroll",
+        "text": "The amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 53
+      }
+    ],
+    "beforeMove": true,
+    "afterMove": true
+  },
+  {
+    "scenario": "below-line",
+    "start": {
+      "x": 430.5,
+      "y": 574.6875
+    },
+    "end": {
+      "x": 794.8203125,
+      "y": 593.8984375
+    },
+    "text": "The amber lighthouse guides a small boat safely home.\n\n后文。",
+    "events": [
+      {
+        "type": "pointerdown",
+        "target": "",
+        "text": ""
+      },
+      {
+        "type": "selectionchange",
+        "text": "",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 0
+      },
+      {
+        "type": "selectionchange",
+        "text": "The ",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 4
+      },
+      {
+        "type": "selectionchange",
+        "text": "The ambe",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 8
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lig",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 13
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lightho",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 17
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse g",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 22
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guide",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 26
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a s",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 31
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small ",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 36
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat safely home.\n\n后文。",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 3
+      },
+      {
+        "type": "pointerup",
+        "target": "chat-markdown",
+        "text": "The amber lighthouse guides a small boat safely home.\n\n后文。",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 3
+      }
+    ],
+    "beforeMove": true,
+    "afterMove": true
+  },
+  {
+    "scenario": "above-line",
+    "start": {
+      "x": 782.8203125,
+      "y": 574.6875
+    },
+    "end": {
+      "x": 418.5,
+      "y": 555.6875
+    },
+    "text": "The amber lighthouse guides a small boat safely home.",
+    "events": [
+      {
+        "type": "pointerdown",
+        "target": "",
+        "text": ""
+      },
+      {
+        "type": "selectionchange",
+        "text": "",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 53,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "ome.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 49,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "ely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 44,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "t safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 39,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "l boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 34,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 30,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "es a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 25,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": " guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 20,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "ouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 16,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "ghthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 12,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "ber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 6,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "e amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 2,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 53
+      },
+      {
+        "type": "pointerup",
+        "target": "screen-scroll",
+        "text": "The amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 53
+      }
+    ],
+    "beforeMove": true,
+    "afterMove": true
+  },
+  {
+    "scenario": "start-left-margin",
+    "start": {
+      "x": 424.5,
+      "y": 574.6875
+    },
+    "end": {
+      "x": 794.8203125,
+      "y": 574.6875
+    },
+    "text": "The amber lighthouse guides a small boat safely home.",
+    "events": [
+      {
+        "type": "pointerdown",
+        "target": "screen-scroll",
+        "text": ""
+      },
+      {
+        "type": "selectionchange",
+        "text": "The",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 3
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amb",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 7
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lig",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 13
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lightho",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 17
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse g",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 22
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guide",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 26
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a s",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 31
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small ",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 36
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat ",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 41
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat safel",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 46
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat safely ho",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 50
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 53
+      },
+      {
+        "type": "pointerup",
+        "target": "",
+        "text": "The amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 53
+      }
+    ],
+    "beforeMove": false,
+    "afterMove": false
+  },
+  {
+    "scenario": "start-above-line",
+    "start": {
+      "x": 430.5,
+      "y": 557.6875
+    },
+    "end": {
+      "x": 794.8203125,
+      "y": 574.6875
+    },
+    "text": "The amber lighthouse guides a small boat safely home.",
+    "events": [
+      {
+        "type": "pointerdown",
+        "target": "chat-markdown",
+        "text": ""
+      },
+      {
+        "type": "selectionchange",
+        "text": "The ",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 4
+      },
+      {
+        "type": "selectionchange",
+        "text": "The ambe",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 8
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lig",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 13
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lightho",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 17
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse g",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 22
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guide",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 26
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a s",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 31
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small ",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 36
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat ",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 41
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat safel",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 46
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat safely ho",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 50
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 53
+      },
+      {
+        "type": "pointerup",
+        "target": "",
+        "text": "The amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 53
+      }
+    ],
+    "beforeMove": true,
+    "afterMove": true
+  },
+  {
+    "scenario": "after-next-paragraph",
+    "start": {
+      "x": 430.5,
+      "y": 574.6875
+    },
+    "end": {
+      "x": 794.8203125,
+      "y": 625.8984375
+    },
+    "text": "The amber lighthouse guides a small boat safely home.\n\n后文。\n\n\n\n\n\n\n\n\n\n",
+    "events": [
+      {
+        "type": "pointerdown",
+        "target": "",
+        "text": ""
+      },
+      {
+        "type": "selectionchange",
+        "text": "The ",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 4
+      },
+      {
+        "type": "selectionchange",
+        "text": "The ambe",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 8
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lig",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 13
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat safely home.\n\n后文。",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 3
+      },
+      {
+        "type": "selectionchange",
+        "text": "The amber lighthouse guides a small boat safely home.\n\n后文。\n\n\n\n\n\n\n\n\n\n",
+        "start": "P#text",
+        "end": "DIV",
+        "startOffset": 0,
+        "endOffset": 0
+      },
+      {
+        "type": "pointerup",
+        "target": "chat-message assistant",
+        "text": "The amber lighthouse guides a small boat safely home.\n\n后文。\n\n\n\n\n\n\n\n\n\n",
+        "start": "P#text",
+        "end": "DIV",
+        "startOffset": 0,
+        "endOffset": 0
+      }
+    ],
+    "beforeMove": false,
+    "afterMove": false
+  },
+  {
+    "scenario": "before-previous-paragraph",
+    "start": {
+      "x": 782.8203125,
+      "y": 574.6875
+    },
+    "end": {
+      "x": 418.5,
+      "y": 523.6875
+    },
+    "text": "前文。\n\nThe amber lighthouse guides a small boat safely home.",
+    "events": [
+      {
+        "type": "pointerdown",
+        "target": "",
+        "text": ""
+      },
+      {
+        "type": "selectionchange",
+        "text": "ome.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 49,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "ely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 44,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "t safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 39,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "l boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 34,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 30,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "\nThe amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 3,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "文。\n\nThe amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 1,
+        "endOffset": 53
+      },
+      {
+        "type": "selectionchange",
+        "text": "前文。\n\nThe amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 53
+      },
+      {
+        "type": "pointerup",
+        "target": "screen-scroll",
+        "text": "前文。\n\nThe amber lighthouse guides a small boat safely home.",
+        "start": "P#text",
+        "end": "P#text",
+        "startOffset": 0,
+        "endOffset": 53
+      }
+    ],
+    "beforeMove": true,
+    "afterMove": true
+  }
+]

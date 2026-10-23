@@ -1,0 +1,9 @@
+{
+  "command": "& \"docs/evidence/P02-03/session-load-2026-10-21/run-app.ps1\" -CheckOnly",
+  "exitCode": 0,
+  "executionEvidence": "Tool execution chunk 37f5dd: record-release.py and launcher CheckOnly both succeeded",
+  "stdout": "Verified current UI build and existing local profile; no application started.\n",
+  "reviewPath": "docs/evidence/P02-03/selection-release-2026-10-21/results.json",
+  "applicationStarted": false,
+  "originalWindowClosed": false
+}

@@ -1,0 +1,338 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "zoom": 1,
+    "theme": "light",
+    "viewport": {
+      "width": 1441,
+      "height": 901,
+      "devicePixelRatio": 2
+    },
+    "input": {
+      "x": 310.5,
+      "y": 768,
+      "width": 820,
+      "height": 108,
+      "top": 768,
+      "right": 1130.5,
+      "bottom": 876,
+      "left": 310.5
+    },
+    "questions": {
+      "x": 310.5,
+      "y": 600.1796875,
+      "width": 820,
+      "height": 151.8203125,
+      "top": 600.1796875,
+      "right": 1130.5,
+      "bottom": 752,
+      "left": 310.5
+    },
+    "last": {
+      "x": 310.5,
+      "y": 706.7265625,
+      "width": 229.6015625,
+      "height": 45.2734375,
+      "top": 706.7265625,
+      "right": 540.1015625,
+      "bottom": 752,
+      "left": 310.5
+    },
+    "toggle": {
+      "x": 1029.09375,
+      "y": 556.1796875,
+      "width": 101.40625,
+      "height": 32,
+      "top": 556.1796875,
+      "right": 1130.5,
+      "bottom": 588.1796875,
+      "left": 1029.09375
+    },
+    "workspace": {
+      "x": 8,
+      "y": 8,
+      "width": 1425,
+      "height": 885,
+      "top": 8,
+      "right": 1433,
+      "bottom": 893,
+      "left": 8
+    },
+    "shell": {
+      "x": 0,
+      "y": 0,
+      "width": 1441,
+      "height": 901,
+      "top": 0,
+      "right": 1441,
+      "bottom": 901,
+      "left": 0
+    },
+    "padding": 8,
+    "scroll": {
+      "x": 310.5,
+      "y": 78,
+      "width": 830,
+      "height": 690,
+      "top": 78,
+      "right": 1140.5,
+      "bottom": 768,
+      "left": 310.5
+    },
+    "radius": "999px",
+    "overflow": false
+  },
+  {
+    "width": 960,
+    "height": 640,
+    "zoom": 1,
+    "theme": "light",
+    "viewport": {
+      "width": 961,
+      "height": 641,
+      "devicePixelRatio": 2
+    },
+    "input": {
+      "x": 70.5,
+      "y": 508,
+      "width": 820,
+      "height": 108,
+      "top": 508,
+      "right": 890.5,
+      "bottom": 616,
+      "left": 70.5
+    },
+    "questions": {
+      "x": 70.5,
+      "y": 340.1796875,
+      "width": 820,
+      "height": 151.8203125,
+      "top": 340.1796875,
+      "right": 890.5,
+      "bottom": 492,
+      "left": 70.5
+    },
+    "last": {
+      "x": 70.5,
+      "y": 446.7265625,
+      "width": 229.6015625,
+      "height": 45.2734375,
+      "top": 446.7265625,
+      "right": 300.1015625,
+      "bottom": 492,
+      "left": 70.5
+    },
+    "toggle": {
+      "x": 789.09375,
+      "y": 296.1796875,
+      "width": 101.40625,
+      "height": 32,
+      "top": 296.1796875,
+      "right": 890.5,
+      "bottom": 328.1796875,
+      "left": 789.09375
+    },
+    "workspace": {
+      "x": 8,
+      "y": 8,
+      "width": 945,
+      "height": 625,
+      "top": 8,
+      "right": 953,
+      "bottom": 633,
+      "left": 8
+    },
+    "shell": {
+      "x": 0,
+      "y": 0,
+      "width": 961,
+      "height": 641,
+      "top": 0,
+      "right": 961,
+      "bottom": 641,
+      "left": 0
+    },
+    "padding": 8,
+    "scroll": {
+      "x": 70.5,
+      "y": 78,
+      "width": 830,
+      "height": 430,
+      "top": 78,
+      "right": 900.5,
+      "bottom": 508,
+      "left": 70.5
+    },
+    "radius": "999px",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "zoom": 2,
+    "theme": "dark",
+    "viewport": {
+      "width": 1441,
+      "height": 901,
+      "devicePixelRatio": 2
+    },
+    "input": {
+      "x": 82,
+      "y": 635,
+      "width": 1277,
+      "height": 216,
+      "top": 635,
+      "right": 1359,
+      "bottom": 851,
+      "left": 82
+    },
+    "questions": {
+      "x": 82,
+      "y": 576.9609375,
+      "width": 1277,
+      "height": 303.6875,
+      "top": 576.9609375,
+      "right": 1359,
+      "bottom": 880.6484375,
+      "left": 82
+    },
+    "last": {
+      "x": 82,
+      "y": 790.0859375,
+      "width": 459.203125,
+      "height": 90.5625,
+      "top": 790.0859375,
+      "right": 541.203125,
+      "bottom": 880.6484375,
+      "left": 82
+    },
+    "toggle": {
+      "x": 1156.1953125,
+      "y": 488.9609375,
+      "width": 202.8046875,
+      "height": 64,
+      "top": 488.9609375,
+      "right": 1359,
+      "bottom": 552.9609375,
+      "left": 1156.1953125
+    },
+    "workspace": {
+      "x": 16,
+      "y": 16,
+      "width": 1409,
+      "height": 869,
+      "top": 16,
+      "right": 1425,
+      "bottom": 885,
+      "left": 16
+    },
+    "shell": {
+      "x": 0,
+      "y": 0,
+      "width": 1441,
+      "height": 901,
+      "top": 0,
+      "right": 1441,
+      "bottom": 901,
+      "left": 0
+    },
+    "padding": 16,
+    "scroll": {
+      "x": 82,
+      "y": 156,
+      "width": 1297,
+      "height": 479,
+      "top": 156,
+      "right": 1379,
+      "bottom": 635,
+      "left": 82
+    },
+    "radius": "999px",
+    "overflow": false
+  },
+  {
+    "width": 960,
+    "height": 640,
+    "zoom": 2,
+    "theme": "dark",
+    "viewport": {
+      "width": 961,
+      "height": 641,
+      "devicePixelRatio": 2
+    },
+    "input": {
+      "x": 82,
+      "y": 375,
+      "width": 797,
+      "height": 216,
+      "top": 375,
+      "right": 879,
+      "bottom": 591,
+      "left": 82
+    },
+    "questions": {
+      "x": 82,
+      "y": 493.203125,
+      "width": 797,
+      "height": 303.6875,
+      "top": 493.203125,
+      "right": 879,
+      "bottom": 796.890625,
+      "left": 82
+    },
+    "last": {
+      "x": 82,
+      "y": 706.328125,
+      "width": 459.203125,
+      "height": 90.5625,
+      "top": 706.328125,
+      "right": 541.203125,
+      "bottom": 796.890625,
+      "left": 82
+    },
+    "toggle": {
+      "x": 676.1953125,
+      "y": 405.203125,
+      "width": 202.8046875,
+      "height": 64,
+      "top": 405.203125,
+      "right": 879,
+      "bottom": 469.203125,
+      "left": 676.1953125
+    },
+    "workspace": {
+      "x": 16,
+      "y": 16,
+      "width": 929,
+      "height": 609,
+      "top": 16,
+      "right": 945,
+      "bottom": 625,
+      "left": 16
+    },
+    "shell": {
+      "x": 0,
+      "y": 0,
+      "width": 961,
+      "height": 641,
+      "top": 0,
+      "right": 961,
+      "bottom": 641,
+      "left": 0
+    },
+    "padding": 16,
+    "scroll": {
+      "x": 82,
+      "y": 156,
+      "width": 817,
+      "height": 219,
+      "top": 156,
+      "right": 899,
+      "bottom": 375,
+      "left": 82
+    },
+    "radius": "999px",
+    "overflow": false
+  }
+]

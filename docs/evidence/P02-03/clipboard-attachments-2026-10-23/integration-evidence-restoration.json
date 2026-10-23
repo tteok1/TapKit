@@ -1,0 +1,9 @@
+{
+  "path": "docs/evidence/P03-01/native-parser-cases.jsonl",
+  "originalUnmodifiedInInitialGitStatus": true,
+  "oldBytesMatchExactPrefix": true,
+  "originalByteCount": 27470,
+  "newRows": 26,
+  "preservedFullRun": "related-integrations/native-parser-cases-complete.jsonl",
+  "preservedAppendedRows": "related-integrations/native-parser-cases-appended.jsonl"
+}

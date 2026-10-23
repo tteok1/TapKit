@@ -1,0 +1,77 @@
+
+Running 3 tests using 1 worker
+
+(node:26212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\e2e\P02-01.form-controls.spec.ts:148:3 › P02-01 themed forms preserve native choices and fit 1440x900 1 light (1.0m)
+(node:38488) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 tests\e2e\P02-01.form-controls.spec.ts:271:1 › P02-01 global controls share styles across settings models files projects memory and search (35.2s)
+(node:47884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 tests\e2e\P02-01.form-controls.spec.ts:343:1 › P02-03 circular multi-selection retains batch archive restore and delete preview (20.7s)
+
+
+  1) tests\e2e\P02-01.form-controls.spec.ts:148:3 › P02-01 themed forms preserve native choices and fit 1440x900 1 light 
+
+    TimeoutError: locator.selectOption: Timeout 30000ms exceeded.
+    Call log:
+      - waiting for locator('main .history-page').getByRole('dialog').getByLabel('分组', { exact: true })
+
+
+      196 |     await expect(checkbox).not.toBeChecked();
+      197 |     const group = dialog.getByLabel('分组', { exact: true });
+    > 198 |     await group.selectOption(groupId);
+          |                 ^
+      199 |     await expect(group).toHaveValue(groupId);
+      200 |     await expect(group).toHaveCSS('appearance', 'base-select');
+      201 |     const project = dialog.getByLabel('移入项目', { exact: true });
+        at D:\Tapkit-public\tests\e2e\P02-01.form-controls.spec.ts:198:17
+
+    Error Context: test-results\e2e\P02-01.form-controls-P02-0-37950-es-and-fit-1440x900-1-light\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P02-01.form-controls-P02-0-37950-es-and-fit-1440x900-1-light\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P02-01.form-controls-P02-0-37950-es-and-fit-1440x900-1-light\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests\e2e\P02-01.form-controls.spec.ts:271:1 › P02-01 global controls share styles across settings models files projects memory and search 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator: getByLabel('界面语言', { exact: true })
+    Expected: disabled
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeDisabled" getByLabel('界面语言', { exact: true }) with timeout 15000ms
+      - waiting for getByLabel('界面语言', { exact: true })
+
+
+      297 |   }
+      298 |   await audit('settings');
+    > 299 |   await expect(page.getByLabel('界面语言', { exact: true })).toBeDisabled();
+          |                                                          ^
+      300 |   await page.locator('.settings-tabs').getByRole('link', { name: '个人资料', exact: true }).click();
+      301 |   await fieldFocus(page.getByLabel('昵称', { exact: true }));
+      302 |   await audit('personal');
+        at D:\Tapkit-public\tests\e2e\P02-01.form-controls.spec.ts:299:58
+
+    Error Context: test-results\e2e\P02-01.form-controls-P02-0-5a8cb--projects-memory-and-search\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P02-01.form-controls-P02-0-5a8cb--projects-memory-and-search\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P02-01.form-controls-P02-0-5a8cb--projects-memory-and-search\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests\e2e\P02-01.form-controls.spec.ts:148:3 › P02-01 themed forms preserve native choices and fit 1440x900 1 light 
+    tests\e2e\P02-01.form-controls.spec.ts:271:1 › P02-01 global controls share styles across settings models files projects memory and search 
+  1 passed (2.0m)

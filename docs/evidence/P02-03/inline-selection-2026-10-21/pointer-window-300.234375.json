@@ -1,0 +1,25 @@
+{
+  "points": {
+    "x1": 386.40625,
+    "y1": 300.234375,
+    "x2": 503.328125,
+    "y2": 300.234375
+  },
+  "hit": {
+    "first": true,
+    "last": true,
+    "firstTag": "<p>隔离测试回复：\nAmber lighthouse.</p>",
+    "lastTag": "<p>隔离测试回复：\nAmber lighthouse.</p>"
+  },
+  "during": "Amber lighthouse.",
+  "after": {
+    "text": "Amber lighthouse.",
+    "active": "BODY",
+    "bar": {
+      "x": 511.328125,
+      "y": 312.234375,
+      "width": 226,
+      "height": 38
+    }
+  }
+}

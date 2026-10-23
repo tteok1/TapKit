@@ -1,0 +1,272 @@
+[
+  {
+    "name": "settings",
+    "controls": [
+      {
+        "label": "主题",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "字体大小",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "缩放",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "界面语言中文（其他语言规划中）",
+        "appearance": "base-select",
+        "disabled": true
+      },
+      {
+        "label": "模型网络代理",
+        "appearance": "base-select",
+        "disabled": false
+      }
+    ],
+    "checks": [
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      },
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      },
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      },
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      }
+    ]
+  },
+  {
+    "name": "personal",
+    "controls": [
+      {
+        "label": "常用语言",
+        "appearance": "base-select",
+        "disabled": false
+      }
+    ],
+    "checks": []
+  },
+  {
+    "name": "models",
+    "controls": [
+      {
+        "label": "设置范围默认本次会话（暂无会话）",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "首选模型自动选择（订阅优先）",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "回答方式快速回答深入思考",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "思考强度关闭低中高",
+        "appearance": "base-select",
+        "disabled": true
+      },
+      {
+        "label": "回答语言自动中文英文",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "回答长度简短正常详细",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "回答语气自然专业友好",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "输出格式自动纯文本MarkdownJSON（需预检支持）",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "金额币种USDCNY",
+        "appearance": "base-select",
+        "disabled": true
+      },
+      {
+        "label": "汇总方式日期项目模型任务",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "筛选模型全部模型",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "筛选任务全部任务",
+        "appearance": "base-select",
+        "disabled": false
+      }
+    ],
+    "checks": [
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      },
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      },
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      },
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      }
+    ]
+  },
+  {
+    "name": "files",
+    "controls": [
+      {
+        "label": "文件范围与导入位置文件库",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "文件夹根目录",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "来源全部导入生成成果网页",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "排序最近更新大小文件名",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "重复文件处理保留，建立独立文件同名同内容时跳过替换明确选择的文件，新增版本",
+        "appearance": "base-select",
+        "disabled": false
+      }
+    ],
+    "checks": [
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      },
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      },
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      }
+    ]
+  },
+  {
+    "name": "projects",
+    "controls": [
+      {
+        "label": "项目排序最近更新名称",
+        "appearance": "base-select",
+        "disabled": false
+      }
+    ],
+    "checks": [
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      },
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      }
+    ]
+  },
+  {
+    "name": "memory",
+    "controls": [
+      {
+        "label": "回答语言",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "回答篇幅",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "回答语气",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "回答排版",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "回答语言",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "回答篇幅",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "回答语气",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "回答排版",
+        "appearance": "base-select",
+        "disabled": false
+      },
+      {
+        "label": "记忆适用范围",
+        "appearance": "base-select",
+        "disabled": false
+      }
+    ],
+    "checks": [
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      },
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      },
+      {
+        "type": "checkbox",
+        "radius": "50%"
+      }
+    ]
+  }
+]

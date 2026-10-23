@@ -66,6 +66,7 @@ export const DesktopSettingsSchema = z.strictObject({
   enterSends: z.boolean(),
   compact: z.boolean(),
   showSuggestions: z.boolean(),
+  historySort: z.enum(['updated', 'manual']).default('updated'),
   showPlanned: z.boolean(),
   defaultDirectory: z.string().max(2048),
 });

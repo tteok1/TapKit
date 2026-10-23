@@ -1,0 +1,16 @@
+{
+  "command": [
+    "test:e2e",
+    "tests/e2e/P02-02.clipboard-attachments.spec.ts",
+    "tests/e2e/P02-03.inline-selection.spec.ts",
+    "tests/e2e/P02-02.chat.spec.ts",
+    "tests/e2e/P03-01.files.spec.ts",
+    "tests/e2e/P02-01.unified-start.spec.ts",
+    "--grep",
+    "P02-02 native clipboard|P02-02 rounded attachment|P02-02 removing a parsing|P02-03 inline copy|P02-02 T05 long paste|P03-01 T08 navigation sends|P03-01 T08 late session creation|P03-01 T08 leaving during|P03-01 T07 chat physical|P02-01 unified start shares"
+  ],
+  "exitCode": 1,
+  "elapsedSeconds": 388.86,
+  "historicalEvidenceRestoreExitCode": 0,
+  "persistentBackup": ".test-data\\compact-chat\\evidence-backup-1792745595"
+}

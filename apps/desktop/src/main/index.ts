@@ -29,6 +29,7 @@ import { isAbsolute, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import {
   z,
+  ClipboardTextSchema,
   CoreEventSchema,
   RequestSchema,
   ReplySchema,
@@ -663,7 +664,7 @@ if (ownsLock) {
     });
     ipcMain.handle('tapkit:copy-text', (event, raw: unknown) => {
       if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
-      clipboard.writeText(z.string().max(100000).parse(raw));
+      clipboard.writeText(ClipboardTextSchema.parse(raw));
     });
     ipcMain.handle('tapkit:save-original', async (event, raw: unknown) => {
       if (!checkSender(event)) throw new Error('PERMISSION_DENIED');

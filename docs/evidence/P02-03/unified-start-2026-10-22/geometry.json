@@ -1,0 +1,146 @@
+[
+  {
+    "name": "home-1440-1-light",
+    "width": 1441,
+    "height": 901,
+    "input": {
+      "x": 430,
+      "y": 768,
+      "width": 820,
+      "height": 108,
+      "top": 768,
+      "right": 1250,
+      "bottom": 876,
+      "left": 430
+    },
+    "main": {
+      "x": 248,
+      "y": 66,
+      "width": 1184,
+      "height": 826,
+      "top": 66,
+      "right": 1432,
+      "bottom": 892,
+      "left": 248
+    },
+    "modes": {
+      "x": 660,
+      "y": 221.1953125,
+      "width": 360,
+      "height": 47.2734375,
+      "top": 221.1953125,
+      "right": 1020,
+      "bottom": 268.46875,
+      "left": 660
+    },
+    "overflow": false
+  },
+  {
+    "name": "home-960-1-light",
+    "width": 961,
+    "height": 641,
+    "input": {
+      "x": 280,
+      "y": 508,
+      "width": 640,
+      "height": 108,
+      "top": 508,
+      "right": 920,
+      "bottom": 616,
+      "left": 280
+    },
+    "main": {
+      "x": 248,
+      "y": 66,
+      "width": 704,
+      "height": 566,
+      "top": 66,
+      "right": 952,
+      "bottom": 632,
+      "left": 248
+    },
+    "modes": {
+      "x": 420,
+      "y": 135.3125,
+      "width": 360,
+      "height": 47.2734375,
+      "top": 135.3125,
+      "right": 780,
+      "bottom": 182.5859375,
+      "left": 420
+    },
+    "overflow": false
+  },
+  {
+    "name": "home-1440-2-dark",
+    "width": 1441,
+    "height": 901,
+    "input": {
+      "x": 210,
+      "y": 635,
+      "width": 1149,
+      "height": 216,
+      "top": 635,
+      "right": 1359,
+      "bottom": 851,
+      "left": 210
+    },
+    "main": {
+      "x": 146,
+      "y": 132,
+      "width": 1277,
+      "height": 751,
+      "top": 132,
+      "right": 1423,
+      "bottom": 883,
+      "left": 146
+    },
+    "modes": {
+      "x": 414.5,
+      "y": 363.484375,
+      "width": 720,
+      "height": 94.5625,
+      "top": 363.484375,
+      "right": 1134.5,
+      "bottom": 458.046875,
+      "left": 414.5
+    },
+    "overflow": false
+  },
+  {
+    "name": "home-960-2-dark",
+    "width": 961,
+    "height": 641,
+    "input": {
+      "x": 210,
+      "y": 375,
+      "width": 669,
+      "height": 216,
+      "top": 375,
+      "right": 879,
+      "bottom": 591,
+      "left": 210
+    },
+    "main": {
+      "x": 146,
+      "y": 132,
+      "width": 797,
+      "height": 491,
+      "top": 132,
+      "right": 943,
+      "bottom": 623,
+      "left": 146
+    },
+    "modes": {
+      "x": 214,
+      "y": 270.640625,
+      "width": 641,
+      "height": 94.5625,
+      "top": 270.640625,
+      "right": 855,
+      "bottom": 365.203125,
+      "left": 214
+    },
+    "overflow": false
+  }
+]
