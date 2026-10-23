@@ -1,3 +1,7 @@
+## 2026-10-24 ui_fix CI57复验通过
+
+2026-10-24 ui_fix CI57全部通过：源码00238f7，unit360/integration351/perf2/Electron50，标准用户原生/Office/启动诊断全部success。修复仅测试准备、能力断言及冷启动预算，产品109源码/原生产构建不变；证据ci-ui-fix-2026-10-23/ci57-success.json。已推送ui_fix，不合main，原profile/live/gate保持。
+
 ## 2026-10-23 ui_fix CI56续修（验证中）
 
 CI56原3项修复通过；新增P01-02回放15秒超时与附件首次发送用例未等待Ctrl+N切换首页。仅给六渠道HTTP协议完整性测试60秒预算，并在输入前断言新任务页、草稿和发送后的原用户正文；不改产品、传输deadline或隔离检查。HTTP8/8、附件专项2/2通过，最终检查/远程复验进行中；证据ci-ui-fix-2026-10-23。原live/gate/profile保持，不合main。
