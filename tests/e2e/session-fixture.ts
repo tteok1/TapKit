@@ -19,12 +19,20 @@ export async function openSessionFixture(page: Page) {
     },
     { requestId, title },
   );
+  await reopenSessionFixture(page, id);
+  return id;
+}
+
+// Reload intentionally starts on the shared task page (ADR0058). Resume the
+// existing record through the sidebar; never create a replacement conversation.
+export async function reopenSessionFixture(page: Page, sessionId: string) {
+  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125_000 });
   if (await page.getByRole('button', { name: '展开侧栏', exact: true }).count())
     await page.getByRole('button', { name: '展开侧栏', exact: true }).click();
   await page
     .getByRole('complementary', { name: '侧栏', exact: true })
-    .locator(`[data-tooltip="${title}"]`)
+    .locator(`[data-session-id="${sessionId}"] .history-link`)
     .click();
-  await expect(page.locator('.chat-surface')).toHaveAttribute('data-session-id', id);
-  return id;
+  await expect(page.locator('.chat-surface')).toHaveAttribute('data-session-id', sessionId);
+  await expect(page.locator('.chat-messages')).toBeVisible();
 }

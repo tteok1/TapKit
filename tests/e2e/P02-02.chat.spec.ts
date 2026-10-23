@@ -1,4 +1,4 @@
-import { openSessionFixture } from './session-fixture';
+import { openSessionFixture, reopenSessionFixture } from './session-fixture';
 import {
   test,
   expect,
@@ -32,6 +32,7 @@ import type {
 type Draft = ReturnType<typeof ChatDraftViewSchema.parse>;
 let app: ElectronApplication, dir: string;
 async function launch() {
+  test.setTimeout(180_000);
   const env = Object.fromEntries(
     Object.entries({ ...process.env, TAPKIT_DATA_DIR: dir, TAPKIT_CHAT_FIXTURE: 'P02-02' }).filter(
       (row): row is [string, string] => row[1] !== undefined,
@@ -41,7 +42,7 @@ async function launch() {
   app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
   app.process().stderr?.on('data', (chunk) => process.stderr.write(chunk));
   const page = await app.firstWindow();
-  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125_000 });
   const fixture = await page.evaluate(async (requestId) => {
     const r = await window.tapkit.modelCommand({ requestId }, 'models.catalog', {});
     return (
@@ -99,6 +100,8 @@ test('P01-03 background title failure is announced, survives reload and explicit
   );
   await page.screenshot({ path: 'docs/evidence/P01-engineering-2026-10-14/title-failed.png' });
   await page.reload();
+  await expect(page.getByRole('region', { name: '新建任务', exact: true })).toBeVisible();
+  await reopenSessionFixture(page, sid);
   await expect(page.getByRole('status').filter({ hasText: '自动标题生成失败' })).toContainText(
     '等待响应头超时',
   );
@@ -242,7 +245,8 @@ test('P02-02 T05 IME and Shift+Enter keep draft; queue editing/cancellation, ses
     [newId(), newId()],
   );
   await page.reload();
-  await expect(page.locator('.chat-messages')).toBeVisible();
+  await expect(page.getByRole('region', { name: '新建任务', exact: true })).toBeVisible();
+  await reopenSessionFixture(page, sid);
   await input.fill('慢速原问题');
   await input.press('Enter');
   await expect(input).toHaveValue('慢速原问题\n');

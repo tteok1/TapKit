@@ -1,0 +1,24 @@
+{
+  "runId": 39947832462,
+  "runNumber": 55,
+  "head": "cb5b09922491491c666ea3b9b23270eaf93c2288",
+  "branch": "ui_fix",
+  "url": "https://github.com/tteok1/TapKit/actions/runs/39947832462",
+  "jobId": 120394737050,
+  "failedStep": "Build and Electron checks",
+  "passedElectron": 47,
+  "failedElectron": 3,
+  "otherChecksPassed": [
+    "Check",
+    "Unit and current-route integration",
+    "Dedicated Core performance checks",
+    "Verify P00-03 and P03 parser as an independent standard user",
+    "Repeat fresh-process Office shutdown diagnostics",
+    "startup-diagnostics"
+  ],
+  "failures": [
+    "Reload title state assertion remained on old session assumption",
+    "Reload IME/queue test remained on old session assumption",
+    "Attachment card assumed native parser available for any host token"
+  ]
+}

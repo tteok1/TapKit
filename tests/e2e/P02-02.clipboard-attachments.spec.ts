@@ -6,19 +6,13 @@ import {
   type ElectronApplication,
   type Page,
 } from '@playwright/test';
-import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 import { openSessionFixture } from './session-fixture';
 
 const evidence = resolve('docs/evidence/P02-03/clipboard-attachments-2026-10-23');
 let app: ElectronApplication;
-let restoreClipboard: (() => Promise<void>) | undefined;
-test.beforeAll(async () => {
-  restoreClipboard = await protectClipboard();
-});
-test.afterAll(async () => {
-  await restoreClipboard?.();
-});
 async function launch() {
   test.setTimeout(240_000);
   await mkdir(evidence, { recursive: true });
@@ -52,131 +46,154 @@ async function send(page: Page, text: string) {
   await expect(answer.locator('.chat-markdown')).toBeVisible();
   return answer;
 }
-test('P02-02 native clipboard copies user, assistant, code, table and selected text exactly with rendered math', async () => {
-  const page = await launch();
-  const input = page.getByLabel('输入草稿', { exact: true });
-  // The runner backs up all OS clipboard formats in a separate STA process.
-  await app.evaluate(({ clipboard }) => clipboard.writeText('synthetic clipboard sentinel'));
-  expect(
-    await page.evaluate(async () => {
-      try {
-        await navigator.clipboard.writeText('denied browser route');
-        return 'allowed';
-      } catch {
-        return 'denied';
-      }
-    }),
-  ).toBe('denied');
-  expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(
-    'synthetic clipboard sentinel',
-  );
-  const user = ' 前后空白\t中文🙂e\u0301\n'.repeat(5000) + '末尾\n ';
-  const sessionId = (await page.locator('.chat-surface').getAttribute('data-session-id'))!;
-  // Populate the large exact message through the same send DTO; this case tests
-  // the copy button rather than Playwright's giant keyboard insertion action.
-  await page.evaluate(
-    async ({ sessionId, text }) => {
-      const id = () => crypto.randomUUID().replace(/^(.{14})./, (_, p: string) => p + '7');
-      const reply = await window.tapkit.chatCommand({ requestId: id() }, 'messages.send', {
-        sessionId,
-        clientMessageId: id(),
-        text,
-        attachments: [],
-        mode: 'chat',
-      });
-      if (!reply.ok) throw Error(reply.error.code);
-    },
-    { sessionId, text: user },
-  );
-  await expect(page.locator('.chat-message.user').last().locator('.chat-user-text')).toBeVisible();
-  const userMessage = page.locator('.chat-message.user').last();
-  await userMessage.getByRole('button', { name: '复制回复', exact: true }).click();
-  await expect.poll(() => app.evaluate(({ clipboard }) => clipboard.readText())).toBe(user);
-  await expect(userMessage.getByRole('button', { name: '已复制回复', exact: true })).toBeVisible();
-  await openSessionFixture(page);
-  const assistantText = '中文🙂e\u0301\t完整回复。';
-  const answer = await send(page, assistantText);
-  await answer.getByRole('button', { name: '复制回复', exact: true }).click();
-  expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(
-    '隔离测试回复：' + assistantText,
-  );
-  const code = '\n\tconst 中文 = "🙂";  \n\n  中文;\n';
-  const codeAnswer = await send(page, '\n```js\n' + code + '\n```');
-  await codeAnswer.getByRole('button', { name: '复制代码', exact: true }).click();
-  expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(code);
-  await input.focus();
-  await input.press('Control+v');
-  await expect(input).toHaveValue(code);
-  const mathAnswer = await send(page, '\n|列一|列二|空列|\n|---|---|---|\n|中文🙂|$x^2$||');
-  await expect(mathAnswer.locator('.katex')).toHaveCount(1);
-  await expect(mathAnswer.locator('.katex-error')).toHaveCount(0);
-  await expect(mathAnswer.locator('.katex .katex-html')).toBeVisible();
-  await mathAnswer.locator('.chat-table').hover();
-  await mathAnswer.getByRole('button', { name: '复制表格', exact: true }).click();
-  expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(
-    '列一\t列二\t空列\n中文🙂\tx^2\t',
-  );
-  await input.focus();
-  await input.press('Control+v');
-  await expect(input).toHaveValue('列一\t列二\t空列\n中文🙂\tx^2\t');
-  const selectionAnswer = await send(page, 'The amber lighthouse guides a small boat safely home.');
-  const paragraph = selectionAnswer.locator('.chat-markdown p').first();
-  await paragraph.scrollIntoViewIfNeeded();
-  await input.evaluate((el) => el.blur());
-  await paragraph.evaluate((el) => {
-    const node = el.firstChild!;
-    const range = document.createRange();
-    const start = node.textContent!.indexOf('The amber');
-    range.setStart(node, start);
-    range.setEnd(node, start + 'The amber lighthouse guides a small boat safely home.'.length);
-    getSelection()!.removeAllRanges();
-    getSelection()!.addRange(range);
-    document.dispatchEvent(new Event('selectionchange'));
+test.describe('native clipboard protection', () => {
+  let restoreClipboard: (() => Promise<void>) | undefined;
+  test.beforeAll(async () => {
+    restoreClipboard = await protectClipboard();
   });
-  const toolbar = page.getByRole('toolbar', { name: '选区操作', exact: true });
-  await expect(toolbar).toBeVisible();
-  const selected = await page.evaluate(() => getSelection()!.toString());
-  expect(selected).toBe('The amber lighthouse guides a small boat safely home.');
-  await toolbar.getByRole('button', { name: '复制选区', exact: true }).click();
-  expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(selected);
-  await page.keyboard.press('Escape');
-  await page.keyboard.press('Control+c');
-  expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(selected);
-  const boundary = '中文🙂\n\t'.repeat(400_000).slice(0, 2_000_000);
-  await page.evaluate((text) => window.tapkit.copyText(text), boundary);
-  expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(boundary);
-  expect(
-    await page.evaluate(async () => {
-      try {
-        await window.tapkit.copyText('x'.repeat(2_000_001));
-        return false;
-      } catch {
-        return true;
-      }
-    }),
-  ).toBe(true);
-  expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(boundary);
-  await writeFile(
-    resolve(evidence, 'native-copy.json'),
-    JSON.stringify(
-      {
-        browserPermissionDenied: true,
-        fullUserLength: user.length,
-        unicodeExact: true,
-        codeWhitespaceExact: true,
-        selectionAndKeyboardExact: true,
-        tableTSVExact: true,
-        mathVisible: true,
-        maximumAccepted: boundary.length,
-        oversizeRejected: true,
+  test.afterAll(async () => {
+    await restoreClipboard?.();
+  });
+  test('P02-02 native clipboard copies user, assistant, code, table and selected text exactly with rendered math', async () => {
+    const page = await launch();
+    const input = page.getByLabel('输入草稿', { exact: true });
+    // The runner backs up all OS clipboard formats in a separate STA process.
+    await app.evaluate(({ clipboard }) => clipboard.writeText('synthetic clipboard sentinel'));
+    expect(
+      await page.evaluate(async () => {
+        try {
+          await navigator.clipboard.writeText('denied browser route');
+          return 'allowed';
+        } catch {
+          return 'denied';
+        }
+      }),
+    ).toBe('denied');
+    expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(
+      'synthetic clipboard sentinel',
+    );
+    const user = ' 前后空白\t中文🙂e\u0301\n'.repeat(5000) + '末尾\n ';
+    const sessionId = (await page.locator('.chat-surface').getAttribute('data-session-id'))!;
+    // Populate the large exact message through the same send DTO; this case tests
+    // the copy button rather than Playwright's giant keyboard insertion action.
+    await page.evaluate(
+      async ({ sessionId, text }) => {
+        const id = () => crypto.randomUUID().replace(/^(.{14})./, (_, p: string) => p + '7');
+        const reply = await window.tapkit.chatCommand({ requestId: id() }, 'messages.send', {
+          sessionId,
+          clientMessageId: id(),
+          text,
+          attachments: [],
+          mode: 'chat',
+        });
+        if (!reply.ok) throw Error(reply.error.code);
       },
-      null,
-      2,
-    ),
-  );
+      { sessionId, text: user },
+    );
+    await expect(
+      page.locator('.chat-message.user').last().locator('.chat-user-text'),
+    ).toBeVisible();
+    const userMessage = page.locator('.chat-message.user').last();
+    await userMessage.getByRole('button', { name: '复制回复', exact: true }).click();
+    await expect.poll(() => app.evaluate(({ clipboard }) => clipboard.readText())).toBe(user);
+    await expect(
+      userMessage.getByRole('button', { name: '已复制回复', exact: true }),
+    ).toBeVisible();
+    await openSessionFixture(page);
+    const assistantText = '中文🙂e\u0301\t完整回复。';
+    const answer = await send(page, assistantText);
+    await answer.getByRole('button', { name: '复制回复', exact: true }).click();
+    expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(
+      '隔离测试回复：' + assistantText,
+    );
+    const code = '\n\tconst 中文 = "🙂";  \n\n  中文;\n';
+    const codeAnswer = await send(page, '\n```js\n' + code + '\n```');
+    await codeAnswer.getByRole('button', { name: '复制代码', exact: true }).click();
+    expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(code);
+    await input.focus();
+    await input.press('Control+v');
+    await expect(input).toHaveValue(code);
+    const mathAnswer = await send(page, '\n|列一|列二|空列|\n|---|---|---|\n|中文🙂|$x^2$||');
+    await expect(mathAnswer.locator('.katex')).toHaveCount(1);
+    await expect(mathAnswer.locator('.katex-error')).toHaveCount(0);
+    await expect(mathAnswer.locator('.katex .katex-html')).toBeVisible();
+    await mathAnswer.locator('.chat-table').hover();
+    await mathAnswer.getByRole('button', { name: '复制表格', exact: true }).click();
+    expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(
+      '列一\t列二\t空列\n中文🙂\tx^2\t',
+    );
+    await input.focus();
+    await input.press('Control+v');
+    await expect(input).toHaveValue('列一\t列二\t空列\n中文🙂\tx^2\t');
+    const selectionAnswer = await send(
+      page,
+      'The amber lighthouse guides a small boat safely home.',
+    );
+    const paragraph = selectionAnswer.locator('.chat-markdown p').first();
+    await paragraph.scrollIntoViewIfNeeded();
+    await input.evaluate((el) => el.blur());
+    await paragraph.evaluate((el) => {
+      const node = el.firstChild!;
+      const range = document.createRange();
+      const start = node.textContent!.indexOf('The amber');
+      range.setStart(node, start);
+      range.setEnd(node, start + 'The amber lighthouse guides a small boat safely home.'.length);
+      getSelection()!.removeAllRanges();
+      getSelection()!.addRange(range);
+      document.dispatchEvent(new Event('selectionchange'));
+    });
+    const toolbar = page.getByRole('toolbar', { name: '选区操作', exact: true });
+    await expect(toolbar).toBeVisible();
+    const selected = await page.evaluate(() => getSelection()!.toString());
+    expect(selected).toBe('The amber lighthouse guides a small boat safely home.');
+    await toolbar.getByRole('button', { name: '复制选区', exact: true }).click();
+    expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(selected);
+    await page.keyboard.press('Escape');
+    await page.keyboard.press('Control+c');
+    expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(selected);
+    const boundary = '中文🙂\n\t'.repeat(400_000).slice(0, 2_000_000);
+    await page.evaluate((text) => window.tapkit.copyText(text), boundary);
+    expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(boundary);
+    expect(
+      await page.evaluate(async () => {
+        try {
+          await window.tapkit.copyText('x'.repeat(2_000_001));
+          return false;
+        } catch {
+          return true;
+        }
+      }),
+    ).toBe(true);
+    expect(await app.evaluate(({ clipboard }) => clipboard.readText())).toBe(boundary);
+    await writeFile(
+      resolve(evidence, 'native-copy.json'),
+      JSON.stringify(
+        {
+          browserPermissionDenied: true,
+          fullUserLength: user.length,
+          unicodeExact: true,
+          codeWhitespaceExact: true,
+          selectionAndKeyboardExact: true,
+          tableTSVExact: true,
+          mathVisible: true,
+          maximumAccepted: boundary.length,
+          oversizeRejected: true,
+        },
+        null,
+        2,
+      ),
+    );
+  });
 });
 test('P02-02 rounded attachment cards show progress, cancel one late upload and fit focus and zoom layouts', async () => {
   const page = await launch();
+  const nativeStatus = await page.evaluate(async () => {
+    const requestId = crypto.randomUUID().replace(/^(.{14})./, (_, s: string) => s + '7');
+    const r = await window.tapkit.bootstrap({ requestId });
+    if (!r.ok || !('runtimeCapabilities' in r.data)) throw Error('bootstrap');
+    return r.data.runtimeCapabilities?.nativeExecution.status;
+  });
+  expect(nativeStatus).toBeDefined();
   const input = page.getByLabel('输入草稿', { exact: true });
   const composer = page.locator('.composer');
   await composer.locator('input[type=file]').setInputFiles([
@@ -255,7 +272,11 @@ test('P02-02 rounded attachment cards show progress, cancel one late upload and 
   await cancel.getByRole('button', { name: '移除附件 cancel-this.txt', exact: true }).click();
   await app.evaluate(() => Reflect.get(globalThis, 'cardRelease')());
   await expect(cards.filter({ hasText: 'cancel-this.txt' })).toHaveCount(0);
-  await expect(cards.filter({ hasText: 'keep-this.txt' })).toContainText('已就绪');
+  // Importing the immutable original and parsing its contents are separate.
+  // Hosted CI may correctly refuse native execution for its actual host token.
+  await expect(cards.filter({ hasText: 'keep-this.txt' })).toContainText(
+    nativeStatus === 'available' ? '已就绪' : '处理失败',
+  );
   await expect(cards).toHaveCount(2);
   const sid = (await page.locator('.chat-surface').getAttribute('data-session-id'))!;
   await expect
@@ -271,6 +292,35 @@ test('P02-02 rounded attachment cards show progress, cancel one late upload and 
       }, sid),
     )
     .toBe(2);
+  const keptVersion = await page.evaluate(async (sessionId) => {
+    const options = () => ({
+      requestId: crypto.randomUUID().replace(/^(.{14})./, (_, s: string) => s + '7'),
+    });
+    const draft = await window.tapkit.chatCommand(options(), 'drafts.get', {
+      sessionId,
+      windowId: window.tapkit.windowSlot,
+    });
+    if (!draft.ok || !('attachments' in draft.data)) throw Error('draft');
+    for (const ref of draft.data.attachments) {
+      if (ref.kind !== 'file') continue;
+      const r = await window.tapkit.fileCommand(options(), 'files.get', {
+        fileId: ref.fileId,
+        versionId: ref.versionId,
+        owner: { type: 'session', id: sessionId },
+      });
+      if (!r.ok || !('file' in r.data)) throw Error('fixed file version');
+      if (r.data.file.version.name === 'keep-this.txt') return r.data.file.version;
+    }
+    throw Error('Sibling attachment lost');
+  }, sid);
+  expect(keptVersion.sha256).toBe(createHash('sha256').update('keep batch sibling').digest('hex'));
+  expect(await readFile(keep, 'utf8')).toBe('keep batch sibling');
+  expect(keptVersion.parseStatus).toBe(nativeStatus === 'available' ? 'ready' : 'failed');
+  expect(keptVersion.errorReason).toBe(nativeStatus === 'available' ? null : 'SANDBOX_UNAVAILABLE');
+  await test.info().attach('actual-native-file-capability', {
+    body: JSON.stringify({ nativeStatus, keptVersion }, null, 2),
+    contentType: 'application/json',
+  });
   await app.evaluate(({ BrowserWindow }) =>
     BrowserWindow.getAllWindows()[0]!.setContentSize(960, 640),
   );
