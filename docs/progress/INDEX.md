@@ -1,3 +1,7 @@
+## 2026-10-26 fix分支CI通过并合入main
+
+2026-10-26用户报告CI已通过并明确允许合入main；连接器核实0604099的CI59/40328437523及check/startup-diagnostics均success。main已从9bfc156快进至0604099，完整合入树与已验源树一致；随后仅本次交接文档更新，fix分支保留，原profile/live/gate及暂缓范围保持。本次main交接提交包含本记录，最终推送SHA以Git回执为准。证据 docs/evidence/P02-03/fix-main-merge-2026-10-26/verification.md；不开展P05，不创建PR。
+
 ## 2026-10-26 fix分支提交推送授权
 
 2026-10-26用户授权将当前fix分支修复及验收记录提交推送到同名远程分支；明确暂不合入main；本提交包含交接，最终SHA及远端一致性以Git回执为准。分支codex/test-fixes-2026-10-26，基点9bfc156；范围为T14反馈/评分取消/聊天收藏入口、相关测试及四批209项自动/两项用户补测通过记录。110产品源码/626产物与已验快照一致，profile/runtime/构建缓存不入Git；证据 docs/evidence/P02-03/fix-branch-push-2026-10-26/verification.md。只推当前分支，无PR或main合并，原live/gate/暂缓范围保持。

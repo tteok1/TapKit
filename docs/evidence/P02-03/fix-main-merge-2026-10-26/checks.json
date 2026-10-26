@@ -1,0 +1,34 @@
+[
+  {
+    "name": "docs-check",
+    "command": "& '.\\scripts\\pnpm.ps1' docs:check",
+    "started": "2026-10-26T14:14:38.442Z",
+    "finished": "2026-10-26T14:14:40.556Z",
+    "exitCode": 0,
+    "log": "docs-check.log"
+  },
+  {
+    "name": "format-check",
+    "command": "& '.\\scripts\\pnpm.ps1' exec prettier --check docs/progress/CURRENT.md docs/progress/INDEX.md docs/progress/P02-03.md",
+    "started": "2026-10-26T14:14:38.457Z",
+    "finished": "2026-10-26T14:14:41.076Z",
+    "exitCode": 0,
+    "log": "format-check.log"
+  },
+  {
+    "name": "diff-check",
+    "command": "git diff --check",
+    "started": "2026-10-26T14:14:38.457Z",
+    "finished": "2026-10-26T14:14:39.873Z",
+    "exitCode": 0,
+    "log": "diff-check.log"
+  },
+  {
+    "name": "production-startup-check",
+    "command": "& '.\\docs\\evidence\\P02-03\\session-load-2026-10-21\\run-app.ps1' -CheckOnly",
+    "started": "2026-10-26T14:14:38.457Z",
+    "finished": "2026-10-26T14:14:40.700Z",
+    "exitCode": 0,
+    "log": "production-startup-check.log"
+  }
+]
