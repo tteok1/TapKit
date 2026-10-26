@@ -1,0 +1,218 @@
+$ node scripts/e2e.mjs "--" "--grep" "P03-02" "--timeout=180000"
+
+Running 5 tests using 1 worker
+
+(node:21036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\e2e\P03-02.preview.spec.ts:127:1 › P03-02 Electron pins inline historical refs, remembers PDF/code positions and previews safe Markdown plus real diffs (30.8s)
+(node:35612) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 tests\e2e\P03-02.preview.spec.ts:199:1 › P03-02 Electron PDF selections support copy, annotations, persisted quotes and three PDF layout samples (24.5s)
+(node:40760) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  3 tests\e2e\P03-02.preview.spec.ts:283:1 › P03-02 Electron merged/formula grids, sorting, image rotation, ZIP directories and 200 percent controls remain usable (24.3s)
+(node:420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  4 tests\e2e\P03-02.preview.spec.ts:359:1 › P03-02 Electron renders six actual isolated Office caches with notes, structural locators, page bounds and presentation (18.3s)
+(node:25380) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  5 tests\e2e\P03-02.preview.spec.ts:423:1 › P03-02 Electron preview failure offers real retry, fixed original download/share and scoped external copy (24.7s)
+
+
+  1) tests\e2e\P03-02.preview.spec.ts:127:1 › P03-02 Electron pins inline historical refs, remembers PDF/code positions and previews safe Markdown plus real diffs 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('core-status')
+    Expected: "本地核心已连接"
+    Received: "正在检查本地核心…"
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('core-status') with timeout 15000ms
+      - waiting for getByTestId('core-status')
+        30 × locator resolved to <span data-testid="core-status">正在检查本地核心…</span>
+           - unexpected value "正在检查本地核心…"
+
+
+      71 |   app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
+      72 |   const page = await app.firstWindow();
+    > 73 |   await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+         |                                                 ^
+      74 |   return page;
+      75 | }
+      76 | const panelFor = (page: Page) => page.getByRole('region', { name: '文件预览', exact: true });
+        at launch (D:\Tapkit-public\tests\e2e\P03-02.preview.spec.ts:73:49)
+        at D:\Tapkit-public\tests\e2e\P03-02.preview.spec.ts:130:12
+
+    Error Context: test-results\e2e\P03-02.preview-P03-02-Elec-afc9c-fe-Markdown-plus-real-diffs\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P03-02.preview-P03-02-Elec-afc9c-fe-Markdown-plus-real-diffs\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P03-02.preview-P03-02-Elec-afc9c-fe-Markdown-plus-real-diffs\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests\e2e\P03-02.preview.spec.ts:199:1 › P03-02 Electron PDF selections support copy, annotations, persisted quotes and three PDF layout samples 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('core-status')
+    Expected: "本地核心已连接"
+    Received: "正在检查本地核心…"
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('core-status') with timeout 15000ms
+      - waiting for getByTestId('core-status')
+        30 × locator resolved to <span data-testid="core-status">正在检查本地核心…</span>
+           - unexpected value "正在检查本地核心…"
+
+
+      71 |   app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
+      72 |   const page = await app.firstWindow();
+    > 73 |   await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+         |                                                 ^
+      74 |   return page;
+      75 | }
+      76 | const panelFor = (page: Page) => page.getByRole('region', { name: '文件预览', exact: true });
+        at launch (D:\Tapkit-public\tests\e2e\P03-02.preview.spec.ts:73:49)
+        at D:\Tapkit-public\tests\e2e\P03-02.preview.spec.ts:202:12
+
+    Error Context: test-results\e2e\P03-02.preview-P03-02-Elec-cb08c-nd-three-PDF-layout-samples\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P03-02.preview-P03-02-Elec-cb08c-nd-three-PDF-layout-samples\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P03-02.preview-P03-02-Elec-cb08c-nd-three-PDF-layout-samples\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests\e2e\P03-02.preview.spec.ts:283:1 › P03-02 Electron merged/formula grids, sorting, image rotation, ZIP directories and 200 percent controls remain usable 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('core-status')
+    Expected: "本地核心已连接"
+    Received: "正在检查本地核心…"
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('core-status') with timeout 15000ms
+      - waiting for getByTestId('core-status')
+        30 × locator resolved to <span data-testid="core-status">正在检查本地核心…</span>
+           - unexpected value "正在检查本地核心…"
+
+
+      71 |   app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
+      72 |   const page = await app.firstWindow();
+    > 73 |   await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+         |                                                 ^
+      74 |   return page;
+      75 | }
+      76 | const panelFor = (page: Page) => page.getByRole('region', { name: '文件预览', exact: true });
+        at launch (D:\Tapkit-public\tests\e2e\P03-02.preview.spec.ts:73:49)
+        at D:\Tapkit-public\tests\e2e\P03-02.preview.spec.ts:286:12
+
+    Error Context: test-results\e2e\P03-02.preview-P03-02-Elec-b43ae-cent-controls-remain-usable\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P03-02.preview-P03-02-Elec-b43ae-cent-controls-remain-usable\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P03-02.preview-P03-02-Elec-b43ae-cent-controls-remain-usable\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests\e2e\P03-02.preview.spec.ts:359:1 › P03-02 Electron renders six actual isolated Office caches with notes, structural locators, page bounds and presentation 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('core-status')
+    Expected: "本地核心已连接"
+    Received: "正在检查本地核心…"
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('core-status') with timeout 15000ms
+      - waiting for getByTestId('core-status')
+        30 × locator resolved to <span data-testid="core-status">正在检查本地核心…</span>
+           - unexpected value "正在检查本地核心…"
+
+
+      71 |   app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
+      72 |   const page = await app.firstWindow();
+    > 73 |   await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+         |                                                 ^
+      74 |   return page;
+      75 | }
+      76 | const panelFor = (page: Page) => page.getByRole('region', { name: '文件预览', exact: true });
+        at launch (D:\Tapkit-public\tests\e2e\P03-02.preview.spec.ts:73:49)
+        at D:\Tapkit-public\tests\e2e\P03-02.preview.spec.ts:368:16
+
+    Error Context: test-results\e2e\P03-02.preview-P03-02-Elec-1e2b7-age-bounds-and-presentation\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P03-02.preview-P03-02-Elec-1e2b7-age-bounds-and-presentation\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P03-02.preview-P03-02-Elec-1e2b7-age-bounds-and-presentation\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) tests\e2e\P03-02.preview.spec.ts:423:1 › P03-02 Electron preview failure offers real retry, fixed original download/share and scoped external copy 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('core-status')
+    Expected: "本地核心已连接"
+    Received: "正在检查本地核心…"
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('core-status') with timeout 15000ms
+      - waiting for getByTestId('core-status')
+        30 × locator resolved to <span data-testid="core-status">正在检查本地核心…</span>
+           - unexpected value "正在检查本地核心…"
+
+
+      71 |   app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
+      72 |   const page = await app.firstWindow();
+    > 73 |   await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+         |                                                 ^
+      74 |   return page;
+      75 | }
+      76 | const panelFor = (page: Page) => page.getByRole('region', { name: '文件预览', exact: true });
+        at launch (D:\Tapkit-public\tests\e2e\P03-02.preview.spec.ts:73:49)
+        at D:\Tapkit-public\tests\e2e\P03-02.preview.spec.ts:425:12
+
+    Error Context: test-results\e2e\P03-02.preview-P03-02-Elec-ff209-re-and-scoped-external-copy\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P03-02.preview-P03-02-Elec-ff209-re-and-scoped-external-copy\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P03-02.preview-P03-02-Elec-ff209-re-and-scoped-external-copy\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    tests\e2e\P03-02.preview.spec.ts:127:1 › P03-02 Electron pins inline historical refs, remembers PDF/code positions and previews safe Markdown plus real diffs 
+    tests\e2e\P03-02.preview.spec.ts:199:1 › P03-02 Electron PDF selections support copy, annotations, persisted quotes and three PDF layout samples 
+    tests\e2e\P03-02.preview.spec.ts:283:1 › P03-02 Electron merged/formula grids, sorting, image rotation, ZIP directories and 200 percent controls remain usable 
+    tests\e2e\P03-02.preview.spec.ts:359:1 › P03-02 Electron renders six actual isolated Office caches with notes, structural locators, page bounds and presentation 
+    tests\e2e\P03-02.preview.spec.ts:423:1 › P03-02 Electron preview failure offers real retry, fixed original download/share and scoped external copy 
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/e2e.mjs:14:21
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.

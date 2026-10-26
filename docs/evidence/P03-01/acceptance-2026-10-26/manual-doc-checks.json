@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-26",
+  "scope": "Documentation update for direct user acceptance of M01 and M02; no tests reexecuted or product changes",
+  "checks": [
+    {
+      "command": "& '.\\scripts\\pnpm.ps1' docs:check",
+      "exitCode": 0,
+      "output": "$ node scripts/docs-check.mjs\nAll 37 task states, started handoffs and completed requirement evidence links verified\n"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "output": "warning: in the working copy of 'docs/progress/requirements.csv', CRLF will be replaced by LF the next time Git touches it\n"
+    }
+  ]
+}

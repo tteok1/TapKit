@@ -1,0 +1,1164 @@
+{
+  "date": "2026-10-26",
+  "branch": "codex/test-fixes-2026-10-26",
+  "base": "9bfc156af41f9a66fb4fff2a0842ff4c3582aa7a",
+  "authorizedAction": "Commit and push current fix branch to origin; do not merge main",
+  "remoteMainBefore": "9bfc156af41f9a66fb4fff2a0842ff4c3582aa7a",
+  "remoteTargetBefore": null,
+  "sourceCount": 110,
+  "artifactCount": 626,
+  "verifiedBuildMatches": true,
+  "fileCount": 276,
+  "totalBytes": 16554092,
+  "largestFiles": [
+    {
+      "path": "docs/progress/requirements.csv",
+      "bytes": 529993
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/scoped-pinned-library.png",
+      "bytes": 274129
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/import-recovery.png",
+      "bytes": 271617
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/ocr-original-recovery.png",
+      "bytes": 269500
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/generated-note-library.png",
+      "bytes": 263764
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/scoped-folder-root.png",
+      "bytes": 255172
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/task-usage.png",
+      "bytes": 250205
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/media-original-only.png",
+      "bytes": 245512
+    }
+  ],
+  "findings": [],
+  "tests": {
+    "priorFinalPassed": {
+      "unit": 53,
+      "integration": 126,
+      "electron": 30
+    },
+    "manual": "M01/M02 directly accepted by user",
+    "evidence": "docs/evidence/P03-01/acceptance-2026-10-26/final-outcome.json"
+  },
+  "inventory": [
+    {
+      "path": ".gitattributes",
+      "bytes": 184
+    },
+    {
+      "path": "apps/desktop/src/renderer/locales/history.zh-CN.json",
+      "bytes": 5095
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/bookmarks.tsx",
+      "bytes": 4619
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/design-system.css",
+      "bytes": 48469
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/desktop-shell.tsx",
+      "bytes": 31688
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/history-ui.tsx",
+      "bytes": 46017
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/message-history.tsx",
+      "bytes": 17650
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/sidebar-navigation.tsx",
+      "bytes": 7403
+    },
+    {
+      "path": "docs/adr/0063-message-feedback-and-bookmark-collection.md",
+      "bytes": 2233
+    },
+    {
+      "path": "docs/evidence/P02-03/fix-branch-push-2026-10-26/check.log",
+      "bytes": 14304
+    },
+    {
+      "path": "docs/evidence/P02-03/fix-branch-push-2026-10-26/checks.json",
+      "bytes": 1228
+    },
+    {
+      "path": "docs/evidence/P02-03/fix-branch-push-2026-10-26/checks.mjs",
+      "bytes": 1357
+    },
+    {
+      "path": "docs/evidence/P02-03/fix-branch-push-2026-10-26/diff-check.log",
+      "bytes": 123
+    },
+    {
+      "path": "docs/evidence/P02-03/fix-branch-push-2026-10-26/docs-check.log",
+      "bytes": 117
+    },
+    {
+      "path": "docs/evidence/P02-03/fix-branch-push-2026-10-26/preflight.json",
+      "bytes": 37142
+    },
+    {
+      "path": "docs/evidence/P02-03/fix-branch-push-2026-10-26/preflight.mjs",
+      "bytes": 3789
+    },
+    {
+      "path": "docs/evidence/P02-03/fix-branch-push-2026-10-26/prepare-handoff.mjs",
+      "bytes": 3643
+    },
+    {
+      "path": "docs/evidence/P02-03/fix-branch-push-2026-10-26/production-startup-check.log",
+      "bytes": 79
+    },
+    {
+      "path": "docs/evidence/P02-03/fix-branch-push-2026-10-26/staged-diff-final.log",
+      "bytes": 0
+    },
+    {
+      "path": "docs/evidence/P02-03/fix-branch-push-2026-10-26/staged-diff-first.log",
+      "bytes": 13750
+    },
+    {
+      "path": "docs/evidence/P02-03/fix-branch-push-2026-10-26/verification.md",
+      "bytes": 2692
+    },
+    {
+      "path": "docs/evidence/P02-03/live-2026-10-19/batch-checklist.md",
+      "bytes": 24637
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/bookmarks-dark-1440-1.png",
+      "bytes": 140686
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/bookmarks-dark-960-2.png",
+      "bytes": 118499
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/bookmarks-light-1440-1.png",
+      "bytes": 142537
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/bookmarks-light-960-2.png",
+      "bytes": 119967
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/chat-entry-dark-1440-1.png",
+      "bytes": 133187
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/chat-entry-dark-960-2.png",
+      "bytes": 88706
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/chat-entry-light-1440-1.png",
+      "bytes": 133994
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/chat-entry-light-960-2.png",
+      "bytes": 88885
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/check-first.log",
+      "bytes": 14417
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/check.log",
+      "bytes": 14417
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/docs-check.log",
+      "bytes": 119
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/electron-console.log",
+      "bytes": 157358
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/electron-layout-final-console.log",
+      "bytes": 153833
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/electron-layout-final.json",
+      "bytes": 942
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/electron-layout-final.log",
+      "bytes": 153833
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/electron.json",
+      "bytes": 942
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/electron.log",
+      "bytes": 157358
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/feedback-dark-1440-1.png",
+      "bytes": 238938
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/feedback-dark-960-2.png",
+      "bytes": 111935
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/feedback-light-1440-1.png",
+      "bytes": 241790
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/feedback-light-960-2.png",
+      "bytes": 112942
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/finish-review.mjs",
+      "bytes": 3054
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/launcher-check.json",
+      "bytes": 224
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/launcher-check.log",
+      "bytes": 79
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/launcher-previous-pointer.json",
+      "bytes": 93
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/production-snapshot.json",
+      "bytes": 97062
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/related-tests/electron-layout-final/navigation-geometry.json",
+      "bytes": 904
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/related-tests/electron-layout-final/rounded-icons-dark-200.png",
+      "bytes": 70709
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/related-tests/electron-layout-final/rounded-icons-light.png",
+      "bytes": 201554
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/related-tests/electron-layout-final/sidebar-icons-dark-200.png",
+      "bytes": 54170
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/related-tests/electron-layout-final/sidebar-icons-light.png",
+      "bytes": 48446
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/related-tests/electron/navigation-geometry.json",
+      "bytes": 904
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/related-tests/electron/rounded-icons-dark-200.png",
+      "bytes": 73199
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/related-tests/electron/rounded-icons-light.png",
+      "bytes": 201692
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/related-tests/electron/sidebar-icons-dark-200.png",
+      "bytes": 54103
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/related-tests/electron/sidebar-icons-light.png",
+      "bytes": 48390
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/results.json",
+      "bytes": 100968
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/scope.json",
+      "bytes": 289
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/snapshot.mjs",
+      "bytes": 2352
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/source-first.json",
+      "bytes": 13282
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/source-frozen.json",
+      "bytes": 13282
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/verification.md",
+      "bytes": 2796
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/verify-electron.ps1",
+      "bytes": 2520
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/visual-first/bookmarks-light-1440-1.png",
+      "bytes": 141633
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/visual-first/chat-entry-light-1440-1.png",
+      "bytes": 132568
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/visual-first/chat-entry-light-960-2.png",
+      "bytes": 88537
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/visual-first/feedback-light-1440-1.png",
+      "bytes": 239244
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/visual-first/feedback-light-960-2.png",
+      "bytes": 112926
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/bookmarks-dark-1440-1.png",
+      "bytes": 144312
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/bookmarks-dark-960-2.png",
+      "bytes": 118499
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/bookmarks-light-1440-1.png",
+      "bytes": 146001
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/bookmarks-light-960-2.png",
+      "bytes": 119967
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/check-final.log",
+      "bytes": 14416
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/check-first.log",
+      "bytes": 1215
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/docs-check-final.log",
+      "bytes": 119
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-final-console.log",
+      "bytes": 158855
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-final.json",
+      "bytes": 1065
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-final.log",
+      "bytes": 158855
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-first.json",
+      "bytes": 942
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-first.log",
+      "bytes": 97071
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-focus-final-console.log",
+      "bytes": 154676
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-focus-final.json",
+      "bytes": 1065
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-focus-final.log",
+      "bytes": 154676
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local-console.log",
+      "bytes": 165095
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local.json",
+      "bytes": 942
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local.log",
+      "bytes": 165095
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/feedback-dark-1440-1.png",
+      "bytes": 241606
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/feedback-dark-960-2.png",
+      "bytes": 111228
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/feedback-light-1440-1.png",
+      "bytes": 244544
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/feedback-light-960-2.png",
+      "bytes": 113821
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/finish-review.mjs",
+      "bytes": 3752
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/integration-final.log",
+      "bytes": 256
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/integration-first.log",
+      "bytes": 1326
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/launcher-check.json",
+      "bytes": 224
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/launcher-check.log",
+      "bytes": 79
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/launcher-previous-pointer.json",
+      "bytes": 82
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/production-snapshot.json",
+      "bytes": 97062
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-final/branches-and-feedback.png",
+      "bytes": 208511
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-final/navigation-geometry.json",
+      "bytes": 904
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-final/rounded-icons-dark-200.png",
+      "bytes": 73212
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-final/rounded-icons-light.png",
+      "bytes": 204776
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-final/sidebar-icons-dark-200.png",
+      "bytes": 54154
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-final/sidebar-icons-light.png",
+      "bytes": 50802
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-first/navigation-geometry.json",
+      "bytes": 904
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-first/rounded-icons-dark-200.png",
+      "bytes": 70709
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-first/rounded-icons-light.png",
+      "bytes": 201554
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-first/sidebar-icons-dark-200.png",
+      "bytes": 54170
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-first/sidebar-icons-light.png",
+      "bytes": 48446
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-focus-final/branches-and-feedback.png",
+      "bytes": 199257
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-focus-final/navigation-geometry.json",
+      "bytes": 904
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-focus-final/rounded-icons-dark-200.png",
+      "bytes": 70709
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-focus-final/rounded-icons-light.png",
+      "bytes": 201554
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-focus-final/sidebar-icons-dark-200.png",
+      "bytes": 54170
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-focus-final/sidebar-icons-light.png",
+      "bytes": 48446
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-local/branches-and-feedback.png",
+      "bytes": 209008
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-local/navigation-geometry.json",
+      "bytes": 904
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-local/rounded-icons-dark-200.png",
+      "bytes": 70709
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-local/rounded-icons-light.png",
+      "bytes": 201554
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-local/sidebar-icons-dark-200.png",
+      "bytes": 54170
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/related-tests/electron-local/sidebar-icons-light.png",
+      "bytes": 48446
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/results.json",
+      "bytes": 103907
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/snapshot.mjs",
+      "bytes": 2352
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/source-first.json",
+      "bytes": 13282
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/source-frozen.json",
+      "bytes": 13282
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/source-layout-confirmation.json",
+      "bytes": 13282
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/unit-final.log",
+      "bytes": 276
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/unit.log",
+      "bytes": 823
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/verification.md",
+      "bytes": 4859
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/verify-electron.ps1",
+      "bytes": 2520
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/visual-first/bookmarks-dark-1440-1.png",
+      "bytes": 150055
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/visual-first/bookmarks-dark-960-2.png",
+      "bytes": 128127
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/visual-first/bookmarks-light-1440-1.png",
+      "bytes": 151776
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/visual-first/bookmarks-light-960-2.png",
+      "bytes": 129533
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/visual-first/feedback-dark-1440-1.png",
+      "bytes": 241148
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/visual-first/feedback-dark-960-2.png",
+      "bytes": 115994
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/visual-first/feedback-light-1440-1.png",
+      "bytes": 244706
+    },
+    {
+      "path": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/visual-first/feedback-light-960-2.png",
+      "bytes": 117455
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/chat-host-import.png",
+      "bytes": 156061
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/chat-navigation-isolation.png",
+      "bytes": 168348
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/generated-note-library.png",
+      "bytes": 263764
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/import-recovery.png",
+      "bytes": 271617
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/library-dark-1200.png",
+      "bytes": 79783
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/library-dark-200-percent.png",
+      "bytes": 86722
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/library-dark-960.png",
+      "bytes": 65517
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/library-light-1200.png",
+      "bytes": 80131
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/library-light-960.png",
+      "bytes": 66496
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/media-original-only.png",
+      "bytes": 245512
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/native-parser-cases.jsonl",
+      "bytes": 41209
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/native-parser-cases.jsonl.new.jsonl",
+      "bytes": 13739
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/ocr-original-recovery.png",
+      "bytes": 269500
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/scoped-folder-root.png",
+      "bytes": 255172
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/scoped-pinned-library.png",
+      "bytes": 274129
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/generated/docs/evidence/P03-01/task-usage.png",
+      "bytes": 250205
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/results.json",
+      "bytes": 5196
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/test-e2e.log",
+      "bytes": 10539
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/test-integration.log",
+      "bytes": 239
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-01/test-unit.log",
+      "bytes": 269
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/e2e-ready/generated/docs/evidence/P03-02/native-preview-samples.json",
+      "bytes": 1748
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/e2e-ready/generated/docs/evidence/P03-02/pdf-sample-1.png",
+      "bytes": 13328
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/e2e-ready/generated/docs/evidence/P03-02/pdf-sample-2.png",
+      "bytes": 13742
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/e2e-ready/generated/docs/evidence/P03-02/pdf-sample-3.png",
+      "bytes": 13503
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/e2e-ready/generated/docs/evidence/P03-02/slides-1-pptx.png",
+      "bytes": 33444
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/e2e-ready/generated/docs/evidence/P03-02/slides-2-pptx.png",
+      "bytes": 32789
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/e2e-ready/generated/docs/evidence/P03-02/slides-3-pptx.png",
+      "bytes": 34260
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/e2e-ready/generated/docs/evidence/P03-02/viewer-200-percent.png",
+      "bytes": 138386
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/e2e-ready/results.json",
+      "bytes": 2631
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/e2e-ready/test-e2e.log",
+      "bytes": 1136
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/generated/docs/evidence/P03-02/native-preview-cases.jsonl",
+      "bytes": 136972
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/generated/docs/evidence/P03-02/native-preview-cases.jsonl.new.jsonl",
+      "bytes": 11444
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/generated/docs/evidence/P03-02/native-preview-samples.json",
+      "bytes": 1748
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/generated/docs/evidence/P03-02/slides-1.pptx.pdf",
+      "bytes": 24994
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/generated/docs/evidence/P03-02/slides-2.pptx.pdf",
+      "bytes": 26296
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/generated/docs/evidence/P03-02/slides-3.pptx.pdf",
+      "bytes": 28283
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/generated/docs/evidence/P03-02/word-1.docx.pdf",
+      "bytes": 59094
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/generated/docs/evidence/P03-02/word-2.docx.pdf",
+      "bytes": 64003
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/generated/docs/evidence/P03-02/word-3.docx.pdf",
+      "bytes": 81470
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/results.json",
+      "bytes": 3416
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/test-e2e.log",
+      "bytes": 13730
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/test-integration.log",
+      "bytes": 227
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-02/test-unit.log",
+      "bytes": 269
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-03/generated/docs/evidence/P03-03/deletion.png",
+      "bytes": 199775
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-03/generated/docs/evidence/P03-03/materials.png",
+      "bytes": 168906
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-03/generated/docs/evidence/P03-03/scope.png",
+      "bytes": 182145
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-03/generated/docs/evidence/P03-03/settings.png",
+      "bytes": 177106
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-03/results.json",
+      "bytes": 2405
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-03/test-e2e.log",
+      "bytes": 929
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-03/test-integration.log",
+      "bytes": 238
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P03-03/test-unit.log",
+      "bytes": 266
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P04-03/generated/docs/evidence/P04-03/automatic-memory.png",
+      "bytes": 90095
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P04-03/generated/docs/evidence/P04-03/memory-management.png",
+      "bytes": 93938
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P04-03/generated/docs/evidence/P04-03/session-deletion-impact.png",
+      "bytes": 60615
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P04-03/generated/docs/evidence/P04-03/temporary-scope.png",
+      "bytes": 204479
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P04-03/results.json",
+      "bytes": 2446
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P04-03/test-e2e.log",
+      "bytes": 152421
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P04-03/test-integration.log",
+      "bytes": 238
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/P04-03/test-unit.log",
+      "bytes": 266
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/accepted-baseline.md",
+      "bytes": 802
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/automation-summary.json",
+      "bytes": 19644
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/check-retry.log",
+      "bytes": 14417
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/check.log",
+      "bytes": 25
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/diff-check.log",
+      "bytes": 123
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/docs-check.log",
+      "bytes": 117
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/final-checks.json",
+      "bytes": 2208
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/final-checks.mjs",
+      "bytes": 1947
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/final-outcome-before-manual.json",
+      "bytes": 2643
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/final-outcome.json",
+      "bytes": 3071
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/final-outcome.mjs",
+      "bytes": 2848
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/finalize-docs.mjs",
+      "bytes": 7885
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/initial-final-checks/check.log",
+      "bytes": 14304
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/initial-final-checks/diff-check.log",
+      "bytes": 123
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/initial-final-checks/docs-check.log",
+      "bytes": 317
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/initial-final-checks/final-checks.json",
+      "bytes": 2210
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/initial-final-checks/isolated-startup-check.log",
+      "bytes": 612
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/initial-final-checks/original-startup-check.log",
+      "bytes": 609
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/initial-final-checks/summary-source-production-check.log",
+      "bytes": 44
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/initial-state.json",
+      "bytes": 14271
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/isolated-startup-check.log",
+      "bytes": 71
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/manual-acceptance.json",
+      "bytes": 909
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/manual-checklist.md",
+      "bytes": 4701
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/manual-doc-checks.json",
+      "bytes": 604
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/manual-samples/验收1026-拖入文件.txt",
+      "bytes": 97
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/manual-samples/验收1026-文件夹/子目录/验收1026-文件夹文件.txt",
+      "bytes": 93
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/manual-samples/验收1026-选择文件.txt",
+      "bytes": 126
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/native-audit.mjs",
+      "bytes": 2378
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/native-control.json",
+      "bytes": 65
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/native-files-result.json",
+      "bytes": 1693
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/native-first-attempt/native-control.json",
+      "bytes": 21
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/native-first-attempt/native-files-result.json",
+      "bytes": 167
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/native-first-attempt/native-session.json",
+      "bytes": 516
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/native-session.json",
+      "bytes": 516
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/native-session.mjs",
+      "bytes": 3335
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/native-ui.md",
+      "bytes": 3179
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/original-startup-check.log",
+      "bytes": 79
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/progress-before-final.md",
+      "bytes": 19807
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/record-manual-acceptance.mjs",
+      "bytes": 8574
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/review-state.mjs",
+      "bytes": 1451
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/run-batch.mjs",
+      "bytes": 5397
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/start-manual.ps1",
+      "bytes": 3343
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/summarize.mjs",
+      "bytes": 2597
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/summary-source-production-check.log",
+      "bytes": 44
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/verification.md",
+      "bytes": 7540
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/visual-review/manifest.json",
+      "bytes": 2517
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/visual-review/pdf-sample-1.png",
+      "bytes": 13328
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/visual-review/pdf-sample-2.png",
+      "bytes": 13742
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/visual-review/pdf-sample-3.png",
+      "bytes": 13503
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/visual-review/slides-1-pptx.png",
+      "bytes": 33444
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/visual-review/slides-2-pptx.png",
+      "bytes": 32789
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/visual-review/slides-3-pptx.png",
+      "bytes": 34260
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/visual-review/word-1-docx.png",
+      "bytes": 20812
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/visual-review/word-2-docx.png",
+      "bytes": 23181
+    },
+    {
+      "path": "docs/evidence/P03-01/acceptance-2026-10-26/visual-review/word-3-docx.png",
+      "bytes": 89329
+    },
+    {
+      "path": "docs/plan/02-decisions.md",
+      "bytes": 30135
+    },
+    {
+      "path": "docs/plan/04-data-contract.md",
+      "bytes": 25089
+    },
+    {
+      "path": "docs/plan/05-ipc-and-events.md",
+      "bytes": 33121
+    },
+    {
+      "path": "docs/plan/12-interaction-details.md",
+      "bytes": 31317
+    },
+    {
+      "path": "docs/progress/CURRENT.md",
+      "bytes": 2558
+    },
+    {
+      "path": "docs/progress/INDEX.md",
+      "bytes": 146601
+    },
+    {
+      "path": "docs/progress/P02-03.md",
+      "bytes": 79437
+    },
+    {
+      "path": "docs/progress/P03-01.md",
+      "bytes": 34113
+    },
+    {
+      "path": "docs/progress/P03-02.md",
+      "bytes": 4980
+    },
+    {
+      "path": "docs/progress/P03-03.md",
+      "bytes": 10578
+    },
+    {
+      "path": "docs/progress/P03-gate.md",
+      "bytes": 4130
+    },
+    {
+      "path": "docs/progress/P04-03.md",
+      "bytes": 12414
+    },
+    {
+      "path": "docs/progress/P04-gate.md",
+      "bytes": 6743
+    },
+    {
+      "path": "docs/progress/requirements.csv",
+      "bytes": 529993
+    },
+    {
+      "path": "packages/contracts/src/history.ts",
+      "bytes": 10305
+    },
+    {
+      "path": "packages/core/src/history-service.ts",
+      "bytes": 66057
+    },
+    {
+      "path": "tests/e2e/P02-01.navigation.spec.ts",
+      "bytes": 9959
+    },
+    {
+      "path": "tests/e2e/P02-03.feedback-bookmarks.spec.ts",
+      "bytes": 11744
+    },
+    {
+      "path": "tests/e2e/P03-02.preview.spec.ts",
+      "bytes": 20828
+    },
+    {
+      "path": "tests/e2e/P03-03.projects.spec.ts",
+      "bytes": 10149
+    },
+    {
+      "path": "tests/e2e/P04-03.memory.spec.ts",
+      "bytes": 10901
+    },
+    {
+      "path": "tests/integration/P02-03.history.test.ts",
+      "bytes": 76309
+    },
+    {
+      "path": "tests/unit/P02-03.contracts.test.ts",
+      "bytes": 2194
+    }
+  ],
+  "note": "Inventory is captured before this preflight.json is written. No profile, runtime or build output is added."
+}

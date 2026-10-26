@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "source": "real NativeSandboxExecutor/OfficeWorker",
+  "profile": ".test-data\\P03-02 native samples xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxqANMfU\\profile",
+  "peakConcurrentOfficeRenders": 2,
+  "samples": [
+    {
+      "name": "slides-1.pptx",
+      "fileId": "01a0a25d-0400-7dff-9f3c-391f5a67f788",
+      "versionId": "01a0a25d-0400-7662-b471-6455008c9ecd",
+      "previewSha256": "c11388df8d6a73ac295cc85d0c57864e30b5f3b79b703170b2fc538af0763b9d"
+    },
+    {
+      "name": "slides-2.pptx",
+      "fileId": "01a0a25d-0400-7c7e-82fe-2484cd97ebb6",
+      "versionId": "01a0a25d-0400-7133-b4c6-de6ab9786a4c",
+      "previewSha256": "9f7c86374891db4a96cb7342afc1942055bdd8185ba902484e14006088e50e28"
+    },
+    {
+      "name": "slides-3.pptx",
+      "fileId": "01a0a25d-0400-7877-b9d1-95f26164a9d8",
+      "versionId": "01a0a25d-0400-7b85-bb28-d77408001910",
+      "previewSha256": "316e1cb431fc56c9cd6290754ac49f9bf65a8d8eef6f0a97e10a18f2d890596e"
+    },
+    {
+      "name": "word-1.docx",
+      "fileId": "01a0a25d-0400-75f8-bb6d-3b47b1380251",
+      "versionId": "01a0a25d-0400-71ca-9dbd-fb86614f188f",
+      "previewSha256": "6f66b6ddfd8c1e0fd52072dcefe3fbb9f4c68e258268feab78fc05f65c83a751"
+    },
+    {
+      "name": "word-2.docx",
+      "fileId": "01a0a25d-0400-78ad-b146-87dd8ad32dcf",
+      "versionId": "01a0a25d-0400-7c64-83a1-e90ee79a6dad",
+      "previewSha256": "2f9c23a86206524018b4b547ce580357e87be189f4fe148b6d22fb4ba7387d18"
+    },
+    {
+      "name": "word-3.docx",
+      "fileId": "01a0a25d-0400-7789-9f4d-37081bdbb3d0",
+      "versionId": "01a0a25d-0400-7e28-a1bf-94935834947b",
+      "previewSha256": "2e7e4cc5e0db7e2a0ba0404d1bbb20da32facae973fcb99f59b5b89c88921c8e"
+    }
+  ]
+}

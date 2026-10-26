@@ -74,7 +74,7 @@ test.afterEach(async () => {
 async function order(page: Page) {
   return page
     .getByRole('navigation', { name: '主导航', exact: true })
-    .locator('a')
+    .locator('[data-navigation-key]')
     .evaluateAll((nodes) => nodes.map((el) => el.getAttribute('data-navigation-key')));
 }
 async function hold(page: Page, key: string) {
@@ -181,8 +181,9 @@ test('P02-01 navigation cancels early moves and Escape, supports keyboard sortin
   await page.keyboard.press('Enter');
   await expect(project).toHaveAttribute('aria-current', 'page');
   await expect(
-    page.getByRole('navigation', { name: '主导航', exact: true }).locator('a'),
+    page.getByRole('navigation', { name: '主导航', exact: true }).locator('[data-navigation-key]'),
   ).toHaveCount(4);
+  await expect(page.getByRole('link', { name: '收藏', exact: true })).toHaveCount(0);
 });
 
 test('P02-01 navigation rounded icons and long press remain usable in a narrow dark 200 percent drawer', async () => {

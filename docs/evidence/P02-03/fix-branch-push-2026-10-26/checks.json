@@ -1,0 +1,56 @@
+[
+  {
+    "name": "check",
+    "command": [
+      "pwsh.exe",
+      "-NoProfile",
+      "-File",
+      "D:\\Tapkit-public\\scripts\\pnpm.ps1",
+      "check"
+    ],
+    "started": "2026-10-26T13:02:37.563Z",
+    "finished": "2026-10-26T13:02:54.162Z",
+    "exitCode": 0,
+    "log": "check.log"
+  },
+  {
+    "name": "docs-check",
+    "command": [
+      "pwsh.exe",
+      "-NoProfile",
+      "-File",
+      "D:\\Tapkit-public\\scripts\\pnpm.ps1",
+      "docs:check"
+    ],
+    "started": "2026-10-26T13:02:54.171Z",
+    "finished": "2026-10-26T13:02:55.092Z",
+    "exitCode": 0,
+    "log": "docs-check.log"
+  },
+  {
+    "name": "diff-check",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "started": "2026-10-26T13:02:55.100Z",
+    "finished": "2026-10-26T13:02:55.228Z",
+    "exitCode": 0,
+    "log": "diff-check.log"
+  },
+  {
+    "name": "production-startup-check",
+    "command": [
+      "pwsh.exe",
+      "-NoProfile",
+      "-File",
+      "D:\\Tapkit-public\\docs\\evidence\\P02-03\\session-load-2026-10-21\\run-app.ps1",
+      "-CheckOnly"
+    ],
+    "started": "2026-10-26T13:02:55.236Z",
+    "finished": "2026-10-26T13:02:56.292Z",
+    "exitCode": 0,
+    "log": "production-startup-check.log"
+  }
+]

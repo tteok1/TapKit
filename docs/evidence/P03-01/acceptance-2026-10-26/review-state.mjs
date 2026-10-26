@@ -1,0 +1,13 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { resolve, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
+const dir = fileURLToPath(new URL('.', import.meta.url)), root = resolve(dir, '../../../..');
+const pointer = JSON.parse(readFileSync(join(root, '.test-data/current-ui-review.json'), 'utf8'));
+const previous = JSON.parse(readFileSync(join(root, pointer.reviewPath), 'utf8'));
+const productSourceSha256 = Object.fromEntries(Object.keys(previous.productSourceSha256).map((file) => [file, createHash('sha256').update(readFileSync(join(root, file))).digest('hex')]));
+if (JSON.stringify(productSourceSha256) !== JSON.stringify(previous.productSourceSha256)) throw new Error('Product source differs from reviewed build');
+const state = { branch: execFileSync('git', ['branch', '--show-current'], { cwd: root, encoding: 'utf8', windowsHide: true }).trim(), head: execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8', windowsHide: true }).trim(), initialStatus: execFileSync('git', ['status', '--short'], { cwd: root, encoding: 'utf8', windowsHide: true }), reviewPointer: pointer, productSourceSha256 };
+writeFileSync(join(dir, 'initial-state.json'), JSON.stringify(state, null, 2) + '\n');
+console.log(`Verified ${Object.keys(productSourceSha256).length} unchanged product sources on ${state.branch}`);

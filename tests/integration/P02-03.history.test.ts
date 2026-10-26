@@ -30,6 +30,7 @@ import {
   SidebarViewSchema,
   BranchChangeSchema,
   DeletePreviewSchema,
+  BookmarkPageSchema,
   type Reply,
   type ModelRequest,
 } from '../../packages/contracts/src';
@@ -1382,6 +1383,126 @@ describe('P02-03 history lifecycle', () => {
         ),
       ).hits,
     ).toHaveLength(2);
+  });
+  it('T14 rating can switch and clear while bookmarks and saved local feedback remain intact', async () => {
+    const f = await fresh();
+    await f.send('T14评分');
+    const message = (await f.snapshot()).messages.at(-1)!;
+    for (const rating of ['up', 'down', null] as const) {
+      const payload = { sessionId: f.session, messageId: message.id, rating };
+      data(
+        await f.history.dispatch(
+          req(
+            'messages.mark',
+            rating === 'up'
+              ? { ...payload, bookmark: true, note: 'P02FEEDBACK1019', report: true }
+              : payload,
+          ),
+        ),
+      );
+      expect((await f.details()).marks.find((m) => m.messageId === message.id)).toMatchObject({
+        rating,
+        bookmark: true,
+        note: 'P02FEEDBACK1019',
+        report: true,
+      });
+    }
+    expect((await f.snapshot()).messages.at(-1)).toEqual(message);
+    expect(f.vault()).toBe(0);
+  });
+  it('T14 bookmarks paginate across branches and archives and hide trash, removed marks and tombstones', async () => {
+    const f = await fresh();
+    await f.send('T14收藏一');
+    await f.send('T14收藏二');
+    const messages = (await f.snapshot()).messages;
+    for (const message of messages)
+      data(
+        await f.history.dispatch(
+          req('messages.mark', {
+            sessionId: f.session,
+            messageId: message.id,
+            bookmark: true,
+          }),
+        ),
+      );
+    const read = async (payload: unknown = {}) =>
+      BookmarkPageSchema.parse(data(await f.history.dispatch(req('messages.bookmarks', payload))));
+    const first = await read({ limit: 2 });
+    const second = await read({ limit: 2, cursor: first.nextCursor });
+    expect(first.bookmarks).toHaveLength(2);
+    expect(second.bookmarks).toHaveLength(2);
+    expect(second.nextCursor).toBeNull();
+    expect(new Set([...first.bookmarks, ...second.bookmarks].map((m) => m.messageId)).size).toBe(4);
+    const branch = (await f.details()).session.branchId;
+    data(
+      await f.history.dispatch(
+        req(
+          'messages.regenerate',
+          { sessionId: f.session, messageId: messages.at(-1)!.id },
+          (await f.details()).session.revision,
+        ),
+      ),
+    );
+    expect((await read()).bookmarks.every((m) => m.branchId === branch)).toBe(true);
+    await expect.poll(async () => (await f.snapshot()).run?.status).toBe('completed');
+    data(
+      await f.history.dispatch(
+        req('sessions.archive', { sessionIds: [f.session], archived: true }),
+      ),
+    );
+    expect((await read()).bookmarks.every((m) => m.archived)).toBe(true);
+    data(await f.history.dispatch(req('sessions.trash', { sessionIds: [f.session] })));
+    expect((await read()).bookmarks).toHaveLength(0);
+    data(await f.history.dispatch(req('sessions.restore', { sessionIds: [f.session] })));
+    expect((await read()).bookmarks).toHaveLength(4);
+    data(
+      await f.history.dispatch(
+        req('messages.mark', { sessionId: f.session, messageId: messages[0]!.id, bookmark: false }),
+      ),
+    );
+    f.store.db
+      .prepare(
+        "INSERT INTO deletion_tombstones(id,profile_id,created_at,updated_at,entity_type,entity_id,deleted_before_event_seq) VALUES(?,?,?,?,'message',?,0)",
+      )
+      .run(newId(), f.store.profileId, f.store.now(), f.store.now(), messages[1]!.id);
+    expect((await read()).bookmarks).toHaveLength(2);
+    for (const cursor of ['bad', Buffer.from('{}').toString('base64url')])
+      expect(await f.history.dispatch(req('messages.bookmarks', { cursor }))).toMatchObject({
+        ok: false,
+        error: { code: 'VALIDATION_ERROR' },
+      });
+  });
+  it('T14 bookmarks exclude foreign profile marks and temporary storage cannot expose a collection', async () => {
+    const f = await fresh();
+    await f.send('T14隔离');
+    const messageId = (await f.snapshot()).messages.at(-1)!.id;
+    data(
+      await f.history.dispatch(
+        req('messages.mark', { sessionId: f.session, messageId, bookmark: true }),
+      ),
+    );
+    const foreign = newId();
+    // One profile per store is enforced by schema. Inject a stale ownership row
+    // only in this isolated fixture to check that reads reject mismatched owners.
+    f.store.db.pragma('foreign_keys = OFF');
+    try {
+      f.store.db
+        .prepare('UPDATE message_marks SET profile_id=? WHERE message_id=?')
+        .run(foreign, messageId);
+    } finally {
+      f.store.db.pragma('foreign_keys = ON');
+    }
+    expect(
+      BookmarkPageSchema.parse(data(await f.history.dispatch(req('messages.bookmarks')))).bookmarks,
+    ).toHaveLength(0);
+    f.store.db
+      .prepare('UPDATE message_marks SET profile_id=? WHERE message_id=?')
+      .run(f.store.profileId, messageId);
+    const temporary = new HistoryService(f.store, new BlobStore(f.store), f.chat, true);
+    expect(await temporary.dispatch(req('messages.bookmarks'))).toMatchObject({
+      ok: false,
+      error: { code: 'PERMISSION_DENIED' },
+    });
   });
   it('T20 permanent deletion masks drafts/messages/index and old backup cannot resurrect a session', async () => {
     const f = await fresh();

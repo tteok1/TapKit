@@ -1,0 +1,91 @@
+{
+  "batch": "P03-02",
+  "exitCode": 1,
+  "commands": [
+    {
+      "command": [
+        "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+        "test:unit",
+        "P03-02",
+        "--maxWorkers=1"
+      ],
+      "exitCode": 0,
+      "started": "2026-10-26T10:07:43.732Z",
+      "finished": "2026-10-26T10:07:49.795Z",
+      "log": "test-unit.log"
+    },
+    {
+      "command": [
+        "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+        "test:integration",
+        "P03-02"
+      ],
+      "exitCode": 0,
+      "started": "2026-10-26T10:07:49.796Z",
+      "finished": "2026-10-26T10:11:48.141Z",
+      "log": "test-integration.log"
+    },
+    {
+      "command": [
+        "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+        "test:e2e",
+        "--",
+        "--grep",
+        "P03-02",
+        "--timeout=180000"
+      ],
+      "exitCode": 1,
+      "started": "2026-10-26T10:11:48.141Z",
+      "finished": "2026-10-26T10:13:57.705Z",
+      "log": "test-e2e.log"
+    }
+  ],
+  "unitFileCount": 6,
+  "historicalEvidenceRestored": true,
+  "backup": "D:\\Tapkit-public\\.test-data\\acceptance-evidence-P03-02-1793009263592",
+  "generatedEvidence": [
+    {
+      "path": "docs/evidence/P03-02/native-preview-cases.jsonl",
+      "sha256": "f5ab566f2b2e489be3efeff8ca2b7e7a8437d0e5fae0dbaa537b16abcc3197ac",
+      "previousSha256": "a6a0d13757bbff11380fb95ac6d390d3274fb487ed0983bcccd89ff04bc5f836"
+    },
+    {
+      "path": "docs/evidence/P03-02/native-preview-samples.json",
+      "sha256": "40020080c009fe627268956e557f11f4ab1ea1b3e96b2037b58a189518324dfc",
+      "previousSha256": "b0ffe7e5f2f4217599ecf6cf3cd00bb93bcd954d27a1c773d294509386bdee3b"
+    },
+    {
+      "path": "docs/evidence/P03-02/slides-1.pptx.pdf",
+      "sha256": "c11388df8d6a73ac295cc85d0c57864e30b5f3b79b703170b2fc538af0763b9d",
+      "previousSha256": "135f23f04ece2924fa18f43b98094eeda3f7beac3c70a6179a0faf4ec39424b9"
+    },
+    {
+      "path": "docs/evidence/P03-02/slides-2.pptx.pdf",
+      "sha256": "9f7c86374891db4a96cb7342afc1942055bdd8185ba902484e14006088e50e28",
+      "previousSha256": "d619c4d6aeb50565b72b879fbf364f44424d12fef0a9f39ff25522fa42990417"
+    },
+    {
+      "path": "docs/evidence/P03-02/slides-3.pptx.pdf",
+      "sha256": "316e1cb431fc56c9cd6290754ac49f9bf65a8d8eef6f0a97e10a18f2d890596e",
+      "previousSha256": "b330945969029de8d88b805d39549a0f49a357ddbcf2204bf7e021c3ce0a012c"
+    },
+    {
+      "path": "docs/evidence/P03-02/word-1.docx.pdf",
+      "sha256": "6f66b6ddfd8c1e0fd52072dcefe3fbb9f4c68e258268feab78fc05f65c83a751",
+      "previousSha256": "31a5dd05ca853c61ffe132f87f1c35367e8cdbb51e5d768979e6efefd0a6045b"
+    },
+    {
+      "path": "docs/evidence/P03-02/word-2.docx.pdf",
+      "sha256": "2f9c23a86206524018b4b547ce580357e87be189f4fe148b6d22fb4ba7387d18",
+      "previousSha256": "520153266d4fc875c738ca954c6d6e6718dce7f56e507a5d803d49f7e440f66b"
+    },
+    {
+      "path": "docs/evidence/P03-02/word-3.docx.pdf",
+      "sha256": "2e7e4cc5e0db7e2a0ba0404d1bbb20da32facae973fcb99f59b5b89c88921c8e",
+      "previousSha256": "9e210d63d6544506c39918e2f2da1050986a035a45805f71fec41bcf1fe41c64"
+    }
+  ]
+}

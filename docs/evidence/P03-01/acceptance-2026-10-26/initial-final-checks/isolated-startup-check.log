@@ -1,0 +1,8 @@
+Get-FileHash : The term 'Get-FileHash' is not recognized as the name of a cmdlet, function, script file, or operable pr
+ogram. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At D:\Tapkit-public\docs\evidence\P03-01\acceptance-2026-10-26\start-manual.ps1:12 char:26
++         $tapkitActual = (Get-FileHash -LiteralPath (Join-Path $tapkit ...
++                          ~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Get-FileHash:String) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 

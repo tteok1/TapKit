@@ -23,3 +23,7 @@ P03-01/02既有损坏、加密、恶意ZIP、取消、原件保全、Office并�
 本地check366文件零失败、unit276、integration267、项目Electron4、perf1、build/docs/diff全部退出0；CI check及startup-diagnostics全部success，组合Electron34通过，Office宏/外链各3轮、fresh启动诊断通过。artifact摘要匹配，11原生/预览源码摘要匹配，23次标准用户原生启动均AppContainer身份一致/零网络，结束零进程。21项需求映射到实现、真实测试与证据，详见P03-03交接及docs/evidence/P03-03/public-ci.json、standard-user-acceptance.json。R08合成材料用于工程验收；真实质量评测/检索答案质量属于P04，R09干净安装属于P11。本机仍需本身有效probe。P01/P02历史live缺口保持，不由本阶段记录消除。
 
 当前不开展P04。P03验收结束后只交接schema11、FileVersion/ResourceRef/Locator、ParsedDocument和项目scope。2026-10-11用户已明确确认压缩合入main；最终源分支23b1100的CI38065599002全部success。源分支2个提交squash为包含本记录的单一main提交，无PR，源分支保留。CURRENT/INDEX和实际docs/progress/requirements.csv的21行同步合入证据，业务/测试源码保持本轮验收摘要。合入记录见docs/evidence/P03-03/main-squash-2026-10-11.json，main合入后以该提交的push Actions为准。
+
+## 2026-10-26 当前版本回归补充
+
+本轮P03-01/02/03自动回归全部通过及9页视觉核对完成。真实OS选择和保存已验；M01原生跨窗口拖入/M02默认应用正文已于2026-10-26由用户直接确认均通过；本轮人工清单已闭合，依据 docs/evidence/P03-01/acceptance-2026-10-26/manual-acceptance.json。保持既有P03工程verified；此前已验隔离证据不移植为本机非管理员新验收。证据 docs/evidence/P03-01/acceptance-2026-10-26/verification.md，实际命令/退出码及首轮失败均保留；产品源码与原profile保持，未commit/push。

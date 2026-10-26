@@ -421,11 +421,23 @@ export function HistoryList({
         <>
           {page && !stateFilter && (
             <div className="history-filters">
-              {(['active', 'archived', 'trash', 'all'] as const).map((v) => (
+              {(
+                [
+                  'active',
+                  'archived',
+                  ...(modeFilter === 'chat' ? ['bookmarks' as const] : []),
+                  'trash',
+                  'all',
+                ] as const
+              ).map((v) => (
                 <button
                   key={v}
                   aria-pressed={state === v}
                   onClick={() => {
+                    if (v === 'bookmarks') {
+                      onNavigate('/bookmarks');
+                      return;
+                    }
                     paged.current = false;
                     setState(v);
                     setSelected([]);

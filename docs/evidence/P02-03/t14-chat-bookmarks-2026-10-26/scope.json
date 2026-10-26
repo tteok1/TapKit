@@ -1,0 +1,8 @@
+{
+  "changedSincePreviousReview": [
+    "apps/desktop/src/renderer/src/history-ui.tsx",
+    "apps/desktop/src/renderer/src/sidebar-navigation.tsx"
+  ],
+  "backendAndFeedbackSourceUnchanged": true,
+  "previousReview": "docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/results.json"
+}

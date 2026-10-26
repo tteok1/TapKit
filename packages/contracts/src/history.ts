@@ -35,6 +35,7 @@ export const HISTORY_COMMANDS = [
   'messages.deletePreview',
   'messages.delete',
   'messages.mark',
+  'messages.bookmarks',
   'messages.transform',
   'messages.saveNote',
 ] as const;
@@ -108,6 +109,26 @@ export const MessageMarkSchema = HistorySessionSchema.extend({
   rating: z.enum(['up', 'down']).nullable().optional(),
   note: z.string().max(2000).optional(),
   report: z.boolean().optional(),
+});
+export const BookmarkPageInputSchema = z.strictObject({
+  cursor: z.string().max(512).optional(),
+  limit: z.number().int().min(1).max(100).default(50),
+});
+export const BookmarkPageSchema = z.strictObject({
+  bookmarks: z
+    .array(
+      z.strictObject({
+        messageId: IdSchema,
+        sessionId: IdSchema,
+        branchId: IdSchema,
+        sessionTitle: z.string().max(240),
+        snippet: z.string().max(500),
+        createdAt: z.number().int(),
+        archived: z.boolean(),
+      }),
+    )
+    .max(100),
+  nextCursor: z.string().max(512).nullable(),
 });
 export const MessageTransformSchema = HistorySessionSchema.extend({
   messageId: IdSchema,
@@ -284,7 +305,9 @@ export const HistoryReplySchema = z.union([
   BranchChangeSchema,
   DeletePreviewSchema,
   HistoryLocationSchema,
+  BookmarkPageSchema,
 ]);
+export type BookmarkPage = z.infer<typeof BookmarkPageSchema>;
 export type SessionRecord = z.infer<typeof SessionRecordSchema>;
 export type SessionPage = z.infer<typeof SessionPageSchema>;
 export type SessionDetails = z.infer<typeof SessionDetailsSchema>;

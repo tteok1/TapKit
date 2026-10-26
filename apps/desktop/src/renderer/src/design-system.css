@@ -383,6 +383,57 @@
   display: flex;
   flex-direction: column;
 }
+.bookmarks-page {
+  max-width: 960px;
+  margin-inline: auto;
+  padding: 16px;
+}
+.bookmark-hint {
+  color: var(--muted);
+}
+.bookmark-list {
+  list-style: none;
+  padding: 0;
+  margin-block: 24px 16px;
+}
+.bookmark-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.bookmark-entry > .icon-button {
+  flex-shrink: 0;
+}
+.desktop-shell .bookmark-entry .bookmark-open {
+  display: grid;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  text-align: start;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: none;
+  padding: 8px;
+  overflow-wrap: anywhere;
+}
+.desktop-shell .bookmark-entry .bookmark-open:hover {
+  background: var(--hover);
+}
+.bookmark-snippet {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  white-space: pre-wrap;
+}
+.bookmark-location {
+  color: var(--accent);
+  font-size: 0.93em;
+}
 .sidebar-navigation a {
   user-select: none;
   -webkit-user-drag: none;

@@ -1,0 +1,13 @@
+{
+  "exitCode": 0,
+  "historicalEvidenceRestored": true,
+  "originalSha256": {
+    "docs/evidence/P02-03/navigation-icons-2026-10-23/rounded-icons-light.png": "02B075AB69B2AD25850A6341BED7EBF9CC9ECE378760339BE73FB6F38713BBEB",
+    "docs/evidence/P02-03/navigation-icons-2026-10-23/navigation-geometry.json": "58B09F209FF4AAC9C34ACEF37A31B12720A5A24BB6BA42A0F6B1A81C8765E6EA",
+    "docs/evidence/P02-03/branches-and-feedback.png": "B91DA7514414EF800B728BC2822B6CB6F37958F3116343D819B92272682BBFBD",
+    "docs/evidence/P02-03/navigation-icons-2026-10-23/sidebar-icons-light.png": "FD6B8D1F4EB2E1903A8E0190D75F329A622C5E442195144059AC651835AF0830",
+    "docs/evidence/P02-03/navigation-icons-2026-10-23/sidebar-icons-dark-200.png": "A129525A4CC92A929B4DBCFEF0BE1A955135C8271FCA1802876FCBC2EAB91222",
+    "docs/evidence/P02-03/navigation-icons-2026-10-23/rounded-icons-dark-200.png": "2BBAEEBA1EFF6780DDC3E4859AC061757107F34ECB9217F709F71B7B1DD91E2D"
+  },
+  "backup": "D:\\Tapkit-public\\.test-data\\t14-evidence-backup-2d40386a981440a8aaf4da157378c018"
+}

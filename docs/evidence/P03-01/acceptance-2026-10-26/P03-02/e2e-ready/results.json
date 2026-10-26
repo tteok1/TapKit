@@ -1,0 +1,66 @@
+{
+  "batch": "P03-02",
+  "exitCode": 0,
+  "commands": [
+    {
+      "command": [
+        "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+        "test:e2e",
+        "--",
+        "--grep",
+        "P03-02",
+        "--timeout=180000"
+      ],
+      "exitCode": 0,
+      "started": "2026-10-26T10:14:38.971Z",
+      "finished": "2026-10-26T10:17:18.014Z",
+      "log": "test-e2e.log"
+    }
+  ],
+  "unitFileCount": 6,
+  "historicalEvidenceRestored": true,
+  "backup": "D:\\Tapkit-public\\.test-data\\acceptance-evidence-P03-02-1793009678913",
+  "generatedEvidence": [
+    {
+      "path": "docs/evidence/P03-02/native-preview-samples.json",
+      "sha256": "40020080c009fe627268956e557f11f4ab1ea1b3e96b2037b58a189518324dfc",
+      "previousSha256": "b0ffe7e5f2f4217599ecf6cf3cd00bb93bcd954d27a1c773d294509386bdee3b"
+    },
+    {
+      "path": "docs/evidence/P03-02/pdf-sample-1.png",
+      "sha256": "247cf755271bbef96b42f566c88dae1089764e1421386b6406739f2730492bf7",
+      "previousSha256": "dce2e7e7060903174a3d2fa65ba6434cb35c6d69b44ff4f30037b80a523b1993"
+    },
+    {
+      "path": "docs/evidence/P03-02/pdf-sample-2.png",
+      "sha256": "b3de26f37279fcc8bda78808fb4ee0d2f9bc86de849c870176dc3145a02303c6",
+      "previousSha256": "f53e9a4a345120f600404a71e553acc6f61410c2c16c8bb8712de49b9c7be396"
+    },
+    {
+      "path": "docs/evidence/P03-02/pdf-sample-3.png",
+      "sha256": "15faa2b0abe561e403e79544c4c0b6766939ec231d65ac0b7f9e301d2b4976c8",
+      "previousSha256": "83a9eb63dd4bfe34de2a7bd61f6397a87b1e74ca637a3f08be250eecb32b7a91"
+    },
+    {
+      "path": "docs/evidence/P03-02/slides-1-pptx.png",
+      "sha256": "a8b643c224de6071eeb34b80b6ddfb3c71f3320ca051a0b7f67332d3a6d69f02",
+      "previousSha256": "73151d444b66461e943ab293c2badaa7ce6d2586ea8ef4a5f1b1521ecc131809"
+    },
+    {
+      "path": "docs/evidence/P03-02/slides-2-pptx.png",
+      "sha256": "5bc0825d4c3d602a8d2b90549a4755f93b80ef5de3bfb96823b53cd3a304e654",
+      "previousSha256": "f29a527d7432b8f713ae1b3d189104c40bec99b39c27790d28da467436beb649"
+    },
+    {
+      "path": "docs/evidence/P03-02/slides-3-pptx.png",
+      "sha256": "0012ad0cbad65b1037da4ea7cb557b6fd6dfc49986c2a53277fb960fb95fabd5",
+      "previousSha256": "f74c1ce154d2f8975266f2eda913bad4ea6d2cc0ad768560d642567485b2c862"
+    },
+    {
+      "path": "docs/evidence/P03-02/viewer-200-percent.png",
+      "sha256": "086ddbe84cfd8dc5d7c238a78d86c360918a2cbca8d8883b18c1a87b45ceffe2",
+      "previousSha256": "340d3674b40a77b85cff0f0628daddad0034e6bc13da3f609b8bf9b5e5a60711"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "originalProfileTouched": false,
+  "sourceCount": 110,
+  "artifactCount": 626,
+  "exitCode": 0,
+  "command": "docs/evidence/P02-03/session-load-2026-10-21/run-app.ps1 -CheckOnly",
+  "applicationStarted": false
+}

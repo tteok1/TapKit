@@ -1,5 +1,7 @@
 # 数据模型与事务契约
 
+2026-10-26 [ADR0063](../adr/0063-message-feedback-and-bookmark-collection.md)：收藏列表复用message_marks，无迁移；按消息创建时间/ID键集分页，限定profile及消息/会话/分支归属，排除回收站/删除/墓碑及系统说明。rating=null仅取消评分，其他字段保留；临时标记不进入持久收藏列表。
+
 2026-10-12 P04-03 schema14：[ADR0048](../adr/0048-evidence-backed-memory-and-history.md)追加0014_memory，保留schema11的memories身份；唯一active键、版本、来源messageId/revision、memory.extract租约任务、generation/谓词墓碑、可冲突的撤销记录、FTS删除同步和仅引用的回答使用记录。不修改历史迁移或run状态。
 
 2026-10-11 P04-02：[ADR0046](../adr/0046-verifiable-context-checkpoints-and-budget.md)实现schema13的checkpoints/context_snapshots及sessions.context_seed_json/context_version。来源引用使用ID/revision；删除与权限/版本改变阻止旧检查点/cache；不另建run状态。

@@ -112,7 +112,12 @@ export function SidebarNavigation({
           key={key}
           to={'/' + key}
           aria-label={t[key]}
-          aria-current={location.pathname === '/' + key ? 'page' : undefined}
+          aria-current={
+            location.pathname === '/' + key ||
+            (key === 'chats' && location.pathname === '/bookmarks')
+              ? 'page'
+              : undefined
+          }
           aria-describedby={helpId}
           aria-keyshortcuts="Alt+ArrowUp Alt+ArrowDown"
           data-tooltip={dragging ? undefined : t[key] + '（长按拖动调整顺序）'}

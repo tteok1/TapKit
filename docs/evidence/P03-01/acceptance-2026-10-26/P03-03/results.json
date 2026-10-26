@@ -1,0 +1,71 @@
+{
+  "batch": "P03-03",
+  "exitCode": 0,
+  "commands": [
+    {
+      "command": [
+        "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+        "test:unit",
+        "P03-03",
+        "--maxWorkers=1"
+      ],
+      "exitCode": 0,
+      "started": "2026-10-26T10:18:19.857Z",
+      "finished": "2026-10-26T10:18:21.825Z",
+      "log": "test-unit.log"
+    },
+    {
+      "command": [
+        "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+        "test:integration",
+        "P03-03"
+      ],
+      "exitCode": 0,
+      "started": "2026-10-26T10:18:21.826Z",
+      "finished": "2026-10-26T10:18:32.191Z",
+      "log": "test-integration.log"
+    },
+    {
+      "command": [
+        "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+        "test:e2e",
+        "--",
+        "--grep",
+        "P03-03",
+        "--timeout=180000"
+      ],
+      "exitCode": 0,
+      "started": "2026-10-26T10:18:32.191Z",
+      "finished": "2026-10-26T10:19:59.873Z",
+      "log": "test-e2e.log"
+    }
+  ],
+  "unitFileCount": 1,
+  "historicalEvidenceRestored": true,
+  "backup": "D:\\Tapkit-public\\.test-data\\acceptance-evidence-P03-03-1793009899676",
+  "generatedEvidence": [
+    {
+      "path": "docs/evidence/P03-03/deletion.png",
+      "sha256": "e0ad8de02ddcc204b1c0cc97ae3c73f92edaf1c5bd14e0d8665d891ae5170695",
+      "previousSha256": "597de2d3695daf653b1d3f9f3c010f191f0fea5b7a0f31c586981f0f8aecb6cd"
+    },
+    {
+      "path": "docs/evidence/P03-03/materials.png",
+      "sha256": "fbdc5378f823dfd6816b23cbe02d271927a8e67043d9b88c3687abe4f632900d",
+      "previousSha256": "6279be56e0b1dbac66248b327c848abd426c782fbc7bba893205f240b4ddeb97"
+    },
+    {
+      "path": "docs/evidence/P03-03/scope.png",
+      "sha256": "856f83b9299da726e737fc8bd4dafa66a056b55b4aaf44a67f36bf2ba15a4af4",
+      "previousSha256": "f0615dfa52dd829c538b82be189c9db224316f576e9a4863b5cedc4826dbcc26"
+    },
+    {
+      "path": "docs/evidence/P03-03/settings.png",
+      "sha256": "978312d282d7cfae993e995ed8484b0d5994632e7d7627bb59711bc9334c5970",
+      "previousSha256": "6e9ea6c3771d473e6e2912c4b68b9c394baf468a9a59e8bbf1ed94e759e4da3d"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/electron-console.log:930: trailing whitespace.
++  1) tests\e2e\P02-03.feedback-bookmarks.spec.ts:176:1 › P02-03 T14 feedback and collection fit light and dark themes at normal and small 200 percent windows 
+docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/electron-console.log:965: trailing whitespace.
++    tests\e2e\P02-03.feedback-bookmarks.spec.ts:176:1 › P02-03 T14 feedback and collection fit light and dark themes at normal and small 200 percent windows 
+docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/electron-console.log:1898: new blank line at EOF.
+docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/electron.log:930: trailing whitespace.
++  1) tests\e2e\P02-03.feedback-bookmarks.spec.ts:176:1 › P02-03 T14 feedback and collection fit light and dark themes at normal and small 200 percent windows 
+docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/electron.log:965: trailing whitespace.
++    tests\e2e\P02-03.feedback-bookmarks.spec.ts:176:1 › P02-03 T14 feedback and collection fit light and dark themes at normal and small 200 percent windows 
+docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/electron.log:1898: new blank line at EOF.
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-final-console.log:943: trailing whitespace.
++  1) tests\e2e\P02-03.feedback-bookmarks.spec.ts:93:1 › P02-03 T14 feedback opens on downvote, ratings toggle, saved feedback persists and bookmarks locate the original branch 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-final-console.log:981: trailing whitespace.
++    tests\e2e\P02-03.feedback-bookmarks.spec.ts:93:1 › P02-03 T14 feedback opens on downvote, ratings toggle, saved feedback persists and bookmarks locate the original branch 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-final-console.log:1914: new blank line at EOF.
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-final.log:943: trailing whitespace.
++  1) tests\e2e\P02-03.feedback-bookmarks.spec.ts:93:1 › P02-03 T14 feedback opens on downvote, ratings toggle, saved feedback persists and bookmarks locate the original branch 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-final.log:981: trailing whitespace.
++    tests\e2e\P02-03.feedback-bookmarks.spec.ts:93:1 › P02-03 T14 feedback opens on downvote, ratings toggle, saved feedback persists and bookmarks locate the original branch 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-final.log:1914: new blank line at EOF.
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-first.log:941: trailing whitespace.
++  1) tests\e2e\P02-01.navigation.spec.ts:99:1 › P02-01 navigation long press reorders without opening a page, and persists on restart 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-first.log:978: trailing whitespace.
++  2) tests\e2e\P02-01.navigation.spec.ts:142:1 › P02-01 navigation cancels early moves and Escape, supports keyboard sorting and restores hidden entries 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-first.log:1015: trailing whitespace.
++  3) tests\e2e\P02-01.navigation.spec.ts:189:1 › P02-01 navigation rounded icons and long press remain usable in a narrow dark 200 percent drawer 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-first.log:1052: trailing whitespace.
++  4) tests\e2e\P02-03.feedback-bookmarks.spec.ts:93:1 › P02-03 T14 feedback opens on downvote, ratings toggle, saved feedback persists and bookmarks locate the original branch 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-first.log:1090: trailing whitespace.
++  5) tests\e2e\P02-03.feedback-bookmarks.spec.ts:165:1 › P02-03 T14 feedback and collection fit light and dark themes at normal and small 200 percent windows 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-first.log:1128: trailing whitespace.
++  6) tests\e2e\P02-03.history.spec.ts:147:1 › P02-03 T06 two turns, early edit, answer candidates, feedback and restart draft 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-first.log:1166: trailing whitespace.
++    tests\e2e\P02-01.navigation.spec.ts:99:1 › P02-01 navigation long press reorders without opening a page, and persists on restart 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-first.log:1167: trailing whitespace.
++    tests\e2e\P02-01.navigation.spec.ts:142:1 › P02-01 navigation cancels early moves and Escape, supports keyboard sorting and restores hidden entries 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-first.log:1168: trailing whitespace.
++    tests\e2e\P02-01.navigation.spec.ts:189:1 › P02-01 navigation rounded icons and long press remain usable in a narrow dark 200 percent drawer 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-first.log:1169: trailing whitespace.
++    tests\e2e\P02-03.feedback-bookmarks.spec.ts:93:1 › P02-03 T14 feedback opens on downvote, ratings toggle, saved feedback persists and bookmarks locate the original branch 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-first.log:1170: trailing whitespace.
++    tests\e2e\P02-03.feedback-bookmarks.spec.ts:165:1 › P02-03 T14 feedback and collection fit light and dark themes at normal and small 200 percent windows 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-first.log:1171: trailing whitespace.
++    tests\e2e\P02-03.history.spec.ts:147:1 › P02-03 T06 two turns, early edit, answer candidates, feedback and restart draft 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-first.log:1212: new blank line at EOF.
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local-console.log:948: trailing whitespace.
++  1) tests\e2e\P02-01.navigation.spec.ts:99:1 › P02-01 navigation long press reorders without opening a page, and persists on restart 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local-console.log:985: trailing whitespace.
++  2) tests\e2e\P02-01.navigation.spec.ts:142:1 › P02-01 navigation cancels early moves and Escape, supports keyboard sorting and restores hidden entries 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local-console.log:1022: trailing whitespace.
++  3) tests\e2e\P02-01.navigation.spec.ts:189:1 › P02-01 navigation rounded icons and long press remain usable in a narrow dark 200 percent drawer 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local-console.log:1059: trailing whitespace.
++  4) tests\e2e\P02-03.history.spec.ts:147:1 › P02-03 T06 two turns, early edit, answer candidates, feedback and restart draft 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local-console.log:1098: trailing whitespace.
++    tests\e2e\P02-01.navigation.spec.ts:99:1 › P02-01 navigation long press reorders without opening a page, and persists on restart 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local-console.log:1099: trailing whitespace.
++    tests\e2e\P02-01.navigation.spec.ts:142:1 › P02-01 navigation cancels early moves and Escape, supports keyboard sorting and restores hidden entries 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local-console.log:1100: trailing whitespace.
++    tests\e2e\P02-01.navigation.spec.ts:189:1 › P02-01 navigation rounded icons and long press remain usable in a narrow dark 200 percent drawer 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local-console.log:1101: trailing whitespace.
++    tests\e2e\P02-03.history.spec.ts:147:1 › P02-03 T06 two turns, early edit, answer candidates, feedback and restart draft 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local-console.log:2034: new blank line at EOF.
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local.log:948: trailing whitespace.
++  1) tests\e2e\P02-01.navigation.spec.ts:99:1 › P02-01 navigation long press reorders without opening a page, and persists on restart 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local.log:985: trailing whitespace.
++  2) tests\e2e\P02-01.navigation.spec.ts:142:1 › P02-01 navigation cancels early moves and Escape, supports keyboard sorting and restores hidden entries 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local.log:1022: trailing whitespace.
++  3) tests\e2e\P02-01.navigation.spec.ts:189:1 › P02-01 navigation rounded icons and long press remain usable in a narrow dark 200 percent drawer 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local.log:1059: trailing whitespace.
++  4) tests\e2e\P02-03.history.spec.ts:147:1 › P02-03 T06 two turns, early edit, answer candidates, feedback and restart draft 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local.log:1098: trailing whitespace.
++    tests\e2e\P02-01.navigation.spec.ts:99:1 › P02-01 navigation long press reorders without opening a page, and persists on restart 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local.log:1099: trailing whitespace.
++    tests\e2e\P02-01.navigation.spec.ts:142:1 › P02-01 navigation cancels early moves and Escape, supports keyboard sorting and restores hidden entries 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local.log:1100: trailing whitespace.
++    tests\e2e\P02-01.navigation.spec.ts:189:1 › P02-01 navigation rounded icons and long press remain usable in a narrow dark 200 percent drawer 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local.log:1101: trailing whitespace.
++    tests\e2e\P02-03.history.spec.ts:147:1 › P02-03 T06 two turns, early edit, answer candidates, feedback and restart draft 
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/electron-local.log:2034: new blank line at EOF.
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/integration-final.log:10: new blank line at EOF.
+docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/unit-final.log:10: new blank line at EOF.
+docs/evidence/P03-01/acceptance-2026-10-26/P03-02/test-e2e.log:22: trailing whitespace.
++  1) tests\e2e\P03-02.preview.spec.ts:127:1 › P03-02 Electron pins inline historical refs, remembers PDF/code positions and previews safe Markdown plus real diffs 
+docs/evidence/P03-01/acceptance-2026-10-26/P03-02/test-e2e.log:58: trailing whitespace.
++  2) tests\e2e\P03-02.preview.spec.ts:199:1 › P03-02 Electron PDF selections support copy, annotations, persisted quotes and three PDF layout samples 
+docs/evidence/P03-01/acceptance-2026-10-26/P03-02/test-e2e.log:94: trailing whitespace.
++  3) tests\e2e\P03-02.preview.spec.ts:283:1 › P03-02 Electron merged/formula grids, sorting, image rotation, ZIP directories and 200 percent controls remain usable 
+docs/evidence/P03-01/acceptance-2026-10-26/P03-02/test-e2e.log:130: trailing whitespace.
++  4) tests\e2e\P03-02.preview.spec.ts:359:1 › P03-02 Electron renders six actual isolated Office caches with notes, structural locators, page bounds and presentation 
+docs/evidence/P03-01/acceptance-2026-10-26/P03-02/test-e2e.log:166: trailing whitespace.
++  5) tests\e2e\P03-02.preview.spec.ts:423:1 › P03-02 Electron preview failure offers real retry, fixed original download/share and scoped external copy 
+docs/evidence/P03-01/acceptance-2026-10-26/P03-02/test-e2e.log:203: trailing whitespace.
++    tests\e2e\P03-02.preview.spec.ts:127:1 › P03-02 Electron pins inline historical refs, remembers PDF/code positions and previews safe Markdown plus real diffs 
+docs/evidence/P03-01/acceptance-2026-10-26/P03-02/test-e2e.log:204: trailing whitespace.
++    tests\e2e\P03-02.preview.spec.ts:199:1 › P03-02 Electron PDF selections support copy, annotations, persisted quotes and three PDF layout samples 
+docs/evidence/P03-01/acceptance-2026-10-26/P03-02/test-e2e.log:205: trailing whitespace.
++    tests\e2e\P03-02.preview.spec.ts:283:1 › P03-02 Electron merged/formula grids, sorting, image rotation, ZIP directories and 200 percent controls remain usable 
+docs/evidence/P03-01/acceptance-2026-10-26/P03-02/test-e2e.log:206: trailing whitespace.
++    tests\e2e\P03-02.preview.spec.ts:359:1 › P03-02 Electron renders six actual isolated Office caches with notes, structural locators, page bounds and presentation 
+docs/evidence/P03-01/acceptance-2026-10-26/P03-02/test-e2e.log:207: trailing whitespace.
++    tests\e2e\P03-02.preview.spec.ts:423:1 › P03-02 Electron preview failure offers real retry, fixed original download/share and scoped external copy 
+docs/evidence/P03-01/acceptance-2026-10-26/P03-02/test-integration.log:10: new blank line at EOF.
+docs/evidence/P03-01/acceptance-2026-10-26/P03-02/test-unit.log:10: new blank line at EOF.
+docs/evidence/P03-01/acceptance-2026-10-26/P03-03/test-integration.log:10: new blank line at EOF.
+docs/evidence/P03-01/acceptance-2026-10-26/P03-03/test-unit.log:10: new blank line at EOF.
+docs/evidence/P03-01/acceptance-2026-10-26/P04-03/test-integration.log:10: new blank line at EOF.
+docs/evidence/P03-01/acceptance-2026-10-26/P04-03/test-unit.log:10: new blank line at EOF.
+docs/evidence/P03-01/acceptance-2026-10-26/initial-final-checks/isolated-startup-check.log:8: trailing whitespace.
++ 
+docs/evidence/P03-01/acceptance-2026-10-26/initial-final-checks/isolated-startup-check.log:8: new blank line at EOF.
+docs/evidence/P03-01/acceptance-2026-10-26/initial-final-checks/original-startup-check.log:8: trailing whitespace.
++ 
+docs/evidence/P03-01/acceptance-2026-10-26/initial-final-checks/original-startup-check.log:8: new blank line at EOF.

@@ -1,0 +1,31 @@
+import { readFile, writeFile } from 'node:fs/promises';
+import { join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+const evidence = fileURLToPath(new URL('.', import.meta.url));
+const root = resolve(evidence, '../../../..');
+const report = 'docs/evidence/P02-03/fix-branch-push-2026-10-26/verification.md';
+const note = '2026-10-26用户授权将当前fix分支修复及验收记录提交推送到同名远程分支；明确暂不合入main；本提交包含交接，最终SHA及远端一致性以Git回执为准';
+const currentPath = join(root, 'docs/progress/CURRENT.md');
+let current = await readFile(currentPath,'utf8');
+current = current.replace('- 2026-10-26；目录D:/Tapkit-public；分支codex/test-fixes-2026-10-26；HEAD 9bfc156af41f9a66fb4fff2a0842ff4c3582aa7a；保留已有未提交改动，未commit/push。', '- 2026-10-26；目录D:/Tapkit-public；分支codex/test-fixes-2026-10-26；Git交付基点9bfc156af41f9a66fb4fff2a0842ff4c3582aa7a。用户已授权提交/推送当前分支，明确暂不合入main；本提交包含修复、测试和交接，最终SHA以Git及.test-data/fix-branch-push-2026-10-26/receipt.json为准。');
+current = current.replace('- 下一步建议：先交付当前修复分支（提交/推送/CI/合入main），再从P05-01联网搜索、匿名网页读取与来源归档推进；后续P05-02引用/本地分享导出、P05-03聊天M1。R06 Tavily仍pending，URL读取可先做；本轮只记验收和计划，未执行Git发布或开展P05。', '- 用户最新要求优先：本次只提交并推送fix分支，暂不合入main。后续可核对CI，再按用户指示从P05-01推进；P05-02/P05-03为后续规划，R06 Tavily仍pending，本次不开展P05。');
+await writeFile(currentPath,current);
+const indexPath = join(root, 'docs/progress/INDEX.md');
+await writeFile(indexPath,'## 2026-10-26 fix分支提交推送授权\n\n'+note+'。分支codex/test-fixes-2026-10-26，基点9bfc156；范围为T14反馈/评分取消/聊天收藏入口、相关测试及四批209项自动/两项用户补测通过记录。110产品源码/626产物与已验快照一致，profile/runtime/构建缓存不入Git；证据 '+report+'。只推当前分支，无PR或main合并，原live/gate/暂缓范围保持。\n\n'+await readFile(indexPath,'utf8'));
+const taskPath = join(root,'docs/progress/P02-03.md');
+let task = await readFile(taskPath,'utf8');
+task = task.replace('# P02-03 会话组织、消息分支与全局搜索', '# P02-03 会话组织、消息分支与全局搜索\n\n## 2026-10-26 fix分支Git交付\n\n'+note+'。包含ADR0063及当前全部相关修复/测试/验收证据，用户已确认P02人工清单和本轮M01/M02通过；209项自动测试及110源码hash保持，未重复真实模型请求。提交前check/docs/diff与生产启动校验见 '+report+'。只推codex/test-fixes-2026-10-26，不创建PR、不合main，不提升原真实服务/gate。');
+await writeFile(taskPath,task);
+const csvPath = join(root,'docs/progress/requirements.csv');
+const rows = (await readFile(csvPath,'utf8')).split(/\r?\n/);
+let changed = 0;
+for(let i=1;i<rows.length;i++){
+  const c=rows[i].split(',');
+  if(!['P03-01','P03-02','P03-03','P04-03'].includes(c[2])&&!['FR-07-018','FR-07-020'].includes(c[0]))continue;
+  if(c.length!==8)throw new Error('Unexpected CSV width');
+  if(!c[5].split(';').includes(report))c[5]+=';'+report;
+  if(!c[7].includes(note))c[7]+=';'+note;
+  rows[i]=c.join(',');changed++;
+}
+await writeFile(csvPath,rows.join('\r\n'));
+console.log(JSON.stringify({requirementRowsUpdated:changed,statusesUnchanged:true,mainMergeAuthorized:false}));

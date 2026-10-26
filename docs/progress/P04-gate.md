@@ -35,3 +35,9 @@
 用户2026-10-12明确暂不真实模型联调；R01/R13/R14已配置但完整live未验收，R02-R05资源缺口保持，既有P01/P02状态不提升。补测使用隔离profile/实际账户验证普通偏好两次提取、真实用量和后台失败恢复。当前状态不能称为包含真实服务的正式验收通过。
 
 工程已验证的ContextAssembler、EvidenceRef、checkpoint、memoryCommand/MemoryService和失效机制可供后续任务复用；实际账户模型效果/完整供应商live仍待验。P10备份全量清理及物理残留语义按原计划延期。用户已授权squash合入main，未开始P05，不创建PR。CURRENT、INDEX、P04-03和十项需求已同步；合入证据见docs/evidence/P04-03/main-squash-2026-10-12.json，main CI待用户通知后查看。
+
+## 2026-10-26 当前版本回归补充
+
+本轮P04-03 unit2/integration16/Electron4最终通过，全部模型数据为新隔离profile的合成adapter。来源/纠正/撤销/清空/开关/重启链路已覆盖，真实供应商提取效果仍暂缓；保持engineering_passed_external_pending及implemented_not_live_verified，不开始P05。证据 docs/evidence/P03-01/acceptance-2026-10-26/verification.md，实际命令/退出码及首轮失败均保留；产品源码与原profile保持，未commit/push。
+
+2026-10-26用户确认本轮M01/M02文件交互补测均通过，本轮人工清单已完成；这两项不验证P04真实供应商提取，原engineering_passed_external_pending保持。回执 docs/evidence/P03-01/acceptance-2026-10-26/manual-acceptance.json。下一阶段只列计划，尚未开展P05。

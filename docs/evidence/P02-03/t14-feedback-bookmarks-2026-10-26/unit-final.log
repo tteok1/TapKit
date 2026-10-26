@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project unit "P02-03" "--maxWorkers=1"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  2 passed (2)
+      Tests  7 passed (7)
+   Start at  14:41:28
+   Duration  1.60s (transform 63%, import 27%, setup 5%, tests 3%, worker 2%)
+

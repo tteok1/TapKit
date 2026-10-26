@@ -1,0 +1,126 @@
+{
+  "batch": "P03-01",
+  "exitCode": 0,
+  "commands": [
+    {
+      "command": [
+        "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+        "test:unit",
+        "P03-01",
+        "--maxWorkers=1"
+      ],
+      "exitCode": 0,
+      "started": "2026-10-26T09:51:54.611Z",
+      "finished": "2026-10-26T09:52:00.614Z",
+      "log": "test-unit.log"
+    },
+    {
+      "command": [
+        "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+        "test:integration",
+        "P03-01"
+      ],
+      "exitCode": 0,
+      "started": "2026-10-26T09:52:00.615Z",
+      "finished": "2026-10-26T09:53:25.441Z",
+      "log": "test-integration.log"
+    },
+    {
+      "command": [
+        "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+        "test:e2e",
+        "--",
+        "--grep",
+        "P03-01",
+        "--timeout=180000"
+      ],
+      "exitCode": 0,
+      "started": "2026-10-26T09:53:25.441Z",
+      "finished": "2026-10-26T10:06:30.995Z",
+      "log": "test-e2e.log"
+    }
+  ],
+  "unitFileCount": 6,
+  "historicalEvidenceRestored": true,
+  "backup": "D:\\Tapkit-public\\.test-data\\acceptance-evidence-P03-01-1793008313324",
+  "generatedEvidence": [
+    {
+      "path": "docs/evidence/P03-01/chat-host-import.png",
+      "sha256": "03f558a451672189eef015624906f836d3cc6eaa415c95d152079aa062144c6c",
+      "previousSha256": "57c125ff4e18202041661640047e33ddbb6b296add56e053da983732a5a2e604"
+    },
+    {
+      "path": "docs/evidence/P03-01/chat-navigation-isolation.png",
+      "sha256": "a1e3beac733c4f359e528955ce2a0a168024a3de144c8f7515db4ab800da69a1",
+      "previousSha256": "f2471b95eea3687d847ac5ac6466c9d9818d67409eb393f91f03da8716e9fea6"
+    },
+    {
+      "path": "docs/evidence/P03-01/generated-note-library.png",
+      "sha256": "dc2e6076bc1fe7151c39b920a51c1d0d5b13069932b9c2af1f5de3b2293c82b1",
+      "previousSha256": "b725719ab68ab31a21859d407817bdfe0c0382c91be7efa47ecb26e168910b17"
+    },
+    {
+      "path": "docs/evidence/P03-01/import-recovery.png",
+      "sha256": "ef26dc842fb89dfb41055ddf5906a1937df18dc3ae94a9bec2cd35744c7b2858",
+      "previousSha256": "ace033686a7f249a96dac25ff61aebbe8dba92e9b6d41c110b49e5ebfcc370de"
+    },
+    {
+      "path": "docs/evidence/P03-01/library-dark-1200.png",
+      "sha256": "d3189e5c11e744448ebefd675de390be675462a3b63efd096c8adc8e69cadd87",
+      "previousSha256": "fa4a47c09e4af0a1a69e7e9259ddab6fb4f101b1eeae21da86a98a8e59f227b9"
+    },
+    {
+      "path": "docs/evidence/P03-01/library-dark-200-percent.png",
+      "sha256": "7a0af635be019f0ea5aa366a2c114ce8d06bfe06fb61611da889ef0e10df3323",
+      "previousSha256": "dbe49f531ef546ea6ed445c2f4d81c30b07c43e903534f5e522b4605042c0a78"
+    },
+    {
+      "path": "docs/evidence/P03-01/library-dark-960.png",
+      "sha256": "3ef4f84d98042b7bbbdb4b40a136d40f6f4e1dff0270d0df4b818a044e70ce38",
+      "previousSha256": "4b5a5c0af549926ea7764fd037965e3df8cc1a0700e64a67ce28b696be28b6e6"
+    },
+    {
+      "path": "docs/evidence/P03-01/library-light-1200.png",
+      "sha256": "a261b0d20a819a705e53be110ca13a954b353e1c5a32c10ea7f36edfcfabe944",
+      "previousSha256": "edb2d9629ebfb17b15b781c16ad003229f1e270312f02d2e182a56f6bfc0aacf"
+    },
+    {
+      "path": "docs/evidence/P03-01/library-light-960.png",
+      "sha256": "db1d6a720dcbb09c879afeb4b30cd656ab192dab9d886f2302ee9098116f9518",
+      "previousSha256": "66b3de10bf6a96f838a250fbfca116d71f603512f472faa41dd5a250f0b76bc4"
+    },
+    {
+      "path": "docs/evidence/P03-01/media-original-only.png",
+      "sha256": "4c074fdbfa858731c6beb50b39e35994bb0ea99a32fa23cbd5d7303827a44138",
+      "previousSha256": "06471fb6728ef8fb80d96b47083cdae92da7813837cb3977a28fa12b76ce9c00"
+    },
+    {
+      "path": "docs/evidence/P03-01/native-parser-cases.jsonl",
+      "sha256": "3f5bdb1b24da557688b533c3f7bd5ac46be37f40385649b5e84597dea363b0a3",
+      "previousSha256": "2ace3744f8265de038e670b2e3b917b143974b8da5c562f423fcba4a6f150783"
+    },
+    {
+      "path": "docs/evidence/P03-01/ocr-original-recovery.png",
+      "sha256": "6ab538efc0d2d2400c6cd6d33c3e75e18d03870eb77eac65a2f7474e8418cdc9",
+      "previousSha256": "412bf4dbf0543338bbd3db56b7931fe409b0707319d226354f694d74609c9c38"
+    },
+    {
+      "path": "docs/evidence/P03-01/scoped-folder-root.png",
+      "sha256": "f284e3c4ef310bc1b9176b681a41878799faffee8babaaaa21c23e3acdeb8ed0",
+      "previousSha256": "122cf9124a66a0afb7d35481b7c49e15045b1c787fed3614141221694a56dd62"
+    },
+    {
+      "path": "docs/evidence/P03-01/scoped-pinned-library.png",
+      "sha256": "105ca133c0019fcc3fbd236ebd673c5b67c58034bf46e3e106af539c2a73617d",
+      "previousSha256": "7ebd29079612bd781463c9c37571d87729dea01ad5352265de0c7a0abb00ad71"
+    },
+    {
+      "path": "docs/evidence/P03-01/task-usage.png",
+      "sha256": "b015611c6ad01e63ff15a3b3db9d8e22e1f702c1676292bc5f99d1df6857aaea",
+      "previousSha256": "37b3d5e6c1a36db15621738f4af9fe2652b0da5b5d1f436b18a8b3548ac8005d"
+    }
+  ]
+}

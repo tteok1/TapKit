@@ -17,6 +17,8 @@ import {
   BranchSwitchSchema,
   MessageDeleteSchema,
   MessageMarkSchema,
+  BookmarkPageInputSchema,
+  BookmarkPageSchema,
   MessageTransformSchema,
   MessageNoteSchema,
   SectionCreateSchema,
@@ -308,6 +310,67 @@ export class HistoryService {
       nextCursor:
         rows.length > p.limit
           ? Buffer.from(JSON.stringify({ offset: offset + p.limit, signature })).toString(
+              'base64url',
+            )
+          : null,
+    });
+  }
+  private bookmarks(raw: unknown) {
+    if (this.temporary) throw new StorageError('PERMISSION_DENIED');
+    const p = BookmarkPageInputSchema.parse(raw);
+    let cursor: { createdAt: number; id: string } | undefined;
+    if (p.cursor) {
+      try {
+        cursor = z
+          .strictObject({
+            createdAt: z.number().int(),
+            id: IdSchema,
+          })
+          .parse(JSON.parse(Buffer.from(p.cursor, 'base64url').toString()));
+      } catch {
+        throw new StorageError('VALIDATION_ERROR');
+      }
+    }
+    const rows = this.store.db
+      .prepare(
+        `SELECT m.id,m.session_id,m.branch_id,m.content_json,m.created_at,s.title,s.archived_at
+       FROM message_marks k JOIN messages m ON m.id=k.message_id AND m.profile_id=k.profile_id
+       JOIN sessions s ON s.id=m.session_id AND s.profile_id=m.profile_id
+       JOIN branches b ON b.id=m.branch_id AND b.session_id=s.id AND b.profile_id=s.profile_id
+       WHERE k.profile_id=? AND k.bookmark=1 AND m.deleted_at IS NULL AND s.deleted_at IS NULL
+       AND m.role IN ('user','assistant')
+       AND NOT EXISTS(SELECT 1 FROM deletion_tombstones d WHERE d.profile_id=s.profile_id
+         AND ((d.entity_type='session' AND d.entity_id=s.id) OR (d.entity_type='message' AND d.entity_id=m.id)))
+       ${cursor ? 'AND (m.created_at<? OR (m.created_at=? AND m.id<?))' : ''}
+       ORDER BY m.created_at DESC,m.id DESC LIMIT ?`,
+      )
+      .all(
+        this.store.profileId,
+        ...(cursor ? [cursor.createdAt, cursor.createdAt, cursor.id] : []),
+        p.limit + 1,
+      ) as {
+      id: string;
+      session_id: string;
+      branch_id: string;
+      content_json: string;
+      created_at: number;
+      title: string;
+      archived_at: number | null;
+    }[];
+    const last = rows[p.limit - 1];
+    return BookmarkPageSchema.parse({
+      bookmarks: rows.slice(0, p.limit).map((m) => ({
+        messageId: m.id,
+        sessionId: m.session_id,
+        branchId: m.branch_id,
+        sessionTitle: m.title,
+        snippet: messageText(m).slice(0, 500),
+        createdAt: m.created_at,
+        archived: m.archived_at !== null,
+      })),
+      nextCursor:
+        rows.length > p.limit && last
+          ? Buffer.from(JSON.stringify({ createdAt: last.created_at, id: last.id })).toString(
               'base64url',
             )
           : null,
@@ -612,6 +675,8 @@ export class HistoryService {
       switch (r.command) {
         case 'sessions.list':
           return this.ok(r, this.list(r.payload));
+        case 'messages.bookmarks':
+          return this.ok(r, this.bookmarks(r.payload));
         case 'sessions.get':
           return this.ok(r, this.details(HistorySessionSchema.parse(r.payload).sessionId));
         case 'sessions.read': {

@@ -283,6 +283,33 @@ export function MessageActions({
     [busy, setBusy] = useState(false);
   const mark = details?.marks.find((m) => m.messageId === message.id),
     bookmarked = !!mark?.bookmark;
+  const dialog = useRef<HTMLDialogElement>(null);
+  const feedbackFocus = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    if (!mode) return;
+    const previous = feedbackFocus.current ?? (document.activeElement as HTMLElement | null);
+    feedbackFocus.current = null;
+    const element = dialog.current;
+    element?.showModal();
+    return () => {
+      element?.close();
+      if (previous?.isConnected) previous.focus();
+    };
+  }, [mode]);
+  function feedback(origin?: HTMLElement | null) {
+    feedbackFocus.current = origin ?? null;
+    setValue(mark?.note ?? '');
+    setReport(mark?.report ?? false);
+    setMode('feedback');
+  }
+  async function rate(rating: 'up' | 'down', origin: HTMLButtonElement) {
+    const next = mark?.rating === rating ? null : rating;
+    await action(async () => {
+      await historyCommand('messages.mark', { sessionId, messageId: message.id, rating: next });
+      await onChanged();
+      if (next === 'down') feedback(origin);
+    }, true);
+  }
   async function action(work: () => Promise<unknown>, keepModal = false) {
     if (busy) return;
     setBusy(true);
@@ -333,28 +360,18 @@ export function MessageActions({
           <IconButton
             icon="up"
             label={h.up}
+            tooltip={mark?.rating === 'up' ? h.cancelUp : h.up}
             aria-pressed={mark?.rating === 'up'}
             disabled={busy}
-            onClick={() =>
-              void action(() =>
-                historyCommand('messages.mark', { sessionId, messageId: message.id, rating: 'up' }),
-              )
-            }
+            onClick={(event) => void rate('up', event.currentTarget)}
           />
           <IconButton
             icon="down"
             label={h.down}
+            tooltip={mark?.rating === 'down' ? h.cancelDown : h.down}
             aria-pressed={mark?.rating === 'down'}
             disabled={busy}
-            onClick={() =>
-              void action(() =>
-                historyCommand('messages.mark', {
-                  sessionId,
-                  messageId: message.id,
-                  rating: 'down',
-                }),
-              )
-            }
+            onClick={(event) => void rate('down', event.currentTarget)}
           />
         </>
       )}
@@ -429,10 +446,14 @@ export function MessageActions({
         )}
         {message.role === 'assistant' && (
           <button
-            onClick={() => {
-              setValue('');
-              setMode('feedback');
-            }}
+            disabled={busy}
+            onClick={(event) =>
+              feedback(
+                event.currentTarget
+                  .closest('.action-popover')
+                  ?.querySelector<HTMLButtonElement>('button'),
+              )
+            }
           >
             {h.feedback}
           </button>
@@ -456,15 +477,24 @@ export function MessageActions({
           {h.deleteMessage}
         </button>
       </ActionPopover>
-      {error && <span role="alert">{error}</span>}
+      {error && !mode && <span role="alert">{error}</span>}
       {mode && (
-        <div
+        <dialog
+          ref={dialog}
           className="message-edit"
           role="dialog"
+          onCancel={() => setMode(undefined)}
           aria-label={
             h[mode === 'edit' ? 'editMessage' : mode === 'delete' ? 'deleteMessage' : 'feedback']
           }
         >
+          {mode === 'feedback' && (
+            <>
+              <h2>{h.feedback}</h2>
+              <p>{h.feedbackHint}</p>
+            </>
+          )}
+          {error && <p role="alert">{error}</p>}
           {mode === 'delete' ? (
             <>
               <p>
@@ -492,7 +522,11 @@ export function MessageActions({
             <>
               <label>
                 {mode === 'feedback' ? h.feedbackText : h.editMessage}
-                <textarea value={value} onChange={(e) => setValue(e.target.value)} />
+                <textarea
+                  maxLength={mode === 'feedback' ? 2000 : 100000}
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                />
               </label>
               {mode === 'feedback' && (
                 <label>
@@ -524,7 +558,7 @@ export function MessageActions({
             </>
           )}
           <button onClick={() => setMode(undefined)}>{h.cancel}</button>
-        </div>
+        </dialog>
       )}
     </div>
   );

@@ -1,5 +1,7 @@
 # IPC、事件、任务状态与接口协议
 
+2026-10-26 [ADR0063](../adr/0063-message-feedback-and-bookmark-collection.md)：新增只读historyCommand `messages.bookmarks`，`{cursor?,limit?}` → `{bookmarks:[{messageId,sessionId,branchId,sessionTitle,snippet,createdAt,archived}],nextCursor}`，默认50/最多100项、摘要最多500字符，严格键集游标与当前profile权限过滤。messages.mark既有rating:null用于取消评分；反馈仅本机，其他字段按未提供即保留的规则处理。
+
 2026-10-22 [ADR0059](../adr/0059-group-expansion-and-shared-tooltips.md)：sessions.list.sectionId 可选 ID/null；省略=全部，ID=该组，null=未分组，范围参与游标签名。侧栏组内独立分页并实际展开/收起；无数据库迁移。
 
 2026-10-22 [ADR0058](../adr/0058-rounded-shell-and-history-navigation.md)：DesktopSettings.historySort=`updated|manual`（旧数据默认 updated）；sessions.list 增加 sort（同默认）与 query（默认空、最多240字面子串），排序/查询参与分页签名，始终置顶优先。SessionRecord.sectionId 可空，旧响应默认 null。排序偏好复用 settings.set/CAS，拖拽复用 sidebar.reorder，各组独立且不改归属；归档/回收站设置页复用原生命周期命令及删除确认。无DB迁移或公共权限扩大。

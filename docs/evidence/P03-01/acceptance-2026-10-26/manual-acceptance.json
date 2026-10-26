@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-26",
+  "timezone": "Asia/Shanghai",
+  "evidenceType": "direct_user_report",
+  "userStatement": "你交给我做的两项测试均已测试通过，都符合预期。下一步的计划是什么？",
+  "items": [
+    {
+      "id": "M01",
+      "scope": "Windows资源管理器跨窗口拖入合成文件",
+      "result": "passed_user_acceptance"
+    },
+    {
+      "id": "M02",
+      "scope": "系统默认应用实际显示合成正文",
+      "result": "passed_user_acceptance"
+    }
+  ],
+  "independentlyReexecutedByAgent": false,
+  "pendingItemsInCurrentChecklist": [],
+  "automaticTestResultsUnchanged": {
+    "unit": 53,
+    "integration": 126,
+    "electron": 30
+  },
+  "deferredScopesUnchanged": true,
+  "realModelAcceptancePromoted": false,
+  "currentBranch": "codex/test-fixes-2026-10-26",
+  "head": "9bfc156af41f9a66fb4fff2a0842ff4c3582aa7a",
+  "commitOrPushPerformed": false
+}

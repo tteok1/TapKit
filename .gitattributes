@@ -2,3 +2,6 @@
 
 # Keep screenshot assets binary.
 *.png binary
+
+# Preserve raw test output, including line endings and reporter whitespace.
+docs/evidence/**/*.log -text -whitespace

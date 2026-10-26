@@ -1,0 +1,132 @@
+
+Running 17 tests using 1 worker
+
+  ok  1 tests\e2e\P03-01.files.spec.ts:186:1 › P03-01 accepted task usage shows its pinned historical version and follows session trash/restore across restart (1.5m)
+  ok  2 tests\e2e\P03-01.files.spec.ts:344:1 › P03-01 T08 navigation sends cancellation while a real committed import reply is delayed and appends it only to the original draft (1.2m)
+  ok  3 tests\e2e\P03-01.files.spec.ts:422:1 › P03-01 T08 late session creation after leaving the home composer cannot start a physical import or overwrite the new draft (34.9s)
+  ok  4 tests\e2e\P03-01.files.spec.ts:475:1 › P03-01 T08 leaving during a real Host selection releases its pending grant without importing or changing the new draft (35.7s)
+  ok  5 tests\e2e\P03-01.files.spec.ts:528:1 › P03-01 T07 chat physical File uses the real Host token import, preserves source bytes and downloads its pinned original (36.6s)
+  ok  6 tests\e2e\P03-01.files.spec.ts:663:1 › P03-01 T07 real Host picker chain imports an immutable source, separates unavailable parsing and downloads its original (36.9s)
+  ok  7 tests\e2e\P03-01.files.spec.ts:720:1 › P03-01 T08 cancelling one selected Host file releases only that choice and imports the remaining original through the actual UI (38.4s)
+  ok  8 tests\e2e\P03-01.files.spec.ts:745:1 › P03-01 T08 a persisted synthetic PDF structure needing OCR offers download and a searchable replacement without claiming readable content (39.6s)
+  ok  9 tests\e2e\P03-01.files.spec.ts:770:1 › P03-01 T07 image audio and video Host imports show original-only recovery and download exact bytes without offering parse retry (36.0s)
+  ok 10 tests\e2e\P03-01.files.spec.ts:810:1 › P03-01 T07 real saved-message note is searchable as a generated result in the library and pinned session, and remains downloadable after restart (1.2m)
+  ok 11 tests\e2e\P03-01.files.spec.ts:868:1 › P03-01 T07 genuine DOM File drop traverses preload and retains directory imports after cancelled selections (35.7s)
+  ok 12 tests\e2e\P03-01.files.spec.ts:911:1 › P03-01 responsive library grid and import instructions remain usable in light, dark and 200-percent layouts (35.6s)
+  ok 13 tests\e2e\P03-01.files.spec.ts:972:1 › P03-01 batch download keeps unfinished files selected and stops further dialogs after cancellation (35.2s)
+  ok 14 tests\e2e\P03-01.files.spec.ts:1015:1 › P03-01 T07 scoped library downloads and copies its pinned old version after format replacement, metadata edits and restoration (39.8s)
+  ok 15 tests\e2e\P03-01.files.spec.ts:1117:1 › P03-01 T07 linking a folder file keeps it visible at project and session roots, and shared moves remain navigable in each scope (35.8s)
+  ok 16 tests\e2e\P03-01.files.spec.ts:1226:1 › P03-01 T07 duplicate skip, explicit replacement, restoration and copy preserve pinned history and original bytes (39.2s)
+  ok 17 tests\e2e\P03-01.files.spec.ts:1330:1 › P03-01 interrupted import survives actual process termination and its recovery notice can be dismissed across Electron restarts (1.2m)
+
+  Slow test file: tests\e2e\P03-01.files.spec.ts (13.0m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  17 passed (13.1m)
+$ node scripts/e2e.mjs "--" "--grep" "P03-01" "--timeout=180000"
+(node:44192) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+(node:37076) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:54132/b983490d-a8b7-400a-89b7-5d1abdf3972b
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:14680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:51019/db62ab85-35b1-462f-886f-2ab4e0557cc3
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:44684) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:49163/df23c56e-924b-48d0-b3e5-eb7850d3765b
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:10076) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:56285/c924131e-ae8f-4406-b278-e052160a9892
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:24888) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:56303/9bd3d3eb-3640-4b05-bef9-718e5e9f73b1
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:25992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:53529/62626b65-6c8e-4c67-a77f-2f8cb95a94b3
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:28844) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:57539/ef06963e-ecf9-4959-b690-d44b7134efec
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:37360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:53844/1f406b74-05bf-4a02-af6f-71c0e05bb1f4
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:3000) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:61875/ccd672c2-d33d-41e6-a800-607fe97583e2
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:45612) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:52208/c25c7409-a5af-4452-9e96-c87e598ea57c
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:29840) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:53472/c0387997-e4aa-41df-a540-2c94e598a825
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:16968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:50720/ff189989-caa1-4a66-919a-79898e9ca20d
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:27396) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:64250/7b9f6ded-6545-4413-8138-42cc245f16a7
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:43408) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:64271/a1c99196-8103-483f-bd03-f3cd075f0425
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:15240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:65465/dde9a3d5-f82b-419f-907d-3bde3de1f604
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:39484) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:50819/367b6891-c8f4-45ca-871d-b5e4cc370808
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:43436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:64919/7dfe6bbb-80d7-42cb-b3e4-4a56e931b278
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:48104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:58422/39c41a9e-ccbe-4879-999e-e07b4a1f5b82
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:13440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:51498/e133ae73-0436-4702-adc8-12f26ea2110a
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:2384) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:54242/173f6fee-7ed0-45f3-9c68-6f748026b152
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_DIAGNOSTIC
+(node:39136) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+Debugger ending on ws://127.0.0.1:53377/2b3d2267-cb06-4b00-b570-a3bdefd923e4
+For help, see: https://nodejs.org/learn/getting-started/debugging

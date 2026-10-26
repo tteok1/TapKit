@@ -1,0 +1,10 @@
+$ node scripts/docs-check.mjs
+file:///D:/Tapkit-public/scripts/docs-check.mjs:18
+    throw new Error('Task status mismatch: ' + task);
+          ^
+
+Error: Task status mismatch: P03-02
+    at file:///D:/Tapkit-public/scripts/docs-check.mjs:18:11
+
+Node.js v24.18.0
+[ELIFECYCLE] Command failed with exit code 1.

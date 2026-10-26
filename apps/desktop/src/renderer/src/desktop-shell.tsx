@@ -1,4 +1,5 @@
 import { SidebarNavigation } from './sidebar-navigation';
+import { Bookmarks } from './bookmarks';
 import { TooltipLayer } from './tooltip';
 import {
   useCallback,
@@ -563,7 +564,9 @@ export function DesktopShell() {
                       ? t.work
                       : location.pathname === '/chats'
                         ? t.chats
-                        : branding.name)}
+                        : location.pathname === '/bookmarks'
+                          ? h.bookmarks
+                          : branding.name)}
           </span>
           <details className="connection-status">
             <summary aria-label={t.connectionStatus}>
@@ -686,6 +689,7 @@ export function DesktopShell() {
                     />
                   }
                 />
+                <Route path="/bookmarks" element={<Bookmarks onNavigate={navigate} />} />
                 <Route
                   path="/work"
                   element={

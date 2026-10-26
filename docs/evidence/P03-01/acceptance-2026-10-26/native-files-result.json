@@ -1,0 +1,42 @@
+{
+  "sourceUnchanged": true,
+  "downloaded": true,
+  "downloadMatches": true,
+  "externalCopyMatches": true,
+  "sourceSha256": "315dad6b6142d0164785c98f45940fe35495bd4229be1a31e41f34ed86355935",
+  "downloadSha256": "315dad6b6142d0164785c98f45940fe35495bd4229be1a31e41f34ed86355935",
+  "externalSha256": "315dad6b6142d0164785c98f45940fe35495bd4229be1a31e41f34ed86355935",
+  "files": [
+    {
+      "display_name": "验收1026-中文原件.txt",
+      "relative_path": "验收1026-中文原件.txt",
+      "status": "ready",
+      "version": 1,
+      "parse_status": "ready",
+      "size_bytes": 94,
+      "sha256": "315dad6b6142d0164785c98f45940fe35495bd4229be1a31e41f34ed86355935"
+    },
+    {
+      "display_name": "验收1026-文件夹文件.txt",
+      "relative_path": "验收1026-文件夹/子目录/验收1026-文件夹文件.txt",
+      "status": "ready",
+      "version": 1,
+      "parse_status": "ready",
+      "size_bytes": 93,
+      "sha256": "b54659909919b75aba993facfbf0c0a36710f3a6ccfe8e3453b79469cecf5ed6"
+    }
+  ],
+  "observedUi": [
+    "native-open-cancel-without-new-file",
+    "native-open-chinese-path-and-import-ready",
+    "native-save-cancel-and-save-chinese-path",
+    "native-folder-recursive-selection-and-import",
+    "default-notepad-window-document.txt-created"
+  ],
+  "externalRendering": "manual_pending_computer_use_app_approval_timed_out",
+  "nativeExplorerDrop": "manual_pending_cross_window_drag",
+  "instrumentation": {
+    "sessionExitCode": 1,
+    "reason": "Post-action snapshot failed: page.evaluate: Target page, context or browser has been closed; no successful public snapshot claimed. Read-only persisted-state/hash audit used after closure."
+  }
+}

@@ -1,0 +1,3 @@
+TapKit Windows 原生文件选择验收
+这是一份合成测试文件，不含账号或私人资料。
+SYNTHETIC-PICKER-1026

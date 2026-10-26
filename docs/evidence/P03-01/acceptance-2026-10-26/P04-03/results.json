@@ -1,0 +1,71 @@
+{
+  "batch": "P04-03",
+  "exitCode": 0,
+  "commands": [
+    {
+      "command": [
+        "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+        "test:unit",
+        "P04-03",
+        "--maxWorkers=1"
+      ],
+      "exitCode": 0,
+      "started": "2026-10-26T10:21:02.879Z",
+      "finished": "2026-10-26T10:21:04.795Z",
+      "log": "test-unit.log"
+    },
+    {
+      "command": [
+        "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+        "test:integration",
+        "P04-03"
+      ],
+      "exitCode": 0,
+      "started": "2026-10-26T10:21:04.796Z",
+      "finished": "2026-10-26T10:21:14.424Z",
+      "log": "test-integration.log"
+    },
+    {
+      "command": [
+        "D:\\Tapkit-public\\.runtime\\node\\node-v24.21.0-win-x64\\node.exe",
+        "D:\\Tapkit-public\\.cache\\tools\\pnpm\\package\\bin\\pnpm.mjs",
+        "test:e2e",
+        "--",
+        "--grep",
+        "P04-03",
+        "--timeout=180000"
+      ],
+      "exitCode": 0,
+      "started": "2026-10-26T10:21:14.425Z",
+      "finished": "2026-10-26T10:25:21.634Z",
+      "log": "test-e2e.log"
+    }
+  ],
+  "unitFileCount": 1,
+  "historicalEvidenceRestored": true,
+  "backup": "D:\\Tapkit-public\\.test-data\\acceptance-evidence-P04-03-1793010062649",
+  "generatedEvidence": [
+    {
+      "path": "docs/evidence/P04-03/automatic-memory.png",
+      "sha256": "ef85ee2a43c9346cc649c5611a49295261f8b813f57bc1f78f038511f1f58a80",
+      "previousSha256": "c45b8fa60b156ca654419332ee770866358ce4581397bd5b8d49e5e8d65d294d"
+    },
+    {
+      "path": "docs/evidence/P04-03/memory-management.png",
+      "sha256": "47fe44dfadae5c6609f604b58716a8f9ef30d2b53493c75483c1b397205b63ac",
+      "previousSha256": "6df13dea8aa5d069dedbb15b3b1d1fc08064e24f72f8914b364b90e4612a5353"
+    },
+    {
+      "path": "docs/evidence/P04-03/session-deletion-impact.png",
+      "sha256": "eba374864385c44e6addbdde89529f94786dd2343cd4991fecb9d8fcc74e588d",
+      "previousSha256": "3c755a3ba32d46b48c88dc02c33b9bc1ed707fa87fde5e01b5d939787077b0c5"
+    },
+    {
+      "path": "docs/evidence/P04-03/temporary-scope.png",
+      "sha256": "e4f25e1cb9ea0771b620e6a1b0037a83316015d1e64ece7131b13541e8954bef",
+      "previousSha256": "7f6f545f6580dbfd72e5e688a71847e562c5c0e5d8277e976089ea245a542304"
+    }
+  ]
+}

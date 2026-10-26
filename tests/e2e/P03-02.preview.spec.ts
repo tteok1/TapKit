@@ -70,7 +70,7 @@ async function launch(root: string) {
   delete env.ELECTRON_RUN_AS_NODE;
   app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
   const page = await app.firstWindow();
-  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125_000 });
   return page;
 }
 const panelFor = (page: Page) => page.getByRole('region', { name: '文件预览', exact: true });

@@ -1,3 +1,27 @@
+## 2026-10-26 fix分支提交推送授权
+
+2026-10-26用户授权将当前fix分支修复及验收记录提交推送到同名远程分支；明确暂不合入main；本提交包含交接，最终SHA及远端一致性以Git回执为准。分支codex/test-fixes-2026-10-26，基点9bfc156；范围为T14反馈/评分取消/聊天收藏入口、相关测试及四批209项自动/两项用户补测通过记录。110产品源码/626产物与已验快照一致，profile/runtime/构建缓存不入Git；证据 docs/evidence/P02-03/fix-branch-push-2026-10-26/verification.md。只推当前分支，无PR或main合并，原live/gate/暂缓范围保持。
+
+## 2026-10-26 两项人工补测通过
+
+用户直接确认M01/M02均通过、符合预期；四批209项自动测试结果保持，清单无剩余待测项。回执 docs/evidence/P03-01/acceptance-2026-10-26/manual-acceptance.json。只同步记录，原失败轮和暂缓范围保持，P04真实模型/gate不提升。当前分支尚未提交/推送；建议先交付该修复分支，再按P05-01→P05-02→P05-03推进聊天M1。R06 Tavily仍pending；本轮未执行发布或开始P05。
+
+## 2026-10-26 当前版本四批自动验收完成
+
+用户确认P01既定范围/P02人工清单通过。P03-01 38/81/17、P03-02 11/15/5、P03-03 2/14/4、P04-03 2/16/4（unit/integration/Electron）最终通过，共53/126/30；首轮连接前置失败及补验保留。9页预览视觉核对和Windows真实文件/文件夹/下载选择通过，源文件/下载/外部副本hash一致。M01跨窗口拖入、M02默认应用正文于2026-10-26由用户确认均通过，本轮无剩余人工项，详见 docs/evidence/P03-01/acceptance-2026-10-26/manual-checklist.md。110产品源码hash保持，历史证据恢复；最终check补验/docs/diff和两个启动入口CheckOnly退出0，初轮检查与进程超时回执保留。原profile/暂缓/live/gate保持，无真实请求或commit/push。完整命令/退出码见 docs/evidence/P03-01/acceptance-2026-10-26/verification.md。
+
+## 2026-10-26 T14收藏入口迁入聊天页（本地完成）
+
+P02-03 / ADR0063：用户最新截图将收藏入口指定在聊天页归档和回收站之间，侧栏不单列；收藏页保持聊天高亮。check退出0，5个不同隔离Electron用例分轮通过（最终布局1/1），覆盖浅深/960/200%；后端/反馈存储和原验收状态保持。生产快照与原启动校验见 docs/evidence/P02-03/t14-chat-bookmarks-2026-10-26/verification.md。
+
+## 2026-10-26 T14反馈与收藏修复（本地完成）
+
+P02-03 / ADR0063，FR-07-018/020：点踩直开本地反馈，同评分再点取消，侧栏收藏列表可取消或定位原分支，反馈回显与焦点恢复；unit7/integration45/check退出0。6个不同Electron用例分轮通过（最终补验2/2），含浅深主题/960窗口/200%。失败轮、生产快照与原启动入口见 docs/evidence/P02-03/t14-feedback-bookmarks-2026-10-26/verification.md。原人工测试profile/live/gate不变，待T14复验，未commit/push。
+
+## 2026-10-26 人工测试修复分支准备
+
+已拉取最新 `origin/main` 并从 `9bfc156af41f9a66fb4fff2a0842ff4c3582aa7a` 创建/切换 `codex/test-fixes-2026-10-26`。接续 P02-03 的 `live-2026-10-19/batch-checklist.md`，等待用户回报具体问题；尚无产品修复，任务/requirements.csv/live/gate状态保持。
+
 ## 2026-10-24 ui_fix单提交main交付
 
 2026-10-24 用户授权将ui_fix四个提交压成一个提交合入main。压缩暂存树与源头9611f1d完整树一致，之后仅补本次交接文档；产品和测试与CI57已验源码00238f7一致（unit360/integration351/perf2/Electron50及原生/Office/启动诊断通过）。源分支保留，原profile/live/gate不变；本次main提交即包含本记录的提交。证据ci-ui-fix-2026-10-23/main-squash-2026-10-24.json。
