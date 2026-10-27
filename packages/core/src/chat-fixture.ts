@@ -53,6 +53,70 @@ export function installChatFixture(models: ModelService) {
     async *stream(request, signal) {
       const last = request.messages.findLast((m) => m.role === 'user');
       const text = last?.role === 'user' ? last.text : '';
+      const backgroundCall = request.systemModules.some((module) =>
+        ['tapkit.title', 'tapkit.memory.extract'].includes(module.id),
+      );
+      if (text.includes('P05项目') && !backgroundCall) {
+        const result = request.messages
+          .slice(request.messages.findLastIndex((m) => m.role === 'user') + 1)
+          .findLast((m) => m.role === 'tool' && m.name === 'knowledge.query');
+        if (!result && request.tools.some((tool) => tool.name === 'knowledge.query')) {
+          yield {
+            type: 'tool_end',
+            callId: newId(),
+            name: 'knowledge.query',
+            arguments: { query: '退款期限', limit: 3 },
+          };
+          yield { type: 'finish', reason: 'tool_calls', nativeStateRef: '' };
+          return;
+        }
+        const hit =
+          result?.role === 'tool'
+            ? (JSON.parse(result.text) as { hits?: { evidence?: { id: string; text: string } }[] })
+                .hits?.[0]?.evidence
+            : undefined;
+        yield {
+          type: 'text_delta',
+          blockId: 'text',
+          text: hit
+            ? hit.text.split(/[。；\n]/)[0] + '[[evidence:' + hit.id + ']]'
+            : '资料不足，无法查证。',
+        };
+        yield { type: 'finish', reason: 'stop', nativeStateRef: '' };
+        return;
+      }
+      if (text.includes('P05来源') && !backgroundCall) {
+        const current = request.messages.slice(
+          request.messages.findLastIndex((m) => m.role === 'user') + 1,
+        );
+        const result = current.findLast((m) => m.role === 'tool' && m.name === 'web.read');
+        const available = request.tools.some((tool) => tool.name === 'web.read');
+        if (!result && available) {
+          yield {
+            type: 'tool_end',
+            callId: newId(),
+            name: 'web.read',
+            arguments: { url: text.match(/https?:\/\/[^\s]+/)?.[0] ?? 'https://example.com/' },
+          };
+          yield { type: 'finish', reason: 'tool_calls', nativeStateRef: '' };
+          return;
+        }
+        const page =
+          result?.role === 'tool'
+            ? (JSON.parse(result.text) as { sourceId?: string; error?: string })
+            : undefined;
+        yield {
+          type: 'text_delta',
+          blockId: 'text',
+          text: page?.sourceId
+            ? '公开价格 42 元[[web:' + page.sourceId + ']]'
+            : page?.error
+              ? '无法读取来源：' + page.error + '，请补充材料或更换来源。'
+              : '当前未启用联网，无法查证。',
+        };
+        yield { type: 'finish', reason: 'stop', nativeStateRef: '' };
+        return;
+      }
       yield { type: 'start', attemptId: request.attemptId };
       if (
         request.systemModules.some((m) => m.id === 'tapkit.title') &&

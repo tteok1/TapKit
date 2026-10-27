@@ -1,5 +1,11 @@
 # 数据模型与事务契约
 
+P05托管搜索（ADR0066）：ModelRequest增加隔离hostedSearch配置，ModelEvent增加hosted_search候选/次数；复用provider_attempts/usage_ledger，不另建run状态。工具结果保留公开候选/调用次数/费用未知说明，搜索辅助文本和原生服务端块不持久化。原web_sources/schema16保持。
+
+P05-01 schema15：见 [ADR0064](../adr/0064-public-web-snapshots-and-anonymous-network.md)。web_sources 绑定 profile/session/run、公开 URL、固定 Blob 快照及 contentHash/fetchedAt/revision；citations 的 file_version_id/web_source_id 二选一，旧引用迁移保留；会话 web_options_json 为联网权限/筛选快照。软删除拒绝读取但保留来源供恢复，永久清理才释放 blob 引用；临时会话仅存内存。
+
+P05-02 schema16：[ADR0065](../adr/0065-reviewed-local-export-and-chat-snapshot.md) / 0016_exports.sql重建jobs的kind约束并保留旧队列/候选外键；exports包含profile/source/id/hash/format/options/job/name/state/progress/error及时间戳，只记录元数据。窗口内存保存审阅正文、来源指纹及Host目标授权；重启令未完成作业failed/STREAM_INTERRUPTED，永久会话清理删除相关元数据，外部副本不受影响。
+
 2026-10-26 [ADR0063](../adr/0063-message-feedback-and-bookmark-collection.md)：收藏列表复用message_marks，无迁移；按消息创建时间/ID键集分页，限定profile及消息/会话/分支归属，排除回收站/删除/墓碑及系统说明。rating=null仅取消评分，其他字段保留；临时标记不进入持久收藏列表。
 
 2026-10-12 P04-03 schema14：[ADR0048](../adr/0048-evidence-backed-memory-and-history.md)追加0014_memory，保留schema11的memories身份；唯一active键、版本、来源messageId/revision、memory.extract租约任务、generation/谓词墓碑、可冲突的撤销记录、FTS删除同步和仅引用的回答使用记录。不修改历史迁移或run状态。

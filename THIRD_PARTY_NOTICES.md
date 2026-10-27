@@ -1,5 +1,11 @@
 # Third-party notices
 
+## P05 local export
+
+Noto Sans CJK SC Regular 2.004 is fetched from the official notofonts/noto-cjk revision pinned in export-font-lock.json. It is distributed under SIL Open Font License 1.1; see resources/fonts/OFL.txt. The verified font and license are included in Core build output and the development directory. Generated standalone HTML/PDF embed this font. The source OTF is fetched by bootstrap and is excluded from Git.
+
+P05 also directly uses parse5 7.3.0 and marked 16.4.2 (MIT); exact archive integrities are recorded in dependency-baseline.json and pnpm-lock.yaml.
+
 TapKit source is MIT licensed. Third-party components retain their original licenses.
 This source development baseline does not grant redistribution rights under MIT to third-party binaries.
 Exact npm integrity and upstream tarballs are recorded in dependency-baseline.json / pnpm-lock.yaml.

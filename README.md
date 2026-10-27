@@ -2,6 +2,8 @@
 
 Windows 本地 AI 工作空间。已有中文桌面、独立 Core、本地数据和 Codex 连接诊断；真实模型联调及后续界面仍在开发中。当前状态以 [开发进度](docs/progress/CURRENT.md) 为准。
 
+P05聊天开发版支持固定网页来源与本地分享副本。运行`.\scripts\pnpm.ps1 pack:dir`构建含运行时的目录快照并重新验证目录内隔离能力；产物位置见`release/latest.json`。Windows启动、模型设置、数据位置、格式与限制见[聊天开发版说明](docs/chat-milestone.md)。这不是完整产品或正式安装包。
+
 ## 开发
 
 要求 Windows 11 24H2+ x64 和用于首次引导的 Node 24。推荐入口（使用项目锁定的版本，不改变全局工具）：

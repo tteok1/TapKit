@@ -27,6 +27,7 @@ export function codexFetch(
   fetcher: typeof fetch,
   capture: (error: ProviderError) => void,
   captureUsage: (usage: NormalizedUsage) => void = () => {},
+  observe: (event: Record<string, any>) => void = () => {},
 ): typeof fetch {
   return async (input, init) => {
     const url = new URL(
@@ -167,6 +168,7 @@ export function codexFetch(
               }
               if (!event || typeof event !== 'object' || !('type' in event)) continue;
               const type = event.type;
+              observe(event);
               if (
                 ['response.completed', 'response.done', 'response.incomplete'].includes(
                   String(type),

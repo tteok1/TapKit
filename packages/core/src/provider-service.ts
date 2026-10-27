@@ -45,6 +45,11 @@ export type PrivateVault = (
     | 'browser.open'
     | 'api-key.read'
     | 'api-key.delete'
+    | 'web.key'
+    | 'web.read'
+    | 'web.cancel'
+    | 'export.pdf'
+    | 'export.cancelPdf'
     | 'network.proxy.resolve',
   accountId: string,
   payload: unknown,
@@ -252,6 +257,13 @@ export class ProviderService {
   adapter(accountId: string) {
     if (this.disconnecting.has(accountId)) throw new StorageError('AUTH_REQUIRED');
     return this.channel(accountId);
+  }
+  supportsHostedSearch(accountId: string) {
+    const account = this.account(accountId);
+    return (
+      account.providerId === 'codex-subscription' ||
+      ['openai-responses', 'anthropic-messages'].includes(account.apiFormat ?? '')
+    );
   }
   private update(
     accountId: string,

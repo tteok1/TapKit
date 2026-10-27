@@ -9,7 +9,8 @@
   "dependencies": {
     "@tapkit/contracts": "workspace:*",
     "docx": "9.7.1",
-    "pptxgenjs": "4.0.1",
-    "exceljs": "4.4.0"
+    "exceljs": "4.4.0",
+    "marked": "16.4.2",
+    "pptxgenjs": "4.0.1"
   }
 }

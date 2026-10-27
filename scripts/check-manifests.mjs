@@ -88,3 +88,16 @@ for (const wheel of wheels) {
     throw new Error('Wheel lock mismatch');
 }
 console.log('Runtime/dependency/wheel manifests verified');
+const font = JSON.parse(await readFile(join(root, 'export-font-lock.json'), 'utf8'));
+if (font.schemaVersion !== 1 || !/^[a-f0-9]{40}$/.test(font.revision))
+  throw new Error('Invalid export font lock');
+for (const [name, entry] of Object.entries(font.files)) {
+  if (
+    !['NotoSansCJKsc-Regular.otf', 'OFL.txt'].includes(name) ||
+    !entry.source.startsWith(
+      'https://raw.githubusercontent.com/notofonts/noto-cjk/' + font.revision + '/',
+    )
+  )
+    throw new Error('Unexpected export font source');
+  hash.parse(entry.sha256);
+}

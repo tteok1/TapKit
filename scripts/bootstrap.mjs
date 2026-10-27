@@ -1,8 +1,10 @@
 import { root, nodeExe, pnpm, run } from './lib.mjs';
 import { prepareRuntimes } from './runtime-fetch.mjs';
+import { prepareExportFont } from './export-font.mjs';
 import { prepareEmbeddingModel } from './embedding-model.mjs';
 import { join } from 'node:path';
 await prepareRuntimes();
+await prepareExportFont();
 await prepareEmbeddingModel();
 run(nodeExe(), ['--version']);
 pnpm(['install', '--frozen-lockfile', '--ignore-scripts']);

@@ -1,0 +1,19 @@
+{
+  "started": "2026-10-27T08:51:22.847Z",
+  "requests": 1,
+  "model": "gpt-5.5",
+  "noPrivateContext": true,
+  "nativeStateSaved": false,
+  "httpStatus": 400,
+  "responseType": "application/json",
+  "error": {
+    "code": "PROVIDER_UNAVAILABLE",
+    "httpStatus": 400,
+    "upstreamCode": "model_not_found",
+    "retryable": false,
+    "diagnosticCode": "upstream_error"
+  },
+  "status": "failed",
+  "errorCode": "PROVIDER_UNAVAILABLE",
+  "finished": "2026-10-27T08:51:23.365Z"
+}

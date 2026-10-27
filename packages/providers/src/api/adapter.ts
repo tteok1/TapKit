@@ -26,6 +26,7 @@ import { validArguments } from './arguments';
 import { isZhipuChat, isZhipuResponses } from './zhipu';
 import { zhipuToolName, zhipuToolNames, zhipuToolMessages } from './zhipu-tools';
 import { ZhipuToolTraceRecorder, type ZhipuToolTraceSink } from './tool-trace';
+import { apiHostedSearch } from '../hosted-search';
 
 export const API_ADAPTER_VERSION = 'tapkit-api/2';
 type Wire = Record<string, any>; // Provider JSON remains private and never enters Renderer.
@@ -193,6 +194,7 @@ export class ApiKeyAdapter implements ProviderAdapter {
         'CONFLICT',
         'VALIDATION_ERROR',
         'MODEL_UNSUPPORTED',
+        'BUDGET_EXCEEDED',
         'CANCELLED',
       ].includes(error.message)
     )
@@ -232,6 +234,18 @@ export class ApiKeyAdapter implements ProviderAdapter {
       key = await this.readKey();
       if (!key) throw new ApiFailure({ code: 'AUTH_REQUIRED', retryable: false });
       const format = this.config.apiFormat;
+      if (input.hostedSearch) {
+        yield* apiHostedSearch(
+          input,
+          format,
+          this.config.baseURL.replace(/\/+$/, '') +
+            (format === 'anthropic-messages' ? '/messages' : '/responses'),
+          key,
+          this.fetcher,
+          combined,
+        );
+        return;
+      }
       const version =
         API_ADAPTER_VERSION +
         ':' +

@@ -1,0 +1,54 @@
+{
+  "directory": "release/TapKit-chat-M1-2026-10-27T03-32-21-373Z",
+  "manifestSha256": "1c30c0e88647f9ceb7efd393572eb313892d02d82d1bc1a97e6f9f8f1f581d0b",
+  "fileCount": 70017,
+  "payloadBytes": 3476891834,
+  "dependencyCopies": 621,
+  "criticalHashes": [
+    {
+      "path": "apps/desktop/out/main/index.js",
+      "sha256": "66493b68859c08aef30922197aaf93cdccd553b639a7a59c0727a0446e5bc5f8"
+    },
+    {
+      "path": "packages/core/dist/index.cjs",
+      "sha256": "21a0f75f6e4767635bb57ee93fe5ff27d0ddbdc1d53817f8bf60dd38368734bb"
+    },
+    {
+      "path": "packages/contracts/src/models.ts",
+      "sha256": "f0027ab2d9aa6dfbb0459688ba5848471fbcbee652bb0b63e2db90d7c037302a"
+    },
+    {
+      "path": "packages/tools/src/execution/index.ts",
+      "sha256": "dfd19f4bd748b4ab8de826170a536ca5efbe31006c815112c4d83e338751c96e"
+    },
+    {
+      "path": "vitest.source.config.ts",
+      "sha256": "1ec0f09c07b59b2368b1bdbe046929eca4daa39c1a64c46b970bc47375c72e38"
+    },
+    {
+      "path": "Start-TapKit.cmd",
+      "sha256": "db3e9904d8f1e76c9d15bd48f47ccb542e5693c5aa9d389f932711624a6177c5"
+    }
+  ],
+  "probeScope": "current-user",
+  "standardUser": false,
+  "tests": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "pending": 0
+  },
+  "capabilities": {
+    "nativeExecution": {
+      "status": "available"
+    },
+    "officeRender": {
+      "status": "available"
+    },
+    "terminal": {
+      "status": "available"
+    }
+  },
+  "probeScratchAbsent": true,
+  "originalTestConfigUnchanged": true
+}

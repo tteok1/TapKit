@@ -93,6 +93,19 @@ export function eraseSessionContent(store: Store, id: string, time: number) {
     ).map((m) => m.id),
   );
   const db = store.db;
+  if (db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='web_sources'").get()) {
+    db.prepare(
+      'DELETE FROM citations WHERE web_source_id IN(SELECT id FROM web_sources WHERE session_id=? AND profile_id=?)',
+    ).run(id, store.profileId);
+    db.prepare('DELETE FROM web_sources WHERE session_id=? AND profile_id=?').run(
+      id,
+      store.profileId,
+    );
+  }
+  if (db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='exports'").get())
+    db.prepare(
+      "DELETE FROM exports WHERE source_id=? AND profile_id=? AND source_kind IN('session','outputs')",
+    ).run(id, store.profileId);
   db.prepare(
     'DELETE FROM context_snapshots WHERE run_id IN(SELECT id FROM runs WHERE session_id=?)',
   ).run(id);

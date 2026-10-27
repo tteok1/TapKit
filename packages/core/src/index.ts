@@ -8,6 +8,8 @@ import {
   FileCommandSchemas,
   ArtifactCommandSchemas,
   ProjectCommandSchemas,
+  WebCommandSchemas,
+  ExportCommandSchemas,
   z,
 } from '@tapkit/contracts';
 import { openStore, BlobStore, FileRepository, StorageError, failure } from '@tapkit/storage';
@@ -25,6 +27,11 @@ import { randomUUID } from 'node:crypto';
 import { ProviderService, type PrivateVault } from './provider-service';
 import { ModelService } from './model-service';
 import { ChatService } from './chat-service';
+import { WebService } from './web-service';
+import { ExportService } from './export-service';
+import { WebTools } from '@tapkit/tools';
+import { NetworkPolicyService } from '@tapkit/network';
+import { resolveNetworkProxy } from '@tapkit/providers';
 import { HistoryService } from './history-service';
 import { TemporaryService } from './temporary-service';
 import { createToolTraceWriter } from './tool-trace';
@@ -53,10 +60,13 @@ async function start() {
   const vault: PrivateVault = (operation, accountId, payload) =>
     new Promise((resolve, reject) => {
       const id = randomUUID();
-      const timer = setTimeout(() => {
-        vaultWaiters.delete(id);
-        reject(new Error('AUTH_REQUIRED'));
-      }, 30_000);
+      const timer = setTimeout(
+        () => {
+          vaultWaiters.delete(id);
+          reject(new Error('AUTH_REQUIRED'));
+        },
+        operation === 'export.pdf' ? 60_000 : 30_000,
+      );
       vaultWaiters.set(id, { resolve, reject, timer });
       port!.postMessage({ type: 'vault.request', id, operation, accountId, payload });
     });
@@ -74,7 +84,80 @@ async function start() {
     const { installChatFixture } = await import('./chat-fixture');
     installChatFixture(models);
   }
-  const chat = new ChatService(store, blobs, models);
+  let webTools = new WebTools(
+    new NetworkPolicyService({
+      proxy: (url, signal) =>
+        resolveNetworkProxy(
+          store.settings.values.network,
+          url,
+          async (value) =>
+            z
+              .strictObject({ proxyURL: z.string().max(2048) })
+              .parse(await vault('network.proxy.resolve', store.profileId, { url: value }))
+              .proxyURL,
+          signal,
+        ),
+    }),
+    undefined,
+    async (url, signal, remainingBytes) => {
+      const token = randomUUID();
+      const cancel = () => {
+        void vault('web.cancel', store.profileId, { token }).catch(() => {});
+      };
+      signal.throwIfAborted();
+      signal.addEventListener('abort', cancel, { once: true });
+      try {
+        const proxyURL = await resolveNetworkProxy(
+          store.settings.values.network,
+          new URL(url),
+          async (value) =>
+            z
+              .strictObject({ proxyURL: z.string().max(2048) })
+              .parse(await vault('network.proxy.resolve', store.profileId, { url: value }))
+              .proxyURL,
+          signal,
+        );
+        signal.throwIfAborted();
+        return z
+          .strictObject({ url: z.string().url().max(4096), html: z.string().max(50 * 1024 * 1024) })
+          .parse(
+            await vault('web.read', store.profileId, { token, url, proxyURL, remainingBytes }),
+          );
+      } finally {
+        signal.removeEventListener('abort', cancel);
+      }
+    },
+  );
+  if (
+    __TAPKIT_TEST_BUILD__ &&
+    process.env.TAPKIT_CHAT_FIXTURE === 'P02-02' &&
+    process.env.TAPKIT_WEB_FIXTURE === 'P05-01'
+  ) {
+    const { installWebFixture } = await import('./web-fixture');
+    webTools = installWebFixture(store, webTools);
+  }
+  const web = new WebService(store, blobs, webTools, models);
+  const chat = new ChatService(store, blobs, models, web);
+  const exports = new ExportService(store, blobs, chat, web, async (html, signal) => {
+    const token = randomUUID(),
+      cancel = () => {
+        void vault('export.cancelPdf', store.profileId, { token }).catch(() => {});
+      };
+    signal.throwIfAborted();
+    signal.addEventListener('abort', cancel, { once: true });
+    try {
+      return Buffer.from(
+        z
+          .string()
+          .max(140000000)
+          .regex(/^[A-Za-z0-9+/]*={0,2}$/)
+          .parse(await vault('export.pdf', store.profileId, { token, html })),
+        'base64',
+      );
+    } finally {
+      signal.removeEventListener('abort', cancel);
+    }
+  });
   const history = new HistoryService(store, blobs, chat, false, async (sessionId) => {
     const refs = store.db
       .prepare(
@@ -88,12 +171,18 @@ async function start() {
           .map((r) => ({ ref: r.id, branchId: r.branch_id })),
       });
   });
-  const temporary = new TemporaryService(store, models, providers, (target) => {
-    if (__TAPKIT_TEST_BUILD__ && process.env.TAPKIT_CHAT_FIXTURE === 'P02-02') {
-      target.catalog = models.catalog;
-      target.router.deps.adapter = models.router.deps.adapter;
-    }
-  });
+  const temporary = new TemporaryService(
+    store,
+    models,
+    providers,
+    (target) => {
+      if (__TAPKIT_TEST_BUILD__ && process.env.TAPKIT_CHAT_FIXTURE === 'P02-02') {
+        target.catalog = models.catalog;
+        target.router.deps.adapter = models.router.deps.adapter;
+      }
+    },
+    webTools,
+  );
   chat.onCompleted = (sessionId, runId) => {
     history.queueTitle(sessionId, runId);
     store.db.transaction(() => chat.memories.enqueue(sessionId, runId))();
@@ -135,9 +224,11 @@ async function start() {
     blobs,
     (event) => port!.postMessage({ type: 'event', event }),
     (job, signal) =>
-      job.kind === 'memory.extract'
-        ? chat.memories.execute(job, signal)
-        : parser.execute(job, signal),
+      job.kind === 'snapshot.export'
+        ? exports.execute(job, signal)
+        : job.kind === 'memory.extract'
+          ? chat.memories.execute(job, signal)
+          : parser.execute(job, signal),
   );
   let closing = false;
   port!.on('message', ({ data }: { data: unknown }) => {
@@ -145,6 +236,7 @@ async function start() {
     if (!result.success || (closing && result.data.type !== 'vault.reply')) return;
     const command = result.data;
     if (command.type === 'window.closed') {
+      exports.closeWindow(command.windowId);
       void temporary.closeWindow(command.windowId);
       void fileService.closeWindow(command.windowId);
       fileExporter.closeWindow(command.windowId);
@@ -208,6 +300,45 @@ async function start() {
                     : error && error.code === 'EEXIST'
                       ? 'CONFLICT'
                       : 'INTERNAL_ERROR',
+              ),
+            });
+        },
+      );
+      return;
+    }
+    if (command.type === 'exports.inspect' || command.type === 'exports.write') {
+      const work = async () => {
+        const data =
+          command.type === 'exports.inspect'
+            ? {
+                exportDestination: exports.destination(
+                  command.windowId,
+                  command.previewId,
+                  command.snapshotVersion,
+                ),
+              }
+            : {
+                exportStatus: await exports.write(
+                  command.windowId,
+                  command.previewId,
+                  command.snapshotVersion,
+                  command.targetPath,
+                ),
+              };
+        return ReplySchema.parse({ ok: true, requestId: command.requestId, data });
+      };
+      void work().then(
+        (reply) => {
+          if (!closing) port!.postMessage({ type: 'reply', id: command.id, reply });
+        },
+        (error) => {
+          if (!closing)
+            port!.postMessage({
+              type: 'reply',
+              id: command.id,
+              reply: failure(
+                command.requestId,
+                error instanceof StorageError ? error.code : 'INTERNAL_ERROR',
               ),
             });
         },
@@ -336,35 +467,40 @@ async function start() {
           temporary.cancelAccount(account.data.accountId);
         }
       }
-      const result = Object.hasOwn(ProjectCommandSchemas, command.request.command)
-        ? projects.dispatch(command.request)
-        : Object.hasOwn(ArtifactCommandSchemas, command.request.command)
-          ? artifacts.dispatch(command.request)
-          : Object.hasOwn(FileCommandSchemas, command.request.command)
-            ? fileService.dispatch(command.request)
-            : command.request.command === 'sessions.temporary' ||
-                command.request.command === 'sessions.closeTemporary' ||
-                temporary.target(command.request.payload)
-              ? temporary.dispatch(command.request)
-              : (HISTORY_COMMANDS as readonly string[]).includes(command.request.command)
-                ? history.dispatch(command.request)
-                : command.request.command.startsWith('models.') ||
-                    command.request.command === 'usage.list'
-                  ? models.dispatch(command.request)
-                  : command.request.command.startsWith('providers.') &&
-                      command.request.command !== 'providers.saveApiKey'
-                    ? providers.dispatch(command.request)
-                    : /^(memory\.|messages\.|drafts\.|inputs\.|runs\.cancel$|context\.|chat\.snippets\.)/.test(
-                          command.request.command,
-                        )
-                      ? chat.dispatch(command.request)
-                      : Promise.resolve(service.dispatch(command.request));
+      const result = Object.hasOwn(ExportCommandSchemas, command.request.command)
+        ? exports.dispatch(command.request)
+        : Object.hasOwn(WebCommandSchemas, command.request.command) &&
+            !temporary.target(command.request.payload)
+          ? web.dispatch(command.request)
+          : Object.hasOwn(ProjectCommandSchemas, command.request.command)
+            ? projects.dispatch(command.request)
+            : Object.hasOwn(ArtifactCommandSchemas, command.request.command)
+              ? artifacts.dispatch(command.request)
+              : Object.hasOwn(FileCommandSchemas, command.request.command)
+                ? fileService.dispatch(command.request)
+                : command.request.command === 'sessions.temporary' ||
+                    command.request.command === 'sessions.closeTemporary' ||
+                    temporary.target(command.request.payload)
+                  ? temporary.dispatch(command.request)
+                  : (HISTORY_COMMANDS as readonly string[]).includes(command.request.command)
+                    ? history.dispatch(command.request)
+                    : command.request.command.startsWith('models.') ||
+                        command.request.command === 'usage.list'
+                      ? models.dispatch(command.request)
+                      : command.request.command.startsWith('providers.') &&
+                          command.request.command !== 'providers.saveApiKey'
+                        ? providers.dispatch(command.request)
+                        : /^(memory\.|messages\.|drafts\.|inputs\.|runs\.cancel$|context\.|chat\.snippets\.)/.test(
+                              command.request.command,
+                            )
+                          ? chat.dispatch(command.request)
+                          : Promise.resolve(service.dispatch(command.request));
       void result.then((reply) => {
         if (!closing) port!.postMessage({ type: 'reply', id: command.id, reply });
       });
     }
   });
-  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 14 });
+  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 16 });
   worker.start();
   sweepStaging();
   chat.start();

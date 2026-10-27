@@ -1,3 +1,4 @@
+import { ExportDialog, ExportButton } from './export-ui';
 import { useEffect, useState, useRef } from 'react';
 import { ActionPopover, IconButton } from './action-popover';
 import {
@@ -94,29 +95,7 @@ export function SessionTools({
     }
   }
   async function prepareExport() {
-    let cursor: string | undefined;
-    const messages: ChatMessage[] = [];
-    do {
-      const reply = await window.tapkit.chatCommand(requestOptions(), 'messages.list', {
-        sessionId,
-        limit: 100,
-        ...(cursor ? { cursor } : {}),
-      });
-      if (!reply.ok) throw new Error(reply.error.code);
-      const page = reply.data as ChatSnapshot;
-      messages.unshift(...page.messages);
-      cursor = page.nextCursor ?? undefined;
-      if (messages.length > 1000) throw new Error('FILE_TOO_LARGE');
-    } while (cursor);
-    setShare(
-      '# ' +
-        details!.session.title +
-        '\n\n' +
-        messages
-          .filter((m) => m.role === 'user' || m.role === 'assistant')
-          .map((m) => '## ' + (m.role === 'user' ? '用户' : 'TapKit') + '\n\n' + m.text)
-          .join('\n\n'),
-    );
+    setShare('preview');
   }
   const exported = useRef(false);
   useEffect(() => {
@@ -197,6 +176,7 @@ export function SessionTools({
                 <button disabled={busy} onClick={() => void action(prepareExport)}>
                   {h.share}
                 </button>
+                <ExportButton target={{ kind: 'outputs', sessionId }} />
               </span>
             </>
           )}
@@ -233,27 +213,7 @@ export function SessionTools({
       )}
       {error && <p role="alert">{error}</p>}
       {share !== undefined && (
-        <div role="dialog" aria-label={h.share}>
-          <p>{h.shareHint}</p>
-          <textarea readOnly value={share} />
-          <span className="action-group">
-            <button
-              disabled={busy}
-              onClick={() =>
-                void action(async () => {
-                  await window.tapkit.saveConversation({
-                    name: (details?.session.title ?? '会话') + '.md',
-                    text: share,
-                  });
-                  setShare(undefined);
-                })
-              }
-            >
-              {h.export}
-            </button>
-            <button onClick={() => setShare(undefined)}>{h.cancel}</button>
-          </span>
-        </div>
+        <ExportDialog target={{ kind: 'session', sessionId }} onClose={() => setShare(undefined)} />
       )}
     </section>
   );

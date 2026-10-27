@@ -1,0 +1,29 @@
+$ vitest run --config vitest.config.ts --project unit "P01-02.transport" "P01-01.transport" "P05-01"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |unit| tests/unit/P01-02.transport.test.ts (15 tests | 1 failed) 187ms
+   × P01-02 handles public IPv6 and IPv6 NO_PROXY rules without accepting documentation or scoped addresses 20ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P01-02.transport.test.ts > P01-02 handles public IPv6 and IPv6 NO_PROXY rules without accepting documentation or scoped addresses
+TypeError: Invalid URL
+ ❯ Module.publicAddress packages/network/src/policy.ts:11:23
+
+      9| export function publicAddress(address: string): boolean {
+     10|   if (isIP(address) === 6) {
+     11|     const canonical = new URL(`http://[${address}]`).hostname.slice(1,…
+       |                       ^
+     12|     const parts = canonical.split(':');
+     13|     const first = parseInt(parts[0]!, 16), second = parseInt(parts[1] …
+ ❯ tests/unit/P01-02.transport.test.ts:35:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 29 passed (30)
+   Start at  23:20:27
+   Duration  1.88s (import 46%, transform 42%, tests 8%, setup 3%, worker 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.

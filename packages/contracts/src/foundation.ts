@@ -2,6 +2,8 @@ import { ExecutionCapabilitiesSchema } from './execution';
 import { ErrorCodeSchema } from './errors';
 export { ErrorCodeSchema } from './errors';
 import { ChatReplyDataSchema } from './chat';
+import { WebReplySchema } from './web';
+import { ExportReplySchema } from './exports';
 import { HistoryReplySchema } from './history';
 import { FileReplySchema } from './files';
 import { ArtifactReplySchema } from './artifacts';
@@ -130,6 +132,11 @@ export const ReplaySchema = z.strictObject({
 export const JobPayloadSchema = z.discriminatedUnion('kind', [
   z.strictObject({
     schemaVersion: z.literal(1),
+    kind: z.literal('snapshot.export'),
+    exportId: IdSchema,
+  }),
+  z.strictObject({
+    schemaVersion: z.literal(1),
     kind: z.literal('memory.extract'),
     sessionId: IdSchema,
     messageId: IdSchema,
@@ -251,6 +258,8 @@ export const BootstrapViewSchema = z.strictObject({
   unreadCount: z.number().int().min(0),
 });
 export const ReplyDataSchema = z.union([
+  ExportReplySchema,
+  WebReplySchema,
   MemoryReplySchema,
   ProjectReplySchema,
   ArtifactReplySchema,

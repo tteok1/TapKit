@@ -15,6 +15,11 @@ export default defineConfig({
     noExternal: [
       '@tapkit/contracts',
       '@tapkit/tools',
+      '@tapkit/network',
+      '@tapkit/workflows',
+      'marked',
+      'parse5',
+      'entities',
       '@tapkit/providers',
       '@tapkit/retrieval',
       'zod',

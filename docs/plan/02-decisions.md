@@ -1,5 +1,11 @@
 # 范围、决策与默认行为
 
+2026-10-27 [ADR0066](../adr/0066-isolated-provider-hosted-search.md)：按用户要求改为当前模型通道的隔离托管搜索，替代ADR0064的Tavily选择；[具体设计](17-hosted-web-search.md)规定协议能力、同账号单次账本、来源归档及测试，R06改为通道兼容性。
+
+2026-10-27 [ADR0065](../adr/0065-reviewed-local-export-and-chat-snapshot.md)：P05-02 schema16采用绑定窗口/来源指纹的接收者预览、Host选择目标及不可变MD/TXT/HTML/PDF/ZIP副本。只持久化导出元数据，不另存待审正文/目标路径；中断需重新预览，禁止自动重放或覆盖。P05-03目录包物化运行依赖并在新目录重验隔离，不转植权限报告。网页软删除保留快照，永久清理才释放。
+
+2026-10-26 [ADR0064](../adr/0064-public-web-snapshots-and-anonymous-network.md)：P05-01 schema15 固定网页快照、独立 Tavily 凭据、统一公开地址策略、匿名受控代理与网页/文件混合引用支持检查；联网开关及项目范围优先，真实搜索以 R06 验收为准。
+
 2026-10-26 [ADR0063](../adr/0063-message-feedback-and-bookmark-collection.md)：首次点踩打开仅本机的反馈框，评分再次点击可取消且保留其他标记；按用户后续截图将收藏入口放到聊天页“归档/回收站”之间，侧栏不单列。复用message_marks和有界只读messages.bookmarks，按原分支/CAS定位原消息。任务与人工验收状态见progress。
 
 2026-10-22 [ADR0058](../adr/0058-rounded-shell-and-history-navigation.md)：首页标语与推荐对齐、圆角外壳、侧栏完整收起；通知/搜索改顶端图标，归档/回收站独立设置页，移除首页与前进/后退入口。用户确认默认最近更新、置顶优先、分组独立手动排序并持久化；正常重启回首页，显式实体新窗口保持目标。

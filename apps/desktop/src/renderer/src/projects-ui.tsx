@@ -318,6 +318,7 @@ export function ProjectPage({ projectId }: { projectId: string }) {
         >
           {t.export}
         </button>
+        <ExportButton target={{ kind: 'project', projectId }} />
       </div>
       <nav aria-label={t.title}>
         {Object.entries(t.tabs).map(([id, label]) => (
@@ -1008,3 +1009,4 @@ export function ProjectScopeBar({ sessionId, disabled }: { sessionId: string; di
     </details>
   );
 }
+import { ExportButton } from './export-ui';

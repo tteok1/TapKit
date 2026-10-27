@@ -1,0 +1,30 @@
+$ vitest run --config vitest.config.ts --project integration "P01"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+vite v7.3.6 building ssr environment for production...
+transforming...
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 877 modules transformed.
+rendering chunks...
+.test-data/P01-02-native-runner/shared-BO9GHoW-.cjs  111.31 kB
+.test-data/P01-02-native-runner/profile.cjs          287.83 kB
+.test-data/P01-02-native-runner/runner.cjs           336.45 kB
+✓ built in 2.97s
+
+ Test Files  10 passed (10)
+      Tests  84 passed (84)
+   Start at  17:16:24
+   Duration  66.41s (tests 85%, import 11%, transform 4%)
+

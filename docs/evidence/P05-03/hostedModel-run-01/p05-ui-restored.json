@@ -1,0 +1,28 @@
+{
+  "previousUiRestored": [
+    "docs/evidence/P05-01/browser/isolation.json",
+    "docs/evidence/P05-01/desktop-v3/source-200.png",
+    "docs/evidence/P05-01/desktop-v3/source-960.png",
+    "docs/evidence/P05-01/desktop-v3/source-dark.png",
+    "docs/evidence/P05-01/desktop-v3/source-panel.png",
+    "docs/evidence/P05-02/desktop/dark-960-1.png",
+    "docs/evidence/P05-02/desktop/light-1440-1.png",
+    "docs/evidence/P05-02/desktop/recipient-preview.png",
+    "docs/evidence/P05-02/exported/chinese-pages.pdf",
+    "docs/evidence/P05-02/exported/conversation.pdf",
+    "docs/evidence/P05-03/uncut/01-unconfigured.png",
+    "docs/evidence/P05-03/uncut/02-fixture-connected.png",
+    "docs/evidence/P05-03/uncut/03-edited-branch.png",
+    "docs/evidence/P05-03/uncut/04-automatic-memory-notice.png",
+    "docs/evidence/P05-03/uncut/05-file-imported.png",
+    "docs/evidence/P05-03/uncut/06-project-only-rag.png",
+    "docs/evidence/P05-03/uncut/07-three-compactions-correction.png",
+    "docs/evidence/P05-03/uncut/08-public-source-original.png",
+    "docs/evidence/P05-03/uncut/09-recipient-review.png",
+    "docs/evidence/P05-03/uncut/10-export-completed.png",
+    "docs/evidence/P05-03/uncut/11-restarted-same-session.png",
+    "docs/evidence/P05-03/uncut/steps.json"
+  ],
+  "newUiEvidence": "current-ui",
+  "standaloneHtml": "original bytes restored; regenerated HTML verified in Electron before restoration"
+}

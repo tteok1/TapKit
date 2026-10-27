@@ -1,0 +1,39 @@
+{
+  "designWrittenBeforeCode": true,
+  "decision": "ADR0066",
+  "firstOfflineFailures": [
+    {
+      "command": "test:unit P05-01 (sandbox)",
+      "exitCode": 1,
+      "reason": "Vitest sandbox temporary transform files unavailable; zero collected"
+    },
+    {
+      "command": "test:unit P05-01 (host)",
+      "exitCode": 1,
+      "reason": "Test expected one candidate instead of citation union; compressed request decoding assertion corrected"
+    },
+    {
+      "command": "test:integration P05-01",
+      "exitCode": 1,
+      "reason": "New ledger assertion used wrong column, then SQL string quoting; test preparation corrected"
+    }
+  ],
+  "passedBeforeFinalBatch": {
+    "unitP05": 20,
+    "integrationP05BeforeNewLedgerCases": 8,
+    "realSearch": "live-search-03.json",
+    "realSources": "hosted-source-live.json"
+  },
+  "realAuthorization": {
+    "initialMaxSearchRequests": 2,
+    "additionalMaxSearchRequests": 2,
+    "requestsAttempted": 3,
+    "successfulSearches": 1,
+    "remainingUnused": 1
+  },
+  "autoReview": {
+    "rejected": "initial bearer-related patch",
+    "saferResolution": "public web network layer removes bearer type and Authorization construction; runtime rejects legacy bearer property",
+    "blocked": false
+  }
+}

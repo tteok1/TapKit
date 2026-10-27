@@ -3,6 +3,15 @@
   "lockedAt": "2026-09-15T10:09:16.736Z",
   "registry": "https://registry.npmjs.org",
   "packages": {
+    "parse5": {
+      "version": "7.3.0",
+      "integrity": "sha512-IInvU7fabl34qmi9gY8XOVxhYyMyuH2xUNpb2q8/Y+7552KlejkRvqvD19nMoUW/uQGGbqNpA6Tufu5FL5BZgw==",
+      "tarball": "https://registry.npmjs.org/parse5/-/parse5-7.3.0.tgz",
+      "license": "MIT",
+      "engines": {},
+      "peerDependencies": {},
+      "source": "https://registry.npmjs.org/parse5/7.3.0"
+    },
     "@electron/rebuild": {
       "version": "4.2.0",
       "integrity": "sha512-RKL/O+jGoXJMxrx/5771y1n0xTKmFuOYGO3gMmwypBM6rsH0kou0mswwdXA2JrhIkE4xyC7v9vGk0n6NPzgOxQ==",
@@ -603,6 +612,15 @@
       "peerDependencies": {},
       "source": "https://registry.npmjs.org/%40pnpm%2Fexe.win32-x64/12.4.1",
       "executableSha256": "51cc0ce092691ea0a9cf4f50b7512f8a202911696d291b2322c8be838c2fa829"
+    },
+    "marked": {
+      "version": "16.4.2",
+      "integrity": "sha512-TI3V8YYWvkVf3KJe1dRkpnjs68JUPyEa5vjKrp1XEEJUAOaQc+Qj+L1qWbPd0SJuAdQkFU0h73sXXqwDYxsiDA==",
+      "tarball": "https://registry.npmjs.org/marked/-/marked-16.4.2.tgz",
+      "license": "MIT",
+      "engines": { "node": ">= 20" },
+      "peerDependencies": {},
+      "source": "https://registry.npmjs.org/marked/16.4.2"
     },
     "@babel/parser": {
       "version": "8.0.5",

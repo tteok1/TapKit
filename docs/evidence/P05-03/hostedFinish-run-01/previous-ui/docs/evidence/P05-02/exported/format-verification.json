@@ -1,0 +1,27 @@
+{
+  "pages": 11,
+  "normalizedTextChecks": {
+    "first": true,
+    "last": true,
+    "table80": true,
+    "code99": true
+  },
+  "pdfActions": [],
+  "openAction": "None",
+  "rawExactUnicodeGuaranteed": false,
+  "rawCompatibilityNote": "Some Han glyphs extract as compatibility characters. NFKC checks do not claim raw Unicode identity. TXT/MD preserve exact UTF-8 text.",
+  "files": {
+    "chinese-pages.pdf": {
+      "bytes": 122440,
+      "sha256": "0050e9ecfa9abcdcda2629662e10c3d36223acbab9845f44372675a9b8f041ba"
+    },
+    "conversation.pdf": {
+      "bytes": 63339,
+      "sha256": "b68329b069351939a6dd9d7d87a782c85bb5a59ad32545f295efbc49995e4848"
+    },
+    "standalone.html": {
+      "bytes": 21948465,
+      "sha256": "ccb05d8f7d7c7e7303a78abde4614f1c38806a9d1c3e8b919e305b8a8d063ee3"
+    }
+  }
+}

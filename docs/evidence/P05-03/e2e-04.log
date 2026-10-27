@@ -1,0 +1,40 @@
+
+Running 1 test using 1 worker
+
+(node:43168) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\e2e\P05-03.milestone.spec.ts:12:1 › P05-03 T01-T12/T19/T20/T22 uncut synthetic chat milestone from unconfigured to restart (1.1m)
+
+
+  1) tests\e2e\P05-03.milestone.spec.ts:12:1 › P05-03 T01-T12/T19/T20/T22 uncut synthetic chat milestone from unconfigured to restart 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "completed"
+    Received: "partial"
+
+    Call Log:
+    - Timeout 15000ms exceeded while waiting on the predicate
+
+      63 |     await expect(page.locator('.chat-message.assistant')).toHaveCount(before + 1);
+      64 |     await expect(page.locator('.chat-message.assistant').last()).toContainText(expected);
+    > 65 |     await expect.poll(async () => (await snapshot(sid)).run?.status).toBe('completed');
+         |                                                                      ^
+      66 |   }
+      67 |   try {
+      68 |     await launch(false);
+        at send (D:\Tapkit-public\tests\e2e\P05-03.milestone.spec.ts:65:70)
+        at D:\Tapkit-public\tests\e2e\P05-03.milestone.spec.ts:151:5
+
+    Error Context: test-results\e2e\P05-03.milestone-P05-03-T0-8c0a2-rom-unconfigured-to-restart\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P05-03.milestone-P05-03-T0-8c0a2-rom-unconfigured-to-restart\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P05-03.milestone-P05-03-T0-8c0a2-rom-unconfigured-to-restart\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P05-03.milestone.spec.ts:12:1 › P05-03 T01-T12/T19/T20/T22 uncut synthetic chat milestone from unconfigured to restart 

@@ -1,9 +1,10 @@
 import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
 import { ActionPopover, IconButton } from './action-popover';
 import { UiIcon } from './ui-icon';
-import { ChatMarkdown, CopyButton } from '@tapkit/ui';
+import { ChatMarkdown, CopyButton, citationMarkdown } from '@tapkit/ui';
 import {
   ChatSnapshotSchema,
+  WebOptionsSchema,
   ChatDraftViewSchema,
   ChatSendViewSchema,
   ChatMaterialsViewSchema,
@@ -34,6 +35,8 @@ import { InlineFileCard } from '../features/viewer/inline-card';
 import { ProjectScopeBar } from './projects-ui';
 import { ContextSummary } from './context-summary';
 import { MemoryPolicy, MemoryMessage } from './memory-ui';
+import { WebControlsDialog, WebSources, WebReferenceButton, webCommand } from './web-ui';
+import webLocale from '../locales/web.zh-CN.json';
 const unwrap = (reply: Reply) => {
   if (!reply.ok) throw new Error(reply.error.code);
   return reply.data;
@@ -88,6 +91,10 @@ export function ChatSurface({
   onBusy?: (busy: boolean) => void;
 }) {
   const viewer = useViewer();
+  const [webOptions, setWebOptions] = useState(WebOptionsSchema.parse({})),
+    [webSettingsOpen, setWebSettingsOpen] = useState(false),
+    [webPanel, setWebPanel] = useState(false),
+    [webSourceId, setWebSourceId] = useState<string>();
   const [snapshot, setSnapshot] = useState<ChatSnapshot>(),
     [text, setText] = useState(seed),
     [refs, setRefs] = useState<ResourceRef[]>([]);
@@ -730,6 +737,7 @@ export function ChatSurface({
       }
       current.attachments = remaining();
       if (!current.text.trim() && !current.attachments.length) return;
+      if (!sessionId) await webCommand('web.configure', { sessionId: target, options: webOptions });
       const payload = {
         sessionId: target,
         clientMessageId: clientId.current,
@@ -845,6 +853,26 @@ export function ChatSurface({
   );
   return (
     <section className="chat-surface" data-session-id={sessionId}>
+      <WebControlsDialog
+        open={webSettingsOpen}
+        onClose={() => setWebSettingsOpen(false)}
+        sessionId={sessionId}
+        options={webOptions}
+        onOptions={setWebOptions}
+        eventSeq={Math.max(snapshot?.eventSeq ?? 0, memoryPolicySeq)}
+        onSources={() => {
+          setWebSourceId(undefined);
+          setWebPanel(true);
+        }}
+      />
+      {webPanel && sessionId && (
+        <WebSources
+          key={sessionId + ':' + (webSourceId ?? 'all')}
+          sessionId={sessionId}
+          sourceId={webSourceId}
+          onClose={() => setWebPanel(false)}
+        />
+      )}
       {sessionId && (
         <SelectionToolbar
           key={sessionId}
@@ -1000,12 +1028,35 @@ export function ChatSurface({
                 <details open className="answer-body">
                   <summary hidden={message.text.length <= 20000}>展开或收起长回复</summary>
                   <ChatMarkdown
-                    text={message.text}
+                    text={
+                      message.role === 'assistant'
+                        ? citationMarkdown(
+                            message.text,
+                            message.attachments,
+                            webLocale.citation,
+                            webLocale.unverifiedCitation,
+                          )
+                        : message.text
+                    }
                     streaming={message.status === 'streaming'}
                     onLink={(url) =>
-                      void window.tapkit
-                        .openPublicLink(url)
-                        .catch((e) => setError(readableError(e)))
+                      void action(async () => {
+                        const citation = /^#tapkit-citation-([0-9]{1,2})$/.exec(url);
+                        if (!citation) return window.tapkit.openPublicLink(url);
+                        const ref = message.attachments[Number(citation[1])];
+                        if (ref?.kind === 'web') {
+                          setWebSourceId(ref.sourceId);
+                          setWebPanel(true);
+                        } else if (ref?.kind === 'file' && sid.current) {
+                          const owner = await chatFileOwner(window.tapkit, ref, sid.current);
+                          await viewer.open({
+                            fileId: ref.fileId,
+                            versionId: ref.versionId,
+                            ...(ref.locator ? { locator: ref.locator } : {}),
+                            ...(owner ? { owner } : {}),
+                          });
+                        }
+                      })
                     }
                   />
                 </details>
@@ -1034,11 +1085,26 @@ export function ChatSurface({
                             sessionId={sid.current}
                             index={i + 1}
                           />
+                        ) : ref.kind === 'web' && sid.current ? (
+                          <WebReferenceButton
+                            key={sid.current + ':' + ref.sourceId}
+                            sessionId={sid.current}
+                            sourceId={ref.sourceId}
+                            onOpen={() => {
+                              setWebSourceId(ref.sourceId);
+                              setWebPanel(true);
+                            }}
+                          />
                         ) : (
                           <button
                             key={i}
                             onClick={() =>
                               void action(async () => {
+                                if (ref.kind === 'web') {
+                                  setWebSourceId(ref.sourceId);
+                                  setWebPanel(true);
+                                  return;
+                                }
                                 const result = ChatMaterialsViewSchema.parse(
                                   unwrap(
                                     await window.tapkit.chatCommand(
@@ -1463,6 +1529,11 @@ export function ChatSurface({
           ))}
         </div>
         <div className="composer-bar">
+          <IconButton
+            icon="search"
+            label={webLocale.title + '：' + webLocale.modes[webOptions.mode]}
+            onClick={() => setWebSettingsOpen(true)}
+          />
           <ActionPopover label="添加附件或引用资料" icon="plus" className="composer-add">
             <button onClick={() => upload.current?.click()} disabled={busy}>
               {c.attach}

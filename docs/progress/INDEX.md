@@ -1,3 +1,19 @@
+## 2026-10-27 P05提交推送授权
+
+用户要求P05开发测试完成后提交推送。按此前已约定可保留真实资源缺口的工程交付范围，提交codex/p05-chat-m1并推送同名远程分支，不合main、不建PR。产品/测试与385单元、P01/P05集成及新包输入一致，原生22项和包内启动/解析/导出通过；live/gate状态不提升。提交包含本交接，最终SHA和远端一致性以Git回执为准。证据docs/evidence/P05-03/branch-delivery-2026-10-27。
+
+## 2026-10-27 托管搜索改造验收与新包
+
+先设计17-hosted-web-search/ADR0066，再改代码，三通道隔离搜索替换Tavily并保留Core。check/build/unit385/P01集成84/P05集成24、8项不同Electron分轮通过；真实Codex搜索及三页归档/引用/断网通过。新09-23目录包22项当前用户隔离及独立启动/解析/导出通过，本机原资料入口CheckOnly0。P05-01/P05-03 implemented_not_live_verified，P05-02 implemented_and_verified，gate=engineering_passed_external_pending；其他完整live仍暂缓。证据P05-03/hosted-verification.md，旧包/证据/原窗口保留，无commit/push/merge，不进入P06。
+
+## 2026-10-27 托管搜索改造
+
+按用户最新要求，先写17-hosted-web-search/ADR0066并同步原规格，再改代码。P05-01/P05-03与gate=in_progress；原通过记录只对应旧快照。用户允许最多两次现有Codex公开问题隔离搜索，尚未执行；其他完整live暂缓保持，无push/merge。
+
+## 2026-10-27 改造前P05工程交付
+
+已同步origin/main并基于ad85bc4建立codex/p05-chat-m1。P05-01/P05-03 implemented_not_live_verified，P05-02 implemented_and_verified；P05-gate=engineering_passed_external_pending。check/build/unit370/integration373/perf2和增量P05集成19通过，114项不同Electron分轮通过，连续聊天链路及中文格式核验通过。开发包release/TapKit-chat-M1-2026-10-27T03-32-21-373Z已重新通过22项当前用户隔离，并通过无fixture独立启动/真实TXT解析/ZIP导出。失败轮、源码hash、旧证据恢复和首包修复分别保留；最终报告docs/evidence/P05-03/verification.md。R01—R05完整live暂缓、R06 pending、R13历史边界保持，不进入P06，无commit/push/merge。
+
 ## 2026-10-26 fix分支CI通过并合入main
 
 2026-10-26用户报告CI已通过并明确允许合入main；连接器核实0604099的CI59/40328437523及check/startup-diagnostics均success。main已从9bfc156快进至0604099，完整合入树与已验源树一致；随后仅本次交接文档更新，fix分支保留，原profile/live/gate及暂缓范围保持。本次main交接提交包含本记录，最终推送SHA以Git回执为准。证据 docs/evidence/P02-03/fix-main-merge-2026-10-26/verification.md；不开展P05，不创建PR。
@@ -697,9 +713,9 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P04-01 | 中文混合检索、重排与引用证据       | P03-03         | implemented_and_verified      | docs/progress/P04-01.md              |
 | P04-02 | 上下文预算、压缩检查点与缓存       | P04-01/P01-03  | implemented_and_verified      | docs/progress/P04-02.md              |
 | P04-03 | 自动长期记忆、历史参考与管理       | P04-02         | implemented_not_live_verified | docs/progress/P04-03.md              |
-| P05-01 | 联网搜索、匿名网页读取与来源归档   | P04-03         | not_started                   | docs/progress/P05-01.md              |
-| P05-02 | 引用交互、会话导出和本地分享快照   | P05-01, P03-02 | not_started                   | docs/progress/P05-02.md              |
-| P05-03 | 聊天版本端到端验收                 | P05-02         | not_started                   | docs/progress/P05-03.md              |
+| P05-01 | 联网搜索、匿名网页读取与来源归档   | P04-03         | implemented_not_live_verified | docs/progress/P05-01.md              |
+| P05-02 | 引用交互、会话导出和本地分享快照   | P05-01, P03-02 | implemented_and_verified      | docs/progress/P05-02.md              |
+| P05-03 | 聊天版本端到端验收                 | P05-02         | implemented_not_live_verified | docs/progress/P05-03.md              |
 | P06-01 | 持久化工作任务、计划和执行编排     | P05-03         | not_started                   | docs/progress/P06-01.md              |
 | P06-02 | 写入工具、审批与产物验收网关       | P06-01, P00-03 | not_started                   | docs/progress/P06-02.md              |
 | P06-03 | 故障恢复、暂停取消与本地任务通知   | P06-02         | not_started                   | docs/progress/P06-03.md              |
@@ -729,7 +745,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P02  | engineering_passed_external_pending | docs/progress/P02-gate.md |
 | P03  | passed                              | docs/progress/P03-gate.md |
 | P04  | engineering_passed_external_pending | docs/progress/P04-gate.md |
-| P05  | not_started                         | docs/progress/P05-gate.md |
+| P05  | engineering_passed_external_pending | docs/progress/P05-gate.md |
 | P06  | not_started                         | docs/progress/P06-gate.md |
 | P07  | not_started                         | docs/progress/P07-gate.md |
 | P08  | not_started                         | docs/progress/P08-gate.md |

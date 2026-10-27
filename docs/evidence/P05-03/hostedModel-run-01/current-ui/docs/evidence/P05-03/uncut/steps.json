@@ -1,0 +1,50 @@
+{
+  "syntheticModel": true,
+  "syntheticPublicWeb": true,
+  "steps": [
+    {
+      "step": "unconfigured",
+      "timestamp": "2026-10-27T09:19:33.406Z"
+    },
+    {
+      "step": "fixture-connected",
+      "timestamp": "2026-10-27T09:19:52.866Z"
+    },
+    {
+      "step": "edited-branch",
+      "timestamp": "2026-10-27T09:19:53.954Z"
+    },
+    {
+      "step": "automatic-memory-notice",
+      "timestamp": "2026-10-27T09:19:56.033Z"
+    },
+    {
+      "step": "file-imported",
+      "timestamp": "2026-10-27T09:19:59.145Z"
+    },
+    {
+      "step": "project-only-rag",
+      "timestamp": "2026-10-27T09:20:01.318Z"
+    },
+    {
+      "step": "three-compactions-correction",
+      "timestamp": "2026-10-27T09:20:02.022Z"
+    },
+    {
+      "step": "public-source-original",
+      "timestamp": "2026-10-27T09:20:03.443Z"
+    },
+    {
+      "step": "recipient-review",
+      "timestamp": "2026-10-27T09:20:03.919Z"
+    },
+    {
+      "step": "export-completed",
+      "timestamp": "2026-10-27T09:20:05.066Z"
+    },
+    {
+      "step": "restarted-same-session",
+      "timestamp": "2026-10-27T09:20:24.800Z"
+    }
+  ]
+}

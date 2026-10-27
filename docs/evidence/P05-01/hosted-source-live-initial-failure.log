@@ -1,0 +1,32 @@
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ docs/evidence/P05-01/hosted-source-live.test.ts (1 test | 1 failed) 4294ms
+   × P05-01 real Codex candidates → three current public pages → Core snapshots and verified citations → offline replay 4293ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  docs/evidence/P05-01/hosted-source-live.test.ts > P05-01 real Codex candidates → three current public pages → Core snapshots and verified citations → offline replay
+Error: VALIDATION_ERROR
+ ❯ verifySourceClaims packages/retrieval/src/claim-support.ts:63:15
+     61|         )
+     62|           continue;
+     63|         throw new StorageError('VALIDATION_ERROR');
+       |               ^
+     64|       }
+     65|   }
+ ❯ Object.validate packages/core/src/web-service.ts:434:24
+ ❯ docs/evidence/P05-01/hosted-source-live.test.ts:46:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  17:00:50
+   Duration  7.42s (tests 60%, transform 28%, import 12%)
+
+  Transform  transforming modules took 2.02s · 28% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+

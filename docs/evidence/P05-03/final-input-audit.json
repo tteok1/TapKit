@@ -1,0 +1,185 @@
+{
+  "base": "ad85bc467c921f4c44ad26fc0c1bba25269153cb",
+  "dirty": true,
+  "productChangedAfterUi": [],
+  "changesFromGlobal": [
+    {
+      "path": "apps/desktop/src/renderer/locales/export.zh-CN.json",
+      "before": "6aa60df201e9a25263cc55a1c59bd110e82b77768d47519c7dca027202a68a61",
+      "after": "30e635513444aba9b061a4cc81ca8231744a021b4927790040256b4287dd9d62"
+    },
+    {
+      "path": "apps/desktop/src/renderer/locales/web.zh-CN.json",
+      "before": "8475a10be84945c4975fc395bd861fc7bff5e1697889b1a79b3a07661177d217",
+      "after": "abd575471a79451a54ad0af80c364fb46ac89eae503a4abd9d08248db42ada38"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/export-ui.tsx",
+      "before": "3284083a57de69e1675124fa5061c9f112f6d2e4f64e409d882952040a1d1d93",
+      "after": "36bf2f50b6a946e6b749fd9c94b34c2a4ddb093f831046f23d4bb97b627ebfb1"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/web-ui.tsx",
+      "before": "1a40016df9054ec423a4f3c356584f0c91845634e8555d4d40d2c0f4913c5066",
+      "after": "14319c7908a1c22bbc212a4f9b90e05132e5f40960b42a627d5ff7de7405097e"
+    },
+    {
+      "path": "packages/core/src/export-service.ts",
+      "before": "bceb593a69d6f20e8c1d6666b4bad940f26fba9c3013ad6f0c2dd67eeaf1650f",
+      "after": "ebea43573b1c6a0e83fbec7bdae2d0e4472a61dde76d3de267e92fa8f2e73497"
+    },
+    {
+      "path": "scripts/pack-dir.mjs",
+      "before": "614871ff9bd3b39540651799b278dff51bea9168dbad353fabd301ac59f28ace",
+      "after": "d76ed76f18e2f5b680514480ce84941ddcd9fc3d00e8abacede3d26f5d9e0986"
+    },
+    {
+      "path": "tests/e2e/P05-01.browser-harness.ts",
+      "before": "e3005c8402782c8589b202c16f887ef1f56076c48e3b82f4e92ea8e3325dc518",
+      "after": "8afee22e207332983bb13248f3529168fa37bd20295801f5a85f63d17ee44516"
+    },
+    {
+      "path": "tests/e2e/P05-01.web.spec.ts",
+      "before": "f20dd555f9cdd33f3285630a981036d9779f76676654862618da70b2c5970d7f",
+      "after": "7bd3648159ea9d3b117cd8d3d8626ef9b3bea222bda3f5baa2fc81eebed58077"
+    },
+    {
+      "path": "tests/e2e/P05-02.export.spec.ts",
+      "before": "024ce8819db692342a8fb5e8017e0236bef93f7e5342318b6df9dd683e265025",
+      "after": "da6088ec731496a53210da662956c66f63a4c558b4b36d7f645796375533e167"
+    },
+    {
+      "path": "tests/e2e/P05-03.milestone.spec.ts",
+      "before": "1bf468ec64fa764ae2f406051f47a89c2fd6d376879ac9b6911b9a289e55208b",
+      "after": "2b92a8c9c2c9d36d01b30f2dd34762ce7f6bed6bb97e4476286ad934660a351e"
+    },
+    {
+      "path": "tests/e2e/core-ready.ts",
+      "before": null,
+      "after": "27e246a5f0eabde08adcfa63fd87a1a0b6b9ff3f7ad3b4a9647bbcaa118da0fc"
+    },
+    {
+      "path": "tests/integration/P05-02.exports.test.ts",
+      "before": "fafa875a38119948f2c1ec232ed59efaa5f08c1da27d651f0e73351ec502a273",
+      "after": "7a11f46946a8b5289743c6d254db41a0d0db0716badc967194228423b18a0032"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/chat-surface.tsx",
+      "before": "750220f6e949cbe379dcff1caed4486074b50c08291299ec1dc4d1bc154896b6",
+      "after": "e8dee1d015761150ed4be46a55e6ecb64e4c001b05c912b78563aa14a7da2db0"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/styles.css",
+      "before": "824e29c3e6453ce5d3de7dac38de951c51530a4aef3fd3ac459c05aabcd02319",
+      "after": "3b930bca2bec1121e4a96a6dc2168c8437b2d0aaea88edc05512a105aeafec97"
+    },
+    {
+      "path": "tests/e2e/P00-02.foundation.spec.ts",
+      "before": "4e8aee43ec74660f954c7583fb90bcb0a1c6c2fdc49d47d418f19dd876723fd0",
+      "after": "bdb6a9da5fcbe8399c6b60afd76b884927e311451f2bcb42e82eb54d6ef44e11"
+    },
+    {
+      "path": "tests/e2e/P01-01.codex.spec.ts",
+      "before": "3c8b351bc2fe9d3176a217b8b1ea9508c534337e047d87b442086513083b4acb",
+      "after": "b03b363a5554f23bb635b94d7c386d12dc0f7a365066905aeb84d76d4c8cfb84"
+    },
+    {
+      "path": "tests/e2e/P01-01.utility.spec.ts",
+      "before": "a9e059ad25941cc7379e279c35b5fe75acde17ae5abc27e1e3351db3e65bb153",
+      "after": "125c7417ab9367874e8767cba51f4343bb148957d542a8db81dc9776f187b3e7"
+    },
+    {
+      "path": "tests/e2e/P01-02.api.spec.ts",
+      "before": "919d9e23d8cdbc24c74e6e5216738f574a7d5179c09260310a4fe8843cbfa0a1",
+      "after": "a0f5ac9f98274a7ee18c101d6af2165dbb57c641588bc4fe266fa398e6794285"
+    },
+    {
+      "path": "tests/e2e/P01-03.models.spec.ts",
+      "before": "2edc7d886cbf150d194506e0faeecc907fee0dbbb3adc8472b1a9478b7fdde95",
+      "after": "4e032996849d2024eca44e08c160c4090f25f333572bb08e3beaaa2d33b562b9"
+    },
+    {
+      "path": "tests/e2e/P02-01.ui-redesign.spec.ts",
+      "before": "0bf00d9563d0052c1396fb0524c315161158b0563f96fc93c303917525c62498",
+      "after": "8bfff5f6937488ef20252f44665ae7023529955af968abc02edd1c83d6869418"
+    },
+    {
+      "path": "tests/e2e/P02-01.unified-start.spec.ts",
+      "before": "1f317d0e8ad3c4c41ffd59d7b11c91a7f247af4d08ad88977597c9da84400dfe",
+      "after": "2e019c8c47f6f852603bdb16103035efa54ccbc57e6013c1ba360b3f7db3579d"
+    },
+    {
+      "path": "tests/e2e/P02-03.chat-simplify.spec.ts",
+      "before": "185f66d23a450f592793a7f8bb0136c0a57075cf50fc92e76bfcebeaaab2766e",
+      "after": "082ff13ed62905ba302c026faef62572cebc89c7d031ff6e9cad01fb692a53a9"
+    },
+    {
+      "path": "tests/e2e/P02-03.dialogs.spec.ts",
+      "before": "013a54b7e70760f5e22a0f628eb25d7df2c4c8d07c26a9ce6438081d3f6f9c03",
+      "after": "df626a41784aa275f8f57501da2eea6ca2d9ec7fd0cfe91d4afa7e1fa6502613"
+    },
+    {
+      "path": "tests/e2e/P04-01.retrieval.spec.ts",
+      "before": "9dc1ff440dbf98adab22d327fce4d662e233c423ccfff070ca410bb8c91fd042",
+      "after": "1041e5edb5b2cc93dd3d625365e40a8b9ab39242bb9741c9b232d1416bc99f80"
+    },
+    {
+      "path": "tests/e2e/P04-02.context.spec.ts",
+      "before": "129fd6891e40b1d5eb3c0e19948d4de96732eb560c2d4d5e09cd92119566b304",
+      "after": "bb58b2ff45f6bacb9299ef4c5edaf5733f020313c86d093f33ef703b353f6e87"
+    },
+    {
+      "path": "tests/e2e/P04-03.memory.spec.ts",
+      "before": "ee5d04658893577b74468506dafc920fb3bef5bb060c39f5a8321162e3a70c6c",
+      "after": "8b68fc704fb63363d9924f7ad0d162195fe23c51ce7cae99ea82221d54f568ef"
+    },
+    {
+      "path": "tests/fixtures/P01-01.utility.cjs",
+      "before": "bc27e5198f357fb3787e2d6571e351e869b9517d4cc38027f94e8fe43ec8fcd3",
+      "after": "c2f1de0dcdc130c326573a2b3a9ef972c662b7fdaca10f90e8aa90c3933e1ad5"
+    }
+  ],
+  "changesAfterUi": [
+    {
+      "path": "scripts/pack-dir.mjs",
+      "before": "6dddda72f3b56f22b94f0e373e5e0541693f3143e58e4f5ee724308cebdb3b67",
+      "after": "d76ed76f18e2f5b680514480ce84941ddcd9fc3d00e8abacede3d26f5d9e0986"
+    },
+    {
+      "path": "tests/e2e/P05-01.browser-harness.ts",
+      "before": "e3005c8402782c8589b202c16f887ef1f56076c48e3b82f4e92ea8e3325dc518",
+      "after": "8afee22e207332983bb13248f3529168fa37bd20295801f5a85f63d17ee44516"
+    },
+    {
+      "path": "tests/e2e/P05-02.export.spec.ts",
+      "before": "024ce8819db692342a8fb5e8017e0236bef93f7e5342318b6df9dd683e265025",
+      "after": "da6088ec731496a53210da662956c66f63a4c558b4b36d7f645796375533e167"
+    },
+    {
+      "path": "tests/e2e/P01-03.models.spec.ts",
+      "before": "61f9e41ef0db692c6eeb62fa05d2009cc22af96f6cdfacaf32c04fbce232bd03",
+      "after": "4e032996849d2024eca44e08c160c4090f25f333572bb08e3beaaa2d33b562b9"
+    },
+    {
+      "path": "tests/e2e/P02-01.ui-redesign.spec.ts",
+      "before": "9c3f0ef354cce6d87d0ad3e7d4831e8d3864d350a4b6b38f35a8900bcad1e8a0",
+      "after": "8bfff5f6937488ef20252f44665ae7023529955af968abc02edd1c83d6869418"
+    },
+    {
+      "path": "tests/e2e/P02-03.chat-simplify.spec.ts",
+      "before": "185f66d23a450f592793a7f8bb0136c0a57075cf50fc92e76bfcebeaaab2766e",
+      "after": "082ff13ed62905ba302c026faef62572cebc89c7d031ff6e9cad01fb692a53a9"
+    },
+    {
+      "path": "tests/e2e/P02-03.dialogs.spec.ts",
+      "before": "7dec08df86515328431a73589dc72ede6b5a3afcb55a1454c0390a98c22daaa1",
+      "after": "df626a41784aa275f8f57501da2eea6ca2d9ec7fd0cfe91d4afa7e1fa6502613"
+    },
+    {
+      "path": "tests/e2e/P04-03.memory.spec.ts",
+      "before": "ee5d04658893577b74468506dafc920fb3bef5bb060c39f5a8321162e3a70c6c",
+      "after": "8b68fc704fb63363d9924f7ad0d162195fe23c51ce7cae99ea82221d54f568ef"
+    }
+  ],
+  "note": "Global native/other-module checks plus final export unit/integration and desktop delta rounds; no claim of one all-green global round."
+}

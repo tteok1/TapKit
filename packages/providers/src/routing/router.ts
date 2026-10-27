@@ -205,7 +205,7 @@ export class ModelRouter {
                 : canonical,
               systemModules: prepared?.systemModules ?? [
                 ...base.systemModules,
-                ...answerModules(input.preferences),
+                ...(base.hostedSearch ? [] : answerModules(input.preferences)),
               ],
               outputLimit: prepared?.outputLimit ?? base.outputLimit,
               logicalCallId: input.logicalCallId,

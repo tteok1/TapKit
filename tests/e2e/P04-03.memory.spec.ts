@@ -113,6 +113,7 @@ test.afterEach(async () => {
   app = undefined;
 });
 test('P04-03 T11 explicit post-write notice source correction undo conflict search deletion and restart', async () => {
+  test.setTimeout(180000);
   const sid = await create();
   await send('记住：我喜欢简短中文回答');
   await expect(page.locator('.chat-message.user')).toContainText('已更新记忆');

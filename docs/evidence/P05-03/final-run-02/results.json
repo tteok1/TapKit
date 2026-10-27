@@ -1,0 +1,1021 @@
+{
+  "exitCode": 1,
+  "sourcesUnchanged": true,
+  "commands": [
+    {
+      "args": [
+        "check"
+      ],
+      "started": "2026-10-26T18:54:47.457Z",
+      "finished": "2026-10-26T18:55:03.766Z",
+      "exitCode": 0,
+      "log": "check.log"
+    },
+    {
+      "args": [
+        "test:unit"
+      ],
+      "started": "2026-10-26T18:55:03.775Z",
+      "finished": "2026-10-26T18:55:14.922Z",
+      "exitCode": 0,
+      "log": "test-unit.log"
+    },
+    {
+      "args": [
+        "test:integration",
+        "P05"
+      ],
+      "started": "2026-10-26T18:55:15.083Z",
+      "finished": "2026-10-26T18:55:25.921Z",
+      "exitCode": 0,
+      "log": "test-integration-P05.log"
+    },
+    {
+      "args": [
+        "test:e2e"
+      ],
+      "started": "2026-10-26T18:55:26.098Z",
+      "finished": "2026-10-26T19:43:56.754Z",
+      "exitCode": 1,
+      "log": "test-e2e.log"
+    }
+  ],
+  "temporaryCleanup": [
+    {
+      "name": "P00-03 old report 7xkIDe",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report 3r4ZPG",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report 7rxNx0",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report CC0rmO",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report CHqeJ7",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report LBBaG8",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report sL5luo",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report t86X4o",
+      "removed": true
+    },
+    {
+      "name": "P00-03 worker 3M3f5q",
+      "removed": true
+    },
+    {
+      "name": "P00-03 worker Dro60y",
+      "removed": true
+    },
+    {
+      "name": "P00-03 worker Wdr87A",
+      "removed": true
+    },
+    {
+      "name": "P01-02-live-fixture-AZZVyc",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-preflight-8y6qmf",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-unit-urnplm",
+      "removed": true
+    },
+    {
+      "name": "P01-02-vault-4sYBZ4",
+      "removed": true
+    },
+    {
+      "name": "P02-02-tool-trace-pzs2me",
+      "removed": true
+    },
+    {
+      "name": "P03-02 external 0TbKnG",
+      "removed": true
+    },
+    {
+      "name": "P03-02 Office generator z0p6pE",
+      "removed": true
+    },
+    {
+      "name": "P03-02 revoked external xNtyRS",
+      "removed": true
+    },
+    {
+      "name": "P03-02 staging 1ScgDw",
+      "removed": true
+    },
+    {
+      "name": "P03-02 staging junction O4IcEA",
+      "removed": true
+    },
+    {
+      "name": "P03-02 staging outside XyXDdK",
+      "removed": true
+    },
+    {
+      "name": "P05-01 vault xcD25q",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-0fZB0c",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-1Tasvh",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-21qtr3",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-2yfKTE",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-40Ks7n",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-48Ji7W",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-6JJouR",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-6u3juc",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-8artN7",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-90D6U9",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-am6F0R",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-aYzZWP",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-BP9RGX",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-CAHnEY",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-CDx3hR",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-CEY21f",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-dlZUHe",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-EaPHtD",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-ExwuD6",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-f7Ewub",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-hE42bn",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-HQIKPP",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-hTENIU",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-iOEYTf",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-KljBF5",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-LqrmfO",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-ms7Odq",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-NISPW2",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-oFnM94",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-oolz0r",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-OTlkMn",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-pDfvHM",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-QPFmFv",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-R2GLO6",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-RbGl3m",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-Si7WpN",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-TNFLhP",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-txXcSp",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-V8xhkO",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-VWSGt7",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-VXh6Gn",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-w3qwZw",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-yedLaA",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-YMgt8D",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-YuIORV",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-YUnlIG",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-ZadowU",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-ZAviSs",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-zqLl2Z",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-zTEeEg",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-ZyAoTs",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic 4CQXbr",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic 7VH4l4",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic 94LpJC",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic aGT75l",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic C0O2Nd",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic Og3RMk",
+      "removed": true
+    },
+    {
+      "name": "P05-02 destination KpYUGt",
+      "removed": true
+    },
+    {
+      "name": "P05-02 disk synthetic 7E0VXk",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic brBDH8",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic HkUwI5",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic hYrI1U",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic luplD0",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic PhgZTQ",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic Pmwqaz",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic rDlxzR",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic TPgZgj",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic wdgVNP",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-1R8DP0",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-J8Hqb5",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-yX9xd2",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-YZIOJX",
+      "removed": true
+    },
+    {
+      "name": "P00-02 Electron 中文 4822UP",
+      "removed": true
+    },
+    {
+      "name": "P00-02 Electron 中文 a5vOfa",
+      "removed": true
+    },
+    {
+      "name": "P00-02 Electron 中文 I7kTtZ",
+      "removed": true
+    },
+    {
+      "name": "P00-02 Electron 中文 jZVDZp",
+      "removed": true
+    },
+    {
+      "name": "P00-02 Electron 中文 kkUKA3",
+      "removed": true
+    },
+    {
+      "name": "P00-02 Electron 中文 OiFwf8",
+      "removed": true
+    },
+    {
+      "name": "P01-01-electron-RdUJtf",
+      "removed": true
+    },
+    {
+      "name": "P01-01-live-logout-8L6tFd",
+      "removed": true
+    },
+    {
+      "name": "P01-01-live-logout-JLRXSc",
+      "removed": true
+    },
+    {
+      "name": "P01-01-live-mock-UEpUwH",
+      "removed": true
+    },
+    {
+      "name": "P01-01-utility-IhEAsh",
+      "removed": true
+    },
+    {
+      "name": "P01-01-utility-KEdLj5",
+      "removed": true
+    },
+    {
+      "name": "P01-01-utility-X0lJR8",
+      "removed": true
+    },
+    {
+      "name": "P01-02-diagnostic-ui-4DOvl2",
+      "removed": true
+    },
+    {
+      "name": "P01-02-electron-U3mOhi",
+      "removed": true
+    },
+    {
+      "name": "P01-03-model-ui-7vDfKK",
+      "removed": true
+    },
+    {
+      "name": "P01-03-utility-hG0So3",
+      "removed": true
+    },
+    {
+      "name": "P02-01 shell details 0xhz8O",
+      "removed": true
+    },
+    {
+      "name": "P02-01 shell details dEOAGi",
+      "removed": true
+    },
+    {
+      "name": "P02-01 shell details JOHVA2",
+      "removed": true
+    },
+    {
+      "name": "P02-01 shell details nMSua1",
+      "removed": true
+    },
+    {
+      "name": "P02-01 shell details NSYZ4P",
+      "removed": true
+    },
+    {
+      "name": "P02-01 shell details QhTEkA",
+      "removed": true
+    },
+    {
+      "name": "P02-01 shell details Qy8dv3",
+      "removed": true
+    },
+    {
+      "name": "P02-01 shell details ubtnTP",
+      "removed": true
+    },
+    {
+      "name": "P02-01 unified start yfDE8V",
+      "removed": true
+    },
+    {
+      "name": "P02-01 unified start ZIQhxD",
+      "removed": true
+    },
+    {
+      "name": "P02-01 新用户 DJVhCP",
+      "removed": true
+    },
+    {
+      "name": "P02-01 新用户 DNdulS",
+      "removed": true
+    },
+    {
+      "name": "P02-01 新用户 nGxiY6",
+      "removed": true
+    },
+    {
+      "name": "P02-02 Electron ed67nW",
+      "removed": true
+    },
+    {
+      "name": "P02-02 Electron HRIfeJ",
+      "removed": true
+    },
+    {
+      "name": "P02-02 Electron I8FGjR",
+      "removed": true
+    },
+    {
+      "name": "P02-02 Electron iIfvq5",
+      "removed": true
+    },
+    {
+      "name": "P02-02 Electron O8ECNe",
+      "removed": true
+    },
+    {
+      "name": "P02-02 Electron pqfIjf",
+      "removed": true
+    },
+    {
+      "name": "P02-02 Electron UTl9KG",
+      "removed": true
+    },
+    {
+      "name": "P02-03 dialogs e1rges",
+      "removed": true
+    },
+    {
+      "name": "P02-03 dialogs FgEqvF",
+      "removed": true
+    },
+    {
+      "name": "P02-03 dialogs ToW3S0",
+      "removed": true
+    },
+    {
+      "name": "P02-03 dialogs URsJG4",
+      "removed": true
+    },
+    {
+      "name": "P02-03 simplified chat 1x7uQe",
+      "removed": true
+    },
+    {
+      "name": "P02-03 simplified chat lDiYp3",
+      "removed": true
+    },
+    {
+      "name": "P02-03 simplified chat QXsUC9",
+      "removed": true
+    },
+    {
+      "name": "P02-03 simplified chat VTn66x",
+      "removed": true
+    },
+    {
+      "name": "P02-03 T14 1YYTcE",
+      "removed": true
+    }
+  ],
+  "historicalEvidenceRestored": [
+    {
+      "path": "docs\\evidence\\P00-02\\recovery.png",
+      "originalSha256": "2b15e2c14a06c5cc614ae6943da761c93c4b54f25b90d5c3a8ffd53b28d542fa"
+    },
+    {
+      "path": "docs\\evidence\\P00-02\\regression-shell.png",
+      "originalSha256": "b9c7bc10863cf8c721bfb10406b19852d4c289413eeae0f539d761ef0bf995e0"
+    },
+    {
+      "path": "docs\\evidence\\P01-03\\zhipu-budget-2026-10-13\\network-progress-compact.png",
+      "originalSha256": "b2e73df3d059f0c3cfa38ef5e9b266b771fad999773ba118ead404bedf86a037"
+    },
+    {
+      "path": "docs\\evidence\\P01-03\\zhipu-budget-2026-10-13\\network-progress-desktop.png",
+      "originalSha256": "ee2b7db820e22a733a6427e9de3fdf37ce5fec558f32676c41bbfa9ee406bd3a"
+    },
+    {
+      "path": "docs\\evidence\\P01-engineering-2026-10-14\\title-failed.png",
+      "originalSha256": "771cdaf3cbc38d9462456522f17c73b0479173c70f04ce406911560928c38262"
+    },
+    {
+      "path": "docs\\evidence\\P01-engineering-2026-10-14\\title-recovered.png",
+      "originalSha256": "c031741bf3b15e4f03a987015bde50b843a70e76163170600f8d8bfa4a02eafb"
+    },
+    {
+      "path": "docs\\evidence\\P02-01\\connection-error.png",
+      "originalSha256": null
+    },
+    {
+      "path": "docs\\evidence\\P02-01\\dark-settings.png",
+      "originalSha256": null
+    },
+    {
+      "path": "docs\\evidence\\P02-01\\light-home-1200.png",
+      "originalSha256": null
+    },
+    {
+      "path": "docs\\evidence\\P02-01\\settings-960-200.png",
+      "originalSha256": null
+    },
+    {
+      "path": "docs\\evidence\\P02-02\\fix-preview-2026-10-11\\long-paste-body.png",
+      "originalSha256": "fdf7d8b3476124ebc7ca166809b4b10c43f2317585f80fa6506bc1691558b822"
+    },
+    {
+      "path": "docs\\evidence\\P02-02\\fix-preview-2026-10-11\\long-paste-preview.png",
+      "originalSha256": "3471f250550b1e2ee350a23ec67831c8a854963cd0f1bddf6f3c7b4e06b4a7e4"
+    },
+    {
+      "path": "docs\\evidence\\P02-02\\narrow-composer.png",
+      "originalSha256": null
+    },
+    {
+      "path": "docs\\evidence\\P02-02\\safe-markdown.png",
+      "originalSha256": null
+    },
+    {
+      "path": "docs\\evidence\\P02-02\\static-diagram.png",
+      "originalSha256": null
+    },
+    {
+      "path": "docs\\evidence\\P02-02\\two-turns.png",
+      "originalSha256": null
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\clipboard-attachments-2026-10-23\\card-geometry-latest.json",
+      "originalSha256": "d7eae1d5fbb84768ca5ad247cf8b589fc657351bc98af790299371d63ba52ed0"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\clipboard-attachments-2026-10-23\\cards-latest-dark-200.png",
+      "originalSha256": "9f529081a56efa2af38c863cc8baede9c98e2be253f273fb0239dca348edf15b"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\clipboard-attachments-2026-10-23\\cards-latest-light.png",
+      "originalSha256": "824d92d7ad2efc92b0c24eb8fbfd73de9deeed65f0da5568fdecb92744b690bc"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\batch-move-1440x900-100.json",
+      "originalSha256": "ea02ff48a77af2c70f79f0dcef9a78ad00a2af5e521c8294508167c831a0e82b"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\batch-move-1440x900-100.png",
+      "originalSha256": "498aa77f93e8e2dca611b845d3ba3621ef1000947239272348864d45e33b749f"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\batch-move-1440x900-200.json",
+      "originalSha256": "bf6f7f66b2762944c88b59278ed5384db93c3eda4fe36b47cc1135804388dad0"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\batch-move-1440x900-200.png",
+      "originalSha256": "cba9b812fdf2a79c24eecc6fd73e92af17415b8df22bd6ca85b3621c481783cd"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\batch-move-960x640-100.json",
+      "originalSha256": "a7b60dff8ecae1185759a66f01cd64ef1992fa90e9b618b0cf80c71d516fa817"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\batch-move-960x640-100.png",
+      "originalSha256": "e56f6736bc8b9424c876b65a27e1c8441eaf71a1581ba1d7b52684a2501058ca"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\batch-move-960x640-200.json",
+      "originalSha256": "421ac84b4a7c478c8ad9e1a11f1c0cbf2019f56fe432634c9870c22006581cc9"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\batch-move-960x640-200.png",
+      "originalSha256": "8b57e283ea647e844c07fa80ff10f96a0d8e0b38157605e69fffdf908a49148f"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\delete-impact-1440x900-100.json",
+      "originalSha256": "34a72b9e342aaa7fb57a5fd6ce1e7360a795f6d406ef593917fb849572c07ea9"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\delete-impact-1440x900-100.png",
+      "originalSha256": "f30aaa1280be664a65dac511a509a3393c59b4a634d6acbd6609c1d70ac26dde"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\delete-impact-1440x900-200.json",
+      "originalSha256": "7ca6760b9bb65c4d839c7e55626e69a675471c83202e9c45129655bae81882a7"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\delete-impact-1440x900-200.png",
+      "originalSha256": "de66cf2a577619c162a3b01ce63a433553cc7ae5e6180c9e01943c694a1f7d81"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\delete-impact-960x640-100.json",
+      "originalSha256": "672d106ecb3ca4ea302f223a2cb1177d2d8c321cc9fcfc339897db71c7e7c7c9"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\delete-impact-960x640-100.png",
+      "originalSha256": "e0a7337b1f88edc56dadd1aef7b774576351158414b677ea4e8f0395ccf9d15a"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\new-group-1440x900-100.json",
+      "originalSha256": "2498ffd4d5a934deae1e0e4e1142bff273eae5ad5b92caed033b52ebbf590baf"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\new-group-1440x900-100.png",
+      "originalSha256": "01553887d7cbe84aeae07d97b507d2b197a18d7dcf2722f10a548f433ab40688"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\new-group-1440x900-200.json",
+      "originalSha256": "5e7d504f151bdd37329fce83cb176555d642a73f8e2d4b673042597c642ad702"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\new-group-1440x900-200.png",
+      "originalSha256": "391a32e8e3b1a1f0dfe9387dc225f380cb4e834407629dfccfd2ec43443c809a"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\new-group-960x640-100.json",
+      "originalSha256": "b6a82223036fdca58fff5904575264cf18a2ba68781c9e05aebbb4b4a5d551dc"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\new-group-960x640-100.png",
+      "originalSha256": "57ce614145acad320ad8e91c69aae57c1933ba4b02af79cf3f33d07133bdb981"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\new-group-960x640-200.json",
+      "originalSha256": "ec84bd4a334746cd7e31d765402d7b6555fbdbac9381e65462de2435f8299a8e"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\new-group-960x640-200.png",
+      "originalSha256": "690ae755f886f6bd24a48801de949360197f92ca2c05fe941c43cda3cd28d6ae"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\purge-1440x900-100.json",
+      "originalSha256": "b896cfb6397a9f18380bf2f6a8103f1e31f996e90c6862326cedbccbe81c4ff3"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\purge-1440x900-100.png",
+      "originalSha256": "5ca6015c9f949538b82bf20e0b2a76625163d2d80735467ef8b5cd7623129a4c"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\purge-1440x900-200.json",
+      "originalSha256": "b47bc39bd99019fac7bc470a36596d9e787ddffe536cea4e751c43efbd70d44c"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\purge-1440x900-200.png",
+      "originalSha256": "fe730e8c9c16f7f8cb89db645ca24179d6cd90dab3494dbb0a368c845524e3c0"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\purge-960x640-100.json",
+      "originalSha256": "b3ac09c141548ba1a7a3e10efedea646c5fb0a0f9f9dfcb823f86b33d5062913"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\purge-960x640-100.png",
+      "originalSha256": "6712c3e9b1c454e26960ea3c8fc97fe8579ed250c5af8b6f319f807cc5edeaaf"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\search-1440x900-100.json",
+      "originalSha256": "ff8fdac8fe0e14df6374852cf39198c297b821ef73ac9f54b53285bbd8191b4d"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\search-1440x900-100.png",
+      "originalSha256": "5072f439fdc946cb8145af54f606c47fe48c92f8028694e84a25fb2607fdc51d"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\search-1440x900-200.json",
+      "originalSha256": "72d17b41895d00f716394fdc1837aa33613b4f081423bb3bad59f4d500cd01a2"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\search-1440x900-200.png",
+      "originalSha256": "61af98af435852e053a4c0c5c1e42e9a63cf66f03717bf88549474905e8df185"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\search-960x640-100.json",
+      "originalSha256": "414848685f83b94d61560db137015689062a3946af1fe8a0a546cfde39a52f20"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\search-960x640-100.png",
+      "originalSha256": "5294147726236141aa90c814845d6c77910686200806ec7a2fb13924d27b9c7c"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\session-info-1440x900-100.json",
+      "originalSha256": "e440baf6e098b1fe95dc1ecae43b025fb7021ba169ccdc78ae2faf79d39dd96f"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\session-info-1440x900-100.png",
+      "originalSha256": "26a54c3862763689b14db51ca4635cf3a5c4f97ff85cabecfed5fd8d557c4017"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\session-info-1440x900-200.json",
+      "originalSha256": "a1cbdd2cfb0d41cccdf61329a47936253648d531dbd8c1c8e8f2d2c8c7f5c086"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\session-info-1440x900-200.png",
+      "originalSha256": "9fe483d9d04b73e4ce6aa34b3d77ddcdb7fc475cb67485cb9e7a02fea131e45b"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\session-info-960x640-100.json",
+      "originalSha256": "aedd8cc969ae62140979dbbfdb751fb5c692c15b9d3ac4c0a13b67e38c54cc8c"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\session-info-960x640-100.png",
+      "originalSha256": "a860c8f2e2ea0c6e8fc7ab1b37b292921a05c8b6bc2a8602895cd13a70e7383e"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\session-info-960x640-200.json",
+      "originalSha256": "a958418d7ed42774bfc7cb08a1e2d9568fa8bbd00490fb34a89ac3e3a6ed8704"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\session-info-960x640-200.png",
+      "originalSha256": "529e27d7c692101cb2c9ecd40ea9afc55d9d18922df94fd93a3580def38c6dd9"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\final\\files-controls.png",
+      "originalSha256": "22c6887b1c5b3fe49a78d70ad54a5cfcb6c56e40aedbbf06145f0a7c20de7d10"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\final\\form-1440-1-dark.png",
+      "originalSha256": "45570d924d3b9738f461d02543b40b822e522fd54825b49bf2b5acb57c44ffec"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\final\\form-1440-1-light.png",
+      "originalSha256": "b8179bb3b16466e6254f2abad3b615e4ea4c586fc38cf3885034487ae6bba357"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\final\\form-960-1-light.png",
+      "originalSha256": "6f2721f4918501c08760db352a117fc6ca3b23a5cc750c3aef515f45d53c7adf"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\final\\list-1440-1-dark.png",
+      "originalSha256": "1379f2941e92463721529eeaeff16152fa87e7d02bcc05d4861dc896e2917bfa"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\final\\list-1440-1-light.png",
+      "originalSha256": "3f1ccbfe8df83f5b76d7d78cf7f90b5efaee60d0857f020cf358bbd741c43ca5"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\final\\list-960-1-light.png",
+      "originalSha256": "95b751011698136e5d32f9f3a348c577b501948830ad8029888e44c908d4c847"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\final\\list-960-2-dark.png",
+      "originalSha256": "08ee785d12aeebe7369d66154205eeb1a612fe9504a2057f674464f28bdf556c"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\final\\memory-controls.png",
+      "originalSha256": "09a8474da7fc14d55699d83ecb42331fee003eaf31f10a54883bfc2e8eb4ee9c"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\final\\picker-1440-1-dark.png",
+      "originalSha256": "731abbc2a5605e630e67927e1f1e8ccae848ddec72ceb418804e39f55371d87c"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\final\\picker-1440-1-light.png",
+      "originalSha256": "5889ac900381ff596492f4d73bab088bdb65fe16d177c22f38b9c1b6fbbd11ea"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\final\\picker-960-1-light.png",
+      "originalSha256": "4de29cbf2064efbdf0920449ba69b4536db3ae4cd95db772762925025f33e32c"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\final\\picker-960-2-dark.png",
+      "originalSha256": "7688d420f1e731a260e05c922759fa2f9a97d6b991e95009d561684dfaf1ae48"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\geometry-1440-1-dark.json",
+      "originalSha256": "6ec1d5cb829ae274a0afffd858b88c87a05ddf7cdf354121856d8ede20b5b276"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\geometry-1440-1-light.json",
+      "originalSha256": "125316f5bb6b7ecbcef5cc8f6b94284922bf194b6dc2087c595b2f9fafb415dc"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\geometry-960-1-light.json",
+      "originalSha256": "22525f05cf0c16ef9bcb177de0ce52c80d3feade1df6dbd0380b482ae9903bfe"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\forms-theme-2026-10-23\\geometry-960-2-dark.json",
+      "originalSha256": "5f16c857853a8142353fbf3ac58f783e4a083fc87fdf0ef05ee8377ca6d7bbb9"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\group-tooltips-2026-10-22\\group-geometry.json",
+      "originalSha256": "ab4c0177abe1f87caa86a38c838c39899ecf7616388c1ae3a2363d26d368f148"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\group-tooltips-2026-10-22\\group-header.png",
+      "originalSha256": "bbee3de464e83d8d50b5e0acb39169f5cd2b67db58793ee70dde62a7663a5f74"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\group-tooltips-2026-10-22\\recent-menu.png",
+      "originalSha256": "630ffab80e36ca1c1685617c848ba0e877f74c4e172c0cc6f346f4141d547b05"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\group-tooltips-2026-10-22\\settings-hint-geometry.json",
+      "originalSha256": "53a2a548e41bad1bcfefd6c068962eb9effa2d15adee203e0ab8a66d07b26092"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\group-tooltips-2026-10-22\\settings-mode-hint-1440-1-light.png",
+      "originalSha256": "7a8cb9c8768ccd1769728c15172536f56fb5bb451405504f9610b1ec931f504b"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\group-tooltips-2026-10-22\\settings-mode-hint-960-1-dark.png",
+      "originalSha256": "f86497de62fcf1cd5a269aa70ba5591fc6ed0954c4609130c0f5178f073c54d9"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\group-tooltips-2026-10-22\\settings-mode-hint-960-2-dark.png",
+      "originalSha256": "9de81b989e3a016558287b3ef452c20cd64f7074b4716f02f8f867caba980689"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\group-tooltips-2026-10-22\\settings-send-hint-1440-1-light.png",
+      "originalSha256": "bc3d2b1278d4858b1768ec1e094f2d123e8789283dc738271af6f149ddcbf2c0"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\group-tooltips-2026-10-22\\settings-send-hint-960-1-dark.png",
+      "originalSha256": "b60d9ed22a6533ded796fb65d5a753f07b34139082dcedfa7aef305adaa9cdce"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\group-tooltips-2026-10-22\\settings-send-hint-960-2-dark.png",
+      "originalSha256": "d028c0e3fc729d7a7c04a29fb2ceb64a07fec5d4f4f9f2af6d15704814239e39"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\group-tooltips-2026-10-22\\sort-menu.png",
+      "originalSha256": "298622ec137b717bd4e4d987ac7f4fefe822f81a09c569a61bc1e73ae4495dff"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\inline-selection-2026-10-21\\sidebar-1440x900-100.json",
+      "originalSha256": "7013738533ef1145ac28a5c83e5cae2cc11b2b2875877e21c337b116bc7900e5"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\inline-selection-2026-10-21\\sidebar-1440x900-200.json",
+      "originalSha256": "6b21965044509cdaa1b0b736a70f3ea0f051930f000b04fe993ae6ff9bb62fc1"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\inline-selection-2026-10-21\\sidebar-960x640-100.json",
+      "originalSha256": "b8366dbb8f8a0cc0e140021630138ab5ffcc32a69a5053fe613e4069892e612a"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\inline-selection-2026-10-21\\sidebar-960x640-200.json",
+      "originalSha256": "9166b418894cd586677f3446088780b6bf441e936a9dd49b4722cb2e81dab659"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\navigation-icons-2026-10-23\\rounded-icons-dark-200.png",
+      "originalSha256": "2bbaeeba1eff6780ddc3e4859ac061757107f34ecb9217f709f71b7b1dd91e2d"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\navigation-icons-2026-10-23\\rounded-icons-light.png",
+      "originalSha256": "02b075ab69b2ad25850a6341bed7ebf9cc9ece378760339be73fb6f38713bbeb"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\navigation-icons-2026-10-23\\sidebar-icons-dark-200.png",
+      "originalSha256": "a129525a4cc92a929b4dbcfef0be1a955135c8271fca1802876fcbc2eab91222"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\navigation-icons-2026-10-23\\sidebar-icons-light.png",
+      "originalSha256": "fd6b8d1f4eb2e1903a8e0190d75f329a622c5e442195144059ac651835af0830"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\shell-details-2026-10-22\\settings-archive-final.png",
+      "originalSha256": "ec3c5695ef309a22cce909ca249ccf2bd09b707bbee7b065c04fc54cfb41d691"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\shell-details-2026-10-22\\settings-trash-final.png",
+      "originalSha256": "f5b9eb14bd0cce5d2a7dafef4e2befc3fd0f271a7df85604b19bd2acbc69b6dc"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\shell-details-2026-10-22\\sidebar-manual.png",
+      "originalSha256": "42f68408fc05aed0625301dcd0cc60d6eb1c5619d8e2dfc7cbc476b4be014c7a"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\unified-start-2026-10-22\\home-1440-1-light.png",
+      "originalSha256": "51851b1a2888a2e927863ce1ad8abee9eba61b76cafbdef32356566d1e948805"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\unified-start-2026-10-22\\normal-chat.png",
+      "originalSha256": "87015218de3468b273480177f53027d63a7ab42caa4bd36a416898ff97d52739"
+    }
+  ],
+  "liveModels": "R01-R05 deferred by user",
+  "liveSearch": "R06 pending"
+}

@@ -1,0 +1,5 @@
+packages/network/src/policy.ts(115,32): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '{ socket: Socket; servername: string; rejectUnauthorized: boolean; checkServerIdentity: (_name: string, cert: PeerCertificate) => Error | undefined; signal: AbortSignal; }' is not assignable to parameter of type 'number'.
+packages/network/src/policy.ts(118,58): error TS2554: Expected 2 arguments, but got 1.
+packages/network/src/policy.ts(119,28): error TS2554: Expected 2 arguments, but got 1.

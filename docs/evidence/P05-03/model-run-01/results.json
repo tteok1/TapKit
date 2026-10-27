@@ -1,0 +1,36 @@
+{
+  "exitCode": 0,
+  "sourcesUnchanged": true,
+  "commands": [
+    {
+      "args": [
+        "check"
+      ],
+      "started": "2026-10-26T20:42:52.360Z",
+      "finished": "2026-10-26T20:43:07.695Z",
+      "exitCode": 0,
+      "log": "check.log"
+    },
+    {
+      "args": [
+        "test:e2e",
+        "--",
+        "--grep",
+        "P01-03 real desktop model"
+      ],
+      "started": "2026-10-26T20:43:07.701Z",
+      "finished": "2026-10-26T20:43:44.034Z",
+      "exitCode": 0,
+      "log": "test-e2e-filtered.log"
+    }
+  ],
+  "temporaryCleanup": [
+    {
+      "name": "P01-03-model-ui-A1MoKk",
+      "removed": true
+    }
+  ],
+  "historicalEvidenceRestored": [],
+  "liveModels": "R01-R05 deferred by user",
+  "liveSearch": "R06 pending"
+}

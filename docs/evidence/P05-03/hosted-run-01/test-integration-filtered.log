@@ -1,0 +1,28 @@
+$ vitest run --config vitest.config.ts --project integration "P05"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P05-01.web.test.ts (11 tests | 1 failed) 4167ms
+   × P05-01 isolated hosted search uses real router reservation and usage ledger, never persists auxiliary model state 360ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P05-01.web.test.ts > P05-01 isolated hosted search uses real router reservation and usage ledger, never persists auxiliary model state
+SqliteError: malformed JSON
+ ❯ tests/integration/P05-01.web.test.ts:421:8
+    419|         "SELECT provider_account_id AS account_id,json_extract(model_r…
+    420|       )
+    421|       .all(f.rid);
+       |        ^
+    422|     expect(rows).toEqual([
+    423|       { account_id: f.accountId, model_id: 'mock-model', status: 'comp…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 23 passed (24)
+   Start at  17:05:45
+   Duration  13.16s (tests 64%, transform 19%, import 16%)
+
+[ELIFECYCLE] Command failed with exit code 1.

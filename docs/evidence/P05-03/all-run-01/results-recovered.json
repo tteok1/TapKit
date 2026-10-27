@@ -1,0 +1,77 @@
+{
+  "recoveredAt": "2026-10-26T18:08:51.114Z",
+  "exitCode": 1,
+  "sourcesUnchanged": true,
+  "commands": [
+    {
+      "args": [
+        "check"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "build"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "test:unit"
+      ],
+      "exitCode": 0,
+      "passed": 370
+    },
+    {
+      "args": [
+        "test:integration"
+      ],
+      "exitCode": 3221226505,
+      "complete": false
+    }
+  ],
+  "reason": "D drive ENOSPC; Vitest crashed, then evidence retention failed. This batch is not accepted.",
+  "historicalEvidenceRestored": [
+    {
+      "path": "docs\\evidence\\P00-03\\native-cases.jsonl",
+      "originalSha256": "5dd0c258204e3eeb95926d9b2e436b4c2d540e99050b3646499ce580202e7a49"
+    },
+    {
+      "path": "docs\\evidence\\P03-01\\native-parser-cases.jsonl",
+      "originalSha256": "2ace3744f8265de038e670b2e3b917b143974b8da5c562f423fcba4a6f150783"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\native-preview-cases.jsonl",
+      "originalSha256": "a6a0d13757bbff11380fb95ac6d390d3274fb487ed0983bcccd89ff04bc5f836"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\native-preview-samples.json",
+      "originalSha256": "b0ffe7e5f2f4217599ecf6cf3cd00bb93bcd954d27a1c773d294509386bdee3b"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\slides-1.pptx.pdf",
+      "originalSha256": "135f23f04ece2924fa18f43b98094eeda3f7beac3c70a6179a0faf4ec39424b9"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\slides-2.pptx.pdf",
+      "originalSha256": "d619c4d6aeb50565b72b879fbf364f44424d12fef0a9f39ff25522fa42990417"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\slides-3.pptx.pdf",
+      "originalSha256": "b330945969029de8d88b805d39549a0f49a357ddbcf2204bf7e021c3ce0a012c"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\word-1.docx.pdf",
+      "originalSha256": "31a5dd05ca853c61ffe132f87f1c35367e8cdbb51e5d768979e6efefd0a6045b"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\word-2.docx.pdf",
+      "originalSha256": "520153266d4fc875c738ca954c6d6e6718dce7f56e507a5d803d49f7e440f66b"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\word-3.docx.pdf",
+      "originalSha256": "9e210d63d6544506c39918e2f2da1050986a035a45805f71fec41bcf1fe41c64"
+    }
+  ],
+  "originalEvidenceFiles": 2504
+}

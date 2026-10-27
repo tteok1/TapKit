@@ -1,5 +1,9 @@
 # IPC、事件、任务状态与接口协议
 
+P05-02：Core ready schemaVersion=16。公开exports.preview/status/cancel/recent均strict且绑定profile/window；saveExport只收previewId/snapshotVersion，经可信Host原生保存框生成目标，exports.inspect/write为Host私有命令。export.pdf/cancelPdf仅Core→Host，Renderer没有原始HTML或路径写入入口；openExportFolder检查原窗口与成功/未知副作用状态。web.sourceInfo提供作用域内标题/版本/访问时间，无整页正文。详见[ADR0065](../adr/0065-reviewed-local-export-and-chat-snapshot.md)。
+
+P05-01：`WebCommandSchemas` 定义 web.settings/configure/sources/activity/source/saveProject；仅返回已核验来源、受限状态或用户指定项目保存结果。ADR0066移除搜索Key保存界面，saveSearchKey仅兼容空值删除旧凭据；不再读取web.key。web.settings按当前模型通道投影searchConfigured（仅协议可尝试，非live保证）；web.read/cancel 是 Core→Host 私有操作，不允许 Renderer 通用调用。现有 chat/run 状态和事件保持，详见 [ADR0064](../adr/0064-public-web-snapshots-and-anonymous-network.md)。
+
 2026-10-26 [ADR0063](../adr/0063-message-feedback-and-bookmark-collection.md)：新增只读historyCommand `messages.bookmarks`，`{cursor?,limit?}` → `{bookmarks:[{messageId,sessionId,branchId,sessionTitle,snippet,createdAt,archived}],nextCursor}`，默认50/最多100项、摘要最多500字符，严格键集游标与当前profile权限过滤。messages.mark既有rating:null用于取消评分；反馈仅本机，其他字段按未提供即保留的规则处理。
 
 2026-10-22 [ADR0059](../adr/0059-group-expansion-and-shared-tooltips.md)：sessions.list.sectionId 可选 ID/null；省略=全部，ID=该组，null=未分组，范围参与游标签名。侧栏组内独立分页并实际展开/收起；无数据库迁移。

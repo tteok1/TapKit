@@ -7,6 +7,7 @@ import {
   type Provider,
   type TSchema,
   type CredentialStore,
+  type Model,
 } from '@earendil-works/pi-ai';
 import { openaiCodexProvider } from '@earendil-works/pi-ai/providers/openai-codex';
 import { registerBunOAuthFlows } from '@earendil-works/pi-ai/bun-oauth';
@@ -24,6 +25,7 @@ import type {
 import { codexFetch } from './transport';
 import { classifyCodexError, CodexFailure } from './errors';
 import { refreshCodexCredential } from './refresh';
+import { hostedSearchInput, HostedSources } from '../hosted-search';
 
 // Public static-loader hook also works in our Node/Electron bundles. Without it,
 // pi's opaque relative OAuth import points beside the emitted CJS entry file.
@@ -35,9 +37,25 @@ export interface NativeStateStore {
   load(ref: string, binding: NativeBinding): Promise<unknown>;
 }
 type NativeContext = { canonical: CanonicalMessage[]; messages: Message[] };
+function codexModels(provider = openaiCodexProvider()): readonly Model<'openai-codex-responses'>[] {
+  return [
+    {
+      id: 'gpt-6.1-sol',
+      name: 'GPT-6.1 Sol',
+      api: 'openai-codex-responses',
+      provider: 'openai-codex',
+      baseUrl: 'https://chatgpt.com/backend-api',
+      reasoning: true,
+      input: ['text'],
+      contextWindow: 1_050_000,
+      maxTokens: 128_000,
+      cost: { input: 2, output: 10, cacheRead: 0.1, cacheWrite: 2.5 },
+    },
+    ...provider.getModels().filter((model) => model.id !== 'gpt-6.1-sol'),
+  ];
+}
 export function codexCatalog(): ModelView[] {
-  return openaiCodexProvider()
-    .getModels()
+  return codexModels()
     .filter((model) => model.input.includes('text'))
     .map((model) => ({
       accountId: null,
@@ -48,7 +66,12 @@ export function codexCatalog(): ModelView[] {
       maxOutput: model.maxTokens,
       toolCalls: 'documented',
       verification: 'documented',
-      reasoningLevels: model.reasoning ? ['off', 'low', 'medium', 'high'] : ['off'],
+      reasoningLevels:
+        model.id === 'gpt-6.1-sol'
+          ? ['low', 'medium', 'high']
+          : model.reasoning
+            ? ['off', 'low', 'medium', 'high']
+            : ['off'],
     }));
 }
 const emptyUsage = () => ({
@@ -136,6 +159,7 @@ export class CodexAdapter implements ProviderAdapter {
     });
     this.provider = {
       ...provider,
+      getModels: () => codexModels(provider),
       auth: {
         ...provider.auth,
         ...(provider.auth.oauth
@@ -163,7 +187,12 @@ export class CodexAdapter implements ProviderAdapter {
         displayName: model.name,
         contextWindow: model.contextWindow,
         maxOutput: model.maxTokens,
-        reasoningLevels: model.reasoning ? ['off', 'low', 'medium', 'high'] : ['off'],
+        reasoningLevels:
+          model.id === 'gpt-6.1-sol'
+            ? ['low', 'medium', 'high']
+            : model.reasoning
+              ? ['off', 'low', 'medium', 'high']
+              : ['off'],
         toolCalls: 'documented',
         verification: 'documented',
       }));
@@ -190,17 +219,21 @@ export class CodexAdapter implements ProviderAdapter {
       if (input.accountId !== this.accountId || input.model.providerId !== this.id)
         throw new Error('AUTH_REQUIRED');
       const model = this.model(input.model.modelId);
+      if (model.id === 'gpt-6.1-sol' && input.reasoning === 'off')
+        throw new Error('MODEL_UNSUPPORTED');
       if (
         !Number.isInteger(input.outputLimit) ||
         input.outputLimit < 1 ||
         input.outputLimit > model.maxTokens
       )
         throw new Error('VALIDATION_ERROR');
+      const search = input.hostedSearch ? hostedSearchInput(input) : undefined;
       // Resolve auth before pi's lazy stream would flatten a typed failure to text.
       await this.beforeRequest?.(combined);
       const auth = await this.models.getAuth(model, { signal: combined });
       if (!auth?.auth.apiKey) throw new Error('AUTH_REQUIRED');
       combined.throwIfAborted();
+      const sources = search ? new HostedSources() : undefined;
       const binding: NativeBinding = {
         accountId: this.accountId,
         modelId: model.id,
@@ -224,7 +257,8 @@ export class CodexAdapter implements ProviderAdapter {
         ];
       }
       const context: Context = {
-        systemPrompt: input.systemModules.map((module) => module.text).join('\n\n'),
+        systemPrompt:
+          search?.instruction ?? input.systemModules.map((module) => module.text).join('\n\n'),
         messages,
         tools: input.tools.map((tool) => ({ ...tool, parameters: tool.parameters as TSchema })),
       };
@@ -236,16 +270,36 @@ export class CodexAdapter implements ProviderAdapter {
         maxRetries: 0,
         maxTokens: input.outputLimit,
         reasoningEffort: input.reasoning === 'off' ? 'none' : input.reasoning,
+        ...(search
+          ? {
+              onPayload: (payload: unknown) => {
+                const body = payload as Record<string, unknown>;
+                return {
+                  ...body,
+                  tools: [{ type: 'web_search' }],
+                  include: ['reasoning.encrypted_content', 'web_search_call.action.sources'],
+                };
+              },
+            }
+          : {}),
         fetch: codexFetch(
           (url, init) => {
             requested = true;
             return this.fetcher(url, init);
           },
           (error) => {
-            captured = error;
+            captured ??= error;
           },
           (value) => {
             usage = value;
+          },
+          (event) => {
+            try {
+              sources?.responseEvent(event);
+            } catch (error) {
+              captured = classifyCodexError(error);
+              throw error;
+            }
           },
         ),
         timeoutMs: 60_000,
@@ -255,6 +309,7 @@ export class CodexAdapter implements ProviderAdapter {
         combined.throwIfAborted();
         if (event.type === 'start') yield { type: 'start', attemptId: input.attemptId };
         else if (event.type === 'text_delta') {
+          if (search) continue;
           partial = true;
           yield { type: 'text_delta', blockId: String(event.contentIndex), text: event.delta };
         } else if (event.type === 'toolcall_delta') {
@@ -282,6 +337,14 @@ export class CodexAdapter implements ProviderAdapter {
           throw new CodexFailure(detail);
         } else if (event.type === 'done') {
           if (captured || event.reason === 'deferred') throw new Error('STREAM_INTERRUPTED');
+          if (sources) {
+            yield { type: 'usage', usage };
+            if (event.reason !== 'stop') throw new Error('STREAM_INTERRUPTED');
+            yield { type: 'hosted_search', result: sources.result() };
+            terminal = true;
+            yield { type: 'finish', reason: 'stop', nativeStateRef: '' };
+            return;
+          }
           const message = structuredClone(event.message);
           const calls = message.content.filter((block) => block.type === 'toolCall');
           if (
@@ -325,6 +388,7 @@ export class CodexAdapter implements ProviderAdapter {
       }
       if (!terminal) throw new Error('STREAM_INTERRUPTED');
     } catch (error) {
+      if (input.hostedSearch && usage.source === 'actual') yield { type: 'usage', usage };
       yield {
         type: 'error',
         error: combined.aborted
@@ -350,8 +414,8 @@ export class CodexAdapter implements ProviderAdapter {
       systemModules: [{ id: 'probe', text: 'Reply OK.' }],
       messages: [{ role: 'user', text: 'Reply OK.' }],
       tools: [],
-      outputLimit: 32,
-      reasoning: 'off',
+      outputLimit: input.modelId === 'gpt-6.1-sol' ? 512 : 32,
+      reasoning: input.modelId === 'gpt-6.1-sol' ? 'low' : 'off',
     };
     let text = false,
       finished = false,
@@ -380,7 +444,7 @@ export class CodexAdapter implements ProviderAdapter {
       request.messages = [
         { role: 'user', text: 'Call echo with text OK. Do not answer in plain text.' },
       ];
-      request.outputLimit = 128;
+      request.outputLimit = input.modelId === 'gpt-6.1-sol' ? 512 : 128;
       let validCall = false;
       finished = false;
       for await (const event of this.stream(request, signal)) {

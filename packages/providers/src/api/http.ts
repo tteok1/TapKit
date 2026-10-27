@@ -1,6 +1,6 @@
 import { request, Agent, type AgentOptions } from 'node:https';
-import { lookup } from 'node:dns/promises';
-import { isIP } from 'node:net';
+import { NetworkPolicyService } from '@tapkit/network';
+export { publicAddress as isPublicAddress } from '@tapkit/network';
 import { Readable } from 'node:stream';
 import type { ProviderError } from '@tapkit/contracts';
 
@@ -8,42 +8,6 @@ export class ApiFailure extends Error {
   constructor(readonly detail: ProviderError) {
     super(detail.code);
   }
-}
-export function isPublicAddress(address: string): boolean {
-  if (isIP(address) === 6) {
-    // URL canonicalization removes zero padding and normalizes compressed IPv6.
-    let canonical: string;
-    try {
-      canonical = new URL(`http://[${address}]`).hostname.slice(1, -1);
-    } catch {
-      return false;
-    }
-    const parts = canonical.split(':');
-    const first = parseInt(parts[0]!, 16),
-      second = parseInt(parts[1] || '0', 16);
-    return (
-      first >= 0x2000 &&
-      first < 0x4000 &&
-      !(first === 0x2001 && (second < 0x200 || second === 0xdb8)) &&
-      first !== 0x2002 &&
-      !(first === 0x3fff && second < 0x1000)
-    );
-  }
-  if (isIP(address) !== 4) return false;
-  const [a, b, c] = address.split('.').map(Number);
-  return !(
-    a === 0 ||
-    a === 10 ||
-    a === 127 ||
-    a! >= 224 ||
-    (a === 100 && b! >= 64 && b! <= 127) ||
-    (a === 169 && b === 254) ||
-    (a === 172 && b! >= 16 && b! <= 31) ||
-    (a === 192 && [0, 168].includes(b!)) ||
-    (a === 192 && b === 2) ||
-    (a === 198 && ([18, 19].includes(b!) || (b === 51 && c === 100))) ||
-    (a === 203 && b === 0 && c === 113)
-  );
 }
 export function bypassProxy(host: string, port: string, rules: string) {
   host = host.toLowerCase().replace(/^\[|\]$/g, '');
@@ -179,15 +143,22 @@ const secureRequest = async (
     addresses = await new Promise((resolve, reject) => {
       const abort = () => reject(networkFailure('dns'));
       signal.addEventListener('abort', abort, { once: true });
-      lookup(host, { all: true, verbatim: true })
-        .then(resolve, reject)
+      new NetworkPolicyService()
+        .destination(url.href, signal, 'model')
+        .then((destination) => resolve([destination.address]), reject)
         .finally(() => signal.removeEventListener('abort', abort));
     });
-  } catch {
+  } catch (error) {
     clearTimeout(timer);
+    if (error instanceof Error && error.message === 'PERMISSION_DENIED')
+      throw new ApiFailure({
+        code: 'PERMISSION_DENIED',
+        retryable: false,
+        diagnosticCode: 'non_public_dns',
+      });
     throw networkFailure('dns');
   }
-  if (!addresses.length || addresses.some((row) => !isPublicAddress(row.address))) {
+  if (!addresses.length) {
     clearTimeout(timer);
     throw new ApiFailure({
       code: 'PERMISSION_DENIED',

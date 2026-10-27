@@ -1250,3 +1250,143 @@ button[aria-pressed='true'] {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+/* P05 public sources retain the workspace's surfaces and keyboard affordances. */
+.desktop-shell .web-config-dialog {
+  width: min(720px, calc((100vw - 32px) / var(--ui-zoom, 1)));
+  max-height: calc((100dvh - 32px) / var(--ui-zoom, 1));
+  overflow: auto;
+}
+.web-config-dialog h2 {
+  margin: 0 0 16px;
+}
+.web-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 0;
+}
+.web-controls > label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.web-settings form,
+.web-source-panel form {
+  display: grid;
+  gap: 12px;
+}
+.web-settings label,
+.web-source-panel label {
+  display: grid;
+  gap: 4px;
+}
+.web-settings input,
+.web-settings select {
+  width: 100%;
+  min-width: 0;
+}
+.web-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.web-source-panel {
+  position: fixed;
+  z-index: 60;
+  inset: 72px 12px 12px auto;
+  width: min(460px, calc(100vw - 24px));
+  overflow: auto;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.web-source-panel header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.web-source-panel h2 {
+  margin: 0;
+  font-size: 1.15em;
+}
+.web-source-list {
+  list-style: none;
+  padding: 0;
+}
+.web-source-list li {
+  display: grid;
+  gap: 4px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.web-source-list button {
+  text-align: start;
+}
+.web-source-list small,
+.web-source-panel small {
+  color: var(--muted);
+}
+.web-source-text {
+  white-space: pre-wrap;
+  line-height: 1.75;
+}
+.desktop-shell .export-dialog {
+  width: min(820px, calc((100vw - 32px) / var(--ui-zoom, 1)));
+  max-height: calc((100dvh - 32px) / var(--ui-zoom, 1));
+  overflow: auto;
+  padding: 24px;
+}
+.export-dialog h2 {
+  margin: 0 0 16px;
+}
+.export-dialog fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0;
+}
+.export-dialog fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.export-dialog small {
+  display: block;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.export-preview {
+  max-height: 36vh;
+  overflow: auto;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: inherit;
+}
+.export-dialog li {
+  overflow-wrap: anywhere;
+}
+.export-dialog details ul {
+  max-height: 24vh;
+  overflow: auto;
+  list-style: none;
+  padding: 0;
+}
+.export-dialog details label {
+  display: flex;
+  gap: 8px;
+}
+.export-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}

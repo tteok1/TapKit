@@ -58,6 +58,8 @@ async function virtualAttachment(page: Page, name: string) {
   await expect(page.locator('.composer-attachment')).toContainText(name);
 }
 async function geometry(page: Page, name: string) {
+  await expect(page.getByLabel('输入草稿', { exact: true })).toBeVisible();
+  await expect(page.getByRole('radiogroup', { name: '任务类型', exact: true })).toBeVisible();
   const bounds = await page.evaluate(() => {
     const input = document.querySelector('.composer')!.getBoundingClientRect();
     const main = document.querySelector('main')!.getBoundingClientRect();

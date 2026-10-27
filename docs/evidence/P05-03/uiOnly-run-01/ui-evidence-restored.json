@@ -1,0 +1,202 @@
+[
+  {
+    "path": "docs/evidence/UI-redesign/api-accounts.png",
+    "restoredSha256": "3d3e7d3071f49d2d44ef07e0209c9085c025e3c0d3107e9b5cd3165284ed344a",
+    "retainedSha256": "ef44c03ffbfee3c45fb31c578fc41e8843e108ada3555e5a51515118fdb4abcc"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/composer-input-960-200.png",
+    "restoredSha256": "8524fd5a7789b4df5d7485ccd2fcd1011435bbc33a97d4a61c0cd086d243ac11",
+    "retainedSha256": "3151951c93e0a4b3282d3466a3423c26c0806de43231e48b7aaef6f005a8cf9a"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/composer-light-960-200.png",
+    "restoredSha256": "01453b6be5313d1e28b991291d12e2aff5f695da58941b549432bdea56ac2c97",
+    "retainedSha256": "77f1d9ea0fa34409a644980b0084200d61198f4e974bfebf4ba54d4286d46f79"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/conversation-light-1440.png",
+    "restoredSha256": "703a759ca31bda419dd434c1053dc4e270ecc8238183e77d7854d8220d63f79a",
+    "retainedSha256": "1dab917287f9787ca4cc19e8db0bb4aa5e9918171d1e20f35456607f556d372d"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/file-details-dialog.png",
+    "restoredSha256": "2fe07a703bc2c246c6e63b361dd8e45868e85057307cb10ef39f799e54dcab1a",
+    "retainedSha256": "eb7df7f4b7e5154ff0703ae8fba606e5fe79b735b4d9d7ddfd26f388e4068f55"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/home-light-1440.png",
+    "restoredSha256": "a5b49312bc8525d50c9c0bc84172af23986537e127368f15f70c9904d82b7c94",
+    "retainedSha256": "5dc36ee41256649cea0647717c7952f4c6a1ce6d165683d818046c044e148278"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/models-usage.png",
+    "restoredSha256": "5634fb412a199e463d6666c9bfad6792e18b8ec5baadbddc3215d2b90a1caf76",
+    "retainedSha256": "2fa4344758b5c97a04dbedd275d26515abef23195a9e41fd381cee62de691f8a"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/navigation-0.png",
+    "restoredSha256": "639d8eeb15182cb67fb45ba520ad63a80826410d1bb1e200b2c3a3581c92cf88",
+    "retainedSha256": "0332e51ba713d8beba7ba4334f5b4f43bbebe6ce2887bd4e62e0c223152c391b"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/navigation-1.png",
+    "restoredSha256": "3ba3f6614bc8c14ecbac40dd1482f8b0787ed5c2b95697d6a76bfe736d4c543a",
+    "retainedSha256": "861f28cac5ca458459c1eb5426974648431cf083f213d31e1b664736178ac935"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/navigation-2.png",
+    "restoredSha256": "a3773d2ebc6d9861f5dd28d577aeacacc6253c8f3be1e9b27881675f9db192d3",
+    "retainedSha256": "617f49f42441fc7f6dce677400f5e30602e11d7105fcf8de06cabaab813aaa85"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/navigation-3.png",
+    "restoredSha256": "e6367c7b891e4cae577f0c5b6654026ba539c5bee95d12d8117ec70da8f6bfe6",
+    "retainedSha256": "54a3f82712d8ce953ef5e98675c7abfe31bd460660f29566124da9d1167b634b"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/project-0.png",
+    "restoredSha256": "9f77b5015f17315e860cd8f16888eccb325e0d611d4eb80cdbc26fdadc369b22",
+    "retainedSha256": "bac5c6fb521a50fe7e50344979cc1efc6ae38719da3d3ebcfd3dc3d82334bfbf"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/project-1.png",
+    "restoredSha256": "7744c7d2b6a338d53424853deb7682008347bebe27f12f84eda986d3f9845041",
+    "retainedSha256": "cfda8d5773d656246d8825e3e32cec1ddc1f0674790819c77526cceb0416e8ba"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/project-2.png",
+    "restoredSha256": "a6ec5b0ab38bcd299ebb6b8f6396bdb652d635c3b9628106c98ed63be76442c6",
+    "retainedSha256": "c6433a0634f3019bbccb218fb6ebd3a449d6c23db2ce360b63b0b9f7a76515fc"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/project-3.png",
+    "restoredSha256": "1ae3baab02ff2a1960e9ff2c7c16539af5dbd5de76be136a668fbd1fdfdf0915",
+    "retainedSha256": "18798dae22081a62f2bc674fa9c8c4f2e88fcacb49ddfc4212504856a877196c"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/project-4.png",
+    "restoredSha256": "e5c7eb0fc9b42dcf33f1b5bb7bf98dd5f58c2ca4a0682458e908983d65592046",
+    "retainedSha256": "d3dafb64f2284d1d781fdfcce15264aeb49d6e782c9c685c0b1c6f613d9eaaa9"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/project-5.png",
+    "restoredSha256": "3196357aed6fc2ed343a1bf05b734a38df633069d18dd411cb93ce149f7f5653",
+    "retainedSha256": "023e68ad70cf291a7f59cd0c716f0ac50f88612bf03345ebbabcf67f2ac4b3c0"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/save-hover-contrast.png",
+    "restoredSha256": "e88dba3104101c161bfdc62451795574b0fc4d94b89d1c72311cafe24c739ac2",
+    "retainedSha256": "c17ac59c1ba7778c657496d8035d44f901c23f2cba6209c85cc971eb62d44fa5"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/save-keyboard-contrast.png",
+    "restoredSha256": "bd23864e8717d599be6a36b0e0cad73fab703e8f144981a071e82baaa3b3376e",
+    "retainedSha256": "d56af8ca1bd0e0e86ce74a7ebf99d3c30e65e3411e8975a72dd2b79e8099f9ca"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/search-dialog-960-200.png",
+    "restoredSha256": "17a20728371f9ef659d65c3caadde643f8ef612dd64e9a35fcfbc013b9dc54bd",
+    "retainedSha256": "43a97cbbe5c38065258ae7aedf456672659edfb7e52882c1d5cac7b3df627845"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/search-dialog.png",
+    "restoredSha256": "6c3dd338de05f11efaab2afc5c08ecde5d4045341e7604a550723d675ebdee9b",
+    "retainedSha256": "5e8b41bab6bb55a14e842d13563cda3b91d7710e3122856fb6c5388c82d61b8f"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/settings-0.png",
+    "restoredSha256": "6cbac1a1188071188614593871279f4f726c6ba6d9e4fe81832e999a07e25e21",
+    "retainedSha256": "1f57fc870e2a2a286c77235206be5e5e60d96f111e69a73a659d2af7ec32c586"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/settings-1.png",
+    "restoredSha256": "72eaf632867308bd080dcccff36475316b06bbf60d56bc221affbb9dbb32679b",
+    "retainedSha256": "d9609efac7c07348a02402810b2695a1a99c38563307c3053a5870ba97b96879"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/settings-2.png",
+    "restoredSha256": "17d1d2a342eeec966a1684efb1150a87dadf05b82bbc3591569efbed0e6b5896",
+    "retainedSha256": "1146dd7f476b603735313b3c598249ad223bd951c46f7fbef37cc8f0004f4110"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/settings-3.png",
+    "restoredSha256": "84766853a33d61686bd068fc52f9349ec748b4888f17edd143640325f47551b1",
+    "retainedSha256": "0f34f2f094e3832414d7c84673fb44d62dd6504089ca2e2245aa6a0767a0eed9"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/settings-4.png",
+    "restoredSha256": "46e5c4165575bec62728291a760ed880df0301171b3c36952f10456026d04983",
+    "retainedSha256": "4da05944fb01281553e47ded0efe8177573c641c90ce32ecf37ae30624ae4998"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/settings-5.png",
+    "restoredSha256": "8450e5257a8724a5cbf4ce351b1db579e9b2b07b98dce94a213ffb17ef3f8e8d",
+    "retainedSha256": "62628eba625b5793751ac76eda1fc9445a02fda2693ce4f04fd5c925493f18d3"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/settings-controls-960-200.png",
+    "restoredSha256": "2c5bba7301d9bc1ee2a7fd0d3eaee44c13d2386083c5a2aa71a05ae9805beb79",
+    "retainedSha256": "4a8aa8b2f55261732f9fa58536b8d36a3d248a1280673177e6886bfc686a4aab"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/settings-dark-1440.png",
+    "restoredSha256": "7bd2e604c1a89e6e22e6e3b7f26d3f95b21e4b7af77fc509925b8539937fcd44",
+    "retainedSha256": "1bca8fc3eb085168ccd096468be056540f63fe16ab431dd80da7728ac1d818c1"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/settings-light-960-200.png",
+    "restoredSha256": "bf07aa899b458416e9e3f089858009b3a4dfdd913e85582c258bb5df28df59f8",
+    "retainedSha256": "d3ef41ad93db8825dec8803855f8a605b672ab9c1f4ab3b1892d2185c597a740"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/subscription-accounts.png",
+    "restoredSha256": "6ad7c443a1ffd7522c4323bf67c310ae3a565629d82db144d4f73140b46e68a9",
+    "retainedSha256": "038e17671aa5132b585a66ac59c7106f8721881232a64ae04ca6d45825e938ff"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/viewer-code.png",
+    "restoredSha256": "5b5918db3d11290210bf072b8cf9d8b4ab02c40ac0a741cd16e6f67fb6a8d425",
+    "retainedSha256": "91e5fe1aea912fac73fafdb0ae759fcc770312cf103eaa1180c87a3f606985e4"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/viewer-image.png",
+    "restoredSha256": "861a684027e0fa2662d196f1fd7f51624abb40236927808659000be49805af48",
+    "retainedSha256": "f471f69e91b3969d7717ced20edad134417a8cb432b4608d49a52ff45c580546"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/viewer-markdown.png",
+    "restoredSha256": "1f155dd1e4311a637ed83e860928efa1058b27569cb1ec889ab2ca0ba68efe31",
+    "retainedSha256": "4fb48f4e9d1196bbdc8c992a3c3db14d98a5fba09ee900a0f5d790cd8cbd70c4"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/viewer-pdf.png",
+    "restoredSha256": "705a7f7cb594ce1c119cb70e9e42292e224b5bd8e9dbb1ca382bd6555f35e4de",
+    "retainedSha256": "1ebea4dc249354fd9aed76aace92dd286888d954fce5c2094dc07b31e7783954"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/viewer-sheet.png",
+    "restoredSha256": "3bdc50fd26fea1605f0bb23ed9389626250efc8d9a09a537df735a70fcb994cc",
+    "retainedSha256": "d0864e106968ce9c8d5a6a4d58a2fbd7ec6c9d1fbe1b76d2dd3b49276948af6f"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/viewer-zip.png",
+    "restoredSha256": "82b7dc047d4d95d96a9ef363bec27cf4aea667ee149092d8c55245b00bcc7ee3",
+    "retainedSha256": "3e023c3bf2c38523a0dc39065cf4cacc1251a9d05cb9ea71d0721d09bb02948d"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/workbench-1200.png",
+    "restoredSha256": "460955e15d6db47cea4d8a8caa8e91c34d5a8ea1cab75388e5e5c977e322c7fa",
+    "retainedSha256": "775b0e3abd89a2c261cd8ed1f2200cc207097c403fe9ce1876f3b87d7c05c181"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/workbench-960.png",
+    "restoredSha256": "90f6c379f7d8bb7dda54a4becf67ded7a54ddc3b6037d52dc59d465e70174555",
+    "retainedSha256": "f80178ebbba5b66fb8b4d4e9580eb7f5f7b5a60ad9d66b808c665d460aa2d44d"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/workbench-light-1440.png",
+    "restoredSha256": "2004405ae166b2bf4f82c7cbd47b597a434bc8d9db38b1d94774f87a10eae80f",
+    "retainedSha256": "27836aa01d6370b0acf7a30ce134c2478ba7d165ca22a0da06569bc8e5c4b8f0"
+  }
+]

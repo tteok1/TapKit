@@ -4,3 +4,4 @@ export * from './execution/office-worker';
 export * from './execution/native-executor';
 export * from './read-gateway';
 export * from './zip';
+export * from './web';

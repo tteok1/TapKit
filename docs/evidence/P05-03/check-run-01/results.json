@@ -1,0 +1,28 @@
+{
+  "exitCode": 0,
+  "sourcesUnchanged": true,
+  "commands": [
+    {
+      "args": [
+        "check"
+      ],
+      "started": "2026-10-27T04:07:29.913Z",
+      "finished": "2026-10-27T04:07:54.293Z",
+      "exitCode": 0,
+      "log": "check.log"
+    },
+    {
+      "args": [
+        "docs:check"
+      ],
+      "started": "2026-10-27T04:07:54.302Z",
+      "finished": "2026-10-27T04:07:54.807Z",
+      "exitCode": 0,
+      "log": "docs-check.log"
+    }
+  ],
+  "temporaryCleanup": [],
+  "historicalEvidenceRestored": [],
+  "liveModels": "R01-R05 deferred by user",
+  "liveSearch": "R06 pending"
+}

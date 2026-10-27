@@ -1,0 +1,2117 @@
+{
+  "exitCode": 1,
+  "sourcesUnchanged": true,
+  "commands": [
+    {
+      "args": [
+        "check"
+      ],
+      "started": "2026-10-26T18:16:56.212Z",
+      "finished": "2026-10-26T18:17:13.594Z",
+      "exitCode": 0,
+      "log": "check.log"
+    },
+    {
+      "args": [
+        "build"
+      ],
+      "started": "2026-10-26T18:17:13.602Z",
+      "finished": "2026-10-26T18:18:00.388Z",
+      "exitCode": 0,
+      "log": "build.log"
+    },
+    {
+      "args": [
+        "test:unit"
+      ],
+      "started": "2026-10-26T18:18:00.396Z",
+      "finished": "2026-10-26T18:18:11.737Z",
+      "exitCode": 0,
+      "log": "test-unit.log"
+    },
+    {
+      "args": [
+        "test:integration",
+        "P00"
+      ],
+      "started": "2026-10-26T18:18:11.828Z",
+      "finished": "2026-10-26T18:24:29.807Z",
+      "exitCode": 0,
+      "log": "test-integration-P00.log"
+    },
+    {
+      "args": [
+        "test:integration",
+        "P01"
+      ],
+      "started": "2026-10-26T18:24:30.801Z",
+      "finished": "2026-10-26T18:25:30.879Z",
+      "exitCode": 0,
+      "log": "test-integration-P01.log"
+    },
+    {
+      "args": [
+        "test:integration",
+        "P02"
+      ],
+      "started": "2026-10-26T18:25:31.158Z",
+      "finished": "2026-10-26T18:26:13.822Z",
+      "exitCode": 0,
+      "log": "test-integration-P02.log"
+    },
+    {
+      "args": [
+        "test:integration",
+        "P03-01"
+      ],
+      "started": "2026-10-26T18:26:14.481Z",
+      "finished": "2026-10-26T18:27:40.039Z",
+      "exitCode": 0,
+      "log": "test-integration-P03-01.log"
+    },
+    {
+      "args": [
+        "test:integration",
+        "P03-02"
+      ],
+      "started": "2026-10-26T18:27:40.741Z",
+      "finished": "2026-10-26T18:31:05.882Z",
+      "exitCode": 0,
+      "log": "test-integration-P03-02.log"
+    },
+    {
+      "args": [
+        "test:integration",
+        "P03-03"
+      ],
+      "started": "2026-10-26T18:31:06.110Z",
+      "finished": "2026-10-26T18:31:15.690Z",
+      "exitCode": 0,
+      "log": "test-integration-P03-03.log"
+    },
+    {
+      "args": [
+        "test:integration",
+        "P04"
+      ],
+      "started": "2026-10-26T18:31:15.799Z",
+      "finished": "2026-10-26T18:31:44.023Z",
+      "exitCode": 0,
+      "log": "test-integration-P04.log"
+    },
+    {
+      "args": [
+        "test:integration",
+        "P05"
+      ],
+      "started": "2026-10-26T18:31:44.268Z",
+      "finished": "2026-10-26T18:31:55.520Z",
+      "exitCode": 0,
+      "log": "test-integration-P05.log"
+    },
+    {
+      "args": [
+        "test:perf"
+      ],
+      "started": "2026-10-26T18:31:55.627Z",
+      "finished": "2026-10-26T18:32:40.974Z",
+      "exitCode": 0,
+      "log": "test-perf.log"
+    },
+    {
+      "args": [
+        "test:e2e"
+      ],
+      "started": "2026-10-26T18:32:41.022Z",
+      "finished": "2026-10-26T18:39:12.442Z",
+      "exitCode": 1,
+      "log": "test-e2e.log"
+    }
+  ],
+  "temporaryCleanup": [
+    {
+      "name": "P00-03 old report 7NxNgl",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report aTL9Ri",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report hCxUIB",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report I3JmQQ",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report OPgMhJ",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report w5ZhGJ",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report zUAT45",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report ZXNYJE",
+      "removed": true
+    },
+    {
+      "name": "P00-03 worker GppOgC",
+      "removed": true
+    },
+    {
+      "name": "P00-03 worker m2vZGF",
+      "removed": true
+    },
+    {
+      "name": "P00-03 worker tg35Xn",
+      "removed": true
+    },
+    {
+      "name": "P01-02-live-fixture-MZ3cgs",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-preflight-IO1bOI",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-unit-1Kz2V2",
+      "removed": true
+    },
+    {
+      "name": "P01-02-vault-X02xy3",
+      "removed": true
+    },
+    {
+      "name": "P02-02-tool-trace-nNBqsJ",
+      "removed": true
+    },
+    {
+      "name": "P03-02 external hsaX3D",
+      "removed": true
+    },
+    {
+      "name": "P03-02 Office generator 2oZ8Fx",
+      "removed": true
+    },
+    {
+      "name": "P03-02 revoked external bmnuP7",
+      "removed": true
+    },
+    {
+      "name": "P03-02 staging junction ZpobY3",
+      "removed": true
+    },
+    {
+      "name": "P03-02 staging KCM3CD",
+      "removed": true
+    },
+    {
+      "name": "P03-02 staging outside 7sjSlD",
+      "removed": true
+    },
+    {
+      "name": "P05-01 vault UnRFDv",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-13JzcV",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-3agIHw",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-3o2xCb",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-3ywJB4",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-4Vbl5Z",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-60yUPR",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-6rq95E",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-71T8Lw",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-8Cnv7S",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-91zVst",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-AKgmPm",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-B25wsP",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-B8vKsz",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-bL4Z0a",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-bxlQxm",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-cCzFEy",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-cg5rzI",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-CPqlp3",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-EUMbRG",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-FuffGl",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-FzJgW7",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-ggLsh7",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-hZw0CJ",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-ivzpM8",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-jEVqua",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-KDPLkM",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-keveCl",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-KfIEnY",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-KhuGH1",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-KsEXHL",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-kuTp0D",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-LAE8TQ",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-lnVLZt",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-LSrCRp",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-mnttVZ",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-Mq6ouC",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-NOI80n",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-nSxNoy",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-nVPncz",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-O3oy0l",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-oEM3bR",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-P9YCxt",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-pBdLLX",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-PLxOb4",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-PPTad8",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-QxrJcw",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-uuNEiy",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-XMCaQ6",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-yCHqrT",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-znP8er",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-zpbO3E",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 3cSJqc",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 7mDwEM",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 9dqFL7",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 BhnpA9",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 bHrTEn",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 e15Th6",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 fhjJSa",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 H1eyu6",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 Ie2oMc",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 K9Cve9",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 LbUhX0",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 P6pTqb",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 PuRgnF",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 Q8M44w",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 qBBNBC",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 QGBMNJ",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 sSoj19",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 ti9irn",
+      "removed": true
+    },
+    {
+      "name": "P00-02 中文 WHC7rO",
+      "removed": true
+    },
+    {
+      "name": "P00-03 broker hostile rS4ldX",
+      "removed": true
+    },
+    {
+      "name": "P00-03 broker output n42VWl",
+      "removed": true
+    },
+    {
+      "name": "P00-03 broker reject 67rxDt",
+      "removed": true
+    },
+    {
+      "name": "P00-03 broker 中文 s3Bwe4",
+      "removed": true
+    },
+    {
+      "name": "P00-03 capability aerTbr",
+      "removed": true
+    },
+    {
+      "name": "P00-03 corrupt Office 中文 pJ6cEb",
+      "removed": true
+    },
+    {
+      "name": "P00-03 external-link 中文 j6PbcH",
+      "removed": true
+    },
+    {
+      "name": "P00-03 Office crash recovery 中文 ycQrlK",
+      "removed": true
+    },
+    {
+      "name": "P00-03 Office recovery invocation 中文 j3UkcE",
+      "removed": true
+    },
+    {
+      "name": "P00-03 Office security policy 中文 XthI9m",
+      "removed": true
+    },
+    {
+      "name": "P00-03 OfficeWorker 中文 NlmaFl",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 BPgqP8",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 drClNw",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 HNlinl",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 IFwGk0",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 in8ssG",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 JLr49K",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 kh49Ws",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 ksBXHO",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 Lp3Iaz",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 LtOvBP",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 MP7kjU",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 n2o6p9",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 OdkXUi",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 odPj44",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 OpNXRb",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 QZR5KC",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 sxMJ47",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 VS7hsr",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 x709ZE",
+      "removed": true
+    },
+    {
+      "name": "P00-03 中文 xaNkDr",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-1rFGsU",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-1ZwldS",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-3cG8yr",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-3jT3lu",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-9Id11t",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-GeNfu1",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-jH4OS8",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-Y0XbOo",
+      "removed": true
+    },
+    {
+      "name": "P01-01-core-Jq21cv",
+      "removed": true
+    },
+    {
+      "name": "P01-01-regression-lfO1oh",
+      "removed": true
+    },
+    {
+      "name": "P01-01-regression-StaCfr",
+      "removed": true
+    },
+    {
+      "name": "P01-01-regression-suNaqP",
+      "removed": true
+    },
+    {
+      "name": "P01-01-regression-y2O1bl",
+      "removed": true
+    },
+    {
+      "name": "P01-01-regression-Zz2hgC",
+      "removed": true
+    },
+    {
+      "name": "P01-02-core-kgre35",
+      "removed": true
+    },
+    {
+      "name": "P01-02-migration-GwNBVG",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-BJvpbv",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-dxDhCv",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-esH68g",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-F2hnOz",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-MHOR3j",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-o7tZkY",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-qMfmB9",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-qXSyAC",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-RXU4kk",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-SvvOp0",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-UrcNQw",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-y0PFdz",
+      "removed": true
+    },
+    {
+      "name": "P01-02-zhipu-core-2OYsJM",
+      "removed": true
+    },
+    {
+      "name": "P01-02-zhipu-core-gl2zbC",
+      "removed": true
+    },
+    {
+      "name": "P01-02-zhipu-core-KvbLc9",
+      "removed": true
+    },
+    {
+      "name": "P01-02-zhipu-core-YH0C1B",
+      "removed": true
+    },
+    {
+      "name": "P01-03-migrate-Fsi4TI",
+      "removed": true
+    },
+    {
+      "name": "P01-03-network-CdyTFX",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-BFCelN",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-FDdbnc",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-fo1Don",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-Gy28Q1",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-hGN5mj",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-IjjrcK",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-itI2cv",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-J1RB8L",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-oDRQjI",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-owX2Vm",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-q5nKYN",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-RydwCu",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-1t6xM4",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-DNj5t6",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-EfuRmZ",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-JCcFHQ",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-JzYtxf",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-n5MMxh",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-nA8HDF",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-Ti3gM8",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-ukGWO3",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-x2qXMX",
+      "removed": true
+    },
+    {
+      "name": "P02-01 legacy hCJ1OV",
+      "removed": true
+    },
+    {
+      "name": "P02-01 YbGhHh",
+      "removed": true
+    },
+    {
+      "name": "P02-01 ZwAFsQ",
+      "removed": true
+    },
+    {
+      "name": "P02-02 fixture 5zI7C3",
+      "removed": true
+    },
+    {
+      "name": "P02-02 fixture 74vdPC",
+      "removed": true
+    },
+    {
+      "name": "P02-02 fixture aWSb2q",
+      "removed": true
+    },
+    {
+      "name": "P02-02 fixture BDtt54",
+      "removed": true
+    },
+    {
+      "name": "P02-02 fixture BO1sxu",
+      "removed": true
+    },
+    {
+      "name": "P02-02 fixture CEV3LO",
+      "removed": true
+    },
+    {
+      "name": "P02-02 fixture fbjJXL",
+      "removed": true
+    },
+    {
+      "name": "P02-02 fixture hzMXA1",
+      "removed": true
+    },
+    {
+      "name": "P02-02 fixture JfP53T",
+      "removed": true
+    },
+    {
+      "name": "P02-02 fixture l14YvP",
+      "removed": true
+    },
+    {
+      "name": "P02-02 fixture OkXPFB",
+      "removed": true
+    },
+    {
+      "name": "P02-02 fixture oY64j9",
+      "removed": true
+    },
+    {
+      "name": "P02-02 fixture s1Dx5G",
+      "removed": true
+    },
+    {
+      "name": "P02-02 fixture wJ9wvR",
+      "removed": true
+    },
+    {
+      "name": "P02-02 legacy preview 0s3e35",
+      "removed": true
+    },
+    {
+      "name": "P02-02 legacy preview 3aiB7v",
+      "removed": true
+    },
+    {
+      "name": "P02-02 legacy preview D69Lyp",
+      "removed": true
+    },
+    {
+      "name": "P02-02 legacy preview etrluG",
+      "removed": true
+    },
+    {
+      "name": "P02-02 legacy preview gsxnYS",
+      "removed": true
+    },
+    {
+      "name": "P02-02 legacy preview h2D2vF",
+      "removed": true
+    },
+    {
+      "name": "P02-02 legacy preview jVE8ry",
+      "removed": true
+    },
+    {
+      "name": "P02-02 legacy preview kF1icT",
+      "removed": true
+    },
+    {
+      "name": "P02-02 legacy preview LL3yQh",
+      "removed": true
+    },
+    {
+      "name": "P02-02 legacy preview lmybFN",
+      "removed": true
+    },
+    {
+      "name": "P02-02 legacy preview mFmfxO",
+      "removed": true
+    },
+    {
+      "name": "P02-02 legacy preview NDt8Ok",
+      "removed": true
+    },
+    {
+      "name": "P02-02 legacy preview qEr2Aq",
+      "removed": true
+    },
+    {
+      "name": "P02-02 legacy preview YtSSiQ",
+      "removed": true
+    },
+    {
+      "name": "P02-02 legacy preview zPXa34",
+      "removed": true
+    },
+    {
+      "name": "P02-02-zhipu-tools-2MeS35",
+      "removed": true
+    },
+    {
+      "name": "P02-02-zhipu-tools-Bwdr23",
+      "removed": true
+    },
+    {
+      "name": "P02-02-zhipu-tools-UPAcNR",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture 0NeICs",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture 0nrju4",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture 3gWKLh",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture 7K1nkA",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture aj8Pmr",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture CrbB4v",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture CX6EPB",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture eDQkIZ",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture eZR2JZ",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture fl8Njx",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture FMB8AZ",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture gERuvb",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture gkzOI7",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture GX4cya",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture Hf7HNW",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture hGRAUH",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture HxA3SU",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture Ie3YsD",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture io3WvR",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture JBffey",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture JoP0pJ",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture ju9BQn",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture JvDFsq",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture k9zz2I",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture LcXXOx",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture NBxqPE",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture o4cZfD",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture o5XMQC",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture oOSrC7",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture p7Po09",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture pcYVrB",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture PPrjX1",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture Q7Nra8",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture Qevwsg",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture QlmJYz",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture StYYDp",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture tZ0ely",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture UawtPk",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture Ugludv",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture vhrqPY",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture w836dH",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture wg8Er3",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture y9oXnc",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture Yf8Bop",
+      "removed": true
+    },
+    {
+      "name": "P02-03 fixture zqNp0w",
+      "removed": true
+    },
+    {
+      "name": "P02-03 migration MUOmf3",
+      "removed": true
+    },
+    {
+      "name": "P02-03-background-298NMb",
+      "removed": true
+    },
+    {
+      "name": "P02-03-background-9695AB",
+      "removed": true
+    },
+    {
+      "name": "P02-03-background-JW1qQF",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-dmY0Bi",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-Hs834G",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-msd0X6",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-N7PBiT",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-Oe06al",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-ZNs6nl",
+      "removed": true
+    },
+    {
+      "name": "P03-01 asset substitution nGvwCI",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file material 19tqDN",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file material cdode4",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file material HQCJDq",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file material JCyySZ",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file material l4laUK",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file material lqNgxB",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file material PQYsm5",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file material q7VgyF",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file material wY1FHa",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file service FDixOq",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file service Fx5lzt",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file service hgOssE",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file service hmO3hz",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file service J0RHE7",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file service LddwSf",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file service oBjIJB",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file service qkPJZB",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file service SVQHTs",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file service v0SyU0",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file service Yd7VKt",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file service YtR509",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file service zeCR0W",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file service ZqeMxB",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file usage 2HrCh4",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file usage aMdbva",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file usage FiorrI",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file usage mTXwD6",
+      "removed": true
+    },
+    {
+      "name": "P03-01 file usage SwiGdE",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files 2pUuFu",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files 45jIBY",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files c9EFk2",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files EPpr3F",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files kpRpSp",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files L4oo4I",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files LyIj5J",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files mmxdwy",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files o1TRHv",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files O73wBH",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files Owwsj5",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files q6p1Q4",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files SjMmHF",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files V7OPuB",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files x2lMmu",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files xsb3Sm",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files XZGr0X",
+      "removed": true
+    },
+    {
+      "name": "P03-01 files Zd3aJR",
+      "removed": true
+    },
+    {
+      "name": "P03-01 import crash bundle oLry36",
+      "removed": true
+    },
+    {
+      "name": "P03-01 import hard kill jGd9HA",
+      "removed": true
+    },
+    {
+      "name": "P03-01 isolated bundle O969Bf",
+      "removed": true
+    },
+    {
+      "name": "P03-01 migration Llbr3g",
+      "removed": true
+    },
+    {
+      "name": "P03-01 native parser 中文 eo6FRC",
+      "removed": true
+    },
+    {
+      "name": "P03-01 native parser 中文 ugMUk6",
+      "removed": true
+    },
+    {
+      "name": "P03-01 native parser 中文 Y8xJeg",
+      "removed": true
+    },
+    {
+      "name": "P03-01 note migration aLh5Yl",
+      "removed": true
+    },
+    {
+      "name": "P03-01 original download 3GBBxj",
+      "removed": true
+    },
+    {
+      "name": "P03-01 original download 8yij5z",
+      "removed": true
+    },
+    {
+      "name": "P03-01 original download H8WiBd",
+      "removed": true
+    },
+    {
+      "name": "P03-01 original download nTut3w",
+      "removed": true
+    },
+    {
+      "name": "P03-01 original download wIUms9",
+      "removed": true
+    },
+    {
+      "name": "P03-01 parse orchestration 0xxkzC",
+      "removed": true
+    },
+    {
+      "name": "P03-01 parse orchestration AW5uXj",
+      "removed": true
+    },
+    {
+      "name": "P03-01 parse orchestration fqTXFw",
+      "removed": true
+    },
+    {
+      "name": "P03-01 parse orchestration KIi17R",
+      "removed": true
+    },
+    {
+      "name": "P03-01 parse orchestration lPnf3e",
+      "removed": true
+    },
+    {
+      "name": "P03-01 parse orchestration MuHsSm",
+      "removed": true
+    },
+    {
+      "name": "P03-01 parse orchestration pHnZdm",
+      "removed": true
+    },
+    {
+      "name": "P03-01 parse orchestration rxk5rv",
+      "removed": true
+    },
+    {
+      "name": "P03-01 parse orchestration xaiJoC",
+      "removed": true
+    },
+    {
+      "name": "P03-01 parse orchestration y2r4Ye",
+      "removed": true
+    },
+    {
+      "name": "P03-01 parser hard kill 3OtUUz",
+      "removed": true
+    },
+    {
+      "name": "P03-01 portable parser 46trcf",
+      "removed": true
+    },
+    {
+      "name": "P03-01 portable parser 6I38sj",
+      "removed": true
+    },
+    {
+      "name": "P03-01 portable parser 6oa0DT",
+      "removed": true
+    },
+    {
+      "name": "P03-01 portable parser AmquTY",
+      "removed": true
+    },
+    {
+      "name": "P03-01 portable parser g2wTQI",
+      "removed": true
+    },
+    {
+      "name": "P03-01 portable parser N0OMcg",
+      "removed": true
+    },
+    {
+      "name": "P03-01 portable parser PzGURo",
+      "removed": true
+    },
+    {
+      "name": "P03-01 portable parser rGkdgB",
+      "removed": true
+    },
+    {
+      "name": "P03-01 portable parser VU2YR7",
+      "removed": true
+    },
+    {
+      "name": "P03-01 portable parser WTbbyG",
+      "removed": true
+    },
+    {
+      "name": "P03-01 selected source 1UZQeT",
+      "removed": true
+    },
+    {
+      "name": "P03-01 selected source CVuioQ",
+      "removed": true
+    },
+    {
+      "name": "P03-01 selected source jzQKnp",
+      "removed": true
+    },
+    {
+      "name": "P03-01 selected source kGfVIs",
+      "removed": true
+    },
+    {
+      "name": "P03-01 selected source yxpPao",
+      "removed": true
+    },
+    {
+      "name": "P03-01 selected source ZDcqzZ",
+      "removed": true
+    },
+    {
+      "name": "P03-01 staging crash bundle Rlc27j",
+      "removed": true
+    },
+    {
+      "name": "P03-01 staging safe cleanup 5Vr5HZ",
+      "removed": true
+    },
+    {
+      "name": "P03-01 staging safe cleanup avVBht",
+      "removed": true
+    },
+    {
+      "name": "P03-01 staging safe cleanup emYStt",
+      "removed": true
+    },
+    {
+      "name": "P03-01 staging safe cleanup NmOt4Y",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-1NXGfV",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-5DGPhG",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-gPk0kl",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-j2SaAc",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-OOVrhY",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-oPL0H3",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-sTydUd",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-TzIXHv",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-u8xeIs",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-vOPMWP",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-WT319v",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-zMyc7U",
+      "removed": true
+    },
+    {
+      "name": "P03-02 artifacts 0SEFd0",
+      "removed": true
+    },
+    {
+      "name": "P03-02 artifacts 1ke0zv",
+      "removed": true
+    },
+    {
+      "name": "P03-02 artifacts 3YcXi1",
+      "removed": true
+    },
+    {
+      "name": "P03-02 artifacts 7vlVrt",
+      "removed": true
+    },
+    {
+      "name": "P03-02 artifacts A3XFZJ",
+      "removed": true
+    },
+    {
+      "name": "P03-02 artifacts ocoeDB",
+      "removed": true
+    },
+    {
+      "name": "P03-02 artifacts ojh64z",
+      "removed": true
+    },
+    {
+      "name": "P03-02 artifacts ts7mgH",
+      "removed": true
+    },
+    {
+      "name": "P03-02 artifacts UxRMbg",
+      "removed": true
+    },
+    {
+      "name": "P03-02 artifacts vssrdM",
+      "removed": true
+    },
+    {
+      "name": "P03-02 artifacts YaADoS",
+      "removed": true
+    },
+    {
+      "name": "P03-02 deep Office 9PFdzO",
+      "removed": true
+    },
+    {
+      "name": "P03-02 native cancellation GRtaf1",
+      "removed": true
+    },
+    {
+      "name": "P03-02 native revocation 4C0smL",
+      "removed": true
+    },
+    {
+      "name": "P03-02 native samples xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx9cuGCC",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-e3ZisA",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-kszJTS",
+      "removed": true
+    },
+    {
+      "name": "P03-03 合成 2oYuPc",
+      "removed": true
+    },
+    {
+      "name": "P03-03 合成 DB8mxH",
+      "removed": true
+    },
+    {
+      "name": "P03-03 合成 e1lOEC",
+      "removed": true
+    },
+    {
+      "name": "P03-03 合成 H6MR1e",
+      "removed": true
+    },
+    {
+      "name": "P03-03 合成 N9t1ok",
+      "removed": true
+    },
+    {
+      "name": "P03-03 合成 nJ8liS",
+      "removed": true
+    },
+    {
+      "name": "P03-03 合成 obl6yz",
+      "removed": true
+    },
+    {
+      "name": "P03-03 合成 Ow2mmo",
+      "removed": true
+    },
+    {
+      "name": "P03-03 合成 QYD0qO",
+      "removed": true
+    },
+    {
+      "name": "P03-03 合成 RiwJz1",
+      "removed": true
+    },
+    {
+      "name": "P03-03 合成 SQPyG4",
+      "removed": true
+    },
+    {
+      "name": "P03-03 合成 xGTL4L",
+      "removed": true
+    },
+    {
+      "name": "P03-03 合成 xjpXpR",
+      "removed": true
+    },
+    {
+      "name": "P03-03 合成 ziBvWP",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-CQtUmJ",
+      "removed": true
+    },
+    {
+      "name": "P04-01 corrupt model jEc07P",
+      "removed": true
+    },
+    {
+      "name": "P04-01 synthetic 4euDY3",
+      "removed": true
+    },
+    {
+      "name": "P04-01 synthetic 4JKMoS",
+      "removed": true
+    },
+    {
+      "name": "P04-01 synthetic 5l6vOv",
+      "removed": true
+    },
+    {
+      "name": "P04-01 synthetic 7ZMUi6",
+      "removed": true
+    },
+    {
+      "name": "P04-01 synthetic A7m7bQ",
+      "removed": true
+    },
+    {
+      "name": "P04-01 synthetic gtFZkA",
+      "removed": true
+    },
+    {
+      "name": "P04-01 synthetic RA1BhY",
+      "removed": true
+    },
+    {
+      "name": "P04-01 synthetic SQdHwR",
+      "removed": true
+    },
+    {
+      "name": "P04-01 synthetic U7dTdf",
+      "removed": true
+    },
+    {
+      "name": "P04-02 synthetic 38J5DR",
+      "removed": true
+    },
+    {
+      "name": "P04-02 synthetic AbbpZX",
+      "removed": true
+    },
+    {
+      "name": "P04-02 synthetic MXyLvc",
+      "removed": true
+    },
+    {
+      "name": "P04-02 synthetic VrHxCU",
+      "removed": true
+    },
+    {
+      "name": "P04-02 synthetic zYMl23",
+      "removed": true
+    },
+    {
+      "name": "P04-03 migration 0AVcBx",
+      "removed": true
+    },
+    {
+      "name": "P04-03 synthetic 4A4Z0r",
+      "removed": true
+    },
+    {
+      "name": "P04-03 synthetic Azr9Qz",
+      "removed": true
+    },
+    {
+      "name": "P04-03 synthetic BMsSSX",
+      "removed": true
+    },
+    {
+      "name": "P04-03 synthetic fqMrtq",
+      "removed": true
+    },
+    {
+      "name": "P04-03 synthetic i9nuFq",
+      "removed": true
+    },
+    {
+      "name": "P04-03 synthetic iKw5yk",
+      "removed": true
+    },
+    {
+      "name": "P04-03 synthetic LOWoSb",
+      "removed": true
+    },
+    {
+      "name": "P04-03 synthetic mpU5zg",
+      "removed": true
+    },
+    {
+      "name": "P04-03 synthetic TqaKXB",
+      "removed": true
+    },
+    {
+      "name": "P04-03 synthetic uQQzl3",
+      "removed": true
+    },
+    {
+      "name": "P04-03 synthetic VA8b0x",
+      "removed": true
+    },
+    {
+      "name": "P04-03 synthetic xXqRhh",
+      "removed": true
+    },
+    {
+      "name": "P04-03 synthetic ZGtv1P",
+      "removed": true
+    },
+    {
+      "name": "P04-03 synthetic ZQFZhc",
+      "removed": true
+    },
+    {
+      "name": "P04-03 synthetic ZZoPml",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-63rzo5",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-l27sgv",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-PXedKP",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-SpNkMO",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-TmPpHi",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic 5TNWXI",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic nz7xAV",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic pCBr8A",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic qsYJZb",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic rtdTCG",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic Xx1qbo",
+      "removed": true
+    },
+    {
+      "name": "P05-02 destination iBut18",
+      "removed": true
+    },
+    {
+      "name": "P05-02 disk synthetic PTskmX",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic 4KMAaj",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic 73z4nf",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic 7FLMqc",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic dBpYgd",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic dH8nII",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic hvsAB6",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic uBQhbP",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic WfTeLe",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic Y5DvUW",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-6Lv3G6",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-g0Dzdy",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-IFEf7G",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-lwS8eO",
+      "removed": true
+    },
+    {
+      "name": "P02-03 performance IzZxhR",
+      "removed": true
+    },
+    {
+      "name": "P04-01 synthetic pANVEm",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-jth5nE",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-LjaJFh",
+      "removed": true
+    },
+    {
+      "name": "P00-02 Electron 中文 4awsCa",
+      "removed": true
+    },
+    {
+      "name": "P00-02 Electron 中文 7FmO8e",
+      "removed": true
+    },
+    {
+      "name": "P00-02 Electron 中文 DJeRSn",
+      "removed": true
+    },
+    {
+      "name": "P00-02 Electron 中文 duCYaJ",
+      "removed": true
+    },
+    {
+      "name": "P00-02 Electron 中文 IYxgwI",
+      "removed": true
+    },
+    {
+      "name": "P00-02 Electron 中文 PoGcKY",
+      "removed": true
+    },
+    {
+      "name": "P01-01-electron-5YtvYj",
+      "removed": true
+    },
+    {
+      "name": "P01-01-live-logout-n2NX6G",
+      "removed": true
+    },
+    {
+      "name": "P01-01-live-logout-PkWSNc",
+      "removed": true
+    },
+    {
+      "name": "P01-01-live-mock-RofaJU",
+      "removed": true
+    },
+    {
+      "name": "P01-01-utility-KYaii8",
+      "removed": true
+    },
+    {
+      "name": "P01-01-utility-m808GH",
+      "removed": true
+    },
+    {
+      "name": "P01-01-utility-rXvrjn",
+      "removed": true
+    },
+    {
+      "name": "P01-02-diagnostic-ui-Xqlzpi",
+      "removed": true
+    },
+    {
+      "name": "P01-02-electron-z0nLwU",
+      "removed": true
+    }
+  ],
+  "historicalEvidenceRestored": [
+    {
+      "path": "docs\\evidence\\P00-02\\recovery.png",
+      "originalSha256": "2b15e2c14a06c5cc614ae6943da761c93c4b54f25b90d5c3a8ffd53b28d542fa"
+    },
+    {
+      "path": "docs\\evidence\\P00-02\\regression-shell.png",
+      "originalSha256": "b9c7bc10863cf8c721bfb10406b19852d4c289413eeae0f539d761ef0bf995e0"
+    },
+    {
+      "path": "docs\\evidence\\P00-03\\native-cases.jsonl",
+      "originalSha256": "5dd0c258204e3eeb95926d9b2e436b4c2d540e99050b3646499ce580202e7a49"
+    },
+    {
+      "path": "docs\\evidence\\P03-01\\native-parser-cases.jsonl",
+      "originalSha256": "2ace3744f8265de038e670b2e3b917b143974b8da5c562f423fcba4a6f150783"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\native-preview-cases.jsonl",
+      "originalSha256": "a6a0d13757bbff11380fb95ac6d390d3274fb487ed0983bcccd89ff04bc5f836"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\native-preview-samples.json",
+      "originalSha256": "b0ffe7e5f2f4217599ecf6cf3cd00bb93bcd954d27a1c773d294509386bdee3b"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\slides-1.pptx.pdf",
+      "originalSha256": "135f23f04ece2924fa18f43b98094eeda3f7beac3c70a6179a0faf4ec39424b9"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\slides-2.pptx.pdf",
+      "originalSha256": "d619c4d6aeb50565b72b879fbf364f44424d12fef0a9f39ff25522fa42990417"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\slides-3.pptx.pdf",
+      "originalSha256": "b330945969029de8d88b805d39549a0f49a357ddbcf2204bf7e021c3ce0a012c"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\word-1.docx.pdf",
+      "originalSha256": "31a5dd05ca853c61ffe132f87f1c35367e8cdbb51e5d768979e6efefd0a6045b"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\word-2.docx.pdf",
+      "originalSha256": "520153266d4fc875c738ca954c6d6e6718dce7f56e507a5d803d49f7e440f66b"
+    },
+    {
+      "path": "docs\\evidence\\P03-02\\word-3.docx.pdf",
+      "originalSha256": "9e210d63d6544506c39918e2f2da1050986a035a45805f71fec41bcf1fe41c64"
+    },
+    {
+      "path": "docs\\evidence\\P04-01\\perf-report.json",
+      "originalSha256": "f6aa7342b332c8950eaf584402296855ebb60843027a0964ccae714a8273f4af"
+    }
+  ],
+  "liveModels": "R01-R05 deferred by user",
+  "liveSearch": "R06 pending"
+}

@@ -619,6 +619,15 @@ export function FileLibrary({
               <button disabled={busy} onClick={() => void batch('download')}>
                 {t.download}
               </button>
+              <ExportButton
+                target={{
+                  kind: 'files',
+                  files: selected.map((fileId) => {
+                    const file = files.find((item) => item.id === fileId);
+                    return { fileId, owner, ...(file ? { versionId: file.version.id } : {}) };
+                  }),
+                }}
+              />
               <label>
                 {t.folder}
                 <select
@@ -1219,3 +1228,4 @@ export function FileLibrary({
     </section>
   );
 }
+import { ExportButton } from './export-ui';

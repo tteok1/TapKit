@@ -14,6 +14,9 @@ resources/runtime/*
 !resources/runtime/.gitkeep
 resources/models/*
 !resources/models/.gitkeep
+resources/fonts/*.otf
+docs/evidence/P05-02/exported/standalone.html
+docs/evidence/**/standalone.html
 *.log
 !docs/evidence/**/*.log
 .env*

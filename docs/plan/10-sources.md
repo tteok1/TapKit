@@ -32,7 +32,7 @@
 - [BGE中文ONNX转换模型](https://huggingface.co/Xenova/bge-small-zh-v1.5)：本地CPU检索资源，使用前按revision/hash和许可锁定。
 - [LibreOffice下载](https://www.libreoffice.org/download/)：官方发行运行时来源；不能把其他便携版来源默认视为官方。
 - [Playwright Electron](https://playwright.dev/docs/api/class-electron)：开发E2E支持，存在实验性限制。
-- [Tavily搜索](https://docs.tavily.com/documentation/api-reference/endpoint/search)：独立搜索API，用户本机配置key；本地URL读取不依赖它。
+- [托管搜索设计与官方来源](17-hosted-web-search.md)：复用当前模型通道，独立URL读取不依赖搜索。原Tavily方案由ADR0066替代。
 - [GitHub PR接口](https://docs.github.com/en/rest/pulls/pulls)、[GitHub认证](https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api)：最小权限与PR创建/查询。
 
 ## 版本事实和验证区别

@@ -1,0 +1,21 @@
+{
+  "productChangedAfterUi": [],
+  "changedProductAfterGlobal": [
+    "apps/desktop/src/renderer/locales/export.zh-CN.json",
+    "apps/desktop/src/renderer/locales/web.zh-CN.json",
+    "apps/desktop/src/renderer/src/export-ui.tsx",
+    "apps/desktop/src/renderer/src/web-ui.tsx",
+    "packages/core/src/export-service.ts",
+    "apps/desktop/src/renderer/src/chat-surface.tsx",
+    "apps/desktop/src/renderer/src/styles.css"
+  ],
+  "testsChangedAfterUi": [
+    "tests/e2e/P05-01.browser-harness.ts",
+    "tests/e2e/P05-02.export.spec.ts",
+    "tests/e2e/P01-03.models.spec.ts",
+    "tests/e2e/P02-01.ui-redesign.spec.ts",
+    "tests/e2e/P02-03.chat-simplify.spec.ts",
+    "tests/e2e/P02-03.dialogs.spec.ts",
+    "tests/e2e/P04-03.memory.spec.ts"
+  ]
+}

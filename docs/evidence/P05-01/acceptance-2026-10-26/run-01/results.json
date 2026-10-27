@@ -1,0 +1,52 @@
+{
+  "head": "ad85bc467c921f4c44ad26fc0c1bba25269153cb",
+  "exitCode": 0,
+  "sourcesUnchanged": true,
+  "commands": [
+    {
+      "args": [
+        "check"
+      ],
+      "started": "2026-10-26T15:46:41.223Z",
+      "finished": "2026-10-26T15:47:01.710Z",
+      "exitCode": 0,
+      "log": "check.log"
+    },
+    {
+      "args": [
+        "test:unit",
+        "P05-01",
+        "P01-01.transport",
+        "P01-02.transport"
+      ],
+      "started": "2026-10-26T15:47:01.711Z",
+      "finished": "2026-10-26T15:47:05.081Z",
+      "exitCode": 0,
+      "log": "test-unit.log"
+    },
+    {
+      "args": [
+        "test:integration",
+        "P05-01"
+      ],
+      "started": "2026-10-26T15:47:05.081Z",
+      "finished": "2026-10-26T15:47:12.519Z",
+      "exitCode": 0,
+      "log": "test-integration.log"
+    },
+    {
+      "args": [
+        "test:e2e",
+        "--",
+        "--grep",
+        "P05-01"
+      ],
+      "started": "2026-10-26T15:47:12.519Z",
+      "finished": "2026-10-26T15:49:52.827Z",
+      "exitCode": 0,
+      "log": "test-e2e.log"
+    }
+  ],
+  "realModels": "deferred R01-R05",
+  "realSearch": "pending R06"
+}

@@ -24,7 +24,7 @@
     "test:recovery": "node scripts/not-implemented.mjs recovery",
     "test:perf": "node scripts/perf.mjs",
     "eval:agent": "node scripts/not-implemented.mjs eval",
-    "pack:dir": "node scripts/not-implemented.mjs packaging",
+    "pack:dir": "node scripts/pack-dir.mjs",
     "dist:win": "node scripts/not-implemented.mjs installer",
     "docs:check": "node scripts/docs-check.mjs",
     "format": "prettier --write .",

@@ -1,3 +1,4 @@
+import { waitCoreReady } from './core-ready';
 import { test, expect, _electron as electron } from '@playwright/test';
 import { mkdtemp, mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
@@ -20,7 +21,7 @@ test('P01-01 unconfigured diagnostics uses private Core catalog and a finite pre
   });
   try {
     const page = await app.firstWindow();
-    await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+    await waitCoreReady(page);
     await page.getByRole('link', { name: '设置', exact: true }).click();
     await page
       .getByRole('navigation', { name: '设置分类' })
@@ -91,7 +92,7 @@ for (const empty of [false, true])
       const app = await electron.launch({ args: [resolve('apps/desktop')], env: launchEnv });
       try {
         const page = await app.firstWindow();
-        await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+        await waitCoreReady(page);
         await page.getByRole('link', { name: '设置', exact: true }).click();
         await page
           .getByRole('navigation', { name: '设置分类' })

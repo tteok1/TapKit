@@ -1,0 +1,295 @@
+{
+  "started": "2026-10-27T08:56:19.692Z",
+  "requests": 1,
+  "model": "gpt-6.1-sol",
+  "noPrivateContext": true,
+  "nativeStateSaved": false,
+  "httpStatus": 200,
+  "responseType": "missing",
+  "usage": {
+    "inputTotal": 8725,
+    "outputTotal": 204,
+    "inputCachedSubset": 4096,
+    "reasoningSubset": 40,
+    "source": "actual"
+  },
+  "result": {
+    "searches": 1,
+    "candidates": [
+      {
+        "url": "https://www.typescriptlang.org/docs/",
+        "title": "www.typescriptlang.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://nodejs.org/api/documentation.html",
+        "title": "nodejs.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://nodejs.org/en/about",
+        "title": "nodejs.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.electronjs.org/docs/latest/",
+        "title": "www.electronjs.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://nodejs.org/api/",
+        "title": "nodejs.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.node.org/",
+        "title": "www.node.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.electronjs.org/zh/docs/latest/README",
+        "title": "www.electronjs.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://github.com/electron/electron/blob/main/docs/README.md",
+        "title": "github.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://github.com/nodejs/node/blob/main/README.md",
+        "title": "github.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.typescriptlang.org/docs/handbook/intro",
+        "title": "www.typescriptlang.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://nodejs.org/en/docs/",
+        "title": "nodejs.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://github.com/microsoft/TypeScript/blob/main/README.md?plain=1",
+        "title": "github.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://simplifycpp.org/books/Mastering_TypeScript.pdf",
+        "title": "simplifycpp.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://nadimkobeissi.github.io/nyu-paris-cs/security/pdf/readings/Electron%20Security%20Checklist%20A%20Guide%20for%20Developers%20and%20Auditors.pdf",
+        "title": "nadimkobeissi.github.io",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://digikogu.taltech.ee/et/Download/dd80fc23-2a8f-405f-a698-71b8e2dead07",
+        "title": "digikogu.taltech.ee",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1020020/manuals/Manual_en.pdf?t=1625190487",
+        "title": "shared.fastly.steamstatic.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://typescript-v2-801.vercel.app/assets/typescript-handbook-beta.pdf",
+        "title": "typescript-v2-801.vercel.app",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://thomashunter.name/media/node-docs/node-v16-docs.pdf",
+        "title": "thomashunter.name",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.reddit.com/r/typescript/comments/1ebx3v8",
+        "title": "www.reddit.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Node.js",
+        "title": "en.wikipedia.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Electron_%28software_framework%29",
+        "title": "en.wikipedia.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://zh.wikipedia.org/wiki/TypeScript",
+        "title": "zh.wikipedia.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/TypeScript",
+        "title": "en.wikipedia.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.reddit.com/r/electronjs/comments/ge7pdj",
+        "title": "www.reddit.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.reddit.com/r/typescript/comments/eoccot",
+        "title": "www.reddit.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://it.wikipedia.org/wiki/TypeScript",
+        "title": "it.wikipedia.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://zh.wikipedia.org/wiki/Node.js",
+        "title": "zh.wikipedia.org",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.reddit.com/r/typescript/comments/11k4hgt",
+        "title": "www.reddit.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.reddit.com/r/typescript/comments/dlza4b",
+        "title": "www.reddit.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=ZHeP0ugMoqo",
+        "title": "www.youtube.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.reddit.com/r/typescript/comments/1b2fvxg",
+        "title": "www.reddit.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.reddit.com/r/vuejs/comments/1b2raod",
+        "title": "www.reddit.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.reddit.com/r/learnprogramming/comments/rr1cxg",
+        "title": "www.reddit.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.reddit.com/r/node/comments/snie72",
+        "title": "www.reddit.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.reddit.com/r/u_Few_Text6300/comments/1kehr3u",
+        "title": "www.reddit.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.techradar.com/pro/how-small-businesses-can-use-nodejs-to-save-time-and-money",
+        "title": "www.techradar.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.reddit.com/r/electronjs/comments/1vlhvht/i_built_a_typesafe_modular_ipc_library_for/",
+        "title": "www.reddit.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://www.reddit.com/r/node/comments/151y5sg",
+        "title": "www.reddit.com",
+        "snippet": "",
+        "fetchedAt": 1793091390731
+      },
+      {
+        "url": "https://nodejs.org/api/?utm_source=openai",
+        "title": "Index | Node.js v26.12.1 Documentation",
+        "snippet": "",
+        "fetchedAt": 1793091392526
+      },
+      {
+        "url": "https://www.typescriptlang.org/docs/?utm_source=openai",
+        "title": "TypeScript: The starting point for learning TypeScript",
+        "snippet": "",
+        "fetchedAt": 1793091394001
+      },
+      {
+        "url": "https://www.electronjs.org/docs/latest/?utm_source=openai",
+        "title": "Introduction | Electron",
+        "snippet": "",
+        "fetchedAt": 1793091395636
+      }
+    ]
+  },
+  "readErrors": [
+    {
+      "url": "https://nodejs.org/en/about",
+      "code": "CANCELLED"
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://www.typescriptlang.org/docs/",
+      "title": "TypeScript: The starting point for learning TypeScript",
+      "characters": 2544,
+      "contentHash": "c8cfde271d89ea62c3484b7a354d2b522a3cf775f1896e9edecbc2afde0ac2e7"
+    },
+    {
+      "url": "https://nodejs.org/api/documentation.html",
+      "title": "About this documentation | Node.js v26.12.1 Documentation",
+      "characters": 5616,
+      "contentHash": "4dab08385242051833e46f822650bbd61a548c1ee1fb8cb96e34f2b3359d57e9"
+    },
+    {
+      "url": "https://www.electronjs.org/docs/latest/",
+      "title": "Introduction | Electron",
+      "characters": 3117,
+      "contentHash": "536a0d77ae2e4ad30d9c2232c6b4f50f071900c0ef5c1b839a171fcef1e0f6d0"
+    }
+  ],
+  "status": "search_and_three_reads_passed",
+  "finished": "2026-10-27T08:57:17.729Z"
+}

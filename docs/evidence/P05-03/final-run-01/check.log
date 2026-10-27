@@ -1,0 +1,26 @@
+$ node scripts/check.mjs
+Formatting checked 536 repository files; 0 failures.
+Dependency boundaries verified
+Runtime/dependency/wheel manifests verified
+
+SyntaxError: The requested module '../../packages/contracts/src/providers' does not provide an export named 'ProviderListSchema'
+
+SyntaxError: The requested module '../../packages/contracts/src' does not provide an export named 'WorkspaceViewSchema'
+
+SyntaxError: The requested module '@tapkit/contracts' does not provide an export named 'EXECUTION_POLICY'
+Listing tests:
+Total: 0 tests in 0 files
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/check.mjs:10:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.

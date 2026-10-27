@@ -1,3 +1,4 @@
+import { waitCoreReady } from './core-ready';
 import { openSessionFixture } from './session-fixture';
 import {
   test,
@@ -24,7 +25,7 @@ async function launch() {
   delete env.ELECTRON_RUN_AS_NODE;
   app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
   page = await app.firstWindow();
-  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+  await waitCoreReady(page);
 }
 async function command(cmd: ChatCommand, payload: unknown) {
   return page.evaluate(

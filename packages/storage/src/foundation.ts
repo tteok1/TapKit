@@ -32,6 +32,8 @@ import projectsSql from '../../../migrations/0011_projects.sql?raw';
 import retrievalSql from '../../../migrations/0012_retrieval.sql?raw';
 import contextSql from '../../../migrations/0013_context.sql?raw';
 import memorySql from '../../../migrations/0014_memory.sql?raw';
+import webSql from '../../../migrations/0015_web.sql?raw';
+import exportsSql from '../../../migrations/0016_exports.sql?raw';
 
 let startupTraceSequence = 0;
 function startupTrace(scope: string) {
@@ -117,8 +119,10 @@ export const migrations: Migration[] = [
   { version: 12, sql: retrievalSql },
   { version: 13, sql: contextSql },
   { version: 14, sql: memorySql },
+  { version: 15, sql: webSql },
+  { version: 16, sql: exportsSql },
 ];
-export const SCHEMA_VERSION = 14;
+export const SCHEMA_VERSION = 16;
 export async function migrate(db: Database.Database, backupDirectory: string, steps = migrations) {
   const trace = startupTrace('storage.migrate');
   trace('version.begin');
@@ -134,7 +138,7 @@ export async function migrate(db: Database.Database, backupDirectory: string, st
       join(backupDirectory, 'pre-migration-' + migration.version + '-' + newId() + '.sqlite'),
     );
     trace('schema-transaction.begin');
-    const rebuildAccounts = migration.version === 3;
+    const rebuildAccounts = migration.version === 3 || migration.version === 16;
     if (rebuildAccounts) db.pragma('foreign_keys = OFF');
     try {
       db.transaction(() => {

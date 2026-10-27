@@ -1,3 +1,4 @@
+import { waitCoreReady } from './core-ready';
 import { test, expect, _electron as electron, type ElectronApplication } from '@playwright/test';
 import { mkdtemp, readFile, readdir } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
@@ -15,7 +16,7 @@ test('P01-02 real desktop UI stores both formats with DPAPI, restarts metadata a
   try {
     app = await electron.launch({ args: [resolve('apps/desktop')], env });
     let page = await app.firstWindow();
-    await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+    await waitCoreReady(page);
     await page.getByRole('link', { name: '设置', exact: true }).click();
     await page
       .getByRole('navigation', { name: '设置分类' })
@@ -68,7 +69,7 @@ test('P01-02 real desktop UI stores both formats with DPAPI, restarts metadata a
     );
     app = await electron.launch({ args: [resolve('apps/desktop')], env });
     page = await app.firstWindow();
-    await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+    await waitCoreReady(page);
     // A restored window may resume the account route. Use the real home entry
     // before selecting its account shortcut; keep persistence assertions below.
     await page.keyboard.press('Control+n');
@@ -95,7 +96,7 @@ test('P01-02 real desktop UI stores both formats with DPAPI, restarts metadata a
       .getByRole('navigation', { name: '设置分类' })
       .getByRole('link', { name: '模型连接', exact: true })
       .click();
-    await page.getByRole('link', { name: 'Codex 连接诊断', exact: true }).click();
+    await page.getByRole('link', { name: 'Codex 订阅账户', exact: true }).click();
     await expect(page.getByTestId('codex-empty')).toBeVisible();
     expect(
       await page.evaluate(() => 'readCredential' in window.tapkit || 'invoke' in window.tapkit),
@@ -137,7 +138,7 @@ test('P01-02 API diagnostic displays probe phase, business code and truncation t
   });
   try {
     const page = await app.firstWindow();
-    await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+    await waitCoreReady(page);
     await page.getByRole('link', { name: '设置', exact: true }).click();
     await page
       .getByRole('navigation', { name: '设置分类' })

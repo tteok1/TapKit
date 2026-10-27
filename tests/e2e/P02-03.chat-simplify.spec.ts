@@ -196,9 +196,58 @@ for (const [width, height, zoom] of [
       '隔离测试回复：界面精简后的发送回归',
     );
     await expect(page.locator('.chat-message.user')).toHaveCount(1);
+    await expect(page.getByRole('button', { name: '停止', exact: true })).toHaveCount(0);
     const answer = page.locator('.chat-message.assistant').last();
-    await answer.getByRole('button', { name: '复制回复', exact: true }).hover();
-    await expect(page.getByRole('tooltip', { name: '复制回复', exact: true })).toBeVisible();
+    await page.mouse.move(0, 0);
+    await answer.getByRole('button', { name: '复制回复', exact: true }).scrollIntoViewIfNeeded();
+    await page.evaluate(
+      () =>
+        new Promise<void>((resolve) =>
+          requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+        ),
+    );
+    await page.evaluate(() => {
+      const rows: unknown[] = [];
+      (window as unknown as { hoverDiagnostics: unknown[] }).hoverDiagnostics = rows;
+      for (const type of ['pointerover', 'pointerout', 'scroll'])
+        document.addEventListener(
+          type,
+          (event) => {
+            const target = event.target instanceof Element ? event.target : null;
+            rows.push({
+              type,
+              target: target?.tagName,
+              classes: target?.getAttribute('class'),
+              hint: target?.closest('[data-tooltip]')?.getAttribute('data-tooltip'),
+              time: performance.now(),
+            });
+            if (rows.length > 30) rows.shift();
+          },
+          true,
+        );
+    });
+    try {
+      await answer.getByRole('button', { name: '复制回复', exact: true }).hover();
+      await expect(page.getByRole('tooltip', { name: '复制回复', exact: true })).toBeVisible();
+    } finally {
+      console.log(
+        'HOVER_DIAGNOSTICS',
+        JSON.stringify(
+          await page.evaluate(() => ({
+            rows: (window as unknown as { hoverDiagnostics: unknown[] }).hoverDiagnostics,
+            hovered: [...document.querySelectorAll(':hover')].map((e) => ({
+              tag: e.tagName,
+              classes: e.getAttribute('class'),
+              hint: e.getAttribute('data-tooltip'),
+            })),
+            tooltip: [...document.querySelectorAll('[role=tooltip]')].map((e) => ({
+              text: e.textContent,
+              open: e.matches(':popover-open'),
+            })),
+          })),
+        ),
+      );
+    }
     await answer.getByRole('button', { name: '收藏', exact: true }).click();
     await expect(answer.getByRole('button', { name: '取消收藏', exact: true })).toHaveAttribute(
       'aria-pressed',

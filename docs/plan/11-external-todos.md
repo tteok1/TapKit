@@ -9,7 +9,7 @@
 | R03 | 混元兼容API Key与已开通modelId | P01-02 | 预填endpoint；账号配置待接入 | 同上 |
 | R04 | Grok xAI API Key与模型权限 | P01-02 | 同上 | 同上 |
 | R05 | 豆包Ark API Key及modelId/ep-id | P01-02 | 空modelId保持未配置；不编造接入点 | 同上 |
-| R06 | Tavily搜索API Key | P05-01 | 明确“搜索未配置”，URL读取可用；不把无搜索结果当搜索成功 | 搜索→访问原文→引用E2E |
+| R06 | 当前模型通道托管搜索兼容性，无独立Key | P05-01 | 协议不支持/厂商拒绝时明确提示，URL读取可用；不能伪报空结果 | 按账号/模型记录搜索→3页原文→引用；用户授权Codex最多2次公开问题验证 |
 | R07 | GitHub测试仓库和最小权限token | P09-03 | 本地Git可开发；PR功能标未live | draft PR读取核验和删除测试资源记录 |
 | R08 | 脱敏Office/PDF/代码/检索真实材料 | P03起 | 使用仓库自建fixture；正式质量评测需代表性材料 | fixture manifest、人工评分 |
 | R09 | 目标Windows标准用户/干净虚拟机 | P00-03、P11-02 | 开发机验证不冒充干净安装通过 | OS/硬件、无运行时预装、安装记录 |

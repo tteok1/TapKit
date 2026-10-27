@@ -1,0 +1,19 @@
+{
+  "exitCode": 0,
+  "sourcesUnchanged": true,
+  "commands": [
+    {
+      "args": [
+        "pack:dir"
+      ],
+      "started": "2026-10-27T09:22:07.660Z",
+      "finished": "2026-10-27T09:41:49.920Z",
+      "exitCode": 0,
+      "log": "pack-dir.log"
+    }
+  ],
+  "temporaryCleanup": [],
+  "historicalEvidenceRestored": [],
+  "liveModels": "R01-R05 deferred by user",
+  "liveSearch": "R06 pending"
+}

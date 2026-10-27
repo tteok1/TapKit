@@ -1,0 +1,14 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { resolve, join } from 'node:path';
+const root=resolve(import.meta.dirname,'../../..'), evidence=join(root,'docs/evidence/P05-03');
+const global=JSON.parse(readFileSync(join(evidence,'all-run-03/sources.json'),'utf8')).files;
+const ui=JSON.parse(readFileSync(join(evidence,'ui-run-01/sources.json'),'utf8')).files;
+const current=Object.fromEntries(Object.keys(ui).map(path=>[path,createHash('sha256').update(readFileSync(join(root,path))).digest('hex')]));
+const diff=(before)=>Object.keys(current).filter(path=>current[path]!==before[path]).map(path=>({path,before:before[path]??null,after:current[path]}));
+const afterUi=diff(ui), afterGlobal=diff(global);
+const productChangedAfterUi=afterUi.filter(x=>/^(apps|packages|migrations|native|resources)\//.test(x.path));
+const receipt={base:'ad85bc467c921f4c44ad26fc0c1bba25269153cb',dirty:true,productChangedAfterUi,changesFromGlobal:afterGlobal,changesAfterUi:afterUi,note:'Global native/other-module checks plus final export unit/integration and desktop delta rounds; no claim of one all-green global round.'};
+writeFileSync(join(evidence,'final-input-audit.json'),JSON.stringify(receipt,null,2));
+console.log(JSON.stringify({productChangedAfterUi,changedProductAfterGlobal:afterGlobal.filter(x=>/^(apps|packages|migrations|native|resources)\//.test(x.path)).map(x=>x.path),testsChangedAfterUi:afterUi.filter(x=>x.path.startsWith('tests/')).map(x=>x.path)},null,2));
+if(productChangedAfterUi.length)process.exitCode=1;

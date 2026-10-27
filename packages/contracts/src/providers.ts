@@ -211,6 +211,7 @@ export type CanonicalMessage =
     }
   | { role: 'tool'; callId: string; name: string; text: string; isError: boolean };
 export type ModelRequest = {
+  hostedSearch?: import('./web').WebOptions;
   logicalCallId: string;
   attemptId: string;
   accountId: string;
@@ -247,6 +248,7 @@ export type ProviderError = {
   retryAfterMs?: number;
 };
 export type ModelEvent =
+  | { type: 'hosted_search'; result: import('./web').HostedSearchResult }
   | { type: 'start'; attemptId: string; upstreamId?: string }
   | { type: 'text_delta'; blockId: string; text: string }
   | { type: 'tool_delta'; callId: string; name?: string; argumentsDelta: string }

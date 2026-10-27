@@ -61,6 +61,16 @@ export class MemoryBlobStore extends BlobStore {
     this.bytes.set(row.id, Buffer.from(value));
     return row;
   }
+  override async readWebSource(sourceId: string) {
+    const row = this.memory.db
+      .prepare(
+        'SELECT w.snapshot_blob_id FROM web_sources w JOIN sessions s ON s.id=w.session_id WHERE w.id=? AND w.profile_id=? AND s.deleted_at IS NULL',
+      )
+      .get(sourceId, this.memory.profileId) as { snapshot_blob_id: string } | undefined;
+    const bytes = row && this.bytes.get(row.snapshot_blob_id);
+    if (!bytes) throw new StorageError('NOT_FOUND');
+    return Buffer.from(bytes);
+  }
   override async readVersion(versionId: string) {
     const row = this.memory.db
       .prepare(

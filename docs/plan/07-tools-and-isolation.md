@@ -1,5 +1,11 @@
 # 工具网关、Windows执行隔离与网络策略
 
+P05-03复核：Core逐轮web.read URL精确白名单来自当前用户显式URL、实际搜索结果和已读正文原始链接，禁止模型拼接query/path携带背景；网络逐跳公开地址/域名策略继续执行。拒绝路径有“附加PRIVATE_MEMORY查询且wire调用数不变”的确定性测试。
+
+P05-02：导出使用无Node/preload/页面脚本的独立沙箱renderer；仅本次内存HTML及内嵌锁定字体，拒绝网络/弹窗/下载/权限，固定CDP DOM/CSS观察后PDF分页；取消/超时销毁。ZIP只复制明确选入的授权固定版本与安全相对路径，写盘wx且在前后复验来源/租约，失败仅清理本次inode。见[ADR0065](../adr/0065-reviewed-local-export-and-chat-snapshot.md)。
+
+P05-01 实施补充：web.search 的 query 必须与本轮用户原问题（去掉 URL，至多500字符）相同；days/language/country/domains/excludeDomains 从会话配置读取，不接受模型扩权。web.read 参数只有 url/maxChars，正文上限20k、归档全文上限5m字符、网络50MiB；动态读与静态读共享网络上限。统一 NetworkPolicy 和匿名代理/固定 CDP 观察见 [ADR0064](../adr/0064-public-web-snapshots-and-anonymous-network.md)。搜索按[ADR0066](../adr/0066-isolated-provider-hosted-search.md)及[具体设计](17-hosted-web-search.md)执行：当前通道隔离托管搜索，同账号单次账本，无独立Key。域名硬约束；时间/语言/地区是显式检索偏好。R06未验不宣称真实通道通过。
+
 2026-10-19 [ADR0055](../adr/0055-current-account-native-verification.md)按用户最新要求覆盖本轮本机能力前置：管理员账户优先，独立标准用户暂缓。显式current-user可在完整隔离测试通过、fingerprint及当前账户/权限绑定一致后仅向同一范围提供能力；standardUser如实记录，标准用户/阶段完整验收仍独立。原AppContainer/ACL/Job/无网络/资源限制和默认标准用户探测不变。
 
 2026-10-17 P02-03：[ADR0054](../adr/0054-source-background-is-not-system-instructions.md)隔离历史/记忆数据和可信系统指令；背景仍经原权限/版本校验、计入预算，不授权工具或覆盖本轮要求。工具结果配对/原生网关和只读side_effect保持。
@@ -125,7 +131,7 @@ Git网络由专门broker执行fetch/push，关闭外部hooks、credential helper
 
 应用模型请求、搜索、下载统一经过NetworkPolicyService；HTTPS校验证书，不支持“忽略TLS错误”。系统代理默认开启；手工代理保存在凭据代理中。代理变更只影响新请求，连接诊断列出DNS/TLS/认证/超时类别。
 
-目的地分类：模型固定provider域名；搜索Tavily；用户明确URL的公开HTTP(S)；下载锁定registry；本地preview的进程端口租约。阻止私网/loopback/link-local/云元数据IPv4/IPv6、非HTTP scheme、DNS重绑定和重定向转私网；每次连接重新解析并绑定验证的地址，限制最多5次redirect和50MiB响应。
+目的地分类：模型固定provider域名；搜索使用同一模型通道的隔离托管请求；用户明确URL的公开HTTP(S)；下载锁定registry；本地preview的进程端口租约。阻止私网/loopback/link-local/云元数据IPv4/IPv6、非HTTP scheme、DNS重绑定和重定向转私网；每次连接重新解析并绑定验证的地址，限制最多5次redirect和50MiB响应。
 
 浏览器session强制走本机受控代理，代理只接受该session的一次性授权连接；禁用QUIC和WebRTC绕行，绕过列表不能放行localhost。禁止下载弹出任意exe、协议调用、文件选择和权限请求。浏览器不能访问tapkit-artifact与app IPC。浏览器的内核网络隔离与Node请求限制都要分别测试。
 

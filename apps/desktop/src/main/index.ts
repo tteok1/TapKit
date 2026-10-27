@@ -42,6 +42,8 @@ import {
   FileCommandSchemas,
   ArtifactCommandSchemas,
   ProjectCommandSchemas,
+  WebCommandSchemas,
+  ExportCommandSchemas,
   ArtifactAssetSchema,
   ArtifactAccessSchema,
   FileGetSchema,
@@ -56,6 +58,12 @@ import strings from './zh-CN.json';
 import { avatarDimensions, readAvatarFile } from './avatar';
 import { ArtifactProtocol } from './artifact-protocol';
 import { ExternalArtifact } from './external-artifact';
+import { AnonymousReader, configureAnonymousNetwork } from './browser';
+import { ExportPdfRenderer } from './export-pdf';
+const exportPdf = new ExportPdfRenderer();
+const exportDestinations = new Map<string, { windowId: string; path: string }>();
+configureAnonymousNetwork();
+const anonymousReader = new AnonymousReader();
 protocol.registerSchemesAsPrivileged([
   {
     scheme: 'tapkit-artifact',
@@ -210,6 +218,74 @@ function startCore() {
     if (!parsed.success || generation !== current) return;
     const message = parsed.data;
     if (message.type === 'vault.request') {
+      if (message.operation === 'export.pdf' || message.operation === 'export.cancelPdf') {
+        const work = async () => {
+          if (message.operation === 'export.cancelPdf') {
+            exportPdf.cancel(
+              z.strictObject({ token: z.string().uuid() }).parse(message.payload).token,
+            );
+            return true;
+          }
+          const p = z
+            .strictObject({ token: z.string().uuid(), html: z.string().max(35000000) })
+            .parse(message.payload);
+          return (await exportPdf.render(p.token, p.html)).toString('base64');
+        };
+        void work().then(
+          (value) => {
+            if (core === child)
+              child.postMessage({ type: 'vault.reply', id: message.id, ok: true, value });
+          },
+          () => {
+            if (core === child)
+              child.postMessage({
+                type: 'vault.reply',
+                id: message.id,
+                ok: false,
+                value: 'WEB_UNAVAILABLE',
+              });
+          },
+        );
+        return;
+      }
+      if (message.operation === 'web.read' || message.operation === 'web.cancel') {
+        const work = async () => {
+          if (message.operation === 'web.cancel') {
+            const p = z.strictObject({ token: z.string().uuid() }).parse(message.payload);
+            anonymousReader.cancel(p.token);
+            return true;
+          }
+          const p = z
+            .strictObject({
+              token: z.string().uuid(),
+              url: z.string().url().max(4096),
+              proxyURL: z.string().max(2048),
+              remainingBytes: z
+                .number()
+                .int()
+                .min(1)
+                .max(50 * 1024 * 1024),
+            })
+            .parse(message.payload);
+          return anonymousReader.read(p.token, p.url, p.proxyURL, p.remainingBytes);
+        };
+        void work().then(
+          (value) => {
+            if (core === child)
+              child.postMessage({ type: 'vault.reply', id: message.id, ok: true, value });
+          },
+          () => {
+            if (core === child)
+              child.postMessage({
+                type: 'vault.reply',
+                id: message.id,
+                ok: false,
+                value: 'WEB_UNAVAILABLE',
+              });
+          },
+        );
+        return;
+      }
       if (message.operation === 'network.proxy.resolve') {
         void resolveSystemProxy(message.payload).then(
           (value) => {
@@ -412,6 +488,8 @@ function createWindow(initialRoute?: string) {
     artifactProtocols.delete(webContentsId);
     core?.postMessage({ type: 'window.closed', windowId: String(slot) });
     windowSlots.delete(webContentsId);
+    for (const [key, destination] of exportDestinations)
+      if (destination.windowId === String(slot)) exportDestinations.delete(key);
     windows.delete(window);
     subscribers.delete(webContentsId);
   });
@@ -473,6 +551,8 @@ if (ownsLock) {
       ...Object.keys(FileCommandSchemas),
       ...Object.keys(ArtifactCommandSchemas),
       ...Object.keys(ProjectCommandSchemas),
+      ...Object.keys(WebCommandSchemas),
+      ...Object.keys(ExportCommandSchemas),
       'models.catalog',
       'models.preferences.get',
       'models.preferences.set',
@@ -564,6 +644,75 @@ if (ownsLock) {
       if (result.canceled || !result.filePath) return false;
       writeFileSync(result.filePath, value.text, { encoding: 'utf8', flag: 'wx' });
       return true;
+    });
+    ipcMain.handle('tapkit:save-search-key', async (event, raw: unknown) => {
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      return authSecrets.saveSearchKey(raw);
+    });
+    ipcMain.handle('tapkit:save-export', async (event, raw: unknown) => {
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      const p = z
+          .strictObject({
+            previewId: IdSchema,
+            snapshotVersion: z.string().regex(/^[a-f0-9]{64}$/),
+          })
+          .parse(raw),
+        windowId = windowSlots.get(event.sender.id)!;
+      await ready;
+      const inspected = ReplySchema.parse(
+        await forward({ type: 'exports.inspect', requestId: uuid7(), windowId, ...p }),
+      );
+      if (!inspected.ok || !('exportDestination' in inspected.data)) return inspected;
+      const destination = inspected.data.exportDestination;
+      const selected = await dialog.showSaveDialog(BrowserWindow.fromWebContents(event.sender)!, {
+        defaultPath: destination.name,
+        filters: [{ name: destination.format.toUpperCase(), extensions: [destination.format] }],
+      });
+      if (selected.canceled || !selected.filePath) return null;
+      if (!checkSender(event) || windowSlots.get(event.sender.id) !== windowId)
+        throw new Error('PERMISSION_DENIED');
+      const reply = ReplySchema.parse(
+        await forward({
+          type: 'exports.write',
+          requestId: uuid7(),
+          windowId,
+          ...p,
+          targetPath: selected.filePath,
+        }),
+      );
+      if (reply.ok && 'exportStatus' in reply.data)
+        exportDestinations.set(reply.data.exportStatus.exportId, {
+          windowId,
+          path: selected.filePath,
+        });
+      return reply;
+    });
+    ipcMain.handle('tapkit:open-export-folder', async (event, raw: unknown) => {
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      const id = IdSchema.parse(raw),
+        destination = exportDestinations.get(id),
+        windowId = windowSlots.get(event.sender.id)!;
+      if (!destination || destination.windowId !== windowId) throw new Error('PERMISSION_DENIED');
+      const reply = ReplySchema.parse(
+        await forward({
+          type: 'request',
+          request: {
+            protocolVersion: 1,
+            requestId: uuid7(),
+            windowId,
+            command: 'exports.status',
+            payload: { exportId: id },
+          },
+        }),
+      );
+      if (
+        !reply.ok ||
+        !('exportStatus' in reply.data) ||
+        (reply.data.exportStatus.state !== 'completed' &&
+          reply.data.exportStatus.errorCode !== 'SIDE_EFFECT_UNKNOWN')
+      )
+        throw new Error('CONFLICT');
+      shell.showItemInFolder(destination.path);
     });
     ipcMain.handle('tapkit:choose-directory', async (event) => {
       if (!checkSender(event)) throw new Error('PERMISSION_DENIED');

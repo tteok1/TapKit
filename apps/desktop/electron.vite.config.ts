@@ -15,7 +15,7 @@ export default defineConfig({
       {
         name: 'tapkit-core-watch',
         buildStart() {
-          for (const pkg of ['core', 'storage', 'contracts', 'providers', 'tools'])
+          for (const pkg of ['core', 'storage', 'contracts', 'providers', 'tools', 'network'])
             for (const file of coreSources(join(root, 'packages', pkg, 'src')))
               this.addWatchFile(file);
         },
@@ -26,7 +26,7 @@ export default defineConfig({
         },
       },
     ],
-    build: { externalizeDeps: { exclude: ['@tapkit/contracts', 'zod'] } },
+    build: { externalizeDeps: { exclude: ['@tapkit/contracts', '@tapkit/network', 'zod'] } },
   },
   preload: { build: { externalizeDeps: { exclude: ['@tapkit/contracts', 'zod'] } } },
   renderer: {

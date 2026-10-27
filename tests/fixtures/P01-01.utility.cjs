@@ -88,10 +88,15 @@ if (process.parentPort) {
     const child = utilityProcess.fork(__filename, [], { stdio: 'pipe', env: process.env });
     let requestCount = 0;
     let outcome;
-    const timer = setTimeout(() => {
+    const startupTimeout = [15000, 120000].includes(
+      Number(process.env.TAPKIT_TEST_CORE_READY_TIMEOUT),
+    )
+      ? Number(process.env.TAPKIT_TEST_CORE_READY_TIMEOUT)
+      : 15000;
+    let timer = setTimeout(() => {
       child.kill();
       app.exit(1);
-    }, 20000);
+    }, startupTimeout);
     child.on('message', (message) => {
       if (message.fixture === 'request') {
         requestCount++;
@@ -99,26 +104,33 @@ if (process.parentPort) {
       }
       if (message.type === 'vault.request') {
         const value =
-          message.operation === 'credential.read'
-            ? {
-                version: 1,
-                credential: {
-                  type: 'oauth',
-                  access: token,
-                  refresh: 'mock-refresh',
-                  expires: Date.now() + 3600000,
-                  accountId: 'mock-account',
-                },
-              }
-            : message.operation === 'native.save'
+          message.operation === 'network.proxy.resolve'
+            ? { proxyURL: '' }
+            : message.operation === 'credential.read'
               ? {
-                  contentHash: createHash('sha256')
-                    .update(JSON.stringify(message.payload))
-                    .digest('hex'),
+                  version: 1,
+                  credential: {
+                    type: 'oauth',
+                    access: token,
+                    refresh: 'mock-refresh',
+                    expires: Date.now() + 3600000,
+                    accountId: 'mock-account',
+                  },
                 }
-              : {};
+              : message.operation === 'native.save'
+                ? {
+                    contentHash: createHash('sha256')
+                      .update(JSON.stringify(message.payload))
+                      .digest('hex'),
+                  }
+                : {};
         child.postMessage({ type: 'vault.reply', id: message.id, ok: true, value });
       } else if (message.type === 'ready') {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          child.kill();
+          app.exit(1);
+        }, 20000);
         child.postMessage({
           type: 'request',
           id: randomUUID(),

@@ -1,0 +1,13 @@
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  17:01:46
+   Duration  6.62s (tests 52%, transform 34%, import 14%)
+
+  Transform  transforming modules took 2.16s · 34% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+

@@ -1,0 +1,48 @@
+$ vitest run --config vitest.config.ts --project integration "P05-01"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P05-01.network.test.ts (2 tests | 2 failed) 32ms
+   × P05-01 T19 actual HTTP proxy uses pinned addresses, keeps path/query and rejects redirected private targets 20ms
+   × P05-01 T19 actual transfer byte limits, redirect bounds, domain filters, compression and cancellation fail closed 12ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P05-01.network.test.ts > P05-01 T19 actual HTTP proxy uses pinned addresses, keeps path/query and rejects redirected private targets
+TypeError: The property 'Host in options.headers' must match the request authority (8.8.8.8). Received 'example.com'
+ ❯ packages/network/src/policy.ts:92:44
+     90|     const limit = Math.min(options.limit ?? WEB_BYTE_LIMIT, WEB_BYTE_L…
+     91|     return new Promise((resolve, reject) => {
+     92|       const req = (secure ? httpsRequest : httpRequest)({
+       |                                            ^
+     93|         hostname: dest.address.address, port: dest.url.port || (secure…
+     94|         servername: dest.host, path: dest.url.pathname + dest.url.sear…
+ ❯ NetworkPolicyService.wire packages/network/src/policy.ts:91:12
+ ❯ NetworkPolicyService.request packages/network/src/policy.ts:74:32
+ ❯ tests/integration/P05-01.network.test.ts:22:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |integration| tests/integration/P05-01.network.test.ts > P05-01 T19 actual transfer byte limits, redirect bounds, domain filters, compression and cancellation fail closed
+AssertionError: expected [Function] to throw error including 'FILE_TOO_LARGE' but got 'The property \'Host in options.header…'
+
+Expected: "FILE_TOO_LARGE"
+Received: "The property 'Host in options.headers' must match the request authority (8.8.8.8). Received 'example.com'"
+
+ ❯ tests/integration/P05-01.network.test.ts:39:73
+     37|   });
+     38|   try {
+     39|     await expect(f.policy.request('http://example.com', { limit: 1024 …
+       |                                                                         ^
+     40|     mode = 'gzip'; await expect(f.policy.request('http://example.com')…
+     41|     mode = 'redirect'; const before = hits;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 4 passed (6)
+   Start at  23:17:47
+   Duration  5.56s (transform 42%, tests 37%, import 19%, setup 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.

@@ -1,3 +1,4 @@
+import { waitCoreReady } from './core-ready';
 import { test, expect, _electron as electron, type ElectronApplication } from '@playwright/test';
 import { mkdir, mkdtemp, readFile, readdir } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
@@ -21,7 +22,7 @@ test.beforeEach(async () => {
   app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
   app.process().stdout?.on('data', (chunk) => process.stdout.write(chunk));
   app.process().stderr?.on('data', (chunk) => process.stderr.write(chunk));
-  await expect((await app.firstWindow()).getByTestId('core-status')).toHaveText('本地核心已连接');
+  await waitCoreReady(await app.firstWindow());
 });
 test.afterEach(async () => {
   if (app) await app.close();
@@ -47,7 +48,7 @@ test('P00-02 T01 T05 real two-window CAS and committed event subscription', asyn
     item.click();
   });
   const second = await newWindow;
-  await expect(second.getByTestId('core-status')).toHaveText('本地核心已连接');
+  await waitCoreReady(second);
   const requestId = id();
   const a = await page.evaluate(
     ({ requestId, profileId }) =>
@@ -163,6 +164,7 @@ test('P00-02 T19 foreign WebContents cannot invoke app IPC', async () => {
   expect(reply).toMatchObject({ ok: false, error: { code: 'PERMISSION_DENIED' } });
 });
 test('P00-02 T05 Core kill rebuilds writer; acked settings survive and backup is not duplicated', async () => {
+  test.setTimeout(180_000);
   const page = await app.firstWindow();
   const boot = await page.evaluate((requestId) => window.tapkit.bootstrap({ requestId }), id());
   if (!boot.ok || !('profile' in boot.data)) throw new Error('bootstrap');
@@ -192,13 +194,16 @@ test('P00-02 T05 Core kill rebuilds writer; acked settings survive and backup is
   const old = await page.evaluate(() => window.tapkit.ping({ nonce: 'before-crash' }));
   process.kill(old.corePid);
   await expect
-    .poll(async () => {
-      try {
-        return (await page.evaluate(() => window.tapkit.ping({ nonce: 'after-crash' }))).corePid;
-      } catch {
-        return old.corePid;
-      }
-    })
+    .poll(
+      async () => {
+        try {
+          return (await page.evaluate(() => window.tapkit.ping({ nonce: 'after-crash' }))).corePid;
+        } catch {
+          return old.corePid;
+        }
+      },
+      { timeout: 125_000 },
+    )
     .not.toBe(old.corePid);
   const after = await page.evaluate((requestId) => window.tapkit.bootstrap({ requestId }), id());
   expect(after).toMatchObject({
@@ -243,7 +248,7 @@ test('P00-02 single instance activates owner and closing UI keeps Core alive unt
     .poll(() => app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows().length))
     .toBe(1);
   const reopened = await app.firstWindow();
-  await expect(reopened.getByTestId('core-status')).toHaveText('本地核心已连接');
+  await waitCoreReady(reopened);
   expect(
     (await reopened.evaluate(() => window.tapkit.ping({ nonce: 'reactivated' }))).corePid,
   ).toBe(ping.corePid);

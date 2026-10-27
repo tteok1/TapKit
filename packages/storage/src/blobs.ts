@@ -157,6 +157,19 @@ export class BlobStore {
         .run(now, fileId);
     })();
   }
+  readWebSource(sourceId: string): Promise<Buffer> {
+    IdSchema.parse(sourceId);
+    const row = this.store.db
+      .prepare(
+        "SELECT b.relative_key,b.sha256,b.size_bytes FROM web_sources w JOIN sessions s ON s.id=w.session_id JOIN blobs b ON b.id=w.snapshot_blob_id WHERE w.id=? AND w.profile_id=? AND s.deleted_at IS NULL AND b.deleted_at IS NULL AND b.state='ready'",
+      )
+      .get(sourceId, this.store.profileId) as
+      { relative_key: string; sha256: string; size_bytes: number } | undefined;
+    if (!row) throw new StorageError('NOT_FOUND');
+    if (!/^blobs\/sha256\/[a-f0-9]{2}\/[a-f0-9]{64}$/.test(row.relative_key))
+      throw new StorageError('PERMISSION_DENIED');
+    return this.readVerifiedBlob(row);
+  }
   readVersion(versionId: string) {
     IdSchema.parse(versionId);
     const row = this.store.db

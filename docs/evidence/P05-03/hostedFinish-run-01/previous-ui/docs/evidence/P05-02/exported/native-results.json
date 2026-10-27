@@ -1,0 +1,22 @@
+{
+  "hits": 0,
+  "preferences": [
+    {
+      "sandbox": true,
+      "nodeIntegration": false,
+      "contextIsolation": true,
+      "javascript": false,
+      "preload": null
+    },
+    {
+      "sandbox": true,
+      "nodeIntegration": false,
+      "contextIsolation": true,
+      "javascript": false,
+      "preload": null
+    }
+  ],
+  "bytes": 122440,
+  "directory": "D:\\Tapkit-public\\docs\\evidence\\P05-02\\exported",
+  "htmlBytes": 21948465
+}

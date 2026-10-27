@@ -1,0 +1,16 @@
+{
+  "fixture": "synthetic public protocol response; real Chromium session and policies",
+  "html": "<html><head><title>浏览器隔离夹具</title></head><body>{\"node\":\"undefined\",\"bridge\":\"undefined\",\"privateAccess\":\"blocked\",\"post\":\"blocked\",\"permission\":\"denied\",\"cookieBefore\":\"\"}</body></html>",
+  "privateResult": "PERMISSION_DENIED",
+  "state": {
+    "privateHits": 0,
+    "postHits": 0,
+    "popupCount": 0,
+    "sessions": [
+      {
+        "persistent": false,
+        "proxy": "PROXY 127.0.0.1:65425"
+      }
+    ]
+  }
+}

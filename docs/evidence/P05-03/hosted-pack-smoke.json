@@ -1,0 +1,22 @@
+{
+  "directory": "release/TapKit-chat-M1-2026-10-27T09-23-01-322Z",
+  "syntheticProfile": true,
+  "productionBuild": true,
+  "dialogChoices": "Electron open/save dialog responses supplied with synthetic paths; actual packaged Host/Core/parser/writer execute",
+  "started": "2026-10-27T09:42:43.662Z",
+  "catalog": {
+    "ready": 0,
+    "fixture": false
+  },
+  "zip": {
+    "bytes": 21919161,
+    "sha256": "a1d9e5044a1eb8942d4cedfbeea44b336865c3e251e0776ac446a4abd24be017",
+    "containsOriginalBytes": true
+  },
+  "renderer": {
+    "require": "undefined",
+    "process": "undefined"
+  },
+  "exitCode": 0,
+  "finished": "2026-10-27T09:43:15.477Z"
+}

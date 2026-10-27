@@ -1,3 +1,4 @@
+import { waitCoreReady } from './core-ready';
 import {
   test,
   expect,
@@ -45,7 +46,7 @@ for (const [width, height, zoom] of [
     app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
     app.process().stderr?.on('data', (chunk) => process.stderr.write(chunk));
     const page = await app.firstWindow();
-    await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+    await waitCoreReady(page);
     await app.evaluate(
       ({ BrowserWindow }, dimensions) =>
         BrowserWindow.getAllWindows()[0]!.setContentSize(...dimensions),
@@ -152,7 +153,33 @@ for (const [width, height, zoom] of [
   async function close(dialog: Locator, name: string) {
     const button = dialog.getByRole('button', { name, exact: true });
     await button.scrollIntoViewIfNeeded();
-    await expect(button).toBeInViewport({ ratio: 1 });
+    // Native zoom rounds IntersectionObserver areas (0.9984 for a fully visible control).
+    // Keep exact viewport bounds and actual hit-testing in addition to the rounded area check.
+    await expect(button).toBeInViewport({ ratio: 0.99 });
+    const geometry = await button.evaluate((element) => {
+      const r = element.getBoundingClientRect();
+      const points = [
+        [r.x + r.width / 2, r.y + 1],
+        [r.x + r.width / 2, r.bottom - 1],
+        [r.x + 1, r.y + r.height / 2],
+        [r.right - 1, r.y + r.height / 2],
+      ];
+      return {
+        x: r.x,
+        y: r.y,
+        right: r.right,
+        bottom: r.bottom,
+        width: innerWidth,
+        height: innerHeight,
+        hits: points.map(([x, y]) => element.contains(document.elementFromPoint(x!, y!))),
+      };
+    });
+    expect(geometry.x).toBeGreaterThanOrEqual(0);
+    expect(geometry.y).toBeGreaterThanOrEqual(0);
+    expect(geometry.right).toBeLessThanOrEqual(geometry.width);
+    expect(geometry.bottom).toBeLessThanOrEqual(geometry.height);
+    expect(geometry.hits).toEqual([true, true, true, true]);
+    console.log('DIALOG_CONTROL_BOUNDS', JSON.stringify(geometry));
     await button.focus();
     await expect(button).toBeFocused();
     await button.press('Enter');

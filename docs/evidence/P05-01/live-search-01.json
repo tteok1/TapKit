@@ -1,0 +1,15 @@
+{
+  "started": "2026-10-27T08:50:15.272Z",
+  "requests": 1,
+  "model": "gpt-5.5",
+  "noPrivateContext": true,
+  "nativeStateSaved": false,
+  "error": {
+    "code": "NETWORK_ERROR",
+    "retryable": true,
+    "diagnosticCode": "request_failed"
+  },
+  "status": "failed",
+  "errorCode": "NETWORK_ERROR",
+  "finished": "2026-10-27T08:50:16.354Z"
+}

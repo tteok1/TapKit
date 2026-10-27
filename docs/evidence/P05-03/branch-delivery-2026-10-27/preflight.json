@@ -1,0 +1,41 @@
+{
+  "base": "ad85bc467c921f4c44ad26fc0c1bba25269153cb",
+  "branch": "codex/p05-chat-m1",
+  "origin": "https://github.com/tteok1/TapKit.git",
+  "authorization": "2026-10-27 user requested commit and push upon P05 development and testing completion; delivering the existing engineering_passed_external_pending scope with deferred live coverage unchanged",
+  "gate": "engineering_passed_external_pending",
+  "productAndTestInputsMatchValidatedPack": true,
+  "secretAudit": {
+    "realCredentialsFound": 0,
+    "userDatabasesFound": 0,
+    "fixtureFindings": "All detected key-shaped literals are hard-coded synthetic export redaction test inputs or their failure reports",
+    "archiveScanned": "hostedFinish-run-01/milestone-failure/trace.zip; no secret findings"
+  },
+  "excluded": [
+    "release/",
+    ".runtime/",
+    ".cache/",
+    ".test-data/",
+    "node_modules/",
+    "build outputs",
+    "all generated standalone.html copies"
+  ],
+  "remoteBeforePush": {
+    "main": "ad85bc467c921f4c44ad26fc0c1bba25269153cb",
+    "targetBranchExists": false
+  },
+  "remainingLive": "Original R01-R05 complete live deferred; R06 only Codex/gpt-6.1-sol isolated search and segmented source chain verified; Responses/Anthropic actual accounts not verified",
+  "mergeAuthorized": false,
+  "finalChecks": {
+    "pnpm check": 0,
+    "pnpm docs:check": 0,
+    "git diff --cached --check": 0,
+    "stagedRuntimeProfileExclusion": true,
+    "rawExtractedTextBytesPreserved": true
+  },
+  "metadataChangesOnlySinceValidatedPack": [
+    ".gitignore: exclude duplicate generated HTML",
+    ".gitattributes: preserve raw reporter excerpts/PDF text",
+    "docs: clarify hosted-search gate and Git handoff"
+  ]
+}

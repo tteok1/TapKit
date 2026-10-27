@@ -30,6 +30,16 @@ const NativeDocument = z.strictObject({
 });
 export class AuthSecrets {
   private tail: Promise<unknown> = Promise.resolve();
+  saveSearchKey(raw: unknown): Promise<boolean> {
+    const key = z.literal('').parse(raw);
+    return this.serialize(async () => {
+      if (!key)
+        await unlink(join(this.directory, 'tavily-key')).catch((e) => {
+          if ((e as NodeJS.ErrnoException).code !== 'ENOENT') throw e;
+        });
+      return true;
+    });
+  }
   constructor(
     private readonly directory: string,
     private readonly crypto = safeStorage,
@@ -84,6 +94,9 @@ export class AuthSecrets {
     IdSchema.parse(accountId);
     return this.serialize(async () => {
       const key = 'codex-' + accountId;
+      if (operation === 'web.key') {
+        throw new Error('FEATURE_NOT_AVAILABLE');
+      }
       if (operation === 'api-key.read' || operation === 'api-key.delete') {
         const input = ApiConfigSchema.extend({ credentialId: IdSchema }).parse(payload);
         const revoked = await this.read('revoked-' + input.credentialId);

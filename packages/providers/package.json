@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@tapkit/contracts": "workspace:*",
+    "@tapkit/network": "workspace:*",
     "@earendil-works/pi-ai": "0.85.1"
   }
 }

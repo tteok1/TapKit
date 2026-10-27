@@ -1,0 +1,9 @@
+$ node scripts/e2e.mjs "--" "--grep" "P01-03 real desktop model"
+
+Running 1 test using 1 worker
+
+(node:12992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\e2e\P01-03.models.spec.ts:8:1 › P01-03 real desktop model preferences, compatibility, scope and usage persist without real provider calls (33.7s)
+
+  1 passed (35.2s)

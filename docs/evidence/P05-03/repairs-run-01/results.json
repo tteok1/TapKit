@@ -1,0 +1,113 @@
+{
+  "exitCode": 1,
+  "sourcesUnchanged": true,
+  "commands": [
+    {
+      "args": [
+        "check"
+      ],
+      "started": "2026-10-26T20:34:22.599Z",
+      "finished": "2026-10-26T20:34:38.665Z",
+      "exitCode": 0,
+      "log": "check.log"
+    },
+    {
+      "args": [
+        "test:e2e",
+        "--",
+        "--grep",
+        "P01-03 real desktop model|P02-01 UI redesign workbench renders|P02-03 T22 compact chat.*960x640.*200|P02-03 T22 dialogs fit 960x640.*200|P04-03 T11 explicit post-write|P05-01 T19 Chromium|P05-02 T20 recipient"
+      ],
+      "started": "2026-10-26T20:34:38.670Z",
+      "finished": "2026-10-26T20:39:06.546Z",
+      "exitCode": 1,
+      "log": "test-e2e-filtered.log"
+    }
+  ],
+  "temporaryCleanup": [
+    {
+      "name": "P01-03-model-ui-7O1w9H",
+      "removed": true
+    },
+    {
+      "name": "P02-03 dialogs zr3sxg",
+      "removed": true
+    },
+    {
+      "name": "P02-03 simplified chat lpdT7Z",
+      "removed": true
+    },
+    {
+      "name": "P04-03 Electron synthetic YHEsXy",
+      "removed": true
+    },
+    {
+      "name": "P05-01 browser kernel JWl3W5",
+      "removed": true
+    },
+    {
+      "name": "P05-02 Electron synthetic Zav36E",
+      "removed": true
+    }
+  ],
+  "historicalEvidenceRestored": [
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\batch-move-960x640-200.json",
+      "originalSha256": "421ac84b4a7c478c8ad9e1a11f1c0cbf2019f56fe432634c9870c22006581cc9"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\batch-move-960x640-200.png",
+      "originalSha256": "8b57e283ea647e844c07fa80ff10f96a0d8e0b38157605e69fffdf908a49148f"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\delete-impact-960x640-200.json",
+      "originalSha256": "7098a0884069a075a8d4593f6db746a4e8fc7267fa010824866b812555260c2e"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\delete-impact-960x640-200.png",
+      "originalSha256": "fc3eced67c25a1a2ffc0c4baa7212c1c41b536f2d06c1bb5d68b8ff28ebf2268"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\new-group-960x640-200.json",
+      "originalSha256": "ec84bd4a334746cd7e31d765402d7b6555fbdbac9381e65462de2435f8299a8e"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\new-group-960x640-200.png",
+      "originalSha256": "690ae755f886f6bd24a48801de949360197f92ca2c05fe941c43cda3cd28d6ae"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\purge-960x640-200.json",
+      "originalSha256": "d15165b36082c86b22b0805dc91514388b169086170468f6af76a68ecb7ff2c8"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\purge-960x640-200.png",
+      "originalSha256": "290c3af728037511e5a982867b6f48dbf326bcb8a9a372f2ae34331f40638b2b"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\search-960x640-200.json",
+      "originalSha256": "c4a4e57f07bc97a5a33f0d9711e438c52bdc8fb6c993a1b75cf22e3ddfc68b5c"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\search-960x640-200.png",
+      "originalSha256": "d6ab6e620e7518fbb4f023bfaeb6a28a33e1c37818ca234208a57ec38a089a8e"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\session-info-960x640-200.json",
+      "originalSha256": "a958418d7ed42774bfc7cb08a1e2d9568fa8bbd00490fb34a89ac3e3a6ed8704"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\dialog-layout-2026-10-19\\session-info-960x640-200.png",
+      "originalSha256": "529e27d7c692101cb2c9ecd40ea9afc55d9d18922df94fd93a3580def38c6dd9"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\inline-selection-2026-10-21\\sidebar-960x640-200.json",
+      "originalSha256": "9166b418894cd586677f3446088780b6bf441e936a9dd49b4722cb2e81dab659"
+    },
+    {
+      "path": "docs\\evidence\\P04-03\\memory-management.png",
+      "originalSha256": "6df13dea8aa5d069dedbb15b3b1d1fc08064e24f72f8914b364b90e4612a5353"
+    }
+  ],
+  "liveModels": "R01-R05 deferred by user",
+  "liveSearch": "R06 pending"
+}

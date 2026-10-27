@@ -1,0 +1,52 @@
+$ vitest run --config vitest.config.ts --project integration
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+vite v7.3.6 building ssr environment for production...
+transforming...
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 876 modules transformed.
+rendering chunks...
+.test-data/P01-02-native-runner/shared-BO9GHoW-.cjs  111.31 kB
+.test-data/P01-02-native-runner/profile.cjs          287.67 kB
+.test-data/P01-02-native-runner/runner.cjs           322.71 kB
+✓ built in 3.75s
+ ❯ |integration| tests/integration/P03-01.native-parser.test.ts (3 tests | 1 failed) 51676ms
+   × P03-01 native parser publishes text and Office structure from a read-only AppContainer input 30036ms
+ ❯ |integration| tests/integration/P05-01.web.test.ts (6 tests | 1 failed) 2542ms
+   × P05-01 T19 content failures, full archive vs model limit, run budgets and temporary storage 189ms
+ ❯ |integration| tests/integration/P03-01.import-recovery.test.ts (1 test | 1 skipped) 786ms
+ ❯ |integration| tests/integration/P03-01.file-usage.test.ts (5 tests | 5 failed) 74ms
+   × P03-01 usage reads actual accepted run attachments, distinguishes queued inputs and preserves pinned historical versions across restart 27ms
+   × P03-01 usage follows session trash/restore/permanent deletion and never resurrects task metadata 13ms
+   × P03-01 usage keeps the goal and attachment of each accepted task version rather than current task metadata 9ms
+   × P03-01 usage excludes cross-profile owners/versions, missing attachments and malformed metadata 11ms
+   × P03-01 usage bounds newest distinct execution records and retains metadata in file trash without granting downloads 12ms
+ ❯ |integration| tests/integration/P02-01.desktop.test.ts (4 tests | 3 failed) 869ms
+   × P02-01 T01 persists CAS settings, profile nickname and personal preferences without erasing existing fields 34ms
+   × P02-01 T01 creates real session anchors and project records idempotently; pin conflicts and tombstones are enforced 13ms
+   × P02-01 T20 migrates a v4 database and legacy preferences without resetting model accounts or unrelated settings 17ms
+ ❯ |integration| tests/integration/P01-01.lifecycle-regression.test.ts (16 tests | 5 failed) 110ms
+   × P01-01 rejects a pending OAuth callback after successful disconnect 16ms
+   × P01-01 clears an old empty account record without removing another account or making network requests 21ms
+   × P01-01 disconnect waits for an already-started credential write then leaves a tombstone 14ms
+   × P01-01 keeps failed probe cleanup from poisoning a subsequent check 17ms
+   × P01-01 disconnect cancels a check still waiting for the candidate catalog 12ms
+ ❯ |integration| tests/integration/P04-02.context.test.ts (5 tests | 5 failed) 65ms
+   × P04-02 T12 durable three compactions, correction CAS, next taskVersion and selected continuation 28ms
+   × P04-02 cache hit cannot bypass project revocation, source deletion or project isolation 12ms
+   × P04-02 pending approved ledger references survive restart and block migration to another session 1ms
+
+Node.js v24.21.0
+Error: panicked at 

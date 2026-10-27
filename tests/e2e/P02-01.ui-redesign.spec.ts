@@ -343,6 +343,9 @@ test('P02-01 UI redesign workbench renders existing fixed-version PDF, Markdown,
   await page.getByRole('link', { name: '设置', exact: true }).click();
   await page.getByLabel('缩放', { exact: true }).selectOption('2');
   await page.getByRole('button', { name: '保存设置', exact: true }).click();
+  await expect(page.locator('.desktop-shell')).toHaveCSS('zoom', '2');
+  await expect(page.getByRole('button', { name: '展开侧栏', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '展开侧栏', exact: true }).click();
   await page
     .getByRole('navigation', { name: '主导航' })
     .getByRole('link', { name: '文件', exact: true })

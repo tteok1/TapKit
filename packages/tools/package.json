@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@tapkit/contracts": "workspace:*",
+    "@tapkit/network": "workspace:*",
+    "parse5": "7.3.0",
     "yauzl": "3.4.0",
     "yazl": "3.3.1"
   }

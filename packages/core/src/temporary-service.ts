@@ -6,6 +6,8 @@ import { ModelService } from './model-service';
 import { CoreService } from './service';
 import { ChatService } from './chat-service';
 import { HistoryService } from './history-service';
+import { WebService } from './web-service';
+import type { WebTools } from '@tapkit/tools';
 export class TemporaryService {
   private sessions = new Map<
     string,
@@ -17,6 +19,7 @@ export class TemporaryService {
       history: HistoryService;
       models: ModelService;
       providers: ProviderService;
+      web?: WebService;
     }
   >();
   constructor(
@@ -24,6 +27,7 @@ export class TemporaryService {
     readonly models: ModelService,
     readonly providers: ProviderService,
     readonly configure?: (m: ModelService) => void,
+    readonly webTools?: WebTools,
   ) {}
   owns(id: string) {
     return this.sessions.has(id);
@@ -82,7 +86,8 @@ export class TemporaryService {
           });
         if (!created.ok) throw new StorageError(created.error.code);
         const sessionId = (created.data as { entityId: string }).entityId,
-          chat = new ChatService(store, blobs, models),
+          web = this.webTools ? new WebService(store, blobs, this.webTools, models) : undefined,
+          chat = new ChatService(store, blobs, models, web),
           history = new HistoryService(store, blobs, chat, true);
         this.sessions.set(sessionId, {
           owner: r.windowId,
@@ -92,6 +97,7 @@ export class TemporaryService {
           history,
           models,
           providers,
+          ...(web ? { web } : {}),
         });
         chat.start();
         return ReplySchema.parse({
@@ -134,6 +140,7 @@ export class TemporaryService {
         )
       )
         return entry.history.dispatch(r);
+      if (r.command.startsWith('web.') && entry.web) return entry.web.dispatch(r);
       return entry.chat.dispatch(r);
     } catch (e) {
       return failure(

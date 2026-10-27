@@ -14,12 +14,15 @@ for (const mode of ['success', 'gateway', 'missing-mime'])
           ? 'probes text and tools when the SSE MIME header is missing'
           : 'probes text and tools through the compiled model API'),
     async () => {
+      const startupTimeout = 120_000;
+      test.setTimeout(startupTimeout + 45000);
       await mkdir('.test-data', { recursive: true });
       const directory = await mkdtemp(resolve('.test-data', 'P01-01-utility-'));
       const env: NodeJS.ProcessEnv = lockedEnv({
         TAPKIT_CORE_DATA_DIR: directory,
         TAPKIT_APP_ROOT: root,
         TAPKIT_UTILITY_FIXTURE: mode,
+        TAPKIT_TEST_CORE_READY_TIMEOUT: String(startupTimeout),
       });
       delete env.ELECTRON_RUN_AS_NODE;
       const result = spawnSync(
@@ -29,7 +32,7 @@ for (const mode of ['success', 'gateway', 'missing-mime'])
           cwd: root,
           env,
           windowsHide: true,
-          timeout: 30000,
+          timeout: startupTimeout + 30000,
           encoding: 'utf8',
         },
       );

@@ -26,6 +26,8 @@ export * from './projects';
 export * from './retrieval';
 export * from './context';
 export * from './memory';
+export * from './web';
+export * from './exports';
 // Covers the largest draft/message without trimming or truncating text.
 export const ClipboardTextSchema = z.string().max(2_000_000);
 export const PingRequestSchema = z.strictObject({ nonce: z.string().min(1).max(128) });
@@ -38,6 +40,23 @@ export const PingReplySchema = z.strictObject({
   corePid: z.number().int().positive(),
 });
 export const CoreCommandSchema = z.discriminatedUnion('type', [
+  z.strictObject({
+    type: z.literal('exports.inspect'),
+    id: z.string().uuid(),
+    requestId: IdSchema,
+    windowId: z.string().regex(/^[0-9]{1,8}$/),
+    previewId: IdSchema,
+    snapshotVersion: z.string().regex(/^[a-f0-9]{64}$/),
+  }),
+  z.strictObject({
+    type: z.literal('exports.write'),
+    id: z.string().uuid(),
+    requestId: IdSchema,
+    windowId: z.string().regex(/^[0-9]{1,8}$/),
+    previewId: IdSchema,
+    snapshotVersion: z.string().regex(/^[a-f0-9]{64}$/),
+    targetPath: z.string().min(1).max(32767),
+  }),
   z.strictObject({
     type: z.literal('vault.reply'),
     id: z.string().uuid(),
@@ -94,6 +113,11 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
       'native.purge',
       'browser.open',
       'api-key.read',
+      'web.key',
+      'web.read',
+      'web.cancel',
+      'export.pdf',
+      'export.cancelPdf',
       'api-key.delete',
       'network.proxy.resolve',
     ]),
@@ -104,7 +128,7 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('ready'),
     protocolVersion: z.literal(1),
-    schemaVersion: z.literal(14),
+    schemaVersion: z.literal(16),
   }),
   z.strictObject({ type: z.literal('pong'), id: z.string().uuid(), payload: PingReplySchema }),
   z.strictObject({ type: z.literal('reply'), id: z.string().uuid(), reply: ReplySchema }),
@@ -113,6 +137,19 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
 export type PingRequest = z.infer<typeof PingRequestSchema>;
 export type PingReply = z.infer<typeof PingReplySchema>;
 export interface TapKitBridge {
+  exportCommand(
+    options: RequestOptions,
+    command: import('./exports').ExportCommand,
+    payload: unknown,
+  ): Promise<Reply>;
+  saveExport(previewId: string, snapshotVersion: string): Promise<Reply | null>;
+  openExportFolder(exportId: string): Promise<void>;
+  webCommand(
+    options: RequestOptions,
+    command: import('./web').WebCommand,
+    payload: unknown,
+  ): Promise<Reply>;
+  saveSearchKey(key: string): Promise<boolean>;
   memoryCommand(
     options: RequestOptions,
     command: import('./memory').MemoryCommand,

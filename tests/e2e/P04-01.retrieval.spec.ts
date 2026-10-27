@@ -1,3 +1,4 @@
+import { waitCoreReady } from './core-ready';
 import {
   test,
   expect,
@@ -21,7 +22,7 @@ test.beforeEach(async () => {
   delete env.ELECTRON_RUN_AS_NODE;
   app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
   page = await app.firstWindow();
-  await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+  await waitCoreReady(page);
 });
 test.afterEach(async () => {
   await app?.close();

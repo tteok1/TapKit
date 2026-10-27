@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "searchEvidence": "live-search-03.json",
+  "additionalModelRequests": 0,
+  "threePages": [
+    {
+      "sourceId": "01a17c98-3059-7891-88b8-fc4cd34da763",
+      "url": "https://www.typescriptlang.org/docs/",
+      "title": "TypeScript: The starting point for learning TypeScript",
+      "contentHash": "c8cfde271d89ea62c3484b7a354d2b522a3cf775f1896e9edecbc2afde0ac2e7",
+      "characters": 2544
+    },
+    {
+      "sourceId": "01a17c98-311f-74c6-9f45-f16ebde7c343",
+      "url": "https://nodejs.org/api/documentation.html",
+      "title": "About this documentation | Node.js v26.12.1 Documentation",
+      "contentHash": "4dab08385242051833e46f822650bbd61a548c1ee1fb8cb96e34f2b3359d57e9",
+      "characters": 5616
+    },
+    {
+      "sourceId": "01a17c98-394c-78bf-883b-853ea0d3a7a5",
+      "url": "https://www.electronjs.org/docs/latest/",
+      "title": "Introduction | Electron",
+      "contentHash": "536a0d77ae2e4ad30d9c2232c6b4f50f071900c0ef5c1b839a171fcef1e0f6d0",
+      "characters": 3117
+    }
+  ],
+  "verifiedCitations": 3,
+  "offlineReplay": true,
+  "profileContainsOnlyPublicTestMaterial": true
+}

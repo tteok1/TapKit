@@ -25,6 +25,7 @@ export function classifyCodexError(error: unknown, signal?: AbortSignal): Provid
       'VALIDATION_ERROR',
       'CANCELLED',
       'PERMISSION_DENIED',
+      'BUDGET_EXCEEDED',
     ].includes(code)
   )
     return { code: code as ProviderError['code'], retryable: false };
@@ -77,7 +78,7 @@ export function httpFailure(status: number, rawCode?: string): ProviderError {
           ? 'PERMISSION_DENIED'
           : status === 429
             ? 'RATE_LIMITED'
-            : status === 404
+            : status === 404 || upstreamCode === 'model_not_found'
               ? 'MODEL_UNSUPPORTED'
               : 'PROVIDER_UNAVAILABLE';
   return {

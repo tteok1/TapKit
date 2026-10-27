@@ -1,0 +1,52 @@
+[
+  {
+    "path": "docs/evidence/UI-redesign/file-details-dialog-960-200.png",
+    "restoredSha256": "ada51f44d289454a1ecf31e1e7218b762538b9b636825ea8d419d49b5b83be99",
+    "retainedSha256": "178f7cf6611a1cf3ec2eb1346d3c234a7dba33effbda43ad64fd9862653257f0"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/file-details-dialog.png",
+    "restoredSha256": "2fe07a703bc2c246c6e63b361dd8e45868e85057307cb10ef39f799e54dcab1a",
+    "retainedSha256": "d2d8ce7fa798d4d668d27d61ffd83a3ffbf00de25bb9c2a328dbe7d14307c0e6"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/viewer-code.png",
+    "restoredSha256": "5b5918db3d11290210bf072b8cf9d8b4ab02c40ac0a741cd16e6f67fb6a8d425",
+    "retainedSha256": "6d464f81d399b37f208762d725f75cc0d17a6717b2739dd716d6e1482a98ac37"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/viewer-image.png",
+    "restoredSha256": "861a684027e0fa2662d196f1fd7f51624abb40236927808659000be49805af48",
+    "retainedSha256": "fe496e0e07eb10bc7fa56f5e1cafa86261e1a4c7dc7f96b875bafeeb5c974dc9"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/viewer-markdown.png",
+    "restoredSha256": "1f155dd1e4311a637ed83e860928efa1058b27569cb1ec889ab2ca0ba68efe31",
+    "retainedSha256": "fcedffe830b64141775bc0c9d359498ba19bf78a623aab47503e099aa28de93e"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/viewer-pdf.png",
+    "restoredSha256": "705a7f7cb594ce1c119cb70e9e42292e224b5bd8e9dbb1ca382bd6555f35e4de",
+    "retainedSha256": "0256060c85e0a10d304645c63f79377e65f831deecee927f2430a1f9e66cc1dd"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/viewer-sheet.png",
+    "restoredSha256": "3bdc50fd26fea1605f0bb23ed9389626250efc8d9a09a537df735a70fcb994cc",
+    "retainedSha256": "bdd36b65f0c094cd09b43ec560600b197656bb3c2b36d4f1cb74dc436490992e"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/viewer-zip.png",
+    "restoredSha256": "82b7dc047d4d95d96a9ef363bec27cf4aea667ee149092d8c55245b00bcc7ee3",
+    "retainedSha256": "93fa472e00426d99b149722312ad4c4d18d2f0c8091963540ae41f699fe7aa5a"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/workbench-1200.png",
+    "restoredSha256": "460955e15d6db47cea4d8a8caa8e91c34d5a8ea1cab75388e5e5c977e322c7fa",
+    "retainedSha256": "8eada88cb62e620f855aed4a8080ed16af694fb609141f8183affa0d447e03d5"
+  },
+  {
+    "path": "docs/evidence/UI-redesign/workbench-960.png",
+    "restoredSha256": "90f6c379f7d8bb7dda54a4becf67ded7a54ddc3b6037d52dc59d465e70174555",
+    "retainedSha256": "2757d87f7a81f9096ec322ee727c8ec35df5d8dcbe172aebdb310a0b8d8f3acf"
+  }
+]

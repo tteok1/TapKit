@@ -5,3 +5,9 @@
 
 # Preserve raw test output, including line endings and reporter whitespace.
 docs/evidence/**/*.log -text -whitespace
+
+# Captured Playwright source excerpts and PDF text are raw evidence as well.
+docs/evidence/P05-03/**/desktop-failures/** -text -whitespace
+docs/evidence/P05-03/**/milestone-failure/** -text -whitespace
+docs/evidence/P05-02/exported/extracted.txt -text -whitespace
+docs/evidence/P05-03/**/exported/extracted.txt -text -whitespace

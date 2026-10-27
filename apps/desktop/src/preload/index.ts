@@ -44,6 +44,19 @@ const bridge: TapKitBridge = Object.freeze<TapKitBridge>({
   copyText: (text) => ipcRenderer.invoke('tapkit:copy-text', ClipboardTextSchema.parse(text)),
   historyCommand: (options, command, payload) => invoke(command, options, payload),
   memoryCommand: (options, command, payload) => invoke(command, options, payload),
+  webCommand: (options, command, payload) => invoke(command, options, payload),
+  exportCommand: (options, command, payload) => invoke(command, options, payload),
+  saveExport: (previewId, snapshotVersion) =>
+    ipcRenderer.invoke(
+      'tapkit:save-export',
+      z
+        .strictObject({ previewId: IdSchema, snapshotVersion: z.string().regex(/^[a-f0-9]{64}$/) })
+        .parse({ previewId, snapshotVersion }),
+    ),
+  openExportFolder: (exportId) =>
+    ipcRenderer.invoke('tapkit:open-export-folder', IdSchema.parse(exportId)),
+  saveSearchKey: (key) =>
+    ipcRenderer.invoke('tapkit:save-search-key', z.string().max(4096).parse(key)),
   projectCommand: (options, command, payload) => invoke(command, options, payload),
   exportProject: (value) =>
     ipcRenderer.invoke(

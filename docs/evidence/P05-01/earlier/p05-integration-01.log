@@ -1,0 +1,83 @@
+$ vitest run --config vitest.config.ts --project integration "P05-01"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P05-01.web.test.ts (4 tests | 4 failed) 1514ms
+   × P05-01 T09 no key is explicit, empty results differ, privacy and Tavily options are enforced 431ms
+   × P05-01 T09 read three pages, pin citations, keep offline snapshots and clean deletion 355ms
+   × P05-01 T19 cancellation and changed permissions reject late results without archiving 366ms
+   × P05-01 T19 content failures, full archive vs model limit, run budgets and temporary storage 360ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P05-01.web.test.ts > P05-01 T09 no key is explicit, empty results differ, privacy and Tavily options are enforced
+Error: Events must be committed with their state
+ ❯ Store.emit packages/storage/src/foundation.ts:287:39
+    285|     causationId?: string,
+    286|   ): EventEnvelope {
+    287|     if (!this.db.inTransaction) throw new Error('Events must be commit…
+       |                                       ^
+    288|     const row = this.db
+    289|       .prepare("SELECT coalesce(max(seq),0)+1 AS seq FROM events WHERE…
+ ❯ ChatService.event packages/core/src/chat-service.ts:205:16
+ ❯ ChatService.createRun packages/core/src/chat-service.ts:578:10
+ ❯ fixture tests/integration/P05-01.web.test.ts:23:113
+ ❯ tests/integration/P05-01.web.test.ts:34:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  |integration| tests/integration/P05-01.web.test.ts > P05-01 T09 read three pages, pin citations, keep offline snapshots and clean deletion
+Error: Events must be committed with their state
+ ❯ Store.emit packages/storage/src/foundation.ts:287:39
+    285|     causationId?: string,
+    286|   ): EventEnvelope {
+    287|     if (!this.db.inTransaction) throw new Error('Events must be commit…
+       |                                       ^
+    288|     const row = this.db
+    289|       .prepare("SELECT coalesce(max(seq),0)+1 AS seq FROM events WHERE…
+ ❯ ChatService.event packages/core/src/chat-service.ts:205:16
+ ❯ ChatService.createRun packages/core/src/chat-service.ts:578:10
+ ❯ fixture tests/integration/P05-01.web.test.ts:23:113
+ ❯ tests/integration/P05-01.web.test.ts:46:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  |integration| tests/integration/P05-01.web.test.ts > P05-01 T19 cancellation and changed permissions reject late results without archiving
+Error: Events must be committed with their state
+ ❯ Store.emit packages/storage/src/foundation.ts:287:39
+    285|     causationId?: string,
+    286|   ): EventEnvelope {
+    287|     if (!this.db.inTransaction) throw new Error('Events must be commit…
+       |                                       ^
+    288|     const row = this.db
+    289|       .prepare("SELECT coalesce(max(seq),0)+1 AS seq FROM events WHERE…
+ ❯ ChatService.event packages/core/src/chat-service.ts:205:16
+ ❯ ChatService.createRun packages/core/src/chat-service.ts:578:10
+ ❯ fixture tests/integration/P05-01.web.test.ts:23:113
+ ❯ tests/integration/P05-01.web.test.ts:66:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  |integration| tests/integration/P05-01.web.test.ts > P05-01 T19 content failures, full archive vs model limit, run budgets and temporary storage
+Error: Events must be committed with their state
+ ❯ Store.emit packages/storage/src/foundation.ts:287:39
+    285|     causationId?: string,
+    286|   ): EventEnvelope {
+    287|     if (!this.db.inTransaction) throw new Error('Events must be commit…
+       |                                       ^
+    288|     const row = this.db
+    289|       .prepare("SELECT coalesce(max(seq),0)+1 AS seq FROM events WHERE…
+ ❯ ChatService.event packages/core/src/chat-service.ts:205:16
+ ❯ ChatService.createRun packages/core/src/chat-service.ts:578:10
+ ❯ fixture tests/integration/P05-01.web.test.ts:23:113
+ ❯ tests/integration/P05-01.web.test.ts:78:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  23:15:04
+   Duration  5.03s (transform 43%, tests 32%, import 24%)
+
+[ELIFECYCLE] Command failed with exit code 1.

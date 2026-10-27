@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "family": "Noto Sans CJK SC",
+  "version": "2.004",
+  "revision": "523d033d6cb47f4a80c58a35753646f5c3608a78",
+  "files": {
+    "NotoSansCJKsc-Regular.otf": {
+      "source": "https://raw.githubusercontent.com/notofonts/noto-cjk/523d033d6cb47f4a80c58a35753646f5c3608a78/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf",
+      "sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b"
+    },
+    "OFL.txt": {
+      "source": "https://raw.githubusercontent.com/notofonts/noto-cjk/523d033d6cb47f4a80c58a35753646f5c3608a78/LICENSE",
+      "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+    }
+  }
+}

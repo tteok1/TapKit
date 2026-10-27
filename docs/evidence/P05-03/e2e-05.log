@@ -1,0 +1,50 @@
+
+Running 1 test using 1 worker
+
+(node:14684) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\e2e\P05-03.milestone.spec.ts:12:1 › P05-03 T01-T12/T19/T20/T22 uncut synthetic chat milestone from unconfigured to restart (1.4m)
+
+
+  1) tests\e2e\P05-03.milestone.spec.ts:12:1 › P05-03 T01-T12/T19/T20/T22 uncut synthetic chat milestone from unconfigured to restart 
+
+    TimeoutError: locator.selectOption: Timeout 30000ms exceeded.
+    Call log:
+      - waiting for getByLabel('联网搜索', { exact: true })
+        - locator resolved to <select disabled aria-label="联网搜索">…</select>
+      - attempting select option action
+        2 × waiting for element to be visible and enabled
+          - element is not enabled
+        - retrying select option action
+        - waiting 20ms
+        2 × waiting for element to be visible and enabled
+          - element is not enabled
+        - retrying select option action
+          - waiting 100ms
+        58 × waiting for element to be visible and enabled
+           - element is not enabled
+         - retrying select option action
+           - waiting 500ms
+
+
+      167 |     await only.uncheck();
+      168 |     await page.getByRole('button', { name: '保存资料范围', exact: true }).click();
+    > 169 |     await page.getByLabel('联网搜索', { exact: true }).selectOption('on');
+          |                                                    ^
+      170 |     await send('P05来源 查证 https://example.com/page1', '公开价格 42 元');
+      171 |     await page.getByRole('link', { name: '来源 1', exact: true }).last().click();
+      172 |     await expect(page.locator('.web-source-text')).toContainText('公开价格 42 元');
+        at D:\Tapkit-public\tests\e2e\P05-03.milestone.spec.ts:169:52
+
+    Error Context: test-results\e2e\P05-03.milestone-P05-03-T0-8c0a2-rom-unconfigured-to-restart\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P05-03.milestone-P05-03-T0-8c0a2-rom-unconfigured-to-restart\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P05-03.milestone-P05-03-T0-8c0a2-rom-unconfigured-to-restart\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P05-03.milestone.spec.ts:12:1 › P05-03 T01-T12/T19/T20/T22 uncut synthetic chat milestone from unconfigured to restart 

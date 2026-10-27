@@ -115,7 +115,7 @@
   "locate": "定位消息",
   "back": "后退",
   "forward": "前进",
-  "share": "导出 Markdown",
+  "share": "导出分享副本",
   "shareHint": "导出当前分支的正文，不包含附件和工具过程。导出文件的副本无法撤回。",
   "export": "选择位置并保存",
   "copied": "已复制",

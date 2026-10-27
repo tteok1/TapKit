@@ -1,0 +1,8 @@
+{
+  "removed": true,
+  "files": 70015,
+  "directory": "D:\\Tapkit-public\\release\\TapKit-chat-M1-2026-10-26T20-44-40-922Z",
+  "purpose": "Remove only task-owned failed development snapshot; failure evidence retained",
+  "nativeProbeExitCode": 1,
+  "manifestSha256": "8371d31795a07bfb5a43b1524ffaa31569827aefe56f36c518e676e9753dc3a4"
+}

@@ -1,0 +1,31 @@
+{
+  "currentInputsMatchPackStart": true,
+  "changesSinceBatches": {
+    "hosted-run-01": [
+      "tests/unit/P05-01.hosted-search.test.ts",
+      "tests/e2e/P05-03.milestone.spec.ts",
+      "tests/integration/P05-01.web.test.ts",
+      "packages/providers/src/codex/adapter.ts"
+    ],
+    "hostedFinish-run-01": [
+      "tests/unit/P05-01.hosted-search.test.ts",
+      "tests/e2e/P05-03.milestone.spec.ts",
+      "packages/providers/src/codex/adapter.ts"
+    ],
+    "hostedModel-run-01": [],
+    "pack-run-03": []
+  },
+  "productChangesSince385UnitAnd84P01Latest": [],
+  "liveSearchRequestsAttempted": 3,
+  "unusedAuthorizedAttempts": 1,
+  "realSourceVerification": "../P05-01/hosted-source-live.json",
+  "finalProductAndTestsMatchPackStart": true,
+  "latestPackageSourceMatchesCurrent": {
+    "packages/providers/src/hosted-search.ts": true,
+    "packages/providers/src/codex/adapter.ts": true,
+    "packages/core/dist/index.cjs": true,
+    "apps/desktop/out/main/index.js": true
+  },
+  "packExitCode": 0,
+  "smokeExitCode": 0
+}

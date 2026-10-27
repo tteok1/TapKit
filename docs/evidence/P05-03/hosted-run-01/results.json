@@ -1,0 +1,654 @@
+{
+  "exitCode": 1,
+  "sourcesUnchanged": true,
+  "commands": [
+    {
+      "args": [
+        "check"
+      ],
+      "started": "2026-10-27T09:03:01.384Z",
+      "finished": "2026-10-27T09:03:23.618Z",
+      "exitCode": 0,
+      "log": "check.log"
+    },
+    {
+      "args": [
+        "build"
+      ],
+      "started": "2026-10-27T09:03:23.626Z",
+      "finished": "2026-10-27T09:04:20.521Z",
+      "exitCode": 0,
+      "log": "build.log"
+    },
+    {
+      "args": [
+        "test:unit"
+      ],
+      "started": "2026-10-27T09:04:20.531Z",
+      "finished": "2026-10-27T09:04:33.998Z",
+      "exitCode": 0,
+      "log": "test-unit.log"
+    },
+    {
+      "args": [
+        "test:integration",
+        "P01"
+      ],
+      "started": "2026-10-27T09:04:34.123Z",
+      "finished": "2026-10-27T09:05:43.739Z",
+      "exitCode": 0,
+      "log": "test-integration-filtered.log"
+    },
+    {
+      "args": [
+        "test:integration",
+        "P05"
+      ],
+      "started": "2026-10-27T09:05:44.127Z",
+      "finished": "2026-10-27T09:05:58.411Z",
+      "exitCode": 1,
+      "log": "test-integration-filtered.log"
+    }
+  ],
+  "temporaryCleanup": [
+    {
+      "name": "P00-03 old report p3JCmz",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report 0clqrV",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report 7UlDjQ",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report Ck56R9",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report N8obf5",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report Qw18rW",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report vqop08",
+      "removed": true
+    },
+    {
+      "name": "P00-03 scoped report YrnvOw",
+      "removed": true
+    },
+    {
+      "name": "P00-03 worker GNGkRH",
+      "removed": true
+    },
+    {
+      "name": "P00-03 worker PmjfEQ",
+      "removed": true
+    },
+    {
+      "name": "P00-03 worker VxZC7I",
+      "removed": true
+    },
+    {
+      "name": "P01-02-live-fixture-8OsAys",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-preflight-MoyywN",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-unit-J9uq4z",
+      "removed": true
+    },
+    {
+      "name": "P01-02-vault-5LPcDG",
+      "removed": true
+    },
+    {
+      "name": "P02-02-tool-trace-ym1ViT",
+      "removed": true
+    },
+    {
+      "name": "P03-02 external hr6mg6",
+      "removed": true
+    },
+    {
+      "name": "P03-02 Office generator tXWZWL",
+      "removed": true
+    },
+    {
+      "name": "P03-02 revoked external nsWyF4",
+      "removed": true
+    },
+    {
+      "name": "P03-02 staging 5Io6dt",
+      "removed": true
+    },
+    {
+      "name": "P03-02 staging junction yBN5xW",
+      "removed": true
+    },
+    {
+      "name": "P03-02 staging outside zK6gVt",
+      "removed": true
+    },
+    {
+      "name": "P05-01 vault HcBmEa",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-25XRjK",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-2cE46z",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-2NA7fH",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-2NkmYY",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-2zzZxg",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-5wVp7R",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-6Xgb0C",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-7vqkkV",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-AtlEPJ",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-cBqd5l",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-CfMhoP",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-DW1AVl",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-E8WK6M",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-efCRZk",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-eh8YHm",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-EY4rp5",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-gI5cRL",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-HRYPkn",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-icJ7jX",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-JkuoIg",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-jp3buJ",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-jRUhdo",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-kdes7t",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-KiOsIe",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-kk82TU",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-KQMg4Y",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-mqs7tx",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-mwOXc9",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-MWzY5T",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-MyP4Gz",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-NBN6hC",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-nBqS5J",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-oh6Z8D",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-ophRV0",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-oZZpzy",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-pUetNV",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-qdhK9N",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-qkXnQG",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-s06I5t",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-Tfy6dV",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-Tll6Uj",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-tPXMSI",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-u3lhhq",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-uf7k1N",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-UTVIMH",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-VmZiZN",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-Ws6xhq",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-WwGJwa",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-yKId8K",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-YPpbdk",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-za1aAE",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-ZIMiOK",
+      "removed": true
+    },
+    {
+      "name": "P01-01-core-yZNX9u",
+      "removed": true
+    },
+    {
+      "name": "P01-01-regression-3UsNjK",
+      "removed": true
+    },
+    {
+      "name": "P01-01-regression-bMSsdO",
+      "removed": true
+    },
+    {
+      "name": "P01-01-regression-Ivwm5N",
+      "removed": true
+    },
+    {
+      "name": "P01-01-regression-wZjyhQ",
+      "removed": true
+    },
+    {
+      "name": "P01-01-regression-Z2BdbG",
+      "removed": true
+    },
+    {
+      "name": "P01-02-core-kXjGgU",
+      "removed": true
+    },
+    {
+      "name": "P01-02-migration-L4IEey",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-21msVQ",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-2UPDTo",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-6j001y",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-gvYuwT",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-j4NH4F",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-kgv6Th",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-KHFV7C",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-lYPqTS",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-pAbluN",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-RNU4iX",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-wDtqwi",
+      "removed": true
+    },
+    {
+      "name": "P01-02-native-fixture-中文-WKj2KQ",
+      "removed": true
+    },
+    {
+      "name": "P01-02-zhipu-core-5dQ7W5",
+      "removed": true
+    },
+    {
+      "name": "P01-02-zhipu-core-uDMG2a",
+      "removed": true
+    },
+    {
+      "name": "P01-02-zhipu-core-UisllX",
+      "removed": true
+    },
+    {
+      "name": "P01-02-zhipu-core-zh84QV",
+      "removed": true
+    },
+    {
+      "name": "P01-03-migrate-01GKO0",
+      "removed": true
+    },
+    {
+      "name": "P01-03-network-pI6xxt",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-7JxLZ7",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-7UPjVO",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-BOPcl8",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-CKnX4t",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-CUzHB3",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-HdpPXP",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-kODFPp",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-oyDnql",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-q1Bgtb",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-X7zM82",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-zRw3fH",
+      "removed": true
+    },
+    {
+      "name": "P01-03-usage-ztglmT",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-2ynoe9",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-7aXBOW",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-aV9Wxq",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-belXRl",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-Hgu7Oe",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-iOwlSE",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-m7l5yF",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-mV0Ckd",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-r1LzyT",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-UYo4ZZ",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic 43vrTf",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic 6s5NNd",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic DC03XJ",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic fuRFsv",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic hPEiMB",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic k9WC40",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic lDLgzq",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic PkSEAR",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic pPfs4u",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic U6w4S8",
+      "removed": true
+    },
+    {
+      "name": "P05-01 synthetic v9fgYy",
+      "removed": true
+    },
+    {
+      "name": "P05-02 destination zTp7A6",
+      "removed": true
+    },
+    {
+      "name": "P05-02 disk synthetic yoEeaB",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic 0WakQQ",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic 5nBhgd",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic 9AuBJI",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic aQLM3K",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic AqRvzF",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic BkxPN8",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic h044FB",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic L7yIl9",
+      "removed": true
+    },
+    {
+      "name": "P05-02 synthetic VezoJv",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-0KAOUF",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-c25s4J",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-Dz8lq9",
+      "removed": true
+    },
+    {
+      "name": "单元 集成-Q2fdxt",
+      "removed": true
+    }
+  ],
+  "historicalEvidenceRestored": [],
+  "liveModels": "R01-R05 deferred by user",
+  "liveSearch": "R06 pending"
+}

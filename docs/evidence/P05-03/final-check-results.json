@@ -1,0 +1,8 @@
+{
+  "docsCheckExitCode": 0,
+  "checkBatchExitCode": 0,
+  "note": "Only CSV trailing blank and CRLF normalized after check-run-01; source unchanged",
+  "finished": "2026-10-27T12:09:02.4794145+08:00",
+  "diffCheckExitCode": 0,
+  "previous": "final-check-first.json"
+}

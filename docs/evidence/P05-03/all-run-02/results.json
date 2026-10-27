@@ -1,0 +1,19 @@
+{
+  "exitCode": 1,
+  "sourcesUnchanged": true,
+  "commands": [
+    {
+      "args": [
+        "check"
+      ],
+      "started": "2026-10-26T18:15:23.668Z",
+      "finished": "2026-10-26T18:15:39.771Z",
+      "exitCode": 1,
+      "log": "check.log"
+    }
+  ],
+  "temporaryCleanup": [],
+  "historicalEvidenceRestored": [],
+  "liveModels": "R01-R05 deferred by user",
+  "liveSearch": "R06 pending"
+}

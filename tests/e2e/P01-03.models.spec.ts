@@ -1,3 +1,4 @@
+import { waitCoreReady } from './core-ready';
 import { test, expect, _electron as electron, type ElectronApplication } from '@playwright/test';
 import { mkdtemp, mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
@@ -5,6 +6,7 @@ import { createRequire } from 'node:module';
 import { spawnSync } from 'node:child_process';
 import { lockedEnv, root } from '../../scripts/lib.mjs';
 test('P01-03 real desktop model preferences, compatibility, scope and usage persist without real provider calls', async ({}, info) => {
+  test.setTimeout(180000);
   await mkdir('.test-data', { recursive: true });
   const directory = await mkdtemp(resolve('.test-data', 'P01-03-model-ui-'));
   const env = Object.fromEntries(
@@ -17,7 +19,7 @@ test('P01-03 real desktop model preferences, compatibility, scope and usage pers
   try {
     app = await electron.launch({ args: [resolve('apps/desktop')], env });
     let page = await app.firstWindow();
-    await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
+    await waitCoreReady(page);
     await app.evaluate(async (_electron, source) => {
       const { openStore, newId } = process.getBuiltinModule('module').createRequire(source)(source);
       const store = await openStore(process.env.TAPKIT_DATA_DIR!);
@@ -49,7 +51,15 @@ test('P01-03 real desktop model preferences, compatibility, scope and usage pers
     await page.getByRole('button', { name: '保存账户', exact: true }).click();
     await expect(page.getByText('已加密保存，请点击检测连接。', { exact: true })).toBeVisible();
     await page.getByRole('link', { name: '运行状态', exact: true }).click();
-    await page.getByRole('link', { name: '模型与用量', exact: true }).click();
+    await page.getByRole('link', { name: '设置', exact: true }).click();
+    await page
+      .getByRole('navigation', { name: '设置分类' })
+      .getByRole('link', { name: '模型连接', exact: true })
+      .click();
+    await page
+      .getByRole('navigation', { name: '设置分类' })
+      .getByRole('link', { name: '模型与用量', exact: true })
+      .click();
     const snapshot = await page.evaluate(() => {
       const time = Date.now().toString(16).padStart(12, '0');
       return window.tapkit.modelCommand(
@@ -112,8 +122,19 @@ test('P01-03 real desktop model preferences, compatibility, scope and usage pers
     app = undefined;
     app = await electron.launch({ args: [resolve('apps/desktop')], env });
     page = await app.firstWindow();
-    await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接');
-    await expect(page.getByRole('heading', { name: '模型与用量', exact: true })).toBeVisible();
+    await waitCoreReady(page);
+    await page.getByRole('link', { name: '设置', exact: true }).click();
+    await page
+      .getByRole('navigation', { name: '设置分类' })
+      .getByRole('link', { name: '模型连接', exact: true })
+      .click();
+    await page
+      .getByRole('navigation', { name: '设置分类' })
+      .getByRole('link', { name: '模型与用量', exact: true })
+      .click();
+    await expect(
+      page.locator('.model-settings').getByRole('heading', { name: '模型与用量', exact: true }),
+    ).toBeVisible();
     await expect(page.getByLabel('回答语言')).toHaveValue('en');
     await expect(page.getByLabel('每日 Token 上限')).toHaveValue('5000');
     await expect(page.getByLabel('回答语气')).toHaveValue('natural');

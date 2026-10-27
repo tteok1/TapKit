@@ -1,0 +1,49 @@
+{
+  "exitCode": 1,
+  "sourcesUnchanged": true,
+  "commands": [
+    {
+      "args": [
+        "check"
+      ],
+      "started": "2026-10-26T20:39:57.281Z",
+      "finished": "2026-10-26T20:40:12.649Z",
+      "exitCode": 0,
+      "log": "check.log"
+    },
+    {
+      "args": [
+        "test:e2e",
+        "--",
+        "--grep",
+        "P01-03 real desktop model|P02-03 T22 compact chat.*960x640.*200"
+      ],
+      "started": "2026-10-26T20:40:12.655Z",
+      "finished": "2026-10-26T20:42:19.583Z",
+      "exitCode": 1,
+      "log": "test-e2e-filtered.log"
+    }
+  ],
+  "temporaryCleanup": [
+    {
+      "name": "P01-03-model-ui-iapKDQ",
+      "removed": true
+    },
+    {
+      "name": "P02-03 simplified chat z52ECG",
+      "removed": true
+    }
+  ],
+  "historicalEvidenceRestored": [
+    {
+      "path": "docs\\evidence\\P02-03\\inline-selection-2026-10-21\\chat-960x640-200.png",
+      "originalSha256": "593d48ba1bae4aa06976684421f07fd41e1085b89529d0cdd25802131622503e"
+    },
+    {
+      "path": "docs\\evidence\\P02-03\\inline-selection-2026-10-21\\sidebar-960x640-200.json",
+      "originalSha256": "9166b418894cd586677f3446088780b6bf441e936a9dd49b4722cb2e81dab659"
+    }
+  ],
+  "liveModels": "R01-R05 deferred by user",
+  "liveSearch": "R06 pending"
+}
