@@ -2,7 +2,7 @@
 
 - gate_status：engineering_passed_external_pending
 - updated_at：2026-10-27 Asia/Shanghai
-- 源码：codex/p05-chat-m1，ad85bc4 + 未提交工作树；未push/merge。
+- 源码：main；P05源提交ffe680f，CI61通过；本次后续交接只含docs，最终main提交以Git回执为准。
 
 ## 本轮交付
 
@@ -17,3 +17,5 @@ Codex/gpt-6.1-sol隔离搜索、三页原文、Core归档/3条引用/断网回�
 当前无新增必需人工项。新包隔离scope=current-user、standardUser=false，不替代P11安装/标准用户验收。停在P05，不进入P06。旧阶段记录保存在docs/evidence/P05-03/gate-before-hosted-handoff.md。
 
 2026-10-27 Git交付：用户已授权将本轮累计P05工程及验收记录提交推送到codex/p05-chat-m1；不合main。提交包含此交接，最终SHA以Git回执为准，原implemented_not_live_verified/资源待验边界保持。
+
+2026-10-27 main合入：按用户授权快进合入CI61成功的ffe680f，交接/证据见docs/evidence/P05-03/main-merge-2026-10-27。源分支、原资料/窗口/目录包保留；本gate及live缺口保持，不因合入改为全量实号通过。

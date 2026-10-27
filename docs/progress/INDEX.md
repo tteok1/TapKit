@@ -1,3 +1,7 @@
+## 2026-10-27 P05 CI通过并合入main
+
+用户确认CI已通过并授权合入main。连接器核实ffe680f的第61轮40493630147、check122153448067及startup-diagnostics122165800664均completed/success；远程main基点ad85bc4未变，本地快进至源提交后完整tree与已验树一致。本次仅追加main交接/CI证据，最终提交和远端一致性以Git回执为准。源分支保留，原profile/窗口/目录包与live/gate范围保持，不进入P06。证据docs/evidence/P05-03/main-merge-2026-10-27/verification.md。
+
 ## 2026-10-27 P05提交推送授权
 
 用户要求P05开发测试完成后提交推送。按此前已约定可保留真实资源缺口的工程交付范围，提交codex/p05-chat-m1并推送同名远程分支，不合main、不建PR。产品/测试与385单元、P01/P05集成及新包输入一致，原生22项和包内启动/解析/导出通过；live/gate状态不提升。提交包含本交接，最终SHA和远端一致性以Git回执为准。证据docs/evidence/P05-03/branch-delivery-2026-10-27。
