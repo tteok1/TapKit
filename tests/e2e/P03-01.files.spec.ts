@@ -430,7 +430,7 @@ test('P03-01 T08 late session creation after leaving the home composer cannot st
   await holdRealReply('sessions.create');
   try {
     await page.locator('input[type=file]').setInputFiles(source);
-    await page.getByRole('button', { name: '保存工作草稿', exact: true }).click();
+    await page.getByRole('button', { name: '创建工作', exact: true }).click();
     await expect
       .poll(() => getApp().evaluate(() => (globalThis as unknown as GateGlobal).p03ReplyGate?.held))
       .toBe(true);

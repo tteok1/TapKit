@@ -1,3 +1,7 @@
+## 2026-10-28 P06分支CI失败修复
+
+385afd5 的CI Electron失败由新增桥API与工作按钮更名的旧测试导致，已更新测试；本地两种构建各2/2通过。CI复验以实际回执为准，详见 docs/evidence/P06-03/ci-2026-10-28/verification.md。
+
 ## 2026-10-28 P06分支交付授权
 
 用户授权提交并推送codex/p06-work-runtime当前累计内容，不合入main；提交SHA和远程状态以Git回执为准。P06与历史外部资源验收范围保持，详见 docs/evidence/P06-03/branch-delivery-2026-10-28/verification.md。
