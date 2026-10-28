@@ -1,0 +1,53 @@
+{
+  "task": "P06",
+  "status": "failed_live_transport",
+  "scope": "Existing Zhipu ordinary Chat/glm-4.7-flashx only",
+  "checkedAt": "2026-10-27T18:37:27.563Z",
+  "hardCaps": {
+    "requests": 6,
+    "outputTokens": 2048,
+    "reservedTokens": 50000
+  },
+  "budget": {
+    "requests": 4,
+    "reservedTokens": 24627,
+    "wireRequests": 3
+  },
+  "accounting": {
+    "attempts": [
+      {
+        "status": "failed",
+        "error_code": "NETWORK_ERROR",
+        "count": 3
+      },
+      {
+        "status": "failed",
+        "error_code": "VALIDATION_ERROR",
+        "count": 1
+      }
+    ],
+    "usage": [
+      {
+        "source": "estimated",
+        "attempts": 4,
+        "chargedTokens": 24627,
+        "inputTokens": null,
+        "outputTokens": null
+      }
+    ],
+    "unsettled": 0,
+    "reservedTokens": 0,
+    "toolCalls": 0,
+    "generatedArtifacts": 0
+  },
+  "modelUsageActualKnown": false,
+  "headChecksWithoutCredentials": 2,
+  "headStatus": 401,
+  "originalAccountAndCredentialUnchanged": true,
+  "isolatedCredentialCopyRemoved": true,
+  "liveRunnerClosed": true,
+  "automaticRetries": 0,
+  "fallbacks": 0,
+  "productionIssueFixed": "P06 Zhipu canonical tool names mapped to protocol-safe aliases",
+  "failure": "Three model HTTP attempts failed with NETWORK_ERROR. The last two explicitly reported response_headers_timeout; the first has no finer diagnostic. One earlier local validation attempt sent no HTTP request."
+}

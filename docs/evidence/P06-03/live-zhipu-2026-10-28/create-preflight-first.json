@@ -1,0 +1,19 @@
+{
+  "phase": "create",
+  "task": "P06",
+  "status": "failed",
+  "limits": {
+    "requests": 6,
+    "outputTokens": 2048,
+    "reservedTokens": 50000
+  },
+  "realProvider": true,
+  "otherModulesCalled": false,
+  "automaticRetries": 0,
+  "fallbacks": 0,
+  "checks": [],
+  "keyReadsInsideHost": 0,
+  "errorCode": "INTERNAL_ERROR",
+  "stage": "preflight",
+  "checkedAt": "2026-10-27T17:53:42.969Z"
+}

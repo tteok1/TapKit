@@ -40,7 +40,7 @@
   "snippetText": "提示词内容",
   "saveSnippet": "保存提示词",
   "deleteSnippet": "删除",
-  "commands": "/help 帮助 · /new 新聊天 · /work 工作草稿；提示词只插入文本",
+  "commands": "/help 帮助 · /new 新聊天 · /work 工作任务；提示词只插入文本",
   "materialPending": "未就绪的材料需要等待、重试或移除；不发送给模型。",
   "materialStates": {
     "uploading": "上传中",

@@ -1,0 +1,34 @@
+{
+  "phase": "resume",
+  "task": "P06",
+  "status": "failed",
+  "limits": {
+    "requests": 3,
+    "outputTokens": 256,
+    "reservedTokens": 18000
+  },
+  "realProvider": true,
+  "otherModulesCalled": false,
+  "automaticRetries": 0,
+  "fallbacks": 0,
+  "checks": [
+    "original account and encrypted credential unchanged across restart",
+    "actual Electron process restart",
+    "pending approval survives restart",
+    "approval recovery does not replay a model request"
+  ],
+  "keyReadsInsideHost": 0,
+  "budgetStart": {
+    "requests": 2,
+    "reservedTokens": 10089,
+    "wireRequests": 2
+  },
+  "errorCode": "VALIDATION_ERROR",
+  "errorType": "Error",
+  "safeStackFunctions": [
+    "assert",
+    "main"
+  ],
+  "stage": "restart-approval",
+  "checkedAt": "2026-10-28T07:39:27.395Z"
+}

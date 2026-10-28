@@ -1,0 +1,9 @@
+{
+  "stage": "before_dispatch",
+  "actualProcessExit": 1,
+  "priorCalls": [],
+  "modelCallsAfterRestart": 1,
+  "status": "completed",
+  "artifacts": 1,
+  "leaseEpoch": 3
+}

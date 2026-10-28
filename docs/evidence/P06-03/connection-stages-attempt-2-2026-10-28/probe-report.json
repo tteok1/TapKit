@@ -1,0 +1,99 @@
+{
+  "phase": "create",
+  "task": "P06",
+  "status": "passed",
+  "limits": {
+    "checks": 1,
+    "wireRequests": 2,
+    "maxOutputTokens": 128
+  },
+  "realProvider": true,
+  "otherModulesCalled": false,
+  "automaticRetries": 0,
+  "fallbacks": 0,
+  "checks": [],
+  "keyReadsInsideHost": 2,
+  "wireRequests": 2,
+  "probe": {
+    "status": "ready",
+    "text": true,
+    "tools": true,
+    "errorCode": null,
+    "diagnosticCode": null
+  },
+  "stages": [
+    {
+      "request": 1,
+      "event": "dns_complete",
+      "elapsedMs": 12
+    },
+    {
+      "request": 1,
+      "event": "proxy_resolved",
+      "elapsedMs": 13
+    },
+    {
+      "request": 1,
+      "event": "socket_assigned",
+      "elapsedMs": 18
+    },
+    {
+      "request": 1,
+      "event": "tcp_connected",
+      "elapsedMs": 35
+    },
+    {
+      "request": 1,
+      "event": "tls_connected",
+      "elapsedMs": 59
+    },
+    {
+      "request": 1,
+      "event": "request_finished",
+      "elapsedMs": 59
+    },
+    {
+      "request": 1,
+      "event": "response_headers",
+      "elapsedMs": 56064
+    },
+    {
+      "request": 2,
+      "event": "dns_complete",
+      "elapsedMs": 26
+    },
+    {
+      "request": 2,
+      "event": "proxy_resolved",
+      "elapsedMs": 26
+    },
+    {
+      "request": 2,
+      "event": "socket_assigned",
+      "elapsedMs": 27
+    },
+    {
+      "request": 2,
+      "event": "tcp_connected",
+      "elapsedMs": 50
+    },
+    {
+      "request": 2,
+      "event": "tls_connected",
+      "elapsedMs": 95
+    },
+    {
+      "request": 2,
+      "event": "request_finished",
+      "elapsedMs": 95
+    },
+    {
+      "request": 2,
+      "event": "response_headers",
+      "elapsedMs": 43341
+    }
+  ],
+  "isolatedCredentialRemoved": true,
+  "stage": "tapkit-connection-check",
+  "checkedAt": "2026-10-28T04:43:51.969Z"
+}

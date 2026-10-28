@@ -1,5 +1,7 @@
 # 数据模型与事务契约
 
+P06 schema17：[ADR0067](../adr/0067-durable-work-on-shared-run-ledger.md) / 0017_work.sql保留旧task/run身份，扩展tasks.mode与组织字段，runs.work_json存固定定义/问题/活跃时间。plan_steps、tool_call_attempts、process_handles、notifications、work_consumers追加；通知游标与去重落库。重试/steer继承root预算，成果及工具receipt同事务。FileOwner.task仅允许同profile/task/session生成的固定产物版本，原件、其他任务和已删归属拒绝访问；会话永久清理同时擦除计划/审批/通知正文与命令回执。
+
 P05托管搜索（ADR0066）：ModelRequest增加隔离hostedSearch配置，ModelEvent增加hosted_search候选/次数；复用provider_attempts/usage_ledger，不另建run状态。工具结果保留公开候选/调用次数/费用未知说明，搜索辅助文本和原生服务端块不持久化。原web_sources/schema16保持。
 
 P05-01 schema15：见 [ADR0064](../adr/0064-public-web-snapshots-and-anonymous-network.md)。web_sources 绑定 profile/session/run、公开 URL、固定 Blob 快照及 contentHash/fetchedAt/revision；citations 的 file_version_id/web_source_id 二选一，旧引用迁移保留；会话 web_options_json 为联网权限/筛选快照。软删除拒绝读取但保留来源供恢复，永久清理才释放 blob 引用；临时会话仅存内存。

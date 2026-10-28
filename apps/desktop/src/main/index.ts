@@ -8,6 +8,8 @@ import {
   Menu,
   nativeImage,
   dialog,
+  Notification,
+  powerMonitor,
   protocol,
   shell,
   type UtilityProcess,
@@ -24,6 +26,7 @@ import {
   readdirSync,
   unlinkSync,
   writeFileSync,
+  existsSync,
 } from 'node:fs';
 import { isAbsolute, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -44,6 +47,7 @@ import {
   ProjectCommandSchemas,
   WebCommandSchemas,
   ExportCommandSchemas,
+  WorkCommandSchemas,
   ArtifactAssetSchema,
   ArtifactAccessSchema,
   FileGetSchema,
@@ -84,6 +88,7 @@ if (!app.isPackaged && process.env.TAPKIT_DATA_DIR) {
   app.setPath('userData', process.env.TAPKIT_DATA_DIR);
 }
 const dataDir = app.getPath('userData');
+let backgroundExplained = existsSync(join(dataDir, 'background-notice-v1'));
 const ownsLock = app.requestSingleInstanceLock({ intent: 'activate' });
 if (!ownsLock) app.quit();
 const windows = new Set<BrowserWindow>();
@@ -341,6 +346,19 @@ function startCore() {
         const window = [...windows].find((w) => w.webContents.id === webContentsId);
         if (window) void replayTo(window, subscription.afterSeq);
       }
+    } else if (message.type === 'desktop.notification') {
+      if (Notification.isSupported()) {
+        const notice = new Notification({
+          title: message.notification.title,
+          body: message.notification.summary,
+        });
+        notice.on('click', () => {
+          const window = createWindow('/work/' + message.notification.runId);
+          window.show();
+          window.focus();
+        });
+        notice.show();
+      }
     } else if (message.type === 'event') publish(message.event);
     else {
       const waiter = pending.get(message.id);
@@ -482,6 +500,38 @@ function createWindow(initialRoute?: string) {
     if (url !== trustedUrl) event.preventDefault();
   });
   const webContentsId = window.webContents.id;
+  window.on('close', (event) => {
+    if (quitting) return;
+    event.preventDefault();
+    const hide = () => {
+      if (window.isDestroyed()) return;
+      for (const [key, destination] of exportDestinations)
+        if (destination.windowId === String(slot)) exportDestinations.delete(key);
+      core?.postMessage({ type: 'window.closed', windowId: String(slot) });
+      window.webContents.reload();
+      window.hide();
+    };
+    if (backgroundExplained) {
+      hide();
+      return;
+    }
+    backgroundExplained = true;
+    void dialog
+      .showMessageBox(window, {
+        type: 'info',
+        message: strings.backgroundTitle,
+        detail: strings.backgroundBody,
+        buttons: [strings.backgroundOK],
+      })
+      .finally(() => {
+        try {
+          writeFileSync(join(dataDir, 'background-notice-v1'), 'acknowledged', { flag: 'wx' });
+        } catch {
+          /* Another window may have acknowledged it. */
+        }
+        hide();
+      });
+  });
   windowSlots.set(webContentsId, String(slot));
   window.on('closed', () => {
     assets.close();
@@ -539,6 +589,8 @@ if (ownsLock) {
   });
   void app.whenReady().then(() => {
     startCore();
+    powerMonitor.on('suspend', () => core?.postMessage({ type: 'lifecycle', action: 'suspend' }));
+    powerMonitor.on('resume', () => core?.postMessage({ type: 'lifecycle', action: 'resume' }));
     ipcMain.handle('tapkit:ping', async (event, raw: unknown) => {
       if (!checkSender(event)) throw new Error('Untrusted IPC sender');
       const payload = PingRequestSchema.parse(raw);
@@ -553,6 +605,7 @@ if (ownsLock) {
       ...Object.keys(ProjectCommandSchemas),
       ...Object.keys(WebCommandSchemas),
       ...Object.keys(ExportCommandSchemas),
+      ...Object.keys(WorkCommandSchemas),
       'models.catalog',
       'models.preferences.get',
       'models.preferences.set',

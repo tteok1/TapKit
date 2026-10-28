@@ -1,5 +1,7 @@
 # IPC、事件、任务状态与接口协议
 
+P06：Core ready schemaVersion=17。WorkCommandSchemas严格定义runs.create/list/get/setPlan/steer/pause/resume/cancel/retry/skip/answer/accept/organize/copy/batch/reconcile、approvals.list/decide/editDraft/refresh、grants.list/revoke与notifications命令。Renderer仅走workCommand；变更使用expectedRevision，批量逐项结果。暂停/取消与旧版本/epoch守卫共享RunStatus转移；终结run不能原地复活。refresh只为未消费的过期提案重新产生审批，必须再次决定。lifecycle和desktop.notification是Host/Core私有消息；通知跳真实run，已删对象显示不可访问说明。
+
 P05-02：Core ready schemaVersion=16。公开exports.preview/status/cancel/recent均strict且绑定profile/window；saveExport只收previewId/snapshotVersion，经可信Host原生保存框生成目标，exports.inspect/write为Host私有命令。export.pdf/cancelPdf仅Core→Host，Renderer没有原始HTML或路径写入入口；openExportFolder检查原窗口与成功/未知副作用状态。web.sourceInfo提供作用域内标题/版本/访问时间，无整页正文。详见[ADR0065](../adr/0065-reviewed-local-export-and-chat-snapshot.md)。
 
 P05-01：`WebCommandSchemas` 定义 web.settings/configure/sources/activity/source/saveProject；仅返回已核验来源、受限状态或用户指定项目保存结果。ADR0066移除搜索Key保存界面，saveSearchKey仅兼容空值删除旧凭据；不再读取web.key。web.settings按当前模型通道投影searchConfigured（仅协议可尝试，非live保证）；web.read/cancel 是 Core→Host 私有操作，不允许 Renderer 通用调用。现有 chat/run 状态和事件保持，详见 [ADR0064](../adr/0064-public-web-snapshots-and-anonymous-network.md)。

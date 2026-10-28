@@ -1,0 +1,64 @@
+{
+  "phase": "create",
+  "task": "P06",
+  "status": "passed",
+  "limits": {
+    "requests": 1,
+    "outputTokens": 256,
+    "reservedTokens": 6000
+  },
+  "realProvider": true,
+  "otherModulesCalled": false,
+  "automaticRetries": 0,
+  "fallbacks": 0,
+  "checks": [
+    "plan-first waits without additional HTTP dispatch",
+    "first real artifact is registered",
+    "one work HTTP request",
+    "source encrypted credential bytes unchanged",
+    "all model reservations are settled exactly once"
+  ],
+  "keyReadsInsideHost": 6,
+  "budgetStart": {
+    "requests": 0,
+    "reservedTokens": 0,
+    "wireRequests": 0
+  },
+  "probes": [
+    {
+      "attempt": 1,
+      "status": "ready",
+      "wireBefore": 0,
+      "text": true,
+      "tools": true,
+      "errorCode": null,
+      "diagnosticCode": null,
+      "wireAfter": 2
+    }
+  ],
+  "probeWireRequests": 2,
+  "runId": "01a1808a-9d4c-7bad-8d55-4886b20373d0",
+  "budget": {
+    "requests": 1,
+    "reservedTokens": 4603,
+    "wireRequests": 1
+  },
+  "usage": [
+    {
+      "source": "actual",
+      "attempts": 1,
+      "chargedTokens": 864,
+      "inputTokens": 838,
+      "outputTokens": 26
+    }
+  ],
+  "attempts": [
+    {
+      "status": "completed",
+      "errorCode": null,
+      "count": 1
+    }
+  ],
+  "stage": "plan-and-first-artifact",
+  "checkedAt": "2026-10-28T03:25:32.704Z"
+}

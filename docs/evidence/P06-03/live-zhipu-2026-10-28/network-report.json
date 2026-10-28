@@ -1,0 +1,25 @@
+{
+  "phase": "network",
+  "task": "P06",
+  "status": "passed",
+  "limits": {
+    "requests": 6,
+    "outputTokens": 2048,
+    "reservedTokens": 50000
+  },
+  "realProvider": true,
+  "otherModulesCalled": false,
+  "automaticRetries": 0,
+  "fallbacks": 0,
+  "checks": [],
+  "keyReadsInsideHost": 0,
+  "configured": {
+    "httpStatus": 401
+  },
+  "direct": {
+    "httpStatus": 401
+  },
+  "modelRequests": 0,
+  "stage": "unauthenticated-network-diagnostic",
+  "checkedAt": "2026-10-27T18:28:44.552Z"
+}

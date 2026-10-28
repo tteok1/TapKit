@@ -34,6 +34,7 @@ import contextSql from '../../../migrations/0013_context.sql?raw';
 import memorySql from '../../../migrations/0014_memory.sql?raw';
 import webSql from '../../../migrations/0015_web.sql?raw';
 import exportsSql from '../../../migrations/0016_exports.sql?raw';
+import workSql from '../../../migrations/0017_work.sql?raw';
 
 let startupTraceSequence = 0;
 function startupTrace(scope: string) {
@@ -121,8 +122,9 @@ export const migrations: Migration[] = [
   { version: 14, sql: memorySql },
   { version: 15, sql: webSql },
   { version: 16, sql: exportsSql },
+  { version: 17, sql: workSql },
 ];
-export const SCHEMA_VERSION = 16;
+export const SCHEMA_VERSION = 17;
 export async function migrate(db: Database.Database, backupDirectory: string, steps = migrations) {
   const trace = startupTrace('storage.migrate');
   trace('version.begin');
@@ -138,7 +140,7 @@ export async function migrate(db: Database.Database, backupDirectory: string, st
       join(backupDirectory, 'pre-migration-' + migration.version + '-' + newId() + '.sqlite'),
     );
     trace('schema-transaction.begin');
-    const rebuildAccounts = migration.version === 3 || migration.version === 16;
+    const rebuildAccounts = [3, 16, 17].includes(migration.version);
     if (rebuildAccounts) db.pragma('foreign_keys = OFF');
     try {
       db.transaction(() => {
@@ -221,8 +223,20 @@ export class Store {
       },
       settings: this.settings,
       capabilities: ['storage', 'settings', 'vault', 'jobs', 'events', 'backup'] as const,
-      recoveringRuns: [],
-      unreadCount: 0,
+      recoveringRuns: (
+        this.db
+          .prepare(
+            "SELECT r.id FROM runs r JOIN tasks t ON t.id=r.task_id WHERE t.mode='work' AND r.profile_id=? AND r.status IN ('recovering','paused','waiting_user') ORDER BY r.updated_at DESC LIMIT 100",
+          )
+          .all(this.profileId) as { id: string }[]
+      ).map((r) => r.id),
+      unreadCount: (
+        this.db
+          .prepare(
+            'SELECT count(*) n FROM notifications WHERE profile_id=? AND deleted_at IS NULL AND read_at IS NULL',
+          )
+          .get(this.profileId) as { n: number }
+      ).n,
     };
   }
   receipt(request: Request, work: () => Reply): Reply {
@@ -274,12 +288,47 @@ export class Store {
           'completed',
           JSON.stringify(ReplyDocumentSchema.parse({ schemaVersion: 1, reply })),
           this.now() + 86_400_000,
-          typeof (request.payload as { sessionId?: unknown })?.sessionId === 'string'
-            ? (request.payload as { sessionId: string }).sessionId
-            : null,
+          this.receiptSession(request),
         );
       return reply;
     })();
+  }
+  private receiptSession(request: Request): string | null {
+    const p = request.payload as {
+      sessionId?: unknown;
+      runId?: unknown;
+      taskId?: unknown;
+      approvalId?: unknown;
+    };
+    if (typeof p?.sessionId === 'string') return p.sessionId;
+    if (!/^(runs|approvals)\./.test(request.command)) return null;
+    if (typeof p?.runId === 'string')
+      return (
+        (
+          this.db
+            .prepare('SELECT session_id FROM runs WHERE id=? AND profile_id=?')
+            .get(p.runId, this.profileId) as { session_id: string } | undefined
+        )?.session_id ?? null
+      );
+    if (typeof p?.taskId === 'string')
+      return (
+        (
+          this.db
+            .prepare('SELECT session_id FROM tasks WHERE id=? AND profile_id=?')
+            .get(p.taskId, this.profileId) as { session_id: string } | undefined
+        )?.session_id ?? null
+      );
+    if (typeof p?.approvalId === 'string')
+      return (
+        (
+          this.db
+            .prepare(
+              'SELECT r.session_id FROM approvals a JOIN tool_calls c ON c.id=a.tool_call_id JOIN runs r ON r.id=c.run_id WHERE a.id=? AND a.profile_id=?',
+            )
+            .get(p.approvalId, this.profileId) as { session_id: string } | undefined
+        )?.session_id ?? null
+      );
+    return null;
   }
   emit(
     type: EventEnvelope['type'],

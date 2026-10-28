@@ -1,0 +1,41 @@
+{
+  "phase": "resume",
+  "task": "P06",
+  "status": "failed",
+  "limits": {
+    "requests": 4,
+    "outputTokens": 256,
+    "reservedTokens": 20000
+  },
+  "realProvider": true,
+  "otherModulesCalled": false,
+  "automaticRetries": 0,
+  "fallbacks": 0,
+  "checks": [
+    "original account and encrypted credential unchanged across restart",
+    "actual Electron process restart",
+    "previous approval completed before test assertion",
+    "only prior failed pause request added after approval",
+    "reviewed version has exact approved content",
+    "patch creates a new version of the same managed file",
+    "original generated version remains readable",
+    "real model partial stream was interrupted for pause",
+    "no partial tool dispatch after pause",
+    "paused real task cancels without dispatching another request"
+  ],
+  "keyReadsInsideHost": 4,
+  "budgetStart": {
+    "requests": 3,
+    "reservedTokens": 14714,
+    "wireRequests": 3
+  },
+  "interruptedOnPartial": true,
+  "errorCode": "VALIDATION_ERROR",
+  "errorType": "Error",
+  "safeStackFunctions": [
+    "assert",
+    "main"
+  ],
+  "stage": "notifications",
+  "checkedAt": "2026-10-28T07:43:32.127Z"
+}

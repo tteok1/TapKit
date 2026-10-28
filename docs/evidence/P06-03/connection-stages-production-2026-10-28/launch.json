@@ -1,0 +1,12 @@
+{
+  "directory": "D:\\Tapkit-public\\.test-data\\P06-live-zhipu-yWCGED",
+  "reportDir": "D:\\Tapkit-public\\docs\\evidence\\P06-03\\connection-stages-production-2026-10-28",
+  "limits": {
+    "checks": 1,
+    "wireRequests": 2,
+    "outputTokensPerRequest": 128
+  },
+  "createdAt": "2026-10-28T04:46:27.574Z",
+  "scope": "P06 only; existing Zhipu Chat/FlashX; no retries/fallback",
+  "debugProfileOpenedReadOnly": true
+}

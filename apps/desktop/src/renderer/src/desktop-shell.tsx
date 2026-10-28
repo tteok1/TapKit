@@ -1,5 +1,7 @@
 import { SidebarNavigation } from './sidebar-navigation';
 import { Bookmarks } from './bookmarks';
+import { WorkCenter } from './work-ui';
+import { NotificationsCenter } from './notifications-ui';
 import { TooltipLayer } from './tooltip';
 import {
   useCallback,
@@ -422,11 +424,22 @@ export function DesktopShell() {
               <strong>{branding.name}</strong>
             </span>
             <span className="sidebar-tools">
-              <IconButton
-                icon="bell"
-                label={t.notifications}
-                onClick={() => navigate('/notifications')}
-              />
+              <span className="notification-button">
+                <IconButton
+                  icon="bell"
+                  label={t.notifications}
+                  onClick={() => navigate('/notifications')}
+                />
+                {!!workspace?.unreadNotifications && (
+                  <span
+                    className="notification-count"
+                    aria-label={`${workspace.unreadNotifications} 条未读通知`}
+                    aria-live="polite"
+                  >
+                    {workspace.unreadNotifications}
+                  </span>
+                )}
+              </span>
               <IconButton
                 icon="search"
                 label={t.search}
@@ -693,17 +706,18 @@ export function DesktopShell() {
                 <Route
                   path="/work"
                   element={
-                    <section>
-                      <h1>工作</h1>
-                      <p>{t.runHint}</p>
-                      <HistoryList
-                        page
-                        sort={prefs?.historySort ?? 'updated'}
-                        modeFilter="work"
-                        onNavigate={navigate}
-                        projects={workspace?.projects ?? []}
-                      />
-                    </section>
+                    <WorkCenter onNavigate={navigate} projects={workspace?.projects ?? []} />
+                  }
+                />
+                <Route
+                  path="/work/:id"
+                  element={
+                    <WorkCenter
+                      key={location.pathname}
+                      runId={location.pathname.split('/')[2]}
+                      onNavigate={navigate}
+                      projects={workspace?.projects ?? []}
+                    />
                   }
                 />
                 <Route
@@ -731,21 +745,21 @@ export function DesktopShell() {
                 />
                 <Route
                   path="/notifications"
-                  element={
-                    <section>
-                      <h1>{t.notifications}</h1>
-                      <p>
-                        {t.approval}：{workspace?.pendingApprovals ?? '—'}
-                      </p>
-                      <p>{t.runHint}。审批操作将在工作阶段提供。</p>
-                    </section>
-                  }
+                  element={<NotificationsCenter onNavigate={navigate} />}
                 />
                 <Route
                   path="/sessions/:id"
                   element={
                     selected ? (
-                      composer
+                      selected.mode === 'work' ? (
+                        <WorkCenter
+                          sessionId={selected.id}
+                          onNavigate={navigate}
+                          projects={workspace?.projects ?? []}
+                        />
+                      ) : (
+                        composer
+                      )
                     ) : (
                       <section>
                         <h1>会话未找到</h1>

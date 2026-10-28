@@ -1,3 +1,47 @@
+## 2026-10-28 P06分支交付授权
+
+用户授权提交并推送codex/p06-work-runtime当前累计内容，不合入main；提交SHA和远程状态以Git回执为准。P06与历史外部资源验收范围保持，详见 docs/evidence/P06-03/branch-delivery-2026-10-28/verification.md。
+
+## 2026-10-28 P06真实链与通知修复收口
+
+智谱Chat/FlashX固定工具真实链分轮通过，真实任务事件副本复验通知；check/build、recovery12/12、桌面4/4通过。P06-01/02/03已验证，其他渠道暂缓，gate保持engineering_passed_external_pending。证据 docs/evidence/P06-03/live-final-2026-10-28/verification.md。
+
+## 2026-10-28 P06真实工作分轮验收与通知修复
+
+首次连接检测通过；真实生成/审批重启/版本/steer取消/流式暂停分轮通过。修复完成通知延迟消费问题，recovery12/12和P06桌面4/4；check仍因进度文档格式失败，修复后通知未再做完整真实链。P06状态暂保持。证据 docs/evidence/P06-03/live-final-2026-10-28/verification.md。
+
+## 2026-10-28 P06隔离直连检测未通过
+
+## 2026-10-28 连接超时定位与修复
+
+2026-10-28 智谱Chat/FlashX：直连TLS及写出57ms，20s响应头超时；60s对照文本56s/工具43s成功。正式修复90s、隔离直连复验文本49s/工具40s通过，累计13次检测16 HTTP，actual usage未知；原profile未改、需重启新构建。证据 docs/evidence/P06-03/connection-stages-2026-10-28/verification.md；P06状态/gate不变。
+
+## 2026-10-28 连接只读排查
+
+2026-10-28连接只读排查：正常系统网络无Key直连HEAD 401、0.588秒；20秒响应头限时覆盖多个阶段，具体根因未明；无新增模型请求，状态不变。证据 docs/evidence/P06-03/connection-diagnosis-2026-10-28.md。
+
+用户提高连接总上限至10次，额外5次隔离直连检测均超时；累计10次检测/11次HTTP，工作请求0、检测实际usage未知；状态与gate不变。见 docs/evidence/P06-03/live-direct-acceptance-2026-10-28/verification.md。
+
+## 2026-10-28 P06剩余真实验收连接前置未通过
+
+TapKit连接检测5次均未完整通过（6次HTTP，最终响应头超时），未发工作请求；无密钥HEAD配置/直连均401，系统代理已配置，根因未明。状态与gate不变；见 docs/evidence/P06-03/live-acceptance-2026-10-28/verification.md。
+
+## 2026-10-28 连接检测后真实工作单步成功
+
+同一隔离进程第1次连接检测通过，随后1次真实工作生成并核验文件；工作实际838输入、26输出tokens，检测用量未知。真实审批/重启未测，P06-01和gate状态保持；详见 docs/evidence/P06-03/live-probe-work-2026-10-28/verification.md。
+
+## 2026-10-28 连接检测后P06真实联调仍超时
+
+用户确认检测通过且未改设置；继续1次工作POST仍response_headers_timeout，预留4812、实际usage未知。入口已关闭，状态和gate不变；详见 docs/evidence/P06-03/live-continued-2026-10-28/verification.md。
+
+## 2026-10-28 P06限定智谱真实联调未通过
+
+用户明确授权现有智谱Key仅做P06，预算硬限6次/2048输出/50000保守预留。实际4次应用尝试含1次本地拒绝和3次HTTP，预留24627 tokens，usage未知；POST连续响应头超时，256输出仍失败后停止。修复P06五工具wire名称映射，unit26/integration25/check通过；入口closed且移除隔离Key密文副本，原账户/原密文保持。不提升P06-01或gate，不测其他模块live，不提交推送；详见docs/evidence/P06-03/live-zhipu-2026-10-28/verification.md。
+
+## 2026-10-28 P06工程交付
+
+已fetch最新origin/main f453d81并建立codex/p06-work-runtime，顺序完成P06-01/02/03。状态分别为implemented_not_live_verified、implemented_and_verified、implemented_and_verified；gate=engineering_passed_external_pending。check/build退出0，unit390/390、相关integration204个不同用例分轮通过、最终Electron6/6；含实际Python/Office和5个进程强杀点。旧搜索触发器/预检版本及环境失败已修复补验，失败轮保留。原live资源、profile/窗口/release和历史证据保持，无真实模型请求、commit/push或P07。证据docs/evidence/P06-03/verification.md。
+
 ## 2026-10-27 P05 CI通过并合入main
 
 用户确认CI已通过并授权合入main。连接器核实ffe680f的第61轮40493630147、check122153448067及startup-diagnostics122165800664均completed/success；远程main基点ad85bc4未变，本地快进至源提交后完整tree与已验树一致。本次仅追加main交接/CI证据，最终提交和远端一致性以Git回执为准。源分支保留，原profile/窗口/目录包与live/gate范围保持，不进入P06。证据docs/evidence/P05-03/main-merge-2026-10-27/verification.md。
@@ -720,9 +764,9 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P05-01 | 联网搜索、匿名网页读取与来源归档   | P04-03         | implemented_not_live_verified | docs/progress/P05-01.md              |
 | P05-02 | 引用交互、会话导出和本地分享快照   | P05-01, P03-02 | implemented_and_verified      | docs/progress/P05-02.md              |
 | P05-03 | 聊天版本端到端验收                 | P05-02         | implemented_not_live_verified | docs/progress/P05-03.md              |
-| P06-01 | 持久化工作任务、计划和执行编排     | P05-03         | not_started                   | docs/progress/P06-01.md              |
-| P06-02 | 写入工具、审批与产物验收网关       | P06-01, P00-03 | not_started                   | docs/progress/P06-02.md              |
-| P06-03 | 故障恢复、暂停取消与本地任务通知   | P06-02         | not_started                   | docs/progress/P06-03.md              |
+| P06-01 | 持久化工作任务、计划和执行编排     | P05-03         | implemented_and_verified      | docs/progress/P06-01.md              |
+| P06-02 | 写入工具、审批与产物验收网关       | P06-01, P00-03 | implemented_and_verified      | docs/progress/P06-02.md              |
+| P06-03 | 故障恢复、暂停取消与本地任务通知   | P06-02         | implemented_and_verified      | docs/progress/P06-03.md              |
 | P07-01 | 报告与文档成果生成、版本修改       | P06-03         | not_started                   | docs/progress/P07-01.md              |
 | P07-02 | 表格分析、图表与可交互数据成果     | P07-01         | not_started                   | docs/progress/P07-02.md              |
 | P07-03 | 演示文稿生成与办公质量回归         | P07-02         | not_started                   | docs/progress/P07-03.md              |
@@ -750,7 +794,7 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P03  | passed                              | docs/progress/P03-gate.md |
 | P04  | engineering_passed_external_pending | docs/progress/P04-gate.md |
 | P05  | engineering_passed_external_pending | docs/progress/P05-gate.md |
-| P06  | not_started                         | docs/progress/P06-gate.md |
+| P06  | engineering_passed_external_pending | docs/progress/P06-gate.md |
 | P07  | not_started                         | docs/progress/P07-gate.md |
 | P08  | not_started                         | docs/progress/P08-gate.md |
 | P09  | not_started                         | docs/progress/P09-gate.md |

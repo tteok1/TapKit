@@ -1,0 +1,15 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "ready",
+      "wireBefore": 0,
+      "text": true,
+      "tools": true,
+      "errorCode": null,
+      "diagnosticCode": null,
+      "wireAfter": 2
+    }
+  ],
+  "wireRequests": 2
+}

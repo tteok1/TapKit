@@ -1,0 +1,9 @@
+tests/live/P06.work-runner.ts 162ms
+docs/progress/CURRENT.md 30ms (unchanged)
+docs/progress/INDEX.md 230ms (unchanged)
+docs/progress/RESOURCES.md 75ms (unchanged)
+docs/progress/P06-01.md 6ms (unchanged)
+docs/progress/P06-02.md 5ms (unchanged)
+docs/progress/P06-03.md 5ms (unchanged)
+docs/progress/P06-gate.md 11ms (unchanged)
+docs/adr/0067-durable-work-on-shared-run-ledger.md 4ms (unchanged)

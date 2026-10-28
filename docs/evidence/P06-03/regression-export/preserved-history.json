@@ -1,0 +1,14 @@
+[
+  {
+    "path": "docs/evidence/P05-02/desktop/recipient-preview.png",
+    "newEvidence": "docs/evidence/P06-03/regression-export/recipient-preview.png",
+    "restoredSha256": "fe4c7fc29deb1453bedef099af9a331c9c0443401949adf8e4b701815107a232",
+    "newSha256": "bd374a51cc21a9c1fdb743a078b6af9ae7815a792025aa556d6a320ddeb691d0"
+  },
+  {
+    "path": "docs/evidence/P05-02/exported/conversation.pdf",
+    "newEvidence": "docs/evidence/P06-03/regression-export/conversation.pdf",
+    "restoredSha256": "b68329b069351939a6dd9d7d87a782c85bb5a59ad32545f295efbc49995e4848",
+    "newSha256": "9e3166acb8d0a5dff23da6815cfc41bf942326693281da5d78dec144ae1dc7b3"
+  }
+]

@@ -1,0 +1,28 @@
+$ vitest run --config vitest.config.ts --project integration "P06-01" "-t" "terminal retry"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P06-01.work.test.ts (9 tests | 1 failed | 8 skipped) 759ms
+   × P06-01 T13 terminal retry creates a new run and preserves the root call ceiling 756ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P06-01.work.test.ts > P06-01 T13 terminal retry creates a new run and preserves the root call ceiling
+Error: {"ok":false,"requestId":"01a0a25d-0400-7af8-9eaa-37b73fa54f5b","error":{"code":"VALIDATION_ERROR","message":"请求参数或协议版本无效。","retryable":false,"recoveryActions":[],"traceId":"01a0a25d-0400-7ad9-b0c9-d964da968a32"}}
+ ❯ tests/integration/P06-01.work.test.ts:84:53
+     82|       f.work.repo.row(view.runId).revision,
+     83|     );
+     84|     if (!reply.ok || !('work' in reply.data)) throw Error(JSON.stringi…
+       |                                                     ^
+     85|     const next = reply.data.work;
+     86|     expect(next.runId).not.toBe(view.runId);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 skipped (9)
+   Start at  00:50:38
+   Duration  4.10s (transform 62%, tests 20%, import 16%, setup 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.

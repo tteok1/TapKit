@@ -1,0 +1,36 @@
+
+Running 1 test using 1 worker
+
+(node:12816) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\e2e\P06-02.approval.spec.ts:4:1 › P06-02 T14 exact preview can be edited, approved and produces a new immutable artifact (52.0s)
+
+
+  1) tests\e2e\P06-02.approval.spec.ts:4:1 › P06-02 T14 exact preview can be edited, approved and produces a new immutable artifact 
+
+    TimeoutError: locator.fill: Timeout 30000ms exceeded.
+    Call log:
+      - waiting for locator('.work-approval').getByLabel('修改后', { exact: true })
+
+
+      36 |     await card
+      37 |       .getByLabel('修改后', { exact: true })
+    > 38 |       .fill('# 用户审阅修订\n\n这是用户编辑后批准的成果。');
+         |        ^
+      39 |     await card.getByRole('button', { name: '保存新预览', exact: true }).click();
+      40 |     await expect(card).toContainText('用户编辑后批准');
+      41 |     await card.getByRole('button', { name: '批准操作', exact: true }).click();
+        at D:\Tapkit-public\tests\e2e\P06-02.approval.spec.ts:38:8
+
+    Error Context: test-results\e2e\P06-02.approval-P06-02-T14-bc9cc-es-a-new-immutable-artifact\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P06-02.approval-P06-02-T14-bc9cc-es-a-new-immutable-artifact\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P06-02.approval-P06-02-T14-bc9cc-es-a-new-immutable-artifact\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P06-02.approval.spec.ts:4:1 › P06-02 T14 exact preview can be edited, approved and produces a new immutable artifact 

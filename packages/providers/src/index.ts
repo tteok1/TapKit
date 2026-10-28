@@ -5,6 +5,7 @@ export * from './codex/network';
 export * from './codex/login';
 export * from './api/adapter';
 export * from './api/http';
+export * from './api/zhipu';
 export * from './api/tool-trace';
 export * from './routing/catalog';
 export * from './routing/router';

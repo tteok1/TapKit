@@ -144,6 +144,7 @@ export const SessionSummarySchema = z.strictObject({
   updatedAt: z.number().int().nonnegative(),
 });
 export const WorkspaceViewSchema = z.strictObject({
+  unreadNotifications: z.number().int().nonnegative().default(0),
   eventSeq: z.number().int().nonnegative().default(0),
   sessions: z.array(SessionSummarySchema).max(100),
   projects: z

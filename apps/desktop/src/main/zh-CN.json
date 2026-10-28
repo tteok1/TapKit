@@ -2,5 +2,8 @@
   "open": "打开 TapKit",
   "newWindow": "新建窗口",
   "quit": "退出 TapKit",
-  "requestFailed": "操作未完成，请检查请求或重新打开应用。"
+  "requestFailed": "操作未完成，请检查请求或重新打开应用。",
+  "backgroundTitle": "TapKit 将继续在托盘运行",
+  "backgroundBody": "工作任务在窗口关闭后继续运行。设备需要保持开机和联网；选择托盘菜单中的“退出 TapKit”会安全停止执行并保存接续位置。",
+  "backgroundOK": "知道了"
 }

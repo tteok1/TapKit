@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { resolveApiConfig, ProbeViewSchema, type ApiConfig } from '../../packages/contracts/src';
-import { ApiKeyAdapter } from '../../packages/providers/src';
+import { ApiKeyAdapter, apiHeaderDeadlineMs } from '../../packages/providers/src';
 import {
   accountId,
   memoryNative,
@@ -11,6 +11,15 @@ import {
 } from '../fixtures/P01-02.api';
 
 const baseURL = 'https://open.bigmodel.cn/api/paas/v4';
+it('extends the header deadline only for the official Chat FlashX account', () => {
+  const config = resolveApiConfig('openai-compatible', { baseURL, modelId: 'GLM-4.7-FlashX' });
+  expect(apiHeaderDeadlineMs(config)).toBe(90_000);
+  expect(apiHeaderDeadlineMs({ ...config, modelId: 'glm-4.7-flash' })).toBe(20_000);
+  expect(apiHeaderDeadlineMs({ ...config, baseURL: 'https://other.example/api/paas/v4' })).toBe(
+    20_000,
+  );
+  expect(apiHeaderDeadlineMs({ ...config, apiFormat: 'openai-responses' })).toBe(20_000);
+});
 function fixture(fetcher: typeof fetch, overrides: Partial<ApiConfig> = {}) {
   const config = resolveApiConfig('openai-compatible', {
     baseURL,

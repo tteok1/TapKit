@@ -1,0 +1,695 @@
+import { app } from 'electron';
+import { DatabaseSync } from 'node:sqlite';
+import { createHash } from 'node:crypto';
+import {
+  readFileSync,
+  writeFileSync,
+  realpathSync,
+  existsSync,
+  mkdirSync,
+  copyFileSync,
+  constants,
+} from 'node:fs';
+import { join, dirname, basename } from 'node:path';
+import {
+  openStore,
+  BlobStore,
+  FileRepository,
+  newId,
+  type Store,
+  StorageError,
+} from '../../packages/storage/src';
+import { AuthSecrets } from '../../apps/desktop/src/main/auth/secrets';
+import { restrictToCurrentUser } from '../../apps/desktop/src/main/vault';
+import { resolveSystemProxy } from '../../apps/desktop/src/main/system-proxy';
+import { ProviderService } from '../../packages/core/src/provider-service';
+import { ModelService } from '../../packages/core/src/model-service';
+import { ChatService } from '../../packages/core/src/chat-service';
+import { CoreService } from '../../packages/core/src/service';
+import { WorkService } from '../../packages/core/src/work-service';
+import { modelWorkDriver } from '../../packages/core/src/work-driver';
+import { WorkArtifacts } from '../../packages/core/src/work-artifacts';
+import { WorkToolGateway } from '../../packages/core/src/work-gateway';
+import { countTokens } from '../../packages/context/src';
+import {
+  DEFAULT_MODEL_PREFERENCES,
+  WorkViewSchema,
+  type WorkView,
+} from '../../packages/contracts/src';
+import { P06LiveBudget, P06_LIVE_LIMITS } from './P06.continue-budget';
+import { apiFetchForNetwork } from '../../packages/providers/src';
+
+const root = process.cwd(),
+  [phase, requested] = process.argv.slice(2),
+  accountId = '01a13377-f964-786b-bb32-bf916b568ddc';
+const safeCode = (e: unknown) =>
+  e instanceof StorageError
+    ? e.code
+    : e instanceof Error && /^[A-Z_]{3,50}$/.test(e.message)
+      ? e.message
+      : 'INTERNAL_ERROR';
+const hash = (b: Buffer | string) => createHash('sha256').update(b).digest('hex');
+async function main() {
+  let store: Store | undefined,
+    work: WorkService | undefined,
+    models: ModelService | undefined,
+    providers: ProviderService | undefined;
+  let reportDir = '',
+    stage = 'preflight';
+  const report: Record<string, unknown> = {
+    phase,
+    task: 'P06',
+    status: 'failed',
+    limits: P06_LIVE_LIMITS,
+    realProvider: true,
+    otherModulesCalled: false,
+    automaticRetries: 0,
+    fallbacks: 0,
+    checks: [],
+    keyReadsInsideHost: 0,
+  };
+  const checks = report.checks as string[];
+  const assert = (condition: unknown, name: string) => {
+    if (!condition) throw Error('VALIDATION_ERROR');
+    checks.push(name);
+  };
+  try {
+    if (
+      process.env.TAPKIT_P06_LIVE !== '1' ||
+      !requested ||
+      !['create', 'resume', 'network'].includes(phase ?? '')
+    )
+      throw Error('PERMISSION_DENIED');
+    const directory = realpathSync(requested);
+    if (
+      dirname(directory) !== join(root, '.test-data') ||
+      !basename(directory).startsWith('P06-live-zhipu-')
+    )
+      throw Error('PERMISSION_DENIED');
+    const marker = JSON.parse(readFileSync(join(directory, 'P06.live.json'), 'utf8'));
+    if (marker.closed) throw Error('PERMISSION_DENIED');
+    reportDir = realpathSync(marker.reportDir);
+    if (reportDir !== join(root, 'docs/evidence/P06-03/live-continued-2026-10-28'))
+      throw Error('PERMISSION_DENIED');
+    const source = realpathSync(
+      JSON.parse(readFileSync(join(root, '.test-data/P06-connection-debug.json'), 'utf8')).directory,
+    );
+    if (
+      dirname(source) !== join(root, '.test-data') ||
+      !basename(source).startsWith('P06-connection-debug-')
+    )
+      throw Error('PERMISSION_DENIED');
+    const sourceDb = new DatabaseSync(join(source, 'db/app.sqlite'), { readOnly: true });
+    let verifiedCatalog: Record<string, unknown> | undefined;
+    let account: {
+        id: string;
+        revision: number;
+        status: string;
+        provider_id: string;
+        api_format: string;
+        base_url: string;
+        model_id: string;
+        credential_id: string;
+      },
+      settings: { network: unknown };
+    try {
+      const rows = sourceDb
+        .prepare(
+          'SELECT id,revision,status,provider_id,api_format,base_url,model_id,credential_id FROM provider_accounts WHERE deleted_at IS NULL',
+        )
+        .all();
+      if (rows.length !== 1) throw Error('CONFLICT');
+      account = rows[0] as typeof account;
+      if (
+        account.id !== accountId ||
+        account.status !== 'ready' ||
+        account.provider_id !== 'openai-compatible' ||
+        account.api_format !== 'openai-chat' ||
+        account.base_url !== 'https://open.bigmodel.cn/api/paas/v4' ||
+        account.model_id !== 'glm-4.7-flashx'
+      )
+        throw Error('PERMISSION_DENIED');
+      settings = JSON.parse(
+        (
+          sourceDb
+            .prepare(
+              "SELECT value_json FROM settings WHERE key='preferences' AND scope_type='profile' AND deleted_at IS NULL",
+            )
+            .get() as { value_json: string }
+        ).value_json,
+      ).values;
+      verifiedCatalog = sourceDb
+        .prepare(
+          "SELECT * FROM model_catalog WHERE provider_id=? AND model_id=? AND catalog_version=? AND verification='probed'",
+        )
+        .get(account.provider_id, account.model_id, 'tapkit-api/2:openai-chat:' + account.id) as
+        Record<string, unknown> | undefined;
+      if (!verifiedCatalog) throw Error('MODEL_UNSUPPORTED');
+    } finally {
+      sourceDb.close();
+    }
+    const cipher = join(source, 'secrets', account.credential_id),
+      cipherHash = hash(readFileSync(cipher));
+    const publicBindingHash = hash(JSON.stringify(account));
+    app.setName('TapKit');
+    app.setPath('userData', directory);
+    if (!app.requestSingleInstanceLock()) throw Error('CONFLICT');
+    await app.whenReady();
+    if (phase === 'network') {
+      stage = 'unauthenticated-network-diagnostic';
+      for (const [name, network] of [
+        ['configured', settings.network],
+        ['direct', { mode: 'direct', proxyURL: '' }],
+      ] as const) {
+        try {
+          const response = await apiFetchForNetwork(
+            network as Parameters<typeof apiFetchForNetwork>[0],
+            async (url) => (await resolveSystemProxy({ url })).proxyURL,
+          )('https://open.bigmodel.cn/api/paas/v4/chat/completions', {
+            method: 'HEAD',
+            signal: AbortSignal.timeout(15000),
+          });
+          report[name] = { httpStatus: response.status };
+          await response.body?.cancel();
+        } catch (error) {
+          const detail = (error as { detail?: { code?: string; diagnosticCode?: string } }).detail;
+          report[name] = {
+            code: detail?.code ?? safeCode(error),
+            diagnosticCode: detail?.diagnosticCode ?? null,
+          };
+        }
+      }
+      report.status = 'passed';
+      report.modelRequests = 0;
+      return;
+    }
+    stage = 'isolated-store';
+    store = await openStore(directory);
+    const isolatedSecretDir = join(directory, 'secrets');
+    mkdirSync(isolatedSecretDir, { recursive: true });
+    await restrictToCurrentUser(isolatedSecretDir);
+    const isolatedCipher = join(isolatedSecretDir, account.credential_id);
+    if (!existsSync(isolatedCipher)) copyFileSync(cipher, isolatedCipher, constants.COPYFILE_EXCL);
+    const isolatedSecrets = new AuthSecrets(isolatedSecretDir);
+    if (phase === 'create' && !existsSync(join(directory, 'source-binding.json'))) {
+      const now = store.now();
+      store.db
+        .prepare(
+          "INSERT INTO provider_accounts(id,profile_id,created_at,updated_at,provider_id,label,auth_type,credential_id,status,model_id,api_format,base_url,revision) VALUES(?,?,?,?,?,'P06 live existing Zhipu','api_key',?,'ready',?,?,?,?)",
+        )
+        .run(
+          account.id,
+          store.profileId,
+          now,
+          now,
+          account.provider_id,
+          account.credential_id,
+          account.model_id,
+          account.api_format,
+          account.base_url,
+          account.revision,
+        );
+      const values = { ...store.settings.values, network: settings.network, memoryEnabled: false };
+      store.db
+        .prepare(
+          "UPDATE settings SET value_json=? WHERE key='preferences' AND scope_type='profile'",
+        )
+        .run(JSON.stringify({ schemaVersion: 1, values }));
+      writeFileSync(
+        join(directory, 'source-binding.json'),
+        JSON.stringify({ publicBindingHash, cipherHash }),
+        { flag: 'wx' },
+      );
+    } else {
+      const baseline = JSON.parse(readFileSync(join(directory, 'source-binding.json'), 'utf8'));
+      assert(
+        baseline.publicBindingHash === publicBindingHash && baseline.cipherHash === cipherHash,
+        'original account and encrypted credential unchanged across restart',
+      );
+    }
+    const budget = new P06LiveBudget(join(directory, 'budget.json'));
+    if (
+      !store.db
+        .prepare('SELECT 1 FROM model_catalog WHERE catalog_version=?')
+        .get(verifiedCatalog!.catalog_version)
+    ) {
+      const row = { ...verifiedCatalog!, id: newId(), profile_id: store.profileId };
+      const columns = Object.keys(row);
+      store.db
+        .prepare(
+          'INSERT INTO model_catalog(' +
+            columns.join(',') +
+            ') VALUES(' +
+            columns.map(() => '?').join(',') +
+            ')',
+        )
+        .run(...Object.values(row));
+    }
+    if (phase === 'create' && !existsSync(budget.path)) budget.initialize();
+    else budget.state();
+    if (
+      phase === 'create' &&
+      (existsSync(join(directory, 'checkpoint.json')) ||
+        (
+          store.db
+            .prepare(
+              "SELECT count(*) n FROM provider_attempts WHERE status NOT IN('failed','cancelled')",
+            )
+            .get() as { n: number }
+        ).n !== 0 ||
+        (
+          store.db
+            .prepare(
+              "SELECT count(*) n FROM tasks t JOIN runs r ON r.task_id=t.id WHERE r.status NOT IN('failed','cancelled','budget_stopped','completed','partial')",
+            )
+            .get() as { n: number }
+        ).n !== 0)
+    )
+      throw Error('CONFLICT');
+    const wireBefore = budget.state().wireRequests;
+    report.budgetStart = budget.state();
+    stage = 'provider-construction';
+    providers = new ProviderService(
+      store,
+      async (operation, id, payload) => {
+        if (id !== accountId) throw Error('PERMISSION_DENIED');
+        if (operation === 'api-key.read') {
+          report.keyReadsInsideHost = Number(report.keyReadsInsideHost) + 1;
+          try {
+            return await isolatedSecrets.invoke(operation, id, payload);
+          } catch (error) {
+            report.credentialReadError = safeCode(error);
+            report.credentialReadErrorType = error instanceof Error ? error.name : 'unknown';
+            throw error;
+          }
+        }
+        if (['native.save', 'native.load', 'native.purge'].includes(operation))
+          return isolatedSecrets.invoke(operation, id, payload);
+        throw Error('PERMISSION_DENIED');
+      },
+      async (url, signal) => {
+        signal?.throwIfAborted();
+        return (await resolveSystemProxy({ url })).proxyURL;
+      },
+    );
+    const adapter = providers.adapter(accountId) as unknown as { fetcher: typeof fetch };
+    const realFetch = adapter.fetcher;
+    adapter.fetcher = async (input, init) => {
+      const url = String(input);
+      if (
+        url !== 'https://open.bigmodel.cn/api/paas/v4/chat/completions' ||
+        init?.method !== 'POST' ||
+        typeof init.body !== 'string'
+      )
+        throw Error('PERMISSION_DENIED');
+      const body = JSON.parse(init.body);
+      if (body.model !== account.model_id || (body.max_tokens ?? body.max_completion_tokens) > 256)
+        throw Error('PERMISSION_DENIED');
+      budget.wire();
+      try {
+        return await realFetch(input, init);
+      } catch (error) {
+        const detail = (error as { detail?: { code?: string; diagnosticCode?: string } }).detail;
+        report.transportError = {
+          code: detail?.code ?? safeCode(error),
+          diagnosticCode: detail?.diagnosticCode ?? null,
+        };
+        throw error;
+      }
+    };
+    stage = 'model-construction';
+    models = new ModelService(store, providers);
+    if (phase === 'create') {
+      const scope = { type: 'profile' as const, id: store.profileId },
+        current = models.ledger.preferences(scope);
+      store.db.transaction(() =>
+        models!.ledger.setPreferences(
+          scope,
+          {
+            ...DEFAULT_MODEL_PREFERENCES,
+            selection: { accountId, modelId: account.model_id },
+            onlyThisModel: true,
+            allowPaidFallback: false,
+            reasoning: 'off',
+            mode: 'quick',
+            dailyTokenLimit: 50000,
+            rootTokenLimit: 50000,
+            workRootTokenLimit: 50000,
+          },
+          current.revision,
+        ),
+      )();
+    }
+    stage = 'model-preferences-ready';
+    const reserve = models.router.deps.reserve;
+    models.router.deps.reserve = (request, model, input) => {
+      if (input.mode !== 'work' || request.accountId !== accountId)
+        throw Error('PERMISSION_DENIED');
+      budget.reserve(countTokens(request) + 1024, request.outputLimit);
+      return reserve(request, model, input);
+    };
+    stage = 'work-construction';
+    const blobs = new BlobStore(store),
+      files = new FileRepository(store, blobs),
+      chat = new ChatService(store, blobs, models),
+      artifacts = new WorkArtifacts(files, blobs),
+      gateway = new WorkToolGateway(artifacts);
+    const stream = models.router.stream.bind(models.router);
+    let interrupt: 'pause' | 'cancel' | undefined,
+      interrupted = false;
+    models.router.stream = async function* (input, signal) {
+      input.singleAttempt = true;
+      input.allowedAccounts = new Set([accountId]);
+      input.request.outputLimit = 256;
+      input.need.outputTokens = 256;
+      input.preferences.onlyThisModel = true;
+      input.preferences.allowPaidFallback = false;
+      for await (const event of stream(
+        input,
+        AbortSignal.any([signal, AbortSignal.timeout(60000)]),
+      )) {
+        if (
+          interrupt &&
+          !interrupted &&
+          event.type === 'model.event' &&
+          ['text_delta', 'tool_delta'].includes(event.event.type)
+        ) {
+          interrupted = true;
+          const current = work!.repo.view(input.runId);
+          await command('runs.' + interrupt, { runId: input.runId }, current.revision);
+          report.interruptedOnPartial = true;
+        }
+        yield event;
+      }
+    };
+    work = new WorkService(
+      store,
+      modelWorkDriver(models, chat),
+      gateway,
+      (ref, session) => chat.material(ref, session),
+      models.claimRoot,
+    );
+    async function command(name: string, payload: unknown, revision?: number) {
+      const reply = await work!.dispatch({
+        protocolVersion: 1,
+        requestId: newId(),
+        command: name,
+        payload,
+        ...(revision === undefined ? {} : { expectedRevision: revision }),
+      });
+      if (!reply.ok) throw new StorageError(reply.error.code);
+      return reply.data;
+    }
+    function view(data: unknown) {
+      return WorkViewSchema.parse((data as { work: unknown }).work);
+    }
+    function session() {
+      const reply = new CoreService(store!).dispatch({
+        protocolVersion: 1,
+        requestId: newId(),
+        command: 'sessions.create',
+        payload: { mode: 'work', title: 'P06 智谱有界联调' },
+      });
+      if (!reply.ok || !('entityId' in reply.data)) throw Error('CONFLICT');
+      return reply.data.entityId;
+    }
+    async function until(id: string, predicate: (v: WorkView) => boolean) {
+      const deadline = Date.now() + 75000;
+      while (Date.now() < deadline) {
+        const current = work!.repo.view(id);
+        if (predicate(current)) return current;
+        if (['failed', 'partial', 'budget_stopped', 'cancelled'].includes(current.status))
+          throw new StorageError(
+            (current.reason ?? 'CONFLICT') as ConstructorParameters<typeof StorageError>[0],
+          );
+        await new Promise((r) => setTimeout(r, 25));
+      }
+      throw Error('TOOL_TIMEOUT');
+    }
+    await work.start();
+    if (phase === 'create') {
+      stage = 'plan-and-first-artifact';
+      const first = view(
+        await command('runs.create', {
+          sessionId: session(),
+          goal: 'P06真实联调。只执行当前步骤：第一步用artifact.write创建p06-live.md，正文为“# P06 Live\n初稿”；第二步只用workspace.patch把第一步的文件改成“# P06 Live\n修改后”。第二步的fileId/versionId必须来自priorOutputs。不要调用其他工具；每一步只调用一个指定工具。',
+          planFirst: true,
+          budgetOverrides: { tokens: 28000, activeMs: 180000, maxCalls: 3, maxTools: 4 },
+        }),
+      );
+      const waiting = await until(first.runId, (v) => v.status === 'waiting_user');
+      assert(
+        budget.state().wireRequests === wireBefore,
+        'plan-first waits without additional HTTP dispatch',
+      );
+      const acceptance = [{ kind: 'file_exists', format: 'md', minCount: 1 }],
+        common = {
+          inputRefs: [],
+          outputContract: { kind: 'files', formats: ['md'] },
+          acceptance,
+          optional: false,
+        };
+      await command(
+        'runs.setPlan',
+        {
+          runId: first.runId,
+          steps: [
+            {
+              ...common,
+              stepKey: 'draft',
+              title: '只用artifact.write创建p06-live.md，正文：# P06 Live 换行 初稿',
+              dependencies: [],
+            },
+            {
+              ...common,
+              stepKey: 'patch',
+              title:
+                '只用workspace.patch修改priorOutputs中的同一文件，正文：# P06 Live 换行 修改后；必须等待具体内容审批',
+              dependencies: ['draft'],
+            },
+          ],
+        },
+        waiting.revision,
+      );
+      const approvalWaiting = await until(
+        first.runId,
+        (v) => v.status === 'waiting_user' && v.steps[0]!.status === 'completed',
+      );
+      const approval = store.db
+        .prepare(
+          "SELECT a.id FROM approvals a JOIN tool_calls c ON c.id=a.tool_call_id WHERE c.run_id=? AND a.decision='pending'",
+        )
+        .get(first.runId);
+      assert(!!approval, 'real model proposed a managed patch requiring approval');
+      assert(
+        budget.state().wireRequests === wireBefore + 2,
+        'two real steps used exactly two HTTP requests',
+      );
+      assert(approvalWaiting.steps[0]!.artifacts.length === 1, 'first real artifact is registered');
+      work.notifications.sync();
+      writeFileSync(
+        join(directory, 'checkpoint.json'),
+        JSON.stringify({
+          runId: first.runId,
+          taskId: first.taskId,
+          sessionId: first.sessionId,
+          sourceRef: approvalWaiting.steps[0]!.artifacts[0],
+          firstPid: process.pid,
+          modelRequests: budget.state().wireRequests,
+        }),
+        { flag: 'wx' },
+      );
+      report.runId = first.runId;
+      report.status = 'passed';
+    } else {
+      stage = 'restart-approval';
+      const cp = JSON.parse(readFileSync(join(directory, 'checkpoint.json'), 'utf8'));
+      assert(cp.firstPid !== process.pid, 'actual Electron process restart');
+      const current = work.repo.view(cp.runId);
+      assert(current.status === 'waiting_user', 'pending approval survives restart');
+      const a = store.db
+        .prepare(
+          "SELECT a.id,c.args_json FROM approvals a JOIN tool_calls c ON c.id=a.tool_call_id WHERE c.run_id=? AND a.decision='pending' ORDER BY a.rowid DESC LIMIT 1",
+        )
+        .get(cp.runId) as { id: string; args_json: string };
+      const args = JSON.parse(a.args_json);
+      await command(
+        'approvals.editDraft',
+        { approvalId: a.id, newBusinessArgs: { ...args, content: '# P06 Live\n修改后\n人工审阅' } },
+        current.revision,
+      );
+      const fresh = store.db
+        .prepare(
+          "SELECT a.id,a.args_hash,a.content_version_hash FROM approvals a JOIN tool_calls c ON c.id=a.tool_call_id WHERE c.run_id=? AND a.decision='pending' ORDER BY a.rowid DESC LIMIT 1",
+        )
+        .get(cp.runId) as { id: string; args_hash: string; content_version_hash: string };
+      await command(
+        'approvals.decide',
+        {
+          approvalId: fresh.id,
+          decision: 'approved',
+          argsHash: fresh.args_hash,
+          contentVersionHash: fresh.content_version_hash,
+          scope: 'once',
+        },
+        work.repo.view(cp.runId).revision,
+      );
+      const complete = await until(cp.runId, (v) => v.status === 'completed');
+      assert(
+        budget.state().wireRequests === cp.modelRequests,
+        'approval recovery does not replay a model request',
+      );
+      const output = complete.steps[1]!.artifacts[0]!;
+      if (output.kind !== 'file') throw Error('VALIDATION_ERROR');
+      const final = await files.original(output.fileId, {
+        versionId: output.versionId,
+        owner: { type: 'task', id: cp.taskId },
+      });
+      assert(
+        final.bytes.toString() === '# P06 Live\n修改后\n人工审阅',
+        'reviewed version has exact approved content',
+      );
+      assert(
+        output.fileId === cp.sourceRef.fileId && output.versionId !== cp.sourceRef.versionId,
+        'patch creates a new version of the same managed file',
+      );
+      const original = await files.original(cp.sourceRef.fileId, {
+        versionId: cp.sourceRef.versionId,
+        owner: { type: 'task', id: cp.taskId },
+      });
+      assert(
+        original.bytes.toString().includes('初稿'),
+        'original generated version remains readable',
+      );
+      stage = 'steer';
+      const next = view(
+        await command(
+          'runs.steer',
+          {
+            runId: cp.runId,
+            text: 'P06目标v2：只调用一次artifact.write创建p06-steer.md，正文为“# P06 Live\nv2”。不要调用其他工具。',
+            refs: [],
+            clientRequestId: newId(),
+          },
+          complete.revision,
+        ),
+      );
+      // The inherited plan-first flag requires a fresh explicit acceptance.
+      const steered = await until(next.runId, (v) => v.status === 'waiting_user');
+      assert(steered.version === 2, 'steer creates a new task version and reviewable plan');
+      await command('runs.cancel', { runId: next.runId }, steered.revision);
+      assert(
+        work.repo.view(next.runId).status === 'cancelled',
+        'new version can be cancelled before dispatch',
+      );
+      assert(
+        budget.state().wireRequests === cp.modelRequests,
+        'steer review and cancellation spend no extra request',
+      );
+      assert(work.repo.view(cp.runId).status === 'completed', 'old terminal run stays completed');
+      for (const action of [] as ('pause')[]) {
+        stage = action;
+        interrupt = action;
+        interrupted = false;
+        const r = view(
+          await command('runs.create', {
+            sessionId: session(),
+            goal:
+              'P06 ' +
+              action +
+              '验证：只用artifact.write创建p06-' +
+              action +
+              '.md，正文包含从1到400的数字，每行一个。',
+            budgetOverrides: { tokens: 10000, activeMs: 90000, maxCalls: 1, maxTools: 1 },
+          }),
+        );
+        const stopped = await until(
+          r.runId,
+          (v) => v.status === (action === 'pause' ? 'paused' : 'cancelled'),
+        );
+        assert(interrupted, 'real model partial stream was interrupted for ' + action);
+        assert(
+          stopped.steps.every((s) => s.artifacts.length === 0),
+          'no partial tool dispatch after ' + action,
+        );
+        interrupt = undefined;
+        await command('runs.cancel', { runId: r.runId }, stopped.revision);
+        assert(
+          work.repo.view(r.runId).status === 'cancelled',
+          'paused real task cancels without dispatching another request',
+        );
+      }
+      stage = 'notifications';
+      work.notifications.sync();
+      const n = await command('notifications.list', {});
+      assert(
+        'notifications' in n &&
+          n.notifications.some((v) => v.runId === cp.runId && v.kind === 'completed'),
+        'real completion creates a durable task notification',
+      );
+      report.status = 'passed';
+    }
+    await work.stop();
+    await models.stop();
+    await providers.stop();
+    await isolatedSecrets.settled;
+    assert(
+      hash(readFileSync(cipher)) === cipherHash,
+      'source encrypted credential bytes unchanged',
+    );
+    const reserved = (
+      store.db.prepare('SELECT coalesce(sum(reserved_tokens),0) n FROM budgets').get() as {
+        n: number;
+      }
+    ).n;
+    const unsettled = (
+      store.db
+        .prepare(
+          'SELECT count(*) n FROM provider_attempts WHERE id NOT IN(SELECT provider_attempt_id FROM usage_ledger)',
+        )
+        .get() as { n: number }
+    ).n;
+    assert(reserved === 0 && unsettled === 0, 'all model reservations are settled exactly once');
+    report.budget = budget.state();
+    report.usage = store.db
+      .prepare(
+        'SELECT source,count(*) attempts,sum(charged_tokens) chargedTokens,sum(input_tokens) inputTokens,sum(output_tokens) outputTokens FROM usage_ledger GROUP BY source',
+      )
+      .all();
+    report.attempts = store.db
+      .prepare(
+        'SELECT status,error_code errorCode,count(*) count FROM provider_attempts GROUP BY status,error_code',
+      )
+      .all();
+  } catch (error) {
+    report.status = 'failed';
+    report.errorCode = safeCode(error);
+    report.errorType = error instanceof Error ? error.name : 'unknown';
+    const systemCode = (error as { code?: unknown })?.code;
+    if (typeof systemCode === 'string' && /^[A-Z_0-9]{2,60}$/.test(systemCode))
+      report.systemCode = systemCode;
+    if (error instanceof Error)
+      report.safeStackFunctions = error.stack
+        ?.split('\n')
+        .slice(1, 5)
+        .map((line) => line.match(/at ([A-Za-z_$][\w.$]*)/)?.[1] ?? 'anonymous');
+  } finally {
+    await work?.stop().catch(() => {});
+    await models?.stop().catch(() => {});
+    await providers?.stop().catch(() => {});
+    store?.close();
+    report.stage = stage;
+    report.checkedAt = new Date().toISOString();
+    if (reportDir)
+      writeFileSync(
+        join(reportDir, phase + '-report.json'),
+        JSON.stringify(report, null, 2) + '\n',
+      );
+    process.stdout.write(
+      JSON.stringify({ phase, status: report.status, stage, errorCode: report.errorCode ?? null }) +
+        '\n',
+    );
+    app.exit(report.status === 'passed' ? 0 : 1);
+  }
+}
+void main();

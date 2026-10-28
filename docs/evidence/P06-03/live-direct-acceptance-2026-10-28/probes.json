@@ -1,0 +1,55 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "unavailable",
+      "wireBefore": 0,
+      "text": false,
+      "tools": false,
+      "errorCode": "NETWORK_ERROR",
+      "diagnosticCode": "response_headers_timeout",
+      "wireAfter": 1
+    },
+    {
+      "attempt": 2,
+      "status": "unavailable",
+      "wireBefore": 1,
+      "text": false,
+      "tools": false,
+      "errorCode": "NETWORK_ERROR",
+      "diagnosticCode": "response_headers_timeout",
+      "wireAfter": 2
+    },
+    {
+      "attempt": 3,
+      "status": "unavailable",
+      "wireBefore": 2,
+      "text": false,
+      "tools": false,
+      "errorCode": "NETWORK_ERROR",
+      "diagnosticCode": "response_headers_timeout",
+      "wireAfter": 3
+    },
+    {
+      "attempt": 4,
+      "status": "unavailable",
+      "wireBefore": 3,
+      "text": false,
+      "tools": false,
+      "errorCode": "NETWORK_ERROR",
+      "diagnosticCode": "response_headers_timeout",
+      "wireAfter": 4
+    },
+    {
+      "attempt": 5,
+      "status": "unavailable",
+      "wireBefore": 4,
+      "text": false,
+      "tools": false,
+      "errorCode": "NETWORK_ERROR",
+      "diagnosticCode": "response_headers_timeout",
+      "wireAfter": 5
+    }
+  ],
+  "wireRequests": 5
+}

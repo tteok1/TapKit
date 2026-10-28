@@ -1,5 +1,7 @@
 # 工具网关、Windows执行隔离与网络策略
 
+P06固定目录p06-tools-1：artifact.write、workspace.patch、python.analyze、office.convert。完整参数、资源、内容、taskVersion、实际模型选择与目录版本绑定审批；派发前重复核验。patch仅更新任务托管副本并保留旧版；审批过期可重新预览，拒绝不换工具。原生工具复用当前账户已验证AppContainer/无网络/Job树门禁及私有staging；只执行固定CSV统计或Office转PDF。process_handles存唯一helper/nativeRun身份和租约，强杀后先核对；未知副作用等待用户核验，已提交动作不重放。任意exec与外部工作区写入仍属于后续阶段。
+
 P05-03复核：Core逐轮web.read URL精确白名单来自当前用户显式URL、实际搜索结果和已读正文原始链接，禁止模型拼接query/path携带背景；网络逐跳公开地址/域名策略继续执行。拒绝路径有“附加PRIVATE_MEMORY查询且wire调用数不变”的确定性测试。
 
 P05-02：导出使用无Node/preload/页面脚本的独立沙箱renderer；仅本次内存HTML及内嵌锁定字体，拒绝网络/弹窗/下载/权限，固定CDP DOM/CSS观察后PDF分页；取消/超时销毁。ZIP只复制明确选入的授权固定版本与安全相对路径，写盘wx且在前后复验来源/租约，失败仅清理本次inode。见[ADR0065](../adr/0065-reviewed-local-export-and-chat-snapshot.md)。

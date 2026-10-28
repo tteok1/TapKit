@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-10-27T18:41:20.754Z",
+  "sourceHashFiles": 491,
+  "branch": "codex/p06-work-runtime",
+  "liveStatus": "failed_live_transport",
+  "budget": {
+    "requests": 4,
+    "reservedTokens": 24627,
+    "wireRequests": 3
+  },
+  "actualUsageKnown": false,
+  "production": {
+    "installChatFixture": false,
+    "fixtureAssets": []
+  },
+  "commands": [
+    {
+      "command": "P06 related unit",
+      "log": "aliases-test-second.log",
+      "exitCode": 0,
+      "passed": 26,
+      "logLastModified": "2026-10-27T18:25:26.145Z"
+    },
+    {
+      "command": "P06 work/approval/recovery integration",
+      "log": "integration.log",
+      "exitCode": 0,
+      "passed": 25,
+      "logLastModified": "2026-10-27T18:37:05.182Z"
+    },
+    {
+      "command": "pnpm check",
+      "log": "check-final.log",
+      "exitCode": 0,
+      "passed": null,
+      "logLastModified": "2026-10-27T18:40:42.214Z"
+    },
+    {
+      "command": "pnpm build",
+      "log": "build.log",
+      "exitCode": 0,
+      "passed": null,
+      "logLastModified": "2026-10-27T18:38:52.067Z"
+    },
+    {
+      "command": "pnpm docs:check",
+      "log": "docs-check.log",
+      "exitCode": 0,
+      "passed": null,
+      "logLastModified": "2026-10-27T18:40:17.289Z"
+    }
+  ],
+  "diffCheckExitCode": 0,
+  "realRequestsStopped": true,
+  "otherModulesLive": false,
+  "gitCommitOrPush": false
+}

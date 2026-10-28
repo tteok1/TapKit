@@ -1,0 +1,12 @@
+{
+  "directory": "D:\\Tapkit-public\\.test-data\\P06-live-zhipu-4RKeXn",
+  "reportDir": "D:\\Tapkit-public\\docs\\evidence\\P06-03\\live-continued-2026-10-28",
+  "limits": {
+    "requests": 2,
+    "outputTokens": 256,
+    "reservedTokens": 20000
+  },
+  "createdAt": "2026-10-28T03:19:09.482Z",
+  "scope": "P06 only; existing Zhipu Chat/FlashX; no retries/fallback",
+  "debugProfileOpenedReadOnly": true
+}

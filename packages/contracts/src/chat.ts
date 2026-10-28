@@ -19,6 +19,33 @@ export const RunStatusSchema = z.enum([
   'budget_stopped',
   'cancelled',
 ]);
+export const RUN_TRANSITIONS: Record<
+  z.infer<typeof RunStatusSchema>,
+  readonly z.infer<typeof RunStatusSchema>[]
+> = {
+  queued: ['running', 'cancelled', 'paused'],
+  running: [
+    'waiting_tool',
+    'waiting_user',
+    'pausing',
+    'recovering',
+    'completed',
+    'partial',
+    'failed',
+    'budget_stopped',
+    'cancelled',
+  ],
+  waiting_tool: ['running', 'pausing', 'recovering', 'waiting_user', 'cancelled'],
+  waiting_user: ['running', 'paused', 'cancelled', 'budget_stopped'],
+  pausing: ['paused', 'waiting_user', 'recovering', 'cancelled'],
+  paused: ['queued', 'cancelled'],
+  recovering: ['queued', 'waiting_user', 'failed', 'cancelled'],
+  completed: [],
+  partial: [],
+  failed: [],
+  budget_stopped: [],
+  cancelled: [],
+};
 export const ChatRefsSchema = z.array(ResourceRefSchema).max(20);
 export const ChatSessionSchema = z.strictObject({ sessionId: IdSchema });
 export const ChatSendSchema = ChatSessionSchema.extend({

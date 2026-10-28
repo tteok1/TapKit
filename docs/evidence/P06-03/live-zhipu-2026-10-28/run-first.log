@@ -1,0 +1,2 @@
+{"phase":"create","status":"failed","stage":"preflight","errorCode":"INTERNAL_ERROR"}
+P06 live stopped at first failed phase. Inspect the redacted report before any further request.

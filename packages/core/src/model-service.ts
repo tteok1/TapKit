@@ -22,6 +22,7 @@ import {
   DiagnosticViewSchema,
   IdSchema,
   ROUTING_LIMITS,
+  WorkDefinitionSchema,
   z,
   type Request,
   type Reply,
@@ -77,6 +78,25 @@ export class ModelService {
       disabled: (id) => this.ledger.isDisabled(id),
       disable: (id, e, revision) => this.ledger.disableAccount(id, e, revision),
       reserve: (request, model, input) => {
+        if (input.mode === 'work') {
+          const run = store.db
+            .prepare(
+              "SELECT r.work_json FROM runs r JOIN tasks t ON t.id=r.task_id JOIN sessions s ON s.id=r.session_id WHERE r.id=? AND r.profile_id=? AND t.mode='work' AND t.deleted_at IS NULL AND s.deleted_at IS NULL AND r.task_version=t.current_version AND r.task_version=? AND r.status='running' AND r.cancel_requested_at IS NULL AND r.pause_requested_at IS NULL",
+            )
+            .get(input.runId, store.profileId, request.taskVersion) as
+            { work_json: string } | undefined;
+          if (!run) throw new StorageError('CANCELLED');
+          const definition = WorkDefinitionSchema.parse(JSON.parse(run.work_json).definition),
+            used = (
+              store.db
+                .prepare(
+                  'SELECT count(*) n FROM provider_attempts WHERE root_run_id=? AND profile_id=?',
+                )
+                .get(input.rootRunId, store.profileId) as { n: number }
+            ).n;
+          if (used >= definition.budgetOverrides.maxCalls)
+            throw new StorageError('BUDGET_EXCEEDED');
+        }
         const inputTokens = this.inputBound(request);
         if (
           compatibility(model, input.preferences, {

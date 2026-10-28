@@ -63,6 +63,22 @@ function requestFixture() {
     return req;
   });
 }
+it('reports only fixed transport milestones without exposing request data', async () => {
+  mocks.lookup.mockResolvedValue([{ address: '8.8.8.8', family: 4 }]);
+  requestFixture();
+  const events: string[] = [];
+  const response = await apiFetchForNetwork(
+    { mode: 'direct', proxyURL: '' },
+    undefined,
+    (event) => {
+      events.push(event);
+      if (event === 'dns_complete') throw new Error('observer failure');
+    },
+  )('https://api.trusted.example/v1/messages', { headers: { authorization: 'secret' } });
+  await response.text();
+  expect(events).toEqual(['dns_complete', 'proxy_resolved', 'response_headers']);
+  expect(JSON.stringify(events)).not.toContain('secret');
+});
 it('P01-02 validates all DNS answers and pins the actual connection, Host, SNI and TLS policy', async () => {
   mocks.lookup.mockResolvedValue([{ address: '8.8.8.8', family: 4 }]);
   requestFixture();
@@ -184,6 +200,33 @@ it('P01-03 distinguishes the response-header deadline from explicit cancellation
   controller.abort();
   const error = await cancelled.catch((e) => e);
   expect(error.detail).toEqual({ code: 'CANCELLED', retryable: false });
+});
+it('honors an extended deadline while preserving cancellation', async () => {
+  vi.useFakeTimers();
+  pendingRequest();
+  const controller = new AbortController();
+  const operation = apiFetchForNetwork(
+    { mode: 'direct', proxyURL: '' },
+    undefined,
+    undefined,
+    90_000,
+  )('https://api.trusted.example/v1/messages', { signal: controller.signal });
+  const assertion = expect(operation).rejects.toMatchObject({ detail: { code: 'CANCELLED' } });
+  await vi.advanceTimersByTimeAsync(20_001);
+  expect(mocks.request).toHaveBeenCalledOnce();
+  controller.abort();
+  await assertion;
+  const timeout = apiFetchForNetwork(
+    { mode: 'direct', proxyURL: '' },
+    undefined,
+    undefined,
+    90_000,
+  )('https://api.trusted.example/v1/messages');
+  const timedOut = expect(timeout).rejects.toMatchObject({
+    detail: { diagnosticCode: 'response_headers_timeout' },
+  });
+  await vi.advanceTimersByTimeAsync(90_000);
+  await timedOut;
 });
 it('P01-03 classifies pre-response connection errors without exporting raw details', async () => {
   pendingRequest();

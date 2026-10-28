@@ -1,0 +1,108 @@
+import { build } from 'vite';
+import { resolve, join } from 'node:path';
+import { mkdirSync, mkdtempSync, writeFileSync, existsSync, readFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { createRequire } from 'node:module';
+import { lockedEnv, root } from './lib.mjs';
+if (process.argv.slice(2).join(' ') !== '--prepare-only' && process.argv.length !== 2)
+  throw Error('Expected --prepare-only or no arguments');
+const prepareOnly = process.argv.includes('--prepare-only');
+if (!prepareOnly && process.env.TAPKIT_P06_LIVE !== '1')
+  throw Error('Explicit P06 live opt-in required');
+await build({
+  configFile: false,
+  logLevel: 'error',
+  plugins: [
+    {
+      name: 'p06-live-native-sqlite',
+      enforce: 'pre',
+      resolveId(source) {
+        if (source === 'better-sqlite3')
+          return {
+            id: resolve('packages/storage/node_modules/better-sqlite3/lib/index.js'),
+            external: true,
+          };
+      },
+    },
+  ],
+  build: {
+    ssr: 'tests/live/P06.continue-runner.ts',
+    target: 'node24',
+    outDir: '.test-data/P06-continue-runner',
+    rollupOptions: {
+      external: ['electron'],
+      output: { format: 'cjs', entryFileNames: 'runner.cjs' },
+    },
+  },
+  ssr: { noExternal: true },
+});
+if (prepareOnly) {
+  console.log('P06 live runner built; no credentials read or model requests made.');
+  process.exit(0);
+}
+const reportDir = join(root, 'docs/evidence/P06-03/live-continued-2026-10-28');
+mkdirSync(reportDir, { recursive: true });
+const launchFile = join(reportDir, 'launch.json');
+if (existsSync(launchFile))
+  throw Error('Existing live launch must be reviewed; automatic rerun refused');
+const directory = mkdtempSync(join(root, '.test-data/P06-live-zhipu-'));
+// Electron's safeStorage key is profile-local and itself DPAPI protected. Carry
+// only that encrypted metadata; plaintext credentials never enter this process.
+const sourceProfile = JSON.parse(
+  readFileSync(
+    join(root, '.test-data/P06-connection-debug.json'),
+    'utf8',
+  ),
+).directory;
+const sourceLocalState = JSON.parse(readFileSync(join(sourceProfile, 'Local State'), 'utf8'));
+if (typeof sourceLocalState.os_crypt?.encrypted_key !== 'string')
+  throw Error('Missing protected safeStorage metadata');
+writeFileSync(
+  join(directory, 'Local State'),
+  JSON.stringify({ os_crypt: sourceLocalState.os_crypt }),
+  { flag: 'wx' },
+);
+writeFileSync(join(directory, 'P06.live.json'), JSON.stringify({ reportDir }), { flag: 'wx' });
+writeFileSync(
+  launchFile,
+  JSON.stringify(
+    {
+      directory,
+      reportDir,
+      limits: { requests: 2, outputTokens: 256, reservedTokens: 20000 },
+      createdAt: new Date().toISOString(),
+      scope: 'P06 only; existing Zhipu Chat/FlashX; no retries/fallback',
+      debugProfileOpenedReadOnly: true,
+    },
+    null,
+    2,
+  ) + '\n',
+  { flag: 'wx' },
+);
+const env = lockedEnv();
+for (const key of [
+  'ELECTRON_RUN_AS_NODE',
+  'TAPKIT_TEST_BUILD',
+  'TAPKIT_CHAT_FIXTURE',
+  'TAPKIT_WEB_FIXTURE',
+  'NODE_OPTIONS',
+  'TAPKIT_STARTUP_DIAGNOSTICS',
+])
+  delete env[key];
+env.TAPKIT_P06_LIVE = '1';
+const electron = createRequire(import.meta.url)('electron');
+for (const phase of ['create', 'resume']) {
+  const result = spawnSync(
+    electron,
+    [join(root, '.test-data/P06-continue-runner/runner.cjs'), phase, directory],
+    { cwd: root, env, windowsHide: true, timeout: 240000, encoding: 'utf8' },
+  );
+  const output = result.stdout.split('\n').filter((l) => l.startsWith('{"phase"'));
+  console.log(output.join('\n'));
+  if (result.error || result.status !== 0) {
+    console.error(
+      'P06 live stopped at first failed phase. Inspect the redacted report before any further request.',
+    );
+    process.exit(1);
+  }
+}

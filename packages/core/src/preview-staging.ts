@@ -14,8 +14,11 @@ export class PreviewStaging {
   readonly base: string;
   private readonly active = new Set<string>();
   private pending: Promise<{ removed: number; retained: number }> | undefined;
-  constructor(readonly store: Store) {
-    this.base = resolve(store.dataDir, 'tmp/preview');
+  constructor(
+    readonly store: Store,
+    namespace: 'preview' | 'work' = 'preview',
+  ) {
+    this.base = resolve(store.dataDir, 'tmp/' + namespace);
   }
   private async canonical(path: string) {
     const info = await lstat(path);

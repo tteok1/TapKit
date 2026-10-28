@@ -112,7 +112,8 @@ export class FileRepository {
   private owner(owner: FileOwner) {
     owner = FileOwnerSchema.parse(owner);
     if (owner.type === 'library') return;
-    const table = owner.type === 'project' ? 'projects' : 'sessions';
+    const table =
+      owner.type === 'project' ? 'projects' : owner.type === 'task' ? 'tasks' : 'sessions';
     if (
       !this.store.db
         .prepare(`SELECT id FROM ${table} WHERE id=? AND profile_id=? AND deleted_at IS NULL`)
@@ -123,6 +124,10 @@ export class FileRepository {
   private checkScope(fileId: string, owner?: FileOwner, versionId?: string) {
     if (!owner) return;
     this.owner(owner);
+    if (owner.type === 'task') {
+      this.taskArtifact(fileId, versionId, owner.id);
+      return;
+    }
     if (
       owner.type !== 'library' &&
       !this.store.db
@@ -139,6 +144,16 @@ export class FileRepository {
         )
     )
       throw new StorageError('PERMISSION_DENIED');
+  }
+  private taskArtifact(fileId: string, versionId: string | undefined, taskId: string) {
+    const bound = this.store.db
+      .prepare(
+        `SELECT v.id FROM file_versions v JOIN files f ON f.id=v.file_id JOIN runs r ON r.id=v.created_by_run_id JOIN tasks t ON t.id=r.task_id JOIN sessions s ON s.id=t.session_id
+      WHERE f.id=? AND v.id=coalesce(?,f.current_version_id) AND f.profile_id=? AND v.profile_id=f.profile_id AND r.profile_id=f.profile_id AND t.profile_id=f.profile_id AND s.profile_id=f.profile_id
+      AND t.id=? AND t.mode='work' AND f.kind='artifact' AND f.deleted_at IS NULL AND v.deleted_at IS NULL AND t.deleted_at IS NULL AND s.deleted_at IS NULL`,
+      )
+      .get(fileId, versionId ?? null, this.store.profileId, taskId);
+    if (!bound) throw new StorageError('PERMISSION_DENIED');
   }
   private changed(id: string) {
     this.store.db
@@ -184,7 +199,7 @@ export class FileRepository {
   // tree it appears at root, rather than under an inaccessible foreign folder.
   private folderProjection(owner?: FileOwner): { sql: string; args: string[] } {
     if (!owner) return { sql: 'f.folder_id', args: [] };
-    if (owner.type === 'session') return { sql: 'NULL', args: [] };
+    if (owner.type === 'session' || owner.type === 'task') return { sql: 'NULL', args: [] };
     return {
       sql: `CASE WHEN EXISTS(SELECT 1 FROM folders d WHERE d.id=f.folder_id
         AND d.profile_id=f.profile_id AND d.deleted_at IS NULL
@@ -366,10 +381,19 @@ export class FileRepository {
     folderId?: string;
     replaceId?: string;
     skip?: boolean;
+    generatedByRunId?: string;
   }) {
     const name = FileNameSchema.parse(input.name),
       relativePath = FileRelativePathSchema.parse(input.relativePath);
     this.owner(input.owner);
+    if (
+      input.generatedByRunId &&
+      (input.owner.type !== 'session' ||
+        !this.store.db
+          .prepare('SELECT 1 FROM runs WHERE id=? AND session_id=? AND profile_id=?')
+          .get(input.generatedByRunId, input.owner.id, this.store.profileId))
+    )
+      throw new StorageError('PERMISSION_DENIED');
     if (input.folderId) this.folder(input.folderId, input.owner);
     return this.store.db.transaction(() => {
       const blob = this.store.db
@@ -443,7 +467,16 @@ export class FileRepository {
         )
         .run(v, name, extension, blob.media_type, relativePath, id);
       this.link(id, v, input.owner);
-      this.queueParse(v);
+      if (input.generatedByRunId) {
+        this.store.db
+          .prepare("UPDATE files SET kind='artifact',source_type='generated' WHERE id=?")
+          .run(id);
+        this.store.db
+          .prepare(
+            "UPDATE file_versions SET created_by_run_id=?,parse_status='ready',preview_status='ready' WHERE id=?",
+          )
+          .run(input.generatedByRunId, v);
+      } else this.queueParse(v);
       this.changed(id);
       return { file: this.get(id), skipped: false };
     })();
@@ -452,6 +485,7 @@ export class FileRepository {
     const row = this.row(id);
     this.owner(owner);
     const v = this.version(id, versionId ?? row.current_version_id);
+    if (owner.type === 'task') this.taskArtifact(id, v.id, owner.id);
     if (owner.type === 'library') return;
     const now = this.store.now();
     let index = this.store.db
@@ -1055,7 +1089,8 @@ export class FileRepository {
   createFolder(name: string, parentId: string | null, owner: FileOwner) {
     name = FileNameSchema.parse(name);
     this.owner(owner);
-    if (owner.type === 'session') throw new StorageError('FORMAT_UNSUPPORTED');
+    if (owner.type === 'session' || owner.type === 'task')
+      throw new StorageError('FORMAT_UNSUPPORTED');
     if (parentId) this.folder(parentId, owner);
     return this.store.db.transaction(() => {
       const id = newId(),

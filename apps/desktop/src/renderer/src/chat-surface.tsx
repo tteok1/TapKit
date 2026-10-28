@@ -1,3 +1,5 @@
+import w from '../locales/work.zh-CN.json';
+import { workCommand } from './work-ui';
 import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
 import { ActionPopover, IconButton } from './action-popover';
 import { UiIcon } from './ui-icon';
@@ -696,7 +698,19 @@ export function ChatSurface({
       await saveDraft({ ...draft.current, attachments: current.attachments });
       if (mode === 'work') {
         await saveTail.current;
-        if (!sessionId) openCreated(target);
+        const result = await workCommand('runs.create', {
+          sessionId: target,
+          goal: current.text,
+          refs: current.attachments,
+          ...(selection ? { modelRef: selection } : {}),
+        });
+        if ('work' in result) {
+          setText('');
+          onDraft('');
+          setRefs([]);
+          await saveDraft({ text: '', attachments: [] });
+          onNavigate?.('/work/' + result.work.runId);
+        }
         return;
       }
       // Imports may still be parsing. Keep the draft and let the existing
@@ -1641,7 +1655,7 @@ export function ChatSurface({
           )}
           <button
             className="send-button icon-button"
-            aria-label={busy ? c.sending : mode === 'work' ? '保存工作草稿' : c.send}
+            aria-label={busy ? c.sending : mode === 'work' ? w.create : c.send}
             disabled={!canSend}
             onClick={() => void send()}
             data-tooltip={

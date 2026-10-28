@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project unit "P06-03.live-budget"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  01:53:07
+   Duration  396ms (transform 42%, tests 40%, setup 12%, worker 4%, import 2%)
+

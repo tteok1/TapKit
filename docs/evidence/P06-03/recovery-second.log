@@ -1,0 +1,80 @@
+$ vitest run --config vitest.config.ts --project integration P06-03
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P06-03.crash.test.ts (5 tests | 5 failed) 3756ms
+   × P06-03 T13 actual process kill at before_dispatch recovers without replaying a committed tool 294ms
+   × P06-03 T13 actual process kill at after_intent recovers without replaying a committed tool 314ms
+   × P06-03 T13 actual process kill at after_blob recovers without replaying a committed tool 280ms
+   × P06-03 T13 actual process kill at after_commit recovers without replaying a committed tool 267ms
+   × P06-03 T13 actual process kill at after_native recovers without replaying a committed tool 252ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P06-03.crash.test.ts > P06-03 T13 actual process kill at before_dispatch recovers without replaying a committed tool
+Error: ENOENT: no such file or directory, open 'D:\Tapkit-public\.test-data\P06-03 kill before_dispatch OUjZNv\checkpoint.json'
+ ❯ tests/integration/P06-03.crash.test.ts:76:35
+     74|     expect(code).not.toBe(0);
+     75|     await writeFile(join(directory, 'harness-diagnostic.txt'), output.…
+     76|     const checkpoint = JSON.parse(await readFile(join(directory, 'chec…
+       |                                   ^
+     77|     expect(checkpoint.stage).toBe(stage);
+     78|     const store = await openStore(directory),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  |integration| tests/integration/P06-03.crash.test.ts > P06-03 T13 actual process kill at after_intent recovers without replaying a committed tool
+Error: ENOENT: no such file or directory, open 'D:\Tapkit-public\.test-data\P06-03 kill after_intent l8BUwx\checkpoint.json'
+ ❯ tests/integration/P06-03.crash.test.ts:76:35
+     74|     expect(code).not.toBe(0);
+     75|     await writeFile(join(directory, 'harness-diagnostic.txt'), output.…
+     76|     const checkpoint = JSON.parse(await readFile(join(directory, 'chec…
+       |                                   ^
+     77|     expect(checkpoint.stage).toBe(stage);
+     78|     const store = await openStore(directory),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  |integration| tests/integration/P06-03.crash.test.ts > P06-03 T13 actual process kill at after_blob recovers without replaying a committed tool
+Error: ENOENT: no such file or directory, open 'D:\Tapkit-public\.test-data\P06-03 kill after_blob 1vqWjD\checkpoint.json'
+ ❯ tests/integration/P06-03.crash.test.ts:76:35
+     74|     expect(code).not.toBe(0);
+     75|     await writeFile(join(directory, 'harness-diagnostic.txt'), output.…
+     76|     const checkpoint = JSON.parse(await readFile(join(directory, 'chec…
+       |                                   ^
+     77|     expect(checkpoint.stage).toBe(stage);
+     78|     const store = await openStore(directory),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  |integration| tests/integration/P06-03.crash.test.ts > P06-03 T13 actual process kill at after_commit recovers without replaying a committed tool
+
+Error: ENOENT: no such file or directory, open 'D:\Tapkit-public\.test-data\P06-03 kill after_commit D6IOBR\checkpoint.json'
+ Test Files  1 failed | 1 passed (2)
+      Tests  5 failed | 6 passed (11)
+   Start at  00:22:51
+   Duration  10.19s (tests 71%, transform 18%, import 11%)
+
+ ❯ tests/integration/P06-03.crash.test.ts:76:35
+     74|     expect(code).not.toBe(0);
+     75|     await writeFile(join(directory, 'harness-diagnostic.txt'), output.…
+     76|     const checkpoint = JSON.parse(await readFile(join(directory, 'chec…
+       |                                   ^
+     77|     expect(checkpoint.stage).toBe(stage);
+     78|     const store = await openStore(directory),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  |integration| tests/integration/P06-03.crash.test.ts > P06-03 T13 actual process kill at after_native recovers without replaying a committed tool
+Error: ENOENT: no such file or directory, open 'D:\Tapkit-public\.test-data\P06-03 kill after_native 9HoLKD\checkpoint.json'
+ ❯ tests/integration/P06-03.crash.test.ts:76:35
+     74|     expect(code).not.toBe(0);
+     75|     await writeFile(join(directory, 'harness-diagnostic.txt'), output.…
+     76|     const checkpoint = JSON.parse(await readFile(join(directory, 'chec…
+       |                                   ^
+     77|     expect(checkpoint.stage).toBe(stage);
+     78|     const store = await openStore(directory),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+[ELIFECYCLE] Command failed with exit code 1.

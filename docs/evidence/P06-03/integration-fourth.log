@@ -1,0 +1,28 @@
+$ vitest run --config vitest.config.ts --project integration "P06-01" "P06-02.approvals" "P06-03.recovery"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P06-01.work.test.ts (9 tests | 1 failed) 4867ms
+   × P06-01 T13 terminal retry creates a new run and preserves the root call ceiling 440ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P06-01.work.test.ts > P06-01 T13 terminal retry creates a new run and preserves the root call ceiling
+Error: retry failed
+ ❯ tests/integration/P06-01.work.test.ts:84:53
+     82|       f.work.repo.row(view.runId).revision,
+     83|     );
+     84|     if (!reply.ok || !('work' in reply.data)) throw Error('retry faile…
+       |                                                     ^
+     85|     const next = reply.data.work;
+     86|     expect(next.runId).not.toBe(view.runId);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 24 passed (25)
+   Start at  00:50:04
+   Duration  19.51s (tests 79%, transform 12%, import 8%)
+
+[ELIFECYCLE] Command failed with exit code 1.

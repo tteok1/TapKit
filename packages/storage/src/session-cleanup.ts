@@ -1,5 +1,51 @@
 import type { Store } from './foundation';
 import { invalidateMemorySources } from './memory-cleanup';
+function eraseWorkRuns(store: Store, runIds: string[], time: number) {
+  if (
+    !runIds.length ||
+    !store.db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='plan_steps'").get()
+  )
+    return;
+  for (const id of runIds) {
+    store.db
+      .prepare(
+        "UPDATE runs SET work_json='{\"schemaVersion\":1}',cancel_requested_at=?,lease_epoch=lease_epoch+1,status=CASE WHEN status IN ('completed','partial','failed','budget_stopped','cancelled') THEN status ELSE 'cancelled' END WHERE id=?",
+      )
+      .run(time, id);
+    store.db.prepare('DELETE FROM plan_steps WHERE run_id=?').run(id);
+    store.db
+      .prepare(
+        "DELETE FROM resource_links WHERE owner_type='task' AND owner_id IN(SELECT task_id FROM runs WHERE id=?)",
+      )
+      .run(id);
+    store.db
+      .prepare(
+        "UPDATE notifications SET body_summary='来源已永久删除',read_at=coalesce(read_at,?),desktop_claimed_at=coalesce(desktop_claimed_at,?),updated_at=? WHERE json_extract(target_json,'$.runId')=?",
+      )
+      .run(time, time, time, id);
+    store.db.prepare("UPDATE tool_calls SET args_json='{}',result_ref=NULL WHERE run_id=?").run(id);
+    store.db
+      .prepare(
+        'UPDATE tasks SET acceptance_json=\'{"schemaVersion":1,"rules":[]}\' WHERE id IN(SELECT task_id FROM runs WHERE id=?)',
+      )
+      .run(id);
+    store.db
+      .prepare(
+        "DELETE FROM request_receipts WHERE json_extract(reply_json,'$.reply.data.work.runId')=?",
+      )
+      .run(id);
+    store.db
+      .prepare(
+        "UPDATE approvals SET preview_json='{\"schemaVersion\":1}',decision=CASE WHEN decision IN ('pending','approved') THEN 'revoked' ELSE decision END WHERE tool_call_id IN (SELECT id FROM tool_calls WHERE run_id=?)",
+      )
+      .run(id);
+    store.db
+      .prepare(
+        "UPDATE events SET payload_json=json_set(payload_json,'$.payload.summary','已删除任务') WHERE run_id=? AND json_extract(payload_json,'$.payload.kind')='work'",
+      )
+      .run(id);
+  }
+}
 export function eraseMessageContent(store: Store, id: string, time: number, keepAsNote = false) {
   invalidateMemorySources(store, [id]);
   const m = store.db
@@ -58,9 +104,20 @@ export function eraseMessageContent(store: Store, id: string, time: number, keep
     )
     .run(m.session_id);
   if (m.role === 'user') {
+    eraseWorkRuns(
+      store,
+      (
+        store.db
+          .prepare(
+            "SELECT r.id FROM runs r JOIN tasks t ON t.id=r.task_id WHERE t.mode='work' AND t.id IN (SELECT task_id FROM runs WHERE user_message_id=?)",
+          )
+          .all(id) as { id: string }[]
+      ).map((r) => r.id),
+      time,
+    );
     store.db
       .prepare(
-        "UPDATE task_versions SET goal='' WHERE task_id IN(SELECT task_id FROM runs WHERE user_message_id=?)",
+        'UPDATE task_versions SET goal=\'\',constraints_json=\'{"schemaVersion":1}\',plan_json=\'{"schemaVersion":1,"steps":[]}\' WHERE task_id IN(SELECT task_id FROM runs WHERE user_message_id=?)',
       )
       .run(id);
     store.db
@@ -93,6 +150,17 @@ export function eraseSessionContent(store: Store, id: string, time: number) {
     ).map((m) => m.id),
   );
   const db = store.db;
+  eraseWorkRuns(
+    store,
+    (
+      db
+        .prepare(
+          "SELECT r.id FROM runs r JOIN tasks t ON t.id=r.task_id WHERE t.mode='work' AND r.session_id=? AND r.profile_id=?",
+        )
+        .all(id, store.profileId) as { id: string }[]
+    ).map((r) => r.id),
+    time,
+  );
   if (db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='web_sources'").get()) {
     db.prepare(
       'DELETE FROM citations WHERE web_source_id IN(SELECT id FROM web_sources WHERE session_id=? AND profile_id=?)',

@@ -6,6 +6,11 @@ const aliases: Readonly<Record<string, string>> = Object.freeze({
   'files.read': 'files_read',
   'history.search': 'history_search',
   'knowledge.query': 'knowledge_query',
+  'artifact.write': 'artifact_write',
+  'workspace.patch': 'workspace_patch',
+  'python.analyze': 'python_analyze',
+  'office.convert': 'office_convert',
+  'user.ask': 'user_ask',
 });
 
 export function zhipuToolName(name: string): string {

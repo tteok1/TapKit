@@ -4,6 +4,7 @@ export { ErrorCodeSchema } from './errors';
 import { ChatReplyDataSchema } from './chat';
 import { WebReplySchema } from './web';
 import { ExportReplySchema } from './exports';
+import { WorkReplySchema } from './work';
 import { HistoryReplySchema } from './history';
 import { FileReplySchema } from './files';
 import { ArtifactReplySchema } from './artifacts';
@@ -180,6 +181,13 @@ export const SettingsViewSchema = z.strictObject({
 });
 export const EventPayloadSchema = z.discriminatedUnion('kind', [
   z.strictObject({
+    kind: z.literal('work'),
+    runId: IdSchema,
+    taskVersion: z.number().int().positive(),
+    summary: z.string().max(1000),
+    notificationId: IdSchema.optional(),
+  }),
+  z.strictObject({
     kind: z.literal('memory'),
     memoryId: IdSchema,
     changeEventId: IdSchema,
@@ -228,6 +236,14 @@ export const EventEnvelopeSchema = z.strictObject({
   seq: RevisionSchema,
   schemaVersion: z.literal(1),
   type: z.enum([
+    'plan.updated',
+    'tool.proposed',
+    'tool.dispatched',
+    'approval.required',
+    'approval.resolved',
+    'artifact.ready',
+    'notification.created',
+    'budget.stopped',
     'memory.changed',
     'settings.updated',
     'provider.updated',
@@ -254,10 +270,11 @@ export const BootstrapViewSchema = z.strictObject({
     .array(z.enum(['storage', 'settings', 'vault', 'jobs', 'events', 'backup']))
     .max(6),
   runtimeCapabilities: ExecutionCapabilitiesSchema.optional(),
-  recoveringRuns: z.array(IdSchema).max(0),
+  recoveringRuns: z.array(IdSchema).max(100),
   unreadCount: z.number().int().min(0),
 });
 export const ReplyDataSchema = z.union([
+  WorkReplySchema,
   ExportReplySchema,
   WebReplySchema,
   MemoryReplySchema,

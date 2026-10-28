@@ -87,6 +87,13 @@ export class CoreService {
           return ok(
             WorkspaceViewSchema.parse({
               eventSeq,
+              unreadNotifications: (
+                this.store.db
+                  .prepare(
+                    'SELECT count(*) n FROM notifications WHERE profile_id=? AND deleted_at IS NULL AND read_at IS NULL',
+                  )
+                  .get(this.store.profileId) as { n: number }
+              ).n,
               sessions: sessions.map((s) => ({
                 id: s.id,
                 title: s.title,

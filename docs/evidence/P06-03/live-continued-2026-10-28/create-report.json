@@ -1,0 +1,36 @@
+{
+  "phase": "create",
+  "task": "P06",
+  "status": "failed",
+  "limits": {
+    "requests": 2,
+    "outputTokens": 256,
+    "reservedTokens": 20000
+  },
+  "realProvider": true,
+  "otherModulesCalled": false,
+  "automaticRetries": 0,
+  "fallbacks": 0,
+  "checks": [
+    "plan-first waits without additional HTTP dispatch"
+  ],
+  "keyReadsInsideHost": 4,
+  "budgetStart": {
+    "requests": 0,
+    "reservedTokens": 0,
+    "wireRequests": 0
+  },
+  "transportError": {
+    "code": "NETWORK_ERROR",
+    "diagnosticCode": "response_headers_timeout"
+  },
+  "errorCode": "NETWORK_ERROR",
+  "errorType": "Error",
+  "systemCode": "NETWORK_ERROR",
+  "safeStackFunctions": [
+    "until",
+    "async"
+  ],
+  "stage": "plan-and-first-artifact",
+  "checkedAt": "2026-10-28T03:20:06.701Z"
+}

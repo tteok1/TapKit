@@ -1,0 +1,205 @@
+.work-center {
+  padding: var(--space);
+  max-width: 1240px;
+  margin: auto;
+  min-width: 0;
+  color: var(--ink);
+}
+.work-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.work-header h1 {
+  margin: 0 0 8px;
+}
+.work-header p {
+  max-width: 70ch;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.work-filters,
+.work-create {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+.work-center label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.work-center input,
+.work-center select,
+.work-center textarea {
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.work-center label:has(input[type='checkbox']) {
+  flex-direction: row;
+  align-items: center;
+}
+.work-wide {
+  grid-column: 1/-1;
+}
+.work-center textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+.work-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin: 10px 0;
+}
+.work-center button {
+  min-height: 40px;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.work-list {
+  display: grid;
+  gap: 10px;
+}
+.work-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.work-open {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  text-align: left;
+  background: transparent;
+  border: 0;
+}
+.work-open span,
+.work-steps span {
+  color: var(--muted);
+}
+.work-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 18px;
+}
+.work-board section {
+  background: var(--muted-surface);
+  padding: 12px;
+  border-radius: var(--radius);
+  min-width: 0;
+}
+.work-board h2 {
+  font-size: 1rem;
+}
+.work-detail {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.work-detail h2 {
+  font-size: 1.4rem;
+}
+.work-steps {
+  padding-left: 24px;
+}
+.work-steps li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.work-steps strong,
+.work-steps > li > span {
+  display: block;
+  margin: 5px 0;
+}
+.work-steps p {
+  white-space: pre-wrap;
+}
+.work-plan-editor fieldset {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+  margin: 12px 0;
+  min-width: 0;
+}
+.work-detail form {
+  margin: 16px 0;
+  display: grid;
+  gap: 10px;
+}
+.work-center pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.work-center [role='alert'] {
+  color: var(--danger);
+}
+.work-diff {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 16px;
+}
+.work-diff section {
+  background: var(--muted-surface);
+  padding: 14px;
+  border-radius: var(--radius);
+  min-width: 0;
+}
+.work-diff pre {
+  max-height: 360px;
+  overflow: auto;
+}
+.work-diff textarea {
+  width: 100%;
+  min-height: 180px;
+}
+.work-approval {
+  border-block-end: 1px solid var(--border);
+  padding-block: 16px;
+}
+.notification-button {
+  position: relative;
+  display: inline-flex;
+}
+.notification-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  border-radius: 99px;
+  background: var(--accent);
+  color: var(--surface);
+  font-size: 11px;
+  min-width: 16px;
+  text-align: center;
+  padding: 1px 4px;
+}
+.notification-item {
+  padding-block: 14px;
+  border-block-end: 1px solid var(--border);
+}
+.notification-item time {
+  display: block;
+  color: var(--muted);
+  font-size: 0.9em;
+  margin-block: 6px;
+}
+.work-definition {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6px 16px;
+}
+.work-definition dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}

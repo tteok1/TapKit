@@ -1,0 +1,64 @@
+{
+  "phase": "create",
+  "task": "P06",
+  "status": "failed",
+  "limits": {
+    "checks": 1,
+    "wireRequests": 2,
+    "maxOutputTokens": 128
+  },
+  "realProvider": true,
+  "otherModulesCalled": false,
+  "automaticRetries": 0,
+  "fallbacks": 0,
+  "checks": [],
+  "keyReadsInsideHost": 1,
+  "wireRequests": 1,
+  "probe": {
+    "status": "unavailable",
+    "text": false,
+    "tools": false,
+    "errorCode": "NETWORK_ERROR",
+    "diagnosticCode": "response_headers_timeout"
+  },
+  "stages": [
+    {
+      "request": 1,
+      "event": "dns_complete",
+      "elapsedMs": 14
+    },
+    {
+      "request": 1,
+      "event": "proxy_resolved",
+      "elapsedMs": 14
+    },
+    {
+      "request": 1,
+      "event": "socket_assigned",
+      "elapsedMs": 20
+    },
+    {
+      "request": 1,
+      "event": "tcp_connected",
+      "elapsedMs": 36
+    },
+    {
+      "request": 1,
+      "event": "tls_connected",
+      "elapsedMs": 57
+    },
+    {
+      "request": 1,
+      "event": "request_finished",
+      "elapsedMs": 57
+    },
+    {
+      "request": 1,
+      "event": "request_error",
+      "elapsedMs": 20010
+    }
+  ],
+  "isolatedCredentialRemoved": true,
+  "stage": "tapkit-connection-check",
+  "checkedAt": "2026-10-28T04:41:42.676Z"
+}

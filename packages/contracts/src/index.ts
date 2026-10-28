@@ -3,6 +3,7 @@ import type { StartLogin } from './providers';
 import { IdSchema } from './identity';
 import { FileGetSchema } from './files';
 import { ArtifactAssetSchema } from './artifacts';
+import { WorkNotificationSchema } from './work';
 import {
   RequestSchema,
   SaveApiKeySchema,
@@ -28,6 +29,7 @@ export * from './context';
 export * from './memory';
 export * from './web';
 export * from './exports';
+export * from './work';
 // Covers the largest draft/message without trimming or truncating text.
 export const ClipboardTextSchema = z.string().max(2_000_000);
 export const PingRequestSchema = z.strictObject({ nonce: z.string().min(1).max(128) });
@@ -40,6 +42,7 @@ export const PingReplySchema = z.strictObject({
   corePid: z.number().int().positive(),
 });
 export const CoreCommandSchema = z.discriminatedUnion('type', [
+  z.strictObject({ type: z.literal('lifecycle'), action: z.enum(['suspend', 'resume']) }),
   z.strictObject({
     type: z.literal('exports.inspect'),
     id: z.string().uuid(),
@@ -102,6 +105,7 @@ export const CoreCommandSchema = z.discriminatedUnion('type', [
   }),
 ]);
 export const CoreEventSchema = z.discriminatedUnion('type', [
+  z.strictObject({ type: z.literal('desktop.notification'), notification: WorkNotificationSchema }),
   z.strictObject({
     type: z.literal('vault.request'),
     id: z.string().uuid(),
@@ -128,7 +132,7 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('ready'),
     protocolVersion: z.literal(1),
-    schemaVersion: z.literal(16),
+    schemaVersion: z.literal(17),
   }),
   z.strictObject({ type: z.literal('pong'), id: z.string().uuid(), payload: PingReplySchema }),
   z.strictObject({ type: z.literal('reply'), id: z.string().uuid(), reply: ReplySchema }),
@@ -137,6 +141,11 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
 export type PingRequest = z.infer<typeof PingRequestSchema>;
 export type PingReply = z.infer<typeof PingReplySchema>;
 export interface TapKitBridge {
+  workCommand(
+    options: RequestOptions,
+    command: import('./work').WorkCommand,
+    payload: unknown,
+  ): Promise<Reply>;
   exportCommand(
     options: RequestOptions,
     command: import('./exports').ExportCommand,

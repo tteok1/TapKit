@@ -21,7 +21,7 @@
     "test:e2e": "node scripts/e2e.mjs",
     "test:live": "node scripts/live.mjs",
     "test:security": "vitest run --config vitest.config.ts --project integration P00-03",
-    "test:recovery": "node scripts/not-implemented.mjs recovery",
+    "test:recovery": "vitest run --config vitest.config.ts --project integration P06-03",
     "test:perf": "node scripts/perf.mjs",
     "eval:agent": "node scripts/not-implemented.mjs eval",
     "pack:dir": "node scripts/pack-dir.mjs",

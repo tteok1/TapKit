@@ -1,4 +1,16 @@
+2026-10-28 P06智谱真实工作链分轮通过，通知修复后真实事件副本重放通过，check/build/recovery/桌面回归通过。P06-01已验证范围仅智谱Chat/FlashX及固定工具，历史其他渠道仍暂缓；gate保持engineering_passed_external_pending。证据docs/evidence/P06-03/live-final-2026-10-28/verification.md。
+
+2026-10-28 P06智谱工作：首次连接检测通过；真实生成、审批重启、steer取消和暂停分轮通过。工作actual 2087 tokens、estimated 9250实际未知；连接检测usage未知。通知修复后未重跑完整真实链；证据docs/evidence/P06-03/live-final-2026-10-28/verification.md。其他渠道状态不变。
+
+2026-10-28 P06额外5次隔离直连检测均响应头超时；累计用户授权10次检测、11次HTTP，工作请求0，实际检测usage未知。代理与直连均超时，不认定缺Key或确定根因。见docs/evidence/P06-03/live-direct-acceptance-2026-10-28/verification.md。其他资源状态不变。
+
+2026-10-28 P06剩余真实验收：TapKit连接检测5次均未完整通过，共6次HTTP；工作请求0，实际检测用量未知。非缺Key，配置/直连无密钥HEAD均401；系统代理已配置但根因未明。证据docs/evidence/P06-03/live-acceptance-2026-10-28/verification.md。其他资源状态不变。
+
 # 外部资源状态
+
+2026-10-28 P06限定智谱live：现有test1普通Chat/FlashX的Key已配置且Host可读取，本轮获明确授权；实际3次携Key HTTP尝试均NETWORK_ERROR（后两次明确响应头超时），另1次P06工具名本地拒绝已修复。保守预留24627/50000 tokens，实际usage未知；已停止，不自动追加/重跑。该失败只记录P06链路，不改变历史R13已通过范围或其他模块/通道暂缓状态，不将其描述为缺Key。证据docs/evidence/P06-03/live-zhipu-2026-10-28/verification.md。
+
+2026-10-28 P06工程收口：R01—R05/R13/R14原范围保持，本轮无真实模型工作工具联调或新增真实消费。固定Python/Office在真实AppContainer通过，工作路由/审批/恢复由隔离fixture验证；不能升级真实模型live。P06-gate=engineering_passed_external_pending；证据docs/evidence/P06-03/verification.md。
 
 2026-10-27 托管搜索检查点：R06仍pending（按通道记录），Codex/gpt-6.1-sol隔离搜索及3页/归档/引用/断网通过，Responses/Anthropic尚无实号。3次尝试中1次成功，额外授权余1次未用；不提升R01—R05完整live。证据P05-01/hosted-verification.md。
 

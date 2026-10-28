@@ -1,0 +1,65 @@
+{
+  "phase": "create",
+  "task": "P06",
+  "status": "passed",
+  "limits": {
+    "requests": 3,
+    "outputTokens": 256,
+    "reservedTokens": 18000
+  },
+  "realProvider": true,
+  "otherModulesCalled": false,
+  "automaticRetries": 0,
+  "fallbacks": 0,
+  "checks": [
+    "plan-first waits without additional HTTP dispatch",
+    "real model proposed a managed patch requiring approval",
+    "two real steps used exactly two HTTP requests",
+    "first real artifact is registered",
+    "source encrypted credential bytes unchanged",
+    "all model reservations are settled exactly once"
+  ],
+  "keyReadsInsideHost": 10,
+  "budgetStart": {
+    "requests": 0,
+    "reservedTokens": 0,
+    "wireRequests": 0
+  },
+  "probes": [
+    {
+      "attempt": 1,
+      "status": "ready",
+      "wireBefore": 0,
+      "text": true,
+      "tools": true,
+      "errorCode": null,
+      "diagnosticCode": null,
+      "wireAfter": 2
+    }
+  ],
+  "probeWireRequests": 2,
+  "runId": "01a18172-faae-76b9-9fdd-14d37af86c16",
+  "budget": {
+    "requests": 2,
+    "reservedTokens": 10089,
+    "wireRequests": 2
+  },
+  "usage": [
+    {
+      "source": "actual",
+      "attempts": 2,
+      "chargedTokens": 2087,
+      "inputTokens": 1925,
+      "outputTokens": 162
+    }
+  ],
+  "attempts": [
+    {
+      "status": "completed",
+      "errorCode": null,
+      "count": 2
+    }
+  ],
+  "stage": "plan-and-first-artifact",
+  "checkedAt": "2026-10-28T07:39:25.660Z"
+}

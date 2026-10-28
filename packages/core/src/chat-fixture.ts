@@ -51,6 +51,42 @@ export function installChatFixture(models: ModelService) {
     },
     classifyError: () => ({ code: 'STREAM_INTERRUPTED', retryable: false }),
     async *stream(request, signal) {
+      if (request.systemModules.some((module) => module.id === 'tapkit.work')) {
+        signal.throwIfAborted();
+        const payload = JSON.parse(
+          request.messages.findLast((m) => m.role === 'user')?.text ?? '{}',
+        ) as {
+          goal?: string;
+          step?: { stepKey: string };
+          priorOutputs?: { kind: string; fileId: string; versionId: string }[];
+        };
+        const source = payload.priorOutputs?.find((ref) => ref.kind === 'file');
+        if (payload.goal?.includes('P06审批') && payload.step?.stepKey === 'deliver-2' && source) {
+          yield {
+            type: 'tool_end',
+            callId: newId(),
+            name: 'workspace.patch',
+            arguments: {
+              fileId: source.fileId,
+              versionId: source.versionId,
+              content: '# 修订成果\n\n已按审阅后的具体内容生成新版本。',
+            },
+          };
+          yield { type: 'finish', reason: 'tool_calls', nativeStateRef: '' };
+          return;
+        }
+        yield {
+          type: 'tool_end',
+          callId: newId(),
+          name: 'artifact.write',
+          arguments: {
+            name: '工作成果.md',
+            content: '# 隔离工作验收\n\n这是实际保存并验证的本地成果。',
+          },
+        };
+        yield { type: 'finish', reason: 'tool_calls', nativeStateRef: '' };
+        return;
+      }
       const last = request.messages.findLast((m) => m.role === 'user');
       const text = last?.role === 'user' ? last.text : '';
       const backgroundCall = request.systemModules.some((module) =>

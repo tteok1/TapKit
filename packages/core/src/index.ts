@@ -29,6 +29,11 @@ import { ModelService } from './model-service';
 import { ChatService } from './chat-service';
 import { WebService } from './web-service';
 import { ExportService } from './export-service';
+import { WorkService } from './work-service';
+import { WorkArtifacts } from './work-artifacts';
+import { WorkToolGateway } from './work-gateway';
+import { WorkNativeTools } from './work-native';
+import { modelWorkDriver } from './work-driver';
 import { WebTools } from '@tapkit/tools';
 import { NetworkPolicyService } from '@tapkit/network';
 import { resolveNetworkProxy } from '@tapkit/providers';
@@ -193,6 +198,29 @@ async function start() {
   store.db.prepare("UPDATE title_jobs SET status='failed' WHERE status='running'").run();
   const titleTimer = setInterval(() => void history.titles(), 500);
   const files = new FileRepository(store, blobs);
+  const workArtifacts = new WorkArtifacts(files, blobs);
+  const work = new WorkService(
+    store,
+    modelWorkDriver(models, chat),
+    new WorkToolGateway(
+      workArtifacts,
+      new WorkNativeTools(
+        process.env.TAPKIT_APP_ROOT ?? '',
+        workArtifacts,
+        service.executionCapabilities,
+      ),
+    ),
+    (ref, sessionId) => chat.material(ref, sessionId),
+    models.claimRoot,
+  );
+  const notificationTimer = setInterval(() => {
+    try {
+      for (const notification of work.notifications.claimDesktop())
+        port!.postMessage({ type: 'desktop.notification', notification });
+    } catch {
+      console.warn('TAPKIT_NOTIFICATION_SYNC_PENDING');
+    }
+  }, 1000);
   const selections = new FileSelections();
   const fileService = new FileService(files, selections);
   const fileExporter = new FileExporter(files);
@@ -235,6 +263,10 @@ async function start() {
     const result = CoreCommandSchema.safeParse(data);
     if (!result.success || (closing && result.data.type !== 'vault.reply')) return;
     const command = result.data;
+    if (command.type === 'lifecycle') {
+      void (command.action === 'suspend' ? work.suspend() : work.wake());
+      return;
+    }
     if (command.type === 'window.closed') {
       exports.closeWindow(command.windowId);
       void temporary.closeWindow(command.windowId);
@@ -412,10 +444,12 @@ async function start() {
     if (command.type === 'shutdown') {
       closing = true;
       clearInterval(titleTimer);
+      clearInterval(notificationTimer);
       clearInterval(stagingTimer);
       void Promise.all([
         worker.stop(),
         chat.stop(),
+        work.stop(),
         history.stop(),
         temporary.stop(),
         fileService.stop(),
@@ -465,45 +499,49 @@ async function start() {
           models.cancelAccount(account.data.accountId);
           chat.cancelAccount(account.data.accountId);
           temporary.cancelAccount(account.data.accountId);
+          work.cancelAccount(account.data.accountId);
         }
       }
-      const result = Object.hasOwn(ExportCommandSchemas, command.request.command)
-        ? exports.dispatch(command.request)
-        : Object.hasOwn(WebCommandSchemas, command.request.command) &&
-            !temporary.target(command.request.payload)
-          ? web.dispatch(command.request)
-          : Object.hasOwn(ProjectCommandSchemas, command.request.command)
-            ? projects.dispatch(command.request)
-            : Object.hasOwn(ArtifactCommandSchemas, command.request.command)
-              ? artifacts.dispatch(command.request)
-              : Object.hasOwn(FileCommandSchemas, command.request.command)
-                ? fileService.dispatch(command.request)
-                : command.request.command === 'sessions.temporary' ||
-                    command.request.command === 'sessions.closeTemporary' ||
-                    temporary.target(command.request.payload)
-                  ? temporary.dispatch(command.request)
-                  : (HISTORY_COMMANDS as readonly string[]).includes(command.request.command)
-                    ? history.dispatch(command.request)
-                    : command.request.command.startsWith('models.') ||
-                        command.request.command === 'usage.list'
-                      ? models.dispatch(command.request)
-                      : command.request.command.startsWith('providers.') &&
-                          command.request.command !== 'providers.saveApiKey'
-                        ? providers.dispatch(command.request)
-                        : /^(memory\.|messages\.|drafts\.|inputs\.|runs\.cancel$|context\.|chat\.snippets\.)/.test(
-                              command.request.command,
-                            )
-                          ? chat.dispatch(command.request)
-                          : Promise.resolve(service.dispatch(command.request));
+      const result = work.handles(command.request.command, command.request.payload)
+        ? work.dispatch(command.request)
+        : Object.hasOwn(ExportCommandSchemas, command.request.command)
+          ? exports.dispatch(command.request)
+          : Object.hasOwn(WebCommandSchemas, command.request.command) &&
+              !temporary.target(command.request.payload)
+            ? web.dispatch(command.request)
+            : Object.hasOwn(ProjectCommandSchemas, command.request.command)
+              ? projects.dispatch(command.request)
+              : Object.hasOwn(ArtifactCommandSchemas, command.request.command)
+                ? artifacts.dispatch(command.request)
+                : Object.hasOwn(FileCommandSchemas, command.request.command)
+                  ? fileService.dispatch(command.request)
+                  : command.request.command === 'sessions.temporary' ||
+                      command.request.command === 'sessions.closeTemporary' ||
+                      temporary.target(command.request.payload)
+                    ? temporary.dispatch(command.request)
+                    : (HISTORY_COMMANDS as readonly string[]).includes(command.request.command)
+                      ? history.dispatch(command.request)
+                      : command.request.command.startsWith('models.') ||
+                          command.request.command === 'usage.list'
+                        ? models.dispatch(command.request)
+                        : command.request.command.startsWith('providers.') &&
+                            command.request.command !== 'providers.saveApiKey'
+                          ? providers.dispatch(command.request)
+                          : /^(memory\.|messages\.|drafts\.|inputs\.|runs\.cancel$|context\.|chat\.snippets\.)/.test(
+                                command.request.command,
+                              )
+                            ? chat.dispatch(command.request)
+                            : Promise.resolve(service.dispatch(command.request));
       void result.then((reply) => {
         if (!closing) port!.postMessage({ type: 'reply', id: command.id, reply });
       });
     }
   });
-  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 16 });
+  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 17 });
   worker.start();
   sweepStaging();
   chat.start();
+  await work.start();
 }
 void start().catch(() => {
   console.error('TAPKIT_DATABASE_RECOVERY_REQUIRED');

@@ -1,0 +1,30 @@
+{
+  "phase": "create",
+  "task": "P06",
+  "status": "failed",
+  "limits": {
+    "requests": 6,
+    "outputTokens": 2048,
+    "reservedTokens": 50000
+  },
+  "realProvider": true,
+  "otherModulesCalled": false,
+  "automaticRetries": 0,
+  "fallbacks": 0,
+  "checks": [
+    "original account and encrypted credential unchanged across restart",
+    "plan-first waits with zero model requests"
+  ],
+  "keyReadsInsideHost": 1,
+  "credentialReadError": "INTERNAL_ERROR",
+  "credentialReadErrorType": "Error",
+  "errorCode": "PROVIDER_UNAVAILABLE",
+  "errorType": "Error",
+  "systemCode": "PROVIDER_UNAVAILABLE",
+  "safeStackFunctions": [
+    "until",
+    "async"
+  ],
+  "stage": "plan-and-first-artifact",
+  "checkedAt": "2026-10-27T18:02:13.652Z"
+}

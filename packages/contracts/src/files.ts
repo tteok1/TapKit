@@ -75,6 +75,7 @@ export const FileOwnerSchema = z.discriminatedUnion('type', [
   z.strictObject({ type: z.literal('library') }),
   z.strictObject({ type: z.literal('session'), id: IdSchema }),
   z.strictObject({ type: z.literal('project'), id: IdSchema }),
+  z.strictObject({ type: z.literal('task'), id: IdSchema }),
 ]);
 export const FileStateSchema = z.enum(['importing', 'imported', 'parsing', 'ready', 'failed']);
 export const FileParseStateSchema = z.enum([

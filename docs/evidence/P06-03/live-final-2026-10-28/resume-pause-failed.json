@@ -1,0 +1,46 @@
+{
+  "phase": "resume",
+  "task": "P06",
+  "status": "failed",
+  "limits": {
+    "requests": 3,
+    "outputTokens": 256,
+    "reservedTokens": 18000
+  },
+  "realProvider": true,
+  "otherModulesCalled": false,
+  "automaticRetries": 0,
+  "fallbacks": 0,
+  "checks": [
+    "original account and encrypted credential unchanged across restart",
+    "actual Electron process restart",
+    "previous approval completed before test assertion",
+    "approval recovery does not replay a model request",
+    "reviewed version has exact approved content",
+    "patch creates a new version of the same managed file",
+    "original generated version remains readable",
+    "steer creates a new task version and reviewable plan",
+    "new version can be cancelled before dispatch",
+    "steer review and cancellation spend no extra request",
+    "old terminal run stays completed"
+  ],
+  "keyReadsInsideHost": 4,
+  "budgetStart": {
+    "requests": 2,
+    "reservedTokens": 10089,
+    "wireRequests": 2
+  },
+  "transportError": {
+    "code": "NETWORK_ERROR",
+    "diagnosticCode": "connection_failed"
+  },
+  "errorCode": "NETWORK_ERROR",
+  "errorType": "Error",
+  "systemCode": "NETWORK_ERROR",
+  "safeStackFunctions": [
+    "until",
+    "async"
+  ],
+  "stage": "pause",
+  "checkedAt": "2026-10-28T07:41:45.665Z"
+}

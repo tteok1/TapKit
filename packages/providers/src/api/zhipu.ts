@@ -21,3 +21,7 @@ export function isZhipuResponses(config: ApiConfig): boolean {
     url.pathname.replace(/\/+$/, '') === '/api/v1'
   );
 }
+
+export function apiHeaderDeadlineMs(config: ApiConfig): number {
+  return isZhipuChat(config) && config.modelId.toLowerCase() === 'glm-4.7-flashx' ? 90_000 : 20_000;
+}

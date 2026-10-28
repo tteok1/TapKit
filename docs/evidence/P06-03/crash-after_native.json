@@ -1,0 +1,14 @@
+{
+  "stage": "after_native",
+  "actualProcessExit": 1,
+  "priorCalls": [
+    {
+      "status": "dispatched",
+      "side_effect": "none"
+    }
+  ],
+  "modelCallsAfterRestart": 0,
+  "status": "completed",
+  "artifacts": 1,
+  "leaseEpoch": 3
+}

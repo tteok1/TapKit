@@ -1,0 +1,97 @@
+{
+  "generatedAt": "2026-10-27T17:10:00.699Z",
+  "gate": "engineering_passed_external_pending",
+  "node": "v24.21.0",
+  "pnpm": "12.4.1",
+  "integrationUniquePassedAcrossRounds": 204,
+  "integrationFirstRoundFailed": 1,
+  "production": {
+    "installChatFixture": false,
+    "installWebFixture": false,
+    "fixtureAssets": []
+  },
+  "commands": [
+    {
+      "command": "pnpm check",
+      "log": "check-final.log",
+      "exitCode": 0,
+      "passed": 0,
+      "logLastModified": "2026-10-27T17:01:50.191Z"
+    },
+    {
+      "command": "pnpm build",
+      "log": "build-final.log",
+      "exitCode": 0,
+      "passed": 0,
+      "logLastModified": "2026-10-27T17:06:48.008Z"
+    },
+    {
+      "command": "pnpm test:unit",
+      "log": "unit-final.log",
+      "exitCode": 0,
+      "passed": 390,
+      "logLastModified": "2026-10-27T16:55:05.696Z"
+    },
+    {
+      "command": "pnpm test:integration (related P00–P06 first round)",
+      "log": "integration-final.log",
+      "exitCode": 1,
+      "passed": 202,
+      "logLastModified": "2026-10-27T16:57:11.452Z"
+    },
+    {
+      "command": "pnpm test:integration P02-03.history P03-01.migration P06",
+      "log": "regression-corrected.log",
+      "exitCode": 0,
+      "passed": 80,
+      "logLastModified": "2026-10-27T17:00:15.655Z"
+    },
+    {
+      "command": "pnpm test:recovery",
+      "log": "recovery-third.log",
+      "exitCode": 0,
+      "passed": 11,
+      "logLastModified": "2026-10-27T16:26:20.797Z"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P06",
+      "log": "e2e-final-first.log",
+      "exitCode": 0,
+      "passed": 4,
+      "logLastModified": "2026-10-27T16:57:42.624Z"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P06|P02-02 T05 IME|P05-02 T20 recipient",
+      "log": "e2e-final.log",
+      "exitCode": 0,
+      "passed": 6,
+      "logLastModified": "2026-10-27T17:05:26.108Z"
+    },
+    {
+      "command": "pnpm docs:check",
+      "log": "docs-final.log",
+      "exitCode": 0,
+      "logLastModified": "2026-10-27T17:10:55.780Z"
+    },
+    {
+      "command": "node scripts/check-format.mjs",
+      "log": "format-final.log",
+      "exitCode": 0,
+      "logLastModified": "2026-10-27T17:11:11.836Z"
+    },
+    {
+      "command": "git diff --check",
+      "log": "diff-final.log",
+      "exitCode": 0,
+      "logLastModified": "2026-10-27T17:11:11.910Z"
+    }
+  ],
+  "liveRequests": 0,
+  "gitCommitOrPush": false,
+  "scope": "P06 only; real-model work verification deferred under existing resources",
+  "finalizedAt": "2026-10-27T17:11:53.590Z",
+  "sourceHashFiles": 487,
+  "documentOnlyHashUpdates": [],
+  "branch": "codex/p06-work-runtime",
+  "headEqualsFetchedMain": true
+}

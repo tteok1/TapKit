@@ -1,0 +1,14 @@
+{
+  "stage": "after_commit",
+  "actualProcessExit": 1,
+  "priorCalls": [
+    {
+      "status": "succeeded",
+      "side_effect": "committed"
+    }
+  ],
+  "modelCallsAfterRestart": 0,
+  "status": "completed",
+  "artifacts": 1,
+  "leaseEpoch": 3
+}

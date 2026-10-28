@@ -100,8 +100,10 @@ export async function resolveNetworkProxy(
 export function apiFetchForNetwork(
   network: Network,
   resolveSystem?: SystemProxyResolver,
+  observe?: (event: string, elapsedMs: number) => void,
+  deadlineMs?: number,
 ): typeof fetch {
-  return (input, init) => secureRequest(input, init, network, resolveSystem);
+  return (input, init) => secureRequest(input, init, network, resolveSystem, observe, deadlineMs);
 }
 export const secureApiFetch: typeof fetch = (input, init) => secureRequest(input, init);
 const secureRequest = async (
@@ -109,7 +111,17 @@ const secureRequest = async (
   init: Parameters<typeof fetch>[1],
   network: Network = { mode: 'environment', proxyURL: '' },
   resolveSystem?: SystemProxyResolver,
+  observe?: (event: string, elapsedMs: number) => void,
+  deadlineMs?: number,
 ): Promise<Response> => {
+  const started = performance.now();
+  const mark = (event: string) => {
+    try {
+      observe?.(event, Math.round(performance.now() - started));
+    } catch {
+      /* diagnostics must not affect transport */
+    }
+  };
   const url = new URL(
     typeof input === 'string' ? input : input instanceof URL ? input.href : input.url,
   );
@@ -118,7 +130,7 @@ const secureRequest = async (
   const host = url.hostname.replace(/^\[|\]$/g, '');
   const connection = new AbortController();
   const signal = AbortSignal.any([...(init?.signal ? [init.signal] : []), connection.signal]);
-  const timer = setTimeout(() => connection.abort(), 20_000);
+  const timer = setTimeout(() => connection.abort(), deadlineMs ?? 20_000);
   // Export only a fixed stage code; native errors may contain URLs or proxy credentials.
   const networkFailure = (stage: 'dns' | 'request') =>
     new ApiFailure(
@@ -166,6 +178,7 @@ const secureRequest = async (
       diagnosticCode: 'non_public_dns',
     });
   }
+  mark('dns_complete');
   if (signal.aborted) {
     clearTimeout(timer);
     throw networkFailure('request');
@@ -176,6 +189,7 @@ const secureRequest = async (
     agent = new Agent({
       proxyEnv: { HTTPS_PROXY: proxy, HTTP_PROXY: proxy, NO_PROXY: proxy ? '' : '*' },
     } as AgentOptions);
+    mark('proxy_resolved');
   } catch (error) {
     clearTimeout(timer);
     if (init?.signal?.aborted) throw new ApiFailure({ code: 'CANCELLED', retryable: false });
@@ -215,6 +229,7 @@ const secureRequest = async (
           signal,
         },
         (res) => {
+          mark('response_headers');
           clearTimeout(timer);
           req.setTimeout(60_000, () => req.destroy(new Error('STREAM_INTERRUPTED')));
           res.once('close', () => agent.destroy());
@@ -233,7 +248,14 @@ const secureRequest = async (
           );
         },
       );
+      req.on('socket', (socket) => {
+        mark('socket_assigned');
+        socket.once('connect', () => mark('tcp_connected'));
+        socket.once('secureConnect', () => mark('tls_connected'));
+      });
+      req.once('finish', () => mark('request_finished'));
       req.on('error', () => {
+        mark('request_error');
         clearTimeout(timer);
         agent.destroy();
         reject(networkFailure('request'));

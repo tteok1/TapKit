@@ -1,0 +1,14 @@
+{
+  "stage": "after_blob",
+  "actualProcessExit": 1,
+  "priorCalls": [
+    {
+      "status": "dispatched",
+      "side_effect": "none"
+    }
+  ],
+  "modelCallsAfterRestart": 1,
+  "status": "completed",
+  "artifacts": 1,
+  "leaseEpoch": 3
+}

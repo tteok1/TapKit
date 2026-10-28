@@ -1,0 +1,43 @@
+$ vitest run --config vitest.config.ts --project unit
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |unit| tests/unit/P03-02.staging.test.ts (2 tests | 1 failed) 169ms
+   × P03-02 private staging rejects a junction before writing into its external target 37ms
+ ❯ |unit| tests/unit/P01-02.native-profile.test.ts (3 tests | 1 failed) 1965ms
+   × P01-02 public preflight is read-only and rejects multiple active accounts or an unsupported database version 1846ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P01-02.native-profile.test.ts > P01-02 public preflight is read-only and rejects multiple active accounts or an unsupported database version
+Error: CONFLICT
+ ❯ selectNativeAccount tests/live/P01-02.native-profile.ts:54:77
+     52|   const db = new DatabaseSync(join(directory, 'db/app.sqlite'), { read…
+     53|   try {
+     54|     if (db.prepare('PRAGMA user_version').get()?.user_version !== 16) …
+       |                                                                             ^
+     55|     // Only public configuration. The preflight never opens the vault …
+     56|     const rows = db
+ ❯ tests/unit/P01-02.native-profile.test.ts:75:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |unit| tests/unit/P03-02.staging.test.ts > P03-02 private staging rejects a junction before writing into its external target
+Error: EPERM: operation not permitted, symlink 'D:\Tapkit-public\.test-data\P03-02 staging outside MvzcNX' -> 'D:\Tapkit-public\.test-data\P03-02 staging junction RBL9Bh\tmp'
+ ❯ tests/unit/P03-02.staging.test.ts:25:3
+     23|   const root = await mkdtemp(resolve('.test-data', 'P03-02 staging jun…
+     24|     outside = await mkdtemp(resolve('.test-data', 'P03-02 staging outs…
+     25|   await symlink(outside, join(root, 'tmp'), 'junction');
+       |   ^
+     26|   const service = new PreviewStaging({ dataDir: root, profileId } as S…
+     27|   await expect(service.create(versionId)).rejects.toThrow('PERMISSION_…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 52 passed (54)
+      Tests  2 failed | 388 passed (390)
+   Start at  00:51:30
+   Duration  21.67s (import 51%, transform 31%, tests 15%, setup 3%)
+
+[ELIFECYCLE] Command failed with exit code 1.

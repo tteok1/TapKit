@@ -1,5 +1,7 @@
 # 范围、决策与默认行为
 
+2026-10-28 [ADR0067](../adr/0067-durable-work-on-shared-run-ledger.md)：P06追加schema17，工作复用既有run状态、ModelRouter、UsageLedger和根并发/预算；固定安全工具、绑定具体内容的审批、持久通知和租约恢复。不开放任意exec或外部目录覆盖；后续工作流复用同一网关。
+
 2026-10-27 [ADR0066](../adr/0066-isolated-provider-hosted-search.md)：按用户要求改为当前模型通道的隔离托管搜索，替代ADR0064的Tavily选择；[具体设计](17-hosted-web-search.md)规定协议能力、同账号单次账本、来源归档及测试，R06改为通道兼容性。
 
 2026-10-27 [ADR0065](../adr/0065-reviewed-local-export-and-chat-snapshot.md)：P05-02 schema16采用绑定窗口/来源指纹的接收者预览、Host选择目标及不可变MD/TXT/HTML/PDF/ZIP副本。只持久化导出元数据，不另存待审正文/目标路径；中断需重新预览，禁止自动重放或覆盖。P05-03目录包物化运行依赖并在新目录重验隔离，不转植权限报告。网页软删除保留快照，永久清理才释放。
@@ -195,3 +197,5 @@ P02-02实施决定（2026-10-05）：持久化聊天、根预算共享、只读�
 2026-10-23 [ADR0061](../adr/0061-native-copy-and-compact-attachments.md)：共享原生复制通道/2,000,000字符完整校验，TSV与公式去重，紧凑附件卡片与逐文件取消；不放开Web权限，不改Core/翻译。
 
 2026-10-23 [ADR0062](../adr/0062-shared-form-controls-and-flat-lists.md)：全局表单共用灰绿聚焦阴影、主题原生语义下拉、圆形选择框、胶囊动作/间距；详情列表平整同行及渐淡灰线。Electron实测支持，无依赖/IPC/Core/数据库变更，原功能保持。
+
+2026-10-28：智谱官方Chat/GLM-4.7-FlashX的DNS至响应头期限调整为90秒；其他渠道保持20秒，检测总时限120秒保持。证据与边界见ADR0068。

@@ -1,0 +1,29 @@
+$ vitest run --config vitest.config.ts --project integration "P00-02" "P01-03" "P02-02" "P02-03.history" "P03-01.files" "P03-01.migration" "P03-02.artifacts" "P04-02.context" "P04-03" "P05-02" "P06"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P02-03.history.test.ts (45 tests | 1 failed) 37571ms
+   ❯ P02-03 history lifecycle (42)
+     × T20 batch move is atomic, global reorder preserves grouping, and entity/task lookup stays owned and precise 710ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P02-03.history.test.ts > P02-03 history lifecycle > T20 batch move is atomic, global reorder preserves grouping, and entity/task lookup stays owned and precise
+TypeError: Cannot read properties of undefined (reading 'messageId')
+ ❯ tests/integration/P02-03.history.test.ts:944:16
+    942|       ),
+    943|     ).hits[0]!;
+    944|     expect(hit.messageId).toBe((await f.snapshot()).messages[0]!.id);
+       |                ^
+    945|     expect(hit.branchId).toBe((await f.snapshot()).branchId);
+    946|     const note = (
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 18 passed (19)
+      Tests  1 failed | 202 passed (203)
+   Start at  00:52:43
+   Duration  268.00s (tests 89%, import 9%, transform 2%)
+
+[ELIFECYCLE] Command failed with exit code 1.

@@ -1148,12 +1148,14 @@ export class ChatService {
     this.store.db.transaction(() => {
       rows = this.store.db
         .prepare(
-          "SELECT * FROM runs WHERE status NOT IN ('queued','completed','partial','failed','budget_stopped','cancelled')",
+          "SELECT r.* FROM runs r JOIN tasks t ON t.id=r.task_id WHERE t.mode='chat' AND r.status NOT IN ('queued','completed','partial','failed','budget_stopped','cancelled')",
         )
         .all() as Run[];
       for (const r of rows) this.finishRun(r, 'partial', 'STREAM_INTERRUPTED');
       this.store.db
-        .prepare("UPDATE tool_calls SET status='unknown' WHERE status IN ('dispatched','pending')")
+        .prepare(
+          "UPDATE tool_calls SET status='unknown' WHERE status IN ('dispatched','pending') AND run_id IN (SELECT r.id FROM runs r JOIN tasks t ON t.id=r.task_id WHERE t.mode='chat')",
+        )
         .run();
     })();
     for (const r of rows) this.nextInput(r);
@@ -1170,7 +1172,7 @@ export class ChatService {
     if (slots <= 0) return;
     const rows = this.store.db
       .prepare(
-        "SELECT r.* FROM runs r JOIN sessions s ON s.id=r.session_id WHERE r.status='queued' AND s.deleted_at IS NULL AND NOT EXISTS (SELECT 1 FROM runs a WHERE a.session_id=r.session_id AND a.status IN ('running','waiting_tool','recovering')) ORDER BY r.created_at,r.id LIMIT ?",
+        "SELECT r.* FROM runs r JOIN sessions s ON s.id=r.session_id WHERE r.status='queued' AND s.mode='chat' AND s.deleted_at IS NULL AND NOT EXISTS (SELECT 1 FROM runs a WHERE a.session_id=r.session_id AND a.status IN ('running','waiting_tool','recovering')) ORDER BY r.created_at,r.id LIMIT ?",
       )
       .all(slots) as Run[];
     for (const r of rows) {

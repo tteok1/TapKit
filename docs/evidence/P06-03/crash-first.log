@@ -1,0 +1,80 @@
+$ vitest run --config vitest.config.ts --project integration "P06-03.crash"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P06-03.crash.test.ts (5 tests | 5 failed) 3264ms
+   × P06-03 T13 actual process kill at before_dispatch recovers without replaying a committed tool 200ms
+   × P06-03 T13 actual process kill at after_intent recovers without replaying a committed tool 191ms
+   × P06-03 T13 actual process kill at after_blob recovers without replaying a committed tool 219ms
+   × P06-03 T13 actual process kill at after_commit recovers without replaying a committed tool 196ms
+   × P06-03 T13 actual process kill at after_native recovers without replaying a committed tool 215ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P06-03.crash.test.ts > P06-03 T13 actual process kill at before_dispatch recovers without replaying a committed tool
+Error: ENOENT: no such file or directory, open 'D:\Tapkit-public\.test-data\P06-03 kill before_dispatch hxHFkp\checkpoint.json'
+ ❯ tests/integration/P06-03.crash.test.ts:75:35
+     73|     });
+     74|     expect(code).not.toBe(0);
+     75|     const checkpoint = JSON.parse(await readFile(join(directory, 'chec…
+       |                                   ^
+     76|     expect(checkpoint.stage).toBe(stage);
+     77|     const store = await openStore(directory),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  |integration| tests/integration/P06-03.crash.test.ts > P06-03 T13 actual process kill at after_intent recovers without replaying a committed tool
+Error: ENOENT: no such file or directory, open 'D:\Tapkit-public\.test-data\P06-03 kill after_intent 72LQIX\checkpoint.json'
+ ❯ tests/integration/P06-03.crash.test.ts:75:35
+     73|     });
+     74|     expect(code).not.toBe(0);
+     75|     const checkpoint = JSON.parse(await readFile(join(directory, 'chec…
+       |                                   ^
+     76|     expect(checkpoint.stage).toBe(stage);
+     77|     const store = await openStore(directory),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  |integration| tests/integration/P06-03.crash.test.ts > P06-03 T13 actual process kill at after_blob recovers without replaying a committed tool
+Error: ENOENT: no such file or directory, open 'D:\Tapkit-public\.test-data\P06-03 kill after_blob SKw2wr\checkpoint.json'
+ ❯ tests/integration/P06-03.crash.test.ts:75:35
+     73|     });
+     74|     expect(code).not.toBe(0);
+     75|     const checkpoint = JSON.parse(await readFile(join(directory, 'chec…
+       |                                   ^
+     76|     expect(checkpoint.stage).toBe(stage);
+     77|     const store = await openStore(directory),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed (5)
+   Start at  00:20:42
+   Duration  5.90s (tests 58%, transform 29%, import 13%)
+
+ FAIL  |integration| tests/integration/P06-03.crash.test.ts > P06-03 T13 actual process kill at after_commit recovers without replaying a committed tool
+Error: ENOENT: no such file or directory, open 'D:\Tapkit-public\.test-data\P06-03 kill after_commit quRq1G\checkpoint.json'
+ ❯ tests/integration/P06-03.crash.test.ts:75:35
+     73|     });
+     74|     expect(code).not.toBe(0);
+     75|     const checkpoint = JSON.parse(await readFile(join(directory, 'chec…
+       |                                   ^
+     76|     expect(checkpoint.stage).toBe(stage);
+     77|     const store = await openStore(directory),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  |integration| tests/integration/P06-03.crash.test.ts > P06-03 T13 actual process kill at after_native recovers without replaying a committed tool
+Error: ENOENT: no such file or directory, open 'D:\Tapkit-public\.test-data\P06-03 kill after_native 4EPkMn\checkpoint.json'
+ ❯ tests/integration/P06-03.crash.test.ts:75:35
+     73|     });
+     74|     expect(code).not.toBe(0);
+     75|     const checkpoint = JSON.parse(await readFile(join(directory, 'chec…
+       |                                   ^
+     76|     expect(checkpoint.stage).toBe(stage);
+     77|     const store = await openStore(directory),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+[ELIFECYCLE] Command failed with exit code 1.

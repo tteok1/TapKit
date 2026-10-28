@@ -1,0 +1,86 @@
+{
+  "phase": "create",
+  "task": "P06",
+  "status": "failed",
+  "limits": {
+    "requests": 3,
+    "outputTokens": 256,
+    "reservedTokens": 18000
+  },
+  "realProvider": true,
+  "otherModulesCalled": false,
+  "automaticRetries": 0,
+  "fallbacks": 0,
+  "checks": [],
+  "keyReadsInsideHost": 5,
+  "budgetStart": {
+    "requests": 0,
+    "reservedTokens": 0,
+    "wireRequests": 0
+  },
+  "transportError": {
+    "code": "NETWORK_ERROR",
+    "diagnosticCode": "response_headers_timeout"
+  },
+  "probes": [
+    {
+      "attempt": 1,
+      "status": "unavailable",
+      "wireBefore": 0,
+      "text": false,
+      "tools": false,
+      "errorCode": "NETWORK_ERROR",
+      "diagnosticCode": "response_headers_timeout",
+      "wireAfter": 1
+    },
+    {
+      "attempt": 2,
+      "status": "unavailable",
+      "wireBefore": 1,
+      "text": false,
+      "tools": false,
+      "errorCode": "NETWORK_ERROR",
+      "diagnosticCode": "response_headers_timeout",
+      "wireAfter": 2
+    },
+    {
+      "attempt": 3,
+      "status": "unavailable",
+      "wireBefore": 2,
+      "text": false,
+      "tools": false,
+      "errorCode": "NETWORK_ERROR",
+      "diagnosticCode": "response_headers_timeout",
+      "wireAfter": 3
+    },
+    {
+      "attempt": 4,
+      "status": "unavailable",
+      "wireBefore": 3,
+      "text": false,
+      "tools": false,
+      "errorCode": "NETWORK_ERROR",
+      "diagnosticCode": "response_headers_timeout",
+      "wireAfter": 4
+    },
+    {
+      "attempt": 5,
+      "status": "unavailable",
+      "wireBefore": 4,
+      "text": false,
+      "tools": false,
+      "errorCode": "NETWORK_ERROR",
+      "diagnosticCode": "response_headers_timeout",
+      "wireAfter": 5
+    }
+  ],
+  "probeWireRequests": 5,
+  "errorCode": "PROVIDER_UNAVAILABLE",
+  "errorType": "Error",
+  "safeStackFunctions": [
+    "main",
+    "process.processTicksAndRejections"
+  ],
+  "stage": "tapkit-connection-check",
+  "checkedAt": "2026-10-28T04:02:05.490Z"
+}

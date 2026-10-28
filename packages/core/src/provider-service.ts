@@ -11,6 +11,7 @@ import {
   configureProviderNetwork,
   ApiKeyAdapter,
   apiFetchForNetwork,
+  apiHeaderDeadlineMs,
   resolveNetworkProxy,
   type SystemProxyResolver,
   API_ADAPTER_VERSION,
@@ -243,11 +244,23 @@ export class ProviderService {
                 return result.key;
               },
               native,
-              (input, init) =>
-                apiFetchForNetwork(this.store.settings.values.network, this.resolveSystemProxy)(
-                  input,
-                  init,
-                ),
+              (input, init) => {
+                const config = resolveApiConfig(
+                  ApiConfigSchema.shape.providerId.parse(account.providerId),
+                  {
+                    ...(account.apiFormat ? { apiFormat: account.apiFormat } : {}),
+                    ...(account.baseURL ? { baseURL: account.baseURL } : {}),
+                    ...(account.modelId ? { modelId: account.modelId } : {}),
+                  },
+                );
+                const deadline = apiHeaderDeadlineMs(config);
+                return apiFetchForNetwork(
+                  this.store.settings.values.network,
+                  this.resolveSystemProxy,
+                  undefined,
+                  deadline,
+                )(input, init);
+              },
               this.toolTrace,
             );
       this.channels.set(accountId, channel);
