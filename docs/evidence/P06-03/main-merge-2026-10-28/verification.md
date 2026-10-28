@@ -1,0 +1,7 @@
+# P06 合入 main
+
+2026-10-28 Asia/Shanghai。用户确认CI通过并授权合入main。源分支codex/p06-work-runtime，源提交275cb4190db5cb4fcc5700a5d1f235c83a9d2e2d；GitHub Actions run 40665432143 对应该提交，check 122738597082与startup-diagnostics 122752000599均completed/success，包括Electron、独立标准用户、Office及启动诊断。
+
+推送前远程main=f453d81c34618c1845b0eb9f5c63a9d8eed1d61c，源分支=275cb4190db5cb4fcc5700a5d1f235c83a9d2e2d；本地main以--ff-only快进源分支，快进后的Git tree与CI验证源树均为9a56c87d387daa091dd367998a87da25593888aa。之后仅增加本次交接文档和需求记录，无产品或测试改动；最终提交及远程推送结果以Git回执为准。
+
+P06真实验收仍限智谱Chat/FlashX和固定安全工具；其他渠道、历史资源以及engineering_passed_external_pending门禁状态保持。源分支保留，未进入P07。

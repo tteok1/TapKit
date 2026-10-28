@@ -64,3 +64,7 @@ R01—R05/R13/R14中非本次授权范围继续保持。P06指定智谱已真实
 ## 2026-10-28 门禁复核
 
 P06-01升级为implemented_and_verified，限智谱Chat/FlashX及固定安全工具；真实链分轮通过，通知修复以真实事件副本重放验证。P06-02/03保持implemented_and_verified。历史其他渠道/资源仍按用户要求暂缓，gate保持engineering_passed_external_pending，不进入P07。详见 docs/evidence/P06-03/live-final-2026-10-28/verification.md。
+
+## 2026-10-28 CI通过及main合入
+
+源提交275cb41在GitHub Actions 40665432143的check和startup-diagnostics均通过；main快进源树后仅增加交接记录，最终远程状态以Git回执为准。任务状态和外部资源边界保持，见 docs/evidence/P06-03/main-merge-2026-10-28/verification.md。

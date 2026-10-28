@@ -1,3 +1,7 @@
+## 2026-10-28 P06 CI通过并合入main
+
+用户授权合入；CI 40665432143 对源提交275cb41的check及startup-diagnostics均success。本地main快进后树与源树一致，此后仅补交接记录，远程最终SHA以Git回执为准。其他渠道暂缓及P06 gate保持；证据 docs/evidence/P06-03/main-merge-2026-10-28/verification.md。
+
 ## 2026-10-28 P06分支CI失败修复
 
 385afd5 的CI Electron失败由新增桥API与工作按钮更名的旧测试导致，已更新测试；本地两种构建各2/2通过。CI复验以实际回执为准，详见 docs/evidence/P06-03/ci-2026-10-28/verification.md。
