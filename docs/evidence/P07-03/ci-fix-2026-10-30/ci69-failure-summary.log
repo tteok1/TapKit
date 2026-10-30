@@ -1,0 +1,145 @@
+2026-10-30T11:48:36.1364787Z ⎯⎯⎯⎯⎯⎯ Failed Tests 17 ⎯⎯⎯⎯⎯⎯⎯
+2026-10-30T11:48:36.1365372Z 
+2026-10-30T11:48:36.1371465Z  FAIL   integration  tests/integration/P07-01.native-candidate.test.ts > P07-01 transient PDF inspection runs in the native sandbox without publishing
+2026-10-30T11:48:36.1377587Z AssertionError: expected 'failed' to be 'available' // Object.is equality
+2026-10-30T11:48:36.1378292Z 
+2026-10-30T11:48:36.1378783Z Expected: "available"
+2026-10-30T11:48:36.1379545Z Received: "failed"
+2026-10-30T11:48:36.1380141Z 
+2026-10-30T11:48:36.1380851Z  ❯ tests/integration/P07-01.native-candidate.test.ts:16:41
+2026-10-30T11:48:36.1405762Z      14|     const root = resolve('.'),
+2026-10-30T11:48:36.1406847Z      15|       caps = await readExecutionCapabilities(root);
+2026-10-30T11:48:36.1407846Z      16|     expect(caps.nativeExecution.status).toBe('available');
+2026-10-30T11:48:36.1409163Z        |                                         ^
+2026-10-30T11:48:36.1410035Z      17|     const versionId = newId(),
+2026-10-30T11:48:36.1411022Z      18|       directory = await staging.create(versionId),
+2026-10-30T11:48:36.1411630Z 
+2026-10-30T11:48:36.1412201Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/17]⎯
+2026-10-30T11:48:36.1412581Z 
+2026-10-30T11:48:36.1414688Z  FAIL   integration  tests/integration/P07-01.native-image.test.ts > P07-01 native isolated Office renderer displays a synthetic PNG document
+2026-10-30T11:48:36.1417221Z AssertionError: expected 'failed' to be 'available' // Object.is equality
+2026-10-30T11:48:36.1418055Z 
+2026-10-30T11:48:36.1418523Z Expected: "available"
+2026-10-30T11:48:36.1419422Z Received: "failed"
+2026-10-30T11:48:36.1419883Z 
+2026-10-30T11:48:36.1421442Z  ❯ tests/integration/P07-01.native-image.test.ts:19:39
+2026-10-30T11:48:36.1445483Z      17|   const root = resolve('.'),
+2026-10-30T11:48:36.1447040Z      18|     caps = await readExecutionCapabilities(root);
+2026-10-30T11:48:36.1448912Z      19|   expect(caps.nativeExecution.status).toBe('available');
+2026-10-30T11:48:36.1450434Z        |                                       ^
+2026-10-30T11:48:36.1451988Z      20|   expect(caps.officeRender.status).toBe('available');
+2026-10-30T11:48:36.1453240Z      21|   await mkdir('.test-data', { recursive: true });
+2026-10-30T11:48:36.1454041Z 
+2026-10-30T11:48:36.1454686Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/17]⎯
+2026-10-30T11:48:36.1455260Z 
+2026-10-30T11:48:36.1457415Z  FAIL   integration  tests/integration/P07-01.native-layout.test.ts > P07-01 bounded layout candidates preserve a long report after isolated PDF rendering
+2026-10-30T11:48:36.1460564Z AssertionError: expected 'failed' to be 'available' // Object.is equality
+2026-10-30T11:48:36.1461652Z 
+2026-10-30T11:48:36.1462550Z Expected: "available"
+2026-10-30T11:48:36.1463536Z Received: "failed"
+2026-10-30T11:48:36.1464049Z 
+2026-10-30T11:48:36.1464814Z  ❯ tests/integration/P07-01.native-layout.test.ts:14:39
+2026-10-30T11:48:36.1465876Z      12|   const root = resolve('.'),
+2026-10-30T11:48:36.1466797Z      13|     caps = await readExecutionCapabilities(root);
+2026-10-30T11:48:36.1467898Z      14|   expect(caps.nativeExecution.status).toBe('available');
+2026-10-30T11:48:36.1468851Z        |                                       ^
+2026-10-30T11:48:36.1471051Z      15|   expect(caps.officeRender.status).toBe('available');
+2026-10-30T11:48:36.1472094Z      16|   await mkdir('.test-data', { recursive: true });
+2026-10-30T11:48:36.1472603Z 
+2026-10-30T11:48:36.1473058Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/17]⎯
+2026-10-30T11:48:36.1473448Z 
+2026-10-30T11:48:36.1474956Z  FAIL   integration  tests/integration/P07-01.native-render.test.ts > P07-01 T07 native rendered representative document 0
+2026-10-30T11:48:36.1477967Z  FAIL   integration  tests/integration/P07-01.native-render.test.ts > P07-01 T07 native rendered representative document 1
+2026-10-30T11:48:36.1480619Z  FAIL   integration  tests/integration/P07-01.native-render.test.ts > P07-01 T07 native rendered representative document 2
+2026-10-30T11:48:36.1483174Z AssertionError: expected 'failed' to be 'available' // Object.is equality
+2026-10-30T11:48:36.1483998Z 
+2026-10-30T11:48:36.1484480Z Expected: "available"
+2026-10-30T11:48:36.1485282Z Received: "failed"
+2026-10-30T11:48:36.1485676Z 
+2026-10-30T11:48:36.1486420Z  ❯ tests/integration/P07-01.native-render.test.ts:18:41
+2026-10-30T11:48:36.1487413Z      16|   async ({ spec, index }) => {
+2026-10-30T11:48:36.1488298Z      17|     const caps = await readExecutionCapabilities(root);
+2026-10-30T11:48:36.1489332Z      18|     expect(caps.nativeExecution.status).toBe('available');
+2026-10-30T11:48:36.1490272Z        |                                         ^
+2026-10-30T11:48:36.1491166Z      19|     expect(caps.officeRender.status).toBe('available');
+2026-10-30T11:48:36.1492051Z      20|     await mkdir('.test-data', { recursive: true });
+2026-10-30T11:48:36.1492498Z 
+2026-10-30T11:48:36.1492896Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/17]⎯
+2026-10-30T11:48:36.1493237Z 
+2026-10-30T11:48:36.1496100Z  FAIL   integration  tests/integration/P07-02.native-data.test.ts > P07-02 native isolated data pipeline recalculates decimal formula caches, publishes exports atomically and preserves its source
+2026-10-30T11:48:36.1498499Z AssertionError: expected 'failed' to be 'available' // Object.is equality
+2026-10-30T11:48:36.1499144Z 
+2026-10-30T11:48:36.1499520Z Expected: "available"
+2026-10-30T11:48:36.1500214Z Received: "failed"
+2026-10-30T11:48:36.1500562Z 
+2026-10-30T11:48:36.1501181Z  ❯ tests/integration/P07-02.native-data.test.ts:26:41
+2026-10-30T11:48:36.1504807Z      24|     const run = f.work.repo.row(view.runId),
+2026-10-30T11:48:36.1506090Z      25|       caps = await readExecutionCapabilities(resolve('.'));
+2026-10-30T11:48:36.1507196Z      26|     expect(caps.nativeExecution.status).toBe('available');
+2026-10-30T11:48:36.1508190Z        |                                         ^
+2026-10-30T11:48:36.1509115Z      27|     expect(caps.officeRender.status).toBe('available');
+2026-10-30T11:48:36.1510171Z      28|     const gateway = new WorkToolGateway(
+2026-10-30T11:48:36.1510595Z 
+2026-10-30T11:48:36.1510994Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/17]⎯
+2026-10-30T11:48:36.1511347Z 
+2026-10-30T11:48:36.1512958Z  FAIL   integration  tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 duplicate_join refuses publication and preserves the original
+2026-10-30T11:48:36.1515826Z  FAIL   integration  tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 zero_division refuses publication and preserves the original
+2026-10-30T11:48:36.1518823Z  FAIL   integration  tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 cell_limit refuses publication and preserves the original
+2026-10-30T11:48:36.1521747Z  FAIL   integration  tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 external_link refuses publication and preserves the original
+2026-10-30T11:48:36.1524057Z AssertionError: expected 'failed' to be 'available' // Object.is equality
+2026-10-30T11:48:36.1524713Z 
+2026-10-30T11:48:36.1525084Z Expected: "available"
+2026-10-30T11:48:36.1525776Z Received: "failed"
+2026-10-30T11:48:36.1526305Z 
+2026-10-30T11:48:36.1526961Z  ❯ tests/integration/P07-02.native-limits.test.ts:91:43
+2026-10-30T11:48:36.1530809Z      89|       const spec = AnalysisSpecSchema.parse(initial),
+2026-10-30T11:48:36.1531800Z      90|         caps = await readExecutionCapabilities(resolve('.'));
+2026-10-30T11:48:36.1532462Z      91|       expect(caps.nativeExecution.status).toBe('available');
+2026-10-30T11:48:36.1533858Z        |                                           ^
+2026-10-30T11:48:36.1534841Z      92|       const base = new NativeSandboxExecutor(resolve('.'));
+2026-10-30T11:48:36.1535791Z      93|       const gateway = new WorkToolGateway(
+2026-10-30T11:48:36.1536196Z 
+2026-10-30T11:48:36.1536588Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/17]⎯
+2026-10-30T11:48:36.1536952Z 
+2026-10-30T11:48:36.1538896Z  FAIL   integration  tests/integration/P07-02.native-transform.test.ts > P07-02 native multiple XLSX/CSV inputs preserve dates and literal strings across cleaning, join and CSV-safe exports
+2026-10-30T11:48:36.1541157Z AssertionError: expected 'failed' to be 'available' // Object.is equality
+2026-10-30T11:48:36.1541812Z 
+2026-10-30T11:48:36.1542172Z Expected: "available"
+2026-10-30T11:48:36.1543052Z Received: "failed"
+2026-10-30T11:48:36.1543744Z 
+2026-10-30T11:48:36.1544479Z  ❯ tests/integration/P07-02.native-transform.test.ts:171:38
+2026-10-30T11:48:36.1555885Z     169|     });
+2026-10-30T11:48:36.1556615Z     170|     const caps = await readExecutionCapabilities(resolve('.'));
+2026-10-30T11:48:36.1557475Z     171|     expect(caps.officeRender.status).toBe('available');
+2026-10-30T11:48:36.1558336Z        |                                      ^
+2026-10-30T11:48:36.1558948Z     172|     const gateway = new WorkToolGateway(
+2026-10-30T11:48:36.1559411Z     173|       f.artifacts,
+2026-10-30T11:48:36.1559622Z 
+2026-10-30T11:48:36.1559876Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/17]⎯
+2026-10-30T11:48:36.1560130Z 
+2026-10-30T11:48:36.1560969Z  FAIL   integration  tests/integration/P07-03.native-cache.test.ts > P07-03 native private chart cache valid
+2026-10-30T11:48:36.1562552Z  FAIL   integration  tests/integration/P07-03.native-cache.test.ts > P07-03 native private chart cache formula
+2026-10-30T11:48:36.1564396Z AssertionError: expected 'failed' to be 'available' // Object.is equality
+2026-10-30T11:48:36.1565172Z 
+2026-10-30T11:48:36.1565642Z Expected: "available"
+2026-10-30T11:48:36.1566447Z Received: "failed"
+2026-10-30T11:48:36.1566840Z 
+2026-10-30T11:48:36.1567564Z  ❯ tests/integration/P07-03.native-cache.test.ts:51:45
+2026-10-30T11:48:36.1568705Z      49|         expect(job).toBeDefined();
+2026-10-30T11:48:36.1569635Z      50|         const caps = await readExecutionCapabilities(resolve('.'));
+2026-10-30T11:48:36.1570865Z      51|         expect(caps.nativeExecution.status).toBe('available');
+2026-10-30T11:48:36.1571767Z        |                                             ^
+2026-10-30T11:48:36.1572690Z      52|         const parser = new FileParser(resolve('.'), f.files, caps);
+2026-10-30T11:48:36.1573534Z      53|         if (mode === 'valid') {
+2026-10-30T11:48:36.1573892Z 
+2026-10-30T11:48:36.1574275Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/17]⎯
+2026-10-30T11:48:36.1574637Z 
+2026-10-30T11:48:36.1576045Z  FAIL   integration  tests/integration/P07-03.native-slides.test.ts > P07-03 native ten-slide five-layout light_business 16:9
+2026-10-30T11:48:36.1578691Z  FAIL   integration  tests/integration/P07-03.native-slides.test.ts > P07-03 native ten-slide five-layout dark_presentation 16:9
+2026-10-30T11:48:36.1581225Z  FAIL   integration  tests/integration/P07-03.native-slides.test.ts > P07-03 native ten-slide five-layout light_business 4:3
+2026-10-30T11:48:36.1584317Z AssertionError: expected 'failed' to be 'available' // Object.is equality
+2026-10-30T11:48:36.1585146Z 
+2026-10-30T11:48:36.1585563Z Expected: "available"
+2026-10-30T11:48:36.1586461Z Received: "failed"
+2026-10-30T11:48:36.1586920Z 
+2026-10-30T11:48:36.1587731Z  ❯ tests/integration/P07-03.native-slides.test.ts:29:42

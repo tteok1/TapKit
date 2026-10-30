@@ -1,3 +1,7 @@
+2026-10-30 CI最终通过：CI70源b7ba0cd三个job success；R09独立标准用户隔离22/22、parser3/3、preview4/4通过，R15本runner验收通过；R13既有真实范围/连接13/20保持，新增模型0。不跨主机转植报告。以下为历史。
+
+2026-10-30 CI70补验：R13真实范围/连接13/20保持，本次模型请求0；R09/R15不归为缺账号。字体本地probe22/22、原生17/17通过，CI69原生job success；CI70源b7ba0cd验证主子项目排除修复，完整结果待定。见P07-03/ci-fix-2026-10-30/verification.md。以下为历史。
+
 2026-10-30后续CI66：本地/受控真实R13办公通过范围保持；干净CI缺当前runner原生能力报告导致17项P07原生检查失败，gate暂failed，正在修补CI实际探测前置。不是缺账号，不扩大live或追加请求；连接仍13/20。见docs/evidence/P07-03/ci-fix-2026-10-30/verification.md。以下为此前验收及资源历史。
 
 2026-10-30 P07新授权最终：累计连接13/20（历史8＋新5），新5次均启动真实TapKit后在设置检测成功才发任务。R13指定智谱Chat/GLM-4.7-FlashX的合成数据/XLSX→图表PPT及具体审批局部新版本通过，3份6页实际PDF视觉通过；P07三任务implemented_and_verified，gate=passed。仅扩大此受控办公范围，其他通道/协议暂缓保持，不推广任意事实正确率。新授权模型任务10次尝试：actual38665＋estimated60460＝保守99125/120000，余20875未用；失败实际未知，连接usage未知，历史更早estimated60251另列，同profile快照不重复计费。副本删除closed、active0，原账号不改；停止追加请求，未进入P08/提交推送。证据docs/evidence/P07-03/live-ui-final.json及P07-gate.md。以下为历史。

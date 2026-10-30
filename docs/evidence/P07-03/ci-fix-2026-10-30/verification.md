@@ -49,3 +49,19 @@ CI67 check最终cancelled、startup-diagnostics success。unit444/444；integrat
 本地新完整probe22/22退出0（font-current-user-final/runtime-probe.json、font-runtime-probe-final-command.log），当前用户身份。新17项原生复验运行中；旧57文件备份后本轮另存font-acceptance并恢复，最终退出/恢复核对待补。
 
 CI69主job前半日志包含native-transform及native-limits重复执行失败。实际vitest list复现原CLI仍列82文件/全部9个原生文件；根级CLI排除未传入内联项目。原ci-split-coverage仅按glob推算不足，现替换为实际82＝73＋9文件、并集等于全集/交集空/perf独立的枚举证据。静态声明395＝386＋9不展开参数化，不误记为运行用例数；原生17已真实通过，主组预期465待新CI确认。
+
+本地字体最终原生复验9文件17/17、退出0、626.44秒，font-acceptance/native-failed-set-retest.log。manifest确认旧57文件全部按字节恢复、新57文件另存。3份10页PPT及4份文档10页已Poppler渲染，查看全部contact及6张放大页面：长标题/中英/图表0.70与1.05/表格及授权合成图片无明显遮挡；visual-machine.json记录范围。
+
+项目配置排除修复b7ba0cd11171962e426f19aee42605f63b5291b6已推，check-project-scope.log退出0；新CI70 run41051794674运行中。原local-summary.json明确标历史prefont及CI67最终失败/取消，font-final-summary.json记录当前字体本地结果，不能互相混用。
+
+CI69完整check结束failure：unit446/446、集成464通过/17失败/1跳过，17项全部为无报告重复执行的P07原生组，断言均available/failed，无其他集成失败（ci69-failure-summary.log）。perf、Build/Electron、独立标准用户及6轮Office关闭诊断全部success；独立office-native job已success。下一轮CI70确认项目内排除实际生效，不能以CI69非原生通过替代最终整轮结果。
+
+CI70检查点：主job的Unit and current-route integration已success，项目内scope修复在干净runner生效；原生job完整probe success，P07原生组仍执行。尚待其他所有步骤及startup-diagnostics最终通过。
+
+CI70原生job124049399567最终success：ci70-native-summary.log确认current-user probe22/22、无失败/跳过及P07九文件17/17。主job静态/单元集成/性能均success，Build/Electron及随后独立标准用户、Office诊断/启动诊断待最终结束。实际文件枚举原始列表ci-all-files.json、ci-main-files.json、ci-office-files.json留存，路径均仓库相对路径。
+
+## 最终验收通过
+
+CI70 [run41051794674](https://github.com/tteok1/TapKit/actions/runs/41051794674)在源b7ba0cd11171962e426f19aee42605f63b5291b6上三个job全部success。unit446/446；主集成464通过/1个既有opt-in live跳过，原生17/17，两组运行总482项无遗漏；perf2/2，Electron50/50。独立标准用户隔离22/22、parser3/3、preview4/4，无缺失/失败/跳过；Office关闭6轮及startup诊断success。字体本地probe22/22、原生17/17、40页视觉及旧57文件恢复通过。P07 gate恢复passed；原真实验收范围与连接13/20保持，本次新增模型请求0，不合main、不进入P08。
+
+实际远程身份/分支/源SHA和三个job见ci70-job-summary.json；计数/范围见ci70-check-summary.log及ci70-native-summary.log。主集成唯一跳过为P07-01.live-render.test.ts（原有显式开启条件）；本次不重放真实模型，保留之前限定真实证据。后续提交仅保存docs证据/进度及针对生成证据的.gitattributes字节保留规则，使用[skip ci]避免以文档记录再启动整套原生验收。Git会对生成Markdown默认规范化CRLF，故对两组retest-artifacts中的.md显式-text，防止检出后破坏manifest哈希；提交前校验暂存路径仅docs与该属性文件、运行源相对验收提交无差异，并逐份核对两组114个暂存blob与manifest SHA256一致。

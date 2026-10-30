@@ -1,0 +1,34 @@
+2026-10-30T12:01:26.9883374Z   1 passed (5.0s)
+2026-10-30T12:02:14.9833157Z  Test Files  68 passed (68)
+2026-10-30T12:02:14.9836108Z       Tests  446 passed (446)
+2026-10-30T12:11:30.0058370Z  Test Files  72 passed | 1 skipped (73)
+2026-10-30T12:11:30.0061537Z       Tests  464 passed | 1 skipped (465)
+2026-10-30T12:12:17.9071816Z  Test Files  2 passed (2)
+2026-10-30T12:12:17.9072970Z       Tests  2 passed (2)
+2026-10-30T12:17:15.5495689Z   50 passed (3.5m)
+2026-10-30T12:26:04.1535216Z   "standardUser": true,
+2026-10-30T12:26:04.1597476Z     "total": 22,
+2026-10-30T12:26:04.1601723Z     "passed": 22,
+2026-10-30T12:26:04.1605902Z     "failed": 0,
+2026-10-30T12:26:04.1609990Z     "pending": 0
+2026-10-30T12:26:04.1618998Z   "missingCases": []
+2026-10-30T12:26:04.1634018Z {"schemaVersion":1,"task":"P03-01","startedAt":"2026-10-30T12:24:34.944Z","endedAt":"2026-10-30T12:24:54.727Z","command":"pnpm test:integration P03-01.native-parser --reporter=json --outputFile=test-results/P03-01-native-parser.json","exitCode":0,"standardUser":true,"adapterSha256":"abc255be54b7c99cf68ebeaf8fbfaa3139c9061c0c09c23a0d9d47ba29cf06c4","passed":true,"missingCases":[],"tests":{"total":3,"passed":3,"failed":0,"pending":0}}
+2026-10-30T12:26:04.1650745Z {"schemaVersion":1,"task":"P03-02","startedAt":"2026-10-30T12:24:54.792Z","endedAt":"2026-10-30T12:26:03.990Z","command":"pnpm test:integration P03-02.native-preview --reporter=json --outputFile=test-results/P03-02-native-preview.json","exitCode":0,"standardUser":true,"sourceHashes":{"packages/core/src/artifact-service.ts":"2e225db10a5d6d36f23499f1659f2e7a488bd32b64da19fb3a4f73d15be953c8","packages/core/src/preview-staging.ts":"4525579f2954ce080672c7ccb91298fc3cde81b29058f101797c92baf8139102","packages/contracts/src/artifacts.ts":"1a90f8694c585e0a2c3133ed2f64e6ff31605a42074191fd1e819b6b87d42cd9","packages/storage/src/artifacts.ts":"c038b5eb50189c6d1be62873367ded9fbc1f9224df4fb4ca963d762bb98e4cbc","packages/retrieval/src/ingest/office.ts":"7b91115dd42e5da5255d3ea29d3ade6484b6dd2a7bf6d44b82c9ad293f9956ac","tests/fixtures/P03-preview-office.mjs":"5682fa603b5c3ac96442b1e1c7562b0d620c249b82ff3bda1e5d537b2cd73469","native/windows-helper/src/office.rs":"f22366a83fe7e8ea3d33752c1aff622af6b4ddf7ad3988382c66db076fc193c3","native/windows-helper/src/lok_worker.py":"53f04da2951b1e95996cf281cbce7a698e5577e0f0c7ef13c42d71962ad09e63","tests/integration/P03-02.native-preview.test.ts":"679aaf317905b1584c9401842a343e99c2e9b1262eefaacc330c9d78ed7440fd","vitest.config.ts":"66a20bf1c3a2fc12f1ba7e306e87003faacaa6c091de30d6aea5b64fb0fcf914","native/windows-helper/src/sandbox.rs":"182d352c2be0b258846c457dafbf0992f2b5700f719dbdc540e225f6efab9951"},"passed":true,"missingCases":[],"tests":{"total":4,"passed":4,"failed":0,"pending":0}}
+2026-10-30T12:26:04.8186406Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 1 links
+2026-10-30T12:26:27.2430581Z  Test Files  1 passed (1)
+2026-10-30T12:26:27.2431832Z       Tests  1 passed | 4 skipped (5)
+2026-10-30T12:26:27.3360816Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 2 links
+2026-10-30T12:26:47.2546469Z  Test Files  1 passed (1)
+2026-10-30T12:26:47.2547688Z       Tests  1 passed | 4 skipped (5)
+2026-10-30T12:26:47.3135939Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 3 links
+2026-10-30T12:27:07.0939610Z  Test Files  1 passed (1)
+2026-10-30T12:27:07.0940719Z       Tests  1 passed | 4 skipped (5)
+2026-10-30T12:27:07.1544758Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 1 macro
+2026-10-30T12:27:27.0056045Z  Test Files  1 passed (1)
+2026-10-30T12:27:27.0057234Z       Tests  1 passed | 4 skipped (5)
+2026-10-30T12:27:27.0775222Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 2 macro
+2026-10-30T12:27:46.8273600Z  Test Files  1 passed (1)
+2026-10-30T12:27:46.8274878Z       Tests  1 passed | 4 skipped (5)
+2026-10-30T12:27:46.8838263Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 3 macro
+2026-10-30T12:28:06.6333971Z  Test Files  1 passed (1)
+2026-10-30T12:28:06.6335474Z       Tests  1 passed | 4 skipped (5)

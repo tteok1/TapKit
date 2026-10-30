@@ -1,0 +1,1 @@
+[{"schemaVersion": 1, "id": "revenue", "type": "bar", "datasetId": "summary", "xField": "地区", "yFields": ["销售额"], "title": "分地区销售额", "xLabel": "", "yLabel": "元", "filters": [], "showLegend": true}]

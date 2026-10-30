@@ -16,3 +16,7 @@ docs/evidence/P05-03/**/exported/extracted.txt -text -whitespace
 docs/evidence/P07-*/**/*.svg -text -whitespace
 docs/evidence/P07-*/**/*.html -text -whitespace
 docs/evidence/P07-*/**/*.csv -text -whitespace
+
+# CI rerun manifests hash these generated Markdown exports byte for byte.
+docs/evidence/P07-03/ci-fix-2026-10-30/retest-artifacts/**/*.md -text -whitespace
+docs/evidence/P07-03/ci-fix-2026-10-30/font-acceptance/retest-artifacts/**/*.md -text -whitespace

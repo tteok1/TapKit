@@ -1,0 +1,294 @@
+[
+  {
+    "file": "tests/integration/P00-01.boundaries.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P00-01.mock-http.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P00-02.storage.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P00-03.capability.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P00-03.git-broker.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P00-03.legacy-route.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P00-03.office.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P00-03.sandbox.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P01-01.codex.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P01-01.lifecycle-regression.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P01-01.network.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P01-01.provider-service.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P01-02.api.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P01-02.live.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P01-02.native-restart.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P01-02.zhipu.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P01-03.network-progress.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P01-03.usage.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P02-01.desktop.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P02-02.chat.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P02-02.preview.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P02-02.zhipu-tools.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P02-03.background-priority.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P02-03.history.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P03-01.file-exporter.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P03-01.file-material.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P03-01.file-selections.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P03-01.file-service.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P03-01.file-staging.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P03-01.file-usage.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P03-01.files.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P03-01.import-recovery.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P03-01.migration.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P03-01.native-parser.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P03-01.parser-orchestration.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P03-01.parser-process.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P03-02.artifacts.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P03-02.native-preview.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P03-03.projects.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P04-01.chat.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P04-01.embedding.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P04-01.retrieval.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P04-02.context.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P04-03.memory.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P05-01.network.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P05-01.web.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P05-02.disk-errors.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P05-02.exports.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P06-01.migration.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P06-01.work.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P06-02.approvals.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P06-02.native.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P06-03.crash.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P06-03.recovery.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.document-access.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.document-approval.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.document-commit.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.document-driver.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.document-gateway.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.document-image-gateway.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.document-markdown.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.document-pdf.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.document-storage.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.document-workflow.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.layout-repair.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.live-render.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.pdf-candidate.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-02.data-access.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-02.data-driver.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-02.data-receipt.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-03.approval-budget.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-03.slides-commit.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-03.slides-driver.test.ts",
+    "projectName": "integration"
+  }
+]

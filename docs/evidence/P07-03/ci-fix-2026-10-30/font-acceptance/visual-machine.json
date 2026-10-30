@@ -1,0 +1,64 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "name": "dark_presentation-16x9",
+      "pages": 10,
+      "renderExit": 0,
+      "contact": "dark_presentation-16x9-contact.png"
+    },
+    {
+      "name": "light_business-16x9",
+      "pages": 10,
+      "renderExit": 0,
+      "contact": "light_business-16x9-contact.png"
+    },
+    {
+      "name": "light_business-4x3",
+      "pages": 10,
+      "renderExit": 0,
+      "contact": "light_business-4x3-contact.png"
+    },
+    {
+      "name": "native-image-render",
+      "pages": 1,
+      "renderExit": 0
+    },
+    {
+      "name": "native-render-report-1",
+      "pages": 1,
+      "renderExit": 0
+    },
+    {
+      "name": "native-render-report-2",
+      "pages": 4,
+      "renderExit": 0
+    },
+    {
+      "name": "native-render-report-3",
+      "pages": 4,
+      "renderExit": 0
+    }
+  ],
+  "review": {
+    "method": "view_image contact sheets plus six full-size page samples",
+    "slidePages": 30,
+    "documentPages": 10,
+    "fullSizeSamples": [
+      "light_business-4x3-02.png",
+      "dark_presentation-16x9-05.png",
+      "native-image-render-1.png",
+      "native-render-report-1-1.png",
+      "native-render-report-2-2.png",
+      "native-render-report-3-3.png"
+    ],
+    "checks": [
+      "Chinese/English titles readable",
+      "long 4:3 title wraps without overlap",
+      "0.70 and 1.05 chart labels visible",
+      "document paragraphs and repeated table headers not visibly clipped",
+      "authorized synthetic image visible"
+    ],
+    "scope": "these generated synthetic fixtures, not arbitrary document compatibility"
+  }
+}

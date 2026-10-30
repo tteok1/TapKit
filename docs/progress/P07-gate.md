@@ -1,10 +1,12 @@
 # P07 阶段交付与验收记录
 
 - 日期/执行：2026-10-30 Asia/Shanghai，当前Codex会话；D:/Tapkit-public，codex/p07-office。
-- HEAD aa6debf25399a328ca993e2c8a03c0d0722a6032及未提交工作树；保护既有改动，未提交/推送/发布。
-- gate_status：failed（CI缺报告已修，CI67后续中文校验及流水线作用域问题按ADR0073修复验证中；此前本地/真实记录保持）。
+- 最新源HEAD b7ba0cd11171962e426f19aee42605f63b5291b6已提交并推送origin/codex/p07-office；后续仅补证据。原P07交付基线aa6debf保留，未合main。
+- gate_status：passed（CI70源b7ba0cd三个job全success，既有受控真实范围保持）。
 - 范围：既有本地/原生办公验收，加指定智谱Chat/GLM-4.7-FlashX、给定合成事实的真实生成与修改；不推广其他模型/供应商或任意事实正确率，不自动进入P08。
 - 最新交付指纹：[delivery-ui-manifest.json](../evidence/P07-03/delivery-ui-manifest.json)，Core c1cbdb8f3aaa16eb0075682b1da637ed91a3b9c5345517e6e90c5f580c8315a7，无fixture。此前failed gate与旧370ce快照原样保留于[gate-before-ui-live.md](../evidence/P07-03/gate-before-ui-live.md)，不冒称早期失败通过。
+
+CI70 [run41051794674](https://github.com/tteok1/TapKit/actions/runs/41051794674)在源b7ba0cd11171962e426f19aee42605f63b5291b6上三个job全部success。unit446/446；主集成464通过/1个既有opt-in live跳过，原生17/17，两组运行总482项无遗漏；perf2/2，Electron50/50。独立标准用户隔离22/22、parser3/3、preview4/4，无缺失/失败/跳过；Office关闭6轮及startup诊断success。字体本地probe22/22、原生17/17、40页视觉及旧57文件恢复通过。P07 gate恢复passed；原真实验收范围与连接13/20保持，本次新增模型请求0，不合main、不进入P08。
 
 ## 本阶段交付物
 

@@ -1,0 +1,38 @@
+[
+  {
+    "file": "tests/integration/P07-01.native-candidate.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.native-image.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.native-layout.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-01.native-render.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-02.native-data.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-02.native-limits.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-02.native-transform.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-03.native-cache.test.ts",
+    "projectName": "integration"
+  },
+  {
+    "file": "tests/integration/P07-03.native-slides.test.ts",
+    "projectName": "integration"
+  }
+]

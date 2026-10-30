@@ -1,3 +1,13 @@
+## 2026-10-30 P07 CI修复最终通过
+
+CI70 [run41051794674](https://github.com/tteok1/TapKit/actions/runs/41051794674)在源b7ba0cd11171962e426f19aee42605f63b5291b6上三个job全部success。unit446/446；主集成464通过/1个既有opt-in live跳过，原生17/17，两组运行总482项无遗漏；perf2/2，Electron50/50。独立标准用户隔离22/22、parser3/3、preview4/4，无缺失/失败/跳过；Office关闭6轮及startup诊断success。字体本地probe22/22、原生17/17、40页视觉及旧57文件恢复通过。P07 gate恢复passed；原真实验收范围与连接13/20保持，本次新增模型请求0，不合main、不进入P08。
+
+以下为历史检查点。
+
+## 2026-10-30 P07 CI70验收中
+
+最新CI70（源b7ba0cd，run41051794674）进行中。CI69原生job已success，但主job根级CLI排除未传入Vitest子项目，重复执行P07无报告原生组；现改为项目内显式scope排除，实际文件枚举82＝主73＋原生9、交集空。新字体本地probe22/22、原生17/17、旧57文件恢复及40页视觉通过；gate暂failed，待最新三个job实际通过。证据ci-fix-2026-10-30/font-final-summary.json及verification.md。无新增模型、未合main。
+
 ## 2026-10-30 P07 CI67第二次修复
 
 首修0bdbbca已解决缺报告门禁；CI67 probe成功、unit444通过、integration473通过/8项中文文档与PPT校验失败/1跳过。桌面50项全部通过但22分钟，末尾诊断触60分钟上限取消；startup通过。ADR0073补Office进程私有加载锁定字体（本机字体曾掩盖缺口），font unit6/6、原生三格式代表项及生产build/check通过，新helper完整probe进行中。CI改为独立office-native覆盖全部9文件17项，主集成仅排除同组，其他集成/桌面/独立标准用户保留；gate仍failed，待下一轮干净CI。不合main、不扩P08、不追加模型。见docs/evidence/P07-03/ci-fix-2026-10-30/verification.md。
