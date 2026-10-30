@@ -9,6 +9,13 @@ import { FileParser } from '../../packages/core/src/file-parser';
 import { NativeSandboxExecutor } from '../../packages/tools/src/execution/native-executor';
 import { previewOfficeFixtures } from '../fixtures/P03-preview-office.mjs';
 import { OfficeWorker } from '../../packages/tools/src/execution/office-worker';
+import {
+  invalidateNativePreviewHandoff,
+  publishNativePreviewHandoff,
+  nativePreviewMarker,
+  nativePreviewMarkerText,
+  nativePreviewHandoffPath,
+} from '../fixtures/P03-native-preview-handoff';
 import type {
   ExecutionCapabilities,
   HelperRequest,
@@ -100,6 +107,7 @@ function observer(
 }
 test('P03-02 native preview converts six DOCX/PPTX samples through verified isolation and publishes fixed immutable caches', async () => {
   await mkdir(evidence, { recursive: true });
+  await invalidateNativePreviewHandoff();
   // Match the standard-user absolute path length without adding the same padding
   // again inside its already long kit. Deep native paths have a separate case.
   const base = await mkdtemp(
@@ -190,25 +198,31 @@ test('P03-02 native preview converts six DOCX/PPTX samples through verified isol
     expect(peakRenders).toBe(2);
     expect(activeRenders).toBe(0);
     expect(await readdir(artifacts.staging.base)).toEqual([]);
-    await writeFile(
-      join(evidence, 'native-preview-samples.json'),
-      JSON.stringify(
-        {
-          schemaVersion: 1,
-          source: 'real NativeSandboxExecutor/OfficeWorker',
-          profile: relative(root, store.dataDir),
-          peakConcurrentOfficeRenders: peakRenders,
-          samples,
-        },
-        null,
-        2,
-      ),
-    );
   } finally {
     await artifacts.stop();
     await parser.staging.stop();
     store.close();
   }
+  await writeFile(join(store.dataDir, nativePreviewMarker), nativePreviewMarkerText);
+  const metadata = {
+    source: 'real NativeSandboxExecutor/OfficeWorker' as const,
+    peakConcurrentOfficeRenders: peakRenders,
+    samples,
+  };
+  const receipt = await publishNativePreviewHandoff(store.dataDir, metadata);
+  await writeFile(
+    join(evidence, 'native-preview-samples.json'),
+    JSON.stringify(
+      {
+        schemaVersion: 2,
+        ...metadata,
+        handoff: relative(root, nativePreviewHandoffPath),
+        ...receipt,
+      },
+      null,
+      2,
+    ),
+  );
 }, 300000);
 test('P03-02 native preview refuses late revoked scope after real Office finishes and retains the original', async () => {
   await mkdir(evidence, { recursive: true });

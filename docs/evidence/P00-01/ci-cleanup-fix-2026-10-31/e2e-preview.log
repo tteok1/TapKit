@@ -1,0 +1,13 @@
+$ node scripts/e2e.mjs "--" "--grep" "P03-02 Electron"
+
+Running 5 tests using 1 worker
+
+(node:32012) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\e2e\P03-02.preview.spec.ts:126:1 › P03-02 Electron pins inline historical refs, remembers PDF/code positions and previews safe Markdown plus real diffs (50.8s)
+  ok 2 tests\e2e\P03-02.preview.spec.ts:198:1 › P03-02 Electron PDF selections support copy, annotations, persisted quotes and three PDF layout samples (24.3s)
+  ok 3 tests\e2e\P03-02.preview.spec.ts:282:1 › P03-02 Electron merged/formula grids, sorting, image rotation, ZIP directories and 200 percent controls remain usable (22.3s)
+  ok 4 tests\e2e\P03-02.preview.spec.ts:358:1 › P03-02 Electron renders six actual isolated Office caches with notes, structural locators, page bounds and presentation (19.3s)
+  ok 5 tests\e2e\P03-02.preview.spec.ts:424:1 › P03-02 Electron preview failure offers real retry, fixed original download/share and scoped external copy (21.5s)
+
+  5 passed (2.3m)

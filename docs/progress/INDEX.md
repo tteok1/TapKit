@@ -1,3 +1,7 @@
+## 2026-10-31 CI72交接修复本地通过，等待新CI
+
+9414195的CI72仅check/Build and Electron失败：49过/1失败；office-native、startup及主job其他规定步骤均通过。本机同例复现后，改为test-results下固定单份、哈希校验的合成SQLite/Blob交接产物，源目录及桌面副本仍各自清理，不保存迁移备份或凭据。unit459、原生4、Electron预览5及check全过；源样例目录确实删除后，消费者读取约0.49MiB/19文件快照并完成原六样例断言，仓库历史manifest不作为输入。历史验收材料已恢复。按既有授权推main并待新CI实际结果，不改业务代码、账户或阶段状态。见[原失败](../evidence/P00-01/ci-cleanup-fix-2026-10-31/ci72-failure.json)、[本地复验](../evidence/P00-01/ci-cleanup-fix-2026-10-31/verification.json)。
+
 ## 2026-10-30 测试目录维护Git交付授权
 
 用户明确要求将本轮修改提交推送远程，目标为当前origin/main（tteok1/TapKit），已核对远程基线4cd75c9与本地一致。113个源码文件与完成验证时的manifest全匹配，交付包含测试清理工厂、统一收尾、约束/回归及文档证据；测试账户、凭据、会话、资料库、配置及本地发布副本均由Git忽略，不纳入提交。实际提交及远程SHA以Git回执为准，新CI不提前记通过。范围与基线见[交付记录](../evidence/P00-01/test-data-cleanup-2026-10-30/git-delivery.json)；以下“无提交推送”为交付授权前的验收快照。

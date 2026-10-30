@@ -1,0 +1,25 @@
+{
+  "base_sha": "941419581d8b2c272ff9bfb2162741a67007cedd",
+  "files": [
+    {
+      "path": "scripts/test-temp.mjs",
+      "sha256": "ff124bf5a04442cdf6cfaa51acbc60ab73dcd3361b84f4f58fdde8a552c687a2"
+    },
+    {
+      "path": "tests/e2e/P03-02.preview.spec.ts",
+      "sha256": "1345b58f660e5aaa5092fb7f0373e8ef665b275c67114029e27717c779a969ff"
+    },
+    {
+      "path": "tests/fixtures/P03-native-preview-handoff.ts",
+      "sha256": "5d479e0add2348eee9c003e697217e24b09eb424aff2a5a37a16b6f93c9500ae"
+    },
+    {
+      "path": "tests/integration/P03-02.native-preview.test.ts",
+      "sha256": "56ed9f0fa9acb884c7c1968d686e0208b4e7e757a6acf4575227ce4c8a888a93"
+    },
+    {
+      "path": "tests/unit/P00-01.preview-handoff.test.ts",
+      "sha256": "d774d9d3ec195fb3d829d99fcb91337b0d38b21f1e57babe5c13052a5107d6c7"
+    }
+  ]
+}

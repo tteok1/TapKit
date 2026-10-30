@@ -42,6 +42,24 @@ export function mkdtempSync(prefix) {
   return remember(createSync(checkPrefix(prefix)));
 }
 
+/** Validate an existing directory created by this process, without adopting any other directory.
+ * @param {string} path
+ */
+export function assertOwnedTestDirectory(path) {
+  path = resolve(path);
+  const identity = owned.get(path);
+  if (!identity) throw Error('Not an owned test directory');
+  checkPrefix(path);
+  const current = lstatSync(path);
+  if (
+    current.isSymbolicLink() ||
+    !current.isDirectory() ||
+    current.dev !== identity.dev ||
+    current.ino !== identity.ino
+  )
+    throw Error('Test temporary directory was replaced');
+}
+
 export async function cleanupTestDirectories() {
   if (process.env.TAPKIT_KEEP_TEST_DATA === '1') return { removed: 0, kept: owned.size };
   let removed = 0;

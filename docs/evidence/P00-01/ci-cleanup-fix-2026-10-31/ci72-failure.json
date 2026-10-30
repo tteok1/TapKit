@@ -1,0 +1,22 @@
+{
+  "run_id": 41085703932,
+  "run_number": 72,
+  "url": "https://github.com/tteok1/TapKit/actions/runs/41085703932",
+  "head_sha": "941419581d8b2c272ff9bfb2162741a67007cedd",
+  "check_job_id": 124166187247,
+  "jobs": {
+    "check": "failure",
+    "office-native": "success",
+    "startup-diagnostics": "success"
+  },
+  "passing_check_steps": ["bootstrap", "static checks", "unit and integration", "performance", "independent standard-user isolation", "Office shutdown diagnostics"],
+  "failed_step": "Build and Electron checks",
+  "desktop_passed": 49,
+  "desktop_failed": 1,
+  "failed_test": "P03-02 Electron renders six actual isolated Office caches with notes, structural locators, page bounds and presentation",
+  "failure": "ENOENT while copying the native preview producer's temporary profile into the Electron test profile",
+  "cause": "The integration afterAll correctly removed its owned temporary directory, but the later Electron test still referenced that path through native-preview-samples.json.",
+  "local_reproduction": {"exit_code": 1, "log": "repro-before.log", "same_missing_producer_profile": true},
+  "original_job_log": "Kept only in Git-ignored local maintenance storage; 11535300 bytes, 68351 lines.",
+  "credentials": "GitHub log credential used only in memory; TapKit account credentials were not read or used."
+}

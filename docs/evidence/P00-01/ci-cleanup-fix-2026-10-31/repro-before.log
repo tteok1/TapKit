@@ -1,0 +1,45 @@
+$ node scripts/e2e.mjs "--" "--grep" "P03-02 Electron renders six"
+
+Running 1 test using 1 worker
+
+(node:9984) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\e2e\P03-02.preview.spec.ts:354:1 › P03-02 Electron renders six actual isolated Office caches with notes, structural locators, page bounds and presentation (13ms)
+
+
+  1) tests\e2e\P03-02.preview.spec.ts:354:1 › P03-02 Electron renders six actual isolated Office caches with notes, structural locators, page bounds and presentation 
+
+    Error: ENOENT: no such file or directory, lstat 'D:\Tapkit-public\.test-data\P03-02 native samples xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxpEVAVh\profile'
+
+      360 |   expect(manifest.samples).toHaveLength(6);
+      361 |   const root = await rootDir('native Office UI');
+    > 362 |   await cp(resolve(manifest.profile), join(root, 'profile'), { recursive: true });
+          |   ^
+      363 |   const page = await launch(root),
+      364 |     panel = panelFor(page);
+      365 |   for (const sample of manifest.samples) {
+        at D:\Tapkit-public\tests\e2e\P03-02.preview.spec.ts:362:3
+
+    Error Context: test-results\e2e\P03-02.preview-P03-02-Elec-1e2b7-age-bounds-and-presentation\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P03-02.preview-P03-02-Elec-1e2b7-age-bounds-and-presentation\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P03-02.preview-P03-02-Elec-1e2b7-age-bounds-and-presentation\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P03-02.preview.spec.ts:354:1 › P03-02 Electron renders six actual isolated Office caches with notes, structural locators, page bounds and presentation 
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/e2e.mjs:15:21
+
+Node.js v24.18.0
+[ELIFECYCLE] Command failed with exit code 1.

@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project integration "P03-02.native-preview"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  00:59:57
+   Duration  256.46s (tests 99%)
+

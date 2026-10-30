@@ -1,0 +1,73 @@
+{
+  "status": "local_verified_ci_pending",
+  "date": "2026-10-31 Asia/Shanghai",
+  "failed_run": 41085703932,
+  "failed_source": "941419581d8b2c272ff9bfb2162741a67007cedd",
+  "cause": "Integration temporary profile was removed before the later Electron test copied it.",
+  "fix": "Bounded, atomic, fixed-name synthetic SQLite/blob handoff; restore only into a fresh owned profile. Temporary directory cleanup remains enabled.",
+  "production_code_changed": false,
+  "real_model_requests": 0,
+  "existing_accounts_accessed_by_handoff": false,
+  "verification": {
+    "reproduction_before": {
+      "exit_code": 1,
+      "same_ENOENT": true
+    },
+    "targeted_unit": {
+      "exit_code": 0,
+      "passed": 13
+    },
+    "unit": {
+      "exit_code": 0,
+      "passed": 459
+    },
+    "native_preview": {
+      "exit_code": 0,
+      "passed": 4,
+      "duration_seconds": 256.46
+    },
+    "electron_preview": {
+      "exit_code": 0,
+      "passed": 5,
+      "duration_display": "2.3m",
+      "historical_manifest_restored_before_run": true
+    },
+    "check": {
+      "exit_code": 0,
+      "format_files": 681,
+      "ownership_files": 208,
+      "collected_desktop_cases": 123
+    }
+  },
+  "handoff": {
+    "producer_tests_passed": 4,
+    "producer_exit_code": 0,
+    "source_temporary_sample_directories_remaining": 0,
+    "artifact_bytes": 511294,
+    "profile_archive_bytes": 382370,
+    "profile_file_count": 19,
+    "samples": 6,
+    "contains_only_sqlite_and_blobs": true,
+    "archive_sha256": "55d21f56583ff563fe6d97482cf807d623b17406b54e1a26912583af5ec67fde",
+    "backup_or_credential_entries": 0
+  },
+  "canonical_evidence_restored": [
+    "docs/evidence/P03-02/native-preview-cases.jsonl",
+    "docs/evidence/P03-02/pdf-sample-1.png",
+    "docs/evidence/P03-02/pdf-sample-2.png",
+    "docs/evidence/P03-02/pdf-sample-3.png",
+    "docs/evidence/P03-02/slides-1-pptx.png",
+    "docs/evidence/P03-02/slides-1.pptx.pdf",
+    "docs/evidence/P03-02/slides-2-pptx.png",
+    "docs/evidence/P03-02/slides-2.pptx.pdf",
+    "docs/evidence/P03-02/slides-3-pptx.png",
+    "docs/evidence/P03-02/slides-3.pptx.pdf",
+    "docs/evidence/P03-02/viewer-200-percent.png",
+    "docs/evidence/P03-02/word-1.docx.pdf",
+    "docs/evidence/P03-02/word-2.docx.pdf",
+    "docs/evidence/P03-02/word-3.docx.pdf"
+  ],
+  "source_manifest": "source-manifest.json",
+  "ci_followup": "pending new committed source; no prior CI result reused",
+  "safety": "Only profiles under newly created, registered parents can be encoded or restored. Credential paths, existing destinations, links and corrupt/path-traversal entries are rejected."
+}

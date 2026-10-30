@@ -1,5 +1,7 @@
 # 范围、决策与默认行为
 
+2026-10-31 [ADR0074补充](../adr/0074-owned-automated-test-directories.md)：P03测试跨阶段资料改用test-results下受控单份交接文件，源临时目录仍在afterAll清理；关闭数据库后仅打包合成SQLite/Blob，消费端在新建所有权目录还原，校验完整性并拒绝凭据/历史路径。
+
 2026-10-30 [ADR0074](../adr/0074-owned-automated-test-directories.md)：自动测试只清理本进程新建且登记身份的临时目录，不继承已有账户资料；Vitest/Playwright统一收尾并加入静态检查。live、开发资料及生产备份策略不自动清理，本机旧残留按用户具体批准清单处理。
 
 2026-10-30 [ADR0073](../adr/0073-private-office-fonts-and-ci-scope.md)：Office私有加载并校验已锁定中文字体，能力报告仍绑定当前runner；CI将P07原生验收移至独立job，主检查不重复该组，不减少覆盖或放宽完整指纹校验。验收状态见progress。

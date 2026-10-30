@@ -1,0 +1,12 @@
+{
+  "producer_tests_passed": 4,
+  "producer_exit_code": 0,
+  "source_temporary_sample_directories_remaining": 0,
+  "artifact_bytes": 511294,
+  "profile_archive_bytes": 382370,
+  "profile_file_count": 19,
+  "samples": 6,
+  "contains_only_sqlite_and_blobs": true,
+  "archive_sha256": "55d21f56583ff563fe6d97482cf807d623b17406b54e1a26912583af5ec67fde",
+  "backup_or_credential_entries": 0
+}

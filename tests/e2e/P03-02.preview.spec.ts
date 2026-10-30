@@ -1,9 +1,13 @@
 import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { test, expect, _electron as electron, type ElectronApplication, type Page } from './test';
-import { mkdir, readFile, cp, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
+import {
+  readNativePreviewHandoff,
+  restoreNativePreviewProfile,
+} from '../fixtures/P03-native-preview-handoff';
 let app: ElectronApplication | undefined;
 const evidence = resolve('docs/evidence/P03-02');
 type FileId = { fileId: string; versionId: string };
@@ -353,13 +357,15 @@ test('P03-02 Electron merged/formula grids, sorting, image rotation, ZIP directo
 
 test('P03-02 Electron renders six actual isolated Office caches with notes, structural locators, page bounds and presentation', async () => {
   test.setTimeout(120000);
-  const manifest = JSON.parse(
-    await readFile(join(evidence, 'native-preview-samples.json'), 'utf8'),
-  ) as { source: string; profile: string; samples: (FileId & { name: string })[] };
+  const manifest = await readNativePreviewHandoff();
   expect(manifest.source).toBe('real NativeSandboxExecutor/OfficeWorker');
   expect(manifest.samples).toHaveLength(6);
   const root = await rootDir('native Office UI');
-  await cp(resolve(manifest.profile), join(root, 'profile'), { recursive: true });
+  await restoreNativePreviewProfile(
+    Buffer.from(manifest.profileArchiveBase64, 'base64'),
+    manifest.profileArchiveSha256,
+    join(root, 'profile'),
+  );
   const page = await launch(root),
     panel = panelFor(page);
   for (const sample of manifest.samples) {
