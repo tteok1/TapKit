@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "kind": "tapkit.slides",
+  "spec": {
+    "schemaVersion": 1,
+    "title": "合成修改验收",
+    "aspectRatio": "16:9",
+    "theme": "light_business",
+    "slides": [
+      {
+        "id": "page-1",
+        "layout": "body",
+        "title": "已修改的合成示例",
+        "bullets": [
+          "示例金额123.45元"
+        ],
+        "rightBullets": [],
+        "notes": "仅修改这一页，其他内容保持不变。"
+      },
+      {
+        "id": "page-2",
+        "layout": "body",
+        "title": "检查范围",
+        "bullets": [
+          "可编辑文字与讲者备注"
+        ],
+        "rightBullets": [],
+        "notes": "没有真实经营结论"
+      }
+    ]
+  },
+  "preview": {
+    "kind": "file",
+    "fileId": "01a18bf2-cf49-719d-9b7e-78ddd68752d6",
+    "versionId": "01a18bf2-cf49-799e-84d2-a12465a5eef6"
+  },
+  "quality": {
+    "pages": 2,
+    "layoutVerified": true
+  }
+}

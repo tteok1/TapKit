@@ -1,0 +1,26 @@
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P07-02.native-limits.test.ts (4 tests | 1 failed | 3 skipped) 42796ms
+   × P07-02 native T07/T19 duplicate_join refuses publication and preserves the original 42795ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 duplicate_join refuses publication and preserves the original
+AssertionError: expected undefined to be defined
+ ❯ tests/integration/P07-02.native-limits.test.ts:126:9
+    124|           .prepare("SELECT 1 FROM events WHERE run_id=? AND event_type…
+    125|           .get(run.id),
+    126|       ).toBeDefined();
+       |         ^
+    127|     } finally {
+    128|       await f.close();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 skipped (4)
+   Start at  20:42:59
+   Duration  45.21s (tests 95%, transform 4%, import 1%)
+

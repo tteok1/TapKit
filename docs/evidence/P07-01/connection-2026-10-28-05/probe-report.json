@@ -1,0 +1,39 @@
+{
+  "phase": "create",
+  "task": "P07-01",
+  "status": "passed",
+  "limits": {
+    "checks": 1,
+    "wireRequests": 2,
+    "maxOutputTokens": 128
+  },
+  "realProvider": true,
+  "otherModulesCalled": false,
+  "automaticRetries": 0,
+  "fallbacks": 0,
+  "checks": [],
+  "keyReadsInsideHost": 2,
+  "wireRequests": 2,
+  "probe": {
+    "status": "ready",
+    "text": true,
+    "tools": true,
+    "errorCode": null,
+    "diagnosticCode": null
+  },
+  "stages": [
+    {
+      "request": 1,
+      "event": "response_headers",
+      "elapsedMs": 1550
+    },
+    {
+      "request": 2,
+      "event": "response_headers",
+      "elapsedMs": 729
+    }
+  ],
+  "isolatedCredentialRemoved": true,
+  "stage": "tapkit-connection-check",
+  "checkedAt": "2026-10-28T14:50:02.500Z"
+}

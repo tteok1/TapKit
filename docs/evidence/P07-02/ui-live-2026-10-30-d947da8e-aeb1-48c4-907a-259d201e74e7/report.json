@@ -1,0 +1,110 @@
+{
+  "round": "d947da8e-aeb1-48c4-907a-259d201e74e7",
+  "parentRound": "c6cbcc3d-cfd2-4eda-821b-3065bb5fab32",
+  "status": "task_failed",
+  "connectionAttempts": [
+    {
+      "globalNumber": 11,
+      "status": "passed",
+      "startedAt": "2026-10-30T07:48:21.940Z",
+      "finishedAt": "2026-10-30T07:49:53.876Z"
+    }
+  ],
+  "tasks": [
+    {
+      "kind": "slides_revision",
+      "runId": "01a18bc9-653e-7284-90ec-6ec19dcbf70d",
+      "status": "budget_stopped",
+      "reason": "BUDGET_EXCEEDED"
+    },
+    {
+      "kind": "slides_with_analysis",
+      "runId": "01a18bca-02d1-75f4-8665-1ab4ed59dddd",
+      "status": "completed",
+      "reason": null,
+      "checks": {
+        "pages": true,
+        "chart": true,
+        "notes": true
+      }
+    }
+  ],
+  "credentialRemoved": true,
+  "priorCharge": 34057,
+  "usage": [
+    {
+      "input_tokens": 4643,
+      "cached_input_tokens": 42,
+      "output_tokens": 638,
+      "reasoning_tokens": 0,
+      "charged_tokens": 5281,
+      "source": "actual"
+    },
+    {
+      "input_tokens": 2801,
+      "cached_input_tokens": 42,
+      "output_tokens": 133,
+      "reasoning_tokens": 0,
+      "charged_tokens": 2934,
+      "source": "actual"
+    },
+    {
+      "input_tokens": 2978,
+      "cached_input_tokens": 42,
+      "output_tokens": 154,
+      "reasoning_tokens": 0,
+      "charged_tokens": 3132,
+      "source": "actual"
+    },
+    {
+      "input_tokens": 8910,
+      "cached_input_tokens": 42,
+      "output_tokens": 235,
+      "reasoning_tokens": 0,
+      "charged_tokens": 9145,
+      "source": "actual"
+    }
+  ],
+  "toolCalls": [
+    {
+      "tool_name": "data.analyze",
+      "status": "succeeded",
+      "side_effect": "committed"
+    },
+    {
+      "tool_name": "slides.create",
+      "status": "succeeded",
+      "side_effect": "committed"
+    },
+    {
+      "tool_name": "slides.revise",
+      "status": "approved",
+      "side_effect": "none"
+    },
+    {
+      "tool_name": "slides.create",
+      "status": "succeeded",
+      "side_effect": "committed"
+    }
+  ],
+  "providerAttempts": [
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    }
+  ],
+  "activeRuns": 0,
+  "finishedAt": "2026-10-30T07:52:46.605Z"
+}

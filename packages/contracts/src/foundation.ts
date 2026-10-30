@@ -257,6 +257,7 @@ export const EventEnvelopeSchema = z.strictObject({
     'run.status',
     'task.steered',
     'tool.finished',
+    'tool.validation',
     'draft.updated',
   ]),
   occurredAt: TimeSchema,

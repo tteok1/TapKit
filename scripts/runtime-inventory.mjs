@@ -25,6 +25,7 @@ export async function executionFingerprint(root) {
     'resources/runtime/helper/tapkit-windows-helper.exe',
     'scripts/runtime-inventory.mjs',
     'scripts/runtime-probe.mjs',
+    'scripts/runtime-probe-results.mjs',
     'scripts/execution-verification.mjs',
     'scripts/p00-03-required-cases.mjs',
     'scripts/fixtures-office.mjs',

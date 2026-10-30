@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "executionPolicy": "appcontainer-lok-v1",
+  "startedAt": "2026-10-29T11:50:31.090Z",
+  "endedAt": "2026-10-29T12:22:44.647Z",
+  "command": "pnpm test:integration P00-03 --reporter=json --outputFile=test-results/P00-03-native.json",
+  "exitCode": null,
+  "standardUser": false,
+  "verification": {
+    "scope": "current-user",
+    "identity": {
+      "userSidHash": "89d3515d56b0f7fb4f2e9d5ab5438c2590534473cc30f033f476b0408a4d96d7",
+      "integritySid": "S-1-16-8192",
+      "administratorsGroup": true
+    }
+  },
+  "standardUserAcceptance": "not_verified_in_this_scope",
+  "fingerprint": "bbe9357e5d84a55aeb3d0585f4ade1310a3467fb6c07234ce869a50b31e1c194",
+  "capabilities": {
+    "nativeExecution": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    },
+    "officeRender": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    },
+    "terminal": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    }
+  },
+  "tests": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "pending": 0
+  },
+  "missingCases": []
+}

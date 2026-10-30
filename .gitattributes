@@ -11,3 +11,8 @@ docs/evidence/P05-03/**/desktop-failures/** -text -whitespace
 docs/evidence/P05-03/**/milestone-failure/** -text -whitespace
 docs/evidence/P05-02/exported/extracted.txt -text -whitespace
 docs/evidence/P05-03/**/exported/extracted.txt -text -whitespace
+
+# P07 generated office/data exports are byte-preserved acceptance evidence.
+docs/evidence/P07-*/**/*.svg -text -whitespace
+docs/evidence/P07-*/**/*.html -text -whitespace
+docs/evidence/P07-*/**/*.csv -text -whitespace

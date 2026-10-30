@@ -1,0 +1,61 @@
+{
+  "round": "6003f245-ed10-4470-885c-6a47d630da64",
+  "networkRequests": 0,
+  "credentialReads": 0,
+  "artifacts": [
+    {
+      "name": "data.xlsx",
+      "fileId": "01a18bc0-f223-776f-b8b8-5ebbdb9bf0fe",
+      "versionId": "01a18bc0-f223-7a61-a7b9-4eefab5dfb8a",
+      "runId": "01a18bbf-cf2b-7579-b793-396db72da039",
+      "sha256": "d183d9a2f92b461bf8e0bccc10eb669236ef20c26d87a7237bdc16f2e6e01e29",
+      "bytes": 7686,
+      "parseStatus": "ready"
+    },
+    {
+      "name": "data.json",
+      "fileId": "01a18bc0-f28f-7a67-9bdd-0dd9acf2195b",
+      "versionId": "01a18bc0-f28f-7475-a7ca-2ab8396ea19c",
+      "runId": "01a18bbf-cf2b-7579-b793-396db72da039",
+      "sha256": "2c5a74213c599c8ae6a3f21cda70765beaca4687652a471a2a07097607f6b130",
+      "bytes": 4971,
+      "parseStatus": "ready"
+    },
+    {
+      "name": "slides_plain.pptx",
+      "fileId": "01a18bf1-5c00-7954-bf58-075c510bb2c0",
+      "versionId": "01a18bf1-5c01-7015-b900-34c2b5d755e3",
+      "runId": "01a18bf0-4b25-7d26-86d3-8be0d108430a",
+      "sha256": "03d25a6c37941e5268798e3fa2f965e0821cd42adab9f7184d556810747fda0d",
+      "bytes": 54778,
+      "parseStatus": "ready"
+    },
+    {
+      "name": "slides_plain.pdf",
+      "fileId": "01a18bf1-5c05-7700-a49a-66e1e268dcba",
+      "versionId": "01a18bf1-5c05-78c9-8d5e-37c42a16a496",
+      "runId": "01a18bf0-4b25-7d26-86d3-8be0d108430a",
+      "sha256": "5ff458eb8f7391fff3ed0ffa15a187ef04603adccaa6500f98c06d8fa74aeae7",
+      "bytes": 42278,
+      "parseStatus": "ready"
+    },
+    {
+      "name": "slides_revision.pptx",
+      "fileId": "01a18bf1-5c00-7954-bf58-075c510bb2c0",
+      "versionId": "01a18bf2-cf46-721c-9f5a-03dbf056c923",
+      "runId": "01a18bf1-6ea7-7dd2-88ac-491e79683af1",
+      "sha256": "ef210c4d1df261036eeb55b3c57b6eee3567322329ee57ecf74629e5834e9ce5",
+      "bytes": 54817,
+      "parseStatus": "ready"
+    },
+    {
+      "name": "slides_revision.pdf",
+      "fileId": "01a18bf2-cf49-719d-9b7e-78ddd68752d6",
+      "versionId": "01a18bf2-cf49-799e-84d2-a12465a5eef6",
+      "runId": "01a18bf1-6ea7-7dd2-88ac-491e79683af1",
+      "sha256": "b66311487c047d475685d992ec1a9331c88231ea4ff07f42b968781db69b5ed7",
+      "bytes": 43890,
+      "parseStatus": "ready"
+    }
+  ]
+}

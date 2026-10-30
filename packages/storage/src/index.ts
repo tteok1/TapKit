@@ -25,3 +25,5 @@ export * from './session-cleanup';
 export * from './files';
 export * from './artifacts';
 export * from './work';
+export * from './documents';
+export * from './slides';

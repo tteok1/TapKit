@@ -1,0 +1,8 @@
+packages/core/src/work-slides.ts(2,41): error TS6133: 'WorkRepository' is declared but its value is never read.
+packages/workflows/src/slides.ts(66,154): error TS2339: Property 'lang' does not exist on type 'PptxGenJS'.
+packages/workflows/src/slides.ts(67,79): error TS2353: Object literal may only specify known properties, and 'lang' does not exist in type 'ThemeProps'.
+packages/workflows/src/slides.ts(75,44): error TS2322: Type 'string[]' is not assignable to type 'TableRow'.
+  Type 'string' has no properties in common with type 'TableCell'.
+packages/workflows/src/slides.ts(75,61): error TS2322: Type 'string[]' is not assignable to type 'TableRow'.
+  Type 'string' has no properties in common with type 'TableCell'.
+packages/workflows/src/slides.ts(79,353): error TS2353: Object literal may only specify known properties, and 'showCatName' does not exist in type 'IChartOpts'.

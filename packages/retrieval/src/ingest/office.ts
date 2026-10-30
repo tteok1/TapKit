@@ -1,4 +1,5 @@
 import { posix } from 'node:path';
+import { createHash } from 'node:crypto';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
 import {
   FILE_LIMITS,
@@ -115,8 +116,9 @@ function text(node: Node): string {
 type Relation = { type: string; target: string | null };
 class OfficePackage {
   readonly warnings = new Set<string>();
+  private readonly chartWorkbooks = new Set<string>();
   private constructor(readonly archive: BoundedArchive) {}
-  static async open(bytes: Buffer, limits: FileLimits) {
+  static async open(bytes: Buffer, limits: FileLimits, inspectSlideCharts = false) {
     assertFileSize(bytes, limits);
     if (
       bytes.subarray(0, 8).equals(Buffer.from([0xd0, 0xcf, 0x11, 0xe0, 0xa1, 0xb1, 0x1a, 0xe1]))
@@ -131,14 +133,46 @@ class OfficePackage {
     const archive = await BoundedArchive.open(bytes, limits),
       pkg = new OfficePackage(archive);
     try {
+      let embeddedCells = 0;
       for (const [path, entry] of archive.entries) {
         // Generators can include an empty embeddings/ directory without any
         // OLE payload. Real embedding files and active relationships remain blocked.
+        const chartWorkbook = inspectSlideCharts && /^ppt\/embeddings\/[^/]+\.xlsx$/i.test(path);
         if (
           /vbaProject|activeX/i.test(path) ||
-          (/embeddings\//i.test(path) && (!path.endsWith('/') || entry.uncompressedSize !== 0))
+          (/embeddings\//i.test(path) &&
+            (!path.endsWith('/') || entry.uncompressedSize !== 0) &&
+            !chartWorkbook)
         )
           throw new ParseError('MACRO_FORMAT');
+        if (chartWorkbook) {
+          const nested = await OfficePackage.open(await archive.read(path), limits);
+          try {
+            for (const nestedPath of nested.archive.entries.keys()) {
+              if (/externalLinks|connections|queryTables/i.test(nestedPath))
+                throw new ParseError('FORMAT_UNSUPPORTED');
+              if (/\.xml$/i.test(nestedPath)) {
+                const root = await nested.read(nestedPath);
+                if (
+                  ['f', 'definedName', 'ddeLink', 'oleLink'].some(
+                    (name) => [...descendants(root, name)].length,
+                  )
+                )
+                  throw new ParseError('FORMAT_UNSUPPORTED');
+              }
+            }
+            if (nested.warnings.has('EXTERNAL_RELATIONSHIP_IGNORED'))
+              throw new ParseError('FORMAT_UNSUPPORTED');
+            const doc = await spreadsheet(nested, await nested.main('xlsx'), limits);
+            embeddedCells += doc.sheets.reduce((n, s) => n + s.cells.length, 0);
+            if (embeddedCells > limits.maxCells) throw new ParseError('OUTPUT_LIMIT');
+            pkg.chartWorkbooks.add(path);
+          } finally {
+            nested.archive.close();
+          }
+        }
+      }
+      for (const [path] of archive.entries) {
         if (/\.xml$|\.rels$/i.test(path)) {
           // Inspect every XML part before using any content, including unused relationships.
           const root = await pkg.read(path);
@@ -170,7 +204,13 @@ class OfficePackage {
       if (node.name !== 'Relationship') continue;
       const { Id: id, Type: type, Target: target, TargetMode: mode } = node.attributes;
       if (!id || !type || !target || result.has(id)) throw new ParseError('CORRUPT_FILE');
-      if (/vbaProject|activeX|oleObject|package$/i.test(type)) throw new ParseError('MACRO_FORMAT');
+      const chartPackage = /package$/i.test(type);
+      if (
+        /vbaProject|activeX|oleObject/i.test(type) ||
+        (chartPackage &&
+          (!/^ppt\/charts\/_rels\/[^/]+\.xml\.rels$/i.test(path) || mode === 'External'))
+      )
+        throw new ParseError('MACRO_FORMAT');
       if (mode === 'External') {
         this.warnings.add('EXTERNAL_RELATIONSHIP_IGNORED');
         result.set(id, { type, target: null });
@@ -183,6 +223,7 @@ class OfficePackage {
       );
       if (!FileRelativePathSchema.safeParse(resolved).success)
         throw new ParseError('UNSAFE_ARCHIVE');
+      if (chartPackage && !this.chartWorkbooks.has(resolved)) throw new ParseError('MACRO_FORMAT');
       result.set(id, { type, target: resolved });
     }
     return result;
@@ -510,9 +551,11 @@ export async function parseOfficeFile(
   bytes: Buffer,
   extension: 'docx' | 'xlsx' | 'pptx',
   rawLimits: FileLimits = FILE_LIMITS,
+  inspectDocumentImages = false,
+  inspectSlideCharts = false,
 ) {
   const limits = FileLimitsSchema.parse(rawLimits),
-    pkg = await OfficePackage.open(bytes, limits);
+    pkg = await OfficePackage.open(bytes, limits, extension === 'pptx' && inspectSlideCharts);
   try {
     const main = await pkg.main(extension);
     const doc =
@@ -521,6 +564,34 @@ export async function parseOfficeFile(
         : extension === 'xlsx'
           ? await spreadsheet(pkg, main, limits)
           : await presentation(pkg, main, limits);
+    if (inspectDocumentImages && extension === 'docx') {
+      const root = await pkg.read(main),
+        relations = await pkg.relationships(main);
+      const hashes: string[] = [];
+      let total = 0,
+        totalBytes = 0;
+      for (const image of descendants(root, 'blip')) {
+        if (++total > 8 || image.attributes.link || !image.attributes.embed)
+          throw new ParseError('OUTPUT_LIMIT');
+        const relation = relations.get(image.attributes.embed);
+        if (
+          !relation?.target ||
+          !/\/image$/.test(relation.type) ||
+          !pkg.archive.has(relation.target)
+        )
+          throw new ParseError('CORRUPT_FILE');
+        const data = await pkg.archive.read(relation.target);
+        totalBytes += data.length;
+        if (totalBytes > 512 * 1024) throw new ParseError('OUTPUT_LIMIT');
+        if (
+          data.length > 128 * 1024 ||
+          !data.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))
+        )
+          throw new ParseError('FORMAT_UNSUPPORTED');
+        hashes.push(createHash('sha256').update(data).digest('hex'));
+      }
+      doc.embeddedPngHashes = hashes;
+    }
     doc.quality.warnings = [...pkg.warnings];
     if (!doc.blocks.some((b) => b.text.trim())) doc.quality.warnings.push('NO_TEXT_CONTENT');
     return ParsedDocumentSchema.parse(doc);

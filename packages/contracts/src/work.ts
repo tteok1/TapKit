@@ -3,12 +3,38 @@ import { IdSchema } from './identity';
 import { ResourceRefSchema, AcceptanceRuleSchema, PlanStepInputSchema } from './resources';
 import { RunStatusSchema } from './chat';
 import { SelectionSchema } from './models';
+import { AnalysisSpecSchema, DataFilterSchema, DataPageSchema } from './data';
+import {
+  SlideDeckSpecSchema,
+  SlideOptionsSchema,
+  SlideActionSchema,
+  SlidePageSchema,
+} from './slides';
+import {
+  DocumentFieldsPatchSchema,
+  DocumentOptionsSchema,
+  DocumentSectionSchema,
+  DocumentSpecSchema,
+} from './document';
+
+export const LEGACY_WORK_TOOL_CATALOG_VERSION = 'p06-tools-1';
+export const DOCUMENT_WORK_TOOL_CATALOG_VERSION = 'p07-tools-1';
+export const DATA_WORK_TOOL_CATALOG_VERSION = 'p07-tools-2';
+export const WORK_TOOL_CATALOG_VERSION = 'p07-tools-3';
 
 export const WorkDefinitionSchema = z.strictObject({
   goal: z.string().trim().min(1).max(20000),
   audience: z.string().max(500).default('用户本人'),
   language: z.string().min(1).max(80).default('简体中文'),
-  format: z.enum(['md', 'txt', 'json', 'csv', 'pdf']).default('md'),
+  format: z.enum(['md', 'txt', 'json', 'csv', 'pdf', 'docx', 'xlsx', 'pptx']).default('md'),
+  documentOptions: DocumentOptionsSchema.optional(),
+  slideOptions: SlideOptionsSchema.optional(),
+  dataOptions: z
+    .strictObject({
+      csvMode: z.enum(['safe', 'preserve_values']).default('safe'),
+      includeDetailsInHtml: z.boolean().default(false),
+    })
+    .optional(),
   quantity: z.number().int().min(1).max(12).default(1),
   scope: z.string().max(4000).default('仅当前任务与明确提供的材料'),
   acceptance: z.array(AcceptanceRuleSchema).max(12).default([]),
@@ -41,6 +67,7 @@ export const WorkStepViewSchema = PlanStepInputSchema.extend({
   attempts: z.number().int().nonnegative(),
   result: z.string().max(64000).nullable(),
   artifacts: z.array(ResourceRefSchema).max(20),
+  artifactFormats: z.array(z.string().max(16)).max(20).default([]),
   errorCode: z.string().nullable(),
 });
 export const WorkViewSchema = z.strictObject({
@@ -91,6 +118,44 @@ export const WorkViewSchema = z.strictObject({
 });
 export type WorkView = z.infer<typeof WorkViewSchema>;
 export const WorkToolArgsSchema = z.discriminatedUnion('tool', [
+  z.strictObject({
+    tool: z.literal('slides.create'),
+    name: z.string().regex(/^[^\\/:*?"<>|\x00-\x1f]{1,120}\.pptx$/),
+    spec: SlideDeckSpecSchema,
+  }),
+  z.strictObject({
+    tool: z.literal('slides.revise'),
+    fileId: IdSchema,
+    versionId: IdSchema,
+    revision: z.number().int().positive(),
+    actions: z.array(SlideActionSchema).min(1).max(50),
+  }),
+  z.strictObject({
+    tool: z.literal('data.analyze'),
+    fileId: IdSchema,
+    versionId: IdSchema,
+    spec: AnalysisSpecSchema,
+  }),
+  z.strictObject({
+    tool: z.literal('document.create'),
+    name: z.string().regex(/^[^\\/:*?"<>|\x00-\x1f]{1,120}\.(docx|md)$/),
+    spec: DocumentSpecSchema,
+  }),
+  z.strictObject({
+    tool: z.literal('document.revise'),
+    fileId: IdSchema,
+    versionId: IdSchema,
+    revision: z.number().int().positive(),
+    blockId: z.string().min(1).max(128),
+    replacement: DocumentSectionSchema,
+  }),
+  z.strictObject({
+    tool: z.literal('document.fields'),
+    fileId: IdSchema,
+    versionId: IdSchema,
+    revision: z.number().int().positive(),
+    fields: DocumentFieldsPatchSchema,
+  }),
   z.strictObject({
     tool: z.literal('artifact.write'),
     name: z.string().regex(/^[^\\/:*?"<>|\x00-\x1f]{1,120}\.(md|txt|json|csv)$/),
@@ -176,6 +241,19 @@ export const WorkCommandSchemas = {
     limit: z.number().int().min(1).max(100).default(100),
   }),
   'runs.get': run,
+  'runs.data': run.extend({
+    fileId: IdSchema,
+    versionId: IdSchema,
+    sheetId: z.string().max(80).optional(),
+    offset: z.number().int().min(0).max(200000).default(0),
+    filters: z.array(DataFilterSchema).max(12).default([]),
+    sort: z.strictObject({ field: z.string().max(80), descending: z.boolean() }).optional(),
+  }),
+  'runs.slides': run.extend({
+    fileId: IdSchema,
+    versionId: IdSchema,
+    slideId: z.string().max(80).optional(),
+  }),
   'runs.setPlan': run.extend({
     steps: z.array(PlanStepInputSchema).min(1).max(12),
     executeStepIds: z.array(z.string().max(64)).max(12).optional(),
@@ -249,6 +327,8 @@ export const WorkCommandSchemas = {
 } as const;
 export type WorkCommand = keyof typeof WorkCommandSchemas;
 export const WorkReplySchema = z.union([
+  z.strictObject({ slidePage: SlidePageSchema }),
+  z.strictObject({ dataPage: DataPageSchema }),
   z.strictObject({ work: WorkViewSchema }),
   z.strictObject({
     workItems: z.array(WorkViewSchema).max(100),

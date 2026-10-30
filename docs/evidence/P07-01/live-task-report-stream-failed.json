@@ -1,0 +1,16 @@
+{
+  "task": "P07-01",
+  "status": "failed",
+  "connectionCheck": "passed",
+  "modelRequestsLimit": 1,
+  "maxTools": 1,
+  "runId": "01a1828f-1fb6-756e-955b-c89e380470e2",
+  "reason": "STREAM_INTERRUPTED",
+  "resultCount": 0,
+  "credentialRemoved": true,
+  "runStatus": "failed",
+  "errorCode": "TASK_INCOMPLETE",
+  "toolCalls": [],
+  "attemptCount": 1,
+  "files": []
+}

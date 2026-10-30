@@ -1,5 +1,13 @@
 # 范围、决策与默认行为
 
+2026-10-30 [ADR0072](../adr/0072-reviewed-tool-budget-boundaries.md)：审批后派发区分模型调用额度与执行额度；模型次数用尽不新增请求，已有具体批准工具可在剩余工具/token/时间内执行；终结任务的未派发项取消，未知副作用保持。
+
+2026-10-30 [ADR0071](../adr/0071-versioned-slide-decks.md)：P07-03 固定布局、可编辑PPTX与版本化单页修改；复用schema18、原生隔离与绑定内容的审批。仅受管PPTX允许严格验证的内部图表缓存，普通上传仍拒绝嵌入；验收以progress为准。
+
+2026-10-29 [ADR0070](../adr/0070-bounded-data-workflow.md)：P07-02 固定数据契约、隔离分析、版本证据与 XLSX 重算；不接受模型代码，验收以 progress 为准。
+
+2026-10-28 [ADR0069](../adr/0069-document-spec-and-safe-rendering.md)：P07共享文档结构、显式封面字段与授权引用；生成/版本/转换接入仍在实施，验收以progress为准。
+
 2026-10-28 [ADR0067](../adr/0067-durable-work-on-shared-run-ledger.md)：P06追加schema17，工作复用既有run状态、ModelRouter、UsageLedger和根并发/预算；固定安全工具、绑定具体内容的审批、持久通知和租约恢复。不开放任意exec或外部目录覆盖；后续工作流复用同一网关。
 
 2026-10-27 [ADR0066](../adr/0066-isolated-provider-hosted-search.md)：按用户要求改为当前模型通道的隔离托管搜索，替代ADR0064的Tavily选择；[具体设计](17-hosted-web-search.md)规定协议能力、同账号单次账本、来源归档及测试，R06改为通道兼容性。

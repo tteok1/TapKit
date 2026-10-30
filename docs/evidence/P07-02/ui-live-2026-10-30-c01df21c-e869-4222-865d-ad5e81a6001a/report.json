@@ -1,0 +1,63 @@
+{
+  "round": "c01df21c-e869-4222-865d-ad5e81a6001a",
+  "status": "task_failed",
+  "connectionAttempts": [
+    {
+      "number": 1,
+      "startedAt": "2026-10-30T07:28:05.342Z",
+      "status": "passed",
+      "notice": "文本与工具检测通过",
+      "finishedAt": "2026-10-30T07:28:08.291Z"
+    }
+  ],
+  "tasks": [
+    {
+      "kind": "data",
+      "status": "failed",
+      "runId": "01a18bb5-7969-7e9e-bb25-cd7dbf97241f",
+      "reason": "STREAM_INTERRUPTED"
+    },
+    {
+      "kind": "slides",
+      "status": "failed",
+      "runId": "01a18bb5-95ba-7a75-ba22-4b6601621042",
+      "reason": "VALIDATION_ERROR"
+    }
+  ],
+  "credentialRemoved": true,
+  "connectionSucceededBeforeTasks": true,
+  "providerAttempts": [
+    {
+      "status": "interrupted",
+      "error_code": "STREAM_INTERRUPTED"
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    }
+  ],
+  "toolCalls": [],
+  "usage": [
+    {
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "reasoning_tokens": null,
+      "charged_tokens": 22946,
+      "source": "estimated"
+    },
+    {
+      "input_tokens": 2736,
+      "cached_input_tokens": 42,
+      "output_tokens": 160,
+      "reasoning_tokens": 0,
+      "charged_tokens": 2896,
+      "source": "actual"
+    }
+  ],
+  "files": [],
+  "diagnostics": [
+    "模型返回的工具参数不符合完整格式，请简化要求后重试。"
+  ],
+  "finishedAt": "2026-10-30T07:28:20.658Z"
+}

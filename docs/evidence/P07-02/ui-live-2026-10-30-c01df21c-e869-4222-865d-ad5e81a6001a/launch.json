@@ -1,0 +1,20 @@
+{
+  "round": "c01df21c-e869-4222-865d-ad5e81a6001a",
+  "directory": "D:\\Tapkit-public\\.test-data\\P07-02-live-profile-DSJ5WT",
+  "out": "D:\\Tapkit-public\\docs\\evidence\\P07-02\\ui-live-2026-10-30-c01df21c-e869-4222-865d-ad5e81a6001a",
+  "preparedAt": "2026-10-30T07:27:01.564Z",
+  "authorization": "用户要求启动TapKit，在应用内连接测试成功后执行真实任务；本轮最多20次连接检查，达到上限仍失败则停止汇报。",
+  "limits": {
+    "connectionChecks": 20,
+    "dataLogicalCalls": 1,
+    "dataTools": 1,
+    "dataTokens": 50000,
+    "pptxLogicalCalls": 2,
+    "pptxTools": 2,
+    "pptxTokens": 70000,
+    "dailyTaskTokens": 120000,
+    "taskActiveMs": 600000
+  },
+  "startedAt": "2026-10-30T07:27:34.904Z",
+  "productionCoreSha256": "370ce50616f1cd02bf36e5c2680817cc22f2fc1a1a7d5023add950973811edd3"
+}

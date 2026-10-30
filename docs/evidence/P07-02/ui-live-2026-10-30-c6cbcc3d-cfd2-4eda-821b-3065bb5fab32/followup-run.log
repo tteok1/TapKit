@@ -1,0 +1,8 @@
+file:///D:/Tapkit-public/scripts/p07-ui-followup.mjs:163
+    throw Error('PPT_CONTENT_VERIFICATION_FAILED');
+          ^
+
+Error: PPT_CONTENT_VERIFICATION_FAILED
+    at file:///D:/Tapkit-public/scripts/p07-ui-followup.mjs:163:11
+
+Node.js v24.21.0

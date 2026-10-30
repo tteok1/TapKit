@@ -1,3 +1,11 @@
+2026-10-30 P07新授权最终：累计连接13/20（历史8＋新5），新5次均启动真实TapKit后在设置检测成功才发任务。R13指定智谱Chat/GLM-4.7-FlashX的合成数据/XLSX→图表PPT及具体审批局部新版本通过，3份6页实际PDF视觉通过；P07三任务implemented_and_verified，gate=passed。仅扩大此受控办公范围，其他通道/协议暂缓保持，不推广任意事实正确率。新授权模型任务10次尝试：actual38665＋estimated60460＝保守99125/120000，余20875未用；失败实际未知，连接usage未知，历史更早estimated60251另列，同profile快照不重复计费。副本删除closed、active0，原账号不改；停止追加请求，未进入P08/提交推送。证据docs/evidence/P07-03/live-ui-final.json及P07-gate.md。以下为历史。
+
+2026-10-30 P07-03/R13最终：连接第8次text/tools通过，累计8/20。唯一真实两页PPTX任务NETWORK_ERROR，固定诊断响应头超时，工具0/成果0，actual未知、estimated18588，隔离密文副本已删除、marker closed，无重试/回退、不追加请求。与本次数据两轮合计estimated60251，非actual，不含历史P07-01和连接检测。P07-02/03为implemented_not_live_verified，P07-gate=failed；本地与桌面5/5通过，不能把复杂调用失败冒称缺Key、仅资源待配或阶段通过。其他渠道暂缓及既有R13范围保持；证据docs/evidence/P07-03/verification.md、docs/progress/P07-gate.md。
+
+2026-10-30 P07-02/R13最终：连接第7次通过后，两轮任务分别NETWORK_ERROR/STREAM_INTERRUPTED，工具0/成果0，actual未知、estimated合计41663，隔离密文副本已删除且入口closed；不追加该任务请求。复杂工具live根因未定位，不把技术问题冒称缺账号。P07-02为implemented_not_live_verified，本地接口可复用，但不能据此宣称P07仅缺外部资源或阶段通过。证据docs/evidence/P07-02/verification.md。
+
+2026-10-30 P07-02/R13：既有智谱Chat/FlashX配置可用，第7次TapKit连接检测成功（P07累计7/20）。首轮真实数据任务NETWORK_ERROR、工具0/成果0，actual未知、estimated24545；隔离密文副本已删除，不认定缺Key或根因。移除无关工具schema后，第二次限额任务待回执；其他渠道暂缓和历史R13范围保持。证据docs/evidence/P07-02/verification.md。
+
 2026-10-28 P06智谱真实工作链分轮通过，通知修复后真实事件副本重放通过，check/build/recovery/桌面回归通过。P06-01已验证范围仅智谱Chat/FlashX及固定工具，历史其他渠道仍暂缓；gate保持engineering_passed_external_pending。证据docs/evidence/P06-03/live-final-2026-10-28/verification.md。
 
 2026-10-28 P06智谱工作：首次连接检测通过；真实生成、审批重启、steer取消和暂停分轮通过。工作actual 2087 tokens、estimated 9250实际未知；连接检测usage未知。通知修复后未重跑完整真实链；证据docs/evidence/P06-03/live-final-2026-10-28/verification.md。其他渠道状态不变。

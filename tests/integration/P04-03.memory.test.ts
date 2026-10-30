@@ -213,7 +213,7 @@ test('P04-03 schema13 to schema14 migration preserves history, dedupes active ke
     const previous = db.prepare('SELECT * FROM jobs WHERE id=?').get(job);
     await migrate(db, resolve(dir, 'backups'));
     await migrate(db, resolve(dir, 'backups'));
-    expect(db.pragma('user_version', { simple: true })).toBe(17);
+    expect(db.pragma('user_version', { simple: true })).toBe(18);
     expect(db.pragma('foreign_key_check')).toEqual([]);
     expect(db.prepare('SELECT * FROM jobs WHERE id=?').get(job)).toEqual(previous);
     expect(db.prepare("SELECT value_json FROM memories WHERE status='active'").all()).toEqual([

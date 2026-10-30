@@ -13,7 +13,10 @@ workspace = pathlib.Path(sys.argv[2])
 input_root = pathlib.Path(sys.argv[3])
 filename = sys.argv[4]
 source = input_root / filename
-output = workspace / (pathlib.Path(filename).stem + ".pdf")
+output_format = sys.argv[5] if len(sys.argv) > 5 else "pdf"
+if output_format not in ("pdf", "xlsx") or (output_format == "xlsx" and source.suffix.lower() != ".xlsx"):
+    raise RuntimeError("OFFICE_OUTPUT_FORMAT")
+output = workspace / (pathlib.Path(filename).stem + "." + output_format)
 
 
 def emit(stage, **data):
@@ -100,7 +103,7 @@ def convert():
             c.c_char_p,
             c.c_char_p,
             c.c_char_p,
-        )(document, uri(output), b"pdf", None)
+        )(document, uri(output), output_format.encode("ascii"), None)
         after = hashlib.sha256(source.read_bytes()).hexdigest()
         if not saved or after != before or not output.is_file():
             raise RuntimeError("OFFICE_LOK_PDF_SAVE_FAILED")

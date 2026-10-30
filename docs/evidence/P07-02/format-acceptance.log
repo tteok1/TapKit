@@ -1,0 +1,13 @@
+packages/contracts/src/data.ts 112ms
+packages/core/src/work-data.ts 63ms
+packages/core/src/chat-fixture.ts 33ms
+packages/workflows/src/data-chart.ts 14ms
+packages/workflows/src/data-program.ts 4ms (unchanged)
+packages/workflows/src/index.ts 1ms (unchanged)
+apps/desktop/src/renderer/src/data-results.tsx 73ms
+apps/desktop/src/renderer/src/work-ui.tsx 97ms
+tests/e2e/P07-02.data.spec.ts 16ms
+tests/unit/P07-02.provider.test.ts 3ms
+tests/unit/P07-02.chart-series.test.ts 3ms
+tests/integration/P07-02.data-receipt.test.ts 9ms
+tests/integration/P07-02.native-data.test.ts 6ms (unchanged)

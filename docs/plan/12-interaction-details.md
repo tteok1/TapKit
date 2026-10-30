@@ -137,11 +137,15 @@ JSON数据库字段统一UTF-8文本并CHECK(json_valid)，所有约定数字有
 
 ## 7. 办公成果DTO（P07）
 
+2026-10-28 P07-01结构实现边界见[ADR0069](../adr/0069-document-spec-and-safe-rendering.md)：共享文档结构、显式封面字段和授权引用；产品接入及验收状态见progress。
+
 DocumentSpec固定schemaVersion:1、title、audience、language、sections[]、citations[]、style。section有blockId、heading和blocks；block是paragraph(text)、bullets(items)、table(columns,rows)、image(fileVersionId,alt)、code(language,text)的判别联合。表格最多200×30单元格；单文档最多200section/1,000blocks。图片只能引用当前已授权静态素材；模型生成图片延期。默认A4、页边距20mm、中文Noto Sans CJK、正文11pt、标题22/16/13pt、页码和目录可配置。
 
 SpreadsheetSpec固定schemaVersion:1、sheets[{id,name,columns[{key,label,type}],rows,formulas?,formats?}]；type=string/number/boolean/date/null，date用ISO8601显示格式；外部引用、宏和DDE拒绝。列名保留中文，公式写入白名单函数SUM/AVERAGE/COUNT/COUNTA/MIN/MAX/IF/IFERROR/ROUND/SUMIF/COUNTIF/VLOOKUP；统计脚本计算值要标说明，不冒充手工公式。导出CSV对以=、+、-、@开头的字符串防公式注入，真实number保持数值。
 
-SlideDeckSpec固定schemaVersion:1、aspectRatio:'16:9'、theme:'light_business'|'dark_presentation'、slides[{id,layout,title,bullets?,table?,chartRef?,notes}]。layout为title/body/two_columns/table/chart；默认10页、单deck最多50页，单页标题≤60字符、普通正文≤600字符、备注≤3,000字符，超限自动拆页并校验。使用同一字体资源、正文≥18pt；不自动缩到不可读。chartRef是经过验证的静态SVG/PNG版本或JSON chart spec，不能是可执行HTML。
+2026-10-29 P07-02 固定数据契约与操作边界见[ADR0070](../adr/0070-bounded-data-workflow.md)；DatasetSpec/AnalysisSpec 引用固定输入版本，结果 JSON 保存口径、程序与输入 hash 和导出引用，不引入第二套任务状态。实施及验收以 progress 为准。
+
+SlideDeckSpec固定schemaVersion:1、aspectRatio:'16:9'|'4:3'（默认16:9）、theme:'light_business'|'dark_presentation'、slides[{id,layout,title,bullets,rightBullets,table?,chartRef?,imageVersionId?,notes}]。layout为title/body/two_columns/table/chart；默认10页、单deck最多50页，输入标题≤300字符、单段≤4,000字符、备注≤3,000字符；规范化按字体/比例预算拆页，展示标题宽屏≤60/4:3≤42字符，保留完整长标题和关键数字，超过50页报错。使用锁定Noto字体，正文/表格≥18pt，不自动缩到不可读。chartRef固定为受管分析JSON的{fileId,versionId,chartId}，必须有data.analyze成功收据及源授权；原生bar/line/area/pie可编辑图表保留标签、单位与值，scatter/null值暂不支持。imageVersionId只允许已授权PNG用于标题/正文配图。逐页修改、插入/删除/复制/移动生成同一PPTX文件的新版本及固定PDF，未改页语义hash保持；自然语言与界面按钮复用任务steer及具体内容审批。详见[ADR0071](../adr/0071-versioned-slide-decks.md)与[格式限制](../evidence/P07-03/format-limits.md)。
 
 ChartSpec采用本项目固定JSON：schemaVersion:1、type(bar/line/scatter/area/pie)、datasetId、xField、yFields、groupField?、title、xLabel、yLabel、filters[]、showLegend。filters仅eq/in/between且值类型匹配列；禁止URL数据源和expression执行，变换只由代码白名单生成。内置React/SVG组件处理比例尺/图例/tooltip，PNG由隔离渲染导出；复杂出版图表由P07受限matplotlib生成。交互成果用应用打包模板运行于隔离view，脚本不接触IPC/文件系统；导出HTML内嵌数据，用户选择是否包含明细。所有Spec引用已知模板schemaId，模型不能用schema字段传动态代码。
 

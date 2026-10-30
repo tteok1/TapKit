@@ -1,0 +1,181 @@
+{
+  "round": "6003f245-ed10-4470-885c-6a47d630da64",
+  "parentRound": "c6cbcc3d-cfd2-4eda-821b-3065bb5fab32",
+  "status": "passed",
+  "connectionAttempts": [
+    {
+      "globalNumber": 13,
+      "status": "passed",
+      "startedAt": "2026-10-30T08:31:47.021Z",
+      "finishedAt": "2026-10-30T08:32:23.171Z"
+    }
+  ],
+  "tasks": [
+    {
+      "kind": "slides_plain",
+      "runId": "01a18bf0-4b25-7d26-86d3-8be0d108430a",
+      "status": "completed",
+      "reason": null,
+      "checks": {
+        "pages": true,
+        "chart": true,
+        "notes": true
+      }
+    },
+    {
+      "kind": "slides_revision",
+      "runId": "01a18bf1-6ea7-7dd2-88ac-491e79683af1",
+      "status": "completed",
+      "reason": null,
+      "checks": {
+        "sameFile": true,
+        "newVersion": true,
+        "title": true,
+        "givenNumber": true,
+        "notes": true,
+        "otherPages": true
+      }
+    }
+  ],
+  "credentialRemoved": true,
+  "priorCharge": 93012,
+  "usage": [
+    {
+      "input_tokens": 4643,
+      "cached_input_tokens": 42,
+      "output_tokens": 638,
+      "reasoning_tokens": 0,
+      "charged_tokens": 5281,
+      "source": "actual"
+    },
+    {
+      "input_tokens": 2801,
+      "cached_input_tokens": 42,
+      "output_tokens": 133,
+      "reasoning_tokens": 0,
+      "charged_tokens": 2934,
+      "source": "actual"
+    },
+    {
+      "input_tokens": 2978,
+      "cached_input_tokens": 42,
+      "output_tokens": 154,
+      "reasoning_tokens": 0,
+      "charged_tokens": 3132,
+      "source": "actual"
+    },
+    {
+      "input_tokens": 8910,
+      "cached_input_tokens": 42,
+      "output_tokens": 235,
+      "reasoning_tokens": 0,
+      "charged_tokens": 9145,
+      "source": "actual"
+    },
+    {
+      "input_tokens": 8931,
+      "cached_input_tokens": 42,
+      "output_tokens": 233,
+      "reasoning_tokens": 0,
+      "charged_tokens": 9164,
+      "source": "actual"
+    },
+    {
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "reasoning_tokens": null,
+      "charged_tokens": 37514,
+      "source": "estimated"
+    },
+    {
+      "input_tokens": 2820,
+      "cached_input_tokens": 42,
+      "output_tokens": 141,
+      "reasoning_tokens": 0,
+      "charged_tokens": 2961,
+      "source": "actual"
+    },
+    {
+      "input_tokens": 2974,
+      "cached_input_tokens": 42,
+      "output_tokens": 178,
+      "reasoning_tokens": 0,
+      "charged_tokens": 3152,
+      "source": "actual"
+    }
+  ],
+  "toolCalls": [
+    {
+      "tool_name": "data.analyze",
+      "status": "succeeded",
+      "side_effect": "committed"
+    },
+    {
+      "tool_name": "slides.create",
+      "status": "succeeded",
+      "side_effect": "committed"
+    },
+    {
+      "tool_name": "slides.revise",
+      "status": "cancelled",
+      "side_effect": "not_committed"
+    },
+    {
+      "tool_name": "slides.create",
+      "status": "succeeded",
+      "side_effect": "committed"
+    },
+    {
+      "tool_name": "slides.create",
+      "status": "succeeded",
+      "side_effect": "committed"
+    },
+    {
+      "tool_name": "slides.create",
+      "status": "succeeded",
+      "side_effect": "committed"
+    },
+    {
+      "tool_name": "slides.revise",
+      "status": "succeeded",
+      "side_effect": "committed"
+    }
+  ],
+  "providerAttempts": [
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "interrupted",
+      "error_code": "STREAM_INTERRUPTED"
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    }
+  ],
+  "activeRuns": 0,
+  "finishedAt": "2026-10-30T08:35:12.372Z"
+}

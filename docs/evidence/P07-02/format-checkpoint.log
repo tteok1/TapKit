@@ -1,0 +1,12 @@
+packages/contracts/src/data.ts 117ms (unchanged)
+packages/contracts/src/work.ts 55ms
+packages/contracts/src/foundation.ts 31ms (unchanged)
+packages/storage/src/work.ts 36ms (unchanged)
+packages/core/src/work-data.ts 47ms (unchanged)
+packages/core/src/work-gateway.ts 96ms
+packages/core/src/work-driver.ts 20ms (unchanged)
+packages/core/src/chat-fixture.ts 37ms (unchanged)
+apps/desktop/src/renderer/src/data-results.tsx 56ms
+apps/desktop/src/renderer/src/work-ui.tsx 110ms
+tests/integration/P07-02.native-data.test.ts 6ms (unchanged)
+tests/integration/P07-02.data-access.test.ts 8ms (unchanged)

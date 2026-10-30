@@ -23,6 +23,16 @@
     "maxPdfPages": 500,
     "parseTimeoutMs": 120000
   },
+  "data": {
+    "maxDatasets": 8,
+    "maxOperations": 40,
+    "maxTables": 8,
+    "maxCharts": 8,
+    "maxChartPoints": 1000,
+    "maxDataBytes": 67108864,
+    "maxResultBytes": 104857600,
+    "maxSvgBytes": 4194304
+  },
   "values": {
     "locale": "zh-CN",
     "memoryEnabled": true,

@@ -6,6 +6,7 @@ import {
   type WorkView,
   type ResourceRef,
   RunStatusSchema,
+  WORK_TOOL_CATALOG_VERSION,
   RUN_TRANSITIONS,
   type z,
 } from '@tapkit/contracts';
@@ -89,6 +90,7 @@ export class WorkRepository {
       | 'tool.proposed'
       | 'tool.dispatched'
       | 'tool.finished'
+      | 'tool.validation'
       | 'approval.required'
       | 'approval.resolved'
       | 'artifact.ready'
@@ -149,7 +151,7 @@ export class WorkRepository {
     definition: WorkDefinition,
     steps: PlanStepInput[],
     selected: string[],
-    prior?: { taskId: string; version: number; rootRunId: string },
+    prior?: { taskId: string; version: number; rootRunId: string; toolCatalogVersion?: string },
   ) {
     const session = this.session(sessionId),
       time = this.store.now(),
@@ -203,7 +205,7 @@ export class WorkRepository {
       );
     const state: WorkState = {
       schemaVersion: 1,
-      toolCatalogVersion: 'p06-tools-1',
+      toolCatalogVersion: prior?.toolCatalogVersion ?? WORK_TOOL_CATALOG_VERSION,
       definition,
       selected,
       planAccepted: !definition.planFirst,
@@ -270,6 +272,9 @@ export class WorkRepository {
       .all(runId)
       .map((raw) => {
         const s = raw as Record<string, unknown>;
+        const artifacts = JSON.parse(
+          s.output_refs_json as string,
+        ) as WorkView['steps'][number]['artifacts'];
         return {
           stepKey: s.step_key as string,
           title: s.title as string,
@@ -281,7 +286,18 @@ export class WorkRepository {
           status: s.status as WorkView['steps'][number]['status'],
           attempts: s.attempts as number,
           result: s.result_text as string | null,
-          artifacts: JSON.parse(s.output_refs_json as string),
+          artifacts,
+          artifactFormats: artifacts.map((ref) =>
+            ref.kind === 'file'
+              ? ((
+                  this.store.db
+                    .prepare(
+                      'SELECT extension FROM file_versions WHERE id=? AND profile_id=? AND deleted_at IS NULL',
+                    )
+                    .get(ref.versionId, this.store.profileId) as { extension: string } | undefined
+                )?.extension ?? '')
+              : '',
+          ),
           errorCode: s.error_code as string | null,
         };
       });

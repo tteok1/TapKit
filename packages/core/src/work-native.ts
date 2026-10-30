@@ -1,12 +1,20 @@
 import { mkdir, writeFile, lstat, realpath, open } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
+import { createHash } from 'node:crypto';
 import {
   HelperRequestSchema,
   type ExecutionCapabilities,
   type WorkToolArgs,
   type ResourceRef,
   NativeWorkIdentitySchema,
+  type DocumentSpec,
+  type SlideDeckSpec,
 } from '@tapkit/contracts';
+import {
+  validateDocumentContent,
+  validateDocumentPdfLayout,
+  validateSlidePdf,
+} from '@tapkit/workflows';
 import { newId, StorageError, type WorkRun } from '@tapkit/storage';
 import {
   NativeSandboxExecutor,
@@ -17,6 +25,8 @@ import {
 } from '@tapkit/tools';
 import { PreviewStaging } from './preview-staging';
 import { WorkArtifacts } from './work-artifacts';
+import { FileParser } from './file-parser';
+import { executeData } from './work-data';
 
 // Fixed program; the model cannot supply Python, argv, paths or network destinations.
 const analyzeCsv = String.raw`import csv,json,math,os,statistics,sys
@@ -47,9 +57,112 @@ export class WorkNativeTools {
   ) {
     this.staging = new PreviewStaging(artifacts.files.store, 'work');
   }
+  async renderSlidesCandidate(
+    run: WorkRun,
+    bytes: Buffer,
+    spec: SlideDeckSpec,
+    guard: () => void,
+    signal: AbortSignal,
+    identity?: Parameters<WorkNativeTools['execute']>[5],
+  ) {
+    const caps = this.executor ? this.capabilities : await readExecutionCapabilities(this.root);
+    if (caps.nativeExecution.status !== 'available' || caps.officeRender.status !== 'available')
+      throw new StorageError('SANDBOX_UNAVAILABLE');
+    signal = AbortSignal.any([signal, AbortSignal.timeout(240000)]);
+    const versionId = newId(),
+      directory = await this.staging.create(versionId),
+      inputRoot = join(directory, 'input'),
+      workspace = join(directory, 'workspace');
+    await mkdir(inputRoot);
+    await mkdir(workspace);
+    await writeFile(join(inputRoot, 'source.pptx'), bytes, { flag: 'wx' });
+    let settled = true,
+      helperInstanceId = newId(),
+      nativeRunId = newId();
+    const report = (state: string) =>
+      identity?.({
+        schemaVersion: 1,
+        helperInstanceId,
+        nativeRunId,
+        directoryId: directory.split(/[\\/]/).at(-1)!,
+        leaseEpoch: run.lease_epoch,
+        fileVersionId: versionId,
+        state,
+        pid: null,
+        appContainerSid: null,
+      });
+    const base = this.executor ?? new NativeSandboxExecutor(this.root);
+    const executor: OfficeExecutor = {
+      execute: async (request, options) => {
+        helperInstanceId = request.requestId;
+        nativeRunId = request.runId;
+        report('running');
+        const result = await base.execute(request, options);
+        if (result.events.at(-1)?.event === 'finished') {
+          settled = true;
+          report('running');
+        }
+        return result;
+      },
+    };
+    try {
+      guard();
+      signal.throwIfAborted();
+      report('prepared');
+      settled = false;
+      const output = await new OfficeWorker(this.root, executor).render(
+        { fileVersionId: versionId, format: 'pdf' },
+        {
+          fileVersionId: versionId,
+          inputRoot,
+          workspace,
+          filename: 'source.pptx',
+          sha256: createHash('sha256').update(bytes).digest('hex'),
+          requestId: helperInstanceId,
+          runId: nativeRunId,
+          leaseEpoch: run.lease_epoch,
+        },
+        { signal },
+      );
+      settled = true;
+      const pdf = await this.readOutput(output.path, 100 * 1024 * 1024);
+      const images = spec.slides.filter((s) => s.imageVersionId).length;
+      const parsed = await new FileParser(
+        this.root,
+        this.artifacts.files,
+        caps,
+        executor,
+      ).inspectWorkPdf(directory, versionId, pdf, images > 0, guard, signal, {
+        started: () => {
+          settled = false;
+          report('running');
+        },
+        settled: () => {
+          settled = true;
+          report('running');
+        },
+      });
+      if (!validateSlidePdf(spec, parsed) || (images > 0 && (parsed.paintedImages ?? 0) < images))
+        throw new StorageError('PARSE_FAILED');
+      guard();
+      signal.throwIfAborted();
+      report('finished');
+      return { pdf, pages: parsed.pages.length, parsed };
+    } catch (error) {
+      if (!settled) {
+        report('unknown');
+        throw new StorageError('SIDE_EFFECT_UNKNOWN');
+      }
+      throw error instanceof StorageError
+        ? error
+        : new StorageError(signal.aborted ? 'CANCELLED' : 'PARSE_FAILED');
+    } finally {
+      if (settled) await this.staging.release(directory);
+    }
+  }
   async execute(
     run: WorkRun,
-    args: Extract<WorkToolArgs, { tool: 'python.analyze' | 'office.convert' }>,
+    args: Extract<WorkToolArgs, { tool: 'python.analyze' | 'office.convert' | 'data.analyze' }>,
     guard: () => void,
     committed: (ref: ResourceRef) => void,
     signal: AbortSignal,
@@ -64,15 +177,31 @@ export class WorkNativeTools {
       pid: number | null;
       appContainerSid: string | null;
     }) => void,
+    repair?: { spec: DocumentSpec; candidate(attempt: 1 | 2): Promise<Buffer> },
   ): Promise<ResourceRef> {
     const capabilities = this.executor
       ? this.capabilities
       : await readExecutionCapabilities(this.root);
     if (
       capabilities.nativeExecution.status !== 'available' ||
-      (args.tool === 'office.convert' && capabilities.officeRender.status !== 'available')
+      ((args.tool === 'office.convert' || args.tool === 'data.analyze') &&
+        capabilities.officeRender.status !== 'available')
     )
       throw new StorageError('SANDBOX_UNAVAILABLE');
+    if (args.tool === 'data.analyze')
+      return executeData(
+        this.root,
+        this.artifacts,
+        this.staging,
+        run,
+        args,
+        guard,
+        committed,
+        signal,
+        capabilities,
+        identity,
+        this.executor,
+      );
     guard();
     const file = this.artifacts.files.get(args.fileId, { versionId: args.versionId }),
       original = await this.artifacts.files.original(args.fileId, { versionId: args.versionId });
@@ -85,14 +214,14 @@ export class WorkNativeTools {
     )
       throw new StorageError('FORMAT_UNSUPPORTED');
     const directory = await this.staging.create(args.versionId),
-      inputRoot = join(directory, 'input'),
+      firstInputRoot = join(directory, 'input'),
       workspace = join(directory, 'workspace');
-    await mkdir(inputRoot);
+    await mkdir(firstInputRoot);
     await mkdir(workspace);
     const filename = 'source.' + file.version.extension;
-    await writeFile(join(inputRoot, filename), original.bytes, { flag: 'wx' });
+    await writeFile(join(firstInputRoot, filename), original.bytes, { flag: 'wx' });
     let settled = false;
-    const nativeRunId = newId(),
+    let nativeRunId = newId(),
       helperInstanceId = newId();
     let processId: number | null = null,
       processSid: string | null = null;
@@ -132,32 +261,82 @@ export class WorkNativeTools {
           const last = result.events.at(-1);
           if (last?.event === 'finished' && last.data.activeProcesses === 0) {
             settled = true;
-            report('finished');
+            report(repair ? 'running' : 'finished');
           }
           return result;
         },
       };
       let bytes: Buffer, name: string, mime: string;
       if (args.tool === 'office.convert') {
-        const result = await new OfficeWorker(this.root, executor).render(
-          { fileVersionId: args.versionId, format: 'pdf' },
-          {
-            fileVersionId: args.versionId,
-            inputRoot,
-            workspace,
-            filename,
-            sha256: file.version.sha256,
-            requestId: helperInstanceId,
-            runId: nativeRunId,
-            leaseEpoch: run.lease_epoch,
-          },
-          { signal },
-        );
-        settled = true;
-        bytes = await this.readOutput(result.path, 100 * 1024 * 1024);
+        let sourceBytes = original.bytes;
+        let inputRoot = firstInputRoot;
+        const images =
+          repair?.spec.sections.flatMap((section) =>
+            section.blocks.filter((block) => block.type === 'image'),
+          ).length ?? 0;
+        for (let attempt = 0; ; attempt++) {
+          guard();
+          signal.throwIfAborted();
+          settled = false;
+          const result = await new OfficeWorker(this.root, executor).render(
+            { fileVersionId: args.versionId, format: 'pdf' },
+            {
+              fileVersionId: args.versionId,
+              inputRoot,
+              workspace,
+              filename,
+              sha256: createHash('sha256').update(sourceBytes).digest('hex'),
+              requestId: helperInstanceId,
+              runId: nativeRunId,
+              leaseEpoch: run.lease_epoch,
+            },
+            { signal },
+          );
+          settled = true;
+          bytes = await this.readOutput(result.path, 100 * 1024 * 1024);
+          if (!repair) break;
+          const parsed = await new FileParser(
+            this.root,
+            this.artifacts.files,
+            capabilities,
+            this.executor,
+          ).inspectWorkPdf(directory, args.versionId, bytes, images > 0, guard, signal, {
+            started: () => {
+              settled = false;
+              report('running');
+            },
+            settled: () => {
+              settled = true;
+              report('running');
+            },
+          });
+          if (
+            (images > 0 && (parsed.paintedImages ?? 0) < images) ||
+            !validateDocumentContent(repair.spec, parsed, 'pdf', images > 0)
+          )
+            throw new StorageError('PARSE_FAILED');
+          if (validateDocumentPdfLayout(parsed)) {
+            guard();
+            signal.throwIfAborted();
+            report('finished');
+            break;
+          }
+          if (attempt >= 2) throw new StorageError('PARSE_FAILED');
+          sourceBytes = await repair.candidate((attempt + 1) as 1 | 2);
+          guard();
+          inputRoot = join(directory, 'input-' + (attempt + 1));
+          await mkdir(inputRoot);
+          await writeFile(join(inputRoot, filename), sourceBytes, { flag: 'wx' });
+          nativeRunId = newId();
+          helperInstanceId = newId();
+          processId = null;
+          processSid = null;
+          report('prepared');
+        }
         name = '转换成果.pdf';
         mime = 'application/pdf';
       } else {
+        const inputRoot = firstInputRoot;
         await writeFile(join(inputRoot, 'analyze.py'), analyzeCsv, { flag: 'wx' });
         const runtime = await runtimePaths(this.root, 'python');
         const result = await executor.execute(
@@ -248,11 +427,12 @@ export class WorkNativeTools {
   }
   async recoverOutput(
     run: WorkRun,
-    args: Extract<WorkToolArgs, { tool: 'python.analyze' | 'office.convert' }>,
+    args: Extract<WorkToolArgs, { tool: 'python.analyze' | 'office.convert' | 'data.analyze' }>,
     raw: unknown,
     guard: () => void,
     committed: (ref: ResourceRef) => void,
   ) {
+    if (args.tool === 'data.analyze') throw new StorageError('SIDE_EFFECT_UNKNOWN');
     const identity = NativeWorkIdentitySchema.parse(raw);
     if (identity.state !== 'finished' || identity.fileVersionId !== args.versionId)
       throw new StorageError('SIDE_EFFECT_UNKNOWN');

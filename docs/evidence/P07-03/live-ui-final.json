@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "scope": "P07 controlled synthetic office acceptance; Zhipu Chat GLM-4.7-FlashX",
+  "connectionChecks": {
+    "historical": 8,
+    "new": 5,
+    "total": 13,
+    "limit": 20,
+    "allNewChecksPassedInTapKit": true
+  },
+  "modelTaskUsage": {
+    "actualTokens": 38665,
+    "estimatedTokens": 60460,
+    "estimatedActualUnknown": true,
+    "conservativeCharge": 99125,
+    "limit": 120000,
+    "remaining": 20875,
+    "connectionUsage": "unknown",
+    "historicalEarlierOfficeEstimateExcluded": 60251
+  },
+  "reportPath": "docs/evidence/P07-02/ui-live-2026-10-30-6003f245-ed10-4470-885c-6a47d630da64/report.json",
+  "approval": [
+    {
+      "tool_name": "slides.revise",
+      "status": "succeeded",
+      "side_effect": "committed",
+      "decision": "approved",
+      "task_version": 2,
+      "decided_at": 1793349268244
+    }
+  ],
+  "rootBudgetExecution": {
+    "calls": 2,
+    "tools": 2
+  },
+  "revisionChecks": {
+    "sameFile": true,
+    "newVersion": true,
+    "title": true,
+    "givenNumber": true,
+    "notes": true,
+    "otherPages": true
+  },
+  "activeRuns": 0,
+  "credentialRemoved": true,
+  "pdfVisualPages": 6,
+  "notes": "Raw failure reports retained; chart=true in the plain-task harness means not applicable, actual chart verified in 99272 report and exported PDF. Approval full-window screenshot showed notifications above card; actual DOM target assertion, UI button action and persisted approval are the evidence."
+}

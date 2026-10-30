@@ -20,6 +20,8 @@ type Result<T> = std::result::Result<T, String>;
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct OfficeRequest {
     pub filename: String,
+    #[serde(default)]
+    pub format: Option<String>,
 }
 
 #[derive(Clone, Deserialize, Serialize)]
@@ -367,6 +369,10 @@ pub unsafe fn execute(request: &Request, control: &std::sync::mpsc::Receiver<Vec
         .as_ref()
         .ok_or("office.requestMissing")?;
     let filename = &office.filename;
+    let output_format = office.format.as_deref().unwrap_or("pdf");
+    if output_format != "pdf" && (output_format != "xlsx" || !filename.to_lowercase().ends_with(".xlsx")) {
+        return Err("office.outputFormat".into());
+    }
     let extension = Path::new(filename)
         .extension()
         .and_then(|value| value.to_str())
@@ -458,6 +464,7 @@ pub unsafe fn execute(request: &Request, control: &std::sync::mpsc::Receiver<Vec
         alias_root(&lease.journal.mappings[1]),
         alias_root(&lease.journal.mappings[2]),
         filename.clone(),
+        output_format.into(),
     ];
     let workspace_alias = alias_root(&lease.journal.mappings[1]);
     let result = crate::sandbox::execute_with_workspace_alias(

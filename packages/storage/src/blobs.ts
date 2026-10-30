@@ -58,8 +58,12 @@ export class BlobStore {
     });
   }
   // Internal repository operation; UI import/export is introduced in P03.
-  attach(blobId: string, displayName: string) {
+  attach(blobId: string, displayName: string, identity?: { fileId: string; versionId: string }) {
     IdSchema.parse(blobId);
+    if (identity) {
+      IdSchema.parse(identity.fileId);
+      IdSchema.parse(identity.versionId);
+    }
     if (!displayName || displayName.length > 240) throw new StorageError('VALIDATION_ERROR');
     return this.store.db.transaction(() => {
       const blob = this.store.db
@@ -69,8 +73,8 @@ export class BlobStore {
         .get(blobId, this.store.profileId) as
         { sha256: string; size_bytes: number; media_type: string } | undefined;
       if (!blob) throw new StorageError('NOT_FOUND');
-      const id = newId(),
-        versionId = newId(),
+      const id = identity?.fileId ?? newId(),
+        versionId = identity?.versionId ?? newId(),
         now = this.store.now();
       this.store.db
         .prepare(

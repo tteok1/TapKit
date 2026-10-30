@@ -1,0 +1,1 @@
+[{"schemaVersion": 1, "id": "quantity", "type": "line", "datasetId": "clean", "xField": "姓名", "yFields": ["数量"], "groupField": "分组", "title": "员工数量", "xLabel": "", "yLabel": "", "filters": [], "showLegend": true}]

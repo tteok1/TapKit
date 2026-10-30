@@ -1,0 +1,147 @@
+{
+  "round": "c6cbcc3d-cfd2-4eda-821b-3065bb5fab32",
+  "status": "failed",
+  "connectionAttempts": [
+    {
+      "number": 1,
+      "globalNumber": 10,
+      "startedAt": "2026-10-30T07:39:22.640Z",
+      "status": "passed",
+      "notice": "文本与工具检测通过",
+      "finishedAt": "2026-10-30T07:39:25.573Z"
+    }
+  ],
+  "tasks": [
+    {
+      "kind": "data",
+      "status": "content_failed",
+      "runId": "01a18bbf-cf2b-7579-b793-396db72da039",
+      "reason": null,
+      "contentChecks": {
+        "profileRows": true,
+        "duplicates": true,
+        "summary": true,
+        "xlsx": false,
+        "charts": true
+      }
+    },
+    {
+      "kind": "slides",
+      "status": "completed",
+      "runId": "01a18bc0-f9c1-72e6-b4c7-9b791b2a2556",
+      "reason": null,
+      "contentChecks": {
+        "pages": true,
+        "notes": true,
+        "chart": true,
+        "theme": true
+      }
+    },
+    {
+      "kind": "slides_revision",
+      "status": "running"
+    }
+  ],
+  "credentialRemoved": true,
+  "connectionSucceededBeforeTasks": true,
+  "errorCode": "UI_OR_INTERNAL_ERROR",
+  "providerAttempts": [
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    }
+  ],
+  "toolCalls": [
+    {
+      "tool_name": "data.analyze",
+      "status": "succeeded",
+      "side_effect": "committed"
+    },
+    {
+      "tool_name": "slides.create",
+      "status": "succeeded",
+      "side_effect": "committed"
+    }
+  ],
+  "usage": [
+    {
+      "input_tokens": 4643,
+      "cached_input_tokens": 42,
+      "output_tokens": 638,
+      "reasoning_tokens": 0,
+      "charged_tokens": 5281,
+      "source": "actual"
+    },
+    {
+      "input_tokens": 2801,
+      "cached_input_tokens": 42,
+      "output_tokens": 133,
+      "reasoning_tokens": 0,
+      "charged_tokens": 2934,
+      "source": "actual"
+    }
+  ],
+  "files": [
+    {
+      "extension": "xlsx",
+      "parse_status": "ready",
+      "preview_status": "pending"
+    },
+    {
+      "extension": "csv",
+      "parse_status": "ready",
+      "preview_status": "pending"
+    },
+    {
+      "extension": "csv",
+      "parse_status": "ready",
+      "preview_status": "pending"
+    },
+    {
+      "extension": "svg",
+      "parse_status": "ready",
+      "preview_status": "ready"
+    },
+    {
+      "extension": "png",
+      "parse_status": "ready",
+      "preview_status": "ready"
+    },
+    {
+      "extension": "json",
+      "parse_status": "ready",
+      "preview_status": "ready"
+    },
+    {
+      "extension": "md",
+      "parse_status": "ready",
+      "preview_status": "pending"
+    },
+    {
+      "extension": "html",
+      "parse_status": "ready",
+      "preview_status": "ready"
+    },
+    {
+      "extension": "json",
+      "parse_status": "ready",
+      "preview_status": "ready"
+    },
+    {
+      "extension": "pptx",
+      "parse_status": "ready",
+      "preview_status": "pending"
+    },
+    {
+      "extension": "pdf",
+      "parse_status": "ready",
+      "preview_status": "pending"
+    }
+  ],
+  "diagnostics": [],
+  "finishedAt": "2026-10-30T07:41:49.998Z"
+}

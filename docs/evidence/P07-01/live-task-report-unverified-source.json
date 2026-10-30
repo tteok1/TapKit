@@ -1,0 +1,34 @@
+{
+  "task": "P07-01",
+  "status": "passed",
+  "connectionCheck": "passed",
+  "modelRequestsLimit": 1,
+  "maxTools": 1,
+  "runId": "01a182d5-bcd4-787a-8f23-3f2b0f3735d4",
+  "reason": null,
+  "resultCount": 1,
+  "credentialRemoved": true,
+  "runStatus": "completed",
+  "toolCalls": [
+    {
+      "tool_name": "document.create",
+      "status": "succeeded",
+      "side_effect": "committed"
+    }
+  ],
+  "attemptCount": 1,
+  "files": [
+    {
+      "version": 1,
+      "extension": "docx",
+      "parse_status": "ready",
+      "preview_status": "pending"
+    }
+  ],
+  "contentChecks": [
+    {
+      "titleMatches": true,
+      "numberPresent": true
+    }
+  ]
+}

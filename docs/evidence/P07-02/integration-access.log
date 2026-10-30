@@ -1,0 +1,25 @@
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P07-02.data-access.test.ts (3 tests | 1 failed) 1597ms
+   × P07-02 unknown native state never publishes or blindly retries a partially written result 499ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P07-02.data-access.test.ts > P07-02 unknown native state never publishes or blindly retries a partially written result
+AssertionError: expected [Function] to throw error including 'SIDE_EFFECT_UNKNOWN' but got 'CONFLICT'
+
+Expected: "SIDE_EFFECT_UNKNOWN"
+Received: "CONFLICT"
+
+ ❯ tests/integration/P07-02.data-access.test.ts:36:82
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  19:45:41
+   Duration  4.30s (transform 48%, tests 40%, import 12%, setup 1%)
+

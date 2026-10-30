@@ -1,0 +1,128 @@
+$ node scripts/check.mjs
+Formatting checked 635 repository files; 0 failures.
+Dependency boundaries verified
+Runtime/dependency/wheel manifests verified
+Listing tests:
+  P00-01.shell.spec.ts:24:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory
+  P00-01.shell.spec.ts:44:1 › P00-01 sandbox bridge errors and clean child shutdown
+  P00-02.foundation.spec.ts:30:1 › P00-02 T01 T05 real two-window CAS and committed event subscription
+  P00-02.foundation.spec.ts:88:1 › P00-02 T19 real Windows safeStorage round trip, ACL and plaintext exclusion
+  P00-02.foundation.spec.ts:147:1 › P00-02 T19 foreign WebContents cannot invoke app IPC
+  P00-02.foundation.spec.ts:166:1 › P00-02 T05 Core kill rebuilds writer; acked settings survive and backup is not duplicated
+  P00-02.foundation.spec.ts:217:1 › P00-02 single instance activates owner and closing UI keeps Core alive until explicit quit
+  P00-02.foundation.spec.ts:271:1 › P00-02 higher schema shows a recovery prompt and preserves original database
+  P01-01.codex.spec.ts:8:1 › P01-01 unconfigured diagnostics uses private Core catalog and a finite preload bridge
+  P01-01.codex.spec.ts:63:3 › P01-01 logout button clears real DPAPI credentials and removes the account record
+  P01-01.codex.spec.ts:63:3 › P01-01 clear account button removes an old unconfigured record
+  P01-01.live-runner.spec.ts:8:1 › P01-01 mock live runner cancels during generation, restarts a process, refreshes DPAPI credentials and logs out
+  P01-01.utility.spec.ts:9:3 › P01-01 desktop utility Core probes text and tools through the compiled model API
+  P01-01.utility.spec.ts:9:3 › P01-01 desktop utility Core returns safe gateway diagnostics through IPC
+  P01-01.utility.spec.ts:9:3 › P01-01 desktop utility Core probes text and tools when the SSE MIME header is missing
+  P01-02.api.spec.ts:7:1 › P01-02 real desktop UI stores both formats with DPAPI, restarts metadata and clears the selected account
+  P01-02.api.spec.ts:126:1 › P01-02 API diagnostic displays probe phase, business code and truncation through the real preload bridge
+  P01-03.models.spec.ts:8:1 › P01-03 real desktop model preferences, compatibility, scope and usage persist without real provider calls
+  P01-03.models.spec.ts:156:1 › P01-03 compiled utility Core switches subscription quota to API fixture and settles durable attempts
+  P02-01.desktop.spec.ts:39:1 › P02-01 T01 empty navigation, real records, keyboard search, draft examples and restart settings
+  P02-01.desktop.spec.ts:145:1 › P02-01 T22 responsive 1200/960 and 200 percent, focus, drawer and isolated windows
+  P02-01.desktop.spec.ts:191:1 › P02-01 connection error, masked fixture key, avatar and personal form conflict
+  P02-01.form-controls.spec.ts:150:3 › P02-01 themed forms preserve native choices and fit 1440x900 1 light
+  P02-01.form-controls.spec.ts:150:3 › P02-01 themed forms preserve native choices and fit 1440x900 1 dark
+  P02-01.form-controls.spec.ts:150:3 › P02-01 themed forms preserve native choices and fit 960x640 1 light
+  P02-01.form-controls.spec.ts:150:3 › P02-01 themed forms preserve native choices and fit 960x640 2 dark
+  P02-01.form-controls.spec.ts:279:1 › P02-01 global controls share styles across settings models files projects memory and search
+  P02-01.form-controls.spec.ts:351:1 › P02-03 circular multi-selection retains batch archive restore and delete preview
+  P02-01.group-tooltips.spec.ts:74:1 › P02-01 refinements: mode hints stay below, all controls share rounded hints and recommendations have no arrow
+  P02-01.group-tooltips.spec.ts:155:1 › P02-01 refinements: group arrow controls its own paginated sessions and menu labels stay in one row
+  P02-01.navigation.spec.ts:99:1 › P02-01 navigation long press reorders without opening a page, and persists on restart
+  P02-01.navigation.spec.ts:142:1 › P02-01 navigation cancels early moves and Escape, supports keyboard sorting and restores hidden entries
+  P02-01.navigation.spec.ts:189:1 › P02-01 navigation rounded icons and long press remain usable in a narrow dark 200 percent drawer
+  P02-01.shell-details.spec.ts:81:1 › P02-01 shell details home alignment, rounded controls, icon hints and full sidebar collapse
+  P02-01.shell-details.spec.ts:175:1 › P02-01 shell details manual drag sorting persists per group and launch returns home
+  P02-01.shell-details.spec.ts:290:1 › P02-01 shell details settings archive and trash pages search, restore and confirm permanent deletion
+  P02-01.ui-redesign.spec.ts:80:1 › P02-01 UI primary Save action remains readable during hover and keyboard press
+  P02-01.ui-redesign.spec.ts:116:1 › P02-01 UI simplified input keeps keyboard editing reachable at 200 percent
+  P02-01.ui-redesign.spec.ts:148:1 › P02-01 UI redesign covers navigation, six project views, settings and diagnostics with actual forms intact
+  P02-01.ui-redesign.spec.ts:231:1 › P02-01 UI redesign preserves full conversation list, send/stop controls, themes and narrow zoom workbench
+  P02-01.ui-redesign.spec.ts:284:1 › P02-01 UI redesign workbench renders existing fixed-version PDF, Markdown, code, sheet, image and ZIP surfaces
+  P02-01.unified-start.spec.ts:85:1 › P02-01 unified start without accounts restores hidden suggestions and keeps the composer at the bottom
+  P02-01.unified-start.spec.ts:151:1 › P02-01 unified start shares text and attachments, saves work drafts and clears temporary chats
+  P02-02.chat.spec.ts:92:1 › P01-03 background title failure is announced, survives reload and explicit rename clears the failure without replaying chat
+  P02-02.chat.spec.ts:127:1 › P01-03 P02-02 network retry progress explains estimates and retains diagnostics after restart
+  P02-02.chat.spec.ts:164:1 › P02-02 T02 two turns use real Core/router/usage; repeated acceptance creates one message and restart retains it
+  P02-02.chat.spec.ts:214:1 › P02-02 T05 IME and Shift+Enter keep draft; queue editing/cancellation, session switching and stopping preserve confirmed text
+  P02-02.chat.spec.ts:283:1 › P02-02 T05 long paste, plain managed attachment, unsupported original, oversize draft and restart remain reviewable
+  P02-02.chat.spec.ts:365:1 › P02-02 T02 history pagination keeps reading position; return to latest restores following
+  P02-02.chat.spec.ts:413:1 › P02-02 T02 malicious Markdown stays inert; GFM, KaTeX, Shiki and static sandbox Mermaid render
+  P02-02.clipboard-attachments.spec.ts:57:3 › native clipboard protection › P02-02 native clipboard copies user, assistant, code, table and selected text exactly with rendered math
+  P02-02.clipboard-attachments.spec.ts:188:1 › P02-02 rounded attachment cards show progress, cancel one late upload and fit focus and zoom layouts
+  P02-02.clipboard-attachments.spec.ts:376:1 › P02-02 removing a parsing card during first send excludes it from the actual model input
+  P02-03.chat-simplify.spec.ts:23:3 › P02-03 T22 compact chat, fixed footer and continuous scroller 1440x900 at 100 percent
+  P02-03.chat-simplify.spec.ts:23:3 › P02-03 T22 compact chat, fixed footer and continuous scroller 960x640 at 100 percent
+  P02-03.chat-simplify.spec.ts:23:3 › P02-03 T22 compact chat, fixed footer and continuous scroller 1440x900 at 200 percent
+  P02-03.chat-simplify.spec.ts:23:3 › P02-03 T22 compact chat, fixed footer and continuous scroller 960x640 at 200 percent
+  P02-03.dialogs.spec.ts:32:3 › P02-03 T22 dialogs fit 1440x900 at 100 percent
+  P02-03.dialogs.spec.ts:32:3 › P02-03 T22 dialogs fit 960x640 at 100 percent
+  P02-03.dialogs.spec.ts:32:3 › P02-03 T22 dialogs fit 1440x900 at 200 percent
+  P02-03.dialogs.spec.ts:32:3 › P02-03 T22 dialogs fit 960x640 at 200 percent
+  P02-03.feedback-bookmarks.spec.ts:102:1 › P02-03 T14 feedback opens on downvote, ratings toggle, saved feedback persists and bookmarks locate the original branch
+  P02-03.feedback-bookmarks.spec.ts:175:1 › P02-03 T14 feedback and collection fit light and dark themes at normal and small 200 percent windows
+  P02-03.history.spec.ts:95:1 › P02-03 T13 selection source is identified as original text and remains readable at two sizes
+  P02-03.history.spec.ts:147:1 › P02-03 T06 two turns, early edit, answer candidates, feedback and restart draft
+  P02-03.history.spec.ts:210:1 › P02-03 T10 archived full-text hit loads the exact early message across pages
+  P02-03.history.spec.ts:241:1 › P02-03 T20 grouping, bounded list pages, batch trash and restore preserve sessions
+  P02-03.history.spec.ts:287:1 › P02-03 T10 temporary chat clears on leave and restart, without persistent body or draft
+  P02-03.inline-selection.spec.ts:90:1 › P02-03 inline copy icons and contextual selection actions preserve copied content and source ranges
+  P02-03.selection-release.spec.ts:12:1 › P02-03 selection release outside highlighted text keeps native selection actions
+  P02-03.selection-trigger.spec.ts:12:1 › P02-03 selection toolbar follows paragraph drag released in surrounding space
+  P02-03.session-load.spec.ts:13:1 › P02-03 old sessions load without replaying their full event history
+  P02-03.sidebar.spec.ts:49:3 › P02-03 T20 sidebar grouped conversations expand, collapse and survive removal 1440x900
+  P02-03.sidebar.spec.ts:49:3 › P02-03 T20 sidebar grouped conversations expand, collapse and survive removal 960x640
+  P02-03.translation.spec.ts:12:1 › P02-03 translation echo shows an explicit failed translation without marking completion
+  P03-01.files.spec.ts:186:1 › P03-01 accepted task usage shows its pinned historical version and follows session trash/restore across restart
+  P03-01.files.spec.ts:344:1 › P03-01 T08 navigation sends cancellation while a real committed import reply is delayed and appends it only to the original draft
+  P03-01.files.spec.ts:422:1 › P03-01 T08 late session creation after leaving the home composer cannot start a physical import or overwrite the new draft
+  P03-01.files.spec.ts:475:1 › P03-01 T08 leaving during a real Host selection releases its pending grant without importing or changing the new draft
+  P03-01.files.spec.ts:528:1 › P03-01 T07 chat physical File uses the real Host token import, preserves source bytes and downloads its pinned original
+  P03-01.files.spec.ts:663:1 › P03-01 T07 real Host picker chain imports an immutable source, separates unavailable parsing and downloads its original
+  P03-01.files.spec.ts:720:1 › P03-01 T08 cancelling one selected Host file releases only that choice and imports the remaining original through the actual UI
+  P03-01.files.spec.ts:745:1 › P03-01 T08 a persisted synthetic PDF structure needing OCR offers download and a searchable replacement without claiming readable content
+  P03-01.files.spec.ts:770:1 › P03-01 T07 image audio and video Host imports show original-only recovery and download exact bytes without offering parse retry
+  P03-01.files.spec.ts:810:1 › P03-01 T07 real saved-message note is searchable as a generated result in the library and pinned session, and remains downloadable after restart
+  P03-01.files.spec.ts:868:1 › P03-01 T07 genuine DOM File drop traverses preload and retains directory imports after cancelled selections
+  P03-01.files.spec.ts:911:1 › P03-01 responsive library grid and import instructions remain usable in light, dark and 200-percent layouts
+  P03-01.files.spec.ts:972:1 › P03-01 batch download keeps unfinished files selected and stops further dialogs after cancellation
+  P03-01.files.spec.ts:1015:1 › P03-01 T07 scoped library downloads and copies its pinned old version after format replacement, metadata edits and restoration
+  P03-01.files.spec.ts:1117:1 › P03-01 T07 linking a folder file keeps it visible at project and session roots, and shared moves remain navigable in each scope
+  P03-01.files.spec.ts:1226:1 › P03-01 T07 duplicate skip, explicit replacement, restoration and copy preserve pinned history and original bytes
+  P03-01.files.spec.ts:1330:1 › P03-01 interrupted import survives actual process termination and its recovery notice can be dismissed across Electron restarts
+  P03-02.preview.spec.ts:127:1 › P03-02 Electron pins inline historical refs, remembers PDF/code positions and previews safe Markdown plus real diffs
+  P03-02.preview.spec.ts:199:1 › P03-02 Electron PDF selections support copy, annotations, persisted quotes and three PDF layout samples
+  P03-02.preview.spec.ts:283:1 › P03-02 Electron merged/formula grids, sorting, image rotation, ZIP directories and 200 percent controls remain usable
+  P03-02.preview.spec.ts:359:1 › P03-02 Electron renders six actual isolated Office caches with notes, structural locators, page bounds and presentation
+  P03-02.preview.spec.ts:423:1 › P03-02 Electron preview failure offers real retry, fixed original download/share and scoped external copy
+  P03-03.projects.spec.ts:77:1 › P03-03 project settings, known local note, classification, original query locator and copy are usable in the real renderer
+  P03-03.projects.spec.ts:103:1 › P03-03 project session binding, explicit selected scope, archive and deletion preview persist
+  P03-03.projects.spec.ts:139:1 › P03-03 Core rejects foreign project material and project-only reference while missing evidence is explicit
+  P03-03.projects.spec.ts:165:1 › P03-03 project ZIP export traverses Host save authorization and shows a refused overwrite
+  P04-01.retrieval.spec.ts:63:1 › P04-01 T09 real Core CPU hybrid evidence opens the original fixed source and no-answer is explicit
+  P04-02.context.spec.ts:51:1 › P04-02 T12 summary UI three compactions source view correction chosen continuation and restart
+  P04-03.memory.spec.ts:82:1 › P04-03 T11 session deletion preview gives source counts and explicit retention without reviving removed sources
+  P04-03.memory.spec.ts:115:1 › P04-03 T11 explicit post-write notice source correction undo conflict search deletion and restart
+  P04-03.memory.spec.ts:165:1 › P04-03 T11 two ordinary preferences auto-save after completion without approval and can clear all
+  P04-03.memory.spec.ts:184:1 › P04-03 T10 answer used memories, session switches and temporary mode have truthful scope UI
+  P05-01.browser.spec.ts:5:1 › P05-01 T19 Chromium isolates Node, IPC, cookies, permissions, POST, private requests and popups
+  P05-01.web.spec.ts:74:1 › P05-01 T09 anonymous source flows from chat to archived panel and survives reload
+  P05-01.web.spec.ts:148:1 › P05-01 T19 off mode, absent key and CAPTCHA show truthful states without fabricated sources
+  P05-02.export.spec.ts:12:1 › P05-02 T22 recipient preview remains usable in light/dark and 960px at app 200 percent zoom
+  P05-02.export.spec.ts:128:1 › P05-02 T20 recipient preview and MD/TXT/HTML/PDF/ZIP save use a private Host destination and truthful progress
+  P05-02.pdf.spec.ts:12:1 › P05-02 T07/T20 real sandbox PDF embeds Chinese and standalone HTML opens in clean Edge without TapKit
+  P05-03.milestone.spec.ts:12:1 › P05-03 T01-T12/T19/T20/T22 uncut synthetic chat milestone from unconfigured to restart
+  P06-01.work.spec.ts:33:1 › P06-01 T13 work center creates a real plan-first task, edits plan and opens verified artifact
+  P06-02.approval.spec.ts:4:1 › P06-02 T14 exact preview can be edited, approved and produces a new immutable artifact
+  P06-03.lifecycle.spec.ts:43:1 › P06-03 T13/T20 notification read state and pending plan survive restart; real completion links to the task
+  P06-03.lifecycle.spec.ts:107:1 › P06-03 T13 close hides in tray, preserves Core, clears the closed page and explicit quit ends it
+  P07-01.document.spec.ts:6:1 › P07-01 creates and reviews a localized DOCX revision in the desktop
+  P07-01.document.spec.ts:89:1 › P07-01 delivers an actually converted and parsed PDF in the desktop
+  P07-01.document.spec.ts:119:1 › P07-01 authorized static PNG survives isolated DOCX and PDF validation
+  P07-02.data.spec.ts:6:1 › P07-02 desktop imports CSV, runs isolated analysis and links filters, charts, formulas and exports
+Total: 122 tests in 42 files

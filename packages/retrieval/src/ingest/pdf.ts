@@ -7,7 +7,10 @@ import {
 import type { getDocument, TextItem } from 'pdfjs-dist/types/src/display/api';
 import { assertFileSize, emptyDocument, ParseError } from './text';
 
-export type PdfApi = { getDocument: typeof getDocument };
+export type PdfApi = {
+  getDocument: typeof getDocument;
+  OPS?: { paintImageXObject: number; paintInlineImageXObject: number };
+};
 function multiply(a: number[], b: number[]) {
   return [
     a[0]! * b[0]! + a[2]! * b[1]!,
@@ -63,6 +66,7 @@ export async function parsePdfFile(
   api: PdfApi,
   assetRoot: string,
   rawLimits: FileLimits = FILE_LIMITS,
+  inspectDocumentImages = false,
 ) {
   const limits = FileLimitsSchema.parse(rawLimits);
   assertFileSize(bytes, limits);
@@ -86,7 +90,8 @@ export async function parsePdfFile(
     const source = await task.promise,
       doc = emptyDocument('pdf');
     if (source.numPages > limits.maxPdfPages) throw new ParseError('PAGE_LIMIT');
-    let emptyPages = 0;
+    let emptyPages = 0,
+      paintedImages = 0;
     for (let index = 0; index < source.numPages; index++) {
       const page = await source.getPage(index + 1),
         view = page.getViewport({ scale: 1 });
@@ -99,6 +104,14 @@ export async function parsePdfFile(
         throw new ParseError('CORRUPT_FILE');
       doc.pages.push({ width: view.width, height: view.height });
       const content = await page.getTextContent();
+      if (inspectDocumentImages) {
+        if (!api.OPS) throw new ParseError('CORRUPT_FILE');
+        const operations = await page.getOperatorList();
+        for (const op of operations.fnArray)
+          if (op === api.OPS.paintImageXObject || op === api.OPS.paintInlineImageXObject) {
+            if (++paintedImages > 1000) throw new ParseError('OUTPUT_LIMIT');
+          }
+      }
       let found = false;
       for (const item of content.items) {
         if (!('str' in item) || !item.str.trim()) continue;
@@ -125,6 +138,7 @@ export async function parsePdfFile(
     if (emptyPages) doc.quality.warnings.push('PAGES_WITHOUT_TEXT');
     doc.quality.needsOcr = emptyPages === source.numPages;
     if (doc.quality.needsOcr) doc.quality.warnings.push('OCR_UNSUPPORTED');
+    if (inspectDocumentImages) doc.paintedImages = paintedImages;
     return ParsedDocumentSchema.parse(doc);
   } catch (error) {
     if (error instanceof ParseError) throw error;

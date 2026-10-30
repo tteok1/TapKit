@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "kind": "tapkit.slides",
+  "spec": {
+    "schemaVersion": 1,
+    "title": "合成销售示例",
+    "aspectRatio": "16:9",
+    "theme": "light_business",
+    "slides": [
+      {
+        "id": "page-1",
+        "layout": "title",
+        "title": "合成销售示例",
+        "bullets": [
+          "去重后的合成销售数据，仅用于格式检查",
+          "示例金额123.45元仅用于文字格式检查，与图表销售额无关"
+        ],
+        "rightBullets": [],
+        "notes": "无真实经营结论"
+      },
+      {
+        "id": "page-2",
+        "layout": "chart",
+        "title": "地区销售额",
+        "bullets": [],
+        "rightBullets": [],
+        "chartRef": {
+          "fileId": "01a18bc0-f28f-7a67-9bdd-0dd9acf2195b",
+          "versionId": "01a18bc0-f28f-7475-a7ca-2ab8396ea19c",
+          "chartId": "chart1"
+        },
+        "notes": "金额单位元，华东0.70，华南1.05"
+      }
+    ]
+  },
+  "preview": {
+    "kind": "file",
+    "fileId": "01a18bed-dcf2-71af-8fea-674d7161c84a",
+    "versionId": "01a18bed-dcf2-74a9-a8d3-b6e1b08c5cfc"
+  },
+  "quality": {
+    "pages": 2,
+    "layoutVerified": true
+  }
+}

@@ -35,6 +35,7 @@ import memorySql from '../../../migrations/0014_memory.sql?raw';
 import webSql from '../../../migrations/0015_web.sql?raw';
 import exportsSql from '../../../migrations/0016_exports.sql?raw';
 import workSql from '../../../migrations/0017_work.sql?raw';
+import documentSql from '../../../migrations/0018_document_specs.sql?raw';
 
 let startupTraceSequence = 0;
 function startupTrace(scope: string) {
@@ -123,8 +124,9 @@ export const migrations: Migration[] = [
   { version: 15, sql: webSql },
   { version: 16, sql: exportsSql },
   { version: 17, sql: workSql },
+  { version: 18, sql: documentSql },
 ];
-export const SCHEMA_VERSION = 17;
+export const SCHEMA_VERSION = 18;
 export async function migrate(db: Database.Database, backupDirectory: string, steps = migrations) {
   const trace = startupTrace('storage.migrate');
   trace('version.begin');

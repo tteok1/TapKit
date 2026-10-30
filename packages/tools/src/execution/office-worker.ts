@@ -42,6 +42,8 @@ export class OfficeWorker {
 
   async render(raw: unknown, input: OfficeInput, options: { signal?: AbortSignal } = {}) {
     const request = OfficeRenderSchema.parse(raw);
+    if (request.format === 'xlsx' && !input.filename.toLowerCase().endsWith('.xlsx'))
+      throw new SandboxError('OFFICE_INPUT_INVALID');
     if (
       request.fileVersionId !== input.fileVersionId ||
       !/^[0-9a-f]{64}$/.test(input.sha256) ||
@@ -97,7 +99,10 @@ export class OfficeWorker {
         args: [],
         timeoutMs: 120_000,
         terminal: false,
-        office: { filename: input.filename },
+        office: {
+          filename: input.filename,
+          ...(request.format === 'xlsx' ? { format: 'xlsx' } : {}),
+        },
       },
     });
     const result = await this.executor.execute(command, options);
@@ -118,16 +123,24 @@ export class OfficeWorker {
       throw new SandboxError('OFFICE_EXECUTION_FAILED');
     if (sha(await readFile(source)) !== input.sha256)
       throw new SandboxError('OFFICE_SOURCE_MODIFIED');
-    const pdfPath = join(work, input.filename.slice(0, -extname(input.filename).length) + '.pdf');
+    const pdfPath = join(
+      work,
+      input.filename.slice(0, -extname(input.filename).length) + '.' + request.format,
+    );
     const pdfInfo = await lstat(pdfPath);
     if (!pdfInfo.isFile() || pdfInfo.isSymbolicLink() || pdfInfo.size > 100 * 1024 * 1024)
       throw new SandboxError('OFFICE_OUTPUT_INVALID');
     const pdf = await readFile(pdfPath);
-    if (pdf.length < 8 || pdf.subarray(0, 5).toString() !== '%PDF-')
+    if (
+      pdf.length < 8 ||
+      (request.format === 'pdf'
+        ? pdf.subarray(0, 5).toString() !== '%PDF-'
+        : pdf.subarray(0, 2).toString() !== 'PK')
+    )
       throw new SandboxError('OFFICE_OUTPUT_INVALID');
     return {
       fileVersionId: input.fileVersionId,
-      format: 'pdf' as const,
+      format: request.format,
       path: pdfPath,
       sha256: sha(pdf),
     };

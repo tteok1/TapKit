@@ -1,6 +1,13 @@
 # 当前接续点
 
-- 2026-10-28；D:/Tapkit-public；main；用户授权将CI通过的codex/p06-work-runtime合入main。CI源提交275cb41，快进源树与已验证树一致；合入记录提交与远程结果以Git回执为准。
-- CI 40665432143 的check与startup-diagnostics均success；P06-01/02/03 implemented_and_verified，P06-01真实模型范围限智谱Chat/FlashX和固定安全工具。其他渠道/历史资源暂缓，gate engineering_passed_external_pending。
-- 智谱真实生成、审批重启、版本、steer取消和流式暂停分轮通过；通知修复后用真实事件副本重放通过。本轮工作actual 2087 tokens，estimated 9250实际未知，连接检测usage未知。
-- 已关闭隔离入口并移除密文副本；保留源分支、用户资料和原验收边界，不进入P07。详见 docs/evidence/P06-03/main-merge-2026-10-28/verification.md。
+- 2026-10-30；D:/Tapkit-public；codex/p07-office；P07验收基线aa6debf及交付源码指纹保持。用户随后明确授权将当前分支提交并推送origin同名分支，暂不合入main；最终提交指针以Git记录为准。
+- P07-01/02/03 implemented_and_verified；P07-gate=passed。完成范围限定指定智谱Chat/GLM-4.7-FlashX和给定合成事实；不自动进入P08。
+- 用户要求已执行：启动真实TapKit，每轮均设置页检测“文本与工具检测通过”后才发真实任务。累计13/20（历史8＋本轮5），新5次全部通过；成功后不继续消耗检测次数。
+- 真实data.analyze actual5281，独立XLSX/去重/华东0.70及华南1.05/源hash通过；真实图表PPT引用同会话实际分析成功；最后两页PPT与具体审批局部修改actual2961/3152成功。sameFile/newVersion/数字/备注/未改页hash全通过。
+- 修复PPT文件名提示与审批恢复额度边界（ADR0072）；最后一次模型调用后的批准工具可在剩余执行额度内完成。终结未派发项取消，unknown不动。相关integration19/19、既有恢复12/12，生产build/check退出0。
+- 真实图表/原稿/修改版三份PDF共6页已渲染并逐页查看，文字/数字/图表可读无遮挡，PPTX文字可编辑且讲者备注正确。原始导出与hash见P07-03/exports-99272f82-8ec6-4b14-85da-93d701d7bef1和exports-6003f245-ed10-4470-885c-6a47d630da64。
+- 新授权阶段10次模型任务尝试：actual38665＋estimated60460＝保守99125/120000；失败actual未知，连接usage未知；历史更早estimated60251另列，不重复累计同profile快照。停止追加真实请求，凭据副本删除closed、active0。
+- 本地历史unit65/65、integration20/20与补充来源9/9、原生数据6/6及分类2/IQR1、三份10页PPT3/3和30页视觉、缓存安全26/26与Parser2/2、全P07桌面5/5及浅1440/深960/实际200%均通过，各轮有重叠。
+- 原生当前用户22/22，fingerprint 17bf4c7eccc5e119fecf35c14bfc63c3a179340c0d6e5652d40d7c0320b7a09e；不冒称独立标准用户验收。
+- 最小交接：P07-gate.md、P07-03.md、P07-02.md；汇总docs/evidence/P07-03/live-ui-final.json、live-ui-file-qa.json、delivery-ui-manifest.json。旧断流/漏事实/预算及测试失败保留，模型事实仍需核对；最终同步检查见gate。
+- 分支交付范围见docs/evidence/P07-03/branch-publication.md；本次只提交/推送P07，不开始P08、不合main。

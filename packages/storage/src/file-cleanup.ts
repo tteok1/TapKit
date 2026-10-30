@@ -13,6 +13,11 @@ export function eraseFileDerivedContent(store: Store, fileId: string, time: numb
     deleted_at: number | null;
   }[];
   for (const v of versions) {
+    // Versioned document specifications can contain the same private text as the file.
+    if (store.db.prepare("SELECT 1 FROM sqlite_master WHERE name='document_specs'").get())
+      store.db
+        .prepare('DELETE FROM document_specs WHERE profile_id=? AND file_version_id=?')
+        .run(store.profileId, v.id);
     if (store.db.prepare("SELECT 1 FROM sqlite_master WHERE name='pdf_annotations'").get()) {
       store.db
         .prepare('DELETE FROM pdf_annotations WHERE profile_id=? AND file_version_id=?')

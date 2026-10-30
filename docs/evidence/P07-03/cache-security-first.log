@@ -1,0 +1,9 @@
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  4 passed (4)
+      Tests  26 passed (26)
+   Start at  12:57:21
+   Duration  3.81s (transform 42%, import 41%, tests 15%, setup 1%)
+

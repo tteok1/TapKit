@@ -8,14 +8,17 @@ import {
   type WorkCommand,
   type ResourceRef,
   ChatMaterialsViewSchema,
+  isDocumentImageMaterial,
 } from '@tapkit/contracts';
 import { requestOptions } from './desktop-state';
 import { useViewer } from '../features/viewer/state';
 import t from '../locales/work.zh-CN.json';
 import './work.css';
 import { importChatFiles } from './chat-file-import';
+import { DataResults } from './data-results';
+import { SlidesResults } from './slides-results';
 
-async function readyWorkMaterials(sessionId: string, refs: ResourceRef[]) {
+async function readyWorkMaterials(sessionId: string, refs: ResourceRef[], format: string) {
   const deadline = performance.now() + 120000;
   while (refs.length) {
     const reply = await window.tapkit.chatCommand(requestOptions(), 'inputs.references', {
@@ -24,8 +27,11 @@ async function readyWorkMaterials(sessionId: string, refs: ResourceRef[]) {
     });
     if (!reply.ok) throw Error(reply.error.code);
     const materials = ChatMaterialsViewSchema.parse(reply.data).materials;
-    if (materials.every((m) => m.state === 'ready')) return;
-    if (materials.some((m) => m.state === 'failed' || m.state === 'unsupported'))
+    const accepted = (m: (typeof materials)[number]) =>
+      m.state === 'ready' ||
+      (['docx', 'pdf', 'pptx'].includes(format) && isDocumentImageMaterial(m));
+    if (materials.every(accepted)) return;
+    if (materials.some((m) => !accepted(m) && (m.state === 'failed' || m.state === 'unsupported')))
       throw Error('PARSE_FAILED');
     if (performance.now() > deadline) throw Error('INDEX_NOT_READY');
     await new Promise((resolve) => setTimeout(resolve, 500));
@@ -297,7 +303,8 @@ function WorkCreate({
     );
   const [inputFiles, setInputFiles] = useState<File[]>([]),
     [importedRefs, setImportedRefs] = useState<ResourceRef[]>([]),
-    [createdSession, setCreatedSession] = useState<{ id: string; project: string }>();
+    [createdSession, setCreatedSession] = useState<{ id: string; project: string }>(),
+    [outputFormat, setOutputFormat] = useState('md');
   useEffect(() => {
     void window.tapkit
       .modelCommand(requestOptions(), 'models.catalog', {})
@@ -349,9 +356,33 @@ function WorkCreate({
             setImportedRefs(refs);
             if (result.errors.length) throw Error(result.errors[0]);
           }
-          await readyWorkMaterials(id, refs);
-          const selection = models.find((m) => m.accountId + ':' + m.modelId === form.get('model')),
-            format = String(form.get('format'));
+          const format = String(form.get('format'));
+          await readyWorkMaterials(id, refs, format);
+          const selection = models.find((m) => m.accountId + ':' + m.modelId === form.get('model'));
+          const template = String(form.get('documentTemplate') ?? ''),
+            theme = String(form.get('documentTheme') ?? ''),
+            length = String(form.get('documentLength') ?? ''),
+            name = String(form.get('documentName') ?? '').trim(),
+            brand = String(form.get('documentBrand') ?? '').trim(),
+            date = String(form.get('documentDate') ?? '').trim(),
+            toc = String(form.get('documentToc') ?? ''),
+            pageNumbers = String(form.get('documentPageNumbers') ?? '');
+          const documentOptions = {
+            ...(template ? { template } : {}),
+            ...(theme ? { theme } : {}),
+            ...(length ? { length } : {}),
+            ...(name || brand || date
+              ? {
+                  fields: {
+                    ...(name ? { name } : {}),
+                    ...(brand ? { brand } : {}),
+                    ...(date ? { date } : {}),
+                  },
+                }
+              : {}),
+            ...(toc ? { tableOfContents: toc === 'true' } : {}),
+            ...(pageNumbers ? { pageNumbers: pageNumbers === 'true' } : {}),
+          };
           const data = await workCommand('runs.create', {
             sessionId: id,
             refs,
@@ -359,6 +390,26 @@ function WorkCreate({
             audience: form.get('audience'),
             language: form.get('language'),
             format,
+            ...(format === 'xlsx'
+              ? {
+                  dataOptions: {
+                    csvMode: form.has('csvRawValues') ? 'preserve_values' : 'safe',
+                    includeDetailsInHtml: form.has('htmlDetails'),
+                  },
+                }
+              : {}),
+            ...(format === 'pptx'
+              ? {
+                  slideOptions: {
+                    aspectRatio: form.get('slideRatio'),
+                    theme: form.get('slideTheme'),
+                    pageCount: Number(form.get('slidePages')),
+                  },
+                }
+              : {}),
+            ...(['md', 'docx', 'pdf'].includes(format) && Object.keys(documentOptions).length
+              ? { documentOptions }
+              : {}),
             quantity: Number(form.get('quantity')),
             scope: form.get('scope'),
             acceptance: [
@@ -402,6 +453,8 @@ function WorkCreate({
           }}
         />
         {inputFiles.map((f) => f.name).join('、')}
+        {['docx', 'pdf', 'pptx'].includes(outputFormat) &&
+          inputFiles.some((f) => /\.png$/i.test(f.name)) && <small>{t.documentImageHint}</small>}
       </label>
       <label>
         {t.audience}
@@ -413,12 +466,123 @@ function WorkCreate({
       </label>
       <label>
         {t.format}
-        <select name="format">
-          {['md', 'txt', 'json', 'csv', 'pdf'].map((f) => (
+        <select
+          name="format"
+          value={outputFormat}
+          onChange={(event) => setOutputFormat(event.target.value)}
+        >
+          {['md', 'txt', 'json', 'csv', 'pdf', 'docx', 'xlsx', 'pptx'].map((f) => (
             <option key={f}>{f}</option>
           ))}
         </select>
       </label>
+      {outputFormat === 'pptx' && (
+        <fieldset className="work-wide work-document-options">
+          <legend>演示文稿选项</legend>
+          <label>
+            演示页数
+            <input name="slidePages" type="number" min={1} max={50} defaultValue={10} />
+          </label>
+          <label>
+            页面比例
+            <select name="slideRatio" defaultValue="16:9">
+              <option value="16:9">16:9 宽屏</option>
+              <option value="4:3">4:3 标准</option>
+            </select>
+          </label>
+          <label>
+            演示主题
+            <select name="slideTheme" defaultValue="light_business">
+              <option value="light_business">浅色商务</option>
+              <option value="dark_presentation">深色演示</option>
+            </select>
+          </label>
+          <small>默认10页，上限50页；内容过多会分拆续页并保留关键数字。</small>
+          <details className="work-wide">
+            <summary>演示文稿格式说明</summary>
+            <p>提供标题、正文、双栏、表格和图表五种固定布局，导出的文字、表格与图表可编辑。</p>
+            <p>图片使用已附加的PNG；图表需先分析所选表格，支持柱状、折线、面积和饼图。</p>
+            <p>讲者备注保留在PPTX中，PDF只显示页面。不同Office软件的字体与特殊效果可能存在差异。</p>
+          </details>
+        </fieldset>
+      )}
+      <details className="work-wide" hidden={!['md', 'docx', 'pdf'].includes(outputFormat)}>
+        <summary>{t.documentOptions}</summary>
+        <div className="work-document-options">
+          <label>
+            {t.documentTemplate}
+            <select name="documentTemplate" defaultValue="">
+              <option value="">{t.documentAuto}</option>
+              <option value="report">{t.documentReport}</option>
+              <option value="proposal">{t.documentProposal}</option>
+              <option value="minutes">{t.documentMinutes}</option>
+            </select>
+          </label>
+          <label>
+            {t.documentTheme}
+            <select name="documentTheme" defaultValue="">
+              <option value="">{t.documentAuto}</option>
+              <option value="formal">{t.documentFormal}</option>
+              <option value="minimal">{t.documentMinimal}</option>
+            </select>
+          </label>
+          <label>
+            {t.documentLength}
+            <select name="documentLength" defaultValue="">
+              <option value="">{t.documentAuto}</option>
+              <option value="concise">{t.documentConcise}</option>
+              <option value="standard">{t.documentStandard}</option>
+              <option value="detailed">{t.documentDetailed}</option>
+            </select>
+          </label>
+          <label>
+            {t.documentName}
+            <input name="documentName" maxLength={500} />
+          </label>
+          <label>
+            {t.documentBrand}
+            <input name="documentBrand" maxLength={500} />
+          </label>
+          <label>
+            {t.documentDate}
+            <input name="documentDate" maxLength={100} />
+          </label>
+          <label>
+            {t.documentToc}
+            <select name="documentToc" defaultValue="">
+              <option value="">{t.documentAuto}</option>
+              <option value="true">{t.documentOn}</option>
+              <option value="false">{t.documentOff}</option>
+            </select>
+          </label>
+          <label>
+            {t.documentPageNumbers}
+            <select name="documentPageNumbers" defaultValue="">
+              <option value="">{t.documentAuto}</option>
+              <option value="true">{t.documentOn}</option>
+              <option value="false">{t.documentOff}</option>
+            </select>
+          </label>
+        </div>
+      </details>
+      {outputFormat === 'xlsx' && (
+        <details className="work-wide">
+          <summary>数据导出选项</summary>
+          <div className="work-document-options">
+            <label>
+              <input type="checkbox" name="csvRawValues" />
+              CSV按原值保留字符串（电子表格应用可能将其解释为公式）
+            </label>
+            <label>
+              <input type="checkbox" name="htmlDetails" />
+              在HTML看板中包含明细数据
+            </label>
+          </div>
+          <p>
+            默认保护CSV公式注入，HTML只包含汇总图表。查看时的筛选与图表调整不改写已生成的导出文件。
+          </p>
+        </details>
+      )}
       <label>
         {t.quantity}
         <input name="quantity" type="number" min={1} max={12} defaultValue={1} />
@@ -498,6 +662,14 @@ function WorkDetail({
     [selected, setSelected] = useState<string[]>([]),
     [steer, setSteer] = useState(''),
     [answers, setAnswers] = useState<Record<string, string>>({});
+  const [dataReference, setDataReference] = useState<{
+    runId: string;
+    ref: Extract<ResourceRef, { kind: 'file' }>;
+  }>();
+  const [slideReference, setSlideReference] = useState<{
+    runId: string;
+    ref: Extract<ResourceRef, { kind: 'file' }>;
+  }>();
   const [steerFiles, setSteerFiles] = useState<File[]>([]),
     [steerRefs, setSteerRefs] = useState<ResourceRef[]>([]);
   const invoke = (command: WorkCommand, payload: Record<string, unknown> = {}) =>
@@ -814,6 +986,17 @@ function WorkDetail({
                 (ref, i) =>
                   ref.kind === 'file' && (
                     <span className="work-actions" key={i}>
+                      {s.artifactFormats[i] === 'json' &&
+                        ['xlsx', 'pptx'].includes(r.definition.format) && (
+                          <button onClick={() => setDataReference({ runId: r.runId, ref })}>
+                            数据与图表
+                          </button>
+                        )}
+                      {s.artifactFormats[i] === 'pptx' && (
+                        <button onClick={() => setSlideReference({ runId: r.runId, ref })}>
+                          幻灯片与备注
+                        </button>
+                      )}
                       <button
                         onClick={() =>
                           void viewer.open({
@@ -841,6 +1024,36 @@ function WorkDetail({
             </li>
           ))}
         </ol>
+      )}
+      {dataReference?.runId === r.runId && (
+        <DataResults
+          key={dataReference.ref.versionId}
+          runId={r.runId}
+          taskId={r.taskId}
+          reference={dataReference.ref}
+        />
+      )}
+      {slideReference?.runId === r.runId && (
+        <SlidesResults
+          key={slideReference.ref.versionId}
+          runId={r.runId}
+          taskId={r.taskId}
+          reference={slideReference.ref}
+          onAdjust={async (text) => {
+            const data = await workCommand(
+              'runs.steer',
+              {
+                runId: r.runId,
+                text,
+                refs: [],
+                clientRequestId: requestOptions().requestId,
+              },
+              r.revision,
+            );
+            if (!('work' in data)) throw Error('INTERNAL_ERROR');
+            onNavigate('/work/' + data.work.runId);
+          }}
+        />
       )}
       {r.questions.some((q) => q.answer === null) && (
         <section aria-label={t.questions}>
@@ -899,7 +1112,7 @@ function WorkDetail({
                 setSteerRefs(refs);
                 if (imported.errors.length) throw Error(imported.errors[0]);
               }
-              await readyWorkMaterials(r.sessionId, refs);
+              await readyWorkMaterials(r.sessionId, refs, r.definition.format);
               const data = await workCommand(
                 'runs.steer',
                 { runId: r.runId, text: steer, refs, clientRequestId: requestOptions().requestId },

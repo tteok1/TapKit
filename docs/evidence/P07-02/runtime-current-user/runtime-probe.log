@@ -1,0 +1,1 @@
+$ vitest run --config vitest.config.ts --project integration "P00-03" "--reporter=json" "--outputFile=test-results/P00-03-native.json"

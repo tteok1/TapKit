@@ -1,0 +1,43 @@
+{
+  "round": "99272f82-8ec6-4b14-85da-93d701d7bef1",
+  "networkRequests": 0,
+  "credentialReads": 0,
+  "artifacts": [
+    {
+      "name": "data.xlsx",
+      "fileId": "01a18bc0-f223-776f-b8b8-5ebbdb9bf0fe",
+      "versionId": "01a18bc0-f223-7a61-a7b9-4eefab5dfb8a",
+      "runId": "01a18bbf-cf2b-7579-b793-396db72da039",
+      "sha256": "d183d9a2f92b461bf8e0bccc10eb669236ef20c26d87a7237bdc16f2e6e01e29",
+      "bytes": 7686,
+      "parseStatus": "ready"
+    },
+    {
+      "name": "data.json",
+      "fileId": "01a18bc0-f28f-7a67-9bdd-0dd9acf2195b",
+      "versionId": "01a18bc0-f28f-7475-a7ca-2ab8396ea19c",
+      "runId": "01a18bbf-cf2b-7579-b793-396db72da039",
+      "sha256": "2c5a74213c599c8ae6a3f21cda70765beaca4687652a471a2a07097607f6b130",
+      "bytes": 4971,
+      "parseStatus": "ready"
+    },
+    {
+      "name": "slides_with_analysis.pptx",
+      "fileId": "01a18bed-dcef-748d-9d66-3853b907aa40",
+      "versionId": "01a18bed-dcef-78e5-a159-75eb85dcb91d",
+      "runId": "01a18bed-269f-7c5c-bb64-07cfdb564d80",
+      "sha256": "ad213357e3a74b99f728687f84fd53818d28db360eaff5b514db2e5799026bcf",
+      "bytes": 79225,
+      "parseStatus": "ready"
+    },
+    {
+      "name": "slides_with_analysis.pdf",
+      "fileId": "01a18bed-dcf2-71af-8fea-674d7161c84a",
+      "versionId": "01a18bed-dcf2-74a9-a8d3-b6e1b08c5cfc",
+      "runId": "01a18bed-269f-7c5c-bb64-07cfdb564d80",
+      "sha256": "79e8622f75f2172e1fe47979f139585cfd83ee8bcd27ea825b6760e484b15b1f",
+      "bytes": 64799,
+      "parseStatus": "ready"
+    }
+  ]
+}

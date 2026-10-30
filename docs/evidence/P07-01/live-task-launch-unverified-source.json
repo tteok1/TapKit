@@ -1,0 +1,10 @@
+{
+  "startedAt": "2026-10-28T14:06:23.657Z",
+  "connectionCheck": "connection-2026-10-28-04/probe-report.json",
+  "limits": {
+    "maxCalls": 1,
+    "maxTools": 1,
+    "tokens": 120000
+  },
+  "profile": "D:\\Tapkit-public\\.test-data\\P07-01-live-profile-84oVB4"
+}
