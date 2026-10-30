@@ -1,3 +1,7 @@
+## 2026-10-30 P07 CI67第二次修复
+
+首修0bdbbca已解决缺报告门禁；CI67 probe成功、unit444通过、integration473通过/8项中文文档与PPT校验失败/1跳过。桌面50项全部通过但22分钟，末尾诊断触60分钟上限取消；startup通过。ADR0073补Office进程私有加载锁定字体（本机字体曾掩盖缺口），font unit6/6、原生三格式代表项及生产build/check通过，新helper完整probe进行中。CI改为独立office-native覆盖全部9文件17项，主集成仅排除同组，其他集成/桌面/独立标准用户保留；gate仍failed，待下一轮干净CI。不合main、不扩P08、不追加模型。见docs/evidence/P07-03/ci-fix-2026-10-30/verification.md。
+
 ## 2026-10-30 P07 CI66修复进行中
 
 b9673f1已推同名分支。CI66 unit444/444通过；integration17项P07原生检查均因干净runner缺能力报告失败，其余464通过/1跳过。静态、perf、Electron、独立标准用户及Office诊断通过；startup当时仍运行。已定位bootstrap未生成当前runner绑定报告，补runtime-probe --scope=current-user前置并保留独立标准用户验收；gate暂failed，修复复验中，不进入P08或合main。证据docs/evidence/P07-03/ci-fix-2026-10-30/verification.md，下方为旧快照。

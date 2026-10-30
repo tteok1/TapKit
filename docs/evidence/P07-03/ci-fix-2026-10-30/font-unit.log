@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project unit "P00-03.office-worker"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  19:15:39
+   Duration  1.32s (transform 51%, import 28%, tests 18%, setup 2%, worker 1%)
+

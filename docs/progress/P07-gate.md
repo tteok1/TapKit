@@ -2,7 +2,7 @@
 
 - 日期/执行：2026-10-30 Asia/Shanghai，当前Codex会话；D:/Tapkit-public，codex/p07-office。
 - HEAD aa6debf25399a328ca993e2c8a03c0d0722a6032及未提交工作树；保护既有改动，未提交/推送/发布。
-- gate_status：failed（后续CI66暴露干净runner缺能力探测前置，修复验证中；此前本地/真实通过记录保持）。
+- gate_status：failed（CI缺报告已修，CI67后续中文校验及流水线作用域问题按ADR0073修复验证中；此前本地/真实记录保持）。
 - 范围：既有本地/原生办公验收，加指定智谱Chat/GLM-4.7-FlashX、给定合成事实的真实生成与修改；不推广其他模型/供应商或任意事实正确率，不自动进入P08。
 - 最新交付指纹：[delivery-ui-manifest.json](../evidence/P07-03/delivery-ui-manifest.json)，Core c1cbdb8f3aaa16eb0075682b1da637ed91a3b9c5345517e6e90c5f580c8315a7，无fixture。此前failed gate与旧370ce快照原样保留于[gate-before-ui-live.md](../evidence/P07-03/gate-before-ui-live.md)，不冒称早期失败通过。
 

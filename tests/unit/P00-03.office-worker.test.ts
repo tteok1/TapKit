@@ -9,6 +9,7 @@ import {
 } from '../../packages/tools/src/execution/office-worker';
 import { type HelperEvent, type HelperRequest } from '../../packages/contracts/src';
 import { readExecutionCapabilities } from '../../packages/tools/src/execution';
+import fontLock from '../../export-font-lock.json';
 
 async function fixture() {
   const base = await mkdtemp(resolve('.test-data/P00-03 worker '));
@@ -54,6 +55,10 @@ test('P00-03 OfficeWorker propagates unavailable isolation without a host conver
       expect(command.payload.executable).toMatch(/program[\\/]python\.exe$/i);
       expect(command.payload.args).toHaveLength(0);
       expect(command.payload.office).toEqual({ filename: input.filename });
+      const font = await readFile(join(command.payload.workspace, 'tapkit-office-font.otf'));
+      expect(createHash('sha256').update(font).digest('hex')).toBe(
+        fontLock.files['NotoSansCJKsc-Regular.otf'].sha256,
+      );
       const profile = await readFile(
         join(command.payload.workspace, 'office-profile/user/registrymodifications.xcu'),
         'utf8',
@@ -72,6 +77,32 @@ test('P00-03 OfficeWorker propagates unavailable isolation without a host conver
   });
   await expect(worker.render(request, input)).rejects.toThrow('HELPER_START_FAILED');
 });
+
+test.each(['missing', 'tampered'])(
+  'P07-03 OfficeWorker rejects a %s bundled font before native dispatch',
+  async (kind) => {
+    const root = await mkdtemp(resolve('.test-data/P07-03 font '));
+    if (kind === 'tampered') {
+      await mkdir(join(root, 'packages/core/dist/fonts'), { recursive: true });
+      await writeFile(
+        join(root, 'packages/core/dist/fonts/NotoSansCJKsc-Regular.otf'),
+        'not the locked font',
+      );
+    }
+    let dispatched = false;
+    const worker = new OfficeWorker(root, {
+      execute: async () => {
+        dispatched = true;
+        throw Error('UNEXPECTED_DISPATCH');
+      },
+    });
+    const { input, request } = await fixture();
+    await expect(worker.render(request, input)).rejects.toThrow(
+      kind === 'missing' ? 'OFFICE_FONT_MISSING' : 'OFFICE_FONT_INVALID',
+    );
+    expect(dispatched).toBe(false);
+  },
+);
 
 test('P00-03 OfficeWorker rejects a success response with a surviving process tree', async () => {
   const { input, request } = await fixture();

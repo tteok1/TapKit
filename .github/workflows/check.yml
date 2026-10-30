@@ -7,7 +7,7 @@ permissions:
 jobs:
   check:
     runs-on: windows-2025
-    timeout-minutes: 60
+    timeout-minutes: 45
     env:
       TAPKIT_STARTUP_DIAGNOSTICS: '1'
     steps:
@@ -39,18 +39,13 @@ jobs:
       - name: Check
         id: check
         run: .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs check
-      - name: Verify current runner execution capabilities
-        # A clean checkout has no machine-bound capability report. Verify this
-        # runner before P07 consumes the guarded Office and parser interfaces.
-        run: .\.runtime\node\node-v24.21.0-win-x64\node.exe scripts/runtime-probe.mjs --scope=current-user
-        env:
-          TAPKIT_RUNTIME_PROBE_EVIDENCE_DIR: docs/evidence/P00-03/current-runner
       - name: Unit and current-route integration
         run: |
           .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:unit
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           # Run the AppContainer helper, LibreOfficeKit OfficeWorker and trusted GitBroker routes.
-          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:integration
+          # P07 native cases run with a machine-bound report in office-native.
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:integration --exclude "**/P07-*.native-*.test.ts"
       - name: Dedicated Core performance checks
         # Measure the unchanged P95 budget after other integration workers have exited.
         if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' && steps.check.outcome == 'success' }}
@@ -83,7 +78,6 @@ jobs:
             ci-evidence/P00-03-standard-user
             docs/evidence/P00-01
             docs/evidence/P00-03/native-cases.jsonl
-            docs/evidence/P00-03/current-runner
             docs/evidence/P02-02
             docs/evidence/P03-01/native-parser-cases.jsonl
             docs/evidence/P03-02
@@ -91,6 +85,44 @@ jobs:
             docs/evidence/P04-01
             docs/evidence/P04-02
             docs/evidence/P04-03
+  office-native:
+    # Keep the verified native report on this runner. Its full runtime hashing
+    # must not be repeated by every unrelated desktop startup in the check job.
+    runs-on: windows-2025
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+      - name: Restore locked runtime archives
+        uses: actions/cache/restore@v5
+        with:
+          path: |
+            .cache/downloads
+            .cache/wheels
+          key: windows-runtime-archives-v1-${{ hashFiles('runtime-lock.json', 'dependency-baseline.json', 'python-wheels.lock.json') }}
+      - name: Bootstrap locked runtime and native dependencies
+        run: node scripts/bootstrap.mjs
+      - name: Verify current runner execution capabilities
+        run: .\.runtime\node\node-v24.21.0-win-x64\node.exe scripts/runtime-probe.mjs --scope=current-user
+        env:
+          TAPKIT_RUNTIME_PROBE_EVIDENCE_DIR: docs/evidence/P00-03/current-runner
+      - name: P07 native office acceptance
+        run: .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:integration P07-01.native-candidate P07-01.native-image P07-01.native-layout P07-01.native-render P07-02.native-data P07-02.native-limits P07-02.native-transform P07-03.native-cache P07-03.native-slides
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-p07-native-evidence
+          path: |
+            test-results
+            docs/evidence/P00-03/current-runner
+            docs/evidence/P00-03/native-cases.jsonl
+            docs/evidence/P07-01/native-*
+            docs/evidence/P07-02/native-*
+            docs/evidence/P07-03/native
   startup-diagnostics:
     # A successful bootstrap saves verified archives before the other checks run.
     needs: check

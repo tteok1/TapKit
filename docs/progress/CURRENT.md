@@ -11,4 +11,6 @@
 - 原生当前用户22/22，fingerprint 17bf4c7eccc5e119fecf35c14bfc63c3a179340c0d6e5652d40d7c0320b7a09e；不冒称独立标准用户验收。
 - 最小交接：P07-gate.md、P07-03.md、P07-02.md；汇总docs/evidence/P07-03/live-ui-final.json、live-ui-file-qa.json、delivery-ui-manifest.json。旧断流/漏事实/预算及测试失败保留，模型事实仍需核对；最终同步检查见gate。
 - 分支交付范围见docs/evidence/P07-03/branch-publication.md；本次只提交/推送P07，不开始P08、不合main。
-- 当前HEAD b9673f1已推origin/codex/p07-office；CI66 check失败、startup诊断待结束。根因/修复记录docs/evidence/P07-03/ci-fix-2026-10-30/verification.md；只改CI前置和交接，不绕过隔离门禁、不新增模型消费。
+- 当前修复HEAD 0bdbbca已推origin/codex/p07-office；CI66 check失败、startup诊断success；CI67 run41037299776验证中。本地新probe22/22、scope/完整性/旧报告拒绝unit6/6通过，CI66失败9文件17项原生复验17/17退出0（676.49秒），旧57文件已按字节还原、本轮输出另存retest-artifacts。根因/修复记录docs/evidence/P07-03/ci-fix-2026-10-30/verification.md；不绕过隔离门禁、不新增模型消费。
+- CI67最终：probe success、unit444/444、integration473通过/8失败/1跳过；8项为中文文本顺序/标题校验（文档5、PPT3），完整日志已取。桌面50/50通过但22分钟、独立标准用户success；末尾Office重复诊断遇60分钟job上限取消，startup success。源码0bdbbca尚未修复全部问题，gate仍failed。
+- 正在实施ADR0073：OfficeWorker校验锁定Noto字体并放入新workspace，LOK进程FR_PRIVATE加载/释放，避免系统字体回退；font unit6/6、真实P00单项3格式通过、生产build/check通过。新helper的完整probe运行中（session27399，font-current-user），必须结束后再用新报告跑P07。CI改为独立office-native job覆盖9文件17项，main仅排除同组，主45分钟/原生30分钟；保留其他集成/桌面/标准用户，不降门禁。修复提交/推送指针以当前分支Git回执为准，不追加模型、暂不合main。

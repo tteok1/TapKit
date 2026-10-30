@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project integration "P00-03.office" "--testNamePattern" "converts DOCX"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 4 skipped (5)
+   Start at  19:17:55
+   Duration  118.09s (tests 99%, import 1%)
+

@@ -19,6 +19,7 @@ export async function executionFingerprint(root) {
   for (const name of [
     'runtime-lock.json',
     'python-wheels.lock.json',
+    'export-font-lock.json',
     'native/windows-helper/Cargo.toml',
     'native/windows-helper/Cargo.lock',
     'native/windows-helper/src',

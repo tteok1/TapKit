@@ -1,5 +1,7 @@
 # 工具网关、Windows执行隔离与网络策略
 
+Office字体按[ADR0073](../adr/0073-private-office-fonts-and-ci-scope.md)：Host只将SHA256匹配export-font-lock的字体放入新workspace，固定LOK worker在AppContainer内再次核验并以FR_PRIVATE加载，仅此转换进程可用；失败拒绝，无系统字体安装或额外路径授权。能力指纹含字体锁，不跨身份/机器复用。
+
 审批恢复额度按[ADR0072](../adr/0072-reviewed-tool-budget-boundaries.md)：模型调用次数仅限制新增模型请求；已有完整、已审阅工具仍受工具尝试数/token/活跃时间以及Gateway全部授权检查，不因模型次数刚好用完而误拒绝。终结任务中尚未派发且副作用none的动作取消；未知/已派发不盲目处理。
 
 P07演示目录p07-tools-3新增slides.create/slides.revise，保留前三版目录的原范围。模型按目标格式获工具；PPTX可先data.analyze获得受管ChartSpec。图片只取已授权PNG，图表只取成功data.analyze收据对应的固定JSON。修改对同根任务/currentVersion/revision生效，预览具体变更后由现有审批发绑定内容与版本的grant。原生转换复用OfficeWorker/AppContainer，不放开任意执行或外部工作区写入。未知副作用保留staging并核对，不重放。受管图表XLSX缓存只在Parser中有界检查，拒绝公式、外链、嵌套与宏。见[ADR0071](../adr/0071-versioned-slide-decks.md)。

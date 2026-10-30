@@ -48,6 +48,21 @@ for name in ("TEMP", "TMP", "USERPROFILE", "LOCALAPPDATA", "APPDATA"):
 os.environ["PATH"] = str(program) + os.pathsep + os.environ.get("PATH", "")
 os.environ["SAL_LOK_OPTIONS"] = "unipoll"
 os.environ["SAL_LOG"] = "+WARN+INFO.lok"
+
+# Do not depend on optional Windows language packs or host-installed fonts.
+# FR_PRIVATE affects only this isolated conversion process, never system settings.
+font = workspace / "tapkit-office-font.otf"
+font_hash = "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b"
+if not font.is_file() or hashlib.sha256(font.read_bytes()).hexdigest() != font_hash:
+    raise RuntimeError("OFFICE_FONT_INVALID")
+gdi = c.WinDLL("gdi32", use_last_error=True)
+gdi.AddFontResourceExW.argtypes = [c.c_wchar_p, c.c_uint32, c.c_void_p]
+gdi.AddFontResourceExW.restype = c.c_int
+gdi.RemoveFontResourceExW.argtypes = [c.c_wchar_p, c.c_uint32, c.c_void_p]
+gdi.RemoveFontResourceExW.restype = c.c_int
+if gdi.AddFontResourceExW(str(font), 0x10, None) <= 0:
+    raise RuntimeError("OFFICE_FONT_LOAD_FAILED")
+emit("font_loaded", family="Noto Sans CJK SC", private=True)
 dll_directory = os.add_dll_directory(str(program))
 library = c.CDLL(str(program / "mergedlo.dll"), use_last_error=True)
 initialize = library.libreofficekit_hook_2
@@ -130,6 +145,8 @@ method(kit, 13, None, c.c_void_p, c.c_void_p, c.c_void_p, c.c_void_p)(
 worker.join(5)
 if worker.is_alive():
     failures.append("OFFICE_LOK_WORKER_STUCK")
+elif not gdi.RemoveFontResourceExW(str(font), 0x10, None):
+    failures.append("OFFICE_FONT_UNLOAD_FAILED")
 if failures:
     emit("finished", ok=False, failures=failures, pollCount=counts["poll"])
     sys.exit(1)

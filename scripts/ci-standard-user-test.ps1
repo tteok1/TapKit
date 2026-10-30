@@ -75,6 +75,7 @@ try {
     'pnpm-lock.yaml',
     'pnpm-workspace.yaml',
     'runtime-lock.json',
+    'export-font-lock.json',
     'native-lock.json',
     'dependency-baseline.json',
     'python-wheels.lock.json',

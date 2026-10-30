@@ -18,3 +18,24 @@
 本地已备份并临时移除生成报告，P07-01.native-candidate真实运行1/1失败，available/failed断言与CI完全一致；实际测试退出1，报告在finally恢复。见missing-report-reproduction.log，不把预期失败写成通过。文档格式和docs:check通过；真实探测、相关测试与新CI结果待实际运行后补充，P07 gate暂failed。
 
 补充核对：CI66 startup-diagnostics最终success；失败仅check中的17项。修复后本地pnpm check退出0（673文件），check-before-push.log；当前真实runtime-probe已启动，原生报告/日志待完成，不提前计通过。提交修复后跟踪新一轮干净runner结果，保留失败CI。
+
+## 修复后的实测检查点
+
+- 修复提交0bdbbcab49a5dac2d880e99c53e9de8661bc8763已推origin/codex/p07-office，未合main；新CI67 [run41037299776](https://github.com/tteok1/TapKit/actions/runs/41037299776)运行中。
+- 本地执行与新增CI步骤相同的node scripts/runtime-probe.mjs --scope=current-user，退出0、22/22、pending0、missingCases空；当前用户能力全部available，不冒称独立标准用户验收。证据runtime-current-user/runtime-probe.json、runtime-probe-command.log。
+- pnpm test:unit P00-03.execution-scope P00-03.runtime-probe P07-02.probe-report，退出0、3文件6/6。证明默认标准用户拒绝admin、当前身份/token绑定、缺失/失败/跳过/不完整/旧报告拒绝等规则保持，probe-guards-unit.log。
+- CI66失败的9个文件17项正在使用新真实报告复验，未提前计通过。测试旧输出先备份，本轮另存retest-artifacts后恢复旧文件字节，避免覆盖此前验收快照；最终恢复核对与日志待完成。
+
+本地最终补验：上述9文件17/17全部通过，退出0、676.49秒，native-failed-set-retest.log。缺报告失败→真实probe22/22→同一失败集17/17形成前后对照；未改门禁断言或业务代码。native-retest-manifest.json确认原57个文件按SHA256恢复、全部本轮输出另存retest-artifacts，未覆盖历史证据。远程CI67完整结果仍待结束，当前不把本地通过替代干净CI。
+
+CI67途中检查点：新增当前runner能力探测success，unit444/444通过，完整集成步骤仍failure、perf success，其他检查继续运行。可下载的job日志暂仅到10:18的前半段，其中P07 native-transform和native-limits4项已通过，尚无最终失败摘要；未完成run的归档404、job注释0。等待job完整日志进一步定位，不推断剩余失败根因，不提前标通过。
+
+## CI67完整结果与第二次修复
+
+CI67 check最终cancelled、startup-diagnostics success。unit444/444；integration 473通过、8失败、1跳过。8项是native-image、native-layout、native-render三份和native-slides三份：中文字符绘制提取顺序错乱，文档例“长期实施方案”变为“期施方案长实”，PPT标题校验也失败，ci67-failure-summary.log保留完整断言。原先的能力门禁问题已消失；本地系统已安装Noto/中文字体而CI环境缺少显式字体加载，固定转换Worker只指定字体名称未提供字体资源。
+
+桌面实际50/50通过（22分钟），独立标准用户通过。CI67的有效能力报告使每次桌面启动执行完整运行时指纹核对，最终60分钟上限在末尾Office重复诊断时取消，不把取消记为通过。浏览器备用读取因工具不能可靠确认URL而停止，随后只用GitHub API取完整日志，未绕过浏览器保护或自动化登录。
+
+按ADR0073修复Office字体资源，并把当前runner probe和原生P07组放入独立office-native job；主job仅排除同组9文件17项，其他覆盖及独立标准用户保持，三个job全部通过才算CI通过。主45分钟/原生30分钟。保持完整安全指纹校验，不靠伪造报告、删除测试或降低内容断言通过。
+
+第二次修复本地：font-unit.log退出0、6/6（新增缺失/损坏字体拒绝及实际暂存SHA）；font-build.log生产build退出0；private-font-native.log退出0，实际DOCX/XLSX/PPTX三格式隔离转换均成功（该条P00代表项1通过/4按过滤跳过，不能称整个P00通过）。check-font-fix.log退出0、674文件。新的font-current-user完整22项probe正在运行，不能采信旧指纹报告；后续P07/native/CI结果待补。

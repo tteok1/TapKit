@@ -1,9 +1,10 @@
 import { createHash } from 'node:crypto';
-import { lstat, mkdir, readFile, realpath } from 'node:fs/promises';
+import { lstat, mkdir, readFile, realpath, writeFile } from 'node:fs/promises';
 import { extname, isAbsolute, join, relative, resolve } from 'node:path';
 import { HelperRequestSchema, OfficeRenderSchema, type HelperRequest } from '@tapkit/contracts';
 import { prepareOfficeProfile, runtimePaths, SandboxError } from './index';
 import { NativeSandboxExecutor } from './native-executor';
+import fontLock from '../../../../export-font-lock.json';
 
 export type OfficeExecutor = {
   execute(
@@ -28,6 +29,33 @@ export type OfficeInput = {
   leaseEpoch: number;
 };
 const sha = (bytes: Buffer) => createHash('sha256').update(bytes).digest('hex');
+
+async function officeFont(root: string) {
+  for (const path of [
+    join(root, 'packages/core/dist/fonts/NotoSansCJKsc-Regular.otf'),
+    join(root, 'resources/fonts/NotoSansCJKsc-Regular.otf'),
+  ]) {
+    try {
+      const info = await lstat(path);
+      if (
+        !info.isFile() ||
+        info.isSymbolicLink() ||
+        info.size > 20 * 1024 * 1024 ||
+        (await realpath(path)).toLowerCase() !== resolve(path).toLowerCase()
+      )
+        throw new SandboxError('OFFICE_FONT_INVALID');
+      const bytes = await readFile(path);
+      if (sha(bytes) !== fontLock.files['NotoSansCJKsc-Regular.otf'].sha256)
+        throw new SandboxError('OFFICE_FONT_INVALID');
+      return bytes;
+    } catch (error) {
+      if (error && typeof error === 'object' && 'code' in error && error.code === 'ENOENT')
+        continue;
+      throw error;
+    }
+  }
+  throw new SandboxError('OFFICE_FONT_MISSING');
+}
 
 /** Core resolves version IDs to immutable, private staged inputs. No path/argv from the model. */
 export class OfficeWorker {
@@ -84,6 +112,10 @@ export class OfficeWorker {
     // No reuse: a previous PDF or profile must never masquerade as this conversion's result.
     await mkdir(work);
     await prepareOfficeProfile(work);
+    // The fixed worker loads this verified font privately before initializing LOK.
+    await writeFile(join(work, 'tapkit-office-font.otf'), await officeFont(this.root), {
+      flag: 'wx',
+    });
     const runtime = await runtimePaths(this.root, 'libreoffice');
     const command = HelperRequestSchema.parse({
       protocolVersion: 1,

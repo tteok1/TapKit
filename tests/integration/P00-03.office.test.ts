@@ -1,6 +1,14 @@
 import { test, expect } from 'vitest';
 import { createHash, randomUUID } from 'node:crypto';
-import { appendFile, mkdtemp, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import {
+  appendFile,
+  copyFile,
+  mkdtemp,
+  mkdir,
+  readFile,
+  readdir,
+  writeFile,
+} from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { HelperRequestSchema } from '../../packages/contracts/src';
 import {
@@ -76,6 +84,8 @@ test('P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppCon
       if (finished?.data.exitCode !== 0) failedChecks.push('payload exit code');
       if (finished?.data.activeProcesses !== 0) failedChecks.push('active process cleanup');
       if (result.exitCode !== 0) failedChecks.push('helper exit code');
+      if (!String(finished?.data.stdout ?? '').includes('"stage": "font_loaded"'))
+        failedChecks.push('verified private font load');
       if (failedChecks.length) {
         console.error(
           '[P00-03 Office helper diagnostic]',
@@ -93,6 +103,7 @@ test('P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppCon
           }),
         );
       }
+      expect(failedChecks).toEqual([]);
       return result;
     },
   };
@@ -375,6 +386,10 @@ test('P00-03 Office hard kill recovers only its recorded mapped drives on the ne
   const firstWorkspace = join(workspace, 'office-' + firstRunId);
   await mkdir(firstWorkspace);
   await prepareOfficeProfile(firstWorkspace);
+  await copyFile(
+    join(root, 'resources/fonts/NotoSansCJKsc-Regular.otf'),
+    join(firstWorkspace, 'tapkit-office-font.otf'),
+  );
   const runtime = await runtimePaths(root, 'libreoffice');
   const first = HelperRequestSchema.parse({
     protocolVersion: 1,

@@ -1,5 +1,7 @@
 # 范围、决策与默认行为
 
+2026-10-30 [ADR0073](../adr/0073-private-office-fonts-and-ci-scope.md)：Office私有加载并校验已锁定中文字体，能力报告仍绑定当前runner；CI将P07原生验收移至独立job，主检查不重复该组，不减少覆盖或放宽完整指纹校验。验收状态见progress。
+
 2026-10-30 [ADR0072](../adr/0072-reviewed-tool-budget-boundaries.md)：审批后派发区分模型调用额度与执行额度；模型次数用尽不新增请求，已有具体批准工具可在剩余工具/token/时间内执行；终结任务的未派发项取消，未知副作用保持。
 
 2026-10-30 [ADR0071](../adr/0071-versioned-slide-decks.md)：P07-03 固定布局、可编辑PPTX与版本化单页修改；复用schema18、原生隔离与绑定内容的审批。仅受管PPTX允许严格验证的内部图表缓存，普通上传仍拒绝嵌入；验收以progress为准。

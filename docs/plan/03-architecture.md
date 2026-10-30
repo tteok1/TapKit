@@ -1,5 +1,7 @@
 # 技术架构、工程目录与运行环境
 
+P07 Office字体使用[ADR0073](../adr/0073-private-office-fonts-and-ci-scope.md)规定的锁定Noto Sans CJK SC：转换前复制并校验字体到新workspace，在AppContainer的LOK进程中以FR_PRIVATE加载并释放，不依赖用户系统字体或修改注册表。字体锁随标准用户kit/目录包提供，并纳入执行指纹。
+
 P03-02私有Office路径兼容见[ADR0043](../adr/0043-office-owned-aliases-and-deep-private-paths.md)：物理根保持逐组件句柄和ACL验证，Office cwd/URI/临时环境使用原生持有租约的短别名；调用方不能传别名或扩展命名空间。深路径真实回归与独立标准用户为验收前提。
 
 P03-02实现增量（2026-10-10）：见[ADR0042](../adr/0042-fixed-version-preview-and-pdf-annotations.md)。每个Electron窗口使用独立持久Session和资产grant；Renderer只持随机tapkit-artifact URL，Host/Core通过fileId/versionId/owner私有读取并在I/O后复核。资源协议仅响应PDF/静态图片、禁缓存和主动内容，CORS仅允许应用自身来源。Office只读PDF经既有AppContainer/Job/无网络OfficeWorker生成，最多并发2个，版本/renderer版本绑定缓存，最后观察窗口关闭时取消；专属标记暂存树在转换结束/启动/定期回收，未知或reparse树保留。没有新增服务器或原生执行降级。
