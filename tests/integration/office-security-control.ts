@@ -1,7 +1,7 @@
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { createRequire } from 'node:module';
-import { appendFile, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { appendFile, copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { randomUUID } from 'node:crypto';
@@ -55,6 +55,10 @@ export async function officeControl(
   const mappingArgs = ['-NoProfile', '-NonInteractive', '-File', mappingScript];
   const runId = id();
   await prepareOfficeProfile(workspace);
+  await copyFile(
+    join(root, 'resources/fonts/NotoSansCJKsc-Regular.otf'),
+    join(workspace, 'tapkit-office-font.otf'),
+  );
   try {
     const created = await exec(
       'pwsh.exe',
@@ -248,6 +252,9 @@ worker = threading.Thread(target=schedule_control,`,
         'emit("control_dll_directory_release_begin")\ndel dll_directory\nemit("control_dll_directory_released")',
       );
     }
+    // Keep fixed positive-control code in the same private workspace; do not
+    // widen the common argv bound as the verified LOK adapter grows.
+    await writeFile(join(workspace, 'office-positive-control.py'), script, { flag: 'wx' });
     const request = HelperRequestSchema.parse({
       protocolVersion: 1,
       requestId: id(),
@@ -259,7 +266,7 @@ worker = threading.Thread(target=schedule_control,`,
         executable: join(runtime.runtimeRoot, 'program/python.exe'),
         inputRoot,
         workspace,
-        args: ['-c', script, ...aliases, filename],
+        args: [aliases[1] + 'office-positive-control.py', ...aliases, filename],
         timeoutMs: 120_000,
         terminal: false,
       },

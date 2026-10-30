@@ -1,0 +1,47 @@
+{
+  "sourceHead": "0bdbbcab49a5dac2d880e99c53e9de8661bc8763",
+  "workflowSha256": "3764183b68c8b61a3c6b135860c6da6fc4ad425f7856a44fff3c640457a25aa9",
+  "businessSourceFingerprintsMatch": true,
+  "connectionChecksUnchanged": 13,
+  "newModelRequests": 0,
+  "missingReportReproduction": {
+    "actualExit": 1,
+    "expectedFailure": true
+  },
+  "runtimeProbe": {
+    "exit": 0,
+    "scope": "current-user",
+    "tests": {
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "pending": 0
+    },
+    "missingCases": []
+  },
+  "probeGuardUnit": {
+    "exit": 0,
+    "tests": 6
+  },
+  "nativeFailedSet": {
+    "exit": 0,
+    "files": 9,
+    "tests": 17,
+    "durationSeconds": 676.49,
+    "oldEvidenceRestored": true,
+    "oldFiles": 57,
+    "artifacts": 57
+  },
+  "remoteCi": {
+    "run": 67,
+    "id": 41037299776,
+    "status": "cancelled",
+    "integration": {
+      "passed": 473,
+      "failed": 8,
+      "skipped": 1
+    },
+    "note": "Chinese font assertions failed; overall job timed out after desktop and standard-user succeeded. See ci67-failure-summary.log."
+  },
+  "status": "historical_pre_font_snapshot"
+}

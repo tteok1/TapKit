@@ -7,6 +7,9 @@ import {
   FILE_PARSER_VERSION,
   FileParseReasonSchema,
   IngestInputSchema,
+  DocumentSpecSchema,
+  SlideRecordSchema,
+  IdSchema,
   JobPayloadSchema,
   HelperRequestSchema,
   ParsedDocumentSchema,
@@ -78,6 +81,162 @@ export class FileParser {
     this.executor = executor ?? new NativeSandboxExecutor(root);
     this.staging = new FileStaging(files.store);
   }
+  /** Inspect a staged PDF without registering a file or publishing a receipt. */
+  async inspectWorkPdf(
+    directory: string,
+    versionId: string,
+    bytes: Buffer,
+    inspectDocumentImages: boolean,
+    guard: () => void,
+    signal: AbortSignal,
+    lifecycle?: { started(): void; settled(): void },
+  ) {
+    guard();
+    if (this.capabilities.nativeExecution.status !== 'available')
+      throw new StorageError('SANDBOX_UNAVAILABLE');
+    const base = resolve(this.files.store.dataDir, 'tmp/work'),
+      path = resolve(directory),
+      id = relative(base, path);
+    if (
+      !IdSchema.safeParse(id).success ||
+      (await realpath(path)).toLowerCase() !== path.toLowerCase()
+    )
+      throw new StorageError('PERMISSION_DENIED');
+    const markerPath = join(path, '.tapkit-preview.json'),
+      markerStat = await lstat(markerPath);
+    if (!markerStat.isFile() || markerStat.isSymbolicLink() || markerStat.size > 4096)
+      throw new StorageError('PERMISSION_DENIED');
+    const marker = z
+      .strictObject({
+        schemaVersion: z.literal(1),
+        directoryId: IdSchema,
+        profileId: IdSchema,
+        fileVersionId: IdSchema,
+      })
+      .parse(JSON.parse(await readFile(markerPath, 'utf8')));
+    if (
+      marker.directoryId !== id ||
+      marker.profileId !== this.files.store.profileId ||
+      marker.fileVersionId !== versionId
+    )
+      throw new StorageError('PERMISSION_DENIED');
+    if (bytes.length > FILE_LIMITS.maxFileBytes || bytes.subarray(0, 5).toString() !== '%PDF-')
+      throw new StorageError('PARSE_FAILED');
+    const candidate = join(path, 'inspect-' + newId()),
+      inputRoot = join(candidate, 'input'),
+      workspace = join(candidate, 'workspace');
+    await mkdir(candidate);
+    await mkdir(inputRoot);
+    await mkdir(workspace);
+    const input = IngestInputSchema.parse({
+      schemaVersion: 1,
+      fileVersionId: versionId,
+      relativePath: 'candidate.pdf',
+      sha256: createHash('sha256').update(bytes).digest('hex'),
+      parserVersion: FILE_PARSER_VERSION,
+      ...(inspectDocumentImages ? { inspectDocumentImages: true } : {}),
+    });
+    await writeFile(join(inputRoot, 'original'), bytes, { flag: 'wx' });
+    await writeFile(join(inputRoot, 'input.json'), JSON.stringify(input), { flag: 'wx' });
+    const adapter = resolve(this.root, 'packages/retrieval/dist/parse.cjs'),
+      adapterStat = await lstat(adapter);
+    if (
+      !adapterStat.isFile() ||
+      adapterStat.isSymbolicLink() ||
+      (await realpath(adapter)).toLowerCase() !== adapter.toLowerCase()
+    )
+      throw new StorageError('SANDBOX_UNAVAILABLE');
+    await copyFile(adapter, join(inputRoot, 'parse.cjs'));
+    await this.stagePdfAssets(inputRoot);
+    guard();
+    signal.throwIfAborted();
+    const runtime = await runtimePaths(this.root, 'node');
+    let result: Awaited<ReturnType<ParserExecutor['execute']>>;
+    try {
+      lifecycle?.started();
+      result = await this.executor.execute(
+        HelperRequestSchema.parse({
+          protocolVersion: 1,
+          requestId: newId(),
+          runId: newId(),
+          leaseEpoch: 1,
+          operation: 'diagnostic.execute',
+          payload: {
+            ...runtime,
+            inputRoot,
+            workspace,
+            args: [
+              '--preserve-symlinks',
+              '--preserve-symlinks-main',
+              join(inputRoot, 'parse.cjs'),
+              inputRoot,
+              workspace,
+            ],
+            timeoutMs: FILE_LIMITS.parseTimeoutMs,
+            terminal: false,
+            processLimit: 2,
+            outputBytes: 65536,
+          },
+        }),
+        { signal },
+      );
+    } catch {
+      throw new StorageError('SIDE_EFFECT_UNKNOWN');
+    }
+    const started = result.events[0],
+      limits = started?.data.job as Record<string, unknown> | undefined,
+      finished = result.events.at(-1);
+    if (finished?.event !== 'finished' || finished.data.activeProcesses !== 0)
+      throw new StorageError('SIDE_EFFECT_UNKNOWN');
+    lifecycle?.settled();
+    if (
+      started?.event !== 'started' ||
+      started.data.appContainer !== true ||
+      started.data.networkCapabilities !== 0 ||
+      typeof started.data.appContainerSid !== 'string' ||
+      started.data.identitySid !== started.data.appContainerSid ||
+      limits?.killOnClose !== true ||
+      limits.breakaway !== false
+    )
+      throw new StorageError('SANDBOX_UNAVAILABLE');
+    if (result.exitCode !== 0 || finished.data.exitCode !== 0 || finished.data.status !== 'exited')
+      throw new StorageError('PARSE_FAILED');
+    guard();
+    signal.throwIfAborted();
+    const outputPath = join(workspace, 'parsed.json'),
+      outputStat = await lstat(outputPath);
+    if (
+      !outputStat.isFile() ||
+      outputStat.isSymbolicLink() ||
+      outputStat.size > FILE_LIMITS.maxFileBytes ||
+      (await realpath(outputPath)).toLowerCase() !== resolve(outputPath).toLowerCase()
+    )
+      throw new StorageError('PERMISSION_DENIED');
+    const handle = await open(outputPath, 'r');
+    let outputBytes: Buffer;
+    try {
+      const pinned = await handle.stat();
+      if (
+        pinned.ino !== outputStat.ino ||
+        pinned.dev !== outputStat.dev ||
+        pinned.size !== outputStat.size
+      )
+        throw new StorageError('CONFLICT');
+      outputBytes = await handle.readFile();
+      if (outputBytes.length !== pinned.size) throw new StorageError('CONFLICT');
+    } finally {
+      await handle.close();
+    }
+    const output = OutputSchema.parse(JSON.parse(outputBytes.toString('utf8')));
+    if (
+      output.fileVersionId !== versionId ||
+      output.sourceSha256 !== input.sha256 ||
+      !(await readFile(join(inputRoot, 'original'))).equals(bytes)
+    )
+      throw new StorageError('CONFLICT');
+    guard();
+    return output.document;
+  }
   async execute(job: Job, signal: AbortSignal): Promise<string> {
     const payload = JobPayloadSchema.parse(JSON.parse(job.payload_json));
     if (payload.kind !== 'file.parse') throw new StorageError('VALIDATION_ERROR');
@@ -102,12 +261,36 @@ export class FileParser {
         throw new WorkerFailure('SANDBOX_UNAVAILABLE');
       if (payload.parserVersion !== FILE_PARSER_VERSION)
         throw new WorkerFailure('FORMAT_UNSUPPORTED');
+      const specRow = this.files.store.db
+        .prepare(
+          `SELECT spec_json FROM document_specs WHERE profile_id=? AND file_version_id=?
+         UNION ALL
+         SELECT d.spec_json FROM tool_calls c JOIN document_specs d ON d.file_version_id=json_extract(c.args_json,'$.versionId') AND d.profile_id=c.profile_id
+         WHERE c.profile_id=? AND c.tool_name='office.convert' AND c.status='succeeded' AND json_extract(c.result_ref,'$.versionId')=?
+         LIMIT 1`,
+        )
+        .get(this.files.store.profileId, versionId, this.files.store.profileId, versionId) as
+        { spec_json: string } | undefined;
+      const slideRecord =
+        specRow && JSON.parse(specRow.spec_json).kind === 'tapkit.slides'
+          ? SlideRecordSchema.parse(JSON.parse(specRow.spec_json))
+          : undefined;
+      const documentSpec =
+        specRow && !slideRecord
+          ? DocumentSpecSchema.parse(JSON.parse(specRow.spec_json))
+          : undefined;
+      const inspectDocumentImages =
+        documentSpec?.sections.some((section) =>
+          section.blocks.some((block) => block.type === 'image'),
+        ) ?? false;
       const input = IngestInputSchema.parse({
         schemaVersion: 1,
         fileVersionId: versionId,
         relativePath: file.version.name,
         sha256: file.version.sha256,
         parserVersion: payload.parserVersion,
+        ...(inspectDocumentImages ? { inspectDocumentImages: true } : {}),
+        ...(file.version.extension === 'pptx' && slideRecord ? { inspectSlideCharts: true } : {}),
       });
       const bytes = await this.files.blobs.readVersion(versionId);
       signal.throwIfAborted();

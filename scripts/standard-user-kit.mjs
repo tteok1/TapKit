@@ -32,6 +32,7 @@ export async function prepareStandardUserKit(destination) {
     'pnpm-workspace.yaml',
     'runtime-lock.json',
     'embedding-model-lock.json',
+    'export-font-lock.json',
     'native-lock.json',
     'dependency-baseline.json',
     'python-wheels.lock.json',

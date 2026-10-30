@@ -49,13 +49,19 @@ async function main() {
     const api = (await import(
       /* @vite-ignore */ pathToFileURL(join(assetRoot, 'pdf.mjs')).href
     )) as PdfApi;
-    return parsePdfFile(bytes, api, assetRoot);
+    return parsePdfFile(bytes, api, assetRoot, FILE_LIMITS, input.inspectDocumentImages ?? false);
   }
   const doc =
     extension === 'pdf'
       ? await pdf()
       : extension === 'docx' || extension === 'xlsx' || extension === 'pptx'
-        ? await parseOfficeFile(bytes, extension)
+        ? await parseOfficeFile(
+            bytes,
+            extension,
+            FILE_LIMITS,
+            input.inspectDocumentImages ?? false,
+            input.inspectSlideCharts ?? false,
+          )
         : /\.zip$/i.test(input.relativePath)
           ? await parseZipFile(bytes)
           : parseTextFile(bytes, input.relativePath);

@@ -1,0 +1,95 @@
+{
+  "sourceHead": "b7ba0cd11171962e426f19aee42605f63b5291b6",
+  "status": "passed",
+  "runtimeProbe": {
+    "exit": 0,
+    "scope": "current-user",
+    "fingerprint": "ee6b7393c9c290c6acc760852f7a7a8facddfd5362b31057969be3f8faeb5fc7",
+    "tests": {
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "pending": 0
+    },
+    "missingCases": []
+  },
+  "fontGuardUnit": {
+    "exit": 0,
+    "passed": 6
+  },
+  "positiveControls": {
+    "exit": 0,
+    "passed": 2
+  },
+  "build": {
+    "exit": 0,
+    "log": "font-build.log"
+  },
+  "native": {
+    "exit": 0,
+    "files": 9,
+    "passed": 17,
+    "durationSeconds": 626.44,
+    "oldEvidenceRestored": true,
+    "oldFiles": 57,
+    "artifacts": 57
+  },
+  "visual": {
+    "status": "passed",
+    "slidePages": 30,
+    "documentPages": 10
+  },
+  "newModelRequests": 0,
+  "connectionChecksUnchanged": 13,
+  "remoteCi": {
+    "run": 70,
+    "id": 41051794674,
+    "status": "completed",
+    "native": {
+      "job": 124049399567,
+      "status": "success",
+      "probe": {
+        "passed": 22,
+        "failed": 0,
+        "pending": 0
+      },
+      "files": 9,
+      "testsPassed": 17
+    },
+    "conclusion": "success",
+    "url": "https://github.com/tteok1/TapKit/actions/runs/41051794674",
+    "main": {
+      "unit": {
+        "passed": 446
+      },
+      "integration": {
+        "passed": 464,
+        "skipped": 1,
+        "skippedCase": "P07-01.live-render.test.ts: opt-in live test; existing controlled live evidence retained, no new model requests"
+      },
+      "perf": {
+        "passed": 2
+      },
+      "electron": {
+        "passed": 50
+      },
+      "standardUser": {
+        "probe": {
+          "passed": 22,
+          "failed": 0,
+          "pending": 0
+        },
+        "parser": {
+          "passed": 3
+        },
+        "preview": {
+          "passed": 4
+        }
+      },
+      "officeShutdownRepeats": {
+        "passed": 6
+      }
+    },
+    "startupDiagnostics": "success"
+  }
+}

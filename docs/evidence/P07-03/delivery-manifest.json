@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-30T05:50:54.004Z",
+  "branch": "codex/p07-office",
+  "baseHead": "aa6debf25399a328ca993e2c8a03c0d0722a6032",
+  "dirty": true,
+  "productionFixturePresent": false,
+  "sha256": {
+    "packages/contracts/src/slides.ts": "9c2766a8379c6ff920ffcb8852a456b1217f0d1051181a5c59f3be5e9c3615fc",
+    "packages/contracts/src/work.ts": "3a091abffdd2052f0fe857b5e3ce97bd4415acace7b28ca4733929165cff4c8d",
+    "packages/core/src/work-slides.ts": "581e0774c17a258950a4501caaa29ad04ddfc0355a310d99e3a640588f07a046",
+    "packages/core/src/work-gateway.ts": "942875d6d815c215201db31a3252889687f5f3978ea7b6d84c8e5fa65ed392d6",
+    "packages/core/src/work-native.ts": "beae89e995cf577d99f40345de1b12cc9ac25e6a3fe681212bfa87288ef4ad7a",
+    "packages/core/src/work-driver.ts": "8832a1883b39dad960ff7940bb6baad120477ec24618fc0854ef968c27c197dc",
+    "packages/core/src/file-parser.ts": "c60bda6ccf924217f49bda55ccf570d97d52c986101ec756ff56eb3377ae517a",
+    "packages/retrieval/src/ingest/office.ts": "7b91115dd42e5da5255d3ea29d3ade6484b6dd2a7bf6d44b82c9ad293f9956ac",
+    "packages/workflows/src/slides.ts": "954b5d9776d285e7f63126b1ee40d39b5efd02159afebd421f7d928ee018ee0b",
+    "packages/storage/src/slides.ts": "d1078158ebbb8656e46c9efb702baf91564c9a3cd9a7c4d380474e38bac26f75",
+    "apps/desktop/src/renderer/src/slides-results.tsx": "740f98d17a74178b4f42c64bcea3d0427c421fcf55520d99c5cbb0f6e20a6e29",
+    "apps/desktop/src/renderer/src/work-ui.tsx": "e462fecd4c4ab786fc86a3467db36439813ac86c62f4a3b05411830c69b4f5ae",
+    "apps/desktop/src/renderer/src/work.css": "8d4a0447304e0b1faf6791c4105270af99265353f670b0f0f3a21493d6404b25",
+    "tests/e2e/P07-03.slides.spec.ts": "2a826bc22ae57a89992b55c71fe264b5b68bbe2780910f2163e1abfb15790164",
+    "scripts/p07-slides-live.mjs": "d161d1c9ad40630f4320057393df3651e8712c179e96358721541c0ccff9b805",
+    "packages/core/dist/index.cjs": "370ce50616f1cd02bf36e5c2680817cc22f2fc1a1a7d5023add950973811edd3"
+  },
+  "gate": "docs/progress/P07-gate.md",
+  "gateStatus": "failed",
+  "tasks": {
+    "P07-01": "implemented_and_verified",
+    "P07-02": "implemented_not_live_verified",
+    "P07-03": "implemented_not_live_verified"
+  }
+}

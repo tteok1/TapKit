@@ -1,0 +1,235 @@
+{
+  "exitCode": 0,
+  "oldEvidenceRestored": true,
+  "oldFiles": 57,
+  "artifacts": [
+    {
+      "path": "P07-01\\native-layout\\attempt-0.pdf",
+      "sha256": "cb2dd4f2c8eb0f34bd739b46a627c10dc8947f41e578ac70a01a61d01a171263"
+    },
+    {
+      "path": "P07-01\\native-layout\\attempt-1-page-1.png",
+      "sha256": "3a12bedef5aeb29168a78065477620c1bb8d83515219c1a02619b52a350f6a55"
+    },
+    {
+      "path": "P07-01\\native-layout\\attempt-1-page-2.png",
+      "sha256": "d9f5db2042f0f6c9f2b05b78b040981ed731ea2050fc953cacd0fcd36db1a825"
+    },
+    {
+      "path": "P07-01\\native-layout\\attempt-1.pdf",
+      "sha256": "213fbaac028c8621c4be6a0e952d6722976fdac2447d1fd91c7216d9172d5f84"
+    },
+    {
+      "path": "P07-01\\native-layout\\attempt-2-page-1.png",
+      "sha256": "fab71fc3b68b84fbbabaf4e93372af11dde016495572c35925890b240feb9a55"
+    },
+    {
+      "path": "P07-01\\native-layout\\attempt-2-page-2.png",
+      "sha256": "8e88cd6c73104df16eba97dce6310260d7b4f3e42ad411e6534e578ef2612efb"
+    },
+    {
+      "path": "P07-01\\native-layout\\attempt-2.pdf",
+      "sha256": "fb9fe236c9aa9a6481ad5d15d6db3cdfa019d5aaa8099d02319e36ca14295861"
+    },
+    {
+      "path": "P07-01\\native-render\\report-1-page-1.png",
+      "sha256": "85fc6863c662c32939fe9f7c8ae7644a1458fb04666215b7bb9ba96c8f74341d"
+    },
+    {
+      "path": "P07-01\\native-render\\report-1.pdf",
+      "sha256": "d11253daa563dc61f525508f3422e1388102062467b8048bcd8b8387506bb3a0"
+    },
+    {
+      "path": "P07-01\\native-render\\report-2-page-1.png",
+      "sha256": "147bf1a82e846859d1084f87f2a8f7f58b49b4dc41734db4615e97baa9783a31"
+    },
+    {
+      "path": "P07-01\\native-render\\report-2-page-2.png",
+      "sha256": "fa89fd9a66e229fabdce8cf2d9abd41d043f87a7dfd101e13812e8e8a9f9c419"
+    },
+    {
+      "path": "P07-01\\native-render\\report-2-page-3.png",
+      "sha256": "00f3a5ca6d7d5e60c0c8c6927ccc50fd685618cba666741fc19237f607eecd2b"
+    },
+    {
+      "path": "P07-01\\native-render\\report-2.pdf",
+      "sha256": "4024b9f48f28735fda0eda75f88cb223253a3d383aa79f33b31e0c06c180344f"
+    },
+    {
+      "path": "P07-01\\native-render\\report-3-page-1.png",
+      "sha256": "a273cdf5660f0961efcd59a0f651ffb7e5124b34061560423e1eee898360b8d2"
+    },
+    {
+      "path": "P07-01\\native-render\\report-3-page-2.png",
+      "sha256": "3d09435f66215d798579851da59e1ebc7e9cdb6c6b7fb88b0e06b816e6dc5585"
+    },
+    {
+      "path": "P07-01\\native-render\\report-3-page-3.png",
+      "sha256": "adcc6598f79b7b80ff031c6678e43e7aea8c31864bd75f11c6c55f2eb14581bc"
+    },
+    {
+      "path": "P07-01\\native-render\\report-3.pdf",
+      "sha256": "83e4874473c042d6515cdf0fc9940df452f993ae26d4dcbca9a616432e9802b3"
+    },
+    {
+      "path": "P07-01\\native-image\\render-page-1.png",
+      "sha256": "90c610ad3e21cde0293860cf68a79d9e06b19a895aa0b9155d10ad18f8c80d26"
+    },
+    {
+      "path": "P07-01\\native-image\\render.pdf",
+      "sha256": "4d0c6d979b47eeddf188d172961284f61c54e80392b96c2076efafc5a6a9bdbe"
+    },
+    {
+      "path": "P07-02\\native-data\\result.json",
+      "sha256": "79d9a3df38f35796b1927e9fe40159152b7162d5495429afbff0227bdb41c891"
+    },
+    {
+      "path": "P07-02\\native-data\\分析报告.md",
+      "sha256": "a664edc57b98401c981f8c89f2f526eaa7116f1d641c588ddec1de3fd0eae2e6"
+    },
+    {
+      "path": "P07-02\\native-data\\分析看板.html",
+      "sha256": "0eb088878f20f2c0d70bc289e90844fceb8edb9a063fe3fff12ef4ef311b3e24"
+    },
+    {
+      "path": "P07-02\\native-data\\分析表格.xlsx",
+      "sha256": "79a3aa43135668e5b2d4f09ef8378e704589a9bf865b6fc10a7900916af265f7"
+    },
+    {
+      "path": "P07-02\\native-data\\图表1.png",
+      "sha256": "d521cff455ccf2b0798bf81c759acd21b3d8f07781089b2a9b85a9f66723afae"
+    },
+    {
+      "path": "P07-02\\native-data\\图表1.svg",
+      "sha256": "bdb6793ce1e1d2dbc27fe3811b015c9a2d9646de933cb53ed06dfb5a3b6a4b63"
+    },
+    {
+      "path": "P07-02\\native-data\\图表规范.json",
+      "sha256": "23852deaa04d60c1271d34c368a55eb321033746d3103adc112aec77002a7061"
+    },
+    {
+      "path": "P07-02\\native-data\\数据1.csv",
+      "sha256": "d0ad6f6cee5bd8d99b9efdb099effa9d75c6411bd56a3bbdf3c33e0fd5841809"
+    },
+    {
+      "path": "P07-02\\native-data\\数据2.csv",
+      "sha256": "9b6bb26c0d49b45c3936d8a38ed9dfb65219dc789ccb47b3eee36293b6bffd5c"
+    },
+    {
+      "path": "P07-02\\native-limits\\cell_limit.json",
+      "sha256": "d730529420f10d221f7e1a3caa38f9149b996558d886c17b3763483d36503c40"
+    },
+    {
+      "path": "P07-02\\native-limits\\duplicate-join-diagnosis.json",
+      "sha256": "55f00f563b322be6a401f0c3452c38145c53a967a12e159d685ea1023331d4b5"
+    },
+    {
+      "path": "P07-02\\native-limits\\duplicate_join.json",
+      "sha256": "121e0335078ad75a3a6208152236fd7087e9563ce9431b59bb6d1a35f8b10f9f"
+    },
+    {
+      "path": "P07-02\\native-limits\\external_link.json",
+      "sha256": "606ebaa759f6316d48402583d413a4a1d06179c0c82fa6c5e8e997ed87b9a97a"
+    },
+    {
+      "path": "P07-02\\native-limits\\zero_division.json",
+      "sha256": "d3b66a626049ef6bada1fb77c46c365de51f664db21fa933d9f48506e4301876"
+    },
+    {
+      "path": "P07-02\\native-transform\\result.json",
+      "sha256": "cc2416c24c21721d8723a4d553ada3b02ecbc91fd2eb264d2f150af03dc14b5d"
+    },
+    {
+      "path": "P07-02\\native-transform\\分析报告.md",
+      "sha256": "9cf181900d1d7db00ff301e306004a123833ba2ce343a469321e09c65d26acc5"
+    },
+    {
+      "path": "P07-02\\native-transform\\分析看板.html",
+      "sha256": "e20c04955afeacadc9c8513d24dff716c962614656ceb1e2b093dfd41649bc76"
+    },
+    {
+      "path": "P07-02\\native-transform\\分析表格.xlsx",
+      "sha256": "13086c7b1c3ee10cd88a1a4957589b5a995c155f8b586ed0b9a8e8a89531e06c"
+    },
+    {
+      "path": "P07-02\\native-transform\\图表1.png",
+      "sha256": "98cbb1f711b86f18cb66fdc28a7c6d4288ecdd7a4bae14286c806ede69d442f4"
+    },
+    {
+      "path": "P07-02\\native-transform\\图表1.svg",
+      "sha256": "caebdc627c4e2cad250180124929d934cb4fe57255bee65f950c6161d32e7624"
+    },
+    {
+      "path": "P07-02\\native-transform\\图表规范.json",
+      "sha256": "af1cd5e8e26bbb5424d95a6010b400d75b98d4fc2e4369d32be6fad65182c889"
+    },
+    {
+      "path": "P07-02\\native-transform\\数据1.csv",
+      "sha256": "ca132880cdc32e5598c6e099e714101229a49991ffede25f00764e1d77310fc7"
+    },
+    {
+      "path": "P07-02\\native-transform\\数据2.csv",
+      "sha256": "501bc870f9917b07bdd690ee1c42ecaa064e13b95b0e6deb73125f801570a9d6"
+    },
+    {
+      "path": "P07-03\\native\\dark_presentation-16x9\\deck.pdf",
+      "sha256": "25a18d54240fb7d4bd50a27e059f796a84334c782c7387d7faa300e144a31755"
+    },
+    {
+      "path": "P07-03\\native\\dark_presentation-16x9\\deck.pptx",
+      "sha256": "2ea150183d036efd14cc1d7720fcea0442e4dc2cb2471efcb86ace82a13a360a"
+    },
+    {
+      "path": "P07-03\\native\\dark_presentation-16x9\\parsed.json",
+      "sha256": "e0affe80238e46a95c2654da16b4a06b8643326d330c5dc0a785071a5edd2103"
+    },
+    {
+      "path": "P07-03\\native\\dark_presentation-16x9\\quality.json",
+      "sha256": "db4c9dcf7eb4de95485b6e72c9dcd37e914bd6395896c249dce7f6805a3972d8"
+    },
+    {
+      "path": "P07-03\\native\\dark_presentation-16x9\\spec.json",
+      "sha256": "3cf34b291cc7f80c45940d8b5ac39d057e296d9e53ac889d2e4921ada108f40a"
+    },
+    {
+      "path": "P07-03\\native\\light_business-16x9\\deck.pdf",
+      "sha256": "496b4b4b6f874a7224cf626e31a9389b31e32cb20d1c42712fe63d5526653411"
+    },
+    {
+      "path": "P07-03\\native\\light_business-16x9\\deck.pptx",
+      "sha256": "6cdd9e5386ff1a59d77358b9efaad3cd1a46dc7797c57a18f4f3d8c64e50ac81"
+    },
+    {
+      "path": "P07-03\\native\\light_business-16x9\\parsed.json",
+      "sha256": "e0affe80238e46a95c2654da16b4a06b8643326d330c5dc0a785071a5edd2103"
+    },
+    {
+      "path": "P07-03\\native\\light_business-16x9\\quality.json",
+      "sha256": "db4c9dcf7eb4de95485b6e72c9dcd37e914bd6395896c249dce7f6805a3972d8"
+    },
+    {
+      "path": "P07-03\\native\\light_business-16x9\\spec.json",
+      "sha256": "caeda0364ce641c3f2bbb35b0c286c1769a12094895a74bb3042bcbc56c51011"
+    },
+    {
+      "path": "P07-03\\native\\light_business-4x3\\deck.pdf",
+      "sha256": "6bbe5918713f153bb842f01f6b3359c3c6823b3c7c44f4889bd673c0a60158f4"
+    },
+    {
+      "path": "P07-03\\native\\light_business-4x3\\deck.pptx",
+      "sha256": "e66cb73c53c1f13db8c618d4732ba55c3ae2fd0df31877ba2418a4db5caaeedb"
+    },
+    {
+      "path": "P07-03\\native\\light_business-4x3\\parsed.json",
+      "sha256": "64696d0541705cc6e5158b57c9f5598a487177c55a1a117562501512b2396c75"
+    },
+    {
+      "path": "P07-03\\native\\light_business-4x3\\quality.json",
+      "sha256": "db4c9dcf7eb4de95485b6e72c9dcd37e914bd6395896c249dce7f6805a3972d8"
+    },
+    {
+      "path": "P07-03\\native\\light_business-4x3\\spec.json",
+      "sha256": "497e7260ec65a3523c63ed797835c9c84d4f08ea912fc536abff933fdd8f78bc"
+    }
+  ]
+}

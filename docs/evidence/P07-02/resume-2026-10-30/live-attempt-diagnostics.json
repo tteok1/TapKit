@@ -1,0 +1,12 @@
+{
+  "attempts": [
+    {
+      "status": "failed",
+      "error_code": "NETWORK_ERROR",
+      "created_at": 1793331137890,
+      "updated_at": 1793331227910,
+      "reserved_tokens": 24545
+    }
+  ],
+  "note": "No plaintext credential, native state, reasoning or public model text was read."
+}

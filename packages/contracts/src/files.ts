@@ -70,6 +70,8 @@ export const IngestInputSchema = z.strictObject({
   relativePath: FileRelativePathSchema,
   sha256: z.string().regex(/^[a-f0-9]{64}$/),
   parserVersion: z.literal(FILE_PARSER_VERSION),
+  inspectDocumentImages: z.boolean().optional(),
+  inspectSlideCharts: z.boolean().optional(),
 });
 export const FileOwnerSchema = z.discriminatedUnion('type', [
   z.strictObject({ type: z.literal('library') }),
@@ -421,6 +423,11 @@ export const ParsedDocumentSchema = z
         z.strictObject({ path: FileRelativePathSchema, sizeBytes: count, directory: z.boolean() }),
       )
       .max(2000),
+    embeddedPngHashes: z
+      .array(z.string().regex(/^[a-f0-9]{64}$/))
+      .max(8)
+      .optional(),
+    paintedImages: z.number().int().min(0).max(1000).optional(),
     quality: z.strictObject({
       needsOcr: z.boolean(),
       warnings: z.array(z.string().max(80)).max(100),

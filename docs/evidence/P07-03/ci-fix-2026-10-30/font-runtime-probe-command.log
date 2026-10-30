@@ -1,0 +1,50 @@
+RUNTIME_PROBE_STAGE=fingerprint_before
+RUNTIME_PROBE_STAGE=native_tests
+NATIVE_ACCEPTANCE_FAILURES [{"title":"P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an isolated positive control","reason":"ZodError: ["},{"title":"P00-03 T19 OfficeWorker preserves cached external-link data with an isolated refresh control","reason":"ZodError: ["}]
+RUNTIME_PROBE_STAGE=fingerprint_after
+{
+  "schemaVersion": 2,
+  "executionPolicy": "appcontainer-lok-v1",
+  "startedAt": "2026-10-30T11:21:40.924Z",
+  "endedAt": "2026-10-30T11:27:14.325Z",
+  "command": "pnpm test:integration P00-03 --reporter=json --outputFile=D:\\Tapkit-public\\test-results\\P00-03-native-9fb0a41a-251b-44da-adb8-6548f464e380.json",
+  "exitCode": 1,
+  "standardUser": false,
+  "verification": {
+    "scope": "current-user",
+    "identity": {
+      "userSidHash": "89d3515d56b0f7fb4f2e9d5ab5438c2590534473cc30f033f476b0408a4d96d7",
+      "integritySid": "S-1-16-8192",
+      "administratorsGroup": true
+    }
+  },
+  "standardUserAcceptance": "not_verified_in_this_scope",
+  "fingerprint": "cd62daed7c8810c0a4b95f7f48c8456f69e1d2c40207ad16d18ad5aa02ecd522",
+  "capabilities": {
+    "nativeExecution": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    },
+    "officeRender": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    },
+    "terminal": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    }
+  },
+  "tests": {
+    "total": 22,
+    "passed": 20,
+    "failed": 2,
+    "pending": 0
+  },
+  "missingCases": [
+    "P00-03.office.test.ts: P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an isolated positive control",
+    "P00-03.office.test.ts: P00-03 T19 OfficeWorker preserves cached external-link data with an isolated refresh control"
+  ]
+}

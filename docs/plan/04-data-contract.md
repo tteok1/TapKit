@@ -46,7 +46,7 @@ P03-02当前schema10（2026-10-10，[ADR0042](../adr/0042-fixed-version-preview-
 
 [ADR0027](../adr/0027-read-only-ooxml-structure.md)：固定受限Node新增有界只读OOXML结构；DOCX段落/标题/表格、XLSX公式与缓存、PPTX顺序/备注保留定位。复用锁定FXP/yauzl；外部关系不读取、实体/宏/超限拒绝。已建真实P03 native和独立标准用户验收，但本机未运行，等待新CI；PDF/image及Host/UI仍待实现。
 
-[ADR0026](../adr/0026-isolated-file-parser.md)：解析输入固定original字节及Core生成的IngestInputSchema版本/hash/名称，输出仅为有界ParsedDocumentSchema JSON；ParserVersion共享为p03-1，原因限定FileParseReasonSchema。受限解析成功后仍按ADR0025有效租约事务提交结构blob及版本索引；便携/模拟测试不计原生验收。
+[ADR0026](../adr/0026-isolated-file-parser.md)：解析输入固定original字节及Core生成的IngestInputSchema版本/hash/名称，输出仅为有界ParsedDocumentSchema JSON；ParserVersion共享为p03-1，原因限定FileParseReasonSchema。受限解析成功后仍按ADR0025有效租约事务提交结构blob及版本索引；便携/模拟测试不计原生验收。 P07 文档图片校验追加可选 inspectDocumentImages 输入及可选 embeddedPngHashes/paintedImages 输出，仅供受控生成文档验收；旧解析结果不依赖这些字段，图片原件仍不送模型。见 ADR0069。
 
 [ADR0025](../adr/0025-file-versions-and-ingest-jobs.md)：追加0008/schema8，复用files/file_versions/blob/resource_links/jobs，新增folder/parsed_document及文件库FTS；不可变版本/明确替换目标，file.parse按版本及parserVersion去重。Host选择token为公共入口，不接受路径/其他profile。当前契约和迁移已实现，业务handler/UI/解析与原生依赖验收尚未完成。
 
@@ -58,7 +58,13 @@ P03-02当前schema10（2026-10-10，[ADR0042](../adr/0042-fixed-version-preview-
 
 本文件是所有任务共同的数据约定。实现用SQL迁移与显式repository；不要由UI存储另一份业务真相。下列每行都要求实现对应字段；JSON字段必须有contracts中的Zod版本，不接受无界对象。
 
+2026-10-28 P07-01：schema18 增加 document_specs(file_version_id,profile_id,created_at,spec_json)，结构随版本事务提交，删除清理；状态与边界见[ADR0069](../adr/0069-document-spec-and-safe-rendering.md)。
+
+2026-10-30 P07-02：沿用schema18和既有file_versions，不新增分析状态表。AnalysisResult JSON保存DatasetSpec/AnalysisSpec/SpreadsheetSpec/ChartSpec、输入版本/hash、程序hash、概况、警告和导出引用；主JSON、各导出版本与data.analyze工具收据在同一事务提交。tool.validation只保存固定错误枚举对应的提示。读取成果沿用工作任务归属、源授权和工具收据校验，见[ADR0070](../adr/0070-bounded-data-workflow.md)。
+
 ## 1. 通用类型
+
+2026-10-30 P07-03：PPTX的document_specs使用私有kind:tapkit.slides、SlideDeckSpec、固定PDF引用与质量记录，由SlideRepository验证；DOCX/MD仍用DocumentSpec。PPTX/PDF/规范/链接/工具收据原子提交，修订检查currentVersion/revision。runs.slides只返回一页正文及有界目录/hash，旧版本只读。WorkStepView.artifactFormats与artifacts逐项对应，界面按实际文件类型提供操作。IngestInput.inspectSlideCharts仅由受管SlideRecord开启，规则见[ADR0071](../adr/0071-versioned-slide-decks.md)。
 
 P04-01 schema12：[ADR0045](../adr/0045-local-hybrid-retrieval-and-verified-evidence.md)将chunks.document_id绑定parsed_documents（旧托管文本兼容可空），追加policy_revision/previous/next/context/选区和token_count；embeddings按实际config维度写little-endian Float32，整版事务切换。citations保存已核验EvidenceRef及回答标记范围，消息删除清理。原件及来源权限仍复用既有实体。
 

@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project integration "P00-03.office" "--testNamePattern" "embedded macro|cached external-link"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed | 3 skipped (5)
+   Start at  19:29:20
+   Duration  87.97s (tests 98%, import 1%, transform 1%)
+

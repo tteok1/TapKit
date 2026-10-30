@@ -1,0 +1,35 @@
+$ vitest run --config vitest.config.ts --project integration "P07-03.slides-driver"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P07-03.slides-driver.test.ts (2 tests | 1 failed) 982ms
+   × P07-03 selected PPTX tool schema accepts a real editable deck without unrelated document/data tools 484ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P07-03.slides-driver.test.ts > P07-03 selected PPTX tool schema accepts a real editable deck without unrelated document/data tools
+AssertionError: expected undefined to be 8192 // Object.is equality
+
+- Expected:
+8192
+
++ Received:
+undefined
+
+ ❯ tests/integration/P07-03.slides-driver.test.ts:46:38
+     44|       validArguments(args, captured.tools.find((t: any) => t.name === …
+     45|     ).toBe(true);
+     46|     expect(captured.maxOutputTokens).toBe(8192);
+       |                                      ^
+     47|   } finally {
+     48|     await f.close();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  13:27:21
+   Duration  3.67s (transform 58%, tests 28%, import 13%)
+
+[ELIFECYCLE] Command failed with exit code 1.

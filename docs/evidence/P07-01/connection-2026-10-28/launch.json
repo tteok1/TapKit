@@ -1,0 +1,12 @@
+{
+  "directory": "D:\\Tapkit-public\\.test-data\\P07-connection-zhipu-ef83oF",
+  "reportDir": "D:\\Tapkit-public\\docs\\evidence\\P07-01\\connection-2026-10-28",
+  "limits": {
+    "checks": 1,
+    "wireRequests": 2,
+    "outputTokensPerRequest": 128
+  },
+  "createdAt": "2026-10-28T12:42:15.607Z",
+  "scope": "P07-01 connection test only; existing Zhipu Chat/FlashX; no retries/fallback",
+  "debugProfileOpenedReadOnly": true
+}

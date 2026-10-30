@@ -1,0 +1,1 @@
+packages/workflows/src/slides.ts(75,230): error TS2353: Object literal may only specify known properties, and 'width' does not exist in type 'BorderProps | [BorderProps, BorderProps, BorderProps, BorderProps]'.

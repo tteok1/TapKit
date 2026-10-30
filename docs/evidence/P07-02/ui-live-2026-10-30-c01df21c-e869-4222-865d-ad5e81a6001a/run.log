@@ -1,0 +1,7 @@
+{"phase":"connection-start","checks":1,"connection":"running","tasks":[]}
+{"phase":"connection-finished","checks":1,"connection":"passed","tasks":[]}
+{"phase":"data-start","checks":1,"connection":"passed","tasks":[{"kind":"data","status":"running"}]}
+{"phase":"data-finished","checks":1,"connection":"passed","tasks":[{"kind":"data","status":"failed","reason":"STREAM_INTERRUPTED"}]}
+{"phase":"slides-start","checks":1,"connection":"passed","tasks":[{"kind":"data","status":"failed","reason":"STREAM_INTERRUPTED"},{"kind":"slides","status":"running"}]}
+{"phase":"slides-finished","checks":1,"connection":"passed","tasks":[{"kind":"data","status":"failed","reason":"STREAM_INTERRUPTED"},{"kind":"slides","status":"failed","reason":"VALIDATION_ERROR"}]}
+{"phase":"finished","checks":1,"connection":"passed","tasks":[{"kind":"data","status":"failed","reason":"STREAM_INTERRUPTED"},{"kind":"slides","status":"failed","reason":"VALIDATION_ERROR"}]}

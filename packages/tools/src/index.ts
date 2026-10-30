@@ -6,3 +6,4 @@ export * from './read-gateway';
 export * from './zip';
 export * from './web';
 export * from './registry';
+export * from './data-svg';

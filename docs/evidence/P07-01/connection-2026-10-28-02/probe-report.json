@@ -1,0 +1,34 @@
+{
+  "phase": "create",
+  "task": "P07-01",
+  "status": "failed",
+  "limits": {
+    "checks": 1,
+    "wireRequests": 2,
+    "maxOutputTokens": 128
+  },
+  "realProvider": true,
+  "otherModulesCalled": false,
+  "automaticRetries": 0,
+  "fallbacks": 0,
+  "checks": [],
+  "keyReadsInsideHost": 1,
+  "wireRequests": 1,
+  "probe": {
+    "status": "unavailable",
+    "text": false,
+    "tools": false,
+    "errorCode": "NETWORK_ERROR",
+    "diagnosticCode": "response_headers_timeout"
+  },
+  "stages": [
+    {
+      "request": 1,
+      "event": "request_error",
+      "elapsedMs": 90012
+    }
+  ],
+  "isolatedCredentialRemoved": true,
+  "stage": "tapkit-connection-check",
+  "checkedAt": "2026-10-28T13:13:37.569Z"
+}

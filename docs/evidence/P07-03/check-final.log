@@ -1,0 +1,23 @@
+$ node scripts/check.mjs
+packages/core/src/work-slides.ts(86,3): error TS2375: Type '{ type: "area" | "bar" | "line" | "pie"; series: { name: string; labels: string[]; values: number[]; }[]; xLabel: string | undefined; yLabel: string | undefined; }' is not assignable to type 'SlideChart' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  Types of property 'xLabel' are incompatible.
+    Type 'string | undefined' is not assignable to type 'string'.
+      Type 'undefined' is not assignable to type 'string'.
+packages/workflows/src/slides.ts(256,64): error TS2379: Argument of type '{ x: number; y: number; w: number; h: number; showLegend: boolean; showTitle: false; showCatAxisTitle: boolean; catAxisTitle: string | undefined; catAxisTitleColor: string; catAxisTitleFontFace: string; catAxisTitleFontSize: number; ... 19 more ...; showLabel: boolean; }' is not assignable to parameter of type 'IChartOpts' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  Types of property 'catAxisTitle' are incompatible.
+    Type 'string | undefined' is not assignable to type 'string'.
+      Type 'undefined' is not assignable to type 'string'.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/check.mjs:3:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.

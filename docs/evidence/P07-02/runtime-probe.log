@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "executionPolicy": "appcontainer-lok-v1",
+  "startedAt": "2026-10-29T11:40:44.295Z",
+  "endedAt": "2026-10-29T11:47:56.764Z",
+  "command": "pnpm test:integration P00-03 --reporter=json --outputFile=test-results/P00-03-native.json",
+  "exitCode": 0,
+  "standardUser": false,
+  "fingerprint": "336671606910a7a39048abc5478532baa716f549179603d3b9d88c8e8b4b5b1f",
+  "capabilities": {
+    "nativeExecution": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "STANDARD_USER_VERIFICATION_REQUIRED"
+    },
+    "officeRender": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "STANDARD_USER_VERIFICATION_REQUIRED"
+    },
+    "terminal": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "STANDARD_USER_VERIFICATION_REQUIRED"
+    }
+  },
+  "tests": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "pending": 0
+  },
+  "missingCases": []
+}

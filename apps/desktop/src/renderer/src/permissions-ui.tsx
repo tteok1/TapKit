@@ -220,7 +220,9 @@ function ApprovalCard({
             >
               {t.reject}
             </button>
-            <button onClick={() => setEditing(true)}>{t.edit}</button>
+            {a.businessArgs.tool === 'workspace.patch' && (
+              <button onClick={() => setEditing(true)}>{t.edit}</button>
+            )}
           </>
         )}
         <button onClick={() => onNavigate('/work/' + a.runId)}>{t.open}</button>

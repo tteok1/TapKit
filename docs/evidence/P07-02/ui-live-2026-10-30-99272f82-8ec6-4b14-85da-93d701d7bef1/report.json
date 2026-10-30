@@ -1,0 +1,139 @@
+{
+  "round": "99272f82-8ec6-4b14-85da-93d701d7bef1",
+  "parentRound": "c6cbcc3d-cfd2-4eda-821b-3065bb5fab32",
+  "status": "task_failed",
+  "connectionAttempts": [
+    {
+      "globalNumber": 12,
+      "status": "passed",
+      "startedAt": "2026-10-30T08:28:29.194Z",
+      "finishedAt": "2026-10-30T08:28:57.203Z"
+    }
+  ],
+  "tasks": [
+    {
+      "kind": "slides_with_analysis",
+      "runId": "01a18bed-269f-7c5c-bb64-07cfdb564d80",
+      "status": "completed",
+      "reason": null,
+      "checks": {
+        "pages": true,
+        "chart": true,
+        "notes": true
+      }
+    },
+    {
+      "kind": "slides_revision",
+      "runId": "01a18bed-ef29-7d63-915c-250d6ca0dea4",
+      "status": "failed",
+      "reason": "STREAM_INTERRUPTED"
+    }
+  ],
+  "credentialRemoved": true,
+  "priorCharge": 46334,
+  "usage": [
+    {
+      "input_tokens": 4643,
+      "cached_input_tokens": 42,
+      "output_tokens": 638,
+      "reasoning_tokens": 0,
+      "charged_tokens": 5281,
+      "source": "actual"
+    },
+    {
+      "input_tokens": 2801,
+      "cached_input_tokens": 42,
+      "output_tokens": 133,
+      "reasoning_tokens": 0,
+      "charged_tokens": 2934,
+      "source": "actual"
+    },
+    {
+      "input_tokens": 2978,
+      "cached_input_tokens": 42,
+      "output_tokens": 154,
+      "reasoning_tokens": 0,
+      "charged_tokens": 3132,
+      "source": "actual"
+    },
+    {
+      "input_tokens": 8910,
+      "cached_input_tokens": 42,
+      "output_tokens": 235,
+      "reasoning_tokens": 0,
+      "charged_tokens": 9145,
+      "source": "actual"
+    },
+    {
+      "input_tokens": 8931,
+      "cached_input_tokens": 42,
+      "output_tokens": 233,
+      "reasoning_tokens": 0,
+      "charged_tokens": 9164,
+      "source": "actual"
+    },
+    {
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "reasoning_tokens": null,
+      "charged_tokens": 37514,
+      "source": "estimated"
+    }
+  ],
+  "toolCalls": [
+    {
+      "tool_name": "data.analyze",
+      "status": "succeeded",
+      "side_effect": "committed"
+    },
+    {
+      "tool_name": "slides.create",
+      "status": "succeeded",
+      "side_effect": "committed"
+    },
+    {
+      "tool_name": "slides.revise",
+      "status": "cancelled",
+      "side_effect": "not_committed"
+    },
+    {
+      "tool_name": "slides.create",
+      "status": "succeeded",
+      "side_effect": "committed"
+    },
+    {
+      "tool_name": "slides.create",
+      "status": "succeeded",
+      "side_effect": "committed"
+    }
+  ],
+  "providerAttempts": [
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "interrupted",
+      "error_code": "STREAM_INTERRUPTED"
+    }
+  ],
+  "activeRuns": 0,
+  "finishedAt": "2026-10-30T08:29:54.307Z"
+}

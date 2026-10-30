@@ -1,3 +1,61 @@
+## 2026-10-30 P07 squash合入main授权与交接
+
+2026-10-30用户追加授权将P07压成一个提交合入main。原分支codex/p07-office源fe6f6db共6提交，以squash合入，原分支保留；最初暂不合main限制由本次明确授权替代。squash初始索引与源分支完整tree一致，之后仅同步进度/需求/交接记录；运行代码与CI70验收源b7ba0cd保持一致。CI70三job全success，P07 gate保持passed。main推送会触发新CI，结果单独核对，不提前记为通过。证据docs/evidence/P07-03/main-squash-2026-10-30.json，不进入P08、无新增模型请求。
+
+以下为此前历史。
+
+## 2026-10-30 P07 CI修复最终通过
+
+CI70 [run41051794674](https://github.com/tteok1/TapKit/actions/runs/41051794674)在源b7ba0cd11171962e426f19aee42605f63b5291b6上三个job全部success。unit446/446；主集成464通过/1个既有opt-in live跳过，原生17/17，两组运行总482项无遗漏；perf2/2，Electron50/50。独立标准用户隔离22/22、parser3/3、preview4/4，无缺失/失败/跳过；Office关闭6轮及startup诊断success。字体本地probe22/22、原生17/17、40页视觉及旧57文件恢复通过。P07 gate恢复passed；原真实验收范围与连接13/20保持，本次新增模型请求0，不合main、不进入P08。
+
+以下为历史检查点。
+
+## 2026-10-30 P07 CI70验收中
+
+最新CI70（源b7ba0cd，run41051794674）进行中。CI69原生job已success，但主job根级CLI排除未传入Vitest子项目，重复执行P07无报告原生组；现改为项目内显式scope排除，实际文件枚举82＝主73＋原生9、交集空。新字体本地probe22/22、原生17/17、旧57文件恢复及40页视觉通过；gate暂failed，待最新三个job实际通过。证据ci-fix-2026-10-30/font-final-summary.json及verification.md。无新增模型、未合main。
+
+## 2026-10-30 P07 CI67第二次修复
+
+首修0bdbbca已解决缺报告门禁；CI67 probe成功、unit444通过、integration473通过/8项中文文档与PPT校验失败/1跳过。桌面50项全部通过但22分钟，末尾诊断触60分钟上限取消；startup通过。ADR0073补Office进程私有加载锁定字体（本机字体曾掩盖缺口），font unit6/6、原生三格式代表项及生产build/check通过，新helper完整probe进行中。CI改为独立office-native覆盖全部9文件17项，主集成仅排除同组，其他集成/桌面/独立标准用户保留；gate仍failed，待下一轮干净CI。不合main、不扩P08、不追加模型。见docs/evidence/P07-03/ci-fix-2026-10-30/verification.md。
+
+## 2026-10-30 P07 CI66修复进行中
+
+b9673f1已推同名分支。CI66 unit444/444通过；integration17项P07原生检查均因干净runner缺能力报告失败，其余464通过/1跳过。静态、perf、Electron、独立标准用户及Office诊断通过；startup当时仍运行。已定位bootstrap未生成当前runner绑定报告，补runtime-probe --scope=current-user前置并保留独立标准用户验收；gate暂failed，修复复验中，不进入P08或合main。证据docs/evidence/P07-03/ci-fix-2026-10-30/verification.md，下方为旧快照。
+
+## 2026-10-30 P07分支提交与推送授权
+
+用户要求将当前codex/p07-office提交并推送origin同名分支，暂不合main。验收源码与P07通过范围保持，不重跑模型或扩到P08；远程main核对基线aa6debf25399a328ca993e2c8a03c0d0722a6032。交付范围与本地核对见docs/evidence/P07-03/branch-publication.md，实际提交及远程指针以Git回执为准。下方“未提交推送”均为授权前验收历史。
+
+## 2026-10-30 P07应用内连接检查与真实补验
+
+最终：P07-01/02/03均implemented_and_verified；P07-gate=passed，范围为指定智谱Chat/GLM-4.7-FlashX和给定合成事实。累计连接13/20，新授权5次均TapKit内通过才发任务；真实数据/XLSX、图表PPT、具体审批局部修改和6页PDF视觉全部通过。预算修复相关19/19、恢复12/12、生产构建/check通过。新授权actual38665＋estimated60460＝保守99125/120000（估算不是实际消费），连接usage未知。副本删除closed、active0；未进P08、未提交推送。汇总docs/evidence/P07-03/live-ui-final.json，最终交接P07-gate.md；以下保留历史检查点。
+
+最新检查点：P07-02已implemented_and_verified，真实data.analyze及独立XLSX/汇总/源hash通过，actual5281；P07-03真实图表PPT成功，局部修改发现审批预算实现问题并修复，19/19定向回归及构建通过，正在新任务复验及PDF视觉核验。累计连接11/20（最近三次均成功），每次均先在TapKit设置检测通过才发任务；gate暂failed，不进入P08。下方为此前快照。
+
+用户新要求已执行：启动真实TapKit，设置页第1次连接显示通过（历史累计第9次）后才提交真实任务。数据参数不合规导致断流；PPT实际响应completed但name缺.pptx被Core拒绝（actual2896），只读Host审计已定位。正在补工具文件名说明/固定恢复提示并核对构建，受控复验沿用累计20次上限和剩余任务预算。旧报告/closed入口保留；P07-02/03仍implemented_not_live_verified，gate仍failed，不进入P08。证据docs/evidence/P07-02/ui-live-2026-10-30-c01df21c-e869-4222-865d-ad5e81a6001a/。
+
+## 2026-10-30 P07本地办公交付完成，真实阶段验收未通过
+
+P07-03为implemented_not_live_verified，P07-gate=failed：本地unit65/65、便携integration20/20、后补来源/schema/脱敏9/9、原生三份10页3/3及30页视觉复核、全P07桌面5/5、生产构建与check通过。实际200%容器单栏与无遮挡补验通过、未增加请求。PPT唯一真实请求NETWORK_ERROR且固定诊断响应头超时，工具0/成果0，actual未知、estimated18588，凭据副本删除closed。连接8/20；本次数据/PPT三轮estimated60251非actual。不是缺Key，不进入P08，无后台任务或提交推送。见docs/progress/P07-gate.md和P07-03.md。
+
+此前P07-02本地检查点（历史）：implemented_not_live_verified；本地与真实隔离检查已通过，两轮真实数据请求NETWORK_ERROR/STREAM_INTERRUPTED且工具0，actual未知、estimated41663，入口关闭，R13复杂工具根因未定位。当时接续03固定PPTX与版本修改；最新阶段结论以上方为准。证据docs/evidence/P07-02/verification.md；决定ADR0071。
+
+## 2026-10-30 P07 恢复开发
+
+用户要求继续，已核对暂停交接与codex/p07-office工作树，从P07-02恢复。最新原生代表集启动，结果待记录；P07-02保持in_progress，03与gate未开始。按02→03→阶段收口顺序推进，原有改动及失败证据保留。
+
+恢复轮本地检查已通过：check、unit39、相关便携integration13、原生6及新增时区/分类/概况代表补验、桌面1（浅深/960/200%）。连接第7次通过，首轮真实任务NETWORK_ERROR、actual未知、estimated24545；最后一次限额真实任务待回执。见docs/evidence/P07-02/verification.md；任务和gate暂不升级。
+
+## 2026-10-29 P07 暂停交接
+
+用户要求完成当前最小执行部分后暂停。P07-02桌面复验1/1、退出0并恢复生产构建；当前用户安全22/22、unit8/8、相关便携集成13/13、原生数据/异常5/5、多文件清洗轮2/2通过（两轮原生有重叠）。最新增补的最终原生全组合、check/相关回归、完整视觉和真实模型验收尚待完成。P07-02保持in_progress，P07-03/gate仍not_started；无新增真实请求或提交推送，等待用户恢复。交接见docs/evidence/P07-02/pause-2026-10-29.md。
+
+## 2026-10-29 P07 开发前复核及早期检查点
+
+复核后用户授权继续完成 P07。P07-02 数据契约、隔离分析/重算、原子发布和联动界面已接入；helper当前用户22/22、真实数据/重算链1/1通过。原生异常、桌面、最终回归/live仍待完成，保留超时及旧报告修复证据，不提前启动 P07-03。实施交接见 docs/progress/P07-02.md、ADR0070、docs/evidence/P07-02/checkpoint-2026-10-29.md。
+
+开发前复核时：P07-01已验收，P07-02当时仅完成阅读和前置核对，P07-03未开始。该复核轮check退出0、相关unit31/31、integration37/37，未重跑Electron/Office或真实模型；后续实施和最新暂停状态以上方记录为准。证据docs/evidence/P07-01/progress-audit-2026-10-29/verification.md。
+
 ## 2026-10-28 P06 CI通过并合入main
 
 用户授权合入；CI 40665432143 对源提交275cb41的check及startup-diagnostics均success。本地main快进后树与源树一致，此后仅补交接记录，远程最终SHA以Git回执为准。其他渠道暂缓及P06 gate保持；证据 docs/evidence/P06-03/main-merge-2026-10-28/verification.md。
@@ -775,9 +833,9 @@ P03-01的schema8/文件仓库/版本/引用/回收站/GC/解析租约已实现�
 | P06-01 | 持久化工作任务、计划和执行编排     | P05-03         | implemented_and_verified      | docs/progress/P06-01.md              |
 | P06-02 | 写入工具、审批与产物验收网关       | P06-01, P00-03 | implemented_and_verified      | docs/progress/P06-02.md              |
 | P06-03 | 故障恢复、暂停取消与本地任务通知   | P06-02         | implemented_and_verified      | docs/progress/P06-03.md              |
-| P07-01 | 报告与文档成果生成、版本修改       | P06-03         | not_started                   | docs/progress/P07-01.md              |
-| P07-02 | 表格分析、图表与可交互数据成果     | P07-01         | not_started                   | docs/progress/P07-02.md              |
-| P07-03 | 演示文稿生成与办公质量回归         | P07-02         | not_started                   | docs/progress/P07-03.md              |
+| P07-01 | 报告与文档成果生成、版本修改       | P06-03         | implemented_and_verified      | docs/progress/P07-01.md              |
+| P07-02 | 表格分析、图表与可交互数据成果     | P07-01         | implemented_and_verified      | docs/progress/P07-02.md              |
+| P07-03 | 演示文稿生成与办公质量回归         | P07-02         | implemented_and_verified      | docs/progress/P07-03.md              |
 | P08-01 | 匿名浏览器交互与用户接管           | P07-03, P05-01 | not_started                   | docs/progress/P08-01.md              |
 | P08-02 | 深度研究工作流与来源核验           | P08-01         | not_started                   | docs/progress/P08-02.md              |
 | P08-03 | 有界子Agent与独立任务协调          | P08-02         | not_started                   | docs/progress/P08-03.md              |

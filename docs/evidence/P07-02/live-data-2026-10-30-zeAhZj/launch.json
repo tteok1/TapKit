@@ -1,0 +1,19 @@
+{
+  "task": "P07-02",
+  "startedAt": "2026-10-30T03:40:11.088Z",
+  "connectionCheck": "connection-2026-10-30-07",
+  "limits": {
+    "maxCalls": 1,
+    "maxTools": 1,
+    "outputTokens": 2048,
+    "tokens": 95455,
+    "activeMs": 600000,
+    "totalTaskTokens": 120000,
+    "priorConservativeCharge": 24545,
+    "maxTaskAttempts": 2
+  },
+  "profile": "D:\\Tapkit-public\\.test-data\\P07-02-live-profile-6boxpA",
+  "realProvider": true,
+  "retries": 0,
+  "fallbacks": 0
+}

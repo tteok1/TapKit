@@ -1,0 +1,61 @@
+{
+  "status": "passed",
+  "networkRequests": 0,
+  "cases": [
+    {
+      "name": "slides_with_analysis",
+      "pages": 2,
+      "pdfTerms": [
+        "合成销售示例",
+        "地区销售额",
+        "0.70",
+        "1.05",
+        "123.45"
+      ],
+      "editableTexts": true,
+      "notesVerified": true,
+      "renderExit": 0,
+      "screenshots": [
+        "exports-99272f82-8ec6-4b14-85da-93d701d7bef1\\slides_with_analysis-1.png",
+        "exports-99272f82-8ec6-4b14-85da-93d701d7bef1\\slides_with_analysis-2.png"
+      ]
+    },
+    {
+      "name": "slides_plain",
+      "pages": 2,
+      "pdfTerms": [
+        "合成示例",
+        "检查范围",
+        "123.45"
+      ],
+      "editableTexts": true,
+      "notesVerified": true,
+      "renderExit": 0,
+      "screenshots": [
+        "exports-6003f245-ed10-4470-885c-6a47d630da64\\slides_plain-1.png",
+        "exports-6003f245-ed10-4470-885c-6a47d630da64\\slides_plain-2.png"
+      ]
+    },
+    {
+      "name": "slides_revision",
+      "pages": 2,
+      "pdfTerms": [
+        "已修改的合成示例",
+        "检查范围",
+        "123.45"
+      ],
+      "editableTexts": true,
+      "notesVerified": true,
+      "renderExit": 0,
+      "screenshots": [
+        "exports-6003f245-ed10-4470-885c-6a47d630da64\\slides_revision-1.png",
+        "exports-6003f245-ed10-4470-885c-6a47d630da64\\slides_revision-2.png"
+      ]
+    }
+  ],
+  "visualReview": {
+    "pagesViewed": 6,
+    "result": "passed",
+    "details": "All six Poppler-rendered pages inspected: Chinese text and numbers readable, chart labels 0.70/1.05, no visible overlap or clipping; unchanged second page also visually matches."
+  }
+}

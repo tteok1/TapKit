@@ -1,0 +1,27 @@
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P07-02.data-access.test.ts (3 tests | 1 failed) 16093ms
+   × P07-02 unknown native state never publishes or blindly retries a partially written result 15008ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P07-02.data-access.test.ts > P07-02 unknown native state never publishes or blindly retries a partially written result
+Error: Test timed out in 15000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/integration/P07-02.data-access.test.ts:46:1
+     44|   }
+     45| });
+     46| test('P07-02 unknown native state never publishes or blindly retries a…
+       | ^
+     47|   const f = await setup();
+     48|   try {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 12 passed (13)
+   Start at  21:23:40
+   Duration  30.29s (tests 76%, import 12%, transform 11%)
+

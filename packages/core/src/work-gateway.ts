@@ -8,21 +8,51 @@ import {
   NativeWorkIdentitySchema,
   ToolNamesDocumentSchema,
   ActionClassesDocumentSchema,
+  AnalysisResultSchema,
+  DataPageSchema,
+  SlidePageSchema,
   type ResourceRef,
   type Request,
   type WorkToolArgs,
   type Reply,
 } from '@tapkit/contracts';
-import { WorkRepository, StorageError, newId, type WorkRun } from '@tapkit/storage';
 import {
-  canonicalHash,
-  parseWorkTool,
-  WORK_TOOL_SPECS,
-  WORK_TOOL_CATALOG_VERSION,
-} from '@tapkit/tools';
+  WorkRepository,
+  DocumentRepository,
+  SlideRepository,
+  StorageError,
+  newId,
+  type WorkRun,
+} from '@tapkit/storage';
+import { canonicalHash, catalogAllowsTool, parseWorkTool, WORK_TOOL_SPECS } from '@tapkit/tools';
 import { WorkArtifacts } from './work-artifacts';
+import {
+  createWorkDocument,
+  reviseWorkDocument,
+  verifyWorkDocumentSources,
+  resolveWorkDocumentImage,
+  prepareWorkDocument,
+} from './work-document';
+import { formatDocumentSection } from '@tapkit/workflows';
+import type { ChatService } from './chat-service';
+import { setTimeout as delay } from 'node:timers/promises';
 import type { WorkGateway } from './work-service';
 import type { WorkNativeTools } from './work-native';
+import { analysisPage, dataSources } from './work-data';
+import { publishWorkSlides, slidePage, verifyWorkSlideSources } from './work-slides';
+import { reviseSlideDeck, slideHashes } from '@tapkit/workflows';
+function structuredEdit(
+  args: WorkToolArgs,
+): args is Extract<
+  WorkToolArgs,
+  { tool: 'document.revise' | 'document.fields' | 'slides.revise' }
+> {
+  return (
+    args.tool === 'document.revise' ||
+    args.tool === 'document.fields' ||
+    args.tool === 'slides.revise'
+  );
+}
 
 type Call = {
   id: string;
@@ -59,6 +89,7 @@ export class WorkToolGateway implements WorkGateway {
   constructor(
     readonly artifacts: WorkArtifacts,
     readonly native?: WorkNativeTools,
+    readonly chat?: Pick<ChatService, 'store' | 'material' | 'blobs'>,
   ) {
     this.repo = artifacts.repo;
   }
@@ -86,13 +117,24 @@ export class WorkToolGateway implements WorkGateway {
     const state = this.repo.state(run),
       spec = WORK_TOOL_SPECS[args.tool];
     if (!spec) throw new StorageError('PERMISSION_DENIED');
-    if (state.toolCatalogVersion !== WORK_TOOL_CATALOG_VERSION)
+    if (!catalogAllowsTool(state.toolCatalogVersion, args.tool))
       throw new StorageError('FEATURE_NOT_AVAILABLE');
     let target: string,
       before = '',
       identity: unknown;
-    if (args.tool !== 'artifact.write') {
+    if (
+      args.tool !== 'artifact.write' &&
+      args.tool !== 'document.create' &&
+      args.tool !== 'slides.create'
+    ) {
       const session = this.repo.session(run.session_id);
+      if (structuredEdit(args)) {
+        const current = this.artifacts.files.get(args.fileId, {
+          owner: { type: 'session', id: run.session_id },
+        });
+        if (current.currentVersionId !== args.versionId || current.revision !== args.revision)
+          throw new StorageError('CONFLICT');
+      }
       const access = () => {
         if (!session.project_id)
           return this.artifacts.files.get(args.fileId, { versionId: args.versionId });
@@ -116,22 +158,27 @@ export class WorkToolGateway implements WorkGateway {
         )
         .get(args.versionId) as { root_run_id: string } | undefined;
       if (
-        args.tool === 'workspace.patch' &&
-        (file.kind !== 'artifact' ||
-          !source ||
-          source.root_run_id !== run.root_run_id ||
-          file.currentVersionId !== args.versionId)
+        (args.tool === 'workspace.patch' || structuredEdit(args)) &&
+        (file.kind !== 'artifact' || !source || source.root_run_id !== run.root_run_id)
       )
         throw new StorageError('PERMISSION_DENIED');
+      if (args.tool === 'workspace.patch' && file.currentVersionId !== args.versionId)
+        throw new StorageError('PERMISSION_DENIED');
+      if (
+        structuredEdit(args) &&
+        (file.currentVersionId !== args.versionId || file.revision !== args.revision)
+      )
+        throw new StorageError('CONFLICT');
       if (
         args.tool !== 'workspace.patch' &&
+        !structuredEdit(args) &&
         !state.definition.refs.some(
           (r) => r.kind === 'file' && r.fileId === args.fileId && r.versionId === args.versionId,
         ) &&
         source?.root_run_id !== run.root_run_id
       )
         throw new StorageError('PERMISSION_DENIED');
-      if (args.tool === 'workspace.patch')
+      if (args.tool === 'workspace.patch' || structuredEdit(args))
         this.artifacts.files.get(args.fileId, {
           versionId: args.versionId,
           owner: { type: 'session', id: run.session_id },
@@ -146,6 +193,18 @@ export class WorkToolGateway implements WorkGateway {
     } else {
       target = args.name;
       identity = { root: run.root_run_id, name: args.name };
+    }
+    if (args.tool === 'data.analyze') {
+      const sources = dataSources(this.artifacts, run, args.spec);
+      if (sources[0]?.fileId !== args.fileId || sources[0].versionId !== args.versionId)
+        throw new StorageError('VALIDATION_ERROR');
+      if (
+        (args.spec.csvMode === 'preserve_values' &&
+          state.definition.dataOptions?.csvMode !== 'preserve_values') ||
+        (args.spec.includeDetailsInHtml && !state.definition.dataOptions?.includeDetailsInHtml)
+      )
+        throw new StorageError('PERMISSION_DENIED');
+      identity = { primary: identity, sources };
     }
     if ('content' in args) this.artifacts.validate(target, args.content);
     return {
@@ -168,12 +227,12 @@ export class WorkToolGateway implements WorkGateway {
           JSON.parse(this.repo.row(run.id).model_json ?? '{}').selection ??
           state.definition.modelRef ??
           null,
-        catalog: WORK_TOOL_CATALOG_VERSION,
+        catalog: state.toolCatalogVersion,
       }),
     };
   }
   private grant(run: WorkRun, args: WorkToolArgs, callId: string) {
-    if (args.tool !== 'workspace.patch') return null;
+    if (args.tool !== 'workspace.patch' && !structuredEdit(args)) return null;
     const rows = this.store.db
       .prepare(
         "SELECT * FROM grants WHERE profile_id=? AND deleted_at IS NULL AND revoked_at IS NULL AND (expires_at IS NULL OR expires_at>?) AND ((scope_kind='once' AND scope_id=?) OR (scope_kind='session' AND scope_id=?) OR (scope_kind='persistent' AND scope_id=?)) ORDER BY created_at DESC",
@@ -209,16 +268,64 @@ export class WorkToolGateway implements WorkGateway {
   private async preview(run: WorkRun, args: WorkToolArgs) {
     const binding = this.snapshot(run, args);
     let before = '';
+    let after = '';
     if (args.tool === 'workspace.patch') {
       const file = await this.artifacts.files.original(args.fileId, {
         versionId: args.versionId,
         owner: { type: 'session', id: run.session_id },
       });
       before = new TextDecoder('utf-8', { fatal: true }).decode(file.bytes);
+      after = args.content;
       if (Buffer.byteLength(before) > 64000) throw new StorageError('OUTPUT_LIMIT_REACHED');
       this.snapshot(run, args);
+    } else if (args.tool === 'slides.revise') {
+      const old = new SlideRepository(this.artifacts.files).read(args.fileId, args.versionId, {
+        type: 'session',
+        id: run.session_id,
+      });
+      const next = reviseSlideDeck(old.spec, args.actions),
+        oldHashes = slideHashes(old.spec),
+        newHashes = slideHashes(next);
+      const describe = (deck: typeof old.spec, other: Record<string, string>) =>
+        deck.slides
+          .map(
+            (s, i) =>
+              `${i + 1}. ${s.title}` +
+              (other[s.id] === slideHashes({ ...deck, slides: [s] })[s.id]
+                ? ''
+                : `\n布局：${s.layout}\n正文：${s.bullets.join('\n')}\n右栏：${s.rightBullets.join('\n')}\n表格：${s.table ? JSON.stringify(s.table) : '无'}\n图表：${s.chartRef ? JSON.stringify(s.chartRef) : '无'}\n图片：${s.imageVersionId ?? '无'}\n备注：${s.notes}`),
+          )
+          .join('\n\n');
+      before = describe(old.spec, newHashes);
+      after = describe(next, oldHashes);
+      if (Buffer.byteLength(before) > 64000 || Buffer.byteLength(after) > 64000)
+        throw new StorageError('OUTPUT_LIMIT_REACHED');
+      this.snapshot(run, args);
+    } else if (args.tool === 'document.revise') {
+      const spec = new DocumentRepository(this.artifacts.files).read(args.fileId, args.versionId, {
+        type: 'session',
+        id: run.session_id,
+      });
+      const old = spec.sections.find((section) => section.blockId === args.blockId);
+      if (!old || args.replacement.blockId !== args.blockId)
+        throw new StorageError('VALIDATION_ERROR');
+      before = formatDocumentSection(old);
+      after = formatDocumentSection(args.replacement);
+      if (Buffer.byteLength(before) > 64000 || Buffer.byteLength(after) > 64000)
+        throw new StorageError('OUTPUT_LIMIT_REACHED');
+      this.snapshot(run, args);
+    } else if (args.tool === 'document.fields') {
+      const spec = new DocumentRepository(this.artifacts.files).read(args.fileId, args.versionId, {
+        type: 'session',
+        id: run.session_id,
+      });
+      const labels = { name: '姓名', date: '日期', brand: '品牌' } as const;
+      const keys = Object.keys(args.fields) as Array<keyof typeof labels>;
+      before = keys.map((key) => `${labels[key]}：${spec.style.fields[key]}`).join('\n');
+      after = keys.map((key) => `${labels[key]}：${args.fields[key]}`).join('\n');
+      this.snapshot(run, args);
     }
-    return { ...binding, before };
+    return { ...binding, before, after };
   }
   private propose(
     run: WorkRun,
@@ -254,7 +361,7 @@ export class WorkToolGateway implements WorkGateway {
         run.lease_epoch,
       );
     this.repo.event(run, 'tool.proposed', args.tool + '：' + preview.target);
-    if (args.tool === 'workspace.patch' && !this.grant(run, args, id))
+    if ((args.tool === 'workspace.patch' || structuredEdit(args)) && !this.grant(run, args, id))
       this.requireApproval(this.call(id), preview);
     return this.call(id);
   }
@@ -263,7 +370,8 @@ export class WorkToolGateway implements WorkGateway {
       run = this.current(call),
       time = this.store.now(),
       args = parseWorkTool(JSON.parse(call.args_json));
-    if (args.tool !== 'workspace.patch') throw new StorageError('PERMISSION_DENIED');
+    if (args.tool !== 'workspace.patch' && !structuredEdit(args))
+      throw new StorageError('PERMISSION_DENIED');
     this.store.db
       .prepare(
         "INSERT INTO approvals(id,profile_id,created_at,updated_at,tool_call_id,task_version,args_hash,resource_hash,content_version_hash,decision,expires_at,preview_json) VALUES(?,?,?,?,?,?,?,?,?,'pending',?,?)",
@@ -284,7 +392,7 @@ export class WorkToolGateway implements WorkGateway {
           tool: args.tool,
           target: preview.target,
           before: preview.before,
-          after: args.content,
+          after: preview.after,
         }),
       );
     this.store.db.prepare('UPDATE tool_calls SET approval_id=? WHERE id=?').run(id, call.id);
@@ -299,6 +407,16 @@ export class WorkToolGateway implements WorkGateway {
     signal?: AbortSignal,
   ): Promise<ResourceRef | null> {
     const args = parseWorkTool(raw);
+    if (args.tool === 'data.analyze') {
+      const options = this.repo.state(this.repo.row(run.id)).definition.dataOptions;
+      if (
+        (args.spec.csvMode === 'preserve_values' && options?.csvMode !== 'preserve_values') ||
+        (args.spec.includeDetailsInHtml && !options?.includeDetailsInHtml)
+      )
+        throw new StorageError('PERMISSION_DENIED');
+      args.spec.csvMode = options?.csvMode ?? 'safe';
+      args.spec.includeDetailsInHtml = options?.includeDetailsInHtml ?? false;
+    }
     guard();
     const succeeded = this.store.db
       .prepare(
@@ -313,6 +431,7 @@ export class WorkToolGateway implements WorkGateway {
       ) as Call | undefined;
     if (succeeded?.result_ref) {
       const ref = ResourceRefSchema.parse(JSON.parse(succeeded.result_ref));
+      await this.waitForReceipt(run, succeeded, ref, guard, signal);
       if (await this.verify(run, [ref])) return ref;
       throw new StorageError('CONFLICT');
     }
@@ -341,6 +460,7 @@ export class WorkToolGateway implements WorkGateway {
     }
     if (call.status === 'succeeded' && call.result_ref) {
       const ref = ResourceRefSchema.parse(JSON.parse(call.result_ref));
+      await this.waitForReceipt(run, call, ref, guard, signal);
       if (!(await this.verify(run, [ref]))) throw new StorageError('CONFLICT');
       return ref;
     }
@@ -370,7 +490,8 @@ export class WorkToolGateway implements WorkGateway {
       )
         throw new StorageError('APPROVAL_STALE');
       const grant = this.grant(run, args, call.id);
-      if (args.tool === 'workspace.patch' && !grant) throw new StorageError('PERMISSION_DENIED');
+      if ((args.tool === 'workspace.patch' || structuredEdit(args)) && !grant)
+        throw new StorageError('PERMISSION_DENIED');
       if (call.approval_id) {
         const a = this.approval(call.approval_id);
         if (
@@ -398,7 +519,19 @@ export class WorkToolGateway implements WorkGateway {
           )
           .get(run.root_run_id) as { n: number }
       ).n;
-      if (used + (args.tool === 'office.convert' ? 100 * 1024 * 1024 : 64000) > 2 * 1024 ** 3)
+      if (
+        used +
+          (args.tool === 'data.analyze' ||
+          args.tool === 'office.convert' ||
+          args.tool === 'document.create' ||
+          args.tool === 'document.revise' ||
+          args.tool === 'document.fields' ||
+          args.tool === 'slides.create' ||
+          args.tool === 'slides.revise'
+            ? 100 * 1024 * 1024
+            : 64000) >
+        2 * 1024 ** 3
+      )
         throw new StorageError('BUDGET_EXCEEDED');
       this.store.db.prepare('UPDATE runs SET tools=tools+1 WHERE id=?').run(run.id);
       this.store.db
@@ -416,7 +549,10 @@ export class WorkToolGateway implements WorkGateway {
     })();
     const live = () => {
       guard();
-      if (args.tool === 'workspace.patch' && !this.grant(run, args, call.id))
+      if (
+        (args.tool === 'workspace.patch' || structuredEdit(args)) &&
+        !this.grant(run, args, call.id)
+      )
         throw new StorageError('PERMISSION_DENIED');
       const binding = this.snapshot(run, args);
       if (
@@ -429,7 +565,7 @@ export class WorkToolGateway implements WorkGateway {
     const committed = (result: ResourceRef) => {
       if (!this.store.db.inTransaction) throw new StorageError('INTERNAL_ERROR');
       const dispatched = this.call(call.id);
-      if (args.tool === 'workspace.patch' && dispatched.grant_id) {
+      if ((args.tool === 'workspace.patch' || structuredEdit(args)) && dispatched.grant_id) {
         const revision = this.artifacts.files.get(args.fileId).revision;
         this.store.db
           .prepare(
@@ -462,8 +598,78 @@ export class WorkToolGateway implements WorkGateway {
       if (args.tool === 'workspace.patch') result = await this.patch(run, args, live, committed);
       else if (args.tool === 'artifact.write')
         result = await this.artifacts.execute(run, call.step_key, args, live, committed);
-      else {
+      else if (args.tool === 'slides.create' || args.tool === 'slides.revise') {
+        if (!this.chat || !this.native) throw new StorageError('SANDBOX_UNAVAILABLE');
+        result = await publishWorkSlides(
+          this.artifacts,
+          this.chat,
+          this.native,
+          run,
+          args,
+          live,
+          committed,
+          signal ?? new AbortController().signal,
+          (raw) => {
+            const value = NativeWorkIdentitySchema.parse(raw);
+            this.store.db.transaction(() => {
+              this.store.db
+                .prepare('UPDATE tool_call_attempts SET external_handle=? WHERE tool_call_id=?')
+                .run(JSON.stringify(value), call.id);
+            })();
+          },
+        );
+        await this.waitForDocument(run, result, guard, signal);
+        if (result.kind === 'file') {
+          const deck = new SlideRepository(this.artifacts.files).read(
+            result.fileId,
+            result.versionId,
+            { type: 'task', id: run.task_id },
+          );
+          await this.waitForDocument(run, deck.preview, guard, signal);
+        }
+      } else if (args.tool === 'document.create') {
+        if (!this.chat) throw new StorageError('FEATURE_NOT_AVAILABLE');
+        result = await createWorkDocument(
+          this.chat,
+          this.artifacts.files,
+          this.artifacts.blobs,
+          run,
+          args.name,
+          args.spec,
+          live,
+          committed,
+        );
+        await this.waitForDocument(run, result, live, signal);
+      } else if (args.tool === 'document.revise' || args.tool === 'document.fields') {
+        if (!this.chat) throw new StorageError('FEATURE_NOT_AVAILABLE');
+        result = await reviseWorkDocument(
+          this.chat,
+          this.artifacts.files,
+          this.artifacts.blobs,
+          run,
+          {
+            fileId: args.fileId,
+            baseVersion: args.versionId,
+            revision: args.revision,
+            ...(args.tool === 'document.revise'
+              ? { blockId: args.blockId, replacement: args.replacement }
+              : {
+                  fields: Object.fromEntries(
+                    Object.entries(args.fields).filter(([, value]) => value !== undefined),
+                  ),
+                }),
+          },
+          live,
+          committed,
+        );
+        await this.waitForDocument(run, result, guard, signal);
+      } else {
         if (!this.native) throw new StorageError('SANDBOX_UNAVAILABLE');
+        const spec =
+          args.tool === 'office.convert' && this.chat
+            ? this.artifacts.documentSourceSpec(run, args.fileId, args.versionId)
+            : undefined;
+        const chat = this.chat;
         result = await this.native.execute(
           run,
           args,
@@ -479,7 +685,7 @@ export class WorkToolGateway implements WorkGateway {
               this.store.db
                 .prepare(
                   `INSERT INTO process_handles(id,profile_id,run_id,tool_call_id,helper_instance_id,pid,job_id,started_at,state,lease_epoch,identity_json) VALUES(?,?,?,?,?,?,?,?,?,?,?)
-            ON CONFLICT(id) DO UPDATE SET pid=coalesce(excluded.pid,process_handles.pid),state=excluded.state,identity_json=excluded.identity_json`,
+            ON CONFLICT(id) DO UPDATE SET helper_instance_id=excluded.helper_instance_id,pid=excluded.pid,job_id=excluded.job_id,state=excluded.state,identity_json=excluded.identity_json`,
                 )
                 .run(
                   call.id,
@@ -496,12 +702,20 @@ export class WorkToolGateway implements WorkGateway {
                 );
             })();
           },
+          spec && chat
+            ? {
+                spec,
+                candidate: async (attempt) =>
+                  (await prepareWorkDocument(chat, run, spec, live, false, attempt)).docx,
+              }
+            : undefined,
         );
+        await this.waitForReceipt(run, call, result, live, signal);
       }
       return result;
     } catch (error) {
       this.store.db.transaction(() => {
-        this.store.db
+        const failed = this.store.db
           .prepare(
             "UPDATE tool_calls SET status=?,side_effect=?,updated_at=? WHERE id=? AND status IN ('dispatched','unknown')",
           )
@@ -515,6 +729,7 @@ export class WorkToolGateway implements WorkGateway {
             this.store.now(),
             call.id,
           );
+        if (!failed.changes) return;
         this.store.db
           .prepare('UPDATE tool_call_attempts SET ended_at=?,error_json=? WHERE tool_call_id=?')
           .run(
@@ -530,6 +745,66 @@ export class WorkToolGateway implements WorkGateway {
           this.repo.status(run, 'running');
       })();
       throw error;
+    }
+  }
+  private async waitForDocument(
+    run: WorkRun,
+    ref: ResourceRef,
+    guard: () => void,
+    signal?: AbortSignal,
+  ) {
+    if (ref.kind !== 'file') throw new StorageError('PARSE_FAILED');
+    const deadline = Date.now() + 120000;
+    while (Date.now() < deadline) {
+      guard();
+      if (signal?.aborted) throw new StorageError('CANCELLED');
+      const file = this.artifacts.files.get(ref.fileId, {
+        versionId: ref.versionId,
+        owner: { type: 'task', id: run.task_id },
+      });
+      if (file.version.parseStatus === 'ready') {
+        if (!(await this.verify(run, [ref]))) throw new StorageError('PARSE_FAILED');
+        guard();
+        return;
+      }
+      if (['failed', 'cancelled', 'unsupported'].includes(file.version.parseStatus))
+        throw new StorageError('PARSE_FAILED');
+      try {
+        await delay(250, undefined, { signal });
+      } catch {
+        throw new StorageError('CANCELLED');
+      }
+    }
+    throw new StorageError('INDEX_NOT_READY');
+  }
+  private async waitForReceipt(
+    run: WorkRun,
+    call: Call,
+    ref: ResourceRef,
+    guard: () => void,
+    signal?: AbortSignal,
+  ) {
+    if (
+      call.tool_name === 'document.create' ||
+      call.tool_name === 'document.revise' ||
+      call.tool_name === 'document.fields' ||
+      call.tool_name === 'slides.create' ||
+      call.tool_name === 'slides.revise' ||
+      (call.tool_name === 'office.convert' &&
+        ref.kind === 'file' &&
+        this.artifacts.documentSourceForPdf(run, ref.versionId))
+    ) {
+      await this.waitForDocument(run, ref, guard, signal);
+      if (
+        (call.tool_name === 'slides.create' || call.tool_name === 'slides.revise') &&
+        ref.kind === 'file'
+      ) {
+        const record = new SlideRepository(this.artifacts.files).read(ref.fileId, ref.versionId, {
+          type: 'task',
+          id: run.task_id,
+        });
+        await this.waitForDocument(run, record.preview, guard, signal);
+      }
     }
   }
   private async patch(
@@ -578,6 +853,7 @@ export class WorkToolGateway implements WorkGateway {
     for (const call of calls) {
       if (call.status === 'succeeded' && call.result_ref) {
         const ref = ResourceRefSchema.parse(JSON.parse(call.result_ref));
+        await this.waitForReceipt(run, call, ref, guard, options.signal);
         if (!(await this.verify(run, [ref]))) throw new StorageError('CONFLICT');
         refs.push(ref);
         continue;
@@ -597,8 +873,83 @@ export class WorkToolGateway implements WorkGateway {
     }
     return refs;
   }
-  verify(run: WorkRun, refs: ResourceRef[]) {
-    return this.artifacts.verify(run, refs);
+  async verify(run: WorkRun, refs: ResourceRef[]) {
+    try {
+      const resolveImage = this.chat
+        ? (versionId: string) => resolveWorkDocumentImage(this.chat!, run, versionId, () => {})
+        : undefined;
+      if (!(await this.artifacts.verify(run, refs, resolveImage))) return false;
+      for (const ref of refs) {
+        if (ref.kind !== 'file') return false;
+        const owner = { type: 'task' as const, id: run.task_id };
+        const file = this.artifacts.files.get(ref.fileId, { versionId: ref.versionId, owner });
+        if (file.version.extension === 'pptx') {
+          const record = new SlideRepository(this.artifacts.files).read(
+            ref.fileId,
+            ref.versionId,
+            owner,
+          );
+          if (
+            !this.chat ||
+            !(await verifyWorkSlideSources(this.artifacts, this.chat, run, record.spec))
+          )
+            return false;
+        }
+        if (file.version.extension === 'json') {
+          const { bytes } = await this.artifacts.files.original(ref.fileId, {
+            versionId: ref.versionId,
+            owner,
+          });
+          const value = JSON.parse(bytes.toString('utf8'));
+          if (value?.kind === 'tapkit.analysis')
+            dataSources(this.artifacts, run, AnalysisResultSchema.parse(value).spec);
+        }
+        const hasDocumentSpec = !!this.store.db
+          .prepare('SELECT 1 FROM document_specs WHERE file_version_id=? AND profile_id=?')
+          .get(ref.versionId, this.store.profileId);
+        const spec =
+          file.version.extension === 'docx' || (file.version.extension === 'md' && hasDocumentSpec)
+            ? new DocumentRepository(this.artifacts.files).read(ref.fileId, ref.versionId, owner)
+            : file.version.extension === 'pdf'
+              ? this.artifacts.documentSourceForPdf(run, ref.versionId)
+              : undefined;
+        if (!spec) continue;
+        if (
+          (spec.citations.length ||
+            spec.sections.some((section) =>
+              section.blocks.some((block) => block.type === 'image'),
+            )) &&
+          (!this.chat || !(await verifyWorkDocumentSources(this.chat, run, spec)))
+        )
+          return false;
+      }
+      return true;
+    } catch {
+      return false;
+    }
+  }
+  async formats(run: WorkRun, refs: ResourceRef[]) {
+    const formats: string[] = [];
+    for (const ref of refs) {
+      if (ref.kind !== 'file') continue;
+      const owner = { type: 'task' as const, id: run.task_id };
+      const file = this.artifacts.files.get(ref.fileId, { versionId: ref.versionId, owner });
+      formats.push(file.version.extension);
+      if (file.version.extension !== 'json') continue;
+      const { bytes } = await this.artifacts.files.original(ref.fileId, {
+        versionId: ref.versionId,
+        owner,
+      });
+      const value = JSON.parse(bytes.toString('utf8'));
+      if (value?.kind !== 'tapkit.analysis') continue;
+      const result = AnalysisResultSchema.parse(value);
+      for (const output of result.exports)
+        formats.push(
+          this.artifacts.files.get(output.fileId, { versionId: output.versionId, owner }).version
+            .extension,
+        );
+    }
+    return formats;
   }
   async recover(run: WorkRun) {
     const dispatched = this.store.db
@@ -625,7 +976,13 @@ export class WorkToolGateway implements WorkGateway {
         )
           throw new StorageError('APPROVAL_STALE');
       };
-      if (args.tool === 'artifact.write' || args.tool === 'workspace.patch') {
+      if (
+        args.tool === 'artifact.write' ||
+        args.tool === 'workspace.patch' ||
+        args.tool === 'document.create' ||
+        args.tool === 'document.revise' ||
+        args.tool === 'document.fields'
+      ) {
         // Registration and receipt share a SQLite transaction; dispatched means no managed file was committed.
         try {
           guard();
@@ -635,7 +992,7 @@ export class WorkToolGateway implements WorkGateway {
         } catch {
           /* Remain unknown below when the bound resource changed. */
         }
-      } else if (this.native) {
+      } else if (this.native && args.tool !== 'slides.create' && args.tool !== 'slides.revise') {
         const handle = this.store.db
           .prepare(
             'SELECT external_handle FROM tool_call_attempts WHERE tool_call_id=? ORDER BY attempt_no DESC LIMIT 1',
@@ -680,6 +1037,47 @@ export class WorkToolGateway implements WorkGateway {
     const ok = (data: unknown) =>
       ReplySchema.parse({ ok: true, requestId: request.requestId, data });
     const command = request.command;
+    if (command === 'runs.slides') {
+      const p = WorkCommandSchemas['runs.slides'].parse(request.payload),
+        run = this.repo.row(p.runId);
+      const receipt = this.store.db
+        .prepare(
+          "SELECT 1 FROM tool_calls c JOIN runs r ON r.id=c.run_id WHERE r.root_run_id=? AND c.profile_id=? AND c.tool_name IN ('slides.create','slides.revise') AND c.status='succeeded' AND json_extract(c.result_ref,'$.fileId')=? AND json_extract(c.result_ref,'$.versionId')=?",
+        )
+        .get(run.root_run_id, this.store.profileId, p.fileId, p.versionId);
+      if (!receipt) throw new StorageError('PERMISSION_DENIED');
+      const record = new SlideRepository(this.artifacts.files).read(p.fileId, p.versionId, {
+        type: 'task',
+        id: run.task_id,
+      });
+      if (
+        !this.chat ||
+        !(await verifyWorkSlideSources(this.artifacts, this.chat, run, record.spec))
+      )
+        throw new StorageError('PERMISSION_DENIED');
+      return ok({
+        slidePage: SlidePageSchema.parse(
+          slidePage(this.artifacts, run, p.fileId, p.versionId, p.slideId),
+        ),
+      });
+    }
+    if (command === 'runs.data') {
+      const p = WorkCommandSchemas['runs.data'].parse(request.payload),
+        run = this.repo.row(p.runId);
+      const receipt = this.store.db
+        .prepare(
+          "SELECT 1 FROM tool_calls c JOIN runs r ON r.id=c.run_id WHERE r.root_run_id=? AND c.profile_id=? AND c.tool_name='data.analyze' AND c.status='succeeded' AND json_extract(c.result_ref,'$.fileId')=? AND json_extract(c.result_ref,'$.versionId')=?",
+        )
+        .get(run.root_run_id, this.store.profileId, p.fileId, p.versionId);
+      if (!receipt) throw new StorageError('PERMISSION_DENIED');
+      const { bytes } = await this.artifacts.files.original(p.fileId, {
+        versionId: p.versionId,
+        owner: { type: 'task', id: run.task_id },
+      });
+      const result = AnalysisResultSchema.parse(JSON.parse(bytes.toString('utf8')));
+      dataSources(this.artifacts, run, result.spec);
+      return ok({ dataPage: DataPageSchema.parse(analysisPage(result, p)) });
+    }
     if (command === 'approvals.refresh') {
       const p = WorkCommandSchemas['approvals.refresh'].parse(request.payload),
         original = this.approval(p.approvalId),
@@ -818,7 +1216,8 @@ export class WorkToolGateway implements WorkGateway {
           .prepare('UPDATE approvals SET decision=?,decided_at=?,updated_at=? WHERE id=?')
           .run(p.decision, this.store.now(), this.store.now(), a.id);
         if (p.decision === 'approved') {
-          if (args.tool !== 'workspace.patch') throw new StorageError('PERMISSION_DENIED');
+          if (args.tool !== 'workspace.patch' && !structuredEdit(args))
+            throw new StorageError('PERMISSION_DENIED');
           const grantId = newId();
           this.store.db
             .prepare(
@@ -906,7 +1305,11 @@ export class WorkToolGateway implements WorkGateway {
             "UPDATE tool_calls SET status='cancelled',side_effect='not_committed' WHERE id=?",
           )
           .run(call.id);
-        this.propose(run, call.step_key, args, { ...binding, before: oldPreview.before });
+        this.propose(run, call.step_key, args, {
+          ...binding,
+          before: oldPreview.before,
+          after: args.content,
+        });
         return ok({ work: this.repo.view(run.id) });
       });
     throw new StorageError('FEATURE_NOT_AVAILABLE');

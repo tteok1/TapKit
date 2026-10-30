@@ -1,0 +1,62 @@
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P07-02.native-limits.test.ts (4 tests | 4 failed) 170291ms
+   × P07-02 native T07/T19 duplicate_join refuses publication and preserves the original 42739ms
+   × P07-02 native T07/T19 zero_division refuses publication and preserves the original 41412ms
+   × P07-02 native T07/T19 cell_limit refuses publication and preserves the original 44590ms
+   × P07-02 native T07/T19 external_link refuses publication and preserves the original 41548ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 duplicate_join refuses publication and preserves the original
+ FAIL  |integration| tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 zero_division refuses publication and preserves the original
+AssertionError: expected undefined to be defined
+ ❯ tests/integration/P07-02.native-limits.test.ts:30:116
+     31|         source = f.files.importBlob({
+     32|           blobId: blob.id,
+     33|           name: '数据.' + extension,
+       |      ^
+     34|           relativePath: '数据.' + extension,
+     35|           owner: { type: 'session', id: f.sessionId },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  |integration| tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 cell_limit refuses publication and preserves the original
+AssertionError: expected [Function] to throw error including 'OUTPUT_LIMIT_REACHED' but got 'PARSE_FAILED'
+
+Expected: "OUTPUT_LIMIT_REACHED"
+Received: "PARSE_FAILED"
+
+ ❯ tests/integration/P07-02.native-limits.test.ts:27:153
+     28|               })
+     29|             : Buffer.from(salesCsv);
+     30|       const blob = await f.blobs.put(bytes),
+       |                         ^
+     31|         source = f.files.importBlob({
+     32|           blobId: blob.id,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  |integration| tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 external_link refuses publication and preserves the original
+AssertionError: expected [Function] to throw error including 'FORMAT_UNSUPPORTED' but got 'PARSE_FAILED'
+
+Expected: "FORMAT_UNSUPPORTED"
+Received: "PARSE_FAILED"
+
+ ❯ tests/integration/P07-02.native-limits.test.ts:27:153
+     28|               })
+     29|             : Buffer.from(salesCsv);
+     30|       const blob = await f.blobs.put(bytes),
+       |                         ^
+     31|         source = f.files.importBlob({
+     32|           blobId: blob.id,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  20:37:57
+   Duration  172.68s (tests 99%, transform 1%)
+

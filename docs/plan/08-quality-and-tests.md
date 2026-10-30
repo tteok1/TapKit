@@ -1,5 +1,7 @@
 # 测试、评测和发布验收
 
+P07原生CI按[ADR0073](../adr/0073-private-office-fonts-and-ci-scope.md)分离作用域：主check集成排除的P07 native 9文件17项，必须在独立office-native job中全部执行；该job先实际probe当前runner，再运行同一完整文件集并上传成果。保留主job的其他集成、50项桌面及独立标准用户检查；禁止将拆分记为删除覆盖或跨runner复用能力报告。
+
 2026-10-19 [ADR0055](../adr/0055-current-account-native-verification.md)：按用户要求当前管理员账户功能先验、独立标准用户暂缓。current-user显式探测仍跑原native完整隔离用例和所需解析用例，记录范围/真实standardUser及账户权限绑定；不可替代T21或独立标准用户完整验收，不因范围通过提升完整阶段门禁。
 
 ## 1. 统一命令

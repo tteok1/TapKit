@@ -1,0 +1,23 @@
+{
+  "networkRequests": 0,
+  "credentialReads": 0,
+  "calls": [
+    {
+      "tool": "slides.create",
+      "valid": false,
+      "argumentKeys": [
+        "name",
+        "spec"
+      ],
+      "nameEndsPptx": false,
+      "issues": [
+        {
+          "code": "invalid_format",
+          "path": [
+            "name"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,9 +1,10 @@
 import { createHash } from 'node:crypto';
-import { lstat, mkdir, readFile, realpath } from 'node:fs/promises';
+import { lstat, mkdir, readFile, realpath, writeFile } from 'node:fs/promises';
 import { extname, isAbsolute, join, relative, resolve } from 'node:path';
 import { HelperRequestSchema, OfficeRenderSchema, type HelperRequest } from '@tapkit/contracts';
 import { prepareOfficeProfile, runtimePaths, SandboxError } from './index';
 import { NativeSandboxExecutor } from './native-executor';
+import fontLock from '../../../../export-font-lock.json';
 
 export type OfficeExecutor = {
   execute(
@@ -29,6 +30,33 @@ export type OfficeInput = {
 };
 const sha = (bytes: Buffer) => createHash('sha256').update(bytes).digest('hex');
 
+async function officeFont(root: string) {
+  for (const path of [
+    join(root, 'packages/core/dist/fonts/NotoSansCJKsc-Regular.otf'),
+    join(root, 'resources/fonts/NotoSansCJKsc-Regular.otf'),
+  ]) {
+    try {
+      const info = await lstat(path);
+      if (
+        !info.isFile() ||
+        info.isSymbolicLink() ||
+        info.size > 20 * 1024 * 1024 ||
+        (await realpath(path)).toLowerCase() !== resolve(path).toLowerCase()
+      )
+        throw new SandboxError('OFFICE_FONT_INVALID');
+      const bytes = await readFile(path);
+      if (sha(bytes) !== fontLock.files['NotoSansCJKsc-Regular.otf'].sha256)
+        throw new SandboxError('OFFICE_FONT_INVALID');
+      return bytes;
+    } catch (error) {
+      if (error && typeof error === 'object' && 'code' in error && error.code === 'ENOENT')
+        continue;
+      throw error;
+    }
+  }
+  throw new SandboxError('OFFICE_FONT_MISSING');
+}
+
 /** Core resolves version IDs to immutable, private staged inputs. No path/argv from the model. */
 export class OfficeWorker {
   private readonly executor: OfficeExecutor;
@@ -42,6 +70,8 @@ export class OfficeWorker {
 
   async render(raw: unknown, input: OfficeInput, options: { signal?: AbortSignal } = {}) {
     const request = OfficeRenderSchema.parse(raw);
+    if (request.format === 'xlsx' && !input.filename.toLowerCase().endsWith('.xlsx'))
+      throw new SandboxError('OFFICE_INPUT_INVALID');
     if (
       request.fileVersionId !== input.fileVersionId ||
       !/^[0-9a-f]{64}$/.test(input.sha256) ||
@@ -82,6 +112,10 @@ export class OfficeWorker {
     // No reuse: a previous PDF or profile must never masquerade as this conversion's result.
     await mkdir(work);
     await prepareOfficeProfile(work);
+    // The fixed worker loads this verified font privately before initializing LOK.
+    await writeFile(join(work, 'tapkit-office-font.otf'), await officeFont(this.root), {
+      flag: 'wx',
+    });
     const runtime = await runtimePaths(this.root, 'libreoffice');
     const command = HelperRequestSchema.parse({
       protocolVersion: 1,
@@ -97,7 +131,10 @@ export class OfficeWorker {
         args: [],
         timeoutMs: 120_000,
         terminal: false,
-        office: { filename: input.filename },
+        office: {
+          filename: input.filename,
+          ...(request.format === 'xlsx' ? { format: 'xlsx' } : {}),
+        },
       },
     });
     const result = await this.executor.execute(command, options);
@@ -118,16 +155,24 @@ export class OfficeWorker {
       throw new SandboxError('OFFICE_EXECUTION_FAILED');
     if (sha(await readFile(source)) !== input.sha256)
       throw new SandboxError('OFFICE_SOURCE_MODIFIED');
-    const pdfPath = join(work, input.filename.slice(0, -extname(input.filename).length) + '.pdf');
+    const pdfPath = join(
+      work,
+      input.filename.slice(0, -extname(input.filename).length) + '.' + request.format,
+    );
     const pdfInfo = await lstat(pdfPath);
     if (!pdfInfo.isFile() || pdfInfo.isSymbolicLink() || pdfInfo.size > 100 * 1024 * 1024)
       throw new SandboxError('OFFICE_OUTPUT_INVALID');
     const pdf = await readFile(pdfPath);
-    if (pdf.length < 8 || pdf.subarray(0, 5).toString() !== '%PDF-')
+    if (
+      pdf.length < 8 ||
+      (request.format === 'pdf'
+        ? pdf.subarray(0, 5).toString() !== '%PDF-'
+        : pdf.subarray(0, 2).toString() !== 'PK')
+    )
       throw new SandboxError('OFFICE_OUTPUT_INVALID');
     return {
       fileVersionId: input.fileVersionId,
-      format: 'pdf' as const,
+      format: request.format,
       path: pdfPath,
       sha256: sha(pdf),
     };

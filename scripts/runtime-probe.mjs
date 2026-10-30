@@ -1,5 +1,7 @@
 import { spawnSync } from 'node:child_process';
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { randomUUID } from 'node:crypto';
+import { readCurrentProbeResults } from './runtime-probe-results.mjs';
+import { writeFile, mkdir } from 'node:fs/promises';
 import { executionFingerprint } from './runtime-inventory.mjs';
 import { requiredCases } from './p00-03-required-cases.mjs';
 import {
@@ -8,15 +10,29 @@ import {
   isStandardUser,
   verificationScopeFailure,
 } from './execution-verification.mjs';
-import { join } from 'node:path';
+import { join, resolve, relative, isAbsolute } from 'node:path';
 import { root, nodeExe, lockedEnv } from './lib.mjs';
-const destination = join(root, 'docs/evidence/P00-03');
+const destination = resolve(
+  root,
+  process.env.TAPKIT_RUNTIME_PROBE_EVIDENCE_DIR ?? 'docs/evidence/P00-03',
+);
+const evidenceRelative = relative(join(root, 'docs/evidence'), destination);
+if (
+  isAbsolute(evidenceRelative) ||
+  evidenceRelative === '..' ||
+  evidenceRelative.startsWith('..\\') ||
+  evidenceRelative.startsWith('../')
+)
+  throw new Error('Runtime probe evidence must stay inside docs/evidence');
 const scope = verificationScope(process.argv.slice(2));
 await mkdir(destination, { recursive: true });
 const startedAt = new Date().toISOString();
 const executionPolicy = 'appcontainer-lok-v1';
+console.log('RUNTIME_PROBE_STAGE=fingerprint_before');
 const beforeFingerprint = await executionFingerprint(root);
 await mkdir(join(root, 'test-results'), { recursive: true });
+const nativeReport = join(root, 'test-results', 'P00-03-native-' + randomUUID() + '.json');
+console.log('RUNTIME_PROBE_STAGE=native_tests');
 const test = spawnSync(
   nodeExe(),
   [
@@ -24,7 +40,7 @@ const test = spawnSync(
     'test:integration',
     'P00-03',
     '--reporter=json',
-    '--outputFile=test-results/P00-03-native.json',
+    '--outputFile=' + nativeReport,
   ],
   {
     cwd: root,
@@ -39,12 +55,7 @@ await writeFile(
   join(destination, 'runtime-probe.log'),
   String(test.stdout ?? '') + String(test.stderr ?? ''),
 );
-let results;
-try {
-  results = JSON.parse(await readFile(join(root, 'test-results/P00-03-native.json'), 'utf8'));
-} catch {
-  results = null;
-}
+const results = await readCurrentProbeResults(nativeReport, startedAt);
 // JSON-only Vitest reports otherwise hide the failing case from CI console logs.
 // This probe runs only the fixed synthetic P00-03 acceptance suite.
 const failedAssertions = (results?.testResults ?? []).flatMap((file) =>
@@ -61,6 +72,7 @@ if (failedAssertions.length)
   console.error('NATIVE_ACCEPTANCE_FAILURES', JSON.stringify(failedAssertions.slice(0, 30)));
 const identity = readExecutionIdentity();
 const standardUser = isStandardUser(identity);
+console.log('RUNTIME_PROBE_STAGE=fingerprint_after');
 const fingerprint = await executionFingerprint(root);
 const passedCases = new Set(
   (results?.testResults ?? []).flatMap((file) =>
@@ -96,8 +108,7 @@ const report = {
   executionPolicy,
   startedAt,
   endedAt: new Date().toISOString(),
-  command:
-    'pnpm test:integration P00-03 --reporter=json --outputFile=test-results/P00-03-native.json',
+  command: 'pnpm test:integration P00-03 --reporter=json --outputFile=' + nativeReport,
   exitCode: test.status,
   standardUser,
   ...(scope === 'current-user'

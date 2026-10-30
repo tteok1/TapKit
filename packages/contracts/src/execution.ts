@@ -4,9 +4,10 @@ export const GitInspectSchema = z.strictObject({ kind: z.enum(['status', 'diff']
 export const EXECUTION_POLICY = 'appcontainer-lok-v1' as const;
 export const OfficeRenderSchema = z.strictObject({
   fileVersionId: IdSchema,
-  format: z.literal('pdf'),
+  format: z.enum(['pdf', 'xlsx']),
 });
 export const OfficeHelperPayloadSchema = z.strictObject({
+  format: z.enum(['pdf', 'xlsx']).optional(),
   filename: z
     .string()
     .min(1)

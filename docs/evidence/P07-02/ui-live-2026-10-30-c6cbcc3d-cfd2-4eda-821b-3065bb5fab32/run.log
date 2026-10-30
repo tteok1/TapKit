@@ -1,0 +1,6 @@
+{"phase":"connection-start","checks":1,"connection":"running","tasks":[]}
+{"phase":"connection-finished","checks":1,"connection":"passed","tasks":[]}
+{"phase":"data-start","checks":1,"connection":"passed","tasks":[{"kind":"data","status":"running"}]}
+{"phase":"data-finished","checks":1,"connection":"passed","tasks":[{"kind":"data","status":"content_failed","reason":null}]}
+{"phase":"slides-start","checks":1,"connection":"passed","tasks":[{"kind":"data","status":"content_failed","reason":null},{"kind":"slides","status":"running"}]}
+{"phase":"finished","checks":1,"connection":"passed","tasks":[{"kind":"data","status":"content_failed","reason":null},{"kind":"slides","status":"completed","reason":null},{"kind":"slides_revision","status":"running"}]}

@@ -1,0 +1,18 @@
+2026-10-30T09:29:45.7216699Z  FAIL   integration  tests/integration/P07-01.native-candidate.test.ts > P07-01 transient PDF inspection runs in the native sandbox without publishing
+2026-10-30T09:29:45.7275702Z  FAIL   integration  tests/integration/P07-01.native-image.test.ts > P07-01 native isolated Office renderer displays a synthetic PNG document
+2026-10-30T09:29:45.7324126Z  FAIL   integration  tests/integration/P07-01.native-layout.test.ts > P07-01 bounded layout candidates preserve a long report after isolated PDF rendering
+2026-10-30T09:29:45.7341517Z  FAIL   integration  tests/integration/P07-01.native-render.test.ts > P07-01 T07 native rendered representative document 0
+2026-10-30T09:29:45.7342822Z  FAIL   integration  tests/integration/P07-01.native-render.test.ts > P07-01 T07 native rendered representative document 1
+2026-10-30T09:29:45.7344088Z  FAIL   integration  tests/integration/P07-01.native-render.test.ts > P07-01 T07 native rendered representative document 2
+2026-10-30T09:29:45.7354523Z  FAIL   integration  tests/integration/P07-02.native-data.test.ts > P07-02 native isolated data pipeline recalculates decimal formula caches, publishes exports atomically and preserves its source
+2026-10-30T09:29:45.7381098Z  FAIL   integration  tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 duplicate_join refuses publication and preserves the original
+2026-10-30T09:29:45.7383916Z  FAIL   integration  tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 zero_division refuses publication and preserves the original
+2026-10-30T09:29:45.7386947Z  FAIL   integration  tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 cell_limit refuses publication and preserves the original
+2026-10-30T09:29:45.7390690Z  FAIL   integration  tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 external_link refuses publication and preserves the original
+2026-10-30T09:29:45.7412015Z  FAIL   integration  tests/integration/P07-02.native-transform.test.ts > P07-02 native multiple XLSX/CSV inputs preserve dates and literal strings across cleaning, join and CSV-safe exports
+2026-10-30T09:29:45.7437501Z  FAIL   integration  tests/integration/P07-03.native-cache.test.ts > P07-03 native private chart cache valid
+2026-10-30T09:29:45.7439726Z  FAIL   integration  tests/integration/P07-03.native-cache.test.ts > P07-03 native private chart cache formula
+2026-10-30T09:29:45.7452837Z  FAIL   integration  tests/integration/P07-03.native-slides.test.ts > P07-03 native ten-slide five-layout light_business 16:9
+2026-10-30T09:29:45.7456022Z  FAIL   integration  tests/integration/P07-03.native-slides.test.ts > P07-03 native ten-slide five-layout dark_presentation 16:9
+2026-10-30T09:29:45.7464991Z  FAIL   integration  tests/integration/P07-03.native-slides.test.ts > P07-03 native ten-slide five-layout light_business 4:3
+2026-10-30T09:29:45.7225688Z AssertionError: expected 'failed' to be 'available' // Object.is equality

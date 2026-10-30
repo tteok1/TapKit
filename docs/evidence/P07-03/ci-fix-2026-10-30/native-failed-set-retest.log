@@ -1,0 +1,10 @@
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  9 passed (9)
+      Tests  17 passed (17)
+   Start at  18:03:06
+   Duration  676.49s (tests 99%, import 1%)
+
+$ vitest run --config vitest.config.ts --project integration "P07-01.native-candidate" "P07-01.native-image" "P07-01.native-layout" "P07-01.native-render" "P07-02.native-data" "P07-02.native-limits" "P07-02.native-transform" "P07-03.native-cache" "P07-03.native-slides"

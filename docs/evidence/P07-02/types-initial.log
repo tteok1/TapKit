@@ -1,0 +1,3 @@
+packages/core/src/work-artifacts.ts(119,53): error TS7034: Variable 'staged' implicitly has type 'any[]' in some locations where its type cannot be determined.
+packages/core/src/work-artifacts.ts(133,40): error TS7005: Variable 'staged' implicitly has an 'any[]' type.
+packages/core/src/work-artifacts.ts(134,32): error TS7005: Variable 'staged' implicitly has an 'any[]' type.

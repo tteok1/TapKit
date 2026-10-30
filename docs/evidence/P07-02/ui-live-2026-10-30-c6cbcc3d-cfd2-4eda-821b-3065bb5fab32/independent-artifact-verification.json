@@ -1,0 +1,18 @@
+{
+  "networkRequests": 0,
+  "checks": {
+    "rows": true,
+    "duplicates": true,
+    "summary": true,
+    "xlsxValues": true,
+    "sourceUnchanged": true
+  },
+  "dataRunId": "01a18bbf-cf2b-7579-b793-396db72da039",
+  "pptRunId": "01a18bc0-f9c1-72e6-b4c7-9b791b2a2556",
+  "harnessCorrections": [
+    "XLSX export is in analysis.exports, not step artifacts",
+    "runs.steer requires current expectedRevision"
+  ],
+  "priorCharge": 34057,
+  "initialPptMissingGivenNumber": true
+}

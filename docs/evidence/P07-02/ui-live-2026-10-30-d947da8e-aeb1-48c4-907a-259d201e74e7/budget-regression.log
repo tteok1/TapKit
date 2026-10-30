@@ -1,0 +1,32 @@
+$ vitest run --config vitest.config.ts --project integration "P07-03.approval-budget" "P06-02.approvals"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P07-03.approval-budget.test.ts (2 tests | 1 failed) 1432ms
+   × P07-03 final allowed model call can finish its reviewed tool; tool limit still enforced true 688ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P07-03.approval-budget.test.ts > P07-03 final allowed model call can finish its reviewed tool; tool limit still enforced true
+AssertionError: expected 'completed' to be 'budget_stopped' // Object.is equality
+
+Expected: "budget_stopped"
+Received: "completed"
+
+ ❯ tests/integration/P07-03.approval-budget.test.ts:75:44
+     73|         expect(approved.ok).toBe(true);
+     74|         await until(() => ['completed', 'budget_stopped'].includes(f.w…
+     75|         expect(f.work.repo.row(id).status).toBe(exhaustedTools ? 'budg…
+       |                                            ^
+     76|         expect(calls).toBe(2);
+     77|         expect(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 11 passed (12)
+   Start at  15:55:28
+   Duration  11.55s (tests 63%, transform 25%, import 12%)
+
+[ELIFECYCLE] Command failed with exit code 1.

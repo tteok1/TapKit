@@ -1,0 +1,18 @@
+$ node scripts/check.mjs
+packages/core/src/work-gateway.ts(560,11): error TS2741: Property 'blobs' is missing in type 'Pick<ChatService, "material" | "store">' but required in type 'DocumentChat'.
+packages/core/src/work-gateway.ts(573,11): error TS2741: Property 'blobs' is missing in type 'Pick<ChatService, "material" | "store">' but required in type 'DocumentChat'.
+packages/core/src/work-gateway.ts(797,60): error TS2741: Property 'blobs' is missing in type 'Pick<ChatService, "material" | "store">' but required in type 'DocumentChat'.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/check.mjs:3:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.

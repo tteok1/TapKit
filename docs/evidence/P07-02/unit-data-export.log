@@ -1,0 +1,21 @@
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |unit| tests/unit/P07-02.export-privacy.test.ts (0 test)
+ ❯ |unit| tests/unit/P07-02.probe-report.test.ts (0 test)
+ ❯ |unit| tests/unit/P07-02.svg.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P07-02.export-privacy.test.ts [ tests/unit/P07-02.export-privacy.test.ts ]
+ FAIL  |unit| tests/unit/P07-02.probe-report.test.ts [ tests/unit/P07-02.probe-report.test.ts ]
+ FAIL  |unit| tests/unit/P07-02.svg.test.ts [ tests/unit/P07-02.svg.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{8d541b50-c16c-48af-bf57-74babef037b8}\AC\Temp\6zz-2osDy3fqDu34zz3gK\ssr\f3d9718b4387735a9e2aa3bdbdb65a2bb00ad833'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+
+ Test Files  3 failed | 1 passed (4)
+      Tests  3 passed (3)
+   Start at  20:40:35
+   Duration  3.01s (transform 78%, import 18%, worker 2%, setup 1%, tests 1%)
+

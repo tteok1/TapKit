@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project integration "P07-03.slides-commit" "P07-03.slides-driver" "P07-02.data-access"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  3 passed (3)
+      Tests  9 passed (9)
+   Start at  13:31:42
+   Duration  14.13s (tests 47%, transform 30%, import 22%)
+

@@ -1,0 +1,27 @@
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P07-02.data-access.test.ts (3 tests | 1 failed) 1619718ms
+   × P07-02 fixed inputs must be selected and keep their owner link; source revocation fails closed 1616361ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P07-02.data-access.test.ts > P07-02 fixed inputs must be selected and keep their owner link; source revocation fails closed
+Error: Test timed out in 15000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/integration/P07-02.data-access.test.ts:32:1
+     30| }
+     31|
+     32| test('P07-02 fixed inputs must be selected and keep their owner link; …
+       | ^
+     33|   const f = await setup();
+     34|   try {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 10 passed (11)
+   Start at  19:54:54
+   Duration  1635.85s (tests 99%)
+

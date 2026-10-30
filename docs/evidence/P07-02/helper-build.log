@@ -1,0 +1,7 @@
+rust already prepared 1.98.1
+windowsSdk already prepared 10.0.28000.2705
+msvcCrt already prepared 14.44.35226
+msvcImports already prepared 14.44.35226
+   Compiling tapkit-windows-helper v0.1.0 (D:\Tapkit-public\native\windows-helper)
+    Finished `release` profile [optimized] target(s) in 6.93s
+Built Windows helper from Cargo.lock with locked SDK/CRT

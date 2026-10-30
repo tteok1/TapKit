@@ -1,0 +1,40 @@
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P06-03.crash.test.ts (5 tests | 1 failed) 159948ms
+   × P06-03 T13 actual process kill at after_native recovers without replaying a committed tool 150089ms
+ ❯ |integration| tests/integration/P07-01.document-pdf.test.ts (1 test | 1 failed) 1263ms
+   × P07-01 converted PDF requires parsed pages and the document content before completion 1262ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P06-03.crash.test.ts > P06-03 T13 actual process kill at after_native recovers without replaying a committed tool
+Error: crash harness timeout
+ ❯ Timeout._onTimeout tests/integration/P06-03.crash.test.ts:70:16
+     68|       const timer = setTimeout(() => {
+     69|         child.kill();
+     70|         reject(Error('crash harness timeout'));
+       |                ^
+     71|       }, 150000);
+     72|       child.stdout.on('data', (b) => output.push(b.toString()));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |integration| tests/integration/P07-01.document-pdf.test.ts > P07-01 converted PDF requires parsed pages and the document content before completion
+AssertionError: expected [Function] to throw an error
+ ❯ tests/integration/P07-01.document-pdf.test.ts:112:88
+    110|     expect(await gateway.verify(run, [ref])).toBe(false);
+    111|     f.store.db.prepare('DELETE FROM document_specs WHERE file_version_…
+    112|     expect(() => f.artifacts.documentSourceSpec(run, source.fileId, so…
+       |                                                                                        ^
+    113|     expect(await gateway.verify(run, [ref])).toBe(false);
+    114|   } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 7 passed (9)
+      Tests  2 failed | 37 passed (39)
+   Start at  23:40:18
+   Duration  223.64s (tests 92%, import 6%, transform 2%)
+

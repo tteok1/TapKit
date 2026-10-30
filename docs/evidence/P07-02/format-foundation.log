@@ -1,0 +1,27 @@
+packages/contracts/src/data.ts 141ms
+packages/contracts/src/work.ts 47ms
+packages/contracts/src/execution.ts 14ms (unchanged)
+packages/contracts/src/index.ts 33ms (unchanged)
+packages/core/src/work-data.ts 53ms
+packages/core/src/office-tool-schema.ts 5ms
+packages/core/src/work-artifacts.ts 46ms
+packages/core/src/work-driver.ts 23ms
+packages/core/src/work-gateway.ts 118ms
+packages/core/src/work-native.ts 25ms
+packages/core/src/work-service.ts 73ms
+packages/core/src/chat-fixture.ts 29ms
+packages/storage/src/blobs.ts 42ms
+packages/tools/src/registry.ts 5ms
+packages/tools/src/execution/office-worker.ts 13ms
+packages/providers/src/api/zhipu-tools.ts 6ms (unchanged)
+packages/workflows/src/data-program.ts 3ms (unchanged)
+packages/workflows/src/index.ts 1ms (unchanged)
+apps/desktop/src/renderer/src/data-results.tsx 63ms
+apps/desktop/src/renderer/src/work-ui.tsx 102ms
+apps/desktop/src/renderer/src/work.css 55ms
+scripts/runtime-probe.mjs 32ms
+tests/fixtures/P07-02.data.ts 3ms
+tests/unit/P07-02.data-contract.test.ts 6ms
+tests/integration/P07-02.native-data.test.ts 9ms
+tests/integration/P07-02.data-access.test.ts 7ms
+tests/e2e/P07-02.data.spec.ts 9ms

@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project unit "P00-03.execution-scope" "P00-03.runtime-probe" "P07-02.probe-report"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  3 passed (3)
+      Tests  6 passed (6)
+   Start at  17:58:57
+   Duration  451ms (transform 45%, setup 25%, tests 12%, import 9%, worker 8%)
+

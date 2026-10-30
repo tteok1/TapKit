@@ -1,0 +1,16 @@
+{
+  "task": "P07-01",
+  "status": "failed",
+  "connectionCheck": "passed",
+  "modelRequestsLimit": 1,
+  "maxTools": 1,
+  "runId": "01a1828d-1555-7dab-93e4-7442f8d9a084",
+  "reason": "BUDGET_EXCEEDED",
+  "resultCount": 0,
+  "credentialRemoved": true,
+  "runStatus": "budget_stopped",
+  "errorCode": "TASK_INCOMPLETE",
+  "toolCalls": [],
+  "attemptCount": 0,
+  "files": []
+}

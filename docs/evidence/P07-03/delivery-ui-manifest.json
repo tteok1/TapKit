@@ -1,0 +1,48 @@
+{
+  "head": "aa6debf25399a328ca993e2c8a03c0d0722a6032",
+  "branch": "codex/p07-office",
+  "dirty": true,
+  "files": [
+    {
+      "path": "packages/core/src/work-driver.ts",
+      "sha256": "d8b00055c0cdb40e29715e7cf85679b6baf9882ca7b440d266acf0422dda0616"
+    },
+    {
+      "path": "packages/core/src/work-service.ts",
+      "sha256": "246f961c370f13e43ff09694c34cb16cf46502593629fb6ab9fe14433cdb0f77"
+    },
+    {
+      "path": "packages/core/src/office-tool-schema.ts",
+      "sha256": "bc7f0f5199a39c998ccdfcd88cc1dcb7ba3b3470978a4c1790a23afd734326fe"
+    },
+    {
+      "path": "packages/core/dist/index.cjs",
+      "sha256": "c1cbdb8f3aaa16eb0075682b1da637ed91a3b9c5345517e6e90c5f580c8315a7"
+    },
+    {
+      "path": "tests/integration/P07-03.slides-driver.test.ts",
+      "sha256": "3ddf0aeeae190cbc14cc6813abfc47d67b5f904a2de33cf2724e24e696f4ae0a"
+    },
+    {
+      "path": "tests/integration/P07-03.approval-budget.test.ts",
+      "sha256": "420320f45f8934628d0b6988f7eb065f1758c43d5c43363cf9182a934790e91f"
+    },
+    {
+      "path": "scripts/p07-ui-live.mjs",
+      "sha256": "50121bf26b1ec7bc802c42d92cf4683aa66c263216cc667a73130066bb72fb5c"
+    },
+    {
+      "path": "scripts/p07-ui-followup.mjs",
+      "sha256": "276bfe0e1c80d2b058275bbc0f401947553a0e6baee6002beb4571d609d092eb"
+    },
+    {
+      "path": "scripts/p07-export-live.mjs",
+      "sha256": "216c47f3f975a8945bf401e2ef253d710b5a6a457e25df0379998b1d9f611d1c"
+    },
+    {
+      "path": "docs/adr/0072-reviewed-tool-budget-boundaries.md",
+      "sha256": "5b40c1f49ee7573eb955da96d9576c6608f5e786ba24914ced3b0a7de75fcf47"
+    }
+  ],
+  "productionFixtureAbsent": true
+}

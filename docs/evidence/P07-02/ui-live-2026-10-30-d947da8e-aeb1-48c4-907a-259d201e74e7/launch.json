@@ -1,0 +1,12 @@
+{
+  "round": "d947da8e-aeb1-48c4-907a-259d201e74e7",
+  "parentRound": "c6cbcc3d-cfd2-4eda-821b-3065bb5fab32",
+  "directory": "D:\\Tapkit-public\\.test-data\\P07-02-live-profile-Bs9cYF",
+  "startedAt": "2026-10-30T07:47:38.836Z",
+  "reconciled": true,
+  "priorCharge": 34057,
+  "taskBudgetRemaining": 85943,
+  "graphTaskLimit": 40000,
+  "connectionLimit": 20,
+  "productionCoreSha256": "aeef1597efc9ed85ee65bc62f9cb70844ec7456467b69ab96de1dbe788543cd1"
+}

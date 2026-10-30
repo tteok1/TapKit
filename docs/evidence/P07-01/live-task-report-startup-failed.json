@@ -1,0 +1,15 @@
+{
+  "task": "P07-01",
+  "status": "failed",
+  "connectionCheck": "passed",
+  "modelRequestsLimit": 1,
+  "maxTools": 1,
+  "runId": null,
+  "reason": null,
+  "resultCount": 0,
+  "credentialRemoved": true,
+  "errorCode": "INTERNAL_ERROR",
+  "toolCalls": [],
+  "attemptCount": 0,
+  "files": []
+}

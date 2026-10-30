@@ -1,0 +1,13 @@
+packages/contracts/src/data.ts 141ms
+packages/contracts/src/work.ts 49ms (unchanged)
+packages/core/src/work-data.ts 65ms
+packages/core/src/work-driver.ts 33ms
+packages/core/src/work-gateway.ts 121ms (unchanged)
+packages/tools/src/data-svg.ts 6ms
+packages/tools/src/index.ts 1ms (unchanged)
+resources/catalogs/defaults.json 19ms
+apps/desktop/src/renderer/src/work-ui.tsx 126ms (unchanged)
+apps/desktop/src/renderer/src/data-results.tsx 62ms (unchanged)
+tests/unit/P07-02.svg.test.ts 3ms
+tests/unit/P07-02.export-privacy.test.ts 6ms
+tests/integration/P07-02.native-limits.test.ts 14ms

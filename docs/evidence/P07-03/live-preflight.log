@@ -1,0 +1,1 @@
+{"task":"P07-03","status":"prepared","existing":false,"accountLabel":"test1","modelId":"glm-4.7-flashx","accountStatus":"ready","modelRequests":0,"applicationStarted":false,"liveRequests":0,"limits":{"attempts":1,"calls":1,"tools":1,"tokens":70000,"outputTokens":8192}}

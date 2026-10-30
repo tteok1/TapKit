@@ -30,6 +30,8 @@ export * from './memory';
 export * from './web';
 export * from './exports';
 export * from './work';
+export * from './document';
+export * from './data';
 // Covers the largest draft/message without trimming or truncating text.
 export const ClipboardTextSchema = z.string().max(2_000_000);
 export const PingRequestSchema = z.strictObject({ nonce: z.string().min(1).max(128) });
@@ -132,7 +134,7 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('ready'),
     protocolVersion: z.literal(1),
-    schemaVersion: z.literal(17),
+    schemaVersion: z.literal(18),
   }),
   z.strictObject({ type: z.literal('pong'), id: z.string().uuid(), payload: PingReplySchema }),
   z.strictObject({ type: z.literal('reply'), id: z.string().uuid(), reply: ReplySchema }),
@@ -261,3 +263,4 @@ export { z } from 'zod';
 export * from './persistence';
 
 export * from './execution';
+export * from './slides';

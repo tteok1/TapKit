@@ -1,0 +1,7 @@
+{
+  "automated_result": "passed_title_number_and_parse_only",
+  "manual_review": "failed",
+  "missing_source_problem": true,
+  "unexpected_name_field": true,
+  "note": "No reference materials were supplied. The model added an unsupported source claim and put the title in the name field."
+}

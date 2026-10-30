@@ -1,0 +1,16 @@
+{
+  "task": "P07-02",
+  "startedAt": "2026-10-30T03:31:59.456Z",
+  "connectionCheck": "connection-2026-10-30-07",
+  "limits": {
+    "maxCalls": 1,
+    "maxTools": 1,
+    "outputTokens": 2048,
+    "tokens": 120000,
+    "activeMs": 600000
+  },
+  "profile": "D:\\Tapkit-public\\.test-data\\P07-02-live-profile-Ov56iq",
+  "realProvider": true,
+  "retries": 0,
+  "fallbacks": 0
+}

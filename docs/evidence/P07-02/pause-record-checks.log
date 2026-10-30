@@ -1,0 +1,13 @@
+docs/progress/CURRENT.md 42ms (unchanged)
+docs/progress/INDEX.md 259ms (unchanged)
+docs/progress/P07-02.md 9ms (unchanged)
+All 37 task states, started handoffs and completed requirement evidence links verified
+warning: in the working copy of 'docs/plan/02-decisions.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/plan/04-data-contract.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/plan/12-interaction-details.md', CRLF will be replaced by LF the next time Git touches it
+
+format_exit     : 0
+docs_check_exit : 0
+diff_check_exit : 0
+
+

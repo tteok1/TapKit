@@ -209,6 +209,7 @@ async function start() {
         workArtifacts,
         service.executionCapabilities,
       ),
+      chat,
     ),
     (ref, sessionId) => chat.material(ref, sessionId),
     models.claimRoot,
@@ -537,7 +538,7 @@ async function start() {
       });
     }
   });
-  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 17 });
+  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 18 });
   worker.start();
   sweepStaging();
   chat.start();

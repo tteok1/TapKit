@@ -13,6 +13,8 @@ import {
   type Request,
   type Reply,
   ResourceRefSchema,
+  ChatMaterialSchema,
+  isDocumentImageMaterial,
 } from '@tapkit/contracts';
 import {
   WorkRepository,
@@ -53,6 +55,7 @@ export interface WorkGateway {
     signal?: AbortSignal,
   ): Promise<ResourceRef | null>;
   verify(run: WorkRun, refs: ResourceRef[]): Promise<boolean>;
+  formats?(run: WorkRun, refs: ResourceRef[]): Promise<string[]>;
   recover?(run: WorkRun): Promise<boolean>;
 }
 export class WorkService {
@@ -102,14 +105,16 @@ export class WorkService {
     this.repo.revision(run, revision);
     if (workTerminal.has(run.status)) throw new StorageError('CONFLICT');
   }
-  private async refs(refs: ResourceRef[], sessionId: string) {
+  private async refs(refs: ResourceRef[], sessionId: string, allowDocumentImages = false) {
     for (const ref of refs) {
       const material = await this.material(ref, sessionId);
+      const candidate = ChatMaterialSchema.safeParse(material);
       if (
         material &&
         typeof material === 'object' &&
         'state' in material &&
-        material.state !== 'ready'
+        material.state !== 'ready' &&
+        !(allowDocumentImages && candidate.success && isDocumentImageMaterial(candidate.data))
       )
         throw new StorageError('INDEX_NOT_READY');
     }
@@ -144,10 +149,19 @@ export class WorkService {
       if (request.command.startsWith('notifications.')) return this.notifications.dispatch(request);
       if (/^(approvals|grants)\./.test(request.command) && this.gateway.dispatchCommand)
         return await this.gateway.dispatchCommand(request);
+      if (
+        (request.command === 'runs.data' || request.command === 'runs.slides') &&
+        this.gateway.dispatchCommand
+      )
+        return await this.gateway.dispatchCommand(request);
       if (request.command === 'runs.create') {
         const input = WorkCommandSchemas['runs.create'].parse(p);
         this.repo.session(input.sessionId);
-        await this.refs(input.refs, input.sessionId);
+        await this.refs(
+          input.refs,
+          input.sessionId,
+          ['docx', 'pdf', 'pptx'].includes(input.format),
+        );
         return this.store.receipt(request, () => {
           const definition = WorkDefinitionSchema.parse(
             Object.fromEntries(Object.entries(input).filter(([key]) => key !== 'sessionId')),
@@ -206,7 +220,11 @@ export class WorkService {
       if (request.command === 'runs.steer') {
         const input = WorkCommandSchemas['runs.steer'].parse(p),
           run = this.repo.row(input.runId);
-        await this.refs(input.refs, run.session_id);
+        await this.refs(
+          input.refs,
+          run.session_id,
+          ['docx', 'pdf', 'pptx'].includes(this.repo.state(run).definition.format),
+        );
       }
       return this.store.receipt(request, () => {
         if (request.command === 'runs.accept') {
@@ -358,7 +376,12 @@ export class WorkService {
               { ...state.definition, planFirst: false },
               plan.steps,
               plan.selected,
-              { taskId: run.task_id, version: run.task_version, rootRunId: run.root_run_id },
+              {
+                taskId: run.task_id,
+                version: run.task_version,
+                rootRunId: run.root_run_id,
+                toolCatalogVersion: state.toolCatalogVersion,
+              },
             );
           // Reuse is validated asynchronously before claiming a new execution lease.
           for (const step of this.repo.steps(run.id).filter((s) => s.status === 'completed'))
@@ -555,6 +578,15 @@ export class WorkService {
     else this.change(run, 'paused');
     this.active.get(run.id)?.controller.abort();
   }
+  private cancelUnsent(run: WorkRun) {
+    const result = this.store.db
+      .prepare(
+        "UPDATE tool_calls SET status='cancelled',side_effect='not_committed',updated_at=? WHERE run_id=? AND profile_id=? AND status IN ('proposed','approved') AND side_effect='none'",
+      )
+      .run(this.store.now(), run.id, this.store.profileId);
+    if (result.changes)
+      this.repo.event(run, 'tool.finished', '任务已终结，取消尚未派发的操作；未执行该操作。');
+  }
   async start() {
     await this.recover();
     this.closing = false;
@@ -562,6 +594,15 @@ export class WorkService {
     void this.tick();
   }
   async recover(ids?: string[]) {
+    if (!ids)
+      this.store.db.transaction(() => {
+        const terminal = this.store.db
+          .prepare(
+            "SELECT DISTINCT r.id FROM runs r JOIN tool_calls c ON c.run_id=r.id WHERE r.profile_id=? AND r.task_id IS NOT NULL AND r.status IN ('completed','failed','partial','cancelled','budget_stopped') AND c.status IN ('proposed','approved') AND c.side_effect='none'",
+          )
+          .all(this.store.profileId) as { id: string }[];
+        for (const row of terminal) this.cancelUnsent(this.repo.row(row.id));
+      })();
     const rows = ids
       ? ids.map((id) => ({ id }))
       : (this.store.db
@@ -744,12 +785,13 @@ export class WorkService {
             .get(run.root_run_id) as { n: number }
         ).n;
         const root = this.repo.rootUsage(current);
-        const exhausted =
+        const executionExhausted =
           root.activeMs + Math.max(0, this.store.now() - lastActive) >=
             state.definition.budgetOverrides.activeMs ||
-          root.calls >= state.definition.budgetOverrides.maxCalls ||
           root.tools >= state.definition.budgetOverrides.maxTools ||
           tokens >= state.definition.budgetOverrides.tokens;
+        const exhausted =
+          executionExhausted || root.calls >= state.definition.budgetOverrides.maxCalls;
         const selected = steps.filter((s) => state.selected.includes(s.stepKey)),
           step = selected.find(
             (s) =>
@@ -800,13 +842,17 @@ export class WorkService {
           )();
           continue;
         }
-        await this.refs(step.inputRefs, run.session_id);
+        await this.refs(
+          step.inputRefs,
+          run.session_id,
+          ['docx', 'pdf', 'pptx'].includes(state.definition.format),
+        );
         guard();
         const resumed =
           step.errorCode === 'PARSE_FAILED'
             ? undefined
             : await this.gateway.resume?.(run, step.stepKey, guard, {
-                allowDispatch: !exhausted,
+                allowDispatch: !executionExhausted,
                 signal,
               });
         if (resumed === null) return;
@@ -892,24 +938,30 @@ export class WorkService {
           }
         }
         guard();
+        const outputsValid = await this.gateway.verify(run, refs);
+        const formats =
+          outputsValid && this.gateway.formats ? await this.gateway.formats(run, refs) : undefined;
         const valid =
           candidate.finished &&
-          (await this.gateway.verify(run, refs)) &&
+          outputsValid &&
           step.acceptance.every(
             (rule) =>
               rule.kind === 'human_review' ||
               (rule.kind === 'file_exists' &&
-                refs.filter(
-                  (r) =>
-                    r.kind === 'file' &&
-                    (
-                      this.store.db
-                        .prepare(
-                          'SELECT extension FROM file_versions WHERE id=? AND file_id=? AND profile_id=?',
-                        )
-                        .get(r.versionId, r.fileId, this.store.profileId) as
-                        { extension: string } | undefined
-                    )?.extension === rule.format,
+                (formats
+                  ? formats.filter((format) => format === rule.format)
+                  : refs.filter(
+                      (r) =>
+                        r.kind === 'file' &&
+                        (
+                          this.store.db
+                            .prepare(
+                              'SELECT extension FROM file_versions WHERE id=? AND file_id=? AND profile_id=?',
+                            )
+                            .get(r.versionId, r.fileId, this.store.profileId) as
+                            { extension: string } | undefined
+                        )?.extension === rule.format,
+                    )
                 ).length >= rule.minCount) ||
               (rule.kind === 'schema' &&
                 rule.schemaId === 'json.object' &&
@@ -971,7 +1023,8 @@ export class WorkService {
         else if (current.cancel_requested_at !== null) this.change(current, 'cancelled');
         else if (current.pause_requested_at !== null || current.status === 'pausing')
           this.change(current, 'paused');
-        else if (current.status !== 'waiting_user')
+        else if (current.status !== 'waiting_user') {
+          this.cancelUnsent(current);
           this.change(
             current,
             deadline.aborted || (error instanceof StorageError && error.code === 'BUDGET_EXCEEDED')
@@ -983,6 +1036,7 @@ export class WorkService {
                 ? error.code
                 : 'STREAM_INTERRUPTED',
           );
+        }
       })();
     } finally {
       clearInterval(heartbeat);

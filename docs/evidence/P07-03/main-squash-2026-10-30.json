@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-30 Asia/Shanghai",
+  "authorization": "用户最新要求：合并成一个commit然后合入main；替代此前暂不合main限制",
+  "method": "git merge --squash codex/p07-office; one commit on main; original branch retained",
+  "baseMain": "aa6debf25399a328ca993e2c8a03c0d0722a6032",
+  "sourceBranch": "codex/p07-office",
+  "sourceHead": "fe6f6dbbf1731a12c29bf017d9fe84832d088f7f",
+  "sourceTree": "e0180d0f1145b8e7b05a7cb044943ff3eb940143",
+  "sourceCommits": [
+    "fe6f6dbbf1731a12c29bf017d9fe84832d088f7f docs: preserve passing P07 CI evidence [skip ci]",
+    "b7ba0cd11171962e426f19aee42605f63b5291b6 ci: scope native exclusions within the integration project",
+    "570708b0e906d99bd9835fdfc3f0de2609e5ff2a test: stage Office positive controls within the sandbox",
+    "214e265aeb4f2c4afcb981ca1da16d6ffa0566ea fix: load verified Office fonts and isolate native CI checks",
+    "0bdbbcab49a5dac2d880e99c53e9de8661bc8763 ci: verify runner isolation before P07 native tests",
+    "b9673f1f169befa5af0bdc30e68954665da4b95c feat: deliver P07 office workflows and verified artifacts"
+  ],
+  "verifiedSource": "b7ba0cd11171962e426f19aee42605f63b5291b6",
+  "ci": {
+    "run": 41051794674,
+    "url": "https://github.com/tteok1/TapKit/actions/runs/41051794674",
+    "conclusion": "success",
+    "jobs": 3
+  },
+  "checks": {
+    "squashIndexInitiallyEqualsCompleteSource": true,
+    "nonDocsMustEqualSource": true,
+    "docsCheck": {
+      "command": "node scripts/docs-check.mjs",
+      "exitCode": 0,
+      "tasks": 37
+    },
+    "stagedDiffCheck": {
+      "command": "git diff --cached --check",
+      "exitCode": 0
+    },
+    "runtimeTests": "CI70 reused; no runtime code changed by squash",
+    "nonDocsEqualSource": true,
+    "runtimeEqualCi70Source": true
+  },
+  "publication": {
+    "target": "origin/main",
+    "forcePush": false,
+    "originalBranchRetained": true,
+    "commitIdentity": "Resolve via main commit containing this record; no self-referential hash"
+  },
+  "newModelRequests": 0,
+  "connectionChecks": 13,
+  "nextStageStarted": false
+}

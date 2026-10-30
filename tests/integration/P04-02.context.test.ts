@@ -160,7 +160,7 @@ test('P04-02 T12 durable three compactions, correction CAS, next taskVersion and
     try {
       const contexts = new ContextService(reopened);
       expect(contexts.background(target)).toEqual(background);
-      expect(reopened.db.pragma('user_version', { simple: true })).toBe(17);
+      expect(reopened.db.pragma('user_version', { simple: true })).toBe(18);
     } finally {
       reopened.close();
     }

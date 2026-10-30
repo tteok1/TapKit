@@ -1,5 +1,11 @@
 # 工具网关、Windows执行隔离与网络策略
 
+Office字体按[ADR0073](../adr/0073-private-office-fonts-and-ci-scope.md)：Host只将SHA256匹配export-font-lock的字体放入新workspace，固定LOK worker在AppContainer内再次核验并以FR_PRIVATE加载，仅此转换进程可用；失败拒绝，无系统字体安装或额外路径授权。能力指纹含字体锁，不跨身份/机器复用。
+
+审批恢复额度按[ADR0072](../adr/0072-reviewed-tool-budget-boundaries.md)：模型调用次数仅限制新增模型请求；已有完整、已审阅工具仍受工具尝试数/token/活跃时间以及Gateway全部授权检查，不因模型次数刚好用完而误拒绝。终结任务中尚未派发且副作用none的动作取消；未知/已派发不盲目处理。
+
+P07演示目录p07-tools-3新增slides.create/slides.revise，保留前三版目录的原范围。模型按目标格式获工具；PPTX可先data.analyze获得受管ChartSpec。图片只取已授权PNG，图表只取成功data.analyze收据对应的固定JSON。修改对同根任务/currentVersion/revision生效，预览具体变更后由现有审批发绑定内容与版本的grant。原生转换复用OfficeWorker/AppContainer，不放开任意执行或外部工作区写入。未知副作用保留staging并核对，不重放。受管图表XLSX缓存只在Parser中有界检查，拒绝公式、外链、嵌套与宏。见[ADR0071](../adr/0071-versioned-slide-decks.md)。
+
 P06固定目录p06-tools-1：artifact.write、workspace.patch、python.analyze、office.convert。完整参数、资源、内容、taskVersion、实际模型选择与目录版本绑定审批；派发前重复核验。patch仅更新任务托管副本并保留旧版；审批过期可重新预览，拒绝不换工具。原生工具复用当前账户已验证AppContainer/无网络/Job树门禁及私有staging；只执行固定CSV统计或Office转PDF。process_handles存唯一helper/nativeRun身份和租约，强杀后先核对；未知副作用等待用户核验，已提交动作不重放。任意exec与外部工作区写入仍属于后续阶段。
 
 P05-03复核：Core逐轮web.read URL精确白名单来自当前用户显式URL、实际搜索结果和已读正文原始链接，禁止模型拼接query/path携带背景；网络逐跳公开地址/域名策略继续执行。拒绝路径有“附加PRIVATE_MEMORY查询且wire调用数不变”的确定性测试。
@@ -58,7 +64,7 @@ P04-01：[ADR0045](../adr/0045-local-hybrid-retrieval-and-verified-evidence.md)�
 | browser.act          | {tabId,snapshotId,nodeId,action:"click"                                           | "fill"                               | "select"                                                        | "press"                     | "navigate",value?,url?} → state/evidence | action分类/20s |
 | artifacts.create     | {kind,filename,contentRef,format,sourceRefs[]} → fileId,versionId                 | artifact_write/120s                  |
 | office.render        | {fileVersionId,format:"pdf"                                                       | "png"} → previewRefs[]               | execute固定转换器/120s                                          |
-| data.analyze         | {fileVersionIds[],scriptRef,expectedOutputs[]} → tables,charts,files              | execute/120s                         |
+| data.analyze         | {fileId,versionId,spec:AnalysisSpec} → 版本化分析JSON及XLSX/CSV/图表/报告导出；datasets引用明确选择的固定版本，不接受代码 | execute/每个受限阶段120s |
 | workspace.read       | {workspaceId,path,startLine?,endLine?} → text,hash                                | read/10s                             |
 | workspace.applyPatch | {workspaceId,patch,baseHashes} → changes,conflicts                                | workspace_write/20s                  |
 | exec.run             | {workspaceId,runtime:"node"                                                       | "python"                             | "powershell",argv[],cwd,timeoutMs?} → processId,exitCode,logRef | execute/120s默认，上限10min |

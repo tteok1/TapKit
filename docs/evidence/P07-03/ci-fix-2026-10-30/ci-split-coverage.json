@@ -1,0 +1,29 @@
+{
+  "method": "actual Vitest 5 list --filesOnly --json; declaration listing does not expand loops/test.each",
+  "defaultFiles": 82,
+  "mainFiles": 73,
+  "officeFiles": [
+    "P07-01.native-candidate.test.ts",
+    "P07-01.native-image.test.ts",
+    "P07-01.native-layout.test.ts",
+    "P07-01.native-render.test.ts",
+    "P07-02.native-data.test.ts",
+    "P07-02.native-limits.test.ts",
+    "P07-02.native-transform.test.ts",
+    "P07-03.native-cache.test.ts",
+    "P07-03.native-slides.test.ts"
+  ],
+  "unionEqualsDefault": true,
+  "noOverlap": true,
+  "perfExcluded": true,
+  "staticDeclarations": {
+    "default": 395,
+    "main": 386,
+    "office": 9
+  },
+  "actualNativeTestsFromCi69": 17,
+  "fullRuntimeTestsFromCi66": 482,
+  "mainExpectedRuntimeTests": 465,
+  "mainScopeEnv": "TAPKIT_CI_SEPARATE_P07_NATIVE=1",
+  "nativeJobUsesDefaultScope": true
+}
