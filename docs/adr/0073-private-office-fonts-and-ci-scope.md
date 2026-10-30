@@ -13,3 +13,5 @@ Windows官方说明FR_PRIVATE仅影响调用进程、同名字体优先使用私
 CI67还暴露有效能力报告使50次桌面启动逐次核对完整运行时，桌面50项实际全部通过但22分钟，最终60分钟上限在后续Office重复诊断时取消job。将9文件17项P07原生验收和真实probe放入独立office-native job；主集成仅排除这组文件，保留全部其他测试、独立标准用户和50项桌面检查。所有排除项逐文件在新job运行并上传实际成果，覆盖不减少；保持生产完整指纹校验。主job恢复45分钟，新原生job30分钟，避免将机器绑定报告跨runner复用。
 
 真实结果待progress/evidence记录；ADR和新增步骤不代替通过。不合main、不扩P08、不增加模型请求。
+
+CI69发现根级CLI --exclude未传到Vitest 5内联integration子项目，原生组被主job重复运行且缺报告。改为项目exclude由仅主步骤设置的TAPKIT_CI_SEPARATE_P07_NATIVE=1扩展，默认本地及office-native不设置。实际vitest list --filesOnly --json核对默认82文件＝主73＋原生9，交集空且perf独立。静态声明列表不展开循环/参数化，不能冒称实际用例数；17项采用真实CI69结果，主组预期465项待新CI确认。

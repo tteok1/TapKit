@@ -41,3 +41,11 @@ CI67 check最终cancelled、startup-diagnostics success。unit444/444；integrat
 第二次修复本地：font-unit.log退出0、6/6（新增缺失/损坏字体拒绝及实际暂存SHA）；font-build.log生产build退出0；private-font-native.log退出0，实际DOCX/XLSX/PPTX三格式隔离转换均成功（该条P00代表项1通过/4按过滤跳过，不能称整个P00通过）。check-font-fix.log退出0、674文件。新的font-current-user完整22项probe正在运行，不能采信旧指纹报告；后续P07/native/CI结果待补。
 
 字体修复214e265aeb4f2c4afcb981ca1da16d6ffa0566ea已推，触发CI68 run41047994263。与此同时，本地新helper完整probe实际20/22、退出1：两个正向控制因拼接的固定Python代码超过HelperRequest每参数8192字符，在派发前被拒绝。font-current-user/runtime-probe.json和font-runtime-probe-command.log保留失败，不能启用此报告。正向控制也须显式暂存已锁定字体；已改为同一隔离workspace内wx创建固定脚本文件再执行，参数上限不变、不放宽宏/外链断言。font-controls-retest.log实际2/2通过、退出0，其他3条仅按过滤跳过。修复后的完整probe必须重新运行，不将20+2拼成已验证报告。后续以最新源提交CI为准，过时CI68可停止但不称通过。
+
+## CI69字体原生组通过，主检查继续定位
+
+570708b0e906d99bd9835fdfc3f0de2609e5ff2a已推，CI69 [run41048990688](https://github.com/tteok1/TapKit/actions/runs/41048990688)。office-native job124040070134最终success：干净runner完整能力探测与P07九文件17项均success、artifact上传成功。check job124040069855静态、unit446/446、perf通过，但集成步骤failure，完整失败摘要待日志可用后补，不记整轮通过。CI68已按run/branch/SHA核对后请求取消，取消不计通过。
+
+本地新完整probe22/22退出0（font-current-user-final/runtime-probe.json、font-runtime-probe-final-command.log），当前用户身份。新17项原生复验运行中；旧57文件备份后本轮另存font-acceptance并恢复，最终退出/恢复核对待补。
+
+CI69主job前半日志包含native-transform及native-limits重复执行失败。实际vitest list复现原CLI仍列82文件/全部9个原生文件；根级CLI排除未传入内联项目。原ci-split-coverage仅按glob推算不足，现替换为实际82＝73＋9文件、并集等于全集/交集空/perf独立的枚举证据。静态声明395＝386＋9不展开参数化，不误记为运行用例数；原生17已真实通过，主组预期465待新CI确认。
