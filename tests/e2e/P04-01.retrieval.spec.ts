@@ -1,12 +1,7 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { waitCoreReady } from './core-ready';
-import {
-  test,
-  expect,
-  _electron as electron,
-  type ElectronApplication,
-  type Page,
-} from '@playwright/test';
-import { mkdir, mkdtemp } from 'node:fs/promises';
+import { test, expect, _electron as electron, type ElectronApplication, type Page } from './test';
+import { mkdir } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import type { ProjectCommand } from '../../packages/contracts/src';
 let app: ElectronApplication | undefined, page: Page;

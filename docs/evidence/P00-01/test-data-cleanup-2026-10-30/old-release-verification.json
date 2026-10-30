@@ -1,0 +1,12 @@
+{
+  "directory": "release/TapKit-chat-M1-2026-10-27T03-32-21-373Z",
+  "verifiedFiles": 70017,
+  "actualFiles": 70018,
+  "bytes": 3491008512,
+  "manifestSha256": "1c30c0e88647f9ceb7efd393572eb313892d02d82d1bc1a97e6f9f8f1f581d0b",
+  "unexpectedFiles": [],
+  "modifiedFiles": 0,
+  "hasTestData": false,
+  "hasAccountData": false,
+  "latestRetained": "release/TapKit-chat-M1-2026-10-27T09-23-01-322Z"
+}

@@ -1,6 +1,7 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { openSessionFixture } from './session-fixture';
-import { test, expect, _electron as electron, type ElectronApplication } from '@playwright/test';
-import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+import { test, expect, _electron as electron, type ElectronApplication } from './test';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 let app: ElectronApplication;
 const evidence = resolve('docs/evidence/P02-03/selection-release-2026-10-21');

@@ -1,5 +1,6 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { test, expect } from 'vitest';
-import { mkdtemp } from 'node:fs/promises';
+
 import { resolve } from 'node:path';
 import { openStore, newId } from '../../packages/storage/src';
 import { CoreService } from '../../packages/core/src/service';

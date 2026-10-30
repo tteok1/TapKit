@@ -1,5 +1,6 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { test, expect, vi } from 'vitest';
-import { mkdir, mkdtemp, readFile, writeFile, readdir } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import {
   ExternalArtifact,

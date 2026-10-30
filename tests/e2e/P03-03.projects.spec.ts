@@ -1,11 +1,6 @@
-import {
-  test,
-  expect,
-  _electron as electron,
-  type ElectronApplication,
-  type Page,
-} from '@playwright/test';
-import { mkdir, mkdtemp, readFile } from 'node:fs/promises';
+import { mkdtemp } from '../../scripts/test-temp.mjs';
+import { test, expect, _electron as electron, type ElectronApplication, type Page } from './test';
+import { mkdir, readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import type { ProjectCommand } from '../../packages/contracts/src';
 let app: ElectronApplication | undefined, page: Page, exportRoot: string;

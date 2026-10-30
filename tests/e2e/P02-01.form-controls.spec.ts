@@ -1,3 +1,4 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import {
   test,
   expect,
@@ -5,8 +6,8 @@ import {
   type ElectronApplication,
   type Page,
   type Locator,
-} from '@playwright/test';
-import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+} from './test';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import type { DesktopCommand, HistoryCommand, SessionDetails } from '../../packages/contracts/src';

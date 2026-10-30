@@ -1,12 +1,7 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { openSessionFixture, reopenSessionFixture } from './session-fixture';
-import {
-  test,
-  expect,
-  _electron as electron,
-  type ElectronApplication,
-  type Page,
-} from '@playwright/test';
-import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+import { test, expect, _electron as electron, type ElectronApplication, type Page } from './test';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 const newId = () => {
   const bytes = crypto.getRandomValues(new Uint8Array(16)),

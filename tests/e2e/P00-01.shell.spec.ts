@@ -1,5 +1,6 @@
-import { test, expect, _electron as electron, type ElectronApplication } from '@playwright/test';
-import { mkdir, mkdtemp } from 'node:fs/promises';
+import { mkdtemp } from '../../scripts/test-temp.mjs';
+import { test, expect, _electron as electron, type ElectronApplication } from './test';
+import { mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 let app: ElectronApplication;
 let dataDir: string;

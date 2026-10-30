@@ -1,5 +1,6 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { afterEach, expect, test, vi } from 'vitest';
-import { mkdir, mkdtemp, readFile, writeFile, stat } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, stat } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import {
   BlobStore,

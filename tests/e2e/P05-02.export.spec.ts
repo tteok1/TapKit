@@ -1,11 +1,6 @@
-import {
-  test,
-  expect,
-  _electron as electron,
-  type ElectronApplication,
-  type Page,
-} from '@playwright/test';
-import { mkdir, mkdtemp, writeFile, readFile } from 'node:fs/promises';
+import { mkdtemp } from '../../scripts/test-temp.mjs';
+import { test, expect, _electron as electron, type ElectronApplication, type Page } from './test';
+import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { openSessionFixture } from './session-fixture';
 let app: ElectronApplication, page: Page, dir: string;

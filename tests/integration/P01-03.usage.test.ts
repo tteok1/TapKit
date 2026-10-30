@@ -1,5 +1,6 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { describe, it, expect, afterEach, vi } from 'vitest';
-import { mkdir, mkdtemp, readdir, writeFile, readFile } from 'node:fs/promises';
+import { mkdir, readdir, writeFile, readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 import { createRequire } from 'node:module';

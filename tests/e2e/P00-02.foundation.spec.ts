@@ -1,6 +1,7 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { waitCoreReady } from './core-ready';
-import { test, expect, _electron as electron, type ElectronApplication } from '@playwright/test';
-import { mkdir, mkdtemp, readFile, readdir } from 'node:fs/promises';
+import { test, expect, _electron as electron, type ElectronApplication } from './test';
+import { mkdir, readFile, readdir } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { spawn } from 'node:child_process';
 import { randomUUID } from 'node:crypto';

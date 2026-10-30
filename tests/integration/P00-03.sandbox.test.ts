@@ -1,6 +1,7 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { randomUUID } from 'node:crypto';
 import { describe, test, expect } from 'vitest';
-import { mkdir, mkdtemp, writeFile, readFile, symlink, appendFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile, symlink, appendFile } from 'node:fs/promises';
 import { resolve, join, relative } from 'node:path';
 import { createServer } from 'node:net';
 import { HelperRequestSchema } from '../../packages/contracts/src';

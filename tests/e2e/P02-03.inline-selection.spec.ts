@@ -1,3 +1,4 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { protectClipboard } from './clipboard-guard';
 import { openSessionFixture } from './session-fixture';
 import {
@@ -7,8 +8,8 @@ import {
   type ElectronApplication,
   type Locator,
   type Page,
-} from '@playwright/test';
-import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+} from './test';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 let app: ElectronApplication;

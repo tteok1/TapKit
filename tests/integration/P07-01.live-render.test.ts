@@ -1,7 +1,8 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { expect, test } from 'vitest';
 import { DatabaseSync } from 'node:sqlite';
 import { createHash } from 'node:crypto';
-import { mkdir, mkdtemp, readFile, writeFile, copyFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, copyFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { newId } from '../../packages/storage/src';
 import { OfficeWorker, readExecutionCapabilities } from '../../packages/tools/src';

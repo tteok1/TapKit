@@ -1,0 +1,43 @@
+{
+  "recorded_at_utc": "2026-10-30T15:56:44+00:00",
+  "authorization": "User explicitly requested commit and push of the completed cleanup fix and related documentation.",
+  "repository": "tteok1/TapKit",
+  "remote": "origin",
+  "target_branch": "main",
+  "base_sha": "4cd75c99a7cc4c0999826bb5a81b2dc5e5f5f40e",
+  "remote_base_sha": "4cd75c99a7cc4c0999826bb5a81b2dc5e5f5f40e",
+  "delivery_scope": [
+    "automated-test temporary directory ownership and teardown",
+    "test/check scripts and regression tests",
+    "specifications, progress, audit and verification evidence"
+  ],
+  "excluded_from_git": [
+    ".test-data/",
+    "release/",
+    ".runtime/",
+    "node_modules/",
+    "existing account credentials, conversations, libraries and configuration"
+  ],
+  "source_manifest": "source-manifest.json",
+  "source_manifest_mismatches": 0,
+  "validation": "Existing local verification is recorded in summary.json; code is unchanged since that verification.",
+  "publication_ref": "The commit containing this record. Actual commit/push receipts and remote-ref equality are recorded by Git and in the ignored local maintenance receipt.",
+  "ci_status": "Not asserted for the new commit; CI71 refers to the previous source.",
+  "connection_attempts": [
+    {
+      "transport": "direct",
+      "exit_code": 128,
+      "reason": "connection reset"
+    },
+    {
+      "transport": "direct HTTP/1.1",
+      "exit_code": 128,
+      "reason": "connection reset"
+    },
+    {
+      "transport": "existing Windows proxy, command-local only",
+      "fetch_exit_code": 0
+    }
+  ],
+  "persistent_network_configuration_changed": false
+}

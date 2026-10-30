@@ -1,0 +1,226 @@
+{
+  "status": "complete",
+  "date": "2026-10-30 Asia/Shanghai",
+  "cleanup": {
+    "test_directories_removed": 7001,
+    "release_directories_removed": 1,
+    "logical_bytes_removed": 57835681087,
+    "logical_GiB_removed": 53.864,
+    "failures": [],
+    "skipped": [],
+    "protected_directories": 2879,
+    "minimum_age_hours": 24,
+    "latest_release_retained": "release/TapKit-chat-M1-2026-10-27T09-23-01-322Z",
+    "user_specific_approval": true,
+    "initial_bulk_approval_rejection": "Initial 7001-directory bulk request rejected as high-risk classification; user then explicitly approved this exact saved plan before execution.",
+    "private_plan_location": ".test-data/maintenance-cleanup-20261030/plan.json (git-ignored; contains only local maintenance metadata)"
+  },
+  "preservation": {
+    "protectedProfiles": 292,
+    "verifiedFiles": 9289,
+    "verifiedBytes": 2494721067,
+    "changedFiles": 0,
+    "missingProtectedDirectories": 0,
+    "preservationManifestSha256": "9c850e5a9ca094f2ad591b703903dc211374712f06b2e674479f2e4b224294ff",
+    "passed": true
+  },
+  "old_release_verification": {
+    "directory": "release/TapKit-chat-M1-2026-10-27T03-32-21-373Z",
+    "verifiedFiles": 70017,
+    "actualFiles": 70018,
+    "bytes": 3491008512,
+    "manifestSha256": "1c30c0e88647f9ceb7efd393572eb313892d02d82d1bc1a97e6f9f8f1f581d0b",
+    "unexpectedFiles": [],
+    "modifiedFiles": 0,
+    "hasTestData": false,
+    "hasAccountData": false,
+    "latestRetained": "release/TapKit-chat-M1-2026-10-27T09-23-01-322Z"
+  },
+  "implementation": {
+    "allocation_helper": "scripts/test-temp.mjs",
+    "vitest_teardown": "tests/setup.ts afterAll",
+    "playwright_teardown": "tests/e2e/test.ts worker fixture",
+    "guard": "scripts/check-test-temporaries.mjs via pnpm check",
+    "debug_retention": "TAPKIT_KEEP_TEST_DATA=1",
+    "production_backup_policy_changed": false,
+    "live_profiles_auto_cleaned": false,
+    "inherited_account_profile_adopted_by_automated_tests": false,
+    "default_profile_allocation": "beforeAll, after clearing inherited TAPKIT_DATA_DIR during collection; entirely skipped files create no default directory"
+  },
+  "verification": {
+    "unit": {
+      "passed": 454,
+      "failed": 0,
+      "exit_code": 0,
+      "duration_seconds": 11.73,
+      "final_lazy_profile_guard": true
+    },
+    "initial_unit_attempt": {
+      "passed": 438,
+      "failed": 14,
+      "reason": "Download regression fixture originally used .cache; moved its disposable root into managed .test-data boundary.",
+      "log": "unit-initial-failed.log"
+    },
+    "sandbox_junction_attempt": {
+      "passed": 5,
+      "failed": 1,
+      "reason": "Sandbox denied Windows junction creation; all six cases passed outside sandbox before full 454-case unit regression."
+    },
+    "build": {
+      "exit_code": 0
+    },
+    "integration": {
+      "exit_code": 0,
+      "passed": 464,
+      "skipped": 1,
+      "duration_seconds": 1105.09,
+      "scope": "Existing CI main scope; P07 native group remains separate. Run preceded follow-up moving only the default profile creation from collection to beforeAll."
+    },
+    "e2e": {
+      "exit_code": 0,
+      "passed": 3,
+      "duration_seconds": 59.8,
+      "scope": "P00-01 ABI/sandbox/shutdown plus P00-02 DPAPI roundtrip/ACL/plaintext exclusion; worker cleanup succeeded."
+    },
+    "perf": {
+      "exit_code": 0,
+      "passed": 2,
+      "duration_seconds": 41.48,
+      "dataset_unchanged": true
+    },
+    "check": {
+      "exit_code": 0,
+      "format_files": 679,
+      "test_ownership_files": 207,
+      "playwright_collected": 123,
+      "playwright_files": 43,
+      "final_lazy_profile_guard": true
+    },
+    "docs_check": {
+      "exit_code": 0,
+      "task_states": 37
+    },
+    "integration_lifecycle_followup": {
+      "exit_code": 0,
+      "passed": 70,
+      "skipped": 1,
+      "duration_seconds": 38.88,
+      "scope": "After lazy-profile follow-up: storage, history, file selections and opt-in skipped file."
+    },
+    "skipped_suite": {
+      "skippedFile": "P07-01.live-render.test.ts",
+      "newDefaultProfileDirectories": 0,
+      "passed": true
+    },
+    "production_source_diff_exit_code": 0,
+    "private_test_data_tracked_files": 0,
+    "private_manifest_git_ignore_exit_code": 0,
+    "source_files": 113,
+    "final_skip_only_new_default_directories": 0,
+    "final_record_checks": {
+      "format_exit_code": 0,
+      "docs_exit_code": 0,
+      "git_diff_check_exit_code": 0,
+      "canonical_evidence_and_production_diff_empty": true,
+      "summary_consistency": "passed"
+    }
+  },
+  "git_publication": false,
+  "functional_stage_status_changed": false,
+  "completed_at": "2026-10-30T23:44:30+08:00",
+  "storage": {
+    "before_bytes": 78530053325,
+    "before_GiB": 73.136811,
+    "after_bytes": 20697839397,
+    "after_GiB": 19.276365,
+    "drive_free_bytes": 65424519168,
+    "new_nonempty_test_directories": 0,
+    "new_test_directories": [
+      {
+        "directory": "download-regression",
+        "bytes": 0,
+        "files": 0
+      }
+    ],
+    "scan_errors": 0
+  },
+  "preservation_after_all_checks": {
+    "verifiedAtUtc": "2026-10-30T15:35:32.472Z",
+    "protectedProfiles": 292,
+    "verifiedFiles": 9289,
+    "verifiedBytes": 2494721067,
+    "changedFiles": 0,
+    "missingProtectedDirectories": 0,
+    "preservationManifestSha256": "9c850e5a9ca094f2ad591b703903dc211374712f06b2e674479f2e4b224294ff",
+    "passed": true
+  },
+  "real_account_or_model_requests": 0,
+  "evidence_preservation": {
+    "canonical_native_log": {
+      "restored_sha256": "7adebd9c1d8f814dc08b7e9f691680606f47a9b60750c88d37536d2d2c3974df",
+      "added_lines_preserved_locally": 30,
+      "added_sha256": "bbd3c3cafe3efcb94f08a65dba7df2959f354fef86233d6d319e70aee1938ba7"
+    },
+    "canonical_screenshot_before_sha256": "b9c7bc10863cf8c721bfb10406b19852d4c289413eeae0f539d761ef0bf995e0",
+    "canonical_screenshot_restored": true,
+    "current_smoke_screenshot_sha256": "8b0fa2432b9a5840c21a30cfe0e06528e0dd5094450e0a9e4cdad1c914feb684",
+    "additional_canonical_evidence_restored": [
+      {
+        "path": "docs/evidence/P03-01/native-parser-cases.jsonl",
+        "original_sha256": "2ace3744f8265de038e670b2e3b917b143974b8da5c562f423fcba4a6f150783",
+        "current_run_sha256": "2f344b30025cf21c80a5676d4094906470c6e51a8df888f5ddba83e6d99780e7"
+      },
+      {
+        "path": "docs/evidence/P03-02/native-preview-cases.jsonl",
+        "original_sha256": "a6a0d13757bbff11380fb95ac6d390d3274fb487ed0983bcccd89ff04bc5f836",
+        "current_run_sha256": "36a31e845eb2b1e77bed669037ea5f776f9834e6759b41d2126433a9c55c2375"
+      },
+      {
+        "path": "docs/evidence/P03-02/native-preview-samples.json",
+        "original_sha256": "b0ffe7e5f2f4217599ecf6cf3cd00bb93bcd954d27a1c773d294509386bdee3b",
+        "current_run_sha256": "c2334743fd17fcc8a2c532bd049d06d59b91940f83783bf61601cb1e7f38451c"
+      },
+      {
+        "path": "docs/evidence/P03-02/slides-1.pptx.pdf",
+        "original_sha256": "135f23f04ece2924fa18f43b98094eeda3f7beac3c70a6179a0faf4ec39424b9",
+        "current_run_sha256": "fb9c369675cd50dbddd7ab6fdda121320b8c52ba6f233f11ffd1b21f3046a103"
+      },
+      {
+        "path": "docs/evidence/P03-02/slides-2.pptx.pdf",
+        "original_sha256": "d619c4d6aeb50565b72b879fbf364f44424d12fef0a9f39ff25522fa42990417",
+        "current_run_sha256": "0c8532b9f68a0cab9911b0b0f1d01bc23e7d154297f978def5e08751b9608943"
+      },
+      {
+        "path": "docs/evidence/P03-02/slides-3.pptx.pdf",
+        "original_sha256": "b330945969029de8d88b805d39549a0f49a357ddbcf2204bf7e021c3ce0a012c",
+        "current_run_sha256": "a564caa863c568cc23cd66c162076cab2834cf3169f975e65aa0b876afa13ff5"
+      },
+      {
+        "path": "docs/evidence/P03-02/word-1.docx.pdf",
+        "original_sha256": "31a5dd05ca853c61ffe132f87f1c35367e8cdbb51e5d768979e6efefd0a6045b",
+        "current_run_sha256": "45e3a5cfc36daa8663da6fd2d6fcbe0a548ee5cb615a35d3f1d9a9db95f95bd4"
+      },
+      {
+        "path": "docs/evidence/P03-02/word-2.docx.pdf",
+        "original_sha256": "520153266d4fc875c738ca954c6d6e6718dce7f56e507a5d803d49f7e440f66b",
+        "current_run_sha256": "96c0a54b01c2bc68437f831ebf77375d2454f0d4140995a20243a24d03dfef4a"
+      },
+      {
+        "path": "docs/evidence/P03-02/word-3.docx.pdf",
+        "original_sha256": "9e210d63d6544506c39918e2f2da1050986a035a45805f71fec41bcf1fe41c64",
+        "current_run_sha256": "bbae404b16d8899bf6f7d49932deaa63371b12a573b8a3cc3939b05b6a6e73c1"
+      },
+      {
+        "path": "docs/evidence/P04-01/perf-report.json",
+        "original_sha256": "f6aa7342b332c8950eaf584402296855ebb60843027a0964ccae714a8273f4af",
+        "current_run_sha256": "572b0d1a061122dc5faddfefc259ff7c3b50998f5f6292cd1d53019363a58b0f"
+      },
+      {
+        "path": "docs/evidence/P06-02/native-cases.jsonl",
+        "original_sha256": "5289c1ed0db755fc85ab8ceff0b48e899aa4170e23c1fbb96a3ee5dc6de1e465",
+        "current_run_sha256": "c194344fd90d81a39afeb2fa4f691b6dc08cef6755f189b2dfde49fcf14378cc"
+      }
+    ]
+  },
+  "source_manifest": "source-manifest.json"
+}

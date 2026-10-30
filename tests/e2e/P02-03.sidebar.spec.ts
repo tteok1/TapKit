@@ -1,12 +1,7 @@
-import {
-  test,
-  expect,
-  _electron as electron,
-  type ElectronApplication,
-  type Page,
-} from '@playwright/test';
+import { mkdtemp } from '../../scripts/test-temp.mjs';
+import { test, expect, _electron as electron, type ElectronApplication, type Page } from './test';
 import { randomUUID } from 'node:crypto';
-import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type { HistoryCommand, SidebarView } from '../../packages/contracts/src';
 

@@ -1,5 +1,6 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { test, expect, vi } from 'vitest';
-import { mkdir, mkdtemp, readFile, writeFile, lstat, symlink } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, lstat, symlink } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import {
   openStore,

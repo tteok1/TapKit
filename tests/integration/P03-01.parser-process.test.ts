@@ -1,8 +1,9 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { beforeAll, expect, test } from 'vitest';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { createHash } from 'node:crypto';
-import { mkdir, mkdtemp, writeFile, readFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { FILE_PARSER_VERSION, ParsedDocumentSchema } from '../../packages/contracts/src';
 import { officeZip, docxFixture, xlsxFixture, pptxFixture } from '../fixtures/P03-office';

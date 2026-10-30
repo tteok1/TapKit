@@ -1,0 +1,38 @@
+$ node scripts/e2e.mjs "--" "--grep" "P00-01|P00-02 T19 real Windows"
+
+Running 3 tests using 1 worker
+
+(node:41868) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 38624
+(node:38624) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+P00-01 runtime probe {"nonce":"中文 空格 ABI","process":"core","sqliteVersion":"3.53.4","electronVersion":"44.3.0","nodeAbi":"149","corePid":25228}
+Debugger ending on ws://127.0.0.1:60015/39a55e1c-4dd8-45d0-8ea7-81ecc12fb26a
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 1 tests\e2e\P00-01.shell.spec.ts:25:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory (26.7s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 4752
+(node:4752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:60201/24a1e3d6-bcb6-4b5a-9816-25cc7154bf72
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 2 tests\e2e\P00-01.shell.spec.ts:45:1 › P00-01 sandbox bridge errors and clean child shutdown (14.9s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 37712
+(node:37712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+Debugger ending on ws://127.0.0.1:61603/a20355aa-86e6-4437-bd3f-a894addd2d12
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 3 tests\e2e\P00-02.foundation.spec.ts:89:1 › P00-02 T19 real Windows safeStorage round trip, ACL and plaintext exclusion (16.4s)
+
+  3 passed (59.8s)

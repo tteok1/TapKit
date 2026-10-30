@@ -1,5 +1,6 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { test, expect, vi } from 'vitest';
-import { mkdir, mkdtemp, lstat } from 'node:fs/promises';
+import { mkdir, lstat } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 const fault = vi.hoisted(() => ({ phase: 'write' as 'write' | 'sync' }));
 vi.mock('node:fs/promises', async (original) => {

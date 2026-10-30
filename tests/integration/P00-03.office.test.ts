@@ -1,14 +1,7 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { test, expect } from 'vitest';
 import { createHash, randomUUID } from 'node:crypto';
-import {
-  appendFile,
-  copyFile,
-  mkdtemp,
-  mkdir,
-  readFile,
-  readdir,
-  writeFile,
-} from 'node:fs/promises';
+import { appendFile, copyFile, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { HelperRequestSchema } from '../../packages/contracts/src';
 import {

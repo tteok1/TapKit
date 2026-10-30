@@ -1,5 +1,6 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { test, expect } from 'vitest';
-import { mkdir, mkdtemp, readFile } from 'node:fs/promises';
+import { mkdir, readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { previewOfficeFixtures } from '../fixtures/P03-preview-office.mjs';
 import { parseOfficeFile } from '../../packages/retrieval/src/ingest/office';

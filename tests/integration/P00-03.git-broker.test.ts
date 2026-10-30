@@ -1,5 +1,6 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { test, expect } from 'vitest';
-import { mkdtemp, readdir } from 'node:fs/promises';
+import { readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { GitBroker } from '../../packages/tools/src/execution/git-broker';
 import { runtimePaths } from '../../packages/tools/src/execution';

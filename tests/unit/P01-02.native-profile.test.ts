@@ -1,5 +1,6 @@
+import { mkdtempSync } from '../../scripts/test-temp.mjs';
 import { it, expect } from 'vitest';
-import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import {
   containedPath,

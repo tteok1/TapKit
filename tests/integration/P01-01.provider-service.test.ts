@@ -1,5 +1,6 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { mkdtemp } from 'node:fs/promises';
+
 import { resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 import { zstdDecompressSync } from 'node:zlib';

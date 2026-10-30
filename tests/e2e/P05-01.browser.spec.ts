@@ -1,6 +1,7 @@
-import { test, expect, _electron as electron, type ElectronApplication } from '@playwright/test';
+import { mkdtemp } from '../../scripts/test-temp.mjs';
+import { test, expect, _electron as electron, type ElectronApplication } from './test';
 import { build } from 'vite';
-import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 test('P05-01 T19 Chromium isolates Node, IPC, cookies, permissions, POST, private requests and popups', async () => {
   test.setTimeout(60000);

@@ -1,3 +1,15 @@
+## 2026-10-30 测试目录维护Git交付授权
+
+用户明确要求将本轮修改提交推送远程，目标为当前origin/main（tteok1/TapKit），已核对远程基线4cd75c9与本地一致。113个源码文件与完成验证时的manifest全匹配，交付包含测试清理工厂、统一收尾、约束/回归及文档证据；测试账户、凭据、会话、资料库、配置及本地发布副本均由Git忽略，不纳入提交。实际提交及远程SHA以Git回执为准，新CI不提前记通过。范围与基线见[交付记录](../evidence/P00-01/test-data-cleanup-2026-10-30/git-delivery.json)；以下“无提交推送”为交付授权前的验收快照。
+
+## 2026-10-30 测试残留清理与收尾维护
+
+用户具体批准后删除7001个旧自动测试目录及一份经70,017项SHA-256验证的旧发布副本，合计约53.86GiB，项目约73.14→19.28GiB。完整保留含凭据/真实验收、近24小时及未识别目录；全部验证后292个重要资料目录9289文件逐字节一致，2879个保留目录均在。自动测试改用登记新目录及核对身份的公共工厂，Vitest/Playwright统一收尾，隔离继承的账户目录，并加入check约束；整文件跳过不创建默认资料目录，live及生产备份策略保持。unit454、主集成464过/1既有跳过、收集修复补验70过/1跳过、Electron3、perf2及build/check通过；新增非空临时目录0。无真实模型请求、提交推送或阶段推进。证据[维护记录](../evidence/P00-01/test-data-cleanup-2026-10-30/summary.json)、[ADR0074](../adr/0074-owned-automated-test-directories.md)。
+
+## 2026-10-30 项目体积审计
+
+用户要求分析项目占用。只读统计本地文件约73.14GiB、62.2万文件；.test-data约59.16GiB，其中86,548份迁移备份约37.54GiB，浏览器缓存约8.07GiB。两份release约6.50GiB，运行时约4.19GiB；文档约257MiB，已跟踪非文档文件约5MiB。核对测试只关闭实例、不删除临时目录及逐版本数据库备份的累积路径。长路径复核无扫描错误；未清理文件、修改运行代码或推进阶段，requirements.csv任务状态不变。RAM快照无运行中的TapKit/Electron，不能据此判断运行时内存泄漏。证据[体积审计](../evidence/maintenance/storage-audit-2026-10-30.json)。
+
 ## 2026-10-30 main CI71恢复全通过
 
 CI71 main@1288ce4079ba19edb54c4664005829b34550caaa的第2次执行已completed/success，check、office-native、startup-diagnostics三个job全部success。首轮在检出前临时无法解析有效的Action版本，重跑同一提交恢复；运行代码未改。实际unit446、主集成464通过/既有live跳过1、原生17、perf2、Electron50；独立标准用户隔离22/22、parser3/3、preview4/4及关闭/启动诊断通过。P07 gate恢复passed，首轮失败保留，无新增模型。

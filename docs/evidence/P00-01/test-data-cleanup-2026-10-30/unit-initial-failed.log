@@ -1,0 +1,56 @@
+$ vitest run --config vitest.config.ts --project unit
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |unit| tests/unit/P00-01.download.test.ts (14 tests | 14 failed) 88ms
+   × P00-01 retries a 504 and 429 before publishing a checksum-verified archive 31ms
+   × P00-01 retries a transport reset before response headers 2ms
+   × P00-01 removes an interrupted body before restarting the transfer 2ms
+   × P00-01 fails immediately on permanent HTTP 401 3ms
+   × P00-01 fails immediately on permanent HTTP 403 5ms
+   × P00-01 fails immediately on permanent HTTP 404 2ms
+   × P00-01 fails after three transient responses without leaving an archive 2ms
+   × P00-01 does not retry or retain a checksum mismatch 3ms
+   × P00-01 reuses only a verified existing archive 2ms
+   × P00-01 preserves and rejects a corrupt existing archive without replacing it 3ms
+   × P00-01 refuses Retry-After beyond the existing total download budget 2ms
+   × P00-01 retains SHA512 base64 verification used by the locked pnpm archive 3ms
+   × P00-01 uses a configured mirror after a transient error and verifies the same digest 2ms
+   × P00-01 never fails over after an integrity mismatch from a mirror 2ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 14 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P00-01.download.test.ts > P00-01 retries a 504 and 429 before publishing a checksum-verified archive
+ FAIL  |unit| tests/unit/P00-01.download.test.ts > P00-01 retries a transport reset before response headers
+ FAIL  |unit| tests/unit/P00-01.download.test.ts > P00-01 removes an interrupted body before restarting the transfer
+ FAIL  |unit| tests/unit/P00-01.download.test.ts > P00-01 fails immediately on permanent HTTP 401
+ FAIL  |unit| tests/unit/P00-01.download.test.ts > P00-01 fails immediately on permanent HTTP 403
+ FAIL  |unit| tests/unit/P00-01.download.test.ts > P00-01 fails immediately on permanent HTTP 404
+ FAIL  |unit| tests/unit/P00-01.download.test.ts > P00-01 fails after three transient responses without leaving an archive
+ FAIL  |unit| tests/unit/P00-01.download.test.ts > P00-01 does not retry or retain a checksum mismatch
+ FAIL  |unit| tests/unit/P00-01.download.test.ts > P00-01 reuses only a verified existing archive
+ FAIL  |unit| tests/unit/P00-01.download.test.ts > P00-01 preserves and rejects a corrupt existing archive without replacing it
+ FAIL  |unit| tests/unit/P00-01.download.test.ts > P00-01 refuses Retry-After beyond the existing total download budget
+ FAIL  |unit| tests/unit/P00-01.download.test.ts > P00-01 retains SHA512 base64 verification used by the locked pnpm archive
+ FAIL  |unit| tests/unit/P00-01.download.test.ts > P00-01 uses a configured mirror after a transient error and verifies the same digest
+ FAIL  |unit| tests/unit/P00-01.download.test.ts > P00-01 never fails over after an integrity mismatch from a mirror
+Error: Test temporary directory must be inside .test-data
+ ❯ checkPrefix scripts/test-temp.mjs:18:38
+     16| function checkPrefix(prefix) {
+     17|   const path = resolve(prefix);
+     18|   if (!inside(testRoot, path)) throw Error('Test temporary directory m…
+       |                                      ^
+     19|   // Do not adopt a pre-existing profile or traverse a linked parent.
+     20|   for (let parent = dirname(path); ; parent = dirname(parent)) {
+ ❯ mkdtemp scripts/test-temp.mjs:38:32
+ ❯ tests/unit/P00-01.download.test.ts:19:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/14]⎯
+
+
+ Test Files  1 failed | 68 passed (69)
+      Tests  14 failed | 438 passed (452)
+   Start at  23:00:07
+   Duration  18.24s (transform 43%, import 40%, tests 14%, setup 3%, worker 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.

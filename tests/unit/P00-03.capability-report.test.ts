@@ -1,4 +1,5 @@
-import { mkdtemp, mkdir, writeFile } from 'node:fs/promises';
+import { mkdtemp } from '../../scripts/test-temp.mjs';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { beforeEach, expect, test, vi } from 'vitest';
 import { executionFingerprint } from '../../scripts/runtime-inventory.mjs';

@@ -1,5 +1,6 @@
+import { mkdtempSync } from '../../scripts/test-temp.mjs';
 import { test, expect } from 'vitest';
-import { mkdirSync, mkdtempSync } from 'node:fs';
+import { mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { P06LiveBudget } from '../live/P06.budget';
 function fresh() {

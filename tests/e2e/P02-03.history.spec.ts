@@ -1,12 +1,7 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { openSessionFixture } from './session-fixture';
-import {
-  test,
-  expect,
-  _electron as electron,
-  type ElectronApplication,
-  type Page,
-} from '@playwright/test';
-import { mkdir, mkdtemp, writeFile, readFile } from 'node:fs/promises';
+import { test, expect, _electron as electron, type ElectronApplication, type Page } from './test';
+import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type {
   ChatSnapshot,

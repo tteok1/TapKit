@@ -1,5 +1,6 @@
-import { test, expect, _electron as electron, type ElectronApplication } from '@playwright/test';
-import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+import { mkdtemp } from '../../scripts/test-temp.mjs';
+import { test, expect, _electron as electron, type ElectronApplication } from './test';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { solidPng } from '../fixtures/P07-01.images';
 

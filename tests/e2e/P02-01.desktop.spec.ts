@@ -1,12 +1,7 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { openSessionFixture } from './session-fixture';
-import {
-  test,
-  expect,
-  _electron as electron,
-  type ElectronApplication,
-  type Page,
-} from '@playwright/test';
-import { mkdir, mkdtemp } from 'node:fs/promises';
+import { test, expect, _electron as electron, type ElectronApplication, type Page } from './test';
+import { mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 test.setTimeout(180_000);
 let app: ElectronApplication, dir: string;

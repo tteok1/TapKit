@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { expect, type Page } from '@playwright/test';
+import { expect, type Page } from './test';
 
 // History/file tests need an empty, persisted conversation. Creating this
 // fixture directly keeps them independent of the unified start page's send flow.

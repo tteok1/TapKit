@@ -1,5 +1,6 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { mkdtemp, readFile, readdir, rm } from 'node:fs/promises';
+import { readFile, readdir, rm } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import type { safeStorage } from 'electron';
 vi.mock('electron', () => ({ safeStorage: {}, shell: { openExternal: vi.fn() } }));

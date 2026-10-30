@@ -5,6 +5,7 @@ pnpm(['exec', 'tsc', '--project', 'apps/desktop/tsconfig.renderer.json']);
 pnpm(['exec', 'eslint', 'scripts', 'eslint.config.mjs']);
 run(nodeExe(), [join(root, 'scripts/check-format.mjs')]);
 run(nodeExe(), [join(root, 'scripts/check-boundaries.mjs')]);
+run(nodeExe(), [join(root, 'scripts/check-test-temporaries.mjs')]);
 run(nodeExe(), [join(root, 'scripts/check-manifests.mjs')]);
 // Collect every E2E module under the locked Node runtime, without launching Electron.
 pnpm(['exec', 'playwright', 'test', '--list']);

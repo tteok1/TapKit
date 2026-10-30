@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './test';
 
 // Runtime integrity verification has its own Host watchdog. Keep UI action budgets separate.
 export async function waitCoreReady(page: Page) {

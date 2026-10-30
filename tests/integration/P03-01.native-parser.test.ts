@@ -1,5 +1,6 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { afterEach, beforeAll, expect, test, vi } from 'vitest';
-import { access, appendFile, mkdir, mkdtemp, readdir } from 'node:fs/promises';
+import { access, appendFile, mkdir, readdir } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { FileParser, type ParserExecutor } from '../../packages/core/src/file-parser';
 import {

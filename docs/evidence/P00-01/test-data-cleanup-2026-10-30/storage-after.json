@@ -1,0 +1,109 @@
+{
+  "metric": "logical bytes; links/junctions excluded; extended Windows paths",
+  "repository_bytes": 20697839397,
+  "repository_GiB": 19.276365,
+  "repository_files": 347900,
+  "directories": [
+    {
+      "directory": ".test-data",
+      "bytes": 9176848698,
+      "files": 119768
+    },
+    {
+      "directory": ".runtime",
+      "bytes": 4503900586,
+      "files": 93679
+    },
+    {
+      "directory": "release",
+      "bytes": 3491135626,
+      "files": 70026
+    },
+    {
+      "directory": "node_modules",
+      "bytes": 1491737028,
+      "files": 50994
+    },
+    {
+      "directory": ".cache",
+      "bytes": 1363964369,
+      "files": 5582
+    },
+    {
+      "directory": "docs",
+      "bytes": 270070118,
+      "files": 4458
+    },
+    {
+      "directory": ".git",
+      "bytes": 188961418,
+      "files": 397
+    },
+    {
+      "directory": "apps",
+      "bytes": 103716981,
+      "files": 1727
+    },
+    {
+      "directory": "packages",
+      "bytes": 52140004,
+      "files": 374
+    },
+    {
+      "directory": "resources",
+      "bytes": 41601995,
+      "files": 20
+    },
+    {
+      "directory": "test-results",
+      "bytes": 10730572,
+      "files": 500
+    },
+    {
+      "directory": "tests",
+      "bytes": 1897184,
+      "files": 257
+    },
+    {
+      "directory": "<root files>",
+      "bytes": 705061,
+      "files": 29
+    },
+    {
+      "directory": "scripts",
+      "bytes": 253839,
+      "files": 60
+    },
+    {
+      "directory": "native",
+      "bytes": 76058,
+      "files": 9
+    },
+    {
+      "directory": "migrations",
+      "bytes": 60098,
+      "files": 18
+    },
+    {
+      "directory": ".impeccable",
+      "bytes": 32736,
+      "files": 1
+    },
+    {
+      "directory": ".github",
+      "bytes": 7026,
+      "files": 1
+    }
+  ],
+  "new_test_directories": [
+    {
+      "directory": "download-regression",
+      "bytes": 0,
+      "files": 0
+    }
+  ],
+  "new_nonempty_test_directories": 0,
+  "errors": [],
+  "links_skipped": 2712,
+  "elapsed_seconds": 24.98
+}

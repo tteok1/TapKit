@@ -1,5 +1,6 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { expect, test, vi } from 'vitest';
-import { mkdtemp, mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { localEmbedder, cosine, verifyModel } from '../../packages/retrieval/src';
 test('P04-01 T09 real pinned CPU ONNX tokenizer, 512 dimensions and tail windows', async () => {

@@ -1,6 +1,7 @@
-import { test, expect, _electron as electron, type ElectronApplication } from '@playwright/test';
+import { mkdtemp } from '../../scripts/test-temp.mjs';
+import { test, expect, _electron as electron, type ElectronApplication } from './test';
 import { randomUUID } from 'node:crypto';
-import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const evidence = resolve('docs/evidence/P02-03/inline-selection-2026-10-21');

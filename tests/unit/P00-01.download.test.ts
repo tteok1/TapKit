@@ -1,12 +1,13 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { createHash } from 'node:crypto';
-import { mkdir, mkdtemp, readFile, rm, writeFile, access } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile, access } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import { download } from '../../scripts/runtime-fetch.mjs';
 import { root } from '../../scripts/lib.mjs';
 
-const directoryRoot = resolve(root, '.cache/download-regression');
+const directoryRoot = resolve(root, '.test-data/download-regression');
 const fixture = Buffer.from('locked runtime fixture');
 const expected = createHash('sha256').update(fixture).digest('hex');
 const url = 'https://download-fixture.invalid/runtime.zip';

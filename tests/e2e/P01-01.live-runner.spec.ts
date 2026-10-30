@@ -1,5 +1,6 @@
-import { test, expect } from '@playwright/test';
-import { mkdtemp, mkdir, readFile, access } from 'node:fs/promises';
+import { mkdtemp } from '../../scripts/test-temp.mjs';
+import { test, expect } from './test';
+import { mkdir, readFile, access } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { createRequire } from 'node:module';
 import { spawnSync } from 'node:child_process';

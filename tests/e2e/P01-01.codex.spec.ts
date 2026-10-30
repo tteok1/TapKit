@@ -1,6 +1,7 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { waitCoreReady } from './core-ready';
-import { test, expect, _electron as electron } from '@playwright/test';
-import { mkdtemp, mkdir } from 'node:fs/promises';
+import { test, expect, _electron as electron } from './test';
+import { mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { createRequire } from 'node:module';
 import { spawnSync } from 'node:child_process';

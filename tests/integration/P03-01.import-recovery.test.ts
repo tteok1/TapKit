@@ -1,8 +1,9 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { beforeAll, expect, test } from 'vitest';
 import { execFile, spawn } from 'node:child_process';
 import { promisify } from 'node:util';
 import { once } from 'node:events';
-import { mkdir, mkdtemp, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 import { openStore, BlobStore, FileRepository, newId } from '../../packages/storage/src';

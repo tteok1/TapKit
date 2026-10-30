@@ -1,12 +1,7 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { protectClipboard } from './clipboard-guard';
-import {
-  test,
-  expect,
-  _electron as electron,
-  type ElectronApplication,
-  type Page,
-} from '@playwright/test';
-import { mkdir, mkdtemp, readFile, writeFile } from 'node:fs/promises';
+import { test, expect, _electron as electron, type ElectronApplication, type Page } from './test';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 import { openSessionFixture } from './session-fixture';

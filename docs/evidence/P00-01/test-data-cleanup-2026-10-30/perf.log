@@ -1,0 +1,11 @@
+$ node scripts/perf.mjs
+P02-03: 10,000 sessions / 100,000 messages; Core list/search pagination and P50/P95.
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  2 passed (2)
+      Tests  2 passed (2)
+   Start at  23:31:07
+   Duration  41.48s (tests 95%, transform 3%, import 2%)
+

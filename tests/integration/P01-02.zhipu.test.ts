@@ -1,7 +1,8 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { it, expect } from 'vitest';
 import { createServer } from 'node:http';
 import type { AddressInfo } from 'node:net';
-import { mkdtemp } from 'node:fs/promises';
+
 import { resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 import { openStore, newId } from '../../packages/storage/src';

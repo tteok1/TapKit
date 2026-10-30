@@ -1,3 +1,4 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { waitCoreReady } from './core-ready';
 import {
   test,
@@ -6,9 +7,9 @@ import {
   type ElectronApplication,
   type Locator,
   type Page,
-} from '@playwright/test';
+} from './test';
 import { randomUUID } from 'node:crypto';
-import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const evidence = resolve('docs/evidence/P02-03/dialog-layout-2026-10-19');

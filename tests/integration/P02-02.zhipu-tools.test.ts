@@ -1,6 +1,7 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { expect, it } from 'vitest';
 import { createHash } from 'node:crypto';
-import { mkdir, mkdtemp } from 'node:fs/promises';
+import { mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { BlobStore, newId, openStore } from '../../packages/storage/src';
 import { CoreService } from '../../packages/core/src/service';

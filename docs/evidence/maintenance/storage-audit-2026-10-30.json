@@ -1,0 +1,658 @@
+{
+  "snapshot_at": "2026-10-30T22:49:43+08:00",
+  "root": "D:\\Tapkit-public",
+  "branch": "main",
+  "head": "4cd75c99a7cc4c0999826bb5a81b2dc5e5f5f40e",
+  "scope": "Local storage audit requested by user; no P08 implementation, source edits, cleanup, model calls, Git commits or publication.",
+  "metric": {
+    "unit": "bytes",
+    "GiB_bytes": 1073741824,
+    "method": "Recursive os.scandir metadata, symlinks and junctions excluded. Extended Windows paths used for test-data final scan. Git-tracked paths enumerated by git ls-files -z.",
+    "limitations": [
+      "Logical file sizes, not exact NTFS allocation or guaranteed reclaimable space. Hardlinks not globally deduplicated.",
+      "Directories measured sequentially; snapshot is not atomic.",
+      "D:/TapKit was not present in the sandbox-visible filesystem.",
+      "Initial ordinary-path scan had 42 long-path errors. Final extended-path test-data scan resolved them, adding 3272730 bytes / 841 files."
+    ]
+  },
+  "repository_bytes": 78530053325,
+  "repository_GiB": 73.136811,
+  "repository_files": 622329,
+  "scan_errors": 0,
+  "directories": [
+    {
+      "directory": ".test-data",
+      "bytes": 63518495266,
+      "files": 324248,
+      "links_skipped": 90,
+      "errors": 0,
+      "percent": 80.8843
+    },
+    {
+      "directory": "release",
+      "bytes": 6982144138,
+      "files": 140044,
+      "links_skipped": 0,
+      "errors": 0,
+      "percent": 8.891
+    },
+    {
+      "directory": ".runtime",
+      "bytes": 4503900586,
+      "files": 93679,
+      "links_skipped": 0,
+      "errors": 0,
+      "percent": 5.7353
+    },
+    {
+      "directory": "node_modules",
+      "bytes": 1491736215,
+      "files": 50994,
+      "links_skipped": 2615,
+      "errors": 0,
+      "percent": 1.8996
+    },
+    {
+      "directory": ".cache",
+      "bytes": 1363964369,
+      "files": 5582,
+      "links_skipped": 0,
+      "errors": 0,
+      "percent": 1.7369
+    },
+    {
+      "directory": "docs",
+      "bytes": 269762487,
+      "files": 4439,
+      "links_skipped": 0,
+      "errors": 0,
+      "percent": 0.3435
+    },
+    {
+      "directory": ".git",
+      "bytes": 188885822,
+      "files": 388,
+      "links_skipped": 0,
+      "errors": 0,
+      "percent": 0.2405
+    },
+    {
+      "directory": "apps",
+      "bytes": 103716981,
+      "files": 1727,
+      "links_skipped": 9,
+      "errors": 0,
+      "percent": 0.1321
+    },
+    {
+      "directory": "packages",
+      "bytes": 52140006,
+      "files": 374,
+      "links_skipped": 55,
+      "errors": 0,
+      "percent": 0.0664
+    },
+    {
+      "directory": "resources",
+      "bytes": 41601995,
+      "files": 20,
+      "links_skipped": 0,
+      "errors": 0,
+      "percent": 0.053
+    },
+    {
+      "directory": "test-results",
+      "bytes": 10688604,
+      "files": 463,
+      "links_skipped": 0,
+      "errors": 0,
+      "percent": 0.0136
+    },
+    {
+      "directory": "tests",
+      "bytes": 1886923,
+      "files": 255,
+      "links_skipped": 0,
+      "errors": 0,
+      "percent": 0.0024
+    },
+    {
+      "directory": "<root files>",
+      "bytes": 705061,
+      "files": 29,
+      "links_skipped": 0,
+      "errors": 0,
+      "percent": 0.0009
+    },
+    {
+      "directory": "scripts",
+      "bytes": 248954,
+      "files": 58,
+      "links_skipped": 0,
+      "errors": 0,
+      "percent": 0.0003
+    },
+    {
+      "directory": "native",
+      "bytes": 76058,
+      "files": 9,
+      "links_skipped": 0,
+      "errors": 0,
+      "percent": 0.0001
+    },
+    {
+      "directory": "migrations",
+      "bytes": 60098,
+      "files": 18,
+      "links_skipped": 0,
+      "errors": 0,
+      "percent": 0.0001
+    },
+    {
+      "directory": ".impeccable",
+      "bytes": 32736,
+      "files": 1,
+      "links_skipped": 0,
+      "errors": 0,
+      "percent": 0.0
+    },
+    {
+      "directory": ".github",
+      "bytes": 7026,
+      "files": 1,
+      "links_skipped": 0,
+      "errors": 0,
+      "percent": 0.0
+    }
+  ],
+  "test_data": {
+    "bytes": 63518495266,
+    "files": 324248,
+    "top_level_directories": 9906,
+    "migration_backup_files": 86548,
+    "categories": [
+      {
+        "category": "migration_backups",
+        "bytes": 40310759424,
+        "files": 86548
+      },
+      {
+        "category": "browser_caches_and_dictionaries",
+        "bytes": 8665931571,
+        "files": 31199
+      },
+      {
+        "category": "other_sqlite_databases",
+        "bytes": 6515493224,
+        "files": 7703
+      },
+      {
+        "category": "other_files",
+        "bytes": 4483077630,
+        "files": 171501
+      },
+      {
+        "category": "oversize_test_files",
+        "bytes": 1363148813,
+        "files": 13
+      },
+      {
+        "category": "screenshots_and_images",
+        "bytes": 1077836670,
+        "files": 7051
+      },
+      {
+        "category": "font_copies",
+        "bytes": 673931943,
+        "files": 42
+      },
+      {
+        "category": "logs_and_jsonl",
+        "bytes": 428315991,
+        "files": 20191
+      }
+    ],
+    "migration_versions": [
+      {
+        "version": "1",
+        "bytes": 26386432,
+        "files": 6442
+      },
+      {
+        "version": "2",
+        "bytes": 1767890944,
+        "files": 6442
+      },
+      {
+        "version": "3",
+        "bytes": 1984819200,
+        "files": 6461
+      },
+      {
+        "version": "4",
+        "bytes": 2064850944,
+        "files": 6463
+      },
+      {
+        "version": "5",
+        "bytes": 2269233152,
+        "files": 6442
+      },
+      {
+        "version": "6",
+        "bytes": 2322006016,
+        "files": 6442
+      },
+      {
+        "version": "7",
+        "bytes": 2849734656,
+        "files": 6442
+      },
+      {
+        "version": "8",
+        "bytes": 3483009024,
+        "files": 6442
+      },
+      {
+        "version": "9",
+        "bytes": 3916931072,
+        "files": 6418
+      },
+      {
+        "version": "10",
+        "bytes": 3763744768,
+        "files": 6167
+      },
+      {
+        "version": "11",
+        "bytes": 3067367424,
+        "files": 4959
+      },
+      {
+        "version": "12",
+        "bytes": 2926059520,
+        "files": 4521
+      },
+      {
+        "version": "13",
+        "bytes": 2988752896,
+        "files": 4242
+      },
+      {
+        "version": "14",
+        "bytes": 2803507200,
+        "files": 3845
+      },
+      {
+        "version": "15",
+        "bytes": 1132957696,
+        "files": 1386
+      },
+      {
+        "version": "16",
+        "bytes": 1157148672,
+        "files": 1381
+      },
+      {
+        "version": "17",
+        "bytes": 1078345728,
+        "files": 1278
+      },
+      {
+        "version": "18",
+        "bytes": 706162688,
+        "files": 773
+      },
+      {
+        "version": "19",
+        "bytes": 1851392,
+        "files": 2
+      }
+    ]
+  },
+  "runtime_components": [
+    {
+      "path": "rust",
+      "bytes": 1997418267,
+      "files": 65992
+    },
+    {
+      "path": "libreoffice",
+      "bytes": 1627919988,
+      "files": 19489
+    },
+    {
+      "path": "msvcCrt",
+      "bytes": 214945516,
+      "files": 46
+    },
+    {
+      "path": "windowsSdk",
+      "bytes": 201863340,
+      "files": 496
+    },
+    {
+      "path": "python",
+      "bytes": 166086694,
+      "files": 5191
+    },
+    {
+      "path": "node",
+      "bytes": 106986604,
+      "files": 1995
+    },
+    {
+      "path": "git",
+      "bytes": 94376076,
+      "files": 366
+    },
+    {
+      "path": "msvcImports",
+      "bytes": 94304101,
+      "files": 104
+    }
+  ],
+  "release_copies": [
+    {
+      "path": "TapKit-chat-M1-2026-10-27T09-23-01-322Z",
+      "bytes": 3491133770,
+      "files": 70023
+    },
+    {
+      "path": "TapKit-chat-M1-2026-10-27T03-32-21-373Z",
+      "bytes": 3491008512,
+      "files": 70018
+    },
+    {
+      "path": "<root files>",
+      "bytes": 1856,
+      "files": 3
+    }
+  ],
+  "tracked": {
+    "bytes": 231085529,
+    "files": 5055,
+    "non_docs_bytes": 5219972,
+    "groups": [
+      {
+        "path": "docs/evidence",
+        "bytes": 223210017,
+        "files": 4256
+      },
+      {
+        "path": "docs/progress",
+        "bytes": 1470938,
+        "files": 38
+      },
+      {
+        "path": "docs/plan",
+        "bytes": 955483,
+        "files": 67
+      },
+      {
+        "path": "apps/desktop",
+        "bytes": 880316,
+        "files": 79
+      },
+      {
+        "path": "tests/integration",
+        "bytes": 876409,
+        "files": 88
+      },
+      {
+        "path": "packages/core",
+        "bytes": 735273,
+        "files": 42
+      },
+      {
+        "path": "<root files>",
+        "bytes": 569067,
+        "files": 28
+      },
+      {
+        "path": "tests/e2e",
+        "bytes": 486194,
+        "files": 48
+      },
+      {
+        "path": "tests/unit",
+        "bytes": 302448,
+        "files": 68
+      },
+      {
+        "path": "scripts",
+        "bytes": 248954,
+        "files": 58
+      },
+      {
+        "path": "docs/adr",
+        "bytes": 223684,
+        "files": 75
+      },
+      {
+        "path": "packages/storage",
+        "bytes": 179253,
+        "files": 17
+      },
+      {
+        "path": "packages/contracts",
+        "bytes": 149268,
+        "files": 25
+      },
+      {
+        "path": "packages/providers",
+        "bytes": 148124,
+        "files": 19
+      },
+      {
+        "path": "tests/live",
+        "bytes": 124306,
+        "files": 20
+      },
+      {
+        "path": "packages/retrieval",
+        "bytes": 86350,
+        "files": 14
+      },
+      {
+        "path": "tests/fixtures",
+        "bytes": 83713,
+        "files": 25
+      },
+      {
+        "path": "native/windows-helper",
+        "bytes": 76058,
+        "files": 9
+      }
+    ],
+    "extension_totals": [
+      {
+        "path": ".png",
+        "bytes": 164972034,
+        "files": 1055
+      },
+      {
+        "path": ".log",
+        "bytes": 25530488,
+        "files": 1280
+      },
+      {
+        "path": ".json",
+        "bytes": 16212481,
+        "files": 1361
+      },
+      {
+        "path": ".jsonl",
+        "bytes": 4877918,
+        "files": 26
+      },
+      {
+        "path": ".pdf",
+        "bytes": 4564932,
+        "files": 74
+      },
+      {
+        "path": ".md",
+        "bytes": 3505498,
+        "files": 435
+      },
+      {
+        "path": ".ts",
+        "bytes": 3409851,
+        "files": 415
+      },
+      {
+        "path": ".pptx",
+        "bytes": 2842857,
+        "files": 18
+      },
+      {
+        "path": ".txt",
+        "bytes": 1523721,
+        "files": 33
+      },
+      {
+        "path": ".mjs",
+        "bytes": 807761,
+        "files": 151
+      },
+      {
+        "path": ".csv",
+        "bytes": 777152,
+        "files": 20
+      },
+      {
+        "path": ".tsx",
+        "bytes": 565828,
+        "files": 39
+      },
+      {
+        "path": ".yaml",
+        "bytes": 329276,
+        "files": 2
+      },
+      {
+        "path": ".zip",
+        "bytes": 308634,
+        "files": 23
+      },
+      {
+        "path": ".html",
+        "bytes": 203457,
+        "files": 10
+      },
+      {
+        "path": ".svg",
+        "bytes": 197819,
+        "files": 9
+      },
+      {
+        "path": ".css",
+        "bytes": 94154,
+        "files": 5
+      },
+      {
+        "path": ".xlsx",
+        "bytes": 85522,
+        "files": 11
+      }
+    ]
+  },
+  "causes": [
+    {
+      "finding": "Repeated test profiles accumulate and retain database migration backups. New databases traverse schema versions 1..18 and back up the complete database before every step. 86548 migration backup files total 40310759424 bytes.",
+      "sources": [
+        "packages/storage/src/foundation.ts:130",
+        "packages/storage/src/foundation.ts:575",
+        "tests/integration/P02-03.history.test.ts:42",
+        "tests/integration/P02-03.history.test.ts:66"
+      ]
+    },
+    {
+      "finding": "Representative test teardown closes processes and stores without removing its mkdtemp directory. Repeated integration/Electron runs retain both database copies and Chromium profile caches.",
+      "sources": [
+        "tests/integration/P02-03.history.test.ts:42",
+        "tests/e2e/P00-01.shell.spec.ts:9",
+        "tests/e2e/P00-01.shell.spec.ts:22",
+        "tests/e2e/P02-01.form-controls.spec.ts:23",
+        "tests/e2e/P02-01.form-controls.spec.ts:141"
+      ]
+    },
+    {
+      "finding": "Daily backup retention removes daily-marked backups beyond seven days; it does not prune backups/migrations.",
+      "sources": [
+        "packages/storage/src/blobs.ts:431"
+      ]
+    },
+    {
+      "finding": "The oversized-file test leaves a 100 MiB + 1 byte fixture per run. Thirteen such files remain; this is a secondary contributor, not the main cause.",
+      "sources": [
+        "tests/integration/P03-01.file-selections.test.ts:8",
+        "tests/integration/P03-01.file-selections.test.ts:119"
+      ]
+    },
+    {
+      "finding": "pack:dir creates timestamped self-contained development directories, copies Node/Python/Git/LibreOffice, Electron and dependencies, and updates latest.json without pruning previous snapshots. Two copies remain, approximately 3.25 GiB each.",
+      "sources": [
+        "scripts/pack-dir.mjs:17",
+        "scripts/pack-dir.mjs:52",
+        "scripts/pack-dir.mjs:320"
+      ]
+    },
+    {
+      "finding": "Bootstrap retains downloaded archives as well as extracted runtimes, installed dependencies and build caches. Rust is a full development distribution; LibreOffice is the largest bundled application runtime.",
+      "sources": [
+        "scripts/runtime-fetch.mjs:119",
+        "scripts/runtime-fetch.mjs:165",
+        "scripts/bootstrap.mjs:6",
+        "runtime-lock.json"
+      ]
+    }
+  ],
+  "ram_observation": {
+    "method": "Read-only host Win32_Process snapshot; command-line contents not exported.",
+    "result": "No running electron.exe, tapkit.exe or soffice executable found in the observed snapshot. Nodes referencing repository paths were children of codex.exe, not an active TapKit app. A PDF preview process referenced the repository (working set 13.9 MiB, private 57.5 MiB).",
+    "conclusion": "This establishes excessive project disk storage. It does not measure running TapKit RAM or prove/refute an application memory leak."
+  },
+  "recommended_followup": [
+    "Introduce safe per-run test-directory cleanup after handles and processes close, with an explicit opt-in or bounded retention for failed-run evidence. Preserve real profiles and non-generated support scripts.",
+    "Review migration-backup handling for fresh disposable test databases and add a bounded retention policy; keep production migration recovery guarantees.",
+    "Retain only the release snapshots actually needed; keep downloads and extracted runtimes separate in disk budgets.",
+    "Do not expect deleting source code, Markdown or scripts to materially reduce this footprint."
+  ],
+  "verification": {
+    "directory_scan_exit_code": 0,
+    "tracked_inventory_exit_code": 0,
+    "extended_path_test_data_scan_exit_code": 0,
+    "aggregates_checked": true,
+    "tests_run": false,
+    "reason": "Metadata and source-inspection audit only; no application behavior changed.",
+    "git_count_objects": {
+      "loose_objects": 305,
+      "pack_KiB": 157791,
+      "garbage_files": 8,
+      "garbage_KiB": 19234,
+      "note": "Existing temporary Git object files are a small secondary issue; no Git cleanup performed."
+    },
+    "documentation_checks": [
+      {
+        "command": "locked node + pnpm exec prettier --check docs/progress/CURRENT.md docs/progress/INDEX.md",
+        "exit_code": 0
+      },
+      {
+        "command": "locked node scripts/docs-check.mjs",
+        "exit_code": 0,
+        "result": "37 task states, started handoffs and requirement evidence links verified"
+      },
+      {
+        "command": "git diff --check",
+        "exit_code": 0
+      },
+      {
+        "command": "Python JSON parse and aggregate assertions",
+        "exit_code": 0
+      }
+    ]
+  },
+  "requirements_status": "No functional requirement or stage-gate status changed."
+}

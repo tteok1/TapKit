@@ -1,7 +1,8 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { beforeAll, test, expect, vi } from 'vitest';
 import { build } from 'vite';
 import { spawn } from 'node:child_process';
-import { mkdir, mkdtemp, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { openStore, BlobStore, FileRepository } from '../../packages/storage/src';
 import { WorkService } from '../../packages/core/src/work-service';

@@ -1,0 +1,8 @@
+{
+  "redactions": {},
+  "patterns": [
+    "Windows principal identifiers",
+    "user home names"
+  ],
+  "credentials_decrypted_or_exported": false
+}

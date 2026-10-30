@@ -1,5 +1,6 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { afterEach, expect, it, vi } from 'vitest';
-import { mkdtemp } from 'node:fs/promises';
+
 import { resolve } from 'node:path';
 import { openStore, newId, type Store } from '../../packages/storage/src';
 import { ProviderService, type PrivateVault } from '../../packages/core/src/provider-service';

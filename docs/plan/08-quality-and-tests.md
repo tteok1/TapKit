@@ -37,6 +37,8 @@ P02-03合成数据建库在beforeAll中单独限时120秒；查询采样用例�
 
 所有测试产物进test-results，记录commit/schema/prompt/model/adapter/OS。模型输出使用断言契约和最终结果，不做整段措辞快照。需要UI视觉检查时保留截图和人工核对项。
 
+自动测试的临时目录统一通过scripts/test-temp.mjs的mkdtemp/mkdtempSync创建，仅登记本进程新建的.test-data子目录。Vitest在文件级afterAll、Playwright在worker关闭后清理，须先关闭数据库、Electron和原生任务；不采用或清理继承的TAPKIT_DATA_DIR、开发目录或真实账户目录。清理前复核绝对路径、父目录无链接及目录身份，拒绝替换或越界；失败须报告，不能默默记为清理成功。需要人工调试时显式设置TAPKIT_KEEP_TEST_DATA=1保留本轮目录，默认清理成功和失败用例的数据，截图/报告继续保留在既有证据目录。pnpm check检查自动测试不得直接导入原生mkdtemp或绕过Playwright清理fixture；live验收入口保持独立，不适用自动删除。
+
 ## 3. 最低自动化案例
 
 > **2026-09-30 T21 路线补丁（基于旧方案优化，现以本补丁为准）**：安装、升级、卸载和数据保留仍须在标准用户场景验收；任务执行采用 AppContainer + Job、最小 ACL 和无网络 capability，不要求创建 TapKit 专用账户或账户级 WFP。下方 T21 原有“首次管理员隔离初始化（ADR 0007）”字样是旧方案记录，保留供追溯，不作为当前验收前置。

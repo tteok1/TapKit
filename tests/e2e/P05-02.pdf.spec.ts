@@ -1,12 +1,7 @@
-import {
-  test,
-  expect,
-  _electron as electron,
-  chromium,
-  type ElectronApplication,
-} from '@playwright/test';
+import { mkdtemp } from '../../scripts/test-temp.mjs';
+import { test, expect, _electron as electron, chromium, type ElectronApplication } from './test';
 import { build } from 'vite';
-import { mkdir, mkdtemp, writeFile, readFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 test('P05-02 T07/T20 real sandbox PDF embeds Chinese and standalone HTML opens in clean Edge without TapKit', async () => {

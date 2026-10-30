@@ -1,5 +1,6 @@
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { test, expect } from 'vitest';
-import { mkdir, mkdtemp, readdir, writeFile, symlink } from 'node:fs/promises';
+import { mkdir, readdir, writeFile, symlink } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { PreviewStaging } from '../../packages/core/src/preview-staging';
 import type { Store } from '../../packages/storage/src';

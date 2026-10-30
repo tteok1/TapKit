@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project unit
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  69 passed (69)
+      Tests  454 passed (454)
+   Start at  23:29:45
+   Duration  11.73s (import 42%, transform 33%, tests 22%, setup 3%, worker 1%)
+
