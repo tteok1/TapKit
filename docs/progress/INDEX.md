@@ -1,6 +1,6 @@
-## 2026-10-31 CI72交接修复本地通过，等待新CI
+## 2026-10-31 CI72交接修复已通过CI73
 
-9414195的CI72仅check/Build and Electron失败：49过/1失败；office-native、startup及主job其他规定步骤均通过。本机同例复现后，改为test-results下固定单份、哈希校验的合成SQLite/Blob交接产物，源目录及桌面副本仍各自清理，不保存迁移备份或凭据。unit459、原生4、Electron预览5及check全过；源样例目录确实删除后，消费者读取约0.49MiB/19文件快照并完成原六样例断言，仓库历史manifest不作为输入。历史验收材料已恢复。按既有授权推main并待新CI实际结果，不改业务代码、账户或阶段状态。见[原失败](../evidence/P00-01/ci-cleanup-fix-2026-10-31/ci72-failure.json)、[本地复验](../evidence/P00-01/ci-cleanup-fix-2026-10-31/verification.json)。
+修复f690e457a0affe325e16515cfba2fe0a3205eb20已推origin/main，[CI73 run41096803922](https://github.com/tteok1/TapKit/actions/runs/41096803922)的check、office-native和startup-diagnostics全部completed/success。unit459、主集成464通过/1既有跳过、perf2、Electron50、原生17；独立标准用户22/22、parser3/3、preview4/4、Office关闭6轮及storage/vault启动3轮均通过。原先失败的P03-02六样例桌面断言原样通过，临时目录照常清理；交接固定单份约0.49MiB合成SQLite/Blob，不读取历史临时路径或真实账户。292个保留资料目录9289文件复核仍与清理前字节一致；业务代码与阶段状态不变。后置仅保存本次最终证据和进度，工程/测试源码保持已通过CI的f690e45，不进入P08。见[原失败](../evidence/P00-01/ci-cleanup-fix-2026-10-31/ci72-failure.json)、[最终验收](../evidence/P00-01/ci-cleanup-fix-2026-10-31/ci73-final-status.json)、[资料保留校验](../evidence/P00-01/ci-cleanup-fix-2026-10-31/preservation-after.json)。
 
 ## 2026-10-30 测试目录维护Git交付授权
 

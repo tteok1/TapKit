@@ -1,0 +1,56 @@
+{
+  "status": "complete",
+  "source_sha": "f690e457a0affe325e16515cfba2fe0a3205eb20",
+  "run_id": 41096803922,
+  "run_number": 73,
+  "run_attempt": 1,
+  "url": "https://github.com/tteok1/TapKit/actions/runs/41096803922",
+  "conclusion": "success",
+  "updated_at": "2026-10-30T17:57:44Z",
+  "jobs": [
+    {
+      "id": 124218136698,
+      "name": "startup-diagnostics",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T17:43:14Z",
+      "completed_at": "2026-10-30T17:48:49Z"
+    },
+    {
+      "id": 124204539856,
+      "name": "office-native",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T17:12:39Z",
+      "completed_at": "2026-10-30T17:23:19Z"
+    },
+    {
+      "id": 124204539495,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T17:12:39Z",
+      "completed_at": "2026-10-30T17:43:11Z"
+    }
+  ],
+  "results": {
+    "unit_passed": 459,
+    "integration_passed": 464,
+    "integration_existing_opt_in_skipped": 1,
+    "performance_passed": 2,
+    "electron_passed": 50,
+    "native_office_passed": 17,
+    "independent_standard_user_passed": 22,
+    "standard_user_parser_passed": 3,
+    "standard_user_preview_passed": 4,
+    "fresh_office_shutdown_rounds_passed": 6,
+    "startup_storage_and_vault_rounds_passed": 3
+  },
+  "prior_failure_retained": "ci72-failure.json",
+  "logs": "ci73-summary.log",
+  "log_receipts": "ci73-log-receipts.json",
+  "protected_accounts": "preservation-after.json",
+  "production_code_changed": false,
+  "real_model_requests": 0,
+  "stage_status_unchanged": true
+}

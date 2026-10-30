@@ -1,0 +1,13 @@
+{
+  "after_ci_fix_local_tests": true,
+  "protectedProfiles": 292,
+  "verifiedFiles": 9289,
+  "verifiedBytes": 2494721067,
+  "changedFiles": 0,
+  "missingProtectedDirectories": 0,
+  "readErrors": [],
+  "preservationManifestSha256": "9c850e5a9ca094f2ad591b703903dc211374712f06b2e674479f2e4b224294ff",
+  "passed": true,
+  "windowsExtendedLengthPaths": true,
+  "durationSeconds": 9.14
+}

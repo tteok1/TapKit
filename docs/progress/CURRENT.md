@@ -1,6 +1,6 @@
 # 当前接续点
 
-- 2026-10-31 CI72修复本地已验，待新CI：原生→桌面改用固定单份SQLite/Blob快照，源临时目录已删除后5项真实预览仍全过；unit459、原生4、check通过。交接约0.49MiB/19文件，无备份或凭据；历史证据恢复原字节。按既有授权提交推送main并核对新CI，不复用旧成功结论、不进入P08。记录docs/evidence/P00-01/ci-cleanup-fix-2026-10-31/verification.json。
+- 2026-10-31 CI72交接修复已完成：f690e45已推origin/main，CI73 run41096803922的check/office-native/startup三个job全success；unit459、集成464过/1既有跳过、perf2、Electron50、原生17及独立用户/关闭/启动检查通过。测试目录仍自动清理；292资料目录9289文件复核原字节一致，业务/账户/阶段不变，不进入P08。最终证据docs/evidence/P00-01/ci-cleanup-fix-2026-10-31/ci73-final-status.json；后置只补文档证据。
 - 2026-10-30 Git交付：用户明确授权本轮测试清理修复及文档提交推送origin/main；远程基线4cd75c9与本地一致，源码113文件与既有验证manifest一致。仅交付测试/检查脚本及文档证据，账户/.test-data/release不入Git；最终SHA以Git回执为准，新提交CI单独核对，不沿用CI71结果。
 - 2026-10-30 清理与防积累修复完成：删除获批7001个旧测试目录和1份旧发布副本，约53.86GiB，目录73.14→19.28GiB；全部验证后292个重要资料目录9289文件哈希仍一致。unit454、主集成464过/1既有跳过、收集修复补验70过/1跳过、Electron3、perf2、build/check通过；新增非空测试目录0。原任务/gate保持，不进入P08；证据docs/evidence/P00-01/test-data-cleanup-2026-10-30/summary.json。
 - 2026-10-30；D:/Tapkit-public；main。P07已squash合入main源1288ce4079ba19edb54c4664005829b34550caaa，原codex/p07-office保留；后续提交仅保存本次恢复记录，不进入P08。

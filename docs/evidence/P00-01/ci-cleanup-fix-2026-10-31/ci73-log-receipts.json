@@ -1,0 +1,28 @@
+{
+  "run_id": 41096803922,
+  "source_sha": "f690e457a0affe325e16515cfba2fe0a3205eb20",
+  "logs": [
+    {
+      "job": "check",
+      "bytes": 11526299,
+      "sha256": "accfd76cc707dac02dbb1c6fb4b679fb8f047b5981e7ea9439d139310f2d84cc",
+      "github_error_lines": 0,
+      "last_log_timestamp": "2026-10-30T17:43:01.8054515Z"
+    },
+    {
+      "job": "office-native",
+      "bytes": 174376,
+      "sha256": "df95d568f028cba8e1bda9c9b2dd7174484165e344a1a9c62212d86379adaeac",
+      "github_error_lines": 0,
+      "last_log_timestamp": "2026-10-30T17:23:17.6409147Z"
+    },
+    {
+      "job": "startup",
+      "bytes": 295014,
+      "sha256": "d84aa55cfecb40c746d01051d4b05a4dcc36c8052c3331f7c0a7b85c657da148",
+      "github_error_lines": 0,
+      "last_log_timestamp": "2026-10-30T17:46:56.7893675Z"
+    }
+  ],
+  "full_raw_logs": "Local ignored maintenance directory only; no profile DB archived to Git."
+}

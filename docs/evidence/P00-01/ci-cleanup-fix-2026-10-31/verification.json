@@ -1,5 +1,5 @@
 {
-  "status": "local_verified_ci_pending",
+  "status": "local_and_remote_verified",
   "date": "2026-10-31 Asia/Shanghai",
   "failed_run": 41085703932,
   "failed_source": "941419581d8b2c272ff9bfb2162741a67007cedd",
@@ -68,6 +68,24 @@
     "docs/evidence/P03-02/word-3.docx.pdf"
   ],
   "source_manifest": "source-manifest.json",
-  "ci_followup": "pending new committed source; no prior CI result reused",
-  "safety": "Only profiles under newly created, registered parents can be encoded or restored. Credential paths, existing destinations, links and corrupt/path-traversal entries are rejected."
+  "ci_followup": {
+    "run_id": 41096803922,
+    "run_number": 73,
+    "source_sha": "f690e457a0affe325e16515cfba2fe0a3205eb20",
+    "url": "https://github.com/tteok1/TapKit/actions/runs/41096803922",
+    "status": "completed",
+    "conclusion": "success",
+    "final_record": "ci73-final-status.json"
+  },
+  "safety": "Only profiles under newly created, registered parents can be encoded or restored. Credential paths, existing destinations, links and corrupt/path-traversal entries are rejected.",
+  "preservation_after_local_fix_tests": "preservation-after.json",
+  "documentation_followup": {
+    "source_and_test_tree": "unchanged from successful f690e457a0affe325e16515cfba2fe0a3205eb20",
+    "source_manifest_files_verified": 5,
+    "non_document_diff_exit_code": 0,
+    "docs_check_exit_code": 0,
+    "task_states_verified": 37,
+    "git_diff_check_exit_code": 0,
+    "publication": "Documentation evidence only; skip CI on this follow-up; CI73 validates the unchanged source commit."
+  }
 }
