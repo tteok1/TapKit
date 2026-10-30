@@ -1,0 +1,310 @@
+{
+  "date": "2026-10-30 Asia/Shanghai",
+  "run": 41057664428,
+  "runNumber": 71,
+  "sourceHead": "1288ce4079ba19edb54c4664005829b34550caaa",
+  "branch": "main",
+  "initialAttempt": {
+    "attempt": 1,
+    "conclusion": "failure",
+    "jobs": [
+      {
+        "id": 124069175912,
+        "name": "office-native",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 41057664428,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Restore locked runtime archives",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Bootstrap locked runtime and native dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Verify current runner execution capabilities",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "P07 native office acceptance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 124069176357,
+        "name": "check",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_id": 41057664428,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 1
+          }
+        ]
+      },
+      {
+        "id": 124069377049,
+        "name": "startup-diagnostics",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 41057664428,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Restore locked runtime archives",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Bootstrap locked runtime and native dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Repeat fresh-process startup diagnostics",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          }
+        ]
+      }
+    ]
+  },
+  "failure": {
+    "job": 124069176357,
+    "step": "Set up job",
+    "beforeCheckout": true,
+    "error": "Unable to resolve action `actions/cache@v5`, unable to find version `v5`. Unable to resolve action `actions/upload-artifact@v4`, unable to find version `v4`"
+  },
+  "actionRefs": {
+    "cache": {
+      "ref": "refs/tags/v5",
+      "sha": "caa296126883cff596d87d8935842f9db880ef25"
+    },
+    "uploadArtifact": {
+      "ref": "refs/tags/v4",
+      "sha": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+    }
+  },
+  "diagnosis": {
+    "inference": "Transient GitHub action resolution failure; valid tags and two other jobs succeeded on identical workflow/source.",
+    "sourceChange": false
+  },
+  "recovery": {
+    "operation": "rerun only failed check job using GitHub REST",
+    "pluginAttempt": "403 Resource not accessible by integration",
+    "existingGitCredentialFallback": {
+      "httpStatus": 201,
+      "credentialsPersisted": false
+    },
+    "attempt2": {
+      "attempt": 2,
+      "source": "1288ce4079ba19edb54c4664005829b34550caaa",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124079395879,
+          "name": "check",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 124079399259,
+          "name": "office-native",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 124093399522,
+          "name": "startup-diagnostics",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "url": "https://github.com/tteok1/TapKit/actions/runs/41057664428/attempts/2"
+    },
+    "result": "success",
+    "latestSnapshot": {
+      "attempt": 2,
+      "source": "1288ce4079ba19edb54c4664005829b34550caaa",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 124079395879,
+          "name": "check",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 124079399259,
+          "name": "office-native",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 124093399522,
+          "name": "startup-diagnostics",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "url": "https://github.com/tteok1/TapKit/actions/runs/41057664428/attempts/2"
+    },
+    "monitoring": {
+      "aggregateJobsApi": "ReadTimeout and HTTP500",
+      "attemptSpecificJobsApi": "GET /actions/runs/41057664428/attempts/2/jobs succeeded",
+      "productFailureInferredFromApiErrors": false
+    },
+    "initialAttempt2Observation": {
+      "id": 41057664428,
+      "runNumber": 71,
+      "attempt": 2,
+      "sha": "1288ce4079ba19edb54c4664005829b34550caaa",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/tteok1/TapKit/actions/runs/41057664428"
+    }
+  },
+  "newModelRequests": 0,
+  "connectionChecksUnchanged": 13,
+  "results": {
+    "unit": {
+      "passed": 446
+    },
+    "integration": {
+      "passed": 464,
+      "skipped": 1,
+      "skip": "existing opt-in P07-01 live test"
+    },
+    "native": {
+      "probePassed": 22,
+      "testsPassed": 17,
+      "sourceAttempt": 1,
+      "retainedAcrossRerun": true
+    },
+    "perf": {
+      "passed": 2
+    },
+    "electron": {
+      "passed": 50
+    },
+    "independentStandardUser": {
+      "probePassed": 22,
+      "parserPassed": 3,
+      "previewPassed": 4,
+      "failed": 0,
+      "pending": 0,
+      "missingCases": []
+    },
+    "officeShutdown": {
+      "repeatsPassed": 6
+    },
+    "startupDiagnostics": "success"
+  },
+  "runtimeCodeChanged": false,
+  "evidencePublication": "docs only; [skip ci]; runtime equals tested 1288ce4; first failure retained"
+}

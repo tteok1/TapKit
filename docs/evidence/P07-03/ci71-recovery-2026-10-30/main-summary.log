@@ -1,0 +1,34 @@
+2026-10-30T13:11:44.9836922Z   1 passed (4.7s)
+2026-10-30T13:12:30.2868203Z  Test Files  68 passed (68)
+2026-10-30T13:12:30.2870412Z       Tests  446 passed (446)
+2026-10-30T13:21:24.3800479Z  Test Files  72 passed | 1 skipped (73)
+2026-10-30T13:21:24.3803939Z       Tests  464 passed | 1 skipped (465)
+2026-10-30T13:22:10.7294248Z  Test Files  2 passed (2)
+2026-10-30T13:22:10.7295446Z       Tests  2 passed (2)
+2026-10-30T13:26:58.9006846Z   50 passed (3.4m)
+2026-10-30T13:35:28.6561573Z   "standardUser": true,
+2026-10-30T13:35:28.6630879Z     "total": 22,
+2026-10-30T13:35:28.6635771Z     "passed": 22,
+2026-10-30T13:35:28.6640506Z     "failed": 0,
+2026-10-30T13:35:28.6646386Z     "pending": 0
+2026-10-30T13:35:28.6655550Z   "missingCases": []
+2026-10-30T13:35:29.3586459Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 1 links
+2026-10-30T13:35:51.1546933Z  Test Files  1 passed (1)
+2026-10-30T13:35:51.1548131Z       Tests  1 passed | 4 skipped (5)
+2026-10-30T13:35:51.2525537Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 2 links
+2026-10-30T13:36:10.8588114Z  Test Files  1 passed (1)
+2026-10-30T13:36:10.8589542Z       Tests  1 passed | 4 skipped (5)
+2026-10-30T13:36:10.9272934Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 3 links
+2026-10-30T13:36:30.6281980Z  Test Files  1 passed (1)
+2026-10-30T13:36:30.6283169Z       Tests  1 passed | 4 skipped (5)
+2026-10-30T13:36:30.6892184Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 1 macro
+2026-10-30T13:36:50.4462951Z  Test Files  1 passed (1)
+2026-10-30T13:36:50.4464458Z       Tests  1 passed | 4 skipped (5)
+2026-10-30T13:36:50.5253216Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 2 macro
+2026-10-30T13:37:10.2339516Z  Test Files  1 passed (1)
+2026-10-30T13:37:10.2340747Z       Tests  1 passed | 4 skipped (5)
+2026-10-30T13:37:10.3014143Z OFFICE_SHUTDOWN_DIAGNOSTIC_REPEAT 3 macro
+2026-10-30T13:37:29.9724670Z  Test Files  1 passed (1)
+2026-10-30T13:37:29.9726322Z       Tests  1 passed | 4 skipped (5)
+{"task":"P03-01","standardUser":true,"exitCode":0,"passed":true,"tests":{"total":3,"passed":3,"failed":0,"pending":0},"missingCases":[]}
+{"task":"P03-02","standardUser":true,"exitCode":0,"passed":true,"tests":{"total":4,"passed":4,"failed":0,"pending":0},"missingCases":[]}

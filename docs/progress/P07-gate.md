@@ -2,13 +2,17 @@
 
 - 日期/执行：2026-10-30 Asia/Shanghai，当前Codex会话；D:/Tapkit-public，main（原开发分支codex/p07-office保留）。
 - 交付源fe6f6db（原分支6提交）；用户本次授权squash合入main；原验收源b7ba0cd、CI70全success，代码保持。新main提交指针以Git记录为准。
-- gate_status：passed（CI70源b7ba0cd三个job全success，既有受控真实范围保持）。
+- gate_status：passed（main@1288ce4的CI71 attempt2三个job全success；初始化故障原样保留，运行代码未改）。
 - 范围：既有本地/原生办公验收，加指定智谱Chat/GLM-4.7-FlashX、给定合成事实的真实生成与修改；不推广其他模型/供应商或任意事实正确率，不自动进入P08。
 - 最新交付指纹：[delivery-ui-manifest.json](../evidence/P07-03/delivery-ui-manifest.json)，Core c1cbdb8f3aaa16eb0075682b1da637ed91a3b9c5345517e6e90c5f580c8315a7，无fixture。此前failed gate与旧370ce快照原样保留于[gate-before-ui-live.md](../evidence/P07-03/gate-before-ui-live.md)，不冒称早期失败通过。
 
 CI70 [run41051794674](https://github.com/tteok1/TapKit/actions/runs/41051794674)在源b7ba0cd11171962e426f19aee42605f63b5291b6上三个job全部success。unit446/446；主集成464通过/1个既有opt-in live跳过，原生17/17，两组运行总482项无遗漏；perf2/2，Electron50/50。独立标准用户隔离22/22、parser3/3、preview4/4，无缺失/失败/跳过；Office关闭6轮及startup诊断success。字体本地probe22/22、原生17/17、40页视觉及旧57文件恢复通过。P07 gate恢复passed；原真实验收范围与连接13/20保持，本次新增模型请求0，不合main、不进入P08。
 
 2026-10-30用户追加授权将P07压成一个提交合入main。原分支codex/p07-office源fe6f6db共6提交，以squash合入，原分支保留；最初暂不合main限制由本次明确授权替代。squash初始索引与源分支完整tree一致，之后仅同步进度/需求/交接记录；运行代码与CI70验收源b7ba0cd保持一致。CI70三job全success，P07 gate保持passed。main推送会触发新CI，结果单独核对，不提前记为通过。证据docs/evidence/P07-03/main-squash-2026-10-30.json，不进入P08、无新增模型请求。
+
+CI71在main@1288ce4的首轮check仅Set up job失败，未到checkout；错误为无法解析actions/cache@v5及actions/upload-artifact@v4。同轮office-native与startup-diagnostics通过。实际Git refs确认两版本存在，推断临时GitHub Action解析异常；未改源码。已授权重跑失败job（REST201），attempt2已过初始化、正在执行，最终结果待确认；CI70既有通过保持，CI71当前不能记通过。插件重跑403（集成权限不足）后使用本机既有Git凭据，仅指定repo/run/SHA/job，凭据未落盘。无新增模型或桌面控制。
+
+CI71 main@1288ce4079ba19edb54c4664005829b34550caaa的第2次执行已completed/success，check、office-native、startup-diagnostics三个job全部success。首轮在检出前临时无法解析有效的Action版本，重跑同一提交恢复；运行代码未改。实际unit446、主集成464通过/既有live跳过1、原生17、perf2、Electron50；独立标准用户隔离22/22、parser3/3、preview4/4及关闭/启动诊断通过。P07 gate恢复passed，首轮失败保留，无新增模型。
 
 ## 本阶段交付物
 

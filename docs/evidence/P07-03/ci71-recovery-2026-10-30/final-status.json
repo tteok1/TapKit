@@ -1,0 +1,392 @@
+{
+  "id": 41057664428,
+  "runNumber": 71,
+  "attempt": 2,
+  "sha": "1288ce4079ba19edb54c4664005829b34550caaa",
+  "branch": "main",
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/tteok1/TapKit/actions/runs/41057664428",
+  "jobs": [
+    {
+      "id": 124079395879,
+      "run_id": 41057664428,
+      "workflow_name": "Windows engineering checks",
+      "head_branch": "main",
+      "run_url": "https://api.github.com/repos/tteok1/TapKit/actions/runs/41057664428",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOVCQNns8AAAAc47VUJw",
+      "head_sha": "1288ce4079ba19edb54c4664005829b34550caaa",
+      "url": "https://api.github.com/repos/tteok1/TapKit/actions/jobs/124079395879",
+      "html_url": "https://github.com/tteok1/TapKit/actions/runs/41057664428/job/124079395879",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-30T13:08:01Z",
+      "started_at": "2026-10-30T13:08:03Z",
+      "completed_at": "2026-10-30T13:37:46Z",
+      "name": "check",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-30T13:08:04Z",
+          "completed_at": "2026-10-30T13:08:05Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-30T13:08:05Z",
+          "completed_at": "2026-10-30T13:08:24Z"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-30T13:08:24Z",
+          "completed_at": "2026-10-30T13:08:32Z"
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-30T13:08:32Z",
+          "completed_at": "2026-10-30T13:08:41Z"
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-30T13:08:41Z",
+          "completed_at": "2026-10-30T13:11:45Z"
+        },
+        {
+          "name": "Save verified runtime archives",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6,
+          "started_at": "2026-10-30T13:11:45Z",
+          "completed_at": "2026-10-30T13:11:45Z"
+        },
+        {
+          "name": "Check",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-30T13:11:45Z",
+          "completed_at": "2026-10-30T13:12:08Z"
+        },
+        {
+          "name": "Unit and current-route integration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-30T13:12:08Z",
+          "completed_at": "2026-10-30T13:21:24Z"
+        },
+        {
+          "name": "Dedicated Core performance checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-30T13:21:24Z",
+          "completed_at": "2026-10-30T13:22:10Z"
+        },
+        {
+          "name": "Build and Electron checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-30T13:22:10Z",
+          "completed_at": "2026-10-30T13:27:39Z"
+        },
+        {
+          "name": "Verify P00-03 and P03 parser as an independent standard user",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-30T13:27:39Z",
+          "completed_at": "2026-10-30T13:35:28Z"
+        },
+        {
+          "name": "Repeat fresh-process Office shutdown diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-30T13:35:28Z",
+          "completed_at": "2026-10-30T13:37:30Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-30T13:37:30Z",
+          "completed_at": "2026-10-30T13:37:33Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-30T13:37:33Z",
+          "completed_at": "2026-10-30T13:37:33Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-30T13:37:33Z",
+          "completed_at": "2026-10-30T13:37:36Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-10-30T13:37:36Z",
+          "completed_at": "2026-10-30T13:37:36Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/tteok1/TapKit/check-runs/124079395879",
+      "labels": [
+        "windows-2025"
+      ],
+      "runner_id": 1000000145,
+      "runner_name": "GitHub Actions 1000000145",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124079399259,
+      "run_id": 41057664428,
+      "workflow_name": "Windows engineering checks",
+      "head_branch": "main",
+      "run_url": "https://api.github.com/repos/tteok1/TapKit/actions/runs/41057664428",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOVCQNns8AAAAc47VhWw",
+      "head_sha": "1288ce4079ba19edb54c4664005829b34550caaa",
+      "url": "https://api.github.com/repos/tteok1/TapKit/actions/jobs/124079399259",
+      "html_url": "https://github.com/tteok1/TapKit/actions/runs/41057664428/job/124079399259",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-30T13:08:01Z",
+      "started_at": "2026-10-30T12:44:50Z",
+      "completed_at": "2026-10-30T12:55:46Z",
+      "name": "office-native",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-30T12:44:50Z",
+          "completed_at": "2026-10-30T12:44:51Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-30T12:44:51Z",
+          "completed_at": "2026-10-30T12:45:07Z"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-30T12:45:07Z",
+          "completed_at": "2026-10-30T12:45:13Z"
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-30T12:45:13Z",
+          "completed_at": "2026-10-30T12:45:23Z"
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-30T12:45:23Z",
+          "completed_at": "2026-10-30T12:47:36Z"
+        },
+        {
+          "name": "Verify current runner execution capabilities",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-30T12:47:36Z",
+          "completed_at": "2026-10-30T12:51:39Z"
+        },
+        {
+          "name": "P07 native office acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-30T12:51:39Z",
+          "completed_at": "2026-10-30T12:55:40Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-30T12:55:40Z",
+          "completed_at": "2026-10-30T12:55:42Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-30T12:55:42Z",
+          "completed_at": "2026-10-30T12:55:42Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-30T12:55:42Z",
+          "completed_at": "2026-10-30T12:55:44Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-30T12:55:44Z",
+          "completed_at": "2026-10-30T12:55:44Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/tteok1/TapKit/check-runs/124079399259",
+      "labels": [
+        "windows-2025"
+      ],
+      "runner_id": 1000000142,
+      "runner_name": "GitHub Actions 1000000142",
+      "runner_group_id": null,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124093399522,
+      "run_id": 41057664428,
+      "workflow_name": "Windows engineering checks",
+      "head_branch": "main",
+      "run_url": "https://api.github.com/repos/tteok1/TapKit/actions/runs/41057664428",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOVCQNns8AAAAc5IsB4g",
+      "head_sha": "1288ce4079ba19edb54c4664005829b34550caaa",
+      "url": "https://api.github.com/repos/tteok1/TapKit/actions/jobs/124093399522",
+      "html_url": "https://github.com/tteok1/TapKit/actions/runs/41057664428/job/124093399522",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-30T13:37:46Z",
+      "started_at": "2026-10-30T13:37:48Z",
+      "completed_at": "2026-10-30T13:42:07Z",
+      "name": "startup-diagnostics",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-30T13:37:49Z",
+          "completed_at": "2026-10-30T13:37:51Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-30T13:37:51Z",
+          "completed_at": "2026-10-30T13:38:09Z"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-30T13:38:09Z",
+          "completed_at": "2026-10-30T13:38:18Z"
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-30T13:38:18Z",
+          "completed_at": "2026-10-30T13:38:29Z"
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-30T13:38:29Z",
+          "completed_at": "2026-10-30T13:41:39Z"
+        },
+        {
+          "name": "Repeat fresh-process startup diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-30T13:41:39Z",
+          "completed_at": "2026-10-30T13:42:02Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-30T13:42:02Z",
+          "completed_at": "2026-10-30T13:42:02Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-30T13:42:02Z",
+          "completed_at": "2026-10-30T13:42:03Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-30T13:42:03Z",
+          "completed_at": "2026-10-30T13:42:05Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-30T13:42:05Z",
+          "completed_at": "2026-10-30T13:42:05Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/tteok1/TapKit/check-runs/124093399522",
+      "labels": [
+        "windows-2025"
+      ],
+      "runner_id": 1000000146,
+      "runner_name": "GitHub Actions 1000000146",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

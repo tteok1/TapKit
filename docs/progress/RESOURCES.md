@@ -1,3 +1,5 @@
+2026-10-30 CI71恢复：main@1288ce4 attempt2三个job全success，R09独立标准用户22/22及parser3/preview4、R15本runner验证通过；首轮Action初始化解析失败及恢复证据见P07-03/ci71-recovery-2026-10-30。R13保持既有真实范围/连接13/20，新增模型0。以下为历史。
+
 2026-10-30 CI最终通过：CI70源b7ba0cd三个job success；R09独立标准用户隔离22/22、parser3/3、preview4/4通过，R15本runner验收通过；R13既有真实范围/连接13/20保持，新增模型0。不跨主机转植报告。以下为历史。
 
 2026-10-30 CI70补验：R13真实范围/连接13/20保持，本次模型请求0；R09/R15不归为缺账号。字体本地probe22/22、原生17/17通过，CI69原生job success；CI70源b7ba0cd验证主子项目排除修复，完整结果待定。见P07-03/ci-fix-2026-10-30/verification.md。以下为历史。

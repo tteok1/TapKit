@@ -1,0 +1,31 @@
+﻿2026-10-30T12:44:51.0932673Z Current runner version: '2.338.0'
+2026-10-30T12:44:51.0956675Z ##[group]Runner Image Provisioner
+2026-10-30T12:44:51.0957758Z Hosted Compute Agent
+2026-10-30T12:44:51.0958269Z Version: 20261021.618
+2026-10-30T12:44:51.0958811Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-10-30T12:44:51.0959470Z Build Date: 2026-10-21T00:45:21Z
+2026-10-30T12:44:51.0960113Z Worker ID: {775f7a05-9b4c-460e-bc86-ca410f1c5168}
+2026-10-30T12:44:51.0960673Z Region: centralus
+2026-10-30T12:44:51.0961108Z Cloud: Azure
+2026-10-30T12:44:51.0961528Z ##[endgroup]
+2026-10-30T12:44:51.0962682Z ##[group]Operating System
+2026-10-30T12:44:51.0963246Z Microsoft Windows Server 2025
+2026-10-30T12:44:51.0963733Z 10.0.26100
+2026-10-30T12:44:51.0964169Z Datacenter
+2026-10-30T12:44:51.0964607Z ##[endgroup]
+2026-10-30T12:44:51.0965004Z ##[group]Runner Image
+2026-10-30T12:44:51.0965485Z Image: windows-2025-vs2026
+2026-10-30T12:44:51.0965956Z Version: 20261021.278.1
+2026-10-30T12:44:51.0967250Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20261021.278/images/windows/Windows2025-VS2026-Readme.md
+2026-10-30T12:44:51.0968570Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20261021.278
+2026-10-30T12:44:51.0969362Z ##[endgroup]
+2026-10-30T12:44:51.0970254Z ##[group]GITHUB_TOKEN Permissions
+2026-10-30T12:44:51.0972162Z Contents: read
+2026-10-30T12:44:51.0972616Z Metadata: read
+2026-10-30T12:44:51.0973106Z ##[endgroup]
+2026-10-30T12:44:51.0974784Z Secret source: Actions
+2026-10-30T12:44:51.0975485Z Cache mode: write
+2026-10-30T12:44:51.0976315Z Prepare workflow directory
+2026-10-30T12:44:51.1362163Z Prepare all required actions
+2026-10-30T12:44:51.1407718Z Getting action download info
+2026-10-30T12:45:11.3876564Z ##[error]Unable to resolve action `actions/cache@v5`, unable to find version `v5`. Unable to resolve action `actions/upload-artifact@v4`, unable to find version `v4`

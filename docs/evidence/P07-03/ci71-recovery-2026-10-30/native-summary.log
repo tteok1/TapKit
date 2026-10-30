@@ -1,0 +1,9 @@
+2026-10-30T12:51:39.2893257Z     "scope": "current-user",
+2026-10-30T12:51:39.2894879Z   "standardUserAcceptance": "not_verified_in_this_scope",
+2026-10-30T12:51:39.2895236Z   "fingerprint": "f42719f3868250e1639ab91ab31ef2ee15430f6982af5f786e22ca4674e77401",
+2026-10-30T12:51:39.2897567Z     "total": 22,
+2026-10-30T12:51:39.2897721Z     "passed": 22,
+2026-10-30T12:51:39.2897879Z     "failed": 0,
+2026-10-30T12:51:39.2898061Z     "pending": 0
+2026-10-30T12:55:40.6857603Z  Test Files  9 passed (9)
+2026-10-30T12:55:40.6858129Z       Tests  17 passed (17)
