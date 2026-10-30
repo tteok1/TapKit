@@ -1,3 +1,5 @@
+2026-10-30后续CI66：本地/受控真实R13办公通过范围保持；干净CI缺当前runner原生能力报告导致17项P07原生检查失败，gate暂failed，正在修补CI实际探测前置。不是缺账号，不扩大live或追加请求；连接仍13/20。见docs/evidence/P07-03/ci-fix-2026-10-30/verification.md。以下为此前验收及资源历史。
+
 2026-10-30 P07新授权最终：累计连接13/20（历史8＋新5），新5次均启动真实TapKit后在设置检测成功才发任务。R13指定智谱Chat/GLM-4.7-FlashX的合成数据/XLSX→图表PPT及具体审批局部新版本通过，3份6页实际PDF视觉通过；P07三任务implemented_and_verified，gate=passed。仅扩大此受控办公范围，其他通道/协议暂缓保持，不推广任意事实正确率。新授权模型任务10次尝试：actual38665＋estimated60460＝保守99125/120000，余20875未用；失败实际未知，连接usage未知，历史更早estimated60251另列，同profile快照不重复计费。副本删除closed、active0，原账号不改；停止追加请求，未进入P08/提交推送。证据docs/evidence/P07-03/live-ui-final.json及P07-gate.md。以下为历史。
 
 2026-10-30 P07-03/R13最终：连接第8次text/tools通过，累计8/20。唯一真实两页PPTX任务NETWORK_ERROR，固定诊断响应头超时，工具0/成果0，actual未知、estimated18588，隔离密文副本已删除、marker closed，无重试/回退、不追加请求。与本次数据两轮合计estimated60251，非actual，不含历史P07-01和连接检测。P07-02/03为implemented_not_live_verified，P07-gate=failed；本地与桌面5/5通过，不能把复杂调用失败冒称缺Key、仅资源待配或阶段通过。其他渠道暂缓及既有R13范围保持；证据docs/evidence/P07-03/verification.md、docs/progress/P07-gate.md。

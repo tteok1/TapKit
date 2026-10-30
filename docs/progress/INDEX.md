@@ -1,3 +1,7 @@
+## 2026-10-30 P07 CI66修复进行中
+
+b9673f1已推同名分支。CI66 unit444/444通过；integration17项P07原生检查均因干净runner缺能力报告失败，其余464通过/1跳过。静态、perf、Electron、独立标准用户及Office诊断通过；startup当时仍运行。已定位bootstrap未生成当前runner绑定报告，补runtime-probe --scope=current-user前置并保留独立标准用户验收；gate暂failed，修复复验中，不进入P08或合main。证据docs/evidence/P07-03/ci-fix-2026-10-30/verification.md，下方为旧快照。
+
 ## 2026-10-30 P07分支提交与推送授权
 
 用户要求将当前codex/p07-office提交并推送origin同名分支，暂不合main。验收源码与P07通过范围保持，不重跑模型或扩到P08；远程main核对基线aa6debf25399a328ca993e2c8a03c0d0722a6032。交付范围与本地核对见docs/evidence/P07-03/branch-publication.md，实际提交及远程指针以Git回执为准。下方“未提交推送”均为授权前验收历史。

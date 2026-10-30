@@ -1,7 +1,7 @@
 # 当前接续点
 
 - 2026-10-30；D:/Tapkit-public；codex/p07-office；P07验收基线aa6debf及交付源码指纹保持。用户随后明确授权将当前分支提交并推送origin同名分支，暂不合入main；最终提交指针以Git记录为准。
-- P07-01/02/03 implemented_and_verified；P07-gate=passed。完成范围限定指定智谱Chat/GLM-4.7-FlashX和给定合成事实；不自动进入P08。
+- P07本地及受控真实验收已通过；后续CI66的17项P07原生检查缺当前runner能力报告而失败，阶段gate暂failed，正在补CI实际探测前置并验证；不进入P08。
 - 用户要求已执行：启动真实TapKit，每轮均设置页检测“文本与工具检测通过”后才发真实任务。累计13/20（历史8＋本轮5），新5次全部通过；成功后不继续消耗检测次数。
 - 真实data.analyze actual5281，独立XLSX/去重/华东0.70及华南1.05/源hash通过；真实图表PPT引用同会话实际分析成功；最后两页PPT与具体审批局部修改actual2961/3152成功。sameFile/newVersion/数字/备注/未改页hash全通过。
 - 修复PPT文件名提示与审批恢复额度边界（ADR0072）；最后一次模型调用后的批准工具可在剩余执行额度内完成。终结未派发项取消，unknown不动。相关integration19/19、既有恢复12/12，生产build/check退出0。
@@ -11,3 +11,4 @@
 - 原生当前用户22/22，fingerprint 17bf4c7eccc5e119fecf35c14bfc63c3a179340c0d6e5652d40d7c0320b7a09e；不冒称独立标准用户验收。
 - 最小交接：P07-gate.md、P07-03.md、P07-02.md；汇总docs/evidence/P07-03/live-ui-final.json、live-ui-file-qa.json、delivery-ui-manifest.json。旧断流/漏事实/预算及测试失败保留，模型事实仍需核对；最终同步检查见gate。
 - 分支交付范围见docs/evidence/P07-03/branch-publication.md；本次只提交/推送P07，不开始P08、不合main。
+- 当前HEAD b9673f1已推origin/codex/p07-office；CI66 check失败、startup诊断待结束。根因/修复记录docs/evidence/P07-03/ci-fix-2026-10-30/verification.md；只改CI前置和交接，不绕过隔离门禁、不新增模型消费。

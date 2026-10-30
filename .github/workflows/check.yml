@@ -7,7 +7,7 @@ permissions:
 jobs:
   check:
     runs-on: windows-2025
-    timeout-minutes: 45
+    timeout-minutes: 60
     env:
       TAPKIT_STARTUP_DIAGNOSTICS: '1'
     steps:
@@ -39,6 +39,12 @@ jobs:
       - name: Check
         id: check
         run: .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs check
+      - name: Verify current runner execution capabilities
+        # A clean checkout has no machine-bound capability report. Verify this
+        # runner before P07 consumes the guarded Office and parser interfaces.
+        run: .\.runtime\node\node-v24.21.0-win-x64\node.exe scripts/runtime-probe.mjs --scope=current-user
+        env:
+          TAPKIT_RUNTIME_PROBE_EVIDENCE_DIR: docs/evidence/P00-03/current-runner
       - name: Unit and current-route integration
         run: |
           .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:unit
@@ -77,6 +83,7 @@ jobs:
             ci-evidence/P00-03-standard-user
             docs/evidence/P00-01
             docs/evidence/P00-03/native-cases.jsonl
+            docs/evidence/P00-03/current-runner
             docs/evidence/P02-02
             docs/evidence/P03-01/native-parser-cases.jsonl
             docs/evidence/P03-02
