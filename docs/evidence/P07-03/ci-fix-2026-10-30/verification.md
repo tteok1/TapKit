@@ -39,3 +39,5 @@ CI67 check最终cancelled、startup-diagnostics success。unit444/444；integrat
 按ADR0073修复Office字体资源，并把当前runner probe和原生P07组放入独立office-native job；主job仅排除同组9文件17项，其他覆盖及独立标准用户保持，三个job全部通过才算CI通过。主45分钟/原生30分钟。保持完整安全指纹校验，不靠伪造报告、删除测试或降低内容断言通过。
 
 第二次修复本地：font-unit.log退出0、6/6（新增缺失/损坏字体拒绝及实际暂存SHA）；font-build.log生产build退出0；private-font-native.log退出0，实际DOCX/XLSX/PPTX三格式隔离转换均成功（该条P00代表项1通过/4按过滤跳过，不能称整个P00通过）。check-font-fix.log退出0、674文件。新的font-current-user完整22项probe正在运行，不能采信旧指纹报告；后续P07/native/CI结果待补。
+
+字体修复214e265aeb4f2c4afcb981ca1da16d6ffa0566ea已推，触发CI68 run41047994263。与此同时，本地新helper完整probe实际20/22、退出1：两个正向控制因拼接的固定Python代码超过HelperRequest每参数8192字符，在派发前被拒绝。font-current-user/runtime-probe.json和font-runtime-probe-command.log保留失败，不能启用此报告。正向控制也须显式暂存已锁定字体；已改为同一隔离workspace内wx创建固定脚本文件再执行，参数上限不变、不放宽宏/外链断言。font-controls-retest.log实际2/2通过、退出0，其他3条仅按过滤跳过。修复后的完整probe必须重新运行，不将20+2拼成已验证报告。后续以最新源提交CI为准，过时CI68可停止但不称通过。
