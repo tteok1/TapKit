@@ -121,5 +121,17 @@
     "branch": "codex/p08-01-browser",
     "pushExitCode": 0,
     "evidence": "publication.json"
+  },
+  "ciRegressionRepair": {
+    "fixCommit": "ae078aa54c73b1c356f7b8a2d04b5dc8e4ca2e0e",
+    "runId": 41194328825,
+    "runNumber": 76,
+    "conclusion": "success",
+    "jobs": {
+      "office-native": "success",
+      "check": "success",
+      "startup-diagnostics": "success"
+    },
+    "evidence": "ci-fix-2026-10-31/diagnosis.json"
   }
 }
