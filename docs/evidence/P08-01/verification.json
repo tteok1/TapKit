@@ -104,8 +104,8 @@
     "P08_02": "not_started",
     "P08_03": "not_started",
     "realWebsiteWrites": false,
-    "commit": false,
-    "push": false,
+    "commit": true,
+    "push": true,
     "merge": false
   },
   "documentationChecks": {
@@ -115,5 +115,11 @@
     "gitDiffCheck": 0,
     "formatCheck": 0,
     "evidence": "docs-final.log"
+  },
+  "publication": {
+    "sourceCommit": "8607c3080fcb71d45de256529db11c918e9cba98",
+    "branch": "codex/p08-01-browser",
+    "pushExitCode": 0,
+    "evidence": "publication.json"
   }
 }
