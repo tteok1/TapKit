@@ -63,6 +63,7 @@ test('P00-01 sandbox bridge errors and clean child shutdown', async () => {
       'openArtifactExternal',
       'copyText',
       'workCommand',
+      'browserCommand',
       'historyCommand',
       'memoryCommand',
       'webCommand',
@@ -108,6 +109,18 @@ test('P00-01 sandbox bridge errors and clean child shutdown', async () => {
       process.argv.some((arg) => arg === '--no-sandbox' || arg === '--disable-gpu-sandbox'),
     ),
   ).toBe(false);
+  const browserReply = await page.evaluate(() =>
+    window.tapkit.browserCommand(
+      { requestId: '0199b35d-9700-7000-8000-000000000001' },
+      'browser.open',
+      {
+        runId: '0199b35d-9700-7000-8000-000000000002',
+        url: 'https://example.com/',
+        script: 'globalThis.unauthorizedBrowserCode = true',
+      },
+    ),
+  );
+  expect(browserReply).toMatchObject({ ok: false, error: { code: 'VALIDATION_ERROR' } });
   expect(
     await app.evaluate(({ app }) => {
       const tabs = app.getAppMetrics().filter((item) => item.type === 'Tab');

@@ -1,0 +1,63 @@
+{
+  "task": "P08-01",
+  "date": "2026-10-31 Asia/Shanghai",
+  "status": "local_verified_ci_pending",
+  "baseCommit": "3a79d2699fa6697d8518c8f8e79eb47f54a16698",
+  "failedRuns": [
+    {
+      "number": 74,
+      "id": 41190800498,
+      "sha": "8607c3080fcb71d45de256529db11c918e9cba98",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/41190800498"
+    },
+    {
+      "number": 75,
+      "id": 41190857747,
+      "sha": "3a79d2699fa6697d8518c8f8e79eb47f54a16698",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/41190857747"
+    }
+  ],
+  "failure": {
+    "step": "Build and Electron checks",
+    "file": "tests/e2e/P00-01.shell.spec.ts",
+    "test": "P00-01 sandbox bridge errors and clean child shutdown",
+    "expected": "strict bridge whitelist omitted browserCommand",
+    "received": "the approved P08-01 browserCommand entry is present",
+    "desktopPassed": 49,
+    "desktopFailed": 1
+  },
+  "otherChecks": {
+    "unit": {
+      "passed": 470
+    },
+    "integration": {
+      "passed": 482,
+      "existingSkipped": 1
+    },
+    "performance": "success",
+    "standardUser": "success",
+    "officeShutdown": "success",
+    "officeNative": "success",
+    "startup": "success"
+  },
+  "fix": [
+    "Add browserCommand to the exact explicit allowlist.",
+    "Exercise the real renderer/Host/Core bridge and require VALIDATION_ERROR for an arbitrary script payload.",
+    "Keep require/process absent, exact inventory, no-sandbox denied, Chromium sandboxed, DevTools closed and Core child shutdown assertions."
+  ],
+  "local": {
+    "shell": {
+      "exitCode": 0,
+      "passed": 2,
+      "evidence": "shell-regression.log"
+    },
+    "check": {
+      "exitCode": 0,
+      "evidence": "check.log"
+    }
+  },
+  "productCodeChanged": false,
+  "workflowChanged": false,
+  "realModelCalls": 0,
+  "fullLogs": "Full CI logs retained in ignored .cache/P08-01-ci-fix-2026-10-31; focused failure excerpts committed here."
+}

@@ -1,0 +1,29 @@
+tests/e2e/P00-01.shell.spec.ts 103ms (unchanged)
+
+Running 2 tests using 1 worker
+
+(node:24220) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 11884
+(node:11884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+P00-01 runtime probe {"nonce":"中文 空格 ABI","process":"core","sqliteVersion":"3.53.4","electronVersion":"44.3.0","nodeAbi":"149","corePid":27676}
+Debugger ending on ws://127.0.0.1:58923/52dbedc0-a2d7-4a98-85f0-5863ebbb14e8
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 1 tests\e2e\P00-01.shell.spec.ts:25:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory (37.9s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 50052
+(node:50052) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:53816/6993614f-6a17-4be9-9635-77222827677c
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 2 tests\e2e\P00-01.shell.spec.ts:45:1 › P00-01 sandbox bridge errors and clean child shutdown (33.5s)
+
+  2 passed (1.2m)

@@ -1,0 +1,45 @@
+2026-10-31T10:14:41.9437049Z   ok 50 tests\e2e\P04-03.memory.spec.ts:179:1 › P04-03 T10 answer used memories, session switches and temporary mode have truthful scope UI (2.7s)
+2026-10-31T10:14:42.3779592Z 
+2026-10-31T10:14:42.3783244Z 
+2026-10-31T10:14:42.3792058Z   1) tests\e2e\P00-01.shell.spec.ts:45:1 › P00-01 sandbox bridge errors and clean child shutdown ───
+2026-10-31T10:14:42.3792611Z 
+2026-10-31T10:14:42.3792905Z     Error: expect(received).toEqual(expected) // deep equality
+2026-10-31T10:14:42.3793422Z 
+2026-10-31T10:14:42.3793546Z     - Expected  - 0
+2026-10-31T10:14:42.3793826Z     + Received  + 1
+2026-10-31T10:14:42.3794027Z 
+2026-10-31T10:14:42.3794118Z     @@ -6,10 +6,11 @@
+2026-10-31T10:14:42.3794366Z           "openEntity",
+2026-10-31T10:14:42.3794925Z           "saveConversation",
+2026-10-31T10:14:42.3795284Z           "openArtifactExternal",
+2026-10-31T10:14:42.3795866Z           "copyText",
+2026-10-31T10:14:42.3796044Z           "workCommand",
+2026-10-31T10:14:42.3796229Z     +     "browserCommand",
+2026-10-31T10:14:42.3796439Z           "historyCommand",
+2026-10-31T10:14:42.3796629Z           "memoryCommand",
+2026-10-31T10:14:42.3796890Z           "webCommand",
+2026-10-31T10:14:42.3797148Z           "exportCommand",
+2026-10-31T10:14:42.3797385Z           "saveExport",
+2026-10-31T10:14:42.3797496Z 
+2026-10-31T10:14:42.3797634Z       52 |       bridge: Object.keys(window.tapkit),
+2026-10-31T10:14:42.3797935Z       53 |     })),
+2026-10-31T10:14:42.3798183Z     > 54 |   ).toEqual({
+2026-10-31T10:14:42.3798410Z          |     ^
+2026-10-31T10:14:42.3798644Z       55 |     require: 'undefined',
+2026-10-31T10:14:42.3798956Z       56 |     process: 'undefined',
+2026-10-31T10:14:42.3799206Z       57 |     bridge: [
+2026-10-31T10:14:42.3799515Z         at D:\a\TapKit\TapKit\tests\e2e\P00-01.shell.spec.ts:54:5
+2026-10-31T10:14:42.3799747Z 
+2026-10-31T10:14:42.3800113Z     Error Context: test-results\e2e\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\error-context.md
+2026-10-31T10:14:42.3800476Z 
+2026-10-31T10:14:42.3801002Z     attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+2026-10-31T10:14:42.3801573Z     test-results\e2e\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\trace.zip
+2026-10-31T10:14:42.3802002Z     Usage:
+2026-10-31T10:14:42.3802103Z 
+2026-10-31T10:14:42.3802484Z         pnpm exec playwright show-trace test-results\e2e\P00-01.shell-P00-01-sandbo-aa30b-rs-and-clean-child-shutdown\trace.zip
+2026-10-31T10:14:42.3802927Z 
+2026-10-31T10:14:42.3803550Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-10-31T10:14:42.3803869Z 
+2026-10-31T10:14:42.3803975Z   1 failed
+2026-10-31T10:14:42.3804519Z     tests\e2e\P00-01.shell.spec.ts:45:1 › P00-01 sandbox bridge errors and clean child shutdown ────
+2026-10-31T10:14:42.3805211Z   49 passed (2.8m)
