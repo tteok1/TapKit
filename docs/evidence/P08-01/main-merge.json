@@ -1,0 +1,26 @@
+{
+  "task": "P08-01",
+  "authorizedBy": "user: 同意合入main",
+  "method": "fast-forward",
+  "previousMain": "ee06f746d380bc47e99c8cec30534e6b425cf15d",
+  "sourceBranch": "codex/p08-01-browser",
+  "sourceHead": "4477c3c5505674de7c395d2dcf9467a4edb8a5b4",
+  "target": "main",
+  "remoteMainAfterInitialMerge": "4477c3c5505674de7c395d2dcf9467a4edb8a5b4",
+  "mergeExitCode": 0,
+  "initialMainPushExitCode": 0,
+  "nonDocumentationTreeMatchesCI": true,
+  "treeComparisonExitCode": 0,
+  "verifiedCI": {
+    "id": 41194328825,
+    "head": "ae078aa54c73b1c356f7b8a2d04b5dc8e4ca2e0e",
+    "conclusion": "success",
+    "url": "https://github.com/tteok1/TapKit/actions/runs/41194328825"
+  },
+  "sourceBranchRetained": true,
+  "phaseP08": "in_progress",
+  "P08_02": "not_started",
+  "P08_03": "not_started",
+  "mergedAt": "2026-10-31T14:13:37.786Z",
+  "handoff": "Only progress/evidence documents follow the fast-forward merge; established skip-ci convention reuses the verified identical non-documentation tree."
+}

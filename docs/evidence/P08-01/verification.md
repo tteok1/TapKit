@@ -1,6 +1,6 @@
 # P08-01 验收记录
 
-2026-10-31，D:/Tapkit-public，分支codex/p08-01-browser。fetch origin main成功后，HEAD/origin/main/FETCH_HEAD均为ee06f746d380bc47e99c8cec30534e6b425cf15d，再创建分支。验收时尚未提交/推送；随后用户授权发布，源码提交8607c30已推送，见publication.json；未合main。原工作区改动保留，原进度全文在preflight-2026-10-31。
+2026-10-31，D:/Tapkit-public，分支codex/p08-01-browser。fetch origin main成功后，HEAD/origin/main/FETCH_HEAD均为ee06f746d380bc47e99c8cec30534e6b425cf15d，再创建分支。验收时尚未提交/推送；随后用户授权发布并合入，源码提交8607c30及修复ae078aa随源分支头4477c3c快进合入并推送main；见publication.json及main-merge.json。原工作区改动保留，原进度全文在preflight-2026-10-31。
 
 ## 工程检查
 

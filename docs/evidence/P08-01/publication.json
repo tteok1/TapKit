@@ -9,8 +9,10 @@
   "pushExitCode": 0,
   "sourcePublished": true,
   "publishedAt": "2026-10-31T09:58:33.015Z",
-  "mergedIntoMain": false,
+  "mergedIntoMain": true,
   "phaseP08": "in_progress",
   "nextTasks": "P08-02/03 not_started",
-  "handoff": "This record follows the published source commit; handoff-only commit is pushed on the same authorized branch."
+  "handoff": "This record follows the published source commit; handoff-only commit is pushed on the same authorized branch.",
+  "mainMergeEvidence": "main-merge.json",
+  "mainMergeSourceHead": "4477c3c5505674de7c395d2dcf9467a4edb8a5b4"
 }

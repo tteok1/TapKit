@@ -106,7 +106,7 @@
     "realWebsiteWrites": false,
     "commit": true,
     "push": true,
-    "merge": false
+    "merge": true
   },
   "documentationChecks": {
     "docsCheck": 0,
@@ -133,5 +133,12 @@
       "startup-diagnostics": "success"
     },
     "evidence": "ci-fix-2026-10-31/diagnosis.json"
+  },
+  "mainMerge": {
+    "sourceHead": "4477c3c5505674de7c395d2dcf9467a4edb8a5b4",
+    "target": "main",
+    "method": "fast-forward",
+    "nonDocumentationTreeMatchesCI": true,
+    "evidence": "main-merge.json"
   }
 }

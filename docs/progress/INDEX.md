@@ -1,6 +1,6 @@
 # 开发进度索引
 
-2026-10-31：基于最新main ee06f746d380bc47e99c8cec30534e6b425cf15d新建codex/p08-01-browser。P08-01实现与验收完成：470 unit、18 P08 integration、2 Electron及智谱真实网页→落盘MD通过；连接累计3/20。P08-02/03未开始，P08仍in_progress；原P07 gate范围保持。源码提交8607c30已按用户授权推送origin/codex/p08-01-browser，不合main。CI74/75唯一失败为旧桥白名单漏browserCommand；本地2/2修复通过，修复ae078aa已推送，CI76三个job全部success：主check单元470、集成482过/1既有skip、桌面50全过；Office与启动诊断通过。
+2026-10-31：基于最新main ee06f746d380bc47e99c8cec30534e6b425cf15d新建codex/p08-01-browser。P08-01实现与验收完成：470 unit、18 P08 integration、2 Electron及智谱真实网页→落盘MD通过；连接累计3/20。P08-02/03未开始，P08仍in_progress；原P07 gate范围保持。开发分支头4477c3c已按用户授权快进合入并推送main，开发分支保留；与CI76已验代码一致，合并记录见docs/evidence/P08-01/main-merge.json。CI74/75唯一失败为旧桥白名单漏browserCommand；本地2/2修复通过，修复ae078aa已推送，CI76三个job全部success：主check单元470、集成482过/1既有skip、桌面50全过；Office与启动诊断通过。
 
 CI73三个job全success，测试清理及资料保全保持；耗时只读审计未发现十分钟代码执行退化。既有未提交文档和耗时证据保留。历史流水完整迁至[原索引](../evidence/P08-01/preflight-2026-10-31/prior-index.md)，各任务/gate链接继续有效。
 
