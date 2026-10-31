@@ -123,7 +123,7 @@ P04-01 schema12：[ADR0045](../adr/0045-local-hybrid-retrieval-and-verified-evid
 | memory_candidates | job_id、scope、source_ids_json、candidate_json、decision(written/skipped/conflict)、reason；不要求用户批准队列 |
 | citations | message_id、file_version_id?、web_source_id?、chunk_id?、locator_json、quote_hash、claim_range_json、verified BOOL |
 | web_sources | url、canonical_url、title、fetched_at、http_status、snapshot_blob_id、content_hash、access_type(public)、run_id、source_revision |
-| browser_sessions / tabs | browser_session(run_id,partition_id,state)；tab(session_id,url,title,navigation_epoch,last_snapshot_id?)；不持久化网站凭据 |
+| browser_sessions / browser_tabs | schema19：browser_sessions(run_id,root_run_id,partition_id,state)；browser_tabs(session_id,url,title,navigation_epoch,last_snapshot_id?,mode,state)；partition_id仅元数据，不持久化网站凭据 |
 | browser_snapshots | tab_id、navigation_epoch、snapshot_seq、dom_blob_ref、observed_at；节点句柄只对该epoch/snapshot有效 |
 | code_projects | project_id UNIQUE、canonical_root、managed_repo_path?、grant_id、git_state_json、runtime_profile、default_branch_ref? |
 | worktrees | run_id、code_project_id、canonical_path、branch、base_commit、state、initial_dirty_snapshot_ref? |

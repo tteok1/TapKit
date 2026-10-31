@@ -1,0 +1,210 @@
+{
+  "status": "read_only_audit_complete",
+  "date": "2026-10-31 Asia/Shanghai",
+  "comparison": [
+    {
+      "run_number": 70,
+      "run_id": 41051794674,
+      "attempt": 1,
+      "url": "https://github.com/tteok1/TapKit/actions/runs/41051794674",
+      "head_sha": "b7ba0cd11171962e426f19aee42605f63b5291b6",
+      "workflow_started_at": "2026-10-30T11:57:33Z",
+      "workflow_updated_at": "2026-10-30T12:32:10Z",
+      "workflow_elapsed_seconds_from_api": 2077.0,
+      "check_seconds": 1847.0,
+      "startup_job_seconds": 224.0,
+      "last_job_completed_at": "2026-10-30T12:32:09Z",
+      "after_last_job_until_workflow_update_seconds": 1,
+      "selected_check_steps": [
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "duration_seconds": 195.0,
+          "started": "2026-10-30T11:58:12Z",
+          "completed": "2026-10-30T12:01:27Z"
+        },
+        {
+          "name": "Check",
+          "duration_seconds": 24.0,
+          "started": "2026-10-30T12:01:27Z",
+          "completed": "2026-10-30T12:01:51Z"
+        },
+        {
+          "name": "Unit and current-route integration",
+          "duration_seconds": 579.0,
+          "started": "2026-10-30T12:01:51Z",
+          "completed": "2026-10-30T12:11:30Z"
+        },
+        {
+          "name": "Dedicated Core performance checks",
+          "duration_seconds": 48.0,
+          "started": "2026-10-30T12:11:30Z",
+          "completed": "2026-10-30T12:12:18Z"
+        },
+        {
+          "name": "Build and Electron checks",
+          "duration_seconds": 339.0,
+          "started": "2026-10-30T12:12:18Z",
+          "completed": "2026-10-30T12:17:57Z"
+        }
+      ]
+    },
+    {
+      "run_number": 71,
+      "run_id": 41057664428,
+      "attempt": 2,
+      "url": "https://github.com/tteok1/TapKit/actions/runs/41057664428",
+      "head_sha": "1288ce4079ba19edb54c4664005829b34550caaa",
+      "workflow_started_at": "2026-10-30T13:07:59Z",
+      "workflow_updated_at": "2026-10-30T13:42:41Z",
+      "workflow_elapsed_seconds_from_api": 2082.0,
+      "check_seconds": 1783.0,
+      "startup_job_seconds": 259.0,
+      "last_job_completed_at": "2026-10-30T13:42:07Z",
+      "after_last_job_until_workflow_update_seconds": 34,
+      "selected_check_steps": [
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "duration_seconds": 184.0,
+          "started": "2026-10-30T13:08:41Z",
+          "completed": "2026-10-30T13:11:45Z"
+        },
+        {
+          "name": "Check",
+          "duration_seconds": 23.0,
+          "started": "2026-10-30T13:11:45Z",
+          "completed": "2026-10-30T13:12:08Z"
+        },
+        {
+          "name": "Unit and current-route integration",
+          "duration_seconds": 556.0,
+          "started": "2026-10-30T13:12:08Z",
+          "completed": "2026-10-30T13:21:24Z"
+        },
+        {
+          "name": "Dedicated Core performance checks",
+          "duration_seconds": 46.0,
+          "started": "2026-10-30T13:21:24Z",
+          "completed": "2026-10-30T13:22:10Z"
+        },
+        {
+          "name": "Build and Electron checks",
+          "duration_seconds": 329.0,
+          "started": "2026-10-30T13:22:10Z",
+          "completed": "2026-10-30T13:27:39Z"
+        }
+      ]
+    },
+    {
+      "run_number": 72,
+      "run_id": 41085703932,
+      "attempt": 1,
+      "url": "https://github.com/tteok1/TapKit/actions/runs/41085703932",
+      "head_sha": "941419581d8b2c272ff9bfb2162741a67007cedd",
+      "workflow_started_at": "2026-10-30T15:59:06Z",
+      "workflow_updated_at": "2026-10-30T16:33:40Z",
+      "workflow_elapsed_seconds_from_api": 2074.0,
+      "check_seconds": 1814.0,
+      "startup_job_seconds": 253.0,
+      "last_job_completed_at": "2026-10-30T16:33:39Z",
+      "after_last_job_until_workflow_update_seconds": 1,
+      "selected_check_steps": [
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "duration_seconds": 187.0,
+          "started": "2026-10-30T15:59:51Z",
+          "completed": "2026-10-30T16:02:58Z"
+        },
+        {
+          "name": "Check",
+          "duration_seconds": 25.0,
+          "started": "2026-10-30T16:02:58Z",
+          "completed": "2026-10-30T16:03:23Z"
+        },
+        {
+          "name": "Unit and current-route integration",
+          "duration_seconds": 572.0,
+          "started": "2026-10-30T16:03:23Z",
+          "completed": "2026-10-30T16:12:55Z"
+        },
+        {
+          "name": "Dedicated Core performance checks",
+          "duration_seconds": 47.0,
+          "started": "2026-10-30T16:12:55Z",
+          "completed": "2026-10-30T16:13:42Z"
+        },
+        {
+          "name": "Build and Electron checks",
+          "duration_seconds": 334.0,
+          "started": "2026-10-30T16:13:42Z",
+          "completed": "2026-10-30T16:19:16Z"
+        }
+      ]
+    },
+    {
+      "run_number": 73,
+      "run_id": 41096803922,
+      "attempt": 1,
+      "url": "https://github.com/tteok1/TapKit/actions/runs/41096803922",
+      "head_sha": "f690e457a0affe325e16515cfba2fe0a3205eb20",
+      "workflow_started_at": "2026-10-30T17:12:36Z",
+      "workflow_updated_at": "2026-10-30T17:57:44Z",
+      "workflow_elapsed_seconds_from_api": 2708.0,
+      "check_seconds": 1832.0,
+      "startup_job_seconds": 335.0,
+      "last_job_completed_at": "2026-10-30T17:48:49Z",
+      "after_last_job_until_workflow_update_seconds": 535,
+      "selected_check_steps": [
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "duration_seconds": 218.0,
+          "started": "2026-10-30T17:13:19Z",
+          "completed": "2026-10-30T17:16:57Z"
+        },
+        {
+          "name": "Check",
+          "duration_seconds": 26.0,
+          "started": "2026-10-30T17:16:57Z",
+          "completed": "2026-10-30T17:17:23Z"
+        },
+        {
+          "name": "Unit and current-route integration",
+          "duration_seconds": 572.0,
+          "started": "2026-10-30T17:17:23Z",
+          "completed": "2026-10-30T17:26:55Z"
+        },
+        {
+          "name": "Dedicated Core performance checks",
+          "duration_seconds": 48.0,
+          "started": "2026-10-30T17:26:55Z",
+          "completed": "2026-10-30T17:27:43Z"
+        },
+        {
+          "name": "Build and Electron checks",
+          "duration_seconds": 333.0,
+          "started": "2026-10-30T17:27:43Z",
+          "completed": "2026-10-30T17:33:16Z"
+        }
+      ]
+    }
+  ],
+  "ui_screenshot_seconds": {
+    "CI70": 2076,
+    "CI71": 2082,
+    "CI72": 2074,
+    "CI73": 2707
+  },
+  "timestamp_note": "GitHub run updated_at differs from UI duration by up to one second; it is not a per-step execution timer. CI71 uses successful attempt2; office-native was retained from attempt1 and is not on the rerun critical path. CI73 APIs expose incomplete late step arrays; do not interpret those nulls as failures. Completed job/check outcomes and retained raw logs confirm success.",
+  "latest_log_end_utc": "2026-10-30T17:46:56.7893675Z",
+  "latest_startup_job_completed_utc": "2026-10-30T17:48:49Z",
+  "source_comparison": {
+    "CI_workflow_changed": false,
+    "runtime_locks_changed": false,
+    "playwright_config_changed": false,
+    "vitest_config_changed": false,
+    "command": "git diff 1288ce4079ba19edb54c4664005829b34550caaa f690e457a0affe325e16515cfba2fe0a3205eb20 -- .github/workflows/check.yml runtime-lock.json dependency-baseline.json python-wheels.lock.json package.json playwright.config.ts vitest.config.ts",
+    "exit_code": 0,
+    "diff_empty": true
+  },
+  "finding": "The roughly ten-minute elapsed increase is dominated by workflow status finalization after all jobs, plus delayed startup job completion after its final log; core checks remain near prior runs. No evidence of a ten-minute code execution regression. Platform-side reporting/finalization delay is the supported inference; server-internal cause cannot be proven from public logs. One post-fix sample cannot establish future duration or quantify small cleanup overhead.",
+  "follow_up": "Observe later naturally triggered runs; no extra rerun, workflow change or optimization made."
+}

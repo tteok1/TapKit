@@ -1,5 +1,7 @@
 # 范围、决策与默认行为
 
+2026-10-31 [ADR0075](../adr/0075-anonymous-browser-actions.md)：P08-01追加schema19匿名标签/快照与p08-tools-1有限动作，复用工作账本、根预算及一次性提交审批；人工接管锁定自动派发，重启不恢复网站会话，未知提交不自动重放。实际验收见progress。
+
 2026-10-31 [ADR0074补充](../adr/0074-owned-automated-test-directories.md)：P03测试跨阶段资料改用test-results下受控单份交接文件，源临时目录仍在afterAll清理；关闭数据库后仅打包合成SQLite/Blob，消费端在新建所有权目录还原，校验完整性并拒绝凭据/历史路径。
 
 2026-10-30 [ADR0074](../adr/0074-owned-automated-test-directories.md)：自动测试只清理本进程新建且登记身份的临时目录，不继承已有账户资料；Vitest/Playwright统一收尾并加入静态检查。live、开发资料及生产备份策略不自动清理，本机旧残留按用户具体批准清单处理。

@@ -17,6 +17,8 @@ import './work.css';
 import { importChatFiles } from './chat-file-import';
 import { DataResults } from './data-results';
 import { SlidesResults } from './slides-results';
+import { BrowserPanel } from './browser-ui';
+import browserText from '../locales/browser.zh-CN.json';
 
 async function readyWorkMaterials(sessionId: string, refs: ResourceRef[], format: string) {
   const deadline = performance.now() + 120000;
@@ -422,6 +424,7 @@ function WorkCreate({
               ? new Date(String(form.get('deadline'))).getTime()
               : null,
             planFirst: form.has('planFirst'),
+            browserEnabled: form.has('browserEnabled'),
             budgetOverrides: {
               tokens: Number(form.get('tokens')),
               activeMs: Number(form.get('minutes')) * 60000,
@@ -635,6 +638,12 @@ function WorkCreate({
         <input type="checkbox" name="planFirst" />
         {t.planFirst}
       </label>
+      <label className="work-wide">
+        <span>
+          <input type="checkbox" name="browserEnabled" /> {browserText.allow}
+        </span>
+        <small>{browserText.scope}</small>
+      </label>
       <button disabled={busy}>{busy ? t.busy : t.create}</button>
       {error && (
         <p role="alert">
@@ -705,6 +714,9 @@ function WorkDetail({
       </p>
       {r.reason && <p>{(t.reasons as Record<string, string>)[r.reason] ?? r.reason}</p>}
       {r.reason === 'SIDE_EFFECT_UNKNOWN' && <p role="alert">{t.reconcile}</p>}
+      {r.definition.browserEnabled && (
+        <BrowserPanel work={r} onMaterial={(ref) => setSteerRefs((refs) => [...refs, ref])} />
+      )}
       {!!r.unresolvedCalls.length && (
         <section aria-label={t.reconcile}>
           {r.unresolvedCalls.map((call) => (

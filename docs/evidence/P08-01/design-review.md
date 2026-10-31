@@ -1,0 +1,58 @@
+# Disposition
+
+**ship / pass — four-item verdict pass only.** All four material findings below are scored **resolved** after reviewing the fixes, targeted regression source, recorded passing results, and replacement captures. No full review was reopened. This verdict closes the original fix list; it does not certify the whole surface or real-provider/real-website acceptance. No browser, model request, or test was run by this reviewer.
+
+Initial disposition, preserved: **fix**. The first review found four material source defects while the existing TapKit visual language was preserved. The supplied detector attempt failed before running (`cache_directory_failed`), so that review supplied the manual craft check. Operate/code-led extension: no approved comp applies.
+
+# Material findings
+
+| Original finding | Final score | Fix and verification reviewed |
+| --- | --- | --- |
+| 1 — Submitter override / request binding | **resolved** | `D:/Tapkit-public/apps/desktop/src/main/browser-runtime.ts:72–78` resolves effective submitter action, method, encoding and target and includes submitter fields; lines 145–176 reject unmatched submission navigation/XHR, including GET. `D:/Tapkit-public/tests/e2e/P08-01.browser.spec.ts:282–315` checks the effective override destination and blocks a changed/unreviewed GET request; recorded native fixture has exactly one override record and zero unreviewed requests. |
+| 2 — Live tab hidden by closed history | **resolved** | `D:/Tapkit-public/packages/core/src/browser-service.ts:176–180` orders open tabs before bounded closed history. The host's eight-live-tab cap is below the 20-row response bound. `D:/Tapkit-public/tests/integration/P08-01.browser.test.ts:364–396` performs 22 historical open/close cycles and confirms the next live tab is returned. |
+| 3 — Error recovery did not observe | **resolved** | `D:/Tapkit-public/apps/desktop/src/renderer/src/browser-ui.tsx:253–264` now calls `browser.observe` for a live tab, and labels the non-live fallback as list refresh. `D:/Tapkit-public/tests/e2e/P08-01.work.spec.ts:140–187` changes the actual document, rejects the stale approval, clicks the error recovery button and verifies the persisted snapshot contains the changed field. |
+| 4 — Native scrollport/modal occlusion | **resolved** | `D:/Tapkit-public/apps/desktop/src/renderer/src/browser-ui.tsx:123–177` checks the actual scrollport and app overlay bounds and observes overlay mutations. `D:/Tapkit-public/tests/e2e/P08-01.work.spec.ts:67–109` checks actual native attachment: detached when clipped, restored when centered, detached during Search, restored on closing it. Replacement `modal.png` is valid and the geometry record reports all three checks true. |
+
+Initial findings are preserved below; their line references refer to the first review revision and their descriptions are historical, not outstanding defects.
+
+1. **P1 — Reviewed form destination can differ from the actual destination.** `D:/Tapkit-public/apps/desktop/src/main/browser-runtime.ts:67–72,82,139–155`. `TARGET` reads `form.action/method/enctype`, while `requestSubmit(this)` honors submitter `formaction/formmethod/formenctype`. For a GET form whose submit button has a different `formaction`, the user approves the default destination but Chromium submits the fields to the override destination. The unmatched request passes because unmatched GET/HEAD requests are allowed. Resolve the effective submitter attributes before preview/binding and prevent an unmatched submission request from executing; include default-submit/Enter behavior in the regression.
+2. **P2 — Historical tabs eventually hide every newly opened tab.** `D:/Tapkit-public/packages/core/src/browser-service.ts:175–180`; selection consequence at `D:/Tapkit-public/apps/desktop/src/renderer/src/browser-ui.tsx:67–68,194–195`. `browser.tabs` includes closed history, orders oldest first, and takes only 20. After 20 sequential open/close cycles, opening another legal tab succeeds in the host but the tab is absent from the returned list. The panel falls back to an old closed tab, leaving the new page unavailable for viewing, takeover, material capture, or closing. Return all live tabs independently of any bounded snapshot history; select a live neighbor on close.
+3. **P2 — The error recovery action does not observe the page.** `D:/Tapkit-public/apps/desktop/src/renderer/src/browser-ui.tsx:77–86,221–225`. The button labeled “重新观察” calls `action(reload)`, which only reads persisted tab/approval rows. After `APPROVAL_STALE`, it clears the error without obtaining a fresh DOM snapshot, so the recovery the user was told to perform has not happened. Execute `browser.observe` for the relevant live tab and retain a useful failure message if observation fails.
+4. **P2 — Native content ignores app clipping and modal occlusion.** `D:/Tapkit-public/apps/desktop/src/renderer/src/browser-ui.tsx:123–149`; native attachment at `D:/Tapkit-public/apps/desktop/src/main/browser-runtime.ts:509–525` (the `present` branch). Visibility checks only the window rectangle. The panel actually scrolls inside `main.screen-scroll` (`D:/Tapkit-public/apps/desktop/src/renderer/src/desktop-shell.tsx:638–656`; `D:/Tapkit-public/apps/desktop/src/renderer/src/styles.css:659–666`). Scroll until its top is between the window top and the scrollport top: the DOM is clipped behind the header but the native child is still presented there. Separately, opening sidebar Search shows the existing dialog without a resize/scroll/visibility event, so the native child remains over its renderer content. Constrain the native surface to the actual unobscured scrollport, hide it during app modal/overlay presentation, and restore it afterward. This finding is source inference; the supplied captures cannot show integrated native/renderer occlusion.
+
+# Viewport / behavior coverage matrix
+
+The following matrix preserves the initial review scope. The final verdict evidence after it supersedes the noted finding-related gaps only.
+
+| Evidence / behavior | Verified screenshot fact | Source inference / remaining boundary |
+| --- | --- | --- |
+| `D:/Tapkit-public/docs/evidence/P08-01/desktop/review.png` (2534×1382 physical pixels) | Valid desktop panel capture: familiar shell, labeled address, two named tabs, navigation/takeover controls, current mode, readable last-observed text. | Parent capture excludes the native child; it does not verify integrated web-view positioning or interaction. Lower approval/material controls are below the captured area. |
+| `D:/Tapkit-public/docs/evidence/P08-01/desktop/compact.png` (reported 760×900 window, 1894×1678 physical capture) | Valid compact capture: controls wrap without horizontal clipping, labels remain readable, disabled controls and saved-material feedback are visible. | Physical pixels cannot establish logical CSS width or zoom. No live native page, approval preview, error, or unknown-result state is shown. |
+| `D:/Tapkit-public/docs/evidence/P08-01/desktop/current-web-page.png` (1760×524) | Valid native Chromium content capture: synthetic form, populated remark, category control, submit button and page scrollbar. | Confirms native content rendering only; standalone child capture does not establish compositing, takeover locking, submission count, or production-site support. |
+| Multi-tab, navigation, takeover/return | Controls are visible in desktop evidence. | Source implements these branches; finding 2 affects ongoing use. Parent reports a passing complete desktop fixture test; this reviewer did not independently run it. |
+| Approval / stale / unknown-result recovery | Not visually captured in the supplied files. | Source includes one-time approval, target/field table and explicit user verification choices. Findings 1 and 3 prevent approval/recovery acceptance at this revision. |
+| Materials, selection, downloads | Compact capture shows saved-material feedback. | Source routes material/selection/download actions through the core. This screenshot does not prove selection identity, imported bytes, or download validation. |
+| Keyboard / focus / themes | Supplied images establish readable light-theme labels only. | Source uses labeled inputs, native buttons, live status/error roles and focus-visible outlines. Keyboard focus, dark theme, and 200% zoom were not observed. Finding 4 identifies native/app overlay geometry missing from these captures. |
+| Real Zhipu / real websites | No live acceptance evidence supplied. | Connection count reported 0/20 and model task count 0 when review was requested. Synthetic screenshots cannot replace the required app connection followed by an authorized live task. |
+
+Final verdict evidence inspected:
+
+| Evidence | Result / supported claim |
+| --- | --- |
+| `D:/Tapkit-public/docs/evidence/P08-01/acceptance-electron.log:920–927` | Records both actual Electron tests passing (51.5s), including the targeted submitter, stale recovery and native geometry assertions inspected above. |
+| `D:/Tapkit-public/docs/evidence/P08-01/takeover-integration.log` | Records 2 integration files / 17 tests passing (9.91s), including the 22-cycle tab history regression. This reviewer read the existing results rather than rerunning them. |
+| Replacement `desktop/review.png`, `compact.png`, `current-web-page.png` | All opened and valid. Desktop/compact controls remain readable; compact now explicitly shows the browser session ended. Native page remains a synthetic form capture, separate from the renderer capture. |
+| `desktop/approval.png` | Valid capture with visible target, field/content table, one-time approval explanation, and both decision controls. |
+| `desktop/modal.png`, `desktop/geometry.json` | Valid, unobscured Search dialog screenshot plus passing actual native attachment/detachment assertions. The attachment assertions, rather than the parent-only screenshot alone, establish native occlusion behavior. |
+| `desktop/stale.png`, `desktop/work.json` | The stale screenshot is valid but its error banner is outside the captured scrolled area; it does not prove error copy by itself. The inspected passing test and `staleRecoveryObservedActualPage: true` establish the actual recovery behavior. |
+
+# Incumbent design-system consistency
+
+Consistent with `D:/Tapkit-public/DESIGN.md` and existing `work-ui.tsx` / `work.css`: restrained green/white semantic surfaces, system Chinese typography, flat separators, outlined pill controls, wrapping toolbars, visible action labels, and unchanged navigation. No new visual identity, decorative hero, illustration, font dependency, or marketing copy was introduced. The remote site's native form styling is content and should retain its own appearance. The address form is rendered as stacked full-width controls because existing `.work-detail form` overrides `.browser-address`; this is visible but is not a redesign blocker. No system-file change is required by this extension.
+
+# Required handoff / fix checklist
+
+- [x] Findings 1–4 fixed; their targeted regression source and passing result logs inspected.
+- [x] Replacement desktop, compact, native, approval and modal captures validated; stale recovery assessed through actual snapshot assertions.
+- [x] Four-item verdict completed: **4 resolved, 0 partial, 0 unresolved**. Initial findings and coverage are retained above.
+- No additional fix work is owed by this verdict. The parent task's remaining checks, documentation and authorized live sequence retain their separate acceptance requirements; fixture success remains distinct from live acceptance. The local extension still requires no design-system change.

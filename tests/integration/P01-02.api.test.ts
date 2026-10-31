@@ -204,7 +204,7 @@ describe('P01-02 real HTTP, history and SQLite', () => {
     });
     db.close();
     const reopened = new Database(join(directory, 'old.sqlite'));
-    expect(reopened.pragma('user_version', { simple: true })).toBe(18);
+    expect(reopened.pragma('user_version', { simple: true })).toBe(19);
     reopened.close();
     const backup = (await readdir(join(directory, 'backup'))).find((name) =>
       name.startsWith('pre-migration-3-'),

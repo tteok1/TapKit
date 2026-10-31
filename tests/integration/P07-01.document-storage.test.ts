@@ -102,11 +102,13 @@ test('P07-01 migration 17 to 18 preserves task data and is idempotent', async ()
   try {
     const view = await f.create();
     const before = f.store.db.prepare('SELECT * FROM tasks WHERE id=?').get(view.taskId);
-    f.store.db.exec('DROP TABLE document_specs');
+    f.store.db.exec(
+      'DROP TABLE browser_snapshots; DROP TABLE browser_tabs; DROP TABLE browser_sessions; DROP TABLE document_specs',
+    );
     f.store.db.pragma('user_version=17');
     await migrate(f.store.db, join(f.dir, 'p07-migration-backups'));
     await migrate(f.store.db, join(f.dir, 'p07-migration-backups'));
-    expect(f.store.db.pragma('user_version', { simple: true })).toBe(18);
+    expect(f.store.db.pragma('user_version', { simple: true })).toBe(19);
     expect(f.store.db.prepare('SELECT * FROM tasks WHERE id=?').get(view.taskId)).toEqual(before);
     expect(f.store.db.pragma('foreign_key_check')).toEqual([]);
     expect(f.store.db.pragma('integrity_check', { simple: true })).toBe('ok');

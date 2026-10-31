@@ -1,0 +1,11 @@
+{
+  "scope": "actual Electron/Host/Core/Chromium and SQLite; synthetic model and public origin",
+  "status": "completed",
+  "calls": 6,
+  "tools": 5,
+  "recordCount": 1,
+  "unauthorizedWrites": 0,
+  "selectedMaterialSaved": true,
+  "staleRecoveryObservedActualPage": true,
+  "nativeGeometryChecked": true
+}

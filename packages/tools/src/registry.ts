@@ -4,11 +4,36 @@ import {
   LEGACY_WORK_TOOL_CATALOG_VERSION,
   DOCUMENT_WORK_TOOL_CATALOG_VERSION,
   DATA_WORK_TOOL_CATALOG_VERSION,
+  SLIDES_WORK_TOOL_CATALOG_VERSION,
   type WorkToolArgs,
 } from '@tapkit/contracts';
 import { createHash } from 'node:crypto';
 export { WORK_TOOL_CATALOG_VERSION };
 export const WORK_TOOL_SPECS = {
+  'browser.open': {
+    name: 'browser.open',
+    version: '1',
+    mode: 'read',
+    retry: 'safe',
+    timeoutMs: 20000,
+    maxOutputBytes: 65536,
+  },
+  'browser.observe': {
+    name: 'browser.observe',
+    version: '1',
+    mode: 'read',
+    retry: 'safe',
+    timeoutMs: 10000,
+    maxOutputBytes: 65536,
+  },
+  'browser.act': {
+    name: 'browser.act',
+    version: '1',
+    mode: 'external_write',
+    retry: 'reconcile_first',
+    timeoutMs: 20000,
+    maxOutputBytes: 65536,
+  },
   'slides.create': {
     name: 'slides.create',
     version: '1',
@@ -91,8 +116,10 @@ export const WORK_TOOL_SPECS = {
   },
 } as const;
 export function catalogAllowsTool(catalog: string, name: keyof typeof WORK_TOOL_SPECS) {
+  if (name.startsWith('browser.')) return catalog === WORK_TOOL_CATALOG_VERSION;
   return (
     catalog === WORK_TOOL_CATALOG_VERSION ||
+    catalog === SLIDES_WORK_TOOL_CATALOG_VERSION ||
     (catalog === DATA_WORK_TOOL_CATALOG_VERSION && !name.startsWith('slides.')) ||
     (catalog === DOCUMENT_WORK_TOOL_CATALOG_VERSION &&
       name !== 'data.analyze' &&

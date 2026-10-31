@@ -44,6 +44,7 @@ export type PrivateVault = (
     | 'native.load'
     | 'native.purge'
     | 'browser.open'
+    | 'browser.runtime'
     | 'api-key.read'
     | 'api-key.delete'
     | 'web.key'

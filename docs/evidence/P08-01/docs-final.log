@@ -1,0 +1,8 @@
+docs/progress/CURRENT.md 41ms (unchanged)
+docs/progress/INDEX.md 31ms
+docs/progress/P08-01.md 24ms
+docs/progress/RESOURCES.md 84ms
+docs/adr/0075-anonymous-browser-actions.md 5ms (unchanged)
+All 37 task states, started handoffs and completed requirement evidence links verified
+Formatting checked 699 repository files; 0 failures.
+warning: in the working copy of 'docs/progress/requirements.csv', CRLF will be replaced by LF the next time Git touches it

@@ -13,7 +13,10 @@ import {
   SlidePageSchema,
   type ResourceRef,
   type Request,
-  type WorkToolArgs,
+  type WorkToolArgs as AllWorkToolArgs,
+  type ArtifactWorkToolArgs as WorkToolArgs,
+  ArtifactWorkToolArgsSchema,
+  WorkToolArgsSchema,
   type Reply,
 } from '@tapkit/contracts';
 import {
@@ -24,7 +27,9 @@ import {
   newId,
   type WorkRun,
 } from '@tapkit/storage';
-import { canonicalHash, catalogAllowsTool, parseWorkTool, WORK_TOOL_SPECS } from '@tapkit/tools';
+import { canonicalHash, catalogAllowsTool, WORK_TOOL_SPECS } from '@tapkit/tools';
+import type { BrowserService } from './browser-service';
+const parseWorkTool = (raw: unknown) => ArtifactWorkToolArgsSchema.parse(raw);
 import { WorkArtifacts } from './work-artifacts';
 import {
   createWorkDocument,
@@ -90,6 +95,7 @@ export class WorkToolGateway implements WorkGateway {
     readonly artifacts: WorkArtifacts,
     readonly native?: WorkNativeTools,
     readonly chat?: Pick<ChatService, 'store' | 'material' | 'blobs'>,
+    readonly browser?: BrowserService,
   ) {
     this.repo = artifacts.repo;
   }
@@ -402,10 +408,14 @@ export class WorkToolGateway implements WorkGateway {
   async execute(
     run: WorkRun,
     stepKey: string,
-    raw: WorkToolArgs,
+    raw: AllWorkToolArgs,
     guard: () => void,
     signal?: AbortSignal,
   ): Promise<ResourceRef | null> {
+    if (raw.tool.startsWith('browser.')) {
+      if (!this.browser) throw new StorageError('FEATURE_NOT_AVAILABLE');
+      return this.browser.execute(run, stepKey, raw, guard, signal);
+    }
     const args = parseWorkTool(raw);
     if (args.tool === 'data.analyze') {
       const options = this.repo.state(this.repo.row(run.id)).definition.dataOptions;
@@ -475,6 +485,11 @@ export class WorkToolGateway implements WorkGateway {
     guard: () => void,
     signal?: AbortSignal,
   ): Promise<ResourceRef> {
+    if (call.tool_name.startsWith('browser.')) {
+      const result = await this.browser?.dispatchCall(call.id, guard, signal);
+      if (!result) throw new StorageError('PERMISSION_DENIED');
+      return result;
+    }
     const run = this.current(call),
       args = parseWorkTool(JSON.parse(call.args_json));
     this.store.db.transaction(() => {
@@ -849,6 +864,8 @@ export class WorkToolGateway implements WorkGateway {
       )
       .all(run.id, stepKey) as Call[];
     if (!calls.length) return undefined;
+    if (calls.every((call) => call.status === 'succeeded' && call.tool_name.startsWith('browser.')))
+      return undefined;
     const refs: ResourceRef[] = [];
     for (const call of calls) {
       if (call.status === 'succeeded' && call.result_ref) {
@@ -956,6 +973,7 @@ export class WorkToolGateway implements WorkGateway {
       .prepare("SELECT * FROM tool_calls WHERE run_id=? AND status IN ('dispatched','pending')")
       .all(run.id) as Call[];
     for (const call of dispatched) {
+      if (call.tool_name.startsWith('browser.')) continue;
       const args = parseWorkTool(JSON.parse(call.args_json));
       const guard = () => {
         const task = this.store.db
@@ -1034,6 +1052,8 @@ export class WorkToolGateway implements WorkGateway {
       .get(run.id);
   }
   async dispatchCommand(request: Request): Promise<Reply> {
+    const browserReply = await this.browser?.approval(request);
+    if (browserReply) return browserReply;
     const ok = (data: unknown) =>
       ReplySchema.parse({ ok: true, requestId: request.requestId, data });
     const command = request.command;
@@ -1149,7 +1169,7 @@ export class WorkToolGateway implements WorkGateway {
             resourceHash: a.resource_hash,
             contentVersionHash: a.content_version_hash,
             expiresAt: a.expires_at,
-            businessArgs: parseWorkTool(JSON.parse(call.args_json)),
+            businessArgs: WorkToolArgsSchema.parse(JSON.parse(call.args_json)),
             preview,
           });
         }),

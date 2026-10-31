@@ -77,7 +77,7 @@ test('P06-01 T20 schema16 upgrade preserves task/run/tool identity and restores 
     ).toBeUndefined();
     expect(db.pragma('foreign_key_check')).toEqual([]);
     expect(db.pragma('integrity_check', { simple: true })).toBe('ok');
-    expect(db.pragma('user_version', { simple: true })).toBe(18);
+    expect(db.pragma('user_version', { simple: true })).toBe(19);
   } finally {
     store.close();
   }

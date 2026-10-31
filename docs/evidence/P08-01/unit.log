@@ -1,0 +1,43 @@
+$ vitest run --config vitest.config.ts --project unit "--maxWorkers=4"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |unit| tests/unit/P01-02.native-profile.test.ts (3 tests | 1 failed) 391ms
+   × P01-02 public preflight is read-only and rejects multiple active accounts or an unsupported database version 360ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P01-02.native-profile.test.ts > P01-02 public preflight is read-only and rejects multiple active accounts or an unsupported database version
+Error: CONFLICT
+ ❯ selectNativeAccount tests/live/P01-02.native-profile.ts:54:77
+     52|   const db = new DatabaseSync(join(directory, 'db/app.sqlite'), { read…
+     53|   try {
+     54|     if (db.prepare('PRAGMA user_version').get()?.user_version !== 18) …
+       |                                                                             ^
+     55|     // Only public configuration. The preflight never opens the vault …
+     56|     const rows = db
+ ❯ tests/unit/P01-02.native-profile.test.ts:76:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 70 passed (71)
+      Tests  1 failed | 468 passed (469)
+   Start at  15:16:48
+   Duration  25.24s (import 53%, tests 30%, transform 14%, setup 2%, worker 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:41
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:223:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:220:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0

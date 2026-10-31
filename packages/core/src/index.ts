@@ -28,6 +28,8 @@ import { ProviderService, type PrivateVault } from './provider-service';
 import { ModelService } from './model-service';
 import { ChatService } from './chat-service';
 import { WebService } from './web-service';
+import { BrowserService } from './browser-service';
+import { BrowserCommandSchemas } from '@tapkit/contracts';
 import { ExportService } from './export-service';
 import { WorkService } from './work-service';
 import { WorkArtifacts } from './work-artifacts';
@@ -199,6 +201,19 @@ async function start() {
   const titleTimer = setInterval(() => void history.titles(), 500);
   const files = new FileRepository(store, blobs);
   const workArtifacts = new WorkArtifacts(files, blobs);
+  const browser = new BrowserService(
+    workArtifacts,
+    (request) => vault('browser.runtime', store.profileId, request),
+    async (url) =>
+      resolveNetworkProxy(
+        store.settings.values.network,
+        new URL(url),
+        async (value) =>
+          z
+            .strictObject({ proxyURL: z.string().max(2048) })
+            .parse(await vault('network.proxy.resolve', store.profileId, { url: value })).proxyURL,
+      ),
+  );
   const work = new WorkService(
     store,
     modelWorkDriver(models, chat),
@@ -210,11 +225,22 @@ async function start() {
         service.executionCapabilities,
       ),
       chat,
+      browser,
     ),
     (ref, sessionId) => chat.material(ref, sessionId),
     models.claimRoot,
   );
+  work.onStatus = (run) => {
+    if (['completed', 'partial', 'failed', 'cancelled', 'budget_stopped'].includes(run.status))
+      void browser.dispose(run).catch(() => {});
+  };
+  browser.onTakeover = (id) => {
+    const run = work.repo.row(id);
+    if (['running', 'waiting_tool', 'queued'].includes(run.status))
+      store.db.transaction(() => work.control(run, 'pause'))();
+  };
   const notificationTimer = setInterval(() => {
+    void browser.sweep().catch(() => {});
     try {
       for (const notification of work.notifications.claimDesktop())
         port!.postMessage({ type: 'desktop.notification', notification });
@@ -503,42 +529,44 @@ async function start() {
           work.cancelAccount(account.data.accountId);
         }
       }
-      const result = work.handles(command.request.command, command.request.payload)
-        ? work.dispatch(command.request)
-        : Object.hasOwn(ExportCommandSchemas, command.request.command)
-          ? exports.dispatch(command.request)
-          : Object.hasOwn(WebCommandSchemas, command.request.command) &&
-              !temporary.target(command.request.payload)
-            ? web.dispatch(command.request)
-            : Object.hasOwn(ProjectCommandSchemas, command.request.command)
-              ? projects.dispatch(command.request)
-              : Object.hasOwn(ArtifactCommandSchemas, command.request.command)
-                ? artifacts.dispatch(command.request)
-                : Object.hasOwn(FileCommandSchemas, command.request.command)
-                  ? fileService.dispatch(command.request)
-                  : command.request.command === 'sessions.temporary' ||
-                      command.request.command === 'sessions.closeTemporary' ||
-                      temporary.target(command.request.payload)
-                    ? temporary.dispatch(command.request)
-                    : (HISTORY_COMMANDS as readonly string[]).includes(command.request.command)
-                      ? history.dispatch(command.request)
-                      : command.request.command.startsWith('models.') ||
-                          command.request.command === 'usage.list'
-                        ? models.dispatch(command.request)
-                        : command.request.command.startsWith('providers.') &&
-                            command.request.command !== 'providers.saveApiKey'
-                          ? providers.dispatch(command.request)
-                          : /^(memory\.|messages\.|drafts\.|inputs\.|runs\.cancel$|context\.|chat\.snippets\.)/.test(
-                                command.request.command,
-                              )
-                            ? chat.dispatch(command.request)
-                            : Promise.resolve(service.dispatch(command.request));
+      const result = Object.hasOwn(BrowserCommandSchemas, command.request.command)
+        ? browser.dispatch(command.request)
+        : work.handles(command.request.command, command.request.payload)
+          ? work.dispatch(command.request)
+          : Object.hasOwn(ExportCommandSchemas, command.request.command)
+            ? exports.dispatch(command.request)
+            : Object.hasOwn(WebCommandSchemas, command.request.command) &&
+                !temporary.target(command.request.payload)
+              ? web.dispatch(command.request)
+              : Object.hasOwn(ProjectCommandSchemas, command.request.command)
+                ? projects.dispatch(command.request)
+                : Object.hasOwn(ArtifactCommandSchemas, command.request.command)
+                  ? artifacts.dispatch(command.request)
+                  : Object.hasOwn(FileCommandSchemas, command.request.command)
+                    ? fileService.dispatch(command.request)
+                    : command.request.command === 'sessions.temporary' ||
+                        command.request.command === 'sessions.closeTemporary' ||
+                        temporary.target(command.request.payload)
+                      ? temporary.dispatch(command.request)
+                      : (HISTORY_COMMANDS as readonly string[]).includes(command.request.command)
+                        ? history.dispatch(command.request)
+                        : command.request.command.startsWith('models.') ||
+                            command.request.command === 'usage.list'
+                          ? models.dispatch(command.request)
+                          : command.request.command.startsWith('providers.') &&
+                              command.request.command !== 'providers.saveApiKey'
+                            ? providers.dispatch(command.request)
+                            : /^(memory\.|messages\.|drafts\.|inputs\.|runs\.cancel$|context\.|chat\.snippets\.)/.test(
+                                  command.request.command,
+                                )
+                              ? chat.dispatch(command.request)
+                              : Promise.resolve(service.dispatch(command.request));
       void result.then((reply) => {
         if (!closing) port!.postMessage({ type: 'reply', id: command.id, reply });
       });
     }
   });
-  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 18 });
+  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 19 });
   worker.start();
   sweepStaging();
   chat.start();

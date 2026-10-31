@@ -1,10 +1,8 @@
 # 当前接续点
 
-- 2026-10-31 CI72交接修复已完成：f690e45已推origin/main，CI73 run41096803922的check/office-native/startup三个job全success；unit459、集成464过/1既有跳过、perf2、Electron50、原生17及独立用户/关闭/启动检查通过。测试目录仍自动清理；292资料目录9289文件复核原字节一致，业务/账户/阶段不变，不进入P08。最终证据docs/evidence/P00-01/ci-cleanup-fix-2026-10-31/ci73-final-status.json；后置只补文档证据。
-- 2026-10-30 Git交付：用户明确授权本轮测试清理修复及文档提交推送origin/main；远程基线4cd75c9与本地一致，源码113文件与既有验证manifest一致。仅交付测试/检查脚本及文档证据，账户/.test-data/release不入Git；最终SHA以Git回执为准，新提交CI单独核对，不沿用CI71结果。
-- 2026-10-30 清理与防积累修复完成：删除获批7001个旧测试目录和1份旧发布副本，约53.86GiB，目录73.14→19.28GiB；全部验证后292个重要资料目录9289文件哈希仍一致。unit454、主集成464过/1既有跳过、收集修复补验70过/1跳过、Electron3、perf2、build/check通过；新增非空测试目录0。原任务/gate保持，不进入P08；证据docs/evidence/P00-01/test-data-cleanup-2026-10-30/summary.json。
-- 2026-10-30；D:/Tapkit-public；main。P07已squash合入main源1288ce4079ba19edb54c4664005829b34550caaa，原codex/p07-office保留；后续提交仅保存本次恢复记录，不进入P08。
-- CI71 run41057664428第2次执行completed/success，check/office-native/startup-diagnostics全success，P07 gate=passed。首轮检出前无法解析有效Action版本，重跑同提交恢复；运行代码未改，首轮失败保留。
-- 实际unit446、主集成464通过/既有live跳过1、原生17、perf2、Electron50；独立标准用户隔离22/22、parser3/3、preview4/4、Office关闭6轮及启动诊断通过。
-- 证据docs/evidence/P07-03/ci71-recovery-2026-10-30/final-status.json、recovery.json、main-summary.log、native-summary.log、verification.md。聚合jobs API曾500，使用attempts/2/jobs正确读取完整结果。无需继续修CI，下一步仅按用户指令。
-- 插件重跑403权限不足，使用既有Git认证对指定job REST201成功，凭据未落盘；本次新增模型0，连接13/20，凭据副本closed、active0。本地测试/桌面控制均未启动。
+- 2026-10-31；D:/Tapkit-public；codex/p08-01-browser；基于fetch核对的最新main ee06f746d380bc47e99c8cec30534e6b425cf15d。P08-01=implemented_and_verified；P08-02/03未开始，P08仍in_progress。
+- 匿名浏览器交互/标签/材料/审批/接管与恢复已交付，ADR0075/schema19。check/build退出0；470 unit、18 P08 integration、6办公驱动、2 Electron通过；相关154项集成分轮覆盖，初轮失败与修复均保留。
+- 智谱Chat/glm-4.7-flashx累计3/20次应用内检测均成功后才发任务；最终3模型/3工具、actual11424 tokens完成真实网页→落盘MD，逐字引用/哈希通过、预留0。前两轮质量/预算失败保留；3工作总9模型/9工具、actual33774 tokens，不含连接检测。
+- 三轮密文副本均清理、原账户不改；真实站点无写入，表单提交仅fixture。其他模型/协议、较早P01/P02/P04/P05/P06 live暂缓和gate范围保持。
+- 证据docs/evidence/P08-01/verification.md；交接docs/progress/P08-01.md。下一编号P08-02仍not_started；本轮无commit/push/合main。
+- 原4份文档改动及duration-comparison.json保留；INDEX旧流水/CURRENT全文归档preflight-2026-10-31。CI73与P00-01清理/资料保全保持，P07汇总按已有gate更正passed。

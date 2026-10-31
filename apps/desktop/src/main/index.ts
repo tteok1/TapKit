@@ -48,6 +48,8 @@ import {
   WebCommandSchemas,
   ExportCommandSchemas,
   WorkCommandSchemas,
+  BrowserCommandSchemas,
+  ErrorCodeSchema,
   ArtifactAssetSchema,
   ArtifactAccessSchema,
   FileGetSchema,
@@ -63,6 +65,11 @@ import { avatarDimensions, readAvatarFile } from './avatar';
 import { ArtifactProtocol } from './artifact-protocol';
 import { ExternalArtifact } from './external-artifact';
 import { AnonymousReader, configureAnonymousNetwork } from './browser';
+import { BrowserRuntime } from './browser-runtime';
+const browserRuntime = new BrowserRuntime(
+  (slot) => [...windows].find((w) => windowSlots.get(w.webContents.id) === slot) ?? null,
+);
+declare const __TAPKIT_TEST_BUILD__: boolean;
 import { ExportPdfRenderer } from './export-pdf';
 const exportPdf = new ExportPdfRenderer();
 const exportDestinations = new Map<string, { windowId: string; path: string }>();
@@ -223,6 +230,26 @@ function startCore() {
     if (!parsed.success || generation !== current) return;
     const message = parsed.data;
     if (message.type === 'vault.request') {
+      if (message.operation === 'browser.runtime') {
+        void browserRuntime.command(message.payload).then(
+          (value) => {
+            if (core === child)
+              child.postMessage({ type: 'vault.reply', id: message.id, ok: true, value });
+          },
+          (error: unknown) => {
+            if (core === child)
+              child.postMessage({
+                type: 'vault.reply',
+                id: message.id,
+                ok: false,
+                value:
+                  ErrorCodeSchema.safeParse(error instanceof Error ? error.message : '').data ??
+                  'WEB_UNAVAILABLE',
+              });
+          },
+        );
+        return;
+      }
       if (message.operation === 'export.pdf' || message.operation === 'export.cancelPdf') {
         const work = async () => {
           if (message.operation === 'export.cancelPdf') {
@@ -370,6 +397,7 @@ function startCore() {
     }
   });
   child.on('exit', (code) => {
+    void browserRuntime.disposeAll();
     clearTimeout(timer);
     rejectReady(new Error('Core exited'));
     for (const waiter of pending.values()) {
@@ -587,7 +615,13 @@ if (ownsLock) {
     window.focus();
     console.info('TAPKIT_SECOND_INSTANCE');
   });
-  void app.whenReady().then(() => {
+  void app.whenReady().then(async () => {
+    if (__TAPKIT_TEST_BUILD__ && process.env.TAPKIT_BROWSER_FIXTURE === 'P08-01') {
+      const { installBrowserWebFixture } =
+        await import('../../../../tests/fixtures/web-app/fixture');
+      Object.assign(globalThis, { tapkitBrowserWebFixture: installBrowserWebFixture(dataDir) });
+      Object.assign(globalThis, { tapkitBrowserRuntime: browserRuntime });
+    }
     startCore();
     powerMonitor.on('suspend', () => core?.postMessage({ type: 'lifecycle', action: 'suspend' }));
     powerMonitor.on('resume', () => core?.postMessage({ type: 'lifecycle', action: 'resume' }));
@@ -606,6 +640,7 @@ if (ownsLock) {
       ...Object.keys(WebCommandSchemas),
       ...Object.keys(ExportCommandSchemas),
       ...Object.keys(WorkCommandSchemas),
+      ...Object.keys(BrowserCommandSchemas),
       'models.catalog',
       'models.preferences.get',
       'models.preferences.set',

@@ -7,6 +7,22 @@ function eraseWorkRuns(store: Store, runIds: string[], time: number) {
   )
     return;
   for (const id of runIds) {
+    if (
+      store.db
+        .prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='browser_sessions'")
+        .get()
+    ) {
+      store.db
+        .prepare(
+          'DELETE FROM browser_snapshots WHERE tab_id IN (SELECT id FROM browser_tabs WHERE session_id IN (SELECT id FROM browser_sessions WHERE run_id=?))',
+        )
+        .run(id);
+      store.db
+        .prepare(
+          "UPDATE browser_tabs SET url='',title='',last_snapshot_id=NULL WHERE session_id IN (SELECT id FROM browser_sessions WHERE run_id=?)",
+        )
+        .run(id);
+    }
     store.db
       .prepare(
         "UPDATE runs SET work_json='{\"schemaVersion\":1}',cancel_requested_at=?,lease_epoch=lease_epoch+1,status=CASE WHEN status IN ('completed','partial','failed','budget_stopped','cancelled') THEN status ELSE 'cancelled' END WHERE id=?",

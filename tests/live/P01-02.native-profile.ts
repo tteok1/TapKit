@@ -51,7 +51,7 @@ export function selectNativeAccount(
   if (!account || account.length > 160) throw new Error('VALIDATION_ERROR');
   const db = new DatabaseSync(join(directory, 'db/app.sqlite'), { readOnly: true });
   try {
-    if (db.prepare('PRAGMA user_version').get()?.user_version !== 18) throw new Error('CONFLICT');
+    if (db.prepare('PRAGMA user_version').get()?.user_version !== 19) throw new Error('CONFLICT');
     // Only public configuration. The preflight never opens the vault or reads credential IDs.
     const rows = db
       .prepare(

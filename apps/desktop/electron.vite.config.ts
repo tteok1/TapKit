@@ -11,6 +11,7 @@ function coreSources(directory: string): string[] {
 }
 export default defineConfig({
   main: {
+    define: { __TAPKIT_TEST_BUILD__: JSON.stringify(process.env.TAPKIT_TEST_BUILD === '1') },
     plugins: [
       {
         name: 'tapkit-core-watch',

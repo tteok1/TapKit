@@ -1,0 +1,42 @@
+{
+  "snapshots": [
+    {
+      "url": "https://example.com/",
+      "title": "Example Domain"
+    },
+    {
+      "url": "https://example.com/",
+      "title": "Example Domain"
+    },
+    {
+      "url": "https://iana.org/help/example-domains",
+      "title": "iana.org/help/example-domains"
+    },
+    {
+      "url": "https://example.com/",
+      "title": "Example Domain"
+    }
+  ],
+  "budget": {
+    "reserved_tokens": 0,
+    "used_tokens": 15057
+  },
+  "tools": [
+    {
+      "tool_name": "browser.open",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "browser.open",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "browser.act",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "browser.open",
+      "status": "succeeded"
+    }
+  ]
+}

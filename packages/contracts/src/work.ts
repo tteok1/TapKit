@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { IdSchema } from './identity';
 import { ResourceRefSchema, AcceptanceRuleSchema, PlanStepInputSchema } from './resources';
 import { RunStatusSchema } from './chat';
+import { BrowserWorkToolArgsSchema } from './browser';
 import { SelectionSchema } from './models';
 import { AnalysisSpecSchema, DataFilterSchema, DataPageSchema } from './data';
 import {
@@ -20,9 +21,11 @@ import {
 export const LEGACY_WORK_TOOL_CATALOG_VERSION = 'p06-tools-1';
 export const DOCUMENT_WORK_TOOL_CATALOG_VERSION = 'p07-tools-1';
 export const DATA_WORK_TOOL_CATALOG_VERSION = 'p07-tools-2';
-export const WORK_TOOL_CATALOG_VERSION = 'p07-tools-3';
+export const SLIDES_WORK_TOOL_CATALOG_VERSION = 'p07-tools-3';
+export const WORK_TOOL_CATALOG_VERSION = 'p08-tools-1';
 
 export const WorkDefinitionSchema = z.strictObject({
+  browserEnabled: z.boolean().default(false),
   goal: z.string().trim().min(1).max(20000),
   audience: z.string().max(500).default('用户本人'),
   language: z.string().min(1).max(80).default('简体中文'),
@@ -117,7 +120,7 @@ export const WorkViewSchema = z.strictObject({
     .max(100),
 });
 export type WorkView = z.infer<typeof WorkViewSchema>;
-export const WorkToolArgsSchema = z.discriminatedUnion('tool', [
+export const ArtifactWorkToolArgsSchema = z.discriminatedUnion('tool', [
   z.strictObject({
     tool: z.literal('slides.create'),
     name: z.string().regex(/^[^\\/:*?"<>|\x00-\x1f]{1,120}\.pptx$/),
@@ -170,6 +173,8 @@ export const WorkToolArgsSchema = z.discriminatedUnion('tool', [
   z.strictObject({ tool: z.literal('python.analyze'), fileId: IdSchema, versionId: IdSchema }),
   z.strictObject({ tool: z.literal('office.convert'), fileId: IdSchema, versionId: IdSchema }),
 ]);
+export type ArtifactWorkToolArgs = z.infer<typeof ArtifactWorkToolArgsSchema>;
+export const WorkToolArgsSchema = z.union([ArtifactWorkToolArgsSchema, BrowserWorkToolArgsSchema]);
 export type WorkToolArgs = z.infer<typeof WorkToolArgsSchema>;
 export const NativeWorkIdentitySchema = z.strictObject({
   schemaVersion: z.literal(1),

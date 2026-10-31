@@ -1,0 +1,46 @@
+$ vitest run --config vitest.config.ts --project integration "P01-02.api.test" "P01-03.usage.test" "P02-01.desktop.test" "P02-03.history.test" "P03-01.migration.test" "P03-02.artifacts.test" "P04-02.context.test" "P04-03.memory.test" "P05-01.network.test" "P06" "P07-01.document-storage" "P07-01.document-driver" "P07-01.document-gateway" "P07-02.data-driver" "P07-02.data-gateway" "P07-03.slides-driver" "P07-03.slides-gateway"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P07-01.document-storage.test.ts (2 tests | 1 failed) 735ms
+   × P07-01 migration 17 to 18 preserves task data and is idempotent 316ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P07-01.document-storage.test.ts > P07-01 migration 17 to 18 preserves task data and is idempotent
+SqliteError: table browser_sessions already exists
+ ❯ Database.exec node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/wrappers.js:9:14
+ ❯ packages/storage/src/foundation.ts:151:12
+    149|     try {
+    150|       db.transaction(() => {
+    151|         db.exec(migration.sql);
+       |            ^
+    152|         if (
+    153|           (db.pragma('foreign_key_check') as unknown[]).length ||
+ ❯ sqliteTransaction node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:65:24
+ ❯ migrate packages/storage/src/foundation.ts:158:8
+ ❯ tests/integration/P07-01.document-storage.test.ts:107:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 19 passed (20)
+      Tests  1 failed | 153 passed (154)
+   Start at  15:46:25
+   Duration  164.64s (tests 89%, import 9%, transform 2%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:41
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:223:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:220:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0

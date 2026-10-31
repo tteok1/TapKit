@@ -1,0 +1,18 @@
+{
+  "scope": "actual production TapKit, configured Zhipu, public example.com only; no native reasoning",
+  "tools": [
+    {
+      "name": "browser.open",
+      "status": "succeeded"
+    },
+    {
+      "name": "artifact.write",
+      "status": "succeeded"
+    }
+  ],
+  "markdown": "# 浏览核验\n\n## 任务\n仅使用匿名浏览器打开 https://example.com/ 并实际读取页面；然后仅用 artifact.write 生成浏览核验.md，写明真实页面标题与正文的一条事实。\n\n## 浏览器信息\n- URL: https://example.com/\n- 页面标题: Example Domain\n- 访问时间: 2025-06-20T20:48:00Z\n\n## 实际读取到的页面正文（中文部分）\n该域名仅用于文档示例，无需获得许可。这并非一项服务，请勿将其用于测试和监控目的。\n\n## 核验事实\n真实页面标题为 **\"Example Domain\"**，页面正文包含中文说明：“该域名仅用于文档示例，无需获得许可。这并非一项服务，请勿将其用于测试和监控目的。”\n",
+  "markdownSha256": "55a45b6e4e8690cdda6ab4e1df73a139af5b8b65000592687d2327be56b3f8c7",
+  "modelCalls": 2,
+  "toolCalls": 2,
+  "actualTokens": 7293
+}

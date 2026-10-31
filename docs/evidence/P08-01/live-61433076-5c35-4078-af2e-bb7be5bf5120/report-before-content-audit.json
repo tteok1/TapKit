@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "connectionAttempts": [
+    {
+      "number": 1,
+      "status": "passed",
+      "startedAt": "2026-10-31T08:13:14.376Z",
+      "finishedAt": "2026-10-31T08:13:30.645Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": true,
+  "taskStarted": true,
+  "task": {
+    "runId": "01a19105-5f6b-7621-90e9-15f4043796e8",
+    "status": "completed",
+    "reason": null,
+    "calls": 2,
+    "tools": 2,
+    "formats": [
+      "json",
+      "md"
+    ]
+  },
+  "usage": [
+    {
+      "source": "actual",
+      "input_tokens": 3198,
+      "output_tokens": 39,
+      "charged_tokens": 3237
+    },
+    {
+      "source": "actual",
+      "input_tokens": 3826,
+      "output_tokens": 230,
+      "charged_tokens": 4056
+    }
+  ],
+  "credentialRemoved": true,
+  "startedAt": "2026-10-31T08:12:49.028Z",
+  "browserReadVerified": true,
+  "contentVerified": true,
+  "finishedAt": "2026-10-31T08:14:41.273Z",
+  "cleanupRecovered": true
+}

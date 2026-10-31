@@ -30,6 +30,7 @@ export * from './memory';
 export * from './web';
 export * from './exports';
 export * from './work';
+export * from './browser';
 export * from './document';
 export * from './data';
 // Covers the largest draft/message without trimming or truncating text.
@@ -118,6 +119,7 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
       'native.load',
       'native.purge',
       'browser.open',
+      'browser.runtime',
       'api-key.read',
       'web.key',
       'web.read',
@@ -134,7 +136,7 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('ready'),
     protocolVersion: z.literal(1),
-    schemaVersion: z.literal(18),
+    schemaVersion: z.literal(19),
   }),
   z.strictObject({ type: z.literal('pong'), id: z.string().uuid(), payload: PingReplySchema }),
   z.strictObject({ type: z.literal('reply'), id: z.string().uuid(), reply: ReplySchema }),
@@ -143,6 +145,11 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
 export type PingRequest = z.infer<typeof PingRequestSchema>;
 export type PingReply = z.infer<typeof PingReplySchema>;
 export interface TapKitBridge {
+  browserCommand(
+    options: RequestOptions,
+    command: import('./browser').BrowserCommand,
+    payload: unknown,
+  ): Promise<Reply>;
   workCommand(
     options: RequestOptions,
     command: import('./work').WorkCommand,

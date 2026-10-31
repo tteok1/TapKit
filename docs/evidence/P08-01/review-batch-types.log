@@ -1,0 +1,11 @@
+apps/desktop/src/main/browser-runtime.ts 177ms (unchanged)
+apps/desktop/src/renderer/src/browser-ui.tsx 57ms (unchanged)
+apps/desktop/src/renderer/locales/browser.zh-CN.json 17ms (unchanged)
+packages/contracts/src/browser.ts 19ms (unchanged)
+packages/core/src/browser-service.ts 64ms (unchanged)
+packages/providers/src/api/zhipu-tools.ts 5ms (unchanged)
+tests/e2e/P08-01.browser.spec.ts 44ms (unchanged)
+tests/e2e/P08-01.work.spec.ts 29ms (unchanged)
+tests/fixtures/web-app/fixture.ts 14ms (unchanged)
+tests/integration/P08-01.browser.test.ts 42ms
+tests/unit/P08-01.browser.test.ts 5ms (unchanged)

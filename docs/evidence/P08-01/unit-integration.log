@@ -1,0 +1,310 @@
+$ vitest run --config vitest.config.ts --project unit
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |unit| tests/unit/P01-02.live.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-02.api.test.ts (0 test)
+ ❯ |unit| tests/unit/P05-01.hosted-search.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-01.office-parser.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-02.zhipu.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-03.office-worker.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-03.pdf-parser.test.ts (0 test)
+ ❯ |unit| tests/unit/P07-01.document-image.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-02.native-profile.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-02.office-samples.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-03.capability-report.test.ts (0 test)
+ ❯ |unit| tests/unit/P07-03.chart-cache.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-02.vault.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-01.archive-parser.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-02.transport.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-02.diff.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-01.auth-secrets.test.ts (0 test)
+ ❯ |unit| tests/unit/P07-01.document-render.test.ts (0 test)
+ ❯ |unit| tests/unit/P02-02.tool-trace.test.ts (0 test)
+node:fs:1937
+  binding.symlink(
+          ^
+
+Error: EPERM: operation not permitted, symlink 'D:\Tapkit-public\.test-data\P00-01 temp cleanup regression-4H7fRP\retained' -> 'D:\Tapkit-public\.test-data\P00-01 temp cleanup regression-4H7fRP\linked'
+    at Module.symlinkSync (node:fs:1937:11)
+    at file:///D:/Tapkit-public/[eval1]:9:43 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'symlink',
+  path: 'D:\\Tapkit-public\\.test-data\\P00-01 temp cleanup regression-4H7fRP\\retained',
+  dest: 'D:\\Tapkit-public\\.test-data\\P00-01 temp cleanup regression-4H7fRP\\linked'
+}
+
+Node.js v24.21.0
+ ❯ |unit| tests/unit/P03-02.external.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-01.preview-handoff.test.ts (5 tests | 1 failed) 897ms
+   × P00-01 preview handoff never overwrites an existing destination or follows a source junction 49ms
+ ❯ |unit| tests/unit/P03-02.staging.test.ts (0 test)
+ ❯ |unit| tests/unit/P04-02.context.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-01.transport.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-01.test-temp.test.ts (8 tests | 1 failed) 1228ms
+   × P00-01 cleanup rejects escaped prefixes and linked parents, without traversing child junctions 217ms
+ ❯ |unit| tests/unit/P07-02.data-contract.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-03.routing.test.ts (0 test)
+ ❯ |unit| tests/unit/P06-02.gateway.test.ts (0 test)
+ ❯ |unit| tests/unit/P02-02.zhipu-tool-names.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-02.merge-parser.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-02.protocol.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-01.chat-import.test.ts (0 test)
+ ❯ |unit| tests/unit/P07-02.probe-report.test.ts (0 test)
+ ❯ |unit| tests/unit/P06-03.live-budget.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-01.text-parser.test.ts (0 test)
+ ❯ |unit| tests/unit/P07-01.document-draft.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-02.native-prefix.test.ts (0 test)
+ ❯ |unit| tests/unit/P05-02.export.test.ts (0 test)
+ ❯ |unit| tests/unit/P04-02.routing.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-03.execution.test.ts (0 test)
+ ❯ |unit| tests/unit/P05-01.vault.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-03.execution-scope.test.ts (0 test)
+ ❯ |unit| tests/unit/P05-01.web.test.ts (0 test)
+ ❯ |unit| tests/unit/P01-02.system-proxy.test.ts (0 test)
+ ❯ |unit| tests/unit/P02-03.contracts.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-02.contracts.test.ts (0 test)
+ ❯ |unit| tests/unit/P02-01.desktop.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-01.files-contract.test.ts (0 test)
+ ❯ |unit| tests/unit/P02-03.selection-output.test.ts (0 test)
+ ❯ |unit| tests/unit/P06-01.plan.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-01.contracts.test.ts (0 test)
+ ❯ |unit| tests/unit/P04-03.memory.test.ts (0 test)
+ ❯ |unit| tests/unit/P02-02.chat.test.ts (0 test)
+ ❯ |unit| tests/unit/P07-02.chart-series.test.ts (0 test)
+ ❯ |unit| tests/unit/P03-03.projects.test.ts (0 test)
+ ❯ |unit| tests/unit/P07-02.svg.test.ts (0 test)
+ ❯ |unit| tests/unit/P04-01.retrieval.test.ts (0 test)
+ ❯ |unit| tests/unit/P07-02.provider.test.ts (0 test)
+ ❯ |unit| tests/unit/P07-02.export-privacy.test.ts (0 test)
+ ❯ |unit| tests/unit/P02-01.navigation.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-03.runtime-probe.test.ts (0 test)
+ ❯ |unit| tests/unit/P02-02.clipboard.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-02.core-startup.test.ts (0 test)
+ ❯ |unit| tests/unit/P07-01.document-provider.test.ts (0 test)
+ ❯ |unit| tests/unit/P08-01.browser.test.ts (0 test)
+ ❯ |unit| tests/unit/P00-03.standard-user-kit.test.ts (0 test)
+ ❯ |unit| tests/unit/P05-01.citations.test.ts (0 test)
+ ❯ |unit| tests/unit/P07-03.slides.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 66 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P00-01.contracts.test.ts [ tests/unit/P00-01.contracts.test.ts ]
+ FAIL  |unit| tests/unit/P00-02.contracts.test.ts [ tests/unit/P00-02.contracts.test.ts ]
+ FAIL  |unit| tests/unit/P00-02.core-startup.test.ts [ tests/unit/P00-02.core-startup.test.ts ]
+ FAIL  |unit| tests/unit/P00-03.capability-report.test.ts [ tests/unit/P00-03.capability-report.test.ts ]
+ FAIL  |unit| tests/unit/P00-03.execution-scope.test.ts [ tests/unit/P00-03.execution-scope.test.ts ]
+ FAIL  |unit| tests/unit/P00-03.execution.test.ts [ tests/unit/P00-03.execution.test.ts ]
+ FAIL  |unit| tests/unit/P00-03.office-worker.test.ts [ tests/unit/P00-03.office-worker.test.ts ]
+ FAIL  |unit| tests/unit/P00-03.runtime-probe.test.ts [ tests/unit/P00-03.runtime-probe.test.ts ]
+ FAIL  |unit| tests/unit/P00-03.standard-user-kit.test.ts [ tests/unit/P00-03.standard-user-kit.test.ts ]
+ FAIL  |unit| tests/unit/P01-01.auth-secrets.test.ts [ tests/unit/P01-01.auth-secrets.test.ts ]
+ FAIL  |unit| tests/unit/P01-01.transport.test.ts [ tests/unit/P01-01.transport.test.ts ]
+ FAIL  |unit| tests/unit/P01-02.api.test.ts [ tests/unit/P01-02.api.test.ts ]
+ FAIL  |unit| tests/unit/P01-02.live.test.ts [ tests/unit/P01-02.live.test.ts ]
+ FAIL  |unit| tests/unit/P01-02.native-prefix.test.ts [ tests/unit/P01-02.native-prefix.test.ts ]
+ FAIL  |unit| tests/unit/P01-02.system-proxy.test.ts [ tests/unit/P01-02.system-proxy.test.ts ]
+ FAIL  |unit| tests/unit/P01-02.transport.test.ts [ tests/unit/P01-02.transport.test.ts ]
+ FAIL  |unit| tests/unit/P01-02.vault.test.ts [ tests/unit/P01-02.vault.test.ts ]
+ FAIL  |unit| tests/unit/P01-02.zhipu.test.ts [ tests/unit/P01-02.zhipu.test.ts ]
+ FAIL  |unit| tests/unit/P01-03.routing.test.ts [ tests/unit/P01-03.routing.test.ts ]
+ FAIL  |unit| tests/unit/P02-01.desktop.test.ts [ tests/unit/P02-01.desktop.test.ts ]
+ FAIL  |unit| tests/unit/P02-01.navigation.test.ts [ tests/unit/P02-01.navigation.test.ts ]
+ FAIL  |unit| tests/unit/P02-02.chat.test.ts [ tests/unit/P02-02.chat.test.ts ]
+ FAIL  |unit| tests/unit/P02-02.clipboard.test.ts [ tests/unit/P02-02.clipboard.test.ts ]
+ FAIL  |unit| tests/unit/P02-02.tool-trace.test.ts [ tests/unit/P02-02.tool-trace.test.ts ]
+ FAIL  |unit| tests/unit/P02-02.zhipu-tool-names.test.ts [ tests/unit/P02-02.zhipu-tool-names.test.ts ]
+ FAIL  |unit| tests/unit/P02-03.contracts.test.ts [ tests/unit/P02-03.contracts.test.ts ]
+ FAIL  |unit| tests/unit/P02-03.selection-output.test.ts [ tests/unit/P02-03.selection-output.test.ts ]
+ FAIL  |unit| tests/unit/P03-01.archive-parser.test.ts [ tests/unit/P03-01.archive-parser.test.ts ]
+ FAIL  |unit| tests/unit/P03-01.chat-import.test.ts [ tests/unit/P03-01.chat-import.test.ts ]
+ FAIL  |unit| tests/unit/P03-01.files-contract.test.ts [ tests/unit/P03-01.files-contract.test.ts ]
+ FAIL  |unit| tests/unit/P03-01.office-parser.test.ts [ tests/unit/P03-01.office-parser.test.ts ]
+ FAIL  |unit| tests/unit/P03-01.text-parser.test.ts [ tests/unit/P03-01.text-parser.test.ts ]
+ FAIL  |unit| tests/unit/P03-02.diff.test.ts [ tests/unit/P03-02.diff.test.ts ]
+ FAIL  |unit| tests/unit/P03-02.external.test.ts [ tests/unit/P03-02.external.test.ts ]
+ FAIL  |unit| tests/unit/P03-02.merge-parser.test.ts [ tests/unit/P03-02.merge-parser.test.ts ]
+ FAIL  |unit| tests/unit/P03-02.protocol.test.ts [ tests/unit/P03-02.protocol.test.ts ]
+ FAIL  |unit| tests/unit/P03-02.staging.test.ts [ tests/unit/P03-02.staging.test.ts ]
+ FAIL  |unit| tests/unit/P03-03.projects.test.ts [ tests/unit/P03-03.projects.test.ts ]
+ FAIL  |unit| tests/unit/P04-01.retrieval.test.ts [ tests/unit/P04-01.retrieval.test.ts ]
+ FAIL  |unit| tests/unit/P04-02.context.test.ts [ tests/unit/P04-02.context.test.ts ]
+ FAIL  |unit| tests/unit/P04-02.routing.test.ts [ tests/unit/P04-02.routing.test.ts ]
+ FAIL  |unit| tests/unit/P04-03.memory.test.ts [ tests/unit/P04-03.memory.test.ts ]
+ FAIL  |unit| tests/unit/P05-01.citations.test.ts [ tests/unit/P05-01.citations.test.ts ]
+ FAIL  |unit| tests/unit/P05-01.hosted-search.test.ts [ tests/unit/P05-01.hosted-search.test.ts ]
+ FAIL  |unit| tests/unit/P05-01.vault.test.ts [ tests/unit/P05-01.vault.test.ts ]
+ FAIL  |unit| tests/unit/P05-01.web.test.ts [ tests/unit/P05-01.web.test.ts ]
+ FAIL  |unit| tests/unit/P05-02.export.test.ts [ tests/unit/P05-02.export.test.ts ]
+ FAIL  |unit| tests/unit/P06-01.plan.test.ts [ tests/unit/P06-01.plan.test.ts ]
+ FAIL  |unit| tests/unit/P06-02.gateway.test.ts [ tests/unit/P06-02.gateway.test.ts ]
+ FAIL  |unit| tests/unit/P06-03.live-budget.test.ts [ tests/unit/P06-03.live-budget.test.ts ]
+ FAIL  |unit| tests/unit/P07-01.document-draft.test.ts [ tests/unit/P07-01.document-draft.test.ts ]
+ FAIL  |unit| tests/unit/P07-01.document-image.test.ts [ tests/unit/P07-01.document-image.test.ts ]
+ FAIL  |unit| tests/unit/P07-01.document-provider.test.ts [ tests/unit/P07-01.document-provider.test.ts ]
+ FAIL  |unit| tests/unit/P07-02.chart-series.test.ts [ tests/unit/P07-02.chart-series.test.ts ]
+ FAIL  |unit| tests/unit/P07-02.data-contract.test.ts [ tests/unit/P07-02.data-contract.test.ts ]
+ FAIL  |unit| tests/unit/P07-02.export-privacy.test.ts [ tests/unit/P07-02.export-privacy.test.ts ]
+ FAIL  |unit| tests/unit/P07-02.probe-report.test.ts [ tests/unit/P07-02.probe-report.test.ts ]
+ FAIL  |unit| tests/unit/P07-02.provider.test.ts [ tests/unit/P07-02.provider.test.ts ]
+ FAIL  |unit| tests/unit/P07-02.svg.test.ts [ tests/unit/P07-02.svg.test.ts ]
+ FAIL  |unit| tests/unit/P08-01.browser.test.ts [ tests/unit/P08-01.browser.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{3490030d-3ae2-41de-8ac7-acd95e8c0662}\AC\Temp\ZoO9IZPIIq_HidbPX0ttm\ssr\f3d9718b4387735a9e2aa3bdbdb65a2bb00ad833'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/68]⎯
+
+ FAIL  |unit| tests/unit/P00-03.pdf-parser.test.ts [ tests/unit/P00-03.pdf-parser.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{3490030d-3ae2-41de-8ac7-acd95e8c0662}\AC\Temp\ZoO9IZPIIq_HidbPX0ttm\ssr\5cded63746ead27ea7119273e93c5aefe436c250'
+ ❯ tests/integration/office-security-control.ts:8:1
+      6| import { pathToFileURL } from 'node:url';
+      7| import { randomUUID } from 'node:crypto';
+      8| import { HelperRequestSchema } from '../../packages/contracts/src';
+       | ^
+      9| import { prepareOfficeProfile, runtimePaths } from '../../packages/too…
+     10| import { NativeSandboxExecutor } from '../../packages/tools/src/execut…
+ ❯ tests/unit/P00-03.pdf-parser.test.ts:3:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/68]⎯
+
+ FAIL  |unit| tests/unit/P01-02.native-profile.test.ts [ tests/unit/P01-02.native-profile.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{3490030d-3ae2-41de-8ac7-acd95e8c0662}\AC\Temp\ZoO9IZPIIq_HidbPX0ttm\ssr\5cded63746ead27ea7119273e93c5aefe436c250'
+ ❯ tests/live/P01-02.native-profile.ts:5:1
+      3| import { createHash } from 'node:crypto';
+      4| import { DatabaseSync } from 'node:sqlite';
+      5| import { ApiConfigSchema, IdSchema, resolveApiConfig, z } from '../../…
+       | ^
+      6|
+      7| export const NATIVE_FIXTURE_MARKER = 'P01-02 isolated encrypted native…
+ ❯ tests/unit/P01-02.native-profile.test.ts:5:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/68]⎯
+
+ FAIL  |unit| tests/unit/P03-02.office-samples.test.ts [ tests/unit/P03-02.office-samples.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{3490030d-3ae2-41de-8ac7-acd95e8c0662}\AC\Temp\ZoO9IZPIIq_HidbPX0ttm\ssr\83bd5fed2e72452790c6fe4eaa2ff1ebc9a5128f'
+ ❯ tests/unit/P03-02.office-samples.test.ts:6:1
+      4| import { join, resolve } from 'node:path';
+      5| import { previewOfficeFixtures } from '../fixtures/P03-preview-office.…
+      6| import { parseOfficeFile } from '../../packages/retrieval/src/ingest/o…
+       | ^
+      7| import { officeZip, pptxFixture } from '../fixtures/P03-office';
+      8| test('P03-02 plain Office fixtures with inert empty embeddings directo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/68]⎯
+
+ FAIL  |unit| tests/unit/P07-01.document-render.test.ts [ tests/unit/P07-01.document-render.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{3490030d-3ae2-41de-8ac7-acd95e8c0662}\AC\Temp\ZoO9IZPIIq_HidbPX0ttm\ssr\5cded63746ead27ea7119273e93c5aefe436c250'
+ ❯ packages/workflows/src/document-draft.ts:1:1
+      1| import { DocumentSpecSchema, type DocumentSpec } from '@tapkit/contrac…
+       | ^
+      2|
+      3| export const DocumentDraftSchema = DocumentSpecSchema;
+ ❯ packages/workflows/src/document-render.ts:15:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/68]⎯
+
+ FAIL  |unit| tests/unit/P07-03.chart-cache.test.ts [ tests/unit/P07-03.chart-cache.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{3490030d-3ae2-41de-8ac7-acd95e8c0662}\AC\Temp\ZoO9IZPIIq_HidbPX0ttm\ssr\5cded63746ead27ea7119273e93c5aefe436c250'
+ ❯ packages/retrieval/src/ingest/office.ts:4:1
+      2| import { createHash } from 'node:crypto';
+      3| import { XMLParser, XMLValidator } from 'fast-xml-parser';
+      4| import {
+       | ^
+      5|   FILE_LIMITS,
+      6|   FileLimitsSchema,
+ ❯ tests/unit/P07-03.chart-cache.test.ts:2:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/68]⎯
+
+ FAIL  |unit| tests/unit/P07-03.slides.test.ts [ tests/unit/P07-03.slides.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\20105\AppData\Local\Packages\sandbox.{3490030d-3ae2-41de-8ac7-acd95e8c0662}\AC\Temp\ZoO9IZPIIq_HidbPX0ttm\ssr\6ec15f250aca300ca17b9ac311acd6fdd8365e85'
+ ❯ packages/workflows/src/index.ts:3:1
+      1| export * from './export';
+      2| export * from './work-plan';
+      3| export * from './document-draft';
+       | ^
+      4| export * from './document-render';
+      5| export * from './document-validation';
+ ❯ tests/unit/P07-03.slides.test.ts:7:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/68]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P00-01.preview-handoff.test.ts > P00-01 preview handoff never overwrites an existing destination or follows a source junction
+Error: EPERM: operation not permitted, symlink 'D:\Tapkit-public\.test-data\P00-01 preview handoff-6cWGft\retained' -> 'D:\Tapkit-public\.test-data\P00-01 preview handoff-6cWGft\profile\db'
+ ❯ tests/unit/P00-01.preview-handoff.test.ts:161:3
+    159|   await writeFile(join(retained, 'app.sqlite'), 'retained database');
+    160|   await rename(join(profile, 'db'), join(profile, 'db-original'));
+    161|   await symlink(retained, join(profile, 'db'), 'junction');
+       |   ^
+    162|   await expect(encodeNativePreviewProfile(profile)).rejects.toThrow('L…
+    163|   expect(await readFile(join(retained, 'app.sqlite'), 'utf8')).toBe('r…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/68]⎯
+
+ FAIL  |unit| tests/unit/P00-01.test-temp.test.ts > P00-01 cleanup rejects escaped prefixes and linked parents, without traversing child junctions
+Error: Command failed: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe --input-type=module -e import assert from 'node:assert/strict';
+       import * as fs from 'node:fs';
+       import { join } from 'node:path';
+       import { mkdtemp, mkdtempSync, cleanupTestDirectories } from "file:///D:/Tapkit-public/scripts/test-temp.mjs";
+       const root = process.argv[1];
+       
+    await assert.rejects(mkdtemp(join(root, '../../outside-')), /inside .test-data/);
+    const target = join(root, 'retained'); fs.mkdirSync(target); fs.writeFileSync(join(target, 'important'), 'keep');
+    const link = join(root, 'linked'); fs.symlinkSync(target, link, 'junction');
+    await assert.rejects(mkdtemp(join(link, 'bad-')), /Linked/);
+    const owned = await mkdtemp(join(root, 'owned-'));
+    fs.symlinkSync(target, join(owned, 'link'), 'junction');
+    await cleanupTestDirectories();
+    assert.equal(fs.readFileSync(join(target, 'important'), 'utf8'), 'keep');
+  
+       console.log('CLEANUP_REGRESSION_OK'); D:\Tapkit-public\.test-data\P00-01 temp cleanup regression-4H7fRP
+node:fs:1937
+  binding.symlink(
+          ^
+
+Error: EPERM: operation not permitted, symlink 'D:\Tapkit-public\.test-data\P00-01 temp cleanup regression-4H7fRP\retained' -> 'D:\Tapkit-public\.test-data\P00-01 temp cleanup regression-4H7fRP\linked'
+    at Module.symlinkSync (node:fs:1937:11)
+    at file:///D:/Tapkit-public/[eval1]:9:43 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'symlink',
+  path: 'D:\\Tapkit-public\\.test-data\\P00-01 temp cleanup regression-4H7fRP\\retained',
+  dest: 'D:\\Tapkit-public\\.test-data\\P00-01 temp cleanup regression-4H7fRP\\linked'
+}
+
+Node.js v24.21.0
+
+ ❯ run tests/unit/P00-01.test-temp.test.ts:13:18
+     11| async function run(body: string) {
+     12|   const directory = await mkdtemp(resolve('.test-data/P00-01 temp clea…
+     13|   const output = execFileSync(
+       |                  ^
+     14|     node,
+     15|     [
+ ❯ tests/unit/P00-01.test-temp.test.ts:58:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/68]⎯
+
+
+ Test Files  68 failed | 3 passed (71)
+      Tests  2 failed | 30 passed (32)
+   Start at  15:14:45
+   Duration  11.61s (transform 48%, tests 45%, import 3%, worker 3%, setup 2%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:41
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:223:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:220:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0

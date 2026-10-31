@@ -1,0 +1,51 @@
+apps/desktop/src/main/browser-proxy.ts 94ms
+apps/desktop/src/main/browser-runtime.ts 84ms
+apps/desktop/src/renderer/locales/browser.zh-CN.json 18ms
+apps/desktop/src/renderer/src/browser-ui.tsx 47ms
+apps/desktop/src/renderer/src/browser.css 34ms
+docs/adr/0075-anonymous-browser-actions.md 36ms (unchanged)
+docs/progress/P08-01.md 9ms (unchanged)
+packages/contracts/src/browser.ts 18ms
+packages/core/src/browser-service.ts 63ms
+scripts/p08-live.mjs 30ms
+tests/e2e/P08-01.browser-harness.ts 5ms
+tests/e2e/P08-01.browser.spec.ts 30ms
+tests/e2e/P08-01.work.spec.ts 12ms
+tests/fixtures/P08-01.host.ts 5ms
+tests/fixtures/web-app/fixture.ts 7ms
+tests/integration/P08-01.browser.test.ts 30ms
+tests/integration/P08-01.migration.test.ts 6ms
+tests/unit/P08-01.browser.test.ts 3ms
+apps/desktop/electron.vite.config.ts 6ms (unchanged)
+apps/desktop/src/main/index.ts 98ms
+apps/desktop/src/preload/index.ts 20ms (unchanged)
+apps/desktop/src/renderer/src/permissions-ui.tsx 21ms
+apps/desktop/src/renderer/src/work-ui.tsx 94ms
+docs/progress/CURRENT.md 5ms (unchanged)
+docs/progress/INDEX.md 32ms (unchanged)
+docs/progress/P00-01.md 49ms (unchanged)
+packages/contracts/src/foundation.ts 21ms (unchanged)
+packages/contracts/src/index.ts 24ms
+packages/contracts/src/work.ts 33ms (unchanged)
+packages/core/src/chat-fixture.ts 42ms
+packages/core/src/index.ts 51ms
+packages/core/src/provider-service.ts 42ms (unchanged)
+packages/core/src/work-driver.ts 32ms
+packages/core/src/work-gateway.ts 108ms
+packages/core/src/work-service.ts 88ms
+packages/storage/src/foundation.ts 36ms (unchanged)
+packages/storage/src/session-cleanup.ts 8ms
+packages/tools/src/registry.ts 8ms
+scripts/e2e.mjs 4ms (unchanged)
+scripts/p07-live-profile.mjs 17ms (unchanged)
+tests/integration/P01-02.api.test.ts 32ms (unchanged)
+tests/integration/P01-03.usage.test.ts 53ms (unchanged)
+tests/integration/P02-01.desktop.test.ts 13ms (unchanged)
+tests/integration/P02-03.history.test.ts 158ms (unchanged)
+tests/integration/P03-01.migration.test.ts 12ms (unchanged)
+tests/integration/P03-02.artifacts.test.ts 33ms (unchanged)
+tests/integration/P04-02.context.test.ts 16ms (unchanged)
+tests/integration/P04-03.memory.test.ts 58ms (unchanged)
+tests/integration/P06-01.migration.test.ts 4ms (unchanged)
+tests/integration/P07-01.document-storage.test.ts 7ms (unchanged)
+tests/unit/P00-02.contracts.test.ts 4ms (unchanged)

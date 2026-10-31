@@ -1,0 +1,119 @@
+{
+  "task": "P08-01",
+  "status": "implemented_and_verified",
+  "branch": "codex/p08-01-browser",
+  "base": "ee06f746d380bc47e99c8cec30534e6b425cf15d",
+  "recordedAt": "2026-10-31T08:25:14.263Z",
+  "unit": {
+    "exitCode": 0,
+    "passed": 470,
+    "evidence": "review-unit-integration.log"
+  },
+  "integration": {
+    "exitCode": 0,
+    "passed": 18,
+    "evidence": "continuation-integration.log"
+  },
+  "driverRegression": {
+    "exitCode": 0,
+    "passed": 6,
+    "evidence": "continuation-driver-regression.log"
+  },
+  "electron": {
+    "exitCode": 0,
+    "passed": 2,
+    "evidence": "continuation-electron.log"
+  },
+  "check": {
+    "exitCode": 0,
+    "evidence": "continuation-check.log"
+  },
+  "build": {
+    "exitCode": 0,
+    "evidence": "final-build.log",
+    "productionRestore": "continuation-electron.log"
+  },
+  "relatedIntegration": {
+    "distinctCovered": 154,
+    "initial": {
+      "passed": 153,
+      "failed": 1,
+      "exitCode": 1
+    },
+    "repairedMigration": {
+      "passed": 2,
+      "exitCode": 0
+    },
+    "evidence": [
+      "related-integration.log",
+      "kernel-and-migration.log"
+    ]
+  },
+  "design": {
+    "review": "four findings resolved; pass scoped to those four",
+    "documentation": "ordinary extension; incumbent preserved",
+    "detector": "cache_directory_failed; not a pass"
+  },
+  "live": {
+    "model": "glm-4.7-flashx",
+    "protocol": "openai-chat",
+    "connectionLimit": 20,
+    "connectionChecks": 3,
+    "connectionPassed": 3,
+    "allConnectionsSucceededBeforeTasks": true,
+    "totalWorkModelCalls": 9,
+    "totalWorkToolCalls": 9,
+    "totalWorkActualTokens": 33774,
+    "usageExcludesConnectionChecks": true,
+    "latestRound": "live-f9182cd0-9409-495c-a467-5ec22c235990",
+    "latestStatus": "passed",
+    "latestWorkStatus": "completed",
+    "latestCalls": 3,
+    "latestTools": 3,
+    "latestActualTokens": 11424,
+    "latestReservedTokens": 0,
+    "artifactBytesVerified": true,
+    "credentialCopiesRemoved": true,
+    "rounds": [
+      {
+        "directory": "live-61433076-5c35-4078-af2e-bb7be5bf5120",
+        "status": "not_verified",
+        "taskStatus": "completed",
+        "calls": 2,
+        "tools": 2
+      },
+      {
+        "directory": "live-9c7634f2-b20c-46c9-81e0-83d268aa59d0",
+        "status": "not_verified",
+        "taskStatus": "budget_stopped",
+        "calls": 4,
+        "tools": 4
+      },
+      {
+        "directory": "live-f9182cd0-9409-495c-a467-5ec22c235990",
+        "status": "passed",
+        "taskStatus": "completed",
+        "calls": 3,
+        "tools": 3
+      }
+    ],
+    "remainingEncryptedSecretFiles": 0
+  },
+  "scope": {
+    "phaseP08": "in_progress",
+    "P08_02": "not_started",
+    "P08_03": "not_started",
+    "realWebsiteWrites": false,
+    "commit": false,
+    "push": false,
+    "merge": false
+  },
+  "documentationChecks": {
+    "docsCheck": 0,
+    "liveScriptSyntax": 0,
+    "formatWrite": 0,
+    "gitDiffCheck": 0,
+    "formatCheck": 0,
+    "evidence": "docs-final.log"
+  }
+}

@@ -1,0 +1,13 @@
+{"status":"running","checks":1,"connection":"running","task":null}
+{"status":"running","checks":1,"connection":"passed","task":null}
+{"status":"running","checks":1,"connection":"passed","task":null}
+{"status":"running","checks":1,"connection":"passed","task":null}
+{"status":"passed","checks":1,"connection":"passed","task":"completed"}
+file:///D:/Tapkit-public/scripts/p08-live.mjs:258
+      if (!/^[a-f0-9-]{36}$/i.test(file)) throw Error('UNEXPECTED_SECRET_FILE');
+                                                ^
+
+Error: UNEXPECTED_SECRET_FILE
+    at file:///D:/Tapkit-public/scripts/p08-live.mjs:258:49
+
+Node.js v24.21.0

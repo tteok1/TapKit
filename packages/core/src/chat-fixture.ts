@@ -70,6 +70,58 @@ export function installChatFixture(models: ModelService) {
           priorOutputs?: { kind: string; fileId: string; versionId: string }[];
         };
         const source = payload.priorOutputs?.find((ref) => ref.kind === 'file');
+        if (payload.goal?.includes('P08-01合成浏览')) {
+          const prior = request.messages.flatMap((m) => {
+            if (m.role !== 'user') return [];
+            try {
+              const value = JSON.parse(m.text);
+              if (value.trust !== 'tool_result_data') return [];
+              if (value.kind === 'browser_current_state') return [value];
+              if (!value.content) return [];
+              const receipt = JSON.parse(value.content);
+              return receipt.kind === 'tapkit.browser' ? [receipt] : [];
+            } catch {
+              return [];
+            }
+          })[0];
+          const snapshot = prior?.snapshot;
+          const note = snapshot?.nodes.find((n: { name: string }) => n.name === '备注');
+          const submit = snapshot?.nodes.find((n: { name: string }) => n.name === '提交合成记录');
+          const call = !snapshot
+            ? { name: 'browser.open', arguments: { url: 'https://example.com/' } }
+            : snapshot.url.includes('/submit')
+              ? {
+                  name: 'artifact.write',
+                  arguments: {
+                    name: '浏览结果.md',
+                    content:
+                      '# 合成网页任务\n\n已审阅提交，网页回执显示已提交合成记录。样本数量12，合计84。',
+                  },
+                }
+              : note?.value !== 'P08合成字段'
+                ? {
+                    name: 'browser.act',
+                    arguments: {
+                      tabId: snapshot.tabId,
+                      snapshotId: snapshot.id,
+                      nodeId: note?.id,
+                      action: 'fill',
+                      value: 'P08合成字段',
+                    },
+                  }
+                : {
+                    name: 'browser.act',
+                    arguments: {
+                      tabId: snapshot.tabId,
+                      snapshotId: snapshot.id,
+                      nodeId: submit?.id,
+                      action: 'click',
+                    },
+                  };
+          yield { type: 'tool_end', callId: newId(), ...call };
+          yield { type: 'finish', reason: 'tool_calls', nativeStateRef: '' };
+          return;
+        }
         if (
           payload.goal?.includes('P07数据') &&
           (!request.tools.some((t) => t.name === 'slides.create') || !source) &&

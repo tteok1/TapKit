@@ -137,6 +137,8 @@ Git网络由专门broker执行fetch/push，关闭外部hooks、credential helper
 
 ## 6. 网络与浏览器
 
+P08-01按[ADR0075](../adr/0075-anonymous-browser-actions.md)执行：独立内存partition及受控代理，DOM观察在隔离world运行；只允许有限动作。表单写入在Host按目标/method/完整body指纹单次放行，非授权请求拒绝；响应未完成为unknown。下载由Chromium阻断原生落盘，仅将已观察的候选交Core公开网络层读取，检查扩展名/大小/可执行头后走既有importBlob解析。工作必须显式browserEnabled，projectOnly仍拒绝联网。
+
 应用模型请求、搜索、下载统一经过NetworkPolicyService；HTTPS校验证书，不支持“忽略TLS错误”。系统代理默认开启；手工代理保存在凭据代理中。代理变更只影响新请求，连接诊断列出DNS/TLS/认证/超时类别。
 
 目的地分类：模型固定provider域名；搜索使用同一模型通道的隔离托管请求；用户明确URL的公开HTTP(S)；下载锁定registry；本地preview的进程端口租约。阻止私网/loopback/link-local/云元数据IPv4/IPv6、非HTTP scheme、DNS重绑定和重定向转私网；每次连接重新解析并绑定验证的地址，限制最多5次redirect和50MiB响应。

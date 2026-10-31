@@ -1,0 +1,15 @@
+{
+  "scope": "P08-01 user-authorized existing Zhipu Chat account; encrypted isolated copy; no API call",
+  "model": "glm-4.7-flashx",
+  "connectionLimit": 20,
+  "connectionChecks": 0,
+  "workCalls": 0,
+  "taskLimits": {
+    "calls": 4,
+    "tools": 5,
+    "tokens": 60000,
+    "activeMs": 600000
+  },
+  "target": "https://example.com/",
+  "externalWrites": false
+}

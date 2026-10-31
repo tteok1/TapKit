@@ -925,6 +925,16 @@ export class WorkService {
           );
           if (ref) {
             if (!refs.some((r) => JSON.stringify(r) === JSON.stringify(ref))) refs.push(ref);
+            if (this.repo.row(run.id).status === 'waiting_user') {
+              this.store.db.transaction(() =>
+                this.repo.stepResult(run, step.stepKey, {
+                  status: 'pending',
+                  text: candidate.text,
+                  artifacts: refs,
+                }),
+              )();
+              return;
+            }
           } else {
             this.store.db.transaction(() => {
               accountTime();
@@ -938,6 +948,35 @@ export class WorkService {
           }
         }
         guard();
+        const browserOnly =
+          state.definition.browserEnabled &&
+          !!this.store.db
+            .prepare(
+              "SELECT 1 FROM tool_calls WHERE run_id=? AND step_key=? AND tool_name LIKE 'browser.%' AND status='succeeded'",
+            )
+            .get(run.id, step.stepKey) &&
+          !this.store.db
+            .prepare(
+              "SELECT 1 FROM tool_calls WHERE run_id=? AND step_key=? AND tool_name NOT LIKE 'browser.%' AND status='succeeded'",
+            )
+            .get(run.id, step.stepKey);
+        if (browserOnly) {
+          this.store.db.transaction(() => {
+            accountTime();
+            this.repo.stepResult(run, step.stepKey, {
+              status: 'pending',
+              text: candidate.text,
+              artifacts: refs,
+            });
+            if (!resumed)
+              this.store.db
+                .prepare(
+                  'UPDATE plan_steps SET attempts=max(0,attempts-1) WHERE run_id=? AND step_key=?',
+                )
+                .run(run.id, step.stepKey);
+          })();
+          continue;
+        }
         const outputsValid = await this.gateway.verify(run, refs);
         const formats =
           outputsValid && this.gateway.formats ? await this.gateway.formats(run, refs) : undefined;

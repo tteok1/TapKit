@@ -1,0 +1,18 @@
+
+Running 1 test using 1 worker
+
+(node:18544) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\e2e\P08-01.browser.spec.ts:15:1 › P08-01 T16/T19 real Chromium validates DOM, frames, approval, takeover, lost response, isolation and cleanup (10.8s)
+
+  1 passed (12.5s)
+$ vitest run --config vitest.config.ts --project integration "P07-01.document-storage"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  15:51:29
+   Duration  2.80s (transform 49%, tests 31%, import 20%, setup 1%)
+

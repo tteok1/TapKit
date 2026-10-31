@@ -102,7 +102,7 @@ function restrict(directory) {
   if (result.error || result.status !== 0) throw Error('PERMISSION_DENIED');
 }
 export async function connectionProfile(prepare, task = 'P07-01', round) {
-  if (!['P07-01', 'P07-02', 'P07-03'].includes(task)) throw Error('PERMISSION_DENIED');
+  if (!['P07-01', 'P07-02', 'P07-03', 'P08-01'].includes(task)) throw Error('PERMISSION_DENIED');
   if (round !== undefined && !/^[a-f0-9-]{36}$/.test(round)) throw Error('PERMISSION_DENIED');
   const pointer = join(
     root,
@@ -177,7 +177,7 @@ export async function connectionProfile(prepare, task = 'P07-01', round) {
         );
       const settings = {
         ...store.settings.values,
-        network: { mode: 'direct', proxyURL: '' },
+        network: task === 'P08-01' ? original.settings.network : { mode: 'direct', proxyURL: '' },
         memoryEnabled: false,
       };
       store.db

@@ -16,6 +16,9 @@ const aliases: Readonly<Record<string, string>> = Object.freeze({
   'slides.create': 'slides_create',
   'slides.revise': 'slides_revise',
   'office.convert': 'office_convert',
+  'browser.open': 'browser_open',
+  'browser.observe': 'browser_observe',
+  'browser.act': 'browser_act',
   'user.ask': 'user_ask',
 });
 

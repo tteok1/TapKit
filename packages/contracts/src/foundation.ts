@@ -3,6 +3,7 @@ import { ErrorCodeSchema } from './errors';
 export { ErrorCodeSchema } from './errors';
 import { ChatReplyDataSchema } from './chat';
 import { WebReplySchema } from './web';
+import { BrowserReplySchema } from './browser';
 import { ExportReplySchema } from './exports';
 import { WorkReplySchema } from './work';
 import { HistoryReplySchema } from './history';
@@ -278,6 +279,7 @@ export const ReplyDataSchema = z.union([
   WorkReplySchema,
   ExportReplySchema,
   WebReplySchema,
+  BrowserReplySchema,
   MemoryReplySchema,
   ProjectReplySchema,
   ArtifactReplySchema,

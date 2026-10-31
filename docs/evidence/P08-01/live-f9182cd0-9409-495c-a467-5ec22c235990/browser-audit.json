@@ -1,0 +1,22 @@
+{
+  "tools": [
+    {
+      "tool_name": "browser.open",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "browser.observe",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "artifact.write",
+      "status": "succeeded"
+    }
+  ],
+  "snapshots": [
+    {
+      "url": "https://example.com/",
+      "title": "Example Domain"
+    }
+  ]
+}

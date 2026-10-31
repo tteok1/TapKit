@@ -173,7 +173,10 @@ function ApprovalCard({
             <label>
               {t.scope}
               <select value={scope} onChange={(e) => setScope(e.target.value as typeof scope)}>
-                {(['once', 'session', 'persistent'] as const).map((s) => (
+                {(a.businessArgs.tool.startsWith('browser.')
+                  ? (['once'] as const)
+                  : (['once', 'session', 'persistent'] as const)
+                ).map((s) => (
                   <option key={s} value={s}>
                     {t[s]}
                   </option>

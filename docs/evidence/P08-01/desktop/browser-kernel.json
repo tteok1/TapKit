@@ -1,0 +1,30 @@
+{
+  "scope": "real Chromium; synthetic public-origin protocol responses; production network and DOM gates",
+  "result": "passed",
+  "state": {
+    "records": [
+      "note=%E5%B7%B2%E7%AF%A1%E6%94%B9&category=b",
+      "note=%E5%88%9D%E5%A7%8B%E5%80%BC&category=a"
+    ],
+    "overrideRecords": [
+      "?note=%E5%85%AC%E5%BC%80%E5%90%88%E6%88%90%E5%AD%97%E6%AE%B5"
+    ],
+    "unreviewedRequests": 0,
+    "externalUrls": [
+      "https://example.com/"
+    ],
+    "copiedText": "",
+    "unauthorizedWrites": 0,
+    "privateRequests": 0,
+    "partitions": [
+      {
+        "persistent": false,
+        "proxy": "PROXY 127.0.0.1:65412"
+      }
+    ]
+  },
+  "staleApprovalRejected": true,
+  "manualLock": true,
+  "lostResponseBusinessRecords": 1,
+  "freshPartitionCookieEmpty": true
+}
