@@ -18,6 +18,7 @@ import {
   ArtifactWorkToolArgsSchema,
   WorkToolArgsSchema,
   type Reply,
+  type WorkDefinition,
 } from '@tapkit/contracts';
 import {
   WorkRepository,
@@ -29,6 +30,7 @@ import {
 } from '@tapkit/storage';
 import { canonicalHash, catalogAllowsTool, WORK_TOOL_SPECS } from '@tapkit/tools';
 import type { BrowserService } from './browser-service';
+import type { ResearchService } from './research-service';
 const parseWorkTool = (raw: unknown) => ArtifactWorkToolArgsSchema.parse(raw);
 import { WorkArtifacts } from './work-artifacts';
 import {
@@ -96,11 +98,49 @@ export class WorkToolGateway implements WorkGateway {
     readonly native?: WorkNativeTools,
     readonly chat?: Pick<ChatService, 'store' | 'material' | 'blobs'>,
     readonly browser?: BrowserService,
+    readonly research?: ResearchService,
   ) {
     this.repo = artifacts.repo;
   }
   get store() {
     return this.repo.store;
+  }
+  validateDefinition(definition: WorkDefinition, _sessionId: string) {
+    if (definition.research && !this.research) throw new StorageError('FEATURE_NOT_AVAILABLE');
+    this.research?.validateDefinition(definition);
+  }
+  intermediate(run: WorkRun) {
+    return (
+      !!this.repo.state(this.repo.row(run.id)).definition.research &&
+      !this.research?.state(run).progress.report?.ready
+    );
+  }
+  artifactRefs(run: WorkRun, refs: ResourceRef[]) {
+    return this.repo.state(this.repo.row(run.id)).definition.research
+      ? this.research!.artifactRefs(run, refs)
+      : refs;
+  }
+  completion(run: WorkRun): 'completed' | 'partial' {
+    return this.repo.state(this.repo.row(run.id)).definition.research
+      ? this.research!.completion(run)
+      : 'completed';
+  }
+  requestEarlyFinish(run: WorkRun) {
+    if (!this.research) throw new StorageError('FEATURE_NOT_AVAILABLE');
+    this.research.requestEarlyFinish(run);
+  }
+  closeout(run: WorkRun) {
+    return this.repo.state(this.repo.row(run.id)).definition.research
+      ? this.research!.closeout(run)
+      : undefined;
+  }
+  async finishEarly(run: WorkRun, guard: () => void) {
+    if (!this.research) throw new StorageError('FEATURE_NOT_AVAILABLE');
+    return this.research.finishEarly(run, guard);
+  }
+  cancelReadOnly(run: WorkRun) {
+    if (this.repo.state(this.repo.row(run.id)).definition.research)
+      this.research?.cancelReadOnly(run);
   }
   private current(call: Call) {
     return this.repo.row(call.run_id);
@@ -412,6 +452,19 @@ export class WorkToolGateway implements WorkGateway {
     guard: () => void,
     signal?: AbortSignal,
   ): Promise<ResourceRef | null> {
+    if (this.repo.state(this.repo.row(run.id)).definition.research) {
+      if (!this.research) throw new StorageError('FEATURE_NOT_AVAILABLE');
+      if (raw.tool.startsWith('research.'))
+        return this.research.execute(run, stepKey, raw, guard, signal);
+      const exportRef = this.research.state(run).progress.report?.refs;
+      if (
+        raw.tool !== 'office.convert' ||
+        !exportRef?.some(
+          (r) => r.kind === 'file' && r.fileId === raw.fileId && r.versionId === raw.versionId,
+        )
+      )
+        throw new StorageError('PERMISSION_DENIED');
+    } else if (raw.tool.startsWith('research.')) throw new StorageError('PERMISSION_DENIED');
     if (raw.tool.startsWith('browser.')) {
       if (!this.browser) throw new StorageError('FEATURE_NOT_AVAILABLE');
       return this.browser.execute(run, stepKey, raw, guard, signal);
@@ -442,7 +495,7 @@ export class WorkToolGateway implements WorkGateway {
     if (succeeded?.result_ref) {
       const ref = ResourceRefSchema.parse(JSON.parse(succeeded.result_ref));
       await this.waitForReceipt(run, succeeded, ref, guard, signal);
-      if (await this.verify(run, [ref])) return ref;
+      if (await this.verifyArtifacts(run, [ref])) return ref;
       throw new StorageError('CONFLICT');
     }
     const preview = await this.preview(run, args);
@@ -471,7 +524,7 @@ export class WorkToolGateway implements WorkGateway {
     if (call.status === 'succeeded' && call.result_ref) {
       const ref = ResourceRefSchema.parse(JSON.parse(call.result_ref));
       await this.waitForReceipt(run, call, ref, guard, signal);
-      if (!(await this.verify(run, [ref]))) throw new StorageError('CONFLICT');
+      if (!(await this.verifyArtifacts(run, [ref]))) throw new StorageError('CONFLICT');
       return ref;
     }
     if (['unknown', 'dispatched', 'pending'].includes(call.status))
@@ -778,7 +831,7 @@ export class WorkToolGateway implements WorkGateway {
         owner: { type: 'task', id: run.task_id },
       });
       if (file.version.parseStatus === 'ready') {
-        if (!(await this.verify(run, [ref]))) throw new StorageError('PARSE_FAILED');
+        if (!(await this.verifyArtifacts(run, [ref]))) throw new StorageError('PARSE_FAILED');
         guard();
         return;
       }
@@ -858,6 +911,10 @@ export class WorkToolGateway implements WorkGateway {
     guard: () => void,
     options: { allowDispatch?: boolean; signal?: AbortSignal } = {},
   ): Promise<ResourceRef[] | null | undefined> {
+    if (this.repo.state(this.repo.row(run.id)).definition.research) {
+      if (!this.research) throw new StorageError('FEATURE_NOT_AVAILABLE');
+      return this.research.resume(run, stepKey, guard, options);
+    }
     const calls = this.store.db
       .prepare(
         "SELECT * FROM tool_calls WHERE run_id=? AND step_key=? AND status IN ('proposed','approved','succeeded') ORDER BY created_at,id",
@@ -871,7 +928,7 @@ export class WorkToolGateway implements WorkGateway {
       if (call.status === 'succeeded' && call.result_ref) {
         const ref = ResourceRefSchema.parse(JSON.parse(call.result_ref));
         await this.waitForReceipt(run, call, ref, guard, options.signal);
-        if (!(await this.verify(run, [ref]))) throw new StorageError('CONFLICT');
+        if (!(await this.verifyArtifacts(run, [ref]))) throw new StorageError('CONFLICT');
         refs.push(ref);
         continue;
       }
@@ -891,6 +948,14 @@ export class WorkToolGateway implements WorkGateway {
     return refs;
   }
   async verify(run: WorkRun, refs: ResourceRef[]) {
+    if (
+      this.repo.state(this.repo.row(run.id)).definition.research &&
+      !(await this.research?.verify(run))
+    )
+      return false;
+    return this.verifyArtifacts(run, refs);
+  }
+  private async verifyArtifacts(run: WorkRun, refs: ResourceRef[]) {
     try {
       const resolveImage = this.chat
         ? (versionId: string) => resolveWorkDocumentImage(this.chat!, run, versionId, () => {})
@@ -969,6 +1034,7 @@ export class WorkToolGateway implements WorkGateway {
     return formats;
   }
   async recover(run: WorkRun) {
+    if (this.repo.state(run).definition.research) this.research?.recover(run);
     const dispatched = this.store.db
       .prepare("SELECT * FROM tool_calls WHERE run_id=? AND status IN ('dispatched','pending')")
       .all(run.id) as Call[];
@@ -1052,6 +1118,10 @@ export class WorkToolGateway implements WorkGateway {
       .get(run.id);
   }
   async dispatchCommand(request: Request): Promise<Reply> {
+    if (request.command.startsWith('research.')) {
+      if (!this.research) throw new StorageError('FEATURE_NOT_AVAILABLE');
+      return this.research.dispatch(request);
+    }
     const browserReply = await this.browser?.approval(request);
     if (browserReply) return browserReply;
     const ok = (data: unknown) =>

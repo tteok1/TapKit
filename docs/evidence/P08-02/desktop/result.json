@@ -1,0 +1,15 @@
+{
+  "result": "passed",
+  "sourceQuotes": "actual archived text and character highlight",
+  "exports": [
+    "md",
+    "json",
+    "docx",
+    "pdf"
+  ],
+  "sourceExclusion": true,
+  "earlyFinish": true,
+  "followupNewRun": true,
+  "compactNoHorizontalOverflow": true,
+  "scope": "synthetic model/network, real Core/SQLite/Blob/Office/AppContainer/Electron UI"
+}

@@ -1,0 +1,6 @@
+docs/adr/0076-bounded-evidence-research.md 59ms (unchanged)
+Checking formatting...
+All matched files use Prettier code style!
+$ node scripts/docs-check.mjs
+All 37 task states, started handoffs and completed requirement evidence links verified
+COMMAND_EXIT=0

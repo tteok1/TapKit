@@ -1,0 +1,185 @@
+{
+  "scope": "Actual in-app API transport; fixed stages and timing only, no URL/headers/body/key/reasoning",
+  "events": [
+    {
+      "requestId": "01a1a11b-2612-7308-bc2a-03f77995073e",
+      "stage": "dns_complete",
+      "elapsedMs": 18,
+      "at": "2026-11-03T11:11:13.444Z"
+    },
+    {
+      "requestId": "01a1a11b-2612-7308-bc2a-03f77995073e",
+      "stage": "proxy_resolved",
+      "elapsedMs": 37,
+      "at": "2026-11-03T11:11:13.463Z"
+    },
+    {
+      "requestId": "01a1a11b-2612-7308-bc2a-03f77995073e",
+      "stage": "socket_assigned",
+      "elapsedMs": 855,
+      "at": "2026-11-03T11:11:14.281Z"
+    },
+    {
+      "requestId": "01a1a11b-2612-7308-bc2a-03f77995073e",
+      "stage": "request_finished",
+      "elapsedMs": 861,
+      "at": "2026-11-03T11:11:14.288Z"
+    },
+    {
+      "requestId": "01a1a11b-2612-7308-bc2a-03f77995073e",
+      "stage": "response_headers",
+      "elapsedMs": 7180,
+      "at": "2026-11-03T11:11:20.607Z"
+    },
+    {
+      "requestId": "01a1a11b-4504-747f-af07-b444c6465e69",
+      "stage": "dns_complete",
+      "elapsedMs": 12,
+      "at": "2026-11-03T11:11:21.360Z"
+    },
+    {
+      "requestId": "01a1a11b-4504-747f-af07-b444c6465e69",
+      "stage": "proxy_resolved",
+      "elapsedMs": 16,
+      "at": "2026-11-03T11:11:21.364Z"
+    },
+    {
+      "requestId": "01a1a11b-4504-747f-af07-b444c6465e69",
+      "stage": "socket_assigned",
+      "elapsedMs": 1333,
+      "at": "2026-11-03T11:11:22.681Z"
+    },
+    {
+      "requestId": "01a1a11b-4504-747f-af07-b444c6465e69",
+      "stage": "request_finished",
+      "elapsedMs": 1337,
+      "at": "2026-11-03T11:11:22.685Z"
+    },
+    {
+      "requestId": "01a1a11b-4504-747f-af07-b444c6465e69",
+      "stage": "response_headers",
+      "elapsedMs": 39023,
+      "at": "2026-11-03T11:12:00.372Z"
+    },
+    {
+      "requestId": "01a1a11b-e42d-7253-95bf-216208086f5d",
+      "stage": "dns_complete",
+      "elapsedMs": 1,
+      "at": "2026-11-03T11:12:02.094Z"
+    },
+    {
+      "requestId": "01a1a11b-e42d-7253-95bf-216208086f5d",
+      "stage": "proxy_resolved",
+      "elapsedMs": 5,
+      "at": "2026-11-03T11:12:02.098Z"
+    },
+    {
+      "requestId": "01a1a11b-e42d-7253-95bf-216208086f5d",
+      "stage": "socket_assigned",
+      "elapsedMs": 1487,
+      "at": "2026-11-03T11:12:03.580Z"
+    },
+    {
+      "requestId": "01a1a11b-e42d-7253-95bf-216208086f5d",
+      "stage": "request_finished",
+      "elapsedMs": 1492,
+      "at": "2026-11-03T11:12:03.586Z"
+    },
+    {
+      "requestId": "01a1a11b-e42d-7253-95bf-216208086f5d",
+      "stage": "response_headers",
+      "elapsedMs": 30091,
+      "at": "2026-11-03T11:12:32.184Z"
+    },
+    {
+      "requestId": "01a1a11c-5eca-7a39-a23c-eedb8bb5fbef",
+      "stage": "dns_complete",
+      "elapsedMs": 9,
+      "at": "2026-11-03T11:12:33.491Z"
+    },
+    {
+      "requestId": "01a1a11c-5eca-7a39-a23c-eedb8bb5fbef",
+      "stage": "proxy_resolved",
+      "elapsedMs": 14,
+      "at": "2026-11-03T11:12:33.496Z"
+    },
+    {
+      "requestId": "01a1a11c-5eca-7a39-a23c-eedb8bb5fbef",
+      "stage": "socket_assigned",
+      "elapsedMs": 609,
+      "at": "2026-11-03T11:12:34.091Z"
+    },
+    {
+      "requestId": "01a1a11c-5eca-7a39-a23c-eedb8bb5fbef",
+      "stage": "request_finished",
+      "elapsedMs": 613,
+      "at": "2026-11-03T11:12:34.095Z"
+    },
+    {
+      "requestId": "01a1a11c-5eca-7a39-a23c-eedb8bb5fbef",
+      "stage": "response_headers",
+      "elapsedMs": 31611,
+      "at": "2026-11-03T11:13:05.093Z"
+    },
+    {
+      "requestId": "01a1a11c-fe26-7220-a78c-f5a0db54d484",
+      "stage": "dns_complete",
+      "elapsedMs": 1,
+      "at": "2026-11-03T11:13:14.279Z"
+    },
+    {
+      "requestId": "01a1a11c-fe26-7220-a78c-f5a0db54d484",
+      "stage": "proxy_resolved",
+      "elapsedMs": 8,
+      "at": "2026-11-03T11:13:14.285Z"
+    },
+    {
+      "requestId": "01a1a11c-fe26-7220-a78c-f5a0db54d484",
+      "stage": "socket_assigned",
+      "elapsedMs": 1337,
+      "at": "2026-11-03T11:13:15.616Z"
+    },
+    {
+      "requestId": "01a1a11c-fe26-7220-a78c-f5a0db54d484",
+      "stage": "request_finished",
+      "elapsedMs": 1342,
+      "at": "2026-11-03T11:13:15.620Z"
+    },
+    {
+      "requestId": "01a1a11c-fe26-7220-a78c-f5a0db54d484",
+      "stage": "response_headers",
+      "elapsedMs": 15892,
+      "at": "2026-11-03T11:13:30.170Z"
+    },
+    {
+      "requestId": "01a1a11d-4358-7941-a06c-33eece11cb79",
+      "stage": "dns_complete",
+      "elapsedMs": 10,
+      "at": "2026-11-03T11:13:32.002Z"
+    },
+    {
+      "requestId": "01a1a11d-4358-7941-a06c-33eece11cb79",
+      "stage": "proxy_resolved",
+      "elapsedMs": 16,
+      "at": "2026-11-03T11:13:32.008Z"
+    },
+    {
+      "requestId": "01a1a11d-4358-7941-a06c-33eece11cb79",
+      "stage": "socket_assigned",
+      "elapsedMs": 1602,
+      "at": "2026-11-03T11:13:33.594Z"
+    },
+    {
+      "requestId": "01a1a11d-4358-7941-a06c-33eece11cb79",
+      "stage": "request_finished",
+      "elapsedMs": 1608,
+      "at": "2026-11-03T11:13:33.600Z"
+    },
+    {
+      "requestId": "01a1a11d-4358-7941-a06c-33eece11cb79",
+      "stage": "response_headers",
+      "elapsedMs": 23938,
+      "at": "2026-11-03T11:13:55.930Z"
+    }
+  ]
+}

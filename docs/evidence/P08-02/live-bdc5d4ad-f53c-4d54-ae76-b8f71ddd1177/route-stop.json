@@ -1,0 +1,5 @@
+{
+  "formalTasks": 0,
+  "reason": "Direct model checks 20-23 timed out; check 24 interrupted to compare original model proxy plus isolated public NO_PROXY. Count 24 remains consumed; no original settings change.",
+  "cleanup": true
+}

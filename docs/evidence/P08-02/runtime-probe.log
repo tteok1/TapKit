@@ -1,0 +1,40 @@
+RUNTIME_PROBE_STAGE=fingerprint_before
+RUNTIME_PROBE_STAGE=native_tests
+RUNTIME_PROBE_STAGE=fingerprint_after
+{
+  "schemaVersion": 2,
+  "executionPolicy": "appcontainer-lok-v1",
+  "startedAt": "2026-10-31T15:45:23.615Z",
+  "endedAt": "2026-10-31T15:52:21.650Z",
+  "command": "pnpm test:integration P00-03 --reporter=json --outputFile=D:\\Tapkit-public\\test-results\\P00-03-native-98a9bc17-a225-4cc5-8e5b-d0f08bf28501.json",
+  "exitCode": 0,
+  "standardUser": false,
+  "verification": {
+    "scope": "current-user",
+    "identity": {
+      "userSidHash": "89d3515d56b0f7fb4f2e9d5ab5438c2590534473cc30f033f476b0408a4d96d7",
+      "integritySid": "S-1-16-8192",
+      "administratorsGroup": true
+    }
+  },
+  "standardUserAcceptance": "not_verified_in_this_scope",
+  "fingerprint": "ae5a42b690e26ce1222f23e15f50afb03a7d294140acf54a23e242394c205fd8",
+  "capabilities": {
+    "nativeExecution": {
+      "status": "available"
+    },
+    "officeRender": {
+      "status": "available"
+    },
+    "terminal": {
+      "status": "available"
+    }
+  },
+  "tests": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "pending": 0
+  },
+  "missingCases": []
+}

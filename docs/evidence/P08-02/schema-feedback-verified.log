@@ -1,0 +1,45 @@
+packages/core/src/research-driver.ts 133ms
+tests/unit/P08-02.research.test.ts 60ms
+$ vitest run --config vitest.config.ts --project unit "P08-02"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |unit| tests/unit/P08-02.research.test.ts (11 tests | 1 failed) 128ms
+   × P08-02 repair feedback names schema paths without retaining private fields or values 26ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P08-02.research.test.ts > P08-02 repair feedback names schema paths without retaining private fields or values
+AssertionError: expected 'research.read source.kind:invalid_uni…' to contain 'source:invalid_union'
+
+Expected: "source:invalid_union"
+Received: "research.read source.kind:invalid_union;:unrecognized_keys"
+
+ ❯ tests/unit/P08-02.research.test.ts:70:17
+     68|     }),
+     69|   );
+     70|   expect(issue).toContain('source:invalid_union');
+       |                 ^
+     71|   expect(issue).not.toMatch(/private|https/);
+     72|   expect(researchArgumentIssue('private-function', '{}')).not.toContai…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 10 passed (11)
+   Start at  14:36:00
+   Duration  4.79s (transform 61%, import 35%, tests 3%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:209
+
+Node.js v24.21.0
+COMMAND_EXIT=1

@@ -1,0 +1,138 @@
+.research-panel {
+  margin: 24px 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  min-width: 0;
+}
+.research-header,
+.research-original header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.research-header h3 {
+  margin: 0 0 8px;
+}
+.research-header p,
+.research-counts {
+  color: var(--muted);
+}
+.research-counts {
+  font-variant-numeric: tabular-nums;
+}
+.research-outline {
+  padding-left: 24px;
+  line-height: 1.8;
+}
+.research-outline span {
+  display: inline-block;
+  margin-left: 12px;
+  color: var(--muted);
+}
+.research-panel h4 {
+  margin: 24px 0 12px;
+}
+.research-panel details {
+  margin: 20px 0;
+}
+.research-panel summary {
+  cursor: pointer;
+  padding: 8px 0;
+}
+.research-panel form {
+  display: grid;
+  gap: 12px;
+  margin: 12px 0;
+}
+.research-panel label {
+  display: grid;
+  gap: 8px;
+}
+.research-panel textarea {
+  min-height: 100px;
+}
+.research-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  min-width: 0;
+}
+.research-fields legend {
+  font-weight: 600;
+}
+.research-check small {
+  max-width: 72ch;
+}
+.research-sources {
+  list-style: none;
+  padding: 0;
+}
+.research-sources li,
+.research-findings article {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.research-sources li > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.research-sources li > button {
+  margin-top: 12px;
+}
+.research-sources p {
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
+.research-sources button {
+  white-space: normal;
+  height: auto;
+  min-height: 36px;
+  text-align: start;
+}
+.research-findings p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-width: 75ch;
+}
+.research-pagination {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+.research-original {
+  padding: 16px;
+  margin: 24px 0;
+  background: var(--muted-surface);
+  border-radius: 12px;
+}
+.research-original h4 {
+  margin: 0;
+}
+.research-original p,
+.research-original small {
+  overflow-wrap: anywhere;
+}
+.research-original pre {
+  white-space: pre-wrap;
+  font: inherit;
+  line-height: 1.7;
+  max-height: 480px;
+  overflow: auto;
+  overflow-wrap: anywhere;
+}
+.research-original mark {
+  background: var(--warning-surface);
+  color: var(--ink);
+}
+@media (max-width: 800px) {
+  .research-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .research-header > button {
+    width: 100%;
+  }
+}

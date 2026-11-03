@@ -1,0 +1,21 @@
+{
+  "result": "passed",
+  "goalLoose": 2,
+  "goalExact": 1,
+  "accounts": 0,
+  "attempts": 0,
+  "runs": 0,
+  "viewports": {
+    "desktop": {
+      "width": 1267,
+      "height": 899,
+      "dpr": 2
+    },
+    "compact": {
+      "width": 947,
+      "height": 839,
+      "dpr": 2
+    }
+  },
+  "scope": "production app; no account; UI controls only; no task submitted"
+}

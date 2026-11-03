@@ -1,0 +1,8 @@
+{"status":"running","checks":1,"connection":"running","task":null}
+{"status":"running","checks":1,"connection":"failed","task":null}
+{"status":"running","checks":2,"connection":"running","task":null}
+{"status":"running","checks":2,"connection":"failed","task":null}
+{"status":"running","checks":3,"connection":"running","task":null}
+{"status":"running","checks":3,"connection":"failed","task":null}
+{"status":"failed","checks":3,"connection":"failed","task":null}
+{"status":"failed","checks":3,"connection":"failed","task":null}

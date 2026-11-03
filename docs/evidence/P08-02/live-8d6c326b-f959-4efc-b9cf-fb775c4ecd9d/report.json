@@ -1,0 +1,273 @@
+{
+  "status": "not_verified",
+  "connectionAttempts": [
+    {
+      "number": 12,
+      "status": "passed",
+      "startedAt": "2026-11-01T06:44:46.768Z",
+      "finishedAt": "2026-11-01T06:45:14.865Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": true,
+  "taskStarted": true,
+  "task": {
+    "runId": "01a195da-efca-7b9a-80c3-c1b6dcee9f18",
+    "status": "partial",
+    "reason": null,
+    "calls": 6,
+    "tools": 6,
+    "formats": [
+      "md",
+      "json"
+    ]
+  },
+  "usage": [
+    {
+      "source": "actual",
+      "input_tokens": 2050,
+      "output_tokens": 35,
+      "charged_tokens": 2085
+    },
+    {
+      "source": "actual",
+      "input_tokens": 2293,
+      "output_tokens": 185,
+      "charged_tokens": 2478
+    },
+    {
+      "source": "actual",
+      "input_tokens": 2429,
+      "output_tokens": 185,
+      "charged_tokens": 2614
+    },
+    {
+      "source": "actual",
+      "input_tokens": 2429,
+      "output_tokens": 185,
+      "charged_tokens": 2614
+    },
+    {
+      "source": "actual",
+      "input_tokens": 2429,
+      "output_tokens": 185,
+      "charged_tokens": 2614
+    },
+    {
+      "source": "actual",
+      "input_tokens": 2448,
+      "output_tokens": 185,
+      "charged_tokens": 2633
+    }
+  ],
+  "credentialRemoved": true,
+  "startedAt": "2026-11-01T06:44:20.077Z",
+  "phase": "wait_task",
+  "budget": {
+    "reserved_tokens": 0,
+    "used_tokens": 15038
+  },
+  "providerAttempts": [
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    }
+  ],
+  "diagnostics": [],
+  "toolTrace": [
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a195da-f025-7c4d-aac9-ac5d2fe3a2ad",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a195db-03c4-7ca6-a813-75b6be324910",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a195db-1b41-76e5-8ca7-153fc9058dc6",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a195db-316e-7d11-941a-f9912efffc8e",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a195db-4698-7efc-ba08-dfcd5164c334",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a195db-68bb-7dc0-a20d-162444f61f12",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    }
+  ],
+  "contentVerified": true,
+  "answerVerified": true,
+  "sourceReadVerified": true,
+  "search": [],
+  "searchAttempted": false,
+  "artifactBytesVerified": true,
+  "quality": "partial",
+  "researchCounts": {
+    "searches": 0,
+    "reads": 1,
+    "findings": 2
+  },
+  "finishedAt": "2026-11-01T06:46:15.263Z"
+}

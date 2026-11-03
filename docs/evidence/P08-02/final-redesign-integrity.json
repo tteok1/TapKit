@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "sourceFiles": 70,
+  "progressFiles": 5,
+  "allHashesMatch": true,
+  "currentBuildMatchesSuccessfulRun": true,
+  "fixtureFree": true,
+  "connectionChecks": 44,
+  "connectionLimit": 50,
+  "remaining": 6
+}

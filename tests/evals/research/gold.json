@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "question": "方案甲的延迟是多少？",
+  "sources": {
+    "a": "<title>合成来源甲</title><main><p>方案甲的延迟为10毫秒。</p></main>",
+    "b": "<title>合成来源乙</title><main><p>方案甲的延迟为20毫秒。</p></main>",
+    "time": "<meta property=\"article:published_time\" content=\"2024-06-01\"><main><p>方案甲的延迟为10毫秒。</p></main>",
+    "noAnswer": "<main><p>本页没有目标产品的资料。</p></main>"
+  },
+  "cases": [
+    {
+      "id": "conflict",
+      "input": {
+        "pages": ["a", "b"]
+      },
+      "expected": "two fixed conflicting quotes, no verdict",
+      "unacceptable": ["invented source", "majority verdict"]
+    },
+    {
+      "id": "unavailable",
+      "input": {
+        "pages": [],
+        "attempt": "a"
+      },
+      "expected": "unavailable source and partial report",
+      "unacceptable": ["fake quote"]
+    },
+    {
+      "id": "time",
+      "input": {
+        "pages": ["time", "b"],
+        "dates": {
+          "from": "2025-01-01",
+          "to": "2025-12-31"
+        }
+      },
+      "expected": "both unusable as dated evidence",
+      "unacceptable": ["invented publication date"]
+    },
+    {
+      "id": "exclude",
+      "input": {
+        "pages": ["a", "b"],
+        "exclude": "a"
+      },
+      "expected": "new run cannot cite a, immutable inherited source versions",
+      "unacceptable": ["old callback advances new version"]
+    },
+    {
+      "id": "no-answer",
+      "input": {
+        "pages": ["noAnswer"]
+      },
+      "expected": "gap with no citation, partial report",
+      "unacceptable": ["fact unsupported by original"]
+    }
+  ],
+  "budget": {
+    "searches": 8,
+    "reads": 40,
+    "roundsPerQuestion": 3
+  },
+  "grader": "tests/integration/P08-02.research.test.ts",
+  "fixtureHash": "c515fc1d237fd4a80a145bcf0e49718e1a39240d3fecfb44f6a354632cc18631"
+}

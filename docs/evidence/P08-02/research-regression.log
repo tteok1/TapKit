@@ -1,0 +1,104 @@
+apps/desktop/src/renderer/src/research-ui.tsx 116ms (unchanged)
+apps/desktop/src/renderer/src/research.css 31ms (unchanged)
+docs/adr/0076-bounded-evidence-research.md 30ms (unchanged)
+docs/progress/P08-02.md 10ms (unchanged)
+packages/contracts/src/research.ts 36ms
+packages/core/src/research-driver.ts 15ms (unchanged)
+packages/core/src/research-prompt.d.ts 3ms (unchanged)
+packages/core/src/research-service.ts 120ms
+packages/workflows/src/research.ts 34ms
+resources/prompts/research.md 7ms (unchanged)
+scripts/p08-research-live.mjs 46ms
+tests/e2e/P08-02.research.spec.ts 19ms (unchanged)
+tests/evals/research/fixtures.json 2ms (unchanged)
+tests/integration/P08-02.migration.test.ts 7ms (unchanged)
+tests/integration/P08-02.research.test.ts 40ms (unchanged)
+tests/unit/P08-02.research.test.ts 11ms (unchanged)
+apps/desktop/src/renderer/src/work-ui.tsx 93ms (unchanged)
+docs/progress/CURRENT.md 3ms (unchanged)
+docs/progress/INDEX.md 28ms (unchanged)
+packages/contracts/src/index.ts 24ms (unchanged)
+packages/contracts/src/web.ts 10ms (unchanged)
+packages/contracts/src/work.ts 36ms (unchanged)
+packages/core/src/chat-fixture.ts 34ms
+packages/core/src/index.ts 33ms (unchanged)
+packages/core/src/office-tool-schema.ts 4ms (unchanged)
+packages/core/src/web-fixture.ts 4ms (unchanged)
+packages/core/src/work-driver.ts 44ms (unchanged)
+packages/core/src/work-gateway.ts 127ms (unchanged)
+packages/core/src/work-service.ts 87ms (unchanged)
+packages/providers/src/api/zhipu-tools.ts 4ms (unchanged)
+packages/storage/src/blobs.ts 47ms (unchanged)
+packages/storage/src/file-cleanup.ts 4ms (unchanged)
+packages/storage/src/foundation.ts 45ms (unchanged)
+packages/storage/src/session-cleanup.ts 9ms (unchanged)
+packages/storage/src/work.ts 21ms (unchanged)
+packages/tools/src/registry.ts 7ms (unchanged)
+packages/tools/src/web.ts 23ms (unchanged)
+packages/workflows/src/index.ts 1ms (unchanged)
+scripts/p07-live-profile.mjs 12ms (unchanged)
+tests/integration/P01-02.api.test.ts 23ms (unchanged)
+tests/integration/P01-03.usage.test.ts 49ms (unchanged)
+tests/integration/P02-01.desktop.test.ts 16ms (unchanged)
+tests/integration/P02-03.history.test.ts 182ms (unchanged)
+tests/integration/P03-01.migration.test.ts 21ms (unchanged)
+tests/integration/P03-02.artifacts.test.ts 38ms (unchanged)
+tests/integration/P04-02.context.test.ts 19ms (unchanged)
+tests/integration/P04-03.memory.test.ts 60ms (unchanged)
+tests/integration/P06-01.migration.test.ts 5ms (unchanged)
+tests/integration/P07-01.document-storage.test.ts 8ms (unchanged)
+tests/integration/P08-01.migration.test.ts 3ms (unchanged)
+tests/live/P01-02.native-profile.ts 6ms (unchanged)
+tests/unit/P00-02.contracts.test.ts 5ms (unchanged)
+$ vitest run --config vitest.config.ts --project unit
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  72 passed (72)
+      Tests  476 passed (476)
+   Start at  23:22:17
+   Duration  12.67s (import 40%, transform 37%, tests 19%, setup 3%, worker 1%)
+
+$ vitest run --config vitest.config.ts --project integration "P08-02"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P08-02.research.test.ts (11 tests | 1 failed) 5911ms
+   × P08-02 multi-source conflict keeps both immutable originals, verifies citations and exports report plus sources 633ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P08-02.research.test.ts > P08-02 multi-source conflict keeps both immutable originals, verifies citations and exports report plus sources
+TypeError: Cannot read properties of undefined (reading 'id')
+ ❯ tests/integration/P08-02.research.test.ts:157:89
+    155|       requestId: newId(),
+    156|       command: 'research.source',
+    157|       payload: { runId: run.id, sourceId: sources[1]!.id, findingId: s…
+       |                                                                                         ^
+    158|     });
+    159|     expect(output.ok).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 11 passed (12)
+   Start at  23:22:30
+   Duration  9.89s (tests 69%, transform 18%, import 12%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:492
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:223:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:220:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0

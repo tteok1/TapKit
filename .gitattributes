@@ -20,3 +20,6 @@ docs/evidence/P07-*/**/*.csv -text -whitespace
 # CI rerun manifests hash these generated Markdown exports byte for byte.
 docs/evidence/P07-03/ci-fix-2026-10-30/retest-artifacts/**/*.md -text -whitespace
 docs/evidence/P07-03/ci-fix-2026-10-30/font-acceptance/retest-artifacts/**/*.md -text -whitespace
+
+# P08 research receipts and exports carry byte-level hashes, including frozen receipts.
+docs/evidence/P08-02/** -text -whitespace

@@ -1,0 +1,45 @@
+{
+  "scope": "Archived public tool arguments inspected in memory; values/quotes/IDs/native reasoning not exported; original run unchanged",
+  "rows": [
+    {
+      "status": "succeeded",
+      "sourceKnown": true,
+      "quoteLength": 140,
+      "textEqualsQuote": false,
+      "exact": true,
+      "whitespaceOnlyMatch": true,
+      "unicodeNormalizationMatch": true,
+      "otherSourceExact": false
+    },
+    {
+      "status": "succeeded",
+      "sourceKnown": true,
+      "quoteLength": 162,
+      "textEqualsQuote": false,
+      "exact": true,
+      "whitespaceOnlyMatch": true,
+      "unicodeNormalizationMatch": true,
+      "otherSourceExact": false
+    },
+    {
+      "status": "succeeded",
+      "sourceKnown": true,
+      "quoteLength": 126,
+      "textEqualsQuote": true,
+      "exact": true,
+      "whitespaceOnlyMatch": true,
+      "unicodeNormalizationMatch": true,
+      "otherSourceExact": false
+    },
+    {
+      "status": "failed",
+      "sourceKnown": true,
+      "quoteLength": 41,
+      "textEqualsQuote": true,
+      "exact": false,
+      "whitespaceOnlyMatch": false,
+      "unicodeNormalizationMatch": false,
+      "otherSourceExact": false
+    }
+  ]
+}

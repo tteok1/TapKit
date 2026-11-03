@@ -1,0 +1,10 @@
+docs/progress/CURRENT.md 37ms (unchanged)
+docs/progress/INDEX.md 46ms (unchanged)
+docs/progress/P08-02.md 69ms (unchanged)
+docs/progress/RESOURCES.md 98ms
+scripts/p08-research-audit.mjs 72ms (unchanged)
+$ node scripts/docs-check.mjs
+All 37 task states, started handoffs and completed requirement evidence links verified
+{"checks":30,"limit":30,"remaining":0,"actualTaskTokens":170356,"estimatedTaskTokens":279917,"profiles":17,"allCopiesRemoved":true}
+{"sourceHashes":68,"progressHashes":5}
+{"sourceHashes":68,"progressHashes":5,"status":"implemented_not_live_verified","live":"failed","connectionBudget":{"cumulative":30,"limit":30,"remaining":0,"authorization":"2026-11-03 user added ten to prior twenty; never reset","allAttempts":"live-attempts.json"},"fixtureFree":true,"allHashMatches":true}

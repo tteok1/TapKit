@@ -1,0 +1,8 @@
+{
+  "verified": false,
+  "sourceCount": 3,
+  "quoteCount": 0,
+  "sha256": "d2d2d1db19b37636dd601bb121e5871e55c8a948869f95449785b21eec4ce4ca",
+  "markdown": "# IANA\n\n## 问题与范围\n\n用途：形成可核查的研究报告\n\n范围：仅公开网页与明确选择的固定本地资料\n\n研究状态：部分成果；存在未覆盖或未充分核验的问题\n\n## 结论与依据\n\n### What resources does IANA coordinate?\n\n尚无可核验的结论。\n\n## 方法与局限\n\n实际搜索 3 次，本轮实际读取 3 次。只把已读取、固定版本且未被排除的原文作为依据。\n\n搜索候选不是引用证据；逐字核验只能证明来源如此陈述，不能自动证明陈述为真。推断与冲突仍需核查。发布日期未知时不能声称满足日期筛选。相同主域名不视为不同来源；不同域名或文件身份也不自动证明发布者独立。每个问题不足两个不同来源时保留为部分成果。\n\n时间范围：不限起日 至 不限止日。\n\n## 来源清单\n\n1. Internet Assigned Numbers Authority\n   来源：https://www.iana.org/\n   访问/固定时间：2026-11-03T05:10:57.574Z；网页声明发布日期：未知。\n   状态：ready；内容SHA256：81b0bb6cbb2631c03aaa95c60efc27e88afbaba7c230e901531e785f0716824b。\n\n2. About us\n   来源：https://www.iana.org/about\n   访问/固定时间：2026-11-03T05:11:00.671Z；网页声明发布日期：未知。\n   状态：ready；内容SHA256：bcebe6143413a047d7b6533db2ff6fa96a0457c82722daabd2ebdca1ffc5e62f。\n\n3. 什么是 IANA：互联网号码分配机构 - LARUS\n   来源：https://larus.net/cn/blog/what-is-iana/\n   访问/固定时间：2026-11-03T05:11:26.808Z；网页声明发布日期：2026-08-18T08:15:46.000Z。\n   状态：ready；内容SHA256：8695605b076e8e7ac91cf27ab5c9170cde13bd63b0abf9bc3182bdbd1ad6a666。\n",
+  "scope": "No seed URLs. Requires successful search, at least two actually read source groups with literal facts, and explicit report. Different domains do not prove publisher independence."
+}

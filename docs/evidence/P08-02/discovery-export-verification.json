@@ -1,0 +1,19 @@
+{
+  "run": "01a1a165-295d-7be9-a4ca-98a301baf691",
+  "status": "passed",
+  "sourceCount": 2,
+  "quoteCount": 2,
+  "files": [
+    {
+      "file": "live-discovery-report.md",
+      "bytes": 2783,
+      "sha256": "bb98da49de5b9e4223e9f8daa15a29cb9ff3acb988800cb40f5b80ccdfac38b3"
+    },
+    {
+      "file": "live-discovery-sources.json",
+      "bytes": 2652,
+      "sha256": "1bf366c3598e8f1f5a3529b14b2264c8126ead6bafea24df28a42f610bb3ffdb"
+    }
+  ],
+  "scope": "Exact bytes copied from the actual completed live run; source JSON compared to persisted verified evidence, no regenerated report"
+}

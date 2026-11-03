@@ -1,0 +1,746 @@
+{
+  "task": "P08-02",
+  "status": "implemented_and_verified",
+  "date": "2026-11-03 Asia/Shanghai",
+  "branch": "codex/p08-02-research",
+  "base": "35582482610bc7b6c1cd71721c6ac59faa07eb08",
+  "codeRef": "codex/p08-02-research+working-tree",
+  "committed": false,
+  "pushed": false,
+  "checks": [
+    {
+      "command": "pnpm check; pnpm test:unit",
+      "exitCode": 0,
+      "unitPassed": 482,
+      "log": "completion-check-unit.log",
+      "scope": "2026-11-01 baseline before discovery supplement; historical verification"
+    },
+    {
+      "command": "pnpm test:integration",
+      "exitCode": 0,
+      "passed": 515,
+      "skipped": 1,
+      "scope": "2026-11-01 baseline before discovery supplement; stable baseline before final driver/provider repairs; later affected cases verified separately",
+      "log": "full-integration-final.log"
+    },
+    {
+      "command": "pnpm test:integration P08-02",
+      "exitCode": 0,
+      "passed": 20,
+      "scope": "2026-11-01 baseline before discovery supplement; final source",
+      "log": "final-budget-report.log"
+    },
+    {
+      "command": "pnpm test:integration P08-02 P01-02.zhipu P02-02.zhipu-tools",
+      "exitCode": 0,
+      "passed": 26,
+      "scope": "2026-11-01 baseline before discovery supplement; provider diagnostic change; subsequent driver changes covered by final 20 research cases",
+      "log": "final-targeted-integration.log"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P08",
+      "exitCode": 0,
+      "passed": 3,
+      "scope": "2026-11-01 baseline before discovery supplement; current UI, actual Electron/Core/SQLite/Blob/Office with synthetic model/web; later model-only driver changes independently covered",
+      "log": "resumed-p08-verified.log"
+    },
+    {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "log": "build-fixed.log",
+      "scope": "2026-11-01 baseline before discovery supplement; historical verification"
+    },
+    {
+      "command": "production buildCore()",
+      "exitCode": 0,
+      "scope": "2026-11-01 baseline before discovery supplement; final Core; no fixture code",
+      "log": "final-budget-report.log"
+    },
+    {
+      "command": "runtime:probe current-user",
+      "exitCode": 0,
+      "passed": 22,
+      "scope": "2026-11-01 baseline before discovery supplement; current user only, not independent standard user",
+      "log": "runtime-current-user/runtime-probe.json"
+    },
+    {
+      "command": "native preview",
+      "exitCode": 0,
+      "passed": 4,
+      "log": "native-parser-diagnosis.log",
+      "scope": "2026-11-01 baseline before discovery supplement; historical verification"
+    },
+    {
+      "command": "pnpm check; pnpm test:unit; pnpm test:integration P08-02",
+      "exitCode": 0,
+      "unitPassed": 487,
+      "researchPassed": 26,
+      "scope": "final source; no real model calls",
+      "log": "final-local-verification.log"
+    },
+    {
+      "command": "pnpm check; pnpm test:unit; pnpm test:integration P08-02 P01-02.api P01-02.zhipu P02-02.zhipu-tools",
+      "exitCode": 0,
+      "unitPassed": 486,
+      "passed": 40,
+      "scope": "API observer change; later research-only index fix covered by final 26",
+      "log": "api-transport-stage-verification.log"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P08-02",
+      "exitCode": 0,
+      "passed": 1,
+      "scope": "final source; synthetic model/web; real Electron/Core/SQLite/Blob/AppContainer/Office",
+      "log": "final-desktop-verification.log"
+    },
+    {
+      "command": "pnpm check; pnpm test:unit; pnpm test:integration P08-02",
+      "exitCode": 0,
+      "unitPassed": 490,
+      "researchPassed": 29,
+      "scope": "evidence selection and deterministic closeout; before archived excerpt and desktop fixture update",
+      "log": "evidence-handles-local-verification.log"
+    },
+    {
+      "command": "pnpm check; pnpm test:unit",
+      "exitCode": 0,
+      "unitPassed": 491,
+      "scope": "check passed in evidence-handles-final-check-unit.log; archived excerpt unit assertion corrected and all units passed in evidence-handles-final-unit.log",
+      "log": "evidence-handles-final-unit.log"
+    },
+    {
+      "command": "pnpm test:integration P06 P08-02; pnpm test:e2e -- --grep P08-02",
+      "exitCode": 0,
+      "integrationPassed": 63,
+      "e2ePassed": 1,
+      "scope": "new snapshot evidence selection fixture; real Electron/Core/SQLite/Blob/AppContainer/Office; production restored",
+      "log": "evidence-handles-final-acceptance.log"
+    },
+    {
+      "command": "pnpm check; pnpm test:unit; pnpm test:integration P08-02",
+      "exitCode": 0,
+      "unitPassed": 492,
+      "researchPassed": 30,
+      "scope": "v3 exact-excerpt grouping, strict partial quality and deterministic Work closeout",
+      "log": "evidence-selection-grouping-final.log"
+    },
+    {
+      "command": "pnpm check; pnpm test:unit; pnpm test:integration P08-02",
+      "exitCode": 0,
+      "unitPassed": 493,
+      "researchPassed": 30,
+      "scope": "v4 required evidenceIds/default literal facts and compact model context; strict binding metadata retained in Core",
+      "log": "evidence-required-selection-verification.log"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P08-02",
+      "exitCode": 0,
+      "passed": 1,
+      "scope": "v4 model interface; real desktop/native exports; production restored; later report gap text and diagnostics covered separately",
+      "log": "evidence-required-selection-desktop.log"
+    },
+    {
+      "command": "pnpm check; pnpm test:unit; pnpm test:integration P08-02",
+      "exitCode": 0,
+      "unitPassed": 494,
+      "researchPassed": 31,
+      "scope": "final report gap boundary and value-free selection-shape diagnostics",
+      "log": "evidence-selection-shape-verification.log"
+    },
+    {
+      "command": "pnpm check; pnpm test:unit; pnpm test:integration P08-02",
+      "exitCode": 0,
+      "unitPassed": 494,
+      "researchPassed": 32,
+      "scope": "v5 evidence ID length, ignored model fact prose, opt-in transaction diagnostics persisted and privacy verified",
+      "log": "evidence-selection-transaction-final.log"
+    },
+    {
+      "command": "pnpm check; pnpm test:unit; pnpm test:integration P08-02",
+      "exitCode": 0,
+      "unitPassed": 496,
+      "researchPassed": 33,
+      "scope": "final v7 visible evidence bounded to one batch, pagination/cached reads; final Core covered by successful real run",
+      "log": "evidence-visible-page-verification.log"
+    },
+    {
+      "command": "production Core build; in-app connection #44; actual configured Zhipu discovery task; audit --exports",
+      "exitCode": 0,
+      "scope": "final code, fixture-free, isolated direct routing, literal provenance and MD/JSON actual bytes",
+      "log": "evidence-handles-live-round-10.log"
+    },
+    {
+      "command": "pnpm check; pnpm docs:check; git diff --check",
+      "exitCode": 0,
+      "scope": "Final handoff: all 37 task states and evidence links consistent; index table status synchronized; source and progress hashes refreshed after checks",
+      "log": "final-redesign-handoff-final.log"
+    }
+  ],
+  "live": {
+    "status": "passed",
+    "scope": "Final v7 existing Zhipu glm-4.7-flashx, isolated direct route, no seed URL: actual search, two read source groups, literal evidence and Core-initiated report; partial research quality remains explicit",
+    "directory": "live-9de5c45a-59f5-400d-a81c-586e58eb18e6",
+    "run": "01a1a165-295d-7be9-a4ca-98a301baf691",
+    "taskStatus": "partial",
+    "reason": null,
+    "connectionSucceededBeforeTasks": true,
+    "connection": 44,
+    "calls": 4,
+    "tools": 7,
+    "counts": {
+      "searches": 1,
+      "reads": 2,
+      "findings": 2
+    },
+    "sourceReadVerified": true,
+    "contentVerified": true,
+    "multiSourceVerified": true,
+    "explicitReportCall": true,
+    "coreInitiatedReport": true,
+    "reportReady": true,
+    "reportFormats": [
+      "md",
+      "json"
+    ],
+    "artifactBytesVerified": true,
+    "quality": "partial",
+    "actualTokens": 10600,
+    "estimatedTokens": 0,
+    "reservedTokens": 0,
+    "credentialRemoved": true,
+    "networkMode": "direct in isolated profile; original network and account unchanged",
+    "parameterErrors": 0,
+    "lastIssue": null,
+    "closeoutEvidence": "final-core-closeout.json",
+    "exportEvidence": "discovery-export-verification.json",
+    "allAttempts": "live-attempts.json"
+  },
+  "limits": [
+    "Success is scoped to existing Zhipu glm-4.7-flashx and isolated direct route; original account and original network unchanged",
+    "Original Bing proxy relevance anomaly and historical connection/task failures remain recorded; not all routes or service availability verified",
+    "Research quality is partial: both literal statements have one source group each; exact matching does not prove truth or publisher independence",
+    "Other models/protocols, independent standard user, P08-03, P08 gate, commit/push and current remote CI are not expanded",
+    "Prior full integration 515 passed/1 existing skip is historical; current affected research cases and shared Work regression scopes are separately recorded"
+  ],
+  "ui": {
+    "verdict": "ship",
+    "scope": "two listed fixes resolved",
+    "report": "design-verdict.md",
+    "documentation": "design-documentation.md",
+    "fullPdfPage": "desktop/report-page.png"
+  },
+  "archive": "generated-regression.json",
+  "docsCheck": {
+    "command": "pnpm docs:check; formatting; git diff --check; audit hashes",
+    "exitCode": 0,
+    "log": "final-supplement-handoff.log",
+    "status": "passed"
+  },
+  "fileHashes": [
+    {
+      "path": "apps/desktop/src/main/system-proxy.ts",
+      "sha256": "06814a8691e85e9ff25f72f6d0dd8335856107deb96d61d2e21b92c0a8928f4c"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/research-ui.tsx",
+      "sha256": "dfbfe001c02033d5d451c60717ff6bd20daf27a47a46c70ba01c73ab16a70e6a"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/research.css",
+      "sha256": "94eb663ee7e891ce7d097b48d01bb67785847a619c0bd4d2daf2b9c31b807ab2"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/work-ui.tsx",
+      "sha256": "00689167713f80185d738086b9340ba38b05b72ec927ef1fcacf7a735f23b0e5"
+    },
+    {
+      "path": "docs/adr/0076-bounded-evidence-research.md",
+      "sha256": "a27c34db562fdbbb706dc09b2db08ee726420441de23ed95be189047c593cdf8"
+    },
+    {
+      "path": "docs/plan/02-decisions.md",
+      "sha256": "53732a78885c8b05f38f4e232d4958398506ca3acd352e01d7e2ea10c705b9d6"
+    },
+    {
+      "path": "docs/plan/04-data-contract.md",
+      "sha256": "6854b7980a4011322526803d29aee28f5189010af1a69fdc2f1614e4efafafa0"
+    },
+    {
+      "path": "docs/plan/05-ipc-and-events.md",
+      "sha256": "b84b221a7d8b78eea60771c55a2dfd9a766bbd274c395c8634f8167434eafe80"
+    },
+    {
+      "path": "docs/plan/07-tools-and-isolation.md",
+      "sha256": "2c05907fab7c08cb5fe1798d99c6143039b694442864388aefde0159399bc9b5"
+    },
+    {
+      "path": "docs/plan/11-external-todos.md",
+      "sha256": "da7a4554eb9af92a537730834407bfb1f3b10e80c2de8191152e11891aca0037"
+    },
+    {
+      "path": "docs/plan/12-interaction-details.md",
+      "sha256": "86e34dec2abb4d92015de62823aeee0a439945265169995c8ba08c113e8dfca6"
+    },
+    {
+      "path": "migrations/0020_research.sql",
+      "sha256": "6b64d74c7772b29f64c70bbb58bd00eb66d10e83c8430f244783bf161defd77f"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "6d152222729507c9483698ac0a4e8a3e36676526786aa4962111d13c427f05a8"
+    },
+    {
+      "path": "packages/contracts/src/research.ts",
+      "sha256": "9382704684c4ebdac877a1be82df37a48863d3ed5a873275779b48a1b03f5a31"
+    },
+    {
+      "path": "packages/contracts/src/web.ts",
+      "sha256": "f747667301eb72b80078b2c34155697eee6d26f01db320bcf6f682e992be5504"
+    },
+    {
+      "path": "packages/contracts/src/work.ts",
+      "sha256": "6f638585b903e124eb7e1ef06b08b0dfef868dbdb660387cbcfd0e8a0e571132"
+    },
+    {
+      "path": "packages/core/src/chat-fixture.ts",
+      "sha256": "79f8e8a4896a45595b1ffdf548838062fab12135a88c80a95aeb0bc798872dcf"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "d2604a814a20ed1ebb4a3447f11422df6a346d88f706b6a7268e12288e892c87"
+    },
+    {
+      "path": "packages/core/src/office-tool-schema.ts",
+      "sha256": "a4e793d09a6064d9fcf1ed844b55583c48ced5578a1044290b42f4e2588109c0"
+    },
+    {
+      "path": "packages/core/src/provider-service.ts",
+      "sha256": "61cbd8fa8574d54aa60db2fda250f1cc6c6995c0c50bbcf11eae835906d823bc"
+    },
+    {
+      "path": "packages/core/src/research-driver.ts",
+      "sha256": "d0a6667813ed554f0436f1ba3060df4064f4a761a12eed0ef7676b398cb6196e"
+    },
+    {
+      "path": "packages/core/src/research-prompt.d.ts",
+      "sha256": "fa775f94b27a5148a20c61e38beb53e95f6fc4553e1a53d351dc3acf951d572c"
+    },
+    {
+      "path": "packages/core/src/research-service.ts",
+      "sha256": "40c20749f971c0f085d299be362df5a9bd5f0e4f265b62f2f5c0eb27360092c9"
+    },
+    {
+      "path": "packages/core/src/tool-trace.ts",
+      "sha256": "ff560ca339eb17f53e74c1a2e7e4366a684bd4e680338e3d5ddfe50798b822d1"
+    },
+    {
+      "path": "packages/core/src/web-fixture.ts",
+      "sha256": "df30e19ed1189732c378271bea643b279d13e8133184493c1fd129109da70609"
+    },
+    {
+      "path": "packages/core/src/work-driver.ts",
+      "sha256": "85ee2acf6baea53d3070c772f18626f291dc11b7956439ee05d6c849f7818488"
+    },
+    {
+      "path": "packages/core/src/work-gateway.ts",
+      "sha256": "0c2c2fbfee68df6e48ff3327c5c6a5eee75be01ae090901df1514187326f4509"
+    },
+    {
+      "path": "packages/core/src/work-service.ts",
+      "sha256": "93150a27baf251ffd8bf3cd666cba89a8c90c4982142970d1d39dc5c82b33662"
+    },
+    {
+      "path": "packages/providers/src/api/adapter.ts",
+      "sha256": "549f0184c81616d6ba6d7bd53b113e4872d8c9aeb57507ba3520c1a8d0366e39"
+    },
+    {
+      "path": "packages/providers/src/api/tool-trace.ts",
+      "sha256": "8a972e423ba08b30b2217386b442a21ed5629d5a7b69ef39f68debd0f03cab66"
+    },
+    {
+      "path": "packages/providers/src/api/zhipu-tools.ts",
+      "sha256": "cc363ebd9d08aba55fcb9a833b60210142da7f4dd7ddbb90984e334314fd0c72"
+    },
+    {
+      "path": "packages/storage/src/blobs.ts",
+      "sha256": "7a1d78873f973827f1da600735f40cde3c1353422f4845b5a8192953771b9fc4"
+    },
+    {
+      "path": "packages/storage/src/file-cleanup.ts",
+      "sha256": "f4ce265184d123619482068213d7bd78f35821acc1e98be5e979a54e634f5268"
+    },
+    {
+      "path": "packages/storage/src/foundation.ts",
+      "sha256": "1f0a3683549f51159b6ad72ddbdbbb1154f252c9dacc72e980ae1213ec61e416"
+    },
+    {
+      "path": "packages/storage/src/session-cleanup.ts",
+      "sha256": "af3429470eb44fd12ff6a96934049db335ba169a6560c229b1702515c61c04e6"
+    },
+    {
+      "path": "packages/storage/src/work.ts",
+      "sha256": "15ca22b765a6751afc11adde992927884b8267c75dbb8268bb5031fc1bbf9aa7"
+    },
+    {
+      "path": "packages/tools/src/registry.ts",
+      "sha256": "379f91732fbaaa73c0c9a135a1904041559c825b93d36d3c9d0309c85b60dd7e"
+    },
+    {
+      "path": "packages/tools/src/web.ts",
+      "sha256": "8d043a03c08d2338b4cb419e6946626d5f48c85076a380dd2b769d78bc7279c2"
+    },
+    {
+      "path": "packages/workflows/src/index.ts",
+      "sha256": "1a76687a28ef54ab58626530688429209cf70b3620cc28c4174c2b1b289872c0"
+    },
+    {
+      "path": "packages/workflows/src/research.ts",
+      "sha256": "101bb66c1b9ee467ba3963ef7db167e7c13c35cca0f3c5fa9fe6e641411617db"
+    },
+    {
+      "path": "resources/prompts/research.md",
+      "sha256": "e1012fda0cd7c0a8a675516ce1f0eaf3db4b0c169aa6b6bc17036642b66a5104"
+    },
+    {
+      "path": "scripts/p07-live-profile.mjs",
+      "sha256": "5d408e6c210ca96efb5ae6152078212f76cb029a634f0da4524458cb39775205"
+    },
+    {
+      "path": "scripts/p08-research-audit.mjs",
+      "sha256": "49dabb49f80b2281cfdeabbaefa6713cd9a3e8f71e92d12a86ab3511b2f86e03"
+    },
+    {
+      "path": "scripts/p08-research-live.mjs",
+      "sha256": "660b8a26c1ca8f206659e0010d8a7f254c1edf1ae138a17294397c38d60d8db5"
+    },
+    {
+      "path": "scripts/p08-research-markdown.mjs",
+      "sha256": "9a325b6e279357e6342acbe880ce72a08b352dfdb3821df048632bc7f10e8b4e"
+    },
+    {
+      "path": "scripts/p08-research-network.mjs",
+      "sha256": "f61debbd140805965f7379fa09ed9448ae8c53c3834cc7154195f8aecdbf3648"
+    },
+    {
+      "path": "scripts/p08-research-ui.mjs",
+      "sha256": "4b14ef5cf562ac48a371a6caa4ef2ef6678a90fc4f0fa9f7f17a6b91a94834f9"
+    },
+    {
+      "path": "tests/e2e/P08-02.research.spec.ts",
+      "sha256": "3fd5343b86642892e0f4afc8e5ac44a24373f576fb4dc5972c3fdecfe6f7b809"
+    },
+    {
+      "path": "tests/evals/research/archived-excerpt.json",
+      "sha256": "dd855e073a558d2c11fbde426d66003a5a960ff34e84751aeddc5fea59ac5804"
+    },
+    {
+      "path": "tests/evals/research/fixtures.json",
+      "sha256": "a2520b02791ef9ee992097abc694000d3b210804af002cbf728ea013eda79aad"
+    },
+    {
+      "path": "tests/evals/research/gold.json",
+      "sha256": "ffbd9d901ccaf3d96aaa3aef2d9466675da15a60f6025109293427d242b639a3"
+    },
+    {
+      "path": "tests/integration/P01-02.api.test.ts",
+      "sha256": "b44ee91d2ab274cd72194267d7afd17ae6a9005bd7897244169a4258127fa8e5"
+    },
+    {
+      "path": "tests/integration/P01-03.usage.test.ts",
+      "sha256": "f74dd4fba9d5dbc625af4f306f89aae42c6fd9f6628693eba6ec9254aca0f13e"
+    },
+    {
+      "path": "tests/integration/P02-01.desktop.test.ts",
+      "sha256": "077c289108cfce087162e8ff68214a7d47c5a1b4732fbfd227b8b88c00174f4e"
+    },
+    {
+      "path": "tests/integration/P02-03.history.test.ts",
+      "sha256": "6e19614c70dac2e4ae93867e8500575c6fb4592d6d0ea29bcdba29499822716b"
+    },
+    {
+      "path": "tests/integration/P03-01.migration.test.ts",
+      "sha256": "68b5469cacc162bd5a9bf01602cb50cb6673017c565a402742b24f71d41a0599"
+    },
+    {
+      "path": "tests/integration/P03-02.artifacts.test.ts",
+      "sha256": "595827f4edf43120a203ac499b39bb1af2cb498ec03574a2ce9fda8bd43b5f68"
+    },
+    {
+      "path": "tests/integration/P04-02.context.test.ts",
+      "sha256": "e9bbe5abd6d9b55fe9eb304ef2c487c66eb8451f5b8e1412b41b29f3e2bb30e9"
+    },
+    {
+      "path": "tests/integration/P04-03.memory.test.ts",
+      "sha256": "dd8160fbfe30381ca729f2c6c9f240ed48b9fad3290bfea28e3d02cfe338250e"
+    },
+    {
+      "path": "tests/integration/P06-01.migration.test.ts",
+      "sha256": "aebe48b0074a1c478362e04e55a77ea43f82fe3e46a61dbe7828c3f97bd29929"
+    },
+    {
+      "path": "tests/integration/P07-01.document-storage.test.ts",
+      "sha256": "5cfb2f2067d266bb497ac4b9e76b90dfb8854f20a58a2a640c380dedb311ca61"
+    },
+    {
+      "path": "tests/integration/P08-01.migration.test.ts",
+      "sha256": "970d721e389f1e2ad49475aabd0551586e7c0b0a007a7a5712184a1d3d00706b"
+    },
+    {
+      "path": "tests/integration/P08-02.migration.test.ts",
+      "sha256": "82b1ab78e9020e1aa84f88f948b92d4e5ce9e561899813ab93db95f5bfa0777e"
+    },
+    {
+      "path": "tests/integration/P08-02.research.test.ts",
+      "sha256": "2ae2fb668813c72d8222ec895c52c4cd52631d14a3b240955494c8bdbad4cbc5"
+    },
+    {
+      "path": "tests/live/P01-02.native-profile.ts",
+      "sha256": "840ceda4a507c709416065f1348d3792e89e8d739a09e85a1a0af0e8e87322a2"
+    },
+    {
+      "path": "tests/live/P08-02.network.ts",
+      "sha256": "dbe7c2637cad2f4dac3bdeb758cd9b7ae9811328e6cdc95888c3d2a5cdc58742"
+    },
+    {
+      "path": "tests/unit/P00-02.contracts.test.ts",
+      "sha256": "d25b2b60ae10dabc192b9bf642922cdc0aa4172c3fbbd8f3b193f3f52069fc0e"
+    },
+    {
+      "path": "tests/unit/P01-02.system-proxy.test.ts",
+      "sha256": "a2d02e7e23067a6bd28133ed2b30cd9e9b2cfad53d9ad6198a23c8438c2acb59"
+    },
+    {
+      "path": "tests/unit/P08-02.network-trace.test.ts",
+      "sha256": "0fef0e93e9ee9cc1282c25bcd39546f245152e3bd819df006cf48f8d1b4e572e"
+    },
+    {
+      "path": "tests/unit/P08-02.research.test.ts",
+      "sha256": "fbaf367c559fb834c81bb4b268133711a434d2b19d699b8b0266cc343e64363b"
+    }
+  ],
+  "production": {
+    "coreSha256": "512670753b5310718f91bb90d49a52b8d5fcd31a662d388d3afa581dbcd1d0ca",
+    "mainSha256": "fcac4410586208b5777feb42365a5997561c196b648035c92ea0dae842fa8db9"
+  },
+  "credentialCleanup": {
+    "profiles": 27,
+    "allCopiesRemoved": true,
+    "latestClosed": true,
+    "evidence": "credential-cleanup.json"
+  },
+  "progressHashes": [
+    {
+      "path": "docs/progress/CURRENT.md",
+      "sha256": "723c68ebcf72abab7a01b6008d19b1cefe6961345e9f48de6ed4a872e1625f20"
+    },
+    {
+      "path": "docs/progress/INDEX.md",
+      "sha256": "7d1dc1b86033f9af9f2330b65a4f0c2eacbd14f73c6bc0932e31f368e20f2b75"
+    },
+    {
+      "path": "docs/progress/P08-02.md",
+      "sha256": "908a86892bc224138e3b602070f813d5346dbc9ef31845f007c0bfd2ade2d0e4"
+    },
+    {
+      "path": "docs/progress/requirements.csv",
+      "sha256": "cd8592f36a7d65134f4645c6aeb8c88335051a40d262a377930ec68da85daa1e"
+    },
+    {
+      "path": "docs/progress/RESOURCES.md",
+      "sha256": "c8284d3d9eae3741ee5505a68802a216a07c25170280f5a78ad0a60691ff4091"
+    }
+  ],
+  "priorVerifiedSnapshot": "verification-before-discovery.json",
+  "priorSeedLive": {
+    "status": "passed",
+    "run": "01a195e3-2ec4-7e69-a1a4-8ab4c4db705a",
+    "calls": 3,
+    "tools": 3,
+    "formats": [
+      "md",
+      "json"
+    ],
+    "quality": "partial",
+    "explicitReportCall": true,
+    "contentVerified": true,
+    "answerVerified": true,
+    "artifactBytesVerified": true,
+    "sourceReadVerified": true,
+    "counts": {
+      "searches": 0,
+      "reads": 1,
+      "findings": 2
+    },
+    "actualTokens": 6962,
+    "reservedTokens": 0,
+    "scope": "Single explicit public seed URL. This does not establish general factual accuracy or successful live discovery.",
+    "connectionChecksCumulative": 14,
+    "connectionLimit": 20,
+    "allCopiesRemoved": true,
+    "allAttempts": "live-attempts.json"
+  },
+  "postLiveFixes": [
+    {
+      "change": "All evidence selection/closeout changes through final v7",
+      "verification": "final live run binary matches current production; all relevant local cases passed",
+      "evidence": "final-core-closeout.json"
+    }
+  ],
+  "connectionBudget": {
+    "cumulative": 44,
+    "limit": 50,
+    "remaining": 6,
+    "authorization": "2026-11-03 user added twenty after redesign to prior thirty; cumulative limit fifty, never reset",
+    "allAttempts": "live-attempts.json"
+  },
+  "redesign": {
+    "status": "completed_and_live_verified",
+    "workflowVersion": "snapshot-evidence-handles-core-closeout-v7",
+    "evidence": "evidence-handles-verification.md",
+    "newConnectionChecks": 14,
+    "cumulativeConnectionChecks": 44,
+    "authorizedLimit": 50,
+    "verifierVersion": "literal-quote-block-entities-v2",
+    "remainingAuthorizedChecks": 6
+  },
+  "priorDiscoveryLive": {
+    "status": "failed",
+    "scope": "Full configured Zhipu discovery → multi-source valid facts → explicit report, not passed",
+    "directory": "live-23d37b33-f6c9-4f2e-8dcf-c189f4e2edbe",
+    "run": "01a1a012-f3a6-7832-928e-d0ee7263a09e",
+    "taskStatus": "failed",
+    "reason": "PARSE_FAILED",
+    "connectionSucceededBeforeTasks": true,
+    "calls": 6,
+    "tools": 7,
+    "counts": {
+      "searches": 1,
+      "reads": 2,
+      "findings": 2,
+      "facts": 2
+    },
+    "sourceReadVerified": true,
+    "contentVerified": true,
+    "multiSourceVerified": false,
+    "explicitReportCall": false,
+    "reportReady": false,
+    "reportFormats": [],
+    "actualTokens": 26400,
+    "reservedTokens": 0,
+    "credentialRemoved": true,
+    "networkMode": "configured model environment; public-only NO_PROXY",
+    "publicDirectDomains": [
+      "bing.com",
+      "iana.org",
+      "larus.net"
+    ],
+    "parameterErrors": 3,
+    "lastIssue": "QUOTE_NOT_IN_SOURCE",
+    "apiTransportEvidence": "live-23d37b33-f6c9-4f2e-8dcf-c189f4e2edbe/api-transport.json"
+  },
+  "priorRedesignAttempts": [
+    {
+      "status": "not_verified",
+      "scope": "v2 snapshot evidence selection; multi-source/report closure not passed",
+      "directory": "live-9ec13261-2431-41c0-b96b-0ba45399a903",
+      "run": "01a1a113-53a6-75dc-8691-7a60a80139ec",
+      "taskStatus": "partial",
+      "reason": "BUDGET_EXCEEDED",
+      "connectionSucceededBeforeTasks": true,
+      "calls": 8,
+      "tools": 8,
+      "counts": {
+        "searches": 1,
+        "reads": 3,
+        "findings": 0
+      },
+      "contentVerified": false,
+      "multiSourceVerified": false,
+      "explicitReportCall": false,
+      "reportReady": true,
+      "reportFormats": [
+        "md",
+        "json"
+      ],
+      "actualTokens": 50670,
+      "reservedTokens": 0,
+      "credentialRemoved": true
+    },
+    {
+      "status": "not_verified",
+      "scope": "v3 exact grouping; required evidence selection not yet simplified; closure not passed",
+      "directory": "live-bd88d242-1267-4f15-b433-c715976be901",
+      "run": "01a1a11b-e3b9-7760-a1ad-b1b1f681da75",
+      "taskStatus": "partial",
+      "reason": "BUDGET_EXCEEDED",
+      "connectionSucceededBeforeTasks": true,
+      "calls": 5,
+      "tools": 5,
+      "counts": {
+        "searches": 1,
+        "reads": 3,
+        "findings": 0
+      },
+      "contentVerified": false,
+      "multiSourceVerified": false,
+      "explicitReportCall": false,
+      "reportReady": true,
+      "reportFormats": [
+        "md",
+        "json"
+      ],
+      "actualTokens": 20668,
+      "estimatedTokens": 52455,
+      "reservedTokens": 0,
+      "credentialRemoved": true
+    }
+  ],
+  "priorRedesignLive": {
+    "status": "not_verified",
+    "scope": "v4 required evidence selection; parameter rejection, closure not passed",
+    "directory": "live-e850a19a-e5ea-4762-81bc-b1da06976c06",
+    "run": "01a1a12a-012c-7535-bd49-7e60434ad462",
+    "taskStatus": "partial",
+    "reason": "PARSE_FAILED",
+    "connectionSucceededBeforeTasks": true,
+    "calls": 5,
+    "tools": 3,
+    "counts": {
+      "searches": 1,
+      "reads": 2,
+      "findings": 0
+    },
+    "contentVerified": false,
+    "multiSourceVerified": false,
+    "explicitReportCall": false,
+    "reportReady": true,
+    "reportFormats": [
+      "md",
+      "json"
+    ],
+    "actualTokens": 3962,
+    "estimatedTokens": 63012,
+    "reservedTokens": 0,
+    "credentialRemoved": true
+  },
+  "usage": {
+    "actualTaskTokens": 295232,
+    "estimatedTaskTokens": 664062,
+    "scope": "Formal task roots only; estimates are not actual; connection-check usage unknown and excluded",
+    "allAttempts": "live-attempts.json"
+  },
+  "frozenRevalidation": {
+    "status": "passed",
+    "record": "archived-live36-reverification.json",
+    "script": "reverify-live36.mjs",
+    "scriptSha256": "2ba478c92db0e8e121880253187db56c93862a5e49594808f3c49d8badfe0ace",
+    "originalReceiptUnchanged": true
+  },
+  "finalHandoff": {
+    "status": "passed",
+    "uncommitted": true,
+    "pushed": false,
+    "nextTaskStarted": false,
+    "remainingConnectionChecks": 6
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "status": "failed",
+  "case": "discovery",
+  "connectionLimit": 30,
+  "connectionAttempts": [
+    {
+      "number": 20,
+      "status": "failed",
+      "startedAt": "2026-11-03T05:57:15.521Z",
+      "finishedAt": "2026-11-03T05:58:45.782Z"
+    },
+    {
+      "number": 21,
+      "status": "failed",
+      "startedAt": "2026-11-03T05:58:45.928Z",
+      "finishedAt": "2026-11-03T06:00:16.100Z"
+    },
+    {
+      "number": 22,
+      "status": "failed",
+      "startedAt": "2026-11-03T06:00:16.253Z",
+      "finishedAt": "2026-11-03T06:01:46.421Z"
+    },
+    {
+      "number": 23,
+      "status": "failed",
+      "startedAt": "2026-11-03T06:01:46.561Z",
+      "finishedAt": "2026-11-03T06:03:16.731Z"
+    },
+    {
+      "number": 24,
+      "status": "interrupted",
+      "startedAt": "2026-11-03T06:03:16.877Z",
+      "finishedAt": "2026-11-03T06:03:22.441Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": false,
+  "taskStarted": false,
+  "task": null,
+  "usage": [],
+  "credentialRemoved": true,
+  "startedAt": "2026-11-03T05:56:53.254Z",
+  "networkMode": "direct",
+  "error": "UI_OR_INTERNAL_ERROR",
+  "finishedAt": "2026-11-03T06:03:22.441Z",
+  "stoppedForRouteDiagnosis": true
+}

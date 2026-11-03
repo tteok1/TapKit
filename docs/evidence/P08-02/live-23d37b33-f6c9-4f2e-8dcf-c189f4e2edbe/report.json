@@ -1,0 +1,302 @@
+{
+  "status": "failed",
+  "case": "discovery",
+  "connectionLimit": 30,
+  "connectionAttempts": [
+    {
+      "number": 28,
+      "status": "failed",
+      "startedAt": "2026-11-03T06:19:02.665Z",
+      "finishedAt": "2026-11-03T06:20:33.088Z"
+    },
+    {
+      "number": 29,
+      "status": "failed",
+      "startedAt": "2026-11-03T06:20:33.253Z",
+      "finishedAt": "2026-11-03T06:22:03.642Z"
+    },
+    {
+      "number": 30,
+      "status": "passed",
+      "startedAt": "2026-11-03T06:22:03.809Z",
+      "finishedAt": "2026-11-03T06:22:37.968Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": true,
+  "taskStarted": true,
+  "task": {
+    "runId": "01a1a012-f3a6-7832-928e-d0ee7263a09e",
+    "status": "failed",
+    "reason": "PARSE_FAILED",
+    "calls": 6,
+    "tools": 7,
+    "formats": [
+      "json"
+    ]
+  },
+  "usage": [
+    {
+      "source": "actual",
+      "input_tokens": 2246,
+      "output_tokens": 34,
+      "charged_tokens": 2280
+    },
+    {
+      "source": "actual",
+      "input_tokens": 2311,
+      "output_tokens": 99,
+      "charged_tokens": 2410
+    },
+    {
+      "source": "actual",
+      "input_tokens": 5166,
+      "output_tokens": 141,
+      "charged_tokens": 5307
+    },
+    {
+      "source": "actual",
+      "input_tokens": 5273,
+      "output_tokens": 27,
+      "charged_tokens": 5300
+    },
+    {
+      "source": "actual",
+      "input_tokens": 5322,
+      "output_tokens": 147,
+      "charged_tokens": 5469
+    },
+    {
+      "source": "actual",
+      "input_tokens": 5330,
+      "output_tokens": 304,
+      "charged_tokens": 5634
+    }
+  ],
+  "credentialRemoved": true,
+  "startedAt": "2026-11-03T06:18:32.149Z",
+  "publicDirectDomains": [
+    "bing.com",
+    "iana.org",
+    "larus.net"
+  ],
+  "networkMode": "configured model environment; public-only NO_PROXY",
+  "phase": "wait_task",
+  "budget": {
+    "reserved_tokens": 0,
+    "used_tokens": 26400
+  },
+  "providerAttempts": [
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    }
+  ],
+  "diagnostics": [
+    {
+      "summary": "研究参数需要修正：RESEARCH_ARGUMENTS_INVALID：research.read source.queryIndex:invalid_type"
+    }
+  ],
+  "toolTrace": [
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a1a012-f43f-7ec4-a5c1-d8f1c88ed67b",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 23,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 21,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a1a013-35b1-7cf6-9bbc-fd0ad0d45107",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 3,
+        "knownToolNames": [],
+        "otherToolCount": 3,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 35,
+        "deltaToolItems": 2,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 32,
+        "knownToolNames": [],
+        "otherToolNameItems": 2,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 2,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a1a014-0c9d-79bf-955e-5df25ed76f1b",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 3,
+        "knownToolNames": [],
+        "otherToolCount": 3,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a1a014-232e-7ee4-9ab7-d2bdc91d8047",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 3,
+        "knownToolNames": [],
+        "otherToolCount": 3,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a1a014-35ae-70ad-860d-24737e372338",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 3,
+        "knownToolNames": [],
+        "otherToolCount": 3,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a1a014-49ad-7baa-85da-e03ef8ce20a7",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 3,
+        "knownToolNames": [],
+        "otherToolCount": 3,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 56,
+        "deltaToolItems": 3,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 52,
+        "knownToolNames": [],
+        "otherToolNameItems": 3,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 3,
+        "outcome": "finished"
+      }
+    }
+  ],
+  "contentVerified": true,
+  "answerVerified": true,
+  "sourceReadVerified": true,
+  "multiSourceVerified": false,
+  "search": [
+    {
+      "query": "IANA What resources does IANA coordinate?",
+      "status": "ready",
+      "error": null,
+      "candidateCount": 3
+    }
+  ],
+  "searchAttempted": true,
+  "discoveryScope": "No seed URLs. Requires successful search, at least two actually read source groups with literal facts, and explicit report. Different domains do not prove publisher independence.",
+  "searchSettled": true,
+  "explicitReportCall": false,
+  "error": "RESEARCH_REPORT_MISSING",
+  "apiTransportEvidence": "api-transport.json",
+  "finishedAt": "2026-11-03T06:24:17.557Z"
+}

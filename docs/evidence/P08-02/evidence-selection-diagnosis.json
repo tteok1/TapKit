@@ -1,0 +1,17 @@
+{
+  "runId": "01a1a113-53a6-75dc-8691-7a60a80139ec",
+  "scope": "Public tool arguments checked in memory against archived public source snapshots; no raw arguments, native reasoning or credentials exported",
+  "findings": [
+    {
+      "kind": "fact",
+      "quoteCount": 2,
+      "allQuotesExact": true,
+      "differentLiteralTexts": 2,
+      "textEqualsFirst": true
+    }
+  ],
+  "parameterErrors": 1,
+  "lastIssue": "FACT_MUST_BE_A_VERBATIM_EXCERPT",
+  "finalReason": "BUDGET_EXCEEDED",
+  "credentialRemoved": true
+}

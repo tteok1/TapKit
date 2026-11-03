@@ -1,5 +1,6 @@
 export * from './export';
 export * from './work-plan';
+export * from './research';
 export * from './document-draft';
 export * from './document-render';
 export * from './document-validation';

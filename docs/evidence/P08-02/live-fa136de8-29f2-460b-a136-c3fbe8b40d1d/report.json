@@ -1,0 +1,20 @@
+{
+  "status": "failed",
+  "connectionAttempts": [
+    {
+      "number": 5,
+      "status": "passed",
+      "startedAt": "2026-10-31T16:18:29.410Z",
+      "finishedAt": "2026-10-31T16:19:11.385Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": true,
+  "taskStarted": false,
+  "task": null,
+  "usage": [],
+  "credentialRemoved": true,
+  "startedAt": "2026-10-31T16:18:12.367Z",
+  "phase": "configure_research",
+  "error": "UI_LOCATOR_AMBIGUOUS",
+  "finishedAt": "2026-10-31T16:19:12.256Z"
+}

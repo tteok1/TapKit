@@ -1,0 +1,17 @@
+packages/core/src/research-driver.ts 88ms
+packages/core/src/research-prompt.d.ts 3ms (unchanged)
+packages/core/src/research-driver.ts(84,9): error TS2739: Type '{ messages: CanonicalMessage[]; systemModules: { id: string; text: string; }[]; tools: { name: "research.read" | "research.record" | "research.report" | "research.search"; description: string; parameters: Record<...>; }[]; outputLimit: number; }' is missing the following properties from type 'Omit<ModelRequest, "accountId" | "attemptId" | "logicalCallId" | "model" | "reasoning">': taskVersion, branchId
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:158
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:223:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:220:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0

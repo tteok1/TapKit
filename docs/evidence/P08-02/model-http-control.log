@@ -1,0 +1,14 @@
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+
+{"scope":"TCP/TLS handshake plus unauthenticated GET of public https://open.bigmodel.cn/ only; no API endpoint, account, key, model request, body logging or connection-button click","checks":[{"route":"direct","proxyUsed":false,"addressIndex":0,"family":4,"public":true,"tcpMs":21,"tlsVerified":true,"elapsedMs":58},{"route":"direct","proxyUsed":false,"addressIndex":1,"family":4,"public":true,"tcpMs":17,"tlsVerified":true,"elapsedMs":46},{"route":"configured","proxyUsed":true,"addressIndex":0,"family":4,"public":true,"tcpMs":5,"tlsVerified":true,"elapsedMs":552},{"route":"configured","proxyUsed":true,"addressIndex":1,"family":4,"public":true,"tcpMs":1,"tlsVerified":true,"elapsedMs":598}],"httpChecks":[{"route":"direct","transport":"production API HTTP transport","status":200,"elapsedMs":146,"stages":[{"stage":"dns_complete","elapsedMs":1},{"stage":"proxy_resolved","elapsedMs":1},{"stage":"socket_assigned","elapsedMs":16},{"stage":"tcp_connected","elapsedMs":38},{"stage":"tls_connected","elapsedMs":67},{"stage":"request_finished","elapsedMs":67},{"stage":"response_headers","elapsedMs":141}]},{"route":"direct","transport":"production anonymous HTTP transport","status":200,"bytes":6198},{"route":"configured","transport":"production API HTTP transport","status":200,"elapsedMs":1947,"stages":[{"stage":"dns_complete","elapsedMs":1},{"stage":"proxy_resolved","elapsedMs":2},{"stage":"socket_assigned","elapsedMs":1572},{"stage":"request_finished","elapsedMs":1573},{"stage":"response_headers","elapsedMs":1946}]},{"route":"configured","transport":"production anonymous HTTP transport","status":200,"bytes":6198}]}

@@ -5,11 +5,44 @@ import {
   DOCUMENT_WORK_TOOL_CATALOG_VERSION,
   DATA_WORK_TOOL_CATALOG_VERSION,
   SLIDES_WORK_TOOL_CATALOG_VERSION,
+  BROWSER_WORK_TOOL_CATALOG_VERSION,
   type WorkToolArgs,
 } from '@tapkit/contracts';
 import { createHash } from 'node:crypto';
 export { WORK_TOOL_CATALOG_VERSION };
 export const WORK_TOOL_SPECS = {
+  'research.search': {
+    name: 'research.search',
+    version: '1',
+    mode: 'read',
+    retry: 'safe',
+    timeoutMs: 30000,
+    maxOutputBytes: 65536,
+  },
+  'research.read': {
+    name: 'research.read',
+    version: '1',
+    mode: 'read',
+    retry: 'safe',
+    timeoutMs: 30000,
+    maxOutputBytes: 65536,
+  },
+  'research.record': {
+    name: 'research.record',
+    version: '1',
+    mode: 'read',
+    retry: 'safe',
+    timeoutMs: 30000,
+    maxOutputBytes: 65536,
+  },
+  'research.report': {
+    name: 'research.report',
+    version: '1',
+    mode: 'artifact_write',
+    retry: 'safe',
+    timeoutMs: 120000,
+    maxOutputBytes: 65536,
+  },
   'browser.open': {
     name: 'browser.open',
     version: '1',
@@ -116,9 +149,12 @@ export const WORK_TOOL_SPECS = {
   },
 } as const;
 export function catalogAllowsTool(catalog: string, name: keyof typeof WORK_TOOL_SPECS) {
-  if (name.startsWith('browser.')) return catalog === WORK_TOOL_CATALOG_VERSION;
+  if (name.startsWith('research.')) return catalog === WORK_TOOL_CATALOG_VERSION;
+  if (name.startsWith('browser.'))
+    return catalog === WORK_TOOL_CATALOG_VERSION || catalog === BROWSER_WORK_TOOL_CATALOG_VERSION;
   return (
     catalog === WORK_TOOL_CATALOG_VERSION ||
+    catalog === BROWSER_WORK_TOOL_CATALOG_VERSION ||
     catalog === SLIDES_WORK_TOOL_CATALOG_VERSION ||
     (catalog === DATA_WORK_TOOL_CATALOG_VERSION && !name.startsWith('slides.')) ||
     (catalog === DOCUMENT_WORK_TOOL_CATALOG_VERSION &&
@@ -149,6 +185,8 @@ export function canonicalHash(value: unknown): string {
 }
 export function parseWorkTool(raw: unknown): WorkToolArgs {
   const args = WorkToolArgsSchema.parse(raw);
+  if (args.tool.startsWith('research.') && Buffer.byteLength(JSON.stringify(args)) > 48000)
+    throw Error('OUTPUT_LIMIT_REACHED');
   if ('content' in args && Buffer.byteLength(args.content) > 64000)
     throw Error('OUTPUT_LIMIT_REACHED');
   if (args.tool === 'document.create' && Buffer.byteLength(JSON.stringify(args.spec)) > 400000)
@@ -170,6 +208,7 @@ export function workToolsForMode(mode: 'chat' | 'work') {
     (tool) =>
       mode === 'work' ||
       (tool.mode === 'artifact_write' &&
+        !tool.name.startsWith('research.') &&
         tool.name !== 'document.create' &&
         !tool.name.startsWith('slides.')),
   );

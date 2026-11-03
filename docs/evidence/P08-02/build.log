@@ -1,0 +1,37 @@
+$ node scripts/build.mjs
+rust already prepared 1.98.1
+windowsSdk already prepared 10.0.28000.2705
+msvcCrt already prepared 14.44.35226
+msvcImports already prepared 14.44.35226
+    Finished `release` profile [optimized] target(s) in 0.12s
+node:internal/fs/promises:1775
+  return await PromisePrototypeThen(
+         ^
+
+Error: EPERM: operation not permitted, unlink 'D:\Tapkit-public\resources\runtime\helper\tapkit-windows-helper.exe'
+    at async unlink (node:internal/fs/promises:1775:10)
+    at async mayCopyFile (node:internal/fs/cp/cp:247:5)
+    at async buildHelper (file:///D:/Tapkit-public/scripts/helper-build.mjs:60:3)
+    at async file:///D:/Tapkit-public/scripts/build.mjs:3:1 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'unlink',
+  path: 'D:\\Tapkit-public\\resources\\runtime\\helper\\tapkit-windows-helper.exe'
+}
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:41
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:223:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:220:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0

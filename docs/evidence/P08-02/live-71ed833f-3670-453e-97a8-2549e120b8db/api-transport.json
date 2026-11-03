@@ -1,0 +1,215 @@
+{
+  "scope": "Actual in-app API transport; fixed stages and timing only, no URL/headers/body/key/reasoning",
+  "events": [
+    {
+      "requestId": "01a1a143-366d-7451-bec2-f1ce5153c189",
+      "stage": "dns_complete",
+      "elapsedMs": 50,
+      "at": "2026-11-03T11:54:59.105Z"
+    },
+    {
+      "requestId": "01a1a143-366d-7451-bec2-f1ce5153c189",
+      "stage": "proxy_resolved",
+      "elapsedMs": 73,
+      "at": "2026-11-03T11:54:59.127Z"
+    },
+    {
+      "requestId": "01a1a143-366d-7451-bec2-f1ce5153c189",
+      "stage": "socket_assigned",
+      "elapsedMs": 666,
+      "at": "2026-11-03T11:54:59.720Z"
+    },
+    {
+      "requestId": "01a1a143-366d-7451-bec2-f1ce5153c189",
+      "stage": "request_finished",
+      "elapsedMs": 676,
+      "at": "2026-11-03T11:54:59.730Z"
+    },
+    {
+      "requestId": "01a1a143-366d-7451-bec2-f1ce5153c189",
+      "stage": "response_headers",
+      "elapsedMs": 7291,
+      "at": "2026-11-03T11:55:06.345Z"
+    },
+    {
+      "requestId": "01a1a143-5676-743a-a426-a6b915318f48",
+      "stage": "dns_complete",
+      "elapsedMs": 1,
+      "at": "2026-11-03T11:55:07.255Z"
+    },
+    {
+      "requestId": "01a1a143-5676-743a-a426-a6b915318f48",
+      "stage": "proxy_resolved",
+      "elapsedMs": 5,
+      "at": "2026-11-03T11:55:07.259Z"
+    },
+    {
+      "requestId": "01a1a143-5676-743a-a426-a6b915318f48",
+      "stage": "socket_assigned",
+      "elapsedMs": 664,
+      "at": "2026-11-03T11:55:07.919Z"
+    },
+    {
+      "requestId": "01a1a143-5676-743a-a426-a6b915318f48",
+      "stage": "request_finished",
+      "elapsedMs": 669,
+      "at": "2026-11-03T11:55:07.923Z"
+    },
+    {
+      "requestId": "01a1a143-5676-743a-a426-a6b915318f48",
+      "stage": "response_headers",
+      "elapsedMs": 2022,
+      "at": "2026-11-03T11:55:09.276Z"
+    },
+    {
+      "requestId": "01a1a143-66f4-7d98-9436-55edb20fe8f8",
+      "stage": "dns_complete",
+      "elapsedMs": 1,
+      "at": "2026-11-03T11:55:11.478Z"
+    },
+    {
+      "requestId": "01a1a143-66f4-7d98-9436-55edb20fe8f8",
+      "stage": "proxy_resolved",
+      "elapsedMs": 12,
+      "at": "2026-11-03T11:55:11.488Z"
+    },
+    {
+      "requestId": "01a1a143-66f4-7d98-9436-55edb20fe8f8",
+      "stage": "socket_assigned",
+      "elapsedMs": 546,
+      "at": "2026-11-03T11:55:12.023Z"
+    },
+    {
+      "requestId": "01a1a143-66f4-7d98-9436-55edb20fe8f8",
+      "stage": "request_finished",
+      "elapsedMs": 549,
+      "at": "2026-11-03T11:55:12.026Z"
+    },
+    {
+      "requestId": "01a1a143-66f4-7d98-9436-55edb20fe8f8",
+      "stage": "response_headers",
+      "elapsedMs": 2079,
+      "at": "2026-11-03T11:55:13.556Z"
+    },
+    {
+      "requestId": "01a1a143-76a9-777a-945f-8102dafce789",
+      "stage": "dns_complete",
+      "elapsedMs": 1,
+      "at": "2026-11-03T11:55:15.498Z"
+    },
+    {
+      "requestId": "01a1a143-76a9-777a-945f-8102dafce789",
+      "stage": "proxy_resolved",
+      "elapsedMs": 9,
+      "at": "2026-11-03T11:55:15.506Z"
+    },
+    {
+      "requestId": "01a1a143-76a9-777a-945f-8102dafce789",
+      "stage": "socket_assigned",
+      "elapsedMs": 2927,
+      "at": "2026-11-03T11:55:18.424Z"
+    },
+    {
+      "requestId": "01a1a143-76a9-777a-945f-8102dafce789",
+      "stage": "request_finished",
+      "elapsedMs": 2930,
+      "at": "2026-11-03T11:55:18.428Z"
+    },
+    {
+      "requestId": "01a1a143-76a9-777a-945f-8102dafce789",
+      "stage": "response_headers",
+      "elapsedMs": 7478,
+      "at": "2026-11-03T11:55:22.975Z"
+    },
+    {
+      "requestId": "01a1a143-c93d-745c-b5be-f6b23ecd8b51",
+      "stage": "dns_complete",
+      "elapsedMs": 23,
+      "at": "2026-11-03T11:55:36.661Z"
+    },
+    {
+      "requestId": "01a1a143-c93d-745c-b5be-f6b23ecd8b51",
+      "stage": "proxy_resolved",
+      "elapsedMs": 30,
+      "at": "2026-11-03T11:55:36.668Z"
+    },
+    {
+      "requestId": "01a1a143-c93d-745c-b5be-f6b23ecd8b51",
+      "stage": "socket_assigned",
+      "elapsedMs": 625,
+      "at": "2026-11-03T11:55:37.262Z"
+    },
+    {
+      "requestId": "01a1a143-c93d-745c-b5be-f6b23ecd8b51",
+      "stage": "request_finished",
+      "elapsedMs": 630,
+      "at": "2026-11-03T11:55:37.268Z"
+    },
+    {
+      "requestId": "01a1a143-c93d-745c-b5be-f6b23ecd8b51",
+      "stage": "response_headers",
+      "elapsedMs": 5591,
+      "at": "2026-11-03T11:55:42.229Z"
+    },
+    {
+      "requestId": "01a1a143-df50-77fc-b367-c5eeece670eb",
+      "stage": "dns_complete",
+      "elapsedMs": 1,
+      "at": "2026-11-03T11:55:42.290Z"
+    },
+    {
+      "requestId": "01a1a143-df50-77fc-b367-c5eeece670eb",
+      "stage": "proxy_resolved",
+      "elapsedMs": 6,
+      "at": "2026-11-03T11:55:42.295Z"
+    },
+    {
+      "requestId": "01a1a143-df50-77fc-b367-c5eeece670eb",
+      "stage": "socket_assigned",
+      "elapsedMs": 676,
+      "at": "2026-11-03T11:55:42.965Z"
+    },
+    {
+      "requestId": "01a1a143-df50-77fc-b367-c5eeece670eb",
+      "stage": "request_finished",
+      "elapsedMs": 682,
+      "at": "2026-11-03T11:55:42.970Z"
+    },
+    {
+      "requestId": "01a1a143-df50-77fc-b367-c5eeece670eb",
+      "stage": "request_error",
+      "elapsedMs": 1961,
+      "at": "2026-11-03T11:55:44.250Z"
+    },
+    {
+      "requestId": "01a1a143-ebc6-70c1-9d5b-701b93bc0d99",
+      "stage": "dns_complete",
+      "elapsedMs": 1,
+      "at": "2026-11-03T11:55:45.479Z"
+    },
+    {
+      "requestId": "01a1a143-ebc6-70c1-9d5b-701b93bc0d99",
+      "stage": "proxy_resolved",
+      "elapsedMs": 6,
+      "at": "2026-11-03T11:55:45.485Z"
+    },
+    {
+      "requestId": "01a1a143-ebc6-70c1-9d5b-701b93bc0d99",
+      "stage": "socket_assigned",
+      "elapsedMs": 555,
+      "at": "2026-11-03T11:55:46.033Z"
+    },
+    {
+      "requestId": "01a1a143-ebc6-70c1-9d5b-701b93bc0d99",
+      "stage": "request_finished",
+      "elapsedMs": 561,
+      "at": "2026-11-03T11:55:46.040Z"
+    },
+    {
+      "requestId": "01a1a143-ebc6-70c1-9d5b-701b93bc0d99",
+      "stage": "response_headers",
+      "elapsedMs": 6847,
+      "at": "2026-11-03T11:55:52.325Z"
+    }
+  ]
+}

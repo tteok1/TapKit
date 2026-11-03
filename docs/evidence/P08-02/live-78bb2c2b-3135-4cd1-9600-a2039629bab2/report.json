@@ -1,0 +1,39 @@
+{
+  "status": "failed",
+  "case": "discovery",
+  "connectionLimit": 30,
+  "connectionAttempts": [
+    {
+      "number": 25,
+      "status": "failed",
+      "startedAt": "2026-11-03T06:05:44.543Z",
+      "finishedAt": "2026-11-03T06:07:14.811Z"
+    },
+    {
+      "number": 26,
+      "status": "failed",
+      "startedAt": "2026-11-03T06:07:14.976Z",
+      "finishedAt": "2026-11-03T06:08:45.206Z"
+    },
+    {
+      "number": 27,
+      "status": "failed",
+      "startedAt": "2026-11-03T06:08:45.344Z",
+      "finishedAt": "2026-11-03T06:10:15.534Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": false,
+  "taskStarted": false,
+  "task": null,
+  "usage": [],
+  "credentialRemoved": true,
+  "startedAt": "2026-11-03T06:05:22.699Z",
+  "publicDirectDomains": [
+    "bing.com",
+    "iana.org",
+    "larus.net"
+  ],
+  "networkMode": "configured model environment; public-only NO_PROXY",
+  "error": "CONNECTION_CHECK_ROUND_LIMIT",
+  "finishedAt": "2026-11-03T06:10:16.293Z"
+}

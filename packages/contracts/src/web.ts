@@ -32,6 +32,7 @@ export const WebSourceSchema = z.strictObject({
   url: z.string().url().max(4096),
   title: z.string().max(500),
   fetchedAt: z.number().int().nonnegative(),
+  publishedAt: z.number().int().nonnegative().nullable().optional(),
   contentHash: z.string().regex(/^[a-f0-9]{64}$/),
   text: z.string().max(5_000_000),
   links: z.array(z.string().url().max(4096)).max(200),

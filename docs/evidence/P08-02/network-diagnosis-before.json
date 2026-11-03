@@ -1,0 +1,47 @@
+{
+  "scope": "same production transport, no model requests",
+  "mode": "environment",
+  "checks": [
+    {
+      "url": "https://example.com/",
+      "dns": [
+        {
+          "family": 4,
+          "public": true
+        },
+        {
+          "family": 4,
+          "public": true
+        }
+      ],
+      "proxyResolved": true,
+      "proxyUsed": true,
+      "static": {
+        "status": 200,
+        "bytes": 577,
+        "finalHost": "example.com"
+      },
+      "dynamic": {
+        "bytes": 1974,
+        "finalHost": "example.com"
+      },
+      "elapsedMs": 1336
+    },
+    {
+      "url": "https://www.bing.com/search?q=IANA%20example%20domains",
+      "dns": [
+        {
+          "family": 4,
+          "public": true
+        },
+        {
+          "family": 4,
+          "public": true
+        }
+      ],
+      "staticError": "proxy_resolution_failed",
+      "dynamicError": "proxy_resolution_failed",
+      "elapsedMs": 10
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import {
   LEASE_MS,
   HEARTBEAT_MS,
   type WorkView,
+  type WorkDefinition,
   type WorkToolArgs,
   type ResourceRef,
   type Request,
@@ -40,6 +41,14 @@ export type WorkDriver = (
   signal: AbortSignal,
 ) => Promise<WorkCandidate>;
 export interface WorkGateway {
+  validateDefinition?(definition: WorkDefinition, sessionId: string): void;
+  intermediate?(run: WorkRun): boolean;
+  artifactRefs?(run: WorkRun, refs: ResourceRef[]): ResourceRef[];
+  completion?(run: WorkRun): 'completed' | 'partial';
+  requestEarlyFinish?(run: WorkRun): void;
+  finishEarly?(run: WorkRun, guard: () => void): Promise<ResourceRef[]>;
+  closeout?(run: WorkRun): WorkCandidate | undefined;
+  cancelReadOnly?(run: WorkRun): void;
   dispatchCommand?(request: Request): Reply | Promise<Reply>;
   resume?(
     run: WorkRun,
@@ -128,6 +137,27 @@ export class WorkService {
       if (!schema) return failure(request.requestId, 'FEATURE_NOT_AVAILABLE');
       const p = schema.parse(request.payload);
       request.payload = p;
+      if (request.command === 'research.finish') {
+        const input = WorkCommandSchemas['research.finish'].parse(p),
+          run = this.repo.row(input.runId);
+        return this.store.receipt(request, () => {
+          this.mutable(run, request.expectedRevision);
+          if (!this.gateway.requestEarlyFinish) throw new StorageError('FEATURE_NOT_AVAILABLE');
+          this.gateway.requestEarlyFinish(run);
+          this.gateway.cancelReadOnly?.(run);
+          this.active.get(run.id)?.controller.abort();
+          const current = this.repo.row(run.id);
+          this.store.db.prepare('UPDATE runs SET pause_requested_at=NULL WHERE id=?').run(run.id);
+          if (!this.active.has(run.id)) {
+            if (current.status === 'waiting_user') this.change(current, 'paused');
+            if (this.repo.row(run.id).status === 'paused')
+              this.change(this.repo.row(run.id), 'queued');
+          }
+          return this.ok(request, { work: this.repo.view(run.id) });
+        });
+      }
+      if (request.command.startsWith('research.') && this.gateway.dispatchCommand)
+        return await this.gateway.dispatchCommand(request);
       let verifiedReconciliation: string | null = null;
       if (request.command === 'runs.reconcile') {
         const input = WorkCommandSchemas['runs.reconcile'].parse(p);
@@ -166,6 +196,7 @@ export class WorkService {
           const definition = WorkDefinitionSchema.parse(
             Object.fromEntries(Object.entries(input).filter(([key]) => key !== 'sessionId')),
           );
+          this.gateway.validateDefinition?.(definition, input.sessionId);
           const plan = validatePlan(defaultPlan(definition));
           const run = this.repo.create(input.sessionId, definition, plan.steps, plan.selected);
           return this.ok(request, { work: this.repo.view(run.id) });
@@ -456,14 +487,38 @@ export class WorkService {
           if (!updated.changes) throw new StorageError('CONFLICT');
           const definition = {
               ...state.definition,
+              ...(input.research
+                ? { research: input.research, format: input.research.outputFormat }
+                : {}),
               goal: input.text,
               refs: [...state.definition.refs, ...input.refs].slice(0, 20),
             },
             plan = validatePlan(defaultPlan(definition));
+          this.gateway.validateDefinition?.(definition, run.session_id);
           const next = this.repo.create(run.session_id, definition, plan.steps, plan.selected, {
             taskId: run.task_id,
             version: run.task_version + 1,
             rootRunId: run.root_run_id,
+            ...(state.research
+              ? {
+                  research: {
+                    ...state.research,
+                    sources: state.research.sources.map((s) => ({
+                      ...s,
+                      excluded: definition.research?.excludedSources.includes(s.id) ?? false,
+                      questionKeys: s.questionKeys.filter((key) =>
+                        definition.research?.questions.some(
+                          (q) =>
+                            q.key === key &&
+                            q.text ===
+                              state.definition.research?.questions.find((old) => old.key === key)
+                                ?.text,
+                        ),
+                      ),
+                    })),
+                  },
+                }
+              : {}),
           });
           this.repo.event(next, 'task.steered', '目标更新；旧版本结果仅归档');
           return this.ok(request, { work: this.repo.view(next.id) });
@@ -545,6 +600,7 @@ export class WorkService {
       )
       .run(this.store.now(), run.id);
     if (action === 'cancel') {
+      this.gateway.cancelReadOnly?.(run);
       this.store.db
         .prepare(
           "UPDATE tool_calls SET status='cancelled',side_effect='not_committed' WHERE run_id=? AND status IN ('proposed','approved')",
@@ -698,7 +754,7 @@ export class WorkService {
           release();
           throw error;
         }
-        if (!state.planAccepted) {
+        if (!state.planAccepted && !state.research?.earlyFinish) {
           try {
             this.store.db.transaction(() =>
               this.change(run, 'waiting_user', 'APPROVAL_REQUIRED'),
@@ -777,6 +833,10 @@ export class WorkService {
         const current = this.repo.row(run.id),
           state = this.repo.state(current),
           steps = this.repo.steps(run.id);
+        if (state.research?.earlyFinish && this.gateway.finishEarly) {
+          await this.finishResearch(run, () => this.repo.guard(run, this.owner));
+          return;
+        }
         const tokens = (
           this.store.db
             .prepare(
@@ -818,7 +878,7 @@ export class WorkService {
                 : complete
                   ? selected.some((s) => s.status === 'skipped' && !s.optional)
                     ? 'partial'
-                    : 'completed'
+                    : (this.gateway.completion?.(run) ?? 'completed')
                   : selected.some((s) => s.status === 'completed')
                     ? 'partial'
                     : 'failed',
@@ -856,8 +916,10 @@ export class WorkService {
                 signal,
               });
         if (resumed === null) return;
-        if (!resumed && exhausted) throw new StorageError('BUDGET_EXCEEDED');
-        if (!resumed && step.attempts >= 3) {
+        const closeout =
+          !resumed && !executionExhausted ? this.gateway.closeout?.(current) : undefined;
+        if (!resumed && !closeout && exhausted) throw new StorageError('BUDGET_EXCEEDED');
+        if (!resumed && !closeout && step.attempts >= 3) {
           this.store.db.transaction(() => {
             this.repo.stepResult(run, step.stepKey, {
               status: 'failed',
@@ -874,13 +936,13 @@ export class WorkService {
             .prepare(
               "UPDATE plan_steps SET status='running',attempts=attempts+? WHERE run_id=? AND step_key=?",
             )
-            .run(resumed ? 0 : 1, run.id, step.stepKey);
-          if (!resumed)
+            .run(resumed || closeout ? 0 : 1, run.id, step.stepKey);
+          if (!resumed && !closeout)
             this.store.db.prepare('UPDATE runs SET calls=calls+1 WHERE id=?').run(run.id);
         })();
         const candidate: WorkCandidate = resumed
           ? { text: '已执行审阅通过的操作', calls: [], finished: true }
-          : await this.driver(run, step, signal);
+          : (closeout ?? (await this.driver(run, step, signal)));
         guard();
         if (!resumed) signal.throwIfAborted();
         if (candidate.question) {
@@ -925,6 +987,7 @@ export class WorkService {
           );
           if (ref) {
             if (!refs.some((r) => JSON.stringify(r) === JSON.stringify(ref))) refs.push(ref);
+            if (state.definition.research && !this.gateway.intermediate?.(run)) break;
             if (this.repo.row(run.id).status === 'waiting_user') {
               this.store.db.transaction(() =>
                 this.repo.stepResult(run, step.stepKey, {
@@ -947,6 +1010,8 @@ export class WorkService {
             return;
           }
         }
+        if (this.gateway.artifactRefs)
+          refs.splice(0, refs.length, ...this.gateway.artifactRefs(run, refs));
         guard();
         const browserOnly =
           state.definition.browserEnabled &&
@@ -960,7 +1025,7 @@ export class WorkService {
               "SELECT 1 FROM tool_calls WHERE run_id=? AND step_key=? AND tool_name NOT LIKE 'browser.%' AND status='succeeded'",
             )
             .get(run.id, step.stepKey);
-        if (browserOnly) {
+        if (browserOnly || this.gateway.intermediate?.(run)) {
           this.store.db.transaction(() => {
             accountTime();
             this.repo.stepResult(run, step.stepKey, {
@@ -1047,6 +1112,26 @@ export class WorkService {
       } catch {
         return;
       }
+      if (
+        (this.repo.state(this.repo.row(run.id)).research?.earlyFinish ||
+          (this.repo.state(run).definition.research &&
+            (deadline.aborted ||
+              (error instanceof StorageError &&
+                ['BUDGET_EXCEEDED', 'PARSE_FAILED'].includes(error.code))))) &&
+        this.gateway.finishEarly
+      ) {
+        try {
+          this.gateway.requestEarlyFinish?.(run);
+          await this.finishResearch(
+            run,
+            () => this.repo.guard(run, this.owner),
+            error instanceof StorageError ? error.code : 'BUDGET_EXCEEDED',
+          );
+          return;
+        } catch {
+          /* Unknown native execution still follows the ordinary reconciliation path below. */
+        }
+      }
       this.store.db.transaction(() => {
         const current = this.repo.row(run.id);
         // A late result cannot change a terminal/new-version run.
@@ -1060,9 +1145,13 @@ export class WorkService {
           .get(run.id);
         if (unknown) this.change(current, 'waiting_user', 'SIDE_EFFECT_UNKNOWN');
         else if (current.cancel_requested_at !== null) this.change(current, 'cancelled');
-        else if (current.pause_requested_at !== null || current.status === 'pausing')
+        else if (current.pause_requested_at !== null || current.status === 'pausing') {
           this.change(current, 'paused');
-        else if (current.status !== 'waiting_user') {
+          if (this.repo.state(this.repo.row(run.id)).research?.earlyFinish) {
+            this.store.db.prepare('UPDATE runs SET pause_requested_at=NULL WHERE id=?').run(run.id);
+            this.change(this.repo.row(run.id), 'queued');
+          }
+        } else if (current.status !== 'waiting_user') {
           this.cancelUnsent(current);
           this.change(
             current,
@@ -1080,6 +1169,22 @@ export class WorkService {
     } finally {
       clearInterval(heartbeat);
     }
+  }
+  private async finishResearch(run: WorkRun, guard: () => void, reason: string | null = null) {
+    if (!this.gateway.finishEarly) throw new StorageError('FEATURE_NOT_AVAILABLE');
+    const refs = await this.gateway.finishEarly(run, guard);
+    this.active.get(run.id)?.accountTime?.();
+    guard();
+    this.store.db.transaction(() => {
+      guard();
+      for (const step of this.repo.steps(run.id))
+        this.repo.stepResult(run, step.stepKey, {
+          status: 'completed',
+          artifacts: refs,
+          text: '研究已提前结束，已保存可核验部分。',
+        });
+      this.change(this.repo.row(run.id), 'partial', reason);
+    })();
   }
   async stop() {
     this.closing = true;

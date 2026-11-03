@@ -8,6 +8,7 @@ import {
   RunStatusSchema,
   WORK_TOOL_CATALOG_VERSION,
   RUN_TRANSITIONS,
+  type ResearchProgress,
   type z,
 } from '@tapkit/contracts';
 import { Store, StorageError, newId } from './foundation';
@@ -41,6 +42,7 @@ export type WorkRun = {
   model_json: string;
 };
 export type WorkState = {
+  research?: ResearchProgress;
   schemaVersion: 1;
   toolCatalogVersion: string;
   definition: WorkDefinition;
@@ -151,7 +153,13 @@ export class WorkRepository {
     definition: WorkDefinition,
     steps: PlanStepInput[],
     selected: string[],
-    prior?: { taskId: string; version: number; rootRunId: string; toolCatalogVersion?: string },
+    prior?: {
+      taskId: string;
+      version: number;
+      rootRunId: string;
+      toolCatalogVersion?: string;
+      research?: ResearchProgress;
+    },
   ) {
     const session = this.session(sessionId),
       time = this.store.now(),
@@ -204,6 +212,24 @@ export class WorkRepository {
         JSON.stringify({ schemaVersion: 1, steps }),
       );
     const state: WorkState = {
+      ...(definition.research && prior?.research
+        ? {
+            research: {
+              ...structuredClone(prior.research),
+              searches: 0,
+              reads: 0,
+              queries: [],
+              findings: [],
+              report: undefined,
+              earlyFinish: false,
+              parameterErrors: 0,
+              lastIssue: null,
+              lastRead: undefined,
+              stagnation: undefined,
+              revision: prior.research.revision + 1,
+            },
+          }
+        : {}),
       schemaVersion: 1,
       toolCatalogVersion: prior?.toolCatalogVersion ?? WORK_TOOL_CATALOG_VERSION,
       definition,

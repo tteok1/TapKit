@@ -1,0 +1,83 @@
+{
+  "scope": "same production transport, no model requests",
+  "mode": "direct",
+  "checks": [
+    {
+      "url": "https://www.bing.com/search?q=IANA%20What%20resources%20does%20IANA%20coordinate%3F",
+      "dns": [
+        {
+          "family": 4,
+          "public": true
+        },
+        {
+          "family": 4,
+          "public": true
+        }
+      ],
+      "proxyResolved": true,
+      "proxyUsed": false,
+      "static": {
+        "status": 200,
+        "bytes": 100586,
+        "finalHost": "cn.bing.com"
+      },
+      "extraction": {
+        "chars": 1749,
+        "links": 16,
+        "publicLinks": [
+          "https://www.iana.org/",
+          "https://www.iana.org/about"
+        ]
+      },
+      "elapsedMs": 1358
+    },
+    {
+      "url": "https://www.iana.org/",
+      "dns": [
+        {
+          "family": 4,
+          "public": true
+        },
+        {
+          "family": 4,
+          "public": true
+        }
+      ],
+      "proxyResolved": true,
+      "proxyUsed": false,
+      "static": {
+        "status": 200,
+        "bytes": 6253,
+        "finalHost": "www.iana.org"
+      },
+      "extraction": {
+        "title": "Internet Assigned Numbers Authority",
+        "chars": 618,
+        "links": 11
+      },
+      "elapsedMs": 843
+    },
+    {
+      "url": "https://larus.net/cn/blog/what-is-iana/",
+      "dns": [
+        {
+          "family": 4,
+          "public": true
+        }
+      ],
+      "proxyResolved": true,
+      "proxyUsed": false,
+      "static": {
+        "status": 200,
+        "bytes": 192552,
+        "finalHost": "larus.net"
+      },
+      "extraction": {
+        "title": "什么是 IANA：互联网号码分配机构 - LARUS",
+        "chars": 4285,
+        "links": 15
+      },
+      "elapsedMs": 15316
+    }
+  ]
+}

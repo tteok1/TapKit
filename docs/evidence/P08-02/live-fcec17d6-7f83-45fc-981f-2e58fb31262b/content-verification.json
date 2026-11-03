@@ -1,0 +1,8 @@
+{
+  "verified": false,
+  "sourceCount": 1,
+  "quoteCount": 0,
+  "sha256": "5c28277ac8bc21d99bbd864527add0eb73e419ef190bc879195c49456bcb9f61",
+  "markdown": "# Example Domain公开页面用途核验\n\n## 问题与范围\n\n用途：形成可核查的研究报告\n\n范围：仅公开网页与明确选择的固定本地资料\n\n研究状态：部分成果；存在未覆盖或未充分核验的问题\n\n## 结论与依据\n\n### Example Domain示例网页如何声明自己的用途？\n\n尚无可核验的结论。\n\n## 方法与局限\n\n实际搜索 3 次，本轮实际读取 1 次。只把已读取、固定版本且未被排除的原文作为依据。\n\n搜索候选不是引用证据；逐字核验只能证明来源如此陈述，不能自动证明陈述为真。推断与冲突仍需核查。发布日期未知时不能声称满足日期筛选。相同主域名不视为不同来源；不同域名或文件身份也不自动证明发布者独立。每个问题不足两个不同来源时保留为部分成果。\n\n时间范围：不限起日 至 不限止日。\n\n## 来源清单\n\n1. Example Domain\n   来源：https://example.com/\n   访问/固定时间：2026-11-01T06:41:45.326Z；网页声明发布日期：未知。\n   状态：ready；内容SHA256：0a080719be9fbb82a86a45b80dc8c2a430fbe17dc93d23758debac092864d00f。\n",
+  "scope": "single public seed; partial, no claim of independent publisher verification"
+}

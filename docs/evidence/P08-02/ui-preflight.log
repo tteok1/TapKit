@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.selectOption: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('form', { name: '新建工作' }).getByLabel('工作类型', { exact: true })
+
+    at D:\Tapkit-public\scripts\p08-research-ui.mjs:18:45 {
+  log: [
+    "  - waiting for getByRole('form', { name: '新建工作' }).getByLabel('工作类型', { exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.21.0

@@ -56,6 +56,54 @@ export function installChatFixture(models: ModelService) {
     },
     classifyError: () => ({ code: 'STREAM_INTERRUPTED', retryable: false }),
     async *stream(request, signal) {
+      if (request.systemModules.some((module) => module.id === 'tapkit.research')) {
+        const state = JSON.parse(request.messages[0]!.text) as {
+          spec: { questions: { key: string }[]; seedUrls: string[] };
+          materials: {
+            source: { id: string };
+            text: string;
+            evidence: { id: string; quote: string }[];
+          }[];
+          findings: unknown[];
+          queries: unknown[];
+        };
+        const questionKey = state.spec.questions[0]!.key;
+        const tool = !state.queries.length
+          ? { name: 'research.search', arguments: { questionKey } }
+          : state.materials.length < 2
+            ? {
+                name: 'research.read',
+                arguments: {
+                  questionKey,
+                  url: state.spec.seedUrls[state.materials.length],
+                  refresh: false,
+                  offset: 0,
+                },
+              }
+            : !state.findings.length
+              ? {
+                  name: 'research.record',
+                  arguments: {
+                    questionKey,
+                    kind: 'conflict',
+                    evidenceIds: [
+                      state.materials[0]!.evidence.find((e) =>
+                        /公开价格\s*\d+\s*元。/.test(e.quote),
+                      )!.id,
+                    ],
+                    opposingEvidenceIds: [
+                      state.materials[1]!.evidence.find((e) =>
+                        /公开价格\s*\d+\s*元。/.test(e.quote),
+                      )!.id,
+                    ],
+                  },
+                }
+              : { name: 'research.report', arguments: {} };
+        signal.throwIfAborted();
+        yield { type: 'tool_end', callId: newId(), ...tool };
+        yield { type: 'finish', reason: 'tool_calls', nativeStateRef: '' };
+        return;
+      }
       if (request.systemModules.some((module) => module.id === 'tapkit.work')) {
         signal.throwIfAborted();
         const payload = JSON.parse(

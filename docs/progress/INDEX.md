@@ -1,5 +1,7 @@
 # 开发进度索引
 
+P08-02=implemented_and_verified；v7证据编号/有界分页/Core原文与确定性报告改造及验收完成。check/496unit/33研究集成、新接口桌面1项已验；#44隔离直连检测通过后真实run整轮passed，4模型/7工具、成功搜索/两源两条逐字事实/Core report、MD/JSON全部核验，0参数错误/预留0。产物因单源陈述未交叉核验标partial，旧失败及原代理异常保留。检测44/50（新增14/20余6），27副本清理；未提交/推送，不开始P08-03或阶段收口。
+
 2026-10-31：基于最新main ee06f746d380bc47e99c8cec30534e6b425cf15d新建codex/p08-01-browser。P08-01实现与验收完成：470 unit、18 P08 integration、2 Electron及智谱真实网页→落盘MD通过；连接累计3/20。P08-02/03未开始，P08仍in_progress；原P07 gate范围保持。开发分支头4477c3c已按用户授权快进合入并推送main，开发分支保留；与CI76已验代码一致，合并记录见docs/evidence/P08-01/main-merge.json。CI74/75唯一失败为旧桥白名单漏browserCommand；本地2/2修复通过，修复ae078aa已推送，CI76三个job全部success：主check单元470、集成482过/1既有skip、桌面50全过；Office与启动诊断通过。
 
 CI73三个job全success，测试清理及资料保全保持；耗时只读审计未发现十分钟代码执行退化。既有未提交文档和耗时证据保留。历史流水完整迁至[原索引](../evidence/P08-01/preflight-2026-10-31/prior-index.md)，各任务/gate链接继续有效。
@@ -31,7 +33,7 @@ CI73三个job全success，测试清理及资料保全保持；耗时只读审计
 | P07-02 | 表格分析、图表与可交互数据成果     | P07-01         | implemented_and_verified      | docs/progress/P07-02.md              |
 | P07-03 | 演示文稿生成与办公质量回归         | P07-02         | implemented_and_verified      | docs/progress/P07-03.md              |
 | P08-01 | 匿名浏览器交互与用户接管           | P07-03, P05-01 | implemented_and_verified      | docs/progress/P08-01.md              |
-| P08-02 | 深度研究工作流与来源核验           | P08-01         | not_started                   | docs/progress/P08-02.md              |
+| P08-02 | 深度研究工作流与来源核验           | P08-01         | implemented_and_verified      | docs/progress/P08-02.md              |
 | P08-03 | 有界子Agent与独立任务协调          | P08-02         | not_started                   | docs/progress/P08-03.md              |
 | P09-01 | 代码项目、Git隔离与差异审阅        | P08-03         | not_started                   | docs/progress/P09-01.md              |
 | P09-02 | 终端、依赖准备与代码测试执行       | P09-01, P00-03 | not_started                   | docs/progress/P09-02.md              |

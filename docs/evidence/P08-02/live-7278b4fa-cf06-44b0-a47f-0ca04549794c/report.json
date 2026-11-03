@@ -1,0 +1,38 @@
+{
+  "status": "failed",
+  "connectionAttempts": [
+    {
+      "number": 6,
+      "status": "passed",
+      "startedAt": "2026-10-31T16:27:19.150Z",
+      "finishedAt": "2026-10-31T16:27:24.655Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": true,
+  "taskStarted": true,
+  "task": {
+    "runId": "01a192c9-9079-74fb-ba5c-144cbafe2a6a",
+    "status": "failed",
+    "reason": "STREAM_INTERRUPTED",
+    "calls": 1,
+    "tools": 0,
+    "formats": []
+  },
+  "usage": [
+    {
+      "source": "estimated",
+      "input_tokens": null,
+      "output_tokens": null,
+      "charged_tokens": 12586
+    }
+  ],
+  "credentialRemoved": true,
+  "startedAt": "2026-10-31T16:27:00.205Z",
+  "phase": "wait_task",
+  "budget": {
+    "reserved_tokens": 0,
+    "used_tokens": 12586
+  },
+  "error": "UI_OR_INTERNAL_ERROR",
+  "finishedAt": "2026-10-31T16:27:31.719Z"
+}

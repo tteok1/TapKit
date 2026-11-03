@@ -1,5 +1,13 @@
 # 数据模型与事务契约
 
+P08-02模型投影补充（ADR0076）：materials.evidence的e_编号绑定已读sourceId、contentHash、字符start/end与quoteHash，目录只供当前请求选择。模型record用supports/opposes编号，Core回填fact原文再转原ResearchFindingInput严格校验；不新增数据库/IPC契约。旧内部引文批量参数兼容，实际来源权限、排除、版本与哈希仍在执行/报告时复核。
+
+fact一次选择多个编号时按完整原文精确分组，不同原文各建一条独立逐字陈述，只有相同原文合并来源支持；逐结论质量规则不变，不把不同陈述当互证。inference/conflict/gap保持原语义，事实附反面证据仍拒绝。
+
+v4实际模型参数为必填questionKey/evidenceIds，kind默认fact；推断可用text、冲突用opposingEvidenceIds，gap显式空evidenceIds。模型只见编号/原文及240字预览，完整快照绑定元数据留Core。supports/opposes继续作为Core内部引文契约，不再作为模型API参数。
+
+P08-02（ADR0076）：runs.work_json可选research保存有界ResearchSpec/Progress（256KB）；schema20 research_snapshots登记授权本地版本提取Blob并维护引用计数，永久文件/会话清理释放。网页仍用web_sources固定Blob，可选publishedAt只采明确网页元数据。事实/冲突引用保存sourceId、quote、字符start/end及quoteHash；UI分页摘要不搬运全部原文，research.source按引用返回归档窗口。报告与JSON来源清单保留hash，不作为研究输入。
+
 P06 schema17：[ADR0067](../adr/0067-durable-work-on-shared-run-ledger.md) / 0017_work.sql保留旧task/run身份，扩展tasks.mode与组织字段，runs.work_json存固定定义/问题/活跃时间。plan_steps、tool_call_attempts、process_handles、notifications、work_consumers追加；通知游标与去重落库。重试/steer继承root预算，成果及工具receipt同事务。FileOwner.task仅允许同profile/task/session生成的固定产物版本，原件、其他任务和已删归属拒绝访问；会话永久清理同时擦除计划/审批/通知正文与命令回执。
 
 P05托管搜索（ADR0066）：ModelRequest增加隔离hostedSearch配置，ModelEvent增加hosted_search候选/次数；复用provider_attempts/usage_ledger，不另建run状态。工具结果保留公开候选/调用次数/费用未知说明，搜索辅助文本和原生服务端块不持久化。原web_sources/schema16保持。

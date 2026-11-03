@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "task": "P08-02",
+  "scope": "synthetic evidence-contract evaluation; no universal factual-accuracy claim",
+  "maxSearches": 8,
+  "maxReads": 40,
+  "maxRoundsPerQuestion": 3,
+  "cases": [
+    {
+      "id": "conflict",
+      "expected": "both distinct fixed source quotes retained, no majority verdict",
+      "test": "multi-source conflict"
+    },
+    {
+      "id": "unavailable",
+      "expected": "unavailable state and partial report; no fake citation",
+      "test": "unavailable and no-answer"
+    },
+    {
+      "id": "time",
+      "expected": "declared metadata only, unknown/outside dates cannot support claims",
+      "test": "time fixture"
+    },
+    {
+      "id": "exclude",
+      "expected": "new version, old source rejected, root budget retained",
+      "test": "mid-run source exclusion"
+    },
+    {
+      "id": "no-answer",
+      "expected": "evidence gap, no references, partial report",
+      "test": "unavailable and no-answer"
+    }
+  ],
+  "grader": "tests/integration/P08-02.research.test.ts",
+  "citationRequirements": {
+    "sourceExists": true,
+    "exactQuote": true,
+    "immutableHash": true,
+    "characterLocator": true
+  }
+}

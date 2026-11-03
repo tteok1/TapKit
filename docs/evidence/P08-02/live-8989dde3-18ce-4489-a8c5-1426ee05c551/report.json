@@ -1,0 +1,330 @@
+{
+  "status": "not_verified",
+  "case": "discovery",
+  "connectionLimit": 30,
+  "connectionAttempts": [
+    {
+      "number": 18,
+      "status": "passed",
+      "startedAt": "2026-11-03T05:33:47.332Z",
+      "finishedAt": "2026-11-03T05:34:36.499Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": true,
+  "taskStarted": true,
+  "task": {
+    "runId": "01a19fe6-fbb3-7f02-b6b6-d747d72aac5f",
+    "status": "partial",
+    "reason": null,
+    "calls": 7,
+    "tools": 9,
+    "formats": [
+      "md",
+      "json"
+    ]
+  },
+  "usage": [
+    {
+      "source": "actual",
+      "input_tokens": 2178,
+      "output_tokens": 13,
+      "charged_tokens": 2191
+    },
+    {
+      "source": "actual",
+      "input_tokens": 2243,
+      "output_tokens": 129,
+      "charged_tokens": 2372
+    },
+    {
+      "source": "estimated",
+      "input_tokens": null,
+      "output_tokens": null,
+      "charged_tokens": 26631
+    },
+    {
+      "source": "actual",
+      "input_tokens": 5015,
+      "output_tokens": 153,
+      "charged_tokens": 5168
+    },
+    {
+      "source": "actual",
+      "input_tokens": 5015,
+      "output_tokens": 921,
+      "charged_tokens": 5936
+    },
+    {
+      "source": "actual",
+      "input_tokens": 5026,
+      "output_tokens": 62,
+      "charged_tokens": 5088
+    },
+    {
+      "source": "estimated",
+      "input_tokens": null,
+      "output_tokens": null,
+      "charged_tokens": 26662
+    }
+  ],
+  "credentialRemoved": true,
+  "startedAt": "2026-11-03T05:33:23.252Z",
+  "networkMode": "direct",
+  "phase": "wait_task",
+  "budget": {
+    "reserved_tokens": 0,
+    "used_tokens": 74048
+  },
+  "providerAttempts": [
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "failed",
+      "error_code": "NETWORK_ERROR"
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "interrupted",
+      "error_code": "STREAM_INTERRUPTED"
+    }
+  ],
+  "diagnostics": [
+    {
+      "summary": "模型返回的研究工具参数不符合完整格式，未执行本轮工具调用。"
+    },
+    {
+      "summary": "研究参数需要修正：RESEARCH_ARGUMENTS_INVALID：research.record findings:too_big"
+    }
+  ],
+  "toolTrace": [
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a19fe6-fc2e-729d-9f2e-dc986e225d89",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a19fe7-9647-7d30-8ae0-2d8fc4b74ad1",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 3,
+        "knownToolNames": [],
+        "otherToolCount": 3,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 33,
+        "deltaToolItems": 3,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 29,
+        "knownToolNames": [],
+        "otherToolNameItems": 3,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 3,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a19fe8-9aa7-7e2a-a348-711dcd544955",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 3,
+        "knownToolNames": [],
+        "otherToolCount": 3,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": null,
+        "frames": 0,
+        "deltaToolItems": 0,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 0,
+        "finishReasons": [],
+        "deliveredToolEnds": 0,
+        "outcome": "error"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a19fe9-feac-774e-a31f-16db49c51b7b",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 3,
+        "knownToolNames": [],
+        "otherToolCount": 3,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 4,
+        "deltaToolItems": 3,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 3,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 3,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a19fea-69cd-755e-9d37-f3843dcd3262",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 3,
+        "knownToolNames": [],
+        "otherToolCount": 3,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a19fea-cacf-706a-a7c5-e08268bbc61d",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 3,
+        "knownToolNames": [],
+        "otherToolCount": 3,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 30,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 28,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a19feb-37c4-73de-96b2-41294a2bf205",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 3,
+        "knownToolNames": [],
+        "otherToolCount": 3,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 0,
+        "argumentFailure": "schema",
+        "outcome": "error"
+      }
+    }
+  ],
+  "contentVerified": false,
+  "answerVerified": false,
+  "sourceReadVerified": true,
+  "multiSourceVerified": false,
+  "search": [
+    {
+      "query": "IANA What resources does IANA coordinate?",
+      "status": "ready",
+      "error": null,
+      "candidateCount": 3
+    }
+  ],
+  "searchAttempted": true,
+  "discoveryScope": "No seed URLs. Requires successful search, at least two actually read source groups with literal facts, and explicit report. Different domains do not prove publisher independence.",
+  "searchSettled": true,
+  "explicitReportCall": false,
+  "artifactBytesVerified": true,
+  "quality": "partial",
+  "researchCounts": {
+    "searches": 1,
+    "reads": 3,
+    "findings": 0
+  },
+  "finishedAt": "2026-11-03T05:40:19.977Z"
+}

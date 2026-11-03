@@ -1,0 +1,4 @@
+scripts/p08-research-live.mjs 150ms
+scripts/p08-research-audit.mjs 21ms (unchanged)
+$ node scripts/docs-check.mjs
+All 37 task states, started handoffs and completed requirement evidence links verified

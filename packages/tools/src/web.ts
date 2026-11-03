@@ -56,8 +56,33 @@ export function extractPage(html: string, pageUrl: string) {
   const root = parse(html),
     links: string[] = [];
   let title = '';
+  const published = new Set<number>();
+  const publication = (value: string | undefined) => {
+    if (!value || !/^\d{4}-\d{2}-\d{2}(?:T[\d:.,+Z-]+)?$/.test(value)) return;
+    const day = value.slice(0, 10),
+      stamp = Date.parse(value);
+    if (
+      Number.isNaN(stamp) ||
+      new Date(day).toISOString().slice(0, 10) !== day ||
+      stamp > Date.now() + 86400000
+    )
+      return;
+    published.add(stamp);
+  };
   const walk = (node: Node, inTitle = false): string => {
     if ('tagName' in node) {
+      if (node.tagName === 'meta') {
+        const label = node.attrs
+          .find((a) => ['property', 'name', 'itemprop'].includes(a.name))
+          ?.value.toLowerCase();
+        if (['article:published_time', 'datepublished', 'dc.date.issued'].includes(label ?? ''))
+          publication(node.attrs.find((a) => a.name === 'content')?.value);
+      }
+      if (
+        node.tagName === 'time' &&
+        node.attrs.some((a) => a.name === 'itemprop' && a.value.toLowerCase() === 'datepublished')
+      )
+        publication(node.attrs.find((a) => a.name === 'datetime')?.value);
       if (
         skip.has(node.tagName) ||
         node.attrs.some(
@@ -102,7 +127,12 @@ export function extractPage(html: string, pageUrl: string) {
     throw new NetworkFailure('WEB_CAPTCHA');
   if (!text || (text.length < 400 && /sign in|log in|登录后|请先登录/i.test(text)))
     throw new NetworkFailure('WEB_LOGIN_REQUIRED');
-  return { title: title || new URL(pageUrl).hostname, text, links: [...new Set(links)] };
+  return {
+    title: title || new URL(pageUrl).hostname,
+    text,
+    links: [...new Set(links)],
+    ...(published.size === 1 ? { publishedAt: [...published][0]! } : {}),
+  };
 }
 export function webEnabled(text: string, options: WebOptions, projectOnly: boolean) {
   return (

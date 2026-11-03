@@ -1,0 +1,571 @@
+$ vitest run --config vitest.config.ts --project integration
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P03-02.native-preview.test.ts (4 tests | 3 failed) 32813ms
+   × P03-02 native preview converts six DOCX/PPTX samples through verified isolation and publishes fixed immutable caches 1292ms
+   × P03-02 native preview refuses late revoked scope after real Office finishes and retains the original 1267ms
+   × P03-02 native preview cancels the last observer, drains its Job and retries from the same untouched original 1643ms
+ ❯ |integration| tests/integration/P07-03.native-slides.test.ts (3 tests | 3 failed) 73484ms
+   × P07-03 native ten-slide five-layout light_business 16:9 32124ms
+   × P07-03 native ten-slide five-layout dark_presentation 16:9 18953ms
+   × P07-03 native ten-slide five-layout light_business 4:3 22353ms
+ ❯ |integration| tests/integration/P07-01.native-render.test.ts (3 tests | 3 failed) 75672ms
+   × P07-01 T07 native rendered representative document 0 24191ms
+   × P07-01 T07 native rendered representative document 1 30155ms
+   × P07-01 T07 native rendered representative document 2 21313ms
+ ❯ |integration| tests/integration/P07-01.native-layout.test.ts (1 test | 1 failed) 17849ms
+   × P07-01 bounded layout candidates preserve a long report after isolated PDF rendering 17835ms
+ ❯ |integration| tests/integration/P07-02.native-limits.test.ts (4 tests | 4 failed) 75795ms
+   × P07-02 native T07/T19 duplicate_join refuses publication and preserves the original 18999ms
+   × P07-02 native T07/T19 zero_division refuses publication and preserves the original 17755ms
+   × P07-02 native T07/T19 cell_limit refuses publication and preserves the original 19264ms
+   × P07-02 native T07/T19 external_link refuses publication and preserves the original 19710ms
+ ❯ |integration| tests/integration/P07-02.native-data.test.ts (1 test | 1 failed) 26093ms
+   × P07-02 native isolated data pipeline recalculates decimal formula caches, publishes exports atomically and preserves its source 26062ms
+ ❯ |integration| tests/integration/P07-02.native-transform.test.ts (1 test | 1 failed) 24073ms
+   × P07-02 native multiple XLSX/CSV inputs preserve dates and literal strings across cleaning, join and CSV-safe exports 24038ms
+vite v7.3.6 building ssr environment for production...
+transforming...
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 883 modules transformed.
+rendering chunks...
+.test-data/P01-02-native-runner/shared-BO9GHoW-.cjs  111.31 kB
+.test-data/P01-02-native-runner/profile.cjs          327.68 kB
+.test-data/P01-02-native-runner/runner.cjs           339.38 kB
+✓ built in 2.71s
+ ❯ |integration| tests/integration/P07-01.native-image.test.ts (1 test | 1 failed) 30579ms
+   × P07-01 native isolated Office renderer displays a synthetic PNG document 30560ms
+ ❯ |integration| tests/integration/P07-03.native-cache.test.ts (2 tests | 2 failed) 50829ms
+   × P07-03 native private chart cache valid 23515ms
+   × P07-03 native private chart cache formula 27275ms
+stderr | tests/integration/P03-01.native-parser.test.ts > P03-01 native parser cancellation and helper kill preserve the version and allow one fenced retry
+P03_SYNTHETIC_WORKER_DIAGNOSTIC {"stdout":"","stderr":""}
+
+stderr | tests/integration/P03-01.native-parser.test.ts > P03-01 native parser cancellation and helper kill preserve the version and allow one fenced retry
+FILE_PARSE_STAGING_CLEANUP_PENDING
+
+ ❯ |integration| tests/integration/P03-01.native-parser.test.ts (3 tests | 1 failed) 40297ms
+   × P03-01 native parser cancellation and helper kill preserve the version and allow one fenced retry 3164ms
+ ❯ |integration| tests/integration/P07-01.native-candidate.test.ts (1 test | 1 failed) 21543ms
+   × P07-01 transient PDF inspection runs in the native sandbox without publishing 21515ms
+ ❯ |integration| tests/integration/P08-02.research.test.ts (13 tests | 2 failed) 7325ms
+   × P08-02 local extraction survives GC but original permanent deletion removes its private snapshot 525ms
+   × P08-02 paginated finding summaries stay below IPC bounds while full quotes remain in archived locators 589ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 23 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P03-01.native-parser.test.ts > P03-01 native parser cancellation and helper kill preserve the version and allow one fenced retry
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "01a19298-21ef-7f68-9918-98db62975815",
++ ]
+
+ ❯ cleaned tests/integration/P03-01.native-parser.test.ts:109:60
+    107| }
+    108| async function cleaned(store: Store) {
+    109|   expect(await readdir(join(store.dataDir, 'tmp/ingest'))).toEqual([]);
+       |                                                            ^
+    110| }
+    111| // These cases actually start the helper. Run them on the authorised W…
+ ❯ tests/integration/P03-01.native-parser.test.ts:280:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/23]⎯
+
+ FAIL  |integration| tests/integration/P03-02.native-preview.test.ts > P03-02 native preview converts six DOCX/PPTX samples through verified isolation and publishes fixed immutable caches
+Error: SANDBOX_UNAVAILABLE
+ ❯ FileParser.execute packages/core/src/file-parser.ts:387:15
+    385|             }
+    386|           }
+    387|         throw new WorkerFailure(reason);
+       |               ^
+    388|       }
+    389|       // Bounded regular-file output only. Renderer never receives the…
+ ❯ tests/integration/P03-02.native-preview.test.ts:161:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/23]⎯
+
+ FAIL  |integration| tests/integration/P03-02.native-preview.test.ts > P03-02 native preview refuses late revoked scope after real Office finishes and retains the original
+Error: SANDBOX_UNAVAILABLE
+ ❯ FileParser.execute packages/core/src/file-parser.ts:387:15
+    385|             }
+    386|           }
+    387|         throw new WorkerFailure(reason);
+       |               ^
+    388|       }
+    389|       // Bounded regular-file output only. Renderer never receives the…
+ ❯ tests/integration/P03-02.native-preview.test.ts:254:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/23]⎯
+
+ FAIL  |integration| tests/integration/P03-02.native-preview.test.ts > P03-02 native preview cancels the last observer, drains its Job and retries from the same untouched original
+Error: SANDBOX_UNAVAILABLE
+ ❯ FileParser.execute packages/core/src/file-parser.ts:387:15
+    385|             }
+    386|           }
+    387|         throw new WorkerFailure(reason);
+       |               ^
+    388|       }
+    389|       // Bounded regular-file output only. Renderer never receives the…
+ ❯ tests/integration/P03-02.native-preview.test.ts:360:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/23]⎯
+
+ FAIL  |integration| tests/integration/P07-01.native-candidate.test.ts > P07-01 transient PDF inspection runs in the native sandbox without publishing
+AssertionError: expected 'failed' to be 'available' // Object.is equality
+
+Expected: "available"
+Received: "failed"
+
+ ❯ tests/integration/P07-01.native-candidate.test.ts:16:41
+     14|     const root = resolve('.'),
+     15|       caps = await readExecutionCapabilities(root);
+     16|     expect(caps.nativeExecution.status).toBe('available');
+       |                                         ^
+     17|     const versionId = newId(),
+     18|       directory = await staging.create(versionId),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/23]⎯
+
+ FAIL  |integration| tests/integration/P07-01.native-image.test.ts > P07-01 native isolated Office renderer displays a synthetic PNG document
+AssertionError: expected 'failed' to be 'available' // Object.is equality
+
+Expected: "available"
+Received: "failed"
+
+ ❯ tests/integration/P07-01.native-image.test.ts:20:39
+     18|   const root = resolve('.'),
+     19|     caps = await readExecutionCapabilities(root);
+     20|   expect(caps.nativeExecution.status).toBe('available');
+       |                                       ^
+     21|   expect(caps.officeRender.status).toBe('available');
+     22|   await mkdir('.test-data', { recursive: true });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/23]⎯
+
+ FAIL  |integration| tests/integration/P07-01.native-layout.test.ts > P07-01 bounded layout candidates preserve a long report after isolated PDF rendering
+AssertionError: expected 'failed' to be 'available' // Object.is equality
+
+Expected: "available"
+Received: "failed"
+
+ ❯ tests/integration/P07-01.native-layout.test.ts:15:39
+     13|   const root = resolve('.'),
+     14|     caps = await readExecutionCapabilities(root);
+     15|   expect(caps.nativeExecution.status).toBe('available');
+       |                                       ^
+     16|   expect(caps.officeRender.status).toBe('available');
+     17|   await mkdir('.test-data', { recursive: true });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/23]⎯
+
+ FAIL  |integration| tests/integration/P07-01.native-render.test.ts > P07-01 T07 native rendered representative document 0
+ FAIL  |integration| tests/integration/P07-01.native-render.test.ts > P07-01 T07 native rendered representative document 1
+ FAIL  |integration| tests/integration/P07-01.native-render.test.ts > P07-01 T07 native rendered representative document 2
+AssertionError: expected 'failed' to be 'available' // Object.is equality
+
+Expected: "available"
+Received: "failed"
+
+ ❯ tests/integration/P07-01.native-render.test.ts:19:41
+     17|   async ({ spec, index }) => {
+     18|     const caps = await readExecutionCapabilities(root);
+     19|     expect(caps.nativeExecution.status).toBe('available');
+       |                                         ^
+     20|     expect(caps.officeRender.status).toBe('available');
+     21|     await mkdir('.test-data', { recursive: true });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/23]⎯
+
+ FAIL  |integration| tests/integration/P07-02.native-data.test.ts > P07-02 native isolated data pipeline recalculates decimal formula caches, publishes exports atomically and preserves its source
+AssertionError: expected 'failed' to be 'available' // Object.is equality
+
+Expected: "available"
+Received: "failed"
+
+ ❯ tests/integration/P07-02.native-data.test.ts:26:41
+     24|     const run = f.work.repo.row(view.runId),
+     25|       caps = await readExecutionCapabilities(resolve('.'));
+     26|     expect(caps.nativeExecution.status).toBe('available');
+       |                                         ^
+     27|     expect(caps.officeRender.status).toBe('available');
+     28|     const gateway = new WorkToolGateway(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/23]⎯
+
+ FAIL  |integration| tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 duplicate_join refuses publication and preserves the original
+ FAIL  |integration| tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 zero_division refuses publication and preserves the original
+ FAIL  |integration| tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 cell_limit refuses publication and preserves the original
+ FAIL  |integration| tests/integration/P07-02.native-limits.test.ts > P07-02 native T07/T19 external_link refuses publication and preserves the original
+AssertionError: expected 'failed' to be 'available' // Object.is equality
+
+Expected: "available"
+Received: "failed"
+
+ ❯ tests/integration/P07-02.native-limits.test.ts:91:43
+     89|       const spec = AnalysisSpecSchema.parse(initial),
+     90|         caps = await readExecutionCapabilities(resolve('.'));
+     91|       expect(caps.nativeExecution.status).toBe('available');
+       |                                           ^
+     92|       const base = new NativeSandboxExecutor(resolve('.'));
+     93|       const gateway = new WorkToolGateway(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/23]⎯
+
+ FAIL  |integration| tests/integration/P07-02.native-transform.test.ts > P07-02 native multiple XLSX/CSV inputs preserve dates and literal strings across cleaning, join and CSV-safe exports
+AssertionError: expected 'failed' to be 'available' // Object.is equality
+
+Expected: "available"
+Received: "failed"
+
+ ❯ tests/integration/P07-02.native-transform.test.ts:171:38
+    169|     });
+    170|     const caps = await readExecutionCapabilities(resolve('.'));
+    171|     expect(caps.officeRender.status).toBe('available');
+       |                                      ^
+    172|     const gateway = new WorkToolGateway(
+    173|       f.artifacts,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/23]⎯
+
+ FAIL  |integration| tests/integration/P07-03.native-cache.test.ts > P07-03 native private chart cache valid
+ FAIL  |integration| tests/integration/P07-03.native-cache.test.ts > P07-03 native private chart cache formula
+AssertionError: expected 'failed' to be 'available' // Object.is equality
+
+Expected: "available"
+Received: "failed"
+
+ ❯ tests/integration/P07-03.native-cache.test.ts:51:45
+     49|         expect(job).toBeDefined();
+     50|         const caps = await readExecutionCapabilities(resolve('.'));
+     51|         expect(caps.nativeExecution.status).toBe('available');
+       |                                             ^
+     52|         const parser = new FileParser(resolve('.'), f.files, caps);
+     53|         if (mode === 'valid') {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/23]⎯
+
+ FAIL  |integration| tests/integration/P07-03.native-slides.test.ts > P07-03 native ten-slide five-layout light_business 16:9
+ FAIL  |integration| tests/integration/P07-03.native-slides.test.ts > P07-03 native ten-slide five-layout dark_presentation 16:9
+ FAIL  |integration| tests/integration/P07-03.native-slides.test.ts > P07-03 native ten-slide five-layout light_business 4:3
+AssertionError: expected 'failed' to be 'available' // Object.is equality
+
+Expected: "available"
+Received: "failed"
+
+ ❯ tests/integration/P07-03.native-slides.test.ts:29:42
+     27|         const root = resolve('.'),
+     28|           caps = await readExecutionCapabilities(root);
+     29|         expect(caps.officeRender.status).toBe('available');
+       |                                          ^
+     30|         const spec = sampleDeck(theme, ratio);
+     31|         spec.slides[4] = {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/23]⎯
+
+ FAIL  |integration| tests/integration/P08-02.research.test.ts > P08-02 local extraction survives GC but original permanent deletion removes its private snapshot
+ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "findings",
+      0,
+      "independentSources"
+    ],
+    "message": "Invalid input: expected number, received undefined"
+  },
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "distinctSourceGroups"
+    ],
+    "path": [
+      "findings",
+      0
+    ],
+    "message": "Unrecognized key: \"distinctSourceGroups\""
+  }
+]
+ ❯ ResearchService.save packages/core/src/research-service.ts:130:45
+    128|     if (Buffer.byteLength(JSON.stringify(progress)) > 256000)
+    129|       throw new StorageError('OUTPUT_LIMIT_REACHED');
+    130|     state.research = ResearchProgressSchema.parse(progress);
+       |                                             ^
+    131|     this.repo.save(current, state);
+    132|   }
+ ❯ ResearchService.finishEarly packages/core/src/research-service.ts:1003:10
+ ❯ tests/integration/P08-02.research.test.ts:365:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/23]⎯
+
+ FAIL  |integration| tests/integration/P08-02.research.test.ts > P08-02 paginated finding summaries stay below IPC bounds while full quotes remain in archived locators
+ZodError: [
+  {
+    "code": "invalid_union",
+    "errors": [
+      [
+        {
+          "expected": "string",
+          "code": "invalid_type",
+          "path": [
+            "research",
+            "progress",
+            "findings",
+            0,
+            "supports",
+            0,
+            "quote"
+          ],
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "expected": "string",
+          "code": "invalid_type",
+          "path": [
+            "research",
+            "progress",
+            "findings",
+            0,
+            "supports",
+            1,
+            "quote"
+          ],
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "expected": "string",
+          "code": "invalid_type",
+          "path": [
+            "research",
+            "progress",
+            "findings",
+            0,
+            "supports",
+            2,
+            "quote"
+          ],
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "expected": "string",
+          "code": "invalid_type",
+          "path": [
+            "research",
+            "progress",
+            "findings",
+            0,
+            "opposes",
+            0,
+            "quote"
+          ],
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "expected": "string",
+          "code": "invalid_type",
+          "path": [
+            "research",
+            "progress",
+            "findings",
+            0,
+            "opposes",
+            1,
+            "quote"
+          ],
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "expected": "string",
+          "code": "invalid_type",
+          "path": [
+            "research",
+            "progress",
+            "findings",
+            0,
+            "opposes",
+            2,
+            "quote"
+          ],
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "expected": "string",
+          "code": "invalid_type",
+          "path": [
+            "research",
+            "progress",
+            "findings",
+            1,
+            "supports",
+            0,
+            "quote"
+          ],
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "expected": "string",
+          "code": "invalid_type",
+          "path": [
+            "research",
+            "progress",
+            "findings",
+            1,
+            "supports",
+            1,
+            "quote"
+          ],
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "expected": "string",
+          "code": "invalid_type",
+          "path": [
+            "research",
+            "progress",
+            "findings",
+            1,
+            "supports",
+            2,
+            "quote"
+          ],
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "expected": "string",
+          "code": "invalid_type",
+          "path": [
+            "research",
+            "progress",
+            "findings",
+            1,
+            "opposes",
+            0,
+            "quote"
+          ],
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "expected": "string",
+          "code": "invalid_type",
+          "path": [
+            "research",
+            "progress",
+            "findings",
+            1,
+            "opposes",
+            1,
+            "quote"
+          ],
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "expected": "string",
+          "code": "invalid_type",
+          "path": [
+            "research",
+            "progress",
+            "findings",
+            1,
+            "opposes",
+            2,
+            "quote"
+          ],
+          "message": "Invalid input: expected string, received undefined"
+        }
+      ],
+      [
+        {
+          "expected": "object",
+          "code": "invalid_type",
+          "path": [
+            "researchSource"
+          ],
+          "message": "Invalid input: expected object, received undefined"
+        },
+        {
+          "expected": "string",
+          "code": "invalid_type",
+          "path": [
+            "text"
+          ],
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "expected": "number",
+          "code": "invalid_type",
+          "path": [
+            "offset"
+          ],
+          "message": "Invalid input: expected number, received undefined"
+        },
+        {
+          "expected": "array",
+          "code": "invalid_type",
+          "path": [
+            "highlights"
+          ],
+          "message": "Invalid input: expected array, received undefined"
+        },
+        {
+          "code": "unrecognized_keys",
+          "keys": [
+            "research"
+          ],
+          "path": [],
+          "message": "Unrecognized key: \"research\""
+        }
+      ]
+    ],
+    "path": [],
+    "message": "Invalid input"
+  }
+]
+ ❯ ResearchService.dispatch packages/core/src/research-service.ts:1136:37
+    1134|       if (p.findingOffset + findings.length < progress.findings.length)
+    1135|         view.nextFindingOffset = p.findingOffset + findings.length;
+    1136|       return ok(ResearchReplySchema.parse({ research: view }));
+       |                                     ^
+    1137|     }
+    1138|     if (request.command === 'research.source') {
+ ❯ tests/integration/P08-02.research.test.ts:567:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/23]⎯
+
+
+ Test Files  12 failed | 73 passed | 1 skipped (86)
+      Tests  23 failed | 490 passed | 1 skipped (514)
+   Start at  23:17:24
+   Duration  1368.73s (tests 95%, import 4%, transform 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:41
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:223:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:220:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0

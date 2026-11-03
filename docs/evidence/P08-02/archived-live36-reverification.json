@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "runId": "01a1a143-6663-7198-9942-2ee7ad8eb355",
+  "originalReceiptStatus": "not_verified",
+  "originalReceiptSha256": "5a486ecc22684678beedf3f1c550633905eba1c297fd5ab7756f16d7a6a8fed5",
+  "originalReceiptUnchanged": true,
+  "connection": 36,
+  "sourceGroups": 2,
+  "quoteCount": 10,
+  "quality": "partial",
+  "reportLedgerVerified": true,
+  "sourceManifestVerified": true,
+  "reservedTokens": 0,
+  "credentialRemoved": true,
+  "files": [
+    {
+      "file": "archived-live36-report.md",
+      "bytes": 6161,
+      "sha256": "79aeb480f29a5844d10629e5ffcb096e891071d51e7c9a74b87090f6140c54b9"
+    },
+    {
+      "file": "archived-live36-sources.json",
+      "bytes": 7078,
+      "sha256": "6280fd75626621eae63e627c1da73e16864d36f52a1d13625aae8e11ea77edee"
+    }
+  ],
+  "verifiedBuild": {
+    "packages/core/dist/index.cjs": "5da69c2d0b4bce627da67680db22132d66a99377ed76778a4276114d0c82ddea",
+    "apps/desktop/out/main/index.js": "fcac4410586208b5777feb42365a5997561c196b648035c92ea0dae842fa8db9"
+  },
+  "scope": "Frozen real model run reverified with correct literal Markdown entity/blockquote matching. Original not_verified receipt retained. No new API/model request. Later twelve-ID API ceiling verified separately by local regression."
+}

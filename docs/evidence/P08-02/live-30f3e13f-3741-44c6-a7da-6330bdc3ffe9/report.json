@@ -1,0 +1,171 @@
+{
+  "status": "passed",
+  "connectionAttempts": [
+    {
+      "number": 13,
+      "status": "failed",
+      "startedAt": "2026-11-01T06:53:02.681Z",
+      "finishedAt": "2026-11-01T06:54:10.445Z"
+    },
+    {
+      "number": 14,
+      "status": "passed",
+      "startedAt": "2026-11-01T06:54:10.628Z",
+      "finishedAt": "2026-11-01T06:54:15.076Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": true,
+  "taskStarted": true,
+  "task": {
+    "runId": "01a195e3-2ec4-7e69-a1a4-8ab4c4db705a",
+    "status": "partial",
+    "reason": null,
+    "calls": 3,
+    "tools": 3,
+    "formats": [
+      "md",
+      "json"
+    ]
+  },
+  "usage": [
+    {
+      "source": "actual",
+      "input_tokens": 2033,
+      "output_tokens": 46,
+      "charged_tokens": 2079
+    },
+    {
+      "source": "actual",
+      "input_tokens": 2276,
+      "output_tokens": 185,
+      "charged_tokens": 2461
+    },
+    {
+      "source": "actual",
+      "input_tokens": 2417,
+      "output_tokens": 5,
+      "charged_tokens": 2422
+    }
+  ],
+  "credentialRemoved": true,
+  "startedAt": "2026-11-01T06:52:37.488Z",
+  "phase": "wait_task",
+  "budget": {
+    "reserved_tokens": 0,
+    "used_tokens": 6962
+  },
+  "providerAttempts": [
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    }
+  ],
+  "diagnostics": [],
+  "toolTrace": [
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a195e3-2f4c-76b9-b84f-1f6dcf1faa2c",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 13,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 11,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a195e3-54dc-7adb-8453-980ad4613353",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a195e3-955e-792e-ac62-18f05794aea9",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    }
+  ],
+  "contentVerified": true,
+  "answerVerified": true,
+  "sourceReadVerified": true,
+  "search": [],
+  "searchAttempted": false,
+  "discoveryScope": "Explicit single seed URL; discovery is not required. Separate earlier attempts retain unavailable search evidence; this case does not verify successful live discovery.",
+  "searchSettled": true,
+  "explicitReportCall": true,
+  "artifactBytesVerified": true,
+  "quality": "partial",
+  "researchCounts": {
+    "searches": 0,
+    "reads": 1,
+    "findings": 2
+  },
+  "finishedAt": "2026-11-01T06:55:07.493Z"
+}

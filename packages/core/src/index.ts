@@ -12,7 +12,14 @@ import {
   ExportCommandSchemas,
   z,
 } from '@tapkit/contracts';
-import { openStore, BlobStore, FileRepository, StorageError, failure } from '@tapkit/storage';
+import {
+  openStore,
+  BlobStore,
+  FileRepository,
+  StorageError,
+  failure,
+  SCHEMA_VERSION,
+} from '@tapkit/storage';
 import { CoreService } from './service';
 import { FoundationWorker } from './worker';
 import { FileParser } from './file-parser';
@@ -29,6 +36,7 @@ import { ModelService } from './model-service';
 import { ChatService } from './chat-service';
 import { WebService } from './web-service';
 import { BrowserService } from './browser-service';
+import { ResearchService } from './research-service';
 import { BrowserCommandSchemas } from '@tapkit/contracts';
 import { ExportService } from './export-service';
 import { WorkService } from './work-service';
@@ -41,7 +49,7 @@ import { NetworkPolicyService } from '@tapkit/network';
 import { resolveNetworkProxy } from '@tapkit/providers';
 import { HistoryService } from './history-service';
 import { TemporaryService } from './temporary-service';
-import { createToolTraceWriter } from './tool-trace';
+import { createToolTraceWriter, createApiTransportTraceWriter } from './tool-trace';
 const port = process.parentPort;
 declare const __TAPKIT_TEST_BUILD__: boolean;
 if (!port) throw new Error('Core requires Electron utilityProcess parentPort');
@@ -85,6 +93,7 @@ async function start() {
         .strictObject({ proxyURL: z.string().max(2048) })
         .parse(await vault('network.proxy.resolve', store.profileId, { url })).proxyURL,
     createToolTraceWriter(dataDir!, store.profileId),
+    createApiTransportTraceWriter(dataDir!, store.profileId),
   );
   const models = new ModelService(store, providers);
   if (__TAPKIT_TEST_BUILD__ && process.env.TAPKIT_CHAT_FIXTURE === 'P02-02') {
@@ -214,19 +223,32 @@ async function start() {
             .parse(await vault('network.proxy.resolve', store.profileId, { url: value })).proxyURL,
       ),
   );
+  const research = new ResearchService(workArtifacts, web, chat);
+  const workGateway = new WorkToolGateway(
+    workArtifacts,
+    new WorkNativeTools(
+      process.env.TAPKIT_APP_ROOT ?? '',
+      workArtifacts,
+      service.executionCapabilities,
+    ),
+    chat,
+    browser,
+    research,
+  );
+  research.convert = (run, step, ref, guard, signal) => {
+    if (ref.kind !== 'file') throw new StorageError('VALIDATION_ERROR');
+    return workGateway.execute(
+      run,
+      step,
+      { tool: 'office.convert', fileId: ref.fileId, versionId: ref.versionId },
+      guard,
+      signal,
+    );
+  };
   const work = new WorkService(
     store,
-    modelWorkDriver(models, chat),
-    new WorkToolGateway(
-      workArtifacts,
-      new WorkNativeTools(
-        process.env.TAPKIT_APP_ROOT ?? '',
-        workArtifacts,
-        service.executionCapabilities,
-      ),
-      chat,
-      browser,
-    ),
+    modelWorkDriver(models, chat, research),
+    workGateway,
     (ref, sessionId) => chat.material(ref, sessionId),
     models.claimRoot,
   );
@@ -566,7 +588,7 @@ async function start() {
       });
     }
   });
-  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: 19 });
+  port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: SCHEMA_VERSION });
   worker.start();
   sweepStaging();
   chat.start();

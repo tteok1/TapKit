@@ -51,3 +51,20 @@ it('P01-02 bounds a stalled system proxy resolver without accessing credentials'
   await result;
   expect(vi.getTimerCount()).toBe(0);
 });
+
+it('P08-02 resolves the approved public search URL with its query intact', async () => {
+  native.resolveProxy.mockResolvedValue('PROXY 127.0.0.1:7890');
+  const url = 'https://www.bing.com/search?q=' + encodeURIComponent('IANA 示例域名 用途');
+  expect(await resolveSystemProxy({ url })).toEqual({ proxyURL: 'http://127.0.0.1:7890' });
+  expect(native.resolveProxy).toHaveBeenCalledWith(url);
+  const longUrl = 'https://www.bing.com/search?q=' + 'a'.repeat(3000);
+  await resolveSystemProxy({ url: longUrl });
+  expect(native.resolveProxy).toHaveBeenCalledWith(longUrl);
+  for (const invalid of [
+    'https://user:secret@www.bing.com/search?q=public',
+    'https://www.bing.com/search?q=public#fragment',
+    'https://www.bing.com/search?q=' + 'a'.repeat(4096),
+  ])
+    await expect(resolveSystemProxy({ url: invalid })).rejects.toThrow();
+  expect(native.resolveProxy).toHaveBeenCalledTimes(2);
+});

@@ -1,0 +1,48 @@
+{
+  "case": "no-answer",
+  "fixtureHash": "c515fc1d237fd4a80a145bcf0e49718e1a39240d3fecfb44f6a354632cc18631",
+  "result": "passed",
+  "quality": "partial",
+  "root": {
+    "searches": 0,
+    "reads": 1
+  },
+  "sources": [
+    {
+      "id": "01a0a25d-0400-7962-9c33-8061d76dbb0e",
+      "kind": "web",
+      "ref": {
+        "kind": "web",
+        "sourceId": "01a0a25d-0400-7962-9c33-8061d76dbb0e",
+        "revision": 1
+      },
+      "questionKeys": [
+        "q1"
+      ],
+      "title": "evidence.example.com",
+      "url": "https://evidence.example.com/a",
+      "canonical": "https://evidence.example.com/a",
+      "contentHash": "ed3fb97af1fc00cead839b5581c44beb4c1a965040c8119e1a687d2f0d668639",
+      "fetchedAt": 1789430400000,
+      "publishedAt": null,
+      "status": "ready",
+      "excluded": false,
+      "error": null,
+      "truncated": false
+    }
+  ],
+  "findings": [
+    {
+      "questionKey": "q1",
+      "kind": "gap",
+      "text": "此问题尚无足够可核验的原文证据。",
+      "id": "01a0a25d-0400-7ac3-8f9f-ea1535c6016e",
+      "supports": [],
+      "opposes": [],
+      "distinctSourceGroups": 0
+    }
+  ],
+  "citationChecks": [],
+  "reportHash": "8f31031471eb8c0e8fc3d7342385dadd0da0fecc16cec9daef9e3ff51182b8e9",
+  "scope": "synthetic; literal locator/hash checks independent of model scoring"
+}

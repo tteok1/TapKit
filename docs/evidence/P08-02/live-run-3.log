@@ -1,0 +1,6 @@
+{"status":"running","checks":1,"connection":"running","task":null}
+{"status":"running","checks":1,"connection":"passed","task":null}
+{"status":"running","checks":1,"connection":"passed","task":null}
+{"status":"running","checks":1,"connection":"passed","task":null}
+{"status":"failed","checks":1,"connection":"passed","task":"failed"}
+{"status":"failed","checks":1,"connection":"passed","task":"failed"}

@@ -35,6 +35,7 @@ import {
   type Request,
   type ModelView,
 } from '@tapkit/contracts';
+import type { ApiTransportTraceSink } from './tool-trace';
 
 export type PrivateVault = (
   operation:
@@ -100,6 +101,7 @@ export class ProviderService {
     readonly vault: PrivateVault,
     private readonly resolveSystemProxy?: SystemProxyResolver,
     private readonly toolTrace?: ZhipuToolTraceSink,
+    private readonly apiTransportTrace?: ApiTransportTraceSink,
   ) {}
   private account(accountId: string) {
     const row = this.store.db
@@ -255,10 +257,14 @@ export class ProviderService {
                   },
                 );
                 const deadline = apiHeaderDeadlineMs(config);
+                const requestId = this.apiTransportTrace ? newId() : undefined;
                 return apiFetchForNetwork(
                   this.store.settings.values.network,
                   this.resolveSystemProxy,
-                  undefined,
+                  requestId
+                    ? (stage, elapsedMs) =>
+                        this.apiTransportTrace?.({ requestId, stage, elapsedMs })
+                    : undefined,
                   deadline,
                 )(input, init);
               },

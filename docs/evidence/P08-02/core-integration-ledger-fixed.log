@@ -1,0 +1,11 @@
+packages/core/src/research-service.ts 163ms
+$ vitest run --config vitest.config.ts --project integration "P08-02"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  23:09:22
+   Duration  6.02s (tests 63%, transform 24%, import 13%)
+

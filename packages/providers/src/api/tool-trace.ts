@@ -33,6 +33,10 @@ export const ZhipuToolTraceSchema = z.strictObject({
     otherToolNameItems: count,
     finishReasons: z.array(z.enum(reasons)).max(reasons.length),
     deliveredToolEnds: count,
+    argumentFailure: z
+      .enum(['tool_name', 'json', 'call_shape', 'schema', 'missing_call'])
+      .nullable()
+      .optional(),
     outcome: z.enum(['interrupted', 'finished', 'error', 'cancelled']),
   }),
 });
@@ -130,6 +134,9 @@ export class ZhipuToolTraceRecorder {
   }
   delivered() {
     this.summary.response.deliveredToolEnds = bounded(this.summary.response.deliveredToolEnds + 1);
+  }
+  invalid(stage: NonNullable<ZhipuToolTrace['response']['argumentFailure']>) {
+    this.summary.response.argumentFailure = stage;
   }
   finish() {
     this.summary.response.outcome = 'finished';

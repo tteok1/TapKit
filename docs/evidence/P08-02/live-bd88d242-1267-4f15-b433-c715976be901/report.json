@@ -1,0 +1,230 @@
+{
+  "status": "not_verified",
+  "case": "discovery",
+  "connectionLimit": 50,
+  "workflowVersion": "snapshot-evidence-handles-core-closeout-v3",
+  "build": {
+    "packages/core/dist/index.cjs": "020047ebe72364b64fdf862096497f5df6b4278a620906056a7c10882f725299",
+    "apps/desktop/out/main/index.js": "fcac4410586208b5777feb42365a5997561c196b648035c92ea0dae842fa8db9"
+  },
+  "connectionAttempts": [
+    {
+      "number": 32,
+      "status": "passed",
+      "startedAt": "2026-11-03T11:11:13.366Z",
+      "finishedAt": "2026-11-03T11:12:01.010Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": true,
+  "taskStarted": true,
+  "task": {
+    "runId": "01a1a11b-e3b9-7760-a1ad-b1b1f681da75",
+    "status": "partial",
+    "reason": "BUDGET_EXCEEDED",
+    "calls": 5,
+    "tools": 5,
+    "formats": [
+      "md",
+      "json"
+    ]
+  },
+  "usage": [
+    {
+      "source": "actual",
+      "input_tokens": 2186,
+      "output_tokens": 13,
+      "charged_tokens": 2199
+    },
+    {
+      "source": "actual",
+      "input_tokens": 2251,
+      "output_tokens": 100,
+      "charged_tokens": 2351
+    },
+    {
+      "source": "actual",
+      "input_tokens": 16058,
+      "output_tokens": 60,
+      "charged_tokens": 16118
+    },
+    {
+      "source": "estimated",
+      "input_tokens": null,
+      "output_tokens": null,
+      "charged_tokens": 52455
+    }
+  ],
+  "credentialRemoved": true,
+  "startedAt": "2026-11-03T11:10:50.934Z",
+  "publicDirectDomains": [
+    "bing.com",
+    "iana.org",
+    "larus.net"
+  ],
+  "networkMode": "configured model environment; public-only NO_PROXY",
+  "phase": "wait_task",
+  "budget": {
+    "reserved_tokens": 0,
+    "used_tokens": 73123
+  },
+  "providerAttempts": [
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "failed",
+      "error_code": "STREAM_INTERRUPTED"
+    }
+  ],
+  "diagnostics": [
+    {
+      "summary": "模型返回的研究工具参数不符合完整格式，未执行本轮工具调用。"
+    },
+    {
+      "summary": "研究参数需要修正：RESEARCH_ARGUMENTS_INVALID"
+    }
+  ],
+  "toolTrace": [
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a1a11b-e40e-7492-9873-fe57ac2fb257",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a1a11c-5eaa-7c58-9533-2f3c388529fe",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 3,
+        "knownToolNames": [],
+        "otherToolCount": 3,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 4,
+        "deltaToolItems": 3,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 3,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 3,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a1a11c-fe1e-72a5-927d-c58dcf46b50f",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 3,
+        "knownToolNames": [],
+        "otherToolCount": 3,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 20,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 18,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a1a11d-4348-756c-9d6a-ef762e75d2d2",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 3,
+        "knownToolNames": [],
+        "otherToolCount": 3,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 1,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [],
+        "deliveredToolEnds": 0,
+        "argumentFailure": "tool_name",
+        "outcome": "error"
+      }
+    }
+  ],
+  "contentVerified": false,
+  "answerVerified": false,
+  "sourceReadVerified": true,
+  "multiSourceVerified": false,
+  "search": [
+    {
+      "query": "IANA What resources does IANA coordinate?",
+      "status": "ready",
+      "error": null,
+      "candidateCount": 3
+    }
+  ],
+  "searchAttempted": true,
+  "discoveryScope": "No seed URLs. Requires successful search, at least two actually read source groups with literal facts selected from snapshot evidence handles, and a succeeded research.report ledger entry with verified artifacts; Core may initiate closeout. Different domains do not prove publisher independence.",
+  "searchSettled": true,
+  "explicitReportCall": false,
+  "artifactBytesVerified": true,
+  "quality": "partial",
+  "researchCounts": {
+    "searches": 1,
+    "reads": 3,
+    "findings": 0
+  },
+  "apiTransportEvidence": "api-transport.json",
+  "finishedAt": "2026-11-03T11:13:58.151Z"
+}

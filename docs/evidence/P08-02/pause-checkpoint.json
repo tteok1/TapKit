@@ -1,0 +1,56 @@
+{
+  "at": "2026-10-31T17:04:01.639Z",
+  "task": "P08-02",
+  "execution": "paused_by_user",
+  "branch": "codex/p08-02-research",
+  "taskStatus": "in_progress",
+  "scope": "Only the current research argument-repair path was completed after the pause request.",
+  "checks": [
+    {
+      "command": "pnpm test:integration P08-02",
+      "passed": 19,
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm exec tsc --project tsconfig.json",
+      "exitCode": 0
+    }
+  ],
+  "log": "docs/evidence/P08-02/driver-repair-final.log",
+  "priorBroadIntegration": {
+    "passed": 515,
+    "skipped": 1,
+    "exitCode": 0,
+    "scope": "before the final minimal driver/transaction repair"
+  },
+  "provider": {
+    "connectionChecksCumulative": 6,
+    "limit": 20,
+    "additionalChecksAfterPauseRequest": 0,
+    "additionalTaskRequestsAfterPauseRequest": 0,
+    "liveResearchStatus": "failed_STREAM_INTERRUPTED; root diagnostic not proven; reacceptance pending"
+  },
+  "build": "production artifacts predate the minimal repair; no rebuild performed after pause request",
+  "files": [
+    {
+      "path": "packages/core/src/research-driver.ts",
+      "sha256": "bad77ca12ac9c67fe7a927b26768560316d56dc02004dbdbda32a8c11f378873"
+    },
+    {
+      "path": "packages/core/src/research-service.ts",
+      "sha256": "87a4b453c326d89a230e38c05f4f5449ca480da5d8408b10270a1d4bb9bd171c"
+    },
+    {
+      "path": "tests/integration/P08-02.research.test.ts",
+      "sha256": "1ce89fab1995b4c13440e6a82cc27b7cdf6f09af5731deff256a44395df522a4"
+    }
+  ],
+  "remaining": [
+    "Two independent UI review findings and verification",
+    "Real Zhipu research acceptance",
+    "P08 compatibility and valid full PDF capture",
+    "Final required checks and durable task acceptance"
+  ],
+  "committed": false,
+  "pushed": false
+}

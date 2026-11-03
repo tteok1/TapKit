@@ -1,0 +1,221 @@
+{
+  "status": "failed",
+  "connectionAttempts": [
+    {
+      "number": 9,
+      "status": "passed",
+      "startedAt": "2026-11-01T06:34:41.433Z",
+      "finishedAt": "2026-11-01T06:34:52.612Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": true,
+  "taskStarted": true,
+  "task": {
+    "runId": "01a195d1-71b5-7e96-8651-fd7c053abacf",
+    "status": "failed",
+    "reason": "PARSE_FAILED",
+    "calls": 4,
+    "tools": 1,
+    "formats": [
+      "json"
+    ]
+  },
+  "usage": [
+    {
+      "source": "estimated",
+      "input_tokens": null,
+      "output_tokens": null,
+      "charged_tokens": 13473
+    },
+    {
+      "source": "actual",
+      "input_tokens": 2092,
+      "output_tokens": 13,
+      "charged_tokens": 2105
+    },
+    {
+      "source": "estimated",
+      "input_tokens": null,
+      "output_tokens": null,
+      "charged_tokens": 13706
+    },
+    {
+      "source": "estimated",
+      "input_tokens": null,
+      "output_tokens": null,
+      "charged_tokens": 13706
+    }
+  ],
+  "credentialRemoved": true,
+  "startedAt": "2026-11-01T06:34:18.776Z",
+  "phase": "wait_task",
+  "budget": {
+    "reserved_tokens": 0,
+    "used_tokens": 42990
+  },
+  "providerAttempts": [
+    {
+      "status": "interrupted",
+      "error_code": "STREAM_INTERRUPTED"
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "interrupted",
+      "error_code": "STREAM_INTERRUPTED"
+    },
+    {
+      "status": "interrupted",
+      "error_code": "STREAM_INTERRUPTED"
+    }
+  ],
+  "diagnostics": [
+    {
+      "summary": "模型返回的研究工具参数不符合完整格式，未执行本轮工具调用。"
+    },
+    {
+      "summary": "研究参数需要修正：RESEARCH_ARGUMENTS_INVALID"
+    },
+    {
+      "summary": "模型返回的研究工具参数不符合完整格式，未执行本轮工具调用。"
+    },
+    {
+      "summary": "研究参数需要修正：RESEARCH_ARGUMENTS_INVALID"
+    },
+    {
+      "summary": "模型返回的研究工具参数不符合完整格式，未执行本轮工具调用。"
+    },
+    {
+      "summary": "研究参数需要修正：RESEARCH_ARGUMENTS_INVALID"
+    }
+  ],
+  "toolTrace": [
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a195d1-7253-75ed-8bc7-317bc229d005",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 12,
+        "deltaToolItems": 2,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 9,
+        "knownToolNames": [],
+        "otherToolNameItems": 2,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 0,
+        "argumentFailure": "schema",
+        "outcome": "error"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a195d1-8074-7276-a7a8-3e0745d51819",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 1,
+        "outcome": "finished"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a195d1-8914-7b40-a80a-cef6136f9992",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 2,
+        "deltaToolItems": 1,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 1,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 0,
+        "argumentFailure": "schema",
+        "outcome": "error"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "attemptId": "01a195d1-97d2-7b1b-a9a9-010901e9107f",
+      "format": "openai-chat",
+      "request": {
+        "fetchInvoked": true,
+        "toolCount": 4,
+        "knownToolNames": [],
+        "otherToolCount": 4,
+        "toolChoice": "omitted"
+      },
+      "response": {
+        "httpStatus": 200,
+        "frames": 3,
+        "deltaToolItems": 2,
+        "messageToolItems": 0,
+        "legacyFunctionFrames": 0,
+        "textFrames": 0,
+        "knownToolNames": [],
+        "otherToolNameItems": 2,
+        "finishReasons": [
+          "tool_calls"
+        ],
+        "deliveredToolEnds": 0,
+        "argumentFailure": "schema",
+        "outcome": "error"
+      }
+    }
+  ],
+  "contentVerified": false,
+  "answerVerified": false,
+  "sourceReadVerified": false,
+  "search": [
+    {
+      "query": "Example Domain公开页面用途核验 Example Domain示例网页如何声明自己的用途？",
+      "status": "unavailable",
+      "error": "NETWORK_ERROR",
+      "candidateCount": 0
+    }
+  ],
+  "searchAttempted": true,
+  "error": "RESEARCH_REPORT_MISSING",
+  "finishedAt": "2026-11-01T06:35:07.997Z"
+}

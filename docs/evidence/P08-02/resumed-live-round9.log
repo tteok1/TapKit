@@ -1,0 +1,7 @@
+{"status":"running","checks":1,"connection":"running","task":null}
+{"status":"running","checks":1,"connection":"passed","task":null}
+{"status":"running","checks":1,"connection":"passed","task":null}
+{"status":"running","checks":1,"connection":"passed","task":null}
+{"status":"not_verified","checks":1,"connection":"passed","task":"partial"}
+{"status":"not_verified","checks":1,"connection":"passed","task":"partial"}
+COMMAND_EXIT=1

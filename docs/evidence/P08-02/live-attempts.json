@@ -1,0 +1,923 @@
+{
+  "task": "P08-02",
+  "scope": "Task root usage only; connection-check usage is unknown and excluded. Estimates are not actual token counts.",
+  "checksThisTask": 41,
+  "checksPriorP08": 3,
+  "checksCumulative": 44,
+  "limit": 50,
+  "actualTaskTokens": 295232,
+  "estimatedTaskTokens": 664062,
+  "allCredentialCopiesRemoved": true,
+  "attempts": [
+    {
+      "directory": "live-5260875a-4e84-43f8-a052-c7780a704868",
+      "startedAt": "2026-10-31T16:15:26.559Z",
+      "status": "failed",
+      "case": "legacy",
+      "networkMode": "copied configuration",
+      "checks": [
+        {
+          "number": 4,
+          "status": "passed",
+          "startedAt": "2026-10-31T16:15:54.742Z",
+          "finishedAt": "2026-10-31T16:16:05.393Z"
+        }
+      ],
+      "task": null,
+      "credentialRemoved": true,
+      "actualTaskTokens": 0,
+      "estimatedTaskTokens": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-fa136de8-29f2-460b-a136-c3fbe8b40d1d",
+      "startedAt": "2026-10-31T16:18:12.367Z",
+      "status": "failed",
+      "case": "legacy",
+      "networkMode": "copied configuration",
+      "checks": [
+        {
+          "number": 5,
+          "status": "passed",
+          "startedAt": "2026-10-31T16:18:29.410Z",
+          "finishedAt": "2026-10-31T16:19:11.385Z"
+        }
+      ],
+      "task": null,
+      "credentialRemoved": true,
+      "actualTaskTokens": 0,
+      "estimatedTaskTokens": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-7278b4fa-cf06-44b0-a47f-0ca04549794c",
+      "startedAt": "2026-10-31T16:27:00.205Z",
+      "status": "failed",
+      "case": "legacy",
+      "networkMode": "copied configuration",
+      "checks": [
+        {
+          "number": 6,
+          "status": "passed",
+          "startedAt": "2026-10-31T16:27:19.150Z",
+          "finishedAt": "2026-10-31T16:27:24.655Z"
+        }
+      ],
+      "task": {
+        "runId": "01a192c9-9079-74fb-ba5c-144cbafe2a6a",
+        "status": "failed",
+        "reason": "STREAM_INTERRUPTED",
+        "calls": 1,
+        "tools": 0,
+        "formats": []
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 0,
+      "estimatedTaskTokens": 12586,
+      "reserved": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-c36165b7-e5dc-4cfc-b02f-db7aabf7e1a6",
+      "startedAt": "2026-11-01T06:23:50.482Z",
+      "status": "failed",
+      "case": "legacy",
+      "networkMode": "copied configuration",
+      "checks": [
+        {
+          "number": 7,
+          "status": "passed",
+          "startedAt": "2026-11-01T06:24:14.812Z",
+          "finishedAt": "2026-11-01T06:24:20.356Z"
+        }
+      ],
+      "task": {
+        "runId": "01a195c7-cbc2-7631-947d-fb6bb554c322",
+        "status": "failed",
+        "reason": "PARSE_FAILED",
+        "calls": 4,
+        "tools": 1,
+        "formats": [
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 1918,
+      "estimatedTaskTokens": 38224,
+      "reserved": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-db38effa-907a-4745-bee6-a098988b7a98",
+      "startedAt": "2026-11-01T06:32:06.093Z",
+      "status": "failed",
+      "case": "legacy",
+      "networkMode": "copied configuration",
+      "checks": [
+        {
+          "number": 8,
+          "status": "passed",
+          "startedAt": "2026-11-01T06:32:53.637Z",
+          "finishedAt": "2026-11-01T06:32:59.639Z"
+        }
+      ],
+      "task": {
+        "runId": "01a195cf-b812-76c6-b81e-62e4aae9dd82",
+        "status": "failed",
+        "reason": "PARSE_FAILED",
+        "calls": 5,
+        "tools": 2,
+        "formats": [
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 4261,
+      "estimatedTaskTokens": 41536,
+      "reserved": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-469f71e3-d5d7-4f6b-8998-594c4f356634",
+      "startedAt": "2026-11-01T06:34:18.776Z",
+      "status": "failed",
+      "case": "legacy",
+      "networkMode": "copied configuration",
+      "checks": [
+        {
+          "number": 9,
+          "status": "passed",
+          "startedAt": "2026-11-01T06:34:41.433Z",
+          "finishedAt": "2026-11-01T06:34:52.612Z"
+        }
+      ],
+      "task": {
+        "runId": "01a195d1-71b5-7e96-8651-fd7c053abacf",
+        "status": "failed",
+        "reason": "PARSE_FAILED",
+        "calls": 4,
+        "tools": 1,
+        "formats": [
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 2105,
+      "estimatedTaskTokens": 40885,
+      "reserved": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-76669b5a-8ecc-4011-aad1-b8efeec4f4bd",
+      "startedAt": "2026-11-01T06:37:38.116Z",
+      "status": "failed",
+      "case": "legacy",
+      "networkMode": "copied configuration",
+      "checks": [
+        {
+          "number": 10,
+          "status": "passed",
+          "startedAt": "2026-11-01T06:38:03.521Z",
+          "finishedAt": "2026-11-01T06:38:08.024Z"
+        }
+      ],
+      "task": {
+        "runId": "01a195d4-6db3-7aea-9a52-1edb31cd0d92",
+        "status": "failed",
+        "reason": "PARSE_FAILED",
+        "calls": 4,
+        "tools": 1,
+        "formats": [
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 2122,
+      "estimatedTaskTokens": 40856,
+      "reserved": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-fcec17d6-7f83-45fc-981f-2e58fb31262b",
+      "startedAt": "2026-11-01T06:40:38.078Z",
+      "status": "not_verified",
+      "case": "legacy",
+      "networkMode": "copied configuration",
+      "checks": [
+        {
+          "number": 11,
+          "status": "passed",
+          "startedAt": "2026-11-01T06:41:01.208Z",
+          "finishedAt": "2026-11-01T06:41:41.571Z"
+        }
+      ],
+      "task": {
+        "runId": "01a195d7-aef7-7d39-8f18-566a29df34d8",
+        "status": "partial",
+        "reason": null,
+        "calls": 4,
+        "tools": 7,
+        "formats": [
+          "md",
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 9077,
+      "estimatedTaskTokens": 0,
+      "reserved": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-8d6c326b-f959-4efc-b9cf-fb775c4ecd9d",
+      "startedAt": "2026-11-01T06:44:20.077Z",
+      "status": "not_verified",
+      "case": "legacy",
+      "networkMode": "copied configuration",
+      "checks": [
+        {
+          "number": 12,
+          "status": "passed",
+          "startedAt": "2026-11-01T06:44:46.768Z",
+          "finishedAt": "2026-11-01T06:45:14.865Z"
+        }
+      ],
+      "task": {
+        "runId": "01a195da-efca-7b9a-80c3-c1b6dcee9f18",
+        "status": "partial",
+        "reason": null,
+        "calls": 6,
+        "tools": 6,
+        "formats": [
+          "md",
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 15038,
+      "estimatedTaskTokens": 0,
+      "reserved": 0,
+      "contentVerified": true,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-30f3e13f-3741-44c6-a7da-6330bdc3ffe9",
+      "startedAt": "2026-11-01T06:52:37.488Z",
+      "status": "passed",
+      "case": "legacy",
+      "networkMode": "copied configuration",
+      "checks": [
+        {
+          "number": 13,
+          "status": "failed",
+          "startedAt": "2026-11-01T06:53:02.681Z",
+          "finishedAt": "2026-11-01T06:54:10.445Z"
+        },
+        {
+          "number": 14,
+          "status": "passed",
+          "startedAt": "2026-11-01T06:54:10.628Z",
+          "finishedAt": "2026-11-01T06:54:15.076Z"
+        }
+      ],
+      "task": {
+        "runId": "01a195e3-2ec4-7e69-a1a4-8ab4c4db705a",
+        "status": "partial",
+        "reason": null,
+        "calls": 3,
+        "tools": 3,
+        "formats": [
+          "md",
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 6962,
+      "estimatedTaskTokens": 0,
+      "reserved": 0,
+      "contentVerified": true,
+      "explicitReport": true,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-3e4eed7e-cef0-47aa-85df-42eae8a91d00",
+      "startedAt": "2026-11-03T05:09:44.237Z",
+      "status": "not_verified",
+      "case": "discovery",
+      "networkMode": "direct",
+      "checks": [
+        {
+          "number": 15,
+          "status": "passed",
+          "startedAt": "2026-11-03T05:10:26.215Z",
+          "finishedAt": "2026-11-03T05:10:39.975Z"
+        }
+      ],
+      "task": {
+        "runId": "01a19fd1-102f-7bdd-a527-d6e0de5f59f7",
+        "status": "partial",
+        "reason": null,
+        "calls": 5,
+        "tools": 7,
+        "formats": [
+          "md",
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 14935,
+      "estimatedTaskTokens": 0,
+      "reserved": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-7301c8b0-e871-4b94-a001-8fd77419365c",
+      "startedAt": "2026-11-03T05:18:39.572Z",
+      "status": "not_verified",
+      "case": "discovery",
+      "networkMode": "direct",
+      "checks": [
+        {
+          "number": 16,
+          "status": "failed",
+          "startedAt": "2026-11-03T05:19:42.023Z",
+          "finishedAt": "2026-11-03T05:21:12.352Z"
+        },
+        {
+          "number": 17,
+          "status": "passed",
+          "startedAt": "2026-11-03T05:21:12.520Z",
+          "finishedAt": "2026-11-03T05:22:54.074Z"
+        }
+      ],
+      "task": {
+        "runId": "01a19fdc-443f-7ba7-b8d4-bb99aa6ac2a8",
+        "status": "partial",
+        "reason": null,
+        "calls": 8,
+        "tools": 11,
+        "formats": [
+          "md",
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 35539,
+      "estimatedTaskTokens": 26606,
+      "reserved": 0,
+      "contentVerified": true,
+      "explicitReport": false,
+      "multiSourceVerified": true
+    },
+    {
+      "directory": "live-8989dde3-18ce-4489-a8c5-1426ee05c551",
+      "startedAt": "2026-11-03T05:33:23.252Z",
+      "status": "not_verified",
+      "case": "discovery",
+      "networkMode": "direct",
+      "checks": [
+        {
+          "number": 18,
+          "status": "passed",
+          "startedAt": "2026-11-03T05:33:47.332Z",
+          "finishedAt": "2026-11-03T05:34:36.499Z"
+        }
+      ],
+      "task": {
+        "runId": "01a19fe6-fbb3-7f02-b6b6-d747d72aac5f",
+        "status": "partial",
+        "reason": null,
+        "calls": 7,
+        "tools": 9,
+        "formats": [
+          "md",
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 20755,
+      "estimatedTaskTokens": 53293,
+      "reserved": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-1818ecaa-4723-4468-bbec-6b3a362e00b0",
+      "startedAt": "2026-11-03T05:45:24.959Z",
+      "status": "failed",
+      "case": "discovery",
+      "networkMode": "direct",
+      "checks": [
+        {
+          "number": 19,
+          "status": "passed",
+          "startedAt": "2026-11-03T05:45:46.187Z",
+          "finishedAt": "2026-11-03T05:46:38.017Z"
+        }
+      ],
+      "task": {
+        "runId": "01a19ff1-fe28-7555-924f-81b982ae4720",
+        "status": "failed",
+        "reason": "PARSE_FAILED",
+        "calls": 8,
+        "tools": 8,
+        "formats": [
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 31244,
+      "estimatedTaskTokens": 25931,
+      "reserved": 0,
+      "contentVerified": true,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-bdc5d4ad-f53c-4d54-ae76-b8f71ddd1177",
+      "startedAt": "2026-11-03T05:56:53.254Z",
+      "status": "failed",
+      "case": "discovery",
+      "networkMode": "direct",
+      "checks": [
+        {
+          "number": 20,
+          "status": "failed",
+          "startedAt": "2026-11-03T05:57:15.521Z",
+          "finishedAt": "2026-11-03T05:58:45.782Z"
+        },
+        {
+          "number": 21,
+          "status": "failed",
+          "startedAt": "2026-11-03T05:58:45.928Z",
+          "finishedAt": "2026-11-03T06:00:16.100Z"
+        },
+        {
+          "number": 22,
+          "status": "failed",
+          "startedAt": "2026-11-03T06:00:16.253Z",
+          "finishedAt": "2026-11-03T06:01:46.421Z"
+        },
+        {
+          "number": 23,
+          "status": "failed",
+          "startedAt": "2026-11-03T06:01:46.561Z",
+          "finishedAt": "2026-11-03T06:03:16.731Z"
+        },
+        {
+          "number": 24,
+          "status": "interrupted",
+          "startedAt": "2026-11-03T06:03:16.877Z",
+          "finishedAt": "2026-11-03T06:03:22.441Z"
+        }
+      ],
+      "task": null,
+      "credentialRemoved": true,
+      "actualTaskTokens": 0,
+      "estimatedTaskTokens": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-78bb2c2b-3135-4cd1-9600-a2039629bab2",
+      "startedAt": "2026-11-03T06:05:22.699Z",
+      "status": "failed",
+      "case": "discovery",
+      "networkMode": "configured model environment; public-only NO_PROXY",
+      "checks": [
+        {
+          "number": 25,
+          "status": "failed",
+          "startedAt": "2026-11-03T06:05:44.543Z",
+          "finishedAt": "2026-11-03T06:07:14.811Z"
+        },
+        {
+          "number": 26,
+          "status": "failed",
+          "startedAt": "2026-11-03T06:07:14.976Z",
+          "finishedAt": "2026-11-03T06:08:45.206Z"
+        },
+        {
+          "number": 27,
+          "status": "failed",
+          "startedAt": "2026-11-03T06:08:45.344Z",
+          "finishedAt": "2026-11-03T06:10:15.534Z"
+        }
+      ],
+      "task": null,
+      "credentialRemoved": true,
+      "actualTaskTokens": 0,
+      "estimatedTaskTokens": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-23d37b33-f6c9-4f2e-8dcf-c189f4e2edbe",
+      "startedAt": "2026-11-03T06:18:32.149Z",
+      "status": "failed",
+      "case": "discovery",
+      "networkMode": "configured model environment; public-only NO_PROXY",
+      "checks": [
+        {
+          "number": 28,
+          "status": "failed",
+          "startedAt": "2026-11-03T06:19:02.665Z",
+          "finishedAt": "2026-11-03T06:20:33.088Z"
+        },
+        {
+          "number": 29,
+          "status": "failed",
+          "startedAt": "2026-11-03T06:20:33.253Z",
+          "finishedAt": "2026-11-03T06:22:03.642Z"
+        },
+        {
+          "number": 30,
+          "status": "passed",
+          "startedAt": "2026-11-03T06:22:03.809Z",
+          "finishedAt": "2026-11-03T06:22:37.968Z"
+        }
+      ],
+      "task": {
+        "runId": "01a1a012-f3a6-7832-928e-d0ee7263a09e",
+        "status": "failed",
+        "reason": "PARSE_FAILED",
+        "calls": 6,
+        "tools": 7,
+        "formats": [
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 26400,
+      "estimatedTaskTokens": 0,
+      "reserved": 0,
+      "contentVerified": true,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-9ec13261-2431-41c0-b96b-0ba45399a903",
+      "startedAt": "2026-11-03T11:01:33.582Z",
+      "status": "not_verified",
+      "case": "discovery",
+      "networkMode": "configured model environment; public-only NO_PROXY",
+      "checks": [
+        {
+          "number": 31,
+          "status": "passed",
+          "startedAt": "2026-11-03T11:02:01.846Z",
+          "finishedAt": "2026-11-03T11:02:39.744Z"
+        }
+      ],
+      "task": {
+        "runId": "01a1a113-53a6-75dc-8691-7a60a80139ec",
+        "status": "partial",
+        "reason": "BUDGET_EXCEEDED",
+        "calls": 8,
+        "tools": 8,
+        "formats": [
+          "md",
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 50670,
+      "estimatedTaskTokens": 0,
+      "reserved": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-bd88d242-1267-4f15-b433-c715976be901",
+      "startedAt": "2026-11-03T11:10:50.934Z",
+      "status": "not_verified",
+      "case": "discovery",
+      "networkMode": "configured model environment; public-only NO_PROXY",
+      "checks": [
+        {
+          "number": 32,
+          "status": "passed",
+          "startedAt": "2026-11-03T11:11:13.366Z",
+          "finishedAt": "2026-11-03T11:12:01.010Z"
+        }
+      ],
+      "task": {
+        "runId": "01a1a11b-e3b9-7760-a1ad-b1b1f681da75",
+        "status": "partial",
+        "reason": "BUDGET_EXCEEDED",
+        "calls": 5,
+        "tools": 5,
+        "formats": [
+          "md",
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 20668,
+      "estimatedTaskTokens": 52455,
+      "reserved": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-e850a19a-e5ea-4762-81bc-b1da06976c06",
+      "startedAt": "2026-11-03T11:26:56.774Z",
+      "status": "not_verified",
+      "case": "discovery",
+      "networkMode": "configured model environment; public-only NO_PROXY",
+      "checks": [
+        {
+          "number": 33,
+          "status": "passed",
+          "startedAt": "2026-11-03T11:27:20.166Z",
+          "finishedAt": "2026-11-03T11:27:26.149Z"
+        }
+      ],
+      "task": {
+        "runId": "01a1a12a-012c-7535-bd49-7e60434ad462",
+        "status": "partial",
+        "reason": "PARSE_FAILED",
+        "calls": 5,
+        "tools": 3,
+        "formats": [
+          "md",
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 3962,
+      "estimatedTaskTokens": 63012,
+      "reserved": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-546339b0-5bab-42c7-8be5-d49850ff407a",
+      "startedAt": "2026-11-03T11:33:12.750Z",
+      "status": "not_verified",
+      "case": "discovery",
+      "networkMode": "configured model environment; public-only NO_PROXY",
+      "checks": [
+        {
+          "number": 34,
+          "status": "passed",
+          "startedAt": "2026-11-03T11:33:31.793Z",
+          "finishedAt": "2026-11-03T11:33:49.011Z"
+        }
+      ],
+      "task": {
+        "runId": "01a1a12f-d8da-7346-bedc-a66dec7313c5",
+        "status": "partial",
+        "reason": "PARSE_FAILED",
+        "calls": 5,
+        "tools": 3,
+        "formats": [
+          "md",
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 3935,
+      "estimatedTaskTokens": 63256,
+      "reserved": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-bd86fa72-ed72-4be3-a592-0492a4cf00cd",
+      "startedAt": "2026-11-03T11:39:34.909Z",
+      "status": "not_verified",
+      "case": "discovery",
+      "networkMode": "configured model environment; public-only NO_PROXY",
+      "checks": [
+        {
+          "number": 35,
+          "status": "passed",
+          "startedAt": "2026-11-03T11:39:54.703Z",
+          "finishedAt": "2026-11-03T11:40:03.239Z"
+        }
+      ],
+      "task": {
+        "runId": "01a1a135-8ec9-776d-a9a5-cabef6e276ab",
+        "status": "partial",
+        "reason": "PARSE_FAILED",
+        "calls": 5,
+        "tools": 3,
+        "formats": [
+          "md",
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 4006,
+      "estimatedTaskTokens": 67278,
+      "reserved": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-71ed833f-3670-453e-97a8-2549e120b8db",
+      "startedAt": "2026-11-03T11:54:29.285Z",
+      "status": "not_verified",
+      "case": "discovery",
+      "networkMode": "configured model environment; public-only NO_PROXY",
+      "checks": [
+        {
+          "number": 36,
+          "status": "passed",
+          "startedAt": "2026-11-03T11:54:59.018Z",
+          "finishedAt": "2026-11-03T11:55:10.183Z"
+        }
+      ],
+      "task": {
+        "runId": "01a1a143-6663-7198-9942-2ee7ad8eb355",
+        "status": "partial",
+        "reason": null,
+        "calls": 5,
+        "tools": 6,
+        "formats": [
+          "md",
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 8321,
+      "estimatedTaskTokens": 42105,
+      "reserved": 0,
+      "contentVerified": true,
+      "explicitReport": true,
+      "multiSourceVerified": true
+    },
+    {
+      "directory": "live-73713fe8-d825-4119-a28f-8995dd96b568",
+      "startedAt": "2026-11-03T12:02:05.414Z",
+      "status": "failed",
+      "case": "discovery",
+      "networkMode": "configured model environment; public-only NO_PROXY",
+      "checks": [
+        {
+          "number": 37,
+          "status": "failed",
+          "startedAt": "2026-11-03T12:02:34.642Z",
+          "finishedAt": "2026-11-03T12:04:35.199Z"
+        },
+        {
+          "number": 38,
+          "status": "failed",
+          "startedAt": "2026-11-03T12:04:35.315Z",
+          "finishedAt": "2026-11-03T12:06:35.868Z"
+        },
+        {
+          "number": 39,
+          "status": "passed",
+          "startedAt": "2026-11-03T12:06:36.008Z",
+          "finishedAt": "2026-11-03T12:07:28.765Z"
+        }
+      ],
+      "task": {
+        "runId": "01a1a14e-ab68-7c54-9c22-4820e773727b",
+        "status": "failed",
+        "reason": "NETWORK_ERROR",
+        "calls": 5,
+        "tools": 3,
+        "formats": [
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 4015,
+      "estimatedTaskTokens": 56940,
+      "reserved": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-3ff1d257-4ecf-476d-8a2a-a2ec93d49f95",
+      "startedAt": "2026-11-03T12:12:00.018Z",
+      "status": "failed",
+      "case": "discovery",
+      "networkMode": "configured model environment; public-only NO_PROXY",
+      "checks": [
+        {
+          "number": 40,
+          "status": "failed",
+          "startedAt": "2026-11-03T12:12:20.717Z",
+          "finishedAt": "2026-11-03T12:12:21.074Z"
+        },
+        {
+          "number": 41,
+          "status": "failed",
+          "startedAt": "2026-11-03T12:12:21.231Z",
+          "finishedAt": "2026-11-03T12:12:21.490Z"
+        },
+        {
+          "number": 42,
+          "status": "failed",
+          "startedAt": "2026-11-03T12:12:21.631Z",
+          "finishedAt": "2026-11-03T12:12:21.884Z"
+        }
+      ],
+      "task": null,
+      "credentialRemoved": true,
+      "actualTaskTokens": 0,
+      "estimatedTaskTokens": 0,
+      "contentVerified": false,
+      "explicitReport": false,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-2bd17403-2cf7-43fb-ac35-4a070d20924b",
+      "startedAt": "2026-11-03T12:18:01.037Z",
+      "status": "not_verified",
+      "case": "discovery",
+      "networkMode": "direct",
+      "checks": [
+        {
+          "number": 43,
+          "status": "passed",
+          "startedAt": "2026-11-03T12:18:20.129Z",
+          "finishedAt": "2026-11-03T12:18:23.610Z"
+        }
+      ],
+      "task": {
+        "runId": "01a1a158-a8e4-7edf-bc97-2a9423c715e4",
+        "status": "partial",
+        "reason": null,
+        "calls": 8,
+        "tools": 8,
+        "formats": [
+          "md",
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 18699,
+      "estimatedTaskTokens": 39099,
+      "reserved": 0,
+      "contentVerified": false,
+      "explicitReport": true,
+      "multiSourceVerified": false
+    },
+    {
+      "directory": "live-9de5c45a-59f5-400d-a81c-586e58eb18e6",
+      "startedAt": "2026-11-03T12:30:05.961Z",
+      "status": "passed",
+      "case": "discovery",
+      "networkMode": "direct",
+      "checks": [
+        {
+          "number": 44,
+          "status": "passed",
+          "startedAt": "2026-11-03T12:30:32.259Z",
+          "finishedAt": "2026-11-03T12:32:02.696Z"
+        }
+      ],
+      "task": {
+        "runId": "01a1a165-295d-7be9-a4ca-98a301baf691",
+        "status": "partial",
+        "reason": null,
+        "calls": 4,
+        "tools": 7,
+        "formats": [
+          "md",
+          "json"
+        ]
+      },
+      "credentialRemoved": true,
+      "actualTaskTokens": 10600,
+      "estimatedTaskTokens": 0,
+      "reserved": 0,
+      "contentVerified": true,
+      "explicitReport": true,
+      "multiSourceVerified": true
+    }
+  ]
+}

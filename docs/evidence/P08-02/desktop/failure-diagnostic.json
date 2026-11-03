@@ -1,0 +1,86 @@
+{
+  "runs": [
+    {
+      "status": "completed",
+      "status_reason": null,
+      "calls": 5,
+      "tools": 6
+    }
+  ],
+  "files": [
+    {
+      "extension": "json",
+      "parse_status": "ready",
+      "error_code": null,
+      "error_reason": null
+    },
+    {
+      "extension": "json",
+      "parse_status": "ready",
+      "error_code": null,
+      "error_reason": null
+    },
+    {
+      "extension": "json",
+      "parse_status": "ready",
+      "error_code": null,
+      "error_reason": null
+    },
+    {
+      "extension": "json",
+      "parse_status": "ready",
+      "error_code": null,
+      "error_reason": null
+    },
+    {
+      "extension": "md",
+      "parse_status": "ready",
+      "error_code": null,
+      "error_reason": null
+    },
+    {
+      "extension": "json",
+      "parse_status": "ready",
+      "error_code": null,
+      "error_reason": null
+    },
+    {
+      "extension": "docx",
+      "parse_status": "ready",
+      "error_code": null,
+      "error_reason": null
+    },
+    {
+      "extension": "pdf",
+      "parse_status": "ready",
+      "error_code": null,
+      "error_reason": null
+    }
+  ],
+  "tools": [
+    {
+      "tool_name": "research.search",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "research.read",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "research.read",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "research.record",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "research.report",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "office.convert",
+      "status": "succeeded"
+    }
+  ]
+}

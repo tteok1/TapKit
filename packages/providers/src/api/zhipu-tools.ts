@@ -19,6 +19,10 @@ const aliases: Readonly<Record<string, string>> = Object.freeze({
   'browser.open': 'browser_open',
   'browser.observe': 'browser_observe',
   'browser.act': 'browser_act',
+  'research.search': 'research_search',
+  'research.read': 'research_read',
+  'research.record': 'research_record',
+  'research.report': 'research_report',
   'user.ask': 'user_ask',
 });
 

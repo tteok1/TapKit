@@ -3,6 +3,12 @@ import { IdSchema } from './identity';
 import { ResourceRefSchema, AcceptanceRuleSchema, PlanStepInputSchema } from './resources';
 import { RunStatusSchema } from './chat';
 import { BrowserWorkToolArgsSchema } from './browser';
+import {
+  ResearchSpecSchema,
+  ResearchWorkToolArgsSchema,
+  ResearchCommandSchemas,
+  ResearchReplySchema,
+} from './research';
 import { SelectionSchema } from './models';
 import { AnalysisSpecSchema, DataFilterSchema, DataPageSchema } from './data';
 import {
@@ -22,9 +28,11 @@ export const LEGACY_WORK_TOOL_CATALOG_VERSION = 'p06-tools-1';
 export const DOCUMENT_WORK_TOOL_CATALOG_VERSION = 'p07-tools-1';
 export const DATA_WORK_TOOL_CATALOG_VERSION = 'p07-tools-2';
 export const SLIDES_WORK_TOOL_CATALOG_VERSION = 'p07-tools-3';
-export const WORK_TOOL_CATALOG_VERSION = 'p08-tools-1';
+export const BROWSER_WORK_TOOL_CATALOG_VERSION = 'p08-tools-1';
+export const WORK_TOOL_CATALOG_VERSION = 'p08-tools-2';
 
 export const WorkDefinitionSchema = z.strictObject({
+  research: ResearchSpecSchema.optional(),
   browserEnabled: z.boolean().default(false),
   goal: z.string().trim().min(1).max(20000),
   audience: z.string().max(500).default('用户本人'),
@@ -174,7 +182,11 @@ export const ArtifactWorkToolArgsSchema = z.discriminatedUnion('tool', [
   z.strictObject({ tool: z.literal('office.convert'), fileId: IdSchema, versionId: IdSchema }),
 ]);
 export type ArtifactWorkToolArgs = z.infer<typeof ArtifactWorkToolArgsSchema>;
-export const WorkToolArgsSchema = z.union([ArtifactWorkToolArgsSchema, BrowserWorkToolArgsSchema]);
+export const WorkToolArgsSchema = z.union([
+  ArtifactWorkToolArgsSchema,
+  BrowserWorkToolArgsSchema,
+  ResearchWorkToolArgsSchema,
+]);
 export type WorkToolArgs = z.infer<typeof WorkToolArgsSchema>;
 export const NativeWorkIdentitySchema = z.strictObject({
   schemaVersion: z.literal(1),
@@ -234,6 +246,7 @@ export const WorkNotificationSchema = z.strictObject({
   createdAt: z.number(),
 });
 export const WorkCommandSchemas = {
+  ...ResearchCommandSchemas,
   'runs.create': WorkDefinitionSchema.extend({ sessionId: IdSchema }),
   'runs.list': z.strictObject({
     projectId: IdSchema.optional(),
@@ -264,6 +277,7 @@ export const WorkCommandSchemas = {
     executeStepIds: z.array(z.string().max(64)).max(12).optional(),
   }),
   'runs.steer': run.extend({
+    research: ResearchSpecSchema.optional(),
     text: z.string().trim().min(1).max(20000),
     refs: z.array(ResourceRefSchema).max(20).default([]),
     clientRequestId: IdSchema,
@@ -332,6 +346,7 @@ export const WorkCommandSchemas = {
 } as const;
 export type WorkCommand = keyof typeof WorkCommandSchemas;
 export const WorkReplySchema = z.union([
+  ResearchReplySchema,
   z.strictObject({ slidePage: SlidePageSchema }),
   z.strictObject({ dataPage: DataPageSchema }),
   z.strictObject({ work: WorkViewSchema }),

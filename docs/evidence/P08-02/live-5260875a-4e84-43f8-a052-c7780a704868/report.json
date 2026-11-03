@@ -1,0 +1,19 @@
+{
+  "status": "failed",
+  "connectionAttempts": [
+    {
+      "number": 4,
+      "status": "passed",
+      "startedAt": "2026-10-31T16:15:54.742Z",
+      "finishedAt": "2026-10-31T16:16:05.393Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": true,
+  "taskStarted": false,
+  "task": null,
+  "usage": [],
+  "credentialRemoved": true,
+  "startedAt": "2026-10-31T16:15:26.559Z",
+  "error": "UI_OR_INTERNAL_ERROR",
+  "finishedAt": "2026-10-31T16:16:06.288Z"
+}

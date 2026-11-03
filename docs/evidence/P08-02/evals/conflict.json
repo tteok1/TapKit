@@ -1,0 +1,101 @@
+{
+  "case": "conflict",
+  "fixtureHash": "c515fc1d237fd4a80a145bcf0e49718e1a39240d3fecfb44f6a354632cc18631",
+  "result": "passed",
+  "quality": "complete",
+  "root": {
+    "searches": 0,
+    "reads": 2
+  },
+  "sources": [
+    {
+      "id": "01a0a25d-0400-7bcb-bd49-6fb159d5c931",
+      "kind": "web",
+      "ref": {
+        "kind": "web",
+        "sourceId": "01a0a25d-0400-7bcb-bd49-6fb159d5c931",
+        "revision": 1
+      },
+      "questionKeys": [
+        "q1"
+      ],
+      "title": "合成来源甲",
+      "url": "https://evidence.example.com/a",
+      "canonical": "https://evidence.example.com/a",
+      "contentHash": "7e9bb81a3f9499fc53668f5e2a5ca9d801b90ebbe5866ae89ce1c1f93020dcfc",
+      "fetchedAt": 1789430400000,
+      "publishedAt": null,
+      "status": "ready",
+      "excluded": false,
+      "error": null,
+      "truncated": false
+    },
+    {
+      "id": "01a0a25d-0400-7a1d-a12f-6ec6a3a935d0",
+      "kind": "web",
+      "ref": {
+        "kind": "web",
+        "sourceId": "01a0a25d-0400-7a1d-a12f-6ec6a3a935d0",
+        "revision": 1
+      },
+      "questionKeys": [
+        "q1"
+      ],
+      "title": "合成来源乙",
+      "url": "https://evidence.example.net/b",
+      "canonical": "https://evidence.example.net/b",
+      "contentHash": "eac1928f5a1a793bf510c1e4f2672071c4135e7898eeeab18e2621475dd4c230",
+      "fetchedAt": 1789430400000,
+      "publishedAt": null,
+      "status": "ready",
+      "excluded": false,
+      "error": null,
+      "truncated": false
+    }
+  ],
+  "findings": [
+    {
+      "questionKey": "q1",
+      "kind": "conflict",
+      "text": "已记录不同来源的原文，差异与冲突尚未裁决。",
+      "id": "01a0a25d-0400-7ce1-810f-9254c5ce4e76",
+      "supports": [
+        {
+          "sourceId": "01a0a25d-0400-7bcb-bd49-6fb159d5c931",
+          "quote": "方案甲的延迟为10毫秒。",
+          "start": 0,
+          "end": 12,
+          "quoteHash": "7e9bb81a3f9499fc53668f5e2a5ca9d801b90ebbe5866ae89ce1c1f93020dcfc"
+        }
+      ],
+      "opposes": [
+        {
+          "sourceId": "01a0a25d-0400-7a1d-a12f-6ec6a3a935d0",
+          "quote": "方案甲的延迟为20毫秒。",
+          "start": 0,
+          "end": 12,
+          "quoteHash": "eac1928f5a1a793bf510c1e4f2672071c4135e7898eeeab18e2621475dd4c230"
+        }
+      ],
+      "distinctSourceGroups": 2
+    }
+  ],
+  "citationChecks": [
+    {
+      "sourceId": "01a0a25d-0400-7bcb-bd49-6fb159d5c931",
+      "start": 0,
+      "end": 12,
+      "exact": true,
+      "hashMatches": true
+    },
+    {
+      "sourceId": "01a0a25d-0400-7a1d-a12f-6ec6a3a935d0",
+      "start": 0,
+      "end": 12,
+      "exact": true,
+      "hashMatches": true
+    }
+  ],
+  "reportHash": "d8959eff5bf6b51b5a7aae6696c5a3af005c8864e867737a1887e6402ee029fa",
+  "scope": "synthetic; literal locator/hash checks independent of model scoring"
+}

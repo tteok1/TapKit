@@ -1,0 +1,108 @@
+{
+  "status": "failed",
+  "connectionAttempts": [
+    {
+      "number": 7,
+      "status": "passed",
+      "startedAt": "2026-11-01T06:24:14.812Z",
+      "finishedAt": "2026-11-01T06:24:20.356Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": true,
+  "taskStarted": true,
+  "task": {
+    "runId": "01a195c7-cbc2-7631-947d-fb6bb554c322",
+    "status": "failed",
+    "reason": "PARSE_FAILED",
+    "calls": 4,
+    "tools": 1,
+    "formats": [
+      "json"
+    ]
+  },
+  "usage": [
+    {
+      "source": "estimated",
+      "input_tokens": null,
+      "output_tokens": null,
+      "charged_tokens": 12586
+    },
+    {
+      "source": "actual",
+      "input_tokens": 1886,
+      "output_tokens": 32,
+      "charged_tokens": 1918
+    },
+    {
+      "source": "estimated",
+      "input_tokens": null,
+      "output_tokens": null,
+      "charged_tokens": 12819
+    },
+    {
+      "source": "estimated",
+      "input_tokens": null,
+      "output_tokens": null,
+      "charged_tokens": 12819
+    }
+  ],
+  "credentialRemoved": true,
+  "startedAt": "2026-11-01T06:23:50.482Z",
+  "phase": "wait_task",
+  "budget": {
+    "reserved_tokens": 0,
+    "used_tokens": 40142
+  },
+  "providerAttempts": [
+    {
+      "status": "interrupted",
+      "error_code": "STREAM_INTERRUPTED"
+    },
+    {
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "status": "interrupted",
+      "error_code": "STREAM_INTERRUPTED"
+    },
+    {
+      "status": "interrupted",
+      "error_code": "STREAM_INTERRUPTED"
+    }
+  ],
+  "diagnostics": [
+    {
+      "summary": null
+    },
+    {
+      "summary": null
+    },
+    {
+      "summary": null
+    },
+    {
+      "summary": null
+    },
+    {
+      "summary": null
+    },
+    {
+      "summary": null
+    }
+  ],
+  "contentVerified": false,
+  "answerVerified": false,
+  "sourceReadVerified": false,
+  "search": [
+    {
+      "query": "Example Domain公开页面用途核验 Example Domain示例网页如何声明自己的用途？",
+      "status": "unavailable",
+      "error": "NETWORK_ERROR",
+      "candidateCount": 0
+    }
+  ],
+  "searchAttempted": true,
+  "error": "RESEARCH_REPORT_MISSING",
+  "finishedAt": "2026-11-01T06:24:35.858Z"
+}

@@ -1,0 +1,70 @@
+{
+  "case": "time",
+  "fixtureHash": "c515fc1d237fd4a80a145bcf0e49718e1a39240d3fecfb44f6a354632cc18631",
+  "result": "passed",
+  "quality": "partial",
+  "root": {
+    "searches": 0,
+    "reads": 2
+  },
+  "sources": [
+    {
+      "id": "01a0a25d-0400-7669-904f-d82e71ba8cb4",
+      "kind": "web",
+      "ref": {
+        "kind": "web",
+        "sourceId": "01a0a25d-0400-7669-904f-d82e71ba8cb4",
+        "revision": 1
+      },
+      "questionKeys": [
+        "q1"
+      ],
+      "title": "evidence.example.com",
+      "url": "https://evidence.example.com/a",
+      "canonical": "https://evidence.example.com/a",
+      "contentHash": "7e9bb81a3f9499fc53668f5e2a5ca9d801b90ebbe5866ae89ce1c1f93020dcfc",
+      "fetchedAt": 1789430400000,
+      "publishedAt": 1717200000000,
+      "status": "ready",
+      "excluded": false,
+      "error": null,
+      "truncated": false
+    },
+    {
+      "id": "01a0a25d-0400-7c33-a8dc-8c532f4812aa",
+      "kind": "web",
+      "ref": {
+        "kind": "web",
+        "sourceId": "01a0a25d-0400-7c33-a8dc-8c532f4812aa",
+        "revision": 1
+      },
+      "questionKeys": [
+        "q1"
+      ],
+      "title": "合成来源乙",
+      "url": "https://evidence.example.net/b",
+      "canonical": "https://evidence.example.net/b",
+      "contentHash": "eac1928f5a1a793bf510c1e4f2672071c4135e7898eeeab18e2621475dd4c230",
+      "fetchedAt": 1789430400000,
+      "publishedAt": null,
+      "status": "ready",
+      "excluded": false,
+      "error": null,
+      "truncated": false
+    }
+  ],
+  "findings": [
+    {
+      "questionKey": "q1",
+      "kind": "gap",
+      "text": "此问题尚无足够可核验的原文证据。",
+      "id": "01a0a25d-0400-74fe-bc7d-4b9b368d6233",
+      "supports": [],
+      "opposes": [],
+      "distinctSourceGroups": 0
+    }
+  ],
+  "citationChecks": [],
+  "reportHash": "18a9e3a2268f247fa9db3601d210bd60c347f4d43d410cb690970c84eb9886fa",
+  "scope": "synthetic; literal locator/hash checks independent of model scoring"
+}

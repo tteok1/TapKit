@@ -1,0 +1,16 @@
+{
+  "scope": "P08-02 user-authorized existing Zhipu Chat account; encrypted isolated copy; no API call",
+  "model": "glm-4.7-flashx",
+  "networkMode": "direct (isolated profile UI only)",
+  "connectionLimit": 30,
+  "connectionChecks": 0,
+  "workCalls": 0,
+  "taskLimits": {
+    "calls": 8,
+    "tools": 12,
+    "tokens": 100000,
+    "activeMs": 600000
+  },
+  "target": "Public search → at least two distinct source groups → literal evidence → explicit report; no seed URL",
+  "externalWrites": false
+}

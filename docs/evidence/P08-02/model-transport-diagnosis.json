@@ -1,0 +1,123 @@
+{
+  "scope": "TCP/TLS handshake plus unauthenticated GET of public https://open.bigmodel.cn/ only; no API endpoint, account, key, model request, body logging or connection-button click",
+  "checks": [
+    {
+      "route": "direct",
+      "proxyUsed": false,
+      "addressIndex": 0,
+      "family": 4,
+      "public": true,
+      "tcpMs": 22,
+      "tlsVerified": true,
+      "elapsedMs": 49
+    },
+    {
+      "route": "direct",
+      "proxyUsed": false,
+      "addressIndex": 1,
+      "family": 4,
+      "public": true,
+      "tcpMs": 16,
+      "tlsVerified": true,
+      "elapsedMs": 44
+    },
+    {
+      "route": "configured",
+      "proxyUsed": true,
+      "addressIndex": 0,
+      "family": 4,
+      "public": true,
+      "tcpMs": 4,
+      "tlsVerified": true,
+      "elapsedMs": 567
+    },
+    {
+      "route": "configured",
+      "proxyUsed": true,
+      "addressIndex": 1,
+      "family": 4,
+      "public": true,
+      "tcpMs": 2,
+      "tlsVerified": true,
+      "elapsedMs": 1570
+    }
+  ],
+  "httpChecks": [
+    {
+      "route": "direct",
+      "transport": "production API HTTP transport",
+      "status": 200,
+      "elapsedMs": 175,
+      "stages": [
+        {
+          "stage": "dns_complete",
+          "elapsedMs": 15
+        },
+        {
+          "stage": "proxy_resolved",
+          "elapsedMs": 16
+        },
+        {
+          "stage": "socket_assigned",
+          "elapsedMs": 31
+        },
+        {
+          "stage": "tcp_connected",
+          "elapsedMs": 52
+        },
+        {
+          "stage": "tls_connected",
+          "elapsedMs": 87
+        },
+        {
+          "stage": "request_finished",
+          "elapsedMs": 87
+        },
+        {
+          "stage": "response_headers",
+          "elapsedMs": 171
+        }
+      ]
+    },
+    {
+      "route": "direct",
+      "transport": "production anonymous HTTP transport",
+      "status": 200,
+      "bytes": 6198
+    },
+    {
+      "route": "configured",
+      "transport": "production API HTTP transport",
+      "status": 200,
+      "elapsedMs": 1982,
+      "stages": [
+        {
+          "stage": "dns_complete",
+          "elapsedMs": 1
+        },
+        {
+          "stage": "proxy_resolved",
+          "elapsedMs": 2
+        },
+        {
+          "stage": "socket_assigned",
+          "elapsedMs": 1608
+        },
+        {
+          "stage": "request_finished",
+          "elapsedMs": 1608
+        },
+        {
+          "stage": "response_headers",
+          "elapsedMs": 1981
+        }
+      ]
+    },
+    {
+      "route": "configured",
+      "transport": "production anonymous HTTP transport",
+      "status": 200,
+      "bytes": 6198
+    }
+  ]
+}

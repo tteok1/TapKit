@@ -1,0 +1,44 @@
+{
+  "task": "P08-02",
+  "clientDate": "2026-11-04",
+  "authorization": "User explicitly requested commit and push current branch; no merge into main",
+  "branch": "codex/p08-02-research",
+  "remote": "origin",
+  "repository": "https://github.com/tteok1/TapKit.git",
+  "status": "preflight_passed_pending_commit",
+  "remoteMainBefore": "35582482610bc7b6c1cd71721c6ac59faa07eb08",
+  "remoteBranchExistedBefore": false,
+  "sensitiveScan": {
+    "status": "passed",
+    "candidateFiles": 523,
+    "textFilesIncludingArchives": 433,
+    "highSignalSecretPatternHits": 0,
+    "forbiddenCredentialOrDatabasePaths": 0,
+    "method": "High-signal credential/private-key patterns and forbidden filenames; nested archive text included; no matched values logged"
+  },
+  "verifiedFilesBeforePublication": {
+    "sourceFiles": 70,
+    "progressFiles": 5,
+    "allHashesMatched": true
+  },
+  "publicationPreparation": {
+    "textLineEndingsNormalized": [
+      "docs/plan/02-decisions.md",
+      "docs/plan/07-tools-and-isolation.md",
+      "docs/progress/requirements.csv"
+    ],
+    "evidenceBytesPreservedBy": ".gitattributes docs/evidence/P08-02/** -text -whitespace"
+  },
+  "acceptance": {
+    "implementation": "implemented_and_verified",
+    "unitPassed": 496,
+    "researchIntegrationPassed": 33,
+    "live": "passed",
+    "model": "configured Zhipu glm-4.7-flashx",
+    "networkScope": "isolated direct route",
+    "connectionChecks": 44,
+    "connectionLimit": 50,
+    "remainingChecks": 6
+  },
+  "mainMergeAuthorized": false
+}

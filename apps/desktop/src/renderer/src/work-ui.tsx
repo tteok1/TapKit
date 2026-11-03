@@ -19,6 +19,7 @@ import { DataResults } from './data-results';
 import { SlidesResults } from './slides-results';
 import { BrowserPanel } from './browser-ui';
 import browserText from '../locales/browser.zh-CN.json';
+import { ResearchFields, ResearchPanel, researchFromForm } from './research-ui';
 
 async function readyWorkMaterials(sessionId: string, refs: ResourceRef[], format: string) {
   const deadline = performance.now() + 120000;
@@ -306,7 +307,8 @@ function WorkCreate({
   const [inputFiles, setInputFiles] = useState<File[]>([]),
     [importedRefs, setImportedRefs] = useState<ResourceRef[]>([]),
     [createdSession, setCreatedSession] = useState<{ id: string; project: string }>(),
-    [outputFormat, setOutputFormat] = useState('md');
+    [outputFormat, setOutputFormat] = useState('md'),
+    [researchMode, setResearchMode] = useState(false);
   useEffect(() => {
     void window.tapkit
       .modelCommand(requestOptions(), 'models.catalog', {})
@@ -392,6 +394,7 @@ function WorkCreate({
             audience: form.get('audience'),
             language: form.get('language'),
             format,
+            ...(researchMode ? { research: researchFromForm(form, refs, format) } : {}),
             ...(format === 'xlsx'
               ? {
                   dataOptions: {
@@ -412,7 +415,7 @@ function WorkCreate({
             ...(['md', 'docx', 'pdf'].includes(format) && Object.keys(documentOptions).length
               ? { documentOptions }
               : {}),
-            quantity: Number(form.get('quantity')),
+            quantity: researchMode ? 1 : Number(form.get('quantity')),
             scope: form.get('scope'),
             acceptance: [
               { kind: 'file_exists', format, minCount: 1 },
@@ -423,8 +426,8 @@ function WorkCreate({
             deadlineAt: form.get('deadline')
               ? new Date(String(form.get('deadline'))).getTime()
               : null,
-            planFirst: form.has('planFirst'),
-            browserEnabled: form.has('browserEnabled'),
+            planFirst: researchMode || form.has('planFirst'),
+            browserEnabled: !researchMode && form.has('browserEnabled'),
             budgetOverrides: {
               tokens: Number(form.get('tokens')),
               activeMs: Number(form.get('minutes')) * 60000,
@@ -442,9 +445,23 @@ function WorkCreate({
       }}
     >
       <label className="work-wide">
-        {t.goal}
-        <textarea name="goal" required maxLength={20000} />
+        工作类型
+        <select
+          value={researchMode ? 'research' : 'general'}
+          onChange={(e) => {
+            setResearchMode(e.target.value === 'research');
+            setOutputFormat('md');
+          }}
+        >
+          <option value="general">通用工作</option>
+          <option value="research">深度研究</option>
+        </select>
       </label>
+      <label className="work-wide">
+        {t.goal}
+        <textarea name="goal" required maxLength={researchMode ? 1000 : 20000} />
+      </label>
+      {researchMode && <ResearchFields />}
       <label className="work-wide">
         {t.materials}
         <input
@@ -474,7 +491,10 @@ function WorkCreate({
           value={outputFormat}
           onChange={(event) => setOutputFormat(event.target.value)}
         >
-          {['md', 'txt', 'json', 'csv', 'pdf', 'docx', 'xlsx', 'pptx'].map((f) => (
+          {(researchMode
+            ? ['md', 'docx', 'pdf']
+            : ['md', 'txt', 'json', 'csv', 'pdf', 'docx', 'xlsx', 'pptx']
+          ).map((f) => (
             <option key={f}>{f}</option>
           ))}
         </select>
@@ -586,7 +606,7 @@ function WorkCreate({
           </p>
         </details>
       )}
-      <label>
+      <label hidden={researchMode}>
         {t.quantity}
         <input name="quantity" type="number" min={1} max={12} defaultValue={1} />
       </label>
@@ -634,11 +654,15 @@ function WorkCreate({
           </select>
         </label>
       )}
-      <label>
-        <input type="checkbox" name="planFirst" />
-        {t.planFirst}
-      </label>
-      <label className="work-wide">
+      {researchMode ? (
+        <p className="work-wide">研究开始前会先显示提纲与计划，确认后执行。</p>
+      ) : (
+        <label>
+          <input type="checkbox" name="planFirst" />
+          {t.planFirst}
+        </label>
+      )}
+      <label className="work-wide" hidden={researchMode}>
         <span>
           <input type="checkbox" name="browserEnabled" /> {browserText.allow}
         </span>
@@ -717,6 +741,7 @@ function WorkDetail({
       {r.definition.browserEnabled && (
         <BrowserPanel work={r} onMaterial={(ref) => setSteerRefs((refs) => [...refs, ref])} />
       )}
+      {r.definition.research && <ResearchPanel key={r.runId} work={r} onNavigate={onNavigate} />}
       {!!r.unresolvedCalls.length && (
         <section aria-label={t.reconcile}>
           {r.unresolvedCalls.map((call) => (
@@ -1106,7 +1131,7 @@ function WorkDetail({
             ))}
         </section>
       )}
-      {
+      {!r.definition.research && (
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -1156,7 +1181,7 @@ function WorkDetail({
           </label>
           <button disabled={busy}>{t.steerSubmit}</button>
         </form>
-      }
+      )}
       <button onClick={() => onNavigate('/notifications')}>{t.permissions}</button>
       {terminal && (
         <div className="work-actions">

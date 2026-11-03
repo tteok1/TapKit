@@ -1,0 +1,7 @@
+{
+  "at": "2026-11-03T06:22:44.436Z",
+  "scope": "Production files before the final live round and before any later fixture rebuild",
+  "coreSha256": "8e312458502a551bd52c4f54d8e815fae5e9fcb297f3dc180ed3d1441c595f28",
+  "mainSha256": "fcac4410586208b5777feb42365a5997561c196b648035c92ea0dae842fa8db9",
+  "fixtureFree": true
+}

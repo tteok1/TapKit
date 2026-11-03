@@ -506,12 +506,14 @@ export class ApiKeyAdapter implements ProviderAdapter {
           if (typeof change?.reasoning_content === 'string') reasoning += change.reasoning_content;
           for (const item of change?.tool_calls ?? []) {
             const wireName = item.function?.name;
-            if (wireName && zhipuNames && !zhipuNames.has(wireName))
+            if (wireName && zhipuNames && !zhipuNames.has(wireName)) {
+              trace?.invalid('tool_name');
               throw new ApiFailure({
                 code: 'STREAM_INTERRUPTED',
                 retryable: false,
                 diagnosticCode: 'invalid_tool_arguments',
               });
+            }
             const call = getCall(
               String(item.index),
               item.id,
@@ -651,6 +653,7 @@ export class ApiKeyAdapter implements ProviderAdapter {
           try {
             argumentsValue = JSON.parse(call.arguments || '{}');
           } catch {
+            trace?.invalid('json');
             throw new ApiFailure({
               code: 'STREAM_INTERRUPTED',
               retryable: false,
@@ -666,35 +669,41 @@ export class ApiKeyAdapter implements ProviderAdapter {
             Array.isArray(argumentsValue) ||
             validCalls.some((item) => item.id === call.id) ||
             !input.tools.some((tool) => tool.name === call.name)
-          )
+          ) {
+            trace?.invalid('call_shape');
             throw new ApiFailure({
               code: 'STREAM_INTERRUPTED',
               retryable: false,
               diagnosticCode: 'invalid_tool_arguments',
             });
+          }
           if (
             !validArguments(
               argumentsValue,
               input.tools.find((tool) => tool.name === call.name)!.parameters,
             )
-          )
+          ) {
+            trace?.invalid('schema');
             throw new ApiFailure({
               code: 'STREAM_INTERRUPTED',
               retryable: false,
               diagnosticCode: 'invalid_tool_arguments',
             });
+          }
           validCalls.push({
             id: call.id,
             name: call.name,
             arguments: argumentsValue as Record<string, unknown>,
           });
         }
-      if (reason === 'tool_calls' && !validCalls.length)
+      if (reason === 'tool_calls' && !validCalls.length) {
+        trace?.invalid('missing_call');
         throw new ApiFailure({
           code: 'STREAM_INTERRUPTED',
           retryable: false,
           diagnosticCode: 'invalid_tool_arguments',
         });
+      }
       if (validCalls.length) reason = 'tool_calls';
       const assistant: CanonicalMessage = {
         role: 'assistant',

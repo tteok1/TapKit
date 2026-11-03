@@ -1,0 +1,10 @@
+{
+  "scope": "Bounded public tool excerpts only; no model native reasoning or credentials. Extracted from immutable failed run, original records unchanged.",
+  "runId": "01a1a012-f3a6-7832-928e-d0ee7263a09e",
+  "sourceUrl": "https://www.iana.org/",
+  "originalSourceHash": "81b0bb6cbb2631c03aaa95c60efc27e88afbaba7c230e901531e785f0716824b",
+  "originalStart": 0,
+  "exactExcerpt": "Domain Names\n\nManagement of the DNS Root Zone (assignments of ccTLDs and gTLDs) along with other functions such as the .int and .arpa zones.",
+  "rejectedQuote": "IANA 的主要职能分为三部分：DNS 根区、互联网号码资源，以及协议参数注册表。",
+  "rejectedExactInOriginal": false
+}

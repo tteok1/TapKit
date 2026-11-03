@@ -1,0 +1,13 @@
+{
+  "desktop": {
+    "width": 1267,
+    "height": 899,
+    "dpr": 2
+  },
+  "compact": {
+    "width": 947,
+    "height": 839,
+    "dpr": 2
+  },
+  "note": "Compact outer size is clamped to the existing Windows minimum; recorded CSS dimensions are authoritative."
+}

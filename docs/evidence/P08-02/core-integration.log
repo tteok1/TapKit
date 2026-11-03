@@ -1,0 +1,137 @@
+tests/integration/P08-02.research.test.ts 94ms
+$ vitest run --config vitest.config.ts --project integration "P08-02"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P08-02.research.test.ts (8 tests | 7 failed) 2859ms
+   × P08-02 multi-source conflict keeps both immutable originals, verifies citations and exports report plus sources 416ms
+   × P08-02 inaccessible and no-answer fixtures produce gaps without fake citations 382ms
+   × P08-02 time fixture uses declared publication metadata and cannot infer it from body dates 414ms
+   × P08-02 mid-run source exclusion creates a new version and rejects old-source support 390ms
+   × P08-02 searches are generated from approved questions and bind actual candidate reads 381ms
+   × P08-02 local extraction survives GC but original permanent deletion removes its private snapshot 384ms
+   × P08-02 early finish generates a partial report without starting a model request 413ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P08-02.research.test.ts > P08-02 multi-source conflict keeps both immutable originals, verifies citations and exports report plus sources
+SqliteError: table tool_call_attempts has no column named created_at
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ packages/core/src/research-service.ts:757:10
+
+ ❯ sqliteTransaction node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:65:24
+ ❯ ResearchService.execute packages/core/src/research-service.ts:775:6
+ ❯ WorkToolGateway.execute packages/core/src/work-gateway.ts:453:30
+ ❯ Object.execute tests/integration/P08-02.research.test.ts:95:20
+ ❯ loadBoth tests/integration/P08-02.research.test.ts:125:11
+ ❯ tests/integration/P08-02.research.test.ts:134:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  |integration| tests/integration/P08-02.research.test.ts > P08-02 inaccessible and no-answer fixtures produce gaps without fake citations
+SqliteError: table tool_call_attempts has no column named created_at
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ packages/core/src/research-service.ts:757:10
+
+ ❯ sqliteTransaction node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:65:24
+ ❯ ResearchService.execute packages/core/src/research-service.ts:775:6
+ ❯ WorkToolGateway.execute packages/core/src/work-gateway.ts:453:30
+ ❯ Object.execute tests/integration/P08-02.research.test.ts:95:20
+ ❯ tests/integration/P08-02.research.test.ts:190:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  |integration| tests/integration/P08-02.research.test.ts > P08-02 time fixture uses declared publication metadata and cannot infer it from body dates
+SqliteError: table tool_call_attempts has no column named created_at
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 1 passed (8)
+   Start at  23:08:37
+   Duration  5.65s (tests 52%, transform 27%, import 21%)
+
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ packages/core/src/research-service.ts:757:10
+
+ ❯ sqliteTransaction node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:65:24
+ ❯ ResearchService.execute packages/core/src/research-service.ts:775:6
+ ❯ WorkToolGateway.execute packages/core/src/work-gateway.ts:453:30
+ ❯ Object.execute tests/integration/P08-02.research.test.ts:95:20
+ ❯ loadBoth tests/integration/P08-02.research.test.ts:125:11
+ ❯ tests/integration/P08-02.research.test.ts:221:27
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  |integration| tests/integration/P08-02.research.test.ts > P08-02 mid-run source exclusion creates a new version and rejects old-source support
+SqliteError: table tool_call_attempts has no column named created_at
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ packages/core/src/research-service.ts:757:10
+
+ ❯ sqliteTransaction node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:65:24
+ ❯ ResearchService.execute packages/core/src/research-service.ts:775:6
+ ❯ WorkToolGateway.execute packages/core/src/work-gateway.ts:453:30
+ ❯ Object.execute tests/integration/P08-02.research.test.ts:95:20
+ ❯ loadBoth tests/integration/P08-02.research.test.ts:125:11
+ ❯ tests/integration/P08-02.research.test.ts:260:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  |integration| tests/integration/P08-02.research.test.ts > P08-02 searches are generated from approved questions and bind actual candidate reads
+SqliteError: table tool_call_attempts has no column named created_at
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ packages/core/src/research-service.ts:757:10
+
+ ❯ sqliteTransaction node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:65:24
+ ❯ ResearchService.execute packages/core/src/research-service.ts:775:6
+ ❯ WorkToolGateway.execute packages/core/src/work-gateway.ts:453:30
+ ❯ Object.execute tests/integration/P08-02.research.test.ts:95:20
+ ❯ tests/integration/P08-02.research.test.ts:304:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  |integration| tests/integration/P08-02.research.test.ts > P08-02 local extraction survives GC but original permanent deletion removes its private snapshot
+SqliteError: table tool_call_attempts has no column named created_at
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ packages/core/src/research-service.ts:757:10
+
+ ❯ sqliteTransaction node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:65:24
+ ❯ ResearchService.execute packages/core/src/research-service.ts:775:6
+ ❯ WorkToolGateway.execute packages/core/src/work-gateway.ts:453:30
+ ❯ Object.execute tests/integration/P08-02.research.test.ts:95:20
+ ❯ tests/integration/P08-02.research.test.ts:344:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  |integration| tests/integration/P08-02.research.test.ts > P08-02 early finish generates a partial report without starting a model request
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/integration/P08-02.research.test.ts:371:23
+    369|     const run = f.work.repo.row(f.runId);
+    370|     const result = await f.send('research.finish', { runId: run.id }, …
+    371|     expect(result.ok).toBe(true);
+       |                       ^
+    372|     await f.work.start();
+    373|     await until(() => f.work.repo.row(run.id).status === 'partial');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:122
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:223:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:220:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0

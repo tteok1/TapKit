@@ -32,7 +32,7 @@ test('P08-01 schema18 upgrade preserves user sessions/settings, applies once and
       settings = db.prepare('SELECT * FROM settings').all();
     await migrate(db, backup);
     await migrate(db, backup);
-    expect(db.pragma('user_version', { simple: true })).toBe(19);
+    expect(db.pragma('user_version', { simple: true })).toBe(20);
     expect(db.prepare('SELECT * FROM sessions').all()).toEqual(sessions);
     expect(db.prepare('SELECT * FROM settings').all()).toEqual(settings);
     expect(

@@ -1,0 +1,45 @@
+{
+  "runId": "01a1a165-295d-7be9-a4ca-98a301baf691",
+  "status": "passed",
+  "coreInitiatedReport": true,
+  "modelAttempts": 4,
+  "toolLedger": [
+    {
+      "tool_name": "research.search",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "research.read",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "research.read",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "research.read",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "research.read",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "research.record",
+      "status": "succeeded"
+    },
+    {
+      "tool_name": "research.report",
+      "status": "succeeded"
+    }
+  ],
+  "parameterErrors": 0,
+  "lastIssue": null,
+  "quality": "partial",
+  "findingSourceGroups": [
+    1,
+    1
+  ],
+  "currentBuildMatches": true,
+  "fixtureFree": true
+}

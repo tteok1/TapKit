@@ -1,0 +1,43 @@
+$ vitest run --config vitest.config.ts --project unit "P01-02.system-proxy"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |unit| tests/unit/P01-02.system-proxy.test.ts (15 tests | 1 failed) 34ms
+   × P08-02 resolves the approved public search URL with its query intact 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| tests/unit/P01-02.system-proxy.test.ts > P08-02 resolves the approved public search URL with its query intact
+Error: PERMISSION_DENIED
+ ❯ Module.resolveSystemProxy apps/desktop/src/main/system-proxy.ts:36:11
+     34|     parsed.hash
+     35|   )
+     36|     throw new Error('PERMISSION_DENIED');
+       |           ^
+     37|   let timer: ReturnType<typeof setTimeout> | undefined;
+     38|   try {
+ ❯ tests/unit/P01-02.system-proxy.test.ts:58:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 14 passed (15)
+   Start at  13:01:23
+   Duration  1.64s (transform 73%, import 21%, tests 3%, setup 2%, worker 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:41
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:223:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:220:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0

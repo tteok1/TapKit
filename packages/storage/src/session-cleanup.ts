@@ -9,6 +9,12 @@ function eraseWorkRuns(store: Store, runIds: string[], time: number) {
   for (const id of runIds) {
     if (
       store.db
+        .prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='research_snapshots'")
+        .get()
+    )
+      store.db.prepare('DELETE FROM research_snapshots WHERE run_id=?').run(id);
+    if (
+      store.db
         .prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='browser_sessions'")
         .get()
     ) {

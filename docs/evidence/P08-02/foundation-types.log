@@ -1,0 +1,26 @@
+packages/core/src/research-service.ts 180ms
+packages/storage/src/blobs.ts 54ms
+packages/storage/src/foundation.ts 48ms (unchanged)
+packages/storage/src/session-cleanup.ts 14ms
+packages/storage/src/file-cleanup.ts 4ms
+packages/contracts/src/web.ts 9ms (unchanged)
+packages/contracts/src/research.ts 17ms (unchanged)
+packages/tools/src/web.ts 18ms
+packages/workflows/src/research.ts 23ms
+packages/core/src/research-service.ts(21,10): error TS6133: 'WorkRepository' is declared but its value is never read.
+packages/core/src/research-service.ts(824,30): error TS6133: 'step' is declared but its value is never read.
+packages/core/src/research-service.ts(824,44): error TS6133: 'guard' is declared but its value is never read.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:402
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:223:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:220:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0

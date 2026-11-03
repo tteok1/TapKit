@@ -1,5 +1,7 @@
 # IPC、事件、任务状态与接口协议
 
+P08-02复用workCommand：runs.create.research、runs.steer.research（新版本）及research.get/source/finish，严格共享DTO；不新增preload桥。research.get分页来源/发现、对外响应小于60KB；source按固定快照和字符偏移定位，不打开模型提供的任意文件路径。
+
 2026-10-31 P08-01：[ADR0075](../adr/0075-anonymous-browser-actions.md)新增browserCommand有限公共接口tabs/open/observe/action（仅导航）/control/close/present/material/download/external。Host覆盖windowId并私有转译窗口slot；网页没有preload/IPC。工作模型仅browser.open/observe/act，不接受脚本、partition或CDP参数。网页提交复用approvals.list/decide，强制once；DOM/字段变化失效，审批拒绝可直接结束待执行项。错误继续使用APPROVAL_STALE/PERMISSION_DENIED/SIDE_EFFECT_UNKNOWN，不新增同义运行状态。
 
 P06：Core ready schemaVersion=17。WorkCommandSchemas严格定义runs.create/list/get/setPlan/steer/pause/resume/cancel/retry/skip/answer/accept/organize/copy/batch/reconcile、approvals.list/decide/editDraft/refresh、grants.list/revoke与notifications命令。Renderer仅走workCommand；变更使用expectedRevision，批量逐项结果。暂停/取消与旧版本/epoch守卫共享RunStatus转移；终结run不能原地复活。refresh只为未消费的过期提案重新产生审批，必须再次决定。lifecycle和desktop.notification是Host/Core私有消息；通知跳真实run，已删对象显示不可访问说明。
@@ -111,7 +113,7 @@ Core事件持久化以后才发送；UI lastSeq续接，重复eventId/seq忽略�
 
 ## 2. 接口清单
 
-2026-10-14 [ADR0051](../adr/0051-p01-network-selection-and-title-recovery.md)：仅Core↔Host的network.proxy.resolve接收公开HTTPS URL并返回proxyURL/DIRECT，不接受Renderer调用或携带Key/正文。SessionRecord追加可为空的titleStatus/titleErrorCode/titleDiagnosticCode，workspace事件与状态同事务。
+2026-10-14 [ADR0051](../adr/0051-p01-network-selection-and-title-recovery.md)：仅Core↔Host的network.proxy.resolve接收公开HTTPS URL并返回proxyURL/DIRECT，不接受Renderer调用或携带Key/正文。2026-11-03按ADR0076支持已授权搜索URL的查询参数，URL最长4096，仍拒绝URL凭据、片段和非HTTPS。SessionRecord追加可为空的titleStatus/titleErrorCode/titleDiagnosticCode，workspace事件与状态同事务。
 
 DTO中的EntityView是不含凭据、绝对内部路径、native reasoning的可显示字段；EntityRef固定{id,revision}。所有update带expectedRevision；失败CONFLICT返回当前revision和重新加载动作，不能last-write-wins。
 

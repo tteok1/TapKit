@@ -1,0 +1,46 @@
+{
+  "status": "failed",
+  "case": "discovery",
+  "connectionLimit": 50,
+  "workflowVersion": "snapshot-evidence-handles-core-closeout-v6",
+  "verifierVersion": "literal-quote-block-entities-v2",
+  "build": {
+    "packages/core/dist/index.cjs": "380a7948e2e0de39c298e4324856f4bc9cc90bad74da9ed8bdf7ede92799e55f",
+    "apps/desktop/out/main/index.js": "fcac4410586208b5777feb42365a5997561c196b648035c92ea0dae842fa8db9"
+  },
+  "connectionAttempts": [
+    {
+      "number": 40,
+      "status": "failed",
+      "startedAt": "2026-11-03T12:12:20.717Z",
+      "finishedAt": "2026-11-03T12:12:21.074Z"
+    },
+    {
+      "number": 41,
+      "status": "failed",
+      "startedAt": "2026-11-03T12:12:21.231Z",
+      "finishedAt": "2026-11-03T12:12:21.490Z"
+    },
+    {
+      "number": 42,
+      "status": "failed",
+      "startedAt": "2026-11-03T12:12:21.631Z",
+      "finishedAt": "2026-11-03T12:12:21.884Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": false,
+  "taskStarted": false,
+  "task": null,
+  "usage": [],
+  "credentialRemoved": true,
+  "startedAt": "2026-11-03T12:12:00.018Z",
+  "publicDirectDomains": [
+    "bing.com",
+    "iana.org",
+    "larus.net"
+  ],
+  "networkMode": "configured model environment; public-only NO_PROXY",
+  "error": "CONNECTION_CHECK_ROUND_LIMIT",
+  "apiTransportEvidence": "api-transport.json",
+  "finishedAt": "2026-11-03T12:12:22.550Z"
+}

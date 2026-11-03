@@ -24,15 +24,9 @@ export async function resolveSystemProxy(
   payload: unknown,
   resolveProxy = (url: string) => session.defaultSession.resolveProxy(url),
 ): Promise<{ proxyURL: string }> {
-  const { url } = z.strictObject({ url: z.string().max(2048).url() }).parse(payload);
+  const { url } = z.strictObject({ url: z.string().max(4096).url() }).parse(payload);
   const parsed = new URL(url);
-  if (
-    parsed.protocol !== 'https:' ||
-    parsed.username ||
-    parsed.password ||
-    parsed.search ||
-    parsed.hash
-  )
+  if (parsed.protocol !== 'https:' || parsed.username || parsed.password || parsed.hash)
     throw new Error('PERMISSION_DENIED');
   let timer: ReturnType<typeof setTimeout> | undefined;
   try {

@@ -1,0 +1,84 @@
+{
+  "scope": "same production transport, no model requests",
+  "mode": "environment",
+  "checks": [
+    {
+      "url": "https://www.bing.com/search?q=IANA%20example%20domains",
+      "dns": [
+        {
+          "family": 4,
+          "public": true
+        },
+        {
+          "family": 4,
+          "public": true
+        }
+      ],
+      "proxyResolved": true,
+      "proxyUsed": true,
+      "static": {
+        "status": 200,
+        "bytes": 115833,
+        "finalHost": "www.bing.com"
+      },
+      "extraction": {
+        "chars": 2165,
+        "links": 18,
+        "publicLinks": []
+      },
+      "elapsedMs": 10687
+    },
+    {
+      "url": "https://www.bing.com/search?q=RFC%202606",
+      "dns": [
+        {
+          "family": 4,
+          "public": true
+        },
+        {
+          "family": 4,
+          "public": true
+        }
+      ],
+      "proxyResolved": true,
+      "proxyUsed": true,
+      "static": {
+        "status": 200,
+        "bytes": 118319,
+        "finalHost": "www.bing.com"
+      },
+      "extraction": {
+        "chars": 2239,
+        "links": 18,
+        "publicLinks": []
+      },
+      "elapsedMs": 13414
+    },
+    {
+      "url": "https://www.bing.com/search?q=site%3Aiana.org%20example%20domains",
+      "dns": [
+        {
+          "family": 4,
+          "public": true
+        },
+        {
+          "family": 4,
+          "public": true
+        }
+      ],
+      "proxyResolved": true,
+      "proxyUsed": true,
+      "static": {
+        "status": 200,
+        "bytes": 118597,
+        "finalHost": "www.bing.com"
+      },
+      "extraction": {
+        "chars": 2488,
+        "links": 17,
+        "publicLinks": []
+      },
+      "elapsedMs": 7794
+    }
+  ]
+}

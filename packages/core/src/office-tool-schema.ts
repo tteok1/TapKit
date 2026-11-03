@@ -1,6 +1,6 @@
 import { z, AnalysisSpecSchema, SlideDeckSpecSchema, SlideActionSchema } from '@tapkit/contracts';
 // Provider-compatible schema subset; dispatch still runs the full strict shared validator.
-function boundedSchema(value: unknown): unknown {
+export function boundedSchema(value: unknown): unknown {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return value;
   const input = value as Record<string, unknown>,
     output: Record<string, unknown> = {};

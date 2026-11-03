@@ -1,0 +1,15 @@
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+
+{"url":"https://example.com/","dns":[{"family":4,"public":true},{"family":4,"public":true}],"proxyResolved":true,"proxyUsed":true,"static":{"status":200,"bytes":577,"finalHost":"example.com"},"dynamic":{"bytes":1974,"finalHost":"example.com"},"elapsedMs":1363}
+{"url":"https://www.bing.com/search?q=IANA%20example%20domains","dns":[{"family":4,"public":true},{"family":4,"public":true}],"proxyResolved":true,"proxyUsed":true,"static":{"status":200,"bytes":118221,"finalHost":"www.bing.com"},"dynamicError":"UNKNOWN_ERROR","extraction":{"chars":2726,"links":18,"publicLinks":[]},"elapsedMs":27499}

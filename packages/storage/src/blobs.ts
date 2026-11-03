@@ -174,6 +174,20 @@ export class BlobStore {
       throw new StorageError('PERMISSION_DENIED');
     return this.readVerifiedBlob(row);
   }
+  readResearchSource(sourceId: string, rootRunId: string): Promise<Buffer> {
+    IdSchema.parse(sourceId);
+    IdSchema.parse(rootRunId);
+    const row = this.store.db
+      .prepare(
+        "SELECT b.relative_key,b.sha256,b.size_bytes FROM research_snapshots x JOIN runs r ON r.id=x.run_id JOIN sessions s ON s.id=r.session_id JOIN file_versions v ON v.id=x.file_version_id JOIN files f ON f.id=v.file_id JOIN blobs b ON b.id=x.snapshot_blob_id WHERE x.id=? AND x.profile_id=? AND r.root_run_id=? AND s.deleted_at IS NULL AND f.deleted_at IS NULL AND v.deleted_at IS NULL AND b.deleted_at IS NULL AND b.state='ready'",
+      )
+      .get(sourceId, this.store.profileId, rootRunId) as
+      { relative_key: string; sha256: string; size_bytes: number } | undefined;
+    if (!row) throw new StorageError('NOT_FOUND');
+    if (!/^blobs\/sha256\/[a-f0-9]{2}\/[a-f0-9]{64}$/.test(row.relative_key))
+      throw new StorageError('PERMISSION_DENIED');
+    return this.readVerifiedBlob(row);
+  }
   readVersion(versionId: string) {
     IdSchema.parse(versionId);
     const row = this.store.db

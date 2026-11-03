@@ -20,10 +20,20 @@ import { catalogAllowsTool } from '@tapkit/tools';
 import type { ModelService } from './model-service';
 import type { ChatService } from './chat-service';
 import type { WorkDriver, WorkCandidate } from './work-service';
+import { researchWorkDriver } from './research-driver';
+import type { ResearchService } from './research-service';
 
-export function modelWorkDriver(models: ModelService, chat: ChatService): WorkDriver {
+export function modelWorkDriver(
+  models: ModelService,
+  chat: ChatService,
+  research?: ResearchService,
+): WorkDriver {
   const repo = new WorkRepository(models.store);
   return async (run, step, signal) => {
+    if (repo.state(repo.row(run.id)).definition.research) {
+      if (!research) throw new StorageError('FEATURE_NOT_AVAILABLE');
+      return researchWorkDriver(models, research)(run, step, signal);
+    }
     const state = repo.state(repo.row(run.id)),
       definition = state.definition,
       session = repo.session(run.session_id);

@@ -1,0 +1,65 @@
+packages/core/src/research-driver.ts 94ms (unchanged)
+tests/integration/P08-02.research.test.ts 157ms
+$ vitest run --config vitest.config.ts --project integration "P08-02"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P08-02.research.test.ts (18 tests | 2 failed) 12425ms
+   × P08-02 repairs adapter-rejected arguments twice without dispatching partial calls 760ms
+   × P08-02 one invalid tool discards every call in that model response 506ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P08-02.research.test.ts > P08-02 repairs adapter-rejected arguments twice without dispatching partial calls
+Error: Events must be committed with their state
+ ❯ Store.emit packages/storage/src/foundation.ts:344:39
+    342|     causationId?: string,
+    343|   ): EventEnvelope {
+    344|     if (!this.db.inTransaction) throw new Error('Events must be commit…
+       |                                       ^
+    345|     const row = this.db
+    346|       .prepare("SELECT coalesce(max(seq),0)+1 AS seq FROM events WHERE…
+ ❯ WorkRepository.event packages/storage/src/work.ts:105:30
+ ❯ ResearchService.parameterIssue packages/core/src/research-service.ts:724:15
+ ❯ packages/core/src/research-driver.ts:155:16
+ ❯ tests/integration/P08-02.research.test.ts:170:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |integration| tests/integration/P08-02.research.test.ts > P08-02 one invalid tool discards every call in that model response
+Error: Events must be committed with their state
+ ❯ Store.emit packages/storage/src/foundation.ts:344:39
+    342|     causationId?: string,
+    343|   ): EventEnvelope {
+    344|     if (!this.db.inTransaction) throw new Error('Events must be commit…
+       |                                       ^
+    345|     const row = this.db
+    346|       .prepare("SELECT coalesce(max(seq),0)+1 AS seq FROM events WHERE…
+ ❯ WorkRepository.event packages/storage/src/work.ts:105:30
+ ❯ ResearchService.parameterIssue packages/core/src/research-service.ts:724:15
+ ❯ packages/core/src/research-driver.ts:155:16
+ ❯ tests/integration/P08-02.research.test.ts:243:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 17 passed (19)
+   Start at  01:01:48
+   Duration  17.58s (tests 79%, transform 12%, import 9%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:161
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:223:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:220:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0
