@@ -2,7 +2,7 @@
   "task": "P08-02",
   "status": "implemented_and_verified",
   "date": "2026-11-03 Asia/Shanghai",
-  "branch": "codex/p08-02-research",
+  "branch": "main",
   "base": "35582482610bc7b6c1cd71721c6ac59faa07eb08",
   "codeRef": "0e59bf3b6dfb436a54bc9e28904195d94fc8f49d",
   "committed": true,
@@ -534,19 +534,19 @@
   "progressHashes": [
     {
       "path": "docs/progress/CURRENT.md",
-      "sha256": "c53d9fc08e6d73c91bed9de08611a4e3ff3715e4909d0fb610aab03ae07cbd73"
+      "sha256": "f0b7e2c749b721458068dafe6565a92c8c8ae292d8a95ca384435a17a5e32274"
     },
     {
       "path": "docs/progress/INDEX.md",
-      "sha256": "f7e6ebf30898f50178f5a4dd771c5d977a49cf94e8af50a4953d7fea7282a0f9"
+      "sha256": "d538137b7825ba6ff1e3b536455aed343e1c3e2f70ca6a9933bf7bd104cedf74"
     },
     {
       "path": "docs/progress/P08-02.md",
-      "sha256": "e1a39654b8c580904063bffe2efe483e80a263b60f3602483319896c81cac398"
+      "sha256": "64ca31df9d8a5675b30f65a1a1dbc8779f2568ed542e39f9452fcd0b36bf56bb"
     },
     {
       "path": "docs/progress/requirements.csv",
-      "sha256": "0bff82277894b87a6d7a400c4614fd3f20523a06e5bd44e084c30af38e21d231"
+      "sha256": "eaad9fdcdbcfe1a44e0180cfd4089a9a773b07637d6170099ba475ae89d059bb"
     },
     {
       "path": "docs/progress/RESOURCES.md",
@@ -749,7 +749,7 @@
     "remainingConnectionChecks": 6,
     "sourceCommitted": true,
     "sourcePushed": true,
-    "mainMerged": false
+    "mainMerged": true
   },
   "sourceCommit": "0e59bf3b6dfb436a54bc9e28904195d94fc8f49d",
   "publication": {
@@ -759,6 +759,50 @@
     "remote": "origin",
     "sourcePushed": true,
     "mainMerged": false,
-    "documentationCommit": "commit containing the publication handoff"
+    "documentationCommit": "commit containing the publication handoff",
+    "scope": "Historical branch publication before the subsequent user-authorized main integration"
+  },
+  "developmentBranch": "codex/p08-02-research",
+  "mainIntegration": {
+    "record": "main-merge-2026-11-04.json",
+    "sourceCommit": "0e59bf3b6dfb436a54bc9e28904195d94fc8f49d",
+    "developmentHead": "b14135781b095df793bafbfcd9c6be0d73b4cdff",
+    "previousMain": "35582482610bc7b6c1cd71721c6ac59faa07eb08",
+    "method": "fast-forward",
+    "remoteMainConfirmed": "b14135781b095df793bafbfcd9c6be0d73b4cdff",
+    "mainMerged": true,
+    "mainPushed": true,
+    "developmentBranchRetained": true,
+    "documentationCommit": "commit containing this record",
+    "ci": {
+      "runNumber": 77,
+      "runId": 41689026358,
+      "conclusion": "success",
+      "headSha": "0e59bf3b6dfb436a54bc9e28904195d94fc8f49d",
+      "record": "ci77-main-acceptance.json"
+    },
+    "runtimeUnchangedSinceCi": true,
+    "checks": [
+      {
+        "command": "pnpm exec prettier --write docs/progress/CURRENT.md docs/progress/INDEX.md docs/progress/P08-02.md",
+        "exitCode": 0
+      },
+      {
+        "command": "pnpm docs:check",
+        "exitCode": 0
+      },
+      {
+        "command": "git diff --check",
+        "exitCode": 0
+      },
+      {
+        "command": "node scripts/p08-research-audit.mjs --hashes",
+        "exitCode": 0
+      },
+      {
+        "command": "SHA-256 verification of 70 source and 5 progress files; 70 source blobs compared with CI77 commit",
+        "exitCode": 0
+      }
+    ]
   }
 }

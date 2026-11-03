@@ -1,6 +1,6 @@
 # 开发进度索引
 
-P08-02=implemented_and_verified；v7证据编号/有界分页/Core原文与确定性报告改造及验收完成。check/496unit/33研究集成、新接口桌面1项已验；#44隔离直连检测通过后真实run整轮passed，4模型/7工具、成功搜索/两源两条逐字事实/Core report、MD/JSON全部核验，0参数错误/预留0。产物因单源陈述未交叉核验标partial，旧失败及原代理异常保留。检测44/50（新增14/20余6），27副本清理；源码0e59bf3已按2026-11-04用户授权提交推送origin/codex/p08-02-research，未合main，不开始P08-03或阶段收口；发布记录publication-2026-11-04.json。
+P08-02=implemented_and_verified；v7证据编号/有界分页/Core原文与确定性报告改造及验收完成。check/496unit/33研究集成、新接口桌面1项已验；#44隔离直连检测通过后真实run整轮passed，4模型/7工具、成功搜索/两源两条逐字事实/Core report、MD/JSON全部核验，0参数错误/预留0。产物因单源陈述未交叉核验标partial，旧失败及原代理异常保留。检测44/50（新增14/20余6），27副本清理；源码0e59bf3经CI77三个job全部success；2026-11-04用户追加授权后，开发分支头b141357已快进合入并推送origin/main，开发分支保留。当前main仅补交接文档；不开始P08-03或阶段收口，合入记录main-merge-2026-11-04.json及ci77-main-acceptance.json，早前分支发布记录保留。
 
 2026-10-31：基于最新main ee06f746d380bc47e99c8cec30534e6b425cf15d新建codex/p08-01-browser。P08-01实现与验收完成：470 unit、18 P08 integration、2 Electron及智谱真实网页→落盘MD通过；连接累计3/20。P08-02/03未开始，P08仍in_progress；原P07 gate范围保持。开发分支头4477c3c已按用户授权快进合入并推送main，开发分支保留；与CI76已验代码一致，合并记录见docs/evidence/P08-01/main-merge.json。CI74/75唯一失败为旧桥白名单漏browserCommand；本地2/2修复通过，修复ae078aa已推送，CI76三个job全部success：主check单元470、集成482过/1既有skip、桌面50全过；Office与启动诊断通过。
 

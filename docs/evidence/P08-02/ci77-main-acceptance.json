@@ -1,0 +1,224 @@
+{
+  "repository": "tteok1/TapKit",
+  "runId": 41689026358,
+  "runNumber": 77,
+  "attempt": 1,
+  "url": "https://github.com/tteok1/TapKit/actions/runs/41689026358",
+  "event": "push",
+  "headSha": "0e59bf3b6dfb436a54bc9e28904195d94fc8f49d",
+  "status": "completed",
+  "conclusion": "success",
+  "createdAt": "2026-11-03T17:56:25Z",
+  "completedAt": "2026-11-03T18:32:36Z",
+  "jobs": [
+    {
+      "id": 126102363940,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "number": 4,
+          "name": "Restore locked runtime archives",
+          "conclusion": "success"
+        },
+        {
+          "number": 5,
+          "name": "Bootstrap locked runtime and native dependencies",
+          "conclusion": "success"
+        },
+        {
+          "number": 6,
+          "name": "Save verified runtime archives",
+          "conclusion": "skipped"
+        },
+        {
+          "number": 7,
+          "name": "Check",
+          "conclusion": "success"
+        },
+        {
+          "number": 8,
+          "name": "Unit and current-route integration",
+          "conclusion": "success"
+        },
+        {
+          "number": 9,
+          "name": "Dedicated Core performance checks",
+          "conclusion": "success"
+        },
+        {
+          "number": 10,
+          "name": "Build and Electron checks",
+          "conclusion": "success"
+        },
+        {
+          "number": 11,
+          "name": "Verify P00-03 and P03 parser as an independent standard user",
+          "conclusion": "success"
+        },
+        {
+          "number": 12,
+          "name": "Repeat fresh-process Office shutdown diagnostics",
+          "conclusion": "success"
+        },
+        {
+          "number": 13,
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "number": 25,
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "number": 26,
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "number": 27,
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 126102364257,
+      "name": "office-native",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "number": 4,
+          "name": "Restore locked runtime archives",
+          "conclusion": "success"
+        },
+        {
+          "number": 5,
+          "name": "Bootstrap locked runtime and native dependencies",
+          "conclusion": "success"
+        },
+        {
+          "number": 6,
+          "name": "Verify current runner execution capabilities",
+          "conclusion": "success"
+        },
+        {
+          "number": 7,
+          "name": "P07 native office acceptance",
+          "conclusion": "success"
+        },
+        {
+          "number": 8,
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "number": 15,
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "number": 16,
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "number": 17,
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 126119865760,
+      "name": "startup-diagnostics",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "number": 4,
+          "name": "Restore locked runtime archives",
+          "conclusion": "success"
+        },
+        {
+          "number": 5,
+          "name": "Bootstrap locked runtime and native dependencies",
+          "conclusion": "success"
+        },
+        {
+          "number": 6,
+          "name": "Repeat fresh-process startup diagnostics",
+          "conclusion": "success"
+        },
+        {
+          "number": 7,
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "number": 13,
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "number": 14,
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "number": 15,
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}

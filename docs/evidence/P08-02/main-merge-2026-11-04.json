@@ -1,0 +1,97 @@
+{
+  "task": "P08-02",
+  "date": "2026-11-04 Asia/Shanghai",
+  "authorization": "User explicitly authorized main integration after earlier branch-only publication",
+  "sourceCommit": "0e59bf3b6dfb436a54bc9e28904195d94fc8f49d",
+  "developmentBranch": "codex/p08-02-research",
+  "developmentHead": "b14135781b095df793bafbfcd9c6be0d73b4cdff",
+  "previousMain": "35582482610bc7b6c1cd71721c6ac59faa07eb08",
+  "method": "fast-forward",
+  "commands": [
+    {
+      "command": "git switch main",
+      "exitCode": 0
+    },
+    {
+      "command": "git merge --ff-only b14135781b095df793bafbfcd9c6be0d73b4cdff",
+      "exitCode": 0
+    },
+    {
+      "command": "git -c http.version=HTTP/1.1 push origin HEAD:refs/heads/main",
+      "transport": "Existing Windows system proxy provided only through child-process Git config environment",
+      "exitCode": 0
+    }
+  ],
+  "remoteMainConfirmed": "b14135781b095df793bafbfcd9c6be0d73b4cdff",
+  "mainMerged": true,
+  "mainPushed": true,
+  "developmentBranchRetained": true,
+  "documentationCommit": "commit containing this record; documentation-only follow-up to the confirmed main push",
+  "ci": {
+    "runNumber": 77,
+    "runId": 41689026358,
+    "headSha": "0e59bf3b6dfb436a54bc9e28904195d94fc8f49d",
+    "conclusion": "success",
+    "jobs": [
+      "check",
+      "office-native",
+      "startup-diagnostics"
+    ],
+    "record": "ci77-main-acceptance.json",
+    "url": "https://github.com/tteok1/TapKit/actions/runs/41689026358"
+  },
+  "sourceToDevelopmentHead": {
+    "runtimeUnchanged": true,
+    "changedFiles": 7,
+    "scope": "Publication and progress documents only",
+    "files": [
+      "docs/evidence/P08-02/publication-2026-11-04.json",
+      "docs/evidence/P08-02/publication-integrity-2026-11-04.json",
+      "docs/evidence/P08-02/verification.json",
+      "docs/progress/CURRENT.md",
+      "docs/progress/INDEX.md",
+      "docs/progress/P08-02.md",
+      "docs/progress/requirements.csv"
+    ]
+  },
+  "transportHistory": [
+    "Connector update_ref returned 403 Resource not accessible by integration; no mutation",
+    "Direct Git push failed with network error",
+    "Existing system proxy used temporarily for successful non-force Git push"
+  ],
+  "globalConfigurationChanged": false,
+  "forcePush": false,
+  "newModelRequests": 0,
+  "connectionBudget": {
+    "cumulative": 44,
+    "limit": 50,
+    "remaining": 6,
+    "newAllowanceUsed": 14,
+    "newAllowance": 20
+  },
+  "nextTaskStarted": false,
+  "stageGateCreated": false,
+  "historicalPublicationRecordUnchanged": true,
+  "checks": [
+    {
+      "command": "pnpm exec prettier --write docs/progress/CURRENT.md docs/progress/INDEX.md docs/progress/P08-02.md",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/p08-research-audit.mjs --hashes",
+      "exitCode": 0
+    },
+    {
+      "command": "SHA-256 verification of 70 source and 5 progress files; 70 source blobs compared with CI77 commit",
+      "exitCode": 0
+    }
+  ]
+}
