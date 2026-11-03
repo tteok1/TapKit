@@ -4,9 +4,9 @@
   "date": "2026-11-03 Asia/Shanghai",
   "branch": "codex/p08-02-research",
   "base": "35582482610bc7b6c1cd71721c6ac59faa07eb08",
-  "codeRef": "codex/p08-02-research+working-tree",
-  "committed": false,
-  "pushed": false,
+  "codeRef": "0e59bf3b6dfb436a54bc9e28904195d94fc8f49d",
+  "committed": true,
+  "pushed": true,
   "checks": [
     {
       "command": "pnpm check; pnpm test:unit",
@@ -520,7 +520,10 @@
   ],
   "production": {
     "coreSha256": "512670753b5310718f91bb90d49a52b8d5fcd31a662d388d3afa581dbcd1d0ca",
-    "mainSha256": "fcac4410586208b5777feb42365a5997561c196b648035c92ea0dae842fa8db9"
+    "mainSha256": "fcac4410586208b5777feb42365a5997561c196b648035c92ea0dae842fa8db9",
+    "currentBuildMatchesSuccessfulRun": true,
+    "fixtureFree": true,
+    "verifiedRun": "01a1a165-295d-7be9-a4ca-98a301baf691"
   },
   "credentialCleanup": {
     "profiles": 27,
@@ -531,19 +534,19 @@
   "progressHashes": [
     {
       "path": "docs/progress/CURRENT.md",
-      "sha256": "723c68ebcf72abab7a01b6008d19b1cefe6961345e9f48de6ed4a872e1625f20"
+      "sha256": "c53d9fc08e6d73c91bed9de08611a4e3ff3715e4909d0fb610aab03ae07cbd73"
     },
     {
       "path": "docs/progress/INDEX.md",
-      "sha256": "7d1dc1b86033f9af9f2330b65a4f0c2eacbd14f73c6bc0932e31f368e20f2b75"
+      "sha256": "f7e6ebf30898f50178f5a4dd771c5d977a49cf94e8af50a4953d7fea7282a0f9"
     },
     {
       "path": "docs/progress/P08-02.md",
-      "sha256": "908a86892bc224138e3b602070f813d5346dbc9ef31845f007c0bfd2ade2d0e4"
+      "sha256": "e1a39654b8c580904063bffe2efe483e80a263b60f3602483319896c81cac398"
     },
     {
       "path": "docs/progress/requirements.csv",
-      "sha256": "cd8592f36a7d65134f4645c6aeb8c88335051a40d262a377930ec68da85daa1e"
+      "sha256": "0bff82277894b87a6d7a400c4614fd3f20523a06e5bd44e084c30af38e21d231"
     },
     {
       "path": "docs/progress/RESOURCES.md",
@@ -591,7 +594,10 @@
     "limit": 50,
     "remaining": 6,
     "authorization": "2026-11-03 user added twenty after redesign to prior thirty; cumulative limit fifty, never reset",
-    "allAttempts": "live-attempts.json"
+    "allAttempts": "live-attempts.json",
+    "newAllowance": 20,
+    "newAllowanceUsed": 14,
+    "remainingNewAllowance": 6
   },
   "redesign": {
     "status": "completed_and_live_verified",
@@ -738,9 +744,21 @@
   },
   "finalHandoff": {
     "status": "passed",
-    "uncommitted": true,
-    "pushed": false,
+    "pushed": true,
     "nextTaskStarted": false,
-    "remainingConnectionChecks": 6
+    "remainingConnectionChecks": 6,
+    "sourceCommitted": true,
+    "sourcePushed": true,
+    "mainMerged": false
+  },
+  "sourceCommit": "0e59bf3b6dfb436a54bc9e28904195d94fc8f49d",
+  "publication": {
+    "record": "publication-2026-11-04.json",
+    "sourceCommit": "0e59bf3b6dfb436a54bc9e28904195d94fc8f49d",
+    "branch": "codex/p08-02-research",
+    "remote": "origin",
+    "sourcePushed": true,
+    "mainMerged": false,
+    "documentationCommit": "commit containing the publication handoff"
   }
 }

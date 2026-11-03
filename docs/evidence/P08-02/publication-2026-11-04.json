@@ -5,7 +5,7 @@
   "branch": "codex/p08-02-research",
   "remote": "origin",
   "repository": "https://github.com/tteok1/TapKit.git",
-  "status": "preflight_passed_pending_commit",
+  "status": "source_committed_and_pushed",
   "remoteMainBefore": "35582482610bc7b6c1cd71721c6ac59faa07eb08",
   "remoteBranchExistedBefore": false,
   "sensitiveScan": {
@@ -40,5 +40,29 @@
     "connectionLimit": 50,
     "remainingChecks": 6
   },
-  "mainMergeAuthorized": false
+  "mainMergeAuthorized": false,
+  "sourceCommit": "0e59bf3b6dfb436a54bc9e28904195d94fc8f49d",
+  "sourcePush": {
+    "exitCode": 0,
+    "refspec": "HEAD:refs/heads/codex/p08-02-research",
+    "upstream": "origin/codex/p08-02-research"
+  },
+  "remoteBranchObserved": "0e59bf3b6dfb436a54bc9e28904195d94fc8f49d",
+  "remoteMainAfterSourcePush": "35582482610bc7b6c1cd71721c6ac59faa07eb08",
+  "mainUnchanged": true,
+  "mainMerged": false,
+  "pullRequestCreated": false,
+  "readbackTransport": "Per-command HTTP/1.1 after transient network reset; no global Git/network configuration change",
+  "stagedPreflight": {
+    "status": "passed",
+    "stagedFiles": 525,
+    "stagedBytes": 35107405,
+    "verifiedSourceAndProgressFiles": 75,
+    "indexMatchesWorkingTreeAndRecordedHashes": true,
+    "mismatches": [],
+    "secretPatternHits": [],
+    "forbiddenPaths": [],
+    "unrelatedHistoricalArtifactsStaged": []
+  },
+  "documentationCommit": "commit containing this handoff; sourceCommit above identifies the runtime implementation"
 }
