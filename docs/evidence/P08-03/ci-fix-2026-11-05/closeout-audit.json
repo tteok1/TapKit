@@ -1,0 +1,14 @@
+{
+  "task": "P08-03",
+  "sourceCommit": "eba077819d7fb919763757ef21303d294abdba91",
+  "ci79": "completed/success; 3 of 3 jobs",
+  "closeoutScope": "Documentation and CI metadata only; 45 prior accepted source files unchanged and one test matches CI79 source",
+  "intendedMarkdownFormatFilesPassed": 4,
+  "docsCheckTaskCount": 37,
+  "diffCheckExit": 0,
+  "sensitiveEvidenceFindings": 0,
+  "otherTaskUncommittedChangesPreserved": true,
+  "stagingMethod": "Explicit intended HEAD-based CI versions for overlapping progress files; maintenance additions left outside commit",
+  "mainMergePerformed": false,
+  "newModelCalls": 0
+}

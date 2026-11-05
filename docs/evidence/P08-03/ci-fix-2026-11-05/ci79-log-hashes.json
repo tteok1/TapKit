@@ -1,0 +1,14 @@
+{
+  "check": {
+    "sha256": "02fdb0464e42d07fff8b5673d83b0cfd8464efacb8b6f639eeb7186049e3563c",
+    "bytes": 17242829
+  },
+  "office": {
+    "sha256": "2d92d8fa1f45788c27746ca1cccc90f3f2421b0180febd44d3f8cdc4e9aedbff",
+    "bytes": 174821
+  },
+  "startup": {
+    "sha256": "e7cce058daa87e4fc87624cf87d215407a517e97dd45f419d8ed05b2e7a325db",
+    "bytes": 310511
+  }
+}

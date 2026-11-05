@@ -2,7 +2,7 @@
 
 - 日期/执行：2026-11-05 Asia/Shanghai，当前开发验收会话；D:/Tapkit-public。
 - 源：main 21604b1a851e2db19fde48c927e57e26eae809e1基点，codex/p08-03-delegation源码提交6e971d1已按用户授权推送远端；源指纹见docs/evidence/P08-03/source-manifest.json。发布记录见docs/evidence/P08-03/publication.json；未合main，新CI尚未核对结果。
-- gate_status：failed（CI78历史迁移fixture修复补验中；既有本地与live证据保持原范围）。
+- gate_status：passed（CI79源码eba0778三个job全部success；原live范围保持）。
 
 ## 本阶段交付物
 
@@ -33,3 +33,7 @@
 ## 下一阶段交接
 
 可复用BrowserAction/固定快照、研究成果契约、委派/恢复/同根预算接口，依赖决策见ADR0075—0077。P09-01具备依赖输入，但本次不自动进入P09，当前分支已按本轮用户授权发布，仍不合main。CURRENT/INDEX/P08-03/requirements已同步最终状态。当前无P08规定验收遗留；最终交接格式/文档校验日志归入P08-03。
+
+## CI79最终补验
+
+CI78唯一旧P07历史迁移fixture问题已由eba0778改为真实schema17样本；生产代码不变，旧失败和本地复现保留。CI79 run42014131097三个job全部success，unit500、主集成537过/1既有skip、独立P07原生17、perf2、Electron50及标准用户/解析/Office关闭/启动诊断均通过。P08 gate恢复passed，证据docs/evidence/P08-03/ci-fix-2026-11-05/ci79.json；不扩大真实模型/账户范围，不合main或开始P09。

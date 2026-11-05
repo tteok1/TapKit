@@ -51,3 +51,9 @@
 10例各3轮、单/多各30轮，预算相同（32768 tokens、30000ms、6请求、12工具），逐字支持/准确位置/失败披露均30/30。实际运行时间、调用/工具计数逐轮保留在ablation.json。固定25ms合成响应、无真实费用，不证明生产质量、时间改善或≤1.5费用倍率。automaticDelegationEnabled=false，默认单Agent，用户显式委派可用。
 
 当前验收限于固定资料研究/审查、已有配置智谱与上述合同。没有扩展屏幕/托管登录/任意写入/其他模型协议验证；以前阶段的外部资源缺口保持原状态。P08收口见docs/progress/P08-gate.md，不启动P09。
+
+## CI79修复与完整门禁
+
+原CI78仅P07旧迁移fixture失败：将新库版本号伪降至17却保留parent_run_id。修复eba0778以历史迁移建立真实schema17，再升级并核对数据/外键/完整性/备份与重复执行不变；本地先复现退出1，再26项相邻迁移/委派回归通过。生产代码未改。
+
+CI79 completed/success、三个job全部success：unit500、主集成537过/1既有skip、独立P07原生17、perf2、桌面50，以及标准用户/解析/Office关闭/启动诊断均通过。详见ci-fix-2026-11-05/ci79.json及日志汇总；原source-manifest冻结实现验收时版本，唯一测试文件改动另见local-verification.json。P08 gate恢复passed，无新增真实模型请求，额度5/10保持。
