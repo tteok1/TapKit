@@ -1,0 +1,26 @@
+$ node scripts/live.mjs "P08-03" "--run-once"
+{"phase":"connection","status":"running","checks":1,"lastConnection":"running"}
+{"phase":"connection","status":"running","checks":1,"lastConnection":"passed"}
+{"phase":"configure_task","status":"running","checks":1,"lastConnection":"passed"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"running"}
+{"phase":"work","status":"running","checks":1,"lastConnection":"passed","task":"completed"}
+{"phase":"verify","status":"passed","checks":1,"lastConnection":"passed","task":"completed"}
+{"phase":"verify","status":"passed","checks":1,"lastConnection":"passed","task":"completed"}

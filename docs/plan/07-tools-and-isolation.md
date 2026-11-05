@@ -1,5 +1,7 @@
 # 工具网关、Windows执行隔离与网络策略
 
+P08-03实施边界见[ADR0077](../adr/0077-bounded-read-only-delegation.md)：task.delegate由用户通过workCommand显式创建，默认不向模型自动开放；仅分配的固定资料source.read和结构化task.result，无文件写入或递归委派。
+
 P08-02收尾补充（ADR0076）：Work可在证据达到覆盖门槛时直接执行research.report，受剩余工具/token/活跃时间及原租约/权限检查，不计新增模型调用。逐事实交叉核验不足仍partial；PARSE_FAILED部分收尾保留失败原因。安全拒绝、取消和未知原生副作用不转成功，不自动重放。证据编号仅解析当前已读快照目录，来源内容始终是不可信数据。
 
 P08-02（ADR0076）：p08-tools-2新增research.search/read/record/report；研究run禁止普通artifact写入或浏览器写入绕过证据验证。查询只拼用户明确授权的主题和问题与固定轮次后缀，不拼来源正文/记忆。匿名Bing GET候选须实际读取才可引用，公共网络/域名/项目资料限制照常生效。每根8搜索/40读取、每问题3轮，三次无新证据提示一次重规划，再无进展则保存partial；根Work预算先约束。2026-11-03补验修复：Core有未消化候选/未记依据的新原文时暂不声明search，优先read/record；明确gap可重新规划，report始终可用，只接受当轮实际声明工具。模型侧record每次直接传一条发现，Core包装成原严格findings数组，多引文/冲突及内部批量兼容保持；两组事实齐备时优先报告，不要求遍历所有候选。Host代理解析支持已授权HTTPS查询URL（4096上限），不放宽URL凭据/片段及逐跳公开地址检查。

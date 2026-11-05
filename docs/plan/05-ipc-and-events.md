@@ -1,5 +1,7 @@
 # IPC、事件、任务状态与接口协议
 
+P08-03：Core ready.schemaVersion=21；复用workCommand的task.delegate、subtasks.list（offset，单项分页）、subtasks.control、subtasks.source（重鉴权固定原文）、subtasks.summaryMode（仅普通单份MD的显式Core汇总）。WorkView可含delegation元数据，父子仍用同一RunStatus；DTO及迁移/根约束见ADR0077，未增加preload桥。
+
 P08-02复用workCommand：runs.create.research、runs.steer.research（新版本）及research.get/source/finish，严格共享DTO；不新增preload桥。research.get分页来源/发现、对外响应小于60KB；source按固定快照和字符偏移定位，不打开模型提供的任意文件路径。
 
 2026-10-31 P08-01：[ADR0075](../adr/0075-anonymous-browser-actions.md)新增browserCommand有限公共接口tabs/open/observe/action（仅导航）/control/close/present/material/download/external。Host覆盖windowId并私有转译窗口slot；网页没有preload/IPC。工作模型仅browser.open/observe/act，不接受脚本、partition或CDP参数。网页提交复用approvals.list/decide，强制once；DOM/字段变化失效，审批拒绝可直接结束待执行项。错误继续使用APPROVAL_STALE/PERMISSION_DENIED/SIDE_EFFECT_UNKNOWN，不新增同义运行状态。

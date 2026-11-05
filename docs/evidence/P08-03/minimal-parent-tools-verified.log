@@ -1,0 +1,12 @@
+tests/integration/P08-03.delegation.test.ts 150ms
+docs/adr/0077-bounded-read-only-delegation.md 33ms (unchanged)
+$ vitest run --config vitest.config.ts --project integration "P08-03.delegation"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  20 passed (20)
+   Start at  16:09:23
+   Duration  15.22s (tests 71%, transform 21%, import 7%)
+

@@ -1,0 +1,189 @@
+{
+  "scope": "Uncommitted working-tree source on base main 21604b1a851e2db19fde48c927e57e26eae809e1",
+  "files": [
+    {
+      "path": "apps/desktop/src/renderer/src/subtasks-ui.tsx",
+      "sha256": "b0c048cd65f1cd92d698b9fff920319079bb60d1a6e7b2bf758325f9d6fe47b7"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/work-ui.tsx",
+      "sha256": "b2753c6731d9259c6a060663aded0f99874e7270bcdfeb343a61cc5fbff1d242"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/work.css",
+      "sha256": "27abe4d869448d0ae21d93d9f6a8d47a5d0f03e838d93ec519aa8295df5da14f"
+    },
+    {
+      "path": "migrations/0021_delegation.sql",
+      "sha256": "55485c7db353d784520bcd5fe4772a6c51bd20597794738dfe6d36d88ba100dd"
+    },
+    {
+      "path": "packages/contracts/src/delegation.ts",
+      "sha256": "3eff0abd000d6c403bdf5fea62a9e908cf76b6719d624f707ea77f20a2e8b08c"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "d2a8d027f9b042a5994476e8941557bcf952178e816f13d9576ec74501c41937"
+    },
+    {
+      "path": "packages/contracts/src/work.ts",
+      "sha256": "158dfcc30dad93418600c4082fc44251fb948ada1ca924b6b7514002540b96b8"
+    },
+    {
+      "path": "packages/core/src/chat-fixture.ts",
+      "sha256": "09381b5c5427c0c17438f427571a8382c0e0bfe981c47648a7879d085f40760d"
+    },
+    {
+      "path": "packages/core/src/delegation-driver.ts",
+      "sha256": "71a947fd89cdd080315c319d223b554f35b5f57c5561528073d571d1cab04aac"
+    },
+    {
+      "path": "packages/core/src/delegation-service.ts",
+      "sha256": "29958f79880f2bc9f3cd54fc695df107a28b424d95d064a626561ebd35011224"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "7266736bc213b9dec03965ba776eac1c8947c0a4e1cbfb6d09007f0528c7f78d"
+    },
+    {
+      "path": "packages/core/src/research-driver.ts",
+      "sha256": "db1c032023005470cee760c017ba95a0cbe209f326ec20103924918a002a2ff7"
+    },
+    {
+      "path": "packages/core/src/work-driver.ts",
+      "sha256": "cacd2b0890b4b27cb8bdf448d188f4c683f84fb5318f4df94c67d1eb9f7d1d10"
+    },
+    {
+      "path": "packages/core/src/work-gateway.ts",
+      "sha256": "d5429f0dbbda8855e09eaa443b04e634f6d0aa90d153c34bdbb3802091e385ef"
+    },
+    {
+      "path": "packages/core/src/work-service.ts",
+      "sha256": "8ec10eb30aa0d3d64ed9a50ca5be566781b6f8f8bf67707d07f659db1ba9382c"
+    },
+    {
+      "path": "packages/providers/src/api/zhipu-tools.ts",
+      "sha256": "5b8c328326a7958b394f2e88bbf498aead6c26e8cc83d67d8fa71593e1c69f78"
+    },
+    {
+      "path": "packages/storage/src/foundation.ts",
+      "sha256": "5f6399245d585ac475933ef8f7d06f3a8dad78256545bf8545febf325610edb6"
+    },
+    {
+      "path": "packages/storage/src/usage-ledger.ts",
+      "sha256": "69da88b525d40c7890ac2da3980481e6f351233000a8628f8857564a088683c9"
+    },
+    {
+      "path": "packages/storage/src/work.ts",
+      "sha256": "72c267fea5b97798dadfd820e82d9c3102cdbda792d4876ade23ce3aa7eedd7d"
+    },
+    {
+      "path": "packages/workflows/src/delegation.ts",
+      "sha256": "07afb3535bdc5c8dfe84d9d223dbc078fa4a1987c72ec02b1df0d93953a857d7"
+    },
+    {
+      "path": "packages/workflows/src/index.ts",
+      "sha256": "d2b4a2e8bf9d56b00c96114375539ad2af907ccd73961cdfd8470bb4c4b11833"
+    },
+    {
+      "path": "resources/catalogs/defaults.json",
+      "sha256": "5794e6dbf3fc4def8d257e23ced98c1840f24905d33f64ac93474dd7a29a8cf7"
+    },
+    {
+      "path": "scripts/live.mjs",
+      "sha256": "38880ad73192cd988d4da46a6f9fd7c258f93ddca776dcf2196a9c981ee350d0"
+    },
+    {
+      "path": "scripts/p07-live-profile.mjs",
+      "sha256": "41b269d85a1484183e0065f980bd57f822476476f813eff59b5b1444b89d4005"
+    },
+    {
+      "path": "scripts/p08-delegation-live.mjs",
+      "sha256": "65bd47e30b8f5a08947fd684ff6950b4cae02f811a3b60b87c8496738855e5fb"
+    },
+    {
+      "path": "tests/e2e/P08-02.research.spec.ts",
+      "sha256": "ca3393bd9ae9a30b18830663672d065ee8868ab502ab8c33cf4e6053427434e9"
+    },
+    {
+      "path": "tests/e2e/P08-03.delegation.spec.ts",
+      "sha256": "8204e52d98102597bff7d3bbf200fe48ecc8621737f66b6caa3642220347e82a"
+    },
+    {
+      "path": "tests/evals/delegation/gold.json",
+      "sha256": "c375567072516a85af341138951d523045c634cfac4dbf66fcf25c7dc52e6df9"
+    },
+    {
+      "path": "tests/integration/P01-02.api.test.ts",
+      "sha256": "ba0aff4694867184632824fa1f5a1af37df5c4366693bbda1bd74575726fab66"
+    },
+    {
+      "path": "tests/integration/P01-03.usage.test.ts",
+      "sha256": "94a3e4f8c05c8ad5249dadf43ae7f629a819ffa3e972c43b35ac5992ee67dba9"
+    },
+    {
+      "path": "tests/integration/P02-01.desktop.test.ts",
+      "sha256": "8199e3f2063f1727a532268ee94d99f1550469de171a9f16b806872faa533fd9"
+    },
+    {
+      "path": "tests/integration/P02-03.history.test.ts",
+      "sha256": "07f6ccac85ef74c0039a21c7abcf7fc18362023b1e51785b9c46863c393a01fe"
+    },
+    {
+      "path": "tests/integration/P03-01.migration.test.ts",
+      "sha256": "b182f598283a7a39fc9c06c62b4b23aa32ea1ad007f954f71fd8e4c5f0014395"
+    },
+    {
+      "path": "tests/integration/P03-02.artifacts.test.ts",
+      "sha256": "2e03666b67ba3121af5b603a3308469aa24f3468d0954a83e84f0134ecd51352"
+    },
+    {
+      "path": "tests/integration/P04-02.context.test.ts",
+      "sha256": "3e8d6c8c002e25ee3eb5ec1d13e62dc082a9f35d1c16496eab76f1313dfd14c8"
+    },
+    {
+      "path": "tests/integration/P04-03.memory.test.ts",
+      "sha256": "af724e86ed2850e192f3c7fa1bc0a57096cd6b766ba4d308b47f86f75844fbd9"
+    },
+    {
+      "path": "tests/integration/P06-01.migration.test.ts",
+      "sha256": "bcd91ec85da597f7253d9510d4a6db7dbf44c3b78431a55efe67d6dd36e166f8"
+    },
+    {
+      "path": "tests/integration/P07-01.document-storage.test.ts",
+      "sha256": "81ec0eef5d62a0a434cd40387aed08756a16ae0db7cec0e4ad335bbe1ffb4b97"
+    },
+    {
+      "path": "tests/integration/P08-01.migration.test.ts",
+      "sha256": "c6636c4b7f8697f089907a3fe7f68d8f80b1470588b8fd9f4fea64296f83b227"
+    },
+    {
+      "path": "tests/integration/P08-02.migration.test.ts",
+      "sha256": "2bf2c53414cc7cb604f50ea0378e86e9688f14521330dab96c0ff34a095fc314"
+    },
+    {
+      "path": "tests/integration/P08-03.ablation.test.ts",
+      "sha256": "1eb97e0915a90ba05458b154acbbb5ec41ce853368e3e3673ffe067be60e291d"
+    },
+    {
+      "path": "tests/integration/P08-03.delegation.test.ts",
+      "sha256": "bae11c6b9ee724b590ef54a9d2b58db82619d02fcba61b41c793a956bb370eda"
+    },
+    {
+      "path": "tests/integration/P08-03.fixture.ts",
+      "sha256": "4c021b6f89defa120fb18622920c08ccb65f2cd439334d04905fd20520c1482a"
+    },
+    {
+      "path": "tests/live/P01-02.native-profile.ts",
+      "sha256": "13f0010942ecc4e78bbb05edcc12ce9851a4cad50b7c8bc4aa89162391b3464e"
+    },
+    {
+      "path": "tests/unit/P00-02.contracts.test.ts",
+      "sha256": "d17ffec35854f5d89365f0cd7e9c4b34a2f9f9af43960d8cc24129b9202909ca"
+    },
+    {
+      "path": "tests/unit/P08-03.delegation.test.ts",
+      "sha256": "79c9f3f0586d8cbae00eb840ff655c3f0c3901543e781c6d6f519f842a0f8559"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { SCHEMA_VERSION } from '../../packages/storage/src';
 import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { describe, it, expect, afterEach } from 'vitest';
 import { createServer, type Server } from 'node:http';
@@ -204,7 +205,7 @@ describe('P01-02 real HTTP, history and SQLite', () => {
     });
     db.close();
     const reopened = new Database(join(directory, 'old.sqlite'));
-    expect(reopened.pragma('user_version', { simple: true })).toBe(20);
+    expect(reopened.pragma('user_version', { simple: true })).toBe(SCHEMA_VERSION);
     reopened.close();
     const backup = (await readdir(join(directory, 'backup'))).find((name) =>
       name.startsWith('pre-migration-3-'),

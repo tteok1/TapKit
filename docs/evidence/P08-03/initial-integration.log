@@ -1,0 +1,456 @@
+tests/integration/P08-03.delegation.test.ts 121ms
+apps/desktop/src/renderer/src/subtasks-ui.tsx 35ms
+apps/desktop/src/renderer/src/work-ui.tsx 117ms (unchanged)
+apps/desktop/src/renderer/src/work.css 76ms
+$ vitest run --config vitest.config.ts --project integration "P08-03"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+stderr | tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+TAPKIT_WORK_SCHEDULER_FAILED
+
+ ❯ |integration| tests/integration/P08-03.delegation.test.ts (10 tests | 9 failed) 15757ms
+   × P08-03 T19 two independent children share run root and verified sources; one failure still delivers the other 744ms
+   × P08-03 T15 maximum two child executions and dependency ordering 631ms
+   × P08-03 depth one, scope intersection, strict contract and duplicate request receipt 599ms
+   × P08-03 root cancellation propagates before late result and no stale publication 5571ms
+   × P08-03 pause one branch retains independent result; feedback archives version and retry shares budget 5463ms
+   × P08-03 exact quote failure and revoked source cannot become verified child results 464ms
+   × P08-03 max root calls cannot be refreshed by child retry 517ms
+   × P08-03 root tool ceiling rejects child result without adding another allowance 567ms
+   × P08-03 interrupted child restores paused and cannot enter the ordinary root scheduler 466ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P08-03.delegation.test.ts > P08-03 T19 two independent children share run root and verified sources; one failure still delivers the other
+AssertionError: expected 'failed' to be 'partial' // Object.is equality
+
+Expected: "partial"
+Received: "failed"
+
+ ❯ tests/integration/P08-03.delegation.test.ts:127:31
+    125|     await f.start();
+    126|     await f.finished();
+    127|     expect(f.parent().status).toBe('partial');
+       |                               ^
+    128|     const children = f.work.delegation.children(f.parent());
+    129|     expect(children.map((c) => c.root_run_id)).toEqual([
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  |integration| tests/integration/P08-03.delegation.test.ts > P08-03 T15 maximum two child executions and dependency ordering
+AssertionError: expected +0 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ tests/integration/P08-03.delegation.test.ts:162:21
+    160|     await f.start();
+    161|     await f.finished();
+    162|     expect(maximum).toBe(2);
+       |                     ^
+    163|     expect(ended.size).toBe(4);
+    164|     expect(f.parent().status).toBe('completed');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  |integration| tests/integration/P08-03.delegation.test.ts > P08-03 depth one, scope intersection, strict contract and duplicate request receipt
+AssertionError: expected { ok: false, …(2) } to deeply equal { ok: true, …(2) }
+
+- Expected
++ Received
+
+  {
+-   "data": {
+-     "work": {
+-       "acceptanceStatus": "unreviewed",
+-       "activeMs": 0,
+-       "activity": [
+-         {
+-           "at": 1789430400000,
+-           "id": "01a0a25d-0400-7f69-9a75-c23f3ea418e0",
+-           "summary": "子任务状态已更新；费用计入根任务",
+-           "type": "plan.updated",
+-         },
+-         {
+-           "at": 1789430400000,
+-           "id": "01a0a25d-0400-7a4e-8a04-ab391cc03b66",
+-           "summary": "已委派：branch-a（researcher）",
+-           "type": "plan.updated",
+-         },
+-         {
+-           "at": 1789430400000,
+-           "id": "01a0a25d-0400-7891-b2dc-6eb0a59f888e",
+-           "summary": "成果已保存并校验：分配资料.md",
+-           "type": "artifact.ready",
+-         },
+-         {
+-           "at": 1789430400000,
+-           "id": "01a0a25d-0400-722d-a9fd-a1f2dd8e0858",
+-           "summary": "queued",
+-           "type": "run.status",
+-         },
+-       ],
+-       "archived": false,
+-       "calls": 0,
+-       "createdAt": 1789430400000,
+-       "definition": {
+-         "acceptance": [],
+-         "audience": "用户本人",
+-         "browserEnabled": false,
+-         "budgetOverrides": {
+-           "activeMs": 1800000,
+-           "maxCalls": 40,
+-           "maxTools": 80,
+-           "tokens": 600000,
+-         },
+-         "deadlineAt": null,
+-         "format": "md",
+-         "goal": "P08-03对照研究",
+-         "language": "简体中文",
+-         "planFirst": true,
+-         "quantity": 1,
+-         "refs": [
+-           {
+-             "fileId": "01a0a25d-0400-7661-90d0-1c7502922ff9",
+-             "kind": "file",
+-             "versionId": "01a0a25d-0400-7a2f-b9ab-9bf735a16aba",
+-           },
+-         ],
+-         "scope": "仅当前任务与明确提供的材料",
+-       },
+-       "muted": false,
+-       "overdue": false,
+-       "pinned": false,
+-       "priority": 5,
+-       "projectId": null,
+-       "questions": [],
+-       "reason": null,
+-       "revision": 6,
+-       "runId": "01a0a25d-0400-7e36-bfc4-7b7a38582f6a",
+-       "selectedSteps": [
+-         "deliver-1",
+-       ],
+-       "sessionId": "01a0a25d-0400-757b-9c2c-e57db8ae202a",
+-       "status": "queued",
+-       "steps": [
+-         {
+-           "acceptance": [
+-             {
+-               "format": "md",
+-               "kind": "file_exists",
+-               "minCount": 1,
+-             },
+-           ],
+-           "artifactFormats": [],
+-           "artifacts": [],
+-           "attempts": 0,
+-           "dependencies": [],
+-           "errorCode": null,
+-           "inputRefs": [],
+-           "optional": false,
+-           "outputContract": {
+-             "formats": [
+-               "md",
+-             ],
+-             "kind": "files",
++   "error": {
++     "code": "CONFLICT",
++     "message": "数据已更改，请重新加载后再试。",
++     "recoveryActions": [],
++     "retryable": false,
++     "traceId": "01a0a25d-0400-7989-8478-8076deff0ebf",
+    },
+-           "result": null,
+-           "status": "pending",
+-           "stepKey": "deliver-1",
+-           "title": "P08-03对照研究",
+-         },
+-       ],
+-       "taskId": "01a0a25d-0400-783f-ab3f-636834e6ef01",
+-       "tokens": 0,
+-       "tools": 0,
+-       "unresolvedCalls": [],
+-       "updatedAt": 1789430400000,
+-       "version": 1,
+-     },
+-   },
+-   "ok": true,
++   "ok": false,
+    "requestId": "01a0a25d-0400-7d65-9a54-019e8115b107",
+  }
+
+ ❯ tests/integration/P08-03.delegation.test.ts:176:17
+    174|     const one = await f.send('task.delegate', request, f.view().revisi…
+    175|     const two = await f.send('task.delegate', request, f.view().revisi…
+    176|     expect(two).toEqual(one);
+       |                 ^
+    177|     const child = f.work.delegation.children(f.parent())[0]!;
+    178|     expect(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  |integration| tests/integration/P08-03.delegation.test.ts > P08-03 root cancellation propagates before late result and no stale publication
+Error: condition timeout
+ ❯ until tests/integration/P06.fixture.ts:75:45
+     73|   const deadline = performance.now() + 5000;
+     74|   while (!fn()) {
+     75|     if (performance.now() > deadline) throw Error('condition timeout');
+       |                                             ^
+     76|     await new Promise((resolve) => setTimeout(resolve, 10));
+     77|   }
+ ❯ tests/integration/P08-03.delegation.test.ts:224:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  |integration| tests/integration/P08-03.delegation.test.ts > P08-03 pause one branch retains independent result; feedback archives version and retry shares budget
+Error: condition timeout
+ ❯ until tests/integration/P06.fixture.ts:75:45
+     73|   const deadline = performance.now() + 5000;
+     74|   while (!fn()) {
+     75|     if (performance.now() > deadline) throw Error('condition timeout');
+       |                                             ^
+     76|     await new Promise((resolve) => setTimeout(resolve, 10));
+     77|   }
+ ❯ tests/integration/P08-03.delegation.test.ts:249:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  |integration| tests/integration/P08-03.delegation.test.ts > P08-03 exact quote failure and revoked source cannot become verified child results
+AssertionError: expected 'queued' to be 'failed' // Object.is equality
+
+Expected: "failed"
+Received: "queued"
+
+ ❯ tests/integration/P08-03.delegation.test.ts:284:26
+    282|     await f.finished();
+    283|     const child = f.work.delegation.children(f.parent())[0]!;
+    284|     expect(child.status).toBe('failed');
+       |                          ^
+    285|     expect(f.work.repo.state(child).child!.result).toBeNull();
+    286|     expect(f.parent().status).toBe('partial');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  |integration| tests/integration/P08-03.delegation.test.ts > P08-03 max root calls cannot be refreshed by child retry
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/integration/P08-03.delegation.test.ts:300:53
+    298|     await f.start();
+    299|     await f.finished();
+    300|     expect(f.work.repo.rootUsage(f.parent()).calls).toBe(1);
+       |                                                     ^
+    301|     expect(f.parent().status).toBe('budget_stopped');
+    302|     expect(f.work.delegation.children(f.parent()).some((c) => c.status…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  |integration| tests/integration/P08-03.delegation.test.ts > P08-03 root tool ceiling rejects child result without adding another allowance
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/integration/P08-03.delegation.test.ts:317:53
+    315|     await f.start();
+    316|     await f.finished();
+    317|     expect(f.work.repo.rootUsage(f.parent()).tools).toBe(1);
+       |                                                     ^
+    318|     expect(f.work.delegation.children(f.parent())[0]?.status).toBe('bu…
+    319|   } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  |integration| tests/integration/P08-03.delegation.test.ts > P08-03 interrupted child restores paused and cannot enter the ordinary root scheduler
+Error: CONFLICT
+ ❯ WorkRepository.status packages/storage/src/work.ts:138:13
+    136|       (current !== status && !RUN_TRANSITIONS[current].includes(status…
+    137|     )
+    138|       throw new StorageError('CONFLICT');
+
+       |             ^
+    139|     this.store.db
+    140|       .prepare(
+ Test Files  1 failed (1)
+      Tests  9 failed | 1 passed (10)
+   Start at  14:40:33
+   Duration  26.57s (tests 60%, import 26%, transform 14%)
+
+ ❯ packages/core/src/work-service.ts:693:51
+ ❯ sqliteTransaction node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:65:24
+ ❯ WorkService.recover packages/core/src/work-service.ts:693:94
+ ❯ tests/integration/P08-03.delegation.test.ts:344:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:257
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:223:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:220:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0

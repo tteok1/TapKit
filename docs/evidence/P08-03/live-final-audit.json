@@ -1,0 +1,255 @@
+{
+  "task": "P08-03",
+  "auditedAt": "2026-11-05T08:34:45.221Z",
+  "connectionLimit": 10,
+  "connectionChecks": 5,
+  "remaining": 5,
+  "model": "configured Zhipu glm-4.7-flashx",
+  "network": "Direct only in owned isolated profiles; original account/network untouched by scripts",
+  "rows": [
+    {
+      "connectionNumber": 1,
+      "receipt": "docs/evidence/P08-03/live-8c38eecc-fa72-4058-8b76-8570635e22ec/report.json",
+      "mode": "model",
+      "status": "not_verified",
+      "runId": "01a1aa90-69b0-79c3-9135-3637ef21d9da",
+      "attempts": 3,
+      "actualTokens": 3241,
+      "estimatedTokens": 14661,
+      "chargedTokens": 17902,
+      "reservedTokens": 0,
+      "money": "unknown; no fee multiplier claimed",
+      "citations": 0,
+      "attemptStates": [
+        {
+          "status": "failed",
+          "errorCode": "VALIDATION_ERROR"
+        },
+        {
+          "status": "failed",
+          "errorCode": "VALIDATION_ERROR"
+        },
+        {
+          "status": "completed",
+          "errorCode": null
+        }
+      ],
+      "rootLimits": {
+        "schemaVersion": 1,
+        "tokens": 60000,
+        "activeMs": 1800000,
+        "maxCalls": 40,
+        "usedCalls": 3,
+        "reservedMoney": {},
+        "moneyLimits": []
+      },
+      "artifactHashes": [
+        "a9f50955ab254e750e59b5082653687036c1d7015a2d93eb1ac3b1eb0b6c1917"
+      ],
+      "credentialCopyRemoved": true,
+      "unfinishedRuns": 0,
+      "appCheckBeforeEveryFormalAttempt": true,
+      "build": {
+        "packages/core/dist/index.cjs": "f18091d1038fe0ceca9a8330a0e660610bb36cbe9d37bef4880b7f5f8338c687",
+        "apps/desktop/out/main/index.js": "551ed325d93a369b179538a63787304d5b5e26f83c0ed473c70d738b08966a89"
+      }
+    },
+    {
+      "connectionNumber": 2,
+      "receipt": "docs/evidence/P08-03/live-9f341189-fd9f-490c-8492-5c2b5d910a10/report.json",
+      "mode": "model",
+      "status": "not_verified",
+      "runId": "01a1aa95-d8e8-7db8-84c4-c74ac4b10237",
+      "attempts": 3,
+      "actualTokens": 3425,
+      "estimatedTokens": 15595,
+      "chargedTokens": 19020,
+      "reservedTokens": 0,
+      "money": "unknown; no fee multiplier claimed",
+      "citations": 0,
+      "attemptStates": [
+        {
+          "status": "failed",
+          "errorCode": "VALIDATION_ERROR"
+        },
+        {
+          "status": "failed",
+          "errorCode": "VALIDATION_ERROR"
+        },
+        {
+          "status": "completed",
+          "errorCode": null
+        }
+      ],
+      "rootLimits": {
+        "schemaVersion": 1,
+        "tokens": 60000,
+        "activeMs": 1800000,
+        "maxCalls": 40,
+        "usedCalls": 3,
+        "reservedMoney": {},
+        "moneyLimits": []
+      },
+      "artifactHashes": [
+        "5929f3183435016f1aa35197630af612da0e90732bd0ca1a022e4d34cb6af39b"
+      ],
+      "credentialCopyRemoved": true,
+      "unfinishedRuns": 0,
+      "appCheckBeforeEveryFormalAttempt": true,
+      "build": {
+        "packages/core/dist/index.cjs": "3fc04304cc6370017cdb13e92dd6c59ff770da91e38aefc41b867c96bd46acbb",
+        "apps/desktop/out/main/index.js": "551ed325d93a369b179538a63787304d5b5e26f83c0ed473c70d738b08966a89"
+      }
+    },
+    {
+      "connectionNumber": 3,
+      "receipt": "docs/evidence/P08-03/live-8a53a750-10bd-4eb5-9052-3dc18a742c2f/report.json",
+      "mode": "model",
+      "status": "not_verified",
+      "runId": "01a1aab6-2370-7ad7-804f-a6b7b8b54d8c",
+      "attempts": 3,
+      "actualTokens": 1607,
+      "estimatedTokens": 21174,
+      "chargedTokens": 22781,
+      "reservedTokens": 0,
+      "money": "unknown; no fee multiplier claimed",
+      "citations": 5,
+      "attemptStates": [
+        {
+          "status": "completed",
+          "errorCode": null
+        },
+        {
+          "status": "completed",
+          "errorCode": null
+        },
+        {
+          "status": "interrupted",
+          "errorCode": "STREAM_INTERRUPTED"
+        }
+      ],
+      "rootLimits": {
+        "schemaVersion": 1,
+        "tokens": 60000,
+        "activeMs": 1800000,
+        "maxCalls": 40,
+        "usedCalls": 3,
+        "reservedMoney": {},
+        "moneyLimits": []
+      },
+      "artifactHashes": [],
+      "credentialCopyRemoved": true,
+      "unfinishedRuns": 0,
+      "appCheckBeforeEveryFormalAttempt": true,
+      "build": {
+        "packages/core/dist/index.cjs": "913511ae88c06efc957cf2486062f9a902d1834ba5ea0d49b9d9bcabb25cb7f6",
+        "apps/desktop/out/main/index.js": "fcdbb61bb55cb0fca67ff2d67af1d39a9f697a08e5d2f8511e3139ceeda087ce"
+      }
+    },
+    {
+      "connectionNumber": 4,
+      "receipt": "docs/evidence/P08-03/live-62760905-5075-4c29-bc0e-42b79ffba227/report.json",
+      "mode": "core",
+      "status": "passed",
+      "runId": "01a1aacf-81f1-7a2e-acdd-f32a54dc687f",
+      "attempts": 2,
+      "actualTokens": 1602,
+      "estimatedTokens": 0,
+      "chargedTokens": 1602,
+      "reservedTokens": 0,
+      "money": "unknown; no fee multiplier claimed",
+      "citations": 4,
+      "attemptStates": [
+        {
+          "status": "completed",
+          "errorCode": null
+        },
+        {
+          "status": "completed",
+          "errorCode": null
+        }
+      ],
+      "rootLimits": {
+        "schemaVersion": 1,
+        "tokens": 60000,
+        "activeMs": 1800000,
+        "maxCalls": 6,
+        "usedCalls": 2,
+        "reservedMoney": {},
+        "moneyLimits": []
+      },
+      "artifactHashes": [
+        "152bbd880d2dba1e1ba403b073cec66cbf99c4e44b775e645c94c50f17b779a4"
+      ],
+      "credentialCopyRemoved": true,
+      "unfinishedRuns": 0,
+      "appCheckBeforeEveryFormalAttempt": true,
+      "build": {
+        "packages/core/dist/index.cjs": "4553f0db936b76101c6f5bf33d4f8a3466827020abe3daa7cf77b8a007eaa822",
+        "apps/desktop/out/main/index.js": "c4da88e8bc69f769b5c3df56581d88b80c1ff7733b4de78d9f30357a925b9b72"
+      }
+    },
+    {
+      "connectionNumber": 5,
+      "receipt": "docs/evidence/P08-03/live-31aa2282-bf6d-43db-8571-e950048c2ac3/report.json",
+      "mode": "model",
+      "status": "passed",
+      "runId": "01a1aad2-4c0b-7310-b6af-bfcdd287a1ab",
+      "attempts": 4,
+      "actualTokens": 3161,
+      "estimatedTokens": 14509,
+      "chargedTokens": 17670,
+      "reservedTokens": 0,
+      "money": "unknown; no fee multiplier claimed",
+      "citations": 6,
+      "attemptStates": [
+        {
+          "status": "completed",
+          "errorCode": null
+        },
+        {
+          "status": "completed",
+          "errorCode": null
+        },
+        {
+          "status": "failed",
+          "errorCode": "PROVIDER_UNAVAILABLE"
+        },
+        {
+          "status": "completed",
+          "errorCode": null
+        }
+      ],
+      "rootLimits": {
+        "schemaVersion": 1,
+        "tokens": 60000,
+        "activeMs": 1800000,
+        "maxCalls": 6,
+        "usedCalls": 4,
+        "reservedMoney": {},
+        "moneyLimits": []
+      },
+      "artifactHashes": [
+        "0d3986b20cb8ff5bd10c0b1a3f95a4311e6beb446842127bd535ca5b058b462b"
+      ],
+      "credentialCopyRemoved": true,
+      "unfinishedRuns": 0,
+      "appCheckBeforeEveryFormalAttempt": true,
+      "build": {
+        "packages/core/dist/index.cjs": "4553f0db936b76101c6f5bf33d4f8a3466827020abe3daa7cf77b8a007eaa822",
+        "apps/desktop/out/main/index.js": "c4da88e8bc69f769b5c3df56581d88b80c1ff7733b4de78d9f30357a925b9b72"
+      }
+    }
+  ],
+  "totalActualTokens": 13036,
+  "totalEstimatedTokens": 65939,
+  "connectionUsage": "unknown, excluded from formal task totals",
+  "originalFailureReceiptsPreserved": true,
+  "allOwnedCredentialCopiesRemoved": true,
+  "productionBuild": {
+    "packages/core/dist/index.cjs": "4553f0db936b76101c6f5bf33d4f8a3466827020abe3daa7cf77b8a007eaa822",
+    "apps/desktop/out/main/index.js": "c4da88e8bc69f769b5c3df56581d88b80c1ff7733b4de78d9f30357a925b9b72"
+  },
+  "productionFixtureFree": true,
+  "sourceManifestSha256": "11bbd0f7b7ea36cdb4a0b1f9a292ddda4dac171c3e8ac52ff1dea3ab64c67aa9"
+}

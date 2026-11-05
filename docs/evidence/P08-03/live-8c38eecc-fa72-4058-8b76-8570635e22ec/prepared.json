@@ -1,0 +1,8 @@
+{
+  "task": "P08-03",
+  "model": "glm-4.7-flashx",
+  "limit": 10,
+  "connectionChecks": 0,
+  "formalCalls": 0,
+  "scope": "Existing configured Zhipu model; isolated encrypted copy. Original account/network unchanged. Isolated UI direct route, fixed public synthetic source only."
+}

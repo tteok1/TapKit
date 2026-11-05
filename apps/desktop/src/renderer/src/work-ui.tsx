@@ -1,3 +1,4 @@
+import { SubtasksPanel } from './subtasks-ui';
 import { useEffect, useState } from 'react';
 import {
   WorkReplySchema,
@@ -431,8 +432,8 @@ function WorkCreate({
             budgetOverrides: {
               tokens: Number(form.get('tokens')),
               activeMs: Number(form.get('minutes')) * 60000,
-              maxCalls: 40,
-              maxTools: 80,
+              maxCalls: Number(form.get('maxCalls')),
+              maxTools: Number(form.get('maxTools')),
             },
             ...(selection
               ? { modelRef: { accountId: selection.accountId, modelId: selection.modelId } }
@@ -631,6 +632,14 @@ function WorkCreate({
         <input name="minutes" type="number" min={1} max={30} defaultValue={30} />
       </label>
       <label>
+        模型请求上限
+        <input name="maxCalls" type="number" min={1} max={40} defaultValue={40} required />
+      </label>
+      <label>
+        工具执行上限
+        <input name="maxTools" type="number" min={1} max={80} defaultValue={80} required />
+      </label>
+      <label>
         {t.model}
         <select name="model">
           <option value="">{t.defaultModel}</option>
@@ -710,6 +719,14 @@ function WorkDetail({
   const terminal = ['completed', 'partial', 'failed', 'cancelled', 'budget_stopped'].includes(
     r.status,
   );
+  if (r.delegation)
+    return (
+      <div className="work-detail">
+        <h2>{r.definition.goal}</h2>
+        <p role="status">{t.statuses[r.status]}</p>
+        <SubtasksPanel work={r} onNavigate={onNavigate} />
+      </div>
+    );
   return (
     <div className="work-detail">
       <button onClick={() => onNavigate('/work')}>{t.back}</button>
@@ -741,6 +758,7 @@ function WorkDetail({
       {r.definition.browserEnabled && (
         <BrowserPanel work={r} onMaterial={(ref) => setSteerRefs((refs) => [...refs, ref])} />
       )}
+      <SubtasksPanel key={'subtasks-' + r.runId} work={r} onNavigate={onNavigate} />
       {r.definition.research && <ResearchPanel key={r.runId} work={r} onNavigate={onNavigate} />}
       {!!r.unresolvedCalls.length && (
         <section aria-label={t.reconcile}>

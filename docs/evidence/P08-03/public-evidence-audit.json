@@ -1,0 +1,22 @@
+{
+  "task": "P08-03",
+  "scope": "Public P08-03 evidence including nested archived regression outputs; high-confidence credential/native-reasoning and private database checks; exact source manifest rehash; prior evidence archive byte verification",
+  "filesIncludingArchiveMembers": 113,
+  "sourceFilesVerified": 46,
+  "archives": [
+    {
+      "path": "docs/evidence/P08-03/desktop-regression-outputs.zip",
+      "sha256": "5233ad0296d8911f933357eabf18563104d76e972df681a093d15f5b74c8a19f"
+    },
+    {
+      "path": "docs/evidence/P08-03/final-regression-outputs.zip",
+      "sha256": "c5f4fee09bb9caeaa8add4739c25497e0c7f8cf555fed0a17d3740370252935d"
+    },
+    {
+      "path": "docs/evidence/P08-03/prior-task-regression-outputs.zip",
+      "sha256": "6e7fc6935f391ad4c942d054321049d2260bdd8ed1617aae94f3436797ad903e"
+    }
+  ],
+  "highConfidenceFindings": [],
+  "priorTrackedOutputsUnchanged": true
+}

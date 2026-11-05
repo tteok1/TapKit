@@ -23,3 +23,6 @@ docs/evidence/P07-03/ci-fix-2026-10-30/font-acceptance/retest-artifacts/**/*.md 
 
 # P08 research receipts and exports carry byte-level hashes, including frozen receipts.
 docs/evidence/P08-02/** -text -whitespace
+
+# Preserve P08 delegation live receipts, exact report bytes and acceptance evidence.
+docs/evidence/P08-03/** -text -whitespace

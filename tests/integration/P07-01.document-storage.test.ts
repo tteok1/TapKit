@@ -1,3 +1,4 @@
+import { SCHEMA_VERSION } from '../../packages/storage/src';
 import { expect, test } from 'vitest';
 import { readdir } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -108,7 +109,7 @@ test('P07-01 migration 17 to 18 preserves task data and is idempotent', async ()
     f.store.db.pragma('user_version=17');
     await migrate(f.store.db, join(f.dir, 'p07-migration-backups'));
     await migrate(f.store.db, join(f.dir, 'p07-migration-backups'));
-    expect(f.store.db.pragma('user_version', { simple: true })).toBe(20);
+    expect(f.store.db.pragma('user_version', { simple: true })).toBe(SCHEMA_VERSION);
     expect(f.store.db.prepare('SELECT * FROM tasks WHERE id=?').get(view.taskId)).toEqual(before);
     expect(f.store.db.pragma('foreign_key_check')).toEqual([]);
     expect(f.store.db.pragma('integrity_check', { simple: true })).toBe('ok');

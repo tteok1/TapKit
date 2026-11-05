@@ -1,9 +1,6 @@
 # 当前接续点
 
-- 2026-11-04；D:/Tapkit-public；main。P08-02=implemented_and_verified；用户已授权合入main，开发分支头b141357已快进合入并推送origin/main，源码0e59bf3保持。
-- v7证据编号/Core原文回填/12条可见分页/精确分组/确定性报告已完成。check/496 unit/33研究集成通过；新接口桌面1项与真实DOCX/PDF已验，后补Core由回归和最终live覆盖；生产构建恢复。
-- 第44次隔离直连应用内检测通过后，run 01a1a165-295d-7be9-a4ca-98a301baf691整轮passed：4模型尝试/7工具、搜索1/实际读取2、双源2条逐字事实，Core主动report，MD/JSON位置/hash/原字节全部核验通过，0参数错误/预留0。
-- 研究产物按单条事实仍缺独立交叉核验标partial并逐条列缺口，任务验收通过不代表网页陈述为真。原代理异常、旧失败及第36轮原not_verified和独立后验均保留，不冒称所有路由/账号通过。
-- 检测44/50，本次14/20、余6保留；27个隔离副本清理，根actual295232+estimated664062（检测用量未知，不含其中）。详P08-02.md、evidence-handles-verification.md及final-core-closeout.json。P08-03未开始，P08不收口。
-
-- 合入交接：CI77三个job全部success，源码至开发分支头仅发布文档差异。记录见docs/evidence/P08-02/main-merge-2026-11-04.json与ci77-main-acceptance.json；本提交只补交接文档，开发分支保留，未新增模型调用。
+- 2026-11-05；D:/Tapkit-public；codex/p08-03-delegation，基于已fetch的main 21604b1。P08-03=implemented_and_verified，P08 gate=passed；未提交、推送或合main。
+- check、500unit、94相关集成、60轮合成对照及最终桌面1项通过；浏览/研究兼容通过，真实Core/主模型两条MD闭环passed。明暗/原文/独立控制已验；原失败回执保留。
+- 当前任务连接检测5/10、余5未用，不叠加P08-02余6；均先启动TapKit并应用内检测成功才正式调用已配置智谱。五份隔离凭据清理、预算预留0，无fixture。默认单Agent，自动委派未获生产资格。
+- 交接见P08-03.md、P08-gate.md及docs/evidence/P08-03/verification.md与live-final-audit.json；46份源码以source-manifest.json为准。P09未开始；此前任务外部资源与验收边界保持。

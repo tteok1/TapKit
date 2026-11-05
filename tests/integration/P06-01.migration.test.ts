@@ -1,3 +1,4 @@
+import { SCHEMA_VERSION } from '../../packages/storage/src';
 import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { test, expect } from 'vitest';
 import { mkdir } from 'node:fs/promises';
@@ -77,7 +78,7 @@ test('P06-01 T20 schema16 upgrade preserves task/run/tool identity and restores 
     ).toBeUndefined();
     expect(db.pragma('foreign_key_check')).toEqual([]);
     expect(db.pragma('integrity_check', { simple: true })).toBe('ok');
-    expect(db.pragma('user_version', { simple: true })).toBe(20);
+    expect(db.pragma('user_version', { simple: true })).toBe(SCHEMA_VERSION);
   } finally {
     store.close();
   }

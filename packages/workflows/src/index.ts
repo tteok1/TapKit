@@ -9,3 +9,5 @@ export * from './document-layout';
 export * from './data-program';
 export * from './data-chart';
 export * from './slides';
+
+export * from './delegation';

@@ -1,3 +1,4 @@
+import { SCHEMA_VERSION } from '../../packages/storage/src';
 import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { test, expect } from 'vitest';
 import { mkdir } from 'node:fs/promises';
@@ -161,7 +162,7 @@ test('P04-02 T12 durable three compactions, correction CAS, next taskVersion and
     try {
       const contexts = new ContextService(reopened);
       expect(contexts.background(target)).toEqual(background);
-      expect(reopened.db.pragma('user_version', { simple: true })).toBe(20);
+      expect(reopened.db.pragma('user_version', { simple: true })).toBe(SCHEMA_VERSION);
     } finally {
       reopened.close();
     }

@@ -1,3 +1,4 @@
+import { spawnSync } from 'node:child_process';
 import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { test, expect, _electron as electron, type ElectronApplication } from './test';
 import { mkdir, writeFile } from 'node:fs/promises';
@@ -19,9 +20,17 @@ test('P08-02 desktop researches fixed sources, opens quote locators, exports rea
   );
   delete env.ELECTRON_RUN_AS_NODE;
   let app: ElectronApplication | undefined;
+  const rendererErrors: string[] = [];
+  let primaryFailure = false;
   try {
     app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
     const page = await app.firstWindow();
+    page.on('pageerror', (error) => rendererErrors.push(error.message.slice(0, 2000)));
+    page.on('crash', () => rendererErrors.push('RENDERER_CRASHED'));
+    page.on('console', (message) => {
+      if (message.type() === 'error' && /Error|React|render|same key/i.test(message.text()))
+        rendererErrors.push(message.text().slice(0, 2000));
+    });
     await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125000 });
     await page.getByRole('link', { name: '工作', exact: true }).click();
     await page.getByRole('button', { name: '新建工作', exact: true }).click();
@@ -55,13 +64,28 @@ test('P08-02 desktop researches fixed sources, opens quote locators, exports rea
     await page.getByRole('button', { name: '确认提纲并开始研究', exact: true }).click();
     await expect
       .poll(
-        async () =>
-          /已完成|部分完成|失败|达到预算|已取消/.test(
+        async () => {
+          if (rendererErrors.length) throw Error('RENDERER_ERROR');
+          if (!(await page.locator('.work-detail').count())) {
+            await mkdir('docs/evidence/P08-03', { recursive: true });
+            await writeFile(
+              'docs/evidence/P08-03/research-missing-detail.json',
+              JSON.stringify(
+                { url: page.url(), body: await page.locator('body').innerText({ timeout: 3000 }) },
+                null,
+                2,
+              ) + '\n',
+            );
+            throw Error('RESEARCH_DETAIL_DISAPPEARED');
+          }
+          return /已完成|部分完成|失败|达到预算|已取消/.test(
             await page.locator('.work-detail > p[role="status"]').innerText(),
-          ),
+          );
+        },
         { timeout: 300000 },
       )
       .toBe(true);
+    await expect(page.getByRole('region', { name: '子任务协调', exact: true })).toHaveCount(1);
     await expect(panel.getByRole('button', { name: '研究报告 PDF', exact: true })).toBeVisible();
     await expect(panel).toContainText('本轮证据整理完成');
     await expect(panel).toContainText('来源读取 2 / 40');
@@ -204,6 +228,12 @@ test('P08-02 desktop researches fixed sources, opens quote locators, exports rea
       ),
     );
   } catch (error) {
+    primaryFailure = true;
+    await mkdir('docs/evidence/P08-03', { recursive: true });
+    await writeFile(
+      'docs/evidence/P08-03/research-renderer-diagnostic.json',
+      JSON.stringify({ rendererErrors, ownedPid: app?.process().pid }, null, 2) + '\n',
+    );
     const db = new DatabaseSync(join(dir, 'db/app.sqlite'), { readOnly: true });
     try {
       await mkdir('docs/evidence/P08-02/desktop', { recursive: true });
@@ -226,6 +256,22 @@ test('P08-02 desktop researches fixed sources, opens quote locators, exports rea
     }
     throw error;
   } finally {
-    await app?.close();
+    if (app) {
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      const closed = await Promise.race([
+        app.close().then(
+          () => true,
+          () => false,
+        ),
+        new Promise<boolean>((resolve) => (timer = setTimeout(() => resolve(false), 15000))),
+      ]);
+      clearTimeout(timer);
+      if (!closed && app.process().exitCode === null && app.process().pid)
+        spawnSync('taskkill.exe', ['/PID', String(app.process().pid), '/T', '/F'], {
+          stdio: 'ignore',
+          windowsHide: true,
+        });
+      if (!closed && !primaryFailure) throw Error('ELECTRON_SHUTDOWN_TIMEOUT');
+    }
   }
 });

@@ -9,6 +9,8 @@ import {
   WORK_TOOL_CATALOG_VERSION,
   RUN_TRANSITIONS,
   type ResearchProgress,
+  type DelegateSpec,
+  type DelegateResult,
   type z,
 } from '@tapkit/contracts';
 import { Store, StorageError, newId } from './foundation';
@@ -26,6 +28,7 @@ export type WorkRun = {
   session_id: string;
   task_version: number;
   root_run_id: string;
+  parent_run_id: string | null;
   status: z.infer<typeof RunStatusSchema>;
   status_reason: string | null;
   lease_owner: string | null;
@@ -42,6 +45,20 @@ export type WorkRun = {
   model_json: string;
 };
 export type WorkState = {
+  child?: {
+    parentRunId: string;
+    spec: DelegateSpec;
+    archived: boolean;
+    feedback: string[];
+    result: DelegateResult | null;
+    sourceHashes: string[];
+  };
+  delegateSummary?: {
+    runId: string;
+    role: string;
+    status: string;
+    result: DelegateResult | null;
+  }[];
   research?: ResearchProgress;
   schemaVersion: 1;
   toolCatalogVersion: string;
@@ -159,6 +176,8 @@ export class WorkRepository {
       rootRunId: string;
       toolCatalogVersion?: string;
       research?: ResearchProgress;
+      newTask?: boolean;
+      parentRunId?: string;
     },
   ) {
     const session = this.session(sessionId),
@@ -168,7 +187,7 @@ export class WorkRepository {
       version = prior?.version ?? 1,
       messageId = newId();
     definition = WorkDefinitionSchema.parse(definition);
-    if (!prior)
+    if (!prior || prior.newTask)
       this.store.db
         .prepare(
           "INSERT INTO tasks(id,profile_id,created_at,updated_at,session_id,root_task_id,goal,acceptance_json,mode) VALUES(?,?,?,?,?,?,?,?,'work')",
@@ -240,7 +259,7 @@ export class WorkRepository {
     };
     this.store.db
       .prepare(
-        "INSERT INTO runs(id,profile_id,created_at,updated_at,task_id,task_version,root_run_id,session_id,user_message_id,status,model_json,work_json) VALUES(?,?,?,?,?,?,?,?,?,'queued',?,?)",
+        "INSERT INTO runs(id,profile_id,created_at,updated_at,task_id,task_version,root_run_id,session_id,user_message_id,status,model_json,work_json,parent_run_id) VALUES(?,?,?,?,?,?,?,?,?,'queued',?,?,?)",
       )
       .run(
         runId,
@@ -254,6 +273,7 @@ export class WorkRepository {
         messageId,
         JSON.stringify({ schemaVersion: 1, selection: definition.modelRef ?? null }),
         JSON.stringify(state),
+        prior?.parentRunId ?? null,
       );
     this.store.db.prepare('UPDATE messages SET run_id=? WHERE id=?').run(runId, messageId);
     this.store.db
@@ -403,6 +423,18 @@ export class WorkRepository {
       )
       .get(this.store.profileId, run.root_run_id) as { n: number | null };
     return WorkViewSchema.parse({
+      ...(state.child
+        ? {
+            delegation: {
+              parentRunId: state.child.parentRunId,
+              key: state.child.spec.key,
+              role: state.child.spec.role,
+              dependencies: state.child.spec.dependencies,
+              archived: state.child.archived,
+              result: state.child.result,
+            },
+          }
+        : {}),
       taskId: run.task_id,
       runId: run.id,
       sessionId: run.session_id,

@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { Store, StorageError, newId } from './foundation';
 import {
   ModelPreferencesSchema,
+  WorkDefinitionSchema,
   DEFAULT_MODEL_PREFERENCES,
   PreferencesViewSchema,
   PriceSchema,
@@ -274,6 +275,21 @@ export class UsageLedger {
       ];
       for (const budget of budgets) {
         const l = JSON.parse(budget.limits_json) as Limits;
+        if (input.mode === 'work' && budget.owner_kind === 'root') {
+          const row = this.store.db
+            .prepare('SELECT work_json FROM runs WHERE id=? AND root_run_id=? AND profile_id=?')
+            .get(input.runId, input.rootRunId, this.store.profileId) as
+            { work_json: string } | undefined;
+          const definition = row
+            ? WorkDefinitionSchema.safeParse(JSON.parse(row.work_json).definition)
+            : undefined;
+          if (definition?.success) {
+            const cap = definition.data.budgetOverrides;
+            l.maxCalls = Math.min(l.maxCalls, cap.maxCalls);
+            l.tokens = Math.min(l.tokens, cap.tokens);
+            l.activeMs = Math.min(l.activeMs, cap.activeMs);
+          }
+        }
         if (
           reserved + budget.reserved_tokens + budget.used_tokens > l.tokens ||
           l.usedCalls >= l.maxCalls ||

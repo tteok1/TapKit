@@ -1,3 +1,8 @@
+import {
+  DelegationCommandSchemas,
+  DelegateResultSchema,
+  DelegateSourceViewSchema,
+} from './delegation';
 import { z } from 'zod';
 import { IdSchema } from './identity';
 import { ResourceRefSchema, AcceptanceRuleSchema, PlanStepInputSchema } from './resources';
@@ -32,6 +37,7 @@ export const BROWSER_WORK_TOOL_CATALOG_VERSION = 'p08-tools-1';
 export const WORK_TOOL_CATALOG_VERSION = 'p08-tools-2';
 
 export const WorkDefinitionSchema = z.strictObject({
+  delegationSummaryOnly: z.boolean().optional(),
   research: ResearchSpecSchema.optional(),
   browserEnabled: z.boolean().default(false),
   goal: z.string().trim().min(1).max(20000),
@@ -82,6 +88,16 @@ export const WorkStepViewSchema = PlanStepInputSchema.extend({
   errorCode: z.string().nullable(),
 });
 export const WorkViewSchema = z.strictObject({
+  delegation: z
+    .strictObject({
+      parentRunId: IdSchema,
+      key: z.string(),
+      role: z.enum(['researcher', 'reviewer']),
+      dependencies: z.array(z.string()),
+      archived: z.boolean(),
+      result: DelegateResultSchema.nullable(),
+    })
+    .optional(),
   taskId: IdSchema,
   runId: IdSchema,
   sessionId: IdSchema,
@@ -246,6 +262,7 @@ export const WorkNotificationSchema = z.strictObject({
   createdAt: z.number(),
 });
 export const WorkCommandSchemas = {
+  ...DelegationCommandSchemas,
   ...ResearchCommandSchemas,
   'runs.create': WorkDefinitionSchema.extend({ sessionId: IdSchema }),
   'runs.list': z.strictObject({
@@ -346,12 +363,15 @@ export const WorkCommandSchemas = {
 } as const;
 export type WorkCommand = keyof typeof WorkCommandSchemas;
 export const WorkReplySchema = z.union([
+  z.strictObject({ delegateSource: DelegateSourceViewSchema }),
   ResearchReplySchema,
   z.strictObject({ slidePage: SlidePageSchema }),
   z.strictObject({ dataPage: DataPageSchema }),
   z.strictObject({ work: WorkViewSchema }),
   z.strictObject({
     workItems: z.array(WorkViewSchema).max(100),
+    nextOffset: z.number().int().nonnegative().nullable().optional(),
+    total: z.number().int().nonnegative().optional(),
     capacity: z.number(),
     running: z.number(),
   }),

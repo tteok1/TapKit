@@ -1,0 +1,24 @@
+packages/providers/src/api/zhipu-tools.ts 55ms (unchanged)
+packages/core/src/work-service.ts 153ms
+tests/unit/P08-03.delegation.test.ts 15ms
+tests/integration/P08-03.delegation.test.ts 42ms
+$ vitest run --config vitest.config.ts --project unit "P08-03" "P02-02.zhipu-tool-names"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  2 passed (2)
+      Tests  13 passed (13)
+   Start at  15:24:24
+   Duration  3.23s (transform 60%, import 38%, tests 1%, setup 1%)
+
+$ vitest run --config vitest.config.ts --project integration "P08-03.delegation"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  14 passed (14)
+   Start at  15:24:29
+   Duration  10.91s (tests 64%, transform 27%, import 9%)
+

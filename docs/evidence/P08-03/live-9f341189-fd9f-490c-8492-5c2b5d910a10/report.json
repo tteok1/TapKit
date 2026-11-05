@@ -1,0 +1,80 @@
+{
+  "task": "P08-03",
+  "status": "not_verified",
+  "phase": "verify",
+  "connectionLimit": 10,
+  "connectionAttempts": [
+    {
+      "number": 2,
+      "status": "passed",
+      "startedAt": "2026-11-05T07:20:54.104Z",
+      "finishedAt": "2026-11-05T07:21:47.611Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": true,
+  "taskStarted": true,
+  "credentialRemoved": true,
+  "build": {
+    "packages/core/dist/index.cjs": "3fc04304cc6370017cdb13e92dd6c59ff770da91e38aefc41b867c96bd46acbb",
+    "apps/desktop/out/main/index.js": "551ed325d93a369b179538a63787304d5b5e26f83c0ed473c70d738b08966a89"
+  },
+  "taskRun": {
+    "id": "01a1aa95-d8e8-7db8-84c4-c74ac4b10237",
+    "status": "partial",
+    "calls": 3,
+    "tools": 3,
+    "tokens": 19020
+  },
+  "children": [
+    {
+      "id": "01a1aa95-da55-7604-9065-b60064e4b37c",
+      "rootRunId": "01a1aa95-d8e8-7db8-84c4-c74ac4b10237",
+      "status": "failed",
+      "calls": 1,
+      "role": "researcher",
+      "evidence": [],
+      "sourceHashes": [],
+      "incomplete": true
+    },
+    {
+      "id": "01a1aa95-da74-74a3-ab9f-22f59ea4cf00",
+      "rootRunId": "01a1aa95-d8e8-7db8-84c4-c74ac4b10237",
+      "status": "failed",
+      "calls": 1,
+      "role": "reviewer",
+      "evidence": [],
+      "sourceHashes": [],
+      "incomplete": true
+    }
+  ],
+  "literalEvidenceVerified": false,
+  "budget": {
+    "used_tokens": 19020,
+    "reserved_tokens": 0
+  },
+  "attempts": [
+    {
+      "status": "failed",
+      "charged_tokens": 7810,
+      "usage_source": "estimated"
+    },
+    {
+      "status": "failed",
+      "charged_tokens": 7785,
+      "usage_source": "estimated"
+    },
+    {
+      "status": "completed",
+      "charged_tokens": 3425,
+      "usage_source": "actual"
+    }
+  ],
+  "artifacts": [
+    {
+      "format": "md",
+      "sha256": "5929f3183435016f1aa35197630af612da0e90732bd0ca1a022e4d34cb6af39b",
+      "bytes": 560
+    }
+  ],
+  "finishedAt": "2026-11-05T07:22:25.969Z"
+}

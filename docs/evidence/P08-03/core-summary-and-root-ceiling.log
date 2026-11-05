@@ -1,0 +1,12 @@
+tests/integration/P08-03.delegation.test.ts 155ms
+tests/e2e/P08-03.delegation.spec.ts 28ms
+$ vitest run --config vitest.config.ts --project integration "P08-03.delegation" "P06-01.work" "P01-03.usage"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  3 passed (3)
+      Tests  41 passed (41)
+   Start at  16:04:13
+   Duration  31.11s (tests 77%, transform 12%, import 10%)
+

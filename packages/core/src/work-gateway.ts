@@ -105,6 +105,118 @@ export class WorkToolGateway implements WorkGateway {
   get store() {
     return this.repo.store;
   }
+  private async delegatedReadOnly<T>(
+    run: WorkRun,
+    tool: 'source.read' | 'task.result',
+    args: unknown,
+    guard: () => void,
+    signal: AbortSignal,
+    operation: () => Promise<T>,
+  ): Promise<T> {
+    const state = this.repo.state(this.repo.row(run.id)),
+      child = state.child;
+    if (!child || child.archived || !child.spec.allowedTools.includes(tool))
+      throw new StorageError('PERMISSION_DENIED');
+    const id = newId(),
+      time = this.store.now(),
+      hash = canonicalHash(args);
+    this.store.db.transaction(() => {
+      guard();
+      signal.throwIfAborted();
+      const root = this.repo.rootUsage(run),
+        own = (
+          this.store.db
+            .prepare(
+              'SELECT count(*) n FROM tool_call_attempts a JOIN tool_calls c ON c.id=a.tool_call_id WHERE c.run_id=?',
+            )
+            .get(run.id) as { n: number }
+        ).n;
+      if (
+        root.tools >= state.definition.budgetOverrides.maxTools ||
+        own >= child.spec.budget.maxTools
+      )
+        throw new StorageError('BUDGET_EXCEEDED');
+      this.store.db
+        .prepare(
+          "INSERT INTO tool_calls(id,profile_id,created_at,updated_at,run_id,task_version,call_id,tool_name,tool_version,args_json,args_hash,resource_hash,idempotency_key,status,side_effect,step_key,content_hash,lease_epoch) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,'dispatched','none','delegated',?,?)",
+        )
+        .run(
+          id,
+          this.store.profileId,
+          time,
+          time,
+          run.id,
+          run.task_version,
+          id,
+          tool,
+          'p08-03-1',
+          JSON.stringify(args),
+          hash,
+          hash,
+          canonicalHash({ run: run.id, tool, args, id }),
+          hash,
+          run.lease_epoch,
+        );
+      this.store.db
+        .prepare(
+          'INSERT INTO tool_call_attempts(id,profile_id,tool_call_id,attempt_no,started_at) VALUES(?,?,?,1,?)',
+        )
+        .run(newId(), this.store.profileId, id, time);
+      this.repo.event(run, 'tool.dispatched', tool);
+    })();
+    try {
+      const result = await operation();
+      guard();
+      signal.throwIfAborted();
+      this.store.db.transaction(() => {
+        guard();
+        this.store.db
+          .prepare(
+            "UPDATE tool_calls SET status='succeeded',side_effect='none',updated_at=? WHERE id=?",
+          )
+          .run(this.store.now(), id);
+        this.store.db
+          .prepare('UPDATE tool_call_attempts SET ended_at=? WHERE tool_call_id=?')
+          .run(this.store.now(), id);
+        this.repo.event(run, 'tool.finished', tool + '：success');
+      })();
+      return result;
+    } catch (error) {
+      this.store.db.transaction(() => {
+        this.store.db
+          .prepare(
+            "UPDATE tool_calls SET status='failed',side_effect='not_committed',updated_at=? WHERE id=?",
+          )
+          .run(this.store.now(), id);
+        this.store.db
+          .prepare('UPDATE tool_call_attempts SET ended_at=?,error_json=? WHERE tool_call_id=?')
+          .run(
+            this.store.now(),
+            JSON.stringify({ code: error instanceof StorageError ? error.code : 'CANCELLED' }),
+            id,
+          );
+      })();
+      throw error;
+    }
+  }
+  async delegationRead(run: WorkRun, ref: ResourceRef, guard: () => void, signal: AbortSignal) {
+    const child = this.repo.state(this.repo.row(run.id)).child;
+    if (!this.chat || !child?.spec.inputs.some((r) => canonicalHash(r) === canonicalHash(ref)))
+      throw new StorageError('PERMISSION_DENIED');
+    return this.delegatedReadOnly(run, 'source.read', { ref }, guard, signal, () =>
+      this.chat!.material(ref, run.session_id),
+    );
+  }
+  async delegationResult(run: WorkRun, guard: () => void, signal: AbortSignal) {
+    await this.delegatedReadOnly(
+      run,
+      'task.result',
+      { contract: 'research-review-v1' },
+      guard,
+      signal,
+      async () => {},
+    );
+  }
   validateDefinition(definition: WorkDefinition, _sessionId: string) {
     if (definition.research && !this.research) throw new StorageError('FEATURE_NOT_AVAILABLE');
     this.research?.validateDefinition(definition);
@@ -452,6 +564,7 @@ export class WorkToolGateway implements WorkGateway {
     guard: () => void,
     signal?: AbortSignal,
   ): Promise<ResourceRef | null> {
+    if (this.repo.state(this.repo.row(run.id)).child) throw new StorageError('PERMISSION_DENIED');
     if (this.repo.state(this.repo.row(run.id)).definition.research) {
       if (!this.research) throw new StorageError('FEATURE_NOT_AVAILABLE');
       if (raw.tool.startsWith('research.'))

@@ -1,3 +1,4 @@
+import { SCHEMA_VERSION } from '../../packages/storage/src';
 import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { describe, it, expect, afterEach, vi } from 'vitest';
 import { mkdir, readdir, writeFile, readFile } from 'node:fs/promises';
@@ -571,7 +572,7 @@ describe('P01-03 durable usage, budgets, migration and Core routing', () => {
       expect(db.pragma('user_version', { simple: true })).toBe(3);
       await migrate(db, resolve(dir, 'backups'));
       await migrate(db, resolve(dir, 'backups'));
-      expect(db.pragma('user_version', { simple: true })).toBe(20);
+      expect(db.pragma('user_version', { simple: true })).toBe(SCHEMA_VERSION);
       expect(store.settings).toEqual(old);
       expect(db.prepare('SELECT id FROM provider_accounts WHERE id=?').get(id)).toEqual({ id });
       expect(db.pragma('foreign_key_check')).toEqual([]);

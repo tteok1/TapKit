@@ -1,3 +1,4 @@
+import { SCHEMA_VERSION } from '../../packages/storage/src';
 import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { describe, it, expect, afterEach, vi } from 'vitest';
 import { mkdir, writeFile, readFile, readdir } from 'node:fs/promises';
@@ -873,7 +874,7 @@ describe('P02-03 history lifecycle', () => {
     );
     await migrate(db, backup);
     await migrate(db, backup);
-    expect(db.pragma('user_version', { simple: true })).toBe(20);
+    expect(db.pragma('user_version', { simple: true })).toBe(SCHEMA_VERSION);
     expect(db.pragma('foreign_key_check')).toEqual([]);
     expect(db.pragma('integrity_check', { simple: true })).toBe('ok');
     expect(

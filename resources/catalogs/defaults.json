@@ -48,7 +48,12 @@
       "onlyThisModel": false,
       "mode": "quick",
       "reasoning": "off",
-      "answer": { "language": "auto", "length": "normal", "tone": "natural", "format": "auto" },
+      "answer": {
+        "language": "auto",
+        "length": "normal",
+        "tone": "natural",
+        "format": "auto"
+      },
       "favorites": [],
       "apiOrder": [
         "deepseek",
@@ -80,5 +85,12 @@
       "retryWaitMs": 30000,
       "foregroundSlots": 1
     }
+  },
+  "delegation": {
+    "automatic": false,
+    "maxDepth": 1,
+    "maxConcurrentChildren": 2,
+    "maxBranches": 12,
+    "childCalls": 1
   }
 }

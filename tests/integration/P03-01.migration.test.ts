@@ -1,3 +1,4 @@
+import { SCHEMA_VERSION } from '../../packages/storage/src';
 import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { afterEach, expect, test } from 'vitest';
 import { mkdir } from 'node:fs/promises';
@@ -86,7 +87,7 @@ test('P03-01 schema9 repairs only live legacy generated-note links to their orig
     .prepare('SELECT * FROM resource_links WHERE id IN (?,?) ORDER BY id')
     .all(sessionLink, projectLink);
   await migrate(db, backups);
-  expect(db.pragma('user_version', { simple: true })).toBe(20);
+  expect(db.pragma('user_version', { simple: true })).toBe(SCHEMA_VERSION);
   expect(
     db
       .prepare('SELECT * FROM resource_links WHERE id IN (?,?) ORDER BY id')

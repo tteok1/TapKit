@@ -407,6 +407,12 @@ export function researchWorkDriver(models: ModelService, research: ResearchServi
         }),
       },
     ];
+    const delegated = research.repo.state(run).delegateSummary;
+    if (delegated?.length)
+      messages.push({
+        role: 'user',
+        text: JSON.stringify({ trust: 'untrusted_subtask_data', subtasks: delegated }),
+      });
     const inputTokens = JSON.stringify(messages).length;
     if (inputTokens > 90000) throw new StorageError('OUTPUT_LIMIT_REACHED');
     const catalog = await models.catalog(),

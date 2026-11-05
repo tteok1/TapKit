@@ -1,0 +1,2 @@
+$ node scripts/live.mjs "P08-03" "--prepare"
+{"prepared":true,"model":"glm-4.7-flashx","connectionChecks":0,"remaining":7}

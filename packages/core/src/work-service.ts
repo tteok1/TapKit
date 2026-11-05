@@ -1,3 +1,4 @@
+import { DelegationService } from './delegation-service';
 import {
   WorkCommandSchemas,
   WorkDefinitionSchema,
@@ -11,6 +12,7 @@ import {
   type WorkDefinition,
   type WorkToolArgs,
   type ResourceRef,
+  type ChatMaterial,
   type Request,
   type Reply,
   ResourceRefSchema,
@@ -41,6 +43,13 @@ export type WorkDriver = (
   signal: AbortSignal,
 ) => Promise<WorkCandidate>;
 export interface WorkGateway {
+  delegationRead?(
+    run: WorkRun,
+    ref: ResourceRef,
+    guard: () => void,
+    signal: AbortSignal,
+  ): Promise<ChatMaterial>;
+  delegationResult?(run: WorkRun, guard: () => void, signal: AbortSignal): Promise<void>;
   validateDefinition?(definition: WorkDefinition, sessionId: string): void;
   intermediate?(run: WorkRun): boolean;
   artifactRefs?(run: WorkRun, refs: ResourceRef[]): ResourceRef[];
@@ -69,6 +78,7 @@ export interface WorkGateway {
 }
 export class WorkService {
   readonly repo: WorkRepository;
+  readonly delegation: DelegationService;
   readonly notifications: WorkNotifications;
   readonly owner = newId();
   private timer?: ReturnType<typeof setInterval>;
@@ -88,6 +98,7 @@ export class WorkService {
     readonly claimRoot: () => () => void = () => () => {},
   ) {
     this.repo = new WorkRepository(store);
+    this.delegation = new DelegationService(this);
     this.notifications = new WorkNotifications(store);
   }
   handles(command: string, payload: unknown) {
@@ -137,6 +148,15 @@ export class WorkService {
       if (!schema) return failure(request.requestId, 'FEATURE_NOT_AVAILABLE');
       const p = schema.parse(request.payload);
       request.payload = p;
+      if (request.command === 'task.delegate' || request.command.startsWith('subtasks.'))
+        return await this.delegation.dispatch(request);
+      const target = p as { runId?: string };
+      if (
+        target.runId &&
+        request.command !== 'runs.get' &&
+        this.repo.state(this.repo.row(target.runId)).child
+      )
+        throw new StorageError('PERMISSION_DENIED');
       if (request.command === 'research.finish') {
         const input = WorkCommandSchemas['research.finish'].parse(p),
           run = this.repo.row(input.runId);
@@ -207,7 +227,7 @@ export class WorkService {
           items = this.store.db
             .prepare(
               `SELECT r.id FROM runs r JOIN tasks t ON t.id=r.task_id JOIN sessions s ON s.id=r.session_id
-          WHERE r.profile_id=? AND t.mode='work' AND t.deleted_at IS NULL AND s.deleted_at IS NULL AND (? OR t.archived_at IS NULL)
+          WHERE r.profile_id=? AND r.parent_run_id IS NULL AND t.mode='work' AND t.deleted_at IS NULL AND s.deleted_at IS NULL AND (? OR t.archived_at IS NULL)
           AND (? IS NULL OR s.project_id=?) AND (? IS NULL OR r.status=?) AND (? IS NULL OR r.updated_at>=?)
           AND (? IS NULL OR instr(lower(json_extract(r.work_json,'$.definition.goal')),lower(?))>0)
           AND (? IS NULL OR coalesce(json_extract(r.model_json,'$.selection.modelId'),json_extract(r.work_json,'$.definition.modelRef.modelId'))=?)
@@ -234,7 +254,7 @@ export class WorkService {
         const running = (
           this.store.db
             .prepare(
-              "SELECT count(*) n FROM runs WHERE status IN ('running','waiting_tool','pausing')",
+              "SELECT count(*) n FROM runs WHERE parent_run_id IS NULL AND status IN ('running','waiting_tool','pausing')",
             )
             .get() as { n: number }
         ).n;
@@ -600,6 +620,7 @@ export class WorkService {
       )
       .run(this.store.now(), run.id);
     if (action === 'cancel') {
+      this.delegation.cancel(run);
       this.gateway.cancelReadOnly?.(run);
       this.store.db
         .prepare(
@@ -668,6 +689,28 @@ export class WorkService {
           .all() as { id: string }[]);
     for (const { id } of rows) {
       const run = this.repo.row(id);
+      if (this.repo.state(run).child) {
+        this.store.db.transaction(() => {
+          this.store.db
+            .prepare(
+              "UPDATE tool_call_attempts SET ended_at=?,error_json=? WHERE ended_at IS NULL AND tool_call_id IN (SELECT id FROM tool_calls WHERE run_id=? AND tool_name IN ('source.read','task.result'))",
+            )
+            .run(this.store.now(), JSON.stringify({ code: 'STREAM_INTERRUPTED' }), run.id);
+          this.store.db
+            .prepare(
+              "UPDATE tool_calls SET status='cancelled',side_effect='not_committed',updated_at=? WHERE run_id=? AND tool_name IN ('source.read','task.result') AND status IN ('proposed','approved','dispatched','pending')",
+            )
+            .run(this.store.now(), run.id);
+
+          if (run.status === 'running' || run.status === 'waiting_tool')
+            this.repo.status(run, 'pausing');
+          if (run.status === 'recovering') {
+            this.repo.status(run, 'queued');
+          }
+          this.repo.status(run, 'paused', 'STREAM_INTERRUPTED');
+        })();
+        continue;
+      }
       this.active.get(id)?.controller.abort();
       this.store.db.transaction(() => {
         this.store.db.prepare('UPDATE runs SET lease_epoch=lease_epoch+1 WHERE id=?').run(id);
@@ -717,8 +760,8 @@ export class WorkService {
       if (expired.length) await this.recover(expired.map((r) => r.id));
       const rows = this.store.db
         .prepare(
-          `SELECT r.id FROM runs r JOIN tasks t ON t.id=r.task_id JOIN sessions s ON s.id=r.session_id WHERE t.mode='work' AND t.deleted_at IS NULL AND s.deleted_at IS NULL AND r.status='queued'
-        AND NOT EXISTS(SELECT 1 FROM runs a WHERE a.session_id=r.session_id AND a.id<>r.id AND a.status IN ('running','waiting_tool','waiting_user','pausing','paused','recovering')) ORDER BY t.priority DESC,r.created_at,r.id LIMIT 100`,
+          `SELECT r.id FROM runs r JOIN tasks t ON t.id=r.task_id JOIN sessions s ON s.id=r.session_id WHERE t.mode='work' AND t.deleted_at IS NULL AND s.deleted_at IS NULL AND json_extract(r.work_json,'$.child') IS NULL AND r.status='queued'
+        AND NOT EXISTS(SELECT 1 FROM runs a WHERE a.session_id=r.session_id AND a.id<>r.id AND json_extract(a.work_json,'$.child') IS NULL AND a.status IN ('running','waiting_tool','waiting_user','pausing','paused','recovering')) ORDER BY t.priority DESC,r.created_at,r.id LIMIT 100`,
         )
         .all() as { id: string }[];
       for (const { id } of rows) {
@@ -727,7 +770,7 @@ export class WorkService {
         if (
           this.store.db
             .prepare(
-              "SELECT 1 FROM runs WHERE session_id=? AND id<>? AND status IN ('running','waiting_tool','waiting_user','pausing','paused','recovering')",
+              "SELECT 1 FROM runs WHERE session_id=? AND id<>? AND json_extract(work_json,'$.child') IS NULL AND status IN ('running','waiting_tool','waiting_user','pausing','paused','recovering')",
             )
             .get(pending.session_id, id)
         )
@@ -828,6 +871,7 @@ export class WorkService {
       }
     }, HEARTBEAT_MS);
     try {
+      if (!(await this.delegation.coordinate(run, guard, signal))) return;
       while (true) {
         guard();
         const current = this.repo.row(run.id),
@@ -878,7 +922,9 @@ export class WorkService {
                 : complete
                   ? selected.some((s) => s.status === 'skipped' && !s.optional)
                     ? 'partial'
-                    : (this.gateway.completion?.(run) ?? 'completed')
+                    : this.delegation.incomplete(run)
+                      ? 'partial'
+                      : (this.gateway.completion?.(run) ?? 'completed')
                   : selected.some((s) => s.status === 'completed')
                     ? 'partial'
                     : 'failed',
@@ -916,8 +962,12 @@ export class WorkService {
                 signal,
               });
         if (resumed === null) return;
+        if (state.definition.delegationSummaryOnly && step.errorCode === 'PARSE_FAILED')
+          throw new StorageError('PARSE_FAILED');
         const closeout =
-          !resumed && !executionExhausted ? this.gateway.closeout?.(current) : undefined;
+          !resumed && !executionExhausted
+            ? (this.delegation.closeout(current) ?? this.gateway.closeout?.(current))
+            : undefined;
         if (!resumed && !closeout && exhausted) throw new StorageError('BUDGET_EXCEEDED');
         if (!resumed && !closeout && step.attempts >= 3) {
           this.store.db.transaction(() => {

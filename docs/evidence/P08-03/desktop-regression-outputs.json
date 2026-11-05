@@ -1,0 +1,101 @@
+{
+  "scope": "P08-03-generated regression outputs; archived and byte-verified before restoring older committed evidence; initial workspace was clean",
+  "files": [
+    {
+      "path": "docs/evidence/P08-01/desktop/approval.png",
+      "sha256": "a372c9eccc35872b50f0b80bf246a713700fcc9a56df80404e9fc10246b5cbec",
+      "bytes": 227352,
+      "priorTracked": true
+    },
+    {
+      "path": "docs/evidence/P08-01/desktop/browser-kernel.json",
+      "sha256": "fa1b6338e8eaa2a166e68011b4264814e1d9a1b6c35c00f699455ed9fe917123",
+      "bytes": 782,
+      "priorTracked": true
+    },
+    {
+      "path": "docs/evidence/P08-01/desktop/compact.png",
+      "sha256": "e2a6f7414a0c875ca0a38705389f6895f485cd96938ed3bfe059dd082c131d8e",
+      "bytes": 263080,
+      "priorTracked": true
+    },
+    {
+      "path": "docs/evidence/P08-01/desktop/completed.png",
+      "sha256": "be7aa02e0390ed4ed2909e8f1329c7fe82a31402a02e99ba9ff2d686ed0a44d1",
+      "bytes": 253172,
+      "priorTracked": true
+    },
+    {
+      "path": "docs/evidence/P08-01/desktop/modal.png",
+      "sha256": "6c7b9b1360dfc804b98025dac763609322486e1800abb6412210e121b1cf8bd8",
+      "bytes": 176810,
+      "priorTracked": true
+    },
+    {
+      "path": "docs/evidence/P08-01/desktop/review.png",
+      "sha256": "4cf095379d0b640c884c37eef3b09002c61ea2493753cf008870c12a5a1a3a76",
+      "bytes": 199928,
+      "priorTracked": true
+    },
+    {
+      "path": "docs/evidence/P08-01/desktop/stale.png",
+      "sha256": "a362e1752233d8842885b7f48fa5f901ed121a7f7e46d0074d0e36486df0bcaf",
+      "bytes": 217052,
+      "priorTracked": true
+    },
+    {
+      "path": "docs/evidence/P08-02/desktop/create-compact.png",
+      "sha256": "3d53056b4cae6ff75db83db323ddbef4a3f67b6c66ff4713385653116eeff514",
+      "bytes": 191947,
+      "priorTracked": true
+    },
+    {
+      "path": "docs/evidence/P08-02/desktop/failure-diagnostic.json",
+      "sha256": "e1f849d7ad1dac99b3d9fb8c91c780843033fb7514580fea987a3005dd09f3fe",
+      "bytes": 172,
+      "priorTracked": true
+    },
+    {
+      "path": "docs/evidence/P08-02/desktop/pdf.png",
+      "sha256": "6a1b651268c7d0a97389bc386e0fdb62b5df17aaa28f09b25f43f0f297158085",
+      "bytes": 401090,
+      "priorTracked": true
+    },
+    {
+      "path": "docs/evidence/P08-02/desktop/progress-error.png",
+      "sha256": "0ebf8cf5f95a1eb5c4c33a847e8bcb88fe7067090c88bf3ed9823759f14823ef",
+      "bytes": 304813,
+      "priorTracked": true
+    },
+    {
+      "path": "docs/evidence/P08-02/desktop/progress-recovered.png",
+      "sha256": "d8cd1a1985354d43f56e79cc45112e5566c11ebe1e2cde8e4e6cd20d7a20a5e3",
+      "bytes": 308831,
+      "priorTracked": true
+    },
+    {
+      "path": "docs/evidence/P08-02/desktop/quote-dark.png",
+      "sha256": "6926e548a43c5ef4fd85b808705b0508e4fdaddc80168c9fd90b8c9a4f1aeb33",
+      "bytes": 277168,
+      "priorTracked": true
+    },
+    {
+      "path": "docs/evidence/P08-02/desktop/quote-system.png",
+      "sha256": "d0a08b753f323d85ac0525f31bfab86d256115adc52a873855e036ab35ceebd5",
+      "bytes": 275767,
+      "priorTracked": true
+    },
+    {
+      "path": "docs/evidence/P08-02/desktop/quote.png",
+      "sha256": "a202a0922919c492676f32d183640d45dc2cc360b59bac4c5e90f76af8c29728",
+      "bytes": 279712,
+      "priorTracked": true
+    },
+    {
+      "path": "docs/evidence/P08-02/desktop/report-page.png",
+      "sha256": "05c45432520559c125d86f95431e2756e98c81ebf25a8b87d98411d6a4846016",
+      "bytes": 97254,
+      "priorTracked": true
+    }
+  ]
+}

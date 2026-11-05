@@ -1,3 +1,4 @@
+import { modelDelegateDriver } from './delegation-driver';
 import { readExecutionCapabilities } from '@tapkit/tools';
 import {
   CoreCommandSchema,
@@ -252,6 +253,7 @@ async function start() {
     (ref, sessionId) => chat.material(ref, sessionId),
     models.claimRoot,
   );
+  work.delegation.driver = modelDelegateDriver(models);
   work.onStatus = (run) => {
     if (['completed', 'partial', 'failed', 'cancelled', 'budget_stopped'].includes(run.status))
       void browser.dispose(run).catch(() => {});

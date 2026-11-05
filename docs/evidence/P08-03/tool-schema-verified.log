@@ -1,0 +1,11 @@
+packages/core/src/delegation-driver.ts 64ms (unchanged)
+$ vitest run --config vitest.config.ts --project unit "P08-03"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  15:19:08
+   Duration  2.22s (transform 81%, import 17%, tests 1%, setup 1%)
+

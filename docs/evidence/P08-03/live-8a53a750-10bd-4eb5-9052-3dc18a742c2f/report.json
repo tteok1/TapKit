@@ -1,0 +1,110 @@
+{
+  "task": "P08-03",
+  "status": "not_verified",
+  "phase": "verify",
+  "connectionLimit": 10,
+  "connectionAttempts": [
+    {
+      "number": 3,
+      "status": "passed",
+      "startedAt": "2026-11-05T07:57:01.416Z",
+      "finishedAt": "2026-11-05T07:57:03.833Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": true,
+  "taskStarted": true,
+  "credentialRemoved": true,
+  "build": {
+    "packages/core/dist/index.cjs": "913511ae88c06efc957cf2486062f9a902d1834ba5ea0d49b9d9bcabb25cb7f6",
+    "apps/desktop/out/main/index.js": "fcdbb61bb55cb0fca67ff2d67af1d39a9f697a08e5d2f8511e3139ceeda087ce"
+  },
+  "taskRun": {
+    "id": "01a1aab6-2370-7ad7-804f-a6b7b8b54d8c",
+    "status": "failed",
+    "calls": 3,
+    "tools": 4,
+    "tokens": 22781
+  },
+  "children": [
+    {
+      "id": "01a1aab6-24d0-7bf7-96f6-1cde3b019289",
+      "rootRunId": "01a1aab6-2370-7ad7-804f-a6b7b8b54d8c",
+      "status": "completed",
+      "calls": 1,
+      "role": "researcher",
+      "evidence": [
+        {
+          "inputIndex": 0,
+          "start": 0,
+          "end": 11,
+          "quote": "本资料为合成验收样本。"
+        },
+        {
+          "inputIndex": 0,
+          "start": 11,
+          "end": 31,
+          "quote": "方案甲延迟42毫秒，方案乙延迟51毫秒。"
+        },
+        {
+          "inputIndex": 0,
+          "start": 31,
+          "end": 54,
+          "quote": "数据没有经过外部独立核验，不代表真实产品性能。"
+        }
+      ],
+      "sourceHashes": [
+        "bbfec3eb868e93e4ccea06bdb7c22417361c331b54466a0eeb1ef864420f0bae"
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "01a1aab6-2519-7029-a4aa-3adae6d8803a",
+      "rootRunId": "01a1aab6-2370-7ad7-804f-a6b7b8b54d8c",
+      "status": "completed",
+      "calls": 1,
+      "role": "reviewer",
+      "evidence": [
+        {
+          "inputIndex": 0,
+          "start": 0,
+          "end": 11,
+          "quote": "本资料为合成验收样本。"
+        },
+        {
+          "inputIndex": 0,
+          "start": 31,
+          "end": 54,
+          "quote": "数据没有经过外部独立核验，不代表真实产品性能。"
+        }
+      ],
+      "sourceHashes": [
+        "bbfec3eb868e93e4ccea06bdb7c22417361c331b54466a0eeb1ef864420f0bae"
+      ],
+      "incomplete": false
+    }
+  ],
+  "literalEvidenceVerified": true,
+  "budget": {
+    "used_tokens": 22781,
+    "reserved_tokens": 0
+  },
+  "attempts": [
+    {
+      "status": "completed",
+      "charged_tokens": 809,
+      "usage_source": "actual"
+    },
+    {
+      "status": "completed",
+      "charged_tokens": 798,
+      "usage_source": "actual"
+    },
+    {
+      "status": "interrupted",
+      "charged_tokens": 21174,
+      "usage_source": "estimated"
+    }
+  ],
+  "artifacts": [],
+  "finishedAt": "2026-11-05T07:57:17.002Z"
+}

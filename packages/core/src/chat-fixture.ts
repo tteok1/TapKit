@@ -56,6 +56,42 @@ export function installChatFixture(models: ModelService) {
     },
     classifyError: () => ({ code: 'STREAM_INTERRUPTED', retryable: false }),
     async *stream(request, signal) {
+      if (request.systemModules.some((module) => module.id === 'tapkit.delegate')) {
+        const sources = JSON.parse(request.messages[1]!.text) as {
+          evidence: { id: string; quote: string }[];
+        };
+        const instruction = JSON.parse(request.messages[0]!.text) as {
+          goal: string;
+          feedback: string[];
+        };
+        const goal = instruction.goal;
+        if (
+          goal.includes('合成失败分支') &&
+          !instruction.feedback.some((value) => value.includes('恢复分支'))
+        ) {
+          yield {
+            type: 'error',
+            error: { code: 'NETWORK_ERROR', retryable: false },
+            partial: false,
+          };
+          return;
+        }
+        signal.throwIfAborted();
+        yield {
+          type: 'tool_end',
+          callId: newId(),
+          name: 'task.result',
+          arguments: {
+            conclusion: sources.evidence[0]?.quote ?? '缺少来源，待核实。',
+            evidenceIds: sources.evidence.slice(0, 1).map((e) => e.id),
+            actions: [],
+            uncertainty: sources.evidence.length ? [] : ['尚无资料'],
+            incomplete: !sources.evidence.length,
+          },
+        };
+        yield { type: 'finish', reason: 'tool_calls', nativeStateRef: '' };
+        return;
+      }
       if (request.systemModules.some((module) => module.id === 'tapkit.research')) {
         const state = JSON.parse(request.messages[0]!.text) as {
           spec: { questions: { key: string }[]; seedUrls: string[] };

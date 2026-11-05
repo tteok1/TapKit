@@ -23,6 +23,7 @@ const aliases: Readonly<Record<string, string>> = Object.freeze({
   'research.read': 'research_read',
   'research.record': 'research_record',
   'research.report': 'research_report',
+  'task.result': 'task_result',
   'user.ask': 'user_ask',
 });
 

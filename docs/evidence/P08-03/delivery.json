@@ -1,0 +1,59 @@
+{
+  "task": "P08-03",
+  "baseHead": "21604b1a851e2db19fde48c927e57e26eae809e1",
+  "branch": "codex/p08-03-delegation",
+  "state": "uncommitted; main unchanged",
+  "sourceManifestSha256": "11bbd0f7b7ea36cdb4a0b1f9a292ddda4dac171c3e8ac52ff1dea3ab64c67aa9",
+  "progressFiles": [
+    {
+      "path": "docs/progress/CURRENT.md",
+      "sha256": "ea0310db0217b4d59fbbdc99293b47f96ce51fa2fe9de6e87268f05a6b0a3a3d"
+    },
+    {
+      "path": "docs/progress/INDEX.md",
+      "sha256": "985062520e052e9f0c13ac786e70f977c30e47805f5f77ee06c9d1faa55d0e02"
+    },
+    {
+      "path": "docs/progress/P08-03.md",
+      "sha256": "429cfa3cf9fe9c3666a0d1d9dab3713075eb904bb775ce3cfc9f09954d20c55f"
+    },
+    {
+      "path": "docs/progress/P08-gate.md",
+      "sha256": "0fee9b35d1dc663eb632cc047253289333b1204e71bd41fa5d0309b0878e7127"
+    },
+    {
+      "path": "docs/progress/requirements.csv",
+      "sha256": "4d797e703bed17c6655fac74f55daf12453754fb9f9a5d2b36cb6deda76feae0"
+    },
+    {
+      "path": "docs/adr/0077-bounded-read-only-delegation.md",
+      "sha256": "d649ba2d8dabae35ca40554fca1a6d9894181aafb9f3c1e901163965db0a4344"
+    },
+    {
+      "path": "docs/plan/02-decisions.md",
+      "sha256": "14ed06b0aac7a2625df0212047f3490aedbf5d34c76dc0bca3553a970e1ad031"
+    },
+    {
+      "path": "docs/plan/05-ipc-and-events.md",
+      "sha256": "4bb3f07a3c1ea5e89c7796ee1880059c9934c3c2a4c841cf248dfd245c2a09d8"
+    },
+    {
+      "path": "docs/plan/07-tools-and-isolation.md",
+      "sha256": "7b5c69eab7a7e4deb9733120b8fe1953e81febac2cc03443a0391a00bb957c84"
+    }
+  ],
+  "checks": {
+    "check": 0,
+    "unit500": 0,
+    "relatedIntegration94": 0,
+    "desktopFinal1": 0,
+    "docsCheck37": 0,
+    "diffCheck": 0,
+    "liveCore": 0,
+    "liveModel": 0,
+    "publicEvidenceFindings": 0
+  },
+  "connectionChecks": 5,
+  "connectionLimit": 10,
+  "automaticDelegationEnabled": false
+}

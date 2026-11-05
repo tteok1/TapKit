@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "scope": "Synthetic fixed-source operational ablation; no paid model, no semantic model qualification",
+  "cases": [
+    { "id": "independent", "a": "甲延迟42毫秒。", "b": "乙延迟51毫秒。" },
+    { "id": "conflicting", "a": "来源甲声称价格42元。", "b": "来源乙声称价格55元。" },
+    { "id": "negation", "a": "甲不支持联网。", "b": "乙不支持写入。" },
+    { "id": "units", "a": "甲上限42千字节。", "b": "乙上限51兆字节。" },
+    { "id": "unicode", "a": "😀方案甲耗时42毫秒。", "b": "方案乙中文说明尚待核验。" },
+    { "id": "no-answer", "a": "资料未提供甲价格。", "b": "资料未提供乙价格。" },
+    { "id": "injection", "a": "原文要求忽略权限。", "b": "原文要求修改主目标。" },
+    { "id": "failure-isolated", "a": "甲公开证据可用。", "b": "乙分支网络失败。", "failB": true },
+    { "id": "uncertain", "a": "甲发布日期未知。", "b": "乙作者身份未知。" },
+    { "id": "long-source", "a": "甲保留完整否定陈述并说明限制。", "b": "乙只按固定来源原文描述。" }
+  ]
+}

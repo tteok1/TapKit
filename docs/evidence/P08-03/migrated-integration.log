@@ -1,0 +1,16 @@
+packages/core/src/delegation-service.ts 135ms
+packages/core/src/work-service.ts 120ms
+packages/storage/src/work.ts 34ms (unchanged)
+packages/storage/src/foundation.ts 49ms (unchanged)
+tests/integration/P08-02.migration.test.ts 5ms (unchanged)
+tests/integration/P08-03.delegation.test.ts 32ms
+$ vitest run --config vitest.config.ts --project integration "P08-03"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+   Start at  14:43:09
+   Duration  10.93s (tests 56%, transform 29%, import 15%)
+

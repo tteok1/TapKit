@@ -1,0 +1,20 @@
+tests/integration/P08-03.ablation.test.ts 100ms
+tests/integration/P08-03.ablation.test.ts(10,8): error TS2339: Property 'setTimeout' does not exist on type 'TestAPI'.
+tests/integration/P08-03.ablation.test.ts(11,9): error TS7034: Variable 'rows' implicitly has type 'any[]' in some locations where its type cannot be determined.
+tests/integration/P08-03.ablation.test.ts(132,20): error TS7005: Variable 'rows' implicitly has an 'any[]' type.
+tests/integration/P08-03.delegation.test.ts(286,87): error TS2339: Property 'work' does not exist on type '{ scope: { type: "profile" | "session"; id: string; }; values: { selection: { accountId: string; modelId: string; } | null; onlyThisModel: boolean; mode: "deep" | "quick"; reasoning: "high" | "low" | "medium" | "off"; ... 7 more ...; moneyLimits: { ...; }[]; }; revision: number; } | ... 97 more ... | { ...; }'.
+  Property 'work' does not exist on type '{ scope: { type: "profile" | "session"; id: string; }; values: { selection: { accountId: string; modelId: string; } | null; onlyThisModel: boolean; mode: "deep" | "quick"; reasoning: "high" | "low" | "medium" | "off"; ... 7 more ...; moneyLimits: { ...; }[]; }; revision: number; }'.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:122
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:223:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:220:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.21.0

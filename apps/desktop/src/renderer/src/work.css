@@ -382,3 +382,40 @@
   margin: 0;
   overflow-wrap: anywhere;
 }
+
+.subtasks-panel {
+  margin-block: 24px;
+  min-width: 0;
+}
+.subtask-row {
+  padding-block: 16px;
+  border-bottom: 1px solid var(--border);
+  overflow-wrap: anywhere;
+}
+.subtask-row h4 {
+  margin: 0;
+}
+.subtask-row h4 button {
+  text-align: start;
+  white-space: normal;
+  height: auto;
+}
+.subtask-result {
+  max-width: 72ch;
+}
+.subtask-result blockquote {
+  margin-inline: 0;
+  padding-inline-start: 16px;
+  border-inline-start: 1px solid var(--border);
+}
+
+.subtask-original {
+  overflow-wrap: anywhere;
+}
+.subtask-source-text {
+  white-space: pre-wrap;
+}
+.subtask-source-text mark {
+  color: var(--ink);
+  background: var(--accent-surface);
+}

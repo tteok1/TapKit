@@ -1,0 +1,106 @@
+{
+  "task": "P08-03",
+  "parentSummary": "core",
+  "status": "passed",
+  "phase": "verify",
+  "connectionLimit": 10,
+  "connectionAttempts": [
+    {
+      "number": 4,
+      "status": "passed",
+      "startedAt": "2026-11-05T08:24:09.335Z",
+      "finishedAt": "2026-11-05T08:24:45.683Z"
+    }
+  ],
+  "connectionSucceededBeforeTasks": true,
+  "taskStarted": true,
+  "credentialRemoved": true,
+  "build": {
+    "packages/core/dist/index.cjs": "4553f0db936b76101c6f5bf33d4f8a3466827020abe3daa7cf77b8a007eaa822",
+    "apps/desktop/out/main/index.js": "c4da88e8bc69f769b5c3df56581d88b80c1ff7733b4de78d9f30357a925b9b72"
+  },
+  "taskRun": {
+    "id": "01a1aacf-81f1-7a2e-acdd-f32a54dc687f",
+    "status": "completed",
+    "calls": 2,
+    "tools": 5,
+    "tokens": 1602
+  },
+  "children": [
+    {
+      "id": "01a1aacf-8442-76a6-a2e4-3b6da0a7dae8",
+      "rootRunId": "01a1aacf-81f1-7a2e-acdd-f32a54dc687f",
+      "status": "completed",
+      "calls": 1,
+      "role": "researcher",
+      "evidence": [
+        {
+          "inputIndex": 0,
+          "start": 0,
+          "end": 11,
+          "quote": "本资料为合成验收样本。"
+        },
+        {
+          "inputIndex": 0,
+          "start": 11,
+          "end": 31,
+          "quote": "方案甲延迟42毫秒，方案乙延迟51毫秒。"
+        },
+        {
+          "inputIndex": 0,
+          "start": 31,
+          "end": 54,
+          "quote": "数据没有经过外部独立核验，不代表真实产品性能。"
+        }
+      ],
+      "sourceHashes": [
+        "bbfec3eb868e93e4ccea06bdb7c22417361c331b54466a0eeb1ef864420f0bae"
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "01a1aacf-84ef-7071-8c63-6e7ebcecb78f",
+      "rootRunId": "01a1aacf-81f1-7a2e-acdd-f32a54dc687f",
+      "status": "completed",
+      "calls": 1,
+      "role": "reviewer",
+      "evidence": [
+        {
+          "inputIndex": 0,
+          "start": 31,
+          "end": 54,
+          "quote": "数据没有经过外部独立核验，不代表真实产品性能。"
+        }
+      ],
+      "sourceHashes": [
+        "bbfec3eb868e93e4ccea06bdb7c22417361c331b54466a0eeb1ef864420f0bae"
+      ],
+      "incomplete": false
+    }
+  ],
+  "literalEvidenceVerified": true,
+  "budget": {
+    "used_tokens": 1602,
+    "reserved_tokens": 0
+  },
+  "attempts": [
+    {
+      "status": "completed",
+      "charged_tokens": 817,
+      "usage_source": "actual"
+    },
+    {
+      "status": "completed",
+      "charged_tokens": 785,
+      "usage_source": "actual"
+    }
+  ],
+  "artifacts": [
+    {
+      "format": "md",
+      "sha256": "152bbd880d2dba1e1ba403b073cec66cbf99c4e44b775e645c94c50f17b779a4",
+      "bytes": 1829
+    }
+  ],
+  "finishedAt": "2026-11-05T08:25:10.419Z"
+}
