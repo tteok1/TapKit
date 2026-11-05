@@ -1,0 +1,42 @@
+
+Running 1 test using 1 worker
+
+(node:37308) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_READY
+TAPKIT_CORE_EXIT 0
+  x  1 tests\e2e\P09-01.code.spec.ts:6:1 › P09-01 desktop selects a real directory, reviews lines, records feedback, reverts/restores and retains the source (18.4s)
+
+
+  1) tests\e2e\P09-01.code.spec.ts:6:1 › P09-01 desktop selects a real directory, reviews lines, records feedback, reverts/restores and retains the source 
+
+    Error: page.evaluate: Error: read
+        at eval (eval at evaluate (:311:30), <anonymous>:12:68)
+        at async <anonymous>:337:30
+        at eval (eval at evaluate (:311:30), <anonymous>:12:68)
+        at async <anonymous>:337:30
+        at D:\Tapkit-public\tests\e2e\P09-01.code.spec.ts:48:16
+
+    Error Context: test-results\e2e\P09-01.code-P09-01-desktop-5bba2-ores-and-retains-the-source\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P09-01.code-P09-01-desktop-5bba2-ores-and-retains-the-source\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P09-01.code-P09-01-desktop-5bba2-ores-and-retains-the-source\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P09-01.code.spec.ts:6:1 › P09-01 desktop selects a real directory, reviews lines, records feedback, reverts/restores and retains the source 
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/e2e.mjs:15:21
+
+Node.js v24.18.0

@@ -1,0 +1,7 @@
+packages/contracts/src/index.ts 88ms
+packages/contracts/src/code.ts 21ms
+packages/core/src/code-service.ts 95ms
+apps/desktop/src/renderer/src/code-ui.tsx 52ms
+tests/integration/P09-01.code.test.ts 43ms
+docs/progress/P09-01.md 28ms
+docs/adr/0078-private-code-workspaces.md 5ms

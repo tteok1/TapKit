@@ -1,0 +1,21 @@
+packages/contracts/src/code.ts 90ms
+packages/contracts/src/foundation.ts 46ms
+packages/contracts/src/index.ts 37ms
+packages/contracts/src/work.ts 49ms
+packages/core/src/code-service.ts 107ms
+packages/core/src/index.ts 45ms
+packages/core/src/work-gateway.ts 144ms
+packages/core/src/work-driver.ts 43ms
+packages/storage/src/foundation.ts 40ms
+packages/tools/src/execution/code-workspace.ts 24ms
+packages/tools/src/index.ts 1ms
+packages/tools/src/registry.ts 13ms
+apps/desktop/src/main/index.ts 87ms
+apps/desktop/src/preload/index.ts 18ms
+apps/desktop/src/renderer/src/code-ui.tsx 38ms
+apps/desktop/src/renderer/src/code.css 34ms
+apps/desktop/src/renderer/src/work-ui.tsx 93ms
+apps/desktop/src/renderer/locales/code.zh-CN.json 14ms (unchanged)
+tests/e2e/P09-01.code.spec.ts 14ms
+tests/integration/P09-01.code.test.ts 21ms
+docs/adr/0078-private-code-workspaces.md 30ms (unchanged)

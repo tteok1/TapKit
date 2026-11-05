@@ -1,3 +1,4 @@
+import { CodeCommandSchemas } from '@tapkit/contracts';
 import {
   clipboard,
   app,
@@ -641,6 +642,7 @@ if (ownsLock) {
       ...Object.keys(ExportCommandSchemas),
       ...Object.keys(WorkCommandSchemas),
       ...Object.keys(BrowserCommandSchemas),
+      ...Object.keys(CodeCommandSchemas),
       'models.catalog',
       'models.preferences.get',
       'models.preferences.set',
@@ -801,6 +803,27 @@ if (ownsLock) {
       )
         throw new Error('CONFLICT');
       shell.showItemInFolder(destination.path);
+    });
+    ipcMain.handle('tapkit:choose-code-project', async (event, raw: unknown) => {
+      if (!checkSender(event)) throw Error('PERMISSION_DENIED');
+      const runId = IdSchema.parse(raw),
+        windowId = windowSlots.get(event.sender.id)!;
+      const result = await dialog.showOpenDialog(BrowserWindow.fromWebContents(event.sender)!, {
+        properties: ['openDirectory'],
+      });
+      if (result.canceled || !result.filePaths[0]) return null;
+      await ready;
+      if (!checkSender(event) || windowSlots.get(event.sender.id) !== windowId)
+        throw Error('PERMISSION_DENIED');
+      return ReplySchema.parse(
+        await forward({
+          type: 'code.attach',
+          requestId: uuid7(),
+          windowId,
+          runId,
+          path: result.filePaths[0],
+        }),
+      );
     });
     ipcMain.handle('tapkit:choose-directory', async (event) => {
       if (!checkSender(event)) throw new Error('PERMISSION_DENIED');

@@ -11,6 +11,7 @@ const aliases: Readonly<Record<string, string>> = Object.freeze({
   'document.revise': 'document_revise',
   'document.fields': 'document_fields',
   'workspace.patch': 'workspace_patch',
+  'code.applyPatch': 'code_applyPatch',
   'python.analyze': 'python_analyze',
   'data.analyze': 'data_analyze',
   'slides.create': 'slides_create',

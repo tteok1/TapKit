@@ -1,3 +1,4 @@
+export * from './code';
 import { z } from 'zod';
 import type { StartLogin } from './providers';
 import { IdSchema } from './identity';
@@ -46,6 +47,14 @@ export const PingReplySchema = z.strictObject({
   corePid: z.number().int().positive(),
 });
 export const CoreCommandSchema = z.discriminatedUnion('type', [
+  z.strictObject({
+    type: z.literal('code.attach'),
+    id: z.string().uuid(),
+    requestId: IdSchema,
+    windowId: z.string().regex(/^[0-9]{1,8}$/),
+    runId: IdSchema,
+    path: z.string().min(1).max(32767),
+  }),
   z.strictObject({ type: z.literal('lifecycle'), action: z.enum(['suspend', 'resume']) }),
   z.strictObject({
     type: z.literal('exports.inspect'),
@@ -137,7 +146,7 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('ready'),
     protocolVersion: z.literal(1),
-    schemaVersion: z.literal(21),
+    schemaVersion: z.literal(22),
   }),
   z.strictObject({ type: z.literal('pong'), id: z.string().uuid(), payload: PingReplySchema }),
   z.strictObject({ type: z.literal('reply'), id: z.string().uuid(), reply: ReplySchema }),
@@ -146,6 +155,12 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
 export type PingRequest = z.infer<typeof PingRequestSchema>;
 export type PingReply = z.infer<typeof PingReplySchema>;
 export interface TapKitBridge {
+  chooseCodeProject(runId: string): Promise<Reply>;
+  codeCommand(
+    options: RequestOptions,
+    command: import('./code').CodeCommand,
+    payload: unknown,
+  ): Promise<Reply>;
   browserCommand(
     options: RequestOptions,
     command: import('./browser').BrowserCommand,

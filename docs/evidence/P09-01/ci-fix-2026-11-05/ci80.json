@@ -1,0 +1,28 @@
+{
+  "runId": 42040767541,
+  "number": 80,
+  "head": "93abc36908684d3b37ef119b6c92f280a03ac307",
+  "url": "https://github.com/tteok1/TapKit/actions/runs/42040767541",
+  "conclusion": "failure",
+  "failedJob": 127290697193,
+  "failedStep": "Build and Electron checks",
+  "failedTest": "P00-01 sandbox bridge errors and clean child shutdown",
+  "difference": [
+    "chooseCodeProject",
+    "codeCommand"
+  ],
+  "otherJobs": {
+    "office-native": "success",
+    "startup-diagnostics": "success"
+  },
+  "passedSteps": [
+    "Check",
+    "Unit and current-route integration",
+    "Dedicated Core performance checks",
+    "Independent standard user",
+    "Office shutdown diagnostics"
+  ],
+  "artifactId": 13424322696,
+  "artifactSha256": "c46efc7a2613f517ce7ebf723442c3f9c25505e4d8edd1f68206f32c74bd31d2",
+  "logDownload": "two transport closures; exact failure context read from verified artifact ZIP"
+}

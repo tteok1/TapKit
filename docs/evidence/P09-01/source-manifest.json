@@ -1,0 +1,129 @@
+{
+  "baseline": "1a91688",
+  "branch": "codex/p09-01-code-review",
+  "sources": [
+    {
+      "path": "apps/desktop/src/main/index.ts",
+      "sha256": "80c24b3716099ff86ce4f273e0ee5445176b2a4162915cf5d720b318241374c3"
+    },
+    {
+      "path": "apps/desktop/src/preload/index.ts",
+      "sha256": "d0a204e930a2ca0644ccfde079d110abd99671db0d549623ad876dd265dbab59"
+    },
+    {
+      "path": "apps/desktop/src/renderer/locales/code.zh-CN.json",
+      "sha256": "edd454f2213bb8ef1348388aa0da5fde15ad09d961204ce3918836e362556b90"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/code-diff.ts",
+      "sha256": "90a09e97345981f41410ea442a9822f369cb8181a2fd1179139d7fa25da267d7"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/code-ui.tsx",
+      "sha256": "83acc2ec2511b1b5a7f9862fbd09c439a81bca87aea1756b29264ff759976b6f"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/code.css",
+      "sha256": "b50f3855233c9b1969e3171232c95ae45f793a916b478ce556b72c65252a7976"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/work-ui.tsx",
+      "sha256": "6d0c5107c18e6bfb9608e22cdda9e3b9614802a5dcff4cf1a677eafcce2df540"
+    },
+    {
+      "path": "migrations/0022_coding.sql",
+      "sha256": "a409072ab50040ed178bfe16b542d87998d96afdcf9baac4ae93602a2b174e01"
+    },
+    {
+      "path": "packages/contracts/src/code.ts",
+      "sha256": "09acf6c7ac176b5c61268ea5ba2b88bb5653f050797cb4bf9a634e62c1a1e1ba"
+    },
+    {
+      "path": "packages/contracts/src/foundation.ts",
+      "sha256": "15c2cb4a1f444bbb2c26af718a30fd7e23e6b1dbd9f4f0698bd1e47444b73094"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "0a3ce8bc6569e1658f34b35a879126764997e19fc0d3123d42cccb34c9e0d837"
+    },
+    {
+      "path": "packages/contracts/src/work.ts",
+      "sha256": "2ded0e8dcf687b523a3ec77a35d0f44aa7066e4fe751acef38a78da8da2f4272"
+    },
+    {
+      "path": "packages/core/src/code-service.ts",
+      "sha256": "4e8fd90a6eab45a5715e6c3fc4760b92a0437bf1db79bcf95b170eb4de2a6dfe"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "b145c20cd5ee87aa6487bf88fa202c12c2c64df71be300300f13b8dca924e9d6"
+    },
+    {
+      "path": "packages/core/src/work-driver.ts",
+      "sha256": "ba6db1a1bb2c7cb39da66729590220c62f74491748182acb0f149a6e0945dd42"
+    },
+    {
+      "path": "packages/core/src/work-gateway.ts",
+      "sha256": "4789275970ddb7e15113c83728f97830c1e0ff403102442ac40c2995e638ae2e"
+    },
+    {
+      "path": "packages/providers/src/api/zhipu-tools.ts",
+      "sha256": "7f1618ebee8149d4e6fd1af41a355dc0bceb987d516c38bf210f481691a8347c"
+    },
+    {
+      "path": "packages/storage/src/foundation.ts",
+      "sha256": "f56f689e0a7793cb9398d807a0303546ce476ff48b0e593132c2b93d2be3f2d8"
+    },
+    {
+      "path": "packages/tools/src/execution/code-workspace.ts",
+      "sha256": "d86f3c5ffda29399ac029ab15af35615830a4c1385e40bef925e09e937d6b215"
+    },
+    {
+      "path": "packages/tools/src/index.ts",
+      "sha256": "491e8e051500b0c5e9bb55fe9c805c10bf4b1cd42007645c75223d54f3a66789"
+    },
+    {
+      "path": "packages/tools/src/registry.ts",
+      "sha256": "66ae4e02a7e54a09fb8a0131fac4a144172e8b5675c61503bc072a2997089ea8"
+    },
+    {
+      "path": "scripts/p07-live-profile.mjs",
+      "sha256": "bd46b4486961755777e453ac0e62931cf5eff6b2587e7732092a92cf4b526fab"
+    },
+    {
+      "path": "scripts/p09-code-live.mjs",
+      "sha256": "30fabf85daf0339733a997c08fb3682bfbdc0d8f6806de7987573c8c9280c098"
+    },
+    {
+      "path": "tests/e2e/P09-01.code.spec.ts",
+      "sha256": "3fb1fafb8b10a90da621c1ce379d50b9509dc2b6d0619f0b755e40204ed7ece6"
+    },
+    {
+      "path": "tests/integration/P09-01.code.test.ts",
+      "sha256": "925289537fde7145b33358e01cbebdc5dc86a0ac85b94fa45fbad3b244e8c5bd"
+    },
+    {
+      "path": "tests/live/P01-02.native-profile.ts",
+      "sha256": "6dd8a786487956f851cde6fcc89d09c1363b08994fa52c79e2267f76724b1a01"
+    },
+    {
+      "path": "tests/unit/P00-02.contracts.test.ts",
+      "sha256": "b7c3f9e294d1058c3879cdd647b0781a99987b491cccc5fd77eeb0498197fc57"
+    },
+    {
+      "path": "tests/unit/P09-01.diff.test.ts",
+      "sha256": "8067143b5d28c36fb207640a9d762a2fdcf613e8fb6395e097d2c46058097fb4"
+    },
+    {
+      "path": "tests/unit/P09-01.provider.test.ts",
+      "sha256": "34a1c7c913f37e255b4d71fda52579c6fa454c7c4481fc4deeb9d8a9f8cb489f"
+    }
+  ],
+  "build": {
+    "packages/core/dist/index.cjs": "2960b5267df8079d439577fc675286d21cd6cedc82f2f4b9fabaa0d800129aaf",
+    "apps/desktop/out/main/index.js": "c38316fa7ec5c4bd8a308f24ce3861da8acfd7c578000562543c8b3b83443d8e",
+    "apps/desktop/out/preload/index.js": "d63d7bddee1b3397417bd0261a1a06666cf9a80fa656b6c89ffd40c3eb69f098"
+  },
+  "coreAndMainMatchSuccessfulLive": true,
+  "verifiedSourceCommit": "7a6c8c9d95f5a8146d3e75fe8fcb260873702cbf"
+}

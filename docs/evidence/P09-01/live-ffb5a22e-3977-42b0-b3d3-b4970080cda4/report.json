@@ -1,0 +1,54 @@
+{
+  "task": "P09-01",
+  "status": "passed",
+  "phase": "code_task",
+  "connectionLimit": 10,
+  "connectionAttempts": [
+    {
+      "number": 2,
+      "status": "passed",
+      "startedAt": "2026-11-05T13:24:33.823Z",
+      "finishedAt": "2026-11-05T13:25:43.663Z"
+    }
+  ],
+  "connectionSucceededBeforeTask": true,
+  "credentialRemoved": true,
+  "build": {
+    "packages/core/dist/index.cjs": "2960b5267df8079d439577fc675286d21cd6cedc82f2f4b9fabaa0d800129aaf",
+    "apps/desktop/out/main/index.js": "c38316fa7ec5c4bd8a308f24ce3861da8acfd7c578000562543c8b3b83443d8e"
+  },
+  "taskRun": {
+    "runId": "01a1abe3-0376-7e92-bdd6-d65051791c5e",
+    "status": "completed",
+    "calls": 1,
+    "tools": 1
+  },
+  "code": {
+    "originalUnchanged": true,
+    "exactFix": true,
+    "hash": "4a381860447226426a116b024081641b32f9b6c4f7c2c5d3cb86987e85c8ae33",
+    "productTestExecuted": false
+  },
+  "attempts": [
+    {
+      "attempt_no": 1,
+      "status": "completed",
+      "charged_tokens": 940,
+      "usage_source": "actual"
+    }
+  ],
+  "toolCalls": [
+    {
+      "tool_name": "code.applyPatch",
+      "status": "succeeded",
+      "side_effect": "committed"
+    }
+  ],
+  "budget": [
+    {
+      "used_tokens": 940,
+      "reserved_tokens": 0
+    }
+  ],
+  "finishedAt": "2026-11-05T13:25:49.602Z"
+}

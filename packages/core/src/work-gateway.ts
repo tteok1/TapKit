@@ -1,3 +1,4 @@
+import type { CodeService } from './code-service';
 import {
   ApprovalViewSchema,
   GrantViewSchema,
@@ -99,6 +100,7 @@ export class WorkToolGateway implements WorkGateway {
     readonly chat?: Pick<ChatService, 'store' | 'material' | 'blobs'>,
     readonly browser?: BrowserService,
     readonly research?: ResearchService,
+    readonly code?: CodeService,
   ) {
     this.repo = artifacts.repo;
   }
@@ -582,6 +584,10 @@ export class WorkToolGateway implements WorkGateway {
       if (!this.browser) throw new StorageError('FEATURE_NOT_AVAILABLE');
       return this.browser.execute(run, stepKey, raw, guard, signal);
     }
+    if (raw.tool === 'code.applyPatch') {
+      if (!this.code) throw new StorageError('FEATURE_NOT_AVAILABLE');
+      return this.code.execute(run, stepKey, raw.patch, this.artifacts, guard, signal);
+    }
     const args = parseWorkTool(raw);
     if (args.tool === 'data.analyze') {
       const options = this.repo.state(this.repo.row(run.id)).definition.dataOptions;
@@ -1061,6 +1067,7 @@ export class WorkToolGateway implements WorkGateway {
     return refs;
   }
   async verify(run: WorkRun, refs: ResourceRef[]) {
+    if (this.code?.has(run.id) && !(await this.code.verify(run.id))) return false;
     if (
       this.repo.state(this.repo.row(run.id)).definition.research &&
       !(await this.research?.verify(run))
@@ -1152,7 +1159,7 @@ export class WorkToolGateway implements WorkGateway {
       .prepare("SELECT * FROM tool_calls WHERE run_id=? AND status IN ('dispatched','pending')")
       .all(run.id) as Call[];
     for (const call of dispatched) {
-      if (call.tool_name.startsWith('browser.')) continue;
+      if (call.tool_name.startsWith('browser.') || call.tool_name === 'code.applyPatch') continue;
       const args = parseWorkTool(JSON.parse(call.args_json));
       const guard = () => {
         const task = this.store.db

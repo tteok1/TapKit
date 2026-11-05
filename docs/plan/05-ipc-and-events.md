@@ -1,3 +1,5 @@
+2026-11-05 P09-01 / ADR0078：Host专用code.attach仅接收本机选择器路径，公共code.status/tree/read/reference/diff/prepareWorkspace/applyPatch/accept/revert/restore/comment/revoke/inherit只传runId及相对路径/hash。code.inherit绑定同会话、同task的下一版本。CodeView仅返回名称、分支、版本、文件/差异/反馈，不返回宿主路径。code.applyPatch单文件原子版本约束；所有写请求持久化request_receipts，未知意图不重放。类型以packages/contracts/src/code.ts为准。
+
 # IPC、事件、任务状态与接口协议
 
 P08-03：Core ready.schemaVersion=21；复用workCommand的task.delegate、subtasks.list（offset，单项分页）、subtasks.control、subtasks.source（重鉴权固定原文）、subtasks.summaryMode（仅普通单份MD的显式Core汇总）。WorkView可含delegation元数据，父子仍用同一RunStatus；DTO及迁移/根约束见ADR0077，未增加preload桥。

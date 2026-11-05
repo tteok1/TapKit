@@ -1,3 +1,4 @@
+import codingSql from '../../../migrations/0022_coding.sql?raw';
 import delegationSql from '../../../migrations/0021_delegation.sql?raw';
 import Database from 'better-sqlite3';
 import { eraseFileDerivedContent } from './file-cleanup';
@@ -131,8 +132,9 @@ export const migrations: Migration[] = [
   { version: 19, sql: browserSql },
   { version: 20, sql: researchSql },
   { version: 21, sql: delegationSql },
+  { version: 22, sql: codingSql },
 ];
-export const SCHEMA_VERSION = 21;
+export const SCHEMA_VERSION = 22;
 export async function migrate(db: Database.Database, backupDirectory: string, steps = migrations) {
   const trace = startupTrace('storage.migrate');
   trace('version.begin');

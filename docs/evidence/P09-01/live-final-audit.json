@@ -1,0 +1,94 @@
+{
+  "connectionLimit": 10,
+  "connectionChecksUsed": 2,
+  "connectionChecksRemaining": 8,
+  "actualTokens": 940,
+  "estimatedTokensActualUnknown": 12649,
+  "connectionUsage": "unknown; excluded from formal task token totals",
+  "scope": "configured Zhipu Chat model; synthetic local code fix; no code execution or external repository write",
+  "firstFailure": "missing fixed Zhipu code.applyPatch protocol alias; local validation failed before tools, original harness UI error retained; fixed with request/response alias mock regression",
+  "reports": [
+    {
+      "report": "docs\\evidence\\P09-01\\live-e9b0da73-fa33-47e7-be2c-ef44ba2ffe9f\\report.json",
+      "status": "failed",
+      "checks": [
+        {
+          "number": 1,
+          "status": "passed",
+          "startedAt": "2026-11-05T13:16:44.556Z",
+          "finishedAt": "2026-11-05T13:17:52.608Z"
+        }
+      ],
+      "runs": [
+        {
+          "id": "01a1abdb-d392-70bf-b07d-b21c645335f3",
+          "status": "failed",
+          "calls": 1,
+          "tools": 0
+        }
+      ],
+      "attempts": [
+        {
+          "id": "01a1abdb-d651-7c04-871b-c8f1f6216b5b",
+          "run_id": "01a1abdb-d392-70bf-b07d-b21c645335f3",
+          "status": "failed",
+          "error_code": "VALIDATION_ERROR",
+          "created_at": 1793884673620,
+          "source": "estimated",
+          "charged_tokens": 12649
+        }
+      ],
+      "budgets": [
+        {
+          "owner_id": "01a1abdb-d392-70bf-b07d-b21c645335f3",
+          "used_tokens": 12649,
+          "reserved_tokens": 0
+        }
+      ],
+      "secretEntries": 0,
+      "unresolvedTools": 0,
+      "originalFailureRetained": true
+    },
+    {
+      "report": "docs\\evidence\\P09-01\\live-ffb5a22e-3977-42b0-b3d3-b4970080cda4\\report.json",
+      "status": "passed",
+      "checks": [
+        {
+          "number": 2,
+          "status": "passed",
+          "startedAt": "2026-11-05T13:24:33.823Z",
+          "finishedAt": "2026-11-05T13:25:43.663Z"
+        }
+      ],
+      "runs": [
+        {
+          "id": "01a1abe3-0376-7e92-bdd6-d65051791c5e",
+          "status": "completed",
+          "calls": 1,
+          "tools": 1
+        }
+      ],
+      "attempts": [
+        {
+          "id": "01a1abe3-05bd-7499-a308-86ecdd6faa9f",
+          "run_id": "01a1abe3-0376-7e92-bdd6-d65051791c5e",
+          "status": "completed",
+          "error_code": null,
+          "created_at": 1793885144511,
+          "source": "actual",
+          "charged_tokens": 940
+        }
+      ],
+      "budgets": [
+        {
+          "owner_id": "01a1abe3-0376-7e92-bdd6-d65051791c5e",
+          "used_tokens": 940,
+          "reserved_tokens": 0
+        }
+      ],
+      "secretEntries": 0,
+      "unresolvedTools": 0,
+      "originalFailureRetained": false
+    }
+  ]
+}

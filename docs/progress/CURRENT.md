@@ -1,6 +1,7 @@
 # 当前接续点
 
-- 2026-11-05；D:/Tapkit-public；main。P08-03=implemented_and_verified，P08 gate=passed（CI79三个job全部success）；已按最新授权快进合入并推送main（合入头0d0e483，CI79验收源eba0778）；开发分支codex/p08-03-delegation保留。
-- check、500unit、94相关集成、60轮合成对照及最终桌面1项通过；浏览/研究兼容通过，真实Core/主模型两条MD闭环passed。明暗/原文/独立控制已验；原失败回执保留。
-- 当前任务连接检测5/10、余5未用，不叠加P08-02余6；均先启动TapKit并应用内检测成功才正式调用已配置智谱。五份隔离凭据清理、预算预留0，无fixture。默认单Agent，自动委派未获生产资格。
-- 交接见P08-03.md、P08-gate.md及docs/evidence/P08-03/verification.md与live-final-audit.json；46份源码以source-manifest.json为准，发布见publication.json；CI78旧P07迁移fixture已修复；CI79主集成537过/1既有skip、原生17、unit500、桌面50、perf2及标准用户/启动诊断通过，详见ci-fix-2026-11-05/ci79.json。合入见main-merge-2026-11-05.json；P09未开始，此前任务外部资源与验收边界保持。
+- 2026-11-06；D:/Tapkit-public；main；P09-01=implemented_and_verified。原7a6c8c9至b18f337五个提交压缩为一个P09-01汇总提交，父提交1a91688；按最新授权合入并推送main，开发分支同步。
+- CI81三个job全部success：主check（含原失败桥检查和新增P09桌面）、Office原生、启动诊断。CI80旧白名单漏接口失败保留；证据P09-01/ci-fix-2026-11-05/ci81.json。
+- check、505全量unit、19个P09 integration、49相关回归及最终长代码Electron通过。真实智谱1模型/1工具精确修复、副本保留、原目录不变，actual940/预留0；首轮本地别名拒绝及estimated12649实际未知保留。
+- 新增连接检测2/10余8，两份隔离凭据均清理、marker closed；旧P08-03余5单列。CI修复无新增模型/连接调用；其他通道与原P08 gate范围保持。
+- 独立UI四项修复均resolved；压缩前历史保留本地backup ref，既有维护改动保留未提交。合入源码/测试/工作流与CI81一致；新main CI未冒称通过。不开始P09-02/03/04，不收口P09 gate。详P09-01.md与main-merge-2026-11-06.json。

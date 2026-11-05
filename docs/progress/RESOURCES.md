@@ -1,3 +1,5 @@
+2026-11-05 P09-01：仅补既有智谱Chat/GLM-4.7-FlashX的合成代码修改真实闭环（1模型/1工具，actual940、预留0，原目录保全）。新增连接检测2/10余8，两份隔离凭据清理；首轮工具别名本地拒绝及estimated12649（actual未知）保留，其他通道/旧验收范围不提升。见docs/evidence/P09-01/live-final-audit.json与verification.md。
+
 2026-11-03 P08-02：完整智谱闭环尚未通过，任务整体implemented_not_live_verified。30/30检测已用完，#30通过后的正式任务参数/引文三次拒绝、PARSE_FAILED无报告。搜索/来源读取在受控直连范围实证，R16范围见下；这不是缺Key。新check/unit487/研究26通过，最终桌面1项通过并恢复生产构建；全部17个副本清理、预留0。详docs/evidence/P08-02/discovery-verification.md。以下历史范围保留。
 
 2026-11-01 P08-02：指定公开URL的智谱研究真实验收通过，3模型/3工具、两条逐字引文及显式MD/JSON报告，actual6962/预留0；P08检测累计14/20，所有本任务副本清理。单来源partial，Bing发现搜索成功另见R16，其他协议/旧gate不提升。详docs/evidence/P08-02/verification.md。

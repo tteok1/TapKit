@@ -1,0 +1,9 @@
+{
+  "lineHeight": 24,
+  "maxRowHeight": 24,
+  "buttonHeight": 24,
+  "horizontalScrollWorks": true,
+  "verticalScroll": true,
+  "focusOutline": "3px",
+  "sourceLines": 50
+}

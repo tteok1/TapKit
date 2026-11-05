@@ -1,3 +1,4 @@
+import { CodeWorkToolSchema } from './code';
 import {
   DelegationCommandSchemas,
   DelegateResultSchema,
@@ -199,6 +200,7 @@ export const ArtifactWorkToolArgsSchema = z.discriminatedUnion('tool', [
 ]);
 export type ArtifactWorkToolArgs = z.infer<typeof ArtifactWorkToolArgsSchema>;
 export const WorkToolArgsSchema = z.union([
+  CodeWorkToolSchema,
   ArtifactWorkToolArgsSchema,
   BrowserWorkToolArgsSchema,
   ResearchWorkToolArgsSchema,

@@ -1,0 +1,25 @@
+{
+  "scope": "only P09-01 changes staged; existing maintenance hunks remain in working tree",
+  "records": [
+    {
+      "path": "docs/progress/CURRENT.md",
+      "indexSha": "eb1708621ff1eee701f4d7826c48ccc49f2b4171",
+      "workingSha256": "3257ccbe82726c4047bbbb1a28077020425d8b2508c5f540c0c1bd60552c5c61"
+    },
+    {
+      "path": "docs/progress/INDEX.md",
+      "indexSha": "73d68e3244fe190a7a81088de40c9649730b22da",
+      "workingSha256": "ce1c3afbd7dc8661031f5668faf659282707ff4f350aadb19bc0dbef38aa7089"
+    },
+    {
+      "path": "docs/progress/requirements.csv",
+      "indexSha": "bd619e0b699d2d8b475eff57ad34c64c542ed602",
+      "workingSha256": "666ec00c72f598133922138b50b4808fa4f12e971143e7aefe441fde85dd7550"
+    }
+  ],
+  "excludedEntireFiles": [
+    "docs/progress/P00-01.md",
+    "docs/evidence/maintenance/storage-audit-2026-11-05.json"
+  ],
+  "stagingRecovery": "Resumed after UTF-8 decode failure; no working files reset or overwritten"
+}

@@ -1,0 +1,24 @@
+{
+  "initialStatus": "these captures were clean at CI-fix start",
+  "producer": "tests/e2e/P09-01.code.spec.ts screenshots during local-e2e.log run",
+  "records": [
+    {
+      "path": "docs/evidence/P09-01/desktop/code-light.png",
+      "generatedSha256": "f07366e26e90931ce2f515d41113c15599eea50ec8e5245e5a87b8e4a3f4373b",
+      "originalSha256": "e6cbbeeb5169ad5b2ba2648e6ae591f1e52c5b6a479172d4227fd89ce2528d53",
+      "changed": true
+    },
+    {
+      "path": "docs/evidence/P09-01/desktop/code-dark.png",
+      "generatedSha256": "eed97da46751f8ec3d2c8202676ea2775032284e0f3565fc0fdb49bb5429269d",
+      "originalSha256": "3330f208539cf47e80c079404c3a1763f4533a31feb12caef935fc4ffb20afae",
+      "changed": true
+    },
+    {
+      "path": "docs/evidence/P09-01/desktop/interaction-metrics.json",
+      "generatedSha256": "3ee016b348302422b17ede5a83516c0ecdadb5707f567ca78260d34421e54064",
+      "originalSha256": "3ee016b348302422b17ede5a83516c0ecdadb5707f567ca78260d34421e54064",
+      "changed": false
+    }
+  ]
+}

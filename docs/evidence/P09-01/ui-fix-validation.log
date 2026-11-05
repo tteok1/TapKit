@@ -1,0 +1,16 @@
+apps/desktop/src/renderer/src/code-diff.ts 99ms
+apps/desktop/src/renderer/src/code-ui.tsx 96ms
+apps/desktop/src/renderer/src/code.css 52ms
+apps/desktop/src/renderer/locales/code.zh-CN.json 15ms
+tests/unit/P09-01.diff.test.ts 11ms
+tests/e2e/P09-01.code.spec.ts 42ms
+$ vitest run --config vitest.config.ts --project unit "P09-01"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  2 passed (2)
+      Tests  5 passed (5)
+   Start at  21:30:38
+   Duration  4.03s (transform 47%, import 47%, setup 3%, tests 2%, worker 1%)
+

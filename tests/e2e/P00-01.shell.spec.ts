@@ -62,6 +62,8 @@ test('P00-01 sandbox bridge errors and clean child shutdown', async () => {
       'saveConversation',
       'openArtifactExternal',
       'copyText',
+      'chooseCodeProject',
+      'codeCommand',
       'workCommand',
       'browserCommand',
       'historyCommand',
@@ -121,6 +123,40 @@ test('P00-01 sandbox bridge errors and clean child shutdown', async () => {
     ),
   );
   expect(browserReply).toMatchObject({ ok: false, error: { code: 'VALIDATION_ERROR' } });
+  // P09-01 adds only two typed entrypoints; paths and arbitrary business fields
+  // must not turn the public bridge into the private Host directory grant.
+  for (const payload of [
+    {
+      runId: '0199b35d-9700-7000-8000-000000000002',
+      patch: { path: '../outside.txt', baseHash: null, content: 'untrusted' },
+    },
+    {
+      runId: '0199b35d-9700-7000-8000-000000000002',
+      patch: { path: 'safe.txt', baseHash: null, content: 'untrusted' },
+      canonicalRoot: 'C:/outside',
+    },
+  ]) {
+    const codeReply = await page.evaluate(
+      (payload) =>
+        window.tapkit.codeCommand(
+          { requestId: '0199b35d-9700-7000-8000-000000000003' },
+          'code.applyPatch',
+          payload,
+        ),
+      payload,
+    );
+    expect(codeReply).toMatchObject({ ok: false, error: { code: 'VALIDATION_ERROR' } });
+  }
+  expect(
+    await page.evaluate(async () => {
+      try {
+        await window.tapkit.chooseCodeProject('not-a-run-id');
+        return false;
+      } catch {
+        return true;
+      }
+    }),
+  ).toBe(true);
   expect(
     await app.evaluate(({ app }) => {
       const tabs = app.getAppMetrics().filter((item) => item.type === 'Tab');

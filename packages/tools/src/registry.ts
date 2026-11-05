@@ -11,6 +11,14 @@ import {
 import { createHash } from 'node:crypto';
 export { WORK_TOOL_CATALOG_VERSION };
 export const WORK_TOOL_SPECS = {
+  'code.applyPatch': {
+    name: 'code.applyPatch',
+    version: '1',
+    mode: 'workspace_write',
+    retry: 'reconcile_first',
+    timeoutMs: 30000,
+    maxOutputBytes: 65536,
+  },
   'research.search': {
     name: 'research.search',
     version: '1',
@@ -149,6 +157,7 @@ export const WORK_TOOL_SPECS = {
   },
 } as const;
 export function catalogAllowsTool(catalog: string, name: keyof typeof WORK_TOOL_SPECS) {
+  if (name === 'code.applyPatch') return catalog === WORK_TOOL_CATALOG_VERSION;
   if (name.startsWith('research.')) return catalog === WORK_TOOL_CATALOG_VERSION;
   if (name.startsWith('browser.'))
     return catalog === WORK_TOOL_CATALOG_VERSION || catalog === BROWSER_WORK_TOOL_CATALOG_VERSION;

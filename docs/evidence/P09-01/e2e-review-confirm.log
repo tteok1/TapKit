@@ -1,0 +1,11 @@
+
+Running 1 test using 1 worker
+
+(node:13624) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_READY
+TAPKIT_CORE_EXIT 0
+  ok 1 tests\e2e\P09-01.code.spec.ts:6:1 › P09-01 desktop selects a real directory, reviews lines, records feedback, reverts/restores and retains the source (19.8s)
+
+  1 passed (21.3s)

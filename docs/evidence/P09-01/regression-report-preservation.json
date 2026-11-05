@@ -1,0 +1,8 @@
+{
+  "initialStatus": "clean for this file before our regression",
+  "producer": "tests/integration/P08-03.ablation.test.ts:168",
+  "changes": "60 elapsedMs and 2 meanElapsedMs only; no quality/data changes",
+  "generatedSha256": "1301da9c83bc23f5e384664e51247ff1f2f10096d72134aad2e642b968b826a5",
+  "retainedReport": "docs\\evidence\\P09-01\\P08-03-regression-ablation.json",
+  "restoredSha256": "a509bf4f380c7d0fa7512593a76c288cce6af53fea99039adbb54b5ac8e05b23"
+}

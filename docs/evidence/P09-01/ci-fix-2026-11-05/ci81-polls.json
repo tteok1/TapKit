@@ -1,0 +1,249 @@
+{
+  "status": "completed",
+  "totalSnapshots": 30,
+  "changesOnly": true,
+  "changes": [
+    {
+      "at": "2026-11-05T15:47:32.559Z",
+      "jobs": [
+        {
+          "name": "check",
+          "id": 127352178399,
+          "status": "in_progress",
+          "conclusion": null,
+          "active": "Bootstrap locked runtime and native dependencies",
+          "failed": []
+        },
+        {
+          "name": "office-native",
+          "id": 127352178880,
+          "status": "in_progress",
+          "conclusion": null,
+          "active": "Bootstrap locked runtime and native dependencies",
+          "failed": []
+        }
+      ]
+    },
+    {
+      "at": "2026-11-05T15:48:59.632Z",
+      "jobs": [
+        {
+          "name": "check",
+          "id": 127352178399,
+          "status": "in_progress",
+          "conclusion": null,
+          "active": "Check",
+          "failed": []
+        },
+        {
+          "name": "office-native",
+          "id": 127352178880,
+          "status": "in_progress",
+          "conclusion": null,
+          "active": "Bootstrap locked runtime and native dependencies",
+          "failed": []
+        }
+      ]
+    },
+    {
+      "at": "2026-11-05T15:49:54.524Z",
+      "jobs": [
+        {
+          "name": "check",
+          "id": 127352178399,
+          "status": "in_progress",
+          "conclusion": null,
+          "active": "Unit and current-route integration",
+          "failed": []
+        },
+        {
+          "name": "office-native",
+          "id": 127352178880,
+          "status": "in_progress",
+          "conclusion": null,
+          "active": "Verify current runner execution capabilities",
+          "failed": []
+        }
+      ]
+    },
+    {
+      "at": "2026-11-05T15:53:57.870Z",
+      "jobs": [
+        {
+          "name": "check",
+          "id": 127352178399,
+          "status": "in_progress",
+          "conclusion": null,
+          "active": "Unit and current-route integration",
+          "failed": []
+        },
+        {
+          "name": "office-native",
+          "id": 127352178880,
+          "status": "in_progress",
+          "conclusion": null,
+          "active": "P07 native office acceptance",
+          "failed": []
+        }
+      ]
+    },
+    {
+      "at": "2026-11-05T15:59:49.694Z",
+      "jobs": [
+        {
+          "name": "check",
+          "id": 127352178399,
+          "status": "in_progress",
+          "conclusion": null,
+          "active": "Dedicated Core performance checks",
+          "failed": []
+        },
+        {
+          "name": "office-native",
+          "id": 127352178880,
+          "status": "completed",
+          "conclusion": "success",
+          "failed": []
+        }
+      ]
+    },
+    {
+      "at": "2026-11-05T16:00:50.667Z",
+      "jobs": [
+        {
+          "name": "check",
+          "id": 127352178399,
+          "status": "in_progress",
+          "conclusion": null,
+          "active": "Build and Electron checks",
+          "failed": []
+        },
+        {
+          "name": "office-native",
+          "id": 127352178880,
+          "status": "completed",
+          "conclusion": "success",
+          "failed": []
+        }
+      ]
+    },
+    {
+      "at": "2026-11-05T16:07:57.354Z",
+      "jobs": [
+        {
+          "name": "check",
+          "id": 127352178399,
+          "status": "in_progress",
+          "conclusion": null,
+          "active": "Verify P00-03 and P03 parser as an independent standard user",
+          "failed": []
+        },
+        {
+          "name": "office-native",
+          "id": 127352178880,
+          "status": "completed",
+          "conclusion": "success",
+          "failed": []
+        }
+      ]
+    },
+    {
+      "at": "2026-11-05T16:12:01.438Z",
+      "jobs": [
+        {
+          "name": "check",
+          "id": 127352178399,
+          "status": "in_progress",
+          "conclusion": null,
+          "active": "Repeat fresh-process Office shutdown diagnostics",
+          "failed": []
+        },
+        {
+          "name": "office-native",
+          "id": 127352178880,
+          "status": "completed",
+          "conclusion": "success",
+          "failed": []
+        }
+      ]
+    },
+    {
+      "at": "2026-11-05T16:14:03.060Z",
+      "jobs": [
+        {
+          "name": "check",
+          "id": 127352178399,
+          "status": "completed",
+          "conclusion": "success",
+          "failed": []
+        },
+        {
+          "name": "office-native",
+          "id": 127352178880,
+          "status": "completed",
+          "conclusion": "success",
+          "failed": []
+        },
+        {
+          "name": "startup-diagnostics",
+          "id": 127366911089,
+          "status": "in_progress",
+          "conclusion": null
+        }
+      ]
+    },
+    {
+      "at": "2026-11-05T16:15:04.296Z",
+      "jobs": [
+        {
+          "name": "check",
+          "id": 127352178399,
+          "status": "completed",
+          "conclusion": "success",
+          "failed": []
+        },
+        {
+          "name": "office-native",
+          "id": 127352178880,
+          "status": "completed",
+          "conclusion": "success",
+          "failed": []
+        },
+        {
+          "name": "startup-diagnostics",
+          "id": 127366911089,
+          "status": "in_progress",
+          "conclusion": null,
+          "active": "Bootstrap locked runtime and native dependencies",
+          "failed": []
+        }
+      ]
+    },
+    {
+      "at": "2026-11-05T16:18:34.620Z",
+      "jobs": [
+        {
+          "name": "check",
+          "id": 127352178399,
+          "status": "completed",
+          "conclusion": "success",
+          "failed": []
+        },
+        {
+          "name": "office-native",
+          "id": 127352178880,
+          "status": "completed",
+          "conclusion": "success",
+          "failed": []
+        },
+        {
+          "name": "startup-diagnostics",
+          "id": 127366911089,
+          "status": "completed",
+          "conclusion": "success",
+          "failed": []
+        }
+      ]
+    }
+  ]
+}

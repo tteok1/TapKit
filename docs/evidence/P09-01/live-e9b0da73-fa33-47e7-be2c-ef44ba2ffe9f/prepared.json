@@ -1,0 +1,12 @@
+{
+  "task": "P09-01",
+  "model": "glm-4.7-flashx",
+  "limit": 10,
+  "formalLimit": {
+    "calls": 1,
+    "tools": 2,
+    "tokens": 20000
+  },
+  "connectionChecks": 0,
+  "scope": "isolated encrypted copy of configured Zhipu Chat account; synthetic local code only; no external writes"
+}

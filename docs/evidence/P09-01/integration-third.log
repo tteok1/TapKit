@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project integration "P09-01"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  13 passed (13)
+   Start at  20:54:24
+   Duration  29.58s (tests 90%, transform 8%, import 2%)
+

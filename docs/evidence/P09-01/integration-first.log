@@ -1,0 +1,75 @@
+$ vitest run --config vitest.config.ts --project integration "P09-01"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P09-01.code.test.ts (13 tests | 12 failed) 14049ms
+   × P09-01 clean Git creates a private mirror/worktree without shared metadata and retains source bytes 2532ms
+   × P09-01 dirty repo import is explicit (false) and never stashes/resets the source 1231ms
+   × P09-01 dirty repo import is explicit (true) and never stashes/resets the source 1155ms
+   × P09-01 non-Git directories use retained managed copies without implicit git init 470ms
+   × P09-01 user selection can choose another validated branch 1069ms
+   × P09-01 add/delete, per-file accept/revert/restore require current hashes and preserve conflicting edits 1097ms
+   × P09-01 comments and references bind actual line/hash and stale comments remain visible 1254ms
+   × P09-01 restart retains copies and snapshots; revoked access fails closed 1076ms
+   × P09-01 malicious project Git config/hooks and inherited environment are not executed or copied 1084ms
+   × P09-01 symlink/junction escape, alternates, source races and unauthorized run access are rejected 1094ms
+   × P09-01 case-only renames produce real add/delete diffs and never overwrite a case alias 448ms
+   × P09-01 gateway records one budgeted code patch receipt and refuses duplicate replay on changed bytes 1083ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 12 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P09-01.code.test.ts > P09-01 clean Git creates a private mirror/worktree without shared metadata and retains source bytes
+ FAIL  |integration| tests/integration/P09-01.code.test.ts > P09-01 dirty repo import is explicit (false) and never stashes/resets the source
+ FAIL  |integration| tests/integration/P09-01.code.test.ts > P09-01 dirty repo import is explicit (true) and never stashes/resets the source
+ FAIL  |integration| tests/integration/P09-01.code.test.ts > P09-01 non-Git directories use retained managed copies without implicit git init
+ FAIL  |integration| tests/integration/P09-01.code.test.ts > P09-01 malicious project Git config/hooks and inherited environment are not executed or copied
+ FAIL  |integration| tests/integration/P09-01.code.test.ts > P09-01 symlink/junction escape, alternates, source races and unauthorized run access are rejected
+ FAIL  |integration| tests/integration/P09-01.code.test.ts > P09-01 case-only renames produce real add/delete diffs and never overwrite a case alias
+Error: CONFLICT
+ ❯ packages/core/src/code-service.ts:51:64
+     49|   attach(id: string, selectedPath: string) { return this.serial(async(…
+     50|     const run = this.run(id);
+     51|     if (!['paused','waiting_user'].includes(run.status)) throw new Sto…
+       |                                                                ^
+     52|     if (this.store.db.prepare('SELECT 1 FROM code_projects WHERE run_i…
+     53|     const source = resolve(selectedPath); await codeCanonical(source,t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  |integration| tests/integration/P09-01.code.test.ts > P09-01 user selection can choose another validated branch
+ FAIL  |integration| tests/integration/P09-01.code.test.ts > P09-01 add/delete, per-file accept/revert/restore require current hashes and preserve conflicting edits
+ FAIL  |integration| tests/integration/P09-01.code.test.ts > P09-01 comments and references bind actual line/hash and stale comments remain visible
+ FAIL  |integration| tests/integration/P09-01.code.test.ts > P09-01 restart retains copies and snapshots; revoked access fails closed
+ FAIL  |integration| tests/integration/P09-01.code.test.ts > P09-01 gateway records one budgeted code patch receipt and refuses duplicate replay on changed bytes
+Error: CONFLICT
+ ❯ packages/core/src/code-service.ts:51:64
+     49|   attach(id: string, selectedPath: string) { return this.serial(async(…
+     50|     const run = this.run(id);
+     51|     if (!['paused','waiting_user'].includes(run.status)) throw new Sto…
+       |                                                                ^
+     52|     if (this.store.db.prepare('SELECT 1 FROM code_projects WHERE run_i…
+     53|     const source = resolve(selectedPath); await codeCanonical(source,t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  12 failed | 1 passed (13)
+   Start at  20:52:46
+   Duration  17.42s (tests 82%, transform 15%, import 3%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:41
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:224:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:221:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.18.0

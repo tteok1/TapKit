@@ -1,0 +1,115 @@
+{
+  "task": "P09-01",
+  "status": "merged_main_squashed",
+  "branch": "codex/p09-01-code-review",
+  "baseline": "1a91688e1b261fdcc871f324fdef689ff55686f7",
+  "localCodeCommit": "7a6c8c9d95f5a8146d3e75fe8fcb260873702cbf",
+  "externalWrites": true,
+  "mainMerged": true,
+  "connectionChecks": {
+    "newLimit": 10,
+    "used": 2,
+    "remaining": 8,
+    "oldP08RemainingNotCombined": 5
+  },
+  "tests": {
+    "integrationP09": 19,
+    "relatedRegressionAtEarlierCheckpoint": 49,
+    "desktopFinal": 1,
+    "uiReview": "F1-F4 resolved; ship at that scope",
+    "unitFull": 505,
+    "additionalDiffUnitIncludedInFull": 4
+  },
+  "live": {
+    "actualTokens": 940,
+    "estimatedTokensActualUnknown": 12649,
+    "connectionUsage": "unknown",
+    "credentialCopiesCleaned": 2,
+    "reservedTokens": 0
+  },
+  "sourceManifest": "docs/evidence/P09-01/source-manifest.json",
+  "existingChangesPreserved": [
+    "docs/progress/CURRENT.md maintenance line",
+    "docs/progress/INDEX.md maintenance paragraph",
+    "docs/progress/P00-01.md",
+    "docs/progress/requirements.csv non-P09 row",
+    "docs/evidence/maintenance/storage-audit-2026-11-05.json"
+  ],
+  "nextTask": "P09-02 not started; requires new user request",
+  "phaseGate": "P09 in_progress; no gate closeout",
+  "checks": {
+    "check": {
+      "exitCode": 0,
+      "log": "delivery-check.log"
+    },
+    "docsCheck": {
+      "exitCode": 0,
+      "log": "docs-check.log"
+    },
+    "unitFull": {
+      "exitCode": 0,
+      "count": 505,
+      "log": "unit-delivery.log"
+    },
+    "integration": {
+      "exitCode": 0,
+      "count": 19,
+      "log": "integration-recovery-final.log"
+    },
+    "desktop": {
+      "exitCode": 0,
+      "count": 1,
+      "log": "e2e-review-confirm.log"
+    }
+  },
+  "publication": {
+    "scope": "Git development branch only",
+    "remote": "origin",
+    "branch": "codex/p09-01-code-review",
+    "verifiedImplementationHead": "93abc36908684d3b37ef119b6c92f280a03ac307",
+    "record": "docs/evidence/P09-01/publication.json",
+    "verifiedCiSourceHead": "be10fc45f58836c3f0f73b9c3b70cda9307c9310"
+  },
+  "ciFix": {
+    "status": "passed",
+    "failedRun": 42040767541,
+    "record": "docs/evidence/P09-01/ci-fix-2026-11-05/ci80.json",
+    "newModelCalls": 0,
+    "newConnectionChecks": 0,
+    "fixCommit": "be10fc45f58836c3f0f73b9c3b70cda9307c9310",
+    "runId": 42058171082,
+    "runNumber": 81,
+    "acceptedAt": "2026-11-06 Asia/Shanghai",
+    "conclusion": "success",
+    "jobs": {
+      "check": "success",
+      "office-native": "success",
+      "startup-diagnostics": "success"
+    },
+    "finalRecord": "docs/evidence/P09-01/ci-fix-2026-11-05/ci81.json",
+    "acceptanceDocsChecks": {
+      "docsCheck": {
+        "exitCode": 0,
+        "taskStates": 37,
+        "log": "ci-fix-2026-11-05/final-docs-check.log"
+      },
+      "formatCheck": {
+        "exitCode": 0,
+        "files": 752,
+        "failures": 0,
+        "log": "ci-fix-2026-11-05/final-format-check.log"
+      },
+      "sourceChangesAfterVerifiedCi": false
+    }
+  },
+  "currentBranch": "main",
+  "mainIntegration": {
+    "date": "2026-11-06 Asia/Shanghai",
+    "method": "5 source commits squashed into 1 commit on main",
+    "record": "docs/evidence/P09-01/main-merge-2026-11-06.json",
+    "originalSourceHead": "b18f337f795c9f77625640017aca86ef093a49e7",
+    "validatedSourceCommit": "be10fc45f58836c3f0f73b9c3b70cda9307c9310",
+    "nonDocumentationTreesMatchCI81": true,
+    "newMainCiConclusion": "not asserted"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "task": "P09-01",
+  "date": "2026-11-05 Asia/Shanghai",
+  "authorization": "user explicitly requested commit and push",
+  "remote": "https://github.com/tteok1/TapKit.git",
+  "branch": "codex/p09-01-code-review",
+  "codeCommit": "7a6c8c9d95f5a8146d3e75fe8fcb260873702cbf",
+  "verifiedImplementationHead": "93abc36908684d3b37ef119b6c92f280a03ac307",
+  "pushExitCode": 0,
+  "lsRemoteMatched": true,
+  "mainMerged": true,
+  "pullRequestCreated": false,
+  "existingMaintenanceChanges": "preserved outside commits",
+  "newConnectionChecks": 0,
+  "newModelCalls": 0,
+  "validation": "505 unit;19 integration;desktop and scoped UI review;live receipts inherited;publication docs only",
+  "ciAcceptance": {
+    "date": "2026-11-06 Asia/Shanghai",
+    "fixCommit": "be10fc45f58836c3f0f73b9c3b70cda9307c9310",
+    "pushExitCode": 0,
+    "remoteRefMatched": true,
+    "runId": 42058171082,
+    "runNumber": 81,
+    "conclusion": "success",
+    "jobs": [
+      "check",
+      "office-native",
+      "startup-diagnostics"
+    ],
+    "record": "docs/evidence/P09-01/ci-fix-2026-11-05/ci81.json",
+    "acceptanceMetadata": "subsequent documentation-only commit uses [skip ci]; no source changes"
+  },
+  "mainIntegration": {
+    "date": "2026-11-06 Asia/Shanghai",
+    "authorization": "User requested one squash commit then main integration",
+    "method": "single squash commit; main fast-forward; development branch lease-protected update",
+    "previousMain": "1a91688e1b261fdcc871f324fdef689ff55686f7",
+    "sourceHead": "b18f337f795c9f77625640017aca86ef093a49e7",
+    "record": "docs/evidence/P09-01/main-merge-2026-11-06.json",
+    "squashCommit": "containing commit",
+    "originalHistoryRetainedLocally": true,
+    "newCiConclusion": "not asserted"
+  }
+}

@@ -1,3 +1,4 @@
+import { CodePanel } from './code-ui';
 import { SubtasksPanel } from './subtasks-ui';
 import { useEffect, useState } from 'react';
 import {
@@ -758,6 +759,7 @@ function WorkDetail({
       {r.definition.browserEnabled && (
         <BrowserPanel work={r} onMaterial={(ref) => setSteerRefs((refs) => [...refs, ref])} />
       )}
+      <CodePanel key={'code-' + r.runId} work={r} onNavigate={onNavigate} />
       <SubtasksPanel key={'subtasks-' + r.runId} work={r} onNavigate={onNavigate} />
       {r.definition.research && <ResearchPanel key={r.runId} work={r} onNavigate={onNavigate} />}
       {!!r.unresolvedCalls.length && (

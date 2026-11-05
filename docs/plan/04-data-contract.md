@@ -1,3 +1,5 @@
+2026-11-05 P09-01 / ADR0078：实际schema22追加code_projects（profile/run唯一、本机授权根、私有镜像和检测快照）与worktrees（run唯一、Core私有路径/元数据映射、prepared/revoked/unknown、初始版本/前像/反馈）。0007已由聊天历史占用，不覆盖既有迁移。副本不随run结束清理。
+
 # 数据模型与事务契约
 
 P08-02模型投影补充（ADR0076）：materials.evidence的e_编号绑定已读sourceId、contentHash、字符start/end与quoteHash，目录只供当前请求选择。模型record用supports/opposes编号，Core回填fact原文再转原ResearchFindingInput严格校验；不新增数据库/IPC契约。旧内部引文批量参数兼容，实际来源权限、排除、版本与哈希仍在执行/报告时复核。

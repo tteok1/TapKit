@@ -1,0 +1,22 @@
+{
+  "task": "P09-01",
+  "status": "failed",
+  "phase": "code_task",
+  "connectionLimit": 10,
+  "connectionAttempts": [
+    {
+      "number": 1,
+      "status": "passed",
+      "startedAt": "2026-11-05T13:16:44.556Z",
+      "finishedAt": "2026-11-05T13:17:52.608Z"
+    }
+  ],
+  "connectionSucceededBeforeTask": true,
+  "credentialRemoved": true,
+  "build": {
+    "packages/core/dist/index.cjs": "0fd8820d97954c923b9e12ec8854e800c1e89690b91560f3a42ff3d75dd84bce",
+    "apps/desktop/out/main/index.js": "c38316fa7ec5c4bd8a308f24ce3861da8acfd7c578000562543c8b3b83443d8e"
+  },
+  "error": "UI_OR_INTERNAL_ERROR",
+  "finishedAt": "2026-11-05T13:23:09.024Z"
+}

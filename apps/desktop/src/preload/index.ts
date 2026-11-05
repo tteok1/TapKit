@@ -42,6 +42,9 @@ const bridge: TapKitBridge = Object.freeze<TapKitBridge>({
   saveConversation: (value) => ipcRenderer.invoke('tapkit:save-conversation', value),
   openArtifactExternal: (file) => ipcRenderer.invoke('tapkit:open-artifact-external', file),
   copyText: (text) => ipcRenderer.invoke('tapkit:copy-text', ClipboardTextSchema.parse(text)),
+  chooseCodeProject: (runId) =>
+    ipcRenderer.invoke('tapkit:choose-code-project', IdSchema.parse(runId)),
+  codeCommand: (options, command, payload) => invoke(command, options, payload),
   workCommand: (options, command, payload) => invoke(command, options, payload),
   browserCommand: (options, command, payload) => invoke(command, options, payload),
   historyCommand: (options, command, payload) => invoke(command, options, payload),

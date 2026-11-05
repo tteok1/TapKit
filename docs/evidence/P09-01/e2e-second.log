@@ -1,0 +1,49 @@
+
+Running 1 test using 1 worker
+
+(node:39520) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_READY
+TAPKIT_CORE_EXIT 0
+  x  1 tests\e2e\P09-01.code.spec.ts:6:1 › P09-01 desktop selects a real directory, reviews lines, records feedback, reverts/restores and retains the source (48.3s)
+
+
+  1) tests\e2e\P09-01.code.spec.ts:6:1 › P09-01 desktop selects a real directory, reviews lines, records feedback, reverts/restores and retains the source 
+
+    TimeoutError: locator.click: Timeout 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('region', { name: '代码项目', exact: true }).getByRole('button', { name: '创建独立修改副本', exact: true })
+
+
+      42 |     }, source);
+      43 |     await panel.getByRole('button', { name: '选择本地代码目录', exact: true }).click();
+    > 44 |     await panel.getByRole('button', { name: '创建独立修改副本', exact: true }).click();
+         |                                                                        ^
+      45 |     await panel.getByRole('button', { name: 'sum.ts', exact: true }).click();
+      46 |     await expect(panel.getByLabel('当前副本', { exact: true })).toContainText('a - b');
+      47 |     const runId = new URL(page.url()).hash.split('/work/')[1]!;
+        at D:\Tapkit-public\tests\e2e\P09-01.code.spec.ts:44:72
+
+    Error Context: test-results\e2e\P09-01.code-P09-01-desktop-5bba2-ores-and-retains-the-source\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P09-01.code-P09-01-desktop-5bba2-ores-and-retains-the-source\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P09-01.code-P09-01-desktop-5bba2-ores-and-retains-the-source\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P09-01.code.spec.ts:6:1 › P09-01 desktop selects a real directory, reviews lines, records feedback, reverts/restores and retains the source 
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/e2e.mjs:15:21
+
+Node.js v24.18.0

@@ -1,0 +1,1407 @@
+{
+  "task": "P08-03",
+  "scope": "Synthetic fixed-source operational ablation; no paid model, no semantic model qualification",
+  "fixtureSha256": "90106262a3653bb597e01e0a6c091f01cbafcd66b2c713092f30b9473df80373",
+  "repetitions": 3,
+  "cases": 10,
+  "rows": [
+    {
+      "caseId": "independent",
+      "repetition": 1,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 242.29820000000018,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "69ab0caab0ec35253482ebfacf544c9fa2f305872970d60629656be3bb2d23ba",
+      "status": "completed"
+    },
+    {
+      "caseId": "independent",
+      "repetition": 1,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 164.11470000000008,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "69ab0caab0ec35253482ebfacf544c9fa2f305872970d60629656be3bb2d23ba",
+      "status": "completed"
+    },
+    {
+      "caseId": "independent",
+      "repetition": 2,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 191.91420000000016,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "69ab0caab0ec35253482ebfacf544c9fa2f305872970d60629656be3bb2d23ba",
+      "status": "completed"
+    },
+    {
+      "caseId": "independent",
+      "repetition": 2,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 148.25710000000072,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "69ab0caab0ec35253482ebfacf544c9fa2f305872970d60629656be3bb2d23ba",
+      "status": "completed"
+    },
+    {
+      "caseId": "independent",
+      "repetition": 3,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 238.75580000000082,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "69ab0caab0ec35253482ebfacf544c9fa2f305872970d60629656be3bb2d23ba",
+      "status": "completed"
+    },
+    {
+      "caseId": "independent",
+      "repetition": 3,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 184.862000000001,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "69ab0caab0ec35253482ebfacf544c9fa2f305872970d60629656be3bb2d23ba",
+      "status": "completed"
+    },
+    {
+      "caseId": "conflicting",
+      "repetition": 1,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 261.3137999999999,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "6982ec223336ae93246fc68f18562097a60532126907db2a04831cdc8df3f032",
+      "status": "completed"
+    },
+    {
+      "caseId": "conflicting",
+      "repetition": 1,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 162.14480000000003,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "6982ec223336ae93246fc68f18562097a60532126907db2a04831cdc8df3f032",
+      "status": "completed"
+    },
+    {
+      "caseId": "conflicting",
+      "repetition": 2,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 228.5648000000001,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "6982ec223336ae93246fc68f18562097a60532126907db2a04831cdc8df3f032",
+      "status": "completed"
+    },
+    {
+      "caseId": "conflicting",
+      "repetition": 2,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 183.26499999999942,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "6982ec223336ae93246fc68f18562097a60532126907db2a04831cdc8df3f032",
+      "status": "completed"
+    },
+    {
+      "caseId": "conflicting",
+      "repetition": 3,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 260.9814000000006,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "6982ec223336ae93246fc68f18562097a60532126907db2a04831cdc8df3f032",
+      "status": "completed"
+    },
+    {
+      "caseId": "conflicting",
+      "repetition": 3,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 173.8679000000011,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "6982ec223336ae93246fc68f18562097a60532126907db2a04831cdc8df3f032",
+      "status": "completed"
+    },
+    {
+      "caseId": "negation",
+      "repetition": 1,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 201.679900000001,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "fe6a6fb2d6b466b10f98d7542bda7c998e654aa80d881cf8595de7875a5c8db4",
+      "status": "completed"
+    },
+    {
+      "caseId": "negation",
+      "repetition": 1,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 153.01310000000012,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "fe6a6fb2d6b466b10f98d7542bda7c998e654aa80d881cf8595de7875a5c8db4",
+      "status": "completed"
+    },
+    {
+      "caseId": "negation",
+      "repetition": 2,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 217.52150000000074,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "fe6a6fb2d6b466b10f98d7542bda7c998e654aa80d881cf8595de7875a5c8db4",
+      "status": "completed"
+    },
+    {
+      "caseId": "negation",
+      "repetition": 2,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 176.96830000000045,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "fe6a6fb2d6b466b10f98d7542bda7c998e654aa80d881cf8595de7875a5c8db4",
+      "status": "completed"
+    },
+    {
+      "caseId": "negation",
+      "repetition": 3,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 225.44680000000153,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "fe6a6fb2d6b466b10f98d7542bda7c998e654aa80d881cf8595de7875a5c8db4",
+      "status": "completed"
+    },
+    {
+      "caseId": "negation",
+      "repetition": 3,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 177.28470000000016,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "fe6a6fb2d6b466b10f98d7542bda7c998e654aa80d881cf8595de7875a5c8db4",
+      "status": "completed"
+    },
+    {
+      "caseId": "units",
+      "repetition": 1,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 223.17180000000008,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "c3d300e25766b2609d416b09792d5c328c47632a0101c063a5f3b68a21c0eb88",
+      "status": "completed"
+    },
+    {
+      "caseId": "units",
+      "repetition": 1,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 169.7577999999994,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "c3d300e25766b2609d416b09792d5c328c47632a0101c063a5f3b68a21c0eb88",
+      "status": "completed"
+    },
+    {
+      "caseId": "units",
+      "repetition": 2,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 236.6854999999996,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "c3d300e25766b2609d416b09792d5c328c47632a0101c063a5f3b68a21c0eb88",
+      "status": "completed"
+    },
+    {
+      "caseId": "units",
+      "repetition": 2,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 195.3264999999992,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "c3d300e25766b2609d416b09792d5c328c47632a0101c063a5f3b68a21c0eb88",
+      "status": "completed"
+    },
+    {
+      "caseId": "units",
+      "repetition": 3,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 259.40309999999954,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "c3d300e25766b2609d416b09792d5c328c47632a0101c063a5f3b68a21c0eb88",
+      "status": "completed"
+    },
+    {
+      "caseId": "units",
+      "repetition": 3,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 236.1059000000023,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "c3d300e25766b2609d416b09792d5c328c47632a0101c063a5f3b68a21c0eb88",
+      "status": "completed"
+    },
+    {
+      "caseId": "unicode",
+      "repetition": 1,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 261.2944000000025,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "939e4e35c4d1c26882f26f9a86e33bccd2a3dbe54a8264556da278e929ebb149",
+      "status": "completed"
+    },
+    {
+      "caseId": "unicode",
+      "repetition": 1,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 213.35759999999937,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "939e4e35c4d1c26882f26f9a86e33bccd2a3dbe54a8264556da278e929ebb149",
+      "status": "completed"
+    },
+    {
+      "caseId": "unicode",
+      "repetition": 2,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 206.38290000000052,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "939e4e35c4d1c26882f26f9a86e33bccd2a3dbe54a8264556da278e929ebb149",
+      "status": "completed"
+    },
+    {
+      "caseId": "unicode",
+      "repetition": 2,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 179.87259999999878,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "939e4e35c4d1c26882f26f9a86e33bccd2a3dbe54a8264556da278e929ebb149",
+      "status": "completed"
+    },
+    {
+      "caseId": "unicode",
+      "repetition": 3,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 264.6205000000009,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "939e4e35c4d1c26882f26f9a86e33bccd2a3dbe54a8264556da278e929ebb149",
+      "status": "completed"
+    },
+    {
+      "caseId": "unicode",
+      "repetition": 3,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 182.0685999999987,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "939e4e35c4d1c26882f26f9a86e33bccd2a3dbe54a8264556da278e929ebb149",
+      "status": "completed"
+    },
+    {
+      "caseId": "no-answer",
+      "repetition": 1,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 235.03800000000047,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "112c4c30d29c6efa78183ecfa8b8790c021c8d625f1a95c27559fb7e0b88b67b",
+      "status": "completed"
+    },
+    {
+      "caseId": "no-answer",
+      "repetition": 1,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 240.7059999999983,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "112c4c30d29c6efa78183ecfa8b8790c021c8d625f1a95c27559fb7e0b88b67b",
+      "status": "completed"
+    },
+    {
+      "caseId": "no-answer",
+      "repetition": 2,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 237.65610000000015,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "112c4c30d29c6efa78183ecfa8b8790c021c8d625f1a95c27559fb7e0b88b67b",
+      "status": "completed"
+    },
+    {
+      "caseId": "no-answer",
+      "repetition": 2,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 192.12680000000182,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "112c4c30d29c6efa78183ecfa8b8790c021c8d625f1a95c27559fb7e0b88b67b",
+      "status": "completed"
+    },
+    {
+      "caseId": "no-answer",
+      "repetition": 3,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 252.3354999999974,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "112c4c30d29c6efa78183ecfa8b8790c021c8d625f1a95c27559fb7e0b88b67b",
+      "status": "completed"
+    },
+    {
+      "caseId": "no-answer",
+      "repetition": 3,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 194.29789999999775,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "112c4c30d29c6efa78183ecfa8b8790c021c8d625f1a95c27559fb7e0b88b67b",
+      "status": "completed"
+    },
+    {
+      "caseId": "injection",
+      "repetition": 1,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 239.00800000000163,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "fa67f11fca2b892995d1be52d2b0b455d0eb1740ef4c0fa7fef6a0d12610dab4",
+      "status": "completed"
+    },
+    {
+      "caseId": "injection",
+      "repetition": 1,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 208.29270000000542,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "fa67f11fca2b892995d1be52d2b0b455d0eb1740ef4c0fa7fef6a0d12610dab4",
+      "status": "completed"
+    },
+    {
+      "caseId": "injection",
+      "repetition": 2,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 231.1701999999932,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "fa67f11fca2b892995d1be52d2b0b455d0eb1740ef4c0fa7fef6a0d12610dab4",
+      "status": "completed"
+    },
+    {
+      "caseId": "injection",
+      "repetition": 2,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 191.4641000000047,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "fa67f11fca2b892995d1be52d2b0b455d0eb1740ef4c0fa7fef6a0d12610dab4",
+      "status": "completed"
+    },
+    {
+      "caseId": "injection",
+      "repetition": 3,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 223.25759999999718,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "fa67f11fca2b892995d1be52d2b0b455d0eb1740ef4c0fa7fef6a0d12610dab4",
+      "status": "completed"
+    },
+    {
+      "caseId": "injection",
+      "repetition": 3,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 230.28130000000237,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "fa67f11fca2b892995d1be52d2b0b455d0eb1740ef4c0fa7fef6a0d12610dab4",
+      "status": "completed"
+    },
+    {
+      "caseId": "failure-isolated",
+      "repetition": 1,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 236.3032000000021,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "c216899e598af1facc224db55581f0fc4895a73d47be9e02364b05a01d1e24d7",
+      "status": "completed"
+    },
+    {
+      "caseId": "failure-isolated",
+      "repetition": 1,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 167.36239999999816,
+      "calls": 3,
+      "tools": 4,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "c216899e598af1facc224db55581f0fc4895a73d47be9e02364b05a01d1e24d7",
+      "status": "partial"
+    },
+    {
+      "caseId": "failure-isolated",
+      "repetition": 2,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 225.4219000000012,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "c216899e598af1facc224db55581f0fc4895a73d47be9e02364b05a01d1e24d7",
+      "status": "completed"
+    },
+    {
+      "caseId": "failure-isolated",
+      "repetition": 2,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 209.47230000000127,
+      "calls": 3,
+      "tools": 4,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "c216899e598af1facc224db55581f0fc4895a73d47be9e02364b05a01d1e24d7",
+      "status": "partial"
+    },
+    {
+      "caseId": "failure-isolated",
+      "repetition": 3,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 212.16820000000007,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "c216899e598af1facc224db55581f0fc4895a73d47be9e02364b05a01d1e24d7",
+      "status": "completed"
+    },
+    {
+      "caseId": "failure-isolated",
+      "repetition": 3,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 148.56610000000364,
+      "calls": 3,
+      "tools": 4,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "c216899e598af1facc224db55581f0fc4895a73d47be9e02364b05a01d1e24d7",
+      "status": "partial"
+    },
+    {
+      "caseId": "uncertain",
+      "repetition": 1,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 208.30540000000474,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "0cf12af7b7db1026a65a2b64ac2f53613d1a488510757e83c826ebf35f9a9aa8",
+      "status": "completed"
+    },
+    {
+      "caseId": "uncertain",
+      "repetition": 1,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 164.23359999999957,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "0cf12af7b7db1026a65a2b64ac2f53613d1a488510757e83c826ebf35f9a9aa8",
+      "status": "completed"
+    },
+    {
+      "caseId": "uncertain",
+      "repetition": 2,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 202.96749999999884,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "0cf12af7b7db1026a65a2b64ac2f53613d1a488510757e83c826ebf35f9a9aa8",
+      "status": "completed"
+    },
+    {
+      "caseId": "uncertain",
+      "repetition": 2,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 195.5118999999977,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "0cf12af7b7db1026a65a2b64ac2f53613d1a488510757e83c826ebf35f9a9aa8",
+      "status": "completed"
+    },
+    {
+      "caseId": "uncertain",
+      "repetition": 3,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 196.4615000000049,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "0cf12af7b7db1026a65a2b64ac2f53613d1a488510757e83c826ebf35f9a9aa8",
+      "status": "completed"
+    },
+    {
+      "caseId": "uncertain",
+      "repetition": 3,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 165.61859999999433,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "0cf12af7b7db1026a65a2b64ac2f53613d1a488510757e83c826ebf35f9a9aa8",
+      "status": "completed"
+    },
+    {
+      "caseId": "long-source",
+      "repetition": 1,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 198.95780000000377,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "28e54f769e1d21ba0d3cde2153288ce1178b2e810d816d1a53e7ce0647e14b8f",
+      "status": "completed"
+    },
+    {
+      "caseId": "long-source",
+      "repetition": 1,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 174.8793000000005,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "28e54f769e1d21ba0d3cde2153288ce1178b2e810d816d1a53e7ce0647e14b8f",
+      "status": "completed"
+    },
+    {
+      "caseId": "long-source",
+      "repetition": 2,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 206.60869999999704,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "28e54f769e1d21ba0d3cde2153288ce1178b2e810d816d1a53e7ce0647e14b8f",
+      "status": "completed"
+    },
+    {
+      "caseId": "long-source",
+      "repetition": 2,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 180.93649999999616,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "28e54f769e1d21ba0d3cde2153288ce1178b2e810d816d1a53e7ce0647e14b8f",
+      "status": "completed"
+    },
+    {
+      "caseId": "long-source",
+      "repetition": 3,
+      "mode": "single",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 212.1880999999994,
+      "calls": 3,
+      "tools": 3,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "28e54f769e1d21ba0d3cde2153288ce1178b2e810d816d1a53e7ce0647e14b8f",
+      "status": "completed"
+    },
+    {
+      "caseId": "long-source",
+      "repetition": 3,
+      "mode": "delegated",
+      "budget": {
+        "tokens": 32768,
+        "activeMs": 30000,
+        "maxCalls": 6,
+        "maxTools": 12
+      },
+      "elapsedMs": 171.22520000000077,
+      "calls": 3,
+      "tools": 5,
+      "quality": {
+        "supported": true,
+        "exact": true,
+        "failureDisclosed": true
+      },
+      "fee": null,
+      "paidModelTokens": null,
+      "sourceSha256": "28e54f769e1d21ba0d3cde2153288ce1178b2e810d816d1a53e7ce0647e14b8f",
+      "status": "completed"
+    }
+  ],
+  "single": {
+    "runs": 30,
+    "meanElapsedMs": 227.92941000000033,
+    "calls": 90,
+    "tools": 90,
+    "qualityPassed": 30,
+    "fee": null
+  },
+  "delegated": {
+    "runs": 30,
+    "meanElapsedMs": 184.50804333333343,
+    "calls": 90,
+    "tools": 147,
+    "qualityPassed": 30,
+    "fee": null
+  },
+  "automaticDelegationEnabled": false,
+  "qualification": "Not qualified: deterministic synthetic responses and unknown paid fees cannot establish production quality or fee multiplier. Keep single-agent default; explicit delegation remains available."
+}

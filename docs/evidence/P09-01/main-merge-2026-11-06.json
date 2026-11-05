@@ -1,0 +1,72 @@
+{
+  "task": "P09-01",
+  "date": "2026-11-06 Asia/Shanghai",
+  "authorization": "User explicitly requested squashing into one commit and merging into main; replaces prior no-main limitation",
+  "mergeMethod": "Single squash commit parented directly on previousMain; main fast-forward; development ref uses explicit expected-old lease",
+  "previousMain": "1a91688e1b261fdcc871f324fdef689ff55686f7",
+  "originalBranchHead": "b18f337f795c9f77625640017aca86ef093a49e7",
+  "originalBranchTree": "a2414bacdb54df1bae51b56e1213feed6f33e72b",
+  "originalCommits": [
+    {
+      "sha": "7a6c8c9d95f5a8146d3e75fe8fcb260873702cbf",
+      "subject": "feat(P09-01): isolate code projects and review versioned changes"
+    },
+    {
+      "sha": "93abc36908684d3b37ef119b6c92f280a03ac307",
+      "subject": "docs(P09-01): record local acceptance and handoff"
+    },
+    {
+      "sha": "a5956ba204497689f8d59b61950c1d802ed35f91",
+      "subject": "docs(P09-01): record authorized branch publication [skip ci]"
+    },
+    {
+      "sha": "be10fc45f58836c3f0f73b9c3b70cda9307c9310",
+      "subject": "test(P09-01): cover code bridge in desktop CI"
+    },
+    {
+      "sha": "b18f337f795c9f77625640017aca86ef093a49e7",
+      "subject": "docs(P09-01): record successful CI81 acceptance [skip ci]"
+    }
+  ],
+  "originalCommitCount": 5,
+  "newCommitsOnMain": 1,
+  "squashCommit": "The commit containing this record; self hash is resolved with git log, not embedded recursively",
+  "developmentBranch": "codex/p09-01-code-review",
+  "originalHistoryBackupRef": "refs/backup/p09-01/pre-squash-2026-11-06",
+  "validatedSourceCommit": "be10fc45f58836c3f0f73b9c3b70cda9307c9310",
+  "ci81": {
+    "runId": 42058171082,
+    "url": "https://github.com/tteok1/TapKit/actions/runs/42058171082",
+    "conclusion": "success",
+    "jobs": {
+      "check": "success",
+      "office-native": "success",
+      "startup-diagnostics": "success"
+    }
+  },
+  "allNonDocumentationTreesMatchCI81": true,
+  "nonDocumentationTreeListingSha256": "7b98c416a2c567df822e97d95c45a73ca392bd0c91551c96610b8834394c7ff5",
+  "sourceChangesSinceCI81": false,
+  "newMainCiConclusion": "Not yet asserted; a new push may start fresh runs",
+  "originalMaintenanceChanges": "Four modified progress files and one untracked storage-audit evidence preserved outside the commit",
+  "newConnectionChecks": 0,
+  "connectionChecksUsed": 2,
+  "connectionLimit": 10,
+  "newModelCalls": 0,
+  "mainRemoteConfirmation": "Verify refs/heads/main and development branch against containing commit after push; no forced main update",
+  "nextTaskStarted": false,
+  "p09GateClosed": false,
+  "documentationChecks": {
+    "docsCheck": {
+      "exitCode": 0,
+      "taskStates": 37,
+      "log": "main-merge-docs-check.log"
+    },
+    "formatCheck": {
+      "exitCode": 0,
+      "files": 752,
+      "failures": 0,
+      "log": "main-merge-format-check.log"
+    }
+  }
+}

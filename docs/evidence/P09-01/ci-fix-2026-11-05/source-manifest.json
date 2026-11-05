@@ -1,0 +1,18 @@
+{
+  "baseline": "a5956ba204497689f8d59b61950c1d802ed35f91",
+  "changes": [
+    {
+      "path": ".github/workflows/check.yml",
+      "sha256": "dee4de2b2ab9194f26aa9ecba047c72e2a1cb3c1427fb26b2d993b4adfd2dc2c"
+    },
+    {
+      "path": "tests/e2e/P00-01.shell.spec.ts",
+      "sha256": "5d060a3b98d22dc749c9d4e7b764ef89a0c177119c42d05da3d3f9622075aaa1"
+    }
+  ],
+  "productionSourceChanges": false,
+  "localCheckExitCode": 0,
+  "localDesktopPassed": 2,
+  "newModelCalls": 0,
+  "newConnectionChecks": 0
+}

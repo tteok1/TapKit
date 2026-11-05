@@ -1,0 +1,27 @@
+tests/e2e/P00-01.shell.spec.ts 114ms
+.github/workflows/check.yml 37ms (unchanged)
+docs/progress/P09-01.md 69ms
+docs/progress/CURRENT.md 5ms
+docs/progress/INDEX.md 39ms
+$ node scripts/e2e.mjs "--" "--grep" "P00-01 sandbox|P09-01"
+
+Running 2 tests using 1 worker
+
+(node:37004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 31884
+(node:31884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:53318/e8650017-02fe-4e48-867e-7de063dc84b6
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 1 tests\e2e\P00-01.shell.spec.ts:45:1 › P00-01 sandbox bridge errors and clean child shutdown (44.3s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_READY
+TAPKIT_CORE_EXIT 0
+  ok 2 tests\e2e\P09-01.code.spec.ts:6:1 › P09-01 desktop selects a real directory, reviews lines, records feedback, reverts/restores and retains the source (26.4s)
+
+  2 passed (1.2m)

@@ -1,3 +1,5 @@
+2026-11-06：P09-01=implemented_and_verified（实现7a6c8c9、CI修复be10fc4），CI81三个job全部success；CI80旧失败保留。独立UI四项全部resolved；分支codex/p09-01-code-review，main基线1a91688。505unit、19个P09集成与49相关回归通过，真实1模型/1工具actual940、预留0。新增检测2/10余8，两副本凭据清理；原有维护改动/P08 gate保留，不进入后续任务。2026-11-06按最新授权将原5个提交压缩为1个P09-01提交，并合入及推送main，开发分支同步；原历史保留本地backup ref。合入源码与CI81一致，新main CI未冒称通过；见P09-01/main-merge-2026-11-06.json及ci-fix-2026-11-05/ci81.json。
+
 # 开发进度索引
 
 2026-11-05：P08-03=implemented_and_verified，P08 gate=passed（CI79三个job全部success）；基于最新main 21604b1创建codex/p08-03-delegation，实现与修复已按最新授权快进合入并推送main（合入头0d0e483，CI79验收源eba0778），开发分支保留。check/500unit/94相关集成/60轮合成对照、最终桌面及浏览研究兼容通过；第4轮Core、第5轮主模型真实汇总均passed，原失败保留。检测5/10余5、五副本清理/预留0；默认单Agent，不进入P09；测试修复eba0778已推送，CI79三个job全部success：unit500、主集成537过/1既有skip、原生17、桌面50、perf2及独立标准用户/启动诊断通过；旧失败保留。详见P08-03与P08-gate及verification/live-final-audit/source-manifest/publication和main-merge-2026-11-05.json。
@@ -37,7 +39,7 @@ CI73三个job全success，测试清理及资料保全保持；耗时只读审计
 | P08-01 | 匿名浏览器交互与用户接管           | P07-03, P05-01 | implemented_and_verified      | docs/progress/P08-01.md              |
 | P08-02 | 深度研究工作流与来源核验           | P08-01         | implemented_and_verified      | docs/progress/P08-02.md              |
 | P08-03 | 有界子Agent与独立任务协调          | P08-02         | implemented_and_verified      | docs/progress/P08-03.md              |
-| P09-01 | 代码项目、Git隔离与差异审阅        | P08-03         | not_started                   | docs/progress/P09-01.md              |
+| P09-01 | 代码项目、Git隔离与差异审阅        | P08-03         | implemented_and_verified      | docs/progress/P09-01.md              |
 | P09-02 | 终端、依赖准备与代码测试执行       | P09-01, P00-03 | not_started                   | docs/progress/P09-02.md              |
 | P09-03 | GitHub连接、提交与Draft PR闭环     | P09-02         | not_started                   | docs/progress/P09-03.md              |
 | P09-04 | 网站生成和本地交互预览             | P09-02         | not_started                   | docs/progress/P09-04.md              |
@@ -61,6 +63,6 @@ CI73三个job全success，测试清理及资料保全保持；耗时只读审计
 | P06  | engineering_passed_external_pending | docs/progress/P06-gate.md |
 | P07  | passed                              | docs/progress/P07-gate.md |
 | P08  | passed                              | docs/progress/P08-gate.md |
-| P09  | not_started                         | docs/progress/P09-gate.md |
+| P09  | in_progress                         | docs/progress/P09-gate.md |
 | P10  | not_started                         | docs/progress/P10-gate.md |
 | P11  | not_started                         | docs/progress/P11-gate.md |

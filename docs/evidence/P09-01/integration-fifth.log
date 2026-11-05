@@ -1,0 +1,13 @@
+packages/contracts/src/code.ts 71ms
+packages/tools/src/execution/code-workspace.ts 57ms
+packages/core/src/code-service.ts 118ms
+$ vitest run --config vitest.config.ts --project integration "P09-01"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+   Start at  21:05:59
+   Duration  37.12s (tests 92%, transform 6%, import 1%)
+

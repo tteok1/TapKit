@@ -1,3 +1,4 @@
+import { CodeViewSchema } from './code';
 import { ExecutionCapabilitiesSchema } from './execution';
 import { ErrorCodeSchema } from './errors';
 export { ErrorCodeSchema } from './errors';
@@ -276,6 +277,7 @@ export const BootstrapViewSchema = z.strictObject({
   unreadCount: z.number().int().min(0),
 });
 export const ReplyDataSchema = z.union([
+  z.strictObject({ code: CodeViewSchema }),
   WorkReplySchema,
   ExportReplySchema,
   WebReplySchema,

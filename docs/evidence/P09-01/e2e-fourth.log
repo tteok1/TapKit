@@ -1,0 +1,58 @@
+
+Running 1 test using 1 worker
+
+(node:23520) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_READY
+TAPKIT_CORE_EXIT 0
+  x  1 tests\e2e\P09-01.code.spec.ts:6:1 › P09-01 desktop selects a real directory, reviews lines, records feedback, reverts/restores and retains the source (34.1s)
+
+
+  1) tests\e2e\P09-01.code.spec.ts:6:1 › P09-01 desktop selects a real directory, reviews lines, records feedback, reverts/restores and retains the source 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('region', { name: '代码项目', exact: true })
+    Expected substring: "保留加法"
+    Received string:    "代码项目刷新代码与差异中文代码 · 托管副本（无 Git）所有操作只作用于独立副本。原目录不会被改写。副本会保留，直到你明确清理。sum.ts修改还没有代码差异。开始工作后可在这里审阅。按反馈创建修订任务撤销代码目录授权"
+    Timeout: 15000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('region', { name: '代码项目', exact: true }) with timeout 15000ms
+      - waiting for getByRole('region', { name: '代码项目', exact: true })
+        33 × locator resolved to <section aria-label="代码项目" class="code-panel">…</section>
+           - unexpected value "代码项目刷新代码与差异中文代码 · 托管副本（无 Git）所有操作只作用于独立副本。原目录不会被改写。副本会保留，直到你明确清理。sum.ts修改还没有代码差异。开始工作后可在这里审阅。按反馈创建修订任务撤销代码目录授权"
+
+
+      108 |     await panel.getByRole('button', { name: '按反馈创建修订任务', exact: true }).click();
+      109 |     await expect(page.locator('.work-detail > h2')).toContainText('请根据代码行反馈');
+    > 110 |     await expect(page.getByRole('region', { name: '代码项目', exact: true })).toContainText(
+          |                                                                           ^
+      111 |       '保留加法',
+      112 |     );
+      113 |     expect(await readFile(join(source, 'sum.ts'), 'utf8')).toContain('a - b');
+        at D:\Tapkit-public\tests\e2e\P09-01.code.spec.ts:110:75
+
+    Error Context: test-results\e2e\P09-01.code-P09-01-desktop-5bba2-ores-and-retains-the-source\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P09-01.code-P09-01-desktop-5bba2-ores-and-retains-the-source\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P09-01.code-P09-01-desktop-5bba2-ores-and-retains-the-source\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P09-01.code.spec.ts:6:1 › P09-01 desktop selects a real directory, reviews lines, records feedback, reverts/restores and retains the source 
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/e2e.mjs:15:21
+
+Node.js v24.18.0
