@@ -1,7 +1,7 @@
 # P08 匿名浏览器研究和有界子任务交付与验收
 
 - 日期/执行：2026-11-05 Asia/Shanghai，当前开发验收会话；D:/Tapkit-public。
-- 源：main 21604b1a851e2db19fde48c927e57e26eae809e1基点，codex/p08-03-delegation未提交工作区；源指纹见docs/evidence/P08-03/source-manifest.json。未提交、推送或合入main。
+- 源：main 21604b1a851e2db19fde48c927e57e26eae809e1基点，codex/p08-03-delegation源码提交6e971d1已按用户授权推送远端；源指纹见docs/evidence/P08-03/source-manifest.json。发布记录见docs/evidence/P08-03/publication.json；未合main，新CI尚未核对结果。
 - gate_status：passed（限定当前匿名浏览/研究/显式只读委派范围）。
 
 ## 本阶段交付物
@@ -32,4 +32,4 @@
 
 ## 下一阶段交接
 
-可复用BrowserAction/固定快照、研究成果契约、委派/恢复/同根预算接口，依赖决策见ADR0075—0077。P09-01具备依赖输入，但本次不自动进入P09，也不发布当前分支。CURRENT/INDEX/P08-03/requirements已同步最终状态。当前无P08规定验收遗留；最终交接格式/文档校验日志归入P08-03。
+可复用BrowserAction/固定快照、研究成果契约、委派/恢复/同根预算接口，依赖决策见ADR0075—0077。P09-01具备依赖输入，但本次不自动进入P09，当前分支已按本轮用户授权发布，仍不合main。CURRENT/INDEX/P08-03/requirements已同步最终状态。当前无P08规定验收遗留；最终交接格式/文档校验日志归入P08-03。

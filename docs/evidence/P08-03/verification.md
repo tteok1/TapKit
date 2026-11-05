@@ -2,7 +2,7 @@
 
 状态：implemented_and_verified；P08 gate=passed。
 
-2026-11-05，D:/Tapkit-public；codex/p08-03-delegation。从已fetch核对的main 21604b1a851e2db19fde48c927e57e26eae809e1建立，交付为未提交工作区；完整源文件SHA256见source-manifest.json，不能将基点视为新实现的提交号。
+2026-11-05，D:/Tapkit-public；codex/p08-03-delegation。从已fetch核对的main 21604b1a851e2db19fde48c927e57e26eae809e1建立，原验收交付为未提交工作区，当前源码6e971d1已按用户授权提交推送，见publication.json；完整源文件SHA256见source-manifest.json，不能将基点视为新实现的提交号。
 
 ## 交付与边界
 
