@@ -1,0 +1,37 @@
+{
+  "run": 78,
+  "runId": 41996839303,
+  "sourceCommit": "6e971d167d8765f1e3457dadcf53e3161f80e948",
+  "url": "https://github.com/tteok1/TapKit/actions/runs/41996839303",
+  "conclusion": "failure",
+  "jobs": [
+    {
+      "name": "office-native",
+      "id": 127141984561,
+      "conclusion": "success"
+    },
+    {
+      "name": "check",
+      "id": 127141985302,
+      "conclusion": "failure",
+      "step": "Unit and current-route integration"
+    },
+    {
+      "name": "startup-diagnostics",
+      "id": 127155771854,
+      "conclusion": "success"
+    }
+  ],
+  "unit": {
+    "passed": 500
+  },
+  "integration": {
+    "passed": 536,
+    "failed": 1,
+    "skipped": 1
+  },
+  "failure": "P07-01.document-storage migration: duplicate column name parent_run_id; fixture relabelled schema21 to17",
+  "fullLogSha256": "d9c78a609ab83b5c5fde742b9145a66d1bdfec9866c739132b18d988f4197799",
+  "fullLogBytes": 17274190,
+  "fullLogStorage": "private .test-data; only relevant failure excerpt included in public evidence"
+}

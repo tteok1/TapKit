@@ -2,7 +2,7 @@
 
 - 日期/执行：2026-11-05 Asia/Shanghai，当前开发验收会话；D:/Tapkit-public。
 - 源：main 21604b1a851e2db19fde48c927e57e26eae809e1基点，codex/p08-03-delegation源码提交6e971d1已按用户授权推送远端；源指纹见docs/evidence/P08-03/source-manifest.json。发布记录见docs/evidence/P08-03/publication.json；未合main，新CI尚未核对结果。
-- gate_status：passed（限定当前匿名浏览/研究/显式只读委派范围）。
+- gate_status：failed（CI78历史迁移fixture修复补验中；既有本地与live证据保持原范围）。
 
 ## 本阶段交付物
 

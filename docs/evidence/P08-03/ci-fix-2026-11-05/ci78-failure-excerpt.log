@@ -1,0 +1,33 @@
+2026-11-05T08:59:44.0952760Z  FAIL   integration  tests/integration/P07-01.document-storage.test.ts > P07-01 migration 17 to 18 preserves task data and is idempotent
+2026-11-05T08:59:44.0958851Z SqliteError: duplicate column name: parent_run_id
+2026-11-05T08:59:44.0961291Z  ❯ Database.exec node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/wrappers.js:9:14
+2026-11-05T08:59:44.0962462Z  ❯ packages/storage/src/foundation.ts:155:12
+2026-11-05T08:59:44.1075920Z     153|     try {
+2026-11-05T08:59:44.1076608Z     154|       db.transaction(() => {
+2026-11-05T08:59:44.1077324Z     155|         db.exec(migration.sql);
+2026-11-05T08:59:44.1077999Z        |            ^
+2026-11-05T08:59:44.1078583Z     156|         if (
+2026-11-05T08:59:44.1079370Z     157|           (db.pragma('foreign_key_check') as unknown[]).length ||
+2026-11-05T08:59:44.1081248Z  ❯ sqliteTransaction node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:65:24
+2026-11-05T08:59:44.1083040Z  ❯ migrate packages/storage/src/foundation.ts:162:8
+2026-11-05T08:59:44.1084313Z  ❯ tests/integration/P07-01.document-storage.test.ts:110:5
+2026-11-05T08:59:44.1084987Z 
+2026-11-05T08:59:44.1085407Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+2026-11-05T08:59:44.1085754Z 
+2026-11-05T08:59:44.1088360Z 
+2026-11-05T08:59:44.1099423Z  Test Files  1 failed | 77 passed | 1 skipped (79)
+2026-11-05T08:59:44.1105739Z       Tests  1 failed | 536 passed | 1 skipped (538)
+2026-11-05T08:59:44.1106879Z    Start at  08:49:29
+2026-11-05T08:59:44.1113131Z    Duration  614.40s (tests 92%, import 6%, transform 1%)
+2026-11-05T08:59:44.1141202Z 
+2026-11-05T08:59:44.1173452Z 
+2026-11-05T08:59:44.1204360Z ##[error]SqliteError: duplicate column name: parent_run_id
+ ❯ Database.exec node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/wrappers.js:9:14
+ ❯ packages/storage/src/foundation.ts:155:12
+ ❯ sqliteTransaction node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:65:24
+ ❯ migrate packages/storage/src/foundation.ts:162:8
+ ❯ tests/integration/P07-01.document-storage.test.ts:110:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+

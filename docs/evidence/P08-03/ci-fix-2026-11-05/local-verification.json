@@ -1,0 +1,23 @@
+{
+  "task": "P08-03",
+  "parentCommit": "807f98a234b861e7ff5971291f0c1d2bf8d25b63",
+  "acceptedRuntimeSourceCommit": "6e971d167d8765f1e3457dadcf53e3161f80e948",
+  "changedAcceptedSourceFiles": [
+    {
+      "path": "tests/integration/P07-01.document-storage.test.ts",
+      "acceptedSha256": "81ec0eef5d62a0a434cd40387aed08756a16ae0db7cec0e4ad335bbe1ffb4b97",
+      "sha256": "87392fac3dc6b8e004337c3bc09617c0009c6e2f21e4f93f4c5c26f76abc77d7"
+    }
+  ],
+  "otherAcceptedSourceHashesUnchanged": 45,
+  "productionCodeChanged": false,
+  "checks": {
+    "originalFailureReproducedExit": 1,
+    "migrationAndDelegation26Exit": 0,
+    "checkExit": 0,
+    "docsCheckExit": 0
+  },
+  "newModelRequests": 0,
+  "connectionChecks": 5,
+  "connectionLimit": 10
+}

@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project integration "P07-01.document-storage" "P06-01.migration" "P08-01.migration" "P08-02.migration" "P08-03.delegation"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  5 passed (5)
+      Tests  26 passed (26)
+   Start at  18:48:48
+   Duration  18.58s (tests 70%, transform 17%, import 12%)
+

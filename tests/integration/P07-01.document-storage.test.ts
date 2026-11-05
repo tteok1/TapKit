@@ -1,9 +1,18 @@
-import { SCHEMA_VERSION } from '../../packages/storage/src';
+import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { expect, test } from 'vitest';
-import { readdir } from 'node:fs/promises';
-import { join } from 'node:path';
+import { mkdir, readdir } from 'node:fs/promises';
+import { join, resolve } from 'node:path';
+import { createRequire } from 'node:module';
 import { fixture } from './P06.fixture';
-import { DocumentRepository, migrate } from '../../packages/storage/src';
+import {
+  SCHEMA_VERSION,
+  DocumentRepository,
+  Store,
+  migrate,
+  migrations,
+  newId,
+} from '../../packages/storage/src';
+import { CoreService } from '../../packages/core/src/service';
 
 const spec = {
   schemaVersion: 1,
@@ -97,28 +106,60 @@ test('P07-01 stores a spec with a version, rejects stale bases, rolls back and e
   }
 });
 
-// Simulate a schema-17 installation with real task data before applying the additive migration.
-test('P07-01 migration 17 to 18 preserves task data and is idempotent', async () => {
-  const f = await fixture();
+// Build the historical schema itself: relabelling a current database leaves later columns behind.
+test('P07-01 / P08-03 schema17 upgrade preserves task data and is idempotent', async () => {
+  await mkdir('.test-data', { recursive: true });
+  const dir = await mkdtemp(resolve('.test-data', 'P08-03 schema17 upgrade '));
+  const Database = createRequire(import.meta.url)(
+    '../../packages/storage/node_modules/better-sqlite3',
+  ) as typeof import('better-sqlite3');
+  const db = new Database(join(dir, 'app.sqlite')),
+    backups = join(dir, 'migration-backups');
   try {
-    const view = await f.create();
-    const before = f.store.db.prepare('SELECT * FROM tasks WHERE id=?').get(view.taskId);
-    f.store.db.exec(
-      'DROP TABLE research_snapshots; DROP TABLE browser_snapshots; DROP TABLE browser_tabs; DROP TABLE browser_sessions; DROP TABLE document_specs',
+    db.pragma('foreign_keys=ON');
+    await migrate(
+      db,
+      join(dir, 'initial-backups'),
+      migrations.filter((m) => m.version <= 17),
     );
-    f.store.db.pragma('user_version=17');
-    await migrate(f.store.db, join(f.dir, 'p07-migration-backups'));
-    await migrate(f.store.db, join(f.dir, 'p07-migration-backups'));
-    expect(f.store.db.pragma('user_version', { simple: true })).toBe(SCHEMA_VERSION);
-    expect(f.store.db.prepare('SELECT * FROM tasks WHERE id=?').get(view.taskId)).toEqual(before);
-    expect(f.store.db.pragma('foreign_key_check')).toEqual([]);
-    expect(f.store.db.pragma('integrity_check', { simple: true })).toBe('ok');
+    const store = new Store(db, dir),
+      reply = new CoreService(store).dispatch({
+        protocolVersion: 1,
+        requestId: newId(),
+        command: 'sessions.create',
+        payload: { mode: 'work', title: '迁移前保留的工作' },
+      });
+    if (!reply.ok || !('entityId' in reply.data)) throw Error('session');
+    const taskId = newId(),
+      now = store.now();
+    db.prepare(
+      'INSERT INTO tasks(id,profile_id,created_at,updated_at,session_id,root_task_id,goal,acceptance_json,mode,priority) VALUES(?,?,?,?,?,?,?,\'{"schemaVersion":1,"rules":[]}\',\'work\',7)',
+    ).run(taskId, store.profileId, now, now, reply.data.entityId, taskId, '迁移前的文档任务');
+    const before = db.prepare('SELECT * FROM tasks WHERE id=?').get(taskId),
+      columns = () => (db.pragma('table_info(runs)') as { name: string }[]).map((c) => c.name);
+    expect(db.pragma('user_version', { simple: true })).toBe(17);
+    expect(columns()).not.toContain('parent_run_id');
     expect(
-      (await readdir(join(f.dir, 'p07-migration-backups'))).some((name) =>
-        name.startsWith('pre-migration-18'),
-      ),
-    ).toBe(true);
+      db.prepare("SELECT 1 FROM sqlite_master WHERE name='document_specs'").get(),
+    ).toBeUndefined();
+    await migrate(db, backups);
+    expect(columns()).toContain('parent_run_id');
+    expect(
+      db.prepare("SELECT 1 FROM sqlite_master WHERE name='document_specs'").get(),
+    ).toBeDefined();
+    const schema = db.prepare('SELECT type,name,sql FROM sqlite_master ORDER BY type,name').all(),
+      firstBackups = await readdir(backups);
+    await migrate(db, backups);
+    expect(db.pragma('user_version', { simple: true })).toBe(SCHEMA_VERSION);
+    expect(db.prepare('SELECT * FROM tasks WHERE id=?').get(taskId)).toEqual(before);
+    expect(db.prepare('SELECT type,name,sql FROM sqlite_master ORDER BY type,name').all()).toEqual(
+      schema,
+    );
+    expect(await readdir(backups)).toEqual(firstBackups);
+    expect(db.pragma('foreign_key_check')).toEqual([]);
+    expect(db.pragma('integrity_check', { simple: true })).toBe('ok');
+    expect(firstBackups.some((name) => name.startsWith('pre-migration-18'))).toBe(true);
   } finally {
-    await f.close();
+    db.close();
   }
 });
