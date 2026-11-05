@@ -1,0 +1,39 @@
+{
+  "task": "P08-03",
+  "recordedAt": "2026-11-05T12:09:52.202183+00:00",
+  "authorization": "User explicitly requested merge into main; replaces prior no-main limitation",
+  "mergeMethod": "fast-forward; ancestor verified; local main advanced with old-value lease to the same tree before switching, preserving dirty files",
+  "previousMain": "21604b1a851e2db19fde48c927e57e26eae809e1",
+  "mergedHead": "0d0e4837b6b323f0748ecd6aad9b056c1ab2357b",
+  "commitCount": 4,
+  "developmentBranch": "codex/p08-03-delegation",
+  "developmentBranchRetained": true,
+  "remoteReadbackAfterMerge": {
+    "refs/heads/main": "0d0e4837b6b323f0748ecd6aad9b056c1ab2357b",
+    "refs/heads/codex/p08-03-delegation": "0d0e4837b6b323f0748ecd6aad9b056c1ab2357b"
+  },
+  "pushExitCode": 0,
+  "connectorFallback": "GitHub integration updateRefs forbidden; authorized native Git push succeeded; command-scoped existing system proxy only",
+  "validatedSourceCommit": "eba077819d7fb919763757ef21303d294abdba91",
+  "ci79": {
+    "runId": 42014131097,
+    "url": "https://github.com/tteok1/TapKit/actions/runs/42014131097",
+    "conclusion": "success",
+    "jobs": {
+      "check": "success",
+      "office-native": "success",
+      "startup-diagnostics": "success"
+    }
+  },
+  "allProductionAndTestSourceMatchesCI79": true,
+  "sourceTreeListingSha256": "cf93066ec076d295625cb27497efbeb311e610b2e54ca1b9ac9151069492f104",
+  "existingUncommittedAuditFilesBytePreserved": 5,
+  "existingUncommittedAuditDiffLines": 9,
+  "auditChangesIncludedInMergeOrHandoff": false,
+  "handoff": "Subsequent documentation-only main commit records this merge; final main head is Git remote ref",
+  "newCIRunClaimed": false,
+  "newModelRequests": 0,
+  "connectionChecks": 5,
+  "connectionLimit": 10,
+  "nextStageStarted": false
+}

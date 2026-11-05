@@ -57,3 +57,7 @@
 原CI78仅P07旧迁移fixture失败：将新库版本号伪降至17却保留parent_run_id。修复eba0778以历史迁移建立真实schema17，再升级并核对数据/外键/完整性/备份与重复执行不变；本地先复现退出1，再26项相邻迁移/委派回归通过。生产代码未改。
 
 CI79 completed/success、三个job全部success：unit500、主集成537过/1既有skip、独立P07原生17、perf2、桌面50，以及标准用户/解析/Office关闭/启动诊断均通过。详见ci-fix-2026-11-05/ci79.json及日志汇总；原source-manifest冻结实现验收时版本，唯一测试文件改动另见local-verification.json。P08 gate恢复passed，无新增真实模型请求，额度5/10保持。
+
+## main合入
+
+2026-11-05已按用户最新授权，将已验收分支头0d0e483从main 21604b1快进合入并推送main，保留开发分支。全部运行与测试文件和CI79验收源eba0778相同；随后仅补交接文档，未新增模型或宣称新的main CI结果。工作区中的另项磁盘审计改动原样保留并排除在提交外。证据main-merge-2026-11-05.json；P08 gate保持passed，不开始P09。
