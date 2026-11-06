@@ -1,0 +1,13 @@
+{
+  "source": "docs/evidence/P00-03/native-cases.jsonl",
+  "beforeSha256": "7adebd9c1d8f814dc08b7e9f691680606f47a9b60750c88d37536d2d2c3974df",
+  "beforeBytes": 1519433,
+  "baseline": "fe2653f",
+  "initiallyClean": true,
+  "afterBytes": 1714694,
+  "appendedBytes": 195261,
+  "appendedSha256": "d82f4f072159eba2735b3e42b5d0ec9c0d7e464ee1652c251859a521e0ba45d5",
+  "restoredSha256": "7adebd9c1d8f814dc08b7e9f691680606f47a9b60750c88d37536d2d2c3974df",
+  "restored": true,
+  "delta": "docs/evidence/P09-02/native-cases.delta.jsonl"
+}

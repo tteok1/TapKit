@@ -1,4 +1,5 @@
 import { codeLineDiff } from './code-diff';
+import { TerminalPanel } from './terminal-ui';
 import { useEffect, useState, useMemo } from 'react';
 import { CodeViewSchema, type CodeView, type CodeCommand, type WorkView } from '@tapkit/contracts';
 import { requestOptions } from './desktop-state';
@@ -508,6 +509,7 @@ export function CodePanel({
               )}
             </>
           )}
+          {view.prepared && !view.revoked && <TerminalPanel key={runId} runId={runId} />}
           <button
             className="code-revoke"
             type="button"

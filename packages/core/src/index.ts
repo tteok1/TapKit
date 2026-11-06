@@ -1,5 +1,7 @@
 import { CodeService } from './code-service';
-import { CodeCommandSchemas } from '@tapkit/contracts';
+import { CodeRuntimeService } from './code-runtime';
+import { CodeCommandSchemas, TerminalCommandSchemas } from '@tapkit/contracts';
+import { DependencyBroker } from '@tapkit/tools';
 import { modelDelegateDriver } from './delegation-driver';
 import { readExecutionCapabilities } from '@tapkit/tools';
 import {
@@ -32,7 +34,7 @@ import { FileExporter } from './file-exporter';
 import { ProjectService } from './project-service';
 import { ProjectExporter } from './project-exporter';
 import { ArtifactService } from './artifact-service';
-import { isAbsolute } from 'node:path';
+import { isAbsolute, join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { ProviderService, type PrivateVault } from './provider-service';
 import { ModelService } from './model-service';
@@ -227,6 +229,29 @@ async function start() {
       ),
   );
   const code = new CodeService(store, process.env.TAPKIT_APP_ROOT ?? '');
+  const runtime = new CodeRuntimeService(
+    store,
+    code,
+    process.env.TAPKIT_APP_ROOT ?? '',
+    service.executionCapabilities,
+    new DependencyBroker(
+      join(store.dataDir, 'code-dependency-cache'),
+      new NetworkPolicyService({
+        proxy: async (url) =>
+          resolveNetworkProxy(
+            store.settings.values.network,
+            url,
+            async (value) =>
+              z
+                .strictObject({ proxyURL: z.string().max(2048) })
+                .parse(await vault('network.proxy.resolve', store.profileId, { url: value }))
+                .proxyURL,
+          ),
+      }),
+    ),
+    (run) => !web.projectOnly(run.session_id) && web.options(run.session_id).mode !== 'off',
+    models.claimRoot,
+  );
   const research = new ResearchService(workArtifacts, web, chat);
   const workGateway = new WorkToolGateway(
     workArtifacts,
@@ -239,6 +264,7 @@ async function start() {
     browser,
     research,
     code,
+    runtime,
   );
   research.convert = (run, step, ref, guard, signal) => {
     if (ref.kind !== 'file') throw new StorageError('VALIDATION_ERROR');
@@ -252,7 +278,7 @@ async function start() {
   };
   const work = new WorkService(
     store,
-    modelWorkDriver(models, chat, research, code),
+    modelWorkDriver(models, chat, research, code, runtime),
     workGateway,
     (ref, sessionId) => chat.material(ref, sessionId),
     models.claimRoot,
@@ -529,6 +555,7 @@ async function start() {
         worker.stop(),
         chat.stop(),
         work.stop(),
+        runtime.stop(),
         history.stop(),
         temporary.stop(),
         fileService.stop(),
@@ -581,40 +608,44 @@ async function start() {
           work.cancelAccount(account.data.accountId);
         }
       }
-      const result = Object.hasOwn(CodeCommandSchemas, command.request.command)
-        ? code.dispatch(command.request)
-        : Object.hasOwn(BrowserCommandSchemas, command.request.command)
-          ? browser.dispatch(command.request)
-          : work.handles(command.request.command, command.request.payload)
-            ? work.dispatch(command.request)
-            : Object.hasOwn(ExportCommandSchemas, command.request.command)
-              ? exports.dispatch(command.request)
-              : Object.hasOwn(WebCommandSchemas, command.request.command) &&
-                  !temporary.target(command.request.payload)
-                ? web.dispatch(command.request)
-                : Object.hasOwn(ProjectCommandSchemas, command.request.command)
-                  ? projects.dispatch(command.request)
-                  : Object.hasOwn(ArtifactCommandSchemas, command.request.command)
-                    ? artifacts.dispatch(command.request)
-                    : Object.hasOwn(FileCommandSchemas, command.request.command)
-                      ? fileService.dispatch(command.request)
-                      : command.request.command === 'sessions.temporary' ||
-                          command.request.command === 'sessions.closeTemporary' ||
-                          temporary.target(command.request.payload)
-                        ? temporary.dispatch(command.request)
-                        : (HISTORY_COMMANDS as readonly string[]).includes(command.request.command)
-                          ? history.dispatch(command.request)
-                          : command.request.command.startsWith('models.') ||
-                              command.request.command === 'usage.list'
-                            ? models.dispatch(command.request)
-                            : command.request.command.startsWith('providers.') &&
-                                command.request.command !== 'providers.saveApiKey'
-                              ? providers.dispatch(command.request)
-                              : /^(memory\.|messages\.|drafts\.|inputs\.|runs\.cancel$|context\.|chat\.snippets\.)/.test(
-                                    command.request.command,
-                                  )
-                                ? chat.dispatch(command.request)
-                                : Promise.resolve(service.dispatch(command.request));
+      const result = Object.hasOwn(TerminalCommandSchemas, command.request.command)
+        ? runtime.dispatch(command.request)
+        : Object.hasOwn(CodeCommandSchemas, command.request.command)
+          ? code.dispatch(command.request)
+          : Object.hasOwn(BrowserCommandSchemas, command.request.command)
+            ? browser.dispatch(command.request)
+            : work.handles(command.request.command, command.request.payload)
+              ? work.dispatch(command.request)
+              : Object.hasOwn(ExportCommandSchemas, command.request.command)
+                ? exports.dispatch(command.request)
+                : Object.hasOwn(WebCommandSchemas, command.request.command) &&
+                    !temporary.target(command.request.payload)
+                  ? web.dispatch(command.request)
+                  : Object.hasOwn(ProjectCommandSchemas, command.request.command)
+                    ? projects.dispatch(command.request)
+                    : Object.hasOwn(ArtifactCommandSchemas, command.request.command)
+                      ? artifacts.dispatch(command.request)
+                      : Object.hasOwn(FileCommandSchemas, command.request.command)
+                        ? fileService.dispatch(command.request)
+                        : command.request.command === 'sessions.temporary' ||
+                            command.request.command === 'sessions.closeTemporary' ||
+                            temporary.target(command.request.payload)
+                          ? temporary.dispatch(command.request)
+                          : (HISTORY_COMMANDS as readonly string[]).includes(
+                                command.request.command,
+                              )
+                            ? history.dispatch(command.request)
+                            : command.request.command.startsWith('models.') ||
+                                command.request.command === 'usage.list'
+                              ? models.dispatch(command.request)
+                              : command.request.command.startsWith('providers.') &&
+                                  command.request.command !== 'providers.saveApiKey'
+                                ? providers.dispatch(command.request)
+                                : /^(memory\.|messages\.|drafts\.|inputs\.|runs\.cancel$|context\.|chat\.snippets\.)/.test(
+                                      command.request.command,
+                                    )
+                                  ? chat.dispatch(command.request)
+                                  : Promise.resolve(service.dispatch(command.request));
       void result.then((reply) => {
         if (!closing) port!.postMessage({ type: 'reply', id: command.id, reply });
       });

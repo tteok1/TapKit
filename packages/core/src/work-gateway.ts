@@ -1,4 +1,5 @@
 import type { CodeService } from './code-service';
+import type { CodeRuntimeService } from './code-runtime';
 import {
   ApprovalViewSchema,
   GrantViewSchema,
@@ -101,11 +102,18 @@ export class WorkToolGateway implements WorkGateway {
     readonly browser?: BrowserService,
     readonly research?: ResearchService,
     readonly code?: CodeService,
+    readonly runtime?: CodeRuntimeService,
   ) {
     this.repo = artifacts.repo;
   }
   get store() {
     return this.repo.store;
+  }
+  busy(id: string) {
+    return this.runtime?.isBusy(id) ?? false;
+  }
+  async settle(id: string) {
+    await this.runtime?.settle(id);
   }
   private async delegatedReadOnly<T>(
     run: WorkRun,
@@ -588,6 +596,11 @@ export class WorkToolGateway implements WorkGateway {
       if (!this.code) throw new StorageError('FEATURE_NOT_AVAILABLE');
       return this.code.execute(run, stepKey, raw.patch, this.artifacts, guard, signal);
     }
+    if (raw.tool === 'exec.run') {
+      if (!this.runtime || !catalogAllowsTool(this.repo.state(run).toolCatalogVersion, 'exec.run'))
+        throw new StorageError('PERMISSION_DENIED');
+      return this.runtime.execute(run, stepKey, raw, this.artifacts, guard, signal);
+    }
     const args = parseWorkTool(raw);
     if (args.tool === 'data.analyze') {
       const options = this.repo.state(this.repo.row(run.id)).definition.dataOptions;
@@ -1069,6 +1082,18 @@ export class WorkToolGateway implements WorkGateway {
   async verify(run: WorkRun, refs: ResourceRef[]) {
     if (this.code?.has(run.id) && !(await this.code.verify(run.id))) return false;
     if (
+      this.code?.has(run.id) &&
+      this.runtime &&
+      catalogAllowsTool(this.repo.state(run).toolCatalogVersion, 'exec.run')
+    ) {
+      const context = await this.runtime.modelContext(run.id);
+      if (
+        context.profiles.some((p) => p.state !== 'unsupported') &&
+        !(await this.runtime.verify(run.id))
+      )
+        return false;
+    }
+    if (
       this.repo.state(this.repo.row(run.id)).definition.research &&
       !(await this.research?.verify(run))
     )
@@ -1159,7 +1184,13 @@ export class WorkToolGateway implements WorkGateway {
       .prepare("SELECT * FROM tool_calls WHERE run_id=? AND status IN ('dispatched','pending')")
       .all(run.id) as Call[];
     for (const call of dispatched) {
-      if (call.tool_name.startsWith('browser.') || call.tool_name === 'code.applyPatch') continue;
+      if (
+        call.tool_name.startsWith('browser.') ||
+        call.tool_name === 'code.applyPatch' ||
+        call.tool_name === 'exec.run' ||
+        (call.tool_name as string) === 'terminal.prepare'
+      )
+        continue;
       const args = parseWorkTool(JSON.parse(call.args_json));
       const guard = () => {
         const task = this.store.db

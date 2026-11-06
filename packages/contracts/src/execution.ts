@@ -49,15 +49,47 @@ export const HelperRequestSchema = z
           z
             .string()
             .max(8192)
-            .refine((s) => !s.includes('\0')),
+            .refine((s) => !s.includes('\0') && new TextEncoder().encode(s).length <= 8192),
         )
-        .max(32),
+        .max(64),
       ...ExecutionLimitsSchema.shape,
+      timeoutMs: z.number().int().min(50).max(600000).default(120000),
       terminal: z.boolean().default(false),
+      streamOutput: z.boolean().optional(),
+      cwd: z.string().min(4).max(4096).optional(),
+      workspaceBytes: z
+        .number()
+        .int()
+        .min(1024)
+        .max(2 * 1024 ** 3)
+        .optional(),
+      writeBytes: z
+        .number()
+        .int()
+        .min(1024)
+        .max(2 * 1024 ** 3)
+        .optional(),
       office: OfficeHelperPayloadSchema.optional(),
     }),
   })
   .superRefine((request, context) => {
+    if (request.payload.args.length > 32 && !request.payload.streamOutput) {
+      context.addIssue({
+        code: 'custom',
+        path: ['payload', 'args'],
+        message: 'Extended argv requires the bounded code route',
+      });
+    }
+    if (
+      request.payload.timeoutMs > 120000 &&
+      !(request.operation === 'diagnostic.execute' && request.payload.streamOutput)
+    ) {
+      context.addIssue({
+        code: 'custom',
+        path: ['payload', 'timeoutMs'],
+        message: 'Extended timeout requires the bounded code execution route',
+      });
+    }
     if (request.operation === 'office.render') {
       if (!request.payload.office) {
         context.addIssue({ code: 'custom', path: ['payload', 'office'], message: 'Required' });
@@ -79,7 +111,7 @@ export const HelperEventSchema = z.strictObject({
   requestId: IdSchema,
   runId: IdSchema,
   leaseEpoch: z.number().int().positive(),
-  event: z.enum(['started', 'finished', 'failed']),
+  event: z.enum(['started', 'output', 'finished', 'failed']),
   data: z.record(z.string(), z.unknown()),
 });
 export type HelperEvent = z.infer<typeof HelperEventSchema>;

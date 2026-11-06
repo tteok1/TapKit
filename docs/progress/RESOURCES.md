@@ -1,3 +1,9 @@
+2026-11-06 P09-02 CI修复：CI86/run42177795449源64feffb三个job全部success；R09独立medium/non-admin标准用户22/22及parser/preview通过，本runner也真实22/22、三能力available。报告各自绑定runner，未跨主机授权；本地新worker指纹151cc048已重新22/22及生产Electron验收。见docs/evidence/P09-02/ci-fix-2026-11-06/ci86-result.json。模型/供应商检测新增0，原2/10余8；不提升R07/P09-03或R13范围。以下为历史。
+
+2026-11-06 P09-02发布：用户新增授权后，实现dcdfbd2已推送本仓库origin/codex/p09-02-terminal-runtime；仅开发分支发布，不提升产品R07/P09-03或原R13模型验收范围。新增模型/供应商检测0，原2/10余8不变；新CI待验。见docs/evidence/P09-02/publication.json。
+
+2026-11-06 P09-02：公开npm/PyPI固定包的真实下载、完整性校验、AppContainer安装及全新环境断网缓存重装通过；新增模型调用0、供应商连接检测0，既有2/10余8不变，R13原模型范围不扩大。新helper当前用户完整探测22/22，指纹ecfcf4a766671adb23c817ad4841811916ef6824954b817e095551dfeb7c5aaa；本轮未运行独立标准用户，不替代R09旧CI证据。未使用R07或外部仓库写入。见docs/evidence/P09-02/registry-live.json及native-probe-final/runtime-probe.json。
+
 2026-11-05 P09-01：仅补既有智谱Chat/GLM-4.7-FlashX的合成代码修改真实闭环（1模型/1工具，actual940、预留0，原目录保全）。新增连接检测2/10余8，两份隔离凭据清理；首轮工具别名本地拒绝及estimated12649（actual未知）保留，其他通道/旧验收范围不提升。见docs/evidence/P09-01/live-final-audit.json与verification.md。
 
 2026-11-03 P08-02：完整智谱闭环尚未通过，任务整体implemented_not_live_verified。30/30检测已用完，#30通过后的正式任务参数/引文三次拒绝、PARSE_FAILED无报告。搜索/来源读取在受控直连范围实证，R16范围见下；这不是缺Key。新check/unit487/研究26通过，最终桌面1项通过并恢复生产构建；全部17个副本清理、预留0。详docs/evidence/P08-02/discovery-verification.md。以下历史范围保留。

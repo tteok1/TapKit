@@ -24,6 +24,7 @@ export const CodePathSchema = z
             part,
           ) &&
           !/^\.env(?:\.|$)/i.test(part) &&
+          !/^\.tapkit-runtime$/i.test(part) &&
           !/\.(pem|key|pfx|p12)$/i.test(part),
       ),
   );

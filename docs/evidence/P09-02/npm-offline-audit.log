@@ -1,0 +1,546 @@
+$ vitest run --config vitest.config.ts --project integration "P09-02" "-t" "npm v3"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+stdout | tests/integration/P09-02.runtime.test.ts > P09-02 npm v3 uses verified cache for a real offline install; malicious postinstall cannot read a private secret
+P09-02 synthetic post-install file audit [
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0039eb5d',
+    bytes: 1564,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/00eed771',
+    bytes: 1868,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0126c206',
+    bytes: 1852,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/01b88726',
+    bytes: 1116,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/027687d4',
+    bytes: 1068,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/02bee9fd',
+    bytes: 4252,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/02fdc34b',
+    bytes: 1436,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/031c54f1',
+    bytes: 5260,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/03acede2',
+    bytes: 2420,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/03b5eab8',
+    bytes: 996,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/03f7ff71',
+    bytes: 1084,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/044532fc',
+    bytes: 2132,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0577c699',
+    bytes: 2580,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/05a42a32',
+    bytes: 1132,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/05f957de',
+    bytes: 2708,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/067538b0',
+    bytes: 4004,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0830232d',
+    bytes: 1996,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/085d7232',
+    bytes: 2220,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/08a2551b',
+    bytes: 2412,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/095a9733',
+    bytes: 1164,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/095aded6',
+    bytes: 6748,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/099b621b',
+    bytes: 3412,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0a8c6e06',
+    bytes: 1932,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0a8cfd2e',
+    bytes: 6132,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0abcfd5e',
+    bytes: 1732,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0b3295e2',
+    bytes: 5644,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0bb7de67',
+    bytes: 2340,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0bf75b8f',
+    bytes: 3468,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0c12cb55',
+    bytes: 1428,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0c3c4b7e',
+    bytes: 1860,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0cae03a4',
+    bytes: 6348,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0cc2ec13',
+    bytes: 1316,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0d6adc04',
+    bytes: 3508,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0daf134e',
+    bytes: 2300,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0dbd2e0b',
+    bytes: 1564,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0f314031',
+    bytes: 1084,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/0f726977',
+    bytes: 3556,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/116ca57f',
+    bytes: 1196,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/117673a1',
+    bytes: 8660,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/12524d42',
+    bytes: 996,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/13bf8634',
+    bytes: 1108,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/13d10431',
+    bytes: 1404,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/152f6a2d',
+    bytes: 964,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/163f5fc9',
+    bytes: 6140,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/163f903e',
+    bytes: 1252,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/164c487b',
+    bytes: 1308,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/16e3bba3',
+    bytes: 1644,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/16ef869f',
+    bytes: 1420,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/16f0e035',
+    bytes: 956,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/1779feee',
+    bytes: 3036,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/17b99ce5',
+    bytes: 7468,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/17d1f3f2',
+    bytes: 1404,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/18345fa6',
+    bytes: 1276,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/18b0a8f8',
+    bytes: 2236,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/19b8b8fc',
+    bytes: 2644,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/19bf4831',
+    bytes: 1388,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/19fba344',
+    bytes: 3540,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/1a2d9346',
+    bytes: 1108,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/1a6873f7',
+    bytes: 2636,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/1b2a2b48',
+    bytes: 1620,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/1bfdc865',
+    bytes: 1676,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/1c07ad84',
+    bytes: 2628,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/1d05dab7',
+    bytes: 2620,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/1dbeae8a',
+    bytes: 2092,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/1e50d934',
+    bytes: 1244,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/1eb935e3',
+    bytes: 2140,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/1ecc8313',
+    bytes: 8348,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/1efcbb61',
+    bytes: 924,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/1fbdd6bc',
+    bytes: 2564,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/2080549b',
+    bytes: 980,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/209f09a7',
+    bytes: 2564,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/20c32168',
+    bytes: 2412,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/221e7701',
+    bytes: 956,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/23138c30',
+    bytes: 1628,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/2490e2cd',
+    bytes: 900,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/24d82758',
+    bytes: 4692,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/25761da6',
+    bytes: 2092,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/25763092',
+    bytes: 1612,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/25e5b4b1',
+    bytes: 3332,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/25ec23c7',
+    bytes: 12548,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/278dce78',
+    bytes: 1460,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/27d395ff',
+    bytes: 964,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/28c86b05',
+    bytes: 1196,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/29320bac',
+    bytes: 1604,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/29582cca',
+    bytes: 2348,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/297ce748',
+    bytes: 1020,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/29a3308e',
+    bytes: 1476,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/2a0b888c',
+    bytes: 892,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/2a5e5d72',
+    bytes: 2836,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/2abb3fc5',
+    bytes: 4292,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/2ae19bae',
+    bytes: 2732,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/2aef9d5f',
+    bytes: 988,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/2b12708f',
+    bytes: 3228,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/2bfd1295',
+    bytes: 2324,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/2bfec5c1',
+    bytes: 1460,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/2c021313',
+    bytes: 1076,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/2c256c00',
+    bytes: 1212,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/2c3e7276',
+    bytes: 956,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/2c7a3306',
+    bytes: 1252,
+    nul: true
+  },
+  {
+    path: 'Packages/tapkit.diagnostic.01a0a25d-0400-71f2-aadd-d01e2cf9b4c2/AC/Temp/node-compile-cache/v24.21.0-x64-964aae3f/2df80e93',
+    bytes: 4420,
+    nul: true
+  },
+  ... 446 more items
+]
+
+ ❯ |integration| tests/integration/P09-02.runtime.test.ts (7 tests | 1 failed | 6 skipped) 6582ms
+   × P09-02 npm v3 uses verified cache for a real offline install; malicious postinstall cannot read a private secret 6376ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P09-02.runtime.test.ts > P09-02 npm v3 uses verified cache for a real offline install; malicious postinstall cannot read a private secret
+AssertionError: {"profile":{"id":"01a0a25d-0400-7a0f-9099-c7906dd77ea8","runId":"01a0a25d-0400-741c-b50b-e4c0f059f974","runtime":"node","version":"24.21.0","cwd":".","lockHash":"0d5287963a0df80d0e76169d1258996bbc68411d31b4d680fba8cf5d92b752eb","state":"failed","message":"OFFLINE_INSTALL_FAILED","progress":["1/1 校验缓存：node_modules/tapkit-fixture-dep"],"commands":[{"name":"Node 测试","argv":["--test","--test-isolation=none"]}],"dependencyCount":1,"licenses":["MIT"],"network":false},"processes":{"runId":"01a0a25d-0400-741c-b50b-e4c0f059f974","profiles":[{"id":"01a0a25d-0400-7a0f-9099-c7906dd77ea8","runId":"01a0a25d-0400-741c-b50b-e4c0f059f974","runtime":"node","version":"24.21.0","cwd":".","lockHash":"0d5287963a0df80d0e76169d1258996bbc68411d31b4d680fba8cf5d92b752eb","state":"failed","message":"OFFLINE_INSTALL_FAILED","progress":["1/1 校验缓存：node_modules/tapkit-fixture-dep"],"commands":[{"name":"Node 测试","argv":["--test","--test-isolation=none"]}],"dependencyCount":1,"licenses":["MIT"],"network":false}],"processes":[{"id":"01a0a25d-0400-7fc7-b559-723bed565313","runId":"01a0a25d-0400-741c-b50b-e4c0f059f974","runtime":"node","argv":["npm","ci","--offline"],"cwd":".","environmentId":"01a0a25d-0400-7a0f-9099-c7906dd77ea8","sourceHash":"63928512b19a5c6ebb075cdb590b41f2b50135cb09a3ab0a429962e76eb7239c","head":null,"state":"unknown","terminal":false,"startedAt":1789430400000,"endedAt":1789430400000,"exitCode":0,"reason":"FEATURE_NOT_AVAILABLE","outputBytes":337,"logRef":"01a0a25d-0400-7fc7-b559-723bed565313","cols":100,"rows":30}]},"output":{"view":{"id":"01a0a25d-0400-7fc7-b559-723bed565313","runId":"01a0a25d-0400-741c-b50b-e4c0f059f974","runtime":"node","argv":["npm","ci","--offline"],"cwd":".","environmentId":"01a0a25d-0400-7a0f-9099-c7906dd77ea8","sourceHash":"63928512b19a5c6ebb075cdb590b41f2b50135cb09a3ab0a429962e76eb7239c","head":null,"state":"unknown","terminal":false,"startedAt":1789430400000,"endedAt":1789430400000,"exitCode":0,"reason":"FEATURE_NOT_AVAILABLE","outputBytes":337,"logRef":"01a0a25d-0400-7fc7-b559-723bed565313","cols":100,"rows":30},"output":{"processId":"01a0a25d-0400-7fc7-b559-723bed565313","offset":0,"nextOffset":337,"text":"\n> tapkit-project@1.0.0 postinstall\n> node --preserve-symlinks --preserve-symlinks-main -e \"try{require('node:fs').readFileSync(\\\"D:\\\\Tapkit-public\\\\.test-data\\\\P06-工作 cnUEpB\\\\P09-02-private-synthetic.txt\\\");console.log('SECRET_ESCAPED')}catch(e){console.log('SECRET_DENIED:'+e.code)}\"\n\nSECRET_DENIED:EPERM\n\nadded 1 package in 989ms\n","truncated":false}}}: expected 'failed' to be 'ready' // Object.is equality
+
+Expected: "ready"
+Received: "failed"
+
+ ❯ tests/integration/P09-02.runtime.test.ts:84:243
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 skipped (7)
+   Start at  03:01:38
+   Duration  9.56s (tests 70%, transform 25%, import 5%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:41
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:224:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:221:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.18.0

@@ -2,6 +2,8 @@
 
 # 数据模型与事务契约
 
+P09-02 schema23：见[ADR0079](../adr/0079-isolated-code-runtime-and-terminal.md)。runtime_profiles按profile/run/runtime保存版本、锁hash、准备进度和私有输入映射；原process_handles追加process_json保存有限ProcessView，identity_json仍存helper实例/native run/lease/PID创建时间及实际argv/cwd/源hash。复用tool_calls与根预算，不另建任务状态；崩溃中的执行转unknown，不重连PID。
+
 P08-02模型投影补充（ADR0076）：materials.evidence的e_编号绑定已读sourceId、contentHash、字符start/end与quoteHash，目录只供当前请求选择。模型record用supports/opposes编号，Core回填fact原文再转原ResearchFindingInput严格校验；不新增数据库/IPC契约。旧内部引文批量参数兼容，实际来源权限、排除、版本与哈希仍在执行/报告时复核。
 
 fact一次选择多个编号时按完整原文精确分组，不同原文各建一条独立逐字陈述，只有相同原文合并来源支持；逐结论质量规则不变，不把不同陈述当互证。inference/conflict/gap保持原语义，事实附反面证据仍拒绝。

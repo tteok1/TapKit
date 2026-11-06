@@ -75,6 +75,8 @@ export interface WorkGateway {
   verify(run: WorkRun, refs: ResourceRef[]): Promise<boolean>;
   formats?(run: WorkRun, refs: ResourceRef[]): Promise<string[]>;
   recover?(run: WorkRun): Promise<boolean>;
+  busy?(runId: string): boolean;
+  settle?(runId: string): Promise<void>;
 }
 export class WorkService {
   readonly repo: WorkRepository;
@@ -276,6 +278,20 @@ export class WorkService {
           run.session_id,
           ['docx', 'pdf', 'pptx'].includes(this.repo.state(run).definition.format),
         );
+      }
+      if (
+        ['runs.steer', 'runs.pause', 'runs.cancel'].includes(request.command) &&
+        !this.store.db
+          .prepare('SELECT 1 FROM request_receipts WHERE profile_id=? AND request_id=?')
+          .get(this.store.profileId, request.requestId)
+      ) {
+        const input =
+          WorkCommandSchemas[request.command as 'runs.steer' | 'runs.pause' | 'runs.cancel'].parse(
+            p,
+          );
+        const current = this.repo.row(input.runId);
+        this.repo.revision(current, request.expectedRevision);
+        await this.gateway.settle?.(current.id);
       }
       return this.store.receipt(request, () => {
         if (request.command === 'runs.accept') {
@@ -766,6 +782,7 @@ export class WorkService {
         .all() as { id: string }[];
       for (const { id } of rows) {
         if (this.active.has(id)) continue;
+        if (this.gateway.busy?.(id)) continue;
         const pending = this.repo.row(id);
         if (
           this.store.db

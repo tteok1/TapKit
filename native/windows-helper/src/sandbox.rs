@@ -5,7 +5,7 @@ use std::{
     fs::File,
     io::{Read, Write},
     mem::size_of,
-    os::windows::io::FromRawHandle,
+    os::windows::{io::FromRawHandle, fs::MetadataExt},
     path::{Path, PathBuf},
     ptr::null_mut,
     sync::{
@@ -398,6 +398,29 @@ unsafe fn profile_acl_snapshot(path: &Path, sid: PSID) -> Value {
     }
     snapshot
 }
+// Metadata-only bounded accounting. Reparse points are never traversed, and directories
+// stay pinned while their children are enumerated. Payloads retain the same zero-network Job.
+unsafe fn workspace_usage(root: &Path, count: &mut usize, total: &mut u64, limit: u64, depth: usize) -> Result<()> {
+    if depth > 100 { return Err("workspace.depth".into()); }
+    let _pin = PinnedPath::open_scoped(&root.to_string_lossy(), true, "workspace.quota")?;
+    for item in std::fs::read_dir(root).map_err(|_| "workspace.enumerate")? {
+        let item = item.map_err(|_| "workspace.entry")?;
+        *count += 1;
+        if *count > 100_000 { return Err("workspace.entries".into()); }
+        let metadata = match std::fs::symlink_metadata(item.path()) {
+            Ok(value) => value,
+            Err(error) if error.kind() == std::io::ErrorKind::NotFound => continue,
+            Err(_) => return Err("workspace.metadata".into()),
+        };
+        if metadata.file_attributes() & FILE_ATTRIBUTE_REPARSE_POINT.0 != 0 { continue; }
+        if metadata.is_dir() { workspace_usage(&item.path(), count, total, limit, depth + 1)?; }
+        else if metadata.is_file() {
+            *total = total.saturating_add(metadata.len());
+            if *total > limit { return Err("workspace.bytes".into()); }
+        }
+    }
+    Ok(())
+}
 fn reader(
     h: Handle,
     total: Arc<AtomicUsize>,
@@ -405,12 +428,15 @@ fn reader(
     preview: Arc<Mutex<Vec<u8>>>,
     mut log: File,
     limit: usize,
+    streaming: Option<Request>,
+    stream_name: &'static str,
 ) -> thread::JoinHandle<()> {
     let raw = h.0.0 as usize;
     std::mem::forget(h);
     thread::spawn(move || {
         let mut f = unsafe { File::from_raw_handle(raw as *mut c_void) };
         let mut bytes = [0u8; 8192];
+        let mut pending = Vec::new();
         loop {
             let Ok(n) = f.read(&mut bytes) else {
                 break;
@@ -423,10 +449,31 @@ fn reader(
             if log.write_all(&bytes[..logged]).is_err() {
                 total.store(limit + 1, Ordering::Relaxed);
             }
+            if let Some(ref request) = streaming {
+                pending.extend_from_slice(&bytes[..logged]);
+                let mut text = String::new();
+                loop {
+                    match std::str::from_utf8(&pending) {
+                        Ok(value) => { text.push_str(value); pending.clear(); break; }
+                        Err(error) => {
+                            let valid = error.valid_up_to();
+                            text.push_str(std::str::from_utf8(&pending[..valid]).unwrap());
+                            if let Some(length) = error.error_len() {
+                                text.push('\u{fffd}');
+                                pending.drain(..valid + length);
+                            } else { pending.drain(..valid); break; }
+                        }
+                    }
+                }
+                if !text.is_empty() { emit(request, "output", json!({"stream":stream_name,"text":text})); }
+            }
             let mut dest = preview.lock().unwrap();
             let keep =
                 n.min(65536usize.saturating_sub(preview_count.fetch_add(n, Ordering::Relaxed)));
             dest.extend_from_slice(&bytes[..keep]);
+        }
+        if let Some(ref request) = streaming {
+            if !pending.is_empty() { emit(request, "output", json!({"stream":stream_name,"text":String::from_utf8_lossy(&pending)})); }
         }
     })
 }
@@ -676,7 +723,21 @@ unsafe fn execute_process(
     startup.lpAttributeList = attrs.list;
     // No caller environment is forwarded; no HOME, credentials, proxy, SSH agent or config.
     let system = std::env::var("SystemRoot").map_err(|_| "environment.systemRoot")?;
-    let entries = [
+    let mut scratch_pins = Vec::new();
+    let mut private_env = workspace.path.clone();
+    if p.stream_output {
+        private_env = workspace.path.join(".tapkit-runtime");
+        for path in [private_env.clone(), private_env.join("tmp"), private_env.join("profile"), private_env.join("local"), private_env.join("roaming")] {
+            match std::fs::create_dir(&path) {
+                Ok(_) => {},
+                Err(error) if error.kind() == std::io::ErrorKind::AlreadyExists => {},
+                Err(_) => return Err("environment.privateDirectory".into()),
+            }
+            scratch_pins.push(PinnedPath::open_scoped(&path.to_string_lossy(), true, "environment.private")?);
+        }
+    }
+    let private_path = |name: &str| if p.stream_output { private_env.join(name) } else { workspace.path.clone() };
+    let mut entries = vec![
         format!(
             "PATH={};{}",
             executable.path.parent().unwrap().display(),
@@ -684,11 +745,11 @@ unsafe fn execute_process(
         ),
         format!("SystemRoot={}", system),
         format!("WINDIR={}", system),
-        format!("TEMP={}", workspace.path.display()),
-        format!("TMP={}", workspace.path.display()),
-        format!("USERPROFILE={}", workspace.path.display()),
-        format!("LOCALAPPDATA={}", workspace.path.display()),
-        format!("APPDATA={}", workspace.path.display()),
+        format!("TEMP={}", private_path("tmp").display()),
+        format!("TMP={}", private_path("tmp").display()),
+        format!("USERPROFILE={}", private_path("profile").display()),
+        format!("LOCALAPPDATA={}", private_path("local").display()),
+        format!("APPDATA={}", private_path("roaming").display()),
         "PYTHONIOENCODING=utf-8".into(),
         "PYTHONUTF8=1".into(),
         "GIT_CONFIG_NOSYSTEM=1".into(),
@@ -696,6 +757,10 @@ unsafe fn execute_process(
         "GIT_TERMINAL_PROMPT=0".into(),
         "GIT_CONFIG_SYSTEM=NUL".into(),
     ];
+    if p.stream_output {
+        entries.push("NODE_OPTIONS=--preserve-symlinks --preserve-symlinks-main".into());
+        entries.push("NODE_DISABLE_COMPILE_CACHE=1".into());
+    }
     let mut environment: Vec<u16> = entries.iter().flat_map(|e| w(e)).collect();
     environment.push(0);
     let cmd = std::iter::once(p.executable.as_str())
@@ -705,7 +770,12 @@ unsafe fn execute_process(
         .join(" ");
     let mut command = w(&cmd);
     let exe_name = w(&p.executable);
-    let cwd = w(workspace_alias.unwrap_or(&p.workspace));
+    let cwd_pin = p.cwd.as_ref().map(|path| PinnedPath::open_scoped(path, true, "cwd")).transpose()?;
+    if let Some(ref pinned) = cwd_pin {
+        if !within(&pinned.path, &workspace.path) && pinned.path != workspace.path { return Err("cwd.scope".into()); }
+        if workspace_alias.is_some() { return Err("cwd.office".into()); }
+    }
+    let cwd = w(p.cwd.as_deref().unwrap_or(workspace_alias.unwrap_or(&p.workspace)));
     let mut pi = PROCESS_INFORMATION::default();
     let flags = EXTENDED_STARTUPINFO_PRESENT
         | CREATE_SUSPENDED
@@ -802,6 +872,8 @@ unsafe fn execute_process(
         stdout.clone(),
         stdout_log,
         p.output_bytes,
+        if p.stream_output { Some(r.clone()) } else { None },
+        "stdout",
     );
     let err_reader = reader(
         err_read,
@@ -810,31 +882,48 @@ unsafe fn execute_process(
         stderr.clone(),
         stderr_log,
         p.output_bytes,
+        if p.stream_output { Some(r.clone()) } else { None },
+        "stderr",
     );
+    let (mut created, mut exited, mut kernel, mut user) = (FILETIME::default(), FILETIME::default(), FILETIME::default(), FILETIME::default());
+    check(GetProcessTimes(process.0, &mut created, &mut exited, &mut kernel, &mut user), "process.times")?;
+    let process_start_time = ((created.dwHighDateTime as u64) << 32) | created.dwLowDateTime as u64;
     emit(
         r,
         "started",
-        json!({"pid":pi.dwProcessId,"appContainer":true,"identitySid":sid_text,"appContainerSid":Some(&sid_text),"restrictedToken":false,
+        json!({"pid":pi.dwProcessId,"helperInstanceId":r.request_id,"helperPid":std::process::id(),"processStartTime":process_start_time.to_string(),"appContainer":true,"identitySid":sid_text,"appContainerSid":Some(&sid_text),"restrictedToken":false,
         "networkCapabilities":0,"runtimeAcl":runtime_acl,"job":{"killOnClose":true,"memoryBytes":p.memory_bytes,"processLimit":p.process_limit,"breakaway":false}}),
     );
     let start = Instant::now();
     let mut reason = "exited";
     let mut code = 0u32;
     let mut peak_active = 0u32;
+    let mut last_workspace_sample = Instant::now() - Duration::from_secs(1);
     loop {
-        let mut sample = JOBOBJECT_BASIC_ACCOUNTING_INFORMATION::default();
+        if (p.stream_output || p.workspace_bytes.is_some()) && last_workspace_sample.elapsed() >= Duration::from_millis(200) {
+            last_workspace_sample = Instant::now();
+            if workspace_usage(&workspace.path, &mut 0usize, &mut 0u64, p.workspace_bytes.unwrap_or(2 * 1024 * 1024 * 1024), 0).is_err() {
+                reason = "workspace_limit";
+                break;
+            }
+        }
+        let mut sample = JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION::default();
         check(
             QueryInformationJobObject(
                 Some(job.0),
-                JobObjectBasicAccountingInformation,
-                (&mut sample as *mut JOBOBJECT_BASIC_ACCOUNTING_INFORMATION).cast(),
+                JobObjectBasicAndIoAccountingInformation,
+                (&mut sample as *mut JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION).cast(),
                 size_of_val(&sample) as u32,
                 None,
             ),
             "job.sample",
         )?;
-        peak_active = peak_active.max(sample.ActiveProcesses);
-        if sample.ActiveProcesses > p.process_limit {
+        if p.stream_output && sample.IoInfo.WriteTransferCount > p.write_bytes.unwrap_or(2 * 1024 * 1024 * 1024) {
+            reason = "workspace_limit";
+            break;
+        }
+        peak_active = peak_active.max(sample.BasicInfo.ActiveProcesses);
+        if sample.BasicInfo.ActiveProcesses > p.process_limit {
             reason = "process_limit";
             break;
         }
@@ -869,6 +958,13 @@ unsafe fn execute_process(
                                     Some(&mut written),
                                     None,
                                 );
+                            }
+                        }
+                        if p.terminal && c["operation"] == "terminal.resize" {
+                            if let (Some(cols), Some(rows), Some(con)) = (c["payload"]["cols"].as_u64(), c["payload"]["rows"].as_u64(), console.as_ref()) {
+                                if (20..=400).contains(&cols) && (5..=200).contains(&rows) {
+                                    check(ResizePseudoConsole(con.0, COORD { X: cols as i16, Y: rows as i16 }), "conpty.resize")?;
+                                }
                             }
                         }
                     }
@@ -918,10 +1014,16 @@ unsafe fn execute_process(
     drop(console);
     let _ = out_reader.join();
     let _ = err_reader.join();
+    let mut io = JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION::default();
+    check(QueryInformationJobObject(Some(job.0), JobObjectBasicAndIoAccountingInformation,
+        (&mut io as *mut JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION).cast(), size_of_val(&io) as u32, None), "job.io")?;
+    if reason == "exited" && p.stream_output && io.IoInfo.WriteTransferCount > p.write_bytes.unwrap_or(2 * 1024 * 1024 * 1024) {
+        reason = "workspace_limit";
+    }
     Ok(
         json!({"status":reason,"exitCode":code,"activeProcesses":accounting.ActiveProcesses,
         "peakActiveProcesses":peak_active,"totalProcesses":accounting.TotalProcesses,"outputBytes":total.load(Ordering::Relaxed),"logDirectory":log_dir.to_string_lossy(),
-        "stdout":String::from_utf8_lossy(&stdout.lock().unwrap()),
+        "writeBytes":io.IoInfo.WriteTransferCount,"stdout":String::from_utf8_lossy(&stdout.lock().unwrap()),
         "stderr":String::from_utf8_lossy(&stderr.lock().unwrap())}),
     )
 }

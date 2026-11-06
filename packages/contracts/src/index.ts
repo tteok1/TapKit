@@ -1,4 +1,5 @@
 export * from './code';
+export * from './terminal';
 import { z } from 'zod';
 import type { StartLogin } from './providers';
 import { IdSchema } from './identity';
@@ -146,7 +147,7 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('ready'),
     protocolVersion: z.literal(1),
-    schemaVersion: z.literal(22),
+    schemaVersion: z.literal(23),
   }),
   z.strictObject({ type: z.literal('pong'), id: z.string().uuid(), payload: PingReplySchema }),
   z.strictObject({ type: z.literal('reply'), id: z.string().uuid(), reply: ReplySchema }),
@@ -155,6 +156,11 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
 export type PingRequest = z.infer<typeof PingRequestSchema>;
 export type PingReply = z.infer<typeof PingReplySchema>;
 export interface TapKitBridge {
+  terminalCommand(
+    options: RequestOptions,
+    command: import('./terminal').TerminalCommand,
+    payload: unknown,
+  ): Promise<Reply>;
   chooseCodeProject(runId: string): Promise<Reply>;
   codeCommand(
     options: RequestOptions,

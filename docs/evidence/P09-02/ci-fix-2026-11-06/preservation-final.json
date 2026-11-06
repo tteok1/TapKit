@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "originalSourceUnchanged": 43,
+  "documentedSourceFixes": [
+    ".github/workflows/check.yml",
+    "docs/adr/0079-isolated-code-runtime-and-terminal.md",
+    "resources/runtime/code-python-launch.py",
+    "tests/e2e/P09-02.terminal.spec.ts",
+    "tests/integration/P09-02.runtime.test.ts"
+  ],
+  "originalBuildHashesUnchanged": 7,
+  "originalEvidenceHashesUnchanged": 25,
+  "nativeJournalSha256": "7adebd9c1d8f814dc08b7e9f691680606f47a9b60750c88d37536d2d2c3974df",
+  "existingMaintenanceSha256": {
+    "docs/progress/P00-01.md": "f7465fa4a18b14fc9b1a60a4040ddeb00f2fd05a8affe047e558b8a6ab504b37",
+    "docs/evidence/maintenance/storage-audit-2026-11-05.json": "4963b2a762be78b7c1c21674d77e254220c7778f51c2c75690eea4adab06e972",
+    "docs/progress/CURRENT.md#maintenance": "147aea748851739f0be393fbcc88824c8a9a00d3ef808e01db20148e03887530",
+    "docs/progress/INDEX.md#maintenance": "802fcc8c8b768c1940464ca88c0db5ba179e7903b0df7772affb2e22518aace8",
+    "docs/progress/requirements.csv#ENG-P00-01-CHECK": "51c4d09a386b029a9de50bbefadf745006e85ffc2bf44ddc1f6fced21e3c8a3d"
+  },
+  "newModelCalls": 0,
+  "newProviderConnectionChecks": 0,
+  "mainUnchanged": true
+}

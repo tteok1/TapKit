@@ -7,7 +7,9 @@ permissions:
 jobs:
   check:
     runs-on: windows-2025
-    timeout-minutes: 45
+    # Include the runner-bound 22-case probe before Electron, in addition to
+    # the independent standard-user and Office shutdown diagnostics below.
+    timeout-minutes: 60
     env:
       TAPKIT_STARTUP_DIAGNOSTICS: '1'
     steps:
@@ -58,7 +60,12 @@ jobs:
         run: |
           .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs build
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:e2e -- --grep "P00-0[12]|P02-02|P03-0[123]|P04-0[123]|P09-01"
+          # Native capability receipts are runner-bound. The office-native job and
+          # the later standard-user copy cannot authorize this desktop process.
+          $env:TAPKIT_RUNTIME_PROBE_EVIDENCE_DIR = 'docs/evidence/P09-02/ci-current-user'
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe scripts/runtime-probe.mjs --scope=current-user
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:e2e -- --grep "P00-0[12]|P02-02|P03-0[123]|P04-0[123]|P09-0[12]"
       - name: Verify P00-03 and P03 parser as an independent standard user
         if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' && steps.check.outcome == 'success' }}
         shell: pwsh
@@ -87,6 +94,7 @@ jobs:
             docs/evidence/P04-01
             docs/evidence/P04-02
             docs/evidence/P04-03
+            docs/evidence/P09-02
   office-native:
     # Keep the verified native report on this runner. Its full runtime hashing
     # must not be repeated by every unrelated desktop startup in the check job.

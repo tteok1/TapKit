@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "task": "P03-01",
+  "startedAt": "2026-11-06T07:48:24.944Z",
+  "endedAt": "2026-11-06T07:48:45.149Z",
+  "command": "pnpm test:integration P03-01.native-parser --reporter=json --outputFile=test-results/P03-01-native-parser.json",
+  "exitCode": 0,
+  "standardUser": true,
+  "adapterSha256": "b5e28b01585ab1eabe292d79bbe21eeb57bf046a3cedfecead4d0d2cb65e549a",
+  "passed": true,
+  "missingCases": [],
+  "tests": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "pending": 0
+  }
+}

@@ -9,3 +9,4 @@ export * from './registry';
 export * from './data-svg';
 
 export * from './execution/code-workspace';
+export * from './execution/code-environment';

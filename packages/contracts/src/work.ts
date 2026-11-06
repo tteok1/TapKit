@@ -1,4 +1,5 @@
 import { CodeWorkToolSchema } from './code';
+import { ExecWorkToolSchema } from './terminal';
 import {
   DelegationCommandSchemas,
   DelegateResultSchema,
@@ -35,7 +36,8 @@ export const DOCUMENT_WORK_TOOL_CATALOG_VERSION = 'p07-tools-1';
 export const DATA_WORK_TOOL_CATALOG_VERSION = 'p07-tools-2';
 export const SLIDES_WORK_TOOL_CATALOG_VERSION = 'p07-tools-3';
 export const BROWSER_WORK_TOOL_CATALOG_VERSION = 'p08-tools-1';
-export const WORK_TOOL_CATALOG_VERSION = 'p08-tools-2';
+export const RESEARCH_WORK_TOOL_CATALOG_VERSION = 'p08-tools-2';
+export const WORK_TOOL_CATALOG_VERSION = 'p09-tools-1';
 
 export const WorkDefinitionSchema = z.strictObject({
   delegationSummaryOnly: z.boolean().optional(),
@@ -201,6 +203,7 @@ export const ArtifactWorkToolArgsSchema = z.discriminatedUnion('tool', [
 export type ArtifactWorkToolArgs = z.infer<typeof ArtifactWorkToolArgsSchema>;
 export const WorkToolArgsSchema = z.union([
   CodeWorkToolSchema,
+  ExecWorkToolSchema,
   ArtifactWorkToolArgsSchema,
   BrowserWorkToolArgsSchema,
   ResearchWorkToolArgsSchema,

@@ -1,0 +1,71 @@
+$ node scripts/e2e.mjs "--" "--grep" "P09-02"
+
+Running 1 test using 1 worker
+
+(node:40564) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\e2e\P09-02.terminal.spec.ts:6:1 › P09-02 desktop runs real Node and Python checks, keeps failures, handles ConPTY and pages output without freezing (3.5s)
+
+
+  1) tests\e2e\P09-02.terminal.spec.ts:6:1 › P09-02 desktop runs real Node and Python checks, keeps failures, handles ConPTY and pages output without freezing 
+
+    Error: P09-02 requires a probe on this runner
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+      Object {
+    -   "status": "available",
+    +   "code": "SANDBOX_UNAVAILABLE",
+    +   "reason": "PROBE_REQUIRED",
+    +   "status": "failed",
+      }
+
+      46 |       return reply.data.runtimeCapabilities;
+      47 |     });
+    > 48 |     expect(capabilities?.nativeExecution, 'P09-02 requires a probe on this runner').toEqual({
+         |                                                                                     ^
+      49 |       status: 'available',
+      50 |     });
+      51 |     expect(capabilities?.terminal, 'P09-02 requires verified ConPTY on this runner').toEqual({
+        at D:\Tapkit-public\tests\e2e\P09-02.terminal.spec.ts:48:85
+
+    Error Context: test-results\e2e\P09-02.terminal-P09-02-des-2e124-ges-output-without-freezing\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P09-02.terminal-P09-02-des-2e124-ges-output-without-freezing\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P09-02.terminal-P09-02-des-2e124-ges-output-without-freezing\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P09-02.terminal.spec.ts:6:1 › P09-02 desktop runs real Node and Python checks, keeps failures, handles ConPTY and pages output without freezing 
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/e2e.mjs:15:21
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:270
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:224:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:221:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.18.0

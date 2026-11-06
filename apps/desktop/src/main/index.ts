@@ -1,4 +1,5 @@
 import { CodeCommandSchemas } from '@tapkit/contracts';
+import { TerminalCommandSchemas } from '@tapkit/contracts';
 import {
   clipboard,
   app,
@@ -643,6 +644,7 @@ if (ownsLock) {
       ...Object.keys(WorkCommandSchemas),
       ...Object.keys(BrowserCommandSchemas),
       ...Object.keys(CodeCommandSchemas),
+      ...Object.keys(TerminalCommandSchemas),
       'models.catalog',
       'models.preferences.get',
       'models.preferences.set',

@@ -1,0 +1,49 @@
+2026-11-05T21:11:52.2792823Z   ok 51 tests\e2e\P09-01.code.spec.ts:6:1 › P09-01 desktop selects a real directory, reviews lines, records feedback, reverts/restores and retains the source (3.5s)
+2026-11-05T21:12:55.0806282Z   x  52 tests\e2e\P09-02.terminal.spec.ts:6:1 › P09-02 desktop runs real Node and Python checks, keeps failures, handles ConPTY and pages output without freezing (1.0m)
+2026-11-05T21:12:55.1180335Z 
+2026-11-05T21:12:55.1187884Z 
+2026-11-05T21:12:55.1203944Z   1) tests\e2e\P09-02.terminal.spec.ts:6:1 › P09-02 desktop runs real Node and Python checks, keeps failures, handles ConPTY and pages output without freezing 
+2026-11-05T21:12:55.1204924Z 
+2026-11-05T21:12:55.1205151Z     Error: expect(locator).toBeVisible() failed
+2026-11-05T21:12:55.1205397Z 
+2026-11-05T21:12:55.1206130Z     Locator: getByRole('region', { name: '运行与终端', exact: true }).getByRole('status').filter({ hasText: '环境已准备' })
+2026-11-05T21:12:55.1207162Z     Expected: visible
+2026-11-05T21:12:55.1207494Z     Timeout: 60000ms
+2026-11-05T21:12:55.1207799Z     Error: element(s) not found
+2026-11-05T21:12:55.1208008Z 
+2026-11-05T21:12:55.1208114Z     Call log:
+2026-11-05T21:12:55.1208990Z       - Expect "toBeVisible" getByRole('region', { name: '运行与终端', exact: true }).getByRole('status').filter({ hasText: '环境已准备' }) with timeout 60000ms
+2026-11-05T21:12:55.1210858Z       - waiting for getByRole('region', { name: '运行与终端', exact: true }).getByRole('status').filter({ hasText: '环境已准备' })
+2026-11-05T21:12:55.1211901Z 
+2026-11-05T21:12:55.1211909Z 
+2026-11-05T21:12:55.1212415Z       55 |       await panel.getByRole('combobox', { name: '运行环境', exact: true }).selectOption(runtime);
+2026-11-05T21:12:55.1213220Z       56 |       await panel.getByRole('button', { name: '准备运行环境', exact: true }).click();
+2026-11-05T21:12:55.1213994Z     > 57 |       await expect(panel.getByRole('status').filter({ hasText: '环境已准备' })).toBeVisible({
+2026-11-05T21:12:55.1214597Z          |                                                                            ^
+2026-11-05T21:12:55.1214999Z       58 |         timeout: 60000,
+2026-11-05T21:12:55.1215303Z       59 |       });
+2026-11-05T21:12:55.1215669Z       60 |       const preset = panel.getByRole('button', {
+2026-11-05T21:12:55.1216399Z         at D:\a\TapKit\TapKit\tests\e2e\P09-02.terminal.spec.ts:57:76
+2026-11-05T21:12:55.1216716Z 
+2026-11-05T21:12:55.1217141Z     Error Context: test-results\e2e\P09-02.terminal-P09-02-des-2e124-ges-output-without-freezing\error-context.md
+2026-11-05T21:12:55.1217643Z 
+2026-11-05T21:12:55.1218107Z     attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+2026-11-05T21:12:55.1218818Z     test-results\e2e\P09-02.terminal-P09-02-des-2e124-ges-output-without-freezing\trace.zip
+2026-11-05T21:12:55.1219323Z     Usage:
+2026-11-05T21:12:55.1219507Z 
+2026-11-05T21:12:55.1219990Z         pnpm exec playwright show-trace test-results\e2e\P09-02.terminal-P09-02-des-2e124-ges-output-without-freezing\trace.zip
+2026-11-05T21:12:55.1220511Z 
+2026-11-05T21:12:55.1220851Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-11-05T21:12:55.1221181Z 
+2026-11-05T21:12:55.1221309Z   1 failed
+2026-11-05T21:12:55.1222586Z     tests\e2e\P09-02.terminal.spec.ts:6:1 › P09-02 desktop runs real Node and Python checks, keeps failures, handles ConPTY and pages output without freezing 
+2026-11-05T21:12:55.1223368Z   51 passed (4.7m)
+2026-11-05T21:12:55.6165760Z [36mvite v7.3.6 [32mbuilding ssr environment for production...[36m[39m
+2026-11-05T21:12:55.6614405Z transforming...
+2026-11-05T21:12:56.1962386Z [33mnode_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+2026-11-05T21:12:56.1963077Z 
+2026-11-05T21:12:56.1964640Z "// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+2026-11-05T21:12:56.1965831Z 
+2026-11-05T21:12:56.1967410Z in "node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.[39m
+2026-11-05T21:12:56.1980064Z [33mnode_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+2026-11-05T21:12:56.1980479Z 

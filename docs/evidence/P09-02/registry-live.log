@@ -1,0 +1,10 @@
+$ vitest run --config vitest.config.ts --project integration "P09-02" "-t" "registry live"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 11 skipped (12)
+   Start at  03:22:46
+   Duration  18.37s (tests 84%, transform 13%, import 3%)
+

@@ -1,0 +1,36 @@
+.github/workflows/check.yml 36ms (unchanged)
+apps/desktop/src/main/index.ts 243ms (unchanged)
+apps/desktop/src/preload/index.ts 30ms (unchanged)
+apps/desktop/src/renderer/locales/terminal.zh-CN.json 18ms
+apps/desktop/src/renderer/src/code-ui.tsx 65ms (unchanged)
+apps/desktop/src/renderer/src/terminal-command.ts 8ms
+apps/desktop/src/renderer/src/terminal-ui.tsx 31ms
+apps/desktop/src/renderer/src/terminal.css 34ms
+docs/adr/0079-isolated-code-runtime-and-terminal.md 50ms (unchanged)
+docs/progress/P09-02.md 13ms
+packages/contracts/src/code.ts 16ms (unchanged)
+packages/contracts/src/execution.ts 12ms
+packages/contracts/src/foundation.ts 34ms (unchanged)
+packages/contracts/src/index.ts 38ms
+packages/contracts/src/terminal.ts 14ms
+packages/contracts/src/work.ts 44ms (unchanged)
+packages/core/src/code-runtime.ts 103ms
+packages/core/src/code-service.ts 68ms
+packages/core/src/index.ts 41ms
+packages/core/src/work-driver.ts 47ms
+packages/core/src/work-gateway.ts 133ms
+packages/providers/src/api/zhipu-tools.ts 6ms (unchanged)
+packages/storage/src/foundation.ts 44ms (unchanged)
+packages/tools/src/execution/code-environment.ts 35ms
+packages/tools/src/execution/index.ts 20ms
+packages/tools/src/execution/native-executor.ts 7ms
+packages/tools/src/index.ts 2ms (unchanged)
+packages/tools/src/registry.ts 7ms
+packages/ui/src/index.ts 2ms (unchanged)
+packages/ui/src/terminal.tsx 6ms
+scripts/runtime-inventory.mjs 12ms (unchanged)
+tests/e2e/P00-01.shell.spec.ts 14ms (unchanged)
+tests/e2e/P09-02.terminal.spec.ts 18ms
+tests/integration/P09-02.runtime.test.ts 64ms
+tests/unit/P00-02.contracts.test.ts 4ms (unchanged)
+tests/unit/P09-02.environment.test.ts 10ms

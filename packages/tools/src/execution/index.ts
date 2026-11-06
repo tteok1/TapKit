@@ -29,11 +29,14 @@ export function runDiagnostic(
     signal?: AbortSignal;
     onStarted?: (
       event: HelperEvent,
-      send: (operation: 'cancel' | 'terminal.input', payload?: unknown) => void,
+      send: (operation: 'cancel' | 'terminal.input' | 'terminal.resize', payload?: unknown) => void,
     ) => void;
+    onOutput?: (event: HelperEvent) => void;
   } = {},
 ): Promise<DiagnosticResult> {
   const request = HelperRequestSchema.parse(raw);
+  if (Buffer.byteLength(JSON.stringify(request) + '\n') > 65536)
+    throw new SandboxError('HELPER_REQUEST_TOO_LARGE');
   if (!isAbsolute(helper)) throw new SandboxError('HELPER_PATH_NOT_ABSOLUTE');
   return new Promise((resolveResult, reject) => {
     if (options.signal?.aborted) {
@@ -54,10 +57,14 @@ export function runDiagnostic(
       },
     });
     const events: HelperEvent[] = [];
+    let outputBytes = 0;
     let buffer = '',
       diagnostics = '',
       invalid = false;
-    const send = (operation: 'cancel' | 'terminal.input', payload: unknown = {}) => {
+    const send = (
+      operation: 'cancel' | 'terminal.input' | 'terminal.resize',
+      payload: unknown = {},
+    ) => {
       if (!child.stdin.destroyed)
         child.stdin.write(
           JSON.stringify({
@@ -103,10 +110,22 @@ export function runDiagnostic(
           if (
             event.requestId !== request.requestId ||
             event.runId !== request.runId ||
-            event.leaseEpoch !== request.leaseEpoch ||
-            events.length >= 3
+            event.leaseEpoch !== request.leaseEpoch
           )
             throw new Error('protocol');
+          if (event.event === 'output') {
+            if (
+              !request.payload.streamOutput ||
+              typeof event.data.text !== 'string' ||
+              !['stdout', 'stderr'].includes(String(event.data.stream))
+            )
+              throw new Error('protocol');
+            outputBytes += Buffer.byteLength(event.data.text);
+            if (outputBytes > request.payload.outputBytes * 3 + 65536) throw new Error('protocol');
+            options.onOutput?.(event);
+            continue;
+          }
+          if (events.length >= 3) throw new Error('protocol');
           events.push(event);
           if (event.event === 'started') options.onStarted?.(event, send);
         } catch {

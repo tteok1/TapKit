@@ -133,6 +133,8 @@ P00-03必须验证管理员初始化后标准用户下Node、Python、OfficeWork
 
 ## 5. 依赖下载与代码项目
 
+P09-02实现决定见[ADR0079](../adr/0079-isolated-code-runtime-and-terminal.md)：可信broker只处理registry元数据和校验包字节；npm ci及Python固定wheel安装均在原AppContainer中离线执行。精确Python依赖必须包含间接依赖；源码编译暂不支持。Node内建测试明确使用同进程测试模式及既有受限模块加载参数；普通代码不获得盘根、Git私有元数据或网络权限。执行状态、日志和恢复均使用原根账本及完整进程身份。
+
 **GitBroker 执行边界（ADR 0007）：** 正常 Win32 固定操作，不让模型传 executable/argv/环境/git-dir。P00 以 Core 提供的授权字节构造私有 bare 元数据及工作快照，只验收无凭据 status/diff 和恶意配置拒绝；不读取模型指定宿主路径。P09 再实现持久镜像、commit/push 授权。下文沙箱内 Git fixture 是旧兼容测试，不是新架构的放行条件。
 
 应用运行时预先随包分发。用户代码项目新增依赖走DependencyBroker：解析声明→生成下载清单→校验registry/URL/integrity→下载缓存→沙箱离线安装。支持首版Node npm package-lock v3和Python精确版本requirements/受控解析锁；其他构建体系明确显示未支持。

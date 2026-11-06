@@ -1,0 +1,55 @@
+{
+  "heartbeatMs": 26.600000008940697,
+  "visibility": "visible",
+  "focused": true,
+  "metrics": [
+    {
+      "width": 1347,
+      "panelWidth": 880,
+      "overflow": 0,
+      "terminal": {
+        "x": 348,
+        "y": 753.921875,
+        "width": 880,
+        "height": 330,
+        "top": 753.921875,
+        "right": 1228,
+        "bottom": 1083.921875,
+        "left": 348
+      },
+      "commands": 14,
+      "grid": {
+        "width": 843,
+        "height": 293,
+        "availableWidth": 849,
+        "availableHeight": 306,
+        "viewportBackground": "rgb(246, 248, 246)",
+        "surfaceBackground": "rgb(246, 248, 246)"
+      }
+    },
+    {
+      "width": 967,
+      "panelWidth": 596,
+      "overflow": 0,
+      "terminal": {
+        "x": 300,
+        "y": 753.828125,
+        "width": 596,
+        "height": 330,
+        "top": 753.828125,
+        "right": 896,
+        "bottom": 1083.828125,
+        "left": 300
+      },
+      "commands": 14,
+      "grid": {
+        "width": 558,
+        "height": 293,
+        "availableWidth": 565,
+        "availableHeight": 306,
+        "viewportBackground": "rgb(21, 27, 23)",
+        "surfaceBackground": "rgb(21, 27, 23)"
+      }
+    }
+  ]
+}

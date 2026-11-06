@@ -1,0 +1,26 @@
+{
+  "task": "P09-02",
+  "scope": "Fresh synthetic profiles, direct pinned public registry policy, real AppContainer install; no account/model call",
+  "state": "passed",
+  "node": {
+    "package": "is-number",
+    "version": "7.0.0",
+    "url": "https://registry.npmjs.org/is-number/-/is-number-7.0.0.tgz",
+    "integrity": "sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==",
+    "install": "ready",
+    "output": "LIVE_NODE:true\n"
+  },
+  "python": {
+    "package": "colorama",
+    "version": "0.4.6",
+    "install": "ready",
+    "output": "LIVE_PYTHON:0.4.6\r\n"
+  },
+  "freshEnvironmentOfflineReinstall": {
+    "node": "passed",
+    "python": "passed",
+    "networkMethod": "throws if called"
+  },
+  "newModelCalls": 0,
+  "providerConnectionChecks": 0
+}

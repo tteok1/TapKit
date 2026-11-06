@@ -1,0 +1,25 @@
+rust already prepared 1.98.1
+windowsSdk already prepared 10.0.28000.2705
+msvcCrt already prepared 14.44.35226
+msvcImports already prepared 14.44.35226
+   Compiling tapkit-windows-helper v0.1.0 (D:\Tapkit-public\native\windows-helper)
+error[E0133]: call to unsafe function `PinnedPath::open_scoped` is unsafe and requires unsafe function or block
+   --> src\sandbox.rs:405:16
+    |
+405 |     let _pin = PinnedPath::open_scoped(&root.to_string_lossy(), true, "workspace.quota")?;
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+    |
+    = note: consult the function's documentation for information on how to avoid undefined behavior
+
+For more information about this error, try `rustc --explain E0133`.
+error: could not compile `tapkit-windows-helper` (bin "tapkit-windows-helper") due to 1 previous error
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\rust\rust-1.98.1-x86_64-pc-windows-msvc\cargo\bin\cargo.exe exited 101
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at buildHelper (file:///D:/Tapkit-public/scripts/helper-build.mjs:41:3)
+    at async file:///D:/Tapkit-public/scripts/helper-build.mjs:66:30
+
+Node.js v24.18.0

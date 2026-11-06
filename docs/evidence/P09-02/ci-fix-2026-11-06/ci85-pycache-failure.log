@@ -1,0 +1,35 @@
+2026-11-06T06:50:04.0144093Z [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+2026-11-06T06:50:04.0144548Z 
+2026-11-06T06:50:04.0146558Z [41m[1m FAIL [22m[49m [30m[45m integration [49m[39m tests/integration/P09-02.runtime.test.ts[2m > [22mP09-02 python real failed test then hash-bound repair passes and original remains unchanged
+2026-11-06T06:50:04.0156090Z [31m[1mAssertionError[22m: {"process":{"id":"01a0a25d-0400-73f0-88eb-317f2ed4770b","runId":"01a0a25d-0400-7894-b488-0e751daca885","runtime":"python","argv":["-m","unittest","discover","-v"],"cwd":".","environmentId":"01a0a25d-0400-73e1-bc4a-82bfaacf7505","sourceHash":"62a091a9809880feb5edf7a8c487c862b58d5d1b6dbc95c702d4b20aaa84f77c","head":null,"state":"failed","terminal":false,"startedAt":1789430400000,"endedAt":1789430400000,"exitCode":1,"reason":"exited","outputBytes":742,"logRef":"01a0a25d-0400-73f0-88eb-317f2ed4770b","cols":100,"rows":30},"output":"Failed to find real location of D:\\a\\TapKit\\TapKit\\.runtime\\python\\python.exe\ntest_sum (test_sum.TestSum.test_sum) ... FAIL\r\n\r\n======================================================================\r\nFAIL: test_sum (test_sum.TestSum.test_sum)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\a\\TapKit\\TapKit\\.test-data\\P06-工作 vhxM3i\\workspaces\\01a0a25d-0400-7894-b488-0e751daca885\\test_sum.py\", line 4, in test_sum\r\n    def test_sum(self): self.assertEqual(sum(2,3),5)\r\n                        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\r\nAssertionError: -1 != 5\r\n\r\n----------------------------------------------------------------------\r\nRan 1 test in 0.001s\r\n\r\nFAILED (failures=1)\r\n"}: expected 'failed' to be 'succeeded' // Object.is equality[39m
+2026-11-06T06:50:04.0159943Z 
+2026-11-06T06:50:04.0160453Z Expected: [32m"[7msucceed[27med"[39m
+2026-11-06T06:50:04.0161014Z Received: [31m"[7mfail[27med"[39m
+2026-11-06T06:50:04.0161217Z 
+2026-11-06T06:50:04.0162119Z [36m [2m❯[22m tests/integration/P09-02.runtime.test.ts:[2m125:60[22m[39m
+2026-11-06T06:50:04.0258781Z     [90m123|[39m         await f.service.start(f.id, { runtime, argv, cwd: '.', timeout…
+2026-11-06T06:50:04.0259133Z 
+2026-11-06T06:50:04.0259341Z     [90m124|[39m       );
+2026-11-06T06:50:04.0259733Z     [90m125|[39m       expect(passed.process.state, JSON.stringify(passed)).toBe('succe…
+2026-11-06T06:50:04.0260668Z     [90m   |[39m                                                            [31m^[39m
+2026-11-06T06:50:04.0261075Z     [90m126|[39m       expect(passed.process.exitCode).toBe(0);
+2026-11-06T06:50:04.0261548Z     [90m127|[39m       expect(await f.service.verify(f.id)).toBe(true);
+2026-11-06T06:50:04.0261689Z 
+2026-11-06T06:50:04.0262011Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+2026-11-06T06:50:04.0262138Z 
+2026-11-06T06:50:04.0267435Z [2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m79 passed[39m[22m[2m | [22m[33m1 skipped[39m[90m (81)[39m
+2026-11-06T06:50:04.0272142Z [2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m568 passed[39m[22m[2m | [22m[33m2 skipped[39m[90m (571)[39m
+2026-11-06T06:50:04.0272685Z [2m   Start at [22m 06:42:08
+2026-11-06T06:50:04.0275710Z [2m   Duration [22m 475.33s[2m (tests 94%, import 5%, transform 1%)[22m
+2026-11-06T06:50:04.0288057Z 
+2026-11-06T06:50:04.0301464Z 
+2026-11-06T06:50:04.0327383Z ##[error]AssertionError: {"process":{"id":"01a0a25d-0400-73f0-88eb-317f2ed4770b","runId":"01a0a25d-0400-7894-b488-0e751daca885","runtime":"python","argv":["-m","unittest","discover","-v"],"cwd":".","environmentId":"01a0a25d-0400-73e1-bc4a-82bfaacf7505","sourceHash":"62a091a9809880feb5edf7a8c487c862b58d5d1b6dbc95c702d4b20aaa84f77c","head":null,"state":"failed","terminal":false,"startedAt":1789430400000,"endedAt":1789430400000,"exitCode":1,"reason":"exited","outputBytes":742,"logRef":"01a0a25d-0400-73f0-88eb-317f2ed4770b","cols":100,"rows":30},"output":"Failed to find real location of D:\\a\\TapKit\\TapKit\\.runtime\\python\\python.exe\ntest_sum (test_sum.TestSum.test_sum) ... FAIL\r\n\r\n======================================================================\r\nFAIL: test_sum (test_sum.TestSum.test_sum)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\a\\TapKit\\TapKit\\.test-data\\P06-工作 vhxM3i\\workspaces\\01a0a25d-0400-7894-b488-0e751daca885\\test_sum.py\", line 4, in test_sum\r\n    def test_sum(self): self.assertEqual(sum(2,3),5)\r\n                        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\r\nAssertionError: -1 != 5\r\n\r\n----------------------------------------------------------------------\r\nRan 1 test in 0.001s\r\n\r\nFAILED (failures=1)\r\n"}: expected 'failed' to be 'succeeded' // Object.is equality
+
+Expected: "succeeded"
+Received: "failed"
+
+ ❯ tests/integration/P09-02.runtime.test.ts:125:60
+
+
+2026-11-06T06:50:04.1013368Z [ELIFECYCLE] Command failed with exit code 1.
+2026-11-06T06:50:04.1855611Z ##[error]Process completed with exit code 1.

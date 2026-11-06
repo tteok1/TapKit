@@ -1,0 +1,13 @@
+{
+  "unchangedHashes": {
+    "docs/progress/P00-01.md": "f7465fa4a18b14fc9b1a60a4040ddeb00f2fd05a8affe047e558b8a6ab504b37",
+    "docs/evidence/maintenance/storage-audit-2026-11-05.json": "4963b2a762be78b7c1c21674d77e254220c7778f51c2c75690eea4adab06e972"
+  },
+  "currentMaintenanceLinePreserved": true,
+  "indexMaintenanceParagraphPresent": true,
+  "historicalP00JournalUnchanged": true,
+  "stagedIndexEmpty": true,
+  "preexistingNonP09RequirementRows": [
+    "ENG-P00-01-CHECK"
+  ]
+}

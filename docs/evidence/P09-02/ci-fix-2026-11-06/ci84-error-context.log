@@ -1,0 +1,310 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: P09-02.terminal.spec.ts >> P09-02 desktop runs real Node and Python checks, keeps failures, handles ConPTY and pages output without freezing
+- Location: tests\e2e\P09-02.terminal.spec.ts:6:1
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByRole('region', { name: '运行与终端', exact: true }).getByRole('status').filter({ hasText: '环境已准备' })
+Expected: visible
+Timeout: 60000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" getByRole('region', { name: '运行与终端', exact: true }).getByRole('status').filter({ hasText: '环境已准备' }) with timeout 60000ms
+  - waiting for getByRole('region', { name: '运行与终端', exact: true }).getByRole('status').filter({ hasText: '环境已准备' })
+
+```
+
+```yaml
+- complementary "侧栏":
+  - strong: TapKit
+  - button "通知"
+  - text: "1"
+  - button "搜索"
+  - button "新建任务"
+  - navigation "主导航":
+    - text: 长按并上下拖动调整顺序，也可按 Alt 加上下方向键。
+    - link "聊天":
+      - /url: /chats
+    - link "工作":
+      - /url: /work
+    - link "项目":
+      - /url: /projects
+    - link "文件":
+      - /url: /files
+  - region "会话历史":
+    - heading "最近" [level=2]
+    - button "会话列表选项"
+    - button "P09-02 真实代码检查运行中 2026/11/5 21:11:53": P09-02 真实代码检查 ◷ 2026/11/5 21:11:53
+    - button "置顶P09-02 真实代码检查"
+    - button "会话信息P09-02 真实代码检查"
+  - text: 本地工作任务可在工作中心查看与管理 待确认事项：0
+  - link "个人资料与设置":
+    - /url: /settings/personal
+  - link "设置":
+    - /url: /settings/general
+  - separator "调整侧栏宽度"
+- banner:
+  - button "收起侧栏" [expanded]
+  - text: TapKit
+  - group: 连接状态
+  - button "详情面板": 工作台
+- main:
+  - region "工作中心":
+    - heading "工作中心" [level=1]
+    - paragraph: 切换页面后任务继续；关闭窗口驻留托盘。退出应用或设备休眠将停止执行，恢复后核对接续位置。设备需保持在线。
+    - button "新建工作"
+    - button "返回工作列表"
+    - heading "P09-02 真实代码检查" [level=2]
+    - term: 受众
+    - definition: 用户本人
+    - term: 语言
+    - definition: 简体中文
+    - term: 成果格式
+    - definition: md × 1
+    - term: 工作范围
+    - definition: 仅当前任务与明确提供的材料
+    - term: 参考材料
+    - definition: "0"
+    - term: 截止时间
+    - definition: 无项目
+    - status: 等待输入 · 目标版本 1 · 活跃秒数 0 · 用量 0 tokens
+    - paragraph: 请回答下方问题、接受计划或在通知中心审阅待批准操作。
+    - region "代码项目":
+      - heading "代码项目" [level=3]
+      - button "刷新代码与差异"
+      - paragraph: 中文项目 · 托管副本（无 Git）
+      - paragraph: 所有操作只作用于独立副本。原目录不会被改写。副本会保留，直到你明确清理。
+      - navigation "文件目录":
+        - button "package.json"
+        - button "sum.mjs"
+        - button "sum.py"
+        - button "sum.test.mjs"
+        - button "test_sum.py"
+      - paragraph: 选择文件查看代码与差异。
+      - region "运行与终端":
+        - heading "运行与终端" [level=4]
+        - paragraph: 在独立副本中运行，进程无法联网；原目录保持不变。
+        - text: 运行环境
+        - combobox "运行环境":
+          - option "Node.js" [selected]
+          - option "Python"
+        - button "准备运行环境"
+        - status: 等待准备环境 · 24.21.0
+        - text: 命令
+        - textbox "命令": node --test --test-isolation=none
+        - text: 副本内目录
+        - textbox "副本内目录": .
+        - paragraph: 命令按参数运行；不展开管道、重定向或 Shell 语法。交互终端支持所选语言的输入。
+        - button "运行命令" [disabled]
+        - button "打开交互终端" [disabled]
+        - button "Node 测试" [disabled]
+        - button "test" [disabled]
+        - alert: 隔离运行组件尚未通过验证，请完成验证后重试。
+        - paragraph: 尚无运行记录。准备环境后，运行项目检查或打开交互终端。
+      - button "撤销代码目录授权"
+    - region "子任务协调":
+      - heading "子任务" [level=3]
+      - paragraph: 默认由单个智能体完成。可将独立资料研究或审查交给子任务；最多两个并行，费用计入主任务预算。
+      - button "查看模型用量与费用"
+      - paragraph: 尚未委派子任务。先暂停主任务或在确认计划前添加。
+      - checkbox "仅汇总子任务结论、逐字依据与缺口（不追加主模型请求）"
+      - text: 仅汇总子任务结论、逐字依据与缺口（不追加主模型请求）
+      - group: 添加只读子任务
+    - button "暂停"
+    - button "继续"
+    - button "取消任务"
+    - button "复制任务"
+    - button "置顶"
+    - button "静音"
+    - button "归档"
+    - text: 排队优先级
+    - spinbutton "排队优先级": "5"
+    - heading "计划与阶段成果" [level=3]
+    - paragraph: 执行选择会自动包含必要依赖；删除被依赖步骤后需重新调整依赖。
+    - button "调整计划"
+    - list:
+      - listitem:
+        - strong: P09-02 真实代码检查
+        - text: 待开始 · 执行此步
+    - text: 补充或修改要求
+    - textbox "补充或修改要求"
+    - text: 参考材料
+    - button "参考材料"
+    - button "调整任务"
+    - button "权限与审批"
+    - group: 活动记录
+```
+
+# Test source
+
+```ts
+  1   | import { test, expect, _electron as electron } from './test';
+  2   | import { mkdtemp } from '../../scripts/test-temp.mjs';
+  3   | import { mkdir, writeFile, readFile } from 'node:fs/promises';
+  4   | import { join, resolve } from 'node:path';
+  5   | 
+  6   | test('P09-02 desktop runs real Node and Python checks, keeps failures, handles ConPTY and pages output without freezing', async () => {
+  7   |   test.setTimeout(300000);
+  8   |   const root = await mkdtemp(resolve('.test-data/P09-02 desktop ')),
+  9   |     source = join(root, '中文项目'),
+  10  |     data = join(root, 'profile');
+  11  |   await mkdir(source);
+  12  |   const nodeOriginal = 'export const sum=(a,b)=>a-b;\n',
+  13  |     pyOriginal = 'def sum(a,b):\n    return a-b\n';
+  14  |   const files = {
+  15  |     'package.json': JSON.stringify({ type: 'module', scripts: { test: 'node --test' } }),
+  16  |     'sum.mjs': nodeOriginal,
+  17  |     'sum.test.mjs':
+  18  |       "import {sum} from './sum.mjs';import assert from 'node:assert/strict';import test from 'node:test';test('sum',()=>assert.equal(sum(2,3),5));\n",
+  19  |     'sum.py': pyOriginal,
+  20  |     'test_sum.py':
+  21  |       'import unittest\nfrom sum import sum\nclass TestSum(unittest.TestCase):\n    def test_sum(self): self.assertEqual(sum(2,3),5)\n',
+  22  |   };
+  23  |   for (const [name, text] of Object.entries(files)) await writeFile(join(source, name), text);
+  24  |   const env = Object.fromEntries(
+  25  |     Object.entries({ ...process.env, TAPKIT_DATA_DIR: data }).filter(
+  26  |       (entry): entry is [string, string] => entry[1] !== undefined,
+  27  |     ),
+  28  |   );
+  29  |   delete env.ELECTRON_RUN_AS_NODE;
+  30  |   delete env.TAPKIT_CHAT_FIXTURE;
+  31  |   const app = await electron.launch({
+  32  |     args: [resolve('apps/desktop')],
+  33  |     env,
+  34  |     chromiumSandbox: true,
+  35  |   });
+  36  |   try {
+  37  |     const page = await app.firstWindow();
+  38  |     await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0]!.setSize(1360, 960));
+  39  |     await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125000 });
+  40  |     await page.getByRole('link', { name: '工作', exact: true }).click();
+  41  |     await page.getByRole('button', { name: '新建工作', exact: true }).click();
+  42  |     const form = page.getByRole('form', { name: '新建工作' });
+  43  |     await form.getByRole('textbox', { name: '工作目标', exact: true }).fill('P09-02 真实代码检查');
+  44  |     await form.getByLabel('先查看计划', { exact: true }).check();
+  45  |     await form.getByRole('button', { name: '创建工作', exact: true }).click();
+  46  |     const code = page.getByRole('region', { name: '代码项目', exact: true });
+  47  |     await app.evaluate(({ dialog }, path) => {
+  48  |       dialog.showOpenDialog = async () => ({ canceled: false, filePaths: [path] });
+  49  |     }, source);
+  50  |     await code.getByRole('button', { name: '选择本地代码目录', exact: true }).click();
+  51  |     await code.getByRole('button', { name: '创建独立修改副本', exact: true }).click();
+  52  |     const panel = page.getByRole('region', { name: '运行与终端', exact: true });
+  53  |     await expect(panel).toBeVisible();
+  54  |     for (const runtime of ['node', 'python'] as const) {
+  55  |       await panel.getByRole('combobox', { name: '运行环境', exact: true }).selectOption(runtime);
+  56  |       await panel.getByRole('button', { name: '准备运行环境', exact: true }).click();
+> 57  |       await expect(panel.getByRole('status').filter({ hasText: '环境已准备' })).toBeVisible({
+      |                                                                            ^ Error: expect(locator).toBeVisible() failed
+  58  |         timeout: 60000,
+  59  |       });
+  60  |       const preset = panel.getByRole('button', {
+  61  |         name: runtime === 'node' ? 'Node 测试' : 'Python 测试',
+  62  |         exact: true,
+  63  |       });
+  64  |       await preset.click();
+  65  |       await expect(panel.locator('.terminal-process-meta strong')).toHaveText(/失败.*退出码 1/, {
+  66  |         timeout: 45000,
+  67  |       });
+  68  |       await mkdir('docs/evidence/P09-02/desktop', { recursive: true });
+  69  |       await panel
+  70  |         .locator('.terminal-process-meta')
+  71  |         .evaluate((element) => element.scrollIntoView({ block: 'center' }));
+  72  |       await page.screenshot({ path: `docs/evidence/P09-02/desktop/failed-${runtime}.png` });
+  73  |       await page.evaluate(
+  74  |         async ({ runtime, content }) => {
+  75  |           const requestId = () => {
+  76  |             const id = crypto.randomUUID();
+  77  |             return id.slice(0, 14) + '7' + id.slice(15);
+  78  |           };
+  79  |           const runs = await window.tapkit.workCommand({ requestId: requestId() }, 'runs.list', {
+  80  |             query: 'P09-02 真实代码检查',
+  81  |           });
+  82  |           if (!runs.ok || !('workItems' in runs.data) || !runs.data.workItems[0])
+  83  |             throw Error('run');
+  84  |           const runId = runs.data.workItems[0].runId,
+  85  |             path = runtime === 'node' ? 'sum.mjs' : 'sum.py';
+  86  |           const read = await window.tapkit.codeCommand({ requestId: requestId() }, 'code.read', {
+  87  |             runId,
+  88  |             path,
+  89  |           });
+  90  |           if (!read.ok || !('code' in read.data) || !read.data.code.read) throw Error('read');
+  91  |           const patch = await window.tapkit.codeCommand(
+  92  |             { requestId: requestId() },
+  93  |             'code.applyPatch',
+  94  |             { runId, patch: { path, baseHash: read.data.code.read.hash, content } },
+  95  |           );
+  96  |           if (!patch.ok) throw Error(patch.error.code);
+  97  |         },
+  98  |         {
+  99  |           runtime,
+  100 |           content: (runtime === 'node' ? nodeOriginal : pyOriginal).replace('a-b', 'a+b'),
+  101 |         },
+  102 |       );
+  103 |       await preset.click();
+  104 |       await expect(panel.locator('.terminal-process-meta strong')).toHaveText(/已完成.*退出码 0/, {
+  105 |         timeout: 45000,
+  106 |       });
+  107 |     }
+  108 |     await panel.getByRole('button', { name: '打开交互终端', exact: true }).click();
+  109 |     await expect(panel.locator('.terminal-process-meta strong')).toHaveText('运行中', {
+  110 |       timeout: 30000,
+  111 |     });
+  112 |     const input = panel.getByRole('textbox', { name: '终端输入', exact: true });
+  113 |     await input.focus();
+  114 |     await input.pressSequentially('print("UI_RESULT:" + str(6*7))', { delay: 20 });
+  115 |     await input.press('Enter');
+  116 |     await expect(panel.locator('.xterm-accessibility')).toContainText('UI_RESULT:42', {
+  117 |       timeout: 10000,
+  118 |     });
+  119 |     await panel.getByRole('button', { name: '停止运行', exact: true }).click();
+  120 |     await expect(panel.locator('.terminal-process-meta strong')).toHaveText(/已取消/, {
+  121 |       timeout: 15000,
+  122 |     });
+  123 |     await panel.getByRole('combobox', { name: '运行环境', exact: true }).selectOption('node');
+  124 |     await panel
+  125 |       .getByRole('textbox', { name: '命令', exact: true })
+  126 |       .fill('node -e "console.log(\'大输出\'.repeat(30000))"');
+  127 |     await panel.getByRole('button', { name: '运行命令', exact: true }).click();
+  128 |     await expect(panel.locator('.terminal-process-meta strong')).toHaveText(/已完成.*退出码 0/, {
+  129 |       timeout: 30000,
+  130 |     });
+  131 |     await expect(panel.getByRole('button', { name: '查看下一段日志', exact: true })).toBeEnabled({
+  132 |       timeout: 10000,
+  133 |     });
+  134 |     const firstPage = await panel.locator('.xterm-accessibility').innerText();
+  135 |     await panel.getByRole('button', { name: '查看下一段日志', exact: true }).click();
+  136 |     await expect(panel.getByRole('button', { name: '从头查看日志', exact: true })).toBeEnabled();
+  137 |     expect(firstPage.length).toBeGreaterThan(0);
+  138 |     await panel
+  139 |       .getByRole('textbox', { name: '命令', exact: true })
+  140 |       .fill('node --test --test-isolation=none');
+  141 |     await app.evaluate(({ BrowserWindow }) => {
+  142 |       const window = BrowserWindow.getAllWindows()[0]!;
+  143 |       window.show();
+  144 |       window.focus();
+  145 |     });
+  146 |     await page.bringToFront();
+  147 |     await expect.poll(() => page.evaluate(() => document.hasFocus())).toBe(true);
+  148 |     const visibility = await page.evaluate(() => document.visibilityState);
+  149 |     expect(visibility).toBe('visible');
+  150 |     const heartbeat = await page.evaluate(async () => {
+  151 |       const start = performance.now();
+  152 |       await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+  153 |       return performance.now() - start;
+  154 |     });
+  155 |     expect(heartbeat).toBeLessThan(1000);
+  156 |     await mkdir('docs/evidence/P09-02/desktop', { recursive: true });
+  157 |     const metrics: unknown[] = [];
+```

@@ -6,6 +6,12 @@ import { apiLiveProviders, runApiLive } from './api-live.mjs';
 import { runApiNativeLive } from './api-native-live.mjs';
 
 const args = process.argv.slice(2).filter((arg) => arg !== '--');
+if (args.length === 2 && args[0] === 'P09-02' && args[1] === '--registry') {
+  pnpm(['test:integration', 'P09-02', '-t', 'registry live'], {
+    env: lockedEnv({ TAPKIT_P09_REGISTRY_LIVE: '1' }),
+  });
+  process.exit(0);
+}
 if (args.length === 2 && args[0] === 'P08-03' && ['--prepare', '--run-once'].includes(args[1])) {
   run(nodeExe(), [join(root, 'scripts/p08-delegation-live.mjs'), args[1]], {
     env: lockedEnv(),

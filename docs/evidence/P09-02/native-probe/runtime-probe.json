@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 2,
+  "executionPolicy": "appcontainer-lok-v1",
+  "startedAt": "2026-11-05T19:58:56.433Z",
+  "endedAt": "2026-11-05T20:04:34.596Z",
+  "command": "pnpm test:integration P00-03 --reporter=json --outputFile=D:\\Tapkit-public\\test-results\\P00-03-native-75f4697b-044f-478c-9047-a1081e7de562.json",
+  "exitCode": 1,
+  "standardUser": false,
+  "verification": {
+    "scope": "current-user",
+    "identity": {
+      "userSidHash": "89d3515d56b0f7fb4f2e9d5ab5438c2590534473cc30f033f476b0408a4d96d7",
+      "integritySid": "S-1-16-8192",
+      "administratorsGroup": true
+    }
+  },
+  "standardUserAcceptance": "not_verified_in_this_scope",
+  "fingerprint": "fd6f2fffa6ab27f5473062b992910fb3a8262a36966f1e7e5b20844e3c92892d",
+  "capabilities": {
+    "nativeExecution": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    },
+    "officeRender": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    },
+    "terminal": {
+      "status": "failed",
+      "code": "SANDBOX_UNAVAILABLE",
+      "reason": "NATIVE_ACCEPTANCE_FAILED"
+    }
+  },
+  "tests": {
+    "total": 22,
+    "passed": 19,
+    "failed": 3,
+    "pending": 0
+  },
+  "missingCases": [
+    "P00-03.office.test.ts: P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppContainer route",
+    "P00-03.office.test.ts: P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an isolated positive control",
+    "P00-03.office.test.ts: P00-03 T19 OfficeWorker preserves cached external-link data with an isolated refresh control"
+  ]
+}

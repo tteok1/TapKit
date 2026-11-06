@@ -1,0 +1,80 @@
+{
+  "task": "P09-02",
+  "date": "2026-11-06 Asia/Shanghai",
+  "authorization": "User explicitly requested squashing into one commit and merging into main; supersedes earlier no-main boundary",
+  "mergeMethod": "One squash commit parented on previousMain; atomic local ref updates; normal fast-forward main push and development rewrite with explicit expected-old lease in one atomic Git push",
+  "previousMain": "fe2653ff163cf77f633d495fb1d14774d67608d9",
+  "originalBranchHead": "0140c742ed61771f68d8e025dcf65a752fe65c8a",
+  "originalBranchTree": "ae95cd9f4807b146d8294157e42981a9ea0c2266",
+  "originalCommits": [
+    {
+      "sha": "dcdfbd213315ef88cb6926e3bb8ea9d874d6a834",
+      "subject": "feat(P09-02): add isolated code execution and terminal"
+    },
+    {
+      "sha": "e1a448df8bbcd7731fabfdaf24054a68994a7dcc",
+      "subject": "docs: record P09-02 branch publication [skip ci]"
+    },
+    {
+      "sha": "699055c6767b44f589f8b17ae8f988640b96b4d4",
+      "subject": "fix(ci): verify runner isolation before terminal acceptance"
+    },
+    {
+      "sha": "64feffb2e3201281f4615ed40bfc5099fcc31c62",
+      "subject": "fix(P09-02): isolate Python bytecode caches per execution"
+    },
+    {
+      "sha": "0140c742ed61771f68d8e025dcf65a752fe65c8a",
+      "subject": "docs(P09-02): record CI86 acceptance [skip ci]"
+    }
+  ],
+  "originalCommitCount": 5,
+  "newCommitsOnMain": 1,
+  "squashCommit": "The commit containing this record; resolve its self hash with git log",
+  "developmentBranch": "codex/p09-02-terminal-runtime",
+  "originalHistoryBackupRef": "refs/backup/p09-02/pre-squash-2026-11-06",
+  "validatedSourceCommit": "64feffb2e3201281f4615ed40bfc5099fcc31c62",
+  "ci86": {
+    "runId": 42177795449,
+    "url": "https://github.com/tteok1/TapKit/actions/runs/42177795449",
+    "conclusion": "success",
+    "jobs": {
+      "check": "success",
+      "office-native": "success",
+      "startup-diagnostics": "success"
+    },
+    "unitPassed": 509,
+    "integrationPassed": 570,
+    "integrationExplicitSkipped": 2,
+    "electronPassed": 52,
+    "performancePassed": 2,
+    "currentRunnerNativePassed": 22,
+    "independentStandardUserNativePassed": 22
+  },
+  "allNonDocumentationTreesMatchCI86": true,
+  "nonDocumentationTreeListingSha256": "ad9a78347ceaa6521ffc1a2fef2a641593a2b6660a4ad8ce03b5595393435528",
+  "sourceChangesSinceCI86": false,
+  "newMainCiConclusion": "Not yet asserted; source matches CI86 but the new commit may trigger fresh workflows",
+  "originalMaintenanceChanges": "Four modified progress files and one untracked storage audit preserved outside the squash commit",
+  "newConnectionChecks": 0,
+  "connectionChecksUsed": 2,
+  "connectionLimit": 10,
+  "newModelCalls": 0,
+  "mainRemoteConfirmation": "Verify both remote refs against the containing commit after atomic push; no forced main update",
+  "nextTaskStarted": false,
+  "p09GateClosed": false,
+  "documentationChecks": {
+    "docsCheck": {
+      "exitCode": 0,
+      "taskStates": 37,
+      "log": "main-merge-docs-check.log"
+    },
+    "formatCheck": {
+      "exitCode": 0,
+      "files": 765,
+      "failures": 0,
+      "log": "main-merge-format-check.log"
+    }
+  },
+  "publicationTransport": "Direct Git HTTPS failed; GitHub API fallback was stopped before any ref update. Reuse the existing system HTTPS proxy for this Git push only; no persistent Git or system configuration change."
+}

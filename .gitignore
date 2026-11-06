@@ -12,6 +12,8 @@ coverage/
 *.tsbuildinfo
 resources/runtime/*
 !resources/runtime/.gitkeep
+!resources/runtime/code-python-launch.py
+!resources/runtime/code-python-install.py
 resources/models/*
 !resources/models/.gitkeep
 resources/fonts/*.otf

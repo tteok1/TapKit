@@ -32,6 +32,14 @@ pub struct Payload {
     pub output_bytes: usize,
     pub terminal: bool,
     #[serde(default)]
+    pub stream_output: bool,
+    #[serde(default)]
+    pub cwd: Option<String>,
+    #[serde(default)]
+    pub workspace_bytes: Option<u64>,
+    #[serde(default)]
+    pub write_bytes: Option<u64>,
+    #[serde(default)]
     pub office: Option<office::OfficeRequest>,
 }
 pub fn emit(r: &Request, event: &str, data: Value) {
@@ -109,15 +117,17 @@ fn main() {
         || (r.operation == "diagnostic.execute" && r.payload.office.is_some())
         || (r.operation == "office.render"
             && (r.payload.office.is_none() || !r.payload.args.is_empty() || r.payload.terminal))
-        || r.payload.args.len() > 32
+        || r.payload.args.len() > if r.payload.stream_output {64} else {32}
         || r.payload
             .args
             .iter()
             .any(|a| a.contains('\0') || a.len() > 8192)
-        || !(50..=120000).contains(&r.payload.timeout_ms)
+        || !(50..=if r.operation == "diagnostic.execute" && r.payload.stream_output {600000} else {120000}).contains(&r.payload.timeout_ms)
         || !(64 * 1024 * 1024..=2 * 1024 * 1024 * 1024).contains(&r.payload.memory_bytes)
         || !(1..=32).contains(&r.payload.process_limit)
         || !(1024..=4 * 1024 * 1024).contains(&r.payload.output_bytes)
+        || r.payload.workspace_bytes.is_some_and(|limit| !(1024..=2 * 1024 * 1024 * 1024).contains(&limit))
+        || r.payload.write_bytes.is_some_and(|limit| !(1024..=2 * 1024 * 1024 * 1024).contains(&limit))
     {
         emit(
             &r,

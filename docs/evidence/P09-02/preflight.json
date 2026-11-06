@@ -1,0 +1,25 @@
+{
+  "task": "P09-02",
+  "date": "2026-11-06 Asia/Shanghai",
+  "branch": "codex/p09-02-terminal-runtime",
+  "baseline": "fe2653ff163cf77f633d495fb1d14774d67608d9",
+  "priorMainCI": {
+    "run": 83,
+    "id": 42073481499,
+    "allThreeJobs": "success"
+  },
+  "existingChanges": [
+    " M docs/progress/CURRENT.md",
+    " M docs/progress/INDEX.md",
+    " M docs/progress/P00-01.md",
+    " M docs/progress/requirements.csv",
+    "?? docs/evidence/P09-02/",
+    "?? docs/evidence/maintenance/storage-audit-2026-11-05.json"
+  ],
+  "preservedHashes": {
+    "docs/progress/P00-01.md": "f7465fa4a18b14fc9b1a60a4040ddeb00f2fd05a8affe047e558b8a6ab504b37",
+    "docs/evidence/maintenance/storage-audit-2026-11-05.json": "4963b2a762be78b7c1c21674d77e254220c7778f51c2c75690eea4adab06e972"
+  },
+  "newConnectionChecks": 0,
+  "newModelCalls": 0
+}

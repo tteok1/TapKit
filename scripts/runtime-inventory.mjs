@@ -24,6 +24,8 @@ export async function executionFingerprint(root) {
     'native/windows-helper/Cargo.lock',
     'native/windows-helper/src',
     'resources/runtime/helper/tapkit-windows-helper.exe',
+    'resources/runtime/code-python-launch.py',
+    'resources/runtime/code-python-install.py',
     'scripts/runtime-inventory.mjs',
     'scripts/runtime-probe.mjs',
     'scripts/runtime-probe-results.mjs',

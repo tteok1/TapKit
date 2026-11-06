@@ -2,6 +2,8 @@
 
 # IPC、事件、任务状态与接口协议
 
+P09-02：按[ADR0079](../adr/0079-isolated-code-runtime-and-terminal.md)增加TerminalCommandSchemas与terminalCommand有限桥。terminal.status/prepare、exec.run/poll/cancel、terminal.start/input/resize/stop均携带runId，进程控制还需processId；runtime仅node/python，命令为argv数组、相对cwd、50—600000ms（默认120000ms）。响应TerminalView不含宿主路径/凭据/任意执行器；输出每段至多64KiB，offset/nextOffset为UTF-8字节游标。Core握手schema23，helper协议版本1新增可选cwd/streamOutput/workspaceBytes与output事件，默认旧路径保持。
+
 P08-03：Core ready.schemaVersion=21；复用workCommand的task.delegate、subtasks.list（offset，单项分页）、subtasks.control、subtasks.source（重鉴权固定原文）、subtasks.summaryMode（仅普通单份MD的显式Core汇总）。WorkView可含delegation元数据，父子仍用同一RunStatus；DTO及迁移/根约束见ADR0077，未增加preload桥。
 
 P08-02复用workCommand：runs.create.research、runs.steer.research（新版本）及research.get/source/finish，严格共享DTO；不新增preload桥。research.get分页来源/发现、对外响应小于60KB；source按固定快照和字符偏移定位，不打开模型提供的任意文件路径。

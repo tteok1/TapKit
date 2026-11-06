@@ -1,0 +1,56 @@
+$ vitest run --config vitest.config.ts --project integration "P09-02"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+ ❯ |integration| tests/integration/P09-02.runtime.test.ts (9 tests | 1 failed) 33083ms
+   × P09-02 npm v3 uses verified cache for a real offline install; malicious postinstall cannot read a private secret 2832ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |integration| tests/integration/P09-02.runtime.test.ts > P09-02 npm v3 uses verified cache for a real offline install; malicious postinstall cannot read a private secret
+AssertionError: expected '\n> tapkit-project@1.0.0 postinstall\…' not to contain 'SECRET_ESCAPED'
+
+- Expected
++ Received
+
+- SECRET_ESCAPED
++
++ > tapkit-project@1.0.0 postinstall
++ > node --preserve-symlinks --preserve-symlinks-main -e "try{require('node:fs').readFileSync(\"D:\\Tapkit-public\\.test-data\\P06-工作 Vt7vKU\\P09-02-private-synthetic.txt\");console.log('SECRET_ESCAPED')}catch(e){console.log('SECRET_DENIED:'+e.code)}"
++
++ SECRET_DENIED:EPERM
++
++ added 1 package in 783ms
++
+
+ ❯ tests/integration/P09-02.runtime.test.ts:117:67
+
+    115|     const install = (await f.service.view(f.id)).processes[0]!;
+    116|     const output = (await f.service.poll(f.id, install.id, 0)).output.…
+    117|     expect(output).toContain('SECRET_DENIED'); expect(output).not.toCo…
+       |                                                                   ^
+    118|     expect(await readFile(secret, 'utf8')).toBe('SYNTHETIC_PRIVATE_SEN…
+    119|     const run = await f.wait(await f.service.start(f.id, { runtime: 'n…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Start at  03:05:00
+   Duration  36.18s (tests 92%, transform 7%, import 1%)
+
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:41
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:224:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:221:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.18.0

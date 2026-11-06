@@ -8,11 +8,17 @@ export class NativeSandboxExecutor {
     private readonly onStarted?: (request: HelperRequest, event: HelperEvent) => void,
   ) {}
 
-  async execute(raw: HelperRequest, options: { signal?: AbortSignal } = {}) {
+  async execute(
+    raw: HelperRequest,
+    options: NonNullable<Parameters<typeof runDiagnostic>[2]> = {},
+  ) {
     const request = HelperRequestSchema.parse(raw);
     const result = await runDiagnostic(helperPath(this.root), request, {
       ...options,
-      onStarted: (event) => this.onStarted?.(request, event),
+      onStarted: (event, send) => {
+        this.onStarted?.(request, event);
+        options.onStarted?.(event, send);
+      },
     });
     const started = result.events[0];
     const finished = result.events.at(-1);

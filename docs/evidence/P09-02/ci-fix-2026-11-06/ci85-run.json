@@ -1,0 +1,13 @@
+{
+  "id": 42175765975,
+  "run_number": 85,
+  "head_sha": "699055c6767b44f589f8b17ae8f988640b96b4d4",
+  "head_branch": "codex/p09-02-terminal-runtime",
+  "status": "completed",
+  "conclusion": "failure",
+  "created_at": "2026-11-06T06:38:53Z",
+  "updated_at": "2026-11-06T07:19:00Z",
+  "html_url": "https://github.com/tteok1/TapKit/actions/runs/42175765975",
+  "event": "push",
+  "run_attempt": 1
+}

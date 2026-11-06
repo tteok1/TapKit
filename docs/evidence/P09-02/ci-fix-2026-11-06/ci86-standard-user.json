@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "executionPolicy": "appcontainer-lok-v1",
+  "startedAt": "2026-11-06T07:44:26.634Z",
+  "endedAt": "2026-11-06T07:48:24.873Z",
+  "command": "pnpm test:integration P00-03 --reporter=json --outputFile=D:\\a\\_temp\\tapkit-standard-user-4367085f68b2442bbc6ed20f12a43ec9\\kit\\test-results\\P00-03-native-41766088-b1fa-40a0-8712-7e8a11d77cd3.json",
+  "exitCode": 0,
+  "standardUser": true,
+  "fingerprint": "ce7464343bd021763fff12b7df6299b1d5e128996e71045c46cb29d1341135dc",
+  "capabilities": {
+    "nativeExecution": {
+      "status": "available"
+    },
+    "officeRender": {
+      "status": "available"
+    },
+    "terminal": {
+      "status": "available"
+    }
+  },
+  "tests": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "pending": 0
+  },
+  "missingCases": []
+}

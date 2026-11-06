@@ -1,5 +1,7 @@
 # 范围、决策与默认行为
 
+2026-11-06 [ADR0079](../adr/0079-isolated-code-runtime-and-terminal.md)：P09-02采用schema23 RuntimeProfile与原process_handles、受控registry下载/沙箱离线安装、Node/Python枚举argv、真实退出码与ConPTY流式终端；复用根预算/隔离/生命周期，重启不按PID重连，依赖和回执须绑定当前源及锁文件。
+
 2026-11-05 [ADR0078](../adr/0078-private-code-workspaces.md)：P09-01采用schema22私有Git对象镜像与无元数据指针的工作目录、hash绑定单文件修改/审阅/恢复、逐行反馈修订；模型复用根账本，终端与远程写入留后续任务。
 
 2026-11-05 [ADR0077](../adr/0077-bounded-read-only-delegation.md)：P08-03显式只读researcher/reviewer复用同根run/预算/模型槽，schema21登记父子关系并保留活跃根唯一约束；固定证据编号、双重来源重验、独立控制与版本归档，显式Core核验清单可免追加主模型请求；每次实际尝试含重试/后备受根上限，默认单Agent，验收状态见progress。

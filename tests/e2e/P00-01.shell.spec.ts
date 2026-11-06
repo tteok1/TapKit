@@ -55,6 +55,7 @@ test('P00-01 sandbox bridge errors and clean child shutdown', async () => {
     require: 'undefined',
     process: 'undefined',
     bridge: [
+      'terminalCommand',
       'windowSlot',
       'newWindow',
       'initialRoute',

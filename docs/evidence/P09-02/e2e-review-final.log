@@ -1,0 +1,62 @@
+$ node scripts/e2e.mjs "--" "--grep" "P09-02"
+
+Running 1 test using 1 worker
+
+(node:5440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\e2e\P09-02.terminal.spec.ts:6:1 › P09-02 desktop runs real Node and Python checks, keeps failures, handles ConPTY and pages output without freezing (1.4m)
+
+
+  1) tests\e2e\P09-02.terminal.spec.ts:6:1 › P09-02 desktop runs real Node and Python checks, keeps failures, handles ConPTY and pages output without freezing 
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 1000
+    Received:   1969.4000000059605
+
+      144 |       return performance.now() - start;
+      145 |     });
+    > 146 |     expect(heartbeat).toBeLessThan(1000);
+          |                       ^
+      147 |     await mkdir('docs/evidence/P09-02/desktop', { recursive: true });
+      148 |     const metrics: unknown[] = [];
+      149 |     for (const [theme, width] of [
+        at D:\Tapkit-public\tests\e2e\P09-02.terminal.spec.ts:146:23
+
+    Error Context: test-results\e2e\P09-02.terminal-P09-02-des-2e124-ges-output-without-freezing\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P09-02.terminal-P09-02-des-2e124-ges-output-without-freezing\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P09-02.terminal-P09-02-des-2e124-ges-output-without-freezing\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P09-02.terminal.spec.ts:6:1 › P09-02 desktop runs real Node and Python checks, keeps failures, handles ConPTY and pages output without freezing 
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/e2e.mjs:15:21
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/[eval1]:1:40
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:224:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:221:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.18.0

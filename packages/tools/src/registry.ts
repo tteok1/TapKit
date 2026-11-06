@@ -1,6 +1,7 @@
 import {
   WorkToolArgsSchema,
   WORK_TOOL_CATALOG_VERSION,
+  RESEARCH_WORK_TOOL_CATALOG_VERSION,
   LEGACY_WORK_TOOL_CATALOG_VERSION,
   DOCUMENT_WORK_TOOL_CATALOG_VERSION,
   DATA_WORK_TOOL_CATALOG_VERSION,
@@ -11,6 +12,14 @@ import {
 import { createHash } from 'node:crypto';
 export { WORK_TOOL_CATALOG_VERSION };
 export const WORK_TOOL_SPECS = {
+  'exec.run': {
+    name: 'exec.run',
+    version: '1',
+    mode: 'execute',
+    retry: 'reconcile_first',
+    timeoutMs: 600000,
+    maxOutputBytes: 65536,
+  },
   'code.applyPatch': {
     name: 'code.applyPatch',
     version: '1',
@@ -157,12 +166,20 @@ export const WORK_TOOL_SPECS = {
   },
 } as const;
 export function catalogAllowsTool(catalog: string, name: keyof typeof WORK_TOOL_SPECS) {
-  if (name === 'code.applyPatch') return catalog === WORK_TOOL_CATALOG_VERSION;
-  if (name.startsWith('research.')) return catalog === WORK_TOOL_CATALOG_VERSION;
+  if (name === 'exec.run') return catalog === WORK_TOOL_CATALOG_VERSION;
+  if (name === 'code.applyPatch')
+    return catalog === WORK_TOOL_CATALOG_VERSION || catalog === RESEARCH_WORK_TOOL_CATALOG_VERSION;
+  if (name.startsWith('research.'))
+    return catalog === WORK_TOOL_CATALOG_VERSION || catalog === RESEARCH_WORK_TOOL_CATALOG_VERSION;
   if (name.startsWith('browser.'))
-    return catalog === WORK_TOOL_CATALOG_VERSION || catalog === BROWSER_WORK_TOOL_CATALOG_VERSION;
+    return (
+      catalog === WORK_TOOL_CATALOG_VERSION ||
+      catalog === RESEARCH_WORK_TOOL_CATALOG_VERSION ||
+      catalog === BROWSER_WORK_TOOL_CATALOG_VERSION
+    );
   return (
     catalog === WORK_TOOL_CATALOG_VERSION ||
+    catalog === RESEARCH_WORK_TOOL_CATALOG_VERSION ||
     catalog === BROWSER_WORK_TOOL_CATALOG_VERSION ||
     catalog === SLIDES_WORK_TOOL_CATALOG_VERSION ||
     (catalog === DATA_WORK_TOOL_CATALOG_VERSION && !name.startsWith('slides.')) ||

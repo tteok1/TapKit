@@ -19,3 +19,4 @@ export { ChatMarkdown, safeChatURL } from './chat-markdown';
 export { Tooltip, TooltipLayer } from './tooltip';
 
 export { ClipboardProvider, CopyButton } from './clipboard';
+export { TerminalSurface } from './terminal';

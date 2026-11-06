@@ -1,0 +1,3 @@
+JSON report written to D:/Tapkit-public/test-results/P00-03-native-75f4697b-044f-478c-9047-a1081e7de562.json
+$ vitest run --config vitest.config.ts --project integration "P00-03" "--reporter=json" "--outputFile=D:\\Tapkit-public\\test-results\\P00-03-native-75f4697b-044f-478c-9047-a1081e7de562.json"
+[ELIFECYCLE] Command failed with exit code 1.
