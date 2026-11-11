@@ -1,3 +1,5 @@
+P09-04（[ADR 0081](../adr/0081-versioned-local-site-preview.md)）：`site.status/create/build/restore/copy` 仅接受工作和版本标识、网站 brief 或预期源码哈希。`previews.start/stop/resize/select/refresh` 由 Host 按窗口租约处理；`site.download` 通过系统保存框。固定产物和 ZIP 字节走私有 `site.transfer`，公共回复不含宿主路径或预览租约 URL。区域修订由 `code.inherit` 验证来源版本及哈希，Core 握手 schema 23 保持兼容。
+
 2026-11-05 P09-01 / ADR0078：Host专用code.attach仅接收本机选择器路径，公共code.status/tree/read/reference/diff/prepareWorkspace/applyPatch/accept/revert/restore/comment/revoke/inherit只传runId及相对路径/hash。code.inherit绑定同会话、同task的下一版本。CodeView仅返回名称、分支、版本、文件/差异/反馈，不返回宿主路径。code.applyPatch单文件原子版本约束；所有写请求持久化request_receipts，未知意图不重放。类型以packages/contracts/src/code.ts为准。
 
 # IPC、事件、任务状态与接口协议

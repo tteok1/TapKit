@@ -1,0 +1,11 @@
+$ node scripts/live.mjs "P09-04" "--registry"
+$ vitest run --config vitest.config.ts --project integration "P09-04.react"
+
+ RUN  v5.0.0 D:/Tapkit-public
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  03:20:36
+   Duration  16.91s (tests 78%, transform 18%, import 4%)
+

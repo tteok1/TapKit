@@ -1,6 +1,7 @@
 import { codeLineDiff } from './code-diff';
 import { TerminalPanel } from './terminal-ui';
 import { GitHubPanel } from './github-ui';
+import { SitePanel } from './site-ui';
 import { useEffect, useState, useMemo } from 'react';
 import { CodeViewSchema, type CodeView, type CodeCommand, type WorkView } from '@tapkit/contracts';
 import { requestOptions } from './desktop-state';
@@ -128,6 +129,7 @@ export function CodePanel({
       {error && <p role="alert">{error}</p>}
       {notice && <p role="status">{notice}</p>}
       {busy && <p role="status">{t.busy}</p>}
+      <SitePanel work={work} code={view} onCodeChanged={reload} onNavigate={onNavigate} />
       {!view ? (
         <>
           <p>{t.intro}</p>
@@ -523,7 +525,7 @@ export function CodePanel({
           </button>
         </>
       )}
-      <GitHubPanel key={runId} runId={runId} project={view} onProjectChanged={reload} />
+      <GitHubPanel runId={runId} project={view} onProjectChanged={reload} />
     </section>
   );
 }

@@ -1,0 +1,12 @@
+$ node scripts/e2e.mjs "--" "--grep" "P09-04"
+
+Running 1 test using 1 worker
+
+(node:47884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:9936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+  ok 1 tests\e2e\P09-04.site.spec.ts:8:1 › P09-04 builds, interacts, preserves versions and rebuilds exported website source (36.9s)
+
+  1 passed (38.9s)

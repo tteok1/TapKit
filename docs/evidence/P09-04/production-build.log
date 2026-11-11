@@ -1,0 +1,14 @@
+build-production.log
+✓ built in 2.14s
+✓ built in 1.39s
+packages/core/dist/index.cjs                                   3,453.63 kB
+✓ built in 8.65s
+✓ built in 1.49s
+✓ built in 1.10s
+✓ built in 48.99s
+
+core-final.log
+✓ built in 7.49s
+✓ built in 4.59s
+packages/core/dist/index.cjs                                   3,455.25 kB
+✓ built in 14.19s

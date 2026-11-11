@@ -1,6 +1,7 @@
 import { CodeCommandSchemas } from '@tapkit/contracts';
 import { TerminalCommandSchemas } from '@tapkit/contracts';
 import { GitHubCommandSchemas, GitHubConnectSchema } from '@tapkit/contracts';
+import { SiteCommandSchemas, SiteHostCommandSchemas, type Request } from '@tapkit/contracts';
 import {
   clipboard,
   app,
@@ -19,6 +20,9 @@ import {
   type IpcMainInvokeEvent,
 } from 'electron';
 import { randomUUID } from 'node:crypto';
+import { writeFile } from 'node:fs/promises';
+import { SitePreviews } from './site-previews';
+const sitePreviews = new SitePreviews();
 import { resolveSystemProxy } from './system-proxy';
 import { readCoreStartupTimeout } from './core-startup';
 import {
@@ -131,17 +135,7 @@ const subscribers = new Map<
   number,
   { afterSeq: number; replaying: boolean; buffer: EventEnvelope[] }
 >();
-function errorReply(
-  requestId: string,
-  code:
-    | 'VALIDATION_ERROR'
-    | 'PERMISSION_DENIED'
-    | 'FEATURE_NOT_AVAILABLE'
-    | 'AUTH_REQUIRED'
-    | 'CONFLICT'
-    | 'INTERNAL_ERROR'
-    | 'DATABASE_RECOVERY_REQUIRED',
-): Reply {
+function errorReply(requestId: string, code: z.infer<typeof ErrorCodeSchema>): Reply {
   return ReplySchema.parse({
     ok: false,
     requestId,
@@ -164,22 +158,25 @@ function forward(command: Record<string, unknown>): Promise<unknown> {
           pending.delete(id);
           reject(new Error('Core timeout'));
         },
-        command.type === 'github.connect' ||
-          (command.request as { command?: string } | undefined)?.command?.startsWith('github.')
-          ? 180_000
-          : (command.request as { command?: string } | undefined)?.command === 'models.diagnostic'
-            ? 310_000
-            : (command.request as { command?: string } | undefined)?.command === 'providers.check'
-              ? 130_000
-              : command.type === 'files.export' ||
-                  command.type === 'artifacts.read' ||
-                  (command.request as { command?: string } | undefined)?.command ===
-                    'artifacts.open' ||
-                  (command.request as { command?: string } | undefined)?.command ===
-                    'artifacts.locate' ||
-                  (command.request as { command?: string } | undefined)?.command === 'files.import'
+        (command.request as { command?: string } | undefined)?.command === 'site.build'
+          ? 300_000
+          : command.type === 'github.connect' ||
+              (command.request as { command?: string } | undefined)?.command?.startsWith('github.')
+            ? 180_000
+            : (command.request as { command?: string } | undefined)?.command === 'models.diagnostic'
+              ? 310_000
+              : (command.request as { command?: string } | undefined)?.command === 'providers.check'
                 ? 130_000
-                : 30_000,
+                : command.type === 'files.export' ||
+                    command.type === 'artifacts.read' ||
+                    (command.request as { command?: string } | undefined)?.command ===
+                      'artifacts.open' ||
+                    (command.request as { command?: string } | undefined)?.command ===
+                      'artifacts.locate' ||
+                    (command.request as { command?: string } | undefined)?.command ===
+                      'files.import'
+                  ? 130_000
+                  : 30_000,
       );
     pending.set(id, { resolve, reject, timer });
     child.postMessage({ ...command, id });
@@ -568,6 +565,7 @@ function createWindow(initialRoute?: string) {
   });
   windowSlots.set(webContentsId, String(slot));
   window.on('closed', () => {
+    sitePreviews.stop(window);
     assets.close();
     artifactProtocols.delete(webContentsId);
     core?.postMessage({ type: 'window.closed', windowId: String(slot) });
@@ -587,6 +585,72 @@ function createWindow(initialRoute?: string) {
 }
 function checkSender(event: IpcMainInvokeEvent) {
   return trustedSender(event, windows, trustedUrl);
+}
+async function siteHostRequest(window: BrowserWindow, request: Request): Promise<Reply> {
+  const { command, payload, requestId } = request;
+  const ok = (data: unknown) => ReplySchema.parse({ ok: true, requestId, data });
+  const transfer = async (
+    args: { runId: string; versionId: string },
+    kind: 'assets' | 'check' | 'archive',
+  ) => {
+    const reply = ReplySchema.parse(
+      await forward({ type: 'site.transfer', requestId, ...args, kind }),
+    );
+    if (!reply.ok) throw Error(reply.error.code);
+    if (!('siteTransfer' in reply.data)) throw Error('INTERNAL_ERROR');
+    return reply.data.siteTransfer;
+  };
+  switch (command) {
+    case 'previews.start': {
+      const args = SiteHostCommandSchemas[command].parse(payload);
+      const snapshot = await transfer(args, 'assets');
+      if (snapshot.kind !== 'assets') throw Error('INTERNAL_ERROR');
+      const previewId = await sitePreviews.start(window, snapshot.entries, async () => {
+        const check = await transfer(args, 'check');
+        return check.kind === 'check' && check.lease === snapshot.lease;
+      });
+      return ok({ sitePreview: { previewId } });
+    }
+    case 'previews.stop': {
+      const { previewId } = SiteHostCommandSchemas[command].parse(payload);
+      sitePreviews.stop(window, previewId);
+      return ok({ sitePreview: { previewId } });
+    }
+    case 'previews.resize': {
+      const { previewId, viewport, bounds } = SiteHostCommandSchemas[command].parse(payload);
+      sitePreviews.resize(window, previewId, viewport, bounds);
+      return ok({ sitePreview: { previewId } });
+    }
+    case 'previews.select': {
+      const { previewId } = SiteHostCommandSchemas[command].parse(payload);
+      const region = await sitePreviews.select(window, previewId);
+      return ok({ sitePreview: { previewId, ...(region ? { region } : {}) } });
+    }
+    case 'previews.focus': {
+      const { previewId } = SiteHostCommandSchemas[command].parse(payload);
+      sitePreviews.focus(window, previewId);
+      return ok({ sitePreview: { previewId } });
+    }
+    case 'previews.refresh': {
+      const { previewId } = SiteHostCommandSchemas[command].parse(payload);
+      await sitePreviews.refresh(window, previewId);
+      return ok({ sitePreview: { previewId } });
+    }
+    case 'site.download': {
+      const args = SiteHostCommandSchemas[command].parse(payload);
+      const selected = await dialog.showSaveDialog(window, {
+        defaultPath: 'website-source.zip',
+        filters: [{ name: 'ZIP', extensions: ['zip'] }],
+      });
+      if (selected.canceled || !selected.filePath) return ok({ siteSaved: false });
+      const archive = await transfer(args, 'archive');
+      if (archive.kind !== 'archive' || window.isDestroyed()) throw Error('PERMISSION_DENIED');
+      await writeFile(selected.filePath, Buffer.from(archive.base64, 'base64'));
+      return ok({ siteSaved: true });
+    }
+    default:
+      return errorReply(requestId, 'FEATURE_NOT_AVAILABLE');
+  }
 }
 function audit(requestId: string, command: string, reply: Reply) {
   // Deliberately records no payload, account label, ciphertext, plaintext or stack.
@@ -650,6 +714,8 @@ if (ownsLock) {
       ...Object.keys(CodeCommandSchemas),
       ...Object.keys(TerminalCommandSchemas),
       ...Object.keys(GitHubCommandSchemas),
+      ...Object.keys(SiteCommandSchemas),
+      ...Object.keys(SiteHostCommandSchemas),
       'github.connect',
       'models.catalog',
       'models.preferences.get',
@@ -1063,7 +1129,12 @@ if (ownsLock) {
           secret.key = ''; // Only the transformed request enters Core or audit.
         }
         await ready;
-        if (request.command === 'github.connect') {
+        if (Object.hasOwn(SiteHostCommandSchemas, request.command)) {
+          const window = BrowserWindow.fromWebContents(event.sender);
+          reply = window
+            ? await siteHostRequest(window, request)
+            : errorReply(request.requestId, 'PERMISSION_DENIED');
+        } else if (request.command === 'github.connect') {
           const input = GitHubConnectSchema.parse(request.payload);
           request.payload = { runId: input.runId, repo: input.repo };
           reply = ReplySchema.parse(
@@ -1086,15 +1157,18 @@ if (ownsLock) {
           });
         } else reply = ReplySchema.parse(await forward({ type: 'request', request }));
       } catch (error) {
+        const code = ErrorCodeSchema.safeParse(error instanceof Error ? error.message : error);
         reply = errorReply(
           request.requestId,
           error instanceof VaultError
             ? error.code
             : error instanceof z.ZodError
               ? 'VALIDATION_ERROR'
-              : storageUnavailable
-                ? 'DATABASE_RECOVERY_REQUIRED'
-                : 'INTERNAL_ERROR',
+              : Object.hasOwn(SiteHostCommandSchemas, request.command) && code.success
+                ? code.data
+                : storageUnavailable
+                  ? 'DATABASE_RECOVERY_REQUIRED'
+                  : 'INTERNAL_ERROR',
         );
       }
       audit(request.requestId, request.command, reply);
@@ -1150,6 +1224,7 @@ app.on('before-quit', (event) => {
   event.preventDefault();
   if (quitting) return;
   quitting = true;
+  sitePreviews.close();
   void Promise.all([secretWork, vault.settled, authSecrets.settled]).finally(() => {
     const child = core;
     if (!child) {

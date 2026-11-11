@@ -1,3 +1,5 @@
+P09-04（[ADR 0081](../adr/0081-versioned-local-site-preview.md)）：Node 沙箱构建成功并核验源码哈希后，Host 仅将固定静态快照放到回环随机端口，限制租约路径、方法、MIME 和 CSP。预览使用独立沙箱会话和固定请求白名单；宿主路径、其他端口、外部导航和下载均无授权。关闭预览、窗口或工作授权后停止服务。
+
 # 工具网关、Windows执行隔离与网络策略
 
 P08-03实施边界见[ADR0077](../adr/0077-bounded-read-only-delegation.md)：task.delegate由用户通过workCommand显式创建，默认不向模型自动开放；仅分配的固定资料source.read和结构化task.result，无文件写入或递归委派。

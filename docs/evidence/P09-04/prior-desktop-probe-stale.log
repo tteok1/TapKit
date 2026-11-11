@@ -1,0 +1,56 @@
+$ node scripts/e2e.mjs "--" "--grep" "P09-04"
+
+Running 1 test using 1 worker
+
+(node:53156) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+P09-04 build state {"capabilities":{"nativeExecution":{"status":"failed","code":"SANDBOX_UNAVAILABLE","reason":"PROBE_STALE"},"officeRender":{"status":"failed","code":"SANDBOX_UNAVAILABLE","reason":"PROBE_STALE"},"terminal":{"status":"failed","code":"SANDBOX_UNAVAILABLE","reason":"PROBE_STALE"}},"profiles":[""],"processes":[]}
+  x  1 tests\e2e\P09-04.site.spec.ts:8:1 › P09-04 builds, interacts, preserves versions and rebuilds exported website source (26.9s)
+
+
+  1) tests\e2e\P09-04.site.spec.ts:8:1 › P09-04 builds, interacts, preserves versions and rebuilds exported website source 
+
+    Error: 网站
+    构建网站
+
+    操作未完成。请检查运行与终端中的构建结果，然后重试。
+
+    构建后可在这里打开预览、查看版本及下载源码。
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      53 |     try {
+      54 |       await expect(built.or(problem)).toBeVisible({ timeout: 45000 });
+    > 55 |       expect(await problem.count(), await site.innerText()).toBe(0);
+         |                                                             ^
+      56 |     } catch (failure) {
+      57 |       const diagnostics = await page.evaluate(async () => {
+      58 |         const options = () => {
+        at D:\Tapkit-public\tests\e2e\P09-04.site.spec.ts:55:61
+
+    Error Context: test-results\e2e\P09-04.site-P09-04-builds--202ad-lds-exported-website-source\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\e2e\P09-04.site-P09-04-builds--202ad-lds-exported-website-source\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\e2e\P09-04.site-P09-04-builds--202ad-lds-exported-website-source\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P09-04.site.spec.ts:8:1 › P09-04 builds, interacts, preserves versions and rebuilds exported website source 
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/e2e.mjs:15:21
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.

@@ -1,0 +1,19 @@
+
+added 15 packages in 3s
+
+> tapkit-site@1.0.0 build
+> node build.mjs
+
+
+> tapkit-site@1.0.0 build:vite
+> vite build --base ./ --outDir vite-dist
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 25 modules transformed.
+rendering chunks...
+computing gzip size...
+vite-dist/index.html                   0.38 kB │ gzip:  0.27 kB
+vite-dist/assets/index-FpM3oR1U.css    0.91 kB │ gzip:  0.51 kB
+vite-dist/assets/index-cpNHK6Av.js   222.82 kB │ gzip: 69.58 kB
+✓ built in 1.20s

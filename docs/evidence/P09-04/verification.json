@@ -1,0 +1,131 @@
+{
+  "task": "P09-04",
+  "status": "implemented_and_verified",
+  "branch": "codex/p09-04-site-preview",
+  "recordedAt": "2026-11-12T03:19:06+08:00",
+  "base": "c063f9c6d599e6083505d40c9d13e3eed2e29bab",
+  "baselineMainCI": {
+    "number": 93,
+    "runId": 43043024519,
+    "verifiedJobs": [
+      "check",
+      "electron",
+      "office-native"
+    ]
+  },
+  "checks": {
+    "static": {
+      "exitCode": 0,
+      "playwrightCollected": 131
+    },
+    "unit": {
+      "exitCode": 0,
+      "passed": 515
+    },
+    "integration": {
+      "exitCode": 0,
+      "passed": 38,
+      "skipped": 3
+    },
+    "nativeCurrentUser": {
+      "exitCode": 0,
+      "passed": 22,
+      "fingerprint": "e6b76afa58c4501d7827f3a3d219a0f7cdb479425bca0239819c5ebe4999f697"
+    },
+    "productionBuild": {
+      "exitCode": 0,
+      "coreRebuiltAfterTemplateAndRestoreChanges": true
+    },
+    "desktopAndIPC": {
+      "exitCode": 0,
+      "passed": 2
+    },
+    "desktopViewports": {
+      "exitCode": 0,
+      "passed": 1,
+      "requestedWidths": [
+        900,
+        768,
+        390
+      ]
+    },
+    "reactRegistryAndNativeBuild": {
+      "exitCode": 0,
+      "passed": 1,
+      "command": "pnpm test:live P09-04 --registry"
+    },
+    "reactIndependentStaticAndViteBuild": {
+      "exitCode": 0
+    },
+    "reactPreviewNavigation": {
+      "exitCode": 0,
+      "pages": 2
+    },
+    "docs": {
+      "exitCode": 0,
+      "taskStates": 37
+    }
+  },
+  "uiReview": {
+    "disposition": "ship",
+    "scope": "incumbent workbench and 390px preview",
+    "evidence": "ui-review.md"
+  },
+  "agentAcceptance": "fixed test driver using the work tool gateway",
+  "modelCalls": 0,
+  "historicalNativeJournalRestored": true,
+  "pendingPhaseResource": "R07",
+  "sourceSha256": {
+    ".github/workflows/check.yml": "f7277b9e22b38f84323905ebba125c93514f8d335fb50bb8e27ed4f5b7fca3b8",
+    "apps/desktop/src/main/index.ts": "35f6028e73c4bb41f8360e38e6652383e0da2c42cb7c5fe16354f6e13d83099b",
+    "apps/desktop/src/main/site-preview-server.ts": "de7c865aadc7a0723d25e5b91b827d554214669e1271c6f62a9f99dad671e602",
+    "apps/desktop/src/main/site-previews.ts": "65d1263093d15d620d808f348d27f0478dfa4f97d3b7dcdd3275e1bf8fdccf5c",
+    "apps/desktop/src/preload/index.ts": "791bd605af7d974b2603fbd6f5cec93f37f66bc4f0b547c696f164cdae819771",
+    "apps/desktop/src/renderer/src/browser-ui.tsx": "0bb9a1d83743f42956f6299b714cbdb5c98a30d21cfaf0922ba1781cbe031434",
+    "apps/desktop/src/renderer/src/code-ui.tsx": "356881e83f833bbb6ed88c33606ea62c474d099e67f95c81fbf053e486e3db75",
+    "apps/desktop/src/renderer/src/native-view-layout.ts": "fd9fed3d0aa71811a55a0a1133ae8325667dca09e23c3a1ef1d8500bf1f5e543",
+    "apps/desktop/src/renderer/src/site-ui.tsx": "e87b6a26eb2e181092d6fff56ef85e69877d02c98a1965a2c4e6f7967b6fdae4",
+    "apps/desktop/src/renderer/src/site.css": "a8fc3fa6ee271edf014988fe1006b0a4870573b37ac55cdb7f1b8267be97ae77",
+    "packages/contracts/src/code.ts": "167ae171fadc070bb2fdce0943d1bcf13e6641e08954d6b7ac69606244b96805",
+    "packages/contracts/src/foundation.ts": "d096b9a212e52afd58ab9261fcfd359ecb279e6d57e575a354057533d6083b15",
+    "packages/contracts/src/index.ts": "87f7903998a081433cffb84e81094dec9164694b20e1330e1c1a5376310b7a5c",
+    "packages/contracts/src/site.ts": "34171238faab6464a4ed554822575935c153c117f2951ffc1ee47b09d74c40ae",
+    "packages/core/src/code-runtime.ts": "996b112a1f109294ada9b88ef7acc53130b05e8994dcfdcb5ad0d3d08bbc6e43",
+    "packages/core/src/code-service.ts": "857951798ce06d9b846dcebba6e5185440ea6e6bc112fcdbff002159864088dc",
+    "packages/core/src/index.ts": "089005e3b64928e04a8564254838ba4afc266684ddf87b7fcafdd3736585a8a2",
+    "packages/core/src/site-react-lock.json": "d4b01e1e9ebec7a29afdb17ff7897190ed451c33841b60a15b6456c58d2d8245",
+    "packages/core/src/site-service.ts": "78dc4bbc51bb04628cf236be0fc1b8868a59e526a77df30563c4643ea3fe53cd",
+    "packages/core/src/site-template.ts": "a3fc9efb29cfd8c490917200162b4bba358a8804837329ee62c152fba8f972f1",
+    "packages/tools/src/execution/code-environment.ts": "a288c7ac6b58f2ffca8ee4743b75a1aa51a6b76e1c2df6195f9ab26d61d07faa",
+    "scripts/live.mjs": "f0e938032551c33ed6f803d1a0c75ad013bacdf1ac4d305f102d9a230c4429ce",
+    "tests/e2e/P00-01.shell.spec.ts": "28d173cfeec12ecfe834aa9ce665dbf64db4ecc6b916cec31cd8a239e8e6a6fd",
+    "tests/e2e/P09-04.site.spec.ts": "2b37ba59f04b5e2254749c27b203ee536b367b3fd246b90ff501a9bc6746807b",
+    "tests/integration/P09-04.react.test.ts": "38c7b8e0f905bb028a5e40377e42460dfb7d6c423f49ce0d1538b93c7dbe51f6",
+    "tests/integration/P09-04.site.test.ts": "17d664eae8a69bdfe912d6e3cb9e01d444ccbe34a6cf7b89a7d1211202ffa914",
+    "tests/unit/P09-04.site.test.ts": "800cd3498c3f79884dd4199168251fb1dcef911807cebf082f09605df32f9484"
+  },
+  "evidenceSha256": {
+    "check.log": "564dbe28675c04b8a2d59539fe3af72d9809de0f136cc078121382b7b8ea57c9",
+    "docs-check.log": "e4502028f0261c82f94836f5d18664483ff535d0e3de869a0dd2ebc945cb1a71",
+    "e2e-ipc-and-keyboard.log": "3cd94cc5adcf54b9f7b72fb4714f2dc09b8a2e929ca5220aae9dd984b68814bf",
+    "e2e-viewports.log": "8dee783fd289cf7ca443e881bc0c5ecad1569b75f513565ef0dfca98922a5ab0",
+    "integration.log": "76d3ff3bf542001b2f8e27622fdf450ff77f6345a53f7503fa337fd7f2d269c5",
+    "native/native-cases.delta.jsonl": "a850f54e1f5e328613055a4320023e494a181ef7864e320dc1c757b9ee178d4d",
+    "native/runtime-probe.json": "b4ab440136a11a68f307aeae57fa671bc8706802f52db6bbb866012c41312194",
+    "native/runtime-probe.log": "596ec431bc2e72e37e8af00eef7ac8ad3aea2626f131059799533ae651a47e27",
+    "native-final/native-cases.delta.jsonl": "582c22c3909c7102a19f184b265fe1c20a1e8af156355095f914be943422a15e",
+    "native-final/runtime-probe.json": "de8b505f6fc311cc14900b2ddaef9a20b3b0194c78e4655fadcb7bbbfd333dc9",
+    "native-final/runtime-probe.log": "4388472cb534d95f7b3d97aa9569503b40b45c6d78ebe4889076e0b646d5e5eb",
+    "preview-mobile.png": "cf4a6458f1b4d2d79c6f70551c6f88b61834658d1a47f42cd57515311d9384be",
+    "prior-desktop-probe-stale.log": "08d00a682376a20abffbcff68d98cd3eeaac5722687300ab8c1d6a37facda07d",
+    "prior-react-postinstall-timeout.log": "e672e04d531ce19767e7b112192e6f7d7dc7fe51fe3acbbe4dd69b5cb0a9c234",
+    "prior-vite-sandbox-timeout.log": "8c731943ddcc5fbcc43e1f84b26c3943b0871dea96175b82cf9278455a236408",
+    "production-build.log": "5e5f10e3c24e6cd2d71427a3097fe95f9fe681c1226b529925bf68f8d1913445",
+    "react-native.log": "f22c26b54e2212aa32338fdb593febbd7c978016264079218e7f962eff5331b8",
+    "react-preview.log": "1d43c6c7c94487828dee7bb829c615a5eba04a84f8ab8b7761b13d3c6d1c3e15",
+    "react-rebuild.log": "8fcf750a2aaf432300e196177ea82e115122cd1226a3aeb638b0fe1927181897",
+    "site-panel.png": "a750d9e57f251c42224cf14adbccf749d37105f9d0ff094dd7ce4b58ef826e9d",
+    "ui-review.md": "f8ecd9f93c503de863fb0346c96f4d038cc9f8bb75bd99970180a338fc8cee14",
+    "unit.log": "945b554900b9085da5939f419265fa10fe94d7b0361abca49c6609df1bdd6e56"
+  }
+}

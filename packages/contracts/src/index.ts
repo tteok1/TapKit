@@ -1,6 +1,7 @@
 export * from './code';
 export * from './terminal';
 export * from './github';
+export * from './site';
 import { z } from 'zod';
 import { GitHubConnectSchema } from './github';
 import type { StartLogin } from './providers';
@@ -50,6 +51,14 @@ export const PingReplySchema = z.strictObject({
   corePid: z.number().int().positive(),
 });
 export const CoreCommandSchema = z.discriminatedUnion('type', [
+  z.strictObject({
+    type: z.literal('site.transfer'),
+    id: z.string().uuid(),
+    requestId: IdSchema,
+    runId: IdSchema,
+    versionId: IdSchema,
+    kind: z.enum(['assets', 'check', 'archive']),
+  }),
   z.strictObject({
     type: z.literal('github.connect'),
     id: z.string().uuid(),
@@ -168,6 +177,11 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
 export type PingRequest = z.infer<typeof PingRequestSchema>;
 export type PingReply = z.infer<typeof PingReplySchema>;
 export interface TapKitBridge {
+  siteCommand(
+    options: RequestOptions,
+    command: import('./site').SiteCommand,
+    payload: unknown,
+  ): Promise<Reply>;
   githubCommand(
     options: RequestOptions,
     command: import('./github').GitHubCommand,

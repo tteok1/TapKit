@@ -66,6 +66,7 @@ test('P00-01 sandbox bridge errors and clean child shutdown', async () => {
       'copyText',
       'chooseCodeProject',
       'codeCommand',
+      'siteCommand',
       'workCommand',
       'browserCommand',
       'historyCommand',

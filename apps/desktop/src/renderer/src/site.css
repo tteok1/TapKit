@@ -1,0 +1,49 @@
+.site-panel {
+  border-block-start: 1px solid var(--border);
+  margin-block: 18px;
+  padding-block-start: 10px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.site-panel .code-toolbar h4 {
+  margin-inline-end: auto;
+}
+.site-panel form {
+  max-width: 48rem;
+}
+.site-panel form > label {
+  display: grid;
+  align-items: start;
+}
+.site-panel form > button {
+  justify-self: start;
+}
+.site-panel select,
+.site-panel input,
+.site-panel textarea {
+  min-width: 0;
+  max-width: 100%;
+}
+.site-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-block: 8px;
+}
+.site-panel button[aria-pressed='true'] {
+  background: var(--accent-surface);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+.site-viewport {
+  height: clamp(270px, 54vh, 530px);
+  max-width: 100%;
+  margin-block: 10px;
+  background: var(--code-surface);
+  outline: 1px solid var(--border);
+}
+.site-panel blockquote {
+  margin: 0;
+  max-width: 70ch;
+}

@@ -358,7 +358,7 @@ export class CodeRuntimeService {
       signal.throwIfAborted();
       const install =
         runtime === 'node' && env.plan.manifests['package-lock.json']
-          ? ['npm', 'ci', '--foreground-scripts']
+          ? ['npm', 'ci', workspace.site ? '--ignore-scripts' : '--foreground-scripts']
           : runtime === 'python' && env.plan.assets.length
             ? [
                 '-u',
@@ -798,6 +798,11 @@ export class CodeRuntimeService {
       scope?.release();
       throw error;
     }
+  }
+  async finished(id: string, processId: string) {
+    this.row(id, processId);
+    await this.active.get(processId)?.promise;
+    return CodeProcessSchema.parse(JSON.parse(this.row(id, processId).process_json));
   }
   async poll(id: string, processId: string, offset: number) {
     const row = this.row(id, processId),

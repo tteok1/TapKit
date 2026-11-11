@@ -1,4 +1,3 @@
 # 当前接续点
 
-- 2026-11-11，D:/Tapkit-public，codex/p09-03-github，基于 origin/main a2c3264。CI88 三项通过。P09-03=implemented_not_live_verified。
-- GitHub 审阅提交、推送和 Draft PR 已实现。512 单元、35 相关集成、22 当前用户隔离与生产桌面通过。R07 待配置，见 P09-03.md。后续任务为 P09-04。
+- 2026-11-12，codex/p09-04-site-preview 基于 origin/main c063f9c。P09-04=implemented_and_verified。纯 HTML 和 React 静态预览、区域修订、版本及 ZIP 已验收。P09 gate 工程通过，R07 待验，见 P09-04.md 和 P09-gate.md。

@@ -9,6 +9,7 @@ import {
 } from '@tapkit/contracts';
 import { requestOptions } from './desktop-state';
 import { workCommand } from './work-ui';
+import { nativeViewOccluded } from './native-view-layout';
 import t from '../locales/browser.zh-CN.json';
 import './browser.css';
 function SubmissionFields({ value }: { value: string }) {
@@ -125,26 +126,9 @@ export function BrowserPanel({
       frame = requestAnimationFrame(() => {
         const rect = element.getBoundingClientRect();
         const scrollport = element.closest('.screen-scroll')?.getBoundingClientRect();
-        const overlays = [
-          ...document.querySelectorAll(
-            'dialog[open], [aria-modal="true"], [role="dialog"], [role="menu"], [role="tooltip"], [popover]:popover-open',
-          ),
-        ];
-        const occluded = overlays.some((node) => {
-          const b = node.getBoundingClientRect();
-          return (
-            b.width > 0 &&
-            b.height > 0 &&
-            (node.matches('dialog[open], [aria-modal="true"]') ||
-              (b.left < rect.right &&
-                b.right > rect.left &&
-                b.top < rect.bottom &&
-                b.bottom > rect.top))
-          );
-        });
         const visible =
           document.visibilityState === 'visible' &&
-          !occluded &&
+          !nativeViewOccluded(rect) &&
           rect.top >= 0 &&
           rect.left >= 0 &&
           rect.bottom <= innerHeight &&

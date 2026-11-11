@@ -28,6 +28,12 @@ if (args.length === 2 && args[0] === 'P09-02' && args[1] === '--registry') {
   });
   process.exit(0);
 }
+if (args.length === 2 && args[0] === 'P09-04' && args[1] === '--registry') {
+  pnpm(['test:integration', 'P09-04.react'], {
+    env: lockedEnv({ TAPKIT_P09_SITE_REGISTRY: '1' }),
+  });
+  process.exit(0);
+}
 if (args.length === 2 && args[0] === 'P08-03' && ['--prepare', '--run-once'].includes(args[1])) {
   run(nodeExe(), [join(root, 'scripts/p08-delegation-live.mjs'), args[1]], {
     env: lockedEnv(),

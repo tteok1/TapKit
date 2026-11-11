@@ -150,6 +150,14 @@ export async function inspectCodeEnvironment(
           const url = registryUrl(item.resolved as string, 'node');
           if (!url.pathname.endsWith('.tgz')) fail('UNSUPPORTED_DEPENDENCY');
           integrityParts(item.integrity as string);
+          // npm ci only installs compatible optional packages. Keep the lock portable
+          // while fetching just the tarballs required by this execution platform.
+          if (
+            item.optional === true &&
+            (!npmPlatformMatches(item.os, process.platform) ||
+              !npmPlatformMatches(item.cpu, process.arch))
+          )
+            continue;
           plan.assets.push({
             name: path,
             version: item.version as string,
@@ -219,6 +227,14 @@ export async function inspectCodeEnvironment(
       error instanceof CodeEnvironmentError ? error.message : 'INVALID_PROJECT_MANIFEST';
   }
   return plan;
+}
+
+function npmPlatformMatches(raw: unknown, platform: string) {
+  if (!Array.isArray(raw) || !raw.every((value) => typeof value === 'string')) return true;
+  return (
+    !raw.includes('!' + platform) &&
+    (raw.includes(platform) || raw.includes('any') || raw.every((value) => value.startsWith('!')))
+  );
 }
 
 /** Downloads bytes only. It never starts npm/pip or executes a package on the host. */

@@ -45,9 +45,25 @@ export const CodeWorkToolSchema = z.strictObject({
   tool: z.literal('code.applyPatch'),
   patch: CodePatchSchema,
 });
+export const SiteRegionSchema = z.strictObject({
+  page: z.string().max(400),
+  selector: z.string().min(1).max(500),
+  text: z.string().max(800),
+  width: z.number().int().nonnegative().max(100000),
+  height: z.number().int().nonnegative().max(100000),
+});
+export const SiteRevisionSchema = z.strictObject({
+  versionId: IdSchema,
+  sourceHash: z.string().regex(/^[a-f0-9]{64}$/),
+  region: SiteRegionSchema,
+});
+export type SiteRevision = z.infer<typeof SiteRevisionSchema>;
 export const CodeCommandSchemas = {
   'code.status': run,
-  'code.inherit': run.extend({ sourceRunId: IdSchema }),
+  'code.inherit': run.extend({
+    sourceRunId: IdSchema,
+    siteRevision: SiteRevisionSchema.optional(),
+  }),
   'code.prepareWorkspace': run.extend({
     baseRef: z.string().max(160).optional(),
     includeDirty: z.boolean().default(false),

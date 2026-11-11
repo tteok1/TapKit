@@ -1,9 +1,11 @@
 import { CodeService } from './code-service';
 import { CodeRuntimeService } from './code-runtime';
+import { SiteService } from './site-service';
 import {
   CodeCommandSchemas,
   TerminalCommandSchemas,
   GitHubCommandSchemas,
+  SiteCommandSchemas,
 } from '@tapkit/contracts';
 import { GitHubService } from './github-service';
 import { GitHubRemote } from './github-remote';
@@ -255,6 +257,7 @@ async function start() {
     (run) => !web.projectOnly(run.session_id) && web.options(run.session_id).mode !== 'off',
     models.claimRoot,
   );
+  const sites = new SiteService(code, runtime);
   const github = new GitHubService(
     store,
     code,
@@ -506,6 +509,14 @@ async function start() {
         );
       return;
     }
+    if (command.type === 'site.transfer') {
+      void sites
+        .transfer(command.requestId, command.runId, command.versionId, command.kind)
+        .then((reply) => {
+          if (!closing) port!.postMessage({ type: 'reply', id: command.id, reply });
+        });
+      return;
+    }
     if (command.type === 'github.connect') {
       void github.connect(command.requestId, command.input).then((reply) => {
         if (!closing) port!.postMessage({ type: 'reply', id: command.id, reply });
@@ -626,46 +637,48 @@ async function start() {
           work.cancelAccount(account.data.accountId);
         }
       }
-      const result = Object.hasOwn(GitHubCommandSchemas, command.request.command)
-        ? github.dispatch(command.request)
-        : Object.hasOwn(TerminalCommandSchemas, command.request.command)
-          ? runtime.dispatch(command.request)
-          : Object.hasOwn(CodeCommandSchemas, command.request.command)
-            ? code.dispatch(command.request)
-            : Object.hasOwn(BrowserCommandSchemas, command.request.command)
-              ? browser.dispatch(command.request)
-              : work.handles(command.request.command, command.request.payload)
-                ? work.dispatch(command.request)
-                : Object.hasOwn(ExportCommandSchemas, command.request.command)
-                  ? exports.dispatch(command.request)
-                  : Object.hasOwn(WebCommandSchemas, command.request.command) &&
-                      !temporary.target(command.request.payload)
-                    ? web.dispatch(command.request)
-                    : Object.hasOwn(ProjectCommandSchemas, command.request.command)
-                      ? projects.dispatch(command.request)
-                      : Object.hasOwn(ArtifactCommandSchemas, command.request.command)
-                        ? artifacts.dispatch(command.request)
-                        : Object.hasOwn(FileCommandSchemas, command.request.command)
-                          ? fileService.dispatch(command.request)
-                          : command.request.command === 'sessions.temporary' ||
-                              command.request.command === 'sessions.closeTemporary' ||
-                              temporary.target(command.request.payload)
-                            ? temporary.dispatch(command.request)
-                            : (HISTORY_COMMANDS as readonly string[]).includes(
-                                  command.request.command,
-                                )
-                              ? history.dispatch(command.request)
-                              : command.request.command.startsWith('models.') ||
-                                  command.request.command === 'usage.list'
-                                ? models.dispatch(command.request)
-                                : command.request.command.startsWith('providers.') &&
-                                    command.request.command !== 'providers.saveApiKey'
-                                  ? providers.dispatch(command.request)
-                                  : /^(memory\.|messages\.|drafts\.|inputs\.|runs\.cancel$|context\.|chat\.snippets\.)/.test(
-                                        command.request.command,
-                                      )
-                                    ? chat.dispatch(command.request)
-                                    : Promise.resolve(service.dispatch(command.request));
+      const result = Object.hasOwn(SiteCommandSchemas, command.request.command)
+        ? sites.dispatch(command.request)
+        : Object.hasOwn(GitHubCommandSchemas, command.request.command)
+          ? github.dispatch(command.request)
+          : Object.hasOwn(TerminalCommandSchemas, command.request.command)
+            ? runtime.dispatch(command.request)
+            : Object.hasOwn(CodeCommandSchemas, command.request.command)
+              ? code.dispatch(command.request)
+              : Object.hasOwn(BrowserCommandSchemas, command.request.command)
+                ? browser.dispatch(command.request)
+                : work.handles(command.request.command, command.request.payload)
+                  ? work.dispatch(command.request)
+                  : Object.hasOwn(ExportCommandSchemas, command.request.command)
+                    ? exports.dispatch(command.request)
+                    : Object.hasOwn(WebCommandSchemas, command.request.command) &&
+                        !temporary.target(command.request.payload)
+                      ? web.dispatch(command.request)
+                      : Object.hasOwn(ProjectCommandSchemas, command.request.command)
+                        ? projects.dispatch(command.request)
+                        : Object.hasOwn(ArtifactCommandSchemas, command.request.command)
+                          ? artifacts.dispatch(command.request)
+                          : Object.hasOwn(FileCommandSchemas, command.request.command)
+                            ? fileService.dispatch(command.request)
+                            : command.request.command === 'sessions.temporary' ||
+                                command.request.command === 'sessions.closeTemporary' ||
+                                temporary.target(command.request.payload)
+                              ? temporary.dispatch(command.request)
+                              : (HISTORY_COMMANDS as readonly string[]).includes(
+                                    command.request.command,
+                                  )
+                                ? history.dispatch(command.request)
+                                : command.request.command.startsWith('models.') ||
+                                    command.request.command === 'usage.list'
+                                  ? models.dispatch(command.request)
+                                  : command.request.command.startsWith('providers.') &&
+                                      command.request.command !== 'providers.saveApiKey'
+                                    ? providers.dispatch(command.request)
+                                    : /^(memory\.|messages\.|drafts\.|inputs\.|runs\.cancel$|context\.|chat\.snippets\.)/.test(
+                                          command.request.command,
+                                        )
+                                      ? chat.dispatch(command.request)
+                                      : Promise.resolve(service.dispatch(command.request));
       void result.then((reply) => {
         if (!closing) port!.postMessage({ type: 'reply', id: command.id, reply });
       });

@@ -1,6 +1,7 @@
 import { CodeViewSchema } from './code';
 import { TerminalViewSchema } from './terminal';
 import { GitHubViewSchema } from './github';
+import { SitePreviewReplySchema, SiteTransferSchema, SiteViewSchema } from './site';
 import { ExecutionCapabilitiesSchema } from './execution';
 import { ErrorCodeSchema } from './errors';
 export { ErrorCodeSchema } from './errors';
@@ -282,6 +283,10 @@ export const ReplyDataSchema = z.union([
   z.strictObject({ code: CodeViewSchema }),
   z.strictObject({ terminal: TerminalViewSchema }),
   z.strictObject({ github: GitHubViewSchema }),
+  z.strictObject({ site: SiteViewSchema }),
+  z.strictObject({ sitePreview: SitePreviewReplySchema }),
+  z.strictObject({ siteTransfer: SiteTransferSchema }),
+  z.strictObject({ siteSaved: z.boolean() }),
   WorkReplySchema,
   ExportReplySchema,
   WebReplySchema,

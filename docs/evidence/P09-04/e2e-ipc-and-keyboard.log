@@ -1,0 +1,22 @@
+$ node scripts/e2e.mjs "--" "--grep" "P09-04|P00-01 sandbox"
+
+Running 2 tests using 1 worker
+
+(node:53872) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 23876
+(node:23876) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+Debugger ending on <closed-debugger>
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 1 tests\e2e\P00-01.shell.spec.ts:45:1 › P00-01 sandbox bridge errors and clean child shutdown (39.1s)
+(node:38320) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+  ok 2 tests\e2e\P09-04.site.spec.ts:8:1 › P09-04 builds, interacts, preserves versions and rebuilds exported website source (48.8s)
+
+  2 passed (1.5m)
