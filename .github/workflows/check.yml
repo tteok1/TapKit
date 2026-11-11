@@ -2,13 +2,13 @@ name: Windows engineering checks
 on:
   push:
   pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
   check:
+    if: github.event_name != 'workflow_dispatch'
     runs-on: windows-2025
-    # Include the runner-bound 22-case probe before Electron, in addition to
-    # the independent standard-user and Office shutdown diagnostics below.
     timeout-minutes: 60
     env:
       TAPKIT_STARTUP_DIAGNOSTICS: '1'
@@ -54,29 +54,11 @@ jobs:
         # Measure the unchanged P95 budget after other integration workers have exited.
         if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' && steps.check.outcome == 'success' }}
         run: .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:perf
-      - name: Build and Electron checks
-        # Run independently after successful preparation; earlier failures still fail the job.
-        if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' && steps.check.outcome == 'success' }}
-        run: |
-          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs build
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          # Native capability receipts are runner-bound. The office-native job and
-          # the later standard-user copy cannot authorize this desktop process.
-          $env:TAPKIT_RUNTIME_PROBE_EVIDENCE_DIR = 'docs/evidence/P09-02/ci-current-user'
-          .\.runtime\node\node-v24.21.0-win-x64\node.exe scripts/runtime-probe.mjs --scope=current-user
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:e2e -- --grep "P00-0[12]|P02-02|P03-0[123]|P04-0[123]|P09-0[123]"
       - name: Verify P00-03 and P03 parser as an independent standard user
         if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' && steps.check.outcome == 'success' }}
         shell: pwsh
         timeout-minutes: 20
         run: .\scripts\ci-standard-user-test.ps1
-      - name: Repeat fresh-process Office shutdown diagnostics
-        # Temporary bounded sampling of CI55's intermittent control shutdown failure.
-        if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' && steps.check.outcome == 'success' }}
-        shell: pwsh
-        timeout-minutes: 16
-        run: .\scripts\ci-office-shutdown-diagnostics.ps1
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -97,8 +79,9 @@ jobs:
             docs/evidence/P09-02
             docs/evidence/P09-03
   office-native:
+    if: github.event_name != 'workflow_dispatch'
     # Keep the verified native report on this runner. Its full runtime hashing
-    # must not be repeated by every unrelated desktop startup in the check job.
+    # must not be repeated by desktop startups on other runners.
     runs-on: windows-2025
     timeout-minutes: 30
     steps:
@@ -134,12 +117,10 @@ jobs:
             docs/evidence/P07-01/native-*
             docs/evidence/P07-02/native-*
             docs/evidence/P07-03/native
-  startup-diagnostics:
-    # A successful bootstrap saves verified archives before the other checks run.
-    needs: check
-    if: ${{ !cancelled() }}
+  electron:
+    if: github.event_name != 'workflow_dispatch'
     runs-on: windows-2025
-    timeout-minutes: 20
+    timeout-minutes: 60
     env:
       TAPKIT_STARTUP_DIAGNOSTICS: '1'
     steps:
@@ -158,13 +139,68 @@ jobs:
           key: windows-runtime-archives-v1-${{ hashFiles('runtime-lock.json', 'dependency-baseline.json', 'python-wheels.lock.json') }}
       - name: Bootstrap locked runtime and native dependencies
         run: node scripts/bootstrap.mjs
+      - name: Verify current runner execution capabilities
+        # Bootstrap already builds the desktop. Generate the capability report on
+        # this runner before launching the Electron suite.
+        run: .\.runtime\node\node-v24.21.0-win-x64\node.exe scripts/runtime-probe.mjs --scope=current-user
+        env:
+          TAPKIT_RUNTIME_PROBE_EVIDENCE_DIR: docs/evidence/P09-02/ci-current-user
+      - name: Electron end-to-end checks
+        run: |
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:e2e -- --grep "P00-0[12]|P02-02|P03-0[123]|P04-0[123]|P09-0[123]"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-electron-evidence
+          path: |
+            test-results
+            docs/evidence/P00-01
+            docs/evidence/P00-02/*.png
+            docs/evidence/P02-02
+            docs/evidence/P03-02
+            docs/evidence/P03-03
+            docs/evidence/P04-01
+            docs/evidence/P04-02
+            docs/evidence/P04-03
+            docs/evidence/P09-02/ci-current-user
+            docs/evidence/P09-03
+  repeat-diagnostics:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: windows-2025
+    timeout-minutes: 35
+    env:
+      TAPKIT_STARTUP_DIAGNOSTICS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+      - name: Restore locked runtime archives
+        uses: actions/cache/restore@v5
+        with:
+          path: |
+            .cache/downloads
+            .cache/wheels
+          key: windows-runtime-archives-v1-${{ hashFiles('runtime-lock.json', 'dependency-baseline.json', 'python-wheels.lock.json') }}
+      - name: Bootstrap locked runtime and native dependencies
+        id: bootstrap
+        run: node scripts/bootstrap.mjs
+      - name: Repeat fresh-process Office shutdown diagnostics
+        shell: pwsh
+        timeout-minutes: 16
+        run: .\scripts\ci-office-shutdown-diagnostics.ps1
       - name: Repeat fresh-process startup diagnostics
+        if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' }}
         shell: pwsh
         timeout-minutes: 10
         run: .\scripts\ci-startup-diagnostics.ps1
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: windows-startup-evidence
-          path: test-results/e2e-startup-repeat-*
+          name: windows-repeat-diagnostics-evidence
+          path: |
+            test-results/office-shutdown-diagnostics
+            test-results/e2e-startup-repeat-*
           if-no-files-found: ignore
