@@ -1,6 +1,6 @@
 # 测试、评测和发布验收
 
-P07原生CI按[ADR0073](../adr/0073-private-office-fonts-and-ci-scope.md)分离作用域：主check集成排除的P07 native 9文件17项，必须在独立office-native job中全部执行；该job先实际probe当前runner，再运行同一完整文件集并上传成果。其他集成、性能与独立标准用户检查留在check，既有Electron E2E范围在并行的electron job内以单worker运行。electron在自己的runner生成能力报告。禁止将拆分记为删除覆盖或跨runner复用能力报告。
+P07原生CI按[ADR0073](../adr/0073-private-office-fonts-and-ci-scope.md)分离作用域：主check集成排除的P07 native 9文件17项，必须在独立office-native job中全部执行；该job先实际probe当前runner，再运行同一完整文件集并上传成果。其他集成、性能与独立标准用户检查留在check，既有Electron E2E范围在并行的electron job内以单worker运行。electron在自己的runner生成能力报告，并执行P03-02原生预览用例，为桌面测试生成本地合成交接文件。禁止将拆分记为删除覆盖或跨runner复用能力报告。
 
 启动（建库和凭据）与Office关闭（外链和宏）的新进程多轮复测由工作流的手动触发运行。原用例继续随push/PR的主集成和Electron E2E执行。
 
