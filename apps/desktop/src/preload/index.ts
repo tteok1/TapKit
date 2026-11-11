@@ -33,6 +33,7 @@ const invoke = async (command: string, options: RequestOptions, payload: unknown
   );
 const activeListeners = new Set<unknown>();
 const bridge: TapKitBridge = Object.freeze<TapKitBridge>({
+  githubCommand: (options, command, payload) => invoke(command, options, payload),
   terminalCommand: (options, command, payload) => invoke(command, options, payload),
   windowSlot: process.argv.find((v) => v.startsWith('--tapkit-window-slot='))?.split('=')[1] ?? '0',
   newWindow: () => ipcRenderer.invoke('tapkit:new-window'),

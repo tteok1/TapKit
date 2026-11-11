@@ -10,6 +10,7 @@ import {
   type Reply,
   type CodePatch,
   type CodeView,
+  type GitHubAccount,
 } from '@tapkit/contracts';
 import { WorkRepository, StorageError, failure, newId, type Store } from '@tapkit/storage';
 import {
@@ -24,6 +25,7 @@ import { canonicalHash } from '@tapkit/tools';
 import { ResourceRefSchema } from '@tapkit/contracts';
 import type { WorkRun } from '@tapkit/storage';
 import type { WorkArtifacts } from './work-artifacts';
+import type { GitHubJournal, GitHubTarget } from './github-state';
 
 type ProjectState = {
   name: string;
@@ -37,6 +39,7 @@ type ProjectState = {
   baseline: Record<string, string>;
   sourceHashes: Record<string, string | null>;
   revoked: boolean;
+  githubOrigin?: GitHubTarget;
 };
 type Snapshot = {
   base: string | null;
@@ -49,6 +52,7 @@ type WorkspaceState = {
   files: Record<string, Snapshot>;
   comments: Omit<CodeView['comments'][number], 'stale'>[];
   pending?: Record<string, string>;
+  github?: GitHubJournal;
 };
 type Project = { id: string; canonical_root: string; state_json: string; revision: number };
 type Workspace = {
@@ -58,6 +62,21 @@ type Workspace = {
   state: string;
   branch: string | null;
   base_commit: string | null;
+};
+export type GitHubWorkspace = {
+  broker: CodeGitBroker;
+  mirror: string;
+  branch: string;
+  base: string;
+  head: string;
+  origin: GitHubTarget | undefined;
+  journal: GitHubJournal;
+  save(journal: GitHubJournal): void;
+  guard(): void;
+  reviewed(): Promise<{
+    sourceHash: string;
+    changes: { path: string; content: string | null; hash: string | null }[];
+  }>;
 };
 export class CodeService {
   readonly repo: WorkRepository;
@@ -154,6 +173,184 @@ export class CodeService {
     const root = join(this.store.dataDir, 'code-private');
     await mkdir(root, { recursive: true });
     return new CodeGitBroker((await runtimePaths(this.appRoot, 'git')).executable, root);
+  }
+  githubRun(id: string) {
+    return this.run(id);
+  }
+  private githubGuard(id: string) {
+    const run = this.run(id);
+    const task = this.store.db
+      .prepare('SELECT current_version FROM tasks WHERE id=? AND deleted_at IS NULL')
+      .get(run.task_id) as { current_version: number } | undefined;
+    if (
+      task?.current_version !== run.task_version ||
+      ![
+        'queued',
+        'paused',
+        'waiting_user',
+        'completed',
+        'partial',
+        'failed',
+        'budget_stopped',
+      ].includes(run.status)
+    )
+      throw new StorageError('CONFLICT');
+    return run;
+  }
+  githubProject(id: string) {
+    this.run(id);
+    const p = this.store.db
+      .prepare('SELECT state_json FROM code_projects WHERE run_id=? AND profile_id=?')
+      .get(id, this.store.profileId) as { state_json: string } | undefined;
+    if (!p) return null;
+    const state = JSON.parse(p.state_json) as ProjectState;
+    return { origin: state.githubOrigin, revoked: state.revoked };
+  }
+  githubJournal(id: string): GitHubJournal {
+    this.run(id);
+    const w = this.store.db.prepare('SELECT state_json FROM worktrees WHERE run_id=?').get(id) as
+      { state_json: string } | undefined;
+    return w ? ((JSON.parse(w.state_json) as WorkspaceState).github ?? {}) : {};
+  }
+  githubClone(
+    id: string,
+    account: GitHubAccount,
+    fetch: (
+      broker: CodeGitBroker,
+      projectId: string,
+    ) => Promise<{ mirror: string; commit: string; files: Record<string, string> }>,
+    refresh: boolean,
+  ) {
+    return this.serial(async () => {
+      const run = this.githubGuard(id);
+      if (
+        !['queued', 'paused', 'waiting_user'].includes(run.status) ||
+        (run.status === 'queued' && this.repo.state(run).planAccepted)
+      )
+        throw new StorageError('CONFLICT');
+      const existing = this.store.db
+        .prepare('SELECT * FROM code_projects WHERE run_id=? AND profile_id=?')
+        .get(id, this.store.profileId) as Project | undefined;
+      const state = existing ? (JSON.parse(existing.state_json) as ProjectState) : undefined;
+      if (
+        refresh !== !!existing ||
+        state?.revoked ||
+        (refresh &&
+          (!state?.mirror ||
+            state.githubOrigin?.repo !== account.repo ||
+            state.githubOrigin.repositoryId !== account.repositoryId ||
+            this.store.db.prepare('SELECT 1 FROM worktrees WHERE run_id=?').get(id)))
+      )
+        throw new StorageError('CONFLICT');
+      const projectId = existing?.id ?? newId();
+      const broker = await this.broker();
+      // Fetch into a fresh mirror so a failed refresh leaves the prior base available.
+      const result = await fetch(broker, newId());
+      try {
+        this.githubGuard(id);
+      } catch (error) {
+        await broker.removeGithubMirror(result.mirror).catch(() => {});
+        throw error;
+      }
+      const project: ProjectState = {
+        name: account.repo,
+        git: true,
+        branch: account.defaultBranch,
+        branches: [account.defaultBranch],
+        head: result.commit,
+        mirror: result.mirror,
+        baseline: result.files,
+        sourceHashes: {},
+        dirty: false,
+        untracked: [],
+        revoked: false,
+        githubOrigin: { repo: account.repo, repositoryId: account.repositoryId },
+      };
+      if (existing)
+        this.store.db
+          .prepare(
+            'UPDATE code_projects SET canonical_root=?,state_json=?,revision=revision+1,updated_at=? WHERE id=?',
+          )
+          .run(result.mirror, JSON.stringify(project), this.store.now(), projectId);
+      else
+        this.store.db
+          .prepare(
+            'INSERT INTO code_projects(id,profile_id,run_id,canonical_root,state_json,created_at,updated_at) VALUES(?,?,?,?,?,?,?)',
+          )
+          .run(
+            projectId,
+            this.store.profileId,
+            id,
+            result.mirror,
+            JSON.stringify(project),
+            this.store.now(),
+            this.store.now(),
+          );
+      if (state?.mirror) await broker.removeGithubMirror(state.mirror).catch(() => {});
+    });
+  }
+  githubWorkspace<T>(id: string, work: (context: GitHubWorkspace) => Promise<T>, writable = false) {
+    return this.serial(async () => {
+      const { p, s, w, state } = this.workspace(id);
+      if (!s.mirror || !w.branch || !w.base_commit || !w.managed_repo_path)
+        throw new StorageError('FEATURE_NOT_AVAILABLE');
+      if (writable) this.githubGuard(id);
+      const release = writable ? this.holdExecution(id, () => {}) : undefined;
+      try {
+        const broker = await this.broker();
+        const head = await broker.githubLocalHead(s.mirror, w.branch);
+        return await work({
+          broker,
+          mirror: s.mirror,
+          branch: w.branch,
+          base: w.base_commit,
+          head,
+          origin: s.githubOrigin,
+          journal: state.github ?? {},
+          save: (journal) => {
+            state.github = journal;
+            this.save(id, p, state);
+          },
+          guard: () => {
+            this.githubGuard(id);
+            this.workspace(id);
+          },
+          reviewed: async () => {
+            const { files: previous } = await broker.snapshot(s.mirror!, head);
+            const files = await codeTree(w.canonical_path),
+              current = new Map<string, string>();
+            let bytes = 0;
+            for (const path of files) {
+              const content = await codeRead(w.canonical_path, path);
+              if (content === null) throw new StorageError('CONFLICT');
+              bytes += Buffer.byteLength(content);
+              if (bytes > 16 * 1024 ** 2) throw new StorageError('OUTPUT_LIMIT_REACHED');
+              current.set(path, content);
+            }
+            const changes = [...new Set([...files, ...Object.keys(previous)])]
+              .sort()
+              .flatMap((path) => {
+                const content = current.get(path) ?? null;
+                const base = Object.hasOwn(previous, path) ? previous[path]! : null;
+                if (content === base) return [];
+                const hash = codeHash(content),
+                  accepted = Object.hasOwn(state.files, path) ? state.files[path] : undefined;
+                if (!accepted?.acceptedSet || accepted.accepted !== hash)
+                  throw new StorageError('APPROVAL_REQUIRED');
+                return [{ path, content, hash }];
+              });
+            return {
+              changes,
+              sourceHash: codeHash(
+                JSON.stringify(files.map((path) => [path, codeHash(current.get(path)!)])),
+              )!,
+            };
+          },
+        });
+      } finally {
+        release?.();
+      }
+    });
   }
   /** Private Host entry. Paths cannot arrive through a public request or model tool. */
   attach(id: string, selectedPath: string) {
@@ -401,6 +598,7 @@ export class CodeService {
       untracked: s.untracked,
       prepared: w?.state === 'prepared',
       revoked: s.revoked,
+      ...(s.githubOrigin ? { githubRepo: s.githubOrigin.repo } : {}),
       revision: p.revision,
       files,
       changes,
@@ -747,7 +945,7 @@ export class CodeService {
                 metadata,
                 source.s.git ? branch : null,
                 source.w.base_commit,
-                JSON.stringify(source.state),
+                JSON.stringify({ ...source.state, github: undefined }),
                 this.store.now(),
                 this.store.now(),
               );

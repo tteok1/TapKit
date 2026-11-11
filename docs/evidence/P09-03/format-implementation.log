@@ -1,0 +1,30 @@
+warning: in the working copy of 'docs/progress/CURRENT.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/progress/INDEX.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/progress/requirements.csv', CRLF will be replaced by LF the next time Git touches it
+.github/workflows/check.yml 38ms (unchanged)
+apps/desktop/src/main/auth/secrets.ts 124ms (unchanged)
+apps/desktop/src/main/index.ts 160ms (unchanged)
+apps/desktop/src/preload/index.ts 26ms (unchanged)
+apps/desktop/src/renderer/src/code-ui.tsx 64ms (unchanged)
+apps/desktop/src/renderer/src/code.css 49ms (unchanged)
+packages/contracts/src/code.ts 12ms (unchanged)
+packages/contracts/src/foundation.ts 32ms (unchanged)
+packages/contracts/src/index.ts 27ms (unchanged)
+packages/core/src/code-runtime.ts 98ms (unchanged)
+packages/core/src/code-service.ts 107ms
+packages/core/src/index.ts 55ms (unchanged)
+packages/core/src/provider-service.ts 33ms (unchanged)
+packages/network/src/policy.ts 23ms (unchanged)
+packages/tools/src/execution/code-workspace.ts 48ms
+scripts/live.mjs 25ms
+tests/e2e/P00-01.shell.spec.ts 17ms (unchanged)
+apps/desktop/src/renderer/locales/github.zh-CN.json 4ms (unchanged)
+apps/desktop/src/renderer/src/github-ui.tsx 27ms
+packages/contracts/src/github.ts 8ms (unchanged)
+packages/core/src/github-remote.ts 20ms (unchanged)
+packages/core/src/github-service.ts 38ms
+packages/core/src/github-state.ts 2ms (unchanged)
+tests/e2e/P09-03.github.spec.ts 14ms (unchanged)
+tests/integration/P09-03.github.test.ts 36ms
+tests/integration/P09-03.live.test.ts 10ms
+tests/unit/P09-03.github.test.ts 8ms

@@ -8,6 +8,77 @@
 .code-panel h4 {
   margin: 0;
 }
+.github-panel {
+  border-block-start: 1px solid var(--border);
+  padding-block-start: 12px;
+  margin-block-start: 20px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.github-panel form > button {
+  justify-self: start;
+}
+.github-panel label:not(:has(input[type='checkbox'])) {
+  display: grid;
+  justify-items: stretch;
+  max-width: 40rem;
+}
+.github-panel input:not([type='checkbox']),
+.github-panel textarea {
+  min-width: 0;
+  max-width: 100%;
+}
+.github-target,
+.github-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+}
+.github-target span {
+  color: var(--muted);
+}
+.github-review,
+.github-result {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--code-surface);
+  margin-block: 12px;
+}
+.github-review dl {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 4px 12px;
+  border-color: var(--border);
+}
+.github-review dt {
+  color: var(--muted);
+}
+.work-center .github-review .github-confirm {
+  background: var(--accent-surface);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+.github-review dd {
+  margin: 0;
+}
+.github-review ul,
+.github-result ul {
+  padding-inline-start: 20px;
+  max-height: 240px;
+  overflow: auto;
+}
+.github-text {
+  white-space: pre-wrap;
+}
+.github-result details {
+  margin-block: 8px;
+}
+.github-result a {
+  color: var(--accent);
+  text-underline-offset: 0.18em;
+}
 .code-toolbar {
   display: flex;
   align-items: center;

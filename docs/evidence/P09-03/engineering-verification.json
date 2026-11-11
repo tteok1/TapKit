@@ -1,0 +1,65 @@
+{
+  "task": "P09-03",
+  "date": "2026-11-11 Asia/Shanghai",
+  "branch": "codex/p09-03-github",
+  "base": "a2c3264776ed0348c3f455b5a31afbc543ff887c",
+  "ci88BaselineRunId": 42186726758,
+  "checks": {
+    "unit": {
+      "passed": 512,
+      "exitCode": 0,
+      "log": "unit-final.log"
+    },
+    "relatedIntegration": {
+      "passed": 35,
+      "explicitLiveSkips": 2,
+      "exitCode": 0,
+      "log": "integration-final.log"
+    },
+    "currentUserProbe": {
+      "passed": 22,
+      "exitCode": 0,
+      "fingerprint": "6623de66bef43cec4bf85c2b10a5614e1be360cfbaee65549015e5a2f865d653",
+      "scope": "current-user",
+      "standardUser": false,
+      "log": "native-probe/runtime-probe.json"
+    },
+    "productionElectron": {
+      "passed": 1,
+      "exitCode": 0,
+      "log": "e2e-ui-review.log",
+      "focusTransitionsVerified": true,
+      "defaultTextCanBeCleared": true
+    },
+    "existingBridgeRegression": {
+      "passed": 1,
+      "log": "e2e-verified-probe.log",
+      "note": "The same earlier run had a P09-03 locator failure, corrected in the final P09-03 run"
+    },
+    "static": {
+      "exitCode": 0,
+      "electronTestsCollected": 130,
+      "log": "check-ui-review.log"
+    },
+    "productionRendererBuild": {
+      "exitCode": 0,
+      "log": "desktop-build-review.log"
+    }
+  },
+  "simulatedGitHub": {
+    "draftCreateRequests": 1,
+    "unknownResultReconciledAfterServiceRestart": true,
+    "gitPushResultVerifiedAgainstOwnedLocalRemote": true,
+    "realGitHubWrites": 0
+  },
+  "live": {
+    "resource": "R07",
+    "status": "pending",
+    "preflightExitCode": 2,
+    "log": "live-preflight.log"
+  },
+  "maintenancePreserved": true,
+  "historicalNativeJournalRestored": true,
+  "nextTask": "P09-04",
+  "p09GateClosed": false
+}

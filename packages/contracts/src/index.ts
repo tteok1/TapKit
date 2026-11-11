@@ -1,6 +1,8 @@
 export * from './code';
 export * from './terminal';
+export * from './github';
 import { z } from 'zod';
+import { GitHubConnectSchema } from './github';
 import type { StartLogin } from './providers';
 import { IdSchema } from './identity';
 import { FileGetSchema } from './files';
@@ -48,6 +50,13 @@ export const PingReplySchema = z.strictObject({
   corePid: z.number().int().positive(),
 });
 export const CoreCommandSchema = z.discriminatedUnion('type', [
+  z.strictObject({
+    type: z.literal('github.connect'),
+    id: z.string().uuid(),
+    requestId: IdSchema,
+    windowId: z.string().regex(/^[0-9]{1,8}$/),
+    input: GitHubConnectSchema,
+  }),
   z.strictObject({
     type: z.literal('code.attach'),
     id: z.string().uuid(),
@@ -139,6 +148,9 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
       'export.cancelPdf',
       'api-key.delete',
       'network.proxy.resolve',
+      'github.read',
+      'github.write',
+      'github.delete',
     ]),
     accountId: z.string().uuid(),
     payload: z.unknown(),
@@ -156,6 +168,11 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
 export type PingRequest = z.infer<typeof PingRequestSchema>;
 export type PingReply = z.infer<typeof PingReplySchema>;
 export interface TapKitBridge {
+  githubCommand(
+    options: RequestOptions,
+    command: import('./github').GitHubCommand,
+    payload: unknown,
+  ): Promise<Reply>;
   terminalCommand(
     options: RequestOptions,
     command: import('./terminal').TerminalCommand,

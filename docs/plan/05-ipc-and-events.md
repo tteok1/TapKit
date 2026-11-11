@@ -172,7 +172,10 @@ DTO中的EntityView是不含凭据、绝对内部路径、native reasoning的可
 | code.attach/status/diff           | {projectId,selectionToken} / {projectId} / {runId,path?} → CodeProjectView/RepoStatus/DiffView                                       |
 | code.accept/revert/comment        | {runId,paths,expectedHashes} / 同前 / {runId,path,line,side,body} → {results}                                                        |
 | terminal.start/input/resize/stop  | {runId,runtime,cwdRef} / {processId,text} / {processId,cols,rows} / {processId} → ProcessView/Ack                                    |
-| github.connect/createPR/checkPR   | {token,repoAllowlist} / {runId,repo,base,head,title,body,draft:true} / {repo,prNumber} → AccountView/PRView                          |
+| github.connect                    | {runId,repo,token,contentsWrite,pullRequestsWrite} → GitHubView。Host 专用凭据路由，响应只含账户与许可。                            |
+| github.status/clone/fetch/disconnect | {runId} → GitHubView。默认分支克隆与刷新使用私有镜像。                                                                            |
+| github.preview/approve/dismiss    | {runId,intent} / {runId,previewId} / 同前 → GitHubView。单次票据绑定审阅内容和窗口。                                                |
+| github.reconcile/checkPR           | {runId} → GitHubView。核对待确认的远端写入，或读取已绑定 PR 的状态、检查与审查反馈。                                                |
 | canvas.open/save/aiEdit/apply     | {fileId} / {documentId,content,baseVersion} / {documentId,selection,request,baseVersion} / {proposalId,accept} → CanvasView/Proposal |
 | data.export/backup/restore/clear  | {categories,destinationToken} / {destinationToken?} / {selectionToken} / {categories,includeBackups} → {jobId,impactPreview?}        |
 | diagnostics.bundle                | {includeContent:false                                                                                                                | true,destinationToken} → {fileId}；默认false        |

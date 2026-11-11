@@ -77,7 +77,7 @@ P04-01：[ADR0045](../adr/0045-local-hybrid-retrieval-and-verified-evidence.md)�
 | exec.poll/cancel     | {processId,offset?} → state,delta,exitCode                                        | read/10s或cancel                     |
 | git.inspect          | {workspaceId,kind:"status"                                                        | "diff"                               | "log",path?} → structured                                       | read/15s                    |
 | git.commit           | {workspaceId,paths[],message,expectedHashes} → commitSha                          | workspace_write需具体审阅/30s        |
-| github.createPR      | {repo,base,head,title,body,draft:true} → prNumber,url                             | external_write/30s，先核对           |
+| github.preview/approve | 桌面提交、推送、Draft PR 审阅票据与回执，契约见 05 IPC                             | workspace_write 或 external_write，先审阅再核对 |
 | plan.update          | {steps[],reason} → planRevision                                                   | 内核动作；不可绕过用户锁定步骤       |
 | user.ask             | {question,choices?,contextRef?} → questionId                                      | waiting_user，不反复轮询模型         |
 | task.delegate        | {goal,inputRefs,outputSchema,acceptance,toolAllowlist,budget} → subtaskId         | work only/depth1                     |
@@ -142,6 +142,8 @@ P09-02实现决定见[ADR0079](../adr/0079-isolated-code-runtime-and-terminal.md
 npm解析使用宿主签名的固定解析worker，只接受清洗后的package声明，关闭scripts/audit/fund、固定registry、不继承.npmrc。包内容与生命周期脚本只在沙箱内处理；依赖脚本所需网络不给直通，报缺失资源。Python拒绝任意URL/VCS可执行安装源，wheel优先；需要源码编译且本版无工具链则给出不支持状态。不得在可信Host执行pip/npm任意安装脚本。
 
 Git网络由专门broker执行fetch/push，关闭外部hooks、credential helper、配置include、ext协议和自动submodule；token经单次凭据代理注入，不进入URL、process argv、日志或用户工作区。实际代码任务的Git元数据来自应用私有bare镜像，只有broker可访问；终端中的任意脚本不能因此改refs/配置或读取用户原仓库.git。git.inspect/commit采用固定Git参数和Core保存的git-dir/work-tree映射，忽略工作区内可能被改写的.git指针；禁止external diff、textconv、fsmonitor、hooks、任意filter、global/system配置和未批准远程URL。原生Git兼容测试可使用沙箱内独立无凭据fixture仓库，不混同正式任务授权。
+
+P09-03 的 GitHub 连接、桌面审阅票据及持久核对回执见 [ADR 0080](../adr/0080-reviewed-github-publication.md)。
 
 ## 6. 网络与浏览器
 

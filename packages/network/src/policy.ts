@@ -205,11 +205,34 @@ export class NetworkPolicyService {
     }
     throw new NetworkFailure('NETWORK_ERROR');
   }
+  /** Dedicated authenticated route. Anonymous requests cannot supply wire headers. */
+  async github(value: string, token: string, json?: unknown): Promise<WireReply> {
+    const url = new URL(value);
+    if (
+      url.origin !== 'https://api.github.com' ||
+      url.username ||
+      url.password ||
+      url.hash ||
+      !/^github_pat_[A-Za-z0-9_]{20,240}$/.test(token)
+    )
+      throw new NetworkFailure('PERMISSION_DENIED');
+    const signal = AbortSignal.timeout(15_000);
+    const dest = await this.destination(url.href, signal);
+    const proxy = (await this.deps.proxy?.(dest.url, signal)) ?? '';
+    signal.throwIfAborted();
+    return this.wire(dest, proxy, { json, limit: 4 * 1024 * 1024 }, signal, {
+      Accept: 'application/vnd.github+json',
+      Authorization: 'Bearer ' + token,
+      'X-GitHub-Api-Version': '2022-11-28',
+      'User-Agent': 'TapKit/0.1',
+    });
+  }
   private wire(
     dest: Awaited<ReturnType<NetworkPolicyService['destination']>>,
     proxy: string,
     options: { json?: unknown; limit?: number },
     signal: AbortSignal,
+    trustedHeaders?: Record<string, string>,
   ): Promise<WireReply> {
     const secure = dest.url.protocol === 'https:';
     const agent = secure ? new HttpsAgent() : new HttpAgent();
@@ -253,6 +276,7 @@ export class NetworkPolicyService {
             'Accept-Encoding': 'identity',
             'User-Agent': 'TapKit/0.1 (anonymous reader)',
             ...(options.json === undefined ? {} : { 'Content-Type': 'application/json' }),
+            ...trustedHeaders,
           },
         },
         (res) => {

@@ -1,5 +1,6 @@
 import { codeLineDiff } from './code-diff';
 import { TerminalPanel } from './terminal-ui';
+import { GitHubPanel } from './github-ui';
 import { useEffect, useState, useMemo } from 'react';
 import { CodeViewSchema, type CodeView, type CodeCommand, type WorkView } from '@tapkit/contracts';
 import { requestOptions } from './desktop-state';
@@ -522,6 +523,7 @@ export function CodePanel({
           </button>
         </>
       )}
+      <GitHubPanel key={runId} runId={runId} project={view} onProjectChanged={reload} />
     </section>
   );
 }

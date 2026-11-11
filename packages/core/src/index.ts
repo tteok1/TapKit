@@ -1,6 +1,12 @@
 import { CodeService } from './code-service';
 import { CodeRuntimeService } from './code-runtime';
-import { CodeCommandSchemas, TerminalCommandSchemas } from '@tapkit/contracts';
+import {
+  CodeCommandSchemas,
+  TerminalCommandSchemas,
+  GitHubCommandSchemas,
+} from '@tapkit/contracts';
+import { GitHubService } from './github-service';
+import { GitHubRemote } from './github-remote';
 import { DependencyBroker } from '@tapkit/tools';
 import { modelDelegateDriver } from './delegation-driver';
 import { readExecutionCapabilities } from '@tapkit/tools';
@@ -229,28 +235,33 @@ async function start() {
       ),
   );
   const code = new CodeService(store, process.env.TAPKIT_APP_ROOT ?? '');
+  const codeNetwork = new NetworkPolicyService({
+    proxy: async (url) =>
+      resolveNetworkProxy(
+        store.settings.values.network,
+        url,
+        async (value) =>
+          z
+            .strictObject({ proxyURL: z.string().max(2048) })
+            .parse(await vault('network.proxy.resolve', store.profileId, { url: value })).proxyURL,
+      ),
+  });
   const runtime = new CodeRuntimeService(
     store,
     code,
     process.env.TAPKIT_APP_ROOT ?? '',
     service.executionCapabilities,
-    new DependencyBroker(
-      join(store.dataDir, 'code-dependency-cache'),
-      new NetworkPolicyService({
-        proxy: async (url) =>
-          resolveNetworkProxy(
-            store.settings.values.network,
-            url,
-            async (value) =>
-              z
-                .strictObject({ proxyURL: z.string().max(2048) })
-                .parse(await vault('network.proxy.resolve', store.profileId, { url: value }))
-                .proxyURL,
-          ),
-      }),
-    ),
+    new DependencyBroker(join(store.dataDir, 'code-dependency-cache'), codeNetwork),
     (run) => !web.projectOnly(run.session_id) && web.options(run.session_id).mode !== 'off',
     models.claimRoot,
+  );
+  const github = new GitHubService(
+    store,
+    code,
+    new GitHubRemote(codeNetwork),
+    vault,
+    (id, hash) => runtime.verify(id, hash),
+    (run) => !web.projectOnly(run.session_id) && web.options(run.session_id).mode !== 'off',
   );
   const research = new ResearchService(workArtifacts, web, chat);
   const workGateway = new WorkToolGateway(
@@ -349,6 +360,7 @@ async function start() {
       return;
     }
     if (command.type === 'window.closed') {
+      github.closeWindow(command.windowId);
       exports.closeWindow(command.windowId);
       void temporary.closeWindow(command.windowId);
       void fileService.closeWindow(command.windowId);
@@ -494,6 +506,12 @@ async function start() {
         );
       return;
     }
+    if (command.type === 'github.connect') {
+      void github.connect(command.requestId, command.input).then((reply) => {
+        if (!closing) port!.postMessage({ type: 'reply', id: command.id, reply });
+      });
+      return;
+    }
     if (command.type === 'code.attach') {
       void code.attach(command.runId, command.path).then(
         (view) =>
@@ -608,44 +626,46 @@ async function start() {
           work.cancelAccount(account.data.accountId);
         }
       }
-      const result = Object.hasOwn(TerminalCommandSchemas, command.request.command)
-        ? runtime.dispatch(command.request)
-        : Object.hasOwn(CodeCommandSchemas, command.request.command)
-          ? code.dispatch(command.request)
-          : Object.hasOwn(BrowserCommandSchemas, command.request.command)
-            ? browser.dispatch(command.request)
-            : work.handles(command.request.command, command.request.payload)
-              ? work.dispatch(command.request)
-              : Object.hasOwn(ExportCommandSchemas, command.request.command)
-                ? exports.dispatch(command.request)
-                : Object.hasOwn(WebCommandSchemas, command.request.command) &&
-                    !temporary.target(command.request.payload)
-                  ? web.dispatch(command.request)
-                  : Object.hasOwn(ProjectCommandSchemas, command.request.command)
-                    ? projects.dispatch(command.request)
-                    : Object.hasOwn(ArtifactCommandSchemas, command.request.command)
-                      ? artifacts.dispatch(command.request)
-                      : Object.hasOwn(FileCommandSchemas, command.request.command)
-                        ? fileService.dispatch(command.request)
-                        : command.request.command === 'sessions.temporary' ||
-                            command.request.command === 'sessions.closeTemporary' ||
-                            temporary.target(command.request.payload)
-                          ? temporary.dispatch(command.request)
-                          : (HISTORY_COMMANDS as readonly string[]).includes(
-                                command.request.command,
-                              )
-                            ? history.dispatch(command.request)
-                            : command.request.command.startsWith('models.') ||
-                                command.request.command === 'usage.list'
-                              ? models.dispatch(command.request)
-                              : command.request.command.startsWith('providers.') &&
-                                  command.request.command !== 'providers.saveApiKey'
-                                ? providers.dispatch(command.request)
-                                : /^(memory\.|messages\.|drafts\.|inputs\.|runs\.cancel$|context\.|chat\.snippets\.)/.test(
-                                      command.request.command,
-                                    )
-                                  ? chat.dispatch(command.request)
-                                  : Promise.resolve(service.dispatch(command.request));
+      const result = Object.hasOwn(GitHubCommandSchemas, command.request.command)
+        ? github.dispatch(command.request)
+        : Object.hasOwn(TerminalCommandSchemas, command.request.command)
+          ? runtime.dispatch(command.request)
+          : Object.hasOwn(CodeCommandSchemas, command.request.command)
+            ? code.dispatch(command.request)
+            : Object.hasOwn(BrowserCommandSchemas, command.request.command)
+              ? browser.dispatch(command.request)
+              : work.handles(command.request.command, command.request.payload)
+                ? work.dispatch(command.request)
+                : Object.hasOwn(ExportCommandSchemas, command.request.command)
+                  ? exports.dispatch(command.request)
+                  : Object.hasOwn(WebCommandSchemas, command.request.command) &&
+                      !temporary.target(command.request.payload)
+                    ? web.dispatch(command.request)
+                    : Object.hasOwn(ProjectCommandSchemas, command.request.command)
+                      ? projects.dispatch(command.request)
+                      : Object.hasOwn(ArtifactCommandSchemas, command.request.command)
+                        ? artifacts.dispatch(command.request)
+                        : Object.hasOwn(FileCommandSchemas, command.request.command)
+                          ? fileService.dispatch(command.request)
+                          : command.request.command === 'sessions.temporary' ||
+                              command.request.command === 'sessions.closeTemporary' ||
+                              temporary.target(command.request.payload)
+                            ? temporary.dispatch(command.request)
+                            : (HISTORY_COMMANDS as readonly string[]).includes(
+                                  command.request.command,
+                                )
+                              ? history.dispatch(command.request)
+                              : command.request.command.startsWith('models.') ||
+                                  command.request.command === 'usage.list'
+                                ? models.dispatch(command.request)
+                                : command.request.command.startsWith('providers.') &&
+                                    command.request.command !== 'providers.saveApiKey'
+                                  ? providers.dispatch(command.request)
+                                  : /^(memory\.|messages\.|drafts\.|inputs\.|runs\.cancel$|context\.|chat\.snippets\.)/.test(
+                                        command.request.command,
+                                      )
+                                    ? chat.dispatch(command.request)
+                                    : Promise.resolve(service.dispatch(command.request));
       void result.then((reply) => {
         if (!closing) port!.postMessage({ type: 'reply', id: command.id, reply });
       });

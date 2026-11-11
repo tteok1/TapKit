@@ -1,5 +1,6 @@
 import { CodeCommandSchemas } from '@tapkit/contracts';
 import { TerminalCommandSchemas } from '@tapkit/contracts';
+import { GitHubCommandSchemas, GitHubConnectSchema } from '@tapkit/contracts';
 import {
   clipboard,
   app,
@@ -163,19 +164,22 @@ function forward(command: Record<string, unknown>): Promise<unknown> {
           pending.delete(id);
           reject(new Error('Core timeout'));
         },
-        (command.request as { command?: string } | undefined)?.command === 'models.diagnostic'
-          ? 310_000
-          : (command.request as { command?: string } | undefined)?.command === 'providers.check'
-            ? 130_000
-            : command.type === 'files.export' ||
-                command.type === 'artifacts.read' ||
-                (command.request as { command?: string } | undefined)?.command ===
-                  'artifacts.open' ||
-                (command.request as { command?: string } | undefined)?.command ===
-                  'artifacts.locate' ||
-                (command.request as { command?: string } | undefined)?.command === 'files.import'
+        command.type === 'github.connect' ||
+          (command.request as { command?: string } | undefined)?.command?.startsWith('github.')
+          ? 180_000
+          : (command.request as { command?: string } | undefined)?.command === 'models.diagnostic'
+            ? 310_000
+            : (command.request as { command?: string } | undefined)?.command === 'providers.check'
               ? 130_000
-              : 30_000,
+              : command.type === 'files.export' ||
+                  command.type === 'artifacts.read' ||
+                  (command.request as { command?: string } | undefined)?.command ===
+                    'artifacts.open' ||
+                  (command.request as { command?: string } | undefined)?.command ===
+                    'artifacts.locate' ||
+                  (command.request as { command?: string } | undefined)?.command === 'files.import'
+                ? 130_000
+                : 30_000,
       );
     pending.set(id, { resolve, reject, timer });
     child.postMessage({ ...command, id });
@@ -645,6 +649,8 @@ if (ownsLock) {
       ...Object.keys(BrowserCommandSchemas),
       ...Object.keys(CodeCommandSchemas),
       ...Object.keys(TerminalCommandSchemas),
+      ...Object.keys(GitHubCommandSchemas),
+      'github.connect',
       'models.catalog',
       'models.preferences.get',
       'models.preferences.set',
@@ -1057,7 +1063,18 @@ if (ownsLock) {
           secret.key = ''; // Only the transformed request enters Core or audit.
         }
         await ready;
-        if (request.command === 'events.subscribe') {
+        if (request.command === 'github.connect') {
+          const input = GitHubConnectSchema.parse(request.payload);
+          request.payload = { runId: input.runId, repo: input.repo };
+          reply = ReplySchema.parse(
+            await forward({
+              type: 'github.connect',
+              requestId: request.requestId,
+              windowId: request.windowId,
+              input,
+            }),
+          );
+        } else if (request.command === 'events.subscribe') {
           const p = ReplaySchema.parse(request.payload);
           subscribers.set(event.sender.id, { afterSeq: p.afterSeq, replaying: false, buffer: [] });
           const window = [...windows].find((w) => w.webContents === event.sender)!;

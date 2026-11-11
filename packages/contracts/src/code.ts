@@ -6,27 +6,29 @@ export const CodePathSchema = z
   .string()
   .min(1)
   .max(240)
-  .refine((path) =>
-    path
-      .split('/')
-      .every(
-        (part) =>
-          part &&
-          part !== '.' &&
-          part !== '..' &&
-          !/[\\:<>"|?*\x00-\x1f~]/u.test(part) &&
-          !/[. ]$/.test(part) &&
-          !/^(con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i.test(part) &&
-          !/^(\.git|node_modules|\.pnpm|\.npm|\.venv|venv|__pycache__|\.cache|\.ssh|\.aws|\.codex|\.agents|secrets?)$/i.test(
-            part,
-          ) &&
-          !/^(?:\.npmrc|\.pypirc|\.netrc|\.git-credentials|credentials\.json|id_rsa|id_ed25519)$/i.test(
-            part,
-          ) &&
-          !/^\.env(?:\.|$)/i.test(part) &&
-          !/^\.tapkit-runtime$/i.test(part) &&
-          !/\.(pem|key|pfx|p12)$/i.test(part),
-      ),
+  .refine(
+    (path) =>
+      !Object.hasOwn(Object.prototype, path) &&
+      path
+        .split('/')
+        .every(
+          (part) =>
+            part &&
+            part !== '.' &&
+            part !== '..' &&
+            !/[\\:<>"|?*\x00-\x1f~]/u.test(part) &&
+            !/[. ]$/.test(part) &&
+            !/^(con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i.test(part) &&
+            !/^(\.git|node_modules|\.pnpm|\.npm|\.venv|venv|__pycache__|\.cache|\.ssh|\.aws|\.codex|\.agents|secrets?)$/i.test(
+              part,
+            ) &&
+            !/^(?:\.npmrc|\.pypirc|\.netrc|\.git-credentials|credentials\.json|id_rsa|id_ed25519)$/i.test(
+              part,
+            ) &&
+            !/^\.env(?:\.|$)/i.test(part) &&
+            !/^\.tapkit-runtime$/i.test(part) &&
+            !/\.(pem|key|pfx|p12)$/i.test(part),
+        ),
   );
 export const CodeHashSchema = z
   .string()
@@ -110,6 +112,7 @@ export const CodeViewSchema = z.strictObject({
   untracked: z.array(CodePathSchema),
   prepared: z.boolean(),
   revoked: z.boolean(),
+  githubRepo: z.string().max(141).optional(),
   revision: z.number().int(),
   files: z.array(CodeFileSchema),
   changes: z.array(CodeDiffSchema),

@@ -53,7 +53,10 @@ export type PrivateVault = (
     | 'web.cancel'
     | 'export.pdf'
     | 'export.cancelPdf'
-    | 'network.proxy.resolve',
+    | 'network.proxy.resolve'
+    | 'github.read'
+    | 'github.write'
+    | 'github.delete',
   accountId: string,
   payload: unknown,
 ) => Promise<unknown>;

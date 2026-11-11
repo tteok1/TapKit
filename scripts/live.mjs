@@ -6,6 +6,22 @@ import { apiLiveProviders, runApiLive } from './api-live.mjs';
 import { runApiNativeLive } from './api-native-live.mjs';
 
 const args = process.argv.slice(2).filter((arg) => arg !== '--');
+if (args.length === 2 && args[0] === 'P09-03' && args[1] === '--github') {
+  if (
+    process.env.TAPKIT_P09_GITHUB_LIVE_R07 !== '1' ||
+    !process.env.TAPKIT_P09_GITHUB_R07_REPO ||
+    !process.env.TAPKIT_P09_GITHUB_R07_TOKEN
+  ) {
+    console.error(
+      'P09-03 live NOT RUN: R07 requires explicit opt-in, a dedicated fixture repository and a fine-grained PAT.',
+    );
+    process.exit(2);
+  }
+  pnpm(['test:integration', 'P09-03.live'], {
+    env: lockedEnv({ TAPKIT_P09_GITHUB_LIVE_RUNNER: '1' }),
+  });
+  process.exit(0);
+}
 if (args.length === 2 && args[0] === 'P09-02' && args[1] === '--registry') {
   pnpm(['test:integration', 'P09-02', '-t', 'registry live'], {
     env: lockedEnv({ TAPKIT_P09_REGISTRY_LIVE: '1' }),

@@ -1,3 +1,5 @@
+2026-11-11，P09-03=implemented_not_live_verified。分支 codex/p09-03-github 基于最新 main a2c3264，CI88 三项通过。GitHub 连接、私有镜像、审阅提交、推送和 Draft PR 已实现，512 单元、35 相关集成、22 当前用户隔离和生产桌面通过。R07 真实验收待配置。详 P09-03.md。
+
 2026-11-06：codex/p09-02-terminal-runtime基于main fe2653f；P09-02=implemented_and_verified。已交付受限Node/Python、依赖与ConPTY；CI84缺runner报告和CI85 Python旧pyc竞争已修复（699055c/64feffb）。CI86三个job全部success：509unit、570主集成过/2显式skip、52Electron、2性能，Office/独立标准用户/启动诊断通过；runner与标准用户各22/22。原本地live及UI验收保持。修复推送同名分支，最终交接仅文档；原维护保留，不改main，不进入P09-03/04。详P09-02.md及ci-fix-2026-11-06。 2026-11-06按最新授权将原5提交压缩为1个P09-02提交，并快进合入及推送main，开发分支同步；旧历史保留本地backup ref。合入源码与CI86一致，新main CI待验；见P09-02/main-merge-2026-11-06.json。前述不改main为当时授权边界，已由本次新授权替代。
 
 2026-11-06：P09-01=implemented_and_verified（实现7a6c8c9、CI修复be10fc4），CI81三个job全部success；CI80旧失败保留。独立UI四项全部resolved；分支codex/p09-01-code-review，main基线1a91688。505unit、19个P09集成与49相关回归通过，真实1模型/1工具actual940、预留0。新增检测2/10余8，两副本凭据清理；原有维护改动/P08 gate保留，不进入后续任务。2026-11-06按最新授权将原5个提交压缩为1个P09-01提交，并合入及推送main，开发分支同步；原历史保留本地backup ref。合入源码与CI81一致，新main CI未冒称通过；见P09-01/main-merge-2026-11-06.json及ci-fix-2026-11-05/ci81.json。
@@ -43,7 +45,7 @@ CI73三个job全success，测试清理及资料保全保持；耗时只读审计
 | P08-03 | 有界子Agent与独立任务协调          | P08-02         | implemented_and_verified      | docs/progress/P08-03.md              |
 | P09-01 | 代码项目、Git隔离与差异审阅        | P08-03         | implemented_and_verified      | docs/progress/P09-01.md              |
 | P09-02 | 终端、依赖准备与代码测试执行       | P09-01, P00-03 | implemented_and_verified      | docs/progress/P09-02.md              |
-| P09-03 | GitHub连接、提交与Draft PR闭环     | P09-02         | not_started                   | docs/progress/P09-03.md              |
+| P09-03 | GitHub连接、提交与Draft PR闭环     | P09-02         | implemented_not_live_verified | docs/progress/P09-03.md              |
 | P09-04 | 网站生成和本地交互预览             | P09-02         | not_started                   | docs/progress/P09-04.md              |
 | P10-01 | 轻量文档画布和局部AI修改           | P07-03, P09-04 | not_started                   | docs/progress/P10-01.md              |
 | P10-02 | 占位页面、通用体验与无障碍完善     | P10-01         | not_started                   | docs/progress/P10-02.md              |

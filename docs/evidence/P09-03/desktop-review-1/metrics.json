@@ -1,0 +1,18 @@
+[
+  {
+    "theme": "light",
+    "width": 1347,
+    "overflow": 0,
+    "label": "rgb(102, 115, 107)",
+    "surface": "rgb(246, 248, 246)",
+    "divider": "rgb(225, 233, 227)"
+  },
+  {
+    "theme": "dark",
+    "width": 967,
+    "overflow": 0,
+    "label": "rgb(163, 178, 167)",
+    "surface": "rgb(21, 27, 23)",
+    "divider": "rgb(48, 60, 51)"
+  }
+]

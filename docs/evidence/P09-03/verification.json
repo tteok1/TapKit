@@ -1,0 +1,154 @@
+{
+  "task": "P09-03",
+  "date": "2026-11-11 Asia/Shanghai",
+  "branch": "codex/p09-03-github",
+  "base": "a2c3264776ed0348c3f455b5a31afbc543ff887c",
+  "ci88BaselineRunId": 42186726758,
+  "checks": {
+    "unit": {
+      "passed": 512,
+      "exitCode": 0,
+      "log": "unit-final.log"
+    },
+    "relatedIntegration": {
+      "passed": 35,
+      "explicitLiveSkips": 2,
+      "exitCode": 0,
+      "log": "integration-final.log"
+    },
+    "currentUserProbe": {
+      "passed": 22,
+      "exitCode": 0,
+      "fingerprint": "6623de66bef43cec4bf85c2b10a5614e1be360cfbaee65549015e5a2f865d653",
+      "scope": "current-user",
+      "standardUser": false,
+      "log": "native-probe/runtime-probe.json"
+    },
+    "productionElectron": {
+      "passed": 1,
+      "exitCode": 0,
+      "log": "e2e-keyboard.log",
+      "focusTransitionsVerified": true,
+      "defaultTextCanBeCleared": true,
+      "keyboardActivationVerified": true
+    },
+    "existingBridgeRegression": {
+      "passed": 1,
+      "log": "e2e-verified-probe.log",
+      "note": "The same earlier run had a P09-03 locator failure, corrected in the final P09-03 run"
+    },
+    "static": {
+      "exitCode": 0,
+      "electronTestsCollected": 130,
+      "log": "check-delivery.log"
+    },
+    "productionRendererBuild": {
+      "exitCode": 0,
+      "log": "desktop-build-keyboard.log"
+    },
+    "documentation": {
+      "exitCode": 0,
+      "taskStates": 37,
+      "log": "docs-delivery.log",
+      "formatLog": "format-delivery.log"
+    }
+  },
+  "simulatedGitHub": {
+    "draftCreateRequests": 1,
+    "unknownResultReconciledAfterServiceRestart": true,
+    "gitPushResultVerifiedAgainstOwnedLocalRemote": true,
+    "realGitHubWrites": 0
+  },
+  "live": {
+    "resource": "R07",
+    "status": "pending",
+    "preflightExitCode": 2,
+    "log": "live-preflight.log"
+  },
+  "maintenancePreserved": true,
+  "historicalNativeJournalRestored": true,
+  "nextTask": "P09-04",
+  "p09GateClosed": false,
+  "status": "implemented_not_live_verified",
+  "independentUIReview": {
+    "disposition": "ship",
+    "scope": "Five material findings from the initial local-extension review",
+    "initialReview": "ui-review.md",
+    "firstVerdict": "ui-review-verdict-1.md",
+    "finalVerdict": "ui-review-verdict.md",
+    "designComparison": "design-comparison.md"
+  },
+  "screenshots": [
+    "desktop/commit-review-light.png",
+    "desktop/commit-review-dark.png"
+  ],
+  "designTokensPreserved": true,
+  "implementationLocation": "Local branch working tree",
+  "desktopMetrics": [
+    {
+      "theme": "light",
+      "width": 1347,
+      "overflow": 0,
+      "label": "rgb(102, 115, 107)",
+      "surface": "rgb(246, 248, 246)",
+      "divider": "rgb(225, 233, 227)",
+      "contrastRatio": 4.65
+    },
+    {
+      "theme": "dark",
+      "width": 967,
+      "overflow": 0,
+      "label": "rgb(163, 178, 167)",
+      "surface": "rgb(21, 27, 23)",
+      "divider": "rgb(48, 60, 51)",
+      "contrastRatio": 7.9
+    }
+  ],
+  "sourceSha256": {
+    ".github/workflows/check.yml": "e09d3d639202065c294e572e7532a63e5c13b26f54b8ec5992dd43dd81973a7b",
+    "apps/desktop/src/main/auth/secrets.ts": "a5d84fa642eca56f2df9242a76bb9de5dce8f098cc0abcaaf045daa9c78bf197",
+    "apps/desktop/src/main/index.ts": "58ab2aae2fda7dbee2c9eae5da4ba8188b92ba6aeb166465790386d9454cd589",
+    "apps/desktop/src/preload/index.ts": "b76280ee5dbbbc6324341323f5f1193b1f6be23378d45329111c248eca4a6e44",
+    "apps/desktop/src/renderer/locales/github.zh-CN.json": "5f9dc73912755f8c06c5db748f7bff649b654b6ed21fb6147693123b11e75d84",
+    "apps/desktop/src/renderer/src/code-ui.tsx": "9f9cd27b9e299b545c91686f99e1b01770e74613709aa16216d34113449909e5",
+    "apps/desktop/src/renderer/src/code.css": "73a06bf12946ed2669deced756753346114f95b8376010dc8a7da425796ba83f",
+    "apps/desktop/src/renderer/src/github-ui.tsx": "55754dbaacc6c9cd05c7eca448a8559dee0790c133f66f54f95a0364917331ac",
+    "docs/adr/0080-reviewed-github-publication.md": "fedae4c0783ad020a77972ff2345af87e3ba9de0255f931985a985d1c395166f",
+    "docs/plan/05-ipc-and-events.md": "8554b903b56269b3b089d0a4588713e57871ccf4fbbfb517ccb18c6047c6f055",
+    "docs/plan/07-tools-and-isolation.md": "98483c5737ac7c04df02ddb3d4a7d0e64528fd2cfae33b26cda78af630dc0486",
+    "packages/contracts/src/code.ts": "dbf5974b91a9f02bf8ab0ca1b90606ef66d033edacaf079287e01aace8086c15",
+    "packages/contracts/src/foundation.ts": "722caf7c894496e61608906603c8cc7e998b3d677e012c717111b7b01e668200",
+    "packages/contracts/src/github.ts": "f1bb50447bd6827db8813445649821dcaf2b2c36e7e1540fb6661cb0b086fd07",
+    "packages/contracts/src/index.ts": "1c19c235970bcc7e073f1d6d3089c87c7a05b5c5a052b9ba0ae1152b63bff6fe",
+    "packages/core/src/code-runtime.ts": "348564aca9ab0e99a285156e4cc66ad2d00e2acab4d897c6d7fac1d57a204e3e",
+    "packages/core/src/code-service.ts": "b9a821d49e87aff52579e83f4302a5e31e604e0e34706680fd8db199a3007857",
+    "packages/core/src/github-remote.ts": "21452cad688defb1867f3e891699dc0423630207743e2a09322b81b42f982c65",
+    "packages/core/src/github-service.ts": "dd475d3f730bbff61d1cf517a9e0c48d17c29cef3fd7799367f4b90e65211fce",
+    "packages/core/src/github-state.ts": "0bdfcef587af33eeba522250d093a6c54aaec5aa1e62f25ea80675c20e009351",
+    "packages/core/src/index.ts": "571a803c224d9b9c5c070ea451d884ce87bee0a3431cd7a6a8508454749eff81",
+    "packages/core/src/provider-service.ts": "1a0790c40e58680902f47110d0d7ff999b91045859d45d43013753a37f7691a4",
+    "packages/network/src/policy.ts": "fd063cbe26f028707baf6834b6a44f5decab261fe859cf3a2c9473f53daf5eb7",
+    "packages/tools/src/execution/code-workspace.ts": "bfbc1858e92b7aeec0dfcf6243e8f8207eb0b388925af76c9d6da2999fdd6fce",
+    "scripts/live.mjs": "2d118b6688f0a6f097ca567bdb7cdf5c5979bc5cab204e72466444738d45955d",
+    "tests/e2e/P00-01.shell.spec.ts": "b4e8fc6334d9f24667198d7f53579b59bdda833ea24a5ec36d3d1228e22ff2f0",
+    "tests/e2e/P09-03.github.spec.ts": "bf07a1cf454ee39c604b29a9093a3dd820d14d8c3252dbcebdc8ee159d081da3",
+    "tests/integration/P09-03.github.test.ts": "b9d76061b87ec582a3f3f35bfc4039f9c14ed2a2701304dd5792a769f47994b1",
+    "tests/integration/P09-03.live.test.ts": "2fd33e2b7299ce948987f4ab89f2a8a5feb3ebb5b01946ede65afbde8a9011b4",
+    "tests/unit/P09-03.github.test.ts": "36b9a46939e29c12832cc5a7b676d3defe75e6ef4e4cb5137f71cdfa56f02900"
+  },
+  "evidenceSha256": {
+    "integration-final.log": "8def4e967a0fd4d4007fa775fbc675a480047d754fa3d8c725facffec147da2c",
+    "unit-final.log": "85db7ca43a1bcdeaa8cf6eb4368c76066b7feffa6fd7cccfc6f62484af43376e",
+    "check-delivery.log": "3a971951a4b77abc637887f3dbef32d6b0dd8a049747987e0954c647aa30919c",
+    "native-probe/runtime-probe.json": "59874158bb698a42c683942e476dcfc0b419ab4dbc29fc891408a8fafabfda9f",
+    "e2e-keyboard.log": "e05bcc70a1037d148cc3c498a08bb37d2642424c04782c46c3e46b6b4dfed095",
+    "ui-review-verdict.md": "3cb3b59eef627ea08d4a1ae3aa9e61380cf6432aae18d235325059d112150073",
+    "design-comparison.md": "73eb7d37b8bb4748858da5ca1b59308b395a310d5a25b5a1d28b1d8e8dd22a1f",
+    "live-preflight.log": "a36b74d1d25478a8fc0de293c59370ece4308285ad3f1747c549cfaae1b17338",
+    "desktop/commit-review-light.png": "fc6bf9f3f345950cfe23795d0ed92be30cc290fe80bf5ccbad3517e29d08482b",
+    "desktop/commit-review-dark.png": "45843b1196de1ca9f69e850b4939f5dc527fb7fa7c19742a7222a1539b64ddaf",
+    "desktop/contrast.json": "7acc7c612e8eaa75dfeca8637f7841bd05d792580bb669417dd8b2e83bcd767f",
+    "docs-delivery.log": "4ec0e0a9c21f00edd70be857be688d0ba72e35fb640710a612fc63ed4520e0d7",
+    "format-delivery.log": "81fac90739a10f258dbd4faf9751237e165810e31eb7d3aeae3346b7d9d24e75"
+  }
+}

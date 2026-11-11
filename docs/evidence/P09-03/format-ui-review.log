@@ -1,0 +1,4 @@
+apps/desktop/src/renderer/src/github-ui.tsx 158ms
+apps/desktop/src/renderer/src/code.css 50ms (unchanged)
+apps/desktop/src/renderer/locales/github.zh-CN.json 20ms (unchanged)
+tests/e2e/P09-03.github.spec.ts 39ms

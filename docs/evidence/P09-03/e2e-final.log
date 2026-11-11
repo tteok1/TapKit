@@ -1,0 +1,51 @@
+$ node scripts/e2e.mjs "--" "--grep" "P09-03" "--output" "test-results/P09-03-e2e-final"
+
+Running 1 test using 1 worker
+
+(node:53156) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_READY
+TAPKIT_CORE_EXIT 0
+  x  1 tests\e2e\P09-03.github.spec.ts:7:1 › P09-03 desktop rejects invalid credentials and commits only after reviewing a tested change (1.1m)
+
+
+  1) tests\e2e\P09-03.github.spec.ts:7:1 › P09-03 desktop rejects invalid credentials and commits only after reviewing a tested change 
+
+    TimeoutError: locator.fill: Timeout 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('region', { name: '代码项目', exact: true }).getByRole('region', { name: 'GitHub', exact: true }).getByLabel('提交说明', { exact: true })
+
+
+      109 |       { timeout: 45000 },
+      110 |     );
+    > 111 |     await github.getByLabel('提交说明', { exact: true }).fill('修复求和');
+          |                                                      ^
+      112 |     const preview = github.getByRole('button', { name: '审阅本地提交', exact: true });
+      113 |     await preview.click();
+      114 |     const review = github.getByLabel('待确认', { exact: true });
+        at D:\Tapkit-public\tests\e2e\P09-03.github.spec.ts:111:54
+
+    Error Context: test-results\P09-03-e2e-final\P09-03.github-P09-03-deskt-44026-r-reviewing-a-tested-change\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\P09-03-e2e-final\P09-03.github-P09-03-deskt-44026-r-reviewing-a-tested-change\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\P09-03-e2e-final\P09-03.github-P09-03-deskt-44026-r-reviewing-a-tested-change\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P09-03.github.spec.ts:7:1 › P09-03 desktop rejects invalid credentials and commits only after reviewing a tested change 
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/e2e.mjs:15:21
+
+Node.js v24.18.0
+[ELIFECYCLE] Command failed with exit code 1.

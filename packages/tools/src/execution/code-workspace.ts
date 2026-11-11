@@ -3,17 +3,25 @@ import {
   copyFile,
   lstat,
   mkdir,
+  mkdtemp,
   open,
   readFile,
   readdir,
   realpath,
   writeFile,
   unlink,
+  rm,
 } from 'node:fs/promises';
 import { constants } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
-import { CodePathSchema } from '@tapkit/contracts';
+import {
+  CodePathSchema,
+  GitHubBranchSchema,
+  GitHubRepoSchema,
+  GitHubShaSchema,
+  GitHubTokenSchema,
+} from '@tapkit/contracts';
 
 export const codeHash = (value: string | Uint8Array | null) =>
   value === null ? null : createHash('sha256').update(value).digest('hex');
@@ -88,13 +96,31 @@ export async function codeTree(root: string) {
   return files.sort();
 }
 
-/** Trusted fixed-argument broker. No user configuration, shell, network, hooks or alternates. */
+type GitHubTransport = { repo: string; token: string; proxy: string; address: string };
+
+/** Trusted fixed-argument broker. Network is available only to the GitHub operations below. */
 export class CodeGitBroker {
   constructor(
     readonly executable: string,
     readonly root: string,
   ) {}
-  async run(args: string[], directory = this.root): Promise<Buffer> {
+  async run(
+    args: string[],
+    directory = this.root,
+    input?: string,
+    indexFile?: string,
+  ): Promise<Buffer> {
+    return this.spawnGit(args, directory, { input, indexFile });
+  }
+  private async spawnGit(
+    args: string[],
+    directory: string,
+    options: {
+      input?: string | undefined;
+      indexFile?: string | undefined;
+      github?: GitHubTransport;
+    },
+  ): Promise<Buffer> {
     await codeCanonical(this.executable);
     await codeCanonical(directory, true);
     const empty = join(this.root, 'empty');
@@ -121,6 +147,31 @@ export class CodeGitBroker {
       '-c',
       'core.untrackedCache=false',
     ];
+    const network = options.github;
+    const config: [string, string][] = network
+      ? [
+          ['protocol.https.allow', 'always'],
+          ['http.followRedirects', 'false'],
+          ['http.sslVerify', 'true'],
+          ['http.proxy', network.proxy],
+          [
+            'http.curloptResolve',
+            `github.com:443:${network.address.includes(':') ? `[${network.address}]` : network.address}`,
+          ],
+          ['http.lowSpeedLimit', '1'],
+          ['http.lowSpeedTime', '15'],
+          [
+            'http.https://github.com/.extraHeader',
+            'Authorization: Basic ' +
+              Buffer.from('x-access-token:' + network.token).toString('base64'),
+          ],
+        ]
+      : [];
+    const gitEnv: Record<string, string> = { GIT_CONFIG_COUNT: String(config.length) };
+    config.forEach(([key, value], i) => {
+      gitEnv[`GIT_CONFIG_KEY_${i}`] = key;
+      gitEnv[`GIT_CONFIG_VALUE_${i}`] = value;
+    });
     return new Promise((yes, no) => {
       const child = spawn(this.executable, [...prefix, ...args], {
         cwd: directory,
@@ -140,23 +191,30 @@ export class CodeGitBroker {
           GIT_TERMINAL_PROMPT: '0',
           GIT_OPTIONAL_LOCKS: '0',
           LC_ALL: 'C',
+          ...gitEnv,
+          ...(options.indexFile ? { GIT_INDEX_FILE: options.indexFile } : {}),
         },
-        stdio: ['ignore', 'pipe', 'pipe'],
+        stdio: [options.input === undefined ? 'ignore' : 'pipe', 'pipe', 'pipe'],
       });
+      child.stdin?.on('error', () => {});
+      child.stdin?.end(options.input, 'utf8');
       let size = 0,
         failure = '';
       const out: Buffer[] = [];
+      let diagnostic = '';
       const timer = setTimeout(() => {
         failure = 'TIMEOUT';
         child.kill();
       }, 30000);
       for (const stream of [child.stdout, child.stderr])
-        stream.on('data', (b: Buffer) => {
+        stream?.on('data', (b: Buffer) => {
           size += b.length;
           if (size > 4 * 1024 * 1024) {
             failure = 'OUTPUT_LIMIT_REACHED';
             child.kill();
           } else if (stream === child.stdout) out.push(b);
+          else if (network && diagnostic.length < 8192)
+            diagnostic += b.toString('utf8').slice(0, 8192);
         });
       child.on('error', () => {
         clearTimeout(timer);
@@ -164,10 +222,210 @@ export class CodeGitBroker {
       });
       child.on('close', (code) => {
         clearTimeout(timer);
-        if (failure || code !== 0) no(Error(failure || 'CONFLICT'));
+        if (failure || code !== 0)
+          no(
+            Error(
+              failure === 'TIMEOUT'
+                ? 'TOOL_TIMEOUT'
+                : failure ||
+                    (!network
+                      ? 'CONFLICT'
+                      : /authentication failed|returned error: 401/i.test(diagnostic)
+                        ? 'AUTH_EXPIRED'
+                        : /protected branch|permission.*denied|returned error: 403|repository not found/i.test(
+                              diagnostic,
+                            )
+                          ? 'PERMISSION_DENIED'
+                          : /non-fast-forward|\[rejected\]/i.test(diagnostic)
+                            ? 'CONFLICT'
+                            : 'NETWORK_ERROR'),
+            ),
+          );
         else yes(Buffer.concat(out));
       });
     });
+  }
+  private githubUrl(network: GitHubTransport) {
+    GitHubTokenSchema.parse(network.token);
+    return 'https://github.com/' + GitHubRepoSchema.parse(network.repo) + '.git';
+  }
+  private async assertPrivateMirror(mirror: string) {
+    if (!/^[a-f0-9-]{36}\.git$/.test(relative(this.root, mirror))) throw Error('PERMISSION_DENIED');
+    await codeCanonical(mirror, true);
+    await codeCanonical(join(mirror, 'config'));
+    const config = await readFile(join(mirror, 'config'), 'utf8');
+    if (
+      config
+        .split(/\r?\n/)
+        .some(
+          (line) =>
+            !/^\s*(?:\[core\]|(?:repositoryformatversion|filemode|bare|symlinks|ignorecase|logallrefupdates)\s*=\s*(?:0|true|false))?\s*$/i.test(
+              line,
+            ),
+        )
+    )
+      throw Error('PERMISSION_DENIED');
+  }
+  async removeGithubMirror(mirror: string) {
+    if (!/^[a-f0-9-]{36}\.git$/.test(relative(this.root, mirror))) throw Error('PERMISSION_DENIED');
+    await codeCanonical(mirror, true);
+    await rm(mirror, { recursive: true, force: true, maxRetries: 2 });
+  }
+  async githubLocalHead(mirror: string, branch: string) {
+    await this.assertPrivateMirror(mirror);
+    return GitHubShaSchema.parse(
+      (
+        await this.run([
+          '--git-dir=' + mirror,
+          'rev-parse',
+          '--verify',
+          'refs/heads/' + GitHubBranchSchema.parse(branch),
+        ])
+      )
+        .toString()
+        .trim(),
+    );
+  }
+  async fetchGithub(id: string, branch: string, network: GitHubTransport) {
+    const ref = 'refs/heads/' + GitHubBranchSchema.parse(branch);
+    if (!/^[a-f0-9-]{36}$/.test(id)) throw Error('VALIDATION_ERROR');
+    const mirror = join(this.root, id + '.git');
+    await mkdir(mirror);
+    try {
+      await this.run(['init', '--bare', '--quiet', '--template=', mirror]);
+      await this.assertPrivateMirror(mirror);
+      await this.spawnGit(
+        [
+          '--git-dir=' + mirror,
+          '-c',
+          'fetch.fsckObjects=true',
+          'fetch',
+          '--no-tags',
+          '--no-recurse-submodules',
+          '--no-auto-maintenance',
+          '--depth=1',
+          this.githubUrl(network),
+          '+' + ref + ':' + ref,
+        ],
+        this.root,
+        { github: network },
+      );
+      await this.run(['--git-dir=' + mirror, 'symbolic-ref', 'HEAD', ref]);
+      return { mirror, ...(await this.snapshot(mirror, ref)) };
+    } catch (error) {
+      // The destination was created exclusively for this attempt under code-private.
+      await this.removeGithubMirror(mirror).catch(() => {});
+      throw error;
+    }
+  }
+  async githubHead(branch: string, network: GitHubTransport) {
+    const ref = 'refs/heads/' + GitHubBranchSchema.parse(branch);
+    const output = (
+      await this.spawnGit(['ls-remote', '--refs', this.githubUrl(network), ref], this.root, {
+        github: network,
+      })
+    )
+      .toString()
+      .trim();
+    if (!output) return null;
+    const [sha, actual] = output.split('\t');
+    if (actual !== ref) throw Error('CONFLICT');
+    return GitHubShaSchema.parse(sha);
+  }
+  async pushGithub(
+    mirror: string,
+    sha: string,
+    branch: string,
+    previous: string | null,
+    network: GitHubTransport,
+    guard: () => void,
+  ) {
+    const ref = 'refs/heads/' + GitHubBranchSchema.parse(branch);
+    await this.assertPrivateMirror(mirror);
+    GitHubShaSchema.parse(sha);
+    if (previous)
+      await this.run([
+        '--git-dir=' + mirror,
+        'merge-base',
+        '--is-ancestor',
+        GitHubShaSchema.parse(previous),
+        sha,
+      ]);
+    // The lease rejects races. The ancestry check above excludes non-fast-forward updates.
+    guard();
+    await this.spawnGit(
+      [
+        '--git-dir=' + mirror,
+        'push',
+        '--porcelain',
+        '--no-verify',
+        `--force-with-lease=${ref}:${previous ?? ''}`,
+        this.githubUrl(network),
+        sha + ':' + ref,
+      ],
+      this.root,
+      { github: network },
+    );
+  }
+  async commitReview(
+    mirror: string,
+    branch: string,
+    parent: string,
+    message: string,
+    changes: { path: string; content: string | null }[],
+    guard: () => void,
+  ) {
+    const ref = 'refs/heads/' + GitHubBranchSchema.parse(branch);
+    await this.assertPrivateMirror(mirror);
+    GitHubShaSchema.parse(parent);
+    const lease = await mkdtemp(join(this.root, 'git-index-'));
+    const index = join(lease, 'index');
+    const run = (args: string[], input?: string) =>
+      this.run(['--git-dir=' + mirror, '--work-tree=' + lease, ...args], this.root, input, index);
+    try {
+      await run(['read-tree', parent]);
+      for (const change of changes) {
+        const path = CodePathSchema.parse(change.path);
+        if (change.content === null) await run(['update-index', '--force-remove', '--', path]);
+        else {
+          const entry = (await run(['ls-tree', '-z', parent, '--', path])).toString();
+          const mode = entry.startsWith('100755 ') ? '100755' : '100644';
+          const blob = GitHubShaSchema.parse(
+            (await run(['hash-object', '-w', '--stdin'], change.content)).toString().trim(),
+          );
+          await run(['update-index', '--add', '--cacheinfo', mode, blob, path]);
+        }
+      }
+      const tree = GitHubShaSchema.parse((await run(['write-tree'])).toString().trim());
+      const commit = GitHubShaSchema.parse(
+        (
+          await run(
+            [
+              '-c',
+              'user.name=TapKit',
+              '-c',
+              'user.email=tapkit@localhost',
+              'commit-tree',
+              tree,
+              '-p',
+              parent,
+              '-F',
+              '-',
+            ],
+            message + '\n',
+          )
+        )
+          .toString()
+          .trim(),
+      );
+      guard();
+      await run(['update-ref', ref, commit, parent]);
+      return commit;
+    } finally {
+      const child = relative(this.root, lease);
+      if (isAbsolute(child) || !/^git-index-[^/\\]+$/.test(child)) throw Error('PERMISSION_DENIED');
+      await rm(lease, { recursive: true, force: true });
+    }
   }
   async mirror(source: string, id: string) {
     const metadata = join(source, '.git');

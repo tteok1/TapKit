@@ -1,0 +1,62 @@
+$ node scripts/e2e.mjs "--" "--grep" "P09-03|P00-01 sandbox" "--output" "test-results/P09-03-e2e"
+
+Running 2 tests using 1 worker
+
+(node:24232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_HOST_WINDOW 29120
+(node:29120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `electron --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_READY
+TAPKIT_CORE_PONG
+Debugger ending on ws://127.0.0.1:60094/791605fa-9197-473f-992e-17fe5cb65120
+For help, see: https://nodejs.org/learn/getting-started/debugging
+TAPKIT_CORE_EXIT 0
+  ok 1 tests\e2e\P00-01.shell.spec.ts:45:1 › P00-01 sandbox bridge errors and clean child shutdown (22.4s)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_READY
+TAPKIT_CORE_EXIT 0
+  x  2 tests\e2e\P09-03.github.spec.ts:7:1 › P09-03 desktop rejects invalid credentials and commits only after reviewing a tested change (1.2m)
+
+
+  1) tests\e2e\P09-03.github.spec.ts:7:1 › P09-03 desktop rejects invalid credentials and commits only after reviewing a tested change 
+
+    TimeoutError: locator.click: Timeout 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('region', { name: '代码项目', exact: true }).getByRole('button', { name: '刷新', exact: true })
+
+
+       96 |       if (!patch.ok) throw Error(patch.error.code);
+       97 |     }, fixed);
+    >  98 |     await code.getByRole('button', { name: '刷新', exact: true }).click();
+          |                                                                 ^
+       99 |     await code.getByRole('button', { name: /^sum\.mjs/ }).click();
+      100 |     await code.getByRole('button', { name: '接受此文件', exact: true }).click();
+      101 |     const terminal = code.getByRole('region', { name: '运行与终端', exact: true });
+        at D:\Tapkit-public\tests\e2e\P09-03.github.spec.ts:98:65
+
+    Error Context: test-results\P09-03-e2e\P09-03.github-P09-03-deskt-44026-r-reviewing-a-tested-change\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\P09-03-e2e\P09-03.github-P09-03-deskt-44026-r-reviewing-a-tested-change\trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results\P09-03-e2e\P09-03.github-P09-03-deskt-44026-r-reviewing-a-tested-change\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\P09-03.github.spec.ts:7:1 › P09-03 desktop rejects invalid credentials and commits only after reviewing a tested change 
+  1 passed (1.7m)
+file:///D:/Tapkit-public/scripts/lib.mjs:24
+  if (result.status !== 0) throw new Error(executable + ' exited ' + result.status);
+                                 ^
+
+Error: D:\Tapkit-public\.runtime\node\node-v24.21.0-win-x64\node.exe exited 1
+    at run (file:///D:/Tapkit-public/scripts/lib.mjs:24:34)
+    at pnpm (file:///D:/Tapkit-public/scripts/lib.mjs:27:3)
+    at file:///D:/Tapkit-public/scripts/e2e.mjs:15:21
+
+Node.js v24.18.0
+[ELIFECYCLE] Command failed with exit code 1.

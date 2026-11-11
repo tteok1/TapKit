@@ -1,0 +1,24 @@
+warning: in the working copy of 'docs/progress/requirements.csv', CRLF will be replaced by LF the next time Git touches it
+.github/workflows/check.yml 48ms (unchanged)
+apps/desktop/src/main/auth/secrets.ts 337ms
+apps/desktop/src/main/index.ts 134ms
+apps/desktop/src/preload/index.ts 26ms (unchanged)
+apps/desktop/src/renderer/src/code-ui.tsx 55ms (unchanged)
+apps/desktop/src/renderer/src/code.css 77ms (unchanged)
+packages/contracts/src/code.ts 11ms
+packages/contracts/src/foundation.ts 31ms (unchanged)
+packages/contracts/src/index.ts 25ms
+packages/core/src/code-runtime.ts 83ms (unchanged)
+packages/core/src/code-service.ts 104ms
+packages/core/src/index.ts 38ms
+packages/core/src/provider-service.ts 30ms (unchanged)
+packages/network/src/policy.ts 22ms
+packages/tools/src/execution/code-workspace.ts 36ms
+apps/desktop/src/renderer/locales/github.zh-CN.json 41ms (unchanged)
+apps/desktop/src/renderer/src/github-ui.tsx 21ms
+packages/contracts/src/github.ts 8ms
+packages/core/src/github-remote.ts 17ms
+packages/core/src/github-service.ts 28ms
+packages/core/src/github-state.ts 3ms (unchanged)
+tests/e2e/P09-03.github.spec.ts 13ms
+tests/integration/P09-03.github.test.ts 23ms

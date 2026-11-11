@@ -1,5 +1,6 @@
 import { CodeViewSchema } from './code';
 import { TerminalViewSchema } from './terminal';
+import { GitHubViewSchema } from './github';
 import { ExecutionCapabilitiesSchema } from './execution';
 import { ErrorCodeSchema } from './errors';
 export { ErrorCodeSchema } from './errors';
@@ -280,6 +281,7 @@ export const BootstrapViewSchema = z.strictObject({
 export const ReplyDataSchema = z.union([
   z.strictObject({ code: CodeViewSchema }),
   z.strictObject({ terminal: TerminalViewSchema }),
+  z.strictObject({ github: GitHubViewSchema }),
   WorkReplySchema,
   ExportReplySchema,
   WebReplySchema,

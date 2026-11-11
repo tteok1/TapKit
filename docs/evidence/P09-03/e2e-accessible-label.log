@@ -1,0 +1,12 @@
+$ node scripts/e2e.mjs "--" "--grep" "P09-03" "--output" "test-results/P09-03-e2e-label"
+
+Running 1 test using 1 worker
+
+(node:45904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAPKIT_CORE_DIAGNOSTIC
+TAPKIT_CORE_READY
+TAPKIT_CORE_EXIT 0
+  ok 1 tests\e2e\P09-03.github.spec.ts:7:1 › P09-03 desktop rejects invalid credentials and commits only after reviewing a tested change (42.4s)
+
+  1 passed (44.1s)

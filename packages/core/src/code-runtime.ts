@@ -928,7 +928,7 @@ export class CodeRuntimeService {
       },
     );
   }
-  async verify(id: string) {
+  async verify(id: string, expectedSourceHash?: string) {
     const calls = (await this.view(id)).processes.filter(
       (p) => p.argv[0] !== '安装已缓存的 wheel' && !(p.argv[0] === 'npm' && p.argv[1] === 'ci'),
     );
@@ -957,6 +957,7 @@ export class CodeRuntimeService {
     );
     return (
       current.sourceHash === identity.completedSourceHash &&
+      (expectedSourceHash === undefined || current.sourceHash === expectedSourceHash) &&
       current.head === latest.head &&
       env?.plan.profile.id === latest.environmentId &&
       fresh.profile.lockHash === identity.lockHash

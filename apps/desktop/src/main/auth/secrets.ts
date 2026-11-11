@@ -3,6 +3,7 @@ import { mkdir, readFile, open, rename, unlink } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { IdSchema, z, ApiConfigSchema, resolveApiConfig } from '@tapkit/contracts';
+import { GitHubVaultDocumentSchema } from '@tapkit/contracts';
 import { restrictToCurrentUser, VaultError, ApiCredentialDocumentSchema } from '../vault';
 
 const Credential = z.strictObject({
@@ -94,6 +95,32 @@ export class AuthSecrets {
     IdSchema.parse(accountId);
     return this.serialize(async () => {
       const key = 'codex-' + accountId;
+      if (
+        operation === 'github.write' ||
+        operation === 'github.read' ||
+        operation === 'github.delete'
+      ) {
+        const document =
+          operation === 'github.write' ? GitHubVaultDocumentSchema.parse(payload) : null;
+        const runId =
+          document?.account.runId ?? z.strictObject({ runId: IdSchema }).parse(payload).runId;
+        const name = `github-${accountId}-${runId}`;
+        if (document) {
+          await this.write(name, document);
+          return true;
+        }
+        if (operation === 'github.delete') {
+          await unlink(join(this.directory, name)).catch((error) => {
+            if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+          });
+          return true;
+        }
+        const stored = await this.read(name);
+        if (stored === undefined) return null;
+        const value = GitHubVaultDocumentSchema.parse(stored);
+        if (value.account.runId !== runId) throw new VaultError('PERMISSION_DENIED');
+        return value;
+      }
       if (operation === 'web.key') {
         throw new Error('FEATURE_NOT_AVAILABLE');
       }
