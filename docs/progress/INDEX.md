@@ -1,4 +1,4 @@
-2026-11-12，P10-02=implemented_not_live_verified。CI #99 的 P00-01 bridge 清单已同步，本地 Electron 定向复跑 5/5。详见 [P10-02](P10-02.md)。
+2026-11-12，P10-02=implemented_not_live_verified。CI #100 的 P00-01 已通过，P10-01 画布回复定位修复后本地 Electron 定向复跑 7/7。详见 [P10-02](P10-02.md)。
 
 2026-11-12，P10-01=implemented_not_live_verified。开发分支 CI #96 通过，原提交 61966fb 已快进合入远端 main。main CI #97 的 Electron 选区用例 2 项失败，本地修复后 Electron 复跑 9/9 通过，远端待验。R13 真实模型待验。详 [P10-01](P10-01.md)。
 

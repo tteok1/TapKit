@@ -182,12 +182,18 @@ test('P10-01 opens a chat reply and preserves two conflicting Electron windows',
   test.setTimeout(180000);
   const { app, page } = await setup();
   try {
-    await openSessionFixture(page);
+    const replyText = '隔离测试回复：画布来源';
+    // Seed the title collision regardless of when automatic titling finishes.
+    await openSessionFixture(page, replyText);
+    await expect(page.getByRole('banner').getByText(replyText, { exact: true })).toBeVisible();
     await page.getByLabel('输入草稿').fill('画布来源');
     await page.getByRole('button', { name: '发送', exact: true }).click();
-    await expect(page.getByText('隔离测试回复：画布来源', { exact: true })).toBeVisible();
-    await page.getByRole('button', { name: '更多消息操作' }).last().click();
-    await page.getByRole('button', { name: '在画布中编辑' }).click();
+    const reply = page.locator('article.chat-message.assistant').filter({
+      has: page.getByText(replyText, { exact: true }),
+    });
+    await expect(reply.locator('header small')).toContainText('已发送');
+    await reply.getByRole('button', { name: '更多消息操作', exact: true }).click();
+    await reply.getByRole('button', { name: '在画布中编辑', exact: true }).click();
     await expect(page.getByRole('textbox', { name: '文档正文' })).toContainText('画布来源');
     const newWindow = app.waitForEvent('window');
     await page.getByRole('button', { name: '在新窗口打开' }).press('Enter');
