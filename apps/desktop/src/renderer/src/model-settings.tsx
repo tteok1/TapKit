@@ -1,5 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from '@tapkit/ui';
+import {
+  desktopDateBoundary,
+  formatDesktopDate,
+  useDesktopPreferences,
+} from '../features/settings/desktop-preferences';
 import {
   BootstrapViewSchema,
   CatalogViewSchema,
@@ -53,6 +58,10 @@ const errorText: Record<string, string> = {
   SIDE_EFFECT_UNKNOWN: '上次请求结果未知，已估算扣账，请检查结果后再发起新任务。',
 };
 export function ModelSettings() {
+  const prefs = useDesktopPreferences();
+  const [catalogLoad, setCatalogLoad] = useState<'loading' | 'ready' | 'failed'>('loading');
+  const [usageLoad, setUsageLoad] = useState<'loading' | 'ready' | 'failed'>('loading');
+  const usageRequest = useRef(0);
   const [profileId, setProfileId] = useState('');
   const [catalog, setCatalog] = useState<Catalog>({ catalog: [], sessions: [], priceVersion: '' });
   const [values, setValues] = useState<ModelPreferences>(DEFAULT_MODEL_PREFERENCES);
@@ -94,10 +103,16 @@ export function ModelSettings() {
     },
     [],
   );
-  const loadCatalog = useCallback(
-    async () => setCatalog(CatalogViewSchema.parse(await invoke('models.catalog', {}))),
-    [invoke],
-  );
+  const loadCatalog = useCallback(async () => {
+    setCatalogLoad('loading');
+    try {
+      setCatalog(CatalogViewSchema.parse(await invoke('models.catalog', {})));
+      setCatalogLoad('ready');
+    } catch (error) {
+      setCatalogLoad('failed');
+      throw error;
+    }
+  }, [invoke]);
   const loadPreferences = useCallback(
     async (id: string, type: 'profile' | 'session' = 'profile') => {
       const data = PreferencesViewSchema.parse(
@@ -116,20 +131,32 @@ export function ModelSettings() {
   );
   const loadUsage = useCallback(
     async (cursor = 0, append = false) => {
-      const data = UsageViewSchema.parse(
-        await invoke('usage.list', {
-          groupBy,
-          cursor,
-          limit: 50,
-          ...(from ? { from: new Date(from + 'T00:00:00').getTime() } : {}),
-          ...(to ? { to: new Date(to + 'T00:00:00').getTime() + 86_400_000 } : {}),
-          ...(modelFilter ? { modelId: modelFilter } : {}),
-          ...(runFilter ? { runId: runFilter } : {}),
-        }),
-      );
-      setUsage((old) => (append && old ? { ...data, items: [...old.items, ...data.items] } : data));
+      const ticket = ++usageRequest.current;
+      setUsageLoad('loading');
+      try {
+        const data = UsageViewSchema.parse(
+          await invoke('usage.list', {
+            groupBy,
+            cursor,
+            limit: 50,
+            ...(from ? { from: desktopDateBoundary(from, prefs.timeZone) } : {}),
+            ...(to ? { to: desktopDateBoundary(to, prefs.timeZone, true) + 1 } : {}),
+            ...(modelFilter ? { modelId: modelFilter } : {}),
+            ...(runFilter ? { runId: runFilter } : {}),
+          }),
+        );
+        if (ticket !== usageRequest.current) return;
+        setUsage((old) =>
+          append && old ? { ...data, items: [...old.items, ...data.items] } : data,
+        );
+        setUsageLoad('ready');
+      } catch (error) {
+        if (ticket !== usageRequest.current) return;
+        setUsageLoad('failed');
+        throw error;
+      }
     },
-    [invoke, groupBy, from, to, modelFilter, runFilter],
+    [invoke, groupBy, from, to, modelFilter, runFilter, prefs.timeZone],
   );
   useEffect(() => {
     let live = true;
@@ -143,7 +170,10 @@ export function ModelSettings() {
         await loadPreferences(data.profile.id);
         await loadCatalog();
       } catch (error) {
-        if (live) setMessage(String(error instanceof Error ? error.message : error));
+        if (live) {
+          setCatalogLoad('failed');
+          setMessage(String(error instanceof Error ? error.message : error));
+        }
       }
     })();
     return () => {
@@ -286,64 +316,72 @@ export function ModelSettings() {
           刷新账户状态
         </button>
       </div>
-      <div className="model-catalog" data-testid="model-catalog">
-        {visible.length ? (
-          visible.map((m) => (
-            <article className="model-card" key={key(m)} data-testid="model-card">
-              <strong>{m.displayName}</strong>
-              <p>
-                {providers[m.providerId]} · {m.accountLabel} · {status[m.status]}
-              </p>
-              {m.availabilityReason && (
-                <p>{errorText[m.availabilityReason] ?? '请重新检测账户后再试。'}</p>
-              )}
-              <p>{m.scenario}</p>
-              <p>
-                上下文 {m.contextWindow?.toLocaleString() ?? '未知'} · 最大输出{' '}
-                {m.maxOutput?.toLocaleString() ?? '未知'} · 价格{' '}
-                {m.price ? `${m.price.currency}，版本 ${m.price.version}` : '未知'}
-              </p>
-              <p>
-                思考强度：
-                {m.reasoningLevels
-                  .map((r) => ({ off: '关闭', low: '低', medium: '中', high: '高' })[r])
-                  .join(' / ')}
-                ；供应商剩余额度与恢复时间未知。
-              </p>
-              <span className="action-group">
-                <button disabled={busy || !m.accountId} onClick={() => choose(m)}>
-                  {values.selection && key(values.selection) === key(m) ? '已选择' : '选择模型'}
-                </button>
-                {m.accountId && (
-                  <button
-                    disabled={busy}
-                    aria-label={`收藏 ${m.displayName} ${m.accountLabel}`}
-                    aria-pressed={values.favorites.some((f) => key(f) === key(m))}
-                    onClick={() =>
-                      setValues((v) => ({
-                        ...v,
-                        favorites: v.favorites.some((f) => key(f) === key(m))
-                          ? v.favorites.filter((f) => key(f) !== key(m))
-                          : [...v.favorites, { accountId: m.accountId!, modelId: m.modelId }],
-                      }))
-                    }
-                  >
-                    收藏
-                  </button>
-                )}
-              </span>
-              {m.status !== 'ready' && (
+      <div
+        className="model-catalog"
+        data-testid="model-catalog"
+        aria-busy={catalogLoad === 'loading'}
+      >
+        {catalogLoad === 'loading' && <p role="status">正在加载模型目录…</p>}
+        {catalogLoad === 'failed' && <p role="alert">模型目录加载失败，请刷新账户状态。</p>}
+        {visible.length
+          ? visible.map((m) => (
+              <article className="model-card" key={key(m)} data-testid="model-card">
+                <strong>{m.displayName}</strong>
                 <p>
-                  <Link to={m.providerId === 'codex-subscription' ? '/dev/codex' : '/dev/api'}>
-                    连接或检测此账户
-                  </Link>
+                  {providers[m.providerId]} · {m.accountLabel} · {status[m.status]}
                 </p>
-              )}
-            </article>
-          ))
-        ) : (
-          <p>没有匹配模型；请调整搜索或连接账户。</p>
-        )}
+                {m.availabilityReason && (
+                  <p>{errorText[m.availabilityReason] ?? '请重新检测账户后再试。'}</p>
+                )}
+                <p>{m.scenario}</p>
+                <p>
+                  上下文 {m.contextWindow?.toLocaleString() ?? '未知'} · 最大输出{' '}
+                  {m.maxOutput?.toLocaleString() ?? '未知'} · 价格{' '}
+                  {m.price ? `${m.price.currency}，版本 ${m.price.version}` : '未知'}
+                </p>
+                <p>
+                  思考强度：
+                  {m.reasoningLevels
+                    .map((r) => ({ off: '关闭', low: '低', medium: '中', high: '高' })[r])
+                    .join(' / ')}
+                  ；供应商剩余额度与恢复时间未知。
+                </p>
+                <span className="action-group">
+                  <button disabled={busy || !m.accountId} onClick={() => choose(m)}>
+                    {values.selection && key(values.selection) === key(m) ? '已选择' : '选择模型'}
+                  </button>
+                  {m.accountId && (
+                    <button
+                      disabled={busy}
+                      aria-label={`收藏 ${m.displayName} ${m.accountLabel}`}
+                      aria-pressed={values.favorites.some((f) => key(f) === key(m))}
+                      onClick={() =>
+                        setValues((v) => ({
+                          ...v,
+                          favorites: v.favorites.some((f) => key(f) === key(m))
+                            ? v.favorites.filter((f) => key(f) !== key(m))
+                            : [...v.favorites, { accountId: m.accountId!, modelId: m.modelId }],
+                        }))
+                      }
+                    >
+                      收藏
+                    </button>
+                  )}
+                </span>
+                {m.status !== 'ready' && (
+                  <p>
+                    <Link to={m.providerId === 'codex-subscription' ? '/dev/codex' : '/dev/api'}>
+                      连接或检测此账户
+                    </Link>
+                  </p>
+                )}
+              </article>
+            ))
+          : catalogLoad === 'ready' && (
+              <p role="status">
+                {search.trim() || favoriteOnly ? '没有匹配的模型。' : '模型目录为空，请连接账户。'}
+              </p>
+            )}
       </div>
       <h2>选择与回答偏好</h2>
       <fieldset disabled={busy} className="api-form">
@@ -584,6 +622,19 @@ export function ModelSettings() {
         <button onClick={() => void save()}>
           {scope === 'current' ? '应用本次设置' : '保存设置'}
         </button>
+        {scope === 'profile' && (
+          <button
+            disabled={busy}
+            onClick={() => {
+              setValues(DEFAULT_MODEL_PREFERENCES);
+              setCurrency('USD');
+              setMoneyLimit('');
+              setMessage('已填入模型默认值。保存后生效。');
+            }}
+          >
+            恢复模型默认值
+          </button>
+        )}
       </fieldset>
       <h2>兼容预检与检测</h2>
       <div className="api-form">
@@ -664,7 +715,9 @@ export function ModelSettings() {
           </button>
         )}
       </span>
-      <p role="status">{busy ? '正在处理…' : message}</p>
+      <p role="status" aria-label="模型设置操作状态">
+        {busy ? '正在处理…' : message}
+      </p>
       {result && (
         <div data-testid="routing-result">
           <h3>实际模型：{result.actualModel?.modelId ?? '尚未完成'}</h3>
@@ -769,22 +822,35 @@ export function ModelSettings() {
           </tbody>
         </table>
       </div>
-      <div data-testid="usage-items">
-        {usage?.items.length ? (
-          usage.items.map((a) => (
-            <p key={a.attemptId}>
-              {new Date(a.occurredAt).toLocaleString()} · {a.modelId} · {a.chargedTokens} Token ·{' '}
-              {a.source === 'actual' ? '实际' : '估算'} ·{' '}
-              {a.amountMicros === null ? '金额未知' : `${a.amountMicros / 1_000_000} ${a.currency}`}{' '}
-              · 缓存/推理为子集，不另加
-            </p>
-          ))
-        ) : (
-          <p>暂无模型调用记录。</p>
+      <div data-testid="usage-items" aria-busy={usageLoad === 'loading'}>
+        {usageLoad === 'loading' && <p role="status">正在加载模型用量…</p>}
+        {usageLoad === 'failed' && (
+          <p role="alert">
+            模型用量加载失败。 <button onClick={() => void act(() => loadUsage())}>重试</button>
+          </p>
         )}
+        {usage?.items.length
+          ? usage.items.map((a) => (
+              <p key={a.attemptId}>
+                {formatDesktopDate(a.occurredAt, prefs)} · {a.modelId} · {a.chargedTokens} Token ·{' '}
+                {a.source === 'actual' ? '实际' : '估算'} ·{' '}
+                {a.amountMicros === null
+                  ? '金额未知'
+                  : `${a.amountMicros / 1_000_000} ${a.currency}`}{' '}
+                · 缓存/推理为子集，不另加
+              </p>
+            ))
+          : usageLoad === 'ready' && (
+              <p role="status">
+                {from || to || modelFilter || runFilter
+                  ? '没有匹配的用量记录。'
+                  : '暂无模型调用记录。'}
+              </p>
+            )}
       </div>
       {usage?.nextCursor !== null && usage?.nextCursor !== undefined && (
         <button
+          disabled={usageLoad === 'loading'}
           onClick={() =>
             void loadUsage(usage.nextCursor!, true).catch((error) => setMessage(error.message))
           }

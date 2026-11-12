@@ -15,12 +15,15 @@ export function NotificationsCenter({ onNavigate }: { onNavigate: (path: string)
     [kind, setKind] = useState(''),
     [unread, setUnread] = useState(false),
     [error, setError] = useState(''),
+    [loadError, setLoadError] = useState(''),
+    [loading, setLoading] = useState(true),
     [busy, setBusy] = useState(false),
     [prefs, setPrefs] = useState(NotificationPrefsSchema.parse({})),
     [revision, setRevision] = useState(1);
-  async function reload() {
+  async function reload(isCurrent = () => true) {
     const data = await workCommand('notifications.list', { ...(kind ? { kind } : {}), unread }),
       runs = await workCommand('runs.list', { status: 'waiting_user' });
+    if (!isCurrent()) return;
     if ('notifications' in data) {
       setItems(data.notifications);
       setUnreadCount(data.unreadCount);
@@ -29,8 +32,20 @@ export function NotificationsCenter({ onNavigate }: { onNavigate: (path: string)
   }
   useEffect(() => {
     let cancelled = false;
-    const read = () =>
-      !cancelled && void reload().catch((e: Error) => !cancelled && setError(e.message));
+    setLoading(true);
+    setLoadError('');
+    const read = () => {
+      void reload(() => !cancelled)
+        .then(() => {
+          if (!cancelled) setLoadError('');
+        })
+        .catch((error: Error) => {
+          if (!cancelled) setLoadError(error.message);
+        })
+        .finally(() => {
+          if (!cancelled) setLoading(false);
+        });
+    };
     read();
     const timer = setInterval(read, 1500);
     return () => {
@@ -64,13 +79,23 @@ export function NotificationsCenter({ onNavigate }: { onNavigate: (path: string)
     <section aria-label={t.title}>
       <div className="work-center">
         <h1>{t.title}</h1>
-        <p role="status">
+        <p role="status" aria-label="未读通知数">
           {t.count}：{unreadCount}
         </p>
-        {error && (
+        {(error || loadError) && (
           <p role="alert">
             {t.error}
-            {error}
+            {error || loadError}
+            <button
+              onClick={() =>
+                void action(async () => {
+                  await reload();
+                  setLoadError('');
+                })
+              }
+            >
+              重新加载
+            </button>
           </p>
         )}
         <div className="work-actions">
@@ -102,7 +127,10 @@ export function NotificationsCenter({ onNavigate }: { onNavigate: (path: string)
             {t.clear}
           </button>
         </div>
-        {!items.length && <p>{t.empty}</p>}
+        {loading && <p role="status">正在加载通知…</p>}
+        {!loading && !loadError && !items.length && (
+          <p role="status">{kind || unread ? '没有匹配的通知。' : t.empty}</p>
+        )}
         {items.map((n) => (
           <article className="notification-item" key={n.id}>
             <strong>

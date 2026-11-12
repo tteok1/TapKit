@@ -73,7 +73,7 @@ test('P02-01 T01 empty navigation, real records, keyboard search, draft examples
   await page.getByRole('link', { name: '个人资料与设置', exact: true }).click();
   await page.getByLabel('昵称', { exact: true }).fill('本地验收');
   await page.getByRole('button', { name: '保存设置', exact: true }).click();
-  await expect(page.getByRole('status')).toHaveText('设置已保存');
+  await expect(page.getByRole('status', { name: '设置操作状态' })).toHaveText('设置已保存');
   await page.getByRole('link', { name: '通用', exact: true }).click();
   await page.getByLabel('主题', { exact: true }).selectOption('dark');
   await page.getByRole('button', { name: '保存设置', exact: true }).click();
@@ -89,7 +89,7 @@ test('P02-01 T01 empty navigation, real records, keyboard search, draft examples
     .selectOption('zh-CN');
   await page.getByLabel('长期自定义指令').fill('离线验收指令');
   await page.getByRole('button', { name: '保存设置', exact: true }).click();
-  await expect(page.getByRole('status')).toHaveText('设置已保存');
+  await expect(page.getByRole('status', { name: '设置操作状态' })).toHaveText('设置已保存');
   await page.getByLabel('启用个性化').uncheck();
   await page.getByRole('button', { name: '保存设置', exact: true }).click();
   await expect(page.getByLabel('长期自定义指令')).toBeDisabled();
@@ -204,7 +204,7 @@ test('P02-01 connection error, masked fixture key, avatar and personal form conf
   await page.getByRole('button', { name: '选择头像', exact: true }).click();
   await expect(page.getByRole('img', { name: '本地头像' })).toBeVisible();
   await page.getByRole('button', { name: '保存设置', exact: true }).click();
-  await expect(page.getByRole('status')).toHaveText('设置已保存');
+  await expect(page.getByRole('status', { name: '设置操作状态' })).toHaveText('设置已保存');
   // Browser-generated WebP fixture verifies the Chromium decoder path.
   const webp = await page.evaluate(() => {
     const canvas = document.createElement('canvas');
@@ -218,7 +218,7 @@ test('P02-01 connection error, masked fixture key, avatar and personal form conf
   await writeFile(avatarFile, Buffer.from(webp, 'base64'));
   await page.getByRole('button', { name: '选择头像', exact: true }).click();
   await page.getByRole('button', { name: '保存设置', exact: true }).click();
-  await expect(page.getByRole('status')).toHaveText('设置已保存');
+  await expect(page.getByRole('status', { name: '设置操作状态' })).toHaveText('设置已保存');
   await page.getByLabel('昵称', { exact: true }).fill('保留中的草稿');
   await page.evaluate(async () => {
     const bridge = window.tapkit,
@@ -278,8 +278,8 @@ test('P02-01 connection error, masked fixture key, avatar and personal form conf
     );
   });
   await page.getByRole('button', { name: '检测连接', exact: true }).click();
-  await expect(page.getByRole('status')).toContainText('NETWORK_ERROR');
-  await page.getByRole('status').scrollIntoViewIfNeeded();
+  await expect(page.getByRole('status').filter({ hasText: 'NETWORK_ERROR' })).toBeVisible();
+  await page.getByRole('status').filter({ hasText: 'NETWORK_ERROR' }).scrollIntoViewIfNeeded();
   await page.screenshot({ path: 'docs/evidence/P02-01/connection-error.png' });
   await page.getByLabel('API Key', { exact: true }).fill('unsaved-fixture-full-key');
   await page.keyboard.press('Control+n');

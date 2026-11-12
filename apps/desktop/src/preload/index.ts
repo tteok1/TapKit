@@ -41,6 +41,9 @@ const bridge: TapKitBridge = Object.freeze<TapKitBridge>({
     .find((v) => v.startsWith('--tapkit-initial-route='))
     ?.slice('--tapkit-initial-route='.length),
   openEntity: (entity) => ipcRenderer.invoke('tapkit:open-entity', entity),
+  desktopEnvironment: () => ipcRenderer.invoke('tapkit:desktop-environment'),
+  openQuickInput: () => ipcRenderer.invoke('tapkit:quick-input'),
+  finishQuickInput: (open) => ipcRenderer.invoke('tapkit:finish-quick-input', open),
   saveConversation: (value) => ipcRenderer.invoke('tapkit:save-conversation', value),
   openArtifactExternal: (file) => ipcRenderer.invoke('tapkit:open-artifact-external', file),
   copyText: (text) => ipcRenderer.invoke('tapkit:copy-text', ClipboardTextSchema.parse(text)),

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from '@tapkit/ui';
 import {
   ProjectReplySchema,
@@ -33,25 +33,39 @@ export function ProjectsList({ onCreate }: { onCreate: () => void }) {
     [favorite, setFavorite] = useState(false),
     [sort, setSort] = useState<'updated' | 'name'>('updated'),
     [error, setError] = useState(''),
+    [loading, setLoading] = useState(true),
     [next, setNext] = useState<number | null>(null);
+  const request = useRef(0);
   const load = useCallback(
     async (offset = 0) => {
-      const r = await projectCommand('projects.list', { query, archived, favorite, sort, offset });
-      if ('projects' in r) {
+      const ticket = ++request.current;
+      setLoading(true);
+      setError('');
+      try {
+        const r = await projectCommand('projects.list', {
+          query,
+          archived,
+          favorite,
+          sort,
+          offset,
+        });
+        if (ticket !== request.current || !('projects' in r)) return;
         setProjects((p) => (offset ? [...p, ...r.projects] : r.projects));
         setNext(r.nextOffset);
-        setError('');
+      } catch {
+        if (ticket === request.current) setError(t.failed);
+      } finally {
+        if (ticket === request.current) setLoading(false);
       }
     },
     [query, archived, favorite, sort],
   );
   useEffect(() => {
-    let alive = true;
-    void load().catch(() => alive && setError(t.failed));
-    const changed = () => void load().catch(() => alive && setError(t.failed));
+    const changed = () => void load();
+    changed();
     window.addEventListener('tapkit:history-refresh', changed);
     return () => {
-      alive = false;
+      request.current++;
       window.removeEventListener('tapkit:history-refresh', changed);
     };
   }, [load]);
@@ -110,8 +124,15 @@ export function ProjectsList({ onCreate }: { onCreate: () => void }) {
           </li>
         ))}
       </ul>
-      {!projects.length && <p>{t.empty}</p>}
-      {next !== null && <button onClick={() => void load(next)}>{t.loadMore}</button>}
+      {loading && <p role="status">正在加载项目…</p>}
+      {!loading && !error && !projects.length && (
+        <p role="status">{query.trim() || favorite ? '没有匹配的项目。' : t.empty}</p>
+      )}
+      {next !== null && (
+        <button disabled={loading} onClick={() => void load(next)}>
+          {t.loadMore}
+        </button>
+      )}
     </section>
   );
 }

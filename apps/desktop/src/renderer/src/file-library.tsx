@@ -12,6 +12,12 @@ import {
 import { requestOptions } from './desktop-state';
 import t from '../locales/files.zh-CN.json';
 import viewerText from '../locales/viewer.zh-CN.json';
+import {
+  currentWeek,
+  desktopDateBoundary,
+  formatDesktopDate,
+  useDesktopPreferences,
+} from '../features/settings/desktop-preferences';
 import { useViewer } from '../features/viewer/state';
 type FileData = z.infer<typeof FileReplySchema>;
 type ImportView = z.infer<typeof FileImportViewSchema>;
@@ -47,8 +53,6 @@ async function command(
   if (!r.ok) throw new Error(r.error.code);
   return FileReplySchema.parse(r.data);
 }
-const dateBound = (date: string, end = false) =>
-  date ? new Date(date + (end ? 'T23:59:59.999' : 'T00:00:00')).getTime() : undefined;
 
 export function FileLibrary({
   projects = [],
@@ -60,6 +64,7 @@ export function FileLibrary({
   focusFileId?: string | undefined;
 }) {
   const viewer = useViewer();
+  const prefs = useDesktopPreferences();
   const [scope, setScope] = useState('library'),
     [folderId, setFolderId] = useState('');
   const [query, setQuery] = useState(''),
@@ -81,7 +86,7 @@ export function FileLibrary({
     [history, setHistory] = useState<(string | undefined)[]>([]);
   const [selected, setSelected] = useState<string[]>([]),
     [busy, setBusy] = useState(false),
-    [loading, setLoading] = useState(false);
+    [loading, setLoading] = useState(true);
   const [error, setError] = useState(''),
     [notice, setNotice] = useState('');
   const [selections, setSelections] = useState<FileSelection[]>([]),
@@ -125,8 +130,8 @@ export function FileLibrary({
     query,
     ...(type ? { type } : {}),
     ...(source ? { source } : {}),
-    ...(after ? { updatedAfter: dateBound(after)! } : {}),
-    ...(before ? { updatedBefore: dateBound(before, true)! } : {}),
+    ...(after ? { updatedAfter: desktopDateBoundary(after, prefs.timeZone) } : {}),
+    ...(before ? { updatedBefore: desktopDateBoundary(before, prefs.timeZone, true) } : {}),
     favorite,
     trash,
     sort,
@@ -410,7 +415,11 @@ export function FileLibrary({
     let stopped = false;
     void command('files.get', { fileId: focusFileId })
       .then((d) => {
-        if (!stopped && 'file' in d) void openDetail(d.file);
+        if (stopped || !('file' in d)) return;
+        if (prefs.autoPreview) {
+          return viewer.open({ fileId: d.file.id, versionId: d.file.version.id });
+        }
+        return openDetail(d.file);
       })
       .catch((e) => {
         if (!stopped) setError(message(e instanceof Error ? e.message : 'INTERNAL_ERROR'));
@@ -418,7 +427,7 @@ export function FileLibrary({
     return () => {
       stopped = true;
     };
-  }, [focusFileId]);
+  }, [focusFileId, prefs.autoPreview]);
   const scopeOptions = (
     <>
       <option value="library">{t.library}</option>
@@ -445,7 +454,21 @@ export function FileLibrary({
     </>
   );
   return (
-    <section className="file-library" aria-label={t.title}>
+    <section
+      className="file-library"
+      aria-label={t.title}
+      onKeyDown={(event) => {
+        if (
+          event.key === 'Escape' &&
+          selected.length &&
+          !event.defaultPrevented &&
+          !(event.target instanceof HTMLElement && event.target.closest('dialog[open]'))
+        ) {
+          event.preventDefault();
+          setSelected([]);
+        }
+      }}
+    >
       <header>
         <h1>{t.title}</h1>
         <span className="action-group">
@@ -538,6 +561,15 @@ export function FileLibrary({
           {t.before}
           <input type="date" value={before} onChange={(e) => setBefore(e.target.value)} />
         </label>
+        <button
+          onClick={() => {
+            const [from, to] = currentWeek(prefs);
+            setAfter(from);
+            setBefore(to);
+          }}
+        >
+          本周
+        </button>
         <label>
           {t.sort}
           <select value={sort} onChange={(e) => setSort(e.target.value as typeof sort)}>
@@ -657,7 +689,7 @@ export function FileLibrary({
           )}
         </div>
       )}
-      {loading && <p>{t.loading}</p>}
+      {loading && <p role="status">{t.loading}</p>}
       {!!batchResults.length && (
         <section aria-label={t.batchResults}>
           <h2>{t.batchResults}</h2>
@@ -684,7 +716,13 @@ export function FileLibrary({
         />
         {t.selectAll}
       </label>
-      {!files.length && !loading && <p>{t.empty}</p>}
+      {!files.length && !loading && !error && (
+        <p role="status">
+          {query.trim() || type || source || after || before || favorite
+            ? '没有匹配的文件。'
+            : t.empty}
+        </p>
+      )}
       <ul className={grid ? 'file-grid' : 'file-list'}>
         {files.map((file) => (
           <li key={file.id} id={'file-' + file.id} className="file-card">
@@ -720,7 +758,7 @@ export function FileLibrary({
                 {t.scopedVersion} {file.version.version} · {file.version.name}
               </span>
             )}
-            <span>{new Date(file.updatedAt).toLocaleString('zh-CN')}</span>
+            <span>{formatDesktopDate(file.updatedAt, prefs)}</span>
             {file.version.errorCode && (
               <p>
                 {message(file.version.errorCode)}{' '}
@@ -731,7 +769,7 @@ export function FileLibrary({
             )}
             {file.purgeAfter && (
               <span>
-                {t.expires} {new Date(file.purgeAfter).toLocaleDateString('zh-CN')}
+                {t.expires} {formatDesktopDate(file.purgeAfter, prefs, 'date')}
               </span>
             )}
             <span className="action-group">
@@ -1136,7 +1174,7 @@ export function FileLibrary({
                         {' · '}
                         {t.runStates[record.status]}
                         {' · '}
-                        {new Date(record.createdAt).toLocaleString('zh-CN')}
+                        {formatDesktopDate(record.createdAt, prefs)}
                       </li>
                     ))}
                   </ul>

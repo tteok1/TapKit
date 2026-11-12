@@ -6,6 +6,10 @@ import {
   SiteCommandSchemas,
   SiteHostCommandSchemas,
   type Request,
+  BootstrapViewSchema,
+  SettingsViewSchema,
+  DEFAULT_DESKTOP,
+  type SettingsValues,
 } from '@tapkit/contracts';
 import {
   clipboard,
@@ -19,6 +23,7 @@ import {
   dialog,
   Notification,
   powerMonitor,
+  globalShortcut,
   protocol,
   shell,
   type UtilityProcess,
@@ -111,6 +116,63 @@ let backgroundExplained = existsSync(join(dataDir, 'background-notice-v1'));
 const ownsLock = app.requestSingleInstanceLock({ intent: 'activate' });
 if (!ownsLock) app.quit();
 const windows = new Set<BrowserWindow>();
+let quickWindow: BrowserWindow | undefined;
+let desktopPreferences = DEFAULT_DESKTOP;
+let desktopRevision = 0;
+let registeredShortcut: string | undefined;
+let shortcutStatus: 'registered' | 'conflict' | 'disabled' = 'disabled';
+let loginStatus: 'enabled' | 'disabled' | 'unavailable' = 'unavailable';
+
+function openQuickInput() {
+  if (quitting) return;
+  if (!quickWindow || quickWindow.isDestroyed()) quickWindow = createWindow('/quick-input');
+  else {
+    quickWindow.show();
+    quickWindow.focus();
+  }
+}
+
+function applyDesktopPreferences(revision: number, prefs: SettingsValues['desktop']) {
+  if (revision < desktopRevision || quitting) return;
+  const loginChanged =
+    desktopRevision === 0 || desktopPreferences.startOnLogin !== prefs.startOnLogin;
+  desktopRevision = revision;
+  desktopPreferences = prefs;
+  const candidate = prefs.quickInputEnabled ? prefs.shortcuts.quickInput : undefined;
+  if (
+    candidate !== registeredShortcut ||
+    shortcutStatus !== (candidate ? 'registered' : 'disabled')
+  ) {
+    const previous = registeredShortcut;
+    let registered = false;
+    try {
+      registered = !!candidate && globalShortcut.register(candidate, openQuickInput);
+    } catch {
+      // Electron can reject shortcuts reserved by the OS.
+    }
+    if (previous && previous !== candidate) globalShortcut.unregister(previous);
+    registeredShortcut = registered ? candidate : undefined;
+    shortcutStatus = !candidate ? 'disabled' : registered ? 'registered' : 'conflict';
+  }
+  if (loginChanged && app.isPackaged && process.platform === 'win32') {
+    try {
+      app.setLoginItemSettings({ openAtLogin: prefs.startOnLogin });
+      loginStatus = app.getLoginItemSettings().openAtLogin ? 'enabled' : 'disabled';
+    } catch {
+      loginStatus = 'unavailable';
+    }
+  }
+}
+
+function preferredSavePath(name: string) {
+  const dir = desktopPreferences.defaultDirectory;
+  try {
+    if (isAbsolute(dir) && statSync(dir).isDirectory()) return join(dir, name);
+  } catch {
+    // The selected location may have been moved or disconnected.
+  }
+  return name;
+}
 let core: UtilityProcess | undefined,
   quitting = false,
   shutdownComplete = false,
@@ -379,6 +441,7 @@ function startCore() {
         if (window) void replayTo(window, subscription.afterSeq);
       }
     } else if (message.type === 'desktop.notification') {
+      if (!desktopPreferences.systemNotifications) return;
       if (Notification.isSupported()) {
         const notice = new Notification({
           title: message.notification.title,
@@ -482,10 +545,10 @@ const artifactProtocols = new Map<number, ArtifactProtocol>();
 function createWindow(initialRoute?: string) {
   const slot = nextWindowSlot++;
   const window = new BrowserWindow({
-    width: 1280,
-    height: 800,
-    minWidth: 960,
-    minHeight: 640,
+    width: initialRoute === '/quick-input' ? 560 : 1280,
+    height: initialRoute === '/quick-input' ? 380 : 800,
+    minWidth: initialRoute === '/quick-input' ? 420 : 960,
+    minHeight: initialRoute === '/quick-input' ? 300 : 640,
     title: 'TapKit',
     backgroundColor: '#f7f8fa',
     show: false,
@@ -534,7 +597,19 @@ function createWindow(initialRoute?: string) {
   });
   const webContentsId = window.webContents.id;
   window.on('close', (event) => {
-    if (quitting) return;
+    if (quitting || window === quickWindow) return;
+    if (!desktopPreferences.keepInTray) {
+      if (
+        windows.size === 1 ||
+        [...windows].every(
+          (other) => other === window || other === quickWindow || !other.isVisible(),
+        )
+      ) {
+        event.preventDefault();
+        app.quit();
+      }
+      return;
+    }
     event.preventDefault();
     const hide = () => {
       if (window.isDestroyed()) return;
@@ -567,6 +642,7 @@ function createWindow(initialRoute?: string) {
   });
   windowSlots.set(webContentsId, String(slot));
   window.on('closed', () => {
+    if (quickWindow === window) quickWindow = undefined;
     sitePreviews.stop(window);
     assets.close();
     artifactProtocols.delete(webContentsId);
@@ -681,7 +757,7 @@ function audit(requestId: string, command: string, reply: Reply) {
 }
 if (ownsLock) {
   app.on('second-instance', () => {
-    const window = [...windows][0] ?? createWindow();
+    const window = [...windows].find((candidate) => candidate !== quickWindow) ?? createWindow();
     if (window.isMinimized()) window.restore();
     window.show();
     window.focus();
@@ -764,6 +840,33 @@ if (ownsLock) {
       'context.correct',
       'context.continue',
     ]);
+    ipcMain.handle('tapkit:desktop-environment', (event) => {
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      return {
+        version: app.getVersion(),
+        electron: process.versions.electron,
+        platform: process.platform,
+        packaged: app.isPackaged,
+        shortcut: shortcutStatus,
+        login: loginStatus,
+      };
+    });
+    ipcMain.handle('tapkit:quick-input', (event) => {
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      openQuickInput();
+    });
+    ipcMain.handle('tapkit:finish-quick-input', (event, raw: unknown) => {
+      if (!checkSender(event) || quickWindow?.webContents !== event.sender)
+        throw new Error('PERMISSION_DENIED');
+      const open = z.boolean().parse(raw);
+      if (!open) quickWindow.close();
+      else {
+        quickWindow.setMinimumSize(960, 640);
+        quickWindow.setSize(1120, 760);
+        quickWindow.center();
+        quickWindow = undefined;
+      }
+    });
     ipcMain.handle('tapkit:new-window', (event) => {
       if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
       createWindow();
@@ -813,7 +916,7 @@ if (ownsLock) {
         .strictObject({ name: z.string().min(1).max(240), text: z.string().max(3_000_000) })
         .parse(raw);
       const result = await dialog.showSaveDialog(BrowserWindow.fromWebContents(event.sender)!, {
-        defaultPath: value.name.replace(/[<>:"/\\|?*\x00-\x1f]/g, '_'),
+        defaultPath: preferredSavePath(value.name.replace(/[<>:"/\\|?*\x00-\x1f]/g, '_')),
         filters: [{ name: 'Markdown', extensions: ['md'] }],
       });
       if (result.canceled || !result.filePath) return false;
@@ -1001,7 +1104,13 @@ if (ownsLock) {
           );
           if (!reply.ok) throw new Error(reply.error.code);
         },
-        (path) => shell.openPath(path),
+        (path) => {
+          if (desktopPreferences.externalFiles === 'reveal') {
+            shell.showItemInFolder(path);
+            return Promise.resolve('');
+          }
+          return shell.openPath(path);
+        },
         () => checkSender(event) && windowSlots.get(event.sender.id) === windowId,
       );
       await external.recover();
@@ -1032,7 +1141,9 @@ if (ownsLock) {
       if (!('file' in metadata.data)) throw new Error('VALIDATION_ERROR');
       const pinned = { ...file, versionId: metadata.data.file.version.id };
       const selected = await dialog.showSaveDialog(BrowserWindow.fromWebContents(event.sender)!, {
-        defaultPath: metadata.data.file.version.name,
+        defaultPath: preferredSavePath(
+          metadata.data.file.version.name.replace(/[<>:"/\\|?*\x00-\x1f]/g, '_'),
+        ),
       });
       if (selected.canceled || !selected.filePath)
         return ReplySchema.parse({ ok: true, requestId, data: { changedIds: [] } });
@@ -1182,6 +1293,15 @@ if (ownsLock) {
                   : 'INTERNAL_ERROR',
         );
       }
+      if (reply.ok && request.command === 'app.bootstrap') {
+        const boot = BootstrapViewSchema.safeParse(reply.data);
+        if (boot.success)
+          applyDesktopPreferences(boot.data.settings.revision, boot.data.settings.values.desktop);
+      } else if (reply.ok && request.command === 'settings.set') {
+        const settings = SettingsViewSchema.safeParse(reply.data);
+        if (settings.success)
+          applyDesktopPreferences(settings.data.revision, settings.data.values.desktop);
+      }
       audit(request.requestId, request.command, reply);
       return reply;
     });
@@ -1199,7 +1319,7 @@ if (ownsLock) {
         {
           label: strings.open,
           click: () => {
-            const w = [...windows][0] ?? createWindow();
+            const w = [...windows].find((candidate) => candidate !== quickWindow) ?? createWindow();
             w.show();
             w.focus();
           },
@@ -1209,7 +1329,7 @@ if (ownsLock) {
       ]),
     );
     tray.on('double-click', () => {
-      const w = [...windows][0] ?? createWindow();
+      const w = [...windows].find((candidate) => candidate !== quickWindow) ?? createWindow();
       w.show();
       w.focus();
     });
@@ -1235,6 +1355,7 @@ app.on('before-quit', (event) => {
   event.preventDefault();
   if (quitting) return;
   quitting = true;
+  globalShortcut.unregisterAll();
   sitePreviews.close();
   void Promise.all([secretWork, vault.settled, authSecrets.settled]).finally(() => {
     const child = core;

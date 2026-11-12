@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { formatDesktopDate, useDesktopPreferences } from '../features/settings/desktop-preferences';
 import {
   SessionPageSchema,
   SidebarViewSchema,
@@ -56,12 +57,14 @@ export function HistoryList({
   projects?: { id: string; name: string }[];
   page?: boolean;
 }) {
+  const prefs = useDesktopPreferences();
   const [sessions, setSessions] = useState<SessionRecord[]>([]),
     [cursor, setCursor] = useState<string | null>(null),
     [sidebar, setSidebar] = useState<SidebarView>({ sections: [] }),
     [pageState, setState] = useState<'active' | 'archived' | 'trash' | 'all'>('active'),
     [section, setSection] = useState('');
   const [error, setError] = useState(''),
+    [loading, setLoading] = useState(true),
     [busy, setBusy] = useState(false),
     [editing, setEditing] = useState<SessionRecord>(),
     [title, setTitle] = useState(''),
@@ -174,12 +177,26 @@ export function HistoryList({
     setSidebar(groups);
   }, [filterKey, page]);
   useEffect(() => {
-    void refresh().catch(() => setError(h.failed));
-    const callback = () => void refresh().catch(() => {});
+    let alive = true;
+    setLoading(true);
+    setError('');
+    const callback = () =>
+      void refresh()
+        .then(() => {
+          if (alive) setError((value) => (value === h.failed ? '' : value));
+        })
+        .catch(() => {
+          if (alive) setError(h.failed);
+        })
+        .finally(() => {
+          if (alive) setLoading(false);
+        });
+    callback();
     window.addEventListener('tapkit:history-refresh', callback);
     const timer = setInterval(callback, 3000);
     return () => {
       window.removeEventListener('tapkit:history-refresh', callback);
+      alive = false;
       clearInterval(timer);
     };
   }, [refresh]);
@@ -324,7 +341,7 @@ export function HistoryList({
           {s.unread && <span aria-label={h.unread}> ●</span>}
           {s.running && <span aria-label={h.running}> ◷</span>}
         </span>
-        {!collapsed && <small>{new Date(s.updatedAt).toLocaleString('zh-CN')}</small>}
+        {!collapsed && <small>{formatDesktopDate(s.updatedAt, prefs)}</small>}
       </button>
       {!collapsed && (
         <span className="session-row-actions">
@@ -416,7 +433,23 @@ export function HistoryList({
     </div>
   );
   return (
-    <section className={'history-manager' + (page ? ' history-page' : '')} aria-label={h.history}>
+    <section
+      className={'history-manager' + (page ? ' history-page' : '')}
+      aria-label={h.history}
+      onKeyDown={(event) => {
+        if (
+          event.key !== 'Escape' ||
+          event.defaultPrevented ||
+          (event.target instanceof HTMLElement && event.target.closest('dialog[open]'))
+        )
+          return;
+        if (menu || selected.length) {
+          event.preventDefault();
+          if (menu) setMenu(undefined);
+          else setSelected([]);
+        }
+      }}
+    >
       {!collapsed && (
         <>
           {page && !stateFilter && (
@@ -767,7 +800,8 @@ export function HistoryList({
           )}
         </div>
       )}
-      {!sessions.length && (page || !sidebar.sections.length) && (
+      {loading && <p role="status">正在加载会话…</p>}
+      {!loading && !error && !sessions.length && (page || !sidebar.sections.length) && (
         <p>
           {query
             ? '没有找到匹配的会话。'

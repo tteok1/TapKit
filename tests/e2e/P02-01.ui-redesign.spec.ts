@@ -105,7 +105,7 @@ test('P02-01 UI primary Save action remains readable during hover and keyboard p
   await expect.poll(contrast).toBeGreaterThanOrEqual(4.5);
   await capture(page, 'save-keyboard-contrast', false);
   await page.keyboard.up('Space');
-  await expect(page.getByRole('status')).toHaveText('设置已保存');
+  await expect(page.getByRole('status', { name: '设置操作状态' })).toHaveText('设置已保存');
 });
 
 test('P02-01 UI simplified input keeps keyboard editing reachable at 200 percent', async () => {

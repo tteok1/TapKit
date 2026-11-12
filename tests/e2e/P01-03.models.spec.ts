@@ -86,13 +86,17 @@ test('P01-03 real desktop model preferences, compatibility, scope and usage pers
     await page.getByLabel('每日 Token 上限').fill('5000');
     await page.getByLabel('允许自动切换到 API，并接受供应商费用').check();
     await page.getByRole('button', { name: '保存设置', exact: true }).click();
-    await expect(page.getByRole('status')).toHaveText('模型设置已保存。');
+    await expect(page.getByRole('status', { name: '模型设置操作状态' })).toHaveText(
+      '模型设置已保存。',
+    );
     await expect(page.getByTestId('daily-usage')).toContainText('/ 5000 Token');
     await page.getByLabel('设置范围').selectOption('session');
     await expect(page.getByLabel('回答语言')).toHaveValue('en');
     await page.getByLabel('回答语言').selectOption('zh-CN');
     await page.getByRole('button', { name: '保存设置', exact: true }).click();
-    await expect(page.getByRole('status')).toHaveText('模型设置已保存。');
+    await expect(page.getByRole('status', { name: '模型设置操作状态' })).toHaveText(
+      '模型设置已保存。',
+    );
     await page.getByLabel('设置范围').selectOption('profile');
     await expect(page.getByLabel('回答语言')).toHaveValue('en');
     await page.getByLabel('输出格式').selectOption('json');
@@ -108,7 +112,7 @@ test('P01-03 real desktop model preferences, compatibility, scope and usage pers
     await page.getByLabel('设置范围').selectOption('current');
     await page.getByLabel('回答语气').selectOption('friendly');
     await page.getByRole('button', { name: '应用本次设置', exact: true }).click();
-    await expect(page.getByRole('status')).toHaveText(
+    await expect(page.getByRole('status', { name: '模型设置操作状态' })).toHaveText(
       '本次设置已应用到下面的检测任务；默认设置未写入。',
     );
     await expect(page.getByLabel('每日金额上限')).toBeDisabled();

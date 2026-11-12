@@ -12,13 +12,13 @@ import { ArtifactAssetSchema } from './artifacts';
 import { WorkNotificationSchema } from './work';
 import {
   RequestSchema,
+  SettingsSetSchema,
   SaveApiKeySchema,
   ReplySchema,
   EventEnvelopeSchema,
   type RequestOptions,
   type Reply,
   type EventEnvelope,
-  type SettingsValues,
 } from './foundation';
 export * from './foundation';
 export * from './resources';
@@ -240,6 +240,16 @@ export interface TapKitBridge {
   ): Promise<Reply>;
   readonly windowSlot: string;
   readonly initialRoute: string | undefined;
+  desktopEnvironment(): Promise<{
+    version: string;
+    electron: string;
+    platform: string;
+    packaged: boolean;
+    shortcut: 'registered' | 'conflict' | 'disabled';
+    login: 'enabled' | 'disabled' | 'unavailable';
+  }>;
+  openQuickInput(): Promise<void>;
+  finishQuickInput(open: boolean): Promise<void>;
   newWindow(): Promise<void>;
   openEntity(entity: { type: 'session' | 'project' | 'canvas'; id: string }): Promise<void>;
   saveConversation(value: { name: string; text: string }): Promise<boolean>;
@@ -308,10 +318,7 @@ export interface TapKitBridge {
   ping(request: PingRequest): Promise<PingReply>;
   bootstrap(options: RequestOptions): Promise<Reply>;
   getSettings(options: RequestOptions, scope: { type: 'profile'; id: string }): Promise<Reply>;
-  setSettings(
-    options: RequestOptions,
-    payload: { scope: { type: 'profile'; id: string }; patch: Partial<SettingsValues> },
-  ): Promise<Reply>;
+  setSettings(options: RequestOptions, payload: z.infer<typeof SettingsSetSchema>): Promise<Reply>;
   saveApiKey(options: RequestOptions, payload: z.infer<typeof SaveApiKeySchema>): Promise<Reply>;
   replayEvents(
     options: RequestOptions,

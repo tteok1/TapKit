@@ -1,0 +1,172 @@
+.navigation-history,
+.feature-list > div {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.navigation-history {
+  flex: none;
+}
+
+.connection-status summary .connection-label {
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.experience-page {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.experience-page :is(h1, h2, p, dl),
+.help-guides {
+  margin: 0;
+}
+
+.experience-page h2 {
+  font-size: 1.1em;
+}
+
+.experience-page label,
+.settings-search,
+.shortcut-settings,
+.shortcut-settings label,
+.quick-input label {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.experience-page .check-label,
+.shortcut-settings .check-label {
+  display: flex;
+  align-items: center;
+}
+
+.planned-navigation {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.5rem;
+}
+
+.planned-navigation a,
+.feature-list > div {
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding: 0.4rem 0;
+}
+
+.planned-navigation a {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.feature-status {
+  width: fit-content;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+}
+
+.feature-list dd {
+  margin: 0;
+}
+
+.help-guides {
+  padding-left: 1.2rem;
+}
+
+.help-guides li + li {
+  margin-top: 0.75rem;
+}
+
+.help-page pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.support-screenshot {
+  display: block;
+  width: min(100%, 24rem);
+  height: auto;
+}
+
+.desktop-shell.quick-input {
+  display: block;
+  padding: 1.25rem;
+  overflow: auto;
+}
+
+.quick-input textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+.desktop-shell[data-content-width='wide'] .screen-content {
+  max-width: 1150px;
+}
+
+.desktop-shell[data-content-width='fluid'] .screen-content {
+  max-width: none;
+}
+
+.desktop-shell[data-contrast='high'] {
+  color-scheme: light;
+  --ink: #000;
+  --muted: #222;
+  --surface: #fff;
+  --background: #fff;
+  --muted-surface: #fff;
+  --accent-surface: #edf4ff;
+  --bubble: #edf4ff;
+  --hover: #edf4ff;
+  --subtle: #fff;
+  --code-surface: #f1f1f1;
+  --border: #333;
+  --accent: #0638a3;
+  --focus: #0638a3;
+  --danger: #8e1616;
+  --danger-surface: #fff4f4;
+  --warning-surface: #fff7da;
+  color: var(--ink);
+}
+
+.desktop-shell[data-contrast='high'] .start-modes [aria-checked='true'] {
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
+.desktop-shell[data-contrast='high'] :focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+
+@media (forced-colors: active) {
+  .desktop-shell :focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+}
+
+.desktop-shell[data-motion='reduced'],
+.desktop-shell[data-motion='reduced'] * {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desktop-shell,
+  .desktop-shell * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@container (max-width: 570px) {
+  .topbar .workspace-title {
+    flex: 1;
+    min-width: 0;
+  }
+}

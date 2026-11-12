@@ -62,6 +62,8 @@ export function WorkCenter({
   const [items, setItems] = useState<WorkView[]>([]),
     [current, setCurrent] = useState<WorkView>(),
     [error, setError] = useState(''),
+    [loadError, setLoadError] = useState(''),
+    [loading, setLoading] = useState(true),
     [busy, setBusy] = useState(false),
     [creating, setCreating] = useState(false),
     [capacity, setCapacity] = useState(''),
@@ -75,10 +77,10 @@ export function WorkCenter({
     [board, setBoard] = useState(false),
     [selected, setSelected] = useState<string[]>([]),
     [batch, setBatch] = useState('');
-  async function reload() {
+  async function reload(isCurrent = () => true) {
     if (runId) {
       const data = await workCommand('runs.get', { runId });
-      if ('work' in data) setCurrent(data.work);
+      if (isCurrent() && 'work' in data) setCurrent(data.work);
     } else {
       const data = await workCommand('runs.list', {
         query,
@@ -89,7 +91,7 @@ export function WorkCenter({
         sort,
         archived,
       });
-      if ('workItems' in data) {
+      if (isCurrent() && 'workItems' in data) {
         setItems(data.workItems.filter((r) => !sessionId || r.sessionId === sessionId));
         setCapacity(`${data.running} / ${data.capacity}`);
       }
@@ -97,8 +99,19 @@ export function WorkCenter({
   }
   useEffect(() => {
     let cancelled = false;
+    setLoading(true);
+    setLoadError('');
     const read = () => {
-      if (!cancelled) void reload().catch((e: Error) => !cancelled && setError(e.message));
+      void reload(() => !cancelled)
+        .then(() => {
+          if (!cancelled) setLoadError('');
+        })
+        .catch((error: Error) => {
+          if (!cancelled) setLoadError(error.message);
+        })
+        .finally(() => {
+          if (!cancelled) setLoading(false);
+        });
     };
     read();
     const timer = setInterval(read, 1000);
@@ -128,10 +141,20 @@ export function WorkCenter({
         </div>
         <button onClick={() => setCreating(!creating)}>{t.new}</button>
       </header>
-      {error && (
+      {(error || loadError) && (
         <p role="alert">
           {t.error}
-          {error} <button onClick={() => void action(reload)}>{t.refresh}</button>
+          {error || loadError}{' '}
+          <button
+            onClick={() =>
+              void action(async () => {
+                await reload();
+                setLoadError('');
+              })
+            }
+          >
+            {t.refresh}
+          </button>
         </p>
       )}
       {creating && (
@@ -247,7 +270,14 @@ export function WorkCenter({
             </div>
           )}
           {batch && <pre aria-label={t.partialResults}>{batch}</pre>}
-          {!items.length && <p>{t.empty}</p>}
+          {loading && <p role="status">正在加载工作任务…</p>}
+          {!loading && !loadError && !items.length && (
+            <p role="status">
+              {query.trim() || status || project || model || since
+                ? '没有匹配的工作任务。'
+                : t.empty}
+            </p>
+          )}
           <div className={board ? 'work-board' : 'work-list'}>
             {(board ? Object.keys(t.statuses) : ['']).map((key) => (
               <section
