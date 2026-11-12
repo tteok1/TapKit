@@ -634,7 +634,10 @@ export function ChatSurface({
       if (alive.current) setBusy(false);
     }
   }
+  const historyReadOnly =
+    !!sessionId && mode === 'chat' && !temporary && !settings.desktop.saveChatHistory;
   async function send() {
+    if (historyReadOnly) return;
     if (
       busy ||
       fileOperation.current ||
@@ -1342,8 +1345,11 @@ export function ChatSurface({
           </span>
         </div>
       )}
+      {historyReadOnly && <p>聊天记录保存已关闭。新建临时聊天可继续对话。</p>}
       <section
         className="composer"
+        hidden={historyReadOnly}
+        style={historyReadOnly ? { display: 'none' } : undefined}
         onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => {
           e.preventDefault();

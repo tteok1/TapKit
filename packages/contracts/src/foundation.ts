@@ -7,6 +7,7 @@ import { ExecutionCapabilitiesSchema } from './execution';
 import { ErrorCodeSchema } from './errors';
 export { ErrorCodeSchema } from './errors';
 import { ChatReplyDataSchema } from './chat';
+import { LifecycleReplySchema, ClearJobPayloadSchema } from './data-lifecycle';
 import { WebReplySchema } from './web';
 import { BrowserReplySchema } from './browser';
 import { ExportReplySchema } from './exports';
@@ -138,6 +139,7 @@ export const ReplaySchema = z.strictObject({
   limit: z.number().int().min(1).max(100).default(50),
 });
 export const JobPayloadSchema = z.discriminatedUnion('kind', [
+  ClearJobPayloadSchema,
   z.strictObject({
     schemaVersion: z.literal(1),
     kind: z.literal('snapshot.export'),
@@ -282,6 +284,7 @@ export const BootstrapViewSchema = z.strictObject({
   unreadCount: z.number().int().min(0),
 });
 export const ReplyDataSchema = z.union([
+  LifecycleReplySchema,
   CanvasReplySchema,
   z.strictObject({ code: CodeViewSchema }),
   z.strictObject({ terminal: TerminalViewSchema }),

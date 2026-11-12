@@ -181,6 +181,8 @@ P01-02新增0003_api_providers.sql（2026-10-04），schemaVersion=3：provider_
 
 普通备份包含DB一致快照和blob哈希清单，不含credentials/opaque明文，不拷贝WAL组合冒充快照。数据库损坏时保留原件，恢复最近完整备份；无备份只能进入诊断/导出文件模式。禁止清空数据库后称为恢复。
 
+P10-03 的 schema 25 保留现有队列 ID，追加 `data.clear` 和 `memories.imported`。分类清理按确认时的对象、revision 和影响摘要绑定操作。在同一事务撤权、擦除和入队，提交前写独立删除日志。恢复旧快照后先重放日志，再开放读写。新快照使用数据库 SHA-256 和 blob 清单，恢复会校验 profile、schema、外键、完整性与磁盘余量。启动恢复失败可从通过校验的快照导出资料。详见 [ADR0084](../adr/0084-local-data-lifecycle.md)。
+
 ## 6. 消息分支与文件版本语义
 
 已发送问题编辑、重生成、换模型重答：创建分支或message_version，旧分支保留可切换。branch head只在事务中移动；工具副作用账本属于原run，不因切换/删除分支回滚现实动作。

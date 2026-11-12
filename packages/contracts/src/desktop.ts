@@ -135,6 +135,8 @@ export const DesktopSettingsSchema = z.strictObject({
   keepInTray: z.boolean().default(true),
   showReleaseLink: z.boolean().default(true),
   systemNotifications: z.boolean().default(true),
+  saveChatHistory: z.boolean().default(true),
+  includeSupportDiagnostics: z.boolean().default(false),
 });
 export const DEFAULT_DESKTOP = DesktopSettingsSchema.parse({
   theme: 'system',

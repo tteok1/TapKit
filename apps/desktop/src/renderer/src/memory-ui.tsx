@@ -190,29 +190,31 @@ export function MemoryManager() {
           <strong>{memoryName(m.predicate)}</strong>
           <p style={{ whiteSpace: 'pre-wrap' }}>{m.value}</p>
           <p>
-            {m.explicit ? t.explicit : t.automatic} · {t.updated}{' '}
+            {m.imported ? '导入资料' : m.explicit ? t.explicit : t.automatic} · {t.updated}{' '}
             {new Date(m.updatedAt).toLocaleString('zh-CN')}
           </p>
           {m.sensitive && <p>{t.sensitive}</p>}
-          <span className="action-group">
-            <button
-              disabled={busy}
-              onClick={() => {
-                setEditing(m);
-                setValue(m.value);
-              }}
-            >
-              {t.edit}
-            </button>
-            <button
-              disabled={busy}
-              onClick={() =>
-                void action(() => memoryCommand('memory.delete', { memoryId: m.id }, m.revision))
-              }
-            >
-              {t.delete}
-            </button>
-          </span>
+          {!m.imported && (
+            <span className="action-group">
+              <button
+                disabled={busy}
+                onClick={() => {
+                  setEditing(m);
+                  setValue(m.value);
+                }}
+              >
+                {t.edit}
+              </button>
+              <button
+                disabled={busy}
+                onClick={() =>
+                  void action(() => memoryCommand('memory.delete', { memoryId: m.id }, m.revision))
+                }
+              >
+                {t.delete}
+              </button>
+            </span>
+          )}
           {m.sources.map((s) => (
             <button
               key={s.messageId}

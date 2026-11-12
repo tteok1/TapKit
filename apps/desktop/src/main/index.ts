@@ -35,6 +35,7 @@ import { SitePreviews } from './site-previews';
 const sitePreviews = new SitePreviews();
 import { resolveSystemProxy } from './system-proxy';
 import { readCoreStartupTimeout } from './core-startup';
+import { moveDataRoot, readDataRoot, validateMoveDestination } from './data-root';
 import {
   mkdirSync,
   appendFileSync,
@@ -71,6 +72,8 @@ import {
   ArtifactAccessSchema,
   FileGetSchema,
   IdSchema,
+  DataCommandSchemas,
+  DataCategoriesSchema,
   type Reply,
   type EventEnvelope,
 } from '@tapkit/contracts';
@@ -111,7 +114,16 @@ if (!app.isPackaged && process.env.TAPKIT_DATA_DIR) {
   mkdirSync(process.env.TAPKIT_DATA_DIR, { recursive: true });
   app.setPath('userData', process.env.TAPKIT_DATA_DIR);
 }
-const dataDir = app.getPath('userData');
+const launchRoot = app.getPath('userData');
+const configuredDataRoot = (() => {
+  try {
+    return readDataRoot(launchRoot);
+  } catch {
+    return undefined;
+  }
+})();
+const dataDir = configuredDataRoot ?? launchRoot;
+let dataMaintenance = false;
 let backgroundExplained = existsSync(join(dataDir, 'background-notice-v1'));
 const ownsLock = app.requestSingleInstanceLock({ intent: 'activate' });
 if (!ownsLock) app.quit();
@@ -177,7 +189,7 @@ let core: UtilityProcess | undefined,
   quitting = false,
   shutdownComplete = false,
   tray: Tray | undefined;
-let storageUnavailable = false;
+let storageUnavailable = !configuredDataRoot;
 let generation = 0,
   failures = 0;
 type Waiter = {
@@ -226,21 +238,23 @@ function forward(command: Record<string, unknown>): Promise<unknown> {
           pending.delete(id);
           reject(new Error('Core timeout'));
         },
-        operation === 'site.build' || operation === 'canvas.export'
-          ? 300_000
-          : command.type === 'github.connect' || operation?.startsWith('github.')
-            ? 180_000
-            : operation === 'models.diagnostic'
-              ? 310_000
-              : operation === 'providers.check' || operation === 'canvas.aiEdit'
-                ? 130_000
-                : command.type === 'files.export' ||
-                    command.type === 'artifacts.read' ||
-                    operation === 'artifacts.open' ||
-                    operation === 'artifacts.locate' ||
-                    operation === 'files.import'
+        command.type === 'data.transfer' || command.type === 'data.stageRestore'
+          ? 125_000
+          : operation === 'site.build' || operation === 'canvas.export'
+            ? 300_000
+            : command.type === 'github.connect' || operation?.startsWith('github.')
+              ? 180_000
+              : operation === 'models.diagnostic'
+                ? 310_000
+                : operation === 'providers.check' || operation === 'canvas.aiEdit'
                   ? 130_000
-                  : 30_000,
+                  : command.type === 'files.export' ||
+                      command.type === 'artifacts.read' ||
+                      operation === 'artifacts.open' ||
+                      operation === 'artifacts.locate' ||
+                      operation === 'files.import'
+                    ? 130_000
+                    : 30_000,
       );
     pending.set(id, { resolve, reject, timer });
     child.postMessage({ ...command, id });
@@ -260,6 +274,38 @@ function publish(event: EventEnvelope) {
     }
   }
 }
+function recoveryExport(command: Record<string, unknown>) {
+  return new Promise<unknown>((resolve, reject) => {
+    const id = randomUUID();
+    const child = utilityProcess.fork(
+      join(__dirname, '../../../../packages/core/dist/index.cjs'),
+      [],
+      {
+        serviceName: 'TapKit Recovery',
+        stdio: 'pipe',
+        env: { ...process.env, TAPKIT_CORE_DATA_DIR: dataDir, TAPKIT_CORE_RECOVERY_READONLY: '1' },
+      },
+    );
+    const timer = setTimeout(() => {
+      child.kill();
+      reject(Error('DATABASE_RECOVERY_REQUIRED'));
+    }, 125_000);
+    child.stdout?.resume();
+    child.stderr?.resume();
+    child.once('exit', () => {
+      clearTimeout(timer);
+      reject(Error('DATABASE_RECOVERY_REQUIRED'));
+    });
+    child.once('spawn', () => child.postMessage({ ...command, id }));
+    child.on('message', (raw: unknown) => {
+      const parsed = CoreEventSchema.safeParse(raw);
+      if (!parsed.success || parsed.data.type !== 'reply' || parsed.data.id !== id) return;
+      clearTimeout(timer);
+      resolve(parsed.data.reply);
+      child.kill();
+    });
+  });
+}
 function startCore() {
   let resolveReady: () => void = () => {},
     rejectReady: (error: Error) => void = () => {};
@@ -278,6 +324,7 @@ function startCore() {
       env: {
         ...process.env,
         TAPKIT_CORE_DATA_DIR: dataDir,
+        TAPKIT_CORE_RECOVERY_READONLY: '0',
         TAPKIT_APP_ROOT: join(__dirname, '../../../..'),
       },
     },
@@ -475,7 +522,8 @@ function startCore() {
     pending.clear();
     if (core === child) core = undefined;
     console.info('TAPKIT_CORE_EXIT', code);
-    if (!quitting && !storageUnavailable && ++failures <= 3) setTimeout(startCore, 250);
+    if (!quitting && !dataMaintenance && !storageUnavailable && ++failures <= 3)
+      setTimeout(startCore, 250);
   });
 }
 async function replayTo(window: BrowserWindow, afterSeq: number) {
@@ -662,6 +710,7 @@ function createWindow(initialRoute?: string) {
   return window;
 }
 function checkSender(event: IpcMainInvokeEvent) {
+  if (dataMaintenance) return false;
   return trustedSender(event, windows, trustedUrl);
 }
 async function siteHostRequest(window: BrowserWindow, request: Request): Promise<Reply> {
@@ -770,7 +819,11 @@ if (ownsLock) {
       Object.assign(globalThis, { tapkitBrowserWebFixture: installBrowserWebFixture(dataDir) });
       Object.assign(globalThis, { tapkitBrowserRuntime: browserRuntime });
     }
-    startCore();
+    if (configuredDataRoot) startCore();
+    else {
+      ready = Promise.reject(Error('DATABASE_RECOVERY_REQUIRED'));
+      void ready.catch(() => {});
+    }
     powerMonitor.on('suspend', () => core?.postMessage({ type: 'lifecycle', action: 'suspend' }));
     powerMonitor.on('resume', () => core?.postMessage({ type: 'lifecycle', action: 'resume' }));
     ipcMain.handle('tapkit:ping', async (event, raw: unknown) => {
@@ -795,6 +848,7 @@ if (ownsLock) {
       ...Object.keys(SiteCommandSchemas),
       ...Object.keys(CanvasCommandSchemas),
       ...Object.keys(SiteHostCommandSchemas),
+      ...Object.keys(DataCommandSchemas),
       'github.connect',
       'models.catalog',
       'models.preferences.get',
@@ -840,6 +894,126 @@ if (ownsLock) {
       'context.correct',
       'context.continue',
     ]);
+    ipcMain.handle('tapkit:data-transfer', async (event, raw: unknown) => {
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      const selection = z
+        .discriminatedUnion('action', [
+          z.strictObject({ action: z.literal('export'), categories: DataCategoriesSchema }),
+          z.strictObject({ action: z.literal('import') }),
+        ])
+        .parse(raw);
+      const window = BrowserWindow.fromWebContents(event.sender)!;
+      const filters = [{ name: 'TapKit 数据包', extensions: ['zip'] }];
+      let path: string | undefined;
+      if (selection.action === 'export') {
+        const result = await dialog.showSaveDialog(window, {
+          defaultPath: preferredSavePath('TapKit-data.zip'),
+          filters,
+        });
+        if (!result.canceled) path = result.filePath;
+      } else {
+        const result = await dialog.showOpenDialog(window, { properties: ['openFile'], filters });
+        if (!result.canceled) path = result.filePaths[0];
+      }
+      if (!path) return null;
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      const command = {
+        type: 'data.transfer',
+        requestId: uuid7(),
+        windowId: windowSlots.get(event.sender.id)!,
+        path,
+        selection,
+      };
+      if (!configuredDataRoot) return errorReply(command.requestId, 'DATABASE_RECOVERY_REQUIRED');
+      if (storageUnavailable && selection.action === 'export')
+        return ReplySchema.parse(await recoveryExport(command));
+      await ready;
+      return ReplySchema.parse(await forward(command));
+    });
+    ipcMain.handle('tapkit:restore-data', async (event, raw: unknown) => {
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      const backupId = IdSchema.parse(raw);
+      const window = BrowserWindow.fromWebContents(event.sender)!;
+      const answer = await dialog.showMessageBox(window, {
+        type: 'warning',
+        message: '恢复选中的本机备份？',
+        detail: '应用会先保存当前数据库，再重启并恢复选中的备份。已永久删除的内容会继续保持删除。',
+        buttons: ['取消', '恢复并重启'],
+        defaultId: 0,
+        cancelId: 0,
+      });
+      if (answer.response !== 1) return false;
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      dataMaintenance = true;
+      try {
+        await ready;
+        const reply = ReplySchema.parse(
+          await forward({ type: 'data.stageRestore', requestId: uuid7(), backupId }),
+        );
+        if (!reply.ok) throw new Error(reply.error.code);
+        setImmediate(() => {
+          dataMaintenance = false;
+          app.relaunch();
+          app.quit();
+        });
+        return true;
+      } catch (error) {
+        dataMaintenance = false;
+        throw error;
+      }
+    });
+    ipcMain.handle('tapkit:move-data-root', async (event) => {
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      const window = BrowserWindow.fromWebContents(event.sender)!;
+      const choice = await dialog.showOpenDialog(window, {
+        properties: ['openDirectory', 'createDirectory'],
+        title: '选择 TapKit 数据的新位置',
+      });
+      if (choice.canceled || !choice.filePaths[0]) return false;
+      const target = await validateMoveDestination(dataDir, choice.filePaths[0]);
+      const answer = await dialog.showMessageBox(window, {
+        type: 'question',
+        message: '复制本机数据并切换目录？',
+        detail:
+          'TapKit 会在选定位置创建子目录并校验每个文件。核验完成后重启应用，原目录保留用于回退。',
+        buttons: ['取消', '复制并重启'],
+        defaultId: 0,
+        cancelId: 0,
+      });
+      if (answer.response !== 1) return false;
+      if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
+      dataMaintenance = true;
+      try {
+        await ready;
+        const preflight = ReplySchema.parse(
+          await forward({ type: 'data.moveCheck', requestId: uuid7() }),
+        );
+        if (!preflight.ok) throw new Error(preflight.error.code);
+        await Promise.all([secretWork, vault.settled, authSecrets.settled]);
+        const child = core;
+        if (!child) throw new Error('DATABASE_RECOVERY_REQUIRED');
+        await new Promise<void>((resolve, reject) => {
+          const timeout = setTimeout(() => child.kill(), 60_000);
+          child.once('exit', (code) => {
+            clearTimeout(timeout);
+            if (code === 0) resolve();
+            else reject(new Error('DATABASE_RECOVERY_REQUIRED'));
+          });
+          child.postMessage({ type: 'shutdown' });
+        });
+        await moveDataRoot(launchRoot, dataDir, target);
+        setImmediate(() => {
+          dataMaintenance = false;
+          app.relaunch();
+          app.quit();
+        });
+        return true;
+      } catch (error) {
+        dataMaintenance = false;
+        if (!core) startCore();
+        throw error;
+      }
+    });
     ipcMain.handle('tapkit:desktop-environment', (event) => {
       if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
       return {
@@ -1353,7 +1527,7 @@ app.on('window-all-closed', () => {
 app.on('before-quit', (event) => {
   if (shutdownComplete) return;
   event.preventDefault();
-  if (quitting) return;
+  if (quitting || dataMaintenance) return;
   quitting = true;
   globalShortcut.unregisterAll();
   sitePreviews.close();

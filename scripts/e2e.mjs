@@ -12,7 +12,9 @@ if (args.length >= 2 && args[0] === '--grep' && args[1] === 'P00-03') {
   const grep = args.indexOf('--grep');
   const chatFixture =
     grep < 0 ||
-    /P02|P05|P06|P07|P08|P10-0(?:[12]|\[12\])|P04-0[23]|P04-0\[12[3]?\]/.test(args[grep + 1] ?? '');
+    /P02|P05|P06|P07|P08|P10-0(?:[12]|\[12[3]?\])|P04-0[23]|P04-0\[12[3]?\]/.test(
+      args[grep + 1] ?? '',
+    );
   if (!chatFixture) pnpm(['exec', 'playwright', 'test', ...args]);
   else {
     const previous = process.env.TAPKIT_TEST_BUILD;

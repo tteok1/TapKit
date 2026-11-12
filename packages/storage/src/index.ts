@@ -22,6 +22,8 @@ export * from './usage-ledger';
 export * from './memory';
 export * from './memory-cleanup';
 export * from './session-cleanup';
+export * from './lifecycle-deletion';
+export * from './lifecycle-backups';
 export * from './files';
 export * from './artifacts';
 export * from './work';

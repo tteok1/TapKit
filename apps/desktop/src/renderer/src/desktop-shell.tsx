@@ -26,6 +26,7 @@ import { AuthDiagnostic } from './auth-diagnostic';
 import { ApiDiagnostic } from './api-diagnostic';
 import { ModelSettings } from './model-settings';
 import { DesktopSettings } from './desktop-settings';
+import { DataPanel } from '../features/privacy/DataPanel';
 import { SettingsNavigation } from './settings-navigation';
 import { IconButton } from './action-popover';
 import { readLayout, writeLayout, requestOptions, type WindowLayout } from './desktop-state';
@@ -403,13 +404,17 @@ export function DesktopShell() {
         document.getElementById('file-' + locatedEntity.id)?.scrollIntoView({ block: 'center' }),
       );
   }, [locatedEntity]);
+  const saveChatHistory = prefs?.saveChatHistory ?? true;
+  const effectiveMode = mode === 'chat' && !saveChatHistory ? 'temporary' : mode;
   const composer = (
     <ChatSurface
       key={routedSessionId ?? '/'}
       sessionId={routedSessionId}
       exportRequested={new URLSearchParams(location.search).get('export') === '1'}
-      mode={selected?.mode ?? (mode === 'work' ? 'work' : 'chat')}
-      temporary={!routedSessionId && mode === 'temporary'}
+      mode={selected?.mode ?? (effectiveMode === 'work' ? 'work' : 'chat')}
+      temporary={
+        routedSessionId ? temporaryIds.current.has(routedSessionId) : effectiveMode === 'temporary'
+      }
       onTemporaryCreated={(id) => temporaryIds.current.add(id)}
       onBusy={setComposerBusy}
       seed={draft}
@@ -433,7 +438,8 @@ export function DesktopShell() {
   );
   const home = (
     <StartPage
-      mode={mode}
+      mode={effectiveMode}
+      saveChatHistory={saveChatHistory}
       onMode={setMode}
       busy={composerBusy}
       showSuggestions={prefs?.showSuggestions ?? true}
@@ -820,6 +826,11 @@ export function DesktopShell() {
                         onNavigate={navigate}
                         projects={workspace?.projects ?? []}
                       />
+                    ) : error === text.recovery ? (
+                      <section className="desktop-settings">
+                        <SettingsNavigation page={settingPage} />
+                        <DataPanel recovery />
+                      </section>
                     ) : (
                       <p>正在读取设置…</p>
                     )

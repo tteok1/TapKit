@@ -199,6 +199,14 @@ const bridge: TapKitBridge = Object.freeze<TapKitBridge>({
     };
   },
   backup: (options) => invoke('data.backup', options, {}),
+  dataCommand: (options, command, payload) => invoke(command, options, payload),
+  transferData: (action, categories) =>
+    ipcRenderer.invoke(
+      'tapkit:data-transfer',
+      action === 'export' ? { action, categories } : { action },
+    ),
+  restoreData: (id) => ipcRenderer.invoke('tapkit:restore-data', IdSchema.parse(id)),
+  moveDataRoot: () => ipcRenderer.invoke('tapkit:move-data-root'),
   cancelJob: (options, jobId) => invoke('jobs.cancel', options, { jobId: IdSchema.parse(jobId) }),
 });
 contextBridge.exposeInMainWorld('tapkit', bridge);

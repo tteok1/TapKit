@@ -8,6 +8,7 @@ import { GitHubConnectSchema } from './github';
 import type { StartLogin } from './providers';
 import { IdSchema } from './identity';
 import { FileGetSchema } from './files';
+import { DataCategoriesSchema } from './data-lifecycle';
 import { ArtifactAssetSchema } from './artifacts';
 import { WorkNotificationSchema } from './work';
 import {
@@ -21,6 +22,7 @@ import {
   type EventEnvelope,
 } from './foundation';
 export * from './foundation';
+export * from './data-lifecycle';
 export * from './resources';
 export * from './providers';
 export * from './models';
@@ -52,6 +54,24 @@ export const PingReplySchema = z.strictObject({
   corePid: z.number().int().positive(),
 });
 export const CoreCommandSchema = z.discriminatedUnion('type', [
+  z.strictObject({
+    type: z.literal('data.transfer'),
+    id: z.string().uuid(),
+    requestId: IdSchema,
+    windowId: z.string().regex(/^[0-9]{1,8}$/),
+    path: z.string().min(1).max(32767),
+    selection: z.discriminatedUnion('action', [
+      z.strictObject({ action: z.literal('export'), categories: DataCategoriesSchema }),
+      z.strictObject({ action: z.literal('import') }),
+    ]),
+  }),
+  z.strictObject({
+    type: z.literal('data.stageRestore'),
+    id: z.string().uuid(),
+    requestId: IdSchema,
+    backupId: IdSchema,
+  }),
+  z.strictObject({ type: z.literal('data.moveCheck'), id: z.string().uuid(), requestId: IdSchema }),
   z.strictObject({
     type: z.literal('site.transfer'),
     id: z.string().uuid(),
@@ -169,7 +189,7 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('ready'),
     protocolVersion: z.literal(1),
-    schemaVersion: z.literal(24),
+    schemaVersion: z.literal(25),
   }),
   z.strictObject({ type: z.literal('pong'), id: z.string().uuid(), payload: PingReplySchema }),
   z.strictObject({ type: z.literal('reply'), id: z.string().uuid(), reply: ReplySchema }),
@@ -330,6 +350,17 @@ export interface TapKitBridge {
     listener: (event: EventEnvelope) => void,
   ): Promise<() => void>;
   backup(options: RequestOptions): Promise<Reply>;
+  dataCommand(
+    options: RequestOptions,
+    command: import('./data-lifecycle').DataCommand,
+    payload: unknown,
+  ): Promise<Reply>;
+  transferData(
+    action: 'export' | 'import',
+    categories?: import('./data-lifecycle').DataCategory[],
+  ): Promise<Reply | null>;
+  restoreData(id: string): Promise<boolean>;
+  moveDataRoot(): Promise<boolean>;
   cancelJob(options: RequestOptions, jobId: string): Promise<Reply>;
 }
 export { z } from 'zod';

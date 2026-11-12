@@ -66,10 +66,11 @@ export class JobQueue {
     return this.store.db.transaction(() => {
       const changed = this.store.db
         .prepare(
-          "UPDATE jobs SET status=?,result_ref=?,lease_owner=NULL,lease_expires_at=NULL,updated_at=?,revision=revision+1 WHERE id=? AND lease_owner=? AND lease_epoch=? AND status='running' AND cancel_requested_at IS NULL AND lease_expires_at>?",
+          "UPDATE jobs SET status=?,result_ref=CASE WHEN kind='data.clear' THEN coalesce(?,result_ref) ELSE ? END,lease_owner=NULL,lease_expires_at=NULL,updated_at=?,revision=revision+1 WHERE id=? AND lease_owner=? AND lease_epoch=? AND status='running' AND cancel_requested_at IS NULL AND lease_expires_at>?",
         )
         .run(
           status,
+          resultRef ?? null,
           resultRef ?? null,
           this.store.now(),
           job.id,
@@ -84,9 +85,11 @@ export class JobQueue {
   cancel(id: string) {
     return this.store.db.transaction(() => {
       const row = this.store.db
-        .prepare('SELECT status FROM jobs WHERE id=? AND profile_id=? AND deleted_at IS NULL')
-        .get(id, this.store.profileId) as { status: string } | undefined;
+        .prepare('SELECT status,kind FROM jobs WHERE id=? AND profile_id=? AND deleted_at IS NULL')
+        .get(id, this.store.profileId) as { status: string; kind: string } | undefined;
       if (!row) throw new StorageError('NOT_FOUND');
+      if (row.kind === 'data.clear' && ['queued', 'running'].includes(row.status))
+        throw new StorageError('CONFLICT');
       if (['completed', 'failed', 'cancelled', 'unknown'].includes(row.status)) return row.status;
       this.store.db
         .prepare(

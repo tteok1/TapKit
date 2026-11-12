@@ -89,7 +89,7 @@ export function HelpPage({ ready, accounts }: { ready: boolean; accounts: string
   const [environment, setEnvironment] =
     useState<Awaited<ReturnType<typeof window.tapkit.desktopEnvironment>>>();
   const [metadataFailed, setMetadataFailed] = useState(false);
-  const [includeDiagnostic, setIncludeDiagnostic] = useState(false);
+  const [includeDiagnostic, setIncludeDiagnostic] = useState(prefs.includeSupportDiagnostics);
   const [includeSnippet, setIncludeSnippet] = useState(false);
   const [snippet, setSnippet] = useState('');
   const [screenshot, setScreenshot] = useState('');

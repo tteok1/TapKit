@@ -1,18 +1,29 @@
 import codingSql from '../../../migrations/0022_coding.sql?raw';
 import codeExecutionSql from '../../../migrations/0023_code_execution.sql?raw';
 import canvasSql from '../../../migrations/0024_canvas.sql?raw';
+import lifecycleSql from '../../../migrations/0025_data_lifecycle.sql?raw';
 import delegationSql from '../../../migrations/0021_delegation.sql?raw';
 import Database from 'better-sqlite3';
 import { eraseFileDerivedContent } from './file-cleanup';
 import { eraseSessionContent, eraseMessageContent } from './session-cleanup';
+import {
+  LifecycleDeletionRecordSchema,
+  replayClearRecord,
+  eraseLifecycleTarget,
+} from './lifecycle-deletion';
+import {
+  hashLocalFile,
+  installLocalBackup,
+  localBackups,
+  runPendingRestore,
+  verifyLocalBackup,
+} from './lifecycle-backups';
 import { randomBytes, createHash } from 'node:crypto';
-import { mkdir, readFile, access, readdir, rename, copyFile, open } from 'node:fs/promises';
+import { mkdir, readFile, access, mkdtemp, copyFile, rm, lstat } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import {
   DEFAULT_SETTINGS,
-  IdSchema,
-  BackupManifestSchema,
-  DeletionJournalEntrySchema,
   SettingsDocumentSchema,
   ReplySchema,
   ReplyDocumentSchema,
@@ -137,8 +148,9 @@ export const migrations: Migration[] = [
   { version: 22, sql: codingSql },
   { version: 23, sql: codeExecutionSql },
   { version: 24, sql: canvasSql },
+  { version: 25, sql: lifecycleSql },
 ];
-export const SCHEMA_VERSION = 24;
+export const SCHEMA_VERSION = 25;
 export async function migrate(db: Database.Database, backupDirectory: string, steps = migrations) {
   const trace = startupTrace('storage.migrate');
   trace('version.begin');
@@ -154,7 +166,7 @@ export async function migrate(db: Database.Database, backupDirectory: string, st
       join(backupDirectory, 'pre-migration-' + migration.version + '-' + newId() + '.sqlite'),
     );
     trace('schema-transaction.begin');
-    const rebuildAccounts = [3, 16, 17].includes(migration.version);
+    const rebuildAccounts = [3, 16, 17, 25].includes(migration.version);
     if (rebuildAccounts) db.pragma('foreign_keys = OFF');
     try {
       db.transaction(() => {
@@ -413,104 +425,44 @@ export class Store {
 }
 
 async function restoreLatestSnapshot(dataDir: string) {
-  const base = join(dataDir, 'backups');
-  let entries;
-  try {
-    entries = await readdir(base, { withFileTypes: true });
-  } catch {
-    return false;
-  }
-  const candidates: {
-    directory: string;
-    manifest: ReturnType<typeof BackupManifestSchema.parse>;
-  }[] = [];
-  for (const entry of entries) {
-    if (!entry.isDirectory() || entry.isSymbolicLink() || !IdSchema.safeParse(entry.name).success)
-      continue;
+  await deletionJournal(dataDir);
+  for (const candidate of await localBackups(dataDir)) {
     try {
-      const directory = join(base, entry.name);
-      const manifest = BackupManifestSchema.parse(
-        JSON.parse(await readFile(join(directory, 'manifest.json'), 'utf8')),
-      );
-      if (manifest.id !== entry.name) continue;
-      candidates.push({ directory, manifest });
+      await installLocalBackup(dataDir, candidate, SCHEMA_VERSION);
+      return true;
     } catch {
-      /* Incomplete snapshots are never eligible. */
+      // Preserve the original and try the next complete snapshot.
     }
-  }
-  candidates.sort(
-    (a, b) =>
-      b.manifest.createdAt - a.manifest.createdAt || b.manifest.id.localeCompare(a.manifest.id),
-  );
-  for (const candidate of candidates) {
-    let snapshot: Database.Database | undefined;
-    try {
-      snapshot = new Database(join(candidate.directory, 'app.sqlite'), {
-        readonly: true,
-        fileMustExist: true,
-      });
-      if (
-        !migrations
-          .map((m) => m.version)
-          .includes(snapshot.pragma('user_version', { simple: true }) as number) ||
-        snapshot.pragma('integrity_check', { simple: true }) !== 'ok' ||
-        (snapshot.pragma('foreign_key_check') as unknown[]).length
-      )
-        continue;
-      const inventory = snapshot
-        .prepare(
-          "SELECT sha256,relative_key,size_bytes FROM blobs WHERE state='ready' ORDER BY sha256",
-        )
-        .all();
-      if (JSON.stringify(inventory) !== JSON.stringify(candidate.manifest.blobs)) continue;
-      for (const blob of candidate.manifest.blobs) {
-        const bytes = await readFile(join(dataDir, blob.relative_key));
-        if (
-          bytes.length !== blob.size_bytes ||
-          createHash('sha256').update(bytes).digest('hex') !== blob.sha256
-        )
-          throw new Error('Invalid backup blob');
-      }
-    } catch {
-      continue;
-    } finally {
-      snapshot?.close();
-    }
-    // Validate the deletion journal before replacing anything. Corrupt journals fail closed.
-    await deletionJournal(dataDir);
-    const directory = join(dataDir, 'db'),
-      temporary = join(directory, 'restore-' + newId() + '.sqlite');
-    await copyFile(join(candidate.directory, 'app.sqlite'), temporary);
-    const handle = await open(temporary, 'r+');
-    try {
-      await handle.sync();
-    } finally {
-      await handle.close();
-    }
-    const quarantine = join(directory, 'quarantine', newId());
-    await mkdir(quarantine, { recursive: true });
-    for (const suffix of ['', '-wal', '-shm']) {
-      const original = join(directory, 'app.sqlite' + suffix);
-      if (await fileExists(original))
-        await rename(original, join(quarantine, 'app.sqlite' + suffix));
-    }
-    await rename(temporary, join(directory, 'app.sqlite'));
-    return true;
   }
   return false;
 }
 async function deletionJournal(dataDir: string) {
   const path = join(dataDir, 'db/deletions.jsonl');
   if (!(await fileExists(path))) return [];
+  const meta = await lstat(path);
+  if (!meta.isFile() || meta.isSymbolicLink() || meta.size > 64 * 1024 * 1024)
+    throw new StorageError('DATABASE_RECOVERY_REQUIRED');
   const lines = (await readFile(path, 'utf8')).split('\n').filter(Boolean);
   if (lines.length > 100_000) throw new StorageError('DATABASE_RECOVERY_REQUIRED');
-  return lines.map((line) => DeletionJournalEntrySchema.parse(JSON.parse(line)));
+  return lines.map((line) => LifecycleDeletionRecordSchema.parse(JSON.parse(line)));
 }
 async function applyDeletionJournal(store: Store) {
   const entries = await deletionJournal(store.dataDir);
   store.db.transaction(() => {
     for (const entry of entries) {
       if (entry.profileId !== store.profileId) continue;
+      if ('clear' in entry) {
+        replayClearRecord(store, entry);
+        continue;
+      }
+      if (entry.entityType === 'project' || entry.entityType === 'memory') {
+        eraseLifecycleTarget(
+          store,
+          { type: entry.entityType, id: entry.entityId },
+          entry.deletedAt,
+        );
+        continue;
+      }
       if (entry.entityType === 'message') {
         eraseMessageContent(store, entry.entityId, entry.deletedAt, entry.keepAsNote);
         store.db
@@ -546,6 +498,48 @@ async function applyDeletionJournal(store: Store) {
     }
   })();
 }
+export async function withRecoverySnapshot<T>(
+  dataDir: string,
+  run: (store: Store) => Promise<T>,
+  signal?: AbortSignal,
+) {
+  await deletionJournal(dataDir);
+  const temporary = await mkdtemp(join(tmpdir(), 'tapkit-readonly-'));
+  try {
+    for (const candidate of await localBackups(dataDir)) {
+      signal?.throwIfAborted();
+      const path = join(temporary, newId() + '.sqlite');
+      let db: Database.Database | undefined;
+      let store: Store | undefined;
+      try {
+        const digest = await verifyLocalBackup(dataDir, candidate, SCHEMA_VERSION);
+        await copyFile(join(candidate.directory, 'app.sqlite'), path);
+        if ((await hashLocalFile(path, signal)) !== digest) continue;
+        db = new Database(path, { fileMustExist: true });
+        db.pragma('secure_delete = ON');
+        db.pragma('foreign_keys = ON');
+        await migrate(db, join(temporary, 'migrations'));
+        const candidateStore = new Store(db, dataDir);
+        await applyDeletionJournal(candidateStore);
+        store = candidateStore;
+      } catch {
+        signal?.throwIfAborted();
+        continue;
+      } finally {
+        if (!store) db?.close();
+      }
+      try {
+        signal?.throwIfAborted();
+        return await run(store);
+      } finally {
+        store.close();
+      }
+    }
+    throw new StorageError('DATABASE_RECOVERY_REQUIRED');
+  } finally {
+    await rm(temporary, { recursive: true, force: true });
+  }
+}
 export async function openStore(
   dataDir: string,
   now: () => number = Date.now,
@@ -555,6 +549,10 @@ export async function openStore(
   trace('directory.begin');
   await mkdir(join(dataDir, 'db'), { recursive: true });
   trace('restore-check.begin');
+  if (allowRecovery && (await fileExists(join(dataDir, 'db/pending-restore.json')))) {
+    await deletionJournal(dataDir);
+    await runPendingRestore(dataDir, SCHEMA_VERSION);
+  }
   if (!(await fileExists(join(dataDir, 'db/app.sqlite')))) {
     const restored = allowRecovery && (await restoreLatestSnapshot(dataDir));
     if (!restored && (await fileExists(join(dataDir, 'db/quarantine'))))
@@ -583,6 +581,7 @@ export async function openStore(
     db.pragma('foreign_keys = ON');
     db.pragma('busy_timeout = 5000');
     db.pragma('synchronous = FULL');
+    db.pragma('secure_delete = ON');
     trace('migration.begin');
     await migrate(db, join(dataDir, 'backups/migrations'));
     trace('profile.begin');
