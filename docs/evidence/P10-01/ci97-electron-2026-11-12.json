@@ -1,0 +1,74 @@
+{
+  "task": "P10-01",
+  "recorded_at": "2026-11-12T16:57:12.7130863+08:00",
+  "head": "61966fbc6e82147b204e1ca9b96ba9fcc57bb296",
+  "source_ci": {
+    "run": 96,
+    "id": 43149855079,
+    "electron_job": 130956204383,
+    "electron_passed": 57
+  },
+  "main_ci": {
+    "run": 97,
+    "id": 43158873527,
+    "attempt": 1,
+    "check": "success",
+    "office-native": "success",
+    "electron_job": 130985101639,
+    "electron_passed": 55,
+    "electron_failed": 2,
+    "artifact_id": 13918241451,
+    "artifact_sha256": "75c764b237729298707bba6a1cef846886cc0653f870eca863a7b6a43658fe43"
+  },
+  "ci_failures": [
+    "AI review: expected replacement absent, Generate disabled, original paragraphs present",
+    "Markdown formatting: list contained 编辑正文 instead of 待补充"
+  ],
+  "first_local_repeat": {
+    "command": "pnpm test:e2e -- --grep P10-01 --repeat-each 3",
+    "exit_code": 1,
+    "passed": 6,
+    "failed": 3,
+    "failed_phase": "autosave after list, table and image"
+  },
+  "editor_reproduction": {
+    "tiptap": "3.31.3",
+    "operation": "insertTable with caret in a list item",
+    "original_parent": "listItem",
+    "fixed_parent": "doc",
+    "storage_contract": "unchanged"
+  },
+  "local_validation": {
+    "scope": "working tree",
+    "check_exit_code": 0,
+    "unit": {
+      "command": "pnpm test:unit P10-01",
+      "exit_code": 0,
+      "passed": 4
+    },
+    "integration": {
+      "command": "pnpm test:integration P10-01",
+      "exit_code": 0,
+      "passed": 4,
+      "skipped": 1
+    },
+    "electron": {
+      "command": "pnpm test:e2e -- --grep P10-01 --repeat-each 3",
+      "passed": 9,
+      "failed": 0,
+      "cases": [
+        "ok 1 tests\\e2e\\P10-01.canvas.spec.ts:67:1 › P10-01 canvas edits, reviews, comments, exports and retains drafts at 200% zoom (18.9s)",
+        "ok 2 tests\\e2e\\P10-01.canvas.spec.ts:181:1 › P10-01 opens a chat reply and preserves two conflicting Electron windows (16.6s)",
+        "ok 3 tests\\e2e\\P10-01.canvas.spec.ts:208:1 › P10-01 opens a fixed Markdown file and saves linked text, lists, table and static image (16.1s)",
+        "ok 4 tests\\e2e\\P10-01.canvas.spec.ts:67:1 › P10-01 canvas edits, reviews, comments, exports and retains drafts at 200% zoom (18.3s)",
+        "ok 5 tests\\e2e\\P10-01.canvas.spec.ts:181:1 › P10-01 opens a chat reply and preserves two conflicting Electron windows (16.5s)",
+        "ok 6 tests\\e2e\\P10-01.canvas.spec.ts:208:1 › P10-01 opens a fixed Markdown file and saves linked text, lists, table and static image (15.4s)",
+        "ok 7 tests\\e2e\\P10-01.canvas.spec.ts:67:1 › P10-01 canvas edits, reviews, comments, exports and retains drafts at 200% zoom (18.7s)",
+        "ok 8 tests\\e2e\\P10-01.canvas.spec.ts:181:1 › P10-01 opens a chat reply and preserves two conflicting Electron windows (16.5s)",
+        "ok 9 tests\\e2e\\P10-01.canvas.spec.ts:208:1 › P10-01 opens a fixed Markdown file and saves linked text, lists, table and static image (15.4s)"
+      ],
+      "exit_code": 0,
+      "production_build_restored": true
+    }
+  }
+}

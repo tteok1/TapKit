@@ -23,6 +23,18 @@ const trackedNodes = [
 ];
 const CanvasCell = TableCell.extend({ content: 'paragraph+' });
 const CanvasHeader = TableHeader.extend({ content: 'paragraph+' });
+const CanvasStarterKit = StarterKit.extend({
+  addExtensions() {
+    return (this.parent?.() ?? []).map((extension) =>
+      extension.name === 'listItem'
+        ? extension.extend({
+            // Match CanvasContentSchema so commands cannot create unsavable list items.
+            content: 'paragraph (paragraph | bulletList | orderedList | codeBlock)*',
+          })
+        : extension,
+    );
+  },
+});
 
 function normalizeBlockIds(editor: Editor, newId: () => string) {
   const seen = new Set<string>();
@@ -81,7 +93,7 @@ export function canvasExtensions(
     );
   }
   return [
-    StarterKit.configure({
+    CanvasStarterKit.configure({
       blockquote: false,
       horizontalRule: false,
       link: {

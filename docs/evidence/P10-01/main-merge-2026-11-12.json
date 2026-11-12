@@ -1,0 +1,33 @@
+{
+  "task": "P10-01",
+  "verified_at": "2026-11-12T13:05:47.4603671+08:00",
+  "base": "fe86a11fae8d2ee434f39be6e888d445b2c17bb9",
+  "merged_commit": "61966fbc6e82147b204e1ca9b96ba9fcc57bb296",
+  "method": "fast-forward via GitHub refs API",
+  "local_branch": "main",
+  "remote_branch": "origin/main",
+  "source_branch": "codex/p10-01-document-canvas",
+  "source_ci": {
+    "number": 96,
+    "id": 43149855079,
+    "conclusion": "success",
+    "jobs": {
+      "check": "success",
+      "office-native": "success",
+      "electron": "success",
+      "repeat-diagnostics": "skipped"
+    }
+  },
+  "main_ci": {
+    "number": 97,
+    "id": 43158873527,
+    "first_observed_status": "in_progress",
+    "status": "completed",
+    "conclusion": "failure",
+    "electron_job_id": 130985101639,
+    "electron_passed": 55,
+    "electron_failed": 2
+  },
+  "status": "implemented_not_live_verified",
+  "pending_resource": "R13"
+}

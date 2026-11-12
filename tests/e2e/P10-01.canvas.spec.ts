@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { mkdtemp } from '../../scripts/test-temp.mjs';
-import { test, expect, _electron as electron, type Page } from './test';
+import { test, expect, _electron as electron, type Locator, type Page } from './test';
 import { openSessionFixture } from './session-fixture';
 import { solidPng } from '../fixtures/P07-01.images';
 
@@ -31,18 +31,40 @@ async function newCanvas(page: Page) {
   await expect(page.getByRole('textbox', { name: '文档正文' })).toBeVisible();
 }
 
-async function selectedLine(page: Page, text: string) {
-  const paragraph = page
-    .getByRole('textbox', { name: '文档正文' })
-    .locator('p')
-    .filter({ hasText: text })
-    .first();
-  await paragraph.click();
-  await page.keyboard.press('Home');
-  await page.keyboard.press('Shift+End');
+async function selectParagraph(body: Locator, text: string, placeCaretAtEnd = false) {
+  const paragraph = body.locator('p').filter({ hasText: text });
+  await expect(paragraph).toHaveText(text);
+  await paragraph.scrollIntoViewIfNeeded();
+  await paragraph.evaluate(async (element, collapse) => {
+    const doc = element.ownerDocument;
+    const editor = element.closest<HTMLElement>('[contenteditable="true"]')!;
+    editor.focus({ preventScroll: true });
+    const selection = doc.getSelection()!;
+    const range = doc.createRange();
+    range.selectNodeContents(element);
+    if (collapse) range.collapse(false);
+    // Let the editor consume selectionchange before a toolbar keypress moves focus.
+    const changed = new Promise<void>((resolve) => {
+      doc.addEventListener('selectionchange', () => resolve(), { once: true });
+    });
+    selection.removeAllRanges();
+    selection.addRange(range);
+    await changed;
+  }, placeCaretAtEnd);
+  await expect
+    .poll(() =>
+      paragraph.evaluate((element) => {
+        const selection = element.ownerDocument.getSelection();
+        return {
+          inParagraph: element.contains(selection?.anchorNode ?? null),
+          text: selection?.toString(),
+        };
+      }),
+    )
+    .toEqual({ inParagraph: true, text: placeCaretAtEnd ? '' : text });
 }
 
-test('P10-01 canvas edits, reviews, comments, exports and retains drafts at 200% zoom', async () => {
+test('P10-01 canvas edits, reviews, comments, exports and retains drafts at 200% zoom', async ({}, testInfo) => {
   test.setTimeout(180000);
   const { app, page, dir } = await setup();
   const output = join(dir, 'canvas-export.md');
@@ -59,14 +81,20 @@ test('P10-01 canvas edits, reviews, comments, exports and retains drafts at 200%
     await page.keyboard.press('Enter');
     await page.keyboard.insertText('最后保留');
     await expect(status).toHaveText(/^已保存 · v(?:[2-9]|\d{2,})$/);
-    await selectedLine(page, '目标文字');
+    await selectParagraph(body, '目标文字');
     await page.getByRole('button', { name: 'AI 修改', exact: true }).press('Enter');
-    await page.getByRole('button', { name: '生成修改建议' }).press('Enter');
-    await expect(page.getByText('修订目标文字', { exact: true })).toBeVisible();
+    const generate = page.getByRole('button', { name: '生成修改建议' });
+    await expect(generate).toBeEnabled();
+    await generate.press('Enter');
+    const proposal = page.locator('.canvas-change');
+    await expect(proposal.locator('dd')).toHaveText(['目标文字', '修订目标文字']);
     await expect(body).not.toContainText('修订');
     await page.getByRole('button', { name: '拒绝', exact: true }).press('Enter');
     await expect(body).not.toContainText('修订');
-    await page.getByRole('button', { name: '生成修改建议' }).press('Enter');
+    await expect(proposal).toHaveCount(0);
+    await selectParagraph(body, '目标文字');
+    await expect(generate).toBeEnabled();
+    await generate.press('Enter');
     await page.getByRole('button', { name: '接受', exact: true }).press('Enter');
     await expect(body.locator('p')).toHaveText(['首段保留', '修订目标文字', '最后保留']);
     await page.getByRole('button', { name: '撤销', exact: true }).press('Enter');
@@ -74,15 +102,19 @@ test('P10-01 canvas edits, reviews, comments, exports and retains drafts at 200%
     await page.getByRole('button', { name: '重做', exact: true }).press('Enter');
     await expect(body).toContainText('修订目标文字');
 
-    await selectedLine(page, '修订目标文字');
+    await selectParagraph(body, '修订目标文字');
     await page.getByRole('button', { name: '批注', exact: true }).press('Enter');
     await page.getByLabel('选区批注').fill('核对数据');
-    await page.getByRole('button', { name: '添加批注' }).press('Enter');
+    const addComment = page.getByRole('button', { name: '添加批注' });
+    await expect(addComment).toBeEnabled();
+    await addComment.press('Enter');
     await expect(page.getByRole('button', { name: '修订目标文字', exact: true })).toBeEnabled();
     await page.getByRole('button', { name: '回复', exact: true }).press('Enter');
     await page.getByLabel('批注回复').fill('已复核');
     await page.getByRole('button', { name: '保存回复' }).press('Enter');
-    await page.getByRole('button', { name: '解决', exact: true }).press('Enter');
+    const resolveComment = page.getByRole('button', { name: '解决', exact: true });
+    await expect(resolveComment).toBeEnabled();
+    await resolveComment.press('Enter');
     await expect(page.getByText('本机用户 · 已解决')).toBeVisible();
 
     await page.getByRole('button', { name: '查找', exact: true }).press('Enter');
@@ -107,7 +139,7 @@ test('P10-01 canvas edits, reviews, comments, exports and retains drafts at 200%
     await expect(body).toContainText('更新目标');
     await title.fill('草稿恢复成功');
     await expect(status).toContainText('已保存');
-    await page.screenshot({ path: 'docs/evidence/P10-01/canvas-desktop.png' });
+    await page.screenshot({ path: testInfo.outputPath('canvas-desktop.png') });
     await page.evaluate(async () => {
       const id = () => {
         const raw = crypto.randomUUID();
@@ -140,7 +172,7 @@ test('P10-01 canvas edits, reviews, comments, exports and retains drafts at 200%
     const png = await app.evaluate(async ({ BrowserWindow }) =>
       (await BrowserWindow.getAllWindows()[0]!.capturePage()).toPNG().toString('base64'),
     );
-    await writeFile('docs/evidence/P10-01/canvas-zoom-200.png', Buffer.from(png, 'base64'));
+    await writeFile(testInfo.outputPath('canvas-zoom-200.png'), Buffer.from(png, 'base64'));
   } finally {
     await app.close();
   }
@@ -173,7 +205,7 @@ test('P10-01 opens a chat reply and preserves two conflicting Electron windows',
   }
 });
 
-test('P10-01 opens a fixed Markdown file and saves linked text, lists, table and static image', async () => {
+test('P10-01 opens a fixed Markdown file and saves linked text, lists, table and static image', async ({}, testInfo) => {
   test.setTimeout(180000);
   const { app, page, dir } = await setup();
   try {
@@ -204,7 +236,7 @@ test('P10-01 opens a fixed Markdown file and saves linked text, lists, table and
       .getByRole('button', { name: '资料小节' })
       .press('Enter');
     await expect(body).toBeFocused();
-    await selectedLine(page, '编辑正文');
+    await selectParagraph(body, '编辑正文');
     await page.getByRole('button', { name: '链接', exact: true }).click();
     await page.getByLabel('链接地址').fill('https://example.test/');
     await page.getByRole('button', { name: '应用链接' }).press('Enter');
@@ -212,21 +244,33 @@ test('P10-01 opens a fixed Markdown file and saves linked text, lists, table and
       'href',
       'https://example.test/',
     );
-    await body.getByText('待补充', { exact: true }).click();
+    await selectParagraph(body, '待补充', true);
     await page.getByRole('button', { name: '项目列表' }).press('Enter');
-    await expect(body.locator('ul')).toContainText('待补充');
-    await body.press('Control+End');
-    await page.keyboard.press('Enter');
-    await page.keyboard.press('Enter');
+    await expect(body.locator('ul > li')).toHaveText(['待补充']);
+    await selectParagraph(body, '待补充', true);
     await page.getByRole('button', { name: '插入表格' }).press('Enter');
     await expect(body.getByRole('table')).toBeVisible();
+    await expect(body.locator('ul table')).toHaveCount(0);
+    await expect(body.locator('ul > li')).toHaveText(['待补充']);
     await body.press('Control+End');
     await page.getByRole('button', { name: '图片', exact: true }).press('Enter');
     await page.getByLabel('资料库 PNG').selectOption({ label: '标记.png' });
     await page.getByLabel('替代文字').fill('静态标记');
     await page.getByRole('button', { name: '插入图片' }).press('Enter');
     await expect(body.getByRole('img', { name: '静态标记' })).toBeVisible();
-    await expect(page.getByRole('status').filter({ hasText: /保存/ })).toContainText('已保存');
+    try {
+      await expect(page.getByRole('status').filter({ hasText: /保存/ })).toContainText('已保存');
+    } catch (error) {
+      const content = await page.evaluate(() => {
+        const key = Object.keys(localStorage).find((key) => key.startsWith('tapkit.canvas.draft.'));
+        return key ? JSON.parse(localStorage.getItem(key)!).content : null;
+      });
+      await testInfo.attach('unsaved-canvas-content', {
+        body: JSON.stringify(content, null, 2),
+        contentType: 'application/json',
+      });
+      throw error;
+    }
     const title = page.getByRole('textbox', { name: '文档标题' });
     await expect(title).toHaveValue('画布资料.md');
     await page.getByRole('link', { name: '文档画布', exact: true }).last().press('Enter');

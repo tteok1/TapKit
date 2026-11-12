@@ -1,3 +1,5 @@
+2026-11-12，P10-01=implemented_not_live_verified。开发分支 CI #96 通过，原提交 61966fb 已快进合入远端 main。main CI #97 的 Electron 选区用例 2 项失败，本地修复后 Electron 复跑 9/9 通过，远端待验。R13 真实模型待验。详 [P10-01](P10-01.md)。
+
 2026-11-12，P09-04=implemented_and_verified。基线 c063f9c，分支 codex/p09-04-site-preview。网站两种模板、沙箱构建、预览、区域修订、版本与 ZIP 已验收。P09 阶段工程通过，R07 外部待验。详 P09-04.md、P09-gate.md。
 
 2026-11-11，P09-03=implemented_not_live_verified。分支 codex/p09-03-github 基于最新 main a2c3264，CI88 三项通过。GitHub 连接、私有镜像、审阅提交、推送和 Draft PR 已实现，512 单元、35 相关集成、22 当前用户隔离和生产桌面通过。R07 真实验收待配置。详 P09-03.md。
