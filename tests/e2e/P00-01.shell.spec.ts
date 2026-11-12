@@ -61,6 +61,9 @@ test('P00-01 sandbox bridge errors and clean child shutdown', async () => {
       'newWindow',
       'initialRoute',
       'openEntity',
+      'desktopEnvironment',
+      'openQuickInput',
+      'finishQuickInput',
       'saveConversation',
       'openArtifactExternal',
       'copyText',
@@ -110,6 +113,9 @@ test('P00-01 sandbox bridge errors and clean child shutdown', async () => {
       'cancelJob',
     ],
   });
+  await expect(page.evaluate(() => window.tapkit.finishQuickInput(true))).rejects.toThrow(
+    'PERMISSION_DENIED',
+  );
   expect(
     await app.evaluate(() =>
       process.argv.some((arg) => arg === '--no-sandbox' || arg === '--disable-gpu-sandbox'),

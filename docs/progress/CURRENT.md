@@ -1,6 +1,6 @@
 # 当前接续点
 
-- 2026-11-12，P10-02=implemented_not_live_verified。基于远端 main 649d2de 的 codex/p10-02-desktop-experience 已完成本地 T22，Windows 安装版登录启动待实机。详见 [P10-02](P10-02.md)。
+- 2026-11-12，P10-02=implemented_not_live_verified。CI #99 唯一失败为 P00-01 的 bridge 清单。本地修复后 Electron 定向复跑 5/5。Windows 安装版登录启动待实机。详见 [P10-02](P10-02.md)。
 
 - 2026-11-12，P10-01=implemented_not_live_verified。开发分支 CI #96 通过，原提交 61966fb 已快进合入远端 main。main CI #97 的 Electron 两项选区用例失败，修复提交 649d2de 的 main CI #98 三个常规作业通过。R13 真实模型待验。详见 [P10-01](P10-01.md)。
 
