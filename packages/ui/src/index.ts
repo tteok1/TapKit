@@ -14,7 +14,15 @@ export {
   Pin,
   Settings,
 } from 'lucide-react';
-export { MemoryRouter, Routes, Route, Link, useLocation, useNavigate } from 'react-router';
+export {
+  MemoryRouter,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+  useNavigate,
+  useNavigationType,
+} from 'react-router';
 export { ChatMarkdown, safeChatURL } from './chat-markdown';
 export { Tooltip, TooltipLayer } from './tooltip';
 

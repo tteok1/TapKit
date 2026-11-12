@@ -1,0 +1,24 @@
+{
+  "planned": "规划中",
+  "available": "可用",
+  "hidden": "已隐藏",
+  "agents": {
+    "title": "智能体",
+    "description": "这里将用于浏览和管理专用智能体。"
+  },
+  "plugins": {
+    "title": "插件与应用",
+    "description": "这里将用于浏览插件并管理外部应用连接。"
+  },
+  "skills": {
+    "title": "Skills 与模板",
+    "description": "这里将用于管理可复用技能、任务配置和模板。"
+  },
+  "schedules": {
+    "title": "定时任务",
+    "description": "这里将用于管理提醒、重复任务和运行记录。"
+  },
+  "future": ["图片创作", "语音与视频", "桌面与屏幕操作", "商业化", "创作者中心", "团队与多端协作"],
+  "help": "帮助与反馈",
+  "desktop": "Windows 桌面"
+}

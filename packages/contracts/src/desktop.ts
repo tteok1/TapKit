@@ -59,6 +59,38 @@ export const DEFAULT_PERSONALIZATION = PersonalizationSchema.parse({
   chat: DEFAULT_ANSWER,
   work: DEFAULT_ANSWER,
 });
+export const FeatureAvailabilitySchema = z.enum(['available', 'placeholder', 'hidden']);
+export type FeatureAvailability = z.infer<typeof FeatureAvailabilitySchema>;
+
+// A finite set of single-key bindings keeps native and renderer matching in sync.
+export const DesktopShortcutSchema = z.enum([
+  'Ctrl+K',
+  'Ctrl+N',
+  'Ctrl+Shift+N',
+  'Ctrl+Shift+Space',
+  'Ctrl+Shift+K',
+  'Ctrl+Alt+K',
+  'Ctrl+Alt+N',
+  'Ctrl+Alt+Space',
+]);
+export const DEFAULT_SHORTCUTS = {
+  search: 'Ctrl+K',
+  newTask: 'Ctrl+N',
+  newWindow: 'Ctrl+Shift+N',
+  quickInput: 'Ctrl+Shift+Space',
+} as const;
+export const DesktopShortcutsSchema = z
+  .strictObject({
+    search: DesktopShortcutSchema,
+    newTask: DesktopShortcutSchema,
+    newWindow: DesktopShortcutSchema,
+    quickInput: DesktopShortcutSchema,
+  })
+  .refine((keys) => new Set(Object.values(keys)).size === Object.keys(keys).length, {
+    message: '快捷键重复',
+  });
+export const QuickShortcutStatusSchema = z.enum(['registered', 'conflict', 'disabled']);
+
 export const DesktopSettingsSchema = z.strictObject({
   theme: z.enum(['light', 'dark', 'system']),
   fontSize: z.enum(['small', 'normal', 'large']),
@@ -69,6 +101,40 @@ export const DesktopSettingsSchema = z.strictObject({
   historySort: z.enum(['updated', 'manual']).default('updated'),
   showPlanned: z.boolean(),
   defaultDirectory: z.string().max(2048),
+  contentWidth: z.enum(['standard', 'wide', 'fluid']).default('standard'),
+  dateLocale: z.enum(['system', 'zh-CN', 'en-US', 'en-GB']).default('system'),
+  dateFormat: z.enum(['short', 'medium', 'long']).default('medium'),
+  timeZone: z
+    .string()
+    .max(80)
+    .refine(
+      (zone) => {
+        if (zone === 'system') return true;
+        try {
+          new Intl.DateTimeFormat('zh-CN', { timeZone: zone });
+          return true;
+        } catch {
+          return false;
+        }
+      },
+      { message: '时区无效' },
+    )
+    .default('system'),
+  weekStart: z.enum(['system', 'monday', 'sunday']).default('system'),
+  startPage: z.enum(['home', 'chats', 'work', 'projects', 'files']).default('home'),
+  defaultMode: z.enum(['chat', 'work']).default('chat'),
+  showMessageTimes: z.boolean().default(true),
+  showToolDetails: z.boolean().default(false),
+  autoPreview: z.boolean().default(false),
+  externalFiles: z.enum(['open', 'reveal']).default('open'),
+  highContrast: z.boolean().default(false),
+  reduceMotion: z.boolean().default(false),
+  shortcuts: DesktopShortcutsSchema.default(DEFAULT_SHORTCUTS),
+  quickInputEnabled: z.boolean().default(true),
+  startOnLogin: z.boolean().default(false),
+  keepInTray: z.boolean().default(true),
+  showReleaseLink: z.boolean().default(true),
+  systemNotifications: z.boolean().default(true),
 });
 export const DEFAULT_DESKTOP = DesktopSettingsSchema.parse({
   theme: 'system',
@@ -120,7 +186,7 @@ export const WindowLayoutSchema = z.strictObject({
     .string()
     .max(200)
     .regex(
-      /^\/(?:settings(?:\/[a-z-]+)?|dev\/[a-z]+|sessions\/[0-9a-f-]+|chats|work|projects(?:\/[0-9a-f-]+)?|files|search|notifications)?$/,
+      /^\/(?:settings(?:\/[a-z-]+)?|dev\/[a-z]+|sessions\/[0-9a-f-]+|chats|work|projects(?:\/[0-9a-f-]+)?|files|search|notifications|help|planned\/[a-z-]+|canvas(?:\/[0-9a-f-]+)?|bookmarks|work\/[0-9a-f-]+)?$/,
     ),
   scroll: z
     .record(z.string().max(200), z.number().min(0).max(10000000))

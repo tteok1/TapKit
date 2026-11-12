@@ -108,6 +108,7 @@ export const SettingsGetSchema = z.strictObject({
 });
 export const SettingsSetSchema = z.strictObject({
   scope: ScopeSchema,
+  resetModelPreferencesAt: RevisionSchema.optional(),
   patch: SettingsValuesSchema.partial()
     .extend({
       desktop: DesktopSettingsSchema.optional(),

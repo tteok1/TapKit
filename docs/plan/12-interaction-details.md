@@ -8,7 +8,9 @@ P08-02工作创建可选深度研究：主题、用途、范围、3个默认可�
 
 2026-10-22 ADR0059：组箭头控制组内会话实际显示，组头/菜单图标文字同行、排序勾选在右侧；推荐无尾箭头，标语略上移，模式说明在下方。应用自有 hover 提示统一 data-tooltip 圆角顶层浮层，兼容禁用发送、键盘、文件公式和复制按钮。
 
-2026-10-22 最新 UI 细节（[ADR0058](../adr/0058-rounded-shell-and-history-navigation.md)，覆盖下方旧导航描述）：首页“你的想法，从这里开始”，推荐贴近底部输入并同左边缘，隐藏按钮同右边缘；问题气泡采用胶囊轮廓。通知/搜索为品牌右侧图标，主区左上圆角分栏图标完全隐藏/恢复侧栏，移除首页和前进/后退入口。正常启动回首页；新建任务进入同页；显式实体窗口保留目标。侧栏移除状态条，归档/回收站迁设置独立页，标题/类型/项目可筛选；最近标题右侧更多提供新建分组与最近更新/手动排序，置顶优先、各组独立保存。会话 pin/更多在 hover/聚焦展示，触摸设备可见；操作图标/提示/控件均保持圆角。
+2026-11-12 P10-02（[ADR0083](../adr/0083-desktop-experience-and-quick-input.md)）：顶部恢复窗口内的前进/后退，恢复每条路由的滚动位置。新窗口默认打开首页，用户可在通用设置中选择启动页；显式实体窗口按目标打开。快捷窗口可将本机草稿带入聊天输入框。
+
+2026-10-22 UI 细节（[ADR0058](../adr/0058-rounded-shell-and-history-navigation.md)，覆盖下方旧导航描述）：首页“你的想法，从这里开始”，推荐贴近底部输入并同左边缘，隐藏按钮同右边缘；问题气泡采用胶囊轮廓。通知/搜索为品牌右侧图标，主区左上圆角分栏图标完全隐藏/恢复侧栏，移除首页和前进/后退入口。正常启动回首页；新建任务进入同页；显式实体窗口保留目标。侧栏移除状态条，归档/回收站迁设置独立页，标题/类型/项目可筛选；最近标题右侧更多提供新建分组与最近更新/手动排序，置顶优先、各组独立保存。会话 pin/更多在 hover/聚焦展示，触摸设备可见；操作图标/提示/控件均保持圆角。
 
 2026-10-12 UI重设计（用户明确指定）：轻量对话为默认布局，展开右侧成为工作台，正常宽度保留完整项目/会话侧栏；浅色内容区以白色为主，外缘、选中态及用户消息气泡采用低饱和浅绿。复用用户截图确认的当前窗口图标。所有既有入口、表单、列表、权限/不可用状态和后端契约保持；具体实现与视觉证据见progress/UI-01，不提前开放浏览器操作或后续阶段能力。
 
@@ -171,7 +173,7 @@ ChartSpec采用本项目固定JSON：schemaVersion:1、type(bar/line/scatter/are
 | runs.answer/skipStep | {runId,questionId,taskVersion,value} / {runId,stepKey,reason} → {status} | P06-01 |
 | code.prepareWorkspace | {runId,baseRef?,includeDirty:false|true} → WorktreeView | P09-01 |
 | previews.start/stop | {runId,artifactVersionId,kind:'static_site'} / {previewId} → {previewId}/Ack | P09-04 |
-| settings.setQuickShortcut | {accelerator,enabled} → {registered,error?} | P10-02 |
+| settings.set + tapkit:desktop-environment | 通过 profile CAS 保存 DesktopSettings.shortcuts / quickInputEnabled，Host 报告 registered / conflict / disabled | P10-02 |
 
 新增task priority/pinned、session note、preview/canvas业务字段使用对应阶段追加迁移；所有复合命令在实际Zod中拆成独立schema和确切返回类型，不接受上表为理由写任意payload。文档的“/”是多个明确命令的简写，不是运行期模糊路由。
 

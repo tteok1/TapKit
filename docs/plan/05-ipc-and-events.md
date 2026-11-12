@@ -76,6 +76,8 @@ P01-02补充（2026-10-04）：providers.saveApiKey接收六个API provider、la
 
 > P02-01 实施（2026-10-05，ADR0022）：Core/Host 当前握手 schemaVersion=5。新增 desktop.workspace → {eventSeq,sessions,projects,files,pendingApprovals}（会话含 revision/pinned/unread，三个列表最多各100）；sessions.create {mode:chat|work,title}、projects.create {name}、sessions.pin {sessionId,pinned} → {entityId}，pin 必须 expectedRevision。workspace.updated 仅 entityId，新的 settings.updated 仅 revision，界面重读快照；历史完整设置事件仍可解析。settings.preferences 增加 desktop/personal/personalization/network，严格 patch、旧值补默认、个人作用域 CAS。Host 有有限 newWindow/chooseAvatar/chooseDirectory；Renderer 无任意路径读取。AccountView 可选 credentialHint 仅尾4位，由 Host 保存新 Key 时生成，不读取旧 Key 补值。详见 [ADR0022](../adr/0022-desktop-settings-and-metadata.md)。
 
+2026-11-12 [ADR0083](../adr/0083-desktop-experience-and-quick-input.md)：P10-02 向桌面设置 v1 添加带默认值的字段，沿用 `settings.set` 的 profile CAS。传入 `resetModelPreferencesAt` 可在同一事务核对模型偏好 revision 并恢复其 profile 默认值。可信顶层 Renderer 可读取 `tapkit:desktop-environment` 的构建版本、快捷键和登录启动状态，或调用 `tapkit:quick-input` 与 `tapkit:finish-quick-input`。后一命令仅快速输入窗口可用，布尔值只控制关闭或切换到聊天窗口。草稿和反馈附件选择留在 Renderer，诊断导出沿用本地保存框。
+
 ## 1. 请求与响应
 
 所有公开命令名、字段、错误在packages/contracts定义；以下是v1必需接口。Host只为app origin的顶层frame转发，Core重新校验资源与状态。

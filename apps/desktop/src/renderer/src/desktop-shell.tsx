@@ -6,12 +6,13 @@ import { TooltipLayer } from './tooltip';
 import {
   useCallback,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type CSSProperties,
   type PointerEvent as ReactPointerEvent,
 } from 'react';
-import { Link, Route, Routes, useLocation, useNavigate } from '@tapkit/ui';
+import { Link, Route, Routes, useLocation, useNavigate, useNavigationType } from '@tapkit/ui';
 import {
   BootstrapViewSchema,
   SettingsViewSchema,
@@ -45,6 +46,15 @@ import { SessionDetailsSchema, type SessionRecord } from '@tapkit/contracts';
 import { HistoryLocationSchema } from '@tapkit/contracts';
 import { DEFAULT_SETTINGS } from '@tapkit/contracts';
 import { UiIcon } from './ui-icon';
+import {
+  PlannedFeatures,
+  PlannedPage,
+  plannedFeatures,
+} from '../features/placeholders/PlannedFeatures';
+import { HelpPage } from '../features/help/HelpPage';
+import { QuickInput } from '../features/help/QuickInput';
+import { DesktopPreferences, shortcutFromEvent } from '../features/settings/desktop-preferences';
+import e from '../locales/experience.zh-CN.json';
 import productIcon from '../assets/tapkit-current-icon.png?url';
 
 type Bootstrap = z.infer<typeof BootstrapViewSchema>;
@@ -79,13 +89,37 @@ export function DesktopShell() {
   }, []);
   const location = useLocation(),
     navigate = useNavigate(),
+    navigationType = useNavigationType(),
     scroll = useRef<HTMLElement>(null),
     sidebarScroll = useRef<HTMLDivElement>(null),
     input = useRef<HTMLTextAreaElement>(null),
+    focusComposer = useRef(false),
     modal = useRef<HTMLDialogElement>(null),
     previousFocus = useRef<HTMLElement | null>(null),
     layoutRef = useRef(layout),
     drafts = useRef<Record<string, string>>({});
+  const [navigationKeys, setNavigationKeys] = useState([location.key]);
+  const historyIndex = navigationKeys.indexOf(location.key);
+  const lastHistoryKey = useRef(location.key);
+  const initialized = useRef(false);
+  const quick = location.pathname === '/quick-input';
+  useLayoutEffect(() => {
+    if (lastHistoryKey.current === location.key) return;
+    const previousKey = lastHistoryKey.current;
+    lastHistoryKey.current = location.key;
+    if (navigationType === 'POP') return;
+    setNavigationKeys((keys) => {
+      const index = keys.indexOf(previousKey);
+      if (navigationType === 'REPLACE')
+        return keys.map((key, i) => (i === index ? location.key : key));
+      return [...keys.slice(0, index + 1), location.key];
+    });
+  }, [location.key, navigationType]);
+  useLayoutEffect(() => {
+    if (location.pathname !== '/' || !focusComposer.current) return;
+    focusComposer.current = false;
+    input.current?.focus();
+  }, [location.pathname]);
   const inCanvas = location.pathname.startsWith('/canvas');
   const temporaryIds = useRef(new Set<string>()),
     previousRoute = useRef(location.pathname);
@@ -167,17 +201,18 @@ export function DesktopShell() {
     };
   }, [refresh]);
   const save = useCallback(
-    async (patch: Partial<SettingsValues>, revision?: number) => {
+    async (patch: Partial<SettingsValues>, revision?: number, resetModelPreferencesAt?: number) => {
       if (!bootstrap) throw new Error('NOT_READY');
       const settings = SettingsViewSchema.parse(
         data(
           await window.tapkit.setSettings(requestOptions(revision ?? bootstrap.settings.revision), {
             scope: { type: 'profile', id: bootstrap.profile.id },
             patch,
+            ...(resetModelPreferencesAt === undefined ? {} : { resetModelPreferencesAt }),
           }),
         ),
       );
-      setBootstrap((b) => (b ? { ...b, settings } : b));
+      setBootstrap((b) => (b && b.settings.revision <= settings.revision ? { ...b, settings } : b));
     },
     [bootstrap],
   );
@@ -226,23 +261,53 @@ export function DesktopShell() {
   function newTask() {
     if (location.pathname === '/' && composerBusy) return;
     setMode('chat');
-    navigate('/');
-    requestAnimationFrame(() => input.current?.focus());
+    if (location.pathname === '/') input.current?.focus();
+    else {
+      focusComposer.current = true;
+      navigate('/');
+    }
   }
   useEffect(() => {
     function key(event: KeyboardEvent) {
-      if (event.ctrlKey && event.key.toLowerCase() === 'k') {
+      if (quick || event.defaultPrevented) return;
+      if (event.key === 'Escape') {
+        if (dialog || document.querySelector('dialog[open], [popover]:popover-open')) return;
+        const open = document.querySelector<HTMLDetailsElement>('.connection-status[open]');
+        if (open) {
+          open.open = false;
+          open.querySelector('summary')?.focus();
+        } else if (sidebarDrawer) {
+          setSidebarDrawer(false);
+          document.querySelector<HTMLButtonElement>('.sidebar-toggle-anchor button')?.focus();
+        } else if (layout.panelOpen && !inCanvas) {
+          setLayout((l) => ({ ...l, panelOpen: false }));
+          document.querySelector<HTMLButtonElement>('.topbar [aria-label="详情面板"]')?.focus();
+        }
+        return;
+      }
+      const key = shortcutFromEvent(event);
+      const keys = (bootstrap?.settings.values.desktop ?? DEFAULT_SETTINGS.desktop).shortcuts;
+      if (key === keys.search) {
         event.preventDefault();
         setDialog('search');
-      } else if (event.ctrlKey && event.key.toLowerCase() === 'n') {
+      } else if (key === keys.newTask || key === keys.newWindow) {
         event.preventDefault();
-        if (event.shiftKey) void window.tapkit.newWindow().catch(() => setError(t.error));
+        if (key === keys.newWindow) void window.tapkit.newWindow().catch(() => setError(t.error));
         else newTask();
       }
     }
     document.addEventListener('keydown', key);
     return () => document.removeEventListener('keydown', key);
-  }, [busy, refresh, composerBusy, location.pathname]);
+  }, [
+    bootstrap,
+    composerBusy,
+    location.pathname,
+    quick,
+    dialog,
+    sidebarDrawer,
+    layout.panelOpen,
+    inCanvas,
+  ]);
   useEffect(() => {
     const connect = () => navigate('/settings/connections');
     window.addEventListener('tapkit:connect-model', connect);
@@ -282,6 +347,13 @@ export function DesktopShell() {
   const settings = bootstrap?.settings.values,
     prefs = settings?.desktop,
     personal = settings?.personal;
+  useEffect(() => {
+    if (!prefs || initialized.current) return;
+    initialized.current = true;
+    setMode(prefs.defaultMode);
+    if (!window.tapkit.initialRoute && location.key === 'default' && prefs.startPage !== 'home')
+      navigate('/' + prefs.startPage, { replace: true });
+  }, [prefs, location.key, navigate]);
   const selected =
       workspace?.sessions.find((s) => location.pathname === '/sessions/' + s.id) ??
       (routed && location.pathname === '/sessions/' + routed.id ? routed : undefined),
@@ -379,7 +451,23 @@ export function DesktopShell() {
       {composer}
     </StartPage>
   );
-  return (
+  if (quick) {
+    return (
+      <QuickInput
+        onOpen={(text) => {
+          window.sessionStorage.setItem('tapkit.quick-input-promoted', '1');
+          drafts.current['/'] = text;
+          setDraft(text);
+          setMode('chat');
+          initialized.current = true;
+          focusComposer.current = true;
+          navigate('/', { replace: true });
+        }}
+      />
+    );
+  }
+  const connectionLabel = bootstrap ? '本地已连接' : error ? '连接异常' : '连接中';
+  const content = (
     <div
       className={
         'desktop-shell ' +
@@ -392,6 +480,9 @@ export function DesktopShell() {
             : 'home-screen')
       }
       data-theme={prefs?.theme ?? 'system'}
+      data-contrast={prefs?.highContrast ? 'high' : undefined}
+      data-motion={prefs?.reduceMotion ? 'reduced' : undefined}
+      data-content-width={prefs?.contentWidth ?? 'standard'}
       style={
         {
           '--sidebar-width': layout.sidebarWidth + 'px',
@@ -445,7 +536,7 @@ export function DesktopShell() {
               <IconButton
                 icon="search"
                 label={t.search}
-                tooltip={t.search + '（Ctrl+K）'}
+                tooltip={t.search + '（' + (prefs?.shortcuts.search ?? 'Ctrl+K') + '）'}
                 onClick={() => setDialog('search')}
               />
             </span>
@@ -456,7 +547,7 @@ export function DesktopShell() {
               aria-label={t.newTask}
               disabled={busy || !bootstrap || (!routedSessionId && composerBusy)}
               onClick={newTask}
-              data-tooltip="Ctrl+N"
+              data-tooltip={prefs?.shortcuts.newTask ?? 'Ctrl+N'}
             >
               <UiIcon name="edit" />
               {!collapsed && t.newTask}
@@ -468,6 +559,7 @@ export function DesktopShell() {
               setLayout((l) => ({ ...l, navigation: [...navigation, 'notifications'] }))
             }
           />
+          {prefs?.showPlanned && !collapsed && <PlannedFeatures pathname={location.pathname} />}
           <div className="history">
             {!collapsed && !!workspace?.projects.length && (
               <section className="sidebar-projects" aria-label={t.projects}>
@@ -521,6 +613,9 @@ export function DesktopShell() {
               <LocalAvatar />
             )}
           </Link>
+          <Link to="/help" aria-label={e.help} data-tooltip={e.help}>
+            <UiIcon name="info" />
+          </Link>
           <Link to="/settings/general" aria-label="设置" data-tooltip="设置">
             <UiIcon name="settings" />
           </Link>
@@ -567,6 +662,20 @@ export function DesktopShell() {
               }
             />
           </span>
+          <span className="navigation-history">
+            <IconButton
+              icon="left"
+              label="后退"
+              disabled={historyIndex < 1}
+              onClick={() => navigate(-1)}
+            />
+            <IconButton
+              icon="right"
+              label="前进"
+              disabled={historyIndex < 0 || historyIndex >= navigationKeys.length - 1}
+              onClick={() => navigate(1)}
+            />
+          </span>
           <span className="workspace-title">
             {selected?.title ??
               (location.pathname.startsWith('/settings')
@@ -584,9 +693,9 @@ export function DesktopShell() {
                           : branding.name)}
           </span>
           <details className="connection-status">
-            <summary aria-label={t.connectionStatus}>
-              <span className={'status-dot ' + (bootstrap ? 'ready' : '')} />
-              {t.connectionStatus}
+            <summary aria-label={t.connectionStatus + ' · ' + connectionLabel}>
+              <span className={'status-dot ' + (bootstrap ? 'ready' : '')} aria-hidden="true" />
+              <span className="connection-label">{connectionLabel}</span>
             </summary>
             <div className="connection-popover">
               <span data-testid="core-status">
@@ -658,6 +767,29 @@ export function DesktopShell() {
           >
             <div className="screen-content">
               <Routes>
+                {plannedFeatures.map((feature) => (
+                  <Route
+                    key={feature.path}
+                    path={feature.path}
+                    element={<PlannedPage feature={feature} />}
+                  />
+                ))}
+                <Route
+                  path="/help"
+                  element={
+                    <HelpPage
+                      ready={!!bootstrap}
+                      accounts={
+                        accounts
+                          ? accounts.accounts.filter((account) => account.status === 'ready')
+                              .length + ' 个已连接'
+                          : connectionError
+                            ? '暂不可用'
+                            : '待加载'
+                      }
+                    />
+                  }
+                />
                 <Route path="/dev/api" element={<ApiDiagnostic />} />
                 <Route path="/dev/codex" element={<AuthDiagnostic />} />
                 <Route path="/dev/models" element={<ModelSettings />} />
@@ -681,6 +813,7 @@ export function DesktopShell() {
                       <DesktopSettings
                         page={settingPage}
                         values={settings}
+                        profileId={bootstrap!.profile.id}
                         revision={bootstrap!.settings.revision}
                         save={save}
                         reload={refresh}
@@ -891,5 +1024,10 @@ export function DesktopShell() {
         )}
       </dialog>
     </div>
+  );
+  return (
+    <DesktopPreferences.Provider value={prefs ?? DEFAULT_SETTINGS.desktop}>
+      {content}
+    </DesktopPreferences.Provider>
   );
 }

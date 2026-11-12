@@ -3,10 +3,10 @@ import { expect, type Page } from './test';
 
 // History/file tests need an empty, persisted conversation. Creating this
 // fixture directly keeps them independent of the unified start page's send flow.
-export async function openSessionFixture(page: Page) {
+export async function openSessionFixture(page: Page, initialTitle?: string) {
   const raw = randomUUID();
   const requestId = raw.slice(0, 14) + '7' + raw.slice(15);
-  const title = '隔离会话 ' + requestId;
+  const title = initialTitle ?? '隔离会话 ' + requestId;
   const id = await page.evaluate(
     async ({ requestId, title }) => {
       const reply = await window.tapkit.desktopCommand({ requestId }, 'sessions.create', {

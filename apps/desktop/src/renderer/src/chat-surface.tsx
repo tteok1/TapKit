@@ -31,6 +31,7 @@ import { historyCommand } from './history-ui';
 import { SessionTools, MessageActions } from './message-history';
 import { SelectionToolbar } from './selection-toolbar';
 import { importChatFiles, chatFileOwner, type ChatFileProgress } from './chat-file-import';
+import { formatDesktopDate } from '../features/settings/desktop-preferences';
 import { useViewer } from '../features/viewer/state';
 import { ComposerAttachment } from './composer-attachment';
 import { InlineFileCard } from '../features/viewer/inline-card';
@@ -1012,7 +1013,8 @@ export function ChatSurface({
                 </strong>
                 <small>
                   {message.model?.modelId && message.model.modelId + ' · '}
-                  {new Date(message.createdAt).toLocaleTimeString('zh-CN')} ·{' '}
+                  {settings.desktop.showMessageTimes &&
+                    formatDesktopDate(message.createdAt, settings.desktop, 'time') + ' · '}
                   {message.status === 'streaming'
                     ? '正在回答'
                     : message.status === 'final'
@@ -1034,7 +1036,7 @@ export function ChatSurface({
                 </small>
               )}
               {message.role === 'tool' ? (
-                <details>
+                <details open={settings.desktop.showToolDetails}>
                   <summary>{c.process}</summary>
                   <pre>{message.text}</pre>
                 </details>
@@ -1196,22 +1198,27 @@ export function ChatSurface({
                         }}
                       />
                     )}
-                    {['failed', 'interrupted'].includes(message.status) && (
-                      <button
-                        onClick={() => {
-                          const user = snapshot.messages.find(
-                            (m) => m.role === 'user' && m.runId === message.runId,
-                          );
-                          if (user) {
-                            change(user.text);
-                            setRefs(user.attachments);
-                            inputRef.current?.focus();
-                          }
-                        }}
-                      >
-                        {c.retry}
-                      </button>
+                    {message.errorCode === 'SIDE_EFFECT_UNKNOWN' && (
+                      <p role="status">结果待核对，请先检查原服务或工作记录。</p>
                     )}
+                    {message.errorCode !== 'SIDE_EFFECT_UNKNOWN' &&
+                      ['failed', 'interrupted'].includes(message.status) && (
+                        <button
+                          title="只恢复这次请求的输入。重新发送可能产生额外费用。"
+                          onClick={() => {
+                            const user = snapshot.messages.find(
+                              (m) => m.role === 'user' && m.runId === message.runId,
+                            );
+                            if (user) {
+                              change(user.text);
+                              setRefs(user.attachments);
+                              inputRef.current?.focus();
+                            }
+                          }}
+                        >
+                          {c.retry}
+                        </button>
+                      )}
                   </div>
                 )}
               </div>

@@ -5,6 +5,7 @@ import {
   SettingsGetSchema,
   SettingsSetSchema,
   SettingsDocumentSchema,
+  DEFAULT_MODEL_PREFERENCES,
   RegisterCredentialSchema,
   resolveApiConfig,
   ReplaySchema,
@@ -16,7 +17,7 @@ import {
   PinSessionSchema,
   type Reply,
 } from '@tapkit/contracts';
-import { Store, JobQueue, StorageError, failure, newId } from '@tapkit/storage';
+import { Store, JobQueue, StorageError, UsageLedger, failure, newId } from '@tapkit/storage';
 export class CoreService {
   readonly jobs: JobQueue;
   constructor(
@@ -222,6 +223,13 @@ export class CoreService {
             const current = this.store.settings;
             if (request.expectedRevision !== current.revision)
               throw new StorageError('CONFLICT', current.revision);
+            if (p.resetModelPreferencesAt !== undefined) {
+              new UsageLedger(this.store).setPreferences(
+                p.scope,
+                DEFAULT_MODEL_PREFERENCES,
+                p.resetModelPreferencesAt,
+              );
+            }
             const values = SettingsDocumentSchema.parse({
                 schemaVersion: 1,
                 values: { ...current.values, ...p.patch },

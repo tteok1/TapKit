@@ -1,15 +1,40 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from '@tapkit/ui';
-import { DEFAULT_PERSONALIZATION, SettingsSetSchema, type SettingsValues } from '@tapkit/contracts';
+import { Link, useLocation } from '@tapkit/ui';
+import {
+  DEFAULT_SETTINGS,
+  DesktopShortcutsSchema,
+  PreferencesViewSchema,
+  SettingsSetSchema,
+  type SettingsValues,
+} from '@tapkit/contracts';
 import t from '../locales/desktop.zh-CN.json';
 import { LocalAvatar } from './local-avatar';
 import { MemoryManager } from './memory-ui';
 import m from '../locales/memory.zh-CN.json';
-import { SettingsNavigation } from './settings-navigation';
+import { settingCategories, SettingsNavigation } from './settings-navigation';
+import { requestOptions } from './desktop-state';
 import { HistorySettings } from './history-settings';
+import { FutureFeatures, PlannedFeatures } from '../features/placeholders/PlannedFeatures';
+import { DesktopPreferenceFields, ShortcutSettings } from '../features/settings/PreferenceFields';
+
+const categoryKeys: Record<string, (keyof SettingsValues)[]> = {
+  personal: ['personal'],
+  personalization: ['personalization', 'memoryEnabled', 'historyEnabled'],
+  general: ['desktop', 'network'],
+  shortcuts: ['desktop'],
+  privacy: ['desktop'],
+};
+const shortcutKeys = ['shortcuts', 'quickInputEnabled'] as const;
+const permissionKeys = ['systemNotifications'] as const;
+
+function preserveDesktopFields(page: string, desktop: SettingsValues['desktop']) {
+  const keys = page === 'shortcuts' ? shortcutKeys : page === 'privacy' ? permissionKeys : [];
+  return Object.fromEntries(keys.map((key) => [key, desktop[key]]));
+}
 export function DesktopSettings({
   page,
   values,
+  profileId,
   revision,
   save,
   reload,
@@ -18,8 +43,13 @@ export function DesktopSettings({
 }: {
   page: string;
   values: SettingsValues;
+  profileId: string;
   revision: number;
-  save: (patch: Partial<SettingsValues>, revision?: number) => Promise<void>;
+  save: (
+    patch: Partial<SettingsValues>,
+    revision?: number,
+    resetModelPreferencesAt?: number,
+  ) => Promise<void>;
   reload: () => Promise<void>;
   onNavigate: (path: string) => void;
   projects: { id: string; name: string }[];
@@ -27,8 +57,25 @@ export function DesktopSettings({
   const [draft, setDraft] = useState(values),
     [dirty, setDirty] = useState(false),
     [notice, setNotice] = useState(''),
-    [busy, setBusy] = useState(false);
+    [busy, setBusy] = useState(false),
+    [reloadCount, setReloadCount] = useState(0),
+    [confirmReset, setConfirmReset] = useState(false);
   const editingRevision = useRef(revision);
+  const body = useRef<HTMLDivElement>(null);
+  const search = useLocation().search;
+  useEffect(() => {
+    const field = new URLSearchParams(search).get('field');
+    if (!field) return;
+    const frame = requestAnimationFrame(() => {
+      const label = [...(body.current?.querySelectorAll('label') ?? [])].find((element) =>
+        [...element.childNodes].some(
+          (node) => node.nodeType === Node.TEXT_NODE && node.textContent?.trim() === field,
+        ),
+      );
+      label?.control?.focus();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [page, search]);
   useEffect(() => {
     if (!dirty) {
       setDraft(values);
@@ -39,6 +86,7 @@ export function DesktopSettings({
     setDraft(values);
     setDirty(false);
     setNotice('');
+    setConfirmReset(false);
     editingRevision.current = revision;
   }, [page]); // Switching sections discards unsaved edits.
   function update<K extends keyof SettingsValues>(key: K, value: SettingsValues[K]) {
@@ -51,16 +99,22 @@ export function DesktopSettings({
     setBusy(true);
     setNotice('');
     try {
-      const keys =
-        page === 'personal'
-          ? ['personal']
-          : page === 'personalization'
-            ? ['personalization', 'memoryEnabled', 'historyEnabled']
-            : ['desktop', 'network'];
-      const patch = Object.fromEntries(keys.map((k) => [k, draft[k as keyof SettingsValues]]));
+      const keys = categoryKeys[page] ?? [];
+      const patch = Object.fromEntries(keys.map((key) => [key, draft[key]]));
+      if (page === 'shortcuts' || page === 'privacy') {
+        patch.desktop = { ...values.desktop, ...preserveDesktopFields(page, draft.desktop) };
+      }
+      if (
+        page === 'shortcuts' &&
+        !DesktopShortcutsSchema.safeParse(draft.desktop.shortcuts).success
+      ) {
+        setNotice('快捷键重复。每项操作需要使用不同的组合。');
+        return;
+      }
       SettingsSetSchema.shape.patch.parse(patch);
       await save(patch, editingRevision.current);
       setDirty(false);
+      setConfirmReset(false);
       setNotice(t.saved);
     } catch (e) {
       setNotice(
@@ -68,6 +122,45 @@ export function DesktopSettings({
           ? t.conflict
           : '保存失败，请检查输入并重新加载。',
       );
+    } finally {
+      setBusy(false);
+    }
+  }
+  function resetCategory() {
+    editingRevision.current = revision;
+    setDraft((current) => {
+      const keys = categoryKeys[page] ?? [];
+      const defaults = Object.fromEntries(keys.map((key) => [key, DEFAULT_SETTINGS[key]]));
+      if (page === 'shortcuts' || page === 'privacy') {
+        defaults.desktop = {
+          ...values.desktop,
+          ...preserveDesktopFields(page, DEFAULT_SETTINGS.desktop),
+        };
+      } else if (page === 'general') {
+        defaults.desktop = {
+          ...DEFAULT_SETTINGS.desktop,
+          ...preserveDesktopFields('shortcuts', values.desktop),
+          ...preserveDesktopFields('privacy', values.desktop),
+        };
+      }
+      return { ...current, ...defaults };
+    });
+    setDirty(true);
+    setNotice('已填入此类别的默认值。保存后生效。');
+  }
+  async function resetAll() {
+    setBusy(true);
+    try {
+      const model = await window.tapkit.modelCommand(requestOptions(), 'models.preferences.get', {
+        scope: { type: 'profile', id: profileId },
+      });
+      if (!model.ok) throw new Error(model.error.code);
+      await save(DEFAULT_SETTINGS, revision, PreferencesViewSchema.parse(model.data).revision);
+      setDirty(false);
+      setConfirmReset(false);
+      setNotice('已恢复全部本机偏好。');
+    } catch (error) {
+      setNotice(error instanceof Error && error.message === 'CONFLICT' ? t.conflict : t.error);
     } finally {
       setBusy(false);
     }
@@ -109,10 +202,10 @@ export function DesktopSettings({
   );
   return (
     <section className="desktop-settings">
-      <h1>{t[page as 'personal'] ?? t.settings}</h1>
+      <h1>{settingCategories[page as keyof typeof settingCategories]?.title ?? t.settings}</h1>
       <p>{t.scope}</p>
       <SettingsNavigation page={page} />
-      <div className="settings-body">
+      <div className="settings-body" ref={body}>
         {(page === 'archived' || page === 'trash') && (
           <HistorySettings key={page} state={page} projects={projects} onNavigate={onNavigate} />
         )}
@@ -217,8 +310,8 @@ export function DesktopSettings({
                   />
                   {
                     [
-                      '回车发送（聊天发送开放后生效）',
-                      '紧凑布局',
+                      '回车发送（关闭后使用 Ctrl+Enter）',
+                      '紧凑侧栏与列表',
                       '显示首页示例',
                       '显示规划中入口',
                     ][i]
@@ -227,7 +320,7 @@ export function DesktopSettings({
               ),
             )}
             <label>
-              默认目录
+              默认下载位置
               <input readOnly value={desktop.defaultDirectory} placeholder="尚未选择" />
               <span className="action-group">
                 <button
@@ -246,8 +339,14 @@ export function DesktopSettings({
                   清空目录
                 </button>
               </span>
-              <small>只保存偏好，实际文件访问仍需授权。</small>
+              <small>用于保存对话或下载原件时的初始位置，每次保存仍需确认。</small>
             </label>
+            <DesktopPreferenceFields
+              desktop={desktop}
+              revision={revision}
+              change={(value) => update('desktop', value)}
+            />
+            <Link to="/settings/models">设置默认模型</Link>
             {select(
               '模型网络代理',
               draft.network.mode,
@@ -367,11 +466,6 @@ export function DesktopSettings({
                 </section>
               ))}
             </fieldset>
-            <button
-              onClick={() => update('personalization', structuredClone(DEFAULT_PERSONALIZATION))}
-            >
-              恢复个性化默认值
-            </button>
           </>
         )}
         {page === 'personalization' && (
@@ -407,9 +501,38 @@ export function DesktopSettings({
             <Link to="/settings/models">模型与用量</Link>
           </div>
         )}
+        {page === 'shortcuts' && (
+          <ShortcutSettings
+            key={reloadCount}
+            desktop={desktop}
+            revision={revision}
+            change={(value) => update('desktop', value)}
+          />
+        )}
+        {page === 'availability' && (
+          <>
+            <FutureFeatures />
+            <PlannedFeatures pathname="" />
+          </>
+        )}
         {page === 'privacy' && (
           <article>
-            <h2>本地数据与外部请求</h2>
+            <h2>文件、通知与外部请求</h2>
+            <label className="check-label">
+              <input
+                type="checkbox"
+                checked={desktop.systemNotifications}
+                onChange={(event) =>
+                  update('desktop', { ...desktop, systemNotifications: event.target.checked })
+                }
+              />
+              允许 Windows 系统通知
+            </label>
+            <p>文件由你主动选择或导入，外部打开与下载均有明确入口。工作外部写入由审批记录管理。</p>
+            <p>
+              启用联网搜索后，搜索服务会收到查询词；打开网页时目标站点会收到普通网页请求。模型服务只接收该次请求所需的上下文。
+            </p>
+            <Link to="/settings/connections">管理模型账户与授权</Link>
             <p>
               个人资料、设置、会话记录和用量保存在本机应用数据目录。头像只保留静态缩略图。布局留在当前窗口的本地存储。
             </p>
@@ -418,9 +541,7 @@ export function DesktopSettings({
               与订阅凭据通过主进程系统加密存储，不进入界面日志。配置或检测模型会向所选服务发送请求；你保存的
               Base URL 决定密钥的接收地址，请核对域名。
             </p>
-            <p>
-              界面不会自动发送首页示例或草稿。当前个人资料不会自动提交给模型；未来聊天与工作使用个性化前需要按对应设置构建上下文。
-            </p>
+            <p>首页示例和草稿由你确认后发送。启用个性化时，聊天与工作按该设置使用偏好。</p>
           </article>
         )}
         {page === 'agreement' && (
@@ -436,7 +557,7 @@ export function DesktopSettings({
             <p>本页是当前版本的本地使用说明；没有另行收集注册资料或要求接受远程协议。</p>
           </article>
         )}
-        {['personal', 'general', 'personalization'].includes(page) && (
+        {categoryKeys[page] && (
           <div className="settings-actions">
             <button disabled={busy || !dirty} onClick={() => void submit()}>
               {busy ? '保存中…' : t.save}
@@ -447,6 +568,7 @@ export function DesktopSettings({
                 void reload()
                   .then(() => {
                     setDirty(false);
+                    setReloadCount((count) => count + 1);
                     setNotice('已重新加载');
                   })
                   .catch(() => setNotice(t.error))
@@ -454,9 +576,37 @@ export function DesktopSettings({
             >
               重新加载设置
             </button>
+            <button disabled={busy} onClick={resetCategory}>
+              恢复此类别默认值
+            </button>
           </div>
         )}
-        {notice && <p role={notice === t.saved ? 'status' : 'alert'}>{notice}</p>}
+        {page === 'general' && (
+          <div className="settings-reset">
+            {confirmReset ? (
+              <>
+                <p>
+                  这会重置本机个人资料、个性化、隐私、默认模型、预算和桌面偏好。连接账户、会话及文件会保留。
+                </p>
+                <button disabled={busy} onClick={() => void resetAll()}>
+                  确认恢复全部本机偏好
+                </button>
+                <button disabled={busy} onClick={() => setConfirmReset(false)}>
+                  取消
+                </button>
+              </>
+            ) : (
+              <button disabled={busy} onClick={() => setConfirmReset(true)}>
+                恢复全部本机偏好
+              </button>
+            )}
+          </div>
+        )}
+        {notice && (
+          <p role="status" aria-label="设置操作状态">
+            {notice}
+          </p>
+        )}
       </div>
     </section>
   );

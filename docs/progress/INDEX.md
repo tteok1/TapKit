@@ -1,3 +1,5 @@
+2026-11-12，P10-02=implemented_not_live_verified。CI #100 的 P00-01 已通过，P10-01 画布回复定位修复后本地 Electron 定向复跑 7/7。详见 [P10-02](P10-02.md)。
+
 2026-11-12，P10-01=implemented_not_live_verified。开发分支 CI #96 通过，原提交 61966fb 已快进合入远端 main。main CI #97 的 Electron 选区用例 2 项失败，本地修复后 Electron 复跑 9/9 通过，远端待验。R13 真实模型待验。详 [P10-01](P10-01.md)。
 
 2026-11-12，P09-04=implemented_and_verified。基线 c063f9c，分支 codex/p09-04-site-preview。网站两种模板、沙箱构建、预览、区域修订、版本与 ZIP 已验收。P09 阶段工程通过，R07 外部待验。详 P09-04.md、P09-gate.md。
@@ -52,7 +54,7 @@ CI73三个job全success，测试清理及资料保全保持；耗时只读审计
 | P09-03 | GitHub连接、提交与Draft PR闭环     | P09-02         | implemented_not_live_verified | docs/progress/P09-03.md              |
 | P09-04 | 网站生成和本地交互预览             | P09-02         | implemented_and_verified      | docs/progress/P09-04.md              |
 | P10-01 | 轻量文档画布和局部AI修改           | P07-03, P09-04 | implemented_not_live_verified | docs/progress/P10-01.md              |
-| P10-02 | 占位页面、通用体验与无障碍完善     | P10-01         | not_started                   | docs/progress/P10-02.md              |
+| P10-02 | 占位页面、通用体验与无障碍完善     | P10-01         | implemented_not_live_verified | docs/progress/P10-02.md              |
 | P10-03 | 数据导出、清理、备份和恢复闭环     | P10-02         | not_started                   | docs/progress/P10-03.md              |
 | P11-01 | 系统评测、故障回归与源码开发版交付 | P10-03         | not_started                   | docs/progress/P11-01.md              |
 | P11-02 | Windows安装包、升级与标准用户验证  | P11-01         | not_started                   | docs/progress/P11-02.md              |

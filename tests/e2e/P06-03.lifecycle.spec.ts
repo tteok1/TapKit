@@ -41,12 +41,14 @@ test('P06-03 T13/T20 notification read state and pending plan survive restart; r
   const center = page.getByRole('region', { name: '通知中心', exact: true });
   await expect(center).toContainText('工作任务等待输入');
   await center.getByRole('button', { name: '全部已读', exact: true }).click();
-  await expect(center.getByRole('status')).toHaveText('未读通知：0');
+  await expect(center.getByRole('status', { name: '未读通知数' })).toHaveText('未读通知：0');
   await app.close();
   await launch();
   await page.getByRole('button', { name: '通知', exact: true }).click();
   await expect(
-    page.getByRole('region', { name: '通知中心', exact: true }).getByRole('status'),
+    page
+      .getByRole('region', { name: '通知中心', exact: true })
+      .getByRole('status', { name: '未读通知数' }),
   ).toHaveText('未读通知：0');
   await page.getByRole('link', { name: '工作', exact: true }).click();
   await page.locator('.work-open').filter({ hasText: 'P06 重启后继续的通知任务' }).first().click();
