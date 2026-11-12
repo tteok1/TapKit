@@ -13,6 +13,7 @@ import {
 } from '@tapkit/contracts';
 import { historyCommand } from './history-ui';
 import { requestOptions } from './desktop-state';
+import { openCanvas } from '../features/canvas/api';
 import h from '../locales/history.zh-CN.json';
 export function SessionTools({
   sessionId,
@@ -351,6 +352,27 @@ export function MessageActions({
         }
       />
       <ActionPopover label="更多消息操作" icon="more">
+        {message.role === 'assistant' &&
+          !details?.session.temporary &&
+          ['final', 'interrupted'].includes(message.status) && (
+            <button
+              disabled={busy}
+              onClick={() =>
+                void action(async () => {
+                  onNavigate(
+                    await openCanvas({
+                      kind: 'message',
+                      sessionId,
+                      messageId: message.id,
+                      version: message.revision,
+                    }),
+                  );
+                })
+              }
+            >
+              在画布中编辑
+            </button>
+          )}
         {message.role === 'assistant' && (
           <button
             disabled={active || busy || !selection}

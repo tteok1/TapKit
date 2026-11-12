@@ -1,0 +1,3 @@
+$ node scripts/live.mjs "P10-01"
+P10-01 live NOT RUN: R13 requires opt-in and an isolated, configured TapKit test profile.
+[ELIFECYCLE] Command failed with exit code 2.

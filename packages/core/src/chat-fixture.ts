@@ -56,6 +56,34 @@ export function installChatFixture(models: ModelService) {
     },
     classifyError: () => ({ code: 'STREAM_INTERRUPTED', retryable: false }),
     async *stream(request, signal) {
+      if (request.systemModules.some((module) => module.id === 'tapkit.canvas.edit')) {
+        const { action, blocks } = JSON.parse(request.messages[0]!.text) as {
+          action: string;
+          blocks: { index: number; text: string }[];
+        };
+        signal.throwIfAborted();
+        const result =
+          action === '重排正文结构'
+            ? { order: blocks.map(({ index }) => index).reverse(), explanation: '调整正文顺序' }
+            : blocks.map(({ index, text }) => ({
+                index,
+                replacement: '修订' + text,
+                explanation: '更新所选文字',
+              }));
+        yield { type: 'text_delta', blockId: 'text', text: JSON.stringify(result) };
+        yield {
+          type: 'usage',
+          usage: {
+            inputTotal: 20,
+            inputCachedSubset: 0,
+            outputTotal: 40,
+            reasoningSubset: 0,
+            source: 'actual',
+          },
+        };
+        yield { type: 'finish', reason: 'stop', nativeStateRef: '' };
+        return;
+      }
       if (request.systemModules.some((module) => module.id === 'tapkit.delegate')) {
         const sources = JSON.parse(request.messages[1]!.text) as {
           evidence: { id: string; quote: string }[];

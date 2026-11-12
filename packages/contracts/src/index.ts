@@ -2,6 +2,7 @@ export * from './code';
 export * from './terminal';
 export * from './github';
 export * from './site';
+export * from './canvas';
 import { z } from 'zod';
 import { GitHubConnectSchema } from './github';
 import type { StartLogin } from './providers';
@@ -168,7 +169,7 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('ready'),
     protocolVersion: z.literal(1),
-    schemaVersion: z.literal(23),
+    schemaVersion: z.literal(24),
   }),
   z.strictObject({ type: z.literal('pong'), id: z.string().uuid(), payload: PingReplySchema }),
   z.strictObject({ type: z.literal('reply'), id: z.string().uuid(), reply: ReplySchema }),
@@ -180,6 +181,11 @@ export interface TapKitBridge {
   siteCommand(
     options: RequestOptions,
     command: import('./site').SiteCommand,
+    payload: unknown,
+  ): Promise<Reply>;
+  canvasCommand(
+    options: RequestOptions,
+    command: import('./canvas').CanvasCommand,
     payload: unknown,
   ): Promise<Reply>;
   githubCommand(
@@ -235,7 +241,7 @@ export interface TapKitBridge {
   readonly windowSlot: string;
   readonly initialRoute: string | undefined;
   newWindow(): Promise<void>;
-  openEntity(entity: { type: 'session' | 'project'; id: string }): Promise<void>;
+  openEntity(entity: { type: 'session' | 'project' | 'canvas'; id: string }): Promise<void>;
   saveConversation(value: { name: string; text: string }): Promise<boolean>;
   historyCommand(
     options: RequestOptions,

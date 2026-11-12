@@ -48,6 +48,7 @@ const bridge: TapKitBridge = Object.freeze<TapKitBridge>({
     ipcRenderer.invoke('tapkit:choose-code-project', IdSchema.parse(runId)),
   codeCommand: (options, command, payload) => invoke(command, options, payload),
   siteCommand: (options, command, payload) => invoke(command, options, payload),
+  canvasCommand: (options, command, payload) => invoke(command, options, payload),
   workCommand: (options, command, payload) => invoke(command, options, payload),
   browserCommand: (options, command, payload) => invoke(command, options, payload),
   historyCommand: (options, command, payload) => invoke(command, options, payload),

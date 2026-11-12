@@ -107,6 +107,10 @@ jobs:
           TAPKIT_RUNTIME_PROBE_EVIDENCE_DIR: docs/evidence/P00-03/current-runner
       - name: P07 native office acceptance
         run: .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:integration P07-01.native-candidate P07-01.native-image P07-01.native-layout P07-01.native-render P07-02.native-data P07-02.native-limits P07-02.native-transform P07-03.native-cache P07-03.native-slides
+      - name: P10 canvas PDF acceptance
+        env:
+          TAPKIT_P10_NATIVE: '1'
+        run: .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:integration P10-01 --testNamePattern 'T07 validates Chinese PDF'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -157,7 +161,7 @@ jobs:
           }
       - name: Electron end-to-end checks
         run: |
-          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:e2e -- --grep "P00-0[12]|P02-02|P03-0[123]|P04-0[123]|P09-0[1234]"
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:e2e -- --grep "P00-0[12]|P02-02|P03-0[123]|P04-0[123]|P09-0[1234]|P10-01"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

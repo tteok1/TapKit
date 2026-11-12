@@ -1,3 +1,5 @@
+2026-11-12 P10-01：R13 画布选区模型实测待验。未配置本轮专用隔离测试 profile 与 opt-in，预检退出 2；本地及合成模型验收通过。见 [P10-01](P10-01.md)。
+
 2026-11-11 P09-03 R07 待配置。GitHub 授权、私有镜像、审阅提交、推送与 Draft PR 已完成本地和模拟验收。专用测试仓库与最小权限 PAT 就绪后运行 `pnpm test:live P09-03 --github`。预检证据见 docs/evidence/P09-03/live-preflight.log。
 
 2026-11-06 P09-02 CI修复：CI86/run42177795449源64feffb三个job全部success；R09独立medium/non-admin标准用户22/22及parser/preview通过，本runner也真实22/22、三能力available。报告各自绑定runner，未跨主机授权；本地新worker指纹151cc048已重新22/22及生产Electron验收。见docs/evidence/P09-02/ci-fix-2026-11-06/ci86-result.json。模型/供应商检测新增0，原2/10余8；不提升R07/P09-03或R13范围。以下为历史。

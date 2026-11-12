@@ -1,5 +1,6 @@
 import codingSql from '../../../migrations/0022_coding.sql?raw';
 import codeExecutionSql from '../../../migrations/0023_code_execution.sql?raw';
+import canvasSql from '../../../migrations/0024_canvas.sql?raw';
 import delegationSql from '../../../migrations/0021_delegation.sql?raw';
 import Database from 'better-sqlite3';
 import { eraseFileDerivedContent } from './file-cleanup';
@@ -135,8 +136,9 @@ export const migrations: Migration[] = [
   { version: 21, sql: delegationSql },
   { version: 22, sql: codingSql },
   { version: 23, sql: codeExecutionSql },
+  { version: 24, sql: canvasSql },
 ];
-export const SCHEMA_VERSION = 23;
+export const SCHEMA_VERSION = 24;
 export async function migrate(db: Database.Database, backupDirectory: string, steps = migrations) {
   const trace = startupTrace('storage.migrate');
   trace('version.begin');

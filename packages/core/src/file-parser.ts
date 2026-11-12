@@ -90,11 +90,12 @@ export class FileParser {
     guard: () => void,
     signal: AbortSignal,
     lifecycle?: { started(): void; settled(): void },
+    namespace: 'work' | 'preview' = 'work',
   ) {
     guard();
     if (this.capabilities.nativeExecution.status !== 'available')
       throw new StorageError('SANDBOX_UNAVAILABLE');
-    const base = resolve(this.files.store.dataDir, 'tmp/work'),
+    const base = resolve(this.files.store.dataDir, 'tmp', namespace),
       path = resolve(directory),
       id = relative(base, path);
     if (

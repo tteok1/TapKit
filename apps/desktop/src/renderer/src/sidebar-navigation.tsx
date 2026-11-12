@@ -192,6 +192,14 @@ export function SidebarNavigation({
           {t[key]}
         </Link>
       ))}
+      <Link
+        to="/canvas"
+        aria-current={location.pathname.startsWith('/canvas') ? 'page' : undefined}
+        style={{ order: 4 }}
+      >
+        <UiIcon name="edit" />
+        文档画布
+      </Link>
       <span className="sr-only" aria-live="polite" aria-atomic="true">
         {announcement}
       </span>

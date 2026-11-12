@@ -1,5 +1,7 @@
 # 范围、决策与默认行为
 
+2026-11-12 [ADR 0082](../adr/0082-versioned-document-canvas.md)：P10-01 使用 Tiptap JSON、schema24、固定版本 CAS、选区审阅和既有 P07 导出验证。
+
 2026-11-06 [ADR0079](../adr/0079-isolated-code-runtime-and-terminal.md)：P09-02采用schema23 RuntimeProfile与原process_handles、受控registry下载/沙箱离线安装、Node/Python枚举argv、真实退出码与ConPTY流式终端；复用根预算/隔离/生命周期，重启不按PID重连，依赖和回执须绑定当前源及锁文件。
 
 2026-11-05 [ADR0078](../adr/0078-private-code-workspaces.md)：P09-01采用schema22私有Git对象镜像与无元数据指针的工作目录、hash绑定单文件修改/审阅/恢复、逐行反馈修订；模型复用根账本，终端与远程写入留后续任务。

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ChatMarkdown } from '@tapkit/ui';
+import { ChatMarkdown, useNavigate } from '@tapkit/ui';
+import { openCanvas } from '../canvas/api';
 import {
   ArtifactReplySchema,
   FileReplySchema,
@@ -639,6 +640,7 @@ function DiffReader({ access }: { access: ArtifactAccess }) {
   );
 }
 function FileView({ tab }: { tab: ViewerTab }) {
+  const navigate = useNavigate();
   const view = tab.view!,
     access = accessFor(tab),
     key = JSON.stringify(access),
@@ -886,6 +888,17 @@ function FileView({ tab }: { tab: ViewerTab }) {
         </p>
       )}
       <div className="viewer-controls">
+        {['markdown', 'docx'].includes(view.format) && (
+          <button
+            onClick={() =>
+              void action(async () => {
+                void navigate(await openCanvas({ ...access, kind: 'file' }));
+              })
+            }
+          >
+            在画布中编辑
+          </button>
+        )}
         <button onClick={() => void viewer.reload(tab.key, true)}>{t.retry}</button>
         <button
           onClick={() =>

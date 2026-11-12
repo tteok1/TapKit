@@ -1,4 +1,4 @@
-import { mkdir, writeFile, readFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import {
@@ -391,32 +391,13 @@ export class ArtifactService {
       versionId: access.versionId,
       ...(access.owner ? { owner: access.owner } : {}),
     });
-    const directory = await this.staging.create(access.versionId);
+    const pdf = await this.renderOfficeBytes(
+      access.versionId,
+      file.version.extension,
+      bytes,
+      signal,
+    );
     try {
-      const inputRoot = join(directory, 'input'),
-        workspace = join(directory, 'workspace');
-      await mkdir(inputRoot);
-      await mkdir(workspace);
-      const filename = 'document.' + file.version.extension.toLowerCase();
-      await writeFile(join(inputRoot, filename), bytes, { flag: 'wx' });
-      signal.throwIfAborted();
-      const rendered = await this.office.render(
-        { fileVersionId: access.versionId, format: 'pdf' },
-        {
-          fileVersionId: access.versionId,
-          inputRoot,
-          filename,
-          sha256: hash(bytes),
-          workspace,
-          requestId: newId(),
-          runId: newId(),
-          leaseEpoch: 1,
-        },
-        { signal },
-      );
-      const pdf = await readFile(rendered.path);
-      signal.throwIfAborted();
-      if (hash(pdf) !== rendered.sha256) throw new StorageError('CONFLICT');
       const blob = await this.files.blobs.put(pdf, 'application/pdf');
       signal.throwIfAborted();
       this.repository.access(access);
@@ -453,6 +434,62 @@ export class ArtifactService {
           throw new StorageError('CONFLICT');
         this.files.store.emit('workspace.updated', { kind: 'workspace', entityId: access.fileId });
       })();
+    } catch (error) {
+      if (signal.aborted) throw new StorageError('CANCELLED');
+      throw error;
+    }
+  }
+  renderCanvasPdf(
+    versionId: string,
+    bytes: Buffer,
+    signal: AbortSignal,
+    inspect: (directory: string, pdf: Buffer) => Promise<void>,
+  ) {
+    return this.renderOfficeBytes(versionId, 'docx', bytes, signal, inspect);
+  }
+  private async renderOfficeBytes(
+    versionId: string,
+    extension: string,
+    bytes: Buffer,
+    signal: AbortSignal,
+    inspect?: (directory: string, pdf: Buffer) => Promise<void>,
+  ) {
+    if (
+      this.capabilities.nativeExecution.status !== 'available' ||
+      this.capabilities.officeRender.status !== 'available'
+    )
+      throw new StorageError('SANDBOX_UNAVAILABLE');
+    const directory = await this.staging.create(versionId);
+    try {
+      const inputRoot = join(directory, 'input');
+      const workspace = join(directory, 'workspace');
+      await mkdir(inputRoot);
+      await mkdir(workspace);
+      const filename = 'document.' + extension.toLowerCase();
+      await writeFile(join(inputRoot, filename), bytes, { flag: 'wx' });
+      signal.throwIfAborted();
+      const rendered = await this.office.render(
+        { fileVersionId: versionId, format: 'pdf' },
+        {
+          fileVersionId: versionId,
+          inputRoot,
+          filename,
+          sha256: hash(bytes),
+          workspace,
+          requestId: newId(),
+          runId: newId(),
+          leaseEpoch: 1,
+        },
+        { signal },
+      );
+      if ((await stat(rendered.path)).size > 100 * 1024 * 1024)
+        throw new StorageError('OUTPUT_LIMIT_REACHED');
+      const pdf = await readFile(rendered.path);
+      signal.throwIfAborted();
+      if (hash(pdf) !== rendered.sha256 || pdf.subarray(0, 5).toString() !== '%PDF-')
+        throw new StorageError('PARSE_FAILED');
+      await inspect?.(directory, pdf);
+      return pdf;
     } catch (error) {
       if (signal.aborted) throw new StorageError('CANCELLED');
       throw error;

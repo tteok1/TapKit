@@ -38,6 +38,7 @@ import { HistoryList, SearchView, historyCommand } from './history-ui';
 import { FileLibrary } from './file-library';
 import { ProjectsList, ProjectPage } from './projects-ui';
 import { ArtifactPanel } from '../features/viewer/panel';
+import { CanvasList, CanvasPage } from '../features/canvas/CanvasPage';
 import { useViewer } from '../features/viewer/state';
 import h from '../locales/history.zh-CN.json';
 import { SessionDetailsSchema, type SessionRecord } from '@tapkit/contracts';
@@ -85,6 +86,7 @@ export function DesktopShell() {
     previousFocus = useRef<HTMLElement | null>(null),
     layoutRef = useRef(layout),
     drafts = useRef<Record<string, string>>({});
+  const inCanvas = location.pathname.startsWith('/canvas');
   const temporaryIds = useRef(new Set<string>()),
     previousRoute = useRef(location.pathname);
   layoutRef.current = layout;
@@ -382,7 +384,7 @@ export function DesktopShell() {
       className={
         'desktop-shell ' +
         (prefs?.compact ? 'compact ' : '') +
-        (layout.panelOpen ? 'panel-open ' : '') +
+        (layout.panelOpen && !inCanvas ? 'panel-open ' : '') +
         (routedSessionId
           ? 'session-screen'
           : location.pathname === '/'
@@ -608,7 +610,8 @@ export function DesktopShell() {
           </details>
           <button
             aria-label="详情面板"
-            aria-expanded={layout.panelOpen}
+            aria-expanded={layout.panelOpen && !inCanvas}
+            disabled={inCanvas}
             onClick={() => setLayout((l) => ({ ...l, panelOpen: !l.panelOpen }))}
           >
             <UiIcon name="panel" />
@@ -703,6 +706,13 @@ export function DesktopShell() {
                   }
                 />
                 <Route path="/bookmarks" element={<Bookmarks onNavigate={navigate} />} />
+                <Route path="/canvas" element={<CanvasList />} />
+                <Route
+                  path="/canvas/:id"
+                  element={
+                    <CanvasPage key={location.pathname} id={location.pathname.split('/')[2]!} />
+                  }
+                />
                 <Route
                   path="/work"
                   element={
@@ -773,7 +783,7 @@ export function DesktopShell() {
               </Routes>
             </div>
           </main>
-          {layout.panelOpen && (
+          {layout.panelOpen && !inCanvas && (
             <aside className="detail-panel" aria-label="详情">
               <div
                 role="separator"

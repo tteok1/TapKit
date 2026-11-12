@@ -1,11 +1,13 @@
 import { CodeService } from './code-service';
 import { CodeRuntimeService } from './code-runtime';
 import { SiteService } from './site-service';
+import { CanvasService } from './canvas/service';
 import {
   CodeCommandSchemas,
   TerminalCommandSchemas,
   GitHubCommandSchemas,
   SiteCommandSchemas,
+  CanvasCommandSchemas,
 } from '@tapkit/contracts';
 import { GitHubService } from './github-service';
 import { GitHubRemote } from './github-remote';
@@ -56,6 +58,7 @@ import { WorkService } from './work-service';
 import { WorkArtifacts } from './work-artifacts';
 import { WorkToolGateway } from './work-gateway';
 import { WorkNativeTools } from './work-native';
+import { validateDocumentContent, validateDocumentPdfLayout } from '@tapkit/workflows';
 import { modelWorkDriver } from './work-driver';
 import { WebTools } from '@tapkit/tools';
 import { NetworkPolicyService } from '@tapkit/network';
@@ -333,6 +336,29 @@ async function start() {
     files,
     service.executionCapabilities,
   );
+  const canvas = new CanvasService(files, history, models, (id, bytes, spec, signal) => {
+    const images = spec.sections
+      .flatMap((section) => section.blocks)
+      .filter((block) => block.type === 'image').length;
+    return artifacts.renderCanvasPdf(id, bytes, signal, async (directory, pdf) => {
+      const parsed = await parser.inspectWorkPdf(
+        directory,
+        id,
+        pdf,
+        images > 0,
+        () => signal.throwIfAborted(),
+        signal,
+        undefined,
+        'preview',
+      );
+      if (
+        !validateDocumentPdfLayout(parsed) ||
+        !validateDocumentContent(spec, parsed, 'pdf', images > 0) ||
+        (parsed.paintedImages ?? 0) < images
+      )
+        throw new StorageError('PARSE_FAILED');
+    });
+  });
   const sweepStaging = () => {
     void artifacts.staging.sweep().then(({ retained }) => {
       if (retained) console.warn('FILE_PREVIEW_STAGING_CLEANUP_PENDING');
@@ -363,6 +389,7 @@ async function start() {
       return;
     }
     if (command.type === 'window.closed') {
+      canvas.closeWindow(command.windowId);
       github.closeWindow(command.windowId);
       exports.closeWindow(command.windowId);
       void temporary.closeWindow(command.windowId);
@@ -590,7 +617,7 @@ async function start() {
         fileService.stop(),
         fileExporter.stop(),
         projectExporter.stop(),
-        artifacts.stop(),
+        canvas.stop().then(() => artifacts.stop()),
         parser.staging.stop(),
       ]).then(async () => {
         await Promise.all([providers.stop(), models.stop()]);
@@ -632,10 +659,17 @@ async function start() {
         const account = AccountIdSchema.safeParse(command.request.payload);
         if (account.success) {
           models.cancelAccount(account.data.accountId);
+          canvas.cancelAccount(account.data.accountId);
           chat.cancelAccount(account.data.accountId);
           temporary.cancelAccount(account.data.accountId);
           work.cancelAccount(account.data.accountId);
         }
+      }
+      if (Object.hasOwn(CanvasCommandSchemas, command.request.command)) {
+        void canvas.dispatch(command.request).then((reply) => {
+          if (!closing) port!.postMessage({ type: 'reply', id: command.id, reply });
+        });
+        return;
       }
       const result = Object.hasOwn(SiteCommandSchemas, command.request.command)
         ? sites.dispatch(command.request)

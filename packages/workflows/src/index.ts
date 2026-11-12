@@ -11,3 +11,5 @@ export * from './data-chart';
 export * from './slides';
 
 export * from './delegation';
+export * from './editing/canvas';
+export * from './editing/markdown';

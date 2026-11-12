@@ -120,6 +120,15 @@ export class HistoryService {
     if (!row) throw new StorageError('NOT_FOUND');
     return row;
   }
+  canvasMessage(sessionId: string, messageId: string, revision: number) {
+    if (this.temporary || this.store.volatile) throw new StorageError('PERMISSION_DENIED');
+    const session = this.session(sessionId);
+    const message = this.message(sessionId, messageId);
+    if (message.role !== 'assistant' || !['final', 'interrupted'].includes(message.status))
+      throw new StorageError('PERMISSION_DENIED');
+    if (message.revision !== revision) throw new StorageError('CONFLICT', message.revision);
+    return { ...message, title: session.title };
+  }
   private idle(id: string) {
     if (this.running(id)) throw new StorageError('CONFLICT');
   }

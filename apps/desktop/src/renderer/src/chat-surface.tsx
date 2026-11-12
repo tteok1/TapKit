@@ -1190,7 +1190,10 @@ export function ChatSurface({
                         active={active}
                         selection={selection}
                         onChanged={refresh}
-                        onNavigate={(path) => onCreated(path.split('/')[2]!)}
+                        onNavigate={(path) => {
+                          if (path.startsWith('/sessions/')) onCreated(path.split('/')[2]!);
+                          else onNavigate?.(path);
+                        }}
                       />
                     )}
                     {['failed', 'interrupted'].includes(message.status) && (

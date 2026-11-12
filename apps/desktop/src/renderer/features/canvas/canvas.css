@@ -1,0 +1,202 @@
+.canvas-home,
+.canvas-page {
+  width: 100%;
+  min-width: 0;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding: clamp(12px, 3vw, 32px);
+}
+.canvas-page {
+  container-type: inline-size;
+}
+.canvas-home header,
+.canvas-heading,
+.canvas-save,
+.canvas-tools,
+.canvas-footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.canvas-home header {
+  justify-content: space-between;
+}
+.canvas-home h1 {
+  margin: 0;
+}
+.canvas-home ul {
+  padding: 0;
+  list-style: none;
+}
+.canvas-home li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.canvas-page a,
+.canvas-home a {
+  color: var(--accent);
+}
+.canvas-heading > input {
+  flex: 1 1 15rem;
+  min-width: 0;
+  font-weight: 600;
+  font-size: 1.25em;
+}
+.canvas-heading > a {
+  flex: 0 0 auto;
+}
+.canvas-save {
+  margin-left: auto;
+}
+.canvas-hint,
+.canvas-save span,
+.canvas-footer span {
+  color: var(--muted);
+}
+.canvas-hint {
+  margin: 8px 0 12px;
+}
+.canvas-tools,
+.canvas-footer {
+  background: var(--surface);
+  border-block: 1px solid var(--border);
+  padding: 8px;
+}
+.canvas-page button[aria-pressed='true'] {
+  color: var(--accent);
+  background: var(--accent-surface);
+}
+.canvas-page button,
+.canvas-home button {
+  min-height: 32px;
+}
+.canvas-page :is(input, select, textarea) {
+  max-width: 100%;
+}
+.canvas-page :is(button, input, select, textarea, a):focus-visible,
+.canvas-paper .tiptap:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.canvas-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, 19rem);
+  gap: 14px;
+  margin-block: 12px;
+  align-items: start;
+}
+.canvas-paper,
+.canvas-review {
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.canvas-paper {
+  padding: clamp(12px, 4vw, 40px);
+}
+.canvas-paper .tiptap {
+  min-height: 23rem;
+  max-width: 72ch;
+  margin-inline: auto;
+  white-space: pre-wrap;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+  caret-color: var(--accent);
+}
+.canvas-paper .tiptap ::selection {
+  background: var(--accent-surface);
+}
+.canvas-paper .tiptap :is(h1, h2, h3, h4, h5, h6) {
+  margin-block: 1.2em 0.35em;
+}
+.canvas-paper .tiptap p {
+  margin: 0 0 0.7em;
+}
+.canvas-paper .tiptap table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+.canvas-paper .tiptap :is(th, td) {
+  border: 1px solid var(--border);
+  padding: 0.45em;
+}
+.canvas-paper .tiptap :is(th, pre) {
+  background: var(--muted-surface);
+}
+.canvas-paper .tiptap img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.canvas-paper .tiptap a {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+.canvas-review nav {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.canvas-review > section {
+  padding: 12px;
+}
+.canvas-review :is(ol, ul) {
+  margin: 0;
+  padding-inline-start: 1.2em;
+}
+.canvas-review :is(ol, ul) button {
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+.canvas-review label {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.canvas-review :is(select, input, textarea) {
+  width: 100%;
+}
+.canvas-review textarea {
+  min-height: 4.5em;
+  resize: vertical;
+}
+.canvas-review :is(.canvas-thread, .canvas-change, .canvas-version-preview) {
+  border-top: 1px solid var(--border);
+  margin-top: 12px;
+  padding-top: 10px;
+  overflow-wrap: anywhere;
+}
+.canvas-review dd {
+  margin: 0 0 8px;
+  padding: 6px;
+  white-space: pre-wrap;
+  background: var(--muted-surface);
+}
+.canvas-review dt {
+  font-weight: 600;
+}
+.canvas-feedback {
+  padding: 8px 12px;
+  background: var(--muted-surface);
+  border-radius: 8px;
+}
+.canvas-feedback[role='alert'] {
+  color: var(--danger);
+}
+.canvas-footer span {
+  margin-right: auto;
+}
+@container (max-width: 50rem) {
+  .canvas-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

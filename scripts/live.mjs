@@ -6,6 +6,16 @@ import { apiLiveProviders, runApiLive } from './api-live.mjs';
 import { runApiNativeLive } from './api-native-live.mjs';
 
 const args = process.argv.slice(2).filter((arg) => arg !== '--');
+if (args.length === 1 && args[0] === 'P10-01') {
+  if (process.env.TAPKIT_P10_LIVE_R13 !== '1' || !process.env.TAPKIT_P10_LIVE_DATA_DIR) {
+    console.error(
+      'P10-01 live NOT RUN: R13 requires opt-in and an isolated, configured TapKit test profile.',
+    );
+    process.exit(2);
+  }
+  run(nodeExe(), [join(root, 'scripts/p10-canvas-live.mjs')], { timeout: 250_000 });
+  process.exit(0);
+}
 if (args.length === 2 && args[0] === 'P09-03' && args[1] === '--github') {
   if (
     process.env.TAPKIT_P09_GITHUB_LIVE_R07 !== '1' ||

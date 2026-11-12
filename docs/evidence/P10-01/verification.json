@@ -1,0 +1,76 @@
+{
+  "task": "P10-01",
+  "date": "2026-11-12",
+  "timezone": "Asia/Shanghai",
+  "branch": "codex/p10-01-document-canvas",
+  "mainBase": "fe86a11fae8d2ee434f39be6e888d445b2c17bb9",
+  "scope": "working tree, local acceptance",
+  "status": "implemented_not_live_verified",
+  "checks": [
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "collectedElectron": 134,
+      "log": "check.log"
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 519,
+      "log": "unit-final.log"
+    },
+    {
+      "command": "pnpm test:integration P10-01 P02-03.history P03-02.artifacts P07-01.document-storage",
+      "exitCode": 0,
+      "passed": 61,
+      "skipped": 1,
+      "log": "integration.log"
+    },
+    {
+      "command": "pnpm test:integration P10-01",
+      "exitCode": 0,
+      "passed": 4,
+      "skipped": 1,
+      "log": "integration-task.log"
+    },
+    {
+      "command": "pnpm test:integration P10-01 --testNamePattern 'T07 validates Chinese PDF'",
+      "env": {
+        "TAPKIT_P10_NATIVE": "1"
+      },
+      "exitCode": 0,
+      "passed": 1,
+      "scope": "Current Windows user, verified AppContainer Office conversion and isolated PDF inspection",
+      "log": "native-pdf.log"
+    },
+    {
+      "command": "pnpm test:e2e -- --grep 'P10-01|P02-03 T06|P00-01'",
+      "exitCode": 0,
+      "passed": 6,
+      "productionBuildRestored": true,
+      "log": "e2e-acceptance.log"
+    },
+    {
+      "command": "pnpm test:live P10-01",
+      "exitCode": 2,
+      "resource": "R13",
+      "providerRequests": 0,
+      "log": "live-preflight.log"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "log": "docs-check.log"
+    },
+    {
+      "command": "node scripts/runtime-probe.mjs --scope=current-user",
+      "exitCode": 0,
+      "passed": 22,
+      "report": "native-probe.json"
+    }
+  ],
+  "screenshots": [
+    "canvas-desktop.png",
+    "canvas-zoom-200.png"
+  ]
+}

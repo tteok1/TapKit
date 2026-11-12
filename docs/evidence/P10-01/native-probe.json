@@ -1,0 +1,26 @@
+{
+  "command": "node scripts/runtime-probe.mjs --scope=current-user",
+  "scope": "current-user",
+  "exitCode": 0,
+  "startedAt": "2026-11-12T03:29:32.648Z",
+  "endedAt": "2026-11-12T03:36:23.76Z",
+  "fingerprint": "e6b76afa58c4501d7827f3a3d219a0f7cdb479425bca0239819c5ebe4999f697",
+  "capabilities": {
+    "nativeExecution": {
+      "status": "available"
+    },
+    "officeRender": {
+      "status": "available"
+    },
+    "terminal": {
+      "status": "available"
+    }
+  },
+  "tests": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "pending": 0
+  },
+  "missingCases": []
+}

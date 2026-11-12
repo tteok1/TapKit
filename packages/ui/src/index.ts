@@ -20,3 +20,4 @@ export { Tooltip, TooltipLayer } from './tooltip';
 
 export { ClipboardProvider, CopyButton } from './clipboard';
 export { TerminalSurface } from './terminal';
+export * from './canvas-editor';

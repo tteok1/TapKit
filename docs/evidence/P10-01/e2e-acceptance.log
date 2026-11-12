@@ -1,0 +1,21 @@
+$ node scripts/e2e.mjs "--" "--grep" "P10-01|P02-03 T06|P00-01"
+✓ built in 1.67s
+✓ built in 1.13s
+✓ built in 6.24s
+✓ built in 1.27s
+✓ built in 683ms
+✓ built in 34.48s
+Running 6 tests using 1 worker
+  ok 1 tests\e2e\P00-01.shell.spec.ts:25:1 › P00-01 ABI: Electron React Core SQLite FTS5 and Chinese data directory (27.9s)
+  ok 2 tests\e2e\P00-01.shell.spec.ts:45:1 › P00-01 sandbox bridge errors and clean child shutdown (17.3s)
+  ok 3 tests\e2e\P02-03.history.spec.ts:142:1 › P02-03 T06 two turns, early edit, answer candidates, feedback and restart draft (37.5s)
+  ok 4 tests\e2e\P10-01.canvas.spec.ts:45:1 › P10-01 canvas edits, reviews, comments, exports and retains drafts at 200% zoom (23.0s)
+  ok 5 tests\e2e\P10-01.canvas.spec.ts:149:1 › P10-01 opens a chat reply and preserves two conflicting Electron windows (20.9s)
+  ok 6 tests\e2e\P10-01.canvas.spec.ts:176:1 › P10-01 opens a fixed Markdown file and saves linked text, lists, table and static image (19.9s)
+  6 passed (2.5m)
+✓ built in 1.57s
+✓ built in 931ms
+✓ built in 5.53s
+✓ built in 968ms
+✓ built in 634ms
+✓ built in 29.02s

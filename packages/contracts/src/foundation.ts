@@ -2,6 +2,7 @@ import { CodeViewSchema } from './code';
 import { TerminalViewSchema } from './terminal';
 import { GitHubViewSchema } from './github';
 import { SitePreviewReplySchema, SiteTransferSchema, SiteViewSchema } from './site';
+import { CanvasReplySchema } from './canvas';
 import { ExecutionCapabilitiesSchema } from './execution';
 import { ErrorCodeSchema } from './errors';
 export { ErrorCodeSchema } from './errors';
@@ -280,6 +281,7 @@ export const BootstrapViewSchema = z.strictObject({
   unreadCount: z.number().int().min(0),
 });
 export const ReplyDataSchema = z.union([
+  CanvasReplySchema,
   z.strictObject({ code: CodeViewSchema }),
   z.strictObject({ terminal: TerminalViewSchema }),
   z.strictObject({ github: GitHubViewSchema }),

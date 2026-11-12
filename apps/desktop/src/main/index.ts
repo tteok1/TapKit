@@ -1,7 +1,12 @@
 import { CodeCommandSchemas } from '@tapkit/contracts';
 import { TerminalCommandSchemas } from '@tapkit/contracts';
 import { GitHubCommandSchemas, GitHubConnectSchema } from '@tapkit/contracts';
-import { SiteCommandSchemas, SiteHostCommandSchemas, type Request } from '@tapkit/contracts';
+import {
+  CanvasCommandSchemas,
+  SiteCommandSchemas,
+  SiteHostCommandSchemas,
+  type Request,
+} from '@tapkit/contracts';
 import {
   clipboard,
   app,
@@ -151,6 +156,7 @@ function errorReply(requestId: string, code: z.infer<typeof ErrorCodeSchema>): R
 function forward(command: Record<string, unknown>): Promise<unknown> {
   const child = core;
   if (!child || quitting) return Promise.reject(new Error('Core unavailable'));
+  const operation = (command.request as { command?: string } | undefined)?.command;
   return new Promise((resolve, reject) => {
     const id = randomUUID(),
       timer = setTimeout(
@@ -158,23 +164,19 @@ function forward(command: Record<string, unknown>): Promise<unknown> {
           pending.delete(id);
           reject(new Error('Core timeout'));
         },
-        (command.request as { command?: string } | undefined)?.command === 'site.build'
+        operation === 'site.build' || operation === 'canvas.export'
           ? 300_000
-          : command.type === 'github.connect' ||
-              (command.request as { command?: string } | undefined)?.command?.startsWith('github.')
+          : command.type === 'github.connect' || operation?.startsWith('github.')
             ? 180_000
-            : (command.request as { command?: string } | undefined)?.command === 'models.diagnostic'
+            : operation === 'models.diagnostic'
               ? 310_000
-              : (command.request as { command?: string } | undefined)?.command === 'providers.check'
+              : operation === 'providers.check' || operation === 'canvas.aiEdit'
                 ? 130_000
                 : command.type === 'files.export' ||
                     command.type === 'artifacts.read' ||
-                    (command.request as { command?: string } | undefined)?.command ===
-                      'artifacts.open' ||
-                    (command.request as { command?: string } | undefined)?.command ===
-                      'artifacts.locate' ||
-                    (command.request as { command?: string } | undefined)?.command ===
-                      'files.import'
+                    operation === 'artifacts.open' ||
+                    operation === 'artifacts.locate' ||
+                    operation === 'files.import'
                   ? 130_000
                   : 30_000,
       );
@@ -715,6 +717,7 @@ if (ownsLock) {
       ...Object.keys(TerminalCommandSchemas),
       ...Object.keys(GitHubCommandSchemas),
       ...Object.keys(SiteCommandSchemas),
+      ...Object.keys(CanvasCommandSchemas),
       ...Object.keys(SiteHostCommandSchemas),
       'github.connect',
       'models.catalog',
@@ -768,7 +771,7 @@ if (ownsLock) {
     ipcMain.handle('tapkit:open-entity', async (event, raw: unknown) => {
       if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
       const entity = z
-        .strictObject({ type: z.enum(['session', 'project']), id: IdSchema })
+        .strictObject({ type: z.enum(['session', 'project', 'canvas']), id: IdSchema })
         .parse(raw);
       await ready;
       const reply = ReplySchema.parse(
@@ -777,16 +780,24 @@ if (ownsLock) {
           request: {
             protocolVersion: 1,
             requestId: uuid7(),
-            command: entity.type === 'session' ? 'sessions.get' : 'search.locate',
+            command:
+              entity.type === 'session'
+                ? 'sessions.get'
+                : entity.type === 'canvas'
+                  ? 'canvas.get'
+                  : 'search.locate',
             payload:
               entity.type === 'session'
                 ? { sessionId: entity.id }
-                : { type: 'project', id: entity.id },
+                : entity.type === 'canvas'
+                  ? { documentId: entity.id }
+                  : { type: 'project', id: entity.id },
           },
         }),
       );
       if (!reply.ok) throw new Error(reply.error.code);
-      createWindow('/' + (entity.type === 'session' ? 'sessions' : 'projects') + '/' + entity.id);
+      const path = { session: 'sessions', project: 'projects', canvas: 'canvas' }[entity.type];
+      createWindow('/' + path + '/' + entity.id);
     });
     ipcMain.handle('tapkit:open-public-link', async (event, raw: unknown) => {
       if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
