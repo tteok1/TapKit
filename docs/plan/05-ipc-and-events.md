@@ -183,7 +183,9 @@ DTO中的EntityView是不含凭据、绝对内部路径、native reasoning的可
 | github.preview/approve/dismiss    | {runId,intent} / {runId,previewId} / 同前 → GitHubView。单次票据绑定审阅内容和窗口。                                                |
 | github.reconcile/checkPR           | {runId} → GitHubView。核对待确认的远端写入，或读取已绑定 PR 的状态、检查与审查反馈。                                                |
 | canvas.open/save/aiEdit/apply     | {fileId} / {documentId,content,baseVersion} / {documentId,selection,request,baseVersion} / {proposalId,accept} → CanvasView/Proposal |
-| data.export/backup/restore/clear  | {categories,destinationToken} / {destinationToken?} / {selectionToken} / {categories,includeBackups} → {jobId,impactPreview?}        |
+| data.status / data.clearPreview | {} / {categories,includeBackups} → {dataStatus} / {dataImpact} |
+| data.clear / data.retryClear / data.backup | {categories,includeBackups,impactHash} / {jobId} / {} → {jobId} |
+| data.transfer / data.stageRestore / data.moveCheck | Host 私有命令。路径来自系统选择框，恢复选择来自本机备份 ID。迁移在 Core 停止写入后由 Host 执行。 |
 | diagnostics.bundle                | {includeContent:false                                                                                                                | true,destinationToken} → {fileId}；默认false        |
 | jobs.cancel                       | {jobId} → {status}；只取消已注册的基础后台作业，不是定时任务                                                                         |
 | events.subscribe/replay           | {streamId,afterSeq} → subscriptionId/Page<EventEnvelope>                                                                             |

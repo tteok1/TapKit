@@ -4,10 +4,10 @@ import { UiIcon } from './ui-icon';
 import { Tooltip } from './tooltip';
 
 export type StartMode = 'chat' | 'temporary' | 'work';
-const modes = ['chat', 'temporary', 'work'] as const;
 
 export function StartPage({
   mode,
+  saveChatHistory,
   onMode,
   showSuggestions,
   onSuggestions,
@@ -16,6 +16,7 @@ export function StartPage({
   children,
 }: {
   mode: StartMode;
+  saveChatHistory: boolean;
   onMode: (mode: StartMode) => void;
   showSuggestions: boolean;
   onSuggestions: () => void;
@@ -23,6 +24,9 @@ export function StartPage({
   busy: boolean;
   children: ReactNode;
 }) {
+  const modes: StartMode[] = saveChatHistory
+    ? ['chat', 'temporary', 'work']
+    : ['temporary', 'work'];
   function move(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     const next =
       event.key === 'ArrowRight'

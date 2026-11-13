@@ -161,7 +161,7 @@ jobs:
           }
       - name: Electron end-to-end checks
         run: |
-          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:e2e -- --grep "P00-0[12]|P02-02|P03-0[123]|P04-0[123]|P09-0[1234]|P10-0[12]"
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:e2e -- --grep "P00-0[12]|P02-02|P03-0[123]|P04-0[123]|P09-0[1234]|P10-0[123]"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -10,6 +10,7 @@ import {
   newId,
   migrate,
   migrations,
+  Store,
 } from '../../packages/storage/src';
 import { createRequire } from 'node:module';
 import { CoreService } from '../../packages/core/src/service';
@@ -446,5 +447,67 @@ test('P05-02 T20 schema15 migration preserves queue rows and dependent memory ca
     db.close();
   } finally {
     f.store.close();
+  }
+});
+
+test('P05-02 T20 schema25 upgrade reconciles export states and restores queue updates', async () => {
+  const dir = await mkdtemp(resolve('.test-data', 'P05-02 export migration '));
+  const Database = createRequire(import.meta.url)(
+    'better-sqlite3',
+  ) as typeof import('better-sqlite3');
+  const db = new Database(':memory:');
+  try {
+    db.pragma('foreign_keys=ON');
+    await migrate(
+      db,
+      join(dir, 'backups'),
+      migrations.filter(({ version }) => version <= 25),
+    );
+    const store = new Store(db, dir);
+    const queue = new JobQueue(store);
+    const source = newId();
+    function addExport(progress: number, error: string | null = null) {
+      const id = newId();
+      const jobId = queue.enqueue(
+        { schemaVersion: 1, kind: 'snapshot.export', exportId: id },
+        'export:' + id,
+      );
+      db.prepare(
+        "INSERT INTO exports(id,profile_id,created_at,updated_at,source_kind,source_id,snapshot_version,format,options_json,job_id,name,state,progress,error_code) VALUES(?,?,0,0,'session',?,'1','txt','{}',?,'fixture.txt','queued',?,?)",
+      ).run(id, store.profileId, source, jobId, progress, error);
+      return { id, jobId };
+    }
+    const done = addExport(99);
+    const finished = queue.claim(newId())!;
+    expect(finished.id).toBe(done.jobId);
+    expect(queue.finish(finished, 'completed', done.id)).toBe(true);
+    const cancelled = addExport(0);
+    queue.cancel(cancelled.jobId);
+    const uncertain = addExport(85, 'SIDE_EFFECT_UNKNOWN');
+    const interrupted = queue.claim(newId())!;
+    expect(interrupted.id).toBe(uncertain.jobId);
+    expect(queue.finish(interrupted, 'failed')).toBe(true);
+    const pending = addExport(0);
+    const read = (id: string) =>
+      db.prepare('SELECT state,progress,error_code,job_id FROM exports WHERE id=?').get(id);
+    expect(read(done.id)).toMatchObject({ state: 'queued', progress: 99 });
+
+    await migrate(db, join(dir, 'backups'));
+    await migrate(db, join(dir, 'backups'));
+    expect(read(done.id)).toMatchObject({ state: 'completed', progress: 100, job_id: done.jobId });
+    expect(read(cancelled.id)).toMatchObject({ state: 'cancelled', error_code: 'CANCELLED' });
+    expect(read(uncertain.id)).toMatchObject({
+      state: 'failed',
+      error_code: 'SIDE_EFFECT_UNKNOWN',
+    });
+    expect(read(pending.id)).toMatchObject({ state: 'queued' });
+    const active = queue.claim(newId())!;
+    expect(active.id).toBe(pending.jobId);
+    expect(read(pending.id)).toMatchObject({ state: 'running' });
+    queue.cancel(pending.jobId);
+    expect(read(pending.id)).toMatchObject({ state: 'cancelled', error_code: 'CANCELLED' });
+    expect(db.pragma('foreign_key_check')).toEqual([]);
+  } finally {
+    db.close();
   }
 });

@@ -40,6 +40,7 @@ type Row = {
   deleted_at: number | null;
   change_event_id: string | null;
   sensitive: number;
+  imported: number;
 };
 type Source = {
   id: string;
@@ -215,6 +216,7 @@ export class MemoryService {
       sources: this.sources(r),
       changeEventId: r.change_event_id,
       sensitive: !!r.sensitive,
+      ...(r.imported ? { imported: true } : {}),
     });
   }
   list(scope: MemoryScope, query = '', cursor?: string) {
@@ -222,7 +224,7 @@ export class MemoryService {
     const fts = query.length >= 3;
     const rows = this.store.db
       .prepare(
-        "SELECT m.* FROM memories m JOIN memory_search_documents d ON d.memory_id=m.id WHERE m.profile_id=? AND m.scope_type=? AND m.scope_id=? AND m.status='active' AND m.deleted_at IS NULL AND (m.expires_at IS NULL OR m.expires_at>?) AND (?='' OR instr(lower(d.body),lower(?))>0)" +
+        "SELECT m.* FROM memories m JOIN memory_search_documents d ON d.memory_id=m.id WHERE m.profile_id=? AND m.scope_type=? AND m.scope_id=? AND (m.status='active' OR m.imported=1) AND m.deleted_at IS NULL AND (m.expires_at IS NULL OR m.expires_at>?) AND (?='' OR instr(lower(d.body),lower(?))>0)" +
           (fts ? ' AND d.rowid IN(SELECT rowid FROM memory_fts WHERE memory_fts MATCH ?)' : '') +
           ' AND (? IS NULL OR m.id>?) ORDER BY m.id LIMIT 101',
       )
@@ -240,7 +242,7 @@ export class MemoryService {
     return {
       memories: rows
         .slice(0, 100)
-        .filter((r) => this.valid(r))
+        .filter((r) => r.imported || this.valid(r))
         .map((r) => this.view(r)),
       nextCursor: rows.length > 100 ? rows[99]!.id : null,
     };

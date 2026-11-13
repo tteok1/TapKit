@@ -5,6 +5,7 @@ import {
   ResourceRefSchema,
   CoreEventSchema,
   SettingsSetSchema,
+  STORAGE_SCHEMA_VERSION,
 } from '../../packages/contracts/src/index';
 import { trustedSender } from '../../apps/desktop/src/main/security';
 const id = '019953fa-0000-7000-8000-000000000001';
@@ -18,8 +19,19 @@ describe('P00-02 contracts and IPC boundaries', () => {
       expect(RequestSchema.safeParse(request).success).toBe(false);
     expect(CoreEventSchema.safeParse({ type: 'ready' }).success).toBe(false);
     expect(
-      CoreEventSchema.safeParse({ type: 'ready', protocolVersion: 1, schemaVersion: 24 }).success,
+      CoreEventSchema.safeParse({
+        type: 'ready',
+        protocolVersion: 1,
+        schemaVersion: STORAGE_SCHEMA_VERSION,
+      }).success,
     ).toBe(true);
+    expect(
+      CoreEventSchema.safeParse({
+        type: 'ready',
+        protocolVersion: 1,
+        schemaVersion: STORAGE_SCHEMA_VERSION + 1,
+      }).success,
+    ).toBe(false);
   });
   it('requires exact registered window, main frame and app URL', () => {
     const frame = { url: 'file:///app/index.html' },

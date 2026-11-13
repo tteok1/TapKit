@@ -34,6 +34,7 @@ export const MemoryViewSchema = z.strictObject({
   sources: z.array(MemorySourceSchema).max(100),
   changeEventId: IdSchema.nullable(),
   sensitive: z.boolean(),
+  imported: z.literal(true).optional(),
 });
 export type MemoryView = z.infer<typeof MemoryViewSchema>;
 export const MemoryPageSchema = z.strictObject({

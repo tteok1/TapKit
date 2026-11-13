@@ -15,7 +15,10 @@ export const settingCategories = {
   models: { title: t.models, words: '默认模型 预算 费用' },
   archived: { title: t.archived, words: '归档 会话' },
   trash: { title: t.trash, words: '回收 还原 删除' },
-  privacy: { title: t.privacy, words: '权限 文件 网络 通知 数据' },
+  privacy: {
+    title: t.privacy,
+    words: '权限 文件 网络 通知 数据 备份 恢复 导出 导入 清理 迁移 临时聊天',
+  },
   availability: { title: '未来能力', words: '规划中 插件 定时 智能体 模板 图片 语音 视频 屏幕' },
   agreement: { title: t.agreement, words: '协议 说明' },
 };
@@ -43,7 +46,7 @@ const settingFields = {
     '模型网络代理',
   ],
   shortcuts: ['全局快速输入', '新建窗口', '新建聊天'],
-  privacy: ['允许 Windows 系统通知'],
+  privacy: ['允许 Windows 系统通知', '保存聊天记录', '产品反馈默认附带脱敏诊断'],
 } as const;
 
 export function SettingsNavigation({ page }: { page: string }) {

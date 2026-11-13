@@ -89,6 +89,10 @@ export const BackupManifestSchema = z.strictObject({
   schemaVersion: z.literal(1),
   id: IdSchema,
   createdAt: TimeSchema,
+  databaseHash: z
+    .string()
+    .regex(/^[a-f0-9]{64}$/)
+    .optional(),
   blobs: z
     .array(
       z.strictObject({
@@ -108,7 +112,7 @@ export const BackupManifestSchema = z.strictObject({
 export const DeletionJournalEntrySchema = z.strictObject({
   schemaVersion: z.literal(1),
   profileId: IdSchema,
-  entityType: z.enum(['file', 'session', 'message']),
+  entityType: z.enum(['file', 'session', 'message', 'memory', 'project']),
   keepAsNote: z.boolean().optional(),
   entityId: IdSchema,
   deletedAt: TimeSchema,

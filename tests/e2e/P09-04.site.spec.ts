@@ -106,17 +106,21 @@ test('P09-04 builds, interacts, preserves versions and rebuilds exported website
     await expect
       .poll(readPreview)
       .toMatchObject({ heading: '开放时间', bridge: 'undefined', node: 'undefined' });
+    const pane = site.locator('[aria-label="本地网站预览"]');
     for (const [label, width] of [
       ['桌面 900px', 900],
       ['平板 768px', 768],
+      ['手机 390px', 390],
     ] as const) {
-      await site.getByRole('button', { name: label }).click();
+      const preset = site.getByRole('button', { name: label });
+      await preset.click();
+      await expect(preset).toHaveAttribute('aria-pressed', 'true');
+      // The native view stays hidden while its placeholder is outside the scroll viewport.
+      await pane.scrollIntoViewIfNeeded();
       await expect
         .poll(async () => Math.abs((await readPreview())?.width - width))
-        .toBeLessThanOrEqual(2);
+        .toBeLessThanOrEqual(width === 390 ? 0 : 2);
     }
-    await site.getByRole('button', { name: '手机 390px' }).click();
-    await expect.poll(readPreview).toMatchObject({ width: 390 });
     const enter = site.getByRole('button', { name: '进入预览（Esc 返回）' });
     await enter.press('Enter');
     await expect

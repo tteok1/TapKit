@@ -14,6 +14,7 @@ import m from '../locales/memory.zh-CN.json';
 import { settingCategories, SettingsNavigation } from './settings-navigation';
 import { requestOptions } from './desktop-state';
 import { HistorySettings } from './history-settings';
+import { DataPanel } from '../features/privacy/DataPanel';
 import { FutureFeatures, PlannedFeatures } from '../features/placeholders/PlannedFeatures';
 import { DesktopPreferenceFields, ShortcutSettings } from '../features/settings/PreferenceFields';
 
@@ -25,7 +26,11 @@ const categoryKeys: Record<string, (keyof SettingsValues)[]> = {
   privacy: ['desktop'],
 };
 const shortcutKeys = ['shortcuts', 'quickInputEnabled'] as const;
-const permissionKeys = ['systemNotifications'] as const;
+const permissionKeys = [
+  'systemNotifications',
+  'saveChatHistory',
+  'includeSupportDiagnostics',
+] as const;
 
 function preserveDesktopFields(page: string, desktop: SettingsValues['desktop']) {
   const keys = page === 'shortcuts' ? shortcutKeys : page === 'privacy' ? permissionKeys : [];
@@ -517,6 +522,29 @@ export function DesktopSettings({
         )}
         {page === 'privacy' && (
           <article>
+            <h2>聊天记录与反馈</h2>
+            <label className="check-label">
+              <input
+                type="checkbox"
+                checked={desktop.saveChatHistory}
+                onChange={(event) =>
+                  update('desktop', { ...desktop, saveChatHistory: event.target.checked })
+                }
+              />
+              保存聊天记录
+            </label>
+            <p>关闭后新聊天使用临时模式。临时聊天在关闭窗口后清除，已有记录可在数据管理中清理。</p>
+            <label className="check-label">
+              <input
+                type="checkbox"
+                checked={desktop.includeSupportDiagnostics}
+                onChange={(event) =>
+                  update('desktop', { ...desktop, includeSupportDiagnostics: event.target.checked })
+                }
+              />
+              产品反馈默认附带脱敏诊断
+            </label>
+            <p>默认关闭。反馈由你确认后导出或提交。</p>
             <h2>文件、通知与外部请求</h2>
             <label className="check-label">
               <input
@@ -581,6 +609,7 @@ export function DesktopSettings({
             </button>
           </div>
         )}
+        {page === 'privacy' && <DataPanel />}
         {page === 'general' && (
           <div className="settings-reset">
             {confirmReset ? (

@@ -1,0 +1,86 @@
+{
+  "task": "P10-03",
+  "date": "2026-11-13",
+  "timeZone": "Asia/Shanghai",
+  "branch": "codex/p10-03-data-lifecycle",
+  "base": "761f08e07c5a372b2444d5431f560b683d207387",
+  "revision": "working tree",
+  "environment": {
+    "platform": "Windows",
+    "node": "24.21.0",
+    "electron": "44.3.0",
+    "profile": "isolated synthetic fixtures"
+  },
+  "prerequisite": {
+    "task": "P10-02",
+    "mainRun": 102,
+    "runId": 43248007103,
+    "check": "success",
+    "electron": "success",
+    "officeNative": "success"
+  },
+  "checks": [
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "playwrightCollected": 138
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "taskRowsVerified": 37
+    },
+    {
+      "command": "pnpm build",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm exec vite build --config packages/storage/vite.config.ts",
+      "exitCode": 0,
+      "scope": "final storage retry changes"
+    },
+    {
+      "command": "pnpm test:unit P00-02 P02-01 P04-03 P10-02",
+      "exitCode": 0,
+      "passed": 24,
+      "files": 6
+    },
+    {
+      "command": "pnpm test:integration P10-03 P00-02 P04-03",
+      "exitCode": 0,
+      "passed": 42,
+      "files": 3,
+      "p10_03": 7
+    },
+    {
+      "command": "pnpm test:e2e -- --grep P10-03 --repeat-each 2",
+      "exitCode": 0,
+      "passed": 2
+    },
+    {
+      "command": "pnpm test:e2e -- --grep 'P00-01|P10-03'",
+      "exitCode": 0,
+      "passed": 3,
+      "scope": "desktop bridge and initial P10-03 regression"
+    }
+  ],
+  "t20": [
+    "Independent profile with remapped branches, files and references. Synthetic source credential and opaque state excluded. Imported memory available for reading.",
+    "Malformed, truncated, unexpected-entry, wrong-hash and future-schema archives rejected.",
+    "Immediate file revocation, removal from links/search/index/cache and deletion journal replay after installing an older verified snapshot.",
+    "Terminated a child after claiming data.clear and staging an affected snapshot. Recovered the same job with a fresh lease, removed incomplete affected snapshots and reclaimed bytes.",
+    "Remaining independent memory sources preserved after a project/session clear.",
+    "Aborted backup and manifest publication failure preserve the previous verified snapshot. Read-only export uses deletion replay and preserves the damaged original.",
+    "Migration verifies contents, preserves the profile identity and rejects an invalid destination."
+  ],
+  "resolved": [
+    "Initial storage test treated synchronous NOT_FOUND as a rejected promise. Corrected the assertion.",
+    "Initial Electron fixture used UUIDv4 where request options require UUIDv7. Corrected the fixture.",
+    "One Electron run failed in the backup-prune stage. Added bounded Windows sharing-error retry for snapshot rename and removal. Two subsequent Electron runs passed."
+  ],
+  "scope": {
+    "restoreAndMigration": "Real SQLite snapshot and filesystem integration. Desktop restart dialogs are not driven in the Electron test.",
+    "externalAccountsRequired": false,
+    "retainedSourceDirectory": true
+  }
+}

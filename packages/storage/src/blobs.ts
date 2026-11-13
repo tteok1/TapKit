@@ -6,6 +6,7 @@ import Database from 'better-sqlite3';
 import { IdSchema, BackupManifestSchema, DeletionJournalEntrySchema } from '@tapkit/contracts';
 import { Store, newId, fileExists, StorageError, SCHEMA_VERSION } from './foundation';
 import { eraseFileDerivedContent } from './file-cleanup';
+import { hashLocalFile, localBackups } from './lifecycle-backups';
 
 export class BlobStore {
   private tail: Promise<unknown> = Promise.resolve();
@@ -223,24 +224,12 @@ export class BlobStore {
   backupReferencedBlobs() {
     return this.exclusive(async () => {
       const referenced = new Map<string, number>();
-      const backups = this.store.db
-        .prepare("SELECT id FROM backups WHERE profile_id=? AND state='complete'")
-        .all(this.store.profileId) as { id: string }[];
-      for (const backup of backups) {
-        const id = IdSchema.parse(backup.id),
-          path = join(this.store.dataDir, 'backups', id, 'manifest.json');
-        const meta = await lstat(path);
-        if (!meta.isFile() || meta.isSymbolicLink() || meta.size > 100 * 1024 * 1024)
-          throw new StorageError('DATABASE_RECOVERY_REQUIRED');
-        const manifest = BackupManifestSchema.parse(JSON.parse(await readFile(path, 'utf8')));
-        if (manifest.id !== id) throw new StorageError('DATABASE_RECOVERY_REQUIRED');
+      for (const { manifest } of await localBackups(this.store.dataDir)) {
         for (const blob of manifest.blobs) {
-          const row = this.store.db
-            .prepare(
-              "SELECT size_bytes FROM blobs WHERE sha256=? AND profile_id=? AND state='ready' AND deleted_at IS NULL",
-            )
-            .get(blob.sha256, this.store.profileId) as { size_bytes: number } | undefined;
-          if (!row || row.size_bytes !== blob.size_bytes)
+          if (blob.relative_key !== 'blobs/sha256/' + blob.sha256.slice(0, 2) + '/' + blob.sha256)
+            throw new StorageError('DATABASE_RECOVERY_REQUIRED');
+          const meta = await lstat(join(this.store.dataDir, blob.relative_key));
+          if (!meta.isFile() || meta.isSymbolicLink() || meta.size !== blob.size_bytes)
             throw new StorageError('DATABASE_RECOVERY_REQUIRED');
           referenced.set(blob.sha256, blob.size_bytes);
         }
@@ -293,6 +282,7 @@ export class BlobStore {
       const directory = join(this.store.dataDir, 'backups', id),
         manifestPath = join(directory, 'manifest.json');
       await mkdir(directory, { recursive: true });
+      if ((await lstat(directory)).isSymbolicLink()) throw new StorageError('PERMISSION_DENIED');
       signal?.throwIfAborted();
       const existing = await fileExists(manifestPath);
       if (!existing)
@@ -302,7 +292,29 @@ export class BlobStore {
             return 100;
           },
         });
-      const snapshot = new Database(join(directory, 'app.sqlite'), {
+      const databasePath = join(directory, 'app.sqlite');
+      if (!existing) {
+        const copy = new Database(databasePath, { fileMustExist: true });
+        try {
+          copy.pragma('journal_mode = DELETE');
+          copy.pragma('secure_delete = ON');
+          copy.transaction(() => {
+            copy.prepare('UPDATE provider_attempts SET native_state_ref=NULL').run();
+            copy.prepare('DELETE FROM opaque_states').run();
+            copy
+              .prepare(
+                `UPDATE blobs AS b SET state='deleting',deleted_at=coalesce(deleted_at,?)
+              WHERE reference_count=0 AND NOT EXISTS(SELECT 1 FROM events e WHERE e.payload_blob_id=b.id)
+              AND (EXISTS(SELECT 1 FROM file_versions v WHERE v.deleted_at IS NOT NULL AND (v.blob_id=b.id OR v.preview_blob_id=b.id))
+                OR EXISTS(SELECT 1 FROM parsed_documents p WHERE p.deleted_at IS NOT NULL AND p.structure_blob_id=b.id))`,
+              )
+              .run(this.store.now());
+          })();
+        } finally {
+          copy.close();
+        }
+      }
+      const snapshot = new Database(databasePath, {
         readonly: true,
         fileMustExist: true,
       });
@@ -335,22 +347,26 @@ export class BlobStore {
               schemaVersion: 1,
               id,
               createdAt: this.store.now(),
+              databaseHash: await hashLocalFile(databasePath, signal),
               blobs,
               deletedResourceIds: deleted,
             },
       );
       if (
         manifest.id !== id ||
+        (manifest.databaseHash &&
+          manifest.databaseHash !== (await hashLocalFile(databasePath, signal))) ||
         JSON.stringify(manifest.blobs) !== JSON.stringify(blobs) ||
         JSON.stringify(manifest.deletedResourceIds) !== JSON.stringify(deleted)
       )
         throw new StorageError('DATABASE_RECOVERY_REQUIRED');
       for (const blob of manifest.blobs) {
         signal?.throwIfAborted();
-        const bytes = await readFile(join(this.store.dataDir, blob.relative_key));
+        const path = join(this.store.dataDir, blob.relative_key);
         if (
-          bytes.length !== blob.size_bytes ||
-          createHash('sha256').update(bytes).digest('hex') !== blob.sha256
+          blob.relative_key !== 'blobs/sha256/' + blob.sha256.slice(0, 2) + '/' + blob.sha256 ||
+          (await lstat(path)).size !== blob.size_bytes ||
+          (await hashLocalFile(path, signal)) !== blob.sha256
         )
           throw new StorageError('DATABASE_RECOVERY_REQUIRED');
       }
@@ -443,25 +459,47 @@ export class BlobStore {
     });
   }
   async dailyBackup() {
-    const day = new Date(this.store.now()).toISOString().slice(0, 10);
+    const timeZone = (
+      this.store.db
+        .prepare('SELECT timezone FROM profiles WHERE id=?')
+        .get(this.store.profileId) as { timezone: string }
+    ).timezone;
+    const day = new Intl.DateTimeFormat('sv-SE', { timeZone, dateStyle: 'short' }).format(
+      this.store.now(),
+    );
     const marker = join(this.store.dataDir, 'backups/daily-' + day + '.json');
-    if (!(await fileExists(marker))) {
+    const markerId = async (path: string) => {
+      try {
+        const meta = await lstat(path);
+        if (!meta.isFile() || meta.isSymbolicLink() || meta.size > 1024) return undefined;
+        const prior = JSON.parse(await readFile(path, 'utf8')) as { id: string };
+        return IdSchema.parse(prior.id);
+      } catch {
+        return undefined;
+      }
+    };
+    const prior = await markerId(marker);
+    const valid =
+      prior &&
+      (await localBackups(this.store.dataDir)).some(({ manifest }) => manifest.id === prior);
+    if (!valid) {
       const id = await this.backup(newId());
-      await writeFile(marker, JSON.stringify({ id }), { flag: 'wx' });
+      const staged = marker + '.' + newId() + '.tmp';
+      await writeFile(staged, JSON.stringify({ id }), { flag: 'wx' });
+      await rename(staged, marker);
     }
     const markers = (await readdir(join(this.store.dataDir, 'backups')))
       .filter((n) => /^daily-\d{4}-\d{2}-\d{2}\.json$/.test(n))
       .sort()
       .reverse();
     for (const name of markers.slice(7)) {
-      const { id } = JSON.parse(
-        await readFile(join(this.store.dataDir, 'backups', name), 'utf8'),
-      ) as { id: string };
-      IdSchema.parse(id);
-      // IDs are validated; deletion remains inside DATA/backups.
-      await rm(join(this.store.dataDir, 'backups', id), { recursive: true, force: true });
-      await rm(join(this.store.dataDir, 'backups', name));
-      this.store.db.prepare('DELETE FROM backups WHERE id=?').run(id);
+      const path = join(this.store.dataDir, 'backups', name);
+      const id = await markerId(path);
+      if (id) {
+        await rm(join(this.store.dataDir, 'backups', id), { recursive: true, force: true });
+        this.store.db.prepare('DELETE FROM backups WHERE id=?').run(id);
+      }
+      await rm(path);
     }
   }
 }

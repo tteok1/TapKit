@@ -7,6 +7,7 @@ import { ExecutionCapabilitiesSchema } from './execution';
 import { ErrorCodeSchema } from './errors';
 export { ErrorCodeSchema } from './errors';
 import { ChatReplyDataSchema } from './chat';
+import { LifecycleReplySchema, ClearJobPayloadSchema } from './data-lifecycle';
 import { WebReplySchema } from './web';
 import { BrowserReplySchema } from './browser';
 import { ExportReplySchema } from './exports';
@@ -49,6 +50,7 @@ import {
 import { z } from 'zod';
 import { IdSchema } from './identity';
 export { IdSchema } from './identity';
+export const STORAGE_SCHEMA_VERSION = 26;
 export const RevisionSchema = z.number().int().min(1).max(Number.MAX_SAFE_INTEGER);
 export const TimeSchema = z.number().int().min(0).max(8_640_000_000_000_000);
 export type ErrorCode = z.infer<typeof ErrorCodeSchema>;
@@ -138,6 +140,7 @@ export const ReplaySchema = z.strictObject({
   limit: z.number().int().min(1).max(100).default(50),
 });
 export const JobPayloadSchema = z.discriminatedUnion('kind', [
+  ClearJobPayloadSchema,
   z.strictObject({
     schemaVersion: z.literal(1),
     kind: z.literal('snapshot.export'),
@@ -282,6 +285,7 @@ export const BootstrapViewSchema = z.strictObject({
   unreadCount: z.number().int().min(0),
 });
 export const ReplyDataSchema = z.union([
+  LifecycleReplySchema,
   CanvasReplySchema,
   z.strictObject({ code: CodeViewSchema }),
   z.strictObject({ terminal: TerminalViewSchema }),

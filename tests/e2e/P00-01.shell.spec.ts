@@ -110,6 +110,10 @@ test('P00-01 sandbox bridge errors and clean child shutdown', async () => {
       'replayEvents',
       'subscribeEvents',
       'backup',
+      'dataCommand',
+      'transferData',
+      'restoreData',
+      'moveDataRoot',
       'cancelJob',
     ],
   });

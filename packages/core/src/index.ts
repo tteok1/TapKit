@@ -29,6 +29,7 @@ import {
 } from '@tapkit/contracts';
 import {
   openStore,
+  withRecoverySnapshot,
   BlobStore,
   FileRepository,
   StorageError,
@@ -37,6 +38,9 @@ import {
 } from '@tapkit/storage';
 import { CoreService } from './service';
 import { FoundationWorker } from './worker';
+import { DataLifecycle } from './data-lifecycle/service';
+import { PortableData } from './data-lifecycle/portable';
+import { DataCommandSchemas } from '@tapkit/contracts';
 import { FileParser } from './file-parser';
 import { FileSelections } from './file-selections';
 import { FileService } from './file-service';
@@ -74,6 +78,7 @@ if (!dataDir || !isAbsolute(dataDir)) throw new Error('Core requires a Host data
 async function start() {
   const store = await openStore(dataDir!);
   const blobs = new BlobStore(store);
+  const lifecycle = new DataLifecycle(store, blobs);
   await blobs.dailyBackup();
   await blobs.gc();
   const service = new CoreService(
@@ -373,11 +378,13 @@ async function start() {
     blobs,
     (event) => port!.postMessage({ type: 'event', event }),
     (job, signal) =>
-      job.kind === 'snapshot.export'
-        ? exports.execute(job, signal)
-        : job.kind === 'memory.extract'
-          ? chat.memories.execute(job, signal)
-          : parser.execute(job, signal),
+      job.kind === 'data.clear'
+        ? lifecycle.executeClear(job, signal)
+        : job.kind === 'snapshot.export'
+          ? exports.execute(job, signal)
+          : job.kind === 'memory.extract'
+            ? chat.memories.execute(job, signal)
+            : parser.execute(job, signal),
   );
   let closing = false;
   port!.on('message', ({ data }: { data: unknown }) => {
@@ -389,6 +396,7 @@ async function start() {
       return;
     }
     if (command.type === 'window.closed') {
+      lifecycle.closeWindow(command.windowId);
       canvas.closeWindow(command.windowId);
       github.closeWindow(command.windowId);
       exports.closeWindow(command.windowId);
@@ -397,6 +405,22 @@ async function start() {
       fileExporter.closeWindow(command.windowId);
       projectExporter.closeWindow(command.windowId);
       artifacts.closeWindow(command.windowId);
+      return;
+    }
+    if (
+      command.type === 'data.transfer' ||
+      command.type === 'data.stageRestore' ||
+      command.type === 'data.moveCheck'
+    ) {
+      const work =
+        command.type === 'data.transfer'
+          ? lifecycle.transfer(command)
+          : command.type === 'data.stageRestore'
+            ? lifecycle.restore(command.requestId, command.backupId)
+            : Promise.resolve(lifecycle.checkMove(command.requestId));
+      void work.then((reply) => {
+        if (!closing) port!.postMessage({ type: 'reply', id: command.id, reply });
+      });
       return;
     }
     if (command.type === 'artifacts.read') {
@@ -609,6 +633,7 @@ async function start() {
       clearInterval(stagingTimer);
       void Promise.all([
         worker.stop(),
+        lifecycle.stop(),
         chat.stop(),
         work.stop(),
         runtime.stop(),
@@ -664,6 +689,12 @@ async function start() {
           temporary.cancelAccount(account.data.accountId);
           work.cancelAccount(account.data.accountId);
         }
+      }
+      if (Object.hasOwn(DataCommandSchemas, command.request.command)) {
+        void lifecycle.dispatch(command.request).then((reply) => {
+          if (!closing) port!.postMessage({ type: 'reply', id: command.id, reply });
+        });
+        return;
       }
       if (Object.hasOwn(CanvasCommandSchemas, command.request.command)) {
         void canvas.dispatch(command.request).then((reply) => {
@@ -724,8 +755,39 @@ async function start() {
   chat.start();
   await work.start();
 }
-void start().catch(() => {
-  console.error('TAPKIT_DATABASE_RECOVERY_REQUIRED');
-  port!.postMessage({ type: 'unavailable', code: 'DATABASE_RECOVERY_REQUIRED' });
-  setTimeout(() => process.exit(1), 20);
-});
+if (process.env.TAPKIT_CORE_RECOVERY_READONLY === '1') {
+  port.once('message', ({ data }: { data: unknown }) => {
+    const parsed = CoreCommandSchema.safeParse(data);
+    if (
+      !parsed.success ||
+      parsed.data.type !== 'data.transfer' ||
+      parsed.data.selection.action !== 'export'
+    )
+      return;
+    const { id, requestId, selection, path } = parsed.data;
+    const signal = AbortSignal.timeout(120_000);
+    void withRecoverySnapshot(
+      dataDir,
+      (store) =>
+        new PortableData(store, new BlobStore(store)).export(selection.categories, path, signal),
+      signal,
+    )
+      .then((dataTransfer) => ReplySchema.parse({ ok: true, requestId, data: { dataTransfer } }))
+      .catch((error: unknown) =>
+        failure(
+          requestId,
+          signal.aborted
+            ? 'CANCELLED'
+            : error instanceof StorageError
+              ? error.code
+              : 'INTERNAL_ERROR',
+        ),
+      )
+      .then((reply) => port.postMessage({ type: 'reply', id, reply }));
+  });
+} else
+  void start().catch(() => {
+    console.error('TAPKIT_DATABASE_RECOVERY_REQUIRED');
+    port!.postMessage({ type: 'unavailable', code: 'DATABASE_RECOVERY_REQUIRED' });
+    setTimeout(() => process.exit(1), 20);
+  });

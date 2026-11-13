@@ -114,6 +114,12 @@ export class CoreService {
           const p = SessionCreateSchema.parse(request.payload);
           return this.store.receipt(request, () => {
             if (
+              p.mode === 'chat' &&
+              !this.store.volatile &&
+              !this.store.settings.values.desktop.saveChatHistory
+            )
+              throw new StorageError('PERMISSION_DENIED');
+            if (
               p.projectId &&
               !this.store.db
                 .prepare(

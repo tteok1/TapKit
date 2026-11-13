@@ -687,7 +687,13 @@ export class ChatService {
           return this.ok(request, this.draft(ChatDraftSchema.parse(request.payload)));
         case 'drafts.save': {
           const p = ChatDraftSaveSchema.parse(request.payload);
-          this.session(p.sessionId);
+          const session = this.session(p.sessionId);
+          if (
+            session.mode === 'chat' &&
+            !this.store.volatile &&
+            !this.store.settings.values.desktop.saveChatHistory
+          )
+            throw new StorageError('PERMISSION_DENIED');
           if (request.expectedRevision === undefined) throw new StorageError('VALIDATION_ERROR');
           request.payload = p;
           return this.store.receipt(request, () => {
@@ -746,6 +752,8 @@ export class ChatService {
               ...(existing.run_id ? { runId: existing.run_id } : q ? { queuedInputId: q.id } : {}),
             });
           }
+          if (!this.store.volatile && !this.store.settings.values.desktop.saveChatHistory)
+            throw new StorageError('PERMISSION_DENIED');
           const projects = new ProjectService(new FileRepository(this.store, this.blobs));
           const projectScope = s.project_id ? projects.selection(s.id) : undefined;
           const attachments: ResourceRef[] = [];
