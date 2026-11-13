@@ -13,6 +13,7 @@ import { ArtifactAssetSchema } from './artifacts';
 import { WorkNotificationSchema } from './work';
 import {
   RequestSchema,
+  STORAGE_SCHEMA_VERSION,
   SettingsSetSchema,
   SaveApiKeySchema,
   ReplySchema,
@@ -189,7 +190,7 @@ export const CoreEventSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('ready'),
     protocolVersion: z.literal(1),
-    schemaVersion: z.literal(25),
+    schemaVersion: z.literal(STORAGE_SCHEMA_VERSION),
   }),
   z.strictObject({ type: z.literal('pong'), id: z.string().uuid(), payload: PingReplySchema }),
   z.strictObject({ type: z.literal('reply'), id: z.string().uuid(), reply: ReplySchema }),

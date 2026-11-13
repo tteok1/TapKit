@@ -24,6 +24,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import {
   DEFAULT_SETTINGS,
+  STORAGE_SCHEMA_VERSION,
   SettingsDocumentSchema,
   ReplySchema,
   ReplyDocumentSchema,
@@ -150,7 +151,7 @@ export const migrations: Migration[] = [
   { version: 24, sql: canvasSql },
   { version: 25, sql: lifecycleSql },
 ];
-export const SCHEMA_VERSION = 25;
+export const SCHEMA_VERSION = STORAGE_SCHEMA_VERSION;
 export async function migrate(db: Database.Database, backupDirectory: string, steps = migrations) {
   const trace = startupTrace('storage.migrate');
   trace('version.begin');

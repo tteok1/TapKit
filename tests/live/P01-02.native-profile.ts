@@ -2,7 +2,13 @@ import { realpathSync, readFileSync, existsSync } from 'node:fs';
 import { basename, isAbsolute, join, relative, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 import { DatabaseSync } from 'node:sqlite';
-import { ApiConfigSchema, IdSchema, resolveApiConfig, z } from '../../packages/contracts/src';
+import {
+  ApiConfigSchema,
+  IdSchema,
+  resolveApiConfig,
+  STORAGE_SCHEMA_VERSION,
+  z,
+} from '../../packages/contracts/src';
 
 export const NATIVE_FIXTURE_MARKER = 'P01-02 isolated encrypted native fixture';
 export const NativeSelectionSchema = z.strictObject({
@@ -51,7 +57,12 @@ export function selectNativeAccount(
   if (!account || account.length > 160) throw new Error('VALIDATION_ERROR');
   const db = new DatabaseSync(join(directory, 'db/app.sqlite'), { readOnly: true });
   try {
-    if (![22, 23, 24].includes(Number(db.prepare('PRAGMA user_version').get()?.user_version)))
+    const schemaVersion = Number(db.prepare('PRAGMA user_version').get()?.user_version);
+    if (
+      !Number.isInteger(schemaVersion) ||
+      schemaVersion < 22 ||
+      schemaVersion > STORAGE_SCHEMA_VERSION
+    )
       throw new Error('CONFLICT');
     // Only public configuration. The preflight never opens the vault or reads credential IDs.
     const rows = db

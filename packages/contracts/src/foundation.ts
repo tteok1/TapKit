@@ -50,6 +50,7 @@ import {
 import { z } from 'zod';
 import { IdSchema } from './identity';
 export { IdSchema } from './identity';
+export const STORAGE_SCHEMA_VERSION = 25;
 export const RevisionSchema = z.number().int().min(1).max(Number.MAX_SAFE_INTEGER);
 export const TimeSchema = z.number().int().min(0).max(8_640_000_000_000_000);
 export type ErrorCode = z.infer<typeof ErrorCodeSchema>;

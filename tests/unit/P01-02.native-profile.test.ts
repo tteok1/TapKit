@@ -9,7 +9,7 @@ import {
   nativeSelectionHash,
   selectNativeAccount,
 } from '../live/P01-02.native-profile';
-import { resolveApiConfig } from '../../packages/contracts/src';
+import { resolveApiConfig, STORAGE_SCHEMA_VERSION } from '../../packages/contracts/src';
 import { openStore, newId } from '../../packages/storage/src';
 import { CoreService } from '../../packages/core/src/service';
 
@@ -101,10 +101,18 @@ it('P01-02 public preflight is read-only and rejects multiple active accounts or
     store.db
       .prepare('UPDATE provider_accounts SET deleted_at=? WHERE id=?')
       .run(store.now(), other);
-    store.db.pragma('user_version=13');
-    expect(() =>
-      selectNativeAccount(resolve('.'), directory, 'openai-compatible', id, true),
-    ).toThrow('CONFLICT');
+    for (const version of [22, 24]) {
+      store.db.pragma('user_version=' + version);
+      expect(
+        selectNativeAccount(resolve('.'), directory, 'openai-compatible', id, true),
+      ).toMatchObject({ accountId: id });
+    }
+    for (const version of [21, STORAGE_SCHEMA_VERSION + 1]) {
+      store.db.pragma('user_version=' + version);
+      expect(() =>
+        selectNativeAccount(resolve('.'), directory, 'openai-compatible', id, true),
+      ).toThrow('CONFLICT');
+    }
   } finally {
     store.close();
   }

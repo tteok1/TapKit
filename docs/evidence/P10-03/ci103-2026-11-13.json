@@ -1,0 +1,52 @@
+{
+  "task": "P10-03",
+  "date": "2026-11-13",
+  "branch": "codex/p10-03-data-lifecycle",
+  "failedRun": {
+    "id": 43270289667,
+    "number": 103,
+    "headSha": "f56cd614d6f117e18f7d287ef6f73c14a083b084",
+    "jobs": {
+      "check": "failure",
+      "electron": "success",
+      "office-native": "success",
+      "repeat-diagnostics": "skipped"
+    },
+    "failedJobId": 131364694337,
+    "failedStep": "Unit and current-route integration",
+    "failedTest": "P01-02 public preflight is read-only and rejects multiple active accounts or an unsupported database version",
+    "error": "CONFLICT",
+    "unit": {
+      "passed": 521,
+      "failed": 1
+    }
+  },
+  "fix": "Share the current SQLite schema version across storage, Core ready event validation and the read-only native profile preflight. Retain the minimum compatible native profile schema of 22 and reject unknown future versions.",
+  "localChecks": [
+    {
+      "command": "pnpm test:unit P01-02.native-profile",
+      "phase": "before fix",
+      "exitCode": 1,
+      "reproduced": "CONFLICT"
+    },
+    {
+      "command": "pnpm test:unit",
+      "phase": "after fix",
+      "exitCode": 0,
+      "passed": 522,
+      "files": 81
+    },
+    {
+      "command": "pnpm test:integration P01-02.native-restart P00-02 P10-03",
+      "phase": "after fix",
+      "exitCode": 0,
+      "passed": 30,
+      "files": 3
+    },
+    {
+      "command": "pnpm check",
+      "phase": "after fix",
+      "exitCode": 0
+    }
+  ]
+}
