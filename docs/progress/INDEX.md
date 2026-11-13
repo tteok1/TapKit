@@ -1,4 +1,4 @@
-2026-11-13，P10-03=implemented_and_verified。数据生命周期本地验收通过。CI #103 的 schema 25 预检失败已修复。P10 工程通过，实机待验见 [P10-gate](P10-gate.md)。
+2026-11-13，P10-03=implemented_and_verified。数据生命周期本地验收通过。CI #103 的版本预检及 #104 的导出状态同步已修复。P10 工程通过，实机待验见 [P10-gate](P10-gate.md)。
 
 2026-11-12，P10-02=implemented_not_live_verified。CI #100 的 P00-01 已通过，P10-01 画布回复定位修复后本地 Electron 定向复跑 7/7。详见 [P10-02](P10-02.md)。
 

@@ -2,6 +2,7 @@ import codingSql from '../../../migrations/0022_coding.sql?raw';
 import codeExecutionSql from '../../../migrations/0023_code_execution.sql?raw';
 import canvasSql from '../../../migrations/0024_canvas.sql?raw';
 import lifecycleSql from '../../../migrations/0025_data_lifecycle.sql?raw';
+import exportJobStateSql from '../../../migrations/0026_restore_export_job_state.sql?raw';
 import delegationSql from '../../../migrations/0021_delegation.sql?raw';
 import Database from 'better-sqlite3';
 import { eraseFileDerivedContent } from './file-cleanup';
@@ -150,6 +151,7 @@ export const migrations: Migration[] = [
   { version: 23, sql: codeExecutionSql },
   { version: 24, sql: canvasSql },
   { version: 25, sql: lifecycleSql },
+  { version: 26, sql: exportJobStateSql },
 ];
 export const SCHEMA_VERSION = STORAGE_SCHEMA_VERSION;
 export async function migrate(db: Database.Database, backupDirectory: string, steps = migrations) {

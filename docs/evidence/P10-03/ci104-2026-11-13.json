@@ -1,0 +1,64 @@
+{
+  "task": "P10-03",
+  "date": "2026-11-13",
+  "branch": "codex/p10-03-data-lifecycle",
+  "failedRun": {
+    "id": 43383831490,
+    "number": 104,
+    "headSha": "02f27cb23994e4c4bcd1e079d5d21bf6b72210f1",
+    "jobs": {
+      "check": "failure",
+      "electron": "failure",
+      "office-native": "success",
+      "repeat-diagnostics": "skipped"
+    },
+    "check": {
+      "jobId": 131747533251,
+      "p05ExportFailures": 4,
+      "source": "GitHub check annotations"
+    },
+    "electron": {
+      "jobId": 131747532374,
+      "passed": 60,
+      "failed": 1,
+      "failedTest": "P09-04 builds, interacts, preserves versions and rebuilds exported website source",
+      "artifactId": 14019620375,
+      "failure": "Native preview reported innerWidth 0 before the placeholder was scrolled into view."
+    }
+  },
+  "fixes": [
+    "Migration 0026 recreates the queue export-status trigger and reconciles persisted schema 25 export rows, keeping side-effect uncertainty.",
+    "The website Electron test scrolls the native preview placeholder into view before checking each preset width."
+  ],
+  "localChecks": [
+    {
+      "command": "pnpm check",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 522
+    },
+    {
+      "command": "pnpm test:integration P05-02.exports P10-03 P00-02 P01-02.native-restart",
+      "exitCode": 0,
+      "passed": 41
+    },
+    {
+      "command": "pnpm test:integration P06-02.native",
+      "exitCode": 0,
+      "passed": 2
+    },
+    {
+      "command": "pnpm build:desktop",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm test:e2e -- --grep 'P09-04|P10-03' --repeat-each 2",
+      "exitCode": 0,
+      "passed": 4
+    }
+  ],
+  "additionalObservation": "The full pre-fix local integration run reproduced the four export failures and reported one unrelated P06-02 Office conversion timeout. The P06-02 native suite passed on its isolated rerun."
+}
