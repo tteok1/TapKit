@@ -71,6 +71,13 @@ const terms = (s: string) =>
       ),
     ]),
   ].slice(0, 100);
+const liveSource = `m.deleted_at IS NULL AND s.deleted_at IS NULL
+  AND NOT EXISTS(SELECT 1 FROM deletion_tombstones d WHERE d.profile_id=m.profile_id
+    AND d.entity_type='session' AND d.entity_id=s.id)
+  AND NOT EXISTS(SELECT 1 FROM deletion_tombstones d WHERE d.profile_id=m.profile_id
+    AND d.entity_type='message' AND d.entity_id=m.id)
+  AND (s.project_id IS NULL OR EXISTS(SELECT 1 FROM projects p WHERE p.id=s.project_id
+    AND p.profile_id=s.profile_id AND p.deleted_at IS NULL))`;
 export class MemoryService {
   extractor?: (
     sessionId: string,
@@ -173,7 +180,9 @@ export class MemoryService {
   private source(id: string): Source | undefined {
     return this.store.db
       .prepare(
-        "SELECT m.*,m.rowid seq,s.project_id FROM messages m JOIN sessions s ON s.id=m.session_id AND s.profile_id=m.profile_id WHERE m.id=? AND m.profile_id=? AND m.deleted_at IS NULL AND s.deleted_at IS NULL AND NOT EXISTS(SELECT 1 FROM deletion_tombstones d WHERE d.profile_id=m.profile_id AND ((d.entity_type='session' AND d.entity_id=s.id) OR(d.entity_type='message' AND d.entity_id=m.id))) AND (s.project_id IS NULL OR EXISTS(SELECT 1 FROM projects p WHERE p.id=s.project_id AND p.profile_id=s.profile_id AND p.deleted_at IS NULL))",
+        `SELECT m.*,m.rowid seq,s.project_id FROM messages m
+         JOIN sessions s ON s.id=m.session_id AND s.profile_id=m.profile_id
+         WHERE m.id=? AND m.profile_id=? AND ${liveSource}`,
       )
       .get(id, this.store.profileId) as Source | undefined;
   }
@@ -679,27 +688,44 @@ export class MemoryService {
     sessionIds?: string[],
     excludeCurrent = false,
   ) {
-    if (!this.policy(sessionId).historyEnabled || query.trim().length < 2) return [];
+    const policy = this.policy(sessionId);
+    const max = Math.min(20, limit);
+    if (!policy.historyEnabled || query.trim().length < 2 || max <= 0) return [];
+    const selected = sessionIds ? JSON.stringify(sessionIds) : null;
     const rows = this.store.db
       .prepare(
-        "SELECT m.*,m.rowid seq,s.project_id FROM messages m JOIN sessions s ON s.id=m.session_id AND s.profile_id=m.profile_id WHERE m.profile_id=? AND s.deleted_at IS NULL AND m.deleted_at IS NULL AND m.branch_id=s.active_branch_id AND m.role IN('user','assistant') AND m.status IN('final','interrupted') AND (?=0 OR s.id<>?) AND instr(lower(m.content_json),lower(?))>0 ORDER BY m.rowid DESC",
+        `SELECT m.id,m.session_id,m.revision,m.content_json FROM messages m
+          JOIN sessions s ON s.id=m.session_id AND s.profile_id=m.profile_id
+          WHERE m.profile_id=? AND m.branch_id=s.active_branch_id AND m.role IN('user','assistant')
+            AND m.status IN('final','interrupted') AND (?=0 OR s.id<>?)
+            AND (s.project_id IS ? OR (?=1 AND s.project_id IS NULL))
+            AND (? IS NULL OR s.id IN (SELECT value FROM json_each(?)))
+            AND instr(lower(m.content_json),lower(?))>0 AND ${liveSource}
+          ORDER BY m.rowid DESC`,
       )
-      .all(this.store.profileId, +excludeCurrent, sessionId, query) as Source[];
-    return rows
-      .filter(
-        (m) =>
-          (!sessionIds || sessionIds.includes(m.session_id)) &&
-          this.historyAllowed(sessionId, m.session_id) &&
-          this.source(m.id) &&
-          !credentialText(text(m)),
-      )
-      .slice(0, Math.min(20, limit))
-      .map((m) => ({
-        messageId: m.id,
-        sessionId: m.session_id,
-        revision: m.revision,
-        text: text(m).slice(0, 2000),
-      }));
+      .iterate(
+        this.store.profileId,
+        +excludeCurrent,
+        sessionId,
+        policy.scope.type === 'project' ? policy.scope.id : null,
+        +policy.globalHistory,
+        selected,
+        selected,
+        query,
+      ) as Iterable<Pick<Source, 'id' | 'session_id' | 'revision' | 'content_json'>>;
+    const matches = [];
+    for (const row of rows) {
+      const content = text(row);
+      if (credentialText(content)) continue;
+      matches.push({
+        messageId: row.id,
+        sessionId: row.session_id,
+        revision: row.revision,
+        text: content.slice(0, 2000),
+      });
+      if (matches.length >= max) break;
+    }
+    return matches;
   }
   background(sessionId: string, query: string) {
     const p = this.policy(sessionId),

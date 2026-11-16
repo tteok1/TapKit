@@ -676,6 +676,11 @@ test('P04-03 T10 project isolation covers model background, history, global swit
     expect(f.memory.history(a, 'UNIQUE查询').map((h) => h.text)).toContain(
       'global-history UNIQUE查询',
     );
+    f.add(personal, 'API Key synthetic UNIQUE查询');
+    expect(f.memory.history(a, 'UNIQUE查询', 1, [personal, b], true).map((h) => h.text)).toEqual([
+      'global-history UNIQUE查询',
+    ]);
+    expect(f.memory.history(a, 'UNIQUE查询', 1, [b], true)).toEqual([]);
     f.store.db
       .prepare(
         "UPDATE sessions SET settings_json=json_set(settings_json,'$.projectScope.projectOnly',json('true')) WHERE id=?",
