@@ -12,6 +12,30 @@ import { measureStreaming } from './streaming-perf-fixture';
 
 type Sample = { at: number; totalBytes: number; processCount: number; nativeHelpers: number };
 
+function sampleWorkingSet(rootPid: number, samples: Sample[], errors: string[]) {
+  const sampler = spawn(
+    'powershell.exe',
+    [
+      '-NoProfile',
+      '-File',
+      resolve('tests/fixtures/P11-01-working-set.ps1'),
+      '-RootProcessId',
+      String(rootPid),
+    ],
+    { windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] },
+  );
+  sampler.on('error', (error) => errors.push(error.message));
+  sampler.stderr.setEncoding('utf8').on('data', (message: string) => errors.push(message));
+  createInterface({ input: sampler.stdout }).on('line', (line) => {
+    try {
+      samples.push(JSON.parse(line) as Sample);
+    } catch {
+      errors.push('Invalid working set sample');
+    }
+  });
+  return sampler;
+}
+
 async function runOfficePair(page: Page) {
   return page.evaluate(async () => {
     const id = () => {
@@ -84,11 +108,12 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
     { env: { ...process.env, TAPKIT_JOINT_FIXTURE_DIR: dir }, windowsHide: true, timeout: 550_000 },
   );
   console.info(seed.stdout.trim());
-  const { project, base, indexWork } = JSON.parse(
+  const { project, base, indexWork, settledEvents } = JSON.parse(
     await readFile(join(dir, 'joint-fixture.json'), 'utf8'),
   ) as {
     project: string;
     base: Record<string, number>;
+    settledEvents: number;
     indexWork: { projectId: string; selectedVersionIds: string[] };
   };
 
@@ -108,28 +133,9 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
       Object.entries(env).filter((entry): entry is [string, string] => entry[1] !== undefined),
     ),
   });
-  const sampler = spawn(
-    'powershell.exe',
-    [
-      '-NoProfile',
-      '-File',
-      resolve('tests/fixtures/P11-01-working-set.ps1'),
-      '-RootProcessId',
-      String(app.process().pid),
-    ],
-    { windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] },
-  );
   const samples: Sample[] = [];
   const samplerErrors: string[] = [];
-  sampler.on('error', (error) => samplerErrors.push(error.message));
-  sampler.stderr.setEncoding('utf8').on('data', (value: string) => samplerErrors.push(value));
-  createInterface({ input: sampler.stdout }).on('line', (line) => {
-    try {
-      samples.push(JSON.parse(line) as Sample);
-    } catch {
-      samplerErrors.push('Invalid working set sample');
-    }
-  });
+  let sampler: ReturnType<typeof sampleWorkingSet> | undefined;
   const phases = (start: number, end: number) => {
     const points = samples.filter(({ at }) => at >= start && at <= end);
     return {
@@ -155,6 +161,7 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
       ramBytes: totalmem(),
     },
     dataset: base,
+    settledFixtureEvents: settledEvents,
     scope:
       'Locked BGE CPU embeddings, two synthetic upstream chats, two isolated DOCX-to-PDF work roots. Windows process-tree working set including native helpers and their children.',
     samplerErrors,
@@ -164,7 +171,8 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
     const page = await app.firstWindow();
     await waitCoreReady(page);
     const capabilities = await waitRuntimeCapabilities(page);
-    expect(capabilities.officeRender.status).toBe('available');
+    report.results.runtimeCapabilities = capabilities;
+    expect(capabilities.officeRender).toEqual({ status: 'available' });
     await page.evaluate(async (projectId) => {
       const token = crypto.randomUUID();
       const reply = await window.tapkit.projectCommand(
@@ -178,6 +186,8 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
     const first = await openSessionFixture(page, 'P11 联合聊天'),
       second = await openSessionFixture(page, 'P11 联合取消');
     await reopenSessionFixture(page, first);
+    sampler = sampleWorkingSet(app.process().pid!, samples, samplerErrors);
+    await expect.poll(() => samples.length, { timeout: 15_000 }).toBeGreaterThan(0);
     const chatStartedAt = Date.now();
     const chat = await measureStreaming(page, first, second, indexWork);
     const chatMemory = phases(chatStartedAt, Date.now());
@@ -203,7 +213,7 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
       expect(work.artifacts).toBeGreaterThan(0);
     }
   } finally {
-    sampler.kill();
+    sampler?.kill();
     await app.close();
     const path = resolve('test-results/P11-01/joint-load.json');
     await mkdir(resolve('test-results/P11-01'), { recursive: true });
@@ -211,6 +221,7 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
     console.info(
       'P11-01 joint load',
       JSON.stringify({
+        runtimeCapabilities: report.results.runtimeCapabilities,
         chatAndIndex: Object.fromEntries(
           Object.entries(report.results.chatAndIndex ?? {}).filter(([key]) => key !== 'samples'),
         ),

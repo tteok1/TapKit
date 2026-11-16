@@ -14,6 +14,7 @@ export async function measureStreaming(
         return value.slice(0, 14) + '7' + value.slice(15);
       };
       const send = async (sessionId: string) => {
+        const started = performance.now();
         const reply = await window.tapkit.chatCommand({ requestId: id() }, 'messages.send', {
           sessionId,
           clientMessageId: id(),
@@ -21,7 +22,10 @@ export async function measureStreaming(
           attachments: [],
           mode: 'chat',
         });
-        if (!reply.ok) throw Error(reply.error.code);
+        if (!reply.ok)
+          throw Error(
+            `messages.send: ${reply.error.code} after ${Math.round(performance.now() - started)}ms`,
+          );
       };
       const snapshot = async (sessionId: string) => {
         const reply = await window.tapkit.chatCommand({ requestId: id() }, 'messages.list', {

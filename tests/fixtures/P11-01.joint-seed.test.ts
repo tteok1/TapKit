@@ -30,7 +30,12 @@ async function seed(dir: string) {
       const file = await fixture.put(projectId, text, `联合索引-${i}.txt`);
       selectedVersionIds.push(file.currentVersionId);
     }
-    return { project, base, indexWork: { projectId, selectedVersionIds } };
+    // This fixture represents existing data whose import notifications have
+    // already been delivered. Keep the event log and start with an idle outbox.
+    const settledEvents = fixture.store.db
+      .prepare("UPDATE outbox SET state='done' WHERE state='pending'")
+      .run().changes;
+    return { project, base, settledEvents, indexWork: { projectId, selectedVersionIds } };
   } finally {
     fixture.store.close();
   }
