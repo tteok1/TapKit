@@ -1,3 +1,4 @@
+import { waitRuntimeCapabilities } from './core-ready';
 import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { test, expect, _electron as electron, type ElectronApplication } from './test';
 import { mkdir, writeFile } from 'node:fs/promises';
@@ -20,14 +21,7 @@ test('P07-01 creates and reviews a localized DOCX revision in the desktop', asyn
     app = await electron.launch({ args: [resolve('apps/desktop')], env, chromiumSandbox: true });
     const page = await app.firstWindow();
     await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125000 });
-    const capability = await page.evaluate(async () => {
-      const reply = await window.tapkit.bootstrap({
-        requestId: '0199b35d-9700-7000-8000-000000000099',
-      });
-      if (!reply.ok || !('runtimeCapabilities' in reply.data) || !reply.data.runtimeCapabilities)
-        throw Error('bootstrap');
-      return reply.data.runtimeCapabilities;
-    });
+    const capability = await waitRuntimeCapabilities(page);
     expect(capability.nativeExecution.status).toBe('available');
     expect(capability.officeRender.status).toBe('available');
     await page.getByRole('link', { name: '工作', exact: true }).click();

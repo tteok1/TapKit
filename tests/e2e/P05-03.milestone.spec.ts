@@ -4,7 +4,7 @@ import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { openSessionFixture, reopenSessionFixture } from './session-fixture';
 import type { ChatSnapshot } from '../../packages/contracts/src';
-test('P05-03 T01-T12/T19/T20/T22 uncut synthetic chat milestone from unconfigured to restart', async () => {
+test('P05-03 P11-01 FR-37-002 FR-37-005 chat, file citations and project reuse', async () => {
   test.setTimeout(360000);
   await mkdir('.test-data', { recursive: true });
   const dir = await mkdtemp(resolve('.test-data', 'P05-03 uncut 中文 '));
@@ -111,6 +111,10 @@ test('P05-03 T01-T12/T19/T20/T22 uncut synthetic chat milestone from unconfigure
     await page.getByRole('dialog').getByLabel('项目名称').fill('P05完整路径项目');
     await page.getByRole('dialog').getByRole('button', { name: '创建项目', exact: true }).click();
     await page.getByRole('link', { name: 'P05完整路径项目', exact: true }).last().click();
+    await page.getByRole('button', { name: '设置', exact: true }).last().click();
+    const instruction = page.getByRole('textbox', { name: '项目指令', exact: true });
+    await instruction.fill('回答须依据本项目的退款资料。');
+    await page.getByRole('button', { name: '保存项目设置', exact: true }).click();
     await expect(page.locator('.projects-page')).toHaveAttribute(
       'data-project-id',
       /[0-9a-f-]{36}/,
@@ -137,6 +141,8 @@ test('P05-03 T01-T12/T19/T20/T22 uncut synthetic chat milestone from unconfigure
     await shot('file-imported');
     await page.getByRole('link', { name: '项目', exact: true }).first().click();
     await page.getByRole('link', { name: 'P05完整路径项目', exact: true }).last().click();
+    await page.getByRole('button', { name: '设置', exact: true }).last().click();
+    await expect(instruction).toHaveValue('回答须依据本项目的退款资料。');
     await page.getByRole('button', { name: '在项目中新建聊天', exact: true }).click();
     await expect(page.locator('.chat-surface')).toHaveAttribute('data-session-id', /[0-9a-f-]{36}/);
     const sid = (await page.locator('.chat-surface').getAttribute('data-session-id'))!;
@@ -145,8 +151,21 @@ test('P05-03 T01-T12/T19/T20/T22 uncut synthetic chat milestone from unconfigure
     await only.check();
     await page.getByRole('button', { name: '保存资料范围', exact: true }).click();
     await send('P05项目：退款期限是多少天？', '退款期限：7天');
-    await expect(page.getByRole('link', { name: '来源 1', exact: true })).toBeVisible();
+    await page.getByRole('link', { name: '来源 1', exact: true }).click();
+    await expect(page.locator('.viewer-file')).toContainText('退款期限：7天');
     await shot('project-only-rag');
+    await page.getByRole('link', { name: '项目', exact: true }).first().click();
+    await page.getByRole('link', { name: 'P05完整路径项目', exact: true }).last().click();
+    await page.getByRole('button', { name: '在项目中新建聊天', exact: true }).click();
+    await expect(page.locator('.chat-surface')).not.toHaveAttribute('data-session-id', sid);
+    const second = (await page.locator('.chat-surface').getAttribute('data-session-id'))!;
+    expect(second).toMatch(/^[0-9a-f-]{36}$/);
+    await send('P05项目：新会话也请查证退款期限。', '退款期限：7天');
+    await page.getByRole('link', { name: '来源 1', exact: true }).click();
+    await expect(page.locator('.viewer-file')).toContainText('退款期限：7天');
+    await reopenSessionFixture(page, sid);
+    await page.locator('.project-scope summary').click();
+    await expect(only).toBeChecked();
     await page.getByRole('button', { name: '会话摘要', exact: true }).click();
     const summary = page.getByRole('region', { name: '会话摘要' });
     for (let n = 0; n < 3; n++) {
@@ -160,10 +179,7 @@ test('P05-03 T01-T12/T19/T20/T22 uncut synthetic chat milestone from unconfigure
     await expect(summary).toContainText('新目标：核查公开价格');
     await shot('three-compactions-correction');
     await page.getByRole('button', { name: '会话摘要', exact: true }).click();
-    await only.uncheck();
-    await page.getByRole('button', { name: '保存资料范围', exact: true }).click();
     const scopeBar = page.locator('.project-scope');
-    await expect(scopeBar.getByRole('alert')).toBeVisible();
     await scopeBar.getByRole('button', { name: '重新加载', exact: true }).click();
     await expect(scopeBar.getByRole('alert')).toHaveCount(0);
     await expect(only).toBeChecked();

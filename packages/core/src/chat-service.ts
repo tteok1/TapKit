@@ -1706,6 +1706,7 @@ export class ChatService {
         const calls: NonNullable<Extract<CanonicalMessage, { role: 'assistant' }>['calls']> = [];
         let finished = false,
           reason = 'stop';
+        const streamFlushMs = 32;
         const flush = () => {
           if (!assistant || (!buffer && !(selectionOperation && finished))) return;
           this.assertAlive(r, signal);
@@ -1733,7 +1734,7 @@ export class ChatService {
             flushError = e;
             controller.abort();
           }
-        }, 50);
+        }, streamFlushMs);
         try {
           this.assertAlive(r, signal);
           this.store.db.prepare('UPDATE runs SET calls=calls+1 WHERE id=?').run(r.id);
@@ -1808,7 +1809,8 @@ export class ChatService {
               const e = routed.event;
               if (e.type === 'text_delta') {
                 buffer += e.text;
-                if (Buffer.byteLength(buffer) >= 4096 || Date.now() - lastFlush >= 50) flush();
+                if (Buffer.byteLength(buffer) >= 4096 || Date.now() - lastFlush >= streamFlushMs)
+                  flush();
               } else if (e.type === 'tool_end') {
                 if (
                   calls.length >= 12 ||

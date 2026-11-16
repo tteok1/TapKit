@@ -39,6 +39,13 @@ export default defineConfig({
           maxWorkers: 1,
         },
       },
+      {
+        test: {
+          name: 'joint-fixture',
+          include: ['tests/fixtures/P11-01.joint-seed.test.ts'],
+          maxWorkers: 1,
+        },
+      },
     ],
   },
 });

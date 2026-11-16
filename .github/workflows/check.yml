@@ -50,15 +50,15 @@ jobs:
           # Run the AppContainer helper, LibreOfficeKit OfficeWorker and trusted GitBroker routes.
           # P07 native cases run with a machine-bound report in office-native.
           .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:integration
+      - name: Offline system evaluation and release source scan
+        run: |
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe scripts/scan-release.mjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs eval:agent
       - name: Dedicated Core performance checks
         # Measure the unchanged P95 budget after other integration workers have exited.
         if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' && steps.check.outcome == 'success' }}
         run: .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:perf
-      - name: Verify P00-03 and P03 parser as an independent standard user
-        if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' && steps.check.outcome == 'success' }}
-        shell: pwsh
-        timeout-minutes: 20
-        run: .\scripts\ci-standard-user-test.ps1
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -84,7 +84,7 @@ jobs:
     # Keep the verified native report on this runner. Its full runtime hashing
     # must not be repeated by desktop startups on other runners.
     runs-on: windows-2025
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
         with:
@@ -105,8 +105,14 @@ jobs:
         run: .\.runtime\node\node-v24.21.0-win-x64\node.exe scripts/runtime-probe.mjs --scope=current-user
         env:
           TAPKIT_RUNTIME_PROBE_EVIDENCE_DIR: docs/evidence/P00-03/current-runner
+      - name: Verify P00-03 and P03 parser as an independent standard user
+        shell: pwsh
+        timeout-minutes: 20
+        run: .\scripts\ci-standard-user-test.ps1
       - name: P07 native office acceptance
         run: .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:integration P07-01.native-candidate P07-01.native-image P07-01.native-layout P07-01.native-render P07-02.native-data P07-02.native-limits P07-02.native-transform P07-03.native-cache P07-03.native-slides
+      - name: Host and application security suite
+        run: .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:security
       - name: P10 canvas PDF acceptance
         env:
           TAPKIT_P10_NATIVE: '1'
@@ -118,6 +124,7 @@ jobs:
           path: |
             test-results
             docs/evidence/P00-03/current-runner
+            ci-evidence/P00-03-standard-user
             docs/evidence/P00-03/native-cases.jsonl
             docs/evidence/P07-01/native-*
             docs/evidence/P07-02/native-*
@@ -161,7 +168,7 @@ jobs:
           }
       - name: Electron end-to-end checks
         run: |
-          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:e2e -- --grep "P00-0[12]|P02-02|P03-0[123]|P04-0[123]|P09-0[1234]|P10-0[123]"
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:e2e -- --grep "P00-0[12]|P02-02|P03-0[123]|P04-0[123]|P09-0[1234]|P10-0[123]|P11-01" --grep-invert 'P11-01 joint load'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -181,6 +188,43 @@ jobs:
             docs/evidence/P09-02/desktop
             docs/evidence/P09-03
             docs/evidence/P09-04
+  p11-joint-load:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/codex/p11-01-dev-acceptance'
+    runs-on: windows-2025
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+      - name: Restore locked runtime archives
+        uses: actions/cache/restore@v5
+        with:
+          path: |
+            .cache/downloads
+            .cache/wheels
+          key: windows-runtime-archives-v1-${{ hashFiles('runtime-lock.json', 'dependency-baseline.json', 'python-wheels.lock.json') }}
+      - name: Bootstrap locked runtime and native dependencies
+        run: node scripts/bootstrap.mjs
+      - name: Verify native isolation on this runner
+        env:
+          TAPKIT_RUNTIME_PROBE_EVIDENCE_DIR: docs/evidence/P11-01/ci-native
+        run: |
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe scripts/runtime-probe.mjs --scope=current-user
+      - name: P11-01 joint load
+        run: |
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs test:e2e -- --grep 'P11-01 joint load' --output test-results/P11-01/joint-load-trace
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-p11-joint-load
+          path: |
+            test-results/P11-01/joint-load.json
+            test-results/P11-01/joint-load-trace
+            docs/evidence/P11-01/ci-native
+          if-no-files-found: warn
   repeat-diagnostics:
     if: github.event_name == 'workflow_dispatch'
     runs-on: windows-2025

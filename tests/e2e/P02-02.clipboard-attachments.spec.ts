@@ -1,3 +1,4 @@
+import { waitRuntimeCapabilities } from './core-ready';
 import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { protectClipboard } from './clipboard-guard';
 import { test, expect, _electron as electron, type ElectronApplication, type Page } from './test';
@@ -182,13 +183,7 @@ test.describe('native clipboard protection', () => {
 });
 test('P02-02 rounded attachment cards show progress, cancel one late upload and fit focus and zoom layouts', async () => {
   const page = await launch();
-  const nativeStatus = await page.evaluate(async () => {
-    const requestId = crypto.randomUUID().replace(/^(.{14})./, (_, s: string) => s + '7');
-    const r = await window.tapkit.bootstrap({ requestId });
-    if (!r.ok || !('runtimeCapabilities' in r.data)) throw Error('bootstrap');
-    return r.data.runtimeCapabilities?.nativeExecution.status;
-  });
-  expect(nativeStatus).toBeDefined();
+  const nativeStatus = (await waitRuntimeCapabilities(page)).nativeExecution.status;
   const input = page.getByLabel('输入草稿', { exact: true });
   const composer = page.locator('.composer');
   await composer.locator('input[type=file]').setInputFiles([

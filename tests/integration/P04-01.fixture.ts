@@ -9,9 +9,9 @@ import {
   FILE_PARSER_VERSION,
   type ParsedDocument,
 } from '../../packages/contracts/src';
-export async function retrievalFixture() {
+export async function retrievalFixture(directory?: string) {
   await mkdir('.test-data', { recursive: true });
-  const root = await mkdtemp(resolve('.test-data', 'P04-01 synthetic ')),
+  const root = directory ?? (await mkdtemp(resolve('.test-data', 'P04-01 synthetic '))),
     store = await openStore(root);
   const blobs = new BlobStore(store),
     files = new FileRepository(store, blobs),

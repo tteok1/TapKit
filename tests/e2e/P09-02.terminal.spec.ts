@@ -1,3 +1,4 @@
+import { waitRuntimeCapabilities } from './core-ready';
 import { test, expect, _electron as electron } from './test';
 import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
@@ -37,14 +38,7 @@ test('P09-02 desktop runs real Node and Python checks, keeps failures, handles C
     const page = await app.firstWindow();
     await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0]!.setSize(1360, 960));
     await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125000 });
-    const capabilities = await page.evaluate(async () => {
-      const id = crypto.randomUUID();
-      const reply = await window.tapkit.bootstrap({
-        requestId: id.slice(0, 14) + '7' + id.slice(15),
-      });
-      if (!reply.ok || !('runtimeCapabilities' in reply.data)) throw Error('bootstrap');
-      return reply.data.runtimeCapabilities;
-    });
+    const capabilities = await waitRuntimeCapabilities(page);
     expect(capabilities?.nativeExecution, 'P09-02 requires a probe on this runner').toEqual({
       status: 'available',
     });

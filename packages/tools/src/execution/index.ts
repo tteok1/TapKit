@@ -188,22 +188,29 @@ export async function runtimePaths(
 export function helperPath(root: string) {
   return join(root, 'resources/runtime/helper/tapkit-windows-helper.exe');
 }
-export async function readExecutionCapabilities(root: string): Promise<ExecutionCapabilities> {
+export async function readExecutionCapabilities(
+  root: string,
+  signal?: AbortSignal,
+): Promise<ExecutionCapabilities> {
   try {
     const report = JSON.parse(
-      await readFile(join(root, 'resources/runtime/capabilities.json'), 'utf8'),
+      await readFile(join(root, 'resources/runtime/capabilities.json'), {
+        encoding: 'utf8',
+        signal,
+      }),
     );
     const capabilities = ExecutionCapabilitiesSchema.parse(report.capabilities);
     if (report.executionPolicy !== EXECUTION_POLICY)
       return unavailableExecution('EXECUTION_POLICY_CHANGED');
     // A failed report never grants permission, so it must not delay chat startup with full runtime hashing.
     if (Object.values(capabilities).every((c) => c.status === 'failed')) return capabilities;
-    if (report.fingerprint !== (await executionFingerprint(root)))
+    if (report.fingerprint !== (await executionFingerprint(root, signal)))
       return unavailableExecution('PROBE_STALE');
     const scopeFailure = executionReportFailure(
       report,
       report.verification?.scope === 'current-user' ? readExecutionIdentity() : null,
     );
+    signal?.throwIfAborted();
     if (scopeFailure) return unavailableExecution(scopeFailure);
     return capabilities;
   } catch {

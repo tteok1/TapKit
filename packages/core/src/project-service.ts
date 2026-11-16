@@ -196,72 +196,91 @@ export class ProjectService {
   ): Promise<KnowledgeView> {
     query = z.string().trim().min(1).max(500).parse(query);
     const links = this.links(projectId),
-      selected = selectedVersionIds ?? links.map((l) => l.pinned_version_id);
-    if (selected.some((id) => !links.some((l) => l.pinned_version_id === id)))
+      linkedVersions = new Set(links.map((l) => l.pinned_version_id)),
+      selected = new Set(selectedVersionIds ?? linkedVersions);
+    if (selectedVersionIds?.some((id) => !linkedVersions.has(id)))
       throw new StorageError('PERMISSION_DENIED');
     const diagnostics: string[] = [],
       sources: Source[] = [],
+      sourceLinks = new Map<string, Link>(),
+      projectOwner = { type: 'project', id: projectId } as const,
       fingerprint = JSON.stringify(links);
+    const currentSources = this.store.db.prepare(
+      `SELECT f.id file_id,v.id version_id,v.parse_status,v.parser_version,
+              v.display_name,f.display_name fallback_name,d.id document_id,d.index_version
+       FROM resource_links l
+       JOIN file_versions v ON v.id=l.pinned_version_id AND v.file_id=l.resource_id
+         AND v.profile_id=l.profile_id AND v.deleted_at IS NULL
+       JOIN files f ON f.id=v.file_id AND f.profile_id=l.profile_id AND f.deleted_at IS NULL
+       LEFT JOIN parsed_documents d ON d.file_version_id=v.id AND d.profile_id=f.profile_id
+         AND d.status='ready' AND d.deleted_at IS NULL
+       WHERE l.profile_id=? AND l.owner_type='project' AND l.owner_id=? AND l.resource_type='file'
+         AND l.role='source' AND l.deleted_at IS NULL
+         AND NOT EXISTS (SELECT 1 FROM deletion_tombstones t
+         WHERE t.profile_id=f.profile_id AND t.entity_type='file' AND t.entity_id=f.id)`,
+    );
+    const readCurrentSources = () => {
+      const rows = currentSources.all(this.store.profileId, projectId) as {
+        file_id: string;
+        version_id: string;
+        parse_status: string;
+        parser_version: string | null;
+        display_name: string;
+        fallback_name: string;
+        document_id: string | null;
+        index_version: number | null;
+      }[];
+      return new Map(rows.map((row) => [row.version_id, row]));
+    };
     const assertScope = () => {
       signal?.throwIfAborted();
       if (JSON.stringify(this.links(projectId)) !== fingerprint) throw new StorageError('CONFLICT');
+      const versions = readCurrentSources();
       for (const source of sources) {
-        const link = links.find((l) => l.pinned_version_id === source.versionId)!;
+        const link = sourceLinks.get(source.versionId)!;
         if (link.expires_at !== null && link.expires_at <= this.store.now())
           throw new StorageError('CONFLICT');
-        const file = this.files.get(source.fileId, {
-          versionId: source.versionId,
-          owner: { type: 'project', id: projectId },
-        });
-        if (file.version.parseStatus !== 'ready') throw new StorageError('INDEX_NOT_READY');
-        const current = this.store.db
-          .prepare(
-            'SELECT index_version FROM parsed_documents WHERE file_version_id=? AND profile_id=? AND deleted_at IS NULL',
-          )
-          .get(source.versionId, this.store.profileId) as { index_version: number } | undefined;
-        if (source.documentId && current?.index_version !== source.indexVersion)
+        const version = versions.get(source.versionId);
+        if (version?.file_id !== source.fileId) throw new StorageError('NOT_FOUND');
+        if (version.parse_status !== 'ready') throw new StorageError('INDEX_NOT_READY');
+        if (source.documentId && version.index_version !== source.indexVersion)
           throw new StorageError('CONFLICT');
       }
     };
-    for (const l of links.filter((l) => selected.includes(l.pinned_version_id))) {
+    const versions = readCurrentSources();
+    for (const l of links.filter((l) => selected.has(l.pinned_version_id))) {
       if (l.expires_at !== null && l.expires_at <= this.store.now()) {
         diagnostics.push('资料已过期：' + l.resource_id);
         continue;
       }
-      const file = this.files.get(l.resource_id, {
-        versionId: l.pinned_version_id,
-        owner: { type: 'project', id: projectId },
-      });
-      if (file.version.parseStatus !== 'ready' || !l.active_index_version) {
-        diagnostics.push('资料尚不可使用：' + file.name);
+      const file = versions.get(l.pinned_version_id);
+      if (file?.file_id !== l.resource_id) throw new StorageError('NOT_FOUND');
+      const name = file.display_name || file.fallback_name;
+      if (file.parse_status !== 'ready' || !l.active_index_version) {
+        diagnostics.push('资料尚不可使用：' + name);
         continue;
       }
-      const indexed = this.store.db
-        .prepare(
-          "SELECT id,index_version FROM parsed_documents WHERE file_version_id=? AND profile_id=? AND status='ready' AND deleted_at IS NULL",
-        )
-        .get(l.pinned_version_id, this.store.profileId) as
-        { id: string; index_version: number } | undefined;
       const legacy =
-        !indexed && file.version.parserVersion === null && l.active_index_version === 1;
-      if (!legacy && indexed?.index_version !== l.active_index_version)
+        !file.document_id && file.parser_version === null && l.active_index_version === 1;
+      if (!legacy && file.index_version !== l.active_index_version)
         throw new StorageError('CONFLICT');
+      sourceLinks.set(l.pinned_version_id, l);
       sources.push({
-        fileId: file.id,
+        fileId: file.file_id,
         versionId: l.pinned_version_id,
         indexVersion: l.active_index_version,
-        documentId: indexed?.id ?? null,
+        documentId: file.document_id,
         document: async () => {
           if (!legacy)
-            return this.files.parsed(file.id, {
+            return this.files.parsed(file.file_id, {
               versionId: l.pinned_version_id,
-              owner: { type: 'project', id: projectId },
+              owner: projectOwner,
             });
           const text =
             (
               await fileMaterial(
                 this.files,
-                { kind: 'file', fileId: file.id, versionId: l.pinned_version_id },
+                { kind: 'file', fileId: file.file_id, versionId: l.pinned_version_id },
                 () => ({ id: projectId, project_id: projectId }),
               )
             ).text ?? '';
@@ -285,7 +304,7 @@ export class ProjectService {
           });
         },
       });
-      if (l.pending_version_id) diagnostics.push('新版处理中；仍使用完整旧版：' + file.name);
+      if (l.pending_version_id) diagnostics.push('新版处理中；仍使用完整旧版：' + name);
     }
     let evidence: EvidenceRef[] = [];
     if (sources.length) {
@@ -298,10 +317,14 @@ export class ProjectService {
       const index = new HybridIndex(this.store, embedding);
       evidence = await index.search(query, sources, assertScope, limit, signal);
       // A warm index still validates the actual derived bytes before evidence leaves Core.
+      const verifiedDocuments = new Map<string, Awaited<ReturnType<Source['document']>>>();
       for (const e of evidence) {
         const source = sources.find((s) => s.versionId === e.sourceVersion)!;
-        const doc = await source.document();
-        assertScope();
+        let doc = verifiedDocuments.get(source.versionId);
+        if (!doc) {
+          doc = await source.document();
+          verifiedDocuments.set(source.versionId, doc);
+        }
         if (
           e.ref.kind !== 'file' ||
           !e.ref.locator ||

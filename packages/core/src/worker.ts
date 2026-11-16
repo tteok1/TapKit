@@ -10,6 +10,7 @@ export class FoundationWorker {
   readonly outbox: Outbox;
   private readonly owner = newId();
   private timer: ReturnType<typeof setInterval> | undefined;
+  private outboxTimer: ReturnType<typeof setInterval> | undefined;
   private active: { job: Job; controller: AbortController; promise: Promise<void> } | undefined;
   private stopping = false;
   constructor(
@@ -22,10 +23,12 @@ export class FoundationWorker {
     this.outbox = new Outbox(store);
   }
   start() {
+    this.outboxTimer = setInterval(() => this.publishPending(), 30);
     this.timer = setInterval(() => this.tick(), 100);
+    this.publishPending();
     this.tick();
   }
-  tick() {
+  private publishPending() {
     if (this.stopping) return;
     try {
       for (let i = 0; i < 100; i++) {
@@ -37,6 +40,13 @@ export class FoundationWorker {
         if (event) this.publish(EventEnvelopeSchema.parse(JSON.parse(event.payload_json)));
         this.outbox.ack(row);
       }
+    } catch {
+      console.error('TAPKIT_WORKER_RETRY');
+    }
+  }
+  private tick() {
+    if (this.stopping) return;
+    try {
       if (this.active) {
         const row = this.store.db
           .prepare('SELECT status FROM jobs WHERE id=?')
@@ -80,6 +90,7 @@ export class FoundationWorker {
   async stop() {
     this.stopping = true;
     if (this.timer) clearInterval(this.timer);
+    if (this.outboxTimer) clearInterval(this.outboxTimer);
     this.active?.controller.abort();
     await this.active?.promise;
     await this.blobs.settled;

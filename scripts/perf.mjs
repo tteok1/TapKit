@@ -1,7 +1,9 @@
 import { pnpm } from './lib.mjs';
-// P02's real fixture is the first implemented performance scope. Later stages
-// extend this entry point with document retrieval and whole-application sampling.
-console.log('P02-03: 10,000 sessions / 100,000 messages; Core list/search pagination and P50/P95.');
+console.log(
+  'Core list/search (10,000 sessions / 100,000 messages) and hybrid retrieval (2,000 documents / 20,000 chunks).',
+);
+const args = process.argv.slice(2).filter((a) => a !== '--');
+const desktop = args.includes('--desktop');
 pnpm([
   'exec',
   'vitest',
@@ -10,5 +12,6 @@ pnpm([
   'vitest.config.ts',
   '--project',
   'perf',
-  ...process.argv.slice(2).filter((a) => a !== '--'),
+  ...args.filter((a) => a !== '--desktop'),
 ]);
+if (desktop) pnpm(['exec', 'playwright', 'test', '--config', 'tests/perf/playwright.config.ts']);

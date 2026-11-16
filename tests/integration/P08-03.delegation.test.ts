@@ -287,7 +287,7 @@ test('P08-03 root tool ceiling rejects child result without adding another allow
     await f.close();
   }
 });
-test('P08-03 changed root version cancels children and retains immutable history', async () => {
+test('P08-03 P11-01 changed root version cancels children and retains immutable history', async () => {
   const f = await delegationFixture();
   try {
     const child = await f.add();

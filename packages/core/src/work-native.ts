@@ -3,7 +3,6 @@ import { join, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 import {
   HelperRequestSchema,
-  type ExecutionCapabilities,
   type WorkToolArgs,
   type ResourceRef,
   NativeWorkIdentitySchema,
@@ -27,6 +26,7 @@ import { PreviewStaging } from './preview-staging';
 import { WorkArtifacts } from './work-artifacts';
 import { FileParser } from './file-parser';
 import { executeData } from './work-data';
+import { waitForRuntimeCapabilities, type RuntimeCapabilities } from './runtime-capabilities';
 
 // Fixed program; the model cannot supply Python, argv, paths or network destinations.
 const analyzeCsv = String.raw`import csv,json,math,os,statistics,sys
@@ -52,7 +52,7 @@ export class WorkNativeTools {
   constructor(
     readonly root: string,
     readonly artifacts: WorkArtifacts,
-    readonly capabilities: ExecutionCapabilities,
+    readonly capabilities: RuntimeCapabilities,
     readonly executor?: OfficeExecutor,
   ) {
     this.staging = new PreviewStaging(artifacts.files.store, 'work');
@@ -65,7 +65,11 @@ export class WorkNativeTools {
     signal: AbortSignal,
     identity?: Parameters<WorkNativeTools['execute']>[5],
   ) {
-    const caps = this.executor ? this.capabilities : await readExecutionCapabilities(this.root);
+    const caps = this.executor
+      ? await waitForRuntimeCapabilities(this.capabilities, signal)
+      : await readExecutionCapabilities(this.root, signal);
+    signal.throwIfAborted();
+    guard();
     if (caps.nativeExecution.status !== 'available' || caps.officeRender.status !== 'available')
       throw new StorageError('SANDBOX_UNAVAILABLE');
     signal = AbortSignal.any([signal, AbortSignal.timeout(240000)]);
@@ -180,8 +184,9 @@ export class WorkNativeTools {
     repair?: { spec: DocumentSpec; candidate(attempt: 1 | 2): Promise<Buffer> },
   ): Promise<ResourceRef> {
     const capabilities = this.executor
-      ? this.capabilities
-      : await readExecutionCapabilities(this.root);
+      ? await waitForRuntimeCapabilities(this.capabilities, signal)
+      : await readExecutionCapabilities(this.root, signal);
+    signal.throwIfAborted();
     if (
       capabilities.nativeExecution.status !== 'available' ||
       ((args.tool === 'office.convert' || args.tool === 'data.analyze') &&

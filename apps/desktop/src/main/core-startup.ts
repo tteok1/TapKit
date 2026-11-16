@@ -9,7 +9,7 @@ const VerificationReport = z.object({
 });
 
 // This is a watchdog allowance, never authorization to execute a payload.
-// Core still verifies every runtime byte and the actual account before ready.
+// Core verifies every runtime byte and the actual account before allowing native execution.
 export function coreStartupTimeout(report: unknown): 15_000 | 120_000 {
   const parsed = VerificationReport.safeParse(report);
   return parsed.success &&

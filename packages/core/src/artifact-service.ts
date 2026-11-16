@@ -9,7 +9,6 @@ import {
   ReplySchema,
   type ArtifactAccess,
   type ArtifactView,
-  type ExecutionCapabilities,
   type Request,
   type Reply,
   type ParsedDocument,
@@ -26,6 +25,7 @@ import {
 } from '@tapkit/storage';
 import { OfficeWorker, type OfficeExecutor } from '@tapkit/tools';
 import { artifactDiff } from './artifact-diff';
+import { waitForRuntimeCapabilities, type RuntimeCapabilities } from './runtime-capabilities';
 import { PreviewStaging } from './preview-staging';
 
 const hash = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
@@ -75,7 +75,7 @@ export class ArtifactService {
   constructor(
     readonly root: string,
     readonly files: FileRepository,
-    readonly capabilities: ExecutionCapabilities,
+    readonly capabilities: RuntimeCapabilities,
     executor?: OfficeExecutor,
   ) {
     this.repository = new ArtifactRepository(files);
@@ -367,11 +367,6 @@ export class ArtifactService {
     });
   }
   private async convert(access: ArtifactAccess, windowId: string) {
-    if (
-      this.capabilities.nativeExecution.status !== 'available' ||
-      this.capabilities.officeRender.status !== 'available'
-    )
-      throw new StorageError('SANDBOX_UNAVAILABLE');
     let existing = this.conversions.get(access.versionId);
     if (existing) {
       existing.windows.add(windowId);
@@ -387,6 +382,7 @@ export class ArtifactService {
     return existing.promise;
   }
   private async renderOffice(access: ArtifactAccess, signal: AbortSignal) {
+    await this.requireOffice(signal);
     const { file, bytes } = await this.files.original(access.fileId, {
       versionId: access.versionId,
       ...(access.owner ? { owner: access.owner } : {}),
@@ -447,6 +443,15 @@ export class ArtifactService {
   ) {
     return this.renderOfficeBytes(versionId, 'docx', bytes, signal, inspect);
   }
+  private async requireOffice(signal: AbortSignal) {
+    const capabilities = await waitForRuntimeCapabilities(this.capabilities, signal);
+    signal.throwIfAborted();
+    if (
+      capabilities.nativeExecution.status !== 'available' ||
+      capabilities.officeRender.status !== 'available'
+    )
+      throw new StorageError('SANDBOX_UNAVAILABLE');
+  }
   private async renderOfficeBytes(
     versionId: string,
     extension: string,
@@ -454,11 +459,7 @@ export class ArtifactService {
     signal: AbortSignal,
     inspect?: (directory: string, pdf: Buffer) => Promise<void>,
   ) {
-    if (
-      this.capabilities.nativeExecution.status !== 'available' ||
-      this.capabilities.officeRender.status !== 'available'
-    )
-      throw new StorageError('SANDBOX_UNAVAILABLE');
+    await this.requireOffice(signal);
     const directory = await this.staging.create(versionId);
     try {
       const inputRoot = join(directory, 'input');

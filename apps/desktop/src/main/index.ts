@@ -35,6 +35,7 @@ import { SitePreviews } from './site-previews';
 const sitePreviews = new SitePreviews();
 import { resolveSystemProxy } from './system-proxy';
 import { readCoreStartupTimeout } from './core-startup';
+import { createInterface } from 'node:readline';
 import { moveDataRoot, readDataRoot, validateMoveDestination } from './data-root';
 import {
   mkdirSync,
@@ -248,13 +249,17 @@ function forward(command: Record<string, unknown>): Promise<unknown> {
                 ? 310_000
                 : operation === 'providers.check' || operation === 'canvas.aiEdit'
                   ? 130_000
-                  : command.type === 'files.export' ||
-                      command.type === 'artifacts.read' ||
-                      operation === 'artifacts.open' ||
-                      operation === 'artifacts.locate' ||
-                      operation === 'files.import'
-                    ? 130_000
-                    : 30_000,
+                  : operation === 'terminal.prepare' ||
+                      operation === 'terminal.start' ||
+                      operation === 'exec.run'
+                    ? 155_000
+                    : command.type === 'files.export' ||
+                        command.type === 'artifacts.read' ||
+                        operation === 'artifacts.open' ||
+                        operation === 'artifacts.locate' ||
+                        operation === 'files.import'
+                      ? 130_000
+                      : 30_000,
       );
     pending.set(id, { resolve, reject, timer });
     child.postMessage({ ...command, id });
@@ -337,7 +342,11 @@ function startCore() {
     },
     readCoreStartupTimeout(join(__dirname, '../../../..')),
   );
-  child.stdout?.on('data', () => {});
+  if (child.stdout && process.env.TAPKIT_STARTUP_DIAGNOSTICS === '1')
+    createInterface({ input: child.stdout }).on('line', (line) => {
+      if (/^TAPKIT_CORE_STARTUP [a-z-]+ \d+ \d+$/.test(line)) console.log(line);
+    });
+  else child.stdout?.resume();
   child.stderr?.on('data', () => console.error('TAPKIT_CORE_DIAGNOSTIC'));
   child.on('message', (raw: unknown) => {
     const parsed = CoreEventSchema.safeParse(raw);

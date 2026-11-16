@@ -50,7 +50,7 @@ beforeAll(async () => {
   });
 }, 60000);
 test.each(['before_dispatch', 'after_intent', 'after_blob', 'after_commit', 'after_native'])(
-  'P06-03 T13 actual process kill at %s recovers without replaying a committed tool',
+  'P06-03 P11-01 FR-37-010 T13 actual process kill at %s recovers without replaying a committed tool',
   async (stage) => {
     vi.useRealTimers();
     const directory = await mkdtemp(resolve('.test-data', 'P06-03 kill ' + stage + ' ')),

@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "retrieval": [
+    "error-code",
+    "auth-code",
+    "two-refund",
+    "syn-refund",
+    "syn-power",
+    "number-budget",
+    "number-timeout",
+    "backup",
+    "citation",
+    "locator",
+    "version",
+    "none-code",
+    "none-number",
+    "none-entity",
+    "none-topic"
+  ],
+  "cases": {
+    "chat": [
+      ["P02-02.chat", "two real SQLite turns", "双轮对话与个性化", "后轮能收到前轮和个性化指令"],
+      ["P02-02.chat", "fallback retains", "模型断流后续写", "旧尝试可见且不进入新规范上下文"],
+      ["P02-02.chat", "one accepted message", "重复提交", "只保留一条消息，变更请求冲突"],
+      ["P02-02.chat", "draft CAS", "两窗口保存草稿后重启", "最新草稿保留，拒绝过期写入"],
+      [
+        "P02-02.chat",
+        "queue can be edited",
+        "队列编辑和停止",
+        "已确认内容保留，下一次发送只启动一次"
+      ],
+      ["P02-02.chat", "half tool JSON", "接收不完整工具参数", "完整闭合后才执行一次工具"],
+      ["P02-03.history", "three-level edits", "回到多级消息分支", "真实祖先上下文和原回答可复查"],
+      [
+        "P02-03.history",
+        "active generation rejects",
+        "流式输出时并行切分支",
+        "原消息保留，版本冲突可见"
+      ],
+      [
+        "P02-03.history",
+        "title jobs have one request",
+        "生成标题期间手工改名",
+        "手工标题获胜，后台请求最多一次"
+      ],
+      [
+        "P02-03.history",
+        "Chinese trigram search",
+        "搜索跨项目中文聊天",
+        "匹配关键词且只返回授权项目内容"
+      ]
+    ],
+    "context": [
+      [
+        "P04-02.context",
+        "durable three compactions",
+        "连续压缩与改目标",
+        "精确限制仍在，续接使用新版目标"
+      ],
+      ["P04-02.context", "cache hit cannot bypass", "缓存命中后删除原文", "拒绝读取旧快照"],
+      [
+        "P04-02.context",
+        "idempotent summary receipts",
+        "权限变化后重放摘要请求",
+        "重新检查来源权限并拒绝旧资料"
+      ],
+      [
+        "P04-02.context",
+        "revoked file-derived",
+        "撤销文件后再生成检查点",
+        "新检查点排除文件衍生内容"
+      ],
+      ["P04-03.memory", "two independent user events", "两次用户明确偏好", "记忆保存，来源可验证"],
+      ["P04-03.memory", "immediate explicit write", "记忆纠正和撤回", "版本可追踪，旧版本写入冲突"],
+      [
+        "P04-03.memory",
+        "delayed concurrent extraction",
+        "后台提取与删除并发",
+        "已清除事实不能复活"
+      ],
+      [
+        "P04-03.memory",
+        "project isolation covers",
+        "项目背景和历史检索",
+        "外部项目背景不泄露且不超预算"
+      ],
+      [
+        "P04-03.memory",
+        "session source deletion",
+        "删除共享记忆来源",
+        "重新检查支持来源，明确保存的独立事实保留"
+      ],
+      ["P04-03.memory", "real chat prompt", "撤销模型可用记忆", "后续模型输入和引用排除旧权限数据"]
+    ],
+    "work": [
+      ["P06-01.work", "necessary clarification", "缺少交付对象", "等用户回答才续接，过期回答拒绝"],
+      ["P06-01.work", "terminal retry creates", "用尽预算后重试", "旧运行保留，累计上限不重置"],
+      ["P06-01.work", "durable definition", "提交后实际保存成果", "可读取文件且任务描述持久化"],
+      ["P06-01.work", "wrong artifact format", "产生错误格式", "错误格式不被验收"],
+      ["P06-01.work", "plan-first waits", "先审计划和步骤", "拒绝循环依赖，所选步骤可执行"],
+      [
+        "P06-03.recovery",
+        "two-window pause/cancel",
+        "双窗口暂停恢复冲突",
+        "同一个运行继续且实际计时保留"
+      ],
+      [
+        "P06-03.recovery",
+        "expired lease invalidates",
+        "系统挂起与租约过期",
+        "旧进程回调无效，唤醒才派发"
+      ],
+      ["P06-03.recovery", "unknown effects require", "处理未知副作用", "暂停待核对，自动重放零次"],
+      ["P06-03.recovery", "notifications dedupe", "重启通知中心", "已读状态保留，通知不重复弹出"],
+      [
+        "P10-03.data-lifecycle",
+        "interrupted backup",
+        "中断备份后恢复",
+        "上次快照可用，删除日志继续生效"
+      ]
+    ],
+    "research": [
+      ["P05-01.web", "mock search → three", "搜索、读三页并引用", "归档原文能支持引用并可加入项目"],
+      ["P08-01.browser", "lost response remains", "提交响应丢失", "保存未知状态并关闭匿名会话"],
+      [
+        "P08-02.research",
+        "multi-source conflict",
+        "两个公开来源相冲突",
+        "互斥来源都可定位，报告保留冲突"
+      ],
+      [
+        "P08-02.research",
+        "inaccessible and no-answer",
+        "来源不可访问或没答案",
+        "明确证据缺口，伪造引用零条"
+      ],
+      [
+        "P08-02.research",
+        "bounded parse failure",
+        "网页解析中途失败",
+        "产出可查的部分报告，已做工作不重放"
+      ]
+    ],
+    "coding": [
+      [
+        "P09-01.code",
+        "clean Git creates",
+        "准备授权 Git 工作副本",
+        "原目录字节保留，工作副本不共享元数据"
+      ],
+      [
+        "P09-01.code",
+        "add/delete, per-file",
+        "审核增加和删除文件",
+        "冲突由当前哈希挡住，保留用户编辑"
+      ],
+      [
+        "P09-01.code",
+        "comments and references",
+        "审阅带行号的差异",
+        "引用绑定文件版本，过期评论仍可看"
+      ],
+      [
+        "P09-01.code",
+        "gateway records one budgeted",
+        "修改代码副本后重试",
+        "一次写入回执，拒绝对变更后的字节重放"
+      ],
+      [
+        "P09-03.github",
+        "tested and reviewed Git changes",
+        "Draft PR 创建响应中断",
+        "重启核对同分支与标记，外部写入不重复"
+      ]
+    ],
+    "authorization": [
+      ["P05-01.web", "project-only and a changed", "撤销联网许可", "旧工具或迟到数据不得归档"],
+      ["P06-02.approvals", "grant revocation between", "审批后撤回授权", "不得生成新文件版本"],
+      [
+        "P06-03.recovery",
+        "task-scoped historical",
+        "请求另一工作历史文件",
+        "只读授权任务和有效文件版本"
+      ],
+      [
+        "P08-03.delegation",
+        "revoked fixed-source",
+        "子任务执行中撤销来源",
+        "成果发布前再次鉴权，旧引用拒绝"
+      ],
+      [
+        "P09-03.github",
+        "rejects repo and credential",
+        "目标范围不匹配",
+        "请求不得越过既有范围和授权"
+      ]
+    ]
+  }
+}

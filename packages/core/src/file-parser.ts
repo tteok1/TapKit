@@ -16,12 +16,12 @@ import {
   FileRelativePathSchema,
   type FileParseReason,
   type ErrorCode,
-  type ExecutionCapabilities,
   type HelperRequest,
 } from '@tapkit/contracts';
 import { NativeSandboxExecutor, runtimePaths, SandboxError } from '@tapkit/tools';
 import { FileRepository, StorageError, newId, type Job } from '@tapkit/storage';
 import { FileStaging } from './file-staging';
+import { waitForRuntimeCapabilities, type RuntimeCapabilities } from './runtime-capabilities';
 
 const OutputSchema = z.strictObject({
   schemaVersion: z.literal(1),
@@ -75,7 +75,7 @@ export class FileParser {
   constructor(
     readonly root: string,
     readonly files: FileRepository,
-    readonly capabilities: ExecutionCapabilities,
+    readonly capabilities: RuntimeCapabilities,
     executor?: ParserExecutor,
   ) {
     this.executor = executor ?? new NativeSandboxExecutor(root);
@@ -93,7 +93,10 @@ export class FileParser {
     namespace: 'work' | 'preview' = 'work',
   ) {
     guard();
-    if (this.capabilities.nativeExecution.status !== 'available')
+    const capabilities = await waitForRuntimeCapabilities(this.capabilities, signal);
+    signal.throwIfAborted();
+    guard();
+    if (capabilities.nativeExecution.status !== 'available')
       throw new StorageError('SANDBOX_UNAVAILABLE');
     const base = resolve(this.files.store.dataDir, 'tmp', namespace),
       path = resolve(directory),
@@ -258,7 +261,9 @@ export class FileParser {
         )
       )
         throw new WorkerFailure('FORMAT_UNSUPPORTED');
-      if (this.capabilities.nativeExecution.status !== 'available')
+      const capabilities = await waitForRuntimeCapabilities(this.capabilities, signal);
+      signal.throwIfAborted();
+      if (capabilities.nativeExecution.status !== 'available')
         throw new WorkerFailure('SANDBOX_UNAVAILABLE');
       if (payload.parserVersion !== FILE_PARSER_VERSION)
         throw new WorkerFailure('FORMAT_UNSUPPORTED');
