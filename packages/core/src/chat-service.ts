@@ -133,6 +133,7 @@ export class ChatService {
   >();
   private timer: ReturnType<typeof setInterval> | undefined;
   private closing = false;
+  onDelta?: () => void;
   onCompleted?: (sessionId: string, runId: string) => void;
   constructor(
     readonly store: Store,
@@ -1618,7 +1619,7 @@ export class ChatService {
           selectionOperation
             ? { memoryUses: [], historyUses: [], module: undefined, historyModule: undefined }
             : this.memories.background(session.id, textOf(user));
-        let usedBackground = background();
+        let usedBackground!: ReturnType<typeof background>;
         const logicalCallId = newId();
         const prepareContext = async (descriptor: (typeof catalog)[number]) => {
           this.assertAlive(r, signal);
@@ -1723,6 +1724,7 @@ export class ChatService {
               .run(content(text), this.store.now(), assistant);
             this.event(session.id, 'message.delta', assistant, r.id, r.task_version);
           })();
+          this.onDelta?.();
           buffer = '';
           lastFlush = Date.now();
         };

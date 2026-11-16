@@ -11,6 +11,7 @@ export class FoundationWorker {
   private readonly owner = newId();
   private timer: ReturnType<typeof setInterval> | undefined;
   private outboxTimer: ReturnType<typeof setInterval> | undefined;
+  private outboxWake: ReturnType<typeof setImmediate> | undefined;
   private active: { job: Job; controller: AbortController; promise: Promise<void> } | undefined;
   private stopping = false;
   constructor(
@@ -27,6 +28,13 @@ export class FoundationWorker {
     this.timer = setInterval(() => this.tick(), 100);
     this.publishPending();
     this.tick();
+  }
+  wakeOutbox() {
+    if (this.stopping || this.outboxWake) return;
+    this.outboxWake = setImmediate(() => {
+      this.outboxWake = undefined;
+      this.publishPending();
+    });
   }
   private publishPending() {
     if (this.stopping) return;
@@ -91,6 +99,7 @@ export class FoundationWorker {
     this.stopping = true;
     if (this.timer) clearInterval(this.timer);
     if (this.outboxTimer) clearInterval(this.outboxTimer);
+    if (this.outboxWake) clearImmediate(this.outboxWake);
     this.active?.controller.abort();
     await this.active?.promise;
     await this.blobs.settled;

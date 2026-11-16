@@ -402,6 +402,7 @@ async function start() {
             ? chat.memories.execute(job, signal)
             : parser.execute(job, signal),
   );
+  chat.onDelta = () => worker.wakeOutbox();
   let closing = false;
   port!.on('message', ({ data }: { data: unknown }) => {
     const result = CoreCommandSchema.safeParse(data);
