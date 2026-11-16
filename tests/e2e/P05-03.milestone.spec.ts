@@ -154,6 +154,8 @@ test('P05-03 P11-01 FR-37-002 FR-37-005 chat, file citations and project reuse',
     await page.getByRole('link', { name: '来源 1', exact: true }).click();
     await expect(page.locator('.viewer-file')).toContainText('退款期限：7天');
     await shot('project-only-rag');
+    await page.getByRole('button', { name: '关闭详情', exact: true }).click();
+    await expect(page.getByRole('complementary', { name: '详情', exact: true })).toBeHidden();
     await page.getByRole('link', { name: '项目', exact: true }).first().click();
     await page.getByRole('link', { name: 'P05完整路径项目', exact: true }).last().click();
     await page.getByRole('button', { name: '在项目中新建聊天', exact: true }).click();
@@ -163,6 +165,8 @@ test('P05-03 P11-01 FR-37-002 FR-37-005 chat, file citations and project reuse',
     await send('P05项目：新会话也请查证退款期限。', '退款期限：7天');
     await page.getByRole('link', { name: '来源 1', exact: true }).click();
     await expect(page.locator('.viewer-file')).toContainText('退款期限：7天');
+    await page.getByRole('button', { name: '关闭详情', exact: true }).click();
+    await expect(page.getByRole('complementary', { name: '详情', exact: true })).toBeHidden();
     await reopenSessionFixture(page, sid);
     await page.locator('.project-scope summary').click();
     await expect(only).toBeChecked();
