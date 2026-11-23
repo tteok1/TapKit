@@ -35,7 +35,7 @@ P00-01创建以下根脚本，不能在任务结束时只写“建议测试”�
 
 性能用例归入独立Vitest perf项目，通过pnpm test:perf执行，CI在其他集成worker全部退出后运行；不与原生Office/进程资源压力用例并发争用CPU/磁盘。P02-03仍使用1万会话/10万消息、200页/30次查询及500ms P95断言，普通integration不代替性能验收。
 
-P11-01 联合负载使用独立 Windows CI 作业，也可运行 `pnpm test:e2e -- --grep 'P11-01 joint load'` 复测。作业在本 runner 验证原生隔离后，用同一个合成 profile 跑聊天与实时索引、两根原生 Office 工作，采集应用与原生子进程工作集并上传 JSON。
+P11-01 联合负载在 push 与 pull_request 中使用独立 Windows CI 作业，合入 main 后继续保留。同一来源仓库和分支的 push/PR 只保留最新检查，避免重复运行；手动诊断使用独立并发组并保留既有专用作业。也可运行 `pnpm test:e2e -- --grep 'P11-01 joint load'` 复测。作业在本 runner 验证原生隔离后，用同一个合成 profile 跑聊天与实时索引、两根原生 Office 工作，采集应用与原生子进程工作集并上传 JSON。
 
 P02-03合成数据建库在beforeAll中单独限时120秒；查询采样用例仍限时60秒，不把建库耗时计入用户查询P95。报告同时记录seedMs/sampleMs及原数据量，写入test-results/P02-03-perf/performance.json随CI归档；本地证据按实际运行另行保存，不自动覆盖旧日期的验收报告。
 

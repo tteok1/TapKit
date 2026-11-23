@@ -5,6 +5,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: windows-engineering-${{ github.event.pull_request.head.repo.full_name || github.repository }}-${{ github.head_ref || github.ref_name }}-${{ github.event_name == 'workflow_dispatch' }}
+  cancel-in-progress: true
 jobs:
   check:
     if: github.event_name != 'workflow_dispatch'
@@ -189,7 +192,8 @@ jobs:
             docs/evidence/P09-03
             docs/evidence/P09-04
   p11-joint-load:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/codex/p11-01-dev-acceptance'
+    # Keep the joint-load gate on pull requests and main after P11-01 is merged.
+    if: github.event_name != 'workflow_dispatch'
     runs-on: windows-2025
     timeout-minutes: 50
     steps:
