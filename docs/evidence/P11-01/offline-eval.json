@@ -1,0 +1,1049 @@
+{
+  "task": "P11-01",
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-13T10:28:01.473Z",
+  "source": {
+    "commit": "081c8213aeaad0eebdf3356a3aa72e67dd031d1e",
+    "trackedDiffSha256": "22ecf31a51e102bfeb096157534fe318ec66d032e5c8077cd0ac0153581cfb47",
+    "retainedSetSha256": "fa6288891df1aaf16678725dfeb5a4f7b29571971e992aadf458209c14bd9754"
+  },
+  "os": {
+    "platform": "win32",
+    "version": "10.0.26200",
+    "availableParallelism": 16,
+    "ramBytes": 24995295232
+  },
+  "model": {
+    "language": "deterministic fixture streams",
+    "embedder": "75c43b069aac4d136ba6bc1122f995fedcfd2781:q8:cls:windows384-64:v1"
+  },
+  "promptVersion": "9052a41e558f5af01aae187291d63b7d0c4364c48cbaf7daa71d1bafcab4e2e6",
+  "usage": {
+    "source": "offline fixtures",
+    "paidRequests": 0,
+    "providerTokens": null,
+    "providerCost": null
+  },
+  "offlineRegression": {
+    "status": "passed",
+    "runnerExitCode": 0,
+    "cases": [
+      {
+        "id": "chat-01",
+        "group": "chat",
+        "input": "双轮对话与个性化",
+        "expected": "后轮能收到前轮和个性化指令",
+        "unacceptable": "违反预期判据：后轮能收到前轮和个性化指令",
+        "scorer": {
+          "file": "tests/integration/P02-02.chat.test.ts",
+          "title": "P02-02 durable chat T02 two real SQLite turns preserve context, personalized instructions, confirmed text, message versions and metadata"
+        },
+        "fixtureSha256": "2cdeeac1d996c2f09acd7e596bdb086060802cde40858b40cb066b9ce15c4911",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "chat-02",
+        "group": "chat",
+        "input": "模型断流后续写",
+        "expected": "旧尝试可见且不进入新规范上下文",
+        "unacceptable": "违反预期判据：旧尝试可见且不进入新规范上下文",
+        "scorer": {
+          "file": "tests/integration/P02-02.chat.test.ts",
+          "title": "P02-02 durable chat T02 fallback retains the interrupted provider separately and keeps its text out of subsequent canonical context"
+        },
+        "fixtureSha256": "2cdeeac1d996c2f09acd7e596bdb086060802cde40858b40cb066b9ce15c4911",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "chat-03",
+        "group": "chat",
+        "input": "重复提交",
+        "expected": "只保留一条消息，变更请求冲突",
+        "unacceptable": "违反预期判据：只保留一条消息，变更请求冲突",
+        "scorer": {
+          "file": "tests/integration/P02-02.chat.test.ts",
+          "title": "P02-02 durable chat T05 one accepted message survives receipt expiry, repeated clicks and changed transport IDs; changed payload conflicts"
+        },
+        "fixtureSha256": "2cdeeac1d996c2f09acd7e596bdb086060802cde40858b40cb066b9ce15c4911",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "chat-04",
+        "group": "chat",
+        "input": "两窗口保存草稿后重启",
+        "expected": "最新草稿保留，拒绝过期写入",
+        "unacceptable": "违反预期判据：最新草稿保留，拒绝过期写入",
+        "scorer": {
+          "file": "tests/integration/P02-02.chat.test.ts",
+          "title": "P02-02 durable chat T05 draft CAS preserves excessive text and per-window copies across restart; stale writes keep saved draft"
+        },
+        "fixtureSha256": "2cdeeac1d996c2f09acd7e596bdb086060802cde40858b40cb066b9ce15c4911",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "chat-05",
+        "group": "chat",
+        "input": "队列编辑和停止",
+        "expected": "已确认内容保留，下一次发送只启动一次",
+        "unacceptable": "违反预期判据：已确认内容保留，下一次发送只启动一次",
+        "scorer": {
+          "file": "tests/integration/P02-02.chat.test.ts",
+          "title": "P02-02 durable chat T05 queue can be edited/cancelled; stop retains confirmed text and starts followup once"
+        },
+        "fixtureSha256": "2cdeeac1d996c2f09acd7e596bdb086060802cde40858b40cb066b9ce15c4911",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "chat-06",
+        "group": "chat",
+        "input": "接收不完整工具参数",
+        "expected": "完整闭合后才执行一次工具",
+        "unacceptable": "违反预期判据：完整闭合后才执行一次工具",
+        "scorer": {
+          "file": "tests/integration/P02-02.chat.test.ts",
+          "title": "P02-02 durable chat T02 half tool JSON never dispatches; complete read-only calls close before the next model request"
+        },
+        "fixtureSha256": "2cdeeac1d996c2f09acd7e596bdb086060802cde40858b40cb066b9ce15c4911",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "chat-07",
+        "group": "chat",
+        "input": "回到多级消息分支",
+        "expected": "真实祖先上下文和原回答可复查",
+        "unacceptable": "违反预期判据：真实祖先上下文和原回答可复查",
+        "scorer": {
+          "file": "tests/integration/P02-03.history.test.ts",
+          "title": "P02-03 history lifecycle T06 three-level edits and candidate switches preserve exact ancestor context without replaying old runs"
+        },
+        "fixtureSha256": "07f6ccac85ef74c0039a21c7abcf7fc18362023b1e51785b9c46863c393a01fe",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "chat-08",
+        "group": "chat",
+        "input": "流式输出时并行切分支",
+        "expected": "原消息保留，版本冲突可见",
+        "unacceptable": "违反预期判据：原消息保留，版本冲突可见",
+        "scorer": {
+          "file": "tests/integration/P02-03.history.test.ts",
+          "title": "P02-03 history lifecycle T06 active generation rejects edit and branch switches, and revision conflicts preserve originals"
+        },
+        "fixtureSha256": "07f6ccac85ef74c0039a21c7abcf7fc18362023b1e51785b9c46863c393a01fe",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "chat-09",
+        "group": "chat",
+        "input": "生成标题期间手工改名",
+        "expected": "手工标题获胜，后台请求最多一次",
+        "unacceptable": "违反预期判据：手工标题获胜，后台请求最多一次",
+        "scorer": {
+          "file": "tests/integration/P02-03.history.test.ts",
+          "title": "P02-03 history lifecycle T06 title jobs have one request and manual rename wins a job race"
+        },
+        "fixtureSha256": "07f6ccac85ef74c0039a21c7abcf7fc18362023b1e51785b9c46863c393a01fe",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "chat-10",
+        "group": "chat",
+        "input": "搜索跨项目中文聊天",
+        "expected": "匹配关键词且只返回授权项目内容",
+        "unacceptable": "违反预期判据：匹配关键词且只返回授权项目内容",
+        "scorer": {
+          "file": "tests/integration/P02-03.history.test.ts",
+          "title": "P02-03 history lifecycle T10 Chinese trigram search filters project scope and profiles, finds archived message and checks cursor filters"
+        },
+        "fixtureSha256": "07f6ccac85ef74c0039a21c7abcf7fc18362023b1e51785b9c46863c393a01fe",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "context-01",
+        "group": "context",
+        "input": "连续压缩与改目标",
+        "expected": "精确限制仍在，续接使用新版目标",
+        "unacceptable": "违反预期判据：精确限制仍在，续接使用新版目标",
+        "scorer": {
+          "file": "tests/integration/P04-02.context.test.ts",
+          "title": "P04-02 T12 durable three compactions, correction CAS, next taskVersion and selected continuation"
+        },
+        "fixtureSha256": "809e0369a8c511b42fdc255bc813e0a942286a9b001a58884bc5f95f6c9b505a",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "context-02",
+        "group": "context",
+        "input": "缓存命中后删除原文",
+        "expected": "拒绝读取旧快照",
+        "unacceptable": "违反预期判据：拒绝读取旧快照",
+        "scorer": {
+          "file": "tests/integration/P04-02.context.test.ts",
+          "title": "P04-02 cache hit cannot bypass project revocation, source deletion or project isolation"
+        },
+        "fixtureSha256": "809e0369a8c511b42fdc255bc813e0a942286a9b001a58884bc5f95f6c9b505a",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "context-03",
+        "group": "context",
+        "input": "权限变化后重放摘要请求",
+        "expected": "重新检查来源权限并拒绝旧资料",
+        "unacceptable": "违反预期判据：重新检查来源权限并拒绝旧资料",
+        "scorer": {
+          "file": "tests/integration/P04-02.context.test.ts",
+          "title": "P04-02 idempotent summary receipts reauthorize; deletion and source scope changes cannot replay cached private data"
+        },
+        "fixtureSha256": "809e0369a8c511b42fdc255bc813e0a942286a9b001a58884bc5f95f6c9b505a",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "context-04",
+        "group": "context",
+        "input": "撤销文件后再生成检查点",
+        "expected": "新检查点排除文件衍生内容",
+        "unacceptable": "违反预期判据：新检查点排除文件衍生内容",
+        "scorer": {
+          "file": "tests/integration/P04-02.context.test.ts",
+          "title": "P04-02 P11-01 revoked file-derived assistant content is excluded from newly regenerated checkpoints"
+        },
+        "fixtureSha256": "809e0369a8c511b42fdc255bc813e0a942286a9b001a58884bc5f95f6c9b505a",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "context-05",
+        "group": "context",
+        "input": "两次用户明确偏好",
+        "expected": "记忆保存，来源可验证",
+        "unacceptable": "违反预期判据：记忆保存，来源可验证",
+        "scorer": {
+          "file": "tests/integration/P04-03.memory.test.ts",
+          "title": "P04-03 T11 two independent user events save automatically, model sees only necessary utterance and sources remain verifiable"
+        },
+        "fixtureSha256": "af724e86ed2850e192f3c7fa1bc0a57096cd6b766ba4d308b47f86f75844fbd9",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "context-06",
+        "group": "context",
+        "input": "记忆纠正和撤回",
+        "expected": "版本可追踪，旧版本写入冲突",
+        "unacceptable": "违反预期判据：版本可追踪，旧版本写入冲突",
+        "scorer": {
+          "file": "tests/integration/P04-03.memory.test.ts",
+          "title": "P04-03 T11 immediate explicit write, correction CAS, version history, forget and undo conflict"
+        },
+        "fixtureSha256": "af724e86ed2850e192f3c7fa1bc0a57096cd6b766ba4d308b47f86f75844fbd9",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "context-07",
+        "group": "context",
+        "input": "后台提取与删除并发",
+        "expected": "已清除事实不能复活",
+        "unacceptable": "违反预期判据：已清除事实不能复活",
+        "scorer": {
+          "file": "tests/integration/P04-03.memory.test.ts",
+          "title": "P04-03 T11 delayed concurrent extraction cannot overwrite user correction or resurrect deletion/clear including empty scope"
+        },
+        "fixtureSha256": "af724e86ed2850e192f3c7fa1bc0a57096cd6b766ba4d308b47f86f75844fbd9",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "context-08",
+        "group": "context",
+        "input": "项目背景和历史检索",
+        "expected": "外部项目背景不泄露且不超预算",
+        "unacceptable": "违反预期判据：外部项目背景不泄露且不超预算",
+        "scorer": {
+          "file": "tests/integration/P04-03.memory.test.ts",
+          "title": "P04-03 T10 project isolation covers model background, history, global switches, project-only and 1000-token budget"
+        },
+        "fixtureSha256": "af724e86ed2850e192f3c7fa1bc0a57096cd6b766ba4d308b47f86f75844fbd9",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "context-09",
+        "group": "context",
+        "input": "删除共享记忆来源",
+        "expected": "重新检查支持来源，明确保存的独立事实保留",
+        "unacceptable": "违反预期判据：重新检查支持来源，明确保存的独立事实保留",
+        "scorer": {
+          "file": "tests/integration/P04-03.memory.test.ts",
+          "title": "P04-03 T11 session source deletion revalidates shared memory and preserves explicitly selected facts"
+        },
+        "fixtureSha256": "af724e86ed2850e192f3c7fa1bc0a57096cd6b766ba4d308b47f86f75844fbd9",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "context-10",
+        "group": "context",
+        "input": "撤销模型可用记忆",
+        "expected": "后续模型输入和引用排除旧权限数据",
+        "unacceptable": "违反预期判据：后续模型输入和引用排除旧权限数据",
+        "scorer": {
+          "file": "tests/integration/P04-03.memory.test.ts",
+          "title": "P04-03 real chat prompt and per-answer used references invalidate after delete or settings revoke"
+        },
+        "fixtureSha256": "af724e86ed2850e192f3c7fa1bc0a57096cd6b766ba4d308b47f86f75844fbd9",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "work-01",
+        "group": "work",
+        "input": "缺少交付对象",
+        "expected": "等用户回答才续接，过期回答拒绝",
+        "unacceptable": "违反预期判据：等用户回答才续接，过期回答拒绝",
+        "scorer": {
+          "file": "tests/integration/P06-01.work.test.ts",
+          "title": "P06-01 T13 necessary clarification waits without calls, stale answers reject and correct answer resumes"
+        },
+        "fixtureSha256": "746617ccc975ff1e5d9a31bf4cef5761f7ba65df6558fe161fac53edaaba9575",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "work-02",
+        "group": "work",
+        "input": "用尽预算后重试",
+        "expected": "旧运行保留，累计上限不重置",
+        "unacceptable": "违反预期判据：旧运行保留，累计上限不重置",
+        "scorer": {
+          "file": "tests/integration/P06-01.work.test.ts",
+          "title": "P06-01 T13 terminal retry creates a new run and preserves the root call ceiling"
+        },
+        "fixtureSha256": "746617ccc975ff1e5d9a31bf4cef5761f7ba65df6558fe161fac53edaaba9575",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "work-03",
+        "group": "work",
+        "input": "提交后实际保存成果",
+        "expected": "可读取文件且任务描述持久化",
+        "unacceptable": "违反预期判据：可读取文件且任务描述持久化",
+        "scorer": {
+          "file": "tests/integration/P06-01.work.test.ts",
+          "title": "P06-01 T13 durable definition and receipt, real artifact required before completed"
+        },
+        "fixtureSha256": "746617ccc975ff1e5d9a31bf4cef5761f7ba65df6558fe161fac53edaaba9575",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "work-04",
+        "group": "work",
+        "input": "产生错误格式",
+        "expected": "错误格式不被验收",
+        "unacceptable": "违反预期判据：错误格式不被验收",
+        "scorer": {
+          "file": "tests/integration/P06-01.work.test.ts",
+          "title": "P06-01 T13 wrong artifact format never satisfies an explicit file contract"
+        },
+        "fixtureSha256": "746617ccc975ff1e5d9a31bf4cef5761f7ba65df6558fe161fac53edaaba9575",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "work-05",
+        "group": "work",
+        "input": "先审计划和步骤",
+        "expected": "拒绝循环依赖，所选步骤可执行",
+        "unacceptable": "违反预期判据：拒绝循环依赖，所选步骤可执行",
+        "scorer": {
+          "file": "tests/integration/P06-01.work.test.ts",
+          "title": "P06-01 T13 plan-first waits, rejects a cycle, accepts selection with dependencies and queues same session"
+        },
+        "fixtureSha256": "746617ccc975ff1e5d9a31bf4cef5761f7ba65df6558fe161fac53edaaba9575",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "work-06",
+        "group": "work",
+        "input": "双窗口暂停恢复冲突",
+        "expected": "同一个运行继续且实际计时保留",
+        "unacceptable": "违反预期判据：同一个运行继续且实际计时保留",
+        "scorer": {
+          "file": "tests/integration/P06-03.recovery.test.ts",
+          "title": "P06-03 T13 two-window pause/cancel CAS preserves paused time and resume uses the same nonterminal run"
+        },
+        "fixtureSha256": "de2c54c02dbc0c24c3261801590d20398b426e761022af96d818a9825fd547a4",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "work-07",
+        "group": "work",
+        "input": "系统挂起与租约过期",
+        "expected": "旧进程回调无效，唤醒才派发",
+        "unacceptable": "违反预期判据：旧进程回调无效，唤醒才派发",
+        "scorer": {
+          "file": "tests/integration/P06-03.recovery.test.ts",
+          "title": "P06-03 T13 expired lease invalidates late worker, and simulated suspend prevents dispatch until wake"
+        },
+        "fixtureSha256": "de2c54c02dbc0c24c3261801590d20398b426e761022af96d818a9825fd547a4",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "work-08",
+        "group": "work",
+        "input": "处理未知副作用",
+        "expected": "暂停待核对，自动重放零次",
+        "unacceptable": "违反预期判据：暂停待核对，自动重放零次",
+        "scorer": {
+          "file": "tests/integration/P06-03.recovery.test.ts",
+          "title": "P06-03 T13 unknown effects require manual reconciliation and never automatically replay"
+        },
+        "fixtureSha256": "de2c54c02dbc0c24c3261801590d20398b426e761022af96d818a9825fd547a4",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "work-09",
+        "group": "work",
+        "input": "重启通知中心",
+        "expected": "已读状态保留，通知不重复弹出",
+        "unacceptable": "违反预期判据：已读状态保留，通知不重复弹出",
+        "scorer": {
+          "file": "tests/integration/P06-03.recovery.test.ts",
+          "title": "P06-03 T20 notifications dedupe, persist cursor/read/delete, honor DND and mute without replaying toast"
+        },
+        "fixtureSha256": "de2c54c02dbc0c24c3261801590d20398b426e761022af96d818a9825fd547a4",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "work-10",
+        "group": "work",
+        "input": "中断备份后恢复",
+        "expected": "上次快照可用，删除日志继续生效",
+        "unacceptable": "违反预期判据：上次快照可用，删除日志继续生效",
+        "scorer": {
+          "file": "tests/integration/P10-03.data-lifecycle.test.ts",
+          "title": "P10-03 T20 interrupted backup leaves last valid snapshot and recovery export applies the journal"
+        },
+        "fixtureSha256": "a81939a98b97cc8a79fc4279deecd3e919fb45bd6634dd2645d9f9e514e95260",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "research-01",
+        "group": "research",
+        "input": "搜索、读三页并引用",
+        "expected": "归档原文能支持引用并可加入项目",
+        "unacceptable": "违反预期判据：归档原文能支持引用并可加入项目",
+        "scorer": {
+          "file": "tests/integration/P05-01.web.test.ts",
+          "title": "P05-01 T09 mock search → three full pages → verified citations → project material"
+        },
+        "fixtureSha256": "ade6899f77a81640251c1cb11201a2d649122a359658a8db5f5cc0cb67a2edf4",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "research-02",
+        "group": "research",
+        "input": "提交响应丢失",
+        "expected": "保存未知状态并关闭匿名会话",
+        "unacceptable": "违反预期判据：保存未知状态并关闭匿名会话",
+        "scorer": {
+          "file": "tests/integration/P08-01.browser.test.ts",
+          "title": "P08-01 T16 lost response remains unknown, is never replayed and closes isolated sessions"
+        },
+        "fixtureSha256": "9dbbfa59f5da5a3f707859e06fa760134e9f2c9e078bbbe4eefbd6f9931c9e01",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "research-03",
+        "group": "research",
+        "input": "两个公开来源相冲突",
+        "expected": "互斥来源都可定位，报告保留冲突",
+        "unacceptable": "违反预期判据：互斥来源都可定位，报告保留冲突",
+        "scorer": {
+          "file": "tests/integration/P08-02.research.test.ts",
+          "title": "P08-02 multi-source conflict keeps both immutable originals, verifies citations and exports report plus sources"
+        },
+        "fixtureSha256": "2ae2fb668813c72d8222ec895c52c4cd52631d14a3b240955494c8bdbad4cbc5",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "research-04",
+        "group": "research",
+        "input": "来源不可访问或没答案",
+        "expected": "明确证据缺口，伪造引用零条",
+        "unacceptable": "违反预期判据：明确证据缺口，伪造引用零条",
+        "scorer": {
+          "file": "tests/integration/P08-02.research.test.ts",
+          "title": "P08-02 inaccessible and no-answer fixtures produce gaps without fake citations"
+        },
+        "fixtureSha256": "2ae2fb668813c72d8222ec895c52c4cd52631d14a3b240955494c8bdbad4cbc5",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "research-05",
+        "group": "research",
+        "input": "网页解析中途失败",
+        "expected": "产出可查的部分报告，已做工作不重放",
+        "unacceptable": "违反预期判据：产出可查的部分报告，已做工作不重放",
+        "scorer": {
+          "file": "tests/integration/P08-02.research.test.ts",
+          "title": "P08-02 bounded parse failure preserves a partial report and failure reason without replaying model work"
+        },
+        "fixtureSha256": "2ae2fb668813c72d8222ec895c52c4cd52631d14a3b240955494c8bdbad4cbc5",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "coding-01",
+        "group": "coding",
+        "input": "准备授权 Git 工作副本",
+        "expected": "原目录字节保留，工作副本不共享元数据",
+        "unacceptable": "违反预期判据：原目录字节保留，工作副本不共享元数据",
+        "scorer": {
+          "file": "tests/integration/P09-01.code.test.ts",
+          "title": "P09-01 clean Git creates a private mirror/worktree without shared metadata and retains source bytes"
+        },
+        "fixtureSha256": "925289537fde7145b33358e01cbebdc5dc86a0ac85b94fa45fbad3b244e8c5bd",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "coding-02",
+        "group": "coding",
+        "input": "审核增加和删除文件",
+        "expected": "冲突由当前哈希挡住，保留用户编辑",
+        "unacceptable": "违反预期判据：冲突由当前哈希挡住，保留用户编辑",
+        "scorer": {
+          "file": "tests/integration/P09-01.code.test.ts",
+          "title": "P09-01 add/delete, per-file accept/revert/restore require current hashes and preserve conflicting edits"
+        },
+        "fixtureSha256": "925289537fde7145b33358e01cbebdc5dc86a0ac85b94fa45fbad3b244e8c5bd",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "coding-03",
+        "group": "coding",
+        "input": "审阅带行号的差异",
+        "expected": "引用绑定文件版本，过期评论仍可看",
+        "unacceptable": "违反预期判据：引用绑定文件版本，过期评论仍可看",
+        "scorer": {
+          "file": "tests/integration/P09-01.code.test.ts",
+          "title": "P09-01 comments and references bind actual line/hash and stale comments remain visible"
+        },
+        "fixtureSha256": "925289537fde7145b33358e01cbebdc5dc86a0ac85b94fa45fbad3b244e8c5bd",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "coding-04",
+        "group": "coding",
+        "input": "修改代码副本后重试",
+        "expected": "一次写入回执，拒绝对变更后的字节重放",
+        "unacceptable": "违反预期判据：一次写入回执，拒绝对变更后的字节重放",
+        "scorer": {
+          "file": "tests/integration/P09-01.code.test.ts",
+          "title": "P09-01 gateway records one budgeted code patch receipt and refuses duplicate replay on changed bytes"
+        },
+        "fixtureSha256": "925289537fde7145b33358e01cbebdc5dc86a0ac85b94fa45fbad3b244e8c5bd",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "coding-05",
+        "group": "coding",
+        "input": "Draft PR 创建响应中断",
+        "expected": "重启核对同分支与标记，外部写入不重复",
+        "unacceptable": "违反预期判据：重启核对同分支与标记，外部写入不重复",
+        "scorer": {
+          "file": "tests/integration/P09-03.github.test.ts",
+          "title": "P09-03 P11-01 tested and reviewed Git changes publish once and recover a lost Draft PR response after restart"
+        },
+        "fixtureSha256": "c9859a12ebcdfd104017f0d9f563a2a55610c3739cde8f72a2f89d6bfec4aa00",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "authorization-01",
+        "group": "authorization",
+        "input": "撤销联网许可",
+        "expected": "旧工具或迟到数据不得归档",
+        "unacceptable": "违反预期判据：旧工具或迟到数据不得归档",
+        "scorer": {
+          "file": "tests/integration/P05-01.web.test.ts",
+          "title": "P05-01 T19 project-only and a changed web scope reject tools and stale results"
+        },
+        "fixtureSha256": "ade6899f77a81640251c1cb11201a2d649122a359658a8db5f5cc0cb67a2edf4",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "authorization-02",
+        "group": "authorization",
+        "input": "审批后撤回授权",
+        "expected": "不得生成新文件版本",
+        "unacceptable": "违反预期判据：不得生成新文件版本",
+        "scorer": {
+          "file": "tests/integration/P06-02.approvals.test.ts",
+          "title": "P06-02 T14 grant revocation between approval and dispatch prevents any new version"
+        },
+        "fixtureSha256": "17a0c7a1217bb044e1ab276f5409cef3651d77164082ab36f4464a2a63a653e6",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "authorization-03",
+        "group": "authorization",
+        "input": "请求另一工作历史文件",
+        "expected": "只读授权任务和有效文件版本",
+        "unacceptable": "违反预期判据：只读授权任务和有效文件版本",
+        "scorer": {
+          "file": "tests/integration/P06-03.recovery.test.ts",
+          "title": "P06-03 T19 task-scoped historical versions reject other tasks, originals, and deleted owners"
+        },
+        "fixtureSha256": "de2c54c02dbc0c24c3261801590d20398b426e761022af96d818a9825fd547a4",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "authorization-04",
+        "group": "authorization",
+        "input": "子任务执行中撤销来源",
+        "expected": "成果发布前再次鉴权，旧引用拒绝",
+        "unacceptable": "违反预期判据：成果发布前再次鉴权，旧引用拒绝",
+        "scorer": {
+          "file": "tests/integration/P08-03.delegation.test.ts",
+          "title": "P08-03 revoked fixed-source access is rechecked before publishing a child result"
+        },
+        "fixtureSha256": "bd4fcc65a32444d6b3b313cde86147703bef55a6ed25d1d94c704f1f25011bc8",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "authorization-05",
+        "group": "authorization",
+        "input": "目标范围不匹配",
+        "expected": "请求不得越过既有范围和授权",
+        "unacceptable": "违反预期判据：请求不得越过既有范围和授权",
+        "scorer": {
+          "file": "tests/integration/P09-03.github.test.ts",
+          "title": "P09-03 rejects repo and credential errors and stops networking under project scope"
+        },
+        "fixtureSha256": "c9859a12ebcdfd104017f0d9f563a2a55610c3739cde8f72a2f89d6bfec4aa00",
+        "budget": {
+          "paidRequests": 0
+        },
+        "status": "passed"
+      },
+      {
+        "id": "retrieval-error-code",
+        "group": "retrieval",
+        "input": "E_CONN_TIMEOUT 怎么恢复",
+        "expected": "E_CONN_TIMEOUT：网络连接等待30秒后超时，应检查代理。",
+        "unacceptable": "未召回指定来源或引用不可定位",
+        "scorer": {
+          "file": "tests/integration/P04-01.retrieval.test.ts",
+          "title": "error-code"
+        },
+        "fixtureSha256": "9ac8460b4174a1ce59b24881bee007d1f6aee6f16e8b7ce1ff72f0451d0bc9e3",
+        "budget": {
+          "paidRequests": 0,
+          "recallDepth": 20
+        },
+        "status": "passed"
+      },
+      {
+        "id": "retrieval-auth-code",
+        "group": "retrieval",
+        "input": "AUTH_EXPIRED",
+        "expected": "AUTH_EXPIRED 表示凭据过期，需要重新登录。",
+        "unacceptable": "未召回指定来源或引用不可定位",
+        "scorer": {
+          "file": "tests/integration/P04-01.retrieval.test.ts",
+          "title": "auth-code"
+        },
+        "fixtureSha256": "d22b0cd7484d472febc1a5b51b8064fd578ede3c0071fcff327b89b0a4b58552",
+        "budget": {
+          "paidRequests": 0,
+          "recallDepth": 20
+        },
+        "status": "passed"
+      },
+      {
+        "id": "retrieval-two-refund",
+        "group": "retrieval",
+        "input": "退款",
+        "expected": "退款：购买后七天内可以申请原路返还。",
+        "unacceptable": "未召回指定来源或引用不可定位",
+        "scorer": {
+          "file": "tests/integration/P04-01.retrieval.test.ts",
+          "title": "two-refund"
+        },
+        "fixtureSha256": "856bb3186238da94ba71489bd1feedeebafbaeca675785d05da998f384b27600",
+        "budget": {
+          "paidRequests": 0,
+          "recallDepth": 20
+        },
+        "status": "passed"
+      },
+      {
+        "id": "retrieval-syn-refund",
+        "group": "retrieval",
+        "input": "退货的钱会打到哪里",
+        "expected": "商品退货后，款项会退回原来的支付账户。",
+        "unacceptable": "未召回指定来源或引用不可定位",
+        "scorer": {
+          "file": "tests/integration/P04-01.retrieval.test.ts",
+          "title": "syn-refund"
+        },
+        "fixtureSha256": "0b72a7799521de8f10eaa557eeb4683970156ba1abd0ee1d8e3e867854cd0dd8",
+        "budget": {
+          "paidRequests": 0,
+          "recallDepth": 20
+        },
+        "status": "passed"
+      },
+      {
+        "id": "retrieval-syn-power",
+        "group": "retrieval",
+        "input": "电脑没电关机之后未保存的文件怎么办",
+        "expected": "计算机突然断电时，尚未保存的编辑内容可能丢失。",
+        "unacceptable": "未召回指定来源或引用不可定位",
+        "scorer": {
+          "file": "tests/integration/P04-01.retrieval.test.ts",
+          "title": "syn-power"
+        },
+        "fixtureSha256": "1915de6906a61c85c6437c575cfca96ce53c2126f5d972156d9db99cc372b548",
+        "budget": {
+          "paidRequests": 0,
+          "recallDepth": 20
+        },
+        "status": "passed"
+      },
+      {
+        "id": "retrieval-number-budget",
+        "group": "retrieval",
+        "input": "128000元 预算",
+        "expected": "年度预算：128000元，用于设备采购。",
+        "unacceptable": "未召回指定来源或引用不可定位",
+        "scorer": {
+          "file": "tests/integration/P04-01.retrieval.test.ts",
+          "title": "number-budget"
+        },
+        "fixtureSha256": "a3c7105f67fdb77b1d85f9d9787e32e28e171c9ef5b2193d014f12b289cd34f4",
+        "budget": {
+          "paidRequests": 0,
+          "recallDepth": 20
+        },
+        "status": "passed"
+      },
+      {
+        "id": "retrieval-number-timeout",
+        "group": "retrieval",
+        "input": "120秒 转换",
+        "expected": "文件转换最长等待时间：120秒。",
+        "unacceptable": "未召回指定来源或引用不可定位",
+        "scorer": {
+          "file": "tests/integration/P04-01.retrieval.test.ts",
+          "title": "number-timeout"
+        },
+        "fixtureSha256": "321bc2a3206f77732ab9c38083190776a160786f1a2908267d42eb296d97d4a0",
+        "budget": {
+          "paidRequests": 0,
+          "recallDepth": 20
+        },
+        "status": "passed"
+      },
+      {
+        "id": "retrieval-backup",
+        "group": "retrieval",
+        "input": "备份保留多少份",
+        "expected": "每日首次启动前创建备份，并保留最近七份快照。",
+        "unacceptable": "未召回指定来源或引用不可定位",
+        "scorer": {
+          "file": "tests/integration/P04-01.retrieval.test.ts",
+          "title": "backup"
+        },
+        "fixtureSha256": "249ad67ac4c85c8f8275f45f676747d564e3dcb3127f7933e1ca025acedc0b42",
+        "budget": {
+          "paidRequests": 0,
+          "recallDepth": 20
+        },
+        "status": "passed"
+      },
+      {
+        "id": "retrieval-citation",
+        "group": "retrieval",
+        "input": "SHA256 引用",
+        "expected": "引用必须绑定不可变文件版本、原文定位和SHA256。",
+        "unacceptable": "未召回指定来源或引用不可定位",
+        "scorer": {
+          "file": "tests/integration/P04-01.retrieval.test.ts",
+          "title": "citation"
+        },
+        "fixtureSha256": "34bc1f6103b6ca78a47fa58ae7c859b22885daeca06c77c6dab25998319277a2",
+        "budget": {
+          "paidRequests": 0,
+          "recallDepth": 20
+        },
+        "status": "passed"
+      },
+      {
+        "id": "retrieval-locator",
+        "group": "retrieval",
+        "input": "PDF 页码如何保存",
+        "expected": "PDF页码从零开始存储，界面展示从第一页开始。",
+        "unacceptable": "未召回指定来源或引用不可定位",
+        "scorer": {
+          "file": "tests/integration/P04-01.retrieval.test.ts",
+          "title": "locator"
+        },
+        "fixtureSha256": "4e34e6f4da1845ba29c32e45fb99e69113584da938a30440c9b898f755cef2bf",
+        "budget": {
+          "paidRequests": 0,
+          "recallDepth": 20
+        },
+        "status": "passed"
+      },
+      {
+        "id": "retrieval-version",
+        "group": "retrieval",
+        "input": "替换文件后原来引用会变化吗",
+        "expected": "替换资料时旧引用继续打开其固定版本，不自动漂移。",
+        "unacceptable": "未召回指定来源或引用不可定位",
+        "scorer": {
+          "file": "tests/integration/P04-01.retrieval.test.ts",
+          "title": "version"
+        },
+        "fixtureSha256": "136bcff0cc1a453a36afb0dd0c89296e32ccc64f2969329e8ea0c69d9f4cba4a",
+        "budget": {
+          "paidRequests": 0,
+          "recallDepth": 20
+        },
+        "status": "passed"
+      },
+      {
+        "id": "retrieval-none-code",
+        "group": "retrieval",
+        "input": "E_DOES_NOT_EXIST_997 如何解决",
+        "expected": "当前资料无答案",
+        "unacceptable": "虚构来源",
+        "scorer": {
+          "file": "tests/integration/P04-01.retrieval.test.ts",
+          "title": "none-code"
+        },
+        "fixtureSha256": "73c801aa0077c73de05e2f245bb76cea537a90a7ce2a59f182a4bfe821304979",
+        "budget": {
+          "paidRequests": 0,
+          "recallDepth": 20
+        },
+        "status": "passed"
+      },
+      {
+        "id": "retrieval-none-number",
+        "group": "retrieval",
+        "input": "888887777元采购额度是多少",
+        "expected": "当前资料无答案",
+        "unacceptable": "虚构来源",
+        "scorer": {
+          "file": "tests/integration/P04-01.retrieval.test.ts",
+          "title": "none-number"
+        },
+        "fixtureSha256": "27853959caa6c8e4f80d861dfe777ff4c58e0d5719a17d007307e4afd2d100b8",
+        "budget": {
+          "paidRequests": 0,
+          "recallDepth": 20
+        },
+        "status": "passed"
+      },
+      {
+        "id": "retrieval-none-entity",
+        "group": "retrieval",
+        "input": "UNLISTED_VENDOR_ABC 支持何种协议",
+        "expected": "当前资料无答案",
+        "unacceptable": "虚构来源",
+        "scorer": {
+          "file": "tests/integration/P04-01.retrieval.test.ts",
+          "title": "none-entity"
+        },
+        "fixtureSha256": "66df9eb5a0ed26a53b7f7ed8f21f94b0710e0eb0b907e4e820f54a9496dfd130",
+        "budget": {
+          "paidRequests": 0,
+          "recallDepth": 20
+        },
+        "status": "passed"
+      },
+      {
+        "id": "retrieval-none-topic",
+        "group": "retrieval",
+        "input": "土星环的主要化学成分",
+        "expected": "当前资料无答案",
+        "unacceptable": "虚构来源",
+        "scorer": {
+          "file": "tests/integration/P04-01.retrieval.test.ts",
+          "title": "none-topic"
+        },
+        "fixtureSha256": "26bd22c15c68d5ddca98874b4d0ba447aebe74744a337373032b014a1cb0c9db",
+        "budget": {
+          "paidRequests": 0,
+          "recallDepth": 20
+        },
+        "status": "passed"
+      }
+    ]
+  },
+  "retrieval": {
+    "retainedCases": 15,
+    "totalBenchmarkCases": 36,
+    "recallAt20": 1,
+    "citationSupportRate": 1,
+    "locatableRate": 1,
+    "noAnswerInventedSources": 0
+  },
+  "delegation": {
+    "single": {
+      "runs": 30,
+      "meanElapsedMs": 228.35975333333317,
+      "calls": 90,
+      "tools": 90,
+      "qualityPassed": 30,
+      "fee": null
+    },
+    "delegated": {
+      "runs": 30,
+      "meanElapsedMs": 174.72505999999964,
+      "calls": 90,
+      "tools": 147,
+      "qualityPassed": 30,
+      "fee": null
+    },
+    "automaticDelegationEnabled": false
+  },
+  "productionQuality": {
+    "status": "not_verified",
+    "semanticAnswerPassRate": null,
+    "modelToolCompletionRate": null,
+    "modelJudgeCalibration": "not_run",
+    "resources": [
+      "R01",
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R08"
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "preparedAt": "2026-11-23T04:24:41.039Z",
+  "baseCommit": "44d5d3e062b78320ec1346f7e8b13727173c99e8",
+  "branch": "codex/p11-01-dev-acceptance",
+  "directory": "release/TapKit-development-2026-11-16T08-19-18-413Z",
+  "sourceFiles": [
+    {
+      "path": "apps/desktop/electron.vite.config.ts",
+      "sha256": "75e90971de52b8ee3bfbc60ff2a808158ac36d7388a42743aacc79600163170c"
+    },
+    {
+      "path": "apps/desktop/src/main/browser-network-settings.ts",
+      "sha256": "ff935a32785fad11d55a807c22698a759dc2ccbb91972d4f4a6ab1ee516858c5"
+    },
+    {
+      "path": "apps/desktop/src/main/browser.ts",
+      "sha256": "318e7abf20fe084a189f12ae25579ccb7dabd94676f7b3936102ffb0d6d451cd"
+    },
+    {
+      "path": "apps/desktop/src/main/index.ts",
+      "sha256": "01985cffdc3d887ae11ca98824f2c10397eb88e5049b929116f89ed6454b95ee"
+    },
+    {
+      "path": "apps/desktop/src/renderer/features/canvas/CanvasPage.tsx",
+      "sha256": "e5d62e1943955ce214631e7d1048dea181fc71f280a728786e317b7cc9deeb64"
+    },
+    {
+      "path": "apps/desktop/src/renderer/features/viewer/panel.tsx",
+      "sha256": "618dbc4acd4f3e1b8da48ad55f55355557bcdcd22a4596ec773e575193eb16cd"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/chat-surface.tsx",
+      "sha256": "5b7aa3262f472075feb0335b95c8e0637259ec96b7ebb1a1c5b2b378bac618c2"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/code-ui.tsx",
+      "sha256": "6dbbdf98a4b7907ef4e95da3fca2fb0ce76bc97391fd9e8e33e42241b618ce44"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/desktop-shell.tsx",
+      "sha256": "99cb9a08d4272dbe529f80f11d50b2796f1423b749e527dc43ca58a111d818e6"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/terminal-ui.tsx",
+      "sha256": "414fade04ba8ffa47b28f058272321299781bd46a50ff7df943558c97ebfecad"
+    },
+    {
+      "path": "packages/ui/package.json",
+      "sha256": "b24351e2428d4598c6705f389577ab76ac1167d9ff4cf076e5457f5e35a963f6"
+    },
+    {
+      "path": "packages/ui/src/index.ts",
+      "sha256": "14e4a05184e52b611773fb34467bdfd0ce9ec4ac1643dea4233789ec9b83a232"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "ae0a1b5b52d1500d55cc2fdb3d7c5dc8368760213ffe52431397216205df0f71"
+    }
+  ],
+  "packageChecksums": "idle-optimization-2026-11-16/package-verification.json",
+  "packagePerformance": "idle-optimization-2026-11-16/package-performance.json",
+  "localRegression": "idle-optimization-2026-11-16/regression.json",
+  "state": "awaiting_final_ci"
+}

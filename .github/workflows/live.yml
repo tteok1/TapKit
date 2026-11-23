@@ -1,0 +1,41 @@
+name: TapKit live API acceptance
+on:
+  workflow_dispatch:
+    inputs:
+      provider:
+        required: true
+        type: choice
+        options: [deepseek, hunyuan, xai, doubao]
+permissions:
+  contents: read
+jobs:
+  live-api:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.ref_protected
+    environment: tapkit-live
+    runs-on: windows-2025
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+      - name: Bootstrap locked dependencies
+        run: node scripts/bootstrap.mjs
+      - name: Build isolated API acceptance runner
+        run: |
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs exec vite build --config tests/live/p11-ci.vite.config.ts
+      - name: Run bounded live acceptance
+        shell: pwsh
+        env:
+          TAPKIT_P11_PROVIDER: ${{ inputs.provider }}
+          TAPKIT_P11_API_KEY: ${{ secrets[format('TAPKIT_LIVE_{0}_KEY', inputs.provider)] }}
+          TAPKIT_P11_MODEL_ID: ${{ vars[format('TAPKIT_LIVE_{0}_MODEL', inputs.provider)] }}
+        run: |
+          $env:TAPKIT_P11_CHECKED_OUT_SHA = git rev-parse HEAD
+          if ($LASTEXITCODE -ne 0 -or $env:TAPKIT_P11_CHECKED_OUT_SHA -ne $env:GITHUB_SHA) {
+            throw 'Checked-out source does not match the approved dispatch.'
+          }
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe test-results/P11-01-live/runner/index.cjs $env:TAPKIT_P11_PROVIDER

@@ -1,0 +1,622 @@
+{
+  "checkedAt": "2026-11-16T08:14:52.923Z",
+  "commit": "44d5d3e062b78320ec1346f7e8b13727173c99e8",
+  "environment": {
+    "image": null,
+    "imageVersion": null,
+    "osRelease": "10.0.26200",
+    "cpu": "AMD Ryzen 7 H 255 w/ Radeon 780M",
+    "logicalCpus": 16,
+    "ramBytes": 24995295232
+  },
+  "dataset": {
+    "sessions": 10000,
+    "messages": 100000,
+    "documents": 2000,
+    "chunks": 20000
+  },
+  "settledFixtureEvents": 8066,
+  "scope": "Locked BGE CPU embeddings, two synthetic upstream chats, two isolated DOCX-to-PDF work roots. Windows process-tree working set including native helpers and their children.",
+  "samplerErrors": [],
+  "results": {
+    "runtimeCapabilities": {
+      "nativeExecution": {
+        "status": "available"
+      },
+      "officeRender": {
+        "status": "available"
+      },
+      "terminal": {
+        "status": "available"
+      }
+    },
+    "chatAndIndex": {
+      "latencies": [
+        1299,
+        62,
+        92,
+        63,
+        46,
+        64,
+        51,
+        55,
+        51,
+        23,
+        21,
+        51,
+        22,
+        20,
+        27,
+        28,
+        62,
+        17,
+        43,
+        43,
+        53,
+        31,
+        22,
+        36
+      ],
+      "index": {
+        "startedAt": 1794816917796,
+        "finishedAt": 1794816924686,
+        "hits": 4,
+        "error": null,
+        "streamedDuringIndex": 22
+      },
+      "cancelAckMs": 16.19999998807907,
+      "cancelSettledMs": 144.39999997615814,
+      "callsBefore": 1,
+      "callsAfter": 1,
+      "cancelled": "cancelled",
+      "displayP95Ms": 92,
+      "peakMiB": 1054.5078125,
+      "maxNativeHelpers": 0,
+      "samples": [
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 995708928,
+          "at": 1794816915756
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 996962304,
+          "at": 1794816916505
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1012969472,
+          "at": 1794816917271
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1022623744,
+          "at": 1794816918051
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1062633472,
+          "at": 1794816918904
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1074991104,
+          "at": 1794816919738
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1091600384,
+          "at": 1794816920573
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1099870208,
+          "at": 1794816921340
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1099857920,
+          "at": 1794816922099
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1105731584,
+          "at": 1794816922853
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1063141376,
+          "at": 1794816923716
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1064263680,
+          "at": 1794816924513
+        }
+      ]
+    },
+    "heavyWork": {
+      "startedAt": 1794816924690,
+      "finishedAt": 1794816990073,
+      "bothActive": true,
+      "states": [
+        {
+          "status": "completed",
+          "reason": null,
+          "artifacts": 2
+        },
+        {
+          "status": "completed",
+          "reason": null,
+          "artifacts": 2
+        }
+      ],
+      "peakMiB": 2066.765625,
+      "maxNativeHelpers": 2,
+      "samples": [
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1073192960,
+          "at": 1794816925265
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1073192960,
+          "at": 1794816925995
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1071992832,
+          "at": 1794816926719
+        },
+        {
+          "processCount": 8,
+          "nativeHelpers": 1,
+          "totalBytes": 1112612864,
+          "at": 1794816927548
+        },
+        {
+          "processCount": 8,
+          "nativeHelpers": 1,
+          "totalBytes": 1175543808,
+          "at": 1794816928369
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1164652544,
+          "at": 1794816929213
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1164840960,
+          "at": 1794816930062
+        },
+        {
+          "processCount": 9,
+          "nativeHelpers": 1,
+          "totalBytes": 1256640512,
+          "at": 1794816930963
+        },
+        {
+          "processCount": 8,
+          "nativeHelpers": 1,
+          "totalBytes": 1221107712,
+          "at": 1794816931956
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1220071424,
+          "at": 1794816932817
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1241309184,
+          "at": 1794816933600
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1226653696,
+          "at": 1794816934413
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1228369920,
+          "at": 1794816935151
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1230872576,
+          "at": 1794816936001
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1182830592,
+          "at": 1794816936808
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1184817152,
+          "at": 1794816937624
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1185009664,
+          "at": 1794816938318
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1185878016,
+          "at": 1794816939044
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1152475136,
+          "at": 1794816939769
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1006096384,
+          "at": 1794816940519
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1006690304,
+          "at": 1794816941274
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1009442816,
+          "at": 1794816941989
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1010380800,
+          "at": 1794816942737
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1007464448,
+          "at": 1794816943508
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1008488448,
+          "at": 1794816944200
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1009672192,
+          "at": 1794816944931
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1010012160,
+          "at": 1794816945629
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1010163712,
+          "at": 1794816946363
+        },
+        {
+          "processCount": 8,
+          "nativeHelpers": 1,
+          "totalBytes": 1043800064,
+          "at": 1794816947118
+        },
+        {
+          "processCount": 8,
+          "nativeHelpers": 1,
+          "totalBytes": 1028407296,
+          "at": 1794816947921
+        },
+        {
+          "processCount": 10,
+          "nativeHelpers": 2,
+          "totalBytes": 1057107968,
+          "at": 1794816948727
+        },
+        {
+          "processCount": 13,
+          "nativeHelpers": 2,
+          "totalBytes": 1087823872,
+          "at": 1794816949556
+        },
+        {
+          "processCount": 13,
+          "nativeHelpers": 2,
+          "totalBytes": 1145204736,
+          "at": 1794816950540
+        },
+        {
+          "processCount": 13,
+          "nativeHelpers": 2,
+          "totalBytes": 1220866048,
+          "at": 1794816951414
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 1370664960,
+          "at": 1794816952365
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 1472499712,
+          "at": 1794816953220
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 1524068352,
+          "at": 1794816954131
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 1573175296,
+          "at": 1794816954943
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 1578405888,
+          "at": 1794816955812
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 1625329664,
+          "at": 1794816956681
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 1701216256,
+          "at": 1794816957564
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 1761476608,
+          "at": 1794816958494
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 1876000768,
+          "at": 1794816959510
+        },
+        {
+          "processCount": 18,
+          "nativeHelpers": 2,
+          "totalBytes": 2048933888,
+          "at": 1794816960665
+        },
+        {
+          "processCount": 20,
+          "nativeHelpers": 2,
+          "totalBytes": 2102337536,
+          "at": 1794816961533
+        },
+        {
+          "processCount": 20,
+          "nativeHelpers": 2,
+          "totalBytes": 2167160832,
+          "at": 1794816962438
+        },
+        {
+          "processCount": 18,
+          "nativeHelpers": 2,
+          "totalBytes": 2042552320,
+          "at": 1794816963349
+        },
+        {
+          "processCount": 18,
+          "nativeHelpers": 2,
+          "totalBytes": 2078371840,
+          "at": 1794816964353
+        },
+        {
+          "processCount": 18,
+          "nativeHelpers": 2,
+          "totalBytes": 2096054272,
+          "at": 1794816965507
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 1972805632,
+          "at": 1794816966478
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 1971449856,
+          "at": 1794816967544
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 1977810944,
+          "at": 1794816968542
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 1992216576,
+          "at": 1794816969560
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 1985200128,
+          "at": 1794816970458
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 2093924352,
+          "at": 1794816971352
+        },
+        {
+          "processCount": 16,
+          "nativeHelpers": 2,
+          "totalBytes": 2098044928,
+          "at": 1794816972185
+        },
+        {
+          "processCount": 13,
+          "nativeHelpers": 2,
+          "totalBytes": 1528680448,
+          "at": 1794816973048
+        },
+        {
+          "processCount": 13,
+          "nativeHelpers": 2,
+          "totalBytes": 1526067200,
+          "at": 1794816973943
+        },
+        {
+          "processCount": 13,
+          "nativeHelpers": 2,
+          "totalBytes": 1629868032,
+          "at": 1794816975030
+        },
+        {
+          "processCount": 13,
+          "nativeHelpers": 2,
+          "totalBytes": 1257091072,
+          "at": 1794816975976
+        },
+        {
+          "processCount": 10,
+          "nativeHelpers": 2,
+          "totalBytes": 1067184128,
+          "at": 1794816976885
+        },
+        {
+          "processCount": 10,
+          "nativeHelpers": 2,
+          "totalBytes": 1068417024,
+          "at": 1794816977786
+        },
+        {
+          "processCount": 10,
+          "nativeHelpers": 2,
+          "totalBytes": 1030840320,
+          "at": 1794816978584
+        },
+        {
+          "processCount": 10,
+          "nativeHelpers": 2,
+          "totalBytes": 1032474624,
+          "at": 1794816979371
+        },
+        {
+          "processCount": 8,
+          "nativeHelpers": 1,
+          "totalBytes": 1022066688,
+          "at": 1794816980287
+        },
+        {
+          "processCount": 8,
+          "nativeHelpers": 1,
+          "totalBytes": 1026744320,
+          "at": 1794816981158
+        },
+        {
+          "processCount": 10,
+          "nativeHelpers": 2,
+          "totalBytes": 1045188608,
+          "at": 1794816982112
+        },
+        {
+          "processCount": 10,
+          "nativeHelpers": 1,
+          "totalBytes": 1139449856,
+          "at": 1794816983131
+        },
+        {
+          "processCount": 8,
+          "nativeHelpers": 1,
+          "totalBytes": 1037475840,
+          "at": 1794816984181
+        },
+        {
+          "processCount": 8,
+          "nativeHelpers": 1,
+          "totalBytes": 1043148800,
+          "at": 1794816985384
+        },
+        {
+          "processCount": 9,
+          "nativeHelpers": 1,
+          "totalBytes": 1078759424,
+          "at": 1794816986318
+        },
+        {
+          "processCount": 8,
+          "nativeHelpers": 1,
+          "totalBytes": 1036533760,
+          "at": 1794816987216
+        },
+        {
+          "processCount": 6,
+          "nativeHelpers": 0,
+          "totalBytes": 1063473152,
+          "at": 1794816988144
+        },
+        {
+          "processCount": 8,
+          "nativeHelpers": 1,
+          "totalBytes": 1084071936,
+          "at": 1794816988896
+        },
+        {
+          "processCount": 8,
+          "nativeHelpers": 1,
+          "totalBytes": 1080991744,
+          "at": 1794816989705
+        }
+      ]
+    }
+  }
+}

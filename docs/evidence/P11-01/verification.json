@@ -1,0 +1,182 @@
+{
+  "task": "P11-01",
+  "base": "081c8213aeaad0eebdf3356a3aa72e67dd031d1e",
+  "branch": "codex/p11-01-dev-acceptance",
+  "sourceState": "base plus local working tree",
+  "optimizationCommands": [
+    {
+      "command": "check",
+      "exitCode": 0,
+      "summary": "139 Electron tests collected; format, types and static controls passed"
+    },
+    {
+      "command": "test:unit",
+      "exitCode": 0,
+      "summary": "524 passed on Windows; initial restricted run blocked three junction fixtures (EPERM)"
+    },
+    {
+      "command": "runtime:probe --scope=current-user",
+      "exitCode": 0,
+      "summary": "22/22; all capabilities available under current user after a separate changing-source run failed closed",
+      "evidence": "native-startup/runtime-probe.json"
+    },
+    {
+      "command": "exec playwright test --config tests/perf/playwright.config.ts",
+      "exitCode": 0,
+      "summary": "First profile 2448 ms; restarts 1313 to 1637 ms; maximum idle 698.20 MiB. Native verification completed after Core ready in all four launches.",
+      "evidence": "startup-optimized.json"
+    },
+    {
+      "command": "test:perf",
+      "exitCode": 0,
+      "summary": "Two benchmarks passed; 2,000 documents/20,000 chunks retrieval P95 1695 ms; list 25.89 ms; local search 198.65 ms",
+      "evidence": "retrieval-scaled-optimized.json"
+    },
+    {
+      "command": "test:integration P04-01.retrieval P04-02.context P11-01.work-fallback P02-02.chat --reporter=default",
+      "exitCode": 0,
+      "summary": "22 cases passed including project revocation, quote verification, context and chat cancellation"
+    },
+    {
+      "command": "test:e2e -- --grep P11-01 --output test-results/P11-01/e2e-outbox",
+      "exitCode": 0,
+      "summary": "4/4; two actual chat roots with synthetic upstream; display P95 33 ms, cancellation acknowledged in 37.3 ms and settled in 52.6 ms",
+      "evidence": "streaming-optimized.json"
+    },
+    {
+      "command": "test:integration P00-02.storage P10-03.data-lifecycle --reporter=default",
+      "exitCode": 0,
+      "summary": "26/26, including committed outbox order, leases, backup and cleanup"
+    },
+    {
+      "command": "pack:dir",
+      "exitCode": 0,
+      "summary": "Fresh package probe 22/22; 70,317 package paths scanned; independent readback verified all 70,318 checksums",
+      "evidence": "package-optimized-verification.json"
+    },
+    {
+      "command": "exec playwright test --config tests/perf/playwright.config.ts with optimized development directory",
+      "exitCode": 0,
+      "summary": "First profile 2641 ms, restarts 1346 to 1476 ms, max idle 695.46 MiB; native verified in all four launches",
+      "evidence": "package-startup-optimized.json"
+    },
+    {
+      "command": "test:integration --reporter=default --reporter=json",
+      "exitCode": 1,
+      "summary": "606 passed, 1 failed, 5 skipped; the Office hard-kill case found the letter mapped to the LibreOffice runtime at the final assertion"
+    },
+    {
+      "command": "test:integration P00-03.office -t 'hard kill' --reporter=default",
+      "exitCode": 0,
+      "summary": "Full Office hard-kill case passed independently in 10.21 s; four non-matching cases filtered"
+    },
+    {
+      "command": "test:integration --reporter=default --reporter=json (no concurrent native tests)",
+      "exitCode": 0,
+      "summary": "607 passed, 0 failed, 5 explicit skips; includes passed Office hard-kill and native sandbox limits",
+      "evidence": "integration-isolated.json"
+    }
+  ],
+  "commands": [
+    {
+      "command": "git fetch origin main",
+      "exitCode": 0,
+      "summary": "081c8213aeaad0eebdf3356a3aa72e67dd031d1e"
+    },
+    {
+      "command": "runtime:probe --scope=current-user",
+      "exitCode": 0,
+      "summary": "22 passed, 0 failed, 0 pending, current user"
+    },
+    {
+      "command": "test:unit",
+      "exitCode": 0,
+      "summary": "522 passed"
+    },
+    {
+      "command": "test:e2e -- --grep P11-01 --output test-results/P11-01/e2e-acceptance",
+      "exitCode": 0,
+      "summary": "3 passed"
+    },
+    {
+      "command": "test:recovery --reporter=verbose",
+      "exitCode": 0,
+      "summary": "23 passed including 5 actual process-kill checkpoints"
+    },
+    {
+      "command": "test:integration P07-01.native-render P07-02.native-data P07-03.native-slides --reporter=verbose",
+      "exitCode": 0,
+      "summary": "7 passed; three synthetic visual spot checks"
+    },
+    {
+      "command": "eval:agent",
+      "exitCode": 0,
+      "summary": "60/60 retained cases; 220/220 Vitest; synthetic ablation and independent retrieval"
+    },
+    {
+      "command": "test:live -- --provider all",
+      "exitCode": 2,
+      "summary": "Preflight only; no real requests"
+    },
+    {
+      "command": "exec vite build --config tests/live/p11-ci.vite.config.ts",
+      "exitCode": 0,
+      "summary": "Trusted dispatch API runner compiled"
+    },
+    {
+      "command": "check",
+      "exitCode": 0,
+      "summary": "138 Electron tests collected; format/type/schema checks passed"
+    },
+    {
+      "command": "docs:check",
+      "exitCode": 0,
+      "summary": "574 requirement mappings verified"
+    },
+    {
+      "command": "test:security --reporter=verbose",
+      "exitCode": 0,
+      "summary": "57 passed; native sandbox regression passed"
+    },
+    {
+      "command": "test:integration P03-01.native-parser --reporter=verbose",
+      "exitCode": 0,
+      "summary": "3 passed after adjusting matrix harness timeout; per-job limits unchanged"
+    },
+    {
+      "command": "node scripts/scan-release.mjs",
+      "exitCode": 0,
+      "summary": "938 source paths and 886 text files; selected acceptance logs also scanned"
+    },
+    {
+      "command": "test:integration",
+      "exitCode": 1,
+      "summary": "604 passed, 2 timeouts, 5 explicit skips; the two timeouts passed isolated rechecks"
+    },
+    {
+      "command": "test:perf -- --desktop",
+      "exitCode": 1,
+      "summary": "Core benchmarks 2 passed; startup/restart/working-set assertions outside limits"
+    },
+    {
+      "command": "build (from pack:dir)",
+      "exitCode": 0,
+      "summary": "Locked helper and production Core/desktop artifacts compiled"
+    },
+    {
+      "command": "pack:dir",
+      "exitCode": 0,
+      "summary": "New directory built; fresh probe 22/22; scan 70,313 paths and 1,415 text files; SHA-256 manifest generated"
+    },
+    {
+      "command": "exec playwright test --config tests/perf/playwright.config.ts with development directory",
+      "exitCode": 1,
+      "summary": "4 isolated Electron/Core launches succeeded; startup and working-set thresholds exceeded"
+    },
+    {
+      "command": "executionFingerprint timing",
+      "exitCode": 0,
+      "summary": "Standalone runtime fingerprint 28.13 seconds while package fingerprint was also running"
+    }
+  ]
+}

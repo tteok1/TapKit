@@ -1,5 +1,7 @@
 # 测试、评测和发布验收
 
+P11 开发目录、工作回退上下文、离线评测和 CI 分层见 [ADR0085](../adr/0085-development-directory-and-system-acceptance.md)。`pnpm test:perf -- --desktop` 追加桌面启动和空闲内存采样，需在独立进程组完成后单独执行。真实模型、真实文档质量和安装升级仍按各资源验收范围记录。
+
 P07原生CI按[ADR0073](../adr/0073-private-office-fonts-and-ci-scope.md)分离作用域：主check集成排除的P07 native 9文件17项，必须在独立office-native job中全部执行；该job先实际probe当前runner，再运行同一完整文件集并上传成果。其他集成、性能与独立标准用户检查留在check，既有Electron E2E范围在并行的electron job内以单worker运行。electron在自己的runner生成能力报告，并执行P03-02原生预览用例，为桌面测试生成本地合成交接文件。禁止将拆分记为删除覆盖或跨runner复用能力报告。
 
 启动（建库和凭据）与Office关闭（外链和宏）的新进程多轮复测由工作流的手动触发运行。原用例继续随push/PR的主集成和Electron E2E执行。
@@ -32,6 +34,8 @@ P00-01创建以下根脚本，不能在任务结束时只写“建议测试”�
 ## 2. 分层策略
 
 性能用例归入独立Vitest perf项目，通过pnpm test:perf执行，CI在其他集成worker全部退出后运行；不与原生Office/进程资源压力用例并发争用CPU/磁盘。P02-03仍使用1万会话/10万消息、200页/30次查询及500ms P95断言，普通integration不代替性能验收。
+
+P11-01 联合负载使用独立 Windows CI 作业，也可运行 `pnpm test:e2e -- --grep 'P11-01 joint load'` 复测。作业在本 runner 验证原生隔离后，用同一个合成 profile 跑聊天与实时索引、两根原生 Office 工作，采集应用与原生子进程工作集并上传 JSON。
 
 P02-03合成数据建库在beforeAll中单独限时120秒；查询采样用例仍限时60秒，不把建库耗时计入用户查询P95。报告同时记录seedMs/sampleMs及原数据量，写入test-results/P02-03-perf/performance.json随CI归档；本地证据按实际运行另行保存，不自动覆盖旧日期的验收报告。
 

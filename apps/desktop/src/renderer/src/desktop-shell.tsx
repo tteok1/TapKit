@@ -4,6 +4,8 @@ import { WorkCenter } from './work-ui';
 import { NotificationsCenter } from './notifications-ui';
 import { TooltipLayer } from './tooltip';
 import {
+  lazy,
+  Suspense,
   useCallback,
   useEffect,
   useLayoutEffect,
@@ -39,8 +41,6 @@ import { StartPage, type StartMode } from './start-page';
 import { HistoryList, SearchView, historyCommand } from './history-ui';
 import { FileLibrary } from './file-library';
 import { ProjectsList, ProjectPage } from './projects-ui';
-import { ArtifactPanel } from '../features/viewer/panel';
-import { CanvasList, CanvasPage } from '../features/canvas/CanvasPage';
 import { useViewer } from '../features/viewer/state';
 import h from '../locales/history.zh-CN.json';
 import { SessionDetailsSchema, type SessionRecord } from '@tapkit/contracts';
@@ -57,6 +57,17 @@ import { QuickInput } from '../features/help/QuickInput';
 import { DesktopPreferences, shortcutFromEvent } from '../features/settings/desktop-preferences';
 import e from '../locales/experience.zh-CN.json';
 import productIcon from '../assets/tapkit-current-icon.png?url';
+
+const ArtifactPanel = lazy(() =>
+  import('../features/viewer/panel').then(({ ArtifactPanel }) => ({ default: ArtifactPanel })),
+);
+const CanvasList = lazy(() =>
+  import('../features/canvas/CanvasPage').then(({ CanvasList }) => ({ default: CanvasList })),
+);
+const CanvasPage = lazy(() =>
+  import('../features/canvas/CanvasPage').then(({ CanvasPage }) => ({ default: CanvasPage })),
+);
+const canvasLoading = <p role="status">正在加载画布…</p>;
 
 type Bootstrap = z.infer<typeof BootstrapViewSchema>;
 type Workspace = z.infer<typeof WorkspaceViewSchema>;
@@ -850,11 +861,20 @@ export function DesktopShell() {
                   }
                 />
                 <Route path="/bookmarks" element={<Bookmarks onNavigate={navigate} />} />
-                <Route path="/canvas" element={<CanvasList />} />
+                <Route
+                  path="/canvas"
+                  element={
+                    <Suspense fallback={canvasLoading}>
+                      <CanvasList />
+                    </Suspense>
+                  }
+                />
                 <Route
                   path="/canvas/:id"
                   element={
-                    <CanvasPage key={location.pathname} id={location.pathname.split('/')[2]!} />
+                    <Suspense fallback={canvasLoading}>
+                      <CanvasPage key={location.pathname} id={location.pathname.split('/')[2]!} />
+                    </Suspense>
                   }
                 />
                 <Route
@@ -962,7 +982,9 @@ export function DesktopShell() {
                 </button>
               </header>
               {viewer.tabs.length ? (
-                <ArtifactPanel />
+                <Suspense fallback={<p role="status">正在准备预览…</p>}>
+                  <ArtifactPanel />
+                </Suspense>
               ) : (
                 <>
                   <h2>{selected?.title ?? '本地空间'}</h2>

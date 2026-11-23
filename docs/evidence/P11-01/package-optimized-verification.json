@@ -1,0 +1,12 @@
+{
+  "path": "release/TapKit-development-2026-11-13T12-31-31-178Z",
+  "milestone": "P11-01-development",
+  "nativeProbeExitCode": 0,
+  "verifiedChecksums": 70318,
+  "bytes": 3517187283,
+  "manifestSha256": "3501d9ddf7515ad22803a900617f89ccc01760ac2d4f0f71198a16c6c43248a2",
+  "scratchRemoved": [
+    ".test-data",
+    "test-results"
+  ]
+}

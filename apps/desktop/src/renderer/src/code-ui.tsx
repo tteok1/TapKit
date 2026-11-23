@@ -1,13 +1,16 @@
 import { codeLineDiff } from './code-diff';
-import { TerminalPanel } from './terminal-ui';
 import { GitHubPanel } from './github-ui';
 import { SitePanel } from './site-ui';
-import { useEffect, useState, useMemo } from 'react';
+import { lazy, Suspense, useEffect, useState, useMemo } from 'react';
 import { CodeViewSchema, type CodeView, type CodeCommand, type WorkView } from '@tapkit/contracts';
 import { requestOptions } from './desktop-state';
 import { workCommand } from './work-ui';
 import t from '../locales/code.zh-CN.json';
 import './code.css';
+
+const TerminalPanel = lazy(() =>
+  import('./terminal-ui').then(({ TerminalPanel }) => ({ default: TerminalPanel })),
+);
 
 async function command(name: CodeCommand, payload: unknown) {
   const r = await window.tapkit.codeCommand(requestOptions(), name, payload);
@@ -512,7 +515,11 @@ export function CodePanel({
               )}
             </>
           )}
-          {view.prepared && !view.revoked && <TerminalPanel key={runId} runId={runId} />}
+          {view.prepared && !view.revoked && (
+            <Suspense fallback={<p role="status">正在加载终端…</p>}>
+              <TerminalPanel key={runId} runId={runId} />
+            </Suspense>
+          )}
           <button
             className="code-revoke"
             type="button"

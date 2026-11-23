@@ -1,3 +1,5 @@
+2026-11-23，P11-01 最终优化和证据准备提交开发分支，再跑完整 Windows CI。任务 in_progress，规格机与真实资源待验。详 [P11-01](P11-01.md)。
+
 2026-11-13，P10-03=implemented_and_verified。数据生命周期本地验收通过。CI #103 的版本预检及 #104 的导出状态同步已修复。P10 工程通过，实机待验见 [P10-gate](P10-gate.md)。
 
 2026-11-12，P10-02=implemented_not_live_verified。CI #100 的 P00-01 已通过，P10-01 画布回复定位修复后本地 Electron 定向复跑 7/7。详见 [P10-02](P10-02.md)。
@@ -58,7 +60,7 @@ CI73三个job全success，测试清理及资料保全保持；耗时只读审计
 | P10-01 | 轻量文档画布和局部AI修改           | P07-03, P09-04 | implemented_not_live_verified | docs/progress/P10-01.md              |
 | P10-02 | 占位页面、通用体验与无障碍完善     | P10-01         | implemented_not_live_verified | docs/progress/P10-02.md              |
 | P10-03 | 数据导出、清理、备份和恢复闭环     | P10-02         | implemented_and_verified      | docs/progress/P10-03.md              |
-| P11-01 | 系统评测、故障回归与源码开发版交付 | P10-03         | not_started                   | docs/progress/P11-01.md              |
+| P11-01 | 系统评测、故障回归与源码开发版交付 | P10-03         | in_progress                   | docs/progress/P11-01.md              |
 | P11-02 | Windows安装包、升级与标准用户验证  | P11-01         | not_started                   | docs/progress/P11-02.md              |
 | P11-03 | GitHub开源交接与官网下载准备       | P11-02         | not_started                   | docs/progress/P11-03.md              |
 
@@ -77,4 +79,4 @@ CI73三个job全success，测试清理及资料保全保持；耗时只读审计
 | P08  | passed                              | docs/progress/P08-gate.md |
 | P09  | in_progress                         | docs/progress/P09-gate.md |
 | P10  | engineering_passed_external_pending | docs/progress/P10-gate.md |
-| P11  | not_started                         | docs/progress/P11-gate.md |
+| P11  | in_progress                         | docs/progress/P11-gate.md |

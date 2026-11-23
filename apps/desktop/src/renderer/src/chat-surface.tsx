@@ -1,9 +1,17 @@
 import w from '../locales/work.zh-CN.json';
 import { workCommand } from './work-ui';
-import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type RefObject,
+} from 'react';
 import { ActionPopover, IconButton } from './action-popover';
 import { UiIcon } from './ui-icon';
-import { ChatMarkdown, CopyButton, citationMarkdown } from '@tapkit/ui';
+import { CopyButton, citationMarkdown } from '@tapkit/ui';
 import {
   ChatSnapshotSchema,
   WebOptionsSchema,
@@ -40,6 +48,11 @@ import { ContextSummary } from './context-summary';
 import { MemoryPolicy, MemoryMessage } from './memory-ui';
 import { WebControlsDialog, WebSources, WebReferenceButton, webCommand } from './web-ui';
 import webLocale from '../locales/web.zh-CN.json';
+
+const ChatMarkdown = lazy(() =>
+  import('@tapkit/ui/chat-markdown').then(({ ChatMarkdown }) => ({ default: ChatMarkdown })),
+);
+
 const unwrap = (reply: Reply) => {
   if (!reply.ok) throw new Error(reply.error.code);
   return reply.data;
@@ -1046,38 +1059,42 @@ export function ChatSurface({
               ) : message.role === 'assistant' ? (
                 <details open className="answer-body">
                   <summary hidden={message.text.length <= 20000}>展开或收起长回复</summary>
-                  <ChatMarkdown
-                    text={
-                      message.role === 'assistant'
-                        ? citationMarkdown(
-                            message.text,
-                            message.attachments,
-                            webLocale.citation,
-                            webLocale.unverifiedCitation,
-                          )
-                        : message.text
+                  <Suspense
+                    fallback={
+                      <div className="chat-markdown" style={{ whiteSpace: 'pre-wrap' }}>
+                        {message.text}
+                      </div>
                     }
-                    streaming={message.status === 'streaming'}
-                    onLink={(url) =>
-                      void action(async () => {
-                        const citation = /^#tapkit-citation-([0-9]{1,2})$/.exec(url);
-                        if (!citation) return window.tapkit.openPublicLink(url);
-                        const ref = message.attachments[Number(citation[1])];
-                        if (ref?.kind === 'web') {
-                          setWebSourceId(ref.sourceId);
-                          setWebPanel(true);
-                        } else if (ref?.kind === 'file' && sid.current) {
-                          const owner = await chatFileOwner(window.tapkit, ref, sid.current);
-                          await viewer.open({
-                            fileId: ref.fileId,
-                            versionId: ref.versionId,
-                            ...(ref.locator ? { locator: ref.locator } : {}),
-                            ...(owner ? { owner } : {}),
-                          });
-                        }
-                      })
-                    }
-                  />
+                  >
+                    <ChatMarkdown
+                      text={citationMarkdown(
+                        message.text,
+                        message.attachments,
+                        webLocale.citation,
+                        webLocale.unverifiedCitation,
+                      )}
+                      streaming={message.status === 'streaming'}
+                      onLink={(url) =>
+                        void action(async () => {
+                          const citation = /^#tapkit-citation-([0-9]{1,2})$/.exec(url);
+                          if (!citation) return window.tapkit.openPublicLink(url);
+                          const ref = message.attachments[Number(citation[1])];
+                          if (ref?.kind === 'web') {
+                            setWebSourceId(ref.sourceId);
+                            setWebPanel(true);
+                          } else if (ref?.kind === 'file' && sid.current) {
+                            const owner = await chatFileOwner(window.tapkit, ref, sid.current);
+                            await viewer.open({
+                              fileId: ref.fileId,
+                              versionId: ref.versionId,
+                              ...(ref.locator ? { locator: ref.locator } : {}),
+                              ...(owner ? { owner } : {}),
+                            });
+                          }
+                        })
+                      }
+                    />
+                  </Suspense>
                 </details>
               ) : (
                 <p className="chat-user-text">{message.text}</p>

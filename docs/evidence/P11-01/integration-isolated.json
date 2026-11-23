@@ -1,0 +1,33 @@
+{
+  "command": "pnpm test:integration --reporter=default --reporter=json --outputFile.json=test-results/P11-01/integration-isolated.json",
+  "exitCode": 0,
+  "startedAt": "2026-11-13T12:52:36.567Z",
+  "isolatedFromOtherNativeTestCommands": true,
+  "total": 612,
+  "passed": 607,
+  "failed": 0,
+  "skipped": [
+    {
+      "file": "P07-01.live-render.test.ts",
+      "title": "P07-01 real model DOCX renders through the isolated Office worker"
+    },
+    {
+      "file": "P09-02.runtime.test.ts",
+      "title": "P09-02 registry live downloads pinned public packages and installs both runtimes without a model account"
+    },
+    {
+      "file": "P09-03.live.test.ts",
+      "title": "P09-03 live R07 authorized dedicated repo to Draft PR"
+    },
+    {
+      "file": "P09-04.react.test.ts",
+      "title": "P09-04 locks React registry dependencies and builds offline inside the native sandbox"
+    },
+    {
+      "file": "P10-01.canvas.test.ts",
+      "title": "P10-01 T07 validates Chinese PDF text, table and rendered image through Windows isolation"
+    }
+  ],
+  "testFiles": 98,
+  "nativeOfficeRecoveryPassed": true
+}

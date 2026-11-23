@@ -1,5 +1,7 @@
 # 范围、决策与默认行为
 
+2026-11-16 [ADR 0086](../adr/0086-desktop-feature-loading.md) 采用桌面功能按需加载和 Renderer 生产脚本压缩。Host 网络隔离设置在启动时应用，功能模块在首次使用时初始化。验收见 P11-01 的源码、开发目录及联合负载报告。
+
 2026-11-12 [ADR 0082](../adr/0082-versioned-document-canvas.md)：P10-01 使用 Tiptap JSON、schema24、固定版本 CAS、选区审阅和既有 P07 导出验证。
 
 2026-11-06 [ADR0079](../adr/0079-isolated-code-runtime-and-terminal.md)：P09-02采用schema23 RuntimeProfile与原process_handles、受控registry下载/沙箱离线安装、Node/Python枚举argv、真实退出码与ConPTY流式终端；复用根预算/隔离/生命周期，重启不按PID重连，依赖和回执须绑定当前源及锁文件。

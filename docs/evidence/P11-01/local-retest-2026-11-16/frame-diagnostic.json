@@ -1,0 +1,403 @@
+{
+  "checkedAt": "2026-11-16T07:35:48.334Z",
+  "commit": "44d5d3e062b78320ec1346f7e8b13727173c99e8",
+  "environment": {
+    "image": null,
+    "imageVersion": null,
+    "osRelease": "10.0.26200",
+    "cpu": "AMD Ryzen 7 H 255 w/ Radeon 780M",
+    "logicalCpus": 16,
+    "ramBytes": 24995295232
+  },
+  "dataset": {
+    "sessions": 10000,
+    "messages": 100000,
+    "documents": 2000,
+    "chunks": 20000
+  },
+  "settledFixtureEvents": 8066,
+  "scope": "Locked BGE CPU embeddings, two synthetic upstream chats, two isolated DOCX-to-PDF work roots. Windows process-tree working set including native helpers and their children.",
+  "samplerErrors": [],
+  "results": {
+    "runtimeCapabilities": {
+      "nativeExecution": {
+        "status": "available"
+      },
+      "officeRender": {
+        "status": "available"
+      },
+      "terminal": {
+        "status": "available"
+      }
+    },
+    "testWindows": [
+      {
+        "visible": true,
+        "minimized": false,
+        "focused": true
+      }
+    ],
+    "chatAndIndex": {
+      "latencies": [
+        1184,
+        47,
+        84,
+        43,
+        20,
+        48,
+        39,
+        49,
+        46,
+        43,
+        53,
+        21,
+        62,
+        21,
+        48,
+        20,
+        48,
+        50,
+        53,
+        22,
+        37,
+        36,
+        34,
+        24
+      ],
+      "rendererSamples": [
+        {
+          "index": 0,
+          "domMs": 1169,
+          "waitForFirstFrameMs": 7,
+          "waitForSecondFrameMs": 8,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 1,
+          "domMs": 32,
+          "waitForFirstFrameMs": 7,
+          "waitForSecondFrameMs": 8,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 2,
+          "domMs": 73,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 10,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 3,
+          "domMs": 40,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 2,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 4,
+          "domMs": 17,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 2,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 5,
+          "domMs": 44,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 3,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 6,
+          "domMs": 37,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 1,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 7,
+          "domMs": 42,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 7,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 8,
+          "domMs": 40,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 5,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 9,
+          "domMs": 37,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 5,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 10,
+          "domMs": 49,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 3,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 11,
+          "domMs": 15,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 6,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 12,
+          "domMs": 52,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 10,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 13,
+          "domMs": 16,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 4,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 14,
+          "domMs": 38,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 9,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 15,
+          "domMs": 16,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 4,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 16,
+          "domMs": 45,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 3,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 17,
+          "domMs": 47,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 2,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 18,
+          "domMs": 50,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 2,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 19,
+          "domMs": 15,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 7,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 20,
+          "domMs": 27,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 10,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 21,
+          "domMs": 29,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 7,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 22,
+          "domMs": 30,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 4,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 23,
+          "domMs": 18,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 5,
+          "visibility": "visible",
+          "focused": true
+        }
+      ],
+      "index": {
+        "startedAt": 1794814579737,
+        "finishedAt": 1794814585257,
+        "hits": 4,
+        "error": null,
+        "streamedDuringIndex": 21
+      },
+      "cancelAckMs": 16.100000023841858,
+      "cancelSettledMs": 141.60000002384186,
+      "callsBefore": 1,
+      "callsAfter": 1,
+      "cancelled": "cancelled",
+      "displayP95Ms": 84,
+      "peakMiB": 1129.5078125,
+      "maxNativeHelpers": 0,
+      "samples": [
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1090363392,
+          "at": 1794814576580
+        },
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1090363392,
+          "at": 1794814577299
+        },
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1093648384,
+          "at": 1794814577961
+        },
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1105477632,
+          "at": 1794814578642
+        },
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1093525504,
+          "at": 1794814579306
+        },
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1118437376,
+          "at": 1794814580015
+        },
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1166376960,
+          "at": 1794814580764
+        },
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1184374784,
+          "at": 1794814581482
+        },
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1119768576,
+          "at": 1794814582230
+        },
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1116200960,
+          "at": 1794814582948
+        },
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1119969280,
+          "at": 1794814583669
+        },
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1121148928,
+          "at": 1794814584373
+        },
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1123074048,
+          "at": 1794814585084
+        }
+      ]
+    },
+    "heavyWork": {
+      "startedAt": 1794814585724,
+      "finishedAt": 1794814588389,
+      "bothActive": false,
+      "states": [
+        {
+          "status": "waiting_tool",
+          "reason": null,
+          "artifacts": 0
+        },
+        {
+          "status": "failed",
+          "reason": "PROVIDER_UNAVAILABLE",
+          "artifacts": 0
+        }
+      ],
+      "peakMiB": 1081.1171875,
+      "maxNativeHelpers": 0,
+      "samples": [
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1124884480,
+          "at": 1794814585805
+        },
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1133633536,
+          "at": 1794814586518
+        },
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1133121536,
+          "at": 1794814587208
+        },
+        {
+          "processCount": 7,
+          "nativeHelpers": 0,
+          "totalBytes": 1133268992,
+          "at": 1794814587880
+        }
+      ]
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ChatMarkdown, useNavigate } from '@tapkit/ui';
+import { useNavigate } from '@tapkit/ui';
+import { ChatMarkdown } from '@tapkit/ui/chat-markdown';
 import { openCanvas } from '../canvas/api';
 import {
   ArtifactReplySchema,

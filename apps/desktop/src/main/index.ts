@@ -85,17 +85,23 @@ import strings from './zh-CN.json';
 import { avatarDimensions, readAvatarFile } from './avatar';
 import { ArtifactProtocol } from './artifact-protocol';
 import { ExternalArtifact } from './external-artifact';
-import { AnonymousReader, configureAnonymousNetwork } from './browser';
-import { BrowserRuntime } from './browser-runtime';
-const browserRuntime = new BrowserRuntime(
-  (slot) => [...windows].find((w) => windowSlots.get(w.webContents.id) === slot) ?? null,
-);
+import type { AnonymousReader } from './browser';
+import { configureAnonymousNetwork } from './browser-network-settings';
+import type { BrowserRuntime } from './browser-runtime';
+let browserRuntime: BrowserRuntime | undefined;
+async function getBrowserRuntime() {
+  if (browserRuntime) return browserRuntime;
+  const { BrowserRuntime } = await import('./browser-runtime');
+  return (browserRuntime ??= new BrowserRuntime(
+    (slot) => [...windows].find((w) => windowSlots.get(w.webContents.id) === slot) ?? null,
+  ));
+}
 declare const __TAPKIT_TEST_BUILD__: boolean;
 import { ExportPdfRenderer } from './export-pdf';
 const exportPdf = new ExportPdfRenderer();
 const exportDestinations = new Map<string, { windowId: string; path: string }>();
 configureAnonymousNetwork();
-const anonymousReader = new AnonymousReader();
+let anonymousReader: Promise<AnonymousReader> | undefined;
 protocol.registerSchemesAsPrivileged([
   {
     scheme: 'tapkit-artifact',
@@ -354,7 +360,12 @@ function startCore() {
     const message = parsed.data;
     if (message.type === 'vault.request') {
       if (message.operation === 'browser.runtime') {
-        void browserRuntime.command(message.payload).then(
+        const work = async () => {
+          const browser = await getBrowserRuntime();
+          if (core !== child || quitting) throw Error('CANCELLED');
+          return browser.command(message.payload);
+        };
+        void work().then(
           (value) => {
             if (core === child)
               child.postMessage({ type: 'vault.reply', id: message.id, ok: true, value });
@@ -407,7 +418,7 @@ function startCore() {
         const work = async () => {
           if (message.operation === 'web.cancel') {
             const p = z.strictObject({ token: z.string().uuid() }).parse(message.payload);
-            anonymousReader.cancel(p.token);
+            (await anonymousReader)?.cancel(p.token);
             return true;
           }
           const p = z
@@ -422,7 +433,11 @@ function startCore() {
                 .max(50 * 1024 * 1024),
             })
             .parse(message.payload);
-          return anonymousReader.read(p.token, p.url, p.proxyURL, p.remainingBytes);
+          const reader = await (anonymousReader ??= import('./browser').then(
+            ({ AnonymousReader }) => new AnonymousReader(),
+          ));
+          if (core !== child || quitting) throw Error('CANCELLED');
+          return reader.read(p.token, p.url, p.proxyURL, p.remainingBytes);
         };
         void work().then(
           (value) => {
@@ -521,7 +536,7 @@ function startCore() {
     }
   });
   child.on('exit', (code) => {
-    void browserRuntime.disposeAll();
+    void browserRuntime?.disposeAll();
     clearTimeout(timer);
     rejectReady(new Error('Core exited'));
     for (const waiter of pending.values()) {
@@ -826,7 +841,7 @@ if (ownsLock) {
       const { installBrowserWebFixture } =
         await import('../../../../tests/fixtures/web-app/fixture');
       Object.assign(globalThis, { tapkitBrowserWebFixture: installBrowserWebFixture(dataDir) });
-      Object.assign(globalThis, { tapkitBrowserRuntime: browserRuntime });
+      Object.assign(globalThis, { tapkitBrowserRuntime: await getBrowserRuntime() });
     }
     if (configuredDataRoot) startCore();
     else {

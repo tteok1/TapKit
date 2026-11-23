@@ -1,0 +1,341 @@
+{
+  "schemaVersion": 1,
+  "fixtureHash": "19285befb0b2fae2210dd9cc344cc6b24b0effc1ad3825e8c4c5e526bff7f6a9",
+  "modelRevision": "75c43b069aac4d136ba6bc1122f995fedcfd2781:q8:cls:windows384-64:v1",
+  "sampleSize": 32,
+  "recallAt8": 1,
+  "recallAt20": 1,
+  "citationSupportRate": 1,
+  "citedClaims": 32,
+  "supportScorer": "Independent gold expected document versus first returned citation; deterministic quotation harness, no model service called",
+  "locatable": 75,
+  "total": 75,
+  "locatableRate": 1,
+  "noAnswerInventedSources": 0,
+  "results": [
+    {
+      "id": "error-code",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "auth-code",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "two-refund",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "two-proxy",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 2,
+      "located": 2
+    },
+    {
+      "id": "two-lock",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "syn-refund",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "syn-power",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 8,
+      "located": 8
+    },
+    {
+      "id": "syn-password",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 3,
+      "located": 3
+    },
+    {
+      "id": "syn-vacation",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "syn-remote",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "number-budget",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "number-port",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "number-timeout",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "number-limit",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "backup",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 5,
+      "located": 5
+    },
+    {
+      "id": "sqlite",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "rrf",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "units",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "headers",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "privacy",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 3,
+      "located": 3
+    },
+    {
+      "id": "citation",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "project",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "trash",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 8,
+      "located": 8
+    },
+    {
+      "id": "cancel",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 2,
+      "located": 2
+    },
+    {
+      "id": "unit-price",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 2,
+      "located": 2
+    },
+    {
+      "id": "opening",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "locator",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "cell",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 1,
+      "located": 1
+    },
+    {
+      "id": "revocation",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 3,
+      "located": 3
+    },
+    {
+      "id": "upgrade",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 3,
+      "located": 3
+    },
+    {
+      "id": "version",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 8,
+      "located": 8
+    },
+    {
+      "id": "conflict",
+      "expected": true,
+      "recalled": true,
+      "recalledAt20": true,
+      "topCitationSupported": true,
+      "hits": 8,
+      "located": 8
+    },
+    {
+      "id": "none-code",
+      "expected": false,
+      "recalled": false,
+      "recalledAt20": false,
+      "topCitationSupported": null,
+      "hits": 0,
+      "located": 0
+    },
+    {
+      "id": "none-number",
+      "expected": false,
+      "recalled": false,
+      "recalledAt20": false,
+      "topCitationSupported": null,
+      "hits": 0,
+      "located": 0
+    },
+    {
+      "id": "none-entity",
+      "expected": false,
+      "recalled": false,
+      "recalledAt20": false,
+      "topCitationSupported": null,
+      "hits": 0,
+      "located": 0
+    },
+    {
+      "id": "none-topic",
+      "expected": false,
+      "recalled": false,
+      "recalledAt20": false,
+      "topCitationSupported": null,
+      "hits": 0,
+      "located": 0
+    }
+  ]
+}

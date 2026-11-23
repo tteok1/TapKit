@@ -1,0 +1,2 @@
+JSON report written to D:/Tapkit-public/test-results/P00-03-native-bc8a594d-794e-4d63-b6a3-6278dbeb5e85.json
+$ vitest run --config vitest.config.ts --project integration "P00-03" "--reporter=json" "--outputFile=D:\\Tapkit-public\\test-results\\P00-03-native-bc8a594d-794e-4d63-b6a3-6278dbeb5e85.json"

@@ -1,0 +1,82 @@
+{
+  "runId": 43805611837,
+  "jobId": 133095572479,
+  "commit": "83152a68c49ee2008171960d911a5e00b5a9ffa6",
+  "runner": "windows-2025",
+  "exitCode": 1,
+  "failedAssertion": "stream display P95 <= 100 ms",
+  "artifactId": 14198632951,
+  "runtimeCapabilities": {
+    "nativeExecution": {
+      "status": "available"
+    },
+    "officeRender": {
+      "status": "available"
+    },
+    "terminal": {
+      "status": "available"
+    }
+  },
+  "chatAndIndex": {
+    "latencies": [
+      1924,
+      50,
+      72,
+      72,
+      54,
+      69,
+      70,
+      15,
+      79,
+      64,
+      118,
+      76,
+      62,
+      61,
+      63,
+      77,
+      82,
+      111,
+      23,
+      57,
+      102,
+      86,
+      80,
+      68
+    ],
+    "index": {
+      "startedAt": 1794804731437,
+      "finishedAt": 1794804742337,
+      "hits": 4,
+      "error": null,
+      "streamedDuringIndex": 22
+    },
+    "cancelAckMs": 43.199999999953434,
+    "cancelSettledMs": 122.5,
+    "callsBefore": 1,
+    "callsAfter": 1,
+    "cancelled": "cancelled",
+    "displayP95Ms": 118,
+    "peakMiB": 770.19140625,
+    "maxNativeHelpers": 0
+  },
+  "heavyWork": {
+    "startedAt": 1794804742341,
+    "finishedAt": 1794804785918,
+    "bothActive": true,
+    "states": [
+      {
+        "status": "completed",
+        "reason": null,
+        "artifacts": 2
+      },
+      {
+        "status": "completed",
+        "reason": null,
+        "artifacts": 2
+      }
+    ],
+    "peakMiB": 1389.18359375,
+    "maxNativeHelpers": 2
+  }
+}

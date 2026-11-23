@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-11-13T10:52:36.411Z",
+  "commit": "081c8213aeaad0eebdf3356a3aa72e67dd031d1e",
+  "hardware": {
+    "os": "10.0.26200",
+    "arch": "x64",
+    "threads": 16,
+    "cpu": "AMD Ryzen 7 H 255 w/ Radeon 780M",
+    "ramBytes": 24995295232
+  },
+  "scope": "This host, application restart and new profile, no OS cache flush, no provider calls",
+  "runtime": "source build",
+  "limits": {
+    "firstProfileMs": 5000,
+    "restartMs": 2000,
+    "idleMiB": 700
+  },
+  "samples": [
+    {
+      "profile": "first-profile",
+      "shellMs": 1740.3321999999998,
+      "coreReadyMs": 24212.3489,
+      "idleMiB": 709.1484375
+    },
+    {
+      "profile": "same-profile-restart",
+      "shellMs": 1453.770700000001,
+      "coreReadyMs": 19439.188700000002,
+      "idleMiB": 681.078125
+    },
+    {
+      "profile": "same-profile-restart",
+      "shellMs": 1560.9795999999988,
+      "coreReadyMs": 19395.0936,
+      "idleMiB": 697.07421875
+    },
+    {
+      "profile": "same-profile-restart",
+      "shellMs": 1489.1724999999933,
+      "coreReadyMs": 18804.867999999995,
+      "idleMiB": 707.6640625
+    }
+  ],
+  "meetsLimits": {
+    "firstProfile": false,
+    "restart": false,
+    "idle": false
+  }
+}
