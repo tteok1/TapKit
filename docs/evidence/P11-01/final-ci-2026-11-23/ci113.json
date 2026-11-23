@@ -446,7 +446,8 @@
       "test": "P03-01 T07 linking a folder file keeps it visible at project and session roots, and shared moves remain navigable in each scope",
       "line": 1176,
       "error": "Expected 0 file cards after move, received 1",
-      "pageResult": "CONFLICT: file revision changed during asynchronous parsing",
+      "pageResult": "CONFLICT: data changed; original file remains and the move result is failed",
+      "causeAssessment": "Code inspection shows asynchronous parsing can increment the file revision between files.get and files.move; this fixture had not awaited parsing readiness.",
       "fix": "Wait for imported file parsing to finish before linking and moving in this fixture; retain production revision checks."
     }
   },

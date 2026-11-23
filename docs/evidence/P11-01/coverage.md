@@ -39,4 +39,6 @@
 
 同日按需加载和脚本压缩后的[开发包](idle-optimization-2026-11-16/package-performance.json) 四次采样均低于 700 MiB，峰值 681.86 MiB，启动和重启均达标。同一工作树的[联合负载](idle-optimization-2026-11-16/joint-load.json) 与[端到端回归](idle-optimization-2026-11-16/regression.json) 通过。
 
+2026-11-23 的[最终 CI #114](final-ci-2026-11-23/ci114.json) 在提交 `a7c60bc` 上四个必需作业通过，Electron 65/65，独立标准用户原生隔离、解析、预览通过。[联合负载](final-ci-2026-11-23/ci114-joint-load.json) 流式 P95 57 毫秒、取消回执 7.6 毫秒、停止 72.5 毫秒，聊天/索引及双 Office 的内存均达门槛。[同版本开发目录](final-ci-2026-11-23/delivery.json) 包内隔离 22/22，四轮共 16 次启动通过，首次启动最高 2.02 秒、重启最高 1.46 秒、空闲最高 691.67 MiB。739 个项目实现与测试文件对应 CI 提交，70,337 项校验和均一致。早轮 [CI #112](ci112-final-2026-11-23.json)、[CI #113](final-ci-2026-11-23/ci113.json) 和[首次包测](final-ci-2026-11-23/package-performance-first.json) 失败保留，首次窗口前耗时波动未归因。规格机和 R01–R08 完整 live 仍待验，整体 `in_progress`。
+
 占位包括插件、Skills、模板广场与定时任务；延期包括媒体生成、系统桌面控制、在线协作、公网托管及商业化。

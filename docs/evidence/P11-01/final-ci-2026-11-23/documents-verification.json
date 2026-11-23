@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-11-23T09:13:54.332Z",
+  "sourceCommit": "a7c60bceecda81204ed233979bb2f40c35884a96",
+  "stagedDocuments": 15,
+  "publicFileScan": {
+    "paths": 15,
+    "exitCode": 0
+  },
+  "stagedMarkdownFormatting": "passed",
+  "markdownFormatScope": "Repository .prettierignore rules",
+  "otherTaskRequirementRows": "unchanged",
+  "implementationSinceSuccessfulCI": "unchanged",
+  "docsCheck": {
+    "exitCode": 0,
+    "taskStates": 37,
+    "requirementMappings": 574
+  },
+  "diffWhitespaceCheck": {
+    "exitCode": 0
+  },
+  "exitCode": 0
+}

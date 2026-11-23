@@ -1,0 +1,471 @@
+{
+  "recordedAt": "2026-11-23T09:06:44.290Z",
+  "commit": "a7c60bceecda81204ed233979bb2f40c35884a96",
+  "runId": 45117291968,
+  "runNumber": 114,
+  "url": "https://github.com/tteok1/TapKit/actions/runs/45117291968",
+  "status": "completed",
+  "conclusion": "success",
+  "createdAt": "2026-11-23T05:21:47Z",
+  "completedAt": "2026-11-23T05:48:17Z",
+  "jobs": [
+    {
+      "id": 137502919123,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 45117291968,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Save verified runtime archives",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6
+        },
+        {
+          "name": "Check",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Unit and current-route integration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Offline system evaluation and release source scan",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Dedicated Core performance checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        }
+      ]
+    },
+    {
+      "id": 137502919495,
+      "name": "office-native",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 45117291968,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify current runner execution capabilities",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Verify P00-03 and P03 parser as an independent standard user",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "P07 native office acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Host and application security suite",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "P10 canvas PDF acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        }
+      ]
+    },
+    {
+      "id": 137502919520,
+      "name": "electron",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 45117291968,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify current runner execution capabilities",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Prepare native Office preview for Electron",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Electron end-to-end checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        }
+      ]
+    },
+    {
+      "id": 137502919526,
+      "name": "p11-joint-load",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 45117291968,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify native isolation on this runner",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "P11-01 joint load",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ]
+    },
+    {
+      "id": 137502920474,
+      "name": "repeat-diagnostics",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 45117291968,
+      "logs_url": null,
+      "steps": null
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 14793755215,
+      "name": "windows-p07-native-evidence",
+      "size_in_bytes": 2534712,
+      "url": "https://api.github.com/repos/tteok1/TapKit/actions/artifacts/14793755215",
+      "archive_download_url": "https://api.github.com/repos/tteok1/TapKit/actions/artifacts/14793755215/zip",
+      "expired": false,
+      "created_at": "2026-11-23T05:48:03Z",
+      "expires_at": "2027-02-21T05:21:47Z",
+      "updated_at": "2026-11-23T05:48:03Z",
+      "digest": "sha256:b82b7d25c84b76728719f46abe0aa7a5693ab98d3e254aacccef70f3787c0f22",
+      "workflow_run": {
+        "id": 45117291968,
+        "repository_id": 1411648926,
+        "head_repository_id": 1411648926,
+        "head_branch": "codex/p11-01-dev-acceptance",
+        "head_sha": "a7c60bceecda81204ed233979bb2f40c35884a96"
+      }
+    },
+    {
+      "id": 14792918296,
+      "name": "windows-electron-evidence",
+      "size_in_bytes": 15295061,
+      "url": "https://api.github.com/repos/tteok1/TapKit/actions/artifacts/14792918296",
+      "archive_download_url": "https://api.github.com/repos/tteok1/TapKit/actions/artifacts/14792918296/zip",
+      "expired": false,
+      "created_at": "2026-11-23T05:45:05Z",
+      "expires_at": "2027-02-21T05:21:47Z",
+      "updated_at": "2026-11-23T05:45:05Z",
+      "digest": "sha256:c526e3a9ba0c8703b48cf8bbd0c359f54adde3068ecc442a3f3d749802ca8318",
+      "workflow_run": {
+        "id": 45117291968,
+        "repository_id": 1411648926,
+        "head_repository_id": 1411648926,
+        "head_branch": "codex/p11-01-dev-acceptance",
+        "head_sha": "a7c60bceecda81204ed233979bb2f40c35884a96"
+      }
+    },
+    {
+      "id": 14792866053,
+      "name": "windows-p11-joint-load",
+      "size_in_bytes": 3904,
+      "url": "https://api.github.com/repos/tteok1/TapKit/actions/artifacts/14792866053",
+      "archive_download_url": "https://api.github.com/repos/tteok1/TapKit/actions/artifacts/14792866053/zip",
+      "expired": false,
+      "created_at": "2026-11-23T05:30:37Z",
+      "expires_at": "2027-02-21T05:21:47Z",
+      "updated_at": "2026-11-23T05:30:37Z",
+      "digest": "sha256:b5f23a1e1de5fb715d11567c1841803feeb2847319b09aabeba4c0242d7f6386",
+      "workflow_run": {
+        "id": 45117291968,
+        "repository_id": 1411648926,
+        "head_repository_id": 1411648926,
+        "head_branch": "codex/p11-01-dev-acceptance",
+        "head_sha": "a7c60bceecda81204ed233979bb2f40c35884a96"
+      }
+    },
+    {
+      "id": 14792863162,
+      "name": "windows-p00-evidence",
+      "size_in_bytes": 28791013,
+      "url": "https://api.github.com/repos/tteok1/TapKit/actions/artifacts/14792863162",
+      "archive_download_url": "https://api.github.com/repos/tteok1/TapKit/actions/artifacts/14792863162/zip",
+      "expired": false,
+      "created_at": "2026-11-23T05:43:52Z",
+      "expires_at": "2027-02-21T05:21:47Z",
+      "updated_at": "2026-11-23T05:43:52Z",
+      "digest": "sha256:922fe947bdd92402b1f2a872dfa841b3c45567694882bb8e781832f6387475ca",
+      "workflow_run": {
+        "id": 45117291968,
+        "repository_id": 1411648926,
+        "head_repository_id": 1411648926,
+        "head_branch": "codex/p11-01-dev-acceptance",
+        "head_sha": "a7c60bceecda81204ed233979bb2f40c35884a96"
+      }
+    }
+  ],
+  "electron": {
+    "passed": 65,
+    "failed": 0,
+    "scope": "Existing Windows Electron end-to-end selection; dedicated joint load runs in its own job."
+  },
+  "office": {
+    "currentUserNative": 22,
+    "standardUserNative": 22,
+    "standardUserParser": 3,
+    "standardUserPreview": 4,
+    "nativeOffice": 17,
+    "security": 57,
+    "canvasPdf": {
+      "passed": 1,
+      "skipped": 4,
+      "scope": "Existing PDF name filter explicitly excludes four other cases."
+    }
+  },
+  "check": {
+    "exitCode": 0,
+    "steps": "Static checks; unit and current-route integration; offline evaluation and source scan; dedicated Core performance.",
+    "exactCounts": "Job and all required steps verified successful; exact check-suite counts were not retrieved and are not claimed."
+  },
+  "jointLoad": "ci114-joint-load.json",
+  "excluded": "Manual repeat-diagnostics job is intentionally skipped on push. Windows 11 reference hardware and R01-R08 live resources remain pending."
+}
