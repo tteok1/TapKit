@@ -1,0 +1,15 @@
+{
+  "recordedAt": "2026-11-23T17:12:06.385Z",
+  "runId": 45224612686,
+  "runNumber": 121,
+  "commit": "76d16505eb6ce36528bf400cff7c40f3bd70cf93",
+  "url": "https://github.com/tteok1/TapKit/actions/runs/45224612686",
+  "status": "in_progress",
+  "jobs": {
+    "check": 137867651344,
+    "electron": 137867651030,
+    "office-native": 137867652056,
+    "p11-joint-load": 137867650571
+  },
+  "pending": "All four required jobs and both CI joint repetitions must pass."
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 2,
+  "executionPolicy": "appcontainer-lok-v1",
+  "startedAt": "2026-11-23T17:27:28.544Z",
+  "endedAt": "2026-11-23T17:31:31.386Z",
+  "command": "pnpm test:integration P00-03 --reporter=json --outputFile=D:\\a\\TapKit\\TapKit\\test-results\\P00-03-native-2a20f5b5-c6af-44a1-8371-041cb7382626.json",
+  "exitCode": 0,
+  "standardUser": false,
+  "verification": {
+    "scope": "current-user",
+    "identity": {
+      "userSidHash": "3d34c3244dfb92b381ff46692fc1a138182ea386b8f9cf6ad6bc3817b7eeae8d",
+      "integritySid": "S-1-16-12288",
+      "administratorsGroup": true
+    }
+  },
+  "standardUserAcceptance": "not_verified_in_this_scope",
+  "fingerprint": "580fbc3898ea95cba3012ac0049ddee549d97e44b61c2561b2e32ed86d5ab430",
+  "capabilities": {
+    "nativeExecution": {
+      "status": "available"
+    },
+    "officeRender": {
+      "status": "available"
+    },
+    "terminal": {
+      "status": "available"
+    }
+  },
+  "tests": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "pending": 0
+  },
+  "missingCases": []
+}

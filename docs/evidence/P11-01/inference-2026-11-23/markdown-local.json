@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-11-23T17:12:06.376Z",
+  "commit": "76d16505eb6ce36528bf400cff7c40f3bd70cf93",
+  "command": "pnpm test:e2e -- --grep 'P02-02 T02 malicious Markdown' --output test-results/P11-01/markdown-regression-trace",
+  "exitCode": 0,
+  "passed": 1,
+  "excerpt": [
+    "  ok 1 tests\\e2e\\P02-02.chat.spec.ts:408:1 › P02-02 T02 malicious Markdown stays inert; GFM, KaTeX, Shiki and static sandbox Mermaid render (7.0s)",
+    "  1 passed (10.0s)"
+  ],
+  "productionFixtureAndProfilerAbsent": true,
+  "scope": "Normal text excludes lazy math CSS; math text loads CSS and renders KaTeX; GFM, Shiki, sandbox Mermaid and malicious Markdown checks pass. No system clipboard reads."
+}
