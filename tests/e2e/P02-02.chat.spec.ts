@@ -416,9 +416,9 @@ test('P02-02 T02 malicious Markdown stays inert; GFM, KaTeX, Shiki and static sa
   await expect(page.locator('.chat-message.assistant .chat-markdown').first()).toBeVisible();
   expect(
     await page.evaluate(() =>
-      performance
-        .getEntriesByType('resource')
-        .some((entry) => /chat-math-[^/]+\.js(?:$|\?)/.test(entry.name)),
+      [...document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]')].some((link) =>
+        /chat-math-[^/]+\.css(?:$|\?)/.test(link.href),
+      ),
     ),
   ).toBe(false);
   await page.getByLabel('输入草稿').fill('恶意渲染');
@@ -428,9 +428,9 @@ test('P02-02 T02 malicious Markdown stays inert; GFM, KaTeX, Shiki and static sa
   await expect(page.locator('.katex')).toBeVisible();
   expect(
     await page.evaluate(() =>
-      performance
-        .getEntriesByType('resource')
-        .some((entry) => /chat-math-[^/]+\.js(?:$|\?)/.test(entry.name)),
+      [...document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]')].some((link) =>
+        /chat-math-[^/]+\.css(?:$|\?)/.test(link.href),
+      ),
     ),
   ).toBe(true);
   await expect(page.locator('.chat-code code span').first()).toBeVisible();
