@@ -31,6 +31,7 @@ export default defineConfig({
   },
   preload: { build: { externalizeDeps: { exclude: ['@tapkit/contracts', 'zod'] } } },
   renderer: {
+    build: { minify: 'esbuild' },
     plugins: [
       tailwindcss(),
       {

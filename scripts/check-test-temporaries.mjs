@@ -17,7 +17,7 @@ export function checkTestTemporaries(source, filename) {
     )
       throw Error(filename + ': use scripts/test-temp.mjs for owned test directories');
     if (
-      /[\\/]e2e[\\/]/.test(filename) &&
+      /[\\/](?:e2e|perf)[\\/]/.test(filename) &&
       item.source.value === '@playwright/test' &&
       item.specifiers.some(
         (specifier) => specifier.type === 'ImportSpecifier' && specifier.imported.name === 'test',
@@ -41,7 +41,7 @@ export async function auditTestTemporaries() {
       }
     }
   }
-  for (const directory of ['unit', 'integration', 'e2e'])
+  for (const directory of ['unit', 'integration', 'e2e', 'perf'])
     await walk(join(root, 'tests', directory));
   checkTestTemporaries(await readFile(join(root, 'tests/setup.ts'), 'utf8'), 'tests/setup.ts');
   console.log('Automated test temporary-directory ownership verified: ' + (checked + 1) + ' files');

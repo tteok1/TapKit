@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-11-23T17:46:01.668Z",
+  "commit": "3af9dcd61d43fb8e90035636738b084799312568",
+  "runtime": "development directory",
+  "directory": "release/TapKit-development-2026-11-23T17-13-48-159Z",
+  "scope": "Actual packaged Core, worker and model; both CWD model fallbacks are absent. 16 cold scoped sources and standard history; no upstream or chat fixture.",
+  "isolatedCwd": true,
+  "nonBundleModelCandidatesAbsent": true,
+  "selectedSources": 16,
+  "hits": 4,
+  "scoped": true,
+  "queryMs": 8255.585900000005,
+  "passed": true
+}

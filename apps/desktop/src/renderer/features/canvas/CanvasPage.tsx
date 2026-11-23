@@ -7,15 +7,14 @@ import {
   type CanvasView,
   type FileView,
 } from '@tapkit/contracts';
+import { Link, useNavigate } from '@tapkit/ui';
 import {
   EditorContent,
   canvasExtensions,
   useEditor,
   useEditorState,
-  Link,
-  useNavigate,
   type Editor,
-} from '@tapkit/ui';
+} from '@tapkit/ui/canvas-editor';
 import { requestOptions } from '../../src/desktop-state';
 import { canvasCommand, canvasError, openCanvas } from './api';
 import { useCanvasDraft } from './use-draft';

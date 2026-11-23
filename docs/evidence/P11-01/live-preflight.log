@@ -1,0 +1,3 @@
+$ node scripts/live.mjs "--" "--provider" "all"
+P11-01 live NOT RUN: select one authorized resource at a time. See CONTRIBUTING.md for R01–R08 and setup.
+[ELIFECYCLE] Command failed with exit code 2.

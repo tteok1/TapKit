@@ -1,4 +1,4 @@
-import { cp, mkdir } from 'node:fs/promises';
+import { cp, mkdir, readFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { root, runtimeExe, runtimeLock, run, isMain, lockedEnv } from './lib.mjs';
 import { prepareRuntime } from './runtime-fetch.mjs';
@@ -57,10 +57,19 @@ export async function buildHelper() {
     },
   );
   await mkdir(join(root, 'resources/runtime/helper'), { recursive: true });
-  await cp(
-    join(root, '.cache/helper-target/x86_64-pc-windows-msvc/release/tapkit-windows-helper.exe'),
-    join(root, 'resources/runtime/helper/tapkit-windows-helper.exe'),
+  const built = join(
+    root,
+    '.cache/helper-target/x86_64-pc-windows-msvc/release/tapkit-windows-helper.exe',
   );
+  const installed = join(root, 'resources/runtime/helper/tapkit-windows-helper.exe');
+  const [nextBytes, currentBytes] = await Promise.all([
+    readFile(built),
+    readFile(installed).catch((error) => {
+      if (error.code !== 'ENOENT') throw error;
+      return null;
+    }),
+  ]);
+  if (!currentBytes?.equals(nextBytes)) await cp(built, installed);
   console.log('Built Windows helper from Cargo.lock with locked SDK/CRT');
 }
 if (isMain(import.meta.url)) await buildHelper();

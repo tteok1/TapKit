@@ -1,0 +1,21 @@
+{
+  "recordedAt": "2026-11-23T05:20:57.218Z",
+  "baseCommit": "58ec0684b15824117a5143b2874b5d1179ca82b6",
+  "workingTreeChange": "tests/e2e/P03-01.files.spec.ts waits for parsing before folder-link/move fixture",
+  "command": "test-results/P11-01/local-retest.ps1 -Stage FilesRegression",
+  "childCommand": "pnpm test:e2e -- --grep 'linking a folder file' --repeat-each 3 --output test-results/P11-01/final-ci-2026-11-23/files-regression-trace",
+  "exitCode": 0,
+  "passed": 3,
+  "failed": 0,
+  "seconds": [
+    37.7,
+    27.3,
+    24.3
+  ],
+  "isolation": {
+    "windowsToken": "unelevated",
+    "profile": "project test directory",
+    "environment": "allowlisted",
+    "productionConflictProtection": "unchanged"
+  }
+}

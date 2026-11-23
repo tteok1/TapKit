@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { TerminalSurface } from '@tapkit/ui';
+import { TerminalSurface } from '@tapkit/ui/terminal';
 import { TerminalViewSchema, type TerminalView, type TerminalCommand } from '@tapkit/contracts';
 import { requestOptions } from './desktop-state';
 import { terminalArgv } from './terminal-command';

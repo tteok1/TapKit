@@ -35,17 +35,10 @@ import { SitePreviews } from './site-previews';
 const sitePreviews = new SitePreviews();
 import { resolveSystemProxy } from './system-proxy';
 import { readCoreStartupTimeout } from './core-startup';
+import { createInterface } from 'node:readline';
 import { moveDataRoot, readDataRoot, validateMoveDestination } from './data-root';
-import {
-  mkdirSync,
-  appendFileSync,
-  statSync,
-  renameSync,
-  readdirSync,
-  unlinkSync,
-  writeFileSync,
-  existsSync,
-} from 'node:fs';
+import { IpcAudit } from './ipc-audit';
+import { mkdirSync, statSync, writeFileSync, existsSync } from 'node:fs';
 import { isAbsolute, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import {
@@ -84,17 +77,23 @@ import strings from './zh-CN.json';
 import { avatarDimensions, readAvatarFile } from './avatar';
 import { ArtifactProtocol } from './artifact-protocol';
 import { ExternalArtifact } from './external-artifact';
-import { AnonymousReader, configureAnonymousNetwork } from './browser';
-import { BrowserRuntime } from './browser-runtime';
-const browserRuntime = new BrowserRuntime(
-  (slot) => [...windows].find((w) => windowSlots.get(w.webContents.id) === slot) ?? null,
-);
+import type { AnonymousReader } from './browser';
+import { configureAnonymousNetwork } from './browser-network-settings';
+import type { BrowserRuntime } from './browser-runtime';
+let browserRuntime: BrowserRuntime | undefined;
+async function getBrowserRuntime() {
+  if (browserRuntime) return browserRuntime;
+  const { BrowserRuntime } = await import('./browser-runtime');
+  return (browserRuntime ??= new BrowserRuntime(
+    (slot) => [...windows].find((w) => windowSlots.get(w.webContents.id) === slot) ?? null,
+  ));
+}
 declare const __TAPKIT_TEST_BUILD__: boolean;
 import { ExportPdfRenderer } from './export-pdf';
 const exportPdf = new ExportPdfRenderer();
 const exportDestinations = new Map<string, { windowId: string; path: string }>();
 configureAnonymousNetwork();
-const anonymousReader = new AnonymousReader();
+let anonymousReader: Promise<AnonymousReader> | undefined;
 protocol.registerSchemesAsPrivileged([
   {
     scheme: 'tapkit-artifact',
@@ -248,13 +247,17 @@ function forward(command: Record<string, unknown>): Promise<unknown> {
                 ? 310_000
                 : operation === 'providers.check' || operation === 'canvas.aiEdit'
                   ? 130_000
-                  : command.type === 'files.export' ||
-                      command.type === 'artifacts.read' ||
-                      operation === 'artifacts.open' ||
-                      operation === 'artifacts.locate' ||
-                      operation === 'files.import'
-                    ? 130_000
-                    : 30_000,
+                  : operation === 'terminal.prepare' ||
+                      operation === 'terminal.start' ||
+                      operation === 'exec.run'
+                    ? 155_000
+                    : command.type === 'files.export' ||
+                        command.type === 'artifacts.read' ||
+                        operation === 'artifacts.open' ||
+                        operation === 'artifacts.locate' ||
+                        operation === 'files.import'
+                      ? 130_000
+                      : 30_000,
       );
     pending.set(id, { resolve, reject, timer });
     child.postMessage({ ...command, id });
@@ -337,7 +340,11 @@ function startCore() {
     },
     readCoreStartupTimeout(join(__dirname, '../../../..')),
   );
-  child.stdout?.on('data', () => {});
+  if (child.stdout && process.env.TAPKIT_STARTUP_DIAGNOSTICS === '1')
+    createInterface({ input: child.stdout }).on('line', (line) => {
+      if (/^TAPKIT_CORE_STARTUP [a-z-]+ \d+ \d+$/.test(line)) console.log(line);
+    });
+  else child.stdout?.resume();
   child.stderr?.on('data', () => console.error('TAPKIT_CORE_DIAGNOSTIC'));
   child.on('message', (raw: unknown) => {
     const parsed = CoreEventSchema.safeParse(raw);
@@ -345,7 +352,12 @@ function startCore() {
     const message = parsed.data;
     if (message.type === 'vault.request') {
       if (message.operation === 'browser.runtime') {
-        void browserRuntime.command(message.payload).then(
+        const work = async () => {
+          const browser = await getBrowserRuntime();
+          if (core !== child || quitting) throw Error('CANCELLED');
+          return browser.command(message.payload);
+        };
+        void work().then(
           (value) => {
             if (core === child)
               child.postMessage({ type: 'vault.reply', id: message.id, ok: true, value });
@@ -398,7 +410,7 @@ function startCore() {
         const work = async () => {
           if (message.operation === 'web.cancel') {
             const p = z.strictObject({ token: z.string().uuid() }).parse(message.payload);
-            anonymousReader.cancel(p.token);
+            (await anonymousReader)?.cancel(p.token);
             return true;
           }
           const p = z
@@ -413,7 +425,11 @@ function startCore() {
                 .max(50 * 1024 * 1024),
             })
             .parse(message.payload);
-          return anonymousReader.read(p.token, p.url, p.proxyURL, p.remainingBytes);
+          const reader = await (anonymousReader ??= import('./browser').then(
+            ({ AnonymousReader }) => new AnonymousReader(),
+          ));
+          if (core !== child || quitting) throw Error('CANCELLED');
+          return reader.read(p.token, p.url, p.proxyURL, p.remainingBytes);
         };
         void work().then(
           (value) => {
@@ -512,7 +528,7 @@ function startCore() {
     }
   });
   child.on('exit', (code) => {
-    void browserRuntime.disposeAll();
+    void browserRuntime?.disposeAll();
     clearTimeout(timer);
     rejectReady(new Error('Core exited'));
     for (const waiter of pending.values()) {
@@ -779,31 +795,7 @@ async function siteHostRequest(window: BrowserWindow, request: Request): Promise
       return errorReply(requestId, 'FEATURE_NOT_AVAILABLE');
   }
 }
-function audit(requestId: string, command: string, reply: Reply) {
-  // Deliberately records no payload, account label, ciphertext, plaintext or stack.
-  mkdirSync(join(dataDir, 'logs'), { recursive: true });
-  const log = join(dataDir, 'logs/ipc.jsonl');
-  try {
-    if (statSync(log).size > 1_048_576)
-      renameSync(log, join(dataDir, 'logs', 'ipc-' + Date.now() + '.jsonl'));
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
-  }
-  for (const name of readdirSync(join(dataDir, 'logs'))) {
-    const match = /^ipc-(\d+)\.jsonl$/.exec(name);
-    if (match && Number(match[1]) < Date.now() - 14 * 86_400_000)
-      unlinkSync(join(dataDir, 'logs', name));
-  }
-  appendFileSync(
-    log,
-    JSON.stringify({
-      requestId,
-      command,
-      ok: reply.ok,
-      ...(reply.ok ? {} : { code: reply.error.code }),
-    }) + '\n',
-  );
-}
+const ipcAudit = new IpcAudit(dataDir);
 if (ownsLock) {
   app.on('second-instance', () => {
     const window = [...windows].find((candidate) => candidate !== quickWindow) ?? createWindow();
@@ -817,7 +809,7 @@ if (ownsLock) {
       const { installBrowserWebFixture } =
         await import('../../../../tests/fixtures/web-app/fixture');
       Object.assign(globalThis, { tapkitBrowserWebFixture: installBrowserWebFixture(dataDir) });
-      Object.assign(globalThis, { tapkitBrowserRuntime: browserRuntime });
+      Object.assign(globalThis, { tapkitBrowserRuntime: await getBrowserRuntime() });
     }
     if (configuredDataRoot) startCore();
     else {
@@ -1476,7 +1468,7 @@ if (ownsLock) {
         if (settings.success)
           applyDesktopPreferences(settings.data.revision, settings.data.values.desktop);
       }
-      audit(request.requestId, request.command, reply);
+      await ipcAudit.write(request.requestId, request.command, reply);
       return reply;
     });
     ipcMain.on('tapkit:unsubscribe', (event) => {
@@ -1533,18 +1525,26 @@ app.on('before-quit', (event) => {
   sitePreviews.close();
   void Promise.all([secretWork, vault.settled, authSecrets.settled]).finally(() => {
     const child = core;
-    if (!child) {
+    const finish = async () => {
+      // Let pending Core-reply continuations queue their metadata before draining.
+      await new Promise<void>((resolve) => setImmediate(resolve));
+      try {
+        await ipcAudit.flush();
+      } catch {
+        console.error('TAPKIT_IPC_AUDIT_FAILED');
+      }
       shutdownComplete = true;
       tray?.destroy();
       app.quit();
+    };
+    if (!child) {
+      void finish();
       return;
     }
     const timer = setTimeout(() => child.kill(), 10_000);
     child.once('exit', () => {
       clearTimeout(timer);
-      shutdownComplete = true;
-      tray?.destroy();
-      app.quit();
+      void finish();
     });
     child.postMessage({ type: 'shutdown' });
   });

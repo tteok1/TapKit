@@ -244,11 +244,11 @@ test('P09-04 builds, interacts, preserves versions and rebuilds exported website
     await expect(site.getByRole('status').filter({ hasText: '已保存源码 ZIP' })).toBeVisible();
     const rebuild = join(root, 'clean');
     execFileSync(
-      'powershell.exe',
+      'pwsh.exe',
       [
         '-NoProfile',
         '-Command',
-        'Expand-Archive -LiteralPath $env:TAPKIT_SITE_TEST_ZIP -DestinationPath $env:TAPKIT_SITE_TEST_EXTRACT',
+        'Expand-Archive -ErrorAction Stop -LiteralPath $env:TAPKIT_SITE_TEST_ZIP -DestinationPath $env:TAPKIT_SITE_TEST_EXTRACT',
       ],
       {
         env: { ...process.env, TAPKIT_SITE_TEST_ZIP: archive, TAPKIT_SITE_TEST_EXTRACT: rebuild },

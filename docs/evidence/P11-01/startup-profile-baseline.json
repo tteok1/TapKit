@@ -1,0 +1,77 @@
+{
+  "checkedAt": "2026-11-13T11:52:22.148Z",
+  "commit": "081c8213aeaad0eebdf3356a3aa72e67dd031d1e",
+  "hardware": {
+    "os": "10.0.26200",
+    "arch": "x64",
+    "threads": 16,
+    "cpu": "AMD Ryzen 7 H 255 w/ Radeon 780M",
+    "ramBytes": 24995295232
+  },
+  "scope": "This host, application restart and new profile, no OS cache flush, no provider calls",
+  "runtime": "source build",
+  "limits": {
+    "firstProfileMs": 5000,
+    "restartMs": 2000,
+    "idleMiB": 700
+  },
+  "samples": [
+    {
+      "profile": "first-profile",
+      "shellMs": 1534.7130000000002,
+      "coreReadyMs": 26057.721599999997,
+      "idleMiB": 701.78515625,
+      "stages": [
+        "TAPKIT_CORE_STARTUP sqlite-ready 562 562",
+        "TAPKIT_CORE_STARTUP backup-ready 78 640",
+        "TAPKIT_CORE_STARTUP gc-ready 6 647",
+        "TAPKIT_CORE_STARTUP native-verified 24243 24889",
+        "TAPKIT_CORE_STARTUP core-ready 5 24894"
+      ]
+    },
+    {
+      "profile": "same-profile-restart",
+      "shellMs": 1259.1034,
+      "coreReadyMs": 14946.709299999999,
+      "idleMiB": 718.44921875,
+      "stages": [
+        "TAPKIT_CORE_STARTUP sqlite-ready 19 19",
+        "TAPKIT_CORE_STARTUP backup-ready 17 35",
+        "TAPKIT_CORE_STARTUP gc-ready 3 38",
+        "TAPKIT_CORE_STARTUP native-verified 13618 13657",
+        "TAPKIT_CORE_STARTUP core-ready 6 13662"
+      ]
+    },
+    {
+      "profile": "same-profile-restart",
+      "shellMs": 1305.0540000000037,
+      "coreReadyMs": 15553.061700000006,
+      "idleMiB": 698.015625,
+      "stages": [
+        "TAPKIT_CORE_STARTUP sqlite-ready 18 18",
+        "TAPKIT_CORE_STARTUP backup-ready 13 31",
+        "TAPKIT_CORE_STARTUP gc-ready 2 33",
+        "TAPKIT_CORE_STARTUP native-verified 14031 14064",
+        "TAPKIT_CORE_STARTUP core-ready 4 14068"
+      ]
+    },
+    {
+      "profile": "same-profile-restart",
+      "shellMs": 1173.6216000000059,
+      "coreReadyMs": 13815.898400000005,
+      "idleMiB": 704.99609375,
+      "stages": [
+        "TAPKIT_CORE_STARTUP sqlite-ready 15 15",
+        "TAPKIT_CORE_STARTUP backup-ready 12 27",
+        "TAPKIT_CORE_STARTUP gc-ready 2 29",
+        "TAPKIT_CORE_STARTUP native-verified 12650 12678",
+        "TAPKIT_CORE_STARTUP core-ready 3 12682"
+      ]
+    }
+  ],
+  "meetsLimits": {
+    "firstProfile": false,
+    "restart": false,
+    "idle": false
+  }
+}

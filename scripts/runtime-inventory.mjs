@@ -1,11 +1,13 @@
 import { createHash } from 'node:crypto';
-import { createReadStream } from 'node:fs';
-import { lstat, readdir, readFile } from 'node:fs/promises';
+import { lstat, open, readdir, readFile } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 // Fingerprint all runtime bytes and paths, not just executables: DLLs and Python modules are executable input too.
-export async function executionFingerprint(root) {
+/** @param {string} root @param {AbortSignal} [signal] */
+export async function executionFingerprint(root, signal) {
   const hash = createHash('sha256');
+  const buffer = Buffer.allocUnsafe(1024 * 1024);
   async function file(path) {
+    signal?.throwIfAborted();
     const info = await lstat(path);
     if (info.isSymbolicLink()) throw new Error('RUNTIME_REPARSE_POINT');
     hash.update(relative(root, path).replaceAll('\\', '/') + '\0');
@@ -13,7 +15,17 @@ export async function executionFingerprint(root) {
       for (const child of (await readdir(path)).sort()) await file(join(path, child));
     } else if (info.isFile()) {
       hash.update(String(info.size) + '\0');
-      for await (const chunk of createReadStream(path)) hash.update(chunk);
+      const handle = await open(path, 'r');
+      try {
+        for (;;) {
+          signal?.throwIfAborted();
+          const { bytesRead } = await handle.read(buffer, 0, buffer.length, null);
+          if (!bytesRead) break;
+          hash.update(buffer.subarray(0, bytesRead));
+        }
+      } finally {
+        await handle.close();
+      }
     } else throw new Error('RUNTIME_SPECIAL_FILE');
   }
   for (const name of [
@@ -45,8 +57,11 @@ export async function executionFingerprint(root) {
     'packages/tools/src/execution',
   ])
     await file(join(root, name));
-  const lock = JSON.parse(await readFile(join(root, 'runtime-lock.json'), 'utf8'));
+  const lock = JSON.parse(
+    await readFile(join(root, 'runtime-lock.json'), { encoding: 'utf8', signal }),
+  );
   for (const name of ['node', 'python', 'git', 'libreoffice'])
     await file(join(root, '.runtime', name, lock.runtimes[name].directory));
+  signal?.throwIfAborted();
   return hash.digest('hex');
 }

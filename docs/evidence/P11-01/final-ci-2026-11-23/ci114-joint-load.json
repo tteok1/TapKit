@@ -1,0 +1,274 @@
+{
+  "runId": 45117291968,
+  "jobId": 137502919526,
+  "commit": "a7c60bceecda81204ed233979bb2f40c35884a96",
+  "runner": "windows-2025",
+  "exitCode": 0,
+  "runtimeCapabilities": {
+    "nativeExecution": {
+      "status": "available"
+    },
+    "officeRender": {
+      "status": "available"
+    },
+    "terminal": {
+      "status": "available"
+    }
+  },
+  "chatAndIndex": {
+    "latencies": [
+      848,
+      45,
+      57,
+      34,
+      38,
+      41,
+      44,
+      43,
+      51,
+      28,
+      32,
+      34,
+      22,
+      55,
+      51,
+      46,
+      21,
+      16,
+      19,
+      17,
+      16,
+      17,
+      17,
+      16
+    ],
+    "rendererSamples": [
+      {
+        "index": 0,
+        "domMs": 820,
+        "waitForFirstFrameMs": 18,
+        "waitForSecondFrameMs": 10,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 1,
+        "domMs": 17,
+        "waitForFirstFrameMs": 18,
+        "waitForSecondFrameMs": 10,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 2,
+        "domMs": 49,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 7,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 3,
+        "domMs": 24,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 9,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 4,
+        "domMs": 23,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 15,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 5,
+        "domMs": 25,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 15,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 6,
+        "domMs": 42,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 1,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 7,
+        "domMs": 30,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 12,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 8,
+        "domMs": 43,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 8,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 9,
+        "domMs": 25,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 2,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 10,
+        "domMs": 28,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 4,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 11,
+        "domMs": 26,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 8,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 12,
+        "domMs": 9,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 13,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 13,
+        "domMs": 42,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 12,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 14,
+        "domMs": 38,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 13,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 15,
+        "domMs": 42,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 3,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 16,
+        "domMs": 18,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 3,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 17,
+        "domMs": 9,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 7,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 18,
+        "domMs": 9,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 10,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 19,
+        "domMs": 8,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 8,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 20,
+        "domMs": 9,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 7,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 21,
+        "domMs": 9,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 8,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 22,
+        "domMs": 9,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 8,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 23,
+        "domMs": 9,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 7,
+        "visibility": "visible",
+        "focused": true
+      }
+    ],
+    "index": {
+      "startedAt": 1795411773370,
+      "finishedAt": 1795411777127,
+      "hits": 4,
+      "error": null,
+      "streamedDuringIndex": 15
+    },
+    "cancelAckMs": 7.599999999976717,
+    "cancelSettledMs": 72.5,
+    "callsBefore": 1,
+    "callsAfter": 1,
+    "cancelled": "cancelled",
+    "displayP95Ms": 57,
+    "peakMiB": 835.35546875,
+    "maxNativeHelpers": 0
+  },
+  "heavyWork": {
+    "startedAt": 1795411779090,
+    "finishedAt": 1795411804831,
+    "bothActive": true,
+    "states": [
+      {
+        "status": "completed",
+        "reason": null,
+        "artifacts": 2
+      },
+      {
+        "status": "completed",
+        "reason": null,
+        "artifacts": 2
+      }
+    ],
+    "peakMiB": 1501.82421875,
+    "maxNativeHelpers": 2
+  }
+}

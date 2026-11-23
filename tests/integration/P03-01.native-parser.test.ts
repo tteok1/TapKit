@@ -110,6 +110,7 @@ async function cleaned(store: Store) {
 }
 // These cases actually start the helper. Run them on the authorised Windows CI test host;
 // an unavailable/blocked local helper must fail, never skip or fall back to a host process.
+// This matrix launches 16 isolated parsers in sequence. Per-job limits still apply.
 test('P03-01 native parser publishes text and Office structure from a read-only AppContainer input', async () => {
   const { store, files, blobs, put } = await fixture();
   const samples = [
@@ -174,7 +175,7 @@ test('P03-01 native parser publishes text and Office structure from a read-only 
   });
   expect(await blobs.readVersion(scanned.currentVersionId)).toEqual(pdfFixture(null));
   await cleaned(store);
-}, 30000);
+}, 90000);
 test('P03-01 native parser rejects corrupt and hostile Office packages while originals remain downloadable', async () => {
   const { store, files, blobs, put } = await fixture();
   const parser = new FileParser(

@@ -15,7 +15,6 @@ import {
   type ExecArgs,
   type Request,
   type Reply,
-  type ExecutionCapabilities,
   type WorkToolArgs,
 } from '@tapkit/contracts';
 import {
@@ -42,6 +41,7 @@ import {
 } from '@tapkit/tools';
 import type { CodeService } from './code-service';
 import type { WorkArtifacts } from './work-artifacts';
+import { waitForRuntimeCapabilities, type RuntimeCapabilities } from './runtime-capabilities';
 
 type Environment = {
   plan: EnvironmentPlan;
@@ -87,7 +87,7 @@ export class CodeRuntimeService {
     readonly store: Store,
     readonly code: CodeService,
     readonly appRoot: string,
-    readonly capabilities: ExecutionCapabilities,
+    readonly capabilities: RuntimeCapabilities,
     broker?: DependencyBroker,
     readonly allowDownload: (run: WorkRun) => boolean = () => true,
     readonly claimRoot?: () => () => void,
@@ -296,6 +296,7 @@ export class CodeRuntimeService {
     download: boolean,
     options: { guard?: () => void; signal?: AbortSignal },
   ) {
+    const capabilities = await waitForRuntimeCapabilities(this.capabilities, options.signal);
     options.guard?.();
     options.signal?.throwIfAborted();
     const run = this.authority(id),
@@ -311,7 +312,7 @@ export class CodeRuntimeService {
     }
     if (p.state === 'unsupported') return p;
     if (p.state === 'failed') p.id = newId();
-    requireExecutionCapability(this.capabilities, 'nativeExecution');
+    requireExecutionCapability(capabilities, 'nativeExecution');
     const abort = new AbortController(),
       release = this.code.holdExecution(id, () => abort.abort());
     this.preparationControllers.set(id + ':' + runtime, abort);
@@ -488,6 +489,7 @@ export class CodeRuntimeService {
       guard?: () => void;
     } = {},
   ) {
+    const capabilities = await waitForRuntimeCapabilities(this.capabilities, options.signal);
     const run = this.authority(id);
     options.guard?.();
     options.signal?.throwIfAborted();
@@ -509,7 +511,7 @@ export class CodeRuntimeService {
     const writeBytes = 2 * 1024 ** 3 - writtenBytes;
     if (writeBytes < 1024) throw new StorageError('OUTPUT_LIMIT_REACHED');
     await this.verifyInput(env);
-    requireExecutionCapability(this.capabilities, terminal ? 'terminal' : 'nativeExecution');
+    requireExecutionCapability(capabilities, terminal ? 'terminal' : 'nativeExecution');
     const cwd = args.cwd === '.' ? workspace.root : join(workspace.root, args.cwd);
     await codeCanonical(cwd, true);
     const processId = newId(),

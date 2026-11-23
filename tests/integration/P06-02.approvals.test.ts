@@ -1,6 +1,8 @@
 import { test, expect, vi } from 'vitest';
 import { fixture } from './P06.fixture';
-import { newId } from '../../packages/storage/src';
+import { BlobStore, FileRepository, newId, openStore } from '../../packages/storage/src';
+import { WorkArtifacts } from '../../packages/core/src/work-artifacts';
+import { WorkService } from '../../packages/core/src/work-service';
 import { WorkToolGateway } from '../../packages/core/src/work-gateway';
 import { WorkNativeTools } from '../../packages/core/src/work-native';
 import { unavailableExecution, type WorkToolArgs } from '../../packages/contracts/src';
@@ -143,6 +145,50 @@ test('P06-02 T14 expired approval requires a fresh preview and a new explicit de
     });
   } finally {
     await f.close();
+  }
+});
+test('P11-01 T14 pending approval expires across a real database reopen', async () => {
+  const f = await prepared();
+  const approval = f.approval();
+  const expires = f.store.db
+    .prepare('SELECT expires_at FROM approvals WHERE id=?')
+    .get(approval.id) as {
+    expires_at: number;
+  };
+  await f.close();
+  const store = await openStore(f.dir, () => expires.expires_at + 1);
+  const files = new FileRepository(store, new BlobStore(store));
+  const gateway = new WorkToolGateway(new WorkArtifacts(files, files.blobs));
+  const work = new WorkService(
+    store,
+    async () => {
+      throw Error('An expired approval must not dispatch work');
+    },
+    gateway,
+    async () => {},
+  );
+  try {
+    await work.start();
+    const reply = await work.dispatch({
+      protocolVersion: 1,
+      requestId: newId(),
+      command: 'approvals.decide',
+      expectedRevision: work.repo.row(f.view.runId).revision,
+      payload: {
+        approvalId: approval.id,
+        decision: 'approved',
+        argsHash: approval.args_hash,
+        contentVersionHash: approval.content_version_hash,
+      },
+    });
+    expect(reply.ok).toBe(false);
+    expect(files.get(f.source.fileId).currentVersionId).toBe(f.source.versionId);
+    expect(
+      store.db.prepare('SELECT side_effect FROM tool_calls WHERE id=?').get(approval.tool_call_id),
+    ).not.toEqual({ side_effect: 'committed' });
+  } finally {
+    await work.stop();
+    store.close();
   }
 });
 test('P06-02 T14 draft editing expires the old preview; rejection never switches tools', async () => {

@@ -1,0 +1,40 @@
+{
+  "recordedAt": "2026-11-23T13:42:57.244Z",
+  "originalFailure": [
+    {
+      "title": "P11-01 indexing yields during chunking so cancellation runs before embedding or publication",
+      "failureMessages": [
+        "Error: promise resolved \"undefined\" instead of rejecting\n    at _Assertion.__VITEST_REJECTS__ (file:///D:/Tapkit-public/node_modules/.pnpm/vitest@5.0.0_@types+node@24_68d150b1aed274d0dc573b66b4a74a47/node_modules/vitest/dist/chunks/index.OVGXnVRj.js:2453:33)\n    at _Assertion.propertyGetter (file:///D:/Tapkit-public/node_modules/.pnpm/chai@6.2.2/node_modules/chai/index.js:1570:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///D:/Tapkit-public/node_modules/.pnpm/chai@6.2.2/node_modules/chai/index.js:1659:22)\n    at D:/Tapkit-public/tests/integration/P11-01.index-scheduling.test.ts:29:22\n    at file:///D:/Tapkit-public/node_modules/.pnpm/vitest@5.0.0_@types+node@24_68d150b1aed274d0dc573b66b4a74a47/node_modules/vitest/dist/chunks/run.CQOUYP-x.js:2783:20"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "command": "pnpm test:integration P11-01.index-scheduling (before fix)",
+      "exitCode": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    {
+      "command": "pnpm test:integration P11-01.index-scheduling P04-01.retrieval",
+      "exitCode": 0,
+      "passed": 6,
+      "failed": 0
+    },
+    {
+      "command": "pnpm test:unit P04-01.retrieval",
+      "exitCode": 0,
+      "passed": 3,
+      "failed": 0
+    },
+    {
+      "command": "pnpm exec tsc --project tsconfig.json",
+      "exitCode": 0
+    }
+  ],
+  "behavior": "Chunking yields between tokenizer calls at a 4ms cooperative budget; cancellation and revoked scope are rechecked before embedding or atomic publication. Sync and async chunk outputs match in structural locator test.",
+  "pending": [
+    "current full CI",
+    "current development package"
+  ]
+}

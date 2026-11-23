@@ -8,6 +8,7 @@ import { openStore, BlobStore, FileRepository, newId } from '../../packages/stor
 import { CoreService } from '../../packages/core/src/service';
 import { ContextService } from '../../packages/core/src/context-service';
 import { ChatService } from '../../packages/core/src/chat-service';
+import { DataLifecycle } from '../../packages/core/src/data-lifecycle/service';
 import {
   DEFAULT_MODEL_PREFERENCES,
   DescriptorSchema,
@@ -266,7 +267,7 @@ test('P04-02 idempotent summary receipts reauthorize; deletion and source scope 
     f.store.close();
   }
 });
-test('P04-02 revoked file-derived assistant content is excluded from newly regenerated checkpoints', async () => {
+test('P04-02 P11-01 revoked file-derived assistant content is excluded from newly regenerated checkpoints', async () => {
   const f = await fixture();
   try {
     const project = f.core.dispatch(req('projects.create', { name: '撤权合成' }));
@@ -303,7 +304,19 @@ test('P04-02 revoked file-derived assistant content is excluded from newly regen
     const before = f.chat.contexts.compact(sid);
     expect(JSON.stringify(f.chat.contexts.state(before.id, sid))).toContain('PRIVATE-887');
     expect(f.chat.contexts.view(sid).providerCachedTokens).toBeNull();
-    new FileRepository(f.store, f.blobs).unlink([ref.fileId], { type: 'session', id: sid });
+    const lifecycle = new DataLifecycle(f.store, f.blobs);
+    const selection = { categories: ['files'], includeBackups: false };
+    const preview = await lifecycle.dispatch(req('data.clearPreview', selection));
+    if (!preview.ok || !('dataImpact' in preview.data)) throw Error('Expected clear preview');
+    expect(
+      await lifecycle.dispatch(
+        req('data.clear', {
+          ...selection,
+          impactHash: preview.data.dataImpact.impactHash,
+        }),
+      ),
+    ).toMatchObject({ ok: true });
+    expect(() => new FileRepository(f.store, f.blobs).get(ref.fileId)).toThrow();
     expect(() => f.chat.contexts.state(before.id, sid)).toThrow('CONFLICT');
     const after = f.chat.contexts.compact(sid);
     expect(JSON.stringify(f.chat.contexts.state(after.id, sid))).not.toContain('PRIVATE-887');

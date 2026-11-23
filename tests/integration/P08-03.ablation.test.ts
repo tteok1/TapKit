@@ -1,6 +1,7 @@
 import { test, expect } from 'vitest';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { join } from 'node:path';
 import gold from '../evals/delegation/gold.json';
 import { delegationFixture } from './P08-03.fixture';
 import { type DelegateResult, type PlanStepInput } from '../../packages/contracts/src';
@@ -164,7 +165,8 @@ test('P08-03 T15 ten cases times three same-root-budget single versus delegated 
     qualification:
       'Not qualified: deterministic synthetic responses and unknown paid fees cannot establish production quality or fee multiplier. Keep single-agent default; explicit delegation remains available.',
   };
-  await mkdir('docs/evidence/P08-03', { recursive: true });
-  await writeFile('docs/evidence/P08-03/ablation.json', JSON.stringify(report, null, 2) + '\n');
+  const evidenceDir = process.env.TAPKIT_P11_EVAL_DIR ?? 'docs/evidence/P08-03';
+  await mkdir(evidenceDir, { recursive: true });
+  await writeFile(join(evidenceDir, 'ablation.json'), JSON.stringify(report, null, 2) + '\n');
   expect(rows).toHaveLength(60);
 }, 180000);

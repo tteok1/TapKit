@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-11-23T15:00:27.793Z",
+  "scope": "Same real BGE model and text in one isolated test process; direct Node binding compared with background inference.",
+  "tokens": 352,
+  "maxAbsDifference": 0,
+  "baseline": {
+    "iterations": 24,
+    "wallMs": 859.6666999999998,
+    "p95Ms": 40.632319,
+    "maxMs": 43.450367
+  },
+  "worker": {
+    "iterations": 24,
+    "wallMs": 892.1313,
+    "p95Ms": 16.048127,
+    "maxMs": 16.441343
+  }
+}

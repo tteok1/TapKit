@@ -1,0 +1,287 @@
+{
+  "recordedAt": "2026-11-23T13:42:06.107Z",
+  "runId": 45182778270,
+  "runNumber": 118,
+  "url": "https://github.com/tteok1/TapKit/actions/runs/45182778270",
+  "commit": "6c434b20e06c7e9a2546c5a86a5b7702022c5688",
+  "jointJobId": 137720804170,
+  "jointConclusion": "failure",
+  "metrics": {
+    "sampler": {
+      "startedAt": 1795440583468,
+      "firstSampleMs": 893.2056000000011,
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "stopping": true
+    },
+    "samplerErrors": [],
+    "runtimeCapabilities": {
+      "nativeExecution": {
+        "status": "available"
+      },
+      "officeRender": {
+        "status": "available"
+      },
+      "terminal": {
+        "status": "available"
+      }
+    },
+    "chatAndIndex": {
+      "latencies": [
+        1507,
+        68,
+        635,
+        393,
+        151,
+        28,
+        28,
+        125,
+        107,
+        20,
+        149,
+        44,
+        40,
+        101,
+        58,
+        86,
+        25,
+        109,
+        49,
+        86,
+        99,
+        61,
+        124,
+        21
+      ],
+      "rendererSamples": [
+        {
+          "index": 0,
+          "domMs": 1464,
+          "waitForFirstFrameMs": 31,
+          "waitForSecondFrameMs": 12,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 1,
+          "domMs": 25,
+          "waitForFirstFrameMs": 31,
+          "waitForSecondFrameMs": 12,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 2,
+          "domMs": 606,
+          "waitForFirstFrameMs": 10,
+          "waitForSecondFrameMs": 19,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 3,
+          "domMs": 364,
+          "waitForFirstFrameMs": 10,
+          "waitForSecondFrameMs": 19,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 4,
+          "domMs": 122,
+          "waitForFirstFrameMs": 10,
+          "waitForSecondFrameMs": 19,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 5,
+          "domMs": 13,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 15,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 6,
+          "domMs": 17,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 10,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 7,
+          "domMs": 121,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 3,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 8,
+          "domMs": 99,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 7,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 9,
+          "domMs": 12,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 8,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 10,
+          "domMs": 141,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 7,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 11,
+          "domMs": 15,
+          "waitForFirstFrameMs": 15,
+          "waitForSecondFrameMs": 14,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 12,
+          "domMs": 37,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 3,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 13,
+          "domMs": 89,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 12,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 14,
+          "domMs": 44,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 14,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 15,
+          "domMs": 75,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 10,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 16,
+          "domMs": 11,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 14,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 17,
+          "domMs": 105,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 4,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 18,
+          "domMs": 20,
+          "waitForFirstFrameMs": 13,
+          "waitForSecondFrameMs": 16,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 19,
+          "domMs": 77,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 8,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 20,
+          "domMs": 87,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 12,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 21,
+          "domMs": 49,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 11,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 22,
+          "domMs": 119,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 4,
+          "visibility": "visible",
+          "focused": true
+        },
+        {
+          "index": 23,
+          "domMs": 18,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 2,
+          "visibility": "visible",
+          "focused": true
+        }
+      ],
+      "index": {
+        "startedAt": 1795440589115,
+        "finishedAt": 1795440604794,
+        "hits": 4,
+        "error": null,
+        "streamedDuringIndex": 19
+      },
+      "cancelAckMs": 47.40000000002328,
+      "cancelSettledMs": 161.20000000006985,
+      "callsBefore": 1,
+      "callsAfter": 1,
+      "cancelled": "cancelled",
+      "displayP95Ms": 635,
+      "peakMiB": 864.70703125,
+      "maxNativeHelpers": 0
+    },
+    "heavyWork": {
+      "startedAt": 1795440604806,
+      "finishedAt": 1795440643072,
+      "bothActive": true,
+      "states": [
+        {
+          "status": "completed",
+          "reason": null,
+          "artifacts": 2
+        },
+        {
+          "status": "completed",
+          "reason": null,
+          "artifacts": 2
+        }
+      ],
+      "peakMiB": 1555.0078125,
+      "maxNativeHelpers": 2
+    }
+  },
+  "interpretation": "Sampler returned first sample in 893ms with no errors. Joint-load streaming P95 635ms exceeds unchanged 100ms threshold. No passing delivery claim; synchronous chunking starvation independently reproduced by regression. Causality for every latency spike is not yet established."
+}

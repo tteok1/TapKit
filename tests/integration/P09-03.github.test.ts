@@ -276,7 +276,7 @@ async function setup() {
   };
 }
 
-test('P09-03 tested and reviewed Git changes publish once and recover a lost Draft PR response after restart', async () => {
+test('P09-03 P11-01 tested and reviewed Git changes publish once and recover a lost Draft PR response after restart', async () => {
   const f = await setup();
   try {
     const connected = view(await f.connect());

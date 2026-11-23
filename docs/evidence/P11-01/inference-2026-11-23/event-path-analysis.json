@@ -1,0 +1,1115 @@
+{
+  "checkedAt": "2026-11-23T16:45:44.824Z",
+  "commit": "3653048278a8143963807075cb6ce13b7aa6a0a9",
+  "diagnostic": true,
+  "displayP95Ms": 158,
+  "phases": [
+    {
+      "index": 0,
+      "domMs": 2376,
+      "waitForFirstFrameMs": 40,
+      "waitForSecondFrameMs": 30,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452035010,
+      "deltaOccurredAt": null,
+      "deltaReceivedAt": null,
+      "corePublishDelayMs": null,
+      "afterCorePublishMs": null
+    },
+    {
+      "index": 1,
+      "domMs": 70,
+      "waitForFirstFrameMs": 39,
+      "waitForSecondFrameMs": 30,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452037317,
+      "deltaOccurredAt": null,
+      "deltaReceivedAt": null,
+      "corePublishDelayMs": null,
+      "afterCorePublishMs": null
+    },
+    {
+      "index": 2,
+      "domMs": 152,
+      "waitForFirstFrameMs": 1,
+      "waitForSecondFrameMs": 5,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452037574,
+      "deltaOccurredAt": 1795452037576,
+      "deltaReceivedAt": 1795452037599,
+      "corePublishDelayMs": 5,
+      "afterCorePublishMs": 18
+    },
+    {
+      "index": 3,
+      "domMs": 42,
+      "waitForFirstFrameMs": 12,
+      "waitForSecondFrameMs": 17,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452037823,
+      "deltaOccurredAt": 1795452037825,
+      "deltaReceivedAt": 1795452037848,
+      "corePublishDelayMs": 14,
+      "afterCorePublishMs": 9
+    },
+    {
+      "index": 4,
+      "domMs": 20,
+      "waitForFirstFrameMs": 1,
+      "waitForSecondFrameMs": 4,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452038069,
+      "deltaOccurredAt": 1795452038072,
+      "deltaReceivedAt": 1795452038076,
+      "corePublishDelayMs": 3,
+      "afterCorePublishMs": 1
+    },
+    {
+      "index": 5,
+      "domMs": 27,
+      "waitForFirstFrameMs": 0,
+      "waitForSecondFrameMs": 4,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452038319,
+      "deltaOccurredAt": 1795452038321,
+      "deltaReceivedAt": 1795452038325,
+      "corePublishDelayMs": 3,
+      "afterCorePublishMs": 1
+    },
+    {
+      "index": 6,
+      "domMs": 21,
+      "waitForFirstFrameMs": 0,
+      "waitForSecondFrameMs": 8,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452038571,
+      "deltaOccurredAt": 1795452038575,
+      "deltaReceivedAt": 1795452038580,
+      "corePublishDelayMs": 4,
+      "afterCorePublishMs": 1
+    },
+    {
+      "index": 7,
+      "domMs": 25,
+      "waitForFirstFrameMs": 2,
+      "waitForSecondFrameMs": 4,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452038818,
+      "deltaOccurredAt": 1795452038821,
+      "deltaReceivedAt": 1795452038825,
+      "corePublishDelayMs": 3,
+      "afterCorePublishMs": 1
+    },
+    {
+      "index": 8,
+      "domMs": 23,
+      "waitForFirstFrameMs": 1,
+      "waitForSecondFrameMs": 5,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452039071,
+      "deltaOccurredAt": 1795452039075,
+      "deltaReceivedAt": 1795452039081,
+      "corePublishDelayMs": 4,
+      "afterCorePublishMs": 2
+    },
+    {
+      "index": 9,
+      "domMs": 21,
+      "waitForFirstFrameMs": 11,
+      "waitForSecondFrameMs": 19,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452039329,
+      "deltaOccurredAt": 1795452039330,
+      "deltaReceivedAt": 1795452039334,
+      "corePublishDelayMs": 3,
+      "afterCorePublishMs": 1
+    },
+    {
+      "index": 10,
+      "domMs": 23,
+      "waitForFirstFrameMs": 0,
+      "waitForSecondFrameMs": 4,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452039572,
+      "deltaOccurredAt": 1795452039575,
+      "deltaReceivedAt": 1795452039580,
+      "corePublishDelayMs": 4,
+      "afterCorePublishMs": 1
+    },
+    {
+      "index": 11,
+      "domMs": 27,
+      "waitForFirstFrameMs": 1,
+      "waitForSecondFrameMs": 13,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452039826,
+      "deltaOccurredAt": 1795452039830,
+      "deltaReceivedAt": 1795452039837,
+      "corePublishDelayMs": 6,
+      "afterCorePublishMs": 1
+    },
+    {
+      "index": 12,
+      "domMs": 27,
+      "waitForFirstFrameMs": 0,
+      "waitForSecondFrameMs": 2,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452040081,
+      "deltaOccurredAt": 1795452040083,
+      "deltaReceivedAt": 1795452040088,
+      "corePublishDelayMs": 3,
+      "afterCorePublishMs": 2
+    },
+    {
+      "index": 13,
+      "domMs": 23,
+      "waitForFirstFrameMs": 0,
+      "waitForSecondFrameMs": 4,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452040328,
+      "deltaOccurredAt": 1795452040330,
+      "deltaReceivedAt": 1795452040335,
+      "corePublishDelayMs": 3,
+      "afterCorePublishMs": 2
+    },
+    {
+      "index": 14,
+      "domMs": 29,
+      "waitForFirstFrameMs": 0,
+      "waitForSecondFrameMs": 3,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452040578,
+      "deltaOccurredAt": 1795452040584,
+      "deltaReceivedAt": 1795452040590,
+      "corePublishDelayMs": 5,
+      "afterCorePublishMs": 1
+    },
+    {
+      "index": 15,
+      "domMs": 28,
+      "waitForFirstFrameMs": 1,
+      "waitForSecondFrameMs": 15,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452040832,
+      "deltaOccurredAt": 1795452040836,
+      "deltaReceivedAt": 1795452040840,
+      "corePublishDelayMs": 3,
+      "afterCorePublishMs": 1
+    },
+    {
+      "index": 16,
+      "domMs": 30,
+      "waitForFirstFrameMs": 1,
+      "waitForSecondFrameMs": 5,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452041080,
+      "deltaOccurredAt": 1795452041081,
+      "deltaReceivedAt": 1795452041091,
+      "corePublishDelayMs": 2,
+      "afterCorePublishMs": 8
+    },
+    {
+      "index": 17,
+      "domMs": 35,
+      "waitForFirstFrameMs": 0,
+      "waitForSecondFrameMs": 16,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452041331,
+      "deltaOccurredAt": 1795452041335,
+      "deltaReceivedAt": 1795452041344,
+      "corePublishDelayMs": 8,
+      "afterCorePublishMs": 1
+    },
+    {
+      "index": 18,
+      "domMs": 47,
+      "waitForFirstFrameMs": 1,
+      "waitForSecondFrameMs": 20,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452041579,
+      "deltaOccurredAt": 1795452041585,
+      "deltaReceivedAt": 1795452041606,
+      "corePublishDelayMs": 20,
+      "afterCorePublishMs": 1
+    },
+    {
+      "index": 19,
+      "domMs": 27,
+      "waitForFirstFrameMs": 0,
+      "waitForSecondFrameMs": 3,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452041843,
+      "deltaOccurredAt": 1795452041847,
+      "deltaReceivedAt": 1795452041851,
+      "corePublishDelayMs": 3,
+      "afterCorePublishMs": 1
+    },
+    {
+      "index": 20,
+      "domMs": 33,
+      "waitForFirstFrameMs": 1,
+      "waitForSecondFrameMs": 3,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452042091,
+      "deltaOccurredAt": 1795452042094,
+      "deltaReceivedAt": 1795452042101,
+      "corePublishDelayMs": 5,
+      "afterCorePublishMs": 2
+    },
+    {
+      "index": 21,
+      "domMs": 32,
+      "waitForFirstFrameMs": 1,
+      "waitForSecondFrameMs": 16,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452042347,
+      "deltaOccurredAt": 1795452042353,
+      "deltaReceivedAt": 1795452042360,
+      "corePublishDelayMs": 5,
+      "afterCorePublishMs": 2
+    },
+    {
+      "index": 22,
+      "domMs": 27,
+      "waitForFirstFrameMs": 1,
+      "waitForSecondFrameMs": 2,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452042594,
+      "deltaOccurredAt": 1795452042597,
+      "deltaReceivedAt": 1795452042602,
+      "corePublishDelayMs": 4,
+      "afterCorePublishMs": 1
+    },
+    {
+      "index": 23,
+      "domMs": 32,
+      "waitForFirstFrameMs": 1,
+      "waitForSecondFrameMs": 9,
+      "visibility": "visible",
+      "focused": true,
+      "upstreamAt": 1795452042851,
+      "deltaOccurredAt": 1795452042854,
+      "deltaReceivedAt": 1795452042858,
+      "corePublishDelayMs": 3,
+      "afterCorePublishMs": 1
+    }
+  ],
+  "windows": [
+    {
+      "index": 2,
+      "start": 1795452037559,
+      "end": 1795452037731,
+      "processes": {
+        "core": {
+          "selfMs": [
+            [
+              " :0",
+              94.00927734375
+            ],
+            [
+              "(idle) :0",
+              52.047607421875
+            ],
+            [
+              "sqliteTransaction file:///D:/Tapkit-public/node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:52",
+              3.049072265625
+            ],
+            [
+              "(program) :0",
+              3.010009765625
+            ],
+            [
+              "joinValues file:///D:/Tapkit-public/packages/storage/dist/index.cjs:283",
+              2.6240234375
+            ],
+            [
+              " file:///D:/Tapkit-public/packages/storage/dist/index.cjs:11559",
+              1.59912109375
+            ],
+            [
+              "check._a2.check file:///D:/Tapkit-public/packages/core/dist/index.cjs:1253",
+              1.56201171875
+            ],
+            [
+              "inst._zod.parse file:///D:/Tapkit-public/packages/core/dist/index.cjs:2315",
+              1.553955078125
+            ],
+            [
+              "inst._zod.run file:///D:/Tapkit-public/packages/core/dist/index.cjs:1479",
+              1.544921875
+            ],
+            [
+              "finalizeIssue file:///D:/Tapkit-public/packages/storage/dist/index.cjs:632",
+              1.529052734375
+            ],
+            [
+              "runChecks file:///D:/Tapkit-public/packages/core/dist/index.cjs:1420",
+              1.51904296875
+            ],
+            [
+              " file:///D:/Tapkit-public/node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/database.js:97",
+              1.510986328125
+            ],
+            [
+              "content file:///D:/Tapkit-public/packages/core/dist/index.cjs:77466",
+              1.50390625
+            ],
+            [
+              "$constructor.~standard file:///D:/Tapkit-public/packages/core/dist/index.cjs:1401",
+              1.487060546875
+            ],
+            [
+              "inst._zod.parse file:///D:/Tapkit-public/packages/core/dist/index.cjs:2376",
+              1.41796875
+            ],
+            [
+              " :3",
+              1.403076171875
+            ]
+          ],
+          "stacksMs": [
+            [
+              " :0\nfinishRun file:///D:/Tapkit-public/packages/core/dist/index.cjs:78325\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:78913\nsqliteTransaction file:///D:/Tapkit-public/node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:52\nrun file:///D:/Tapkit-public/packages/core/dist/index.cjs:78456\n(root) :0",
+              60.22998046875
+            ],
+            [
+              "(idle) :0\n(root) :0",
+              52.047607421875
+            ],
+            [
+              " :0\ndispatch file:///D:/Tapkit-public/packages/core/dist/index.cjs:77183\ndispatch file:///D:/Tapkit-public/packages/core/dist/index.cjs:77819\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:87337\nemit node:events:489\n node:electron/js2c/utility_init:2\n(root) :0",
+              3.29638671875
+            ],
+            [
+              " :0\nack file:///D:/Tapkit-public/packages/storage/dist/index.cjs:12327\npublishPending file:///D:/Tapkit-public/packages/core/dist/index.cjs:71806\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:71794\nlistOnTimeout node:internal/timers:623\nprocessTimers node:internal/timers:603\n(root) :0",
+              3.0830078125
+            ],
+            [
+              "(program) :0\n(root) :0",
+              3.010009765625
+            ],
+            [
+              " :0\nprepare file:///D:/Tapkit-public/node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/wrappers.js:4\n file:///D:/Tapkit-public/packages/storage/dist/index.cjs:12305\nsqliteTransaction file:///D:/Tapkit-public/node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:52\nclaim file:///D:/Tapkit-public/packages/storage/dist/index.cjs:12304\npublishPending file:///D:/Tapkit-public/packages/core/dist/index.cjs:71806\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:71794\nlistOnTimeout node:internal/timers:623\nprocessTimers node:internal/timers:603\n(root) :0",
+              2.971923828125
+            ],
+            [
+              " file:///D:/Tapkit-public/packages/storage/dist/index.cjs:11559\ncanonical file:///D:/Tapkit-public/packages/storage/dist/index.cjs:11558\nreceipt file:///D:/Tapkit-public/packages/storage/dist/index.cjs:11557\ndispatch file:///D:/Tapkit-public/packages/core/dist/index.cjs:69408\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:87337\nemit node:events:489\n node:electron/js2c/utility_init:2\n(root) :0",
+              1.59912109375
+            ],
+            [
+              " :0\nprepare file:///D:/Tapkit-public/node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/wrappers.js:4\ndispatch file:///D:/Tapkit-public/packages/core/dist/index.cjs:77819\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:87337\nemit node:events:489\n node:electron/js2c/utility_init:2\n(root) :0",
+              1.59912109375
+            ],
+            [
+              " :0\nlinks file:///D:/Tapkit-public/packages/core/dist/index.cjs:73981\nquery file:///D:/Tapkit-public/packages/core/dist/index.cjs:74044\ndispatch file:///D:/Tapkit-public/packages/core/dist/index.cjs:74210\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:87337\nemit node:events:489\n node:electron/js2c/utility_init:2\n(root) :0",
+              1.572998046875
+            ],
+            [
+              " :0\nsqliteTransaction file:///D:/Tapkit-public/node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:52\nsettle file:///D:/Tapkit-public/packages/storage/dist/index.cjs:12620\nsettle file:///D:/Tapkit-public/packages/core/dist/index.cjs:76018\nstream file:///D:/Tapkit-public/packages/core/dist/index.cjs:68709\n(root) :0",
+              1.569091796875
+            ],
+            [
+              "check._a2.check file:///D:/Tapkit-public/packages/core/dist/index.cjs:1253\nrunChecks file:///D:/Tapkit-public/packages/core/dist/index.cjs:1420\ninst._zod.run file:///D:/Tapkit-public/packages/core/dist/index.cjs:1479\n :3\ninst._zod.parse file:///D:/Tapkit-public/packages/core/dist/index.cjs:2315\ninst._zod.parse file:///D:/Tapkit-public/packages/core/dist/index.cjs:2454\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:869\nsafeParse file:///D:/Tapkit-public/packages/core/dist/index.cjs:5608\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:87337\nemit node:events:489\n node:electron/js2c/utility_init:2\n(root) :0",
+              1.56201171875
+            ],
+            [
+              " :0\nsqliteTransaction file:///D:/Tapkit-public/node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:52\nflush file:///D:/Tapkit-public/packages/core/dist/index.cjs:78642\nrun file:///D:/Tapkit-public/packages/core/dist/index.cjs:78456\nrunMicrotasks :0\nrunNextTicks node:internal/process/task_queues:63\nprocessTimers node:internal/timers:603\n(root) :0",
+              1.56103515625
+            ],
+            [
+              "inst._zod.parse file:///D:/Tapkit-public/packages/core/dist/index.cjs:2315\ninst._zod.parse file:///D:/Tapkit-public/packages/core/dist/index.cjs:2376\n :3\ninst._zod.parse file:///D:/Tapkit-public/packages/core/dist/index.cjs:2315\ninst._zod.parse file:///D:/Tapkit-public/packages/core/dist/index.cjs:2454\nfn file:///D:/Tapkit-public/packages/core/dist/index.cjs:839\n_parse2 file:///D:/Tapkit-public/packages/core/dist/index.cjs:5602\nok file:///D:/Tapkit-public/packages/core/dist/index.cjs:68988\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:69426\n file:///D:/Tapkit-public/packages/storage/dist/index.cjs:11570\nsqliteTransaction file:///D:/Tapkit-public/node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:52\nreceipt file:///D:/Tapkit-public/packages/storage/dist/index.cjs:11557",
+              1.553955078125
+            ],
+            [
+              " :0\nreadyVersions file:///D:/Tapkit-public/packages/core/dist/index.cjs:23494\nsearch file:///D:/Tapkit-public/packages/core/dist/index.cjs:23577\nquery file:///D:/Tapkit-public/packages/core/dist/index.cjs:74044\n(root) :0",
+              1.552978515625
+            ],
+            [
+              "inst._zod.run file:///D:/Tapkit-public/packages/core/dist/index.cjs:1479\n :3\ninst._zod.parse file:///D:/Tapkit-public/packages/core/dist/index.cjs:2315\nfn file:///D:/Tapkit-public/packages/core/dist/index.cjs:839\n_parse2 file:///D:/Tapkit-public/packages/core/dist/index.cjs:5602\npublishPending file:///D:/Tapkit-public/packages/core/dist/index.cjs:71806\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:71794\nlistOnTimeout node:internal/timers:623\nprocessTimers node:internal/timers:603\n(root) :0",
+              1.544921875
+            ],
+            [
+              " :0\nsnapshot file:///D:/Tapkit-public/packages/core/dist/index.cjs:77558\ndispatch file:///D:/Tapkit-public/packages/core/dist/index.cjs:77819\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:87337\nemit node:events:489\n node:electron/js2c/utility_init:2\n(root) :0",
+              1.54296875
+            ]
+          ]
+        },
+        "host": {
+          "selfMs": [
+            [
+              "(idle) :0",
+              116.694091796875
+            ],
+            [
+              "writeFileUtf8 :0",
+              39.63916015625
+            ],
+            [
+              " file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2301",
+              1.675048828125
+            ],
+            [
+              " node:internal/fs/utils:702",
+              1.659912109375
+            ],
+            [
+              "readdir :0",
+              1.595947265625
+            ],
+            [
+              "inst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323",
+              1.533935546875
+            ],
+            [
+              "joinValues file:///D:/Tapkit-public/apps/desktop/out/main/index.js:18",
+              1.530029296875
+            ],
+            [
+              "normalizeString node:path:92",
+              1.51904296875
+            ],
+            [
+              " file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13131",
+              1.50390625
+            ],
+            [
+              "inst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262",
+              1.5
+            ],
+            [
+              "mkdir :0",
+              1.47900390625
+            ],
+            [
+              " node:electron/js2c/browser_init:2",
+              1.135009765625
+            ],
+            [
+              "prefixIssues file:///D:/Tapkit-public/apps/desktop/out/main/index.js:350",
+              0.388916015625
+            ],
+            [
+              "inst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:1945",
+              0.14599609375
+            ]
+          ],
+          "stacksMs": [
+            [
+              "(idle) :0\n(root) :0",
+              116.694091796875
+            ],
+            [
+              "writeFileUtf8 :0\nwriteFileSync node:fs:2463\nappendFileSync node:fs:2555\naudit file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12553\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13131\n(root) :0",
+              39.63916015625
+            ],
+            [
+              " file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2301\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2301\nhandleUnionResults file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2285\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:816",
+              1.675048828125
+            ],
+            [
+              " node:internal/fs/utils:702\nwrappedFn node:internal/errors:538\nmkdirSync node:fs:1396\n node:electron/js2c/node_init:2\naudit file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12553\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13131\n(root) :0",
+              1.659912109375
+            ],
+            [
+              "readdir :0\nreaddirSync node:fs:1620\n node:electron/js2c/node_init:2\naudit file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12553\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13131\n(root) :0",
+              1.595947265625
+            ],
+            [
+              "inst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401\nfn file:///D:/Tapkit-public/apps/desktop/out/main/index.js:786\n_parse2 file:///D:/Tapkit-public/apps/desktop/out/main/index.js:5219\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13131\n(root) :0",
+              1.533935546875
+            ],
+            [
+              "joinValues file:///D:/Tapkit-public/apps/desktop/out/main/index.js:18\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:3330\nfinalizeIssue file:///D:/Tapkit-public/apps/desktop/out/main/index.js:367\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2301\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2301\nhandleUnionResults file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2285\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401\n :3",
+              1.530029296875
+            ],
+            [
+              "normalizeString node:path:92\nnormalize node:path:350\njoin node:path:506\naudit file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12553\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13131\n(root) :0",
+              1.51904296875
+            ],
+            [
+              " file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13131\n node:electron/js2c/browser_init:2\nemit node:events:489\n(root) :0",
+              1.50390625
+            ],
+            [
+              "inst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:816\nsafeParse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:5225\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12140",
+              1.5
+            ],
+            [
+              "mkdir :0\nmkdirSync node:fs:1396\n node:electron/js2c/node_init:2\naudit file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12553\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13131\n(root) :0",
+              1.47900390625
+            ],
+            [
+              " node:electron/js2c/browser_init:2\nreplayTo file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12322\n(root) :0",
+              1.135009765625
+            ],
+            [
+              "prefixIssues file:///D:/Tapkit-public/apps/desktop/out/main/index.js:350\nhandleArrayResult file:///D:/Tapkit-public/apps/desktop/out/main/index.js:1935\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:1945\ninst._zod.run file:///D:/Tapkit-public/apps/desktop/out/main/index.js:1426\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262",
+              0.388916015625
+            ],
+            [
+              "inst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:1945\ninst._zod.run file:///D:/Tapkit-public/apps/desktop/out/main/index.js:1426\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401",
+              0.14599609375
+            ]
+          ]
+        },
+        "renderer": {
+          "selfMs": [
+            [
+              " file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:110",
+              54.01953125
+            ],
+            [
+              "(idle) :0",
+              47.7880859375
+            ],
+            [
+              "(program) :0",
+              30.931884765625
+            ],
+            [
+              "(garbage collector) :0",
+              14.927490234375
+            ],
+            [
+              " file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/chat-markdown-OvRqIMdb.js:1",
+              9.216064453125
+            ],
+            [
+              " :3",
+              4.250244140625
+            ],
+            [
+              "inst._zod.run D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:1416",
+              1.5849609375
+            ],
+            [
+              "taskObserver :40",
+              1.532958984375
+            ],
+            [
+              "ch file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9",
+              1.52001953125
+            ],
+            [
+              "fC file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:10",
+              1.514892578125
+            ],
+            [
+              "ar file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/chat-markdown-OvRqIMdb.js:2",
+              1.501953125
+            ],
+            [
+              "inst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313",
+              1.367919921875
+            ],
+            [
+              "inst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252",
+              1.116943359375
+            ],
+            [
+              "Ax file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9",
+              0.423095703125
+            ],
+            [
+              "inst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:1935",
+              0.303955078125
+            ]
+          ],
+          "stacksMs": [
+            [
+              " file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:110\n(root) :0",
+              54.01953125
+            ],
+            [
+              "(idle) :0\n(root) :0",
+              47.7880859375
+            ],
+            [
+              "(program) :0\n(root) :0",
+              30.931884765625
+            ],
+            [
+              "(garbage collector) :0\n(root) :0",
+              14.927490234375
+            ],
+            [
+              " file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/chat-markdown-OvRqIMdb.js:1\n(root) :0",
+              9.216064453125
+            ],
+            [
+              "inst._zod.run D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:1416\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2807\n :3\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\n :3\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2391\nfn D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:776\n_parse2 D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:5208\ninvoke D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:10532",
+              1.5849609375
+            ],
+            [
+              " :3\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\n D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:806\nsafeParse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:5214\nonEvent D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:10648\nemit node:electron/js2c/sandbox_bundle:2\nonMessage node:electron/js2c/sandbox_bundle:2\n(root) :0",
+              1.55810546875
+            ],
+            [
+              "taskObserver :40\n(root) :0",
+              1.532958984375
+            ],
+            [
+              "ch file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nzk file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nqk file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nAh file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nub file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nEb file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nP file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:2\n(root) :0",
+              1.52001953125
+            ],
+            [
+              "fC file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:10\n file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:113\nvF file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:110\nMf file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nth file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nAx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nqk file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nAh file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nub file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nEb file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nP file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:2\n(root) :0",
+              1.514892578125
+            ],
+            [
+              "ar file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/chat-markdown-OvRqIMdb.js:2\n file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/chat-markdown-OvRqIMdb.js:1\n(root) :0",
+              1.501953125
+            ],
+            [
+              " :3\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\nfn D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:776\n_parse2 D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:5208\ninvoke D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:10532\nchatCommand D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:10629\n :0\n :1\n(root) :0",
+              1.465087890625
+            ],
+            [
+              "inst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\n :3\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2391\nfn D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:776\n_parse2 D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:5208\ninvoke D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:10532\n(root) :0",
+              1.367919921875
+            ],
+            [
+              " :3\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\n :3\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2391\nfn D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:776\n_parse2 D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:5208\ninvoke D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:10532\n(root) :0",
+              1.22705078125
+            ],
+            [
+              "inst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\n :3\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2391\nfn D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:776\n_parse2 D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:5208\ninvoke D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:10532\n(root) :0",
+              1.116943359375
+            ],
+            [
+              "Ax file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nVk file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nBk file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nub file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nEb file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nP file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:2\n(root) :0",
+              0.423095703125
+            ]
+          ]
+        }
+      }
+    }
+  ],
+  "totals": {
+    "core": {
+      "selfMs": [
+        [
+          "(idle) :0",
+          91589.67900000184
+        ],
+        [
+          " :0",
+          22652.596999999856
+        ],
+        [
+          "update :0",
+          3694.422000000001
+        ],
+        [
+          "(program) :0",
+          2776.0239999999967
+        ],
+        [
+          "read node:internal/fs/promises:1352",
+          950.2130000000005
+        ],
+        [
+          "read :0",
+          926.4860000000002
+        ],
+        [
+          "openFileHandle :0",
+          735.2090000000007
+        ],
+        [
+          "lstat :0",
+          727.0050000000003
+        ],
+        [
+          "file2 file:///D:/Tapkit-public/packages/core/dist/index.cjs:11116",
+          636.1029999999996
+        ],
+        [
+          "prepare file:///D:/Tapkit-public/node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/wrappers.js:4",
+          515.051
+        ],
+        [
+          " :3",
+          482.7230000000001
+        ],
+        [
+          "spawn :0",
+          445.71200000000005
+        ],
+        [
+          "open node:internal/fs/promises:1341",
+          423.9280000000002
+        ],
+        [
+          "close :0",
+          397.1010000000007
+        ],
+        [
+          "join node:path:506",
+          374.793
+        ],
+        [
+          "(garbage collector) :0",
+          345.70300000000015
+        ]
+      ],
+      "stacksMs": [
+        [
+          "(idle) :0\n(root) :0",
+          91589.67900000184
+        ],
+        [
+          " :0\nhistory file:///D:/Tapkit-public/packages/core/dist/index.cjs:77061\nbackground file:///D:/Tapkit-public/packages/core/dist/index.cjs:77099\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:86260\n(root) :0",
+          4055.271000000001
+        ],
+        [
+          "update :0\nupdate node:internal/crypto/hash:145\nfile2 file:///D:/Tapkit-public/packages/core/dist/index.cjs:11116\n(root) :0",
+          3655.610000000001
+        ],
+        [
+          " :0\nhistory file:///D:/Tapkit-public/packages/core/dist/index.cjs:77061\nbackground file:///D:/Tapkit-public/packages/core/dist/index.cjs:77099\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:86260\nrunMicrotasks :0\nrunNextTicks node:internal/process/task_queues:63\nprocessTimers node:internal/timers:603\n(root) :0",
+          3558.9569999999994
+        ],
+        [
+          "(program) :0\n(root) :0",
+          2776.0239999999967
+        ],
+        [
+          " :0\nhistory file:///D:/Tapkit-public/packages/core/dist/index.cjs:77061\nbackground file:///D:/Tapkit-public/packages/core/dist/index.cjs:77099\nbackground file:///D:/Tapkit-public/packages/core/dist/index.cjs:78576\nprepareContext file:///D:/Tapkit-public/packages/core/dist/index.cjs:78579\nstream file:///D:/Tapkit-public/packages/core/dist/index.cjs:68709\n(root) :0",
+          1971.9209999999994
+        ],
+        [
+          " :0\nhistory file:///D:/Tapkit-public/packages/core/dist/index.cjs:77061\nbackground file:///D:/Tapkit-public/packages/core/dist/index.cjs:77099\nbackground file:///D:/Tapkit-public/packages/core/dist/index.cjs:78576\nprepareContext file:///D:/Tapkit-public/packages/core/dist/index.cjs:78579\nrun file:///D:/Tapkit-public/packages/core/dist/index.cjs:78456\n(root) :0",
+          1904.1099999999997
+        ],
+        [
+          " :0\nsnapshot file:///D:/Tapkit-public/packages/core/dist/index.cjs:77558\ndispatch file:///D:/Tapkit-public/packages/core/dist/index.cjs:77819\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:87337\nemit node:events:489\n node:electron/js2c/utility_init:2\n(root) :0",
+          1066.0190000000011
+        ],
+        [
+          " :0\nview file:///D:/Tapkit-public/packages/storage/dist/index.cjs:14238\ndispatch file:///D:/Tapkit-public/packages/core/dist/index.cjs:82537\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:87337\nemit node:events:489\n node:electron/js2c/utility_init:2\n(root) :0",
+          1016.5919999999999
+        ],
+        [
+          "read :0\nread node:internal/fs/promises:1352\nfsCall node:internal/fs/promises:1104\nread node:internal/fs/promises:232\nfile2 file:///D:/Tapkit-public/packages/core/dist/index.cjs:11116\n(root) :0",
+          921.6520000000002
+        ],
+        [
+          "read node:internal/fs/promises:1352\nfsCall node:internal/fs/promises:1104\nread node:internal/fs/promises:232\nfile2 file:///D:/Tapkit-public/packages/core/dist/index.cjs:11116\n(root) :0",
+          778.5100000000006
+        ],
+        [
+          " :0\nlinks file:///D:/Tapkit-public/packages/core/dist/index.cjs:73981\nassertScope file:///D:/Tapkit-public/packages/core/dist/index.cjs:74068\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:23520\nchunkDocumentAsync file:///D:/Tapkit-public/packages/core/dist/index.cjs:23134\n(root) :0",
+          706.8090000000003
+        ],
+        [
+          "openFileHandle :0\nopen node:internal/fs/promises:1341\n node:electron/js2c/node_init:2\nfile2 file:///D:/Tapkit-public/packages/core/dist/index.cjs:11116\n(root) :0",
+          704.3900000000004
+        ],
+        [
+          "lstat :0\nlstat node:fs:1674\n node:electron/js2c/node_init:2\n node:internal/util:478\nfn node:internal/util:477\nfile2 file:///D:/Tapkit-public/packages/core/dist/index.cjs:11116\nfile2 file:///D:/Tapkit-public/packages/core/dist/index.cjs:11116\n(root) :0",
+          698.04
+        ],
+        [
+          " :0\ntick file:///D:/Tapkit-public/packages/core/dist/index.cjs:78270\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:78254\nlistOnTimeout node:internal/timers:623\nprocessTimers node:internal/timers:603\n(root) :0",
+          682.2509999999996
+        ],
+        [
+          " :0\nprepare file:///D:/Tapkit-public/node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/wrappers.js:4\ntick file:///D:/Tapkit-public/packages/core/dist/index.cjs:78270\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:78254\nlistOnTimeout node:internal/timers:623\nprocessTimers node:internal/timers:603\n(root) :0",
+          669.3659999999995
+        ]
+      ]
+    },
+    "host": {
+      "selfMs": [
+        [
+          "(idle) :0",
+          15956.89800000002
+        ],
+        [
+          "writeFileUtf8 :0",
+          1235.6839999999993
+        ],
+        [
+          "post node:inspector:115",
+          76.904
+        ],
+        [
+          "finalizeIssue file:///D:/Tapkit-public/apps/desktop/out/main/index.js:367",
+          63.510999999999996
+        ],
+        [
+          " :3",
+          51.69799999999999
+        ],
+        [
+          "mkdir :0",
+          41.63700000000001
+        ],
+        [
+          "inst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262",
+          33.858000000000004
+        ],
+        [
+          "readdir :0",
+          30.986
+        ],
+        [
+          "(program) :0",
+          29.300000000000004
+        ],
+        [
+          "(garbage collector) :0",
+          17.921999999999997
+        ],
+        [
+          "inst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323",
+          17.750000000000004
+        ],
+        [
+          " node:electron/js2c/browser_init:2",
+          15.364
+        ],
+        [
+          "postMessage :0",
+          10.381
+        ],
+        [
+          "sendReply :0",
+          9.323
+        ],
+        [
+          "joinValues file:///D:/Tapkit-public/apps/desktop/out/main/index.js:18",
+          9.233
+        ],
+        [
+          "stat :0",
+          7.942
+        ]
+      ],
+      "stacksMs": [
+        [
+          "(idle) :0\n(root) :0",
+          15956.89800000002
+        ],
+        [
+          "writeFileUtf8 :0\nwriteFileSync node:fs:2463\nappendFileSync node:fs:2555\naudit file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12553\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13131\n(root) :0",
+          1235.6839999999993
+        ],
+        [
+          "post node:inspector:115\nglobalThis.p11Profile.session.session :6\n :1\n(root) :0",
+          76.904
+        ],
+        [
+          "finalizeIssue file:///D:/Tapkit-public/apps/desktop/out/main/index.js:367\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2301\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2301\nhandleUnionResults file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2285\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401",
+          45.844
+        ],
+        [
+          "mkdir :0\nmkdirSync node:fs:1396\n node:electron/js2c/node_init:2\naudit file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12553\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13131\n(root) :0",
+          41.63700000000001
+        ],
+        [
+          "readdir :0\nreaddirSync node:fs:1620\n node:electron/js2c/node_init:2\naudit file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12553\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13131\n(root) :0",
+          30.986
+        ],
+        [
+          "(program) :0\n(root) :0",
+          29.300000000000004
+        ],
+        [
+          " :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:816\nsafeParse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:5225",
+          19.846000000000004
+        ],
+        [
+          "(garbage collector) :0\n(root) :0",
+          17.921999999999997
+        ],
+        [
+          "inst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:816\nsafeParse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:5225\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12140",
+          16.999
+        ],
+        [
+          "finalizeIssue file:///D:/Tapkit-public/apps/desktop/out/main/index.js:367\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2301\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2301\nhandleUnionResults file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2285\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401\nfn file:///D:/Tapkit-public/apps/desktop/out/main/index.js:786\n_parse2 file:///D:/Tapkit-public/apps/desktop/out/main/index.js:5219\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13131",
+          16.135
+        ],
+        [
+          " node:electron/js2c/browser_init:2\n(root) :0",
+          12.545
+        ],
+        [
+          " :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2323\n :3\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2262\ninst._zod.parse file:///D:/Tapkit-public/apps/desktop/out/main/index.js:2401\nfn file:///D:/Tapkit-public/apps/desktop/out/main/index.js:786\n_parse2 file:///D:/Tapkit-public/apps/desktop/out/main/index.js:5219\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13131\n(root) :0",
+          10.945
+        ],
+        [
+          "postMessage :0\npostMessage node:electron/js2c/browser_init:2\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12044\nforward file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12040\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13131\n(root) :0",
+          10.381
+        ],
+        [
+          "sendReply :0\n node:electron/js2c/browser_init:2\n(root) :0",
+          9.323
+        ],
+        [
+          "stat :0\nstatSync node:fs:1794\n node:electron/js2c/node_init:2\naudit file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12553\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13131\n(root) :0",
+          7.942
+        ]
+      ]
+    },
+    "renderer": {
+      "selfMs": [
+        [
+          "(idle) :0",
+          16251.075000000012
+        ],
+        [
+          "(program) :0",
+          362.033
+        ],
+        [
+          "Do file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:68",
+          139.49600000000004
+        ],
+        [
+          " file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:110",
+          111.814
+        ],
+        [
+          "inst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252",
+          50.72100000000001
+        ],
+        [
+          "(garbage collector) :0",
+          42.941
+        ],
+        [
+          "finalizeIssue D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:357",
+          32.538
+        ],
+        [
+          " :3",
+          30.579999999999995
+        ],
+        [
+          "vF file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:110",
+          23.769000000000002
+        ],
+        [
+          "rE file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:10",
+          18.243
+        ],
+        [
+          " file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:10",
+          16.615000000000002
+        ],
+        [
+          "Pd file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9",
+          15.698
+        ],
+        [
+          "Mf file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9",
+          13.252999999999998
+        ],
+        [
+          "Zs file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9",
+          11.313
+        ],
+        [
+          "joinValues D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:8",
+          11.116999999999999
+        ],
+        [
+          " :0",
+          11.048
+        ]
+      ],
+      "stacksMs": [
+        [
+          "(idle) :0\n(root) :0",
+          16251.075000000012
+        ],
+        [
+          "(program) :0\n(root) :0",
+          362.033
+        ],
+        [
+          " file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:110\n(root) :0",
+          109.09600000000002
+        ],
+        [
+          "Do file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:68\nZn file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:68\nxp file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:68\nMf file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nth file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nAx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nqk file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nAh file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nub file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nEb file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nP file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:2\n(root) :0",
+          89.14000000000001
+        ],
+        [
+          "Do file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:68\n file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:113\nvF file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:110\nMf file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nth file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nAx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nqk file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nAh file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nub file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nEb file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nP file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:2\n(root) :0",
+          50.35600000000001
+        ],
+        [
+          "(garbage collector) :0\n(root) :0",
+          42.941
+        ],
+        [
+          "finalizeIssue D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:357\n D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2291\n D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2291\nhandleUnionResults D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2275\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\n :3\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2391\nfn D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:776\n_parse2 D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:5208\ninvoke D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:10532",
+          30.641999999999996
+        ],
+        [
+          "vF file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:110\nMf file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nth file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nAx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nqk file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nAh file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nub file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nEb file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nP file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:2\n(root) :0",
+          23.769000000000002
+        ],
+        [
+          "inst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\n :3\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2391\nfn D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:776\n_parse2 D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:5208\ninvoke D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:10532\n(root) :0",
+          22.73
+        ],
+        [
+          "rE file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:10\nhh file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nWx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nda file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nWx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nda file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nWx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nda file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nWx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nda file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nWx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nda file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9",
+          18.243
+        ],
+        [
+          "Pd file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nrE file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:10\nhh file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nWx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nda file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nWx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nda file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nWx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nda file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nWx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nda file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nWx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9",
+          15.698
+        ],
+        [
+          " :3\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\n :3\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2391\nfn D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:776\n_parse2 D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:5208\ninvoke D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:10532\n(root) :0",
+          15.356
+        ],
+        [
+          "Mf file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nth file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nAx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nqk file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nAh file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nub file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nEb file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nP file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:2\n(root) :0",
+          11.730999999999998
+        ],
+        [
+          "joinValues D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:8\n D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:3320\nfinalizeIssue D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:357\n D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2291\n D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2291\nhandleUnionResults D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2275\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\n :3\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2391\nfn D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:776",
+          11.116999999999999
+        ],
+        [
+          "Wx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nda file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nWx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nda file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nWx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nda file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nWx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nda file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nWx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nda file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nWx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nda file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9",
+          10.936
+        ],
+        [
+          "qk file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nAh file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nub file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nEb file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9\nP file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:2\n(root) :0",
+          10.853
+        ]
+      ]
+    }
+  }
+}

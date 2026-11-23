@@ -1,3 +1,4 @@
+import { waitRuntimeCapabilities } from './core-ready';
 import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { openSessionFixture } from './session-fixture';
 import { test, expect, _electron as electron, type ElectronApplication, type Page } from './test';
@@ -294,13 +295,7 @@ async function launch() {
   );
   await expect(page.getByTestId('core-status')).toHaveText('本地核心已连接', { timeout: 125_000 });
   // Local production capabilities require valid evidence for this actual host token.
-  nativeStatus = await page.evaluate(async () => {
-    const r = await window.tapkit.bootstrap({
-      requestId: '0195abc0-0000-7000-8000-000000000011',
-    });
-    if (!r.ok || !('runtimeCapabilities' in r.data)) throw new Error('bootstrap');
-    return r.data.runtimeCapabilities?.nativeExecution.status;
-  });
+  nativeStatus = (await waitRuntimeCapabilities(page)).nativeExecution.status;
   if (process.env.CI !== 'true')
     expect(nativeStatus).toBe(
       (await readExecutionCapabilities(resolve('.'))).nativeExecution.status,
@@ -1133,6 +1128,11 @@ test('P03-01 T07 linking a folder file keeps it visible at project and session r
   await folder.selectOption({ label: '文件库中文目录' });
   const libraryFolderId = await folder.inputValue();
   await importPicker(page, [source]);
+  // This fixture exercises linking and moving after import. Parsing commits a new
+  // file revision, so finish it before reading the revision used by the move.
+  await expect(page.locator('.file-card')).toContainText(
+    nativeStatus === 'available' ? '内容已读取' : '受限内容读取组件暂不可用',
+  );
   const owners = await page.evaluate(
     async (requestIds) => {
       const project = await window.tapkit.desktopCommand(

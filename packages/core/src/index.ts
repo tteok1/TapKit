@@ -1,4 +1,5 @@
 import { CodeService } from './code-service';
+import { closeLocalEmbedder } from '@tapkit/retrieval';
 import { CodeRuntimeService } from './code-runtime';
 import { SiteService } from './site-service';
 import { CanvasService } from './canvas/service';
@@ -70,21 +71,45 @@ import { resolveNetworkProxy } from '@tapkit/providers';
 import { HistoryService } from './history-service';
 import { TemporaryService } from './temporary-service';
 import { createToolTraceWriter, createApiTransportTraceWriter } from './tool-trace';
+import { RuntimeVerification } from './runtime-capabilities';
 const port = process.parentPort;
 declare const __TAPKIT_TEST_BUILD__: boolean;
 if (!port) throw new Error('Core requires Electron utilityProcess parentPort');
 const dataDir = process.env.TAPKIT_CORE_DATA_DIR;
 if (!dataDir || !isAbsolute(dataDir)) throw new Error('Core requires a Host data directory');
 async function start() {
+  const started = performance.now();
+  let previous = started;
+  const mark = (stage: string) => {
+    const now = performance.now();
+    if (process.env.TAPKIT_STARTUP_DIAGNOSTICS === '1')
+      console.log(
+        `TAPKIT_CORE_STARTUP ${stage} ${Math.round(now - previous)} ${Math.round(now - started)}`,
+      );
+    previous = now;
+  };
   const store = await openStore(dataDir!);
+  mark('sqlite-ready');
   const blobs = new BlobStore(store);
   const lifecycle = new DataLifecycle(store, blobs);
   await blobs.dailyBackup();
+  mark('backup-ready');
   await blobs.gc();
-  const service = new CoreService(
-    store,
-    await readExecutionCapabilities(process.env.TAPKIT_APP_ROOT ?? ''),
-  );
+  mark('gc-ready');
+  const verificationAbort = new AbortController();
+  const verification = new RuntimeVerification(async () => {
+    const verificationStarted = performance.now();
+    const capabilities = await readExecutionCapabilities(
+      process.env.TAPKIT_APP_ROOT ?? '',
+      AbortSignal.any([verificationAbort.signal, AbortSignal.timeout(120_000)]),
+    );
+    if (process.env.TAPKIT_STARTUP_DIAGNOSTICS === '1')
+      console.log(
+        `TAPKIT_CORE_STARTUP native-verified ${Math.round(performance.now() - verificationStarted)} ${Math.round(performance.now() - started)}`,
+      );
+    return capabilities;
+  });
+  const service = new CoreService(store, verification);
   const vaultWaiters = new Map<
     string,
     {
@@ -117,9 +142,16 @@ async function start() {
     createApiTransportTraceWriter(dataDir!, store.profileId),
   );
   const models = new ModelService(store, providers);
+  let performanceFixture:
+    | Awaited<ReturnType<(typeof import('./performance-fixture'))['startPerformanceFixture']>>
+    | undefined;
   if (__TAPKIT_TEST_BUILD__ && process.env.TAPKIT_CHAT_FIXTURE === 'P02-02') {
     const { installChatFixture } = await import('./chat-fixture');
     installChatFixture(models);
+    if (process.env.TAPKIT_P11_RENDERER_PROFILE === '1') {
+      const { startPerformanceFixture } = await import('./performance-fixture');
+      performanceFixture = await startPerformanceFixture(store.dataDir);
+    }
   }
   let webTools = new WebTools(
     new NetworkPolicyService({
@@ -260,7 +292,7 @@ async function start() {
     store,
     code,
     process.env.TAPKIT_APP_ROOT ?? '',
-    service.executionCapabilities,
+    verification.result,
     new DependencyBroker(join(store.dataDir, 'code-dependency-cache'), codeNetwork),
     (run) => !web.projectOnly(run.session_id) && web.options(run.session_id).mode !== 'off',
     models.claimRoot,
@@ -277,11 +309,7 @@ async function start() {
   const research = new ResearchService(workArtifacts, web, chat);
   const workGateway = new WorkToolGateway(
     workArtifacts,
-    new WorkNativeTools(
-      process.env.TAPKIT_APP_ROOT ?? '',
-      workArtifacts,
-      service.executionCapabilities,
-    ),
+    new WorkNativeTools(process.env.TAPKIT_APP_ROOT ?? '', workArtifacts, verification.result),
     chat,
     browser,
     research,
@@ -332,15 +360,11 @@ async function start() {
   const artifacts = new ArtifactService(
     process.env.TAPKIT_APP_ROOT ?? '',
     files,
-    service.executionCapabilities,
+    verification.result,
   );
   const recoveredPreview = await artifacts.staging.sweep();
   if (recoveredPreview.retained) console.warn('FILE_PREVIEW_STAGING_CLEANUP_PENDING');
-  const parser = new FileParser(
-    process.env.TAPKIT_APP_ROOT ?? '',
-    files,
-    service.executionCapabilities,
-  );
+  const parser = new FileParser(process.env.TAPKIT_APP_ROOT ?? '', files, verification.result);
   const canvas = new CanvasService(files, history, models, (id, bytes, spec, signal) => {
     const images = spec.sections
       .flatMap((section) => section.blocks)
@@ -376,7 +400,10 @@ async function start() {
   const worker = new FoundationWorker(
     store,
     blobs,
-    (event) => port!.postMessage({ type: 'event', event }),
+    (event) => {
+      performanceFixture?.published(event);
+      port!.postMessage({ type: 'event', event });
+    },
     (job, signal) =>
       job.kind === 'data.clear'
         ? lifecycle.executeClear(job, signal)
@@ -386,6 +413,7 @@ async function start() {
             ? chat.memories.execute(job, signal)
             : parser.execute(job, signal),
   );
+  chat.onDelta = () => worker.wakeOutbox();
   let closing = false;
   port!.on('message', ({ data }: { data: unknown }) => {
     const result = CoreCommandSchema.safeParse(data);
@@ -628,10 +656,13 @@ async function start() {
     }
     if (command.type === 'shutdown') {
       closing = true;
+      verificationAbort.abort();
       clearInterval(titleTimer);
       clearInterval(notificationTimer);
       clearInterval(stagingTimer);
       void Promise.all([
+        performanceFixture?.stop(),
+        closeLocalEmbedder(),
         worker.stop(),
         lifecycle.stop(),
         chat.stop(),
@@ -749,6 +780,7 @@ async function start() {
       });
     }
   });
+  mark('core-ready');
   port!.postMessage({ type: 'ready', protocolVersion: 1, schemaVersion: SCHEMA_VERSION });
   worker.start();
   sweepStaging();

@@ -1,7 +1,7 @@
 import type { ParsedDocument, EvidenceRef, ResourceRef } from '@tapkit/contracts';
 import { EvidenceRefSchema } from '@tapkit/contracts';
 import { type Store, newId, StorageError } from '@tapkit/storage';
-import { CHUNK_POLICY, chunkDocument, type Chunk, type ContextPart } from './chunking';
+import { CHUNK_POLICY, chunkDocumentAsync, type Chunk, type ContextPart } from './chunking';
 import { type Embedder } from './embedding';
 
 export type Source = {
@@ -112,13 +112,43 @@ export class HybridIndex {
       ) as { total: number; ready: number | null };
     return !row.total || row.ready !== row.total;
   }
+  private readyVersions(scope: string) {
+    const ready = this.store.db
+      .prepare(
+        `SELECT c.file_version_id,c.index_version FROM chunks c LEFT JOIN embeddings e ON e.chunk_id=c.id
+         WHERE c.profile_id=? AND (c.file_version_id,c.index_version) IN
+           (SELECT json_extract(s.value,'$.version'),json_extract(s.value,'$.index') FROM json_each(?) s)
+         GROUP BY c.file_version_id,c.index_version
+         HAVING count(*)=sum(CASE WHEN c.policy_revision=? AND e.model_revision=? AND e.dims=?
+           AND e.status='ready' THEN 1 ELSE 0 END)`,
+      )
+      .all(
+        this.store.profileId,
+        scope,
+        CHUNK_POLICY,
+        this.embedder.revision,
+        this.embedder.dims,
+      ) as {
+      file_version_id: string;
+      index_version: number;
+    }[];
+    return new Set(ready.map((row) => row.file_version_id + ':' + row.index_version));
+  }
   async ensure(source: Source, assertScope: () => void, signal?: AbortSignal) {
     if (!this.needsIndex(source)) return;
     assertScope();
     signal?.throwIfAborted();
     const doc = await source.document();
     assertScope();
-    const chunks = chunkDocument(doc, this.embedder.count);
+    const chunks = await chunkDocumentAsync(
+      doc,
+      this.embedder.count,
+      () => {
+        signal?.throwIfAborted();
+        assertScope();
+      },
+      this.embedder.countAsync ? (text) => this.embedder.countAsync!(text, signal) : undefined,
+    );
     const vectors: Buffer[] = [];
     for (const chunk of chunks) {
       signal?.throwIfAborted();
@@ -180,18 +210,23 @@ export class HybridIndex {
     signal?: AbortSignal,
     trace?: (ranking: { chunkId: string; versionId: string }[]) => void,
   ) {
-    for (const source of sources) await this.ensure(source, assertScope, signal);
-    assertScope();
-    signal?.throwIfAborted();
-    if (!sources.length) return [];
-    const q = await this.embedder.embed(query, true, signal);
-    assertScope();
-    signal?.throwIfAborted();
     const scope = JSON.stringify(
       sources.map((s) => ({ version: s.versionId, index: s.indexVersion })),
     );
+    assertScope();
+    signal?.throwIfAborted();
+    if (!sources.length) return [];
+    const ready = this.readyVersions(scope);
+    for (const source of sources)
+      if (!ready.has(source.versionId + ':' + source.indexVersion))
+        await this.ensure(source, assertScope, signal);
+    assertScope();
+    signal?.throwIfAborted();
+    const q = await this.embedder.embed(query, true, signal);
+    assertScope();
+    signal?.throwIfAborted();
     // Scope precedes both rankings and their LIMIT; no whole-library candidates leave SQLite.
-    const where = `c.profile_id=? AND c.source_kind<>'heading' AND EXISTS(SELECT 1 FROM json_each(?) s WHERE json_extract(s.value,'$.version')=c.file_version_id AND json_extract(s.value,'$.index')=c.index_version)`;
+    const where = `c.profile_id=? AND c.source_kind<>'heading' AND (c.file_version_id,c.index_version) IN (SELECT json_extract(s.value,'$.version'),json_extract(s.value,'$.index') FROM json_each(?) s)`;
     const rows = this.store.db
       .prepare(
         `SELECT c.*,e.dims,e.vector_blob,e.model_revision FROM chunks c JOIN embeddings e ON e.chunk_id=c.id WHERE ${where} AND e.status='ready' AND e.model_revision=? AND e.dims=?`,
@@ -284,7 +319,12 @@ export class HybridIndex {
         continue;
       const source = sources.find((s) => s.versionId === row.file_version_id)!;
       const context = JSON.parse(row.context_json) as ContextPart[];
-      const size = this.embedder.count(row.text + context.map((c) => c.text).join('\n'));
+      const size = await this.embedder.count(
+        row.text + context.map((c) => c.text).join('\n'),
+        signal,
+      );
+      signal?.throwIfAborted();
+      assertScope();
       if (tokens + size > 12000) continue;
       const ref: ResourceRef = {
         kind: 'file',

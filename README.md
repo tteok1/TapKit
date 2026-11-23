@@ -1,41 +1,36 @@
 # TapKit
 
-Windows 本地 AI 工作空间。已有中文桌面、独立 Core、本地数据和 Codex 连接诊断；真实模型联调及后续界面仍在开发中。当前状态以 [开发进度](docs/progress/CURRENT.md) 为准。
+TapKit 是 Windows 本地 AI 工作空间。开发版提供聊天、文件预览和引用、项目资料与记忆、持久工作任务、Office 成果、匿名浏览与研究、受限代码运行、本地网站预览、文档画布以及本地备份与恢复。验收进度见源码中的 [P11-01 交接](docs/progress/P11-01.md)。
 
-P05聊天开发版支持固定网页来源与本地分享副本。运行`.\scripts\pnpm.ps1 pack:dir`构建含运行时的目录快照并重新验证目录内隔离能力；产物位置见`release/latest.json`。Windows启动、模型设置、数据位置、格式与限制见[聊天开发版说明](docs/chat-milestone.md)。这不是完整产品或正式安装包。
+## 从源码启动
 
-## 开发
-
-要求 Windows 11 24H2+ x64 和用于首次引导的 Node 24。推荐入口（使用项目锁定的版本，不改变全局工具）：
+需要 Windows 11 24H2 或更新版本的 x64 系统、8 GB 内存和 10 GB 可用磁盘。先安装用于首次引导的 Node 24，在源码根目录运行：
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/bootstrap.ps1
 .\scripts\pnpm.ps1 dev
 ```
 
-依赖已准备后，也可双击根目录 `Start-TapKit.cmd`。它读取锁文件中的项目 Node，启动相同的开发流程；失败时保留错误窗口。退出时使用 TapKit 菜单或托盘的“退出”，关闭窗口会保留后台 Core。
-
-`dev` 每次先编译 Storage/Core，再启动 Host、Preload、Renderer 并监听源码；providers/tools 修改也会重建 Core。日常桌面开发不再先编译 Rust helper。`build:desktop` 编译完整桌面部分；`build` 和 `bootstrap` 仍包含原生 helper，不以桌面启动成功替代原生安全验收。缺失或未验收的原生执行/Office/终端保持不可用。
-
-已安装 pnpm 12.4.1 时也可使用 `pnpm bootstrap` / `pnpm dev`。推荐项目脚本，避免全局工具版本差异。脚本在项目 `.runtime` 准备锁定 Node/Python/Rust/LibreOffice/MinGit，所有下载先校验哈希；不会全局安装工具或修改 Windows 安全策略。SQLite 13 使用官方 Node-API 预构建，校验哈希后在 Electron 内实测。原生 helper 的 SDK/CRT 使用项目内锁定依赖，见 ADR 0006。
+引导脚本按锁文件安装依赖并验证下载哈希。Node、Python、Rust、MinGit、LibreOffice、字体和本地嵌入模型由项目准备，Node 和 pnpm 使用项目锁定的版本。准备后也可双击源码根目录的 `Start-TapKit.cmd`。修改 Core、Host、Preload 或 Renderer 时开发入口会监听源码。通过应用菜单或托盘的“退出”停止后台 Core。
 
 ```powershell
-.\scripts\pnpm.ps1 check
-.\scripts\pnpm.ps1 test:unit
-.\scripts\pnpm.ps1 test:integration
 .\scripts\pnpm.ps1 build
-.\scripts\pnpm.ps1 build:desktop
-.\scripts\pnpm.ps1 test:dev
-.\scripts\pnpm.ps1 test:e2e -- --grep P00-01
-.\scripts\pnpm.ps1 test:repro
+.\scripts\pnpm.ps1 pack:dir
 ```
 
-默认开发数据位于 `.test-data/development`；可通过绝对路径 `TAPKIT_DATA_DIR` 指定专用目录。测试使用独立中文/空格目录。
+`pack:dir` 生成带 Electron 和运行时的 Windows 开发目录，生成位置保存在 `release/latest.json`。目录包含 `Start-TapKit.cmd`、`snapshot-manifest.json` 和 `SHA256SUMS.txt`。在当前 Windows 主机上生成的原生能力报告绑定运行环境，换机后须重新实测。该交付适用于开发和验收，安装、升级和卸载由 P11-02 验证。
 
-`test:dev` 在独立中文/空格 profile 验证双击入口、开发脚本、数据重启和 Core 退出；仅测试进程使用临时 loopback 调试端口。运行开发/桌面测试需普通本地用户进程权限；受限工具沙盒内的失败需独立记录，不能直接推定为 Windows 安全策略拦截。不得通过关闭 Chromium 沙盒或安全中心修复启动。
+## 配置和使用
 
-所有直接依赖、运行时与 Python wheels 已精确锁定。版本决策见 docs/adr；真实进度和测试结果见 docs/progress。`docs/plan` 是规格，不能作为完成证据。
+- 在“设置 → 模型”登录 Codex 订阅，或新建 DeepSeek、混元、Grok、豆包、OpenAI 兼容、Anthropic 兼容账户。填写服务商要求的模型 ID，保存后执行连接检测。自动 API 后备可能产生服务商费用，可在模型设置中管理。真实通道范围见 [验收指引](CONTRIBUTING.md)。
+- 在“文件”导入 PDF、DOCX、XLSX、PPTX、Markdown、纯文本、CSV、常见文本代码或 ZIP。等待内容读取完成后提问，再点击引用查看固定版本。扫描件、加密、损坏或超限输入视情况保留原件供下载。图片、音视频可保留原件，文档工作可使用获授权的静态 PNG。
+- 在“项目”设置指令和资料后创建会话。在“工作”查看计划并补充要求，完成后可预览和下载成果。写入审批绑定具体版本和内容，过期后重新预览并批准。
+- 源码热更新入口的默认数据目录为 `.test-data/development`。开发目录直接启动默认使用 Electron 的 `%APPDATA%\TapKit`，也可在数据设置查看或迁移实际根目录。源码测试可用绝对路径 `TAPKIT_DATA_DIR` 指向独立 profile。凭据由 Windows 凭据保护机制存放在本地，备份或共享前核对包含的数据。
 
-live、安全、恢复、性能、评测和安装包脚本在相应任务实现前明确返回退出码 2，不报告通过。
+## 恢复和范围
 
-许可：MIT；第三方文件遵循 THIRD_PARTY_NOTICES.md。
+断网后先检查任务状态、保留的成果和诊断，再使用界面提供的继续或重试入口。显示外部副作用未知时，先核对实际远端结果。暂停或关闭窗口后可从工作中心和通知回到任务。清理前先查看影响，使用设置中的备份和恢复功能处理旧快照。
+
+插件、Skills、模板广场和定时任务提供状态页。媒体理解或生成、系统桌面控制、在线协作、公网托管和商业化延期。代码、Office 和终端依赖已验证的 Windows 隔离能力，隔离不可用时入口显示失败原因。
+
+提交规范和验证命令见 [CONTRIBUTING.md](CONTRIBUTING.md)。许可为 MIT，第三方文件见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

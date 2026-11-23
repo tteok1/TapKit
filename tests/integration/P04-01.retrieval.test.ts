@@ -108,12 +108,13 @@ test('P04-01 T09 real BGE gold set has Recall@20 >=90%, locatable sources 100%, 
   }
   const answered = results.filter((r) => r.expected),
     recall = answered.filter((r) => r.recalled).length / answered.length;
-  await mkdir('docs/evidence/P04-01', { recursive: true });
+  const evidenceDir = process.env.TAPKIT_P11_EVAL_DIR ?? 'docs/evidence/P04-01';
+  await mkdir(evidenceDir, { recursive: true });
   const recallAt20 = answered.filter((r) => r.recalledAt20).length / answered.length;
   const cited = answered.filter((r) => r.topCitationSupported !== null);
   const citationSupportRate = cited.filter((r) => r.topCitationSupported).length / cited.length;
   await writeFile(
-    'docs/evidence/P04-01/gold-report.json',
+    resolve(evidenceDir, 'gold-report.json'),
     JSON.stringify(
       {
         schemaVersion: 1,

@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-11-23T10:24:30.672Z",
+  "command": "node test-results/P11-01/check-premerge-workflow.mjs",
+  "workflowSha256": "3333931b50bcb23d2e2144e25fce6c18e43c1a7487a9bebaadb0f2d4d0ab59d5",
+  "yamlSyntax": "passed",
+  "jointLoadScope": "Same push/PR condition as all three other mandatory engineering jobs; no branch restriction",
+  "duplicateRunHandling": "Same head repository and branch share a group; manual diagnostics have a separate group",
+  "jointLoadSecrets": "none",
+  "liveWorkflow": "unchanged; protected main manual dispatch and tapkit-live environment only",
+  "exitCode": 0
+}

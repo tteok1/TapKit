@@ -18,13 +18,19 @@ import {
   type Reply,
 } from '@tapkit/contracts';
 import { Store, JobQueue, StorageError, UsageLedger, failure, newId } from '@tapkit/storage';
+import type { RuntimeVerification } from './runtime-capabilities';
 export class CoreService {
   readonly jobs: JobQueue;
   constructor(
     readonly store: Store,
-    readonly executionCapabilities: ExecutionCapabilities = unavailableExecution('PROBE_REQUIRED'),
+    private readonly runtime: ExecutionCapabilities | RuntimeVerification = unavailableExecution(
+      'PROBE_REQUIRED',
+    ),
   ) {
     this.jobs = new JobQueue(store);
+  }
+  get executionCapabilities() {
+    return 'current' in this.runtime ? this.runtime.current : this.runtime;
   }
   dispatch(raw: unknown): Reply {
     const parsed = RequestSchema.safeParse(raw);

@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-11-23T13:16:20.119Z",
+  "command": "local-retest.ps1 -Stage SamplerProbe",
+  "scope": "Only this synthetic Node probe and its owned collector descendants; PID tree from Windows CIM",
+  "collector": "PowerShell 7, noninteractive, CIM operation timeout 10 seconds",
+  "firstSampleMs": 1279.8519,
+  "samples": 3,
+  "errors": [],
+  "exitCode": 0
+}

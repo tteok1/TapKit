@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-11-23T16:01:36.790Z",
+  "baseCommit": "6bdbd8646f606a59a740ac87319b18422d5834be",
+  "testOnlyChanges": {
+    "tests/e2e/streaming-perf-fixture.ts": "9a58a71c0aab706af65feb3f0a6da2fbbc9bfe3b058343ad7fa3121965b7ff6b",
+    "tests/e2e/P11-01.joint-load.spec.ts": "809c6260bb516b66624ad69393efb2ba0afd53cdf530777149388ae024a723fb"
+  },
+  "typecheckExitCode": 0,
+  "scope": "Owned synthetic Electron window events, long tasks and CPU function sampling; no desktop, keyboard or personal browser recording.",
+  "acceptance": "pending; normal two-run P95 69/158ms fails unchanged 100ms threshold"
+}

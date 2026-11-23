@@ -1,0 +1,22 @@
+{
+  "runId": 45111848600,
+  "jobId": 137485748712,
+  "commit": "91f49097438bccf0aa8c7822e14ea85aa5d1cc43",
+  "exitCode": 1,
+  "passed": 63,
+  "failed": 2,
+  "failures": [
+    {
+      "test": "P02-02 native clipboard copies user, assistant, code, table and selected text exactly with rendered math",
+      "expected": "complete synthetic assistant message",
+      "actual": "partial streaming text",
+      "cause": "lazy-loading fallback used the final Markdown rendering class"
+    },
+    {
+      "test": "P09-04 builds, interacts, preserves versions and rebuilds exported website source",
+      "expected": "extracted source ZIP with package-lock.json",
+      "actual": "empty extraction directory",
+      "cause": "Windows PowerShell Expand-Archive ExtractToDirectory overload error"
+    }
+  ]
+}

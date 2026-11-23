@@ -1,12 +1,22 @@
-import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  lazy,
+  Suspense,
+  type ReactNode,
+  type ComponentProps,
+} from 'react';
 import { CopyButton, tableToTSV, tableCellText } from './clipboard';
 import ReactMarkdown, { type Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
-import 'katex/dist/katex.min.css';
 import { safeChatURL, safeMermaidText } from './chat-safety';
 export { safeChatURL } from './chat-safety';
+const MathMarkdown = lazy(() =>
+  import('./chat-math').then(({ MathMarkdown }) => ({ default: MathMarkdown })),
+);
 function Table({ children }: { children: ReactNode }) {
   const table = useRef<HTMLTableElement>(null);
   return (
@@ -194,23 +204,38 @@ const markdownComponents: Components = {
     ),
   table: ({ children }) => <Table>{children}</Table>,
 };
+export type MarkdownTextProps = {
+  text: string;
+  onLink?: ((url: string) => void) | undefined;
+};
 export function ChatMarkdown({
   text,
   streaming,
   onLink,
-}: {
-  text: string;
-  streaming?: boolean;
-  onLink?: (url: string) => void;
-}) {
+}: MarkdownTextProps & { streaming?: boolean }) {
   if (streaming) return <pre className="chat-stream">{text}</pre>;
+  if (text.includes('$'))
+    return (
+      <Suspense fallback={<pre className="chat-stream">{text}</pre>}>
+        <MathMarkdown text={text} onLink={onLink} />
+      </Suspense>
+    );
+  return <MarkdownBody text={text} onLink={onLink} />;
+}
+export function MarkdownBody({
+  text,
+  onLink,
+  remarkPlugins = [remarkGfm],
+  rehypePlugins,
+}: MarkdownTextProps &
+  Pick<ComponentProps<typeof ReactMarkdown>, 'remarkPlugins' | 'rehypePlugins'>) {
   return (
     <div className="chat-markdown">
       <OpenLinkContext.Provider value={onLink}>
         <ReactMarkdown
           skipHtml
-          remarkPlugins={[remarkGfm, remarkMath]}
-          rehypePlugins={[[rehypeKatex, { trust: false, strict: 'warn' }]]}
+          remarkPlugins={remarkPlugins}
+          rehypePlugins={rehypePlugins}
           urlTransform={safeChatURL}
           components={markdownComponents}
         >

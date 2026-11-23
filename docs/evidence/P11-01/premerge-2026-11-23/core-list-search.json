@@ -1,0 +1,51 @@
+{
+  "task": "P02-03",
+  "recordedAt": "2026-11-23T14:21:48.606Z",
+  "dataset": {
+    "sessions": 10000,
+    "messages": 100000
+  },
+  "seedMs": 30116.423899999998,
+  "sampleMs": 6763.562299999998,
+  "timeoutBudgets": {
+    "setupMs": 120000,
+    "samplingMs": 60000
+  },
+  "device": {
+    "platform": "win32",
+    "arch": "x64",
+    "cpu": "AMD Ryzen 7 H 255 w/ Radeon 780M",
+    "logicalCpus": 16,
+    "totalMemory": 24995295232
+  },
+  "list": {
+    "samples": 200,
+    "p50Ms": 16.66070000000036,
+    "p95Ms": 24.190999999998894
+  },
+  "search": {
+    "samples": 30,
+    "p50Ms": 79.18119999999908,
+    "p95Ms": 162.02350000000297,
+    "bySort": {
+      "updated": {
+        "samples": 15,
+        "p50Ms": 69.28639999999723,
+        "p95Ms": 79.18119999999908
+      },
+      "relevance": {
+        "samples": 15,
+        "p50Ms": 151.17599999999948,
+        "p95Ms": 173.39740000000165
+      }
+    }
+  },
+  "processMemory": {
+    "rss": 399007744,
+    "heapTotal": 212398080,
+    "heapUsed": 96489360,
+    "external": 4627342,
+    "arrayBuffers": 439823
+  },
+  "scope": "Isolated Core/SQLite fixture; excludes Electron launch, total app memory and P03 document retrieval"
+}

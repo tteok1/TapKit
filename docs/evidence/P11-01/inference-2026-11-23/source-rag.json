@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-11-23T17:12:08.109Z",
+  "commit": "76d16505eb6ce36528bf400cff7c40f3bd70cf93",
+  "runtime": "source build",
+  "directory": null,
+  "scope": "Actual Core IPC and real BGE worker; 16 cold selected sources alongside the standard fixture; no upstream requests and no chat fixture marker.",
+  "selectedSources": 16,
+  "hits": 4,
+  "scoped": true,
+  "queryMs": 8225.051300000006,
+  "passed": true
+}

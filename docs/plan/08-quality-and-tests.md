@@ -1,5 +1,7 @@
 # 测试、评测和发布验收
 
+P11 开发目录、工作回退上下文、离线评测和 CI 分层见 [ADR0085](../adr/0085-development-directory-and-system-acceptance.md)。`pnpm test:perf -- --desktop` 追加桌面启动和空闲内存采样，需在独立进程组完成后单独执行。真实模型、真实文档质量和安装升级仍按各资源验收范围记录。
+
 P07原生CI按[ADR0073](../adr/0073-private-office-fonts-and-ci-scope.md)分离作用域：主check集成排除的P07 native 9文件17项，必须在独立office-native job中全部执行；该job先实际probe当前runner，再运行同一完整文件集并上传成果。其他集成、性能与独立标准用户检查留在check，既有Electron E2E范围在并行的electron job内以单worker运行。electron在自己的runner生成能力报告，并执行P03-02原生预览用例，为桌面测试生成本地合成交接文件。禁止将拆分记为删除覆盖或跨runner复用能力报告。
 
 启动（建库和凭据）与Office关闭（外链和宏）的新进程多轮复测由工作流的手动触发运行。原用例继续随push/PR的主集成和Electron E2E执行。
@@ -32,6 +34,8 @@ P00-01创建以下根脚本，不能在任务结束时只写“建议测试”�
 ## 2. 分层策略
 
 性能用例归入独立Vitest perf项目，通过pnpm test:perf执行，CI在其他集成worker全部退出后运行；不与原生Office/进程资源压力用例并发争用CPU/磁盘。P02-03仍使用1万会话/10万消息、200页/30次查询及500ms P95断言，普通integration不代替性能验收。
+
+P11-01 联合负载在 push 与 pull_request 中使用独立 Windows CI 作业，合入 main 后继续保留。同一来源仓库和分支的 push/PR 只保留最新检查，避免重复运行；手动诊断使用独立并发组并保留既有专用作业。也可运行 `pnpm test:e2e -- --grep 'P11-01 joint load'` 复测。CI 使用 `--repeat-each 2` 连续确认，每轮使用独立合成 profile，在本 runner 验证原生隔离后跑聊天与实时索引、两根原生 Office 工作，采集应用与原生子进程工作集，按 repeatEachIndex 保留两轮 JSON；任一轮超限均失败。
 
 P02-03合成数据建库在beforeAll中单独限时120秒；查询采样用例仍限时60秒，不把建库耗时计入用户查询P95。报告同时记录seedMs/sampleMs及原数据量，写入test-results/P02-03-perf/performance.json随CI归档；本地证据按实际运行另行保存，不自动覆盖旧日期的验收报告。
 
@@ -90,7 +94,9 @@ P02-03合成数据建库在beforeAll中单独限时120秒；查询采样用例�
 
 本地冷启动≤5s；热启动≤2s；空闲总应用内存≤700MiB；聊天+索引≤2GiB；重工作总峰值≤4GiB。会话列表/本地搜索P95≤500ms；混合检索P95≤2s；收到上游文本后显示P95≤100ms；取消指令持久化≤200ms、新派发停止≤1s。第三方首字延迟单独测量，不将其承诺为本地SLA。
 
-解析/嵌入等后台任务降低优先级并让出CPU；任意大文件不能阻塞Renderer超过100ms。导入边界失败给错误，不静默截断成成功。
+解析/嵌入等后台任务降低优先级并让出CPU；任意大文件不能阻塞Renderer超过100ms。锁定 ONNX Node 绑定的同步推理、首次模型完整性校验和分词器初始化使用 [ADR0087](../adr/0087-background-embedding-inference.md) 计算线程，验证核心不加载模型、损坏字节拒绝就绪、向量一致、单请求取消、迟到响应、异常退出和关闭清理；索引发布和异步检索预算返回后仍在 Core 复核取消、权限与版本。导入边界失败给错误，不静默截断成成功。
+
+Host IPC 审计按 [ADR0088](../adr/0088-nonblocking-ipc-audit.md) 使用有序异步 I/O，仍待落盘后回复，覆盖轮转保留、错误传播、失败恢复、退出排空和正文不入日志。普通 Markdown 不预载公式与字体模块，公式和安全参数沿用原逻辑，完整格式化标识须等待对应模块完成。
 
 ## 6. 阶段门禁和证据
 

@@ -590,6 +590,25 @@ export function installChatFixture(models: ModelService) {
       const backgroundCall = request.systemModules.some((module) =>
         ['tapkit.title', 'tapkit.memory.extract'].includes(module.id),
       );
+      if (text === 'P11-01 流式性能' && !backgroundCall) {
+        for (let index = 0; index < 24; index++) {
+          yield { type: 'text_delta', blockId: 'text', text: `P11-${index}-${Date.now()}\n\n` };
+          await new Promise<void>((resolve, reject) => {
+            signal.throwIfAborted();
+            const cancel = () => {
+              clearTimeout(timer);
+              reject(signal.reason);
+            };
+            const timer = setTimeout(() => {
+              signal.removeEventListener('abort', cancel);
+              resolve();
+            }, 240);
+            signal.addEventListener('abort', cancel, { once: true });
+          });
+        }
+        yield { type: 'finish', reason: 'stop', nativeStateRef: '' };
+        return;
+      }
       if (text.includes('P05项目') && !backgroundCall) {
         const result = request.messages
           .slice(request.messages.findLastIndex((m) => m.role === 'user') + 1)

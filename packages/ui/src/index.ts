@@ -23,9 +23,7 @@ export {
   useNavigate,
   useNavigationType,
 } from 'react-router';
-export { ChatMarkdown, safeChatURL } from './chat-markdown';
+export { safeChatURL } from './chat-safety';
 export { Tooltip, TooltipLayer } from './tooltip';
 
 export { ClipboardProvider, CopyButton } from './clipboard';
-export { TerminalSurface } from './terminal';
-export * from './canvas-editor';

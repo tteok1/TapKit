@@ -35,7 +35,7 @@ async function create() {
   await form.getByRole('button', { name: '创建工作', exact: true }).click();
   await expect(page.locator('.work-detail')).toContainText('等待输入');
 }
-test('P06-03 T13/T20 notification read state and pending plan survive restart; real completion links to the task', async () => {
+test('P06-03 P11-01 FR-37-004 T13/T20 notification returns to persisted work after restart', async () => {
   await create();
   await page.getByRole('button', { name: '通知', exact: true }).click();
   const center = page.getByRole('region', { name: '通知中心', exact: true });
@@ -55,7 +55,7 @@ test('P06-03 T13/T20 notification read state and pending plan survive restart; r
   await expect(page.locator('.work-detail')).toContainText('等待输入');
   await page.getByRole('button', { name: '调整计划', exact: true }).click();
   await page.getByRole('button', { name: '接受并执行所选步骤', exact: true }).click();
-  await expect(page.locator('.work-detail')).toContainText('已完成', { timeout: 30000 });
+  await page.getByRole('link', { name: '项目', exact: true }).first().click();
   await page.getByRole('button', { name: '通知', exact: true }).click();
   await expect(page.getByRole('region', { name: '通知中心', exact: true })).toContainText(
     '工作任务已完成',

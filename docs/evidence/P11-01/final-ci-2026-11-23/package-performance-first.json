@@ -1,0 +1,539 @@
+{
+  "checkedAt": "2026-11-23T05:11:49.557Z",
+  "commit": "58ec0684b15824117a5143b2874b5d1179ca82b6",
+  "hardware": {
+    "os": "10.0.26200",
+    "arch": "x64",
+    "threads": 16,
+    "cpu": "AMD Ryzen 7 H 255 w/ Radeon 780M",
+    "ramBytes": 24995295232
+  },
+  "scope": "This host, application restart and new profile, no OS cache flush or provider calls. Idle measures maximum of three 1-second samples after verification settles.",
+  "runtime": "development directory",
+  "limits": {
+    "firstProfileMs": 5000,
+    "restartMs": 2000,
+    "idleMiB": 700
+  },
+  "samples": [
+    {
+      "profile": "first-profile",
+      "shellMs": 5541.4186,
+      "coreReadyMs": 5666.8998,
+      "nativeSettledMs": 18670.378699999997,
+      "atCoreReady": {
+        "nativeExecution": {
+          "status": "failed",
+          "code": "SANDBOX_UNAVAILABLE",
+          "reason": "PROBE_IN_PROGRESS"
+        },
+        "officeRender": {
+          "status": "failed",
+          "code": "SANDBOX_UNAVAILABLE",
+          "reason": "PROBE_IN_PROGRESS"
+        },
+        "terminal": {
+          "status": "failed",
+          "code": "SANDBOX_UNAVAILABLE",
+          "reason": "PROBE_IN_PROGRESS"
+        }
+      },
+      "verified": {
+        "nativeExecution": {
+          "status": "available"
+        },
+        "officeRender": {
+          "status": "available"
+        },
+        "terminal": {
+          "status": "available"
+        }
+      },
+      "idleMiB": 645.92578125,
+      "idleSamples": [
+        {
+          "processes": [
+            {
+              "type": "Browser",
+              "workingSetMiB": 172.546875
+            },
+            {
+              "type": "GPU",
+              "service": "GPU",
+              "workingSetMiB": 138.30859375
+            },
+            {
+              "type": "Utility",
+              "service": "network.mojom.NetworkService",
+              "workingSetMiB": 54.96484375
+            },
+            {
+              "type": "Utility",
+              "service": "node.mojom.NodeService",
+              "workingSetMiB": 136.6015625
+            },
+            {
+              "type": "Tab",
+              "workingSetMiB": 140.81640625
+            }
+          ],
+          "totalMiB": 643.23828125
+        },
+        {
+          "processes": [
+            {
+              "type": "Browser",
+              "workingSetMiB": 173.08984375
+            },
+            {
+              "type": "GPU",
+              "service": "GPU",
+              "workingSetMiB": 138.30859375
+            },
+            {
+              "type": "Utility",
+              "service": "network.mojom.NetworkService",
+              "workingSetMiB": 54.96484375
+            },
+            {
+              "type": "Utility",
+              "service": "node.mojom.NodeService",
+              "workingSetMiB": 138.203125
+            },
+            {
+              "type": "Tab",
+              "workingSetMiB": 140.81640625
+            }
+          ],
+          "totalMiB": 645.3828125
+        },
+        {
+          "processes": [
+            {
+              "type": "Browser",
+              "workingSetMiB": 172.375
+            },
+            {
+              "type": "GPU",
+              "service": "GPU",
+              "workingSetMiB": 138.30859375
+            },
+            {
+              "type": "Utility",
+              "service": "network.mojom.NetworkService",
+              "workingSetMiB": 54.96484375
+            },
+            {
+              "type": "Utility",
+              "service": "node.mojom.NodeService",
+              "workingSetMiB": 139.4609375
+            },
+            {
+              "type": "Tab",
+              "workingSetMiB": 140.81640625
+            }
+          ],
+          "totalMiB": 645.92578125
+        }
+      ],
+      "stages": [
+        "TAPKIT_CORE_STARTUP sqlite-ready 711 711",
+        "TAPKIT_CORE_STARTUP backup-ready 40 751",
+        "TAPKIT_CORE_STARTUP gc-ready 4 755",
+        "TAPKIT_CORE_STARTUP core-ready 6 761",
+        "TAPKIT_CORE_STARTUP native-verified 13227 13983"
+      ]
+    },
+    {
+      "profile": "same-profile-restart",
+      "shellMs": 914.7438000000002,
+      "coreReadyMs": 1051.4239000000016,
+      "nativeSettledMs": 13031.131400000002,
+      "atCoreReady": {
+        "nativeExecution": {
+          "status": "failed",
+          "code": "SANDBOX_UNAVAILABLE",
+          "reason": "PROBE_IN_PROGRESS"
+        },
+        "officeRender": {
+          "status": "failed",
+          "code": "SANDBOX_UNAVAILABLE",
+          "reason": "PROBE_IN_PROGRESS"
+        },
+        "terminal": {
+          "status": "failed",
+          "code": "SANDBOX_UNAVAILABLE",
+          "reason": "PROBE_IN_PROGRESS"
+        }
+      },
+      "verified": {
+        "nativeExecution": {
+          "status": "available"
+        },
+        "officeRender": {
+          "status": "available"
+        },
+        "terminal": {
+          "status": "available"
+        }
+      },
+      "idleMiB": 643.234375,
+      "idleSamples": [
+        {
+          "processes": [
+            {
+              "type": "Browser",
+              "workingSetMiB": 163.97265625
+            },
+            {
+              "type": "GPU",
+              "service": "GPU",
+              "workingSetMiB": 137.41015625
+            },
+            {
+              "type": "Utility",
+              "service": "network.mojom.NetworkService",
+              "workingSetMiB": 51.13671875
+            },
+            {
+              "type": "Utility",
+              "service": "node.mojom.NodeService",
+              "workingSetMiB": 140.7421875
+            },
+            {
+              "type": "Tab",
+              "workingSetMiB": 146.74609375
+            }
+          ],
+          "totalMiB": 640.0078125
+        },
+        {
+          "processes": [
+            {
+              "type": "Browser",
+              "workingSetMiB": 164.0546875
+            },
+            {
+              "type": "GPU",
+              "service": "GPU",
+              "workingSetMiB": 137.41015625
+            },
+            {
+              "type": "Utility",
+              "service": "network.mojom.NetworkService",
+              "workingSetMiB": 51.13671875
+            },
+            {
+              "type": "Utility",
+              "service": "node.mojom.NodeService",
+              "workingSetMiB": 142.015625
+            },
+            {
+              "type": "Tab",
+              "workingSetMiB": 146.74609375
+            }
+          ],
+          "totalMiB": 641.36328125
+        },
+        {
+          "processes": [
+            {
+              "type": "Browser",
+              "workingSetMiB": 164.4296875
+            },
+            {
+              "type": "GPU",
+              "service": "GPU",
+              "workingSetMiB": 137.41015625
+            },
+            {
+              "type": "Utility",
+              "service": "network.mojom.NetworkService",
+              "workingSetMiB": 51.13671875
+            },
+            {
+              "type": "Utility",
+              "service": "node.mojom.NodeService",
+              "workingSetMiB": 143.51171875
+            },
+            {
+              "type": "Tab",
+              "workingSetMiB": 146.74609375
+            }
+          ],
+          "totalMiB": 643.234375
+        }
+      ],
+      "stages": [
+        "TAPKIT_CORE_STARTUP sqlite-ready 16 16",
+        "TAPKIT_CORE_STARTUP backup-ready 16 31",
+        "TAPKIT_CORE_STARTUP gc-ready 2 34",
+        "TAPKIT_CORE_STARTUP core-ready 6 39",
+        "TAPKIT_CORE_STARTUP native-verified 11529 11564"
+      ]
+    },
+    {
+      "profile": "same-profile-restart",
+      "shellMs": 1261.107600000003,
+      "coreReadyMs": 1393.688000000002,
+      "nativeSettledMs": 13371.9657,
+      "atCoreReady": {
+        "nativeExecution": {
+          "status": "failed",
+          "code": "SANDBOX_UNAVAILABLE",
+          "reason": "PROBE_IN_PROGRESS"
+        },
+        "officeRender": {
+          "status": "failed",
+          "code": "SANDBOX_UNAVAILABLE",
+          "reason": "PROBE_IN_PROGRESS"
+        },
+        "terminal": {
+          "status": "failed",
+          "code": "SANDBOX_UNAVAILABLE",
+          "reason": "PROBE_IN_PROGRESS"
+        }
+      },
+      "verified": {
+        "nativeExecution": {
+          "status": "available"
+        },
+        "officeRender": {
+          "status": "available"
+        },
+        "terminal": {
+          "status": "available"
+        }
+      },
+      "idleMiB": 644.734375,
+      "idleSamples": [
+        {
+          "processes": [
+            {
+              "type": "Browser",
+              "workingSetMiB": 173.73046875
+            },
+            {
+              "type": "GPU",
+              "service": "GPU",
+              "workingSetMiB": 137.83203125
+            },
+            {
+              "type": "Utility",
+              "service": "network.mojom.NetworkService",
+              "workingSetMiB": 51.28515625
+            },
+            {
+              "type": "Utility",
+              "service": "node.mojom.NodeService",
+              "workingSetMiB": 132.953125
+            },
+            {
+              "type": "Tab",
+              "workingSetMiB": 145.47265625
+            }
+          ],
+          "totalMiB": 641.2734375
+        },
+        {
+          "processes": [
+            {
+              "type": "Browser",
+              "workingSetMiB": 173.9375
+            },
+            {
+              "type": "GPU",
+              "service": "GPU",
+              "workingSetMiB": 137.83203125
+            },
+            {
+              "type": "Utility",
+              "service": "network.mojom.NetworkService",
+              "workingSetMiB": 51.28515625
+            },
+            {
+              "type": "Utility",
+              "service": "node.mojom.NodeService",
+              "workingSetMiB": 134.41015625
+            },
+            {
+              "type": "Tab",
+              "workingSetMiB": 145.47265625
+            }
+          ],
+          "totalMiB": 642.9375
+        },
+        {
+          "processes": [
+            {
+              "type": "Browser",
+              "workingSetMiB": 173.9453125
+            },
+            {
+              "type": "GPU",
+              "service": "GPU",
+              "workingSetMiB": 137.83203125
+            },
+            {
+              "type": "Utility",
+              "service": "network.mojom.NetworkService",
+              "workingSetMiB": 51.28515625
+            },
+            {
+              "type": "Utility",
+              "service": "node.mojom.NodeService",
+              "workingSetMiB": 136.1953125
+            },
+            {
+              "type": "Tab",
+              "workingSetMiB": 145.4765625
+            }
+          ],
+          "totalMiB": 644.734375
+        }
+      ],
+      "stages": [
+        "TAPKIT_CORE_STARTUP sqlite-ready 19 19",
+        "TAPKIT_CORE_STARTUP backup-ready 17 36",
+        "TAPKIT_CORE_STARTUP gc-ready 2 38",
+        "TAPKIT_CORE_STARTUP core-ready 7 45",
+        "TAPKIT_CORE_STARTUP native-verified 11968 12007"
+      ]
+    },
+    {
+      "profile": "same-profile-restart",
+      "shellMs": 860.9434000000037,
+      "coreReadyMs": 990.1860000000015,
+      "nativeSettledMs": 11951.657899999998,
+      "atCoreReady": {
+        "nativeExecution": {
+          "status": "failed",
+          "code": "SANDBOX_UNAVAILABLE",
+          "reason": "PROBE_IN_PROGRESS"
+        },
+        "officeRender": {
+          "status": "failed",
+          "code": "SANDBOX_UNAVAILABLE",
+          "reason": "PROBE_IN_PROGRESS"
+        },
+        "terminal": {
+          "status": "failed",
+          "code": "SANDBOX_UNAVAILABLE",
+          "reason": "PROBE_IN_PROGRESS"
+        }
+      },
+      "verified": {
+        "nativeExecution": {
+          "status": "available"
+        },
+        "officeRender": {
+          "status": "available"
+        },
+        "terminal": {
+          "status": "available"
+        }
+      },
+      "idleMiB": 646.34375,
+      "idleSamples": [
+        {
+          "processes": [
+            {
+              "type": "Browser",
+              "workingSetMiB": 174.25
+            },
+            {
+              "type": "GPU",
+              "service": "GPU",
+              "workingSetMiB": 137.3359375
+            },
+            {
+              "type": "Utility",
+              "service": "network.mojom.NetworkService",
+              "workingSetMiB": 51.04296875
+            },
+            {
+              "type": "Utility",
+              "service": "node.mojom.NodeService",
+              "workingSetMiB": 136.05859375
+            },
+            {
+              "type": "Tab",
+              "workingSetMiB": 145.6015625
+            }
+          ],
+          "totalMiB": 644.2890625
+        },
+        {
+          "processes": [
+            {
+              "type": "Browser",
+              "workingSetMiB": 174.4140625
+            },
+            {
+              "type": "GPU",
+              "service": "GPU",
+              "workingSetMiB": 137.3359375
+            },
+            {
+              "type": "Utility",
+              "service": "network.mojom.NetworkService",
+              "workingSetMiB": 51.04296875
+            },
+            {
+              "type": "Utility",
+              "service": "node.mojom.NodeService",
+              "workingSetMiB": 136.50390625
+            },
+            {
+              "type": "Tab",
+              "workingSetMiB": 145.6015625
+            }
+          ],
+          "totalMiB": 644.8984375
+        },
+        {
+          "processes": [
+            {
+              "type": "Browser",
+              "workingSetMiB": 174.41796875
+            },
+            {
+              "type": "GPU",
+              "service": "GPU",
+              "workingSetMiB": 137.3359375
+            },
+            {
+              "type": "Utility",
+              "service": "network.mojom.NetworkService",
+              "workingSetMiB": 51.04296875
+            },
+            {
+              "type": "Utility",
+              "service": "node.mojom.NodeService",
+              "workingSetMiB": 137.9453125
+            },
+            {
+              "type": "Tab",
+              "workingSetMiB": 145.6015625
+            }
+          ],
+          "totalMiB": 646.34375
+        }
+      ],
+      "stages": [
+        "TAPKIT_CORE_STARTUP sqlite-ready 22 22",
+        "TAPKIT_CORE_STARTUP backup-ready 16 38",
+        "TAPKIT_CORE_STARTUP gc-ready 3 41",
+        "TAPKIT_CORE_STARTUP core-ready 6 47",
+        "TAPKIT_CORE_STARTUP native-verified 11017 11059"
+      ]
+    }
+  ],
+  "meetsLimits": {
+    "firstProfile": false,
+    "restart": true,
+    "idle": true
+  },
+  "nativeVerified": true,
+  "nativeGatedAtCoreReady": true
+}

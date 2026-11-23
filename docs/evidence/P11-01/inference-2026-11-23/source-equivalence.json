@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-11-23T17:25:21.556Z",
+  "measuredCommit": "8623d73498a95fa0a31b7615cf9c238c10d8c584",
+  "sourceRagMeasuredCommit": "76d16505eb6ce36528bf400cff7c40f3bd70cf93",
+  "candidateCommit": "3af9dcd61d43fb8e90035636738b084799312568",
+  "measuredCodeTreeSha256": "d175f924cc578b1e5bca3d85fa02ee8765ebebd1708b87e2a7e31714f5ff19fe",
+  "candidateCodeTreeSha256": "d175f924cc578b1e5bca3d85fa02ee8765ebebd1708b87e2a7e31714f5ff19fe",
+  "changedPaths": [
+    "docs/evidence/P11-01/inference-2026-11-23/diagnostic-syntax-fix.json",
+    "docs/evidence/P11-01/inference-2026-11-23/local-event-path-repeat-0.json",
+    "docs/evidence/P11-01/inference-2026-11-23/local-event-path-repeat-1.json",
+    "docs/evidence/P11-01/inference-2026-11-23/markdown-resource-assertion-failure.md",
+    "docs/progress/CURRENT.md",
+    "docs/progress/INDEX.md",
+    "docs/progress/P11-01.md",
+    "docs/progress/requirements.csv",
+    "packages/core/src/performance-fixture.ts",
+    "tests/e2e/P02-02.chat.spec.ts"
+  ],
+  "excludedPaths": [
+    "docs/**",
+    "tests/e2e/P02-02.chat.spec.ts",
+    "packages/core/src/performance-fixture.ts"
+  ],
+  "assertionDiff": "diff --git a/tests/e2e/P02-02.chat.spec.ts b/tests/e2e/P02-02.chat.spec.ts\nindex e32e04c..fb2b803 100644\n--- a/tests/e2e/P02-02.chat.spec.ts\n+++ b/tests/e2e/P02-02.chat.spec.ts\n@@ -418,5 +418,5 @@ test('P02-02 T02 malicious Markdown stays inert; GFM, KaTeX, Shiki and static sa\n     await page.evaluate(() =>\n-      performance\n-        .getEntriesByType('resource')\n-        .some((entry) => /chat-math-[^/]+\\.js(?:$|\\?)/.test(entry.name)),\n+      [...document.querySelectorAll<HTMLLinkElement>('link[rel=\"stylesheet\"]')].some((link) =>\n+        /chat-math-[^/]+\\.css(?:$|\\?)/.test(link.href),\n+      ),\n     ),\n@@ -430,5 +430,5 @@ test('P02-02 T02 malicious Markdown stays inert; GFM, KaTeX, Shiki and static sa\n     await page.evaluate(() =>\n-      performance\n-        .getEntriesByType('resource')\n-        .some((entry) => /chat-math-[^/]+\\.js(?:$|\\?)/.test(entry.name)),\n+      [...document.querySelectorAll<HTMLLinkElement>('link[rel=\"stylesheet\"]')].some((link) =>\n+        /chat-math-[^/]+\\.css(?:$|\\?)/.test(link.href),\n+      ),\n     ),\n",
+  "diagnosticSyntaxDiff": "diff --git a/packages/core/src/performance-fixture.ts b/packages/core/src/performance-fixture.ts\nindex 32766f7..6bd5d0c 100644\n--- a/packages/core/src/performance-fixture.ts\n+++ b/packages/core/src/performance-fixture.ts\n@@ -11,6 +11,7 @@ export async function startPerformanceFixture(directory: string) {\n   session.connect();\n-  const post = <T>(method: string) =>\n-    new Promise<T>((resolve, reject) =>\n+  function post<T>(method: string) {\n+    return new Promise<T>((resolve, reject) =>\n       session.post(method, (error, value) => (error ? reject(error) : resolve(value as T))),\n     );\n+  }\n   await post('Profiler.enable');\n",
+  "productionCoreSha256": "12aad19f230493ce5ef1807f0b9458af5fb87898862f6b132fabcd4d8738af8c",
+  "scope": "Only documentation, the local-page resource assertion and test-only profiler syntax changed. Every other tracked blob, including runtime, build and complete joint-load inputs, is identical. Rebuilt production Core is byte-identical; raw measured commits and the mixed command failure remain unchanged.",
+  "mixedCommand": {
+    "exitCode": 1,
+    "jointLoadPassed": 2,
+    "markdownAssertionFailed": 2
+  },
+  "pendingAtMeasurement": "Current-head full CI and package.",
+  "followup": {
+    "ci": "ci-source.json",
+    "package": "delivery.json",
+    "status": "passed"
+  }
+}

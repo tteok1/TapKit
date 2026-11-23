@@ -1,0 +1,22 @@
+{
+  "baseCommit": "44d5d3e062b78320ec1346f7e8b13727173c99e8",
+  "source": "P11-01 idle optimization working tree",
+  "entryBytes": {
+    "renderer": { "before": 5230399, "after": 868095 },
+    "host": { "before": 498371, "after": 452374 }
+  },
+  "checks": [
+    { "command": "pnpm check", "exitCode": 0, "electronTestsCollected": 140 },
+    {
+      "command": "pnpm test:unit P02-02.chat P05-01.citations P08-01.browser P11-01.runtime-readiness",
+      "exitCode": 0,
+      "passed": 18
+    },
+    {
+      "command": "pnpm test:e2e -- --grep 'P03-02|P05-0[13]|P08-01|P09-02|P10-01|P11-01'",
+      "exitCode": 0,
+      "passed": 19,
+      "jointLoad": "joint-load.json"
+    }
+  ]
+}

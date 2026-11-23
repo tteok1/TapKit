@@ -1,0 +1,91 @@
+{
+  "checkedAt": "2026-11-23T16:54:44.609Z",
+  "profiledImplementationCommit": "3653048278a8143963807075cb6ce13b7aa6a0a9",
+  "diagnosticOnly": true,
+  "profileFindings": {
+    "coreCancellationNativeSqlMs": 60.23,
+    "hostSynchronousAuditWriteMs": 39.64,
+    "rendererScrollLayoutMs": 54.02,
+    "corePublishDelayMs": 5,
+    "afterCorePublishMs": 18
+  },
+  "changes": [
+    "Bind finishRun message lookup to its session and run using the existing session index.",
+    "Serialize asynchronous IPC audit I/O; await durability before reply, preserve metadata/rotation/retention/error propagation and drain on exit.",
+    "Load math parsing, KaTeX and its CSS only for text containing a math marker; preserve plaintext fallback until rich output is ready."
+  ],
+  "checks": [
+    {
+      "command": "pnpm test:integration P02-02.chat P11-01.work-fallback P11-01.index-scheduling",
+      "exitCode": 0,
+      "passed": 19
+    },
+    {
+      "command": "pnpm test:unit P11-01.ipc-audit P11-01.embedding-inference P04-01.retrieval",
+      "exitCode": 0,
+      "passed": 12
+    },
+    {
+      "command": "pnpm exec tsc --project tsconfig.json",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm exec tsc --project apps/desktop/tsconfig.renderer.json",
+      "exitCode": 0
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "apps/desktop/src/main/index.ts",
+      "sha256": "90986834cc8dc617317703e8f8792017482c98edce7af1873d88b8047c11488c"
+    },
+    {
+      "path": "apps/desktop/src/main/ipc-audit.ts",
+      "sha256": "06ff8c78f64ccd23008699606e19123ed391867c5c2de12a844a1ac3c09f10aa"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "6d678e875546cfb29bcc6f7be7f699b7bdd2c37b3dab899060f58c420630ee9c"
+    },
+    {
+      "path": "packages/core/src/performance-fixture.ts",
+      "sha256": "f162f97427457c2f308c3af7db88bec128446a775526f91fc4cb16401298af64"
+    },
+    {
+      "path": "packages/core/src/chat-service.ts",
+      "sha256": "177da0657d936d89010c8525d15ece48004cff2fa47a3bb1ccb1511fb1e75e25"
+    },
+    {
+      "path": "packages/ui/src/chat-markdown.tsx",
+      "sha256": "4943dafb79527ecc7efcd72699901180578c14bd7e0cbaf3b0ca21a7daa2673c"
+    },
+    {
+      "path": "packages/ui/src/chat-math.tsx",
+      "sha256": "ff25d8bb20a657a1198501d225f7b6122fa97f75e6920b7410e98dacd7e03ec0"
+    },
+    {
+      "path": "tests/e2e/P02-02.chat.spec.ts",
+      "sha256": "f39985bbae4499becb2d04ac3fa451da33e362562fed56389bde00871e86c765"
+    },
+    {
+      "path": "tests/e2e/P11-01.joint-load.spec.ts",
+      "sha256": "4080c53540f0a2cc5d8943af7e4de8dca7e973763ea5c8e844dd2628de856047"
+    },
+    {
+      "path": "tests/e2e/streaming-perf-fixture.ts",
+      "sha256": "5f57a73e74b92fb22ec34eae5e1964e7aacc78ce6651ba8fa904585b3b433122"
+    },
+    {
+      "path": "tests/unit/P11-01.ipc-audit.test.ts",
+      "sha256": "1b0fb587037e39a480d70a6c577a6f031eeebc3ff1fb51f6c0ed05658a16fe8b"
+    }
+  ],
+  "pending": [
+    "two normal joint workloads",
+    "Markdown and math E2E",
+    "production retrieval rebuild",
+    "full CI",
+    "fresh development package"
+  ],
+  "privacy": "Local tests do not read the current system clipboard; native clipboard regression is reserved for the isolated CI runner."
+}

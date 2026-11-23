@@ -1,7 +1,8 @@
 import { createHash } from 'node:crypto';
+import { setImmediate as yieldTurn } from 'node:timers/promises';
 import type { Locator, ParsedDocument } from '@tapkit/contracts';
 import { selectedMaterial, locatedText, sheetRange } from '@tapkit/storage';
-import type { Embedder } from './embedding';
+import type { Embedder, SynchronousEmbedder } from './embedding';
 
 export const CHUNK_POLICY = 'structure800-overlap120-v1';
 export const digest = (text: string) => createHash('sha256').update(text).digest('hex');
@@ -20,7 +21,11 @@ export type Chunk = {
   context: ContextPart[];
 };
 /** Boundaries use the actual locked tokenizer and UTF-16 source offsets. */
-export function textSlices(text: string, count: Embedder['count'], target = 800, overlap = 120) {
+function* textSliceSteps(
+  text: string,
+  target = 800,
+  overlap = 120,
+): Generator<string, { start: number; end: number }[], number> {
   const slices: { start: number; end: number }[] = [];
   const boundary = (at: number) => (at > 0 && /[\uDC00-\uDFFF]/.test(text[at] ?? '') ? at - 1 : at);
   let start = 0;
@@ -29,7 +34,8 @@ export function textSlices(text: string, count: Embedder['count'], target = 800,
       hi = Math.min(text.length, start + 16000);
     while (lo < hi) {
       const mid = Math.ceil((lo + hi) / 2);
-      if (count(text.slice(start, mid)) <= target) lo = mid;
+      const size = yield text.slice(start, mid);
+      if (size <= target) lo = mid;
       else hi = mid - 1;
     }
     let end = boundary(lo);
@@ -46,14 +52,15 @@ export function textSlices(text: string, count: Embedder['count'], target = 800,
     hi = end;
     while (lo < hi) {
       const mid = Math.floor((lo + hi) / 2);
-      if (count(text.slice(mid, end)) > overlap) lo = mid + 1;
+      const size = yield text.slice(mid, end);
+      if (size > overlap) lo = mid + 1;
       else hi = mid;
     }
     start = Math.max(start + 1, boundary(lo));
   }
   return slices;
 }
-export function chunkDocument(doc: ParsedDocument, count: Embedder['count']): Chunk[] {
+function* chunkDocumentSteps(doc: ParsedDocument): Generator<string, Chunk[], number> {
   const chunks: Chunk[] = [],
     seen = new Set<string>();
   let parent: number | null = null,
@@ -81,7 +88,8 @@ export function chunkDocument(doc: ParsedDocument, count: Embedder['count']): Ch
         )
           break;
         const candidate = combined + '\t' + selectedMaterial(doc, next).text;
-        if (count(candidate) > 800) break;
+        const size = yield candidate;
+        if (size > 800) break;
         locator.range =
           locator.range.split(':')[0] + ':' + (next.range.split(':')[1] ?? next.range);
         combined = candidate;
@@ -98,7 +106,8 @@ export function chunkDocument(doc: ParsedDocument, count: Embedder['count']): Ch
         )
           break;
         const combined = { ...locator, lineEnd: next.locator.lineEnd };
-        if (count(locatedText(doc, combined)) > 800) break;
+        const size = yield locatedText(doc, combined);
+        if (size > 800) break;
         locator.lineEnd = next.locator.lineEnd;
         at++;
       }
@@ -118,7 +127,8 @@ export function chunkDocument(doc: ParsedDocument, count: Embedder['count']): Ch
           next.locator.start !== locator.end + 1
         )
           break;
-        if (count(selectedMaterial(doc, { ...locator, end: next.locator.end }).text) > 800) break;
+        const size = yield selectedMaterial(doc, { ...locator, end: next.locator.end }).text;
+        if (size > 800) break;
         locator.end = next.locator.end;
         at++;
       }
@@ -139,7 +149,8 @@ export function chunkDocument(doc: ParsedDocument, count: Embedder['count']): Ch
         context.push({ text: headText, locator: headLocator, hash: digest(headText) });
       }
     }
-    for (const slice of textSlices(source, count)) {
+    const slices = yield* textSliceSteps(source);
+    for (const slice of slices) {
       let pieceLocator = locator,
         range: Chunk['range'] = slice;
       if (locator.kind === 'text') {
@@ -152,6 +163,7 @@ export function chunkDocument(doc: ParsedDocument, count: Embedder['count']): Ch
       }
       const text = source.slice(slice.start, slice.end),
         ordinal = chunks.length;
+      const tokens = yield text;
       chunks.push({
         kind: block.kind,
         ordinal,
@@ -162,7 +174,7 @@ export function chunkDocument(doc: ParsedDocument, count: Embedder['count']): Ch
         locator: pieceLocator,
         range,
         hash: digest(text),
-        tokens: count(text),
+        tokens,
         context: [...context],
       });
     }
@@ -173,4 +185,52 @@ export function chunkDocument(doc: ParsedDocument, count: Embedder['count']): Ch
   }
   for (const c of chunks) c.next = c.ordinal + 1 < chunks.length ? c.ordinal + 1 : null;
   return chunks;
+}
+
+function finish<T>(steps: Generator<string, T, number>, count: SynchronousEmbedder['count']): T {
+  let result = steps.next();
+  while (!result.done) {
+    const tokens = count(result.value);
+    if (typeof tokens !== 'number') throw new Error('ASYNC_TOKENIZER_REQUIRED');
+    result = steps.next(tokens);
+  }
+  return result.value;
+}
+
+export function textSlices(
+  text: string,
+  count: SynchronousEmbedder['count'],
+  target = 800,
+  overlap = 120,
+) {
+  return finish(textSliceSteps(text, target, overlap), count);
+}
+
+export function chunkDocument(doc: ParsedDocument, count: SynchronousEmbedder['count']): Chunk[] {
+  return finish(chunkDocumentSteps(doc), count);
+}
+
+/** Keep tokenizer work cooperative without changing chunk boundaries or publication atomicity. */
+export async function chunkDocumentAsync(
+  doc: ParsedDocument,
+  count: Embedder['count'],
+  guard: () => void = () => {},
+  countAsync?: (text: string) => Promise<number>,
+): Promise<Chunk[]> {
+  const steps = chunkDocumentSteps(doc);
+  let turnStarted = performance.now();
+  guard();
+  let result = steps.next();
+  while (!result.done) {
+    const tokens = await (countAsync ? countAsync(result.value) : count(result.value));
+    guard();
+    if (performance.now() - turnStarted >= 4) {
+      await yieldTurn();
+      guard();
+      turnStarted = performance.now();
+    }
+    result = steps.next(tokens);
+  }
+  guard();
+  return result.value;
 }

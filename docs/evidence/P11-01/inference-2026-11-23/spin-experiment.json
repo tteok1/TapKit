@@ -1,0 +1,86 @@
+{
+  "checkedAt": "2026-11-23T14:49:43.433Z",
+  "scope": "One isolated local Node process; fixed 384-token BGE inputs; no claim of reference Windows hardware; alternating default and no-spin sessions.",
+  "reports": [
+    {
+      "spinning": true,
+      "session_options": {
+        "intraOpNumThreads": 2,
+        "interOpNumThreads": 1
+      },
+      "iterations": 24,
+      "wallMs": 802.3433999999999,
+      "cpuMs": 1671,
+      "eventLoopP95Ms": 39.256063,
+      "eventLoopMaxMs": 42.369023,
+      "idleWallMs": 509.1805999999999,
+      "idleCpuMs": 62,
+      "maxAbsDifference": 0
+    },
+    {
+      "spinning": false,
+      "session_options": {
+        "intraOpNumThreads": 2,
+        "interOpNumThreads": 1,
+        "extra": {
+          "session": {
+            "intra_op": {
+              "allow_spinning": "0"
+            },
+            "inter_op": {
+              "allow_spinning": "0"
+            }
+          }
+        }
+      },
+      "iterations": 24,
+      "wallMs": 970.9658999999997,
+      "cpuMs": 1969,
+      "eventLoopP95Ms": 54.362111,
+      "eventLoopMaxMs": 57.049087,
+      "idleWallMs": 506.49519999999984,
+      "idleCpuMs": 63,
+      "maxAbsDifference": 0
+    },
+    {
+      "spinning": true,
+      "session_options": {
+        "intraOpNumThreads": 2,
+        "interOpNumThreads": 1
+      },
+      "iterations": 24,
+      "wallMs": 974.576,
+      "cpuMs": 1968,
+      "eventLoopP95Ms": 52.953087,
+      "eventLoopMaxMs": 54.591487,
+      "idleWallMs": 512.6168000000007,
+      "idleCpuMs": 157,
+      "maxAbsDifference": 0
+    },
+    {
+      "spinning": false,
+      "session_options": {
+        "intraOpNumThreads": 2,
+        "interOpNumThreads": 1,
+        "extra": {
+          "session": {
+            "intra_op": {
+              "allow_spinning": "0"
+            },
+            "inter_op": {
+              "allow_spinning": "0"
+            }
+          }
+        }
+      },
+      "iterations": 24,
+      "wallMs": 1145.3490000000002,
+      "cpuMs": 2125,
+      "eventLoopP95Ms": 54.329343,
+      "eventLoopMaxMs": 56.033279,
+      "idleWallMs": 512.3278,
+      "idleCpuMs": 110,
+      "maxAbsDifference": 0
+    }
+  ]
+}

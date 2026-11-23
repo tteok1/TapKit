@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-11-23T16:17:20.157Z",
+  "wallMs": 373.78909999999996,
+  "eventLoopP95Ms": 16.121855,
+  "eventLoopMaxMs": 16.162815,
+  "coreModelImportForbidden": true,
+  "scope": "Real cold worker initialization, pinned file hashing, tokenizer and model loading; Core-side model import fails this test."
+}

@@ -1,10 +1,22 @@
-import { cp, mkdir, readFile, writeFile, realpath, readdir, lstat, rm } from 'node:fs/promises';
+import {
+  cp,
+  mkdir,
+  readFile,
+  writeFile,
+  realpath,
+  readdir,
+  lstat,
+  rm,
+  rename,
+} from 'node:fs/promises';
 import { createReadStream } from 'node:fs';
 import { createRequire } from 'node:module';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { join, dirname, relative, resolve, sep } from 'node:path';
 import { root, runtimeLock, pnpm, lockedEnv } from './lib.mjs';
+import { assertPublicFiles } from './scan-release.mjs';
+import { bundleExportFont } from './export-font.mjs';
 // A development directory snapshot, deliberately separate from the P11 installer.
 for (const name of [
   'TAPKIT_TEST_BUILD',
@@ -15,7 +27,7 @@ for (const name of [
   delete process.env[name];
 pnpm(['build']);
 const stamp = new Date().toISOString().replace(/[:.]/g, '-');
-const destination = join(root, 'release', 'TapKit-chat-M1-' + stamp);
+const destination = join(root, 'release', 'TapKit-development-' + stamp);
 await mkdir(join(root, 'release'), { recursive: true });
 await mkdir(destination);
 const sources = spawnSync('git', ['ls-files', '--cached', '--others', '--exclude-standard', '-z'], {
@@ -24,17 +36,29 @@ const sources = spawnSync('git', ['ls-files', '--cached', '--others', '--exclude
   windowsHide: true,
 });
 if (sources.status !== 0) throw Error('Cannot enumerate source snapshot');
-const allowed = sources.stdout
-  .split('\0')
-  .filter(
-    (path) => path && !/^(docs\/evidence\/|docs\/progress\/|\.agents\/|\.codex\/)/.test(path),
-  );
+const allowed = [
+  ...new Set(
+    sources.stdout
+      .split('\0')
+      .filter(
+        (path) =>
+          /^(?:apps\/desktop\/|packages\/|native\/windows-helper\/|migrations\/|scripts\/|tests\/|resources\/|docs\/adr\/)/.test(
+            path,
+          ) ||
+          /^(?:README\.md|CHANGELOG\.md|CONTRIBUTING\.md|LICENSE|THIRD_PARTY_NOTICES\.md|Start-TapKit\.cmd|package\.json|pnpm-lock\.yaml|pnpm-workspace\.yaml|requirements\.lock|python-wheels\.lock\.json|\.gitattributes|\.gitignore|\.npmrc|\.prettierignore|\.prettierrc\.json|[^/]+-lock\.json|dependency-baseline\.json|[^/]+\.config\.[a-z]+|tsconfig[^/]*\.json)$/.test(
+            path,
+          ),
+      ),
+  ),
+];
+await assertPublicFiles(root, allowed);
 for (const path of allowed) {
   if (path.includes('..') || resolve(destination, path).startsWith(destination + sep) === false)
     throw Error('Unsafe source path');
   await mkdir(dirname(join(destination, path)), { recursive: true });
   await cp(join(root, path), join(destination, path), { errorOnExist: true, force: false });
 }
+await bundleExportFont(join(destination, 'resources/fonts'));
 for (const path of [
   'apps/desktop/out',
   'packages/core/dist',
@@ -50,6 +74,10 @@ for (const path of [
     force: false,
   });
 }
+const coreBundle = await readFile(join(destination, 'packages/core/dist/index.cjs'), 'utf8');
+const hostBundle = await readFile(join(destination, 'apps/desktop/out/main/index.js'), 'utf8');
+if (coreBundle.includes('installChatFixture') || hostBundle.includes('tapkitBrowserWebFixture'))
+  throw Error('Development package requires a production Core build. Finish any E2E build first.');
 for (const name of ['node', 'python', 'git', 'libreoffice']) {
   console.log('Bundling runtime ' + name + ' ' + runtimeLock.runtimes[name].version);
   await cp(join(root, '.runtime', name), join(destination, '.runtime', name), {
@@ -234,7 +262,6 @@ await writeFile(
     2,
   ),
 );
-await cp(join(root, 'docs/chat-milestone.md'), join(destination, 'README-聊天开发版.md'));
 await writeFile(
   join(destination, 'Start-TapKit.cmd'),
   '@echo off\r\nsetlocal\r\nset TAPKIT_CHAT_FIXTURE=\r\nset TAPKIT_WEB_FIXTURE=\r\nset TAPKIT_TEST_BUILD=\r\nset ELECTRON_RUN_AS_NODE=\r\nset ELECTRON_RENDERER_URL=\r\nset TAPKIT_DATA_DIR=\r\ncd /d "%~dp0"\r\nstart "" "%~dp0electron\\electron.exe" "%~dp0apps\\desktop"\r\n',
@@ -250,7 +277,12 @@ const probe = spawnSync(
     runtimeLock.runtimes.node.executable,
   ),
   [join(destination, 'scripts/runtime-probe.mjs'), '--scope=current-user'],
-  { cwd: destination, env: lockedEnv(), stdio: 'inherit', windowsHide: true },
+  {
+    cwd: destination,
+    env: lockedEnv({ TAPKIT_RUNTIME_PROBE_EVIDENCE_DIR: 'docs/evidence/P00-03' }),
+    stdio: 'inherit',
+    windowsHide: true,
+  },
 );
 const files = [];
 const removedProbeArtifacts = [];
@@ -289,8 +321,7 @@ async function inventory(path) {
   const info = await lstat(path);
   if (info.isSymbolicLink()) throw Error('Package contains a nonportable junction');
   if (info.isDirectory()) {
-    for (const child of (await readdir(path)).sort())
-      if (!['.test-data', 'test-results'].includes(child)) await inventory(join(path, child));
+    for (const child of (await readdir(path)).sort()) await inventory(join(path, child));
   } else if (info.isFile()) {
     const hash = createHash('sha256');
     for await (const chunk of createReadStream(path)) hash.update(chunk);
@@ -302,9 +333,14 @@ async function inventory(path) {
   } else throw Error('Package contains a special file');
 }
 await inventory(destination);
+await assertPublicFiles(
+  destination,
+  files.map((file) => file.path),
+  { bundle: true },
+);
 const receipt = {
   schemaVersion: 1,
-  milestone: 'chat-M1-development',
+  milestone: 'P11-01-development',
   createdAt: stamp,
   nativeProbeExitCode: probe.status,
   removedProbeArtifacts,
@@ -315,9 +351,18 @@ const receipt = {
   },
   files,
 };
-await writeFile(join(destination, 'snapshot-manifest.json'), JSON.stringify(receipt, null, 2));
+const manifest = JSON.stringify(receipt, null, 2) + '\n';
+await writeFile(join(destination, 'snapshot-manifest.json'), manifest);
 await writeFile(
-  join(root, 'release/latest.json'),
+  join(destination, 'SHA256SUMS.txt'),
+  [
+    ...files.map(({ sha256, path }) => `${sha256}  ${path}`),
+    createHash('sha256').update(manifest).digest('hex') + '  snapshot-manifest.json',
+  ].join('\n') + '\n',
+);
+const latest = join(root, 'release/latest-' + stamp + '.tmp');
+await writeFile(
+  latest,
   JSON.stringify(
     {
       directory: relative(root, destination).replaceAll('\\', '/'),
@@ -327,5 +372,5 @@ await writeFile(
     2,
   ),
 );
+await rename(latest, join(root, 'release/latest.json'));
 console.log('Development directory ready: ' + relative(root, destination));
-if (probe.status !== 0) process.exitCode = 1;

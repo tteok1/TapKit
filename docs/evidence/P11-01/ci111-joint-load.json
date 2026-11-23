@@ -1,0 +1,119 @@
+{
+  "runId": 43807094478,
+  "runNumber": 111,
+  "jobId": 133100228759,
+  "jobUrl": "https://github.com/tteok1/TapKit/actions/runs/43807094478/job/133100228759",
+  "commit": "44d5d3e062b78320ec1346f7e8b13727173c99e8",
+  "runner": "windows-2025",
+  "exitCode": 0,
+  "resultSource": "P11-01 joint load result printed by Playwright in the linked job log",
+  "artifactId": 14198893318,
+  "artifactDigest": "sha256:f7151585742742a4252e5cd4fd1e8547ca4b217746d0a9af09aae3d1f9ea47ec",
+  "artifactUrl": "https://github.com/tteok1/TapKit/actions/runs/43807094478/artifacts/14198893318",
+  "jobs": {
+    "check": "success",
+    "office-native": "success",
+    "electron": "success",
+    "p11-joint-load": "success"
+  },
+  "tests": {
+    "nativeIsolation": {
+      "passed": 22,
+      "total": 22
+    },
+    "jointLoad": {
+      "passed": 1,
+      "total": 1
+    },
+    "electron": {
+      "passed": 65,
+      "total": 65
+    }
+  },
+  "fixture": {
+    "sessions": 10000,
+    "messages": 100000,
+    "documents": 2000,
+    "indexedChunks": 20000
+  },
+  "thresholds": {
+    "chatAndIndexPeakMiB": 2048,
+    "heavyWorkPeakMiB": 4096,
+    "displayP95Ms": 100,
+    "cancelAckMs": 200,
+    "cancelSettledMs": 1000
+  },
+  "runtimeCapabilities": {
+    "nativeExecution": {
+      "status": "available"
+    },
+    "officeRender": {
+      "status": "available"
+    },
+    "terminal": {
+      "status": "available"
+    }
+  },
+  "chatAndIndex": {
+    "latencies": [
+      1051,
+      32,
+      70,
+      45,
+      29,
+      25,
+      48,
+      56,
+      62,
+      43,
+      67,
+      35,
+      47,
+      48,
+      51,
+      61,
+      60,
+      33,
+      54,
+      48,
+      71,
+      58,
+      40,
+      55
+    ],
+    "index": {
+      "startedAt": 1794805552345,
+      "finishedAt": 1794805559433,
+      "hits": 4,
+      "error": null,
+      "streamedDuringIndex": 22
+    },
+    "cancelAckMs": 9.20000000006985,
+    "cancelSettledMs": 85.59999999997672,
+    "callsBefore": 1,
+    "callsAfter": 1,
+    "cancelled": "cancelled",
+    "displayP95Ms": 71,
+    "peakMiB": 845.921875,
+    "maxNativeHelpers": 0
+  },
+  "heavyWork": {
+    "startedAt": 1794805559437,
+    "finishedAt": 1794805592111,
+    "bothActive": true,
+    "states": [
+      {
+        "status": "completed",
+        "reason": null,
+        "artifacts": 2
+      },
+      {
+        "status": "completed",
+        "reason": null,
+        "artifacts": 2
+      }
+    ],
+    "peakMiB": 1444.078125,
+    "maxNativeHelpers": 2
+  }
+}

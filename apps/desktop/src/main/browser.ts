@@ -1,8 +1,9 @@
-import { WebContentsView, session, app } from 'electron';
+import { WebContentsView, session } from 'electron';
 import { createServer } from 'node:http';
 import { type Socket } from 'node:net';
 import { randomBytes } from 'node:crypto';
 import { NetworkPolicyService, WEB_BYTE_LIMIT, publicUrl, pinnedSocket } from '@tapkit/network';
+export { configureAnonymousNetwork } from './browser-network-settings';
 
 // Remote documents have no preload, app protocol, Node, IPC, filesystem or persistent partition.
 const OBSERVE = `(() => {
@@ -231,8 +232,4 @@ export class AnonymousReader {
       await isolated?.clearStorageData();
     }
   }
-}
-export function configureAnonymousNetwork() {
-  app.commandLine.appendSwitch('disable-quic');
-  app.commandLine.appendSwitch('force-webrtc-ip-handling-policy', 'disable_non_proxied_udp');
 }

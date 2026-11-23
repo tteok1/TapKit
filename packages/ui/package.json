@@ -4,7 +4,10 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./canvas-editor": "./src/canvas-editor.tsx",
+    "./chat-markdown": "./src/chat-markdown.tsx",
+    "./terminal": "./src/terminal.tsx"
   },
   "dependencies": {
     "@tapkit/contracts": "workspace:*",

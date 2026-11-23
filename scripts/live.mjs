@@ -6,6 +6,12 @@ import { apiLiveProviders, runApiLive } from './api-live.mjs';
 import { runApiNativeLive } from './api-native-live.mjs';
 
 const args = process.argv.slice(2).filter((arg) => arg !== '--');
+if (args.join(' ') === '--provider all') {
+  console.error(
+    'P11-01 live NOT RUN: select one authorized resource at a time. See CONTRIBUTING.md for R01–R08 and setup.',
+  );
+  process.exit(2);
+}
 if (args.length === 1 && args[0] === 'P10-01') {
   if (process.env.TAPKIT_P10_LIVE_R13 !== '1' || !process.env.TAPKIT_P10_LIVE_DATA_DIR) {
     console.error(

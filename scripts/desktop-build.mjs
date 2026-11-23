@@ -1,4 +1,5 @@
 import { join } from 'node:path';
+import { copyFile } from 'node:fs/promises';
 import { isMain, pnpm, root } from './lib.mjs';
 import { bundleEmbeddingModel } from './embedding-model.mjs';
 import { bundleExportFont } from './export-font.mjs';
@@ -7,6 +8,10 @@ export async function buildCore() {
   pnpm(['exec', 'vite', 'build', '--config', 'packages/retrieval/vite.worker.config.ts']);
   pnpm(['exec', 'vite', 'build', '--config', 'packages/storage/vite.config.ts']);
   pnpm(['exec', 'vite', 'build', '--config', 'packages/core/vite.config.ts']);
+  await copyFile(
+    join(root, 'packages/retrieval/src/embedding-worker.mjs'),
+    join(root, 'packages/core/dist/embedding-worker.mjs'),
+  );
   await bundleEmbeddingModel(join(root, 'packages/core/dist/models'));
   await bundleExportFont(join(root, 'packages/core/dist/fonts'));
 }

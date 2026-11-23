@@ -1,0 +1,46 @@
+{
+  "recordedAt": "2026-11-23T17:33:42.709Z",
+  "runId": 45224612686,
+  "runNumber": 121,
+  "url": "https://github.com/tteok1/TapKit/actions/runs/45224612686",
+  "commit": "76d16505eb6ce36528bf400cff7c40f3bd70cf93",
+  "conclusion": "failure",
+  "jobs": [
+    {
+      "id": 137867650571,
+      "name": "p11-joint-load",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 137867651030,
+      "name": "electron",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 137867651344,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 137867652056,
+      "name": "office-native",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 137867653291,
+      "name": "repeat-diagnostics",
+      "status": "completed",
+      "conclusion": "skipped"
+    }
+  ],
+  "failure": "Check failed in the Babel boundary parser on the test-only generic arrow; TypeScript and formatting passed. Other jobs were superseded by the syntax fix push.",
+  "replacement": {
+    "runId": 45227122309,
+    "runNumber": 122,
+    "commit": "3af9dcd61d43fb8e90035636738b084799312568"
+  }
+}

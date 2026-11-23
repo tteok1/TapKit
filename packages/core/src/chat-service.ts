@@ -133,6 +133,7 @@ export class ChatService {
   >();
   private timer: ReturnType<typeof setInterval> | undefined;
   private closing = false;
+  onDelta?: () => void;
   onCompleted?: (sessionId: string, runId: string) => void;
   constructor(
     readonly store: Store,
@@ -1268,8 +1269,10 @@ export class ChatService {
       )
       .run(status === 'cancelled' ? 'cancelled' : 'unknown', this.store.now(), r.id);
     const messages = this.store.db
-      .prepare("SELECT * FROM messages WHERE run_id=? AND role='assistant' AND status='streaming'")
-      .all(r.id) as MessageRow[];
+      .prepare(
+        "SELECT * FROM messages WHERE session_id=? AND run_id=? AND role='assistant' AND status='streaming'",
+      )
+      .all(r.session_id, r.id) as MessageRow[];
     for (const msg of messages) {
       const finalStatus =
         status === 'completed'
@@ -1618,7 +1621,7 @@ export class ChatService {
           selectionOperation
             ? { memoryUses: [], historyUses: [], module: undefined, historyModule: undefined }
             : this.memories.background(session.id, textOf(user));
-        let usedBackground = background();
+        let usedBackground!: ReturnType<typeof background>;
         const logicalCallId = newId();
         const prepareContext = async (descriptor: (typeof catalog)[number]) => {
           this.assertAlive(r, signal);
@@ -1706,6 +1709,7 @@ export class ChatService {
         const calls: NonNullable<Extract<CanonicalMessage, { role: 'assistant' }>['calls']> = [];
         let finished = false,
           reason = 'stop';
+        const streamFlushMs = 32;
         const flush = () => {
           if (!assistant || (!buffer && !(selectionOperation && finished))) return;
           this.assertAlive(r, signal);
@@ -1722,6 +1726,7 @@ export class ChatService {
               .run(content(text), this.store.now(), assistant);
             this.event(session.id, 'message.delta', assistant, r.id, r.task_version);
           })();
+          this.onDelta?.();
           buffer = '';
           lastFlush = Date.now();
         };
@@ -1733,7 +1738,7 @@ export class ChatService {
             flushError = e;
             controller.abort();
           }
-        }, 50);
+        }, streamFlushMs);
         try {
           this.assertAlive(r, signal);
           this.store.db.prepare('UPDATE runs SET calls=calls+1 WHERE id=?').run(r.id);
@@ -1808,7 +1813,8 @@ export class ChatService {
               const e = routed.event;
               if (e.type === 'text_delta') {
                 buffer += e.text;
-                if (Buffer.byteLength(buffer) >= 4096 || Date.now() - lastFlush >= 50) flush();
+                if (Buffer.byteLength(buffer) >= 4096 || Date.now() - lastFlush >= streamFlushMs)
+                  flush();
               } else if (e.type === 'tool_end') {
                 if (
                   calls.length >= 12 ||

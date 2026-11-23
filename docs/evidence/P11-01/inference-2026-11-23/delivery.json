@@ -1,0 +1,324 @@
+{
+  "recordedAt": "2026-11-23T17:51:28.057Z",
+  "sourceCommit": "3af9dcd61d43fb8e90035636738b084799312568",
+  "branch": "codex/p11-01-dev-acceptance",
+  "ciRunId": 45227122309,
+  "ciUrl": "https://github.com/tteok1/TapKit/actions/runs/45227122309",
+  "directory": "release/TapKit-development-2026-11-23T17-13-48-159Z",
+  "sourceComparison": "UTF-8 content with normalized CRLF/LF",
+  "sourceFiles": [
+    {
+      "path": "apps/desktop/electron.vite.config.ts",
+      "packageSha256": "75e90971de52b8ee3bfbc60ff2a808158ac36d7388a42743aacc79600163170c",
+      "gitBlob": "8e40bbc117ebe2f62933ee81f0fe191d854a036e"
+    },
+    {
+      "path": "apps/desktop/src/main/browser-network-settings.ts",
+      "packageSha256": "ff935a32785fad11d55a807c22698a759dc2ccbb91972d4f4a6ab1ee516858c5",
+      "gitBlob": "5a0efdea37107129d16fe8aeaa0792e98af7177b"
+    },
+    {
+      "path": "apps/desktop/src/main/browser.ts",
+      "packageSha256": "318e7abf20fe084a189f12ae25579ccb7dabd94676f7b3936102ffb0d6d451cd",
+      "gitBlob": "25d0264db6fddc75f6509bcaa99e577fc591d641"
+    },
+    {
+      "path": "apps/desktop/src/main/index.ts",
+      "packageSha256": "90986834cc8dc617317703e8f8792017482c98edce7af1873d88b8047c11488c",
+      "gitBlob": "82de400e34df8d339adc7fda54a4b4d0c589358b"
+    },
+    {
+      "path": "apps/desktop/src/renderer/features/canvas/CanvasPage.tsx",
+      "packageSha256": "e5d62e1943955ce214631e7d1048dea181fc71f280a728786e317b7cc9deeb64",
+      "gitBlob": "89378c0bae0bc10b33a16d74db88d197db1a140e"
+    },
+    {
+      "path": "apps/desktop/src/renderer/features/viewer/panel.tsx",
+      "packageSha256": "618dbc4acd4f3e1b8da48ad55f55355557bcdcd22a4596ec773e575193eb16cd",
+      "gitBlob": "7fda883ee0c0a81601d39c2d116634b5cc9f48bd"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/chat-surface.tsx",
+      "packageSha256": "6ddd29a258dab9915f063701390feb7a1a78179f01ca13a586b9d136f35cb44b",
+      "gitBlob": "94b78080403e89f730b424e43024e1be2024681f"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/code-ui.tsx",
+      "packageSha256": "6dbbdf98a4b7907ef4e95da3fca2fb0ce76bc97391fd9e8e33e42241b618ce44",
+      "gitBlob": "51a7a6cf191f820e5513ea13a0255e01077e7dc5"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/desktop-shell.tsx",
+      "packageSha256": "99cb9a08d4272dbe529f80f11d50b2796f1423b749e527dc43ca58a111d818e6",
+      "gitBlob": "a9e1a0e70d1c870853725e2097a81833c7ee18a2"
+    },
+    {
+      "path": "apps/desktop/src/renderer/src/terminal-ui.tsx",
+      "packageSha256": "414fade04ba8ffa47b28f058272321299781bd46a50ff7df943558c97ebfecad",
+      "gitBlob": "3ef1036b0784bb76879a333d11afb868c5f7176a"
+    },
+    {
+      "path": "packages/ui/package.json",
+      "packageSha256": "b24351e2428d4598c6705f389577ab76ac1167d9ff4cf076e5457f5e35a963f6",
+      "gitBlob": "1a5b26425643b6b72874e9777f3782849cb3c359"
+    },
+    {
+      "path": "packages/ui/src/index.ts",
+      "packageSha256": "14e4a05184e52b611773fb34467bdfd0ce9ec4ac1643dea4233789ec9b83a232",
+      "gitBlob": "063741a77b9a58793e79748034876cc84f5a313a"
+    },
+    {
+      "path": "tsconfig.json",
+      "packageSha256": "ae0a1b5b52d1500d55cc2fdb3d7c5dc8368760213ffe52431397216205df0f71",
+      "gitBlob": "1f15183ba38ce800fa755c6a54a05320929e67de"
+    },
+    {
+      "path": "tests/e2e/streaming-perf-fixture.ts",
+      "packageSha256": "5f57a73e74b92fb22ec34eae5e1964e7aacc78ce6651ba8fa904585b3b433122",
+      "gitBlob": "95188477cf453e1de9e6b3841185050c3d25c725"
+    },
+    {
+      "path": "tests/e2e/P09-04.site.spec.ts",
+      "packageSha256": "f6c230f46b463b15a3fb0a3d11381fb23864678aac6a14f2668e901140bc5dc3",
+      "gitBlob": "7f42c9a68d1b27e2571012142497d6ed7a163cf8"
+    },
+    {
+      "path": "tests/e2e/P03-01.files.spec.ts",
+      "packageSha256": "fe8dd1ea9ba9a4e198e5539504df1366432f14ac20532a69b4641c3c71f09dd2",
+      "gitBlob": "3870c991514e2876764479035843a67cb5be292a"
+    },
+    {
+      "path": "packages/core/src/source-background.ts",
+      "packageSha256": "e701fa7c9f2ff9fd460568d59f8c07f96f500cae6823b0260785105f08d1ac2a",
+      "gitBlob": "b8bc0219bddd516ec47b4c1babaf6dc0c756a712"
+    },
+    {
+      "path": "packages/core/src/context-service.ts",
+      "packageSha256": "2282983905f168088a1539e9f086ff6edf31ea63e668dd532cc327e0fc6f7d0c",
+      "gitBlob": "53615c69984acb3b7b0bda2013a79a553f12a558"
+    },
+    {
+      "path": "packages/core/src/work-driver.ts",
+      "packageSha256": "6851ad95fa818b3e123ea10166b30a2c85616e172d30c50e76d6a83d0dd94421",
+      "gitBlob": "b277c669f0b9da5c58940051f6e3e6f2ef54e82f"
+    },
+    {
+      "path": "tests/integration/P11-01.work-fallback.test.ts",
+      "packageSha256": "7425bca72b93c3091bf8934c73d39fafc7a2db368b69383d9cc0ccd8941c328e",
+      "gitBlob": "7956b77a464a6d1cbfdf0ff422b9cea6e9f930cf"
+    },
+    {
+      "path": "tests/e2e/P11-01.joint-load.spec.ts",
+      "packageSha256": "4080c53540f0a2cc5d8943af7e4de8dca7e973763ea5c8e844dd2628de856047",
+      "gitBlob": "82d592fc98b7b0da7e0d74c1c7b8d8a15868333a"
+    },
+    {
+      "path": "tests/fixtures/P11-01-working-set.ps1",
+      "packageSha256": "222954757534bcdbe2b828d4854523ba4abec060a3fc39cd723c087d7eb5063d",
+      "gitBlob": "17002661dbbbe3e7a2ef771a29620315148aaea0"
+    },
+    {
+      "path": "packages/retrieval/src/chunking.ts",
+      "packageSha256": "73655dd0545db155abd14dfe98344f7ddd1e684a6633219a8e7fb98cb1b56463",
+      "gitBlob": "1073b1aab047c1b4245789cd7a7e3f3e37ada139"
+    },
+    {
+      "path": "packages/retrieval/src/search.ts",
+      "packageSha256": "215cc23396e575a470fa929d4bc723e0a780cf0bdc8b4667167f3b8263723abb",
+      "gitBlob": "b181aa10501be489d1c965720dd669ff3d14b9c1"
+    },
+    {
+      "path": "tests/integration/P11-01.index-scheduling.test.ts",
+      "packageSha256": "a030e6b7e0633c439dd3a678f2f6ffa55a3467d9f60d9fad97f97b6de8c6c9ee",
+      "gitBlob": "dfb7673a54116813af6af51a0598f50c77d549f8"
+    },
+    {
+      "path": "tests/unit/P04-01.retrieval.test.ts",
+      "packageSha256": "6c44a0915e639496b8c4dd16c5dc7cf0aaa4d7c12375980edd5dda5c1cc197d8",
+      "gitBlob": "5021c9c9dbd4c54551451001d27e1aec58bbc13b"
+    },
+    {
+      "path": "packages/retrieval/src/embedding.ts",
+      "packageSha256": "4e830253c640b1f79d063790ad6ae279163e6e80d8690995fa91497bbe3b766a",
+      "gitBlob": "39a442955b402e70ab93fffefe075500338c362c"
+    },
+    {
+      "path": "packages/retrieval/src/embedding-inference.ts",
+      "packageSha256": "a401c745e26ef972f3b1ffc548a983b0ee68c09ff968309cdd71f814d71f67ce",
+      "gitBlob": "9479aa9da98a11596a89af88c355a0f2e70c84a5"
+    },
+    {
+      "path": "packages/retrieval/src/embedding-worker.mjs",
+      "packageSha256": "9f10a9c30474a895e5ea61deb7383b12657e400e914c0cf1ed3b57e046e0f761",
+      "gitBlob": "180d342b755d13f447d0e907ca483d59ab0eadaa"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "packageSha256": "6d678e875546cfb29bcc6f7be7f699b7bdd2c37b3dab899060f58c420630ee9c",
+      "gitBlob": "0ca8000b6676942c08d40372fba8f7842910c862"
+    },
+    {
+      "path": "scripts/desktop-build.mjs",
+      "packageSha256": "ad04367920e106448ed4fae83e5b3e4afc0e570c55018d8a0024b87376184724",
+      "gitBlob": "320fb7861d508481d98e0c9717e4e3ae40fd4f98"
+    },
+    {
+      "path": "tests/setup.ts",
+      "packageSha256": "108892f5f3e06ada460047c478f0c5b5a786579284d6b6ec8ef08280df889717",
+      "gitBlob": "0b82568aeb9547f452be367ad40c94c215659272"
+    },
+    {
+      "path": "tests/fixtures/P11-01.joint-seed.test.ts",
+      "packageSha256": "dbbd8e9200a454ee07e4f4973bdb76d5ad0fe0ebc69fe84752c2a434e955fc04",
+      "gitBlob": "c4ede18309ca1083cf6c1217256ebf7d092d7277"
+    },
+    {
+      "path": "tests/integration/P11-01.embedding-worker.test.ts",
+      "packageSha256": "67b180c8c25c4ee2c04c964f22de08ae46277a868b700521ae6a1b22565413b8",
+      "gitBlob": "9503d6348b65ba43ff00482b0336021d6937d264"
+    },
+    {
+      "path": "tests/unit/P11-01.embedding-inference.test.ts",
+      "packageSha256": "28a96a2b5cc8cec6d53fe6cbb45eb1dd8c50ca30e393cf74497dd99dad3f4816",
+      "gitBlob": "a69e4ad9bff3f398bf4b99008ac3258059b97db9"
+    },
+    {
+      "path": "tests/fixtures/P11-01.embedding-worker-control.mjs",
+      "packageSha256": "97c6cd9e00477162da88f836ae34fde8df75607b1ee78fcc47b8848a650d76ed",
+      "gitBlob": "ccf663541a51d910cb9881d5d6bbc4384821ced8"
+    },
+    {
+      "path": "tests/e2e/P11-01.package-rag.spec.ts",
+      "packageSha256": "f9dff3616e327bb2445b2642d9869e6b1b4db6c5e5872f63374a0cf5e29d924e",
+      "gitBlob": "0d8c71c29c80edb8a2ca4a75a33be0d4f147a158"
+    },
+    {
+      "path": "tests/integration/P11-01.embedding-cold-start.test.ts",
+      "packageSha256": "431792dd181de584df943ec21746cef644344d1f9053a8c943f41bc634ddf19e",
+      "gitBlob": "22f1df3dd00b9fd1f453a95ecffd84496a10a4d1"
+    },
+    {
+      "path": "tests/fixtures/P11-01.retrieval.ts",
+      "packageSha256": "aca94490d435c9a4b423a7e9ecbe2c2ddc81cb616ca967b18da9dc6fdbbe1030",
+      "gitBlob": "4f73defab3777f025416c5e9f44b825ac5f8a33d"
+    },
+    {
+      "path": "tests/integration/P04-01.embedding.test.ts",
+      "packageSha256": "1efad8097bba60a5c5840563b92252468e50cea3e2c1548c7b68c23f29278a0d",
+      "gitBlob": "59ee6d5735fc79329ef5590cc9736f1dc9a2e82b"
+    },
+    {
+      "path": "apps/desktop/src/main/ipc-audit.ts",
+      "packageSha256": "06ff8c78f64ccd23008699606e19123ed391867c5c2de12a844a1ac3c09f10aa",
+      "gitBlob": "fbd75a0ad7d4b9ae5417ab49e2957a09be12dbdc"
+    },
+    {
+      "path": "packages/core/src/performance-fixture.ts",
+      "packageSha256": "2386eed4830bc43b291c66a3780961d970ed024711e58cc9f2b916f8b6f2d881",
+      "gitBlob": "6bd5d0c1884e88f8ec80816ba19ca78cb0faa5b8"
+    },
+    {
+      "path": "packages/core/src/chat-service.ts",
+      "packageSha256": "177da0657d936d89010c8525d15ece48004cff2fa47a3bb1ccb1511fb1e75e25",
+      "gitBlob": "405f429ddbd4a73c897d3d84c72d0955e52e7810"
+    },
+    {
+      "path": "packages/ui/src/chat-markdown.tsx",
+      "packageSha256": "4943dafb79527ecc7efcd72699901180578c14bd7e0cbaf3b0ca21a7daa2673c",
+      "gitBlob": "7858c64efdabba92abf8b6b7068a0821936df31c"
+    },
+    {
+      "path": "packages/ui/src/chat-math.tsx",
+      "packageSha256": "ff25d8bb20a657a1198501d225f7b6122fa97f75e6920b7410e98dacd7e03ec0",
+      "gitBlob": "2462b872ac8b7f2e304c07001a75e84521f252ac"
+    },
+    {
+      "path": "tests/e2e/P02-02.chat.spec.ts",
+      "packageSha256": "54934fea6f0608a476c9e86fc4e3b84cd658225ace4248f7c18d59fad25b812b",
+      "gitBlob": "fb2b80338794327b9d22abbed648a03d984da1f1"
+    },
+    {
+      "path": "tests/unit/P11-01.ipc-audit.test.ts",
+      "packageSha256": "1b0fb587037e39a480d70a6c577a6f031eeebc3ff1fb51f6c0ed05658a16fe8b",
+      "gitBlob": "04e5d40f5ee0f9d043971b2581339ec72194bbb5"
+    },
+    {
+      "path": "embedding-model-lock.json",
+      "packageSha256": "276aeeb3d5c29ab0893ad1a7d75c868957f70a3ecd3227b644a9df5dfbd32510",
+      "gitBlob": "2391bca02bd4cf6edcc3f370878e233c23d5f896"
+    },
+    {
+      "path": "runtime-lock.json",
+      "packageSha256": "fe640587e7c2dbacdfc123e5801653b2d2b7fd0108dfa7237524ea6f602c6ca8",
+      "gitBlob": "390deeaba62627ba6561b4e9e185cf07c0419506"
+    }
+  ],
+  "firstPartyInventory": {
+    "comparedFiles": 752,
+    "mismatches": 0,
+    "gitPathsAndBlobsSha256": "2bd50b555be3d8126b82f3677aedada99867d29f140652f9ef774c2a620bacc0"
+  },
+  "packageChecksumEntries": 70361,
+  "packageNativePassed": 22,
+  "computeWorkerAssetSha256": "9f10a9c30474a895e5ea61deb7383b12657e400e914c0cf1ed3b57e046e0f761",
+  "ciJointP95Ms": [
+    57,
+    56
+  ],
+  "localJointP95Ms": [
+    59,
+    69
+  ],
+  "localJointMeasuredCommit": "8623d73498a95fa0a31b7615cf9c238c10d8c584",
+  "localSourceEquivalence": {
+    "candidate": "3af9dcd61d43fb8e90035636738b084799312568",
+    "measuredCommit": "8623d73498a95fa0a31b7615cf9c238c10d8c584",
+    "sourceRagMeasuredCommit": "76d16505eb6ce36528bf400cff7c40f3bd70cf93",
+    "codeTreeSha256": "d175f924cc578b1e5bca3d85fa02ee8765ebebd1708b87e2a7e31714f5ff19fe",
+    "excludedPaths": [
+      "docs/**",
+      "tests/e2e/P02-02.chat.spec.ts",
+      "packages/core/src/performance-fixture.ts"
+    ],
+    "productionCoreSha256": "12aad19f230493ce5ef1807f0b9458af5fb87898862f6b132fabcd4d8738af8c"
+  },
+  "packagedRetrieval": {
+    "passed": true,
+    "hits": 4,
+    "scoped": true,
+    "selectedSources": 16,
+    "queryMs": 8255.585900000005,
+    "isolatedCwd": true,
+    "nonBundleModelCandidatesAbsent": true
+  },
+  "corePerformance": {
+    "command": "pnpm test:perf -- --desktop",
+    "exitCode": 0,
+    "corePassed": 2,
+    "listP95Ms": 21.832899999997608,
+    "searchP95Ms": 145.79010000000562,
+    "retrievalP95Ms": 1302.1821999999956
+  },
+  "performance": {
+    "firstProfileMs": 2278.2087,
+    "passedRuns": 4,
+    "independentLaunches": 16,
+    "primaryReport": "package-performance.json from pnpm test:perf -- --desktop",
+    "firstProfileMaxMs": 2278.2087,
+    "restartMaxMs": 1359.0207999999984,
+    "idlePeakMiB": 678.27734375
+  },
+  "requirements": [
+    "FR-37-002",
+    "FR-37-003",
+    "FR-37-004",
+    "FR-37-005",
+    "FR-37-010"
+  ],
+  "engineeringEvidence": "verified",
+  "taskStatus": "in_progress",
+  "pending": [
+    "reference Windows 11 hardware",
+    "R01-R08 live resources"
+  ]
+}

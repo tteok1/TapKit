@@ -24,6 +24,8 @@ import type { ChatService } from './chat-service';
 import type { WorkDriver, WorkCandidate } from './work-service';
 import { researchWorkDriver } from './research-driver';
 import type { ResearchService } from './research-service';
+import { MemoryService } from './memory-service';
+import { sourceBackgroundMessages } from './source-background';
 
 export function modelWorkDriver(
   models: ModelService,
@@ -33,6 +35,7 @@ export function modelWorkDriver(
   runtime?: CodeRuntimeService,
 ): WorkDriver {
   const repo = new WorkRepository(models.store);
+  const memories = new MemoryService(models.store);
   return async (run, step, signal) => {
     if (repo.state(repo.row(run.id)).definition.research) {
       if (!research) throw new StorageError('FEATURE_NOT_AVAILABLE');
@@ -541,6 +544,11 @@ export function modelWorkDriver(
             ? ['data.analyze', 'user.ask'].includes(tool.name)
             : tool.name !== 'data.analyze' && !tool.name.startsWith('slides.'),
     );
+    const background = coding ? undefined : memories.background(run.session_id, definition.goal);
+    const backgroundModules = [background?.module, background?.historyModule].filter(
+      (module) => module !== undefined,
+    );
+    messages.unshift(...sourceBackgroundMessages(backgroundModules));
     const sourceTokens = JSON.stringify(messages).length;
     if (sourceTokens > 100000) throw new StorageError('OUTPUT_LIMIT_REACHED');
     for await (const event of models.router.stream(

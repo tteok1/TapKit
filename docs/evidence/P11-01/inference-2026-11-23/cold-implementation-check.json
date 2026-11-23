@@ -1,0 +1,84 @@
+{
+  "checkedAt": "2026-11-23T16:17:57.630Z",
+  "baseCommit": "6bdbd8646f606a59a740ac87319b18422d5834be",
+  "sourceFiles": [
+    {
+      "path": "packages/retrieval/src/embedding.ts",
+      "sha256": "4e830253c640b1f79d063790ad6ae279163e6e80d8690995fa91497bbe3b766a"
+    },
+    {
+      "path": "packages/retrieval/src/embedding-inference.ts",
+      "sha256": "a401c745e26ef972f3b1ffc548a983b0ee68c09ff968309cdd71f814d71f67ce"
+    },
+    {
+      "path": "packages/retrieval/src/embedding-worker.mjs",
+      "sha256": "9f10a9c30474a895e5ea61deb7383b12657e400e914c0cf1ed3b57e046e0f761"
+    },
+    {
+      "path": "packages/retrieval/src/search.ts",
+      "sha256": "215cc23396e575a470fa929d4bc723e0a780cf0bdc8b4667167f3b8263723abb"
+    },
+    {
+      "path": "packages/retrieval/src/chunking.ts",
+      "sha256": "73655dd0545db155abd14dfe98344f7ddd1e684a6633219a8e7fb98cb1b56463"
+    },
+    {
+      "path": "tests/e2e/P11-01.joint-load.spec.ts",
+      "sha256": "809c6260bb516b66624ad69393efb2ba0afd53cdf530777149388ae024a723fb"
+    },
+    {
+      "path": "tests/e2e/streaming-perf-fixture.ts",
+      "sha256": "0236611e44e2b4d025d6ecc37a3230a85e3bfe0c71a1fd696f430051d1f595e8"
+    },
+    {
+      "path": "tests/integration/P11-01.embedding-cold-start.test.ts",
+      "sha256": "431792dd181de584df943ec21746cef644344d1f9053a8c943f41bc634ddf19e"
+    },
+    {
+      "path": "tests/integration/P11-01.embedding-worker.test.ts",
+      "sha256": "67b180c8c25c4ee2c04c964f22de08ae46277a868b700521ae6a1b22565413b8"
+    },
+    {
+      "path": "tests/integration/P11-01.index-scheduling.test.ts",
+      "sha256": "a030e6b7e0633c439dd3a678f2f6ffa55a3467d9f60d9fad97f97b6de8c6c9ee"
+    },
+    {
+      "path": "tests/fixtures/P11-01.embedding-worker-control.mjs",
+      "sha256": "97c6cd9e00477162da88f836ae34fde8df75607b1ee78fcc47b8848a650d76ed"
+    },
+    {
+      "path": "tests/unit/P11-01.embedding-inference.test.ts",
+      "sha256": "28a96a2b5cc8cec6d53fe6cbb45eb1dd8c50ca30e393cf74497dd99dad3f4816"
+    }
+  ],
+  "commands": [
+    {
+      "command": "pnpm test:integration P11-01.embedding-worker P11-01.embedding-cold-start P11-01.index-scheduling P04-01.retrieval P11-01.work-fallback --reporter=json",
+      "exitCode": 0,
+      "passed": 16
+    },
+    {
+      "command": "pnpm test:unit P11-01.embedding-inference P04-01.retrieval --reporter=json",
+      "exitCode": 0,
+      "passed": 9
+    },
+    {
+      "command": "pnpm exec tsc --project tsconfig.json",
+      "exitCode": 0
+    }
+  ],
+  "diagnosticFindings": {
+    "rendererP95Ms": 106,
+    "eventCreatedMs": 1,
+    "eventDeliveryMs": 87,
+    "domUpdateMs": 15,
+    "hostProfile": "Unavailable: Electron evaluation has no require; this diagnostic failed before workload and is not a performance result.",
+    "codeFinding": "Background factory still hashed all model bytes and constructed the tokenizer in Core. Both are now verified/loaded only in the real worker. Query token budgeting also awaits counts and rechecks cancellation/scope."
+  },
+  "pending": [
+    "normal local joint repetitions",
+    "source production retrieval",
+    "full CI",
+    "new development package"
+  ]
+}
