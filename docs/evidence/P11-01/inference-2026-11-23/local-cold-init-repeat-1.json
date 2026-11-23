@@ -1,0 +1,1115 @@
+{
+  "repeatEachIndex": 1,
+  "diagnostic": false,
+  "checkedAt": "2026-11-23T16:33:02.479Z",
+  "commit": "3653048278a8143963807075cb6ce13b7aa6a0a9",
+  "environment": {
+    "image": null,
+    "imageVersion": null,
+    "osRelease": "10.0.26200",
+    "cpu": "AMD Ryzen 7 H 255 w/ Radeon 780M",
+    "logicalCpus": 16,
+    "ramBytes": 24995295232
+  },
+  "dataset": {
+    "sessions": 10000,
+    "messages": 100000,
+    "documents": 2000,
+    "chunks": 20000
+  },
+  "settledFixtureEvents": 8066,
+  "scope": "Locked BGE CPU embeddings, two synthetic upstream chats, two isolated DOCX-to-PDF work roots. Windows process-tree working set including native helpers and their children.",
+  "samplerErrors": [],
+  "sampler": {
+    "startedAt": 1795451605634,
+    "firstSampleMs": 1219.2150999999867,
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "stopping": true
+  },
+  "results": {
+    "runtimeCapabilities": {
+      "nativeExecution": {
+        "status": "available"
+      },
+      "officeRender": {
+        "status": "available"
+      },
+      "terminal": {
+        "status": "available"
+      }
+    },
+    "chatAndIndex": {
+      "latencies": [
+        1716,
+        84,
+        131,
+        42,
+        58,
+        23,
+        34,
+        28,
+        37,
+        25,
+        29,
+        35,
+        43,
+        36,
+        37,
+        36,
+        37,
+        39,
+        35,
+        38,
+        33,
+        49,
+        34,
+        25
+      ],
+      "rendererSamples": [
+        {
+          "index": 0,
+          "domMs": 1667,
+          "waitForFirstFrameMs": 22,
+          "waitForSecondFrameMs": 27,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451609153,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 1,
+          "domMs": 35,
+          "waitForFirstFrameMs": 22,
+          "waitForSecondFrameMs": 27,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451610785,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 2,
+          "domMs": 117,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 13,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451611056,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 3,
+          "domMs": 23,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 19,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451611300,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 4,
+          "domMs": 25,
+          "waitForFirstFrameMs": 13,
+          "waitForSecondFrameMs": 20,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451611554,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 5,
+          "domMs": 20,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 3,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451611799,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 6,
+          "domMs": 25,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 9,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451612042,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 7,
+          "domMs": 17,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 10,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451612293,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 8,
+          "domMs": 27,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 9,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451612550,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 9,
+          "domMs": 21,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 3,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451612804,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 10,
+          "domMs": 24,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 4,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451613062,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 11,
+          "domMs": 29,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 5,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451613312,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 12,
+          "domMs": 24,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 18,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451613574,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 13,
+          "domMs": 21,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 14,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451613824,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 14,
+          "domMs": 21,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 16,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451614067,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 15,
+          "domMs": 30,
+          "waitForFirstFrameMs": 2,
+          "waitForSecondFrameMs": 4,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451614322,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 16,
+          "domMs": 22,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 14,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451614570,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 17,
+          "domMs": 23,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 15,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451614822,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 18,
+          "domMs": 24,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 10,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451615068,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 19,
+          "domMs": 28,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 9,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451615317,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 20,
+          "domMs": 23,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 9,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451615569,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 21,
+          "domMs": 28,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 20,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451615815,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 22,
+          "domMs": 30,
+          "waitForFirstFrameMs": 1,
+          "waitForSecondFrameMs": 3,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451616066,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        },
+        {
+          "index": 23,
+          "domMs": 22,
+          "waitForFirstFrameMs": 0,
+          "waitForSecondFrameMs": 3,
+          "visibility": "visible",
+          "focused": true,
+          "upstreamAt": 1795451616327,
+          "deltaOccurredAt": null,
+          "deltaReceivedAt": null
+        }
+      ],
+      "eventTimeline": [],
+      "longTasks": [],
+      "index": {
+        "startedAt": 1795451610952,
+        "finishedAt": 1795451621405,
+        "hits": 4,
+        "error": null,
+        "streamedDuringIndex": 22
+      },
+      "cancelAckMs": 50.69999998807907,
+      "cancelSettledMs": 203.30000001192093,
+      "callsBefore": 1,
+      "callsAfter": 1,
+      "cancelled": "cancelled",
+      "displayP95Ms": 131,
+      "peakMiB": 1117.5078125,
+      "maxNativeHelpers": 0,
+      "samples": [
+        {
+          "processCount": 6,
+          "totalBytes": 1065840640,
+          "at": 1795451607813,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1085153280,
+          "at": 1795451608586,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1085607936,
+          "at": 1795451609678,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1073213440,
+          "at": 1795451610475,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1106194432,
+          "at": 1795451611296,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1150517248,
+          "at": 1795451612169,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1171333120,
+          "at": 1795451612945,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1167978496,
+          "at": 1795451613792,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1171791872,
+          "at": 1795451614665,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1123819520,
+          "at": 1795451615487,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1128992768,
+          "at": 1795451616295,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1122463744,
+          "at": 1795451617110,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1143771136,
+          "at": 1795451617992,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1139867648,
+          "at": 1795451618863,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1148792832,
+          "at": 1795451619597,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1153912832,
+          "at": 1795451620526,
+          "nativeHelpers": 0
+        }
+      ]
+    },
+    "heavyWork": {
+      "startedAt": 1795451621425,
+      "finishedAt": 1795451716466,
+      "bothActive": true,
+      "states": [
+        {
+          "status": "completed",
+          "reason": null,
+          "artifacts": 2
+        },
+        {
+          "status": "completed",
+          "reason": null,
+          "artifacts": 2
+        }
+      ],
+      "peakMiB": 2015.8515625,
+      "maxNativeHelpers": 2,
+      "samples": [
+        {
+          "processCount": 6,
+          "totalBytes": 1080795136,
+          "at": 1795451621440,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1078951936,
+          "at": 1795451622207,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1078956032,
+          "at": 1795451622963,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1078689792,
+          "at": 1795451623712,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1074540544,
+          "at": 1795451624485,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1074552832,
+          "at": 1795451625244,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1079492608,
+          "at": 1795451626051,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 8,
+          "totalBytes": 1082621952,
+          "at": 1795451626957,
+          "nativeHelpers": 1
+        },
+        {
+          "processCount": 8,
+          "totalBytes": 1114116096,
+          "at": 1795451627922,
+          "nativeHelpers": 1
+        },
+        {
+          "processCount": 8,
+          "totalBytes": 1097883648,
+          "at": 1795451628964,
+          "nativeHelpers": 1
+        },
+        {
+          "processCount": 8,
+          "totalBytes": 1097814016,
+          "at": 1795451629842,
+          "nativeHelpers": 1
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1080401920,
+          "at": 1795451630693,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1084375040,
+          "at": 1795451631560,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1078329344,
+          "at": 1795451632384,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1078329344,
+          "at": 1795451633168,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1040822272,
+          "at": 1795451633979,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1062850560,
+          "at": 1795451634875,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1051283456,
+          "at": 1795451635767,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1051131904,
+          "at": 1795451636599,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1051832320,
+          "at": 1795451637406,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1054244864,
+          "at": 1795451638200,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1054490624,
+          "at": 1795451639024,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1054892032,
+          "at": 1795451639802,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1052282880,
+          "at": 1795451640594,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1054232576,
+          "at": 1795451641411,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1019760640,
+          "at": 1795451642222,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1015001088,
+          "at": 1795451643031,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1017475072,
+          "at": 1795451643843,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 1017147392,
+          "at": 1795451644661,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 985825280,
+          "at": 1795451645475,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 984428544,
+          "at": 1795451646293,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 984993792,
+          "at": 1795451647106,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 986337280,
+          "at": 1795451647911,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 986431488,
+          "at": 1795451648723,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 987942912,
+          "at": 1795451649556,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 988942336,
+          "at": 1795451650339,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 978714624,
+          "at": 1795451651149,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 979771392,
+          "at": 1795451651938,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 982159360,
+          "at": 1795451652740,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 983306240,
+          "at": 1795451653539,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 976584704,
+          "at": 1795451654413,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 977973248,
+          "at": 1795451655262,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 1041756160,
+          "at": 1795451656067,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 1046691840,
+          "at": 1795451656861,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 1047019520,
+          "at": 1795451657678,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 1048784896,
+          "at": 1795451658630,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 13,
+          "totalBytes": 1062170624,
+          "at": 1795451659605,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 13,
+          "totalBytes": 1142800384,
+          "at": 1795451660490,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 13,
+          "totalBytes": 1189048320,
+          "at": 1795451661399,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 13,
+          "totalBytes": 1236897792,
+          "at": 1795451662245,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 13,
+          "totalBytes": 1268641792,
+          "at": 1795451663116,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1341681664,
+          "at": 1795451664065,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1423683584,
+          "at": 1795451665055,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1476890624,
+          "at": 1795451665965,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1528692736,
+          "at": 1795451666705,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1575464960,
+          "at": 1795451667604,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1593655296,
+          "at": 1795451668777,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1597878272,
+          "at": 1795451669750,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1713700864,
+          "at": 1795451670619,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1747349504,
+          "at": 1795451671665,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1782882304,
+          "at": 1795451672637,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 18,
+          "totalBytes": 1802084352,
+          "at": 1795451673698,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 18,
+          "totalBytes": 2040414208,
+          "at": 1795451674560,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1917796352,
+          "at": 1795451675470,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1951932416,
+          "at": 1795451676344,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 18,
+          "totalBytes": 2113773568,
+          "at": 1795451677263,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1968504832,
+          "at": 1795451678290,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1998577664,
+          "at": 1795451679277,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1969655808,
+          "at": 1795451680256,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1974640640,
+          "at": 1795451681146,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1979084800,
+          "at": 1795451681994,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 1953443840,
+          "at": 1795451682889,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 2046443520,
+          "at": 1795451683890,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 2059534336,
+          "at": 1795451684930,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 16,
+          "totalBytes": 2063253504,
+          "at": 1795451685905,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 13,
+          "totalBytes": 1590128640,
+          "at": 1795451686944,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 13,
+          "totalBytes": 1593761792,
+          "at": 1795451687922,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 988999680,
+          "at": 1795451688892,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 990416896,
+          "at": 1795451689886,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 991834112,
+          "at": 1795451690837,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 992468992,
+          "at": 1795451691699,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 994791424,
+          "at": 1795451692513,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 999297024,
+          "at": 1795451693313,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 1001267200,
+          "at": 1795451694137,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 1002864640,
+          "at": 1795451695132,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 1002954752,
+          "at": 1795451696069,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 1005412352,
+          "at": 1795451696987,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 1009569792,
+          "at": 1795451697824,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 1011355648,
+          "at": 1795451698645,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 1014112256,
+          "at": 1795451699458,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 1016578048,
+          "at": 1795451700420,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 1021984768,
+          "at": 1795451701428,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 931659776,
+          "at": 1795451702582,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 932171776,
+          "at": 1795451703635,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 971988992,
+          "at": 1795451704733,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 13,
+          "totalBytes": 1113501696,
+          "at": 1795451705808,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 981078016,
+          "at": 1795451706990,
+          "nativeHelpers": 2
+        },
+        {
+          "processCount": 8,
+          "totalBytes": 967053312,
+          "at": 1795451707932,
+          "nativeHelpers": 1
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 965099520,
+          "at": 1795451708854,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 978128896,
+          "at": 1795451709815,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 8,
+          "totalBytes": 982167552,
+          "at": 1795451710725,
+          "nativeHelpers": 1
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 1085997056,
+          "at": 1795451711575,
+          "nativeHelpers": 1
+        },
+        {
+          "processCount": 8,
+          "totalBytes": 980533248,
+          "at": 1795451712428,
+          "nativeHelpers": 1
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 988917760,
+          "at": 1795451713361,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 6,
+          "totalBytes": 996286464,
+          "at": 1795451714147,
+          "nativeHelpers": 0
+        },
+        {
+          "processCount": 10,
+          "totalBytes": 1059188736,
+          "at": 1795451714956,
+          "nativeHelpers": 1
+        },
+        {
+          "processCount": 8,
+          "totalBytes": 1016041472,
+          "at": 1795451715782,
+          "nativeHelpers": 1
+        }
+      ]
+    }
+  }
+}

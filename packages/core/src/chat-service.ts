@@ -1269,8 +1269,10 @@ export class ChatService {
       )
       .run(status === 'cancelled' ? 'cancelled' : 'unknown', this.store.now(), r.id);
     const messages = this.store.db
-      .prepare("SELECT * FROM messages WHERE run_id=? AND role='assistant' AND status='streaming'")
-      .all(r.id) as MessageRow[];
+      .prepare(
+        "SELECT * FROM messages WHERE session_id=? AND run_id=? AND role='assistant' AND status='streaming'",
+      )
+      .all(r.session_id, r.id) as MessageRow[];
     for (const msg of messages) {
       const finalStatus =
         status === 'completed'

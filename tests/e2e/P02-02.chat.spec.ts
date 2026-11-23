@@ -411,11 +411,28 @@ test('P02-02 T02 malicious Markdown stays inert; GFM, KaTeX, Shiki and static sa
   page.on('request', (r) => {
     if (/^https?:/.test(r.url())) remote.push(r.url());
   });
+  await page.getByLabel('输入草稿').fill('P11-01 普通文本无需公式模块');
+  await page.getByRole('button', { name: '发送', exact: true }).click();
+  await expect(page.locator('.chat-message.assistant .chat-markdown').first()).toBeVisible();
+  expect(
+    await page.evaluate(() =>
+      performance
+        .getEntriesByType('resource')
+        .some((entry) => /chat-math-[^/]+\.js(?:$|\?)/.test(entry.name)),
+    ),
+  ).toBe(false);
   await page.getByLabel('输入草稿').fill('恶意渲染');
   await page.getByRole('button', { name: '发送', exact: true }).click();
   await expect(page.getByRole('heading', { name: '安全标题', exact: true })).toBeVisible();
   await expect(page.locator('.chat-table table')).toContainText('中文');
   await expect(page.locator('.katex')).toBeVisible();
+  expect(
+    await page.evaluate(() =>
+      performance
+        .getEntriesByType('resource')
+        .some((entry) => /chat-math-[^/]+\.js(?:$|\?)/.test(entry.name)),
+    ),
+  ).toBe(true);
   await expect(page.locator('.chat-code code span').first()).toBeVisible();
   await expect(page.getByTitle('静态图表')).toHaveAttribute('sandbox', '');
   await expect(page.frameLocator('iframe[title="静态图表"]').locator('svg')).toBeVisible();

@@ -142,9 +142,16 @@ async function start() {
     createApiTransportTraceWriter(dataDir!, store.profileId),
   );
   const models = new ModelService(store, providers);
+  let performanceFixture:
+    | Awaited<ReturnType<(typeof import('./performance-fixture'))['startPerformanceFixture']>>
+    | undefined;
   if (__TAPKIT_TEST_BUILD__ && process.env.TAPKIT_CHAT_FIXTURE === 'P02-02') {
     const { installChatFixture } = await import('./chat-fixture');
     installChatFixture(models);
+    if (process.env.TAPKIT_P11_RENDERER_PROFILE === '1') {
+      const { startPerformanceFixture } = await import('./performance-fixture');
+      performanceFixture = await startPerformanceFixture(store.dataDir);
+    }
   }
   let webTools = new WebTools(
     new NetworkPolicyService({
@@ -393,7 +400,10 @@ async function start() {
   const worker = new FoundationWorker(
     store,
     blobs,
-    (event) => port!.postMessage({ type: 'event', event }),
+    (event) => {
+      performanceFixture?.published(event);
+      port!.postMessage({ type: 'event', event });
+    },
     (job, signal) =>
       job.kind === 'data.clear'
         ? lifecycle.executeClear(job, signal)
@@ -651,6 +661,7 @@ async function start() {
       clearInterval(notificationTimer);
       clearInterval(stagingTimer);
       void Promise.all([
+        performanceFixture?.stop(),
         closeLocalEmbedder(),
         worker.stop(),
         lifecycle.stop(),

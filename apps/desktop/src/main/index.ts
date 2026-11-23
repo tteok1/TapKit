@@ -37,16 +37,8 @@ import { resolveSystemProxy } from './system-proxy';
 import { readCoreStartupTimeout } from './core-startup';
 import { createInterface } from 'node:readline';
 import { moveDataRoot, readDataRoot, validateMoveDestination } from './data-root';
-import {
-  mkdirSync,
-  appendFileSync,
-  statSync,
-  renameSync,
-  readdirSync,
-  unlinkSync,
-  writeFileSync,
-  existsSync,
-} from 'node:fs';
+import { IpcAudit } from './ipc-audit';
+import { mkdirSync, statSync, writeFileSync, existsSync } from 'node:fs';
 import { isAbsolute, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import {
@@ -803,31 +795,7 @@ async function siteHostRequest(window: BrowserWindow, request: Request): Promise
       return errorReply(requestId, 'FEATURE_NOT_AVAILABLE');
   }
 }
-function audit(requestId: string, command: string, reply: Reply) {
-  // Deliberately records no payload, account label, ciphertext, plaintext or stack.
-  mkdirSync(join(dataDir, 'logs'), { recursive: true });
-  const log = join(dataDir, 'logs/ipc.jsonl');
-  try {
-    if (statSync(log).size > 1_048_576)
-      renameSync(log, join(dataDir, 'logs', 'ipc-' + Date.now() + '.jsonl'));
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
-  }
-  for (const name of readdirSync(join(dataDir, 'logs'))) {
-    const match = /^ipc-(\d+)\.jsonl$/.exec(name);
-    if (match && Number(match[1]) < Date.now() - 14 * 86_400_000)
-      unlinkSync(join(dataDir, 'logs', name));
-  }
-  appendFileSync(
-    log,
-    JSON.stringify({
-      requestId,
-      command,
-      ok: reply.ok,
-      ...(reply.ok ? {} : { code: reply.error.code }),
-    }) + '\n',
-  );
-}
+const ipcAudit = new IpcAudit(dataDir);
 if (ownsLock) {
   app.on('second-instance', () => {
     const window = [...windows].find((candidate) => candidate !== quickWindow) ?? createWindow();
@@ -1500,7 +1468,7 @@ if (ownsLock) {
         if (settings.success)
           applyDesktopPreferences(settings.data.revision, settings.data.values.desktop);
       }
-      audit(request.requestId, request.command, reply);
+      await ipcAudit.write(request.requestId, request.command, reply);
       return reply;
     });
     ipcMain.on('tapkit:unsubscribe', (event) => {
@@ -1557,18 +1525,26 @@ app.on('before-quit', (event) => {
   sitePreviews.close();
   void Promise.all([secretWork, vault.settled, authSecrets.settled]).finally(() => {
     const child = core;
-    if (!child) {
+    const finish = async () => {
+      // Let pending Core-reply continuations queue their metadata before draining.
+      await new Promise<void>((resolve) => setImmediate(resolve));
+      try {
+        await ipcAudit.flush();
+      } catch {
+        console.error('TAPKIT_IPC_AUDIT_FAILED');
+      }
       shutdownComplete = true;
       tray?.destroy();
       app.quit();
+    };
+    if (!child) {
+      void finish();
       return;
     }
     const timer = setTimeout(() => child.kill(), 10_000);
     child.once('exit', () => {
       clearTimeout(timer);
-      shutdownComplete = true;
-      tray?.destroy();
-      app.quit();
+      void finish();
     });
     child.postMessage({ type: 'shutdown' });
   });

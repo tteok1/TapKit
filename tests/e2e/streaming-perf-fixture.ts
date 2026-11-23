@@ -48,6 +48,7 @@ export async function measureStreaming(
         deltaReceivedAt: number | null;
       }> = [];
       const eventTimeline: Array<{
+        seq: number;
         type: string;
         kind: string;
         occurredAt: number;
@@ -119,6 +120,7 @@ export async function measureStreaming(
             { streamId: 'profile', afterSeq: peer.eventSeq },
             (event) => {
               const point = {
+                seq: event.seq,
                 type: event.type,
                 kind: event.payload.kind,
                 occurredAt: event.occurredAt,

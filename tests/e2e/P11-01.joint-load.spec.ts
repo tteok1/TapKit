@@ -4,6 +4,7 @@ import { cpus, release, totalmem } from 'node:os';
 import { execFile, execFileSync, spawn } from 'node:child_process';
 import { createInterface } from 'node:readline';
 import { promisify } from 'node:util';
+import type { Session } from 'node:inspector';
 import { mkdtemp } from '../../scripts/test-temp.mjs';
 import { test, expect, _electron as electron, type Page, type CDPSession } from './test';
 import { waitCoreReady, waitRuntimeCapabilities } from './core-ready';
@@ -227,6 +228,23 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
     const chatStartedAt = Date.now();
     let profiler: CDPSession | undefined;
     if (report.diagnostic) {
+      await app.evaluate(async () => {
+        const inspector = process.getBuiltinModule('node:inspector');
+        const session = new inspector.Session();
+        session.connect();
+        await new Promise<void>((resolve, reject) =>
+          session.post('Profiler.enable', (error) => (error ? reject(error) : resolve())),
+        );
+        await new Promise<void>((resolve, reject) =>
+          session.post('Profiler.start', (error) => (error ? reject(error) : resolve())),
+        );
+        (
+          globalThis as unknown as { p11Profile: { session: Session; startedAt: number } }
+        ).p11Profile = {
+          session,
+          startedAt: Date.now(),
+        };
+      });
       profiler = await page.context().newCDPSession(page);
       await profiler.send('Profiler.enable');
       await profiler.send('Profiler.start');
@@ -240,6 +258,24 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
           JSON.stringify(profile),
         );
         await profiler.detach();
+        const host = await app.evaluate(async () => {
+          const { session, startedAt } = (
+            globalThis as unknown as {
+              p11Profile: { session: Session; startedAt: number };
+            }
+          ).p11Profile;
+          const result = await new Promise<{ profile: unknown }>((resolve, reject) =>
+            session.post('Profiler.stop', (error, value) =>
+              error ? reject(error) : resolve(value as { profile: unknown }),
+            ),
+          );
+          session.disconnect();
+          return { ...result, startedAt, stoppedAt: Date.now() };
+        });
+        await writeFile(
+          resolve(`test-results/P11-01/host-repeat-${test.info().repeatEachIndex}.json`),
+          JSON.stringify(host),
+        );
       }
     });
     const chatMemory = phases(chatStartedAt, Date.now());
@@ -268,6 +304,19 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
     samplerState.stopping = true;
     sampler?.kill();
     await app.close();
+    if (report.diagnostic) {
+      try {
+        await writeFile(
+          resolve('test-results/P11-01/core-profile.json'),
+          await readFile(join(dir, 'P11-01-core-profile.json')),
+        );
+      } catch (error) {
+        await writeFile(
+          resolve('test-results/P11-01/core-profile-capture-error.json'),
+          JSON.stringify({ error: String(error) }),
+        );
+      }
+    }
     const path = resolve('test-results/P11-01/joint-load.json');
     await mkdir(resolve('test-results/P11-01'), { recursive: true });
     await writeFile(path, JSON.stringify(report, null, 2) + '\n');
