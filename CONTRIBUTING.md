@@ -17,7 +17,7 @@
 原生 Office、终端和代码任务先生成当前用户能力报告：
 
 ```powershell
-.\scripts\pnpm.ps1 runtime:probe -- --scope=current-user
+.\scripts\pnpm.ps1 runtime:probe --scope=current-user
 ```
 
 普通 CI 在 Windows 上运行本地测试与冻结依赖构建。Windows 原生作业使用各自的能力报告，独立标准用户结果绑定该 runner。高级桌面性能测试应单独运行，等集成和 Electron 进程退出后再采样。保留集输出位于 `test-results/P11-01/eval-*/summary.json`，用确定性断言评估合成回归、检索和同预算委派。

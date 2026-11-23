@@ -36,6 +36,14 @@ export async function measureStreaming(
       };
       const latencies = new Map<number, number>();
       const observed = new Map<number, number>();
+      const rendererSamples: Array<{
+        index: number;
+        domMs: number;
+        waitForFirstFrameMs: number;
+        waitForSecondFrameMs: number;
+        visibility: DocumentVisibilityState;
+        focused: boolean;
+      }> = [];
       const observer = new MutationObserver(() => {
         const answer = document.querySelector(
           `.chat-surface[data-session-id="${first}"] .chat-message.assistant`,
@@ -44,11 +52,24 @@ export async function measureStreaming(
           const index = Number(match[1]);
           if (observed.has(index)) continue;
           observed.set(index, Number(match[2]));
-          requestAnimationFrame(() =>
+          const mutationAt = Date.now();
+          const visibility = document.visibilityState;
+          const focused = document.hasFocus();
+          requestAnimationFrame(() => {
+            const firstFrameAt = Date.now();
             requestAnimationFrame(() => {
-              latencies.set(index, Date.now() - Number(match[2]));
-            }),
-          );
+              const secondFrameAt = Date.now();
+              latencies.set(index, secondFrameAt - Number(match[2]));
+              rendererSamples.push({
+                index,
+                domMs: mutationAt - Number(match[2]),
+                waitForFirstFrameMs: firstFrameAt - mutationAt,
+                waitForSecondFrameMs: secondFrameAt - firstFrameAt,
+                visibility,
+                focused,
+              });
+            });
+          });
         }
       });
       observer.observe(document.body, { subtree: true, childList: true, characterData: true });
@@ -109,6 +130,7 @@ export async function measureStreaming(
         const index = await indexing;
         return {
           latencies: [...latencies.values()],
+          rendererSamples,
           index: index && {
             ...index,
             streamedDuringIndex: [...observed.values()].filter(
