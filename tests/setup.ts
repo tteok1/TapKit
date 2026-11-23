@@ -2,6 +2,7 @@ import { mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { afterAll, afterEach, beforeAll, beforeEach, vi } from 'vitest';
 import { cleanupTestDirectories, mkdtempSync } from '../scripts/test-temp.mjs';
+import { closeLocalEmbedder } from '../packages/retrieval/src/embedding';
 mkdirSync('.test-data', { recursive: true });
 // Never expose an inherited account during collection, including entirely skipped files.
 delete process.env.TAPKIT_DATA_DIR;
@@ -17,4 +18,7 @@ beforeEach(() => {
 afterEach(() => vi.useRealTimers());
 
 // Vitest's stack hook order closes suite resources before this setup-file hook.
-afterAll(() => cleanupTestDirectories(), 30_000);
+afterAll(async () => {
+  await closeLocalEmbedder();
+  await cleanupTestDirectories();
+}, 30_000);

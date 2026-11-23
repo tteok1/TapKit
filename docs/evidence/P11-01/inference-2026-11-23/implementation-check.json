@@ -1,0 +1,77 @@
+{
+  "recordedAt": "2026-11-23T15:05:56.615Z",
+  "baseCommit": "9f5ed8c01b5b08ffbb46e53dee06b388f047a186",
+  "diagnosis": "Locked onnxruntime-node 1.24.3 invokes native inference synchronously inside setImmediate; direct model execution blocks Core. No-spin experiment did not improve the latency and was not shipped.",
+  "commands": [
+    {
+      "command": "pnpm test:integration P11-01.embedding-worker P11-01.index-scheduling P04-01.retrieval P11-01.work-fallback",
+      "exitCode": 0,
+      "passed": 10
+    },
+    {
+      "command": "pnpm test:unit P11-01.embedding-inference P04-01.retrieval",
+      "exitCode": 0,
+      "passed": 6
+    },
+    {
+      "command": "pnpm exec tsc --project tsconfig.json",
+      "exitCode": 0
+    }
+  ],
+  "shutdownRace": "The first worker iteration returned INDEX_NOT_READY for a run awaiting ready during shutdown; preserve AbortError for calls that began before shutdown. shutdown-race-red.json is a development iteration, not the old Git source.",
+  "sourceFiles": [
+    {
+      "path": "packages/retrieval/src/embedding.ts",
+      "sha256": "4e8c48b1ebb3ee0cd587aad405b6e9bd57b2188e56989e001c15e54342a5030a"
+    },
+    {
+      "path": "packages/retrieval/src/embedding-inference.ts",
+      "sha256": "9cc2d720a9f1e2929b642616b2b9973ad5b102bec5e26eca82474a5f312e3f41"
+    },
+    {
+      "path": "packages/retrieval/src/embedding-worker.mjs",
+      "sha256": "7d702777bca6e815fa82fa192602f07721f55bfc61c158224d55f89eae3c6b6f"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "a58f795e6a2a2430c6a66783a9c9be64a364d00d39fb5ba437ab254d41eaee9d"
+    },
+    {
+      "path": "scripts/desktop-build.mjs",
+      "sha256": "ad04367920e106448ed4fae83e5b3e4afc0e570c55018d8a0024b87376184724"
+    },
+    {
+      "path": "tests/setup.ts",
+      "sha256": "108892f5f3e06ada460047c478f0c5b5a786579284d6b6ec8ef08280df889717"
+    },
+    {
+      "path": "tests/fixtures/P11-01.joint-seed.test.ts",
+      "sha256": "dbbd8e9200a454ee07e4f4973bdb76d5ad0fe0ebc69fe84752c2a434e955fc04"
+    },
+    {
+      "path": "tests/integration/P11-01.embedding-worker.test.ts",
+      "sha256": "42fd710baaaa533289f11c4978ce26468ac12f7ce28fb79b405dea5592319d09"
+    },
+    {
+      "path": "tests/unit/P11-01.embedding-inference.test.ts",
+      "sha256": "a3fec80c649e083252e3818b3fbb6cb5948c2b915afe23bd19ba62011e9f042e"
+    },
+    {
+      "path": "tests/fixtures/P11-01.embedding-worker-control.mjs",
+      "sha256": "740afabfe259d6f486e863a20c3f89adecd0c754107f71e59129c853ec0c8b4f"
+    },
+    {
+      "path": "tests/e2e/P11-01.joint-load.spec.ts",
+      "sha256": "a26fe866be66ce86b5b0cad809bb222ae20fa072cfab33f4088946441a80f02b"
+    },
+    {
+      "path": ".github/workflows/check.yml",
+      "sha256": "b27134fee1e21ec167510555e7e226b133dc2bb11b59f5718b12daa55944ac1e"
+    }
+  ],
+  "pending": [
+    "Electron joint load",
+    "full current CI with two joint repetitions",
+    "fresh development package"
+  ]
+}

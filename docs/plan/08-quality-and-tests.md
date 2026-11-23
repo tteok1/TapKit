@@ -35,7 +35,7 @@ P00-01创建以下根脚本，不能在任务结束时只写“建议测试”�
 
 性能用例归入独立Vitest perf项目，通过pnpm test:perf执行，CI在其他集成worker全部退出后运行；不与原生Office/进程资源压力用例并发争用CPU/磁盘。P02-03仍使用1万会话/10万消息、200页/30次查询及500ms P95断言，普通integration不代替性能验收。
 
-P11-01 联合负载在 push 与 pull_request 中使用独立 Windows CI 作业，合入 main 后继续保留。同一来源仓库和分支的 push/PR 只保留最新检查，避免重复运行；手动诊断使用独立并发组并保留既有专用作业。也可运行 `pnpm test:e2e -- --grep 'P11-01 joint load'` 复测。作业在本 runner 验证原生隔离后，用同一个合成 profile 跑聊天与实时索引、两根原生 Office 工作，采集应用与原生子进程工作集并上传 JSON。
+P11-01 联合负载在 push 与 pull_request 中使用独立 Windows CI 作业，合入 main 后继续保留。同一来源仓库和分支的 push/PR 只保留最新检查，避免重复运行；手动诊断使用独立并发组并保留既有专用作业。也可运行 `pnpm test:e2e -- --grep 'P11-01 joint load'` 复测。CI 使用 `--repeat-each 2` 连续确认，每轮使用独立合成 profile，在本 runner 验证原生隔离后跑聊天与实时索引、两根原生 Office 工作，采集应用与原生子进程工作集，按 repeatEachIndex 保留两轮 JSON；任一轮超限均失败。
 
 P02-03合成数据建库在beforeAll中单独限时120秒；查询采样用例仍限时60秒，不把建库耗时计入用户查询P95。报告同时记录seedMs/sampleMs及原数据量，写入test-results/P02-03-perf/performance.json随CI归档；本地证据按实际运行另行保存，不自动覆盖旧日期的验收报告。
 
@@ -94,7 +94,7 @@ P02-03合成数据建库在beforeAll中单独限时120秒；查询采样用例�
 
 本地冷启动≤5s；热启动≤2s；空闲总应用内存≤700MiB；聊天+索引≤2GiB；重工作总峰值≤4GiB。会话列表/本地搜索P95≤500ms；混合检索P95≤2s；收到上游文本后显示P95≤100ms；取消指令持久化≤200ms、新派发停止≤1s。第三方首字延迟单独测量，不将其承诺为本地SLA。
 
-解析/嵌入等后台任务降低优先级并让出CPU；任意大文件不能阻塞Renderer超过100ms。导入边界失败给错误，不静默截断成成功。
+解析/嵌入等后台任务降低优先级并让出CPU；任意大文件不能阻塞Renderer超过100ms。锁定 ONNX Node 绑定的同步推理使用 [ADR0087](../adr/0087-background-embedding-inference.md) 计算线程，验证向量一致、单请求取消、迟到响应、异常退出和关闭清理；索引发布仍在 Core 复核权限与版本。导入边界失败给错误，不静默截断成成功。
 
 ## 6. 阶段门禁和证据
 

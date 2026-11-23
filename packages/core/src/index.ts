@@ -1,4 +1,5 @@
 import { CodeService } from './code-service';
+import { closeLocalEmbedder } from '@tapkit/retrieval';
 import { CodeRuntimeService } from './code-runtime';
 import { SiteService } from './site-service';
 import { CanvasService } from './canvas/service';
@@ -650,6 +651,7 @@ async function start() {
       clearInterval(notificationTimer);
       clearInterval(stagingTimer);
       void Promise.all([
+        closeLocalEmbedder(),
         worker.stop(),
         lifecycle.stop(),
         chat.stop(),

@@ -1,6 +1,8 @@
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { EmbeddingInference } from './embedding-inference';
 import lock from '../../../embedding-model-lock.json';
 import type { PreTrainedTokenizer } from '@huggingface/transformers';
 
@@ -10,6 +12,7 @@ export interface Embedder {
   readonly dims: number;
   count(text: string): number;
   embed(text: string, query?: boolean, signal?: AbortSignal): Promise<Float32Array>;
+  dispose?(): Promise<void>;
 }
 export function normalize(vector: Float32Array) {
   let norm = 0;
@@ -73,23 +76,26 @@ async function modelPath() {
   }
   throw new Error('INDEX_NOT_READY');
 }
-export async function loadBge(directory?: string): Promise<Embedder> {
+async function prepareBge(directory?: string) {
   const path = directory ?? (await modelPath());
   const config = await verifyModel(path);
-  const { AutoTokenizer, AutoModel, Tensor } = await import('@huggingface/transformers');
+  const { AutoTokenizer } = await import('@huggingface/transformers');
   const tokenizer: PreTrainedTokenizer = await AutoTokenizer.from_pretrained(path, {
     local_files_only: true,
-  });
-  const model = await AutoModel.from_pretrained(path, {
-    local_files_only: true,
-    device: 'cpu',
-    dtype: 'q8',
-    session_options: { intraOpNumThreads: 2, interOpNumThreads: 1 },
   });
   const special = tokenizer.encode('');
   if (special.length !== 2) throw new Error('EMBEDDING_MODEL_CONFIG');
   const windowSize = Math.min(384, config.positions - special.length);
   const encode = (text: string) => tokenizer.encode(text, { add_special_tokens: false });
+  return { path, config, special, windowSize, encode };
+}
+const sessionOptions = { intraOpNumThreads: 2, interOpNumThreads: 1 };
+function bgeEmbedder(
+  setup: Awaited<ReturnType<typeof prepareBge>>,
+  infer: (ids: number[], signal?: AbortSignal) => Promise<Float32Array>,
+  dispose: () => Promise<void>,
+): Embedder {
+  const { config, special, windowSize, encode } = setup;
   return {
     revision: EMBEDDING_REVISION,
     dims: config.dims,
@@ -102,30 +108,93 @@ export async function loadBge(directory?: string): Promise<Embedder> {
       for (const window of tokenWindows(ids, windowSize)) {
         signal?.throwIfAborted();
         const input = [special[0]!, ...window.ids, special[1]!];
-        const tensor = (values: number[]) =>
-          new Tensor('int64', BigInt64Array.from(values, BigInt), [1, values.length]);
-        const output = await model({
-          input_ids: tensor(input),
-          attention_mask: tensor(input.map(() => 1)),
-          token_type_ids: tensor(input.map(() => 0)),
-        });
-        const hidden = output.last_hidden_state;
-        if (hidden.dims.at(-1) !== config.dims) throw new Error('INVALID_EMBEDDING');
         // BGE uses the first [CLS] state per window, not truncation or mean over padded tokens.
         windows.push({
-          vector: normalize(Float32Array.from(hidden.data.slice(0, config.dims))),
+          vector: normalize(await infer(input, signal)),
           weight: window.weight,
         });
       }
       signal?.throwIfAborted();
       return weightedWindows(windows, config.dims);
     },
+    dispose,
   };
 }
-let loaded: Promise<Embedder> | undefined;
-export function localEmbedder() {
-  return (loaded ??= loadBge().catch((error) => {
-    loaded = undefined;
+export async function loadBge(directory?: string): Promise<Embedder> {
+  const setup = await prepareBge(directory);
+  const { AutoModel, Tensor } = await import('@huggingface/transformers');
+  const model = await AutoModel.from_pretrained(setup.path, {
+    local_files_only: true,
+    device: 'cpu',
+    dtype: 'q8',
+    session_options: sessionOptions,
+  });
+  return bgeEmbedder(
+    setup,
+    async (input) => {
+      const tensor = (values: number[]) =>
+        new Tensor('int64', BigInt64Array.from(values, BigInt), [1, values.length]);
+      const output = await model({
+        input_ids: tensor(input),
+        attention_mask: tensor(input.map(() => 1)),
+        token_type_ids: tensor(input.map(() => 0)),
+      });
+      const hidden = output.last_hidden_state;
+      if (hidden.dims.at(-1) !== setup.config.dims) throw new Error('INVALID_EMBEDDING');
+      return Float32Array.from(hidden.data.slice(0, setup.config.dims));
+    },
+    async () => {
+      await model.dispose();
+    },
+  );
+}
+type BackgroundEmbedder = Embedder & { healthy(): boolean; dispose(): Promise<void> };
+const clients = new Set<EmbeddingInference>();
+async function backgroundBge(
+  directory?: string,
+  shutdown?: AbortSignal,
+): Promise<BackgroundEmbedder> {
+  const setup = await prepareBge(directory);
+  shutdown?.throwIfAborted();
+  const entry =
+    typeof __dirname === 'string'
+      ? join(__dirname, 'embedding-worker.mjs')
+      : fileURLToPath(new URL('./embedding-worker.mjs', import.meta.url));
+  const client = new EmbeddingInference(entry, setup.path, setup.config.dims, sessionOptions, () =>
+    clients.delete(client),
+  );
+  clients.add(client);
+  await client.ready;
+  return {
+    ...bgeEmbedder(
+      setup,
+      (ids, signal) => client.run(ids, signal),
+      () => client.dispose(),
+    ),
+    healthy: () => client.healthy(),
+    dispose: () => client.dispose(),
+  };
+}
+export function loadBackgroundBge(directory?: string) {
+  return backgroundBge(directory);
+}
+let loaded: Promise<BackgroundEmbedder> | undefined;
+let shutdown = new AbortController();
+export async function localEmbedder(): Promise<Embedder> {
+  const pending = (loaded ??= backgroundBge(undefined, shutdown.signal).catch((error) => {
+    if (loaded === pending) loaded = undefined;
     throw error;
   }));
+  const value = await pending;
+  if (!value.healthy()) {
+    if (loaded === pending) loaded = undefined;
+    return localEmbedder();
+  }
+  return value;
+}
+export async function closeLocalEmbedder() {
+  shutdown.abort();
+  shutdown = new AbortController();
+  loaded = undefined;
+  await Promise.all([...clients].map((client) => client.dispose()));
 }

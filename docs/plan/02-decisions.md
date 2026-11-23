@@ -1,5 +1,7 @@
 # 范围、决策与默认行为
 
+2026-11-23 [ADR 0087](../adr/0087-background-embedding-inference.md) 将同步 ONNX 推理移入按需计算线程，保留相同 BGE 模型与向量语义。Core 继续负责取消、资料权限与索引原子发布，关闭时终止计算线程；验收见 P11-01。
+
 2026-11-16 [ADR 0086](../adr/0086-desktop-feature-loading.md) 采用桌面功能按需加载和 Renderer 生产脚本压缩。Host 网络隔离设置在启动时应用，功能模块在首次使用时初始化。验收见 P11-01 的源码、开发目录及联合负载报告。
 
 2026-11-12 [ADR 0082](../adr/0082-versioned-document-canvas.md)：P10-01 使用 Tiptap JSON、schema24、固定版本 CAS、选区审阅和既有 P07 导出验证。

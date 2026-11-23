@@ -4,6 +4,7 @@ import { join, relative, resolve, sep } from 'node:path';
 import { seedPerformanceHistory } from './P11-01.history';
 import { seedPerformanceRetrieval } from './P11-01.retrieval';
 import { retrievalFixture } from '../integration/P04-01.fixture';
+import { closeLocalEmbedder } from '../../packages/retrieval/src/embedding';
 
 async function seed(dir: string) {
   const fixture = await retrievalFixture(dir);
@@ -37,6 +38,7 @@ async function seed(dir: string) {
       .run().changes;
     return { project, base, settledEvents, indexWork: { projectId, selectedVersionIds } };
   } finally {
+    await closeLocalEmbedder();
     fixture.store.close();
   }
 }

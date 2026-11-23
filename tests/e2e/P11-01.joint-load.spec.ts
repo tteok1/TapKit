@@ -175,6 +175,7 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
     };
   };
   const report = {
+    repeatEachIndex: test.info().repeatEachIndex,
     checkedAt: new Date().toISOString(),
     commit: execFileSync('git', ['rev-parse', 'HEAD'], {
       encoding: 'utf8',
@@ -253,6 +254,10 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
     const path = resolve('test-results/P11-01/joint-load.json');
     await mkdir(resolve('test-results/P11-01'), { recursive: true });
     await writeFile(path, JSON.stringify(report, null, 2) + '\n');
+    await writeFile(
+      resolve(`test-results/P11-01/joint-load-repeat-${test.info().repeatEachIndex}.json`),
+      JSON.stringify(report, null, 2) + '\n',
+    );
     console.info(
       'P11-01 joint load',
       JSON.stringify({
@@ -265,6 +270,7 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
         heavyWork: Object.fromEntries(
           Object.entries(report.results.heavyWork ?? {}).filter(([key]) => key !== 'samples'),
         ),
+        repeatEachIndex: report.repeatEachIndex,
       }),
     );
   }
