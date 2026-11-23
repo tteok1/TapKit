@@ -1,0 +1,17 @@
+{
+  "attemptedAt": "2026-11-23",
+  "repository": "tteok1/TapKit",
+  "base": "main",
+  "head": "codex/p11-01-dev-acceptance",
+  "draft": true,
+  "result": "not_created",
+  "source": "GitHub connector",
+  "httpStatus": 403,
+  "message": "Resource not accessible by integration",
+  "pullRequestNumber": null,
+  "merged": false,
+  "nextAction": "Authorize pull-request creation for this repository in the GitHub connection, or create the prepared PR manually.",
+  "compareUrl": "https://github.com/tteok1/TapKit/compare/main...codex%2Fp11-01-dev-acceptance?expand=1",
+  "draftBody": "docs/evidence/P11-01/premerge-2026-11-23/pr-draft.md",
+  "localWindowsPermissionChangeRequired": false
+}

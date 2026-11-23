@@ -27,4 +27,5 @@
 - 本次只修改工程 CI 配置和文档，不重新生成字节相同的应用开发包。新 CI/PR 提交与包内 739 个实现和测试文件的对应关系继续核对。
 - [工作流本地核对](workflow-check.json) 退出 0：YAML 解析、常规事件范围、并发隔离、无联合负载秘密及真实 API 手动边界通过。Prettier 和 `docs:check` 退出 0，574 项需求映射存在；`git diff --check` 退出 0。
 - 配置修正后的实际四作业结果以本分支 PR 检查和后续回执为准；本记录不预写通过。
+- GitHub 连接器[创建草稿 PR 返回 403](pr-creation.json)，权限不足，未创建或合并 PR。[草稿正文](pr-draft.md) 和 [GitHub 对比页](https://github.com/tteok1/TapKit/compare/main...codex%2Fp11-01-dev-acceptance?expand=1) 已准备好；当前推送的四作业检查继续运行，后续以开发分支最新完整结果为准。本机权限不需要调整。
 - P11-01 整体保持 `in_progress`。规格 Windows 11 设备与 R01–R08 完整 live 继续待验。P11-02 后续可基于已验证本地接口独立推进，本次先完成 P11-01 的审查及合并准备。
