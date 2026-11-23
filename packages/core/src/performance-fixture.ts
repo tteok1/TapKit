@@ -9,10 +9,11 @@ export async function startPerformanceFixture(directory: string) {
     throw Error('FIXTURE_PROFILE_REQUIRED');
   const session = new Session();
   session.connect();
-  const post = <T>(method: string) =>
-    new Promise<T>((resolve, reject) =>
+  function post<T>(method: string) {
+    return new Promise<T>((resolve, reject) =>
       session.post(method, (error, value) => (error ? reject(error) : resolve(value as T))),
     );
+  }
   await post('Profiler.enable');
   await post('Profiler.start');
   const startedAt = Date.now();

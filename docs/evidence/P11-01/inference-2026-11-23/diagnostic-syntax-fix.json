@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-11-23T17:21:47.505Z",
+  "failedCi": {
+    "runId": 45224612686,
+    "runNumber": 121,
+    "jobId": 137867651344,
+    "step": "Check",
+    "exitCode": 1,
+    "error": "Babel boundary parser interprets a TypeScript generic arrow as JSX at performance-fixture.ts:12"
+  },
+  "fix": "Use an unambiguous generic function declaration in the test-only profiler.",
+  "checks": {
+    "boundaries": 0,
+    "testTemporaries": 0,
+    "manifests": 0
+  },
+  "snapshotRepair": {
+    "directory": "release/TapKit-development-2026-11-23T17-13-48-159Z",
+    "repaired": [
+      "packages/core/src/performance-fixture.ts",
+      "node_modules/@tapkit/core/src/performance-fixture.ts"
+    ],
+    "beforeChecksumFinalization": true,
+    "nativeVerificationInputsUnchanged": true
+  },
+  "productionCoreBeforeSha256": "12aad19f230493ce5ef1807f0b9458af5fb87898862f6b132fabcd4d8738af8c",
+  "productionCoreAfterSha256": "12aad19f230493ce5ef1807f0b9458af5fb87898862f6b132fabcd4d8738af8c",
+  "productionCoreByteIdentical": true
+}
