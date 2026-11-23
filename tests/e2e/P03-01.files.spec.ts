@@ -1128,6 +1128,11 @@ test('P03-01 T07 linking a folder file keeps it visible at project and session r
   await folder.selectOption({ label: '文件库中文目录' });
   const libraryFolderId = await folder.inputValue();
   await importPicker(page, [source]);
+  // This fixture exercises linking and moving after import. Parsing commits a new
+  // file revision, so finish it before reading the revision used by the move.
+  await expect(page.locator('.file-card')).toContainText(
+    nativeStatus === 'available' ? '内容已读取' : '受限内容读取组件暂不可用',
+  );
   const owners = await page.evaluate(
     async (requestIds) => {
       const project = await window.tapkit.desktopCommand(

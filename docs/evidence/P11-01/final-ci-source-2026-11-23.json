@@ -60,5 +60,8 @@
   "packageChecksums": "idle-optimization-2026-11-16/package-verification.json",
   "packagePerformance": "idle-optimization-2026-11-16/package-performance.json",
   "localRegression": "idle-optimization-2026-11-16/regression.json",
-  "state": "awaiting_final_ci"
+  "sourceCommit": "91f49097438bccf0aa8c7822e14ea85aa5d1cc43",
+  "ciRunId": 45111848600,
+  "state": "ci_failed",
+  "subsequentCandidate": "58ec0684b15824117a5143b2874b5d1179ca82b6"
 }

@@ -1,0 +1,274 @@
+{
+  "runId": 45114715259,
+  "jobId": 137494800084,
+  "commit": "58ec0684b15824117a5143b2874b5d1179ca82b6",
+  "runner": "windows-2025",
+  "exitCode": 0,
+  "runtimeCapabilities": {
+    "nativeExecution": {
+      "status": "available"
+    },
+    "officeRender": {
+      "status": "available"
+    },
+    "terminal": {
+      "status": "available"
+    }
+  },
+  "chatAndIndex": {
+    "latencies": [
+      1005,
+      48,
+      51,
+      26,
+      44,
+      53,
+      53,
+      54,
+      38,
+      45,
+      49,
+      12,
+      50,
+      22,
+      41,
+      20,
+      58,
+      72,
+      71,
+      67,
+      40,
+      12,
+      45,
+      49
+    ],
+    "rendererSamples": [
+      {
+        "index": 0,
+        "domMs": 974,
+        "waitForFirstFrameMs": 22,
+        "waitForSecondFrameMs": 9,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 1,
+        "domMs": 17,
+        "waitForFirstFrameMs": 22,
+        "waitForSecondFrameMs": 9,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 2,
+        "domMs": 48,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 3,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 3,
+        "domMs": 19,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 7,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 4,
+        "domMs": 36,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 8,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 5,
+        "domMs": 37,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 16,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 6,
+        "domMs": 47,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 6,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 7,
+        "domMs": 41,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 12,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 8,
+        "domMs": 35,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 2,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 9,
+        "domMs": 33,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 11,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 10,
+        "domMs": 34,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 15,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 11,
+        "domMs": 9,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 3,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 12,
+        "domMs": 38,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 11,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 13,
+        "domMs": 19,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 2,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 14,
+        "domMs": 34,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 7,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 15,
+        "domMs": 8,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 11,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 16,
+        "domMs": 55,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 2,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 17,
+        "domMs": 60,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 12,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 18,
+        "domMs": 58,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 13,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 19,
+        "domMs": 51,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 15,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 20,
+        "domMs": 36,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 4,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 21,
+        "domMs": 7,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 4,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 22,
+        "domMs": 34,
+        "waitForFirstFrameMs": 0,
+        "waitForSecondFrameMs": 11,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "index": 23,
+        "domMs": 41,
+        "waitForFirstFrameMs": 1,
+        "waitForSecondFrameMs": 7,
+        "visibility": "visible",
+        "focused": true
+      }
+    ],
+    "index": {
+      "startedAt": 1795410289381,
+      "finishedAt": 1795410295990,
+      "hits": 4,
+      "error": null,
+      "streamedDuringIndex": 22
+    },
+    "cancelAckMs": 9.099999999860302,
+    "cancelSettledMs": 83.5,
+    "callsBefore": 1,
+    "callsAfter": 1,
+    "cancelled": "cancelled",
+    "displayP95Ms": 72,
+    "peakMiB": 834.65625,
+    "maxNativeHelpers": 0
+  },
+  "heavyWork": {
+    "startedAt": 1795410295999,
+    "finishedAt": 1795410326871,
+    "bothActive": true,
+    "states": [
+      {
+        "status": "completed",
+        "reason": null,
+        "artifacts": 2
+      },
+      {
+        "status": "completed",
+        "reason": null,
+        "artifacts": 2
+      }
+    ],
+    "peakMiB": 1469.765625,
+    "maxNativeHelpers": 2
+  }
+}

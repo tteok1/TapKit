@@ -1,0 +1,69 @@
+{
+  "runId": 45111848600,
+  "runNumber": 112,
+  "url": "https://github.com/tteok1/TapKit/actions/runs/45111848600",
+  "commit": "91f49097438bccf0aa8c7822e14ea85aa5d1cc43",
+  "conclusion": "failure",
+  "jobs": [
+    {
+      "id": 137485748712,
+      "name": "electron",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 137485748931,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 137485749060,
+      "name": "office-native",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 137485749077,
+      "name": "p11-joint-load",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 137485750145,
+      "name": "repeat-diagnostics",
+      "status": "completed",
+      "conclusion": "skipped"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 14790987305,
+      "name": "windows-p07-native-evidence",
+      "digest": "sha256:972b70c2d0280f1ba95caca00b7a1195edd8c43ef5e755d65921889ce217296b",
+      "size_in_bytes": 2534758
+    },
+    {
+      "id": 14790707409,
+      "name": "windows-p00-evidence",
+      "digest": "sha256:0c08f311de8cc7a001979638e67be433358fd1002756aad9a0c51203f07a7f7c",
+      "size_in_bytes": 28791832
+    },
+    {
+      "id": 14790531825,
+      "name": "windows-p11-joint-load",
+      "digest": "sha256:eb2e49fd961ac5da636e97a563db4ebff62bb9f4d5000fb69812565f503246df",
+      "size_in_bytes": 22915
+    },
+    {
+      "id": 14789814887,
+      "name": "windows-electron-evidence",
+      "digest": "sha256:18423b24268fc05205837cc39c3f3203491aa89282789fe8ab5ec0efa97ba99e",
+      "size_in_bytes": 15337574
+    }
+  ],
+  "failures": [
+    "ci112-electron-failures.json",
+    "ci112-joint-load.json"
+  ]
+}
