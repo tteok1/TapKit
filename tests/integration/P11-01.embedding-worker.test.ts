@@ -41,7 +41,7 @@ test('P11-01 BGE worker preserves counts and real vectors while keeping inferenc
     ] as const) {
       expect(background.revision).toBe(direct.revision);
       expect(background.dims).toBe(direct.dims);
-      expect(background.count(text)).toBe(direct.count(text));
+      expect(await background.count(text)).toBe(direct.count(text));
       expect(await background.countAsync!(text)).toBe(direct.count(text));
       const expected = await direct.embed(text, query);
       const actual = await background.embed(text, query);

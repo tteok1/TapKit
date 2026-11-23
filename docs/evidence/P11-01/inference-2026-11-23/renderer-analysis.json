@@ -1,0 +1,587 @@
+{
+  "checkedAt": "2026-11-23T16:07:19.977Z",
+  "commit": "6bdbd8646f606a59a740ac87319b18422d5834be",
+  "diagnostic": true,
+  "displayP95Ms": 106,
+  "phases": [
+    {
+      "index": 0,
+      "upstreamAt": 1795449879393,
+      "domMs": 1542,
+      "upstreamToEventMs": null,
+      "eventToRendererMs": null,
+      "rendererToDomMs": null,
+      "frameMs": 47,
+      "longTasks": [],
+      "events": []
+    },
+    {
+      "index": 1,
+      "upstreamAt": 1795449880902,
+      "domMs": 33,
+      "upstreamToEventMs": null,
+      "eventToRendererMs": null,
+      "rendererToDomMs": null,
+      "frameMs": 47,
+      "longTasks": [],
+      "events": []
+    },
+    {
+      "index": 2,
+      "upstreamAt": 1795449881197,
+      "domMs": 103,
+      "upstreamToEventMs": 1,
+      "eventToRendererMs": 87,
+      "rendererToDomMs": 15,
+      "frameMs": 3,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "run.status",
+          "kind": "chat",
+          "occurredAt": 1795449881110,
+          "receivedAt": 1795449881193
+        },
+        {
+          "type": "message.final",
+          "kind": "chat",
+          "occurredAt": 1795449881188,
+          "receivedAt": 1795449881195
+        },
+        {
+          "type": "run.status",
+          "kind": "chat",
+          "occurredAt": 1795449881188,
+          "receivedAt": 1795449881196
+        },
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449881198,
+          "receivedAt": 1795449881285
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "upstreamAt": 1795449881445,
+      "domMs": 25,
+      "upstreamToEventMs": 4,
+      "eventToRendererMs": 3,
+      "rendererToDomMs": 18,
+      "frameMs": 19,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449881449,
+          "receivedAt": 1795449881452
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "upstreamAt": 1795449881693,
+      "domMs": 26,
+      "upstreamToEventMs": 5,
+      "eventToRendererMs": 4,
+      "rendererToDomMs": 17,
+      "frameMs": 18,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449881698,
+          "receivedAt": 1795449881702
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "upstreamAt": 1795449881940,
+      "domMs": 23,
+      "upstreamToEventMs": 2,
+      "eventToRendererMs": 3,
+      "rendererToDomMs": 18,
+      "frameMs": 7,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449881942,
+          "receivedAt": 1795449881945
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "upstreamAt": 1795449882183,
+      "domMs": 28,
+      "upstreamToEventMs": 5,
+      "eventToRendererMs": 5,
+      "rendererToDomMs": 18,
+      "frameMs": 5,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449882188,
+          "receivedAt": 1795449882193
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "upstreamAt": 1795449882431,
+      "domMs": 23,
+      "upstreamToEventMs": 2,
+      "eventToRendererMs": 4,
+      "rendererToDomMs": 17,
+      "frameMs": 12,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449882433,
+          "receivedAt": 1795449882437
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "upstreamAt": 1795449882684,
+      "domMs": 28,
+      "upstreamToEventMs": 6,
+      "eventToRendererMs": 6,
+      "rendererToDomMs": 16,
+      "frameMs": 3,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449882690,
+          "receivedAt": 1795449882696
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "upstreamAt": 1795449882932,
+      "domMs": 20,
+      "upstreamToEventMs": 2,
+      "eventToRendererMs": 4,
+      "rendererToDomMs": 14,
+      "frameMs": 15,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449882934,
+          "receivedAt": 1795449882938
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "upstreamAt": 1795449883187,
+      "domMs": 24,
+      "upstreamToEventMs": 3,
+      "eventToRendererMs": 4,
+      "rendererToDomMs": 17,
+      "frameMs": 14,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449883190,
+          "receivedAt": 1795449883194
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "upstreamAt": 1795449883441,
+      "domMs": 50,
+      "upstreamToEventMs": 4,
+      "eventToRendererMs": 7,
+      "rendererToDomMs": 39,
+      "frameMs": 6,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449883445,
+          "receivedAt": 1795449883452
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "upstreamAt": 1795449883692,
+      "domMs": 27,
+      "upstreamToEventMs": 5,
+      "eventToRendererMs": 4,
+      "rendererToDomMs": 18,
+      "frameMs": 17,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449883697,
+          "receivedAt": 1795449883701
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "upstreamAt": 1795449883942,
+      "domMs": 25,
+      "upstreamToEventMs": 3,
+      "eventToRendererMs": 5,
+      "rendererToDomMs": 17,
+      "frameMs": 3,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449883945,
+          "receivedAt": 1795449883950
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "upstreamAt": 1795449884193,
+      "domMs": 25,
+      "upstreamToEventMs": 4,
+      "eventToRendererMs": 5,
+      "rendererToDomMs": 16,
+      "frameMs": 5,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449884197,
+          "receivedAt": 1795449884202
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "upstreamAt": 1795449884448,
+      "domMs": 26,
+      "upstreamToEventMs": 3,
+      "eventToRendererMs": 6,
+      "rendererToDomMs": 17,
+      "frameMs": 20,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449884451,
+          "receivedAt": 1795449884457
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "upstreamAt": 1795449884693,
+      "domMs": 21,
+      "upstreamToEventMs": 3,
+      "eventToRendererMs": 4,
+      "rendererToDomMs": 14,
+      "frameMs": 8,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449884696,
+          "receivedAt": 1795449884700
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "upstreamAt": 1795449884940,
+      "domMs": 29,
+      "upstreamToEventMs": 4,
+      "eventToRendererMs": 5,
+      "rendererToDomMs": 20,
+      "frameMs": 7,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449884944,
+          "receivedAt": 1795449884949
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "upstreamAt": 1795449885185,
+      "domMs": 20,
+      "upstreamToEventMs": 2,
+      "eventToRendererMs": 4,
+      "rendererToDomMs": 14,
+      "frameMs": 5,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449885187,
+          "receivedAt": 1795449885191
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "upstreamAt": 1795449885431,
+      "domMs": 26,
+      "upstreamToEventMs": 5,
+      "eventToRendererMs": 5,
+      "rendererToDomMs": 16,
+      "frameMs": 12,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449885436,
+          "receivedAt": 1795449885441
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "upstreamAt": 1795449885681,
+      "domMs": 27,
+      "upstreamToEventMs": 5,
+      "eventToRendererMs": 4,
+      "rendererToDomMs": 18,
+      "frameMs": 15,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449885686,
+          "receivedAt": 1795449885690
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "upstreamAt": 1795449885934,
+      "domMs": 26,
+      "upstreamToEventMs": 2,
+      "eventToRendererMs": 6,
+      "rendererToDomMs": 18,
+      "frameMs": 6,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449885936,
+          "receivedAt": 1795449885942
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "upstreamAt": 1795449886182,
+      "domMs": 27,
+      "upstreamToEventMs": 5,
+      "eventToRendererMs": 5,
+      "rendererToDomMs": 17,
+      "frameMs": 17,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449886187,
+          "receivedAt": 1795449886192
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "upstreamAt": 1795449886434,
+      "domMs": 28,
+      "upstreamToEventMs": 5,
+      "eventToRendererMs": 5,
+      "rendererToDomMs": 18,
+      "frameMs": 4,
+      "longTasks": [],
+      "events": [
+        {
+          "type": "message.delta",
+          "kind": "chat",
+          "occurredAt": 1795449886439,
+          "receivedAt": 1795449886444
+        }
+      ]
+    }
+  ],
+  "longTasks": [],
+  "rendererSelfMs": [
+    [
+      "(idle) :0",
+      11938.081999999979
+    ],
+    [
+      "(program) :0",
+      343.7060000000002
+    ],
+    [
+      "Do file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:68",
+      97.77799999999999
+    ],
+    [
+      "(garbage collector) :0",
+      74.48100000000001
+    ],
+    [
+      " file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:110",
+      43.991
+    ],
+    [
+      "inst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252",
+      43.799
+    ],
+    [
+      "finalizeIssue D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:357",
+      36.775999999999996
+    ],
+    [
+      " :3",
+      27.069
+    ],
+    [
+      "rE file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:10",
+      15.896
+    ],
+    [
+      "inst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313",
+      15.718000000000002
+    ],
+    [
+      "Yh file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:10",
+      14.310000000000002
+    ],
+    [
+      "hh file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9",
+      13.939
+    ],
+    [
+      "Zs file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9",
+      13.431999999999999
+    ],
+    [
+      "t._zod.parse file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:16",
+      13.011000000000001
+    ],
+    [
+      "Mf file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9",
+      12.74
+    ],
+    [
+      "joinValues D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:8",
+      12.009
+    ],
+    [
+      "vF file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:110",
+      11.138
+    ],
+    [
+      " file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:10",
+      11.111
+    ],
+    [
+      " :0",
+      8.083
+    ],
+    [
+      "getRandomValues :0",
+      7.9719999999999995
+    ],
+    [
+      " D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2291",
+      7.407
+    ],
+    [
+      "t._zod.parse file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:66",
+      7.039
+    ],
+    [
+      "d file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/chat-markdown-OvRqIMdb.js:11",
+      6.946
+    ],
+    [
+      "runChecks D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:1357",
+      6.693999999999999
+    ],
+    [
+      "zk file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9",
+      6.6499999999999995
+    ],
+    [
+      "qe file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9",
+      6.585
+    ],
+    [
+      "inst._zod.run D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:1416",
+      6.435999999999999
+    ],
+    [
+      "Wx file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9",
+      5.95
+    ],
+    [
+      " :1",
+      5.733
+    ],
+    [
+      "scrollTo :0",
+      5.198
+    ],
+    [
+      "vC file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:10",
+      4.853999999999999
+    ],
+    [
+      "Zo file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:9",
+      4.814
+    ],
+    [
+      "Wu file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:110",
+      4.692
+    ],
+    [
+      "Wt file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/index-Bmu8aqh9.js:10",
+      4.615
+    ],
+    [
+      "Qe file:///D:/Tapkit-public/apps/desktop/out/renderer/assets/chat-markdown-OvRqIMdb.js:3",
+      4.567
+    ]
+  ]
+}

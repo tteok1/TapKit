@@ -5,7 +5,7 @@ import { execFile, execFileSync, spawn } from 'node:child_process';
 import { createInterface } from 'node:readline';
 import { promisify } from 'node:util';
 import { mkdtemp } from '../../scripts/test-temp.mjs';
-import { test, expect, _electron as electron, type Page } from './test';
+import { test, expect, _electron as electron, type Page, type CDPSession } from './test';
 import { waitCoreReady, waitRuntimeCapabilities } from './core-ready';
 import { openSessionFixture, reopenSessionFixture } from './session-fixture';
 import { measureStreaming } from './streaming-perf-fixture';
@@ -176,6 +176,7 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
   };
   const report = {
     repeatEachIndex: test.info().repeatEachIndex,
+    diagnostic: process.env.TAPKIT_P11_RENDERER_PROFILE === '1',
     checkedAt: new Date().toISOString(),
     commit: execFileSync('git', ['rev-parse', 'HEAD'], {
       encoding: 'utf8',
@@ -224,7 +225,23 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
     expect(samplerErrors).toEqual([]);
     expect(samples.length).toBeGreaterThan(0);
     const chatStartedAt = Date.now();
-    const chat = await measureStreaming(page, first, second, indexWork);
+    let profiler: CDPSession | undefined;
+    if (report.diagnostic) {
+      profiler = await page.context().newCDPSession(page);
+      await profiler.send('Profiler.enable');
+      await profiler.send('Profiler.start');
+    }
+    const chat = await measureStreaming(page, first, second, indexWork).finally(async () => {
+      if (profiler) {
+        const { profile } = await profiler.send('Profiler.stop');
+        await mkdir(resolve('test-results/P11-01'), { recursive: true });
+        await writeFile(
+          resolve(`test-results/P11-01/renderer-repeat-${test.info().repeatEachIndex}.cpuprofile`),
+          JSON.stringify(profile),
+        );
+        await profiler.detach();
+      }
+    });
     const chatMemory = phases(chatStartedAt, Date.now());
     report.results.chatAndIndex = { ...chat, ...chatMemory };
     const heavy = await runOfficePair(page);

@@ -8,7 +8,7 @@ export async function measureStreaming(
   indexWork?: { projectId: string; selectedVersionIds: string[] },
 ) {
   const result = await page.evaluate(
-    async ({ first, second, indexWork }) => {
+    async ({ first, second, indexWork, diagnostic }) => {
       const id = () => {
         const value = crypto.randomUUID();
         return value.slice(0, 14) + '7' + value.slice(15);
@@ -43,7 +43,32 @@ export async function measureStreaming(
         waitForSecondFrameMs: number;
         visibility: DocumentVisibilityState;
         focused: boolean;
+        upstreamAt: number;
+        deltaOccurredAt: number | null;
+        deltaReceivedAt: number | null;
       }> = [];
+      const eventTimeline: Array<{
+        type: string;
+        kind: string;
+        occurredAt: number;
+        receivedAt: number;
+      }> = [];
+      const longTasks: Array<{ startedAt: number; durationMs: number }> = [];
+      let lastDelta: { occurredAt: number; receivedAt: number } | undefined;
+      let off: (() => void) | undefined;
+      const taskObserver =
+        diagnostic && PerformanceObserver.supportedEntryTypes.includes('longtask')
+          ? new PerformanceObserver((entries) => {
+              for (const entry of entries.getEntries()) {
+                if (longTasks.length < 200)
+                  longTasks.push({
+                    startedAt: performance.timeOrigin + entry.startTime,
+                    durationMs: entry.duration,
+                  });
+              }
+            })
+          : undefined;
+      taskObserver?.observe({ type: 'longtask' });
       const observer = new MutationObserver(() => {
         const answer = document.querySelector(
           `.chat-surface[data-session-id="${first}"] .chat-message.assistant`,
@@ -55,6 +80,7 @@ export async function measureStreaming(
           const mutationAt = Date.now();
           const visibility = document.visibilityState;
           const focused = document.hasFocus();
+          const delivery = lastDelta;
           requestAnimationFrame(() => {
             const firstFrameAt = Date.now();
             requestAnimationFrame(() => {
@@ -67,6 +93,9 @@ export async function measureStreaming(
                 waitForSecondFrameMs: secondFrameAt - firstFrameAt,
                 visibility,
                 focused,
+                upstreamAt: Number(match[2]),
+                deltaOccurredAt: delivery?.occurredAt ?? null,
+                deltaReceivedAt: delivery?.receivedAt ?? null,
               });
             });
           });
@@ -84,6 +113,26 @@ export async function measureStreaming(
           await pause(40);
           peer = await snapshot(second);
         }
+        if (diagnostic)
+          off = await window.tapkit.subscribeEvents(
+            { requestId: id() },
+            { streamId: 'profile', afterSeq: peer.eventSeq },
+            (event) => {
+              const point = {
+                type: event.type,
+                kind: event.payload.kind,
+                occurredAt: event.occurredAt,
+                receivedAt: Date.now(),
+              };
+              if (eventTimeline.length < 200) eventTimeline.push(point);
+              if (
+                event.type === 'message.delta' &&
+                event.payload.kind === 'chat' &&
+                event.payload.sessionId === first
+              )
+                lastDelta = point;
+            },
+          );
 
         const indexing =
           indexWork &&
@@ -131,6 +180,8 @@ export async function measureStreaming(
         return {
           latencies: [...latencies.values()],
           rendererSamples,
+          eventTimeline,
+          longTasks,
           index: index && {
             ...index,
             streamedDuringIndex: [...observed.values()].filter(
@@ -145,9 +196,11 @@ export async function measureStreaming(
         };
       } finally {
         observer.disconnect();
+        taskObserver?.disconnect();
+        off?.();
       }
     },
-    { first, second, indexWork },
+    { first, second, indexWork, diagnostic: process.env.TAPKIT_P11_RENDERER_PROFILE === '1' },
   );
   const sorted = [...result.latencies].sort((a, b) => a - b);
   const displayP95Ms = sorted[Math.ceil(sorted.length * 0.95) - 1]!;

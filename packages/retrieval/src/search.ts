@@ -319,7 +319,12 @@ export class HybridIndex {
         continue;
       const source = sources.find((s) => s.versionId === row.file_version_id)!;
       const context = JSON.parse(row.context_json) as ContextPart[];
-      const size = this.embedder.count(row.text + context.map((c) => c.text).join('\n'));
+      const size = await this.embedder.count(
+        row.text + context.map((c) => c.text).join('\n'),
+        signal,
+      );
+      signal?.throwIfAborted();
+      assertScope();
       if (tokens + size > 12000) continue;
       const ref: ResourceRef = {
         kind: 'file',

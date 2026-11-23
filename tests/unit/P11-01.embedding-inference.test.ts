@@ -69,3 +69,13 @@ test('P11-01 a mismatched packaged worker protocol cannot become ready', async (
     await client.dispose();
   }
 });
+
+test('P11-01 invalid worker tokenizer configuration cannot become ready', async () => {
+  const client = new EmbeddingInference(entry, 'bad-config', 2, options, () => {});
+  try {
+    await expect(client.ready).rejects.toThrow('INDEX_NOT_READY');
+    expect(client.healthy()).toBe(false);
+  } finally {
+    await client.dispose();
+  }
+});

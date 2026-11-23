@@ -10,10 +10,13 @@ export const EMBEDDING_REVISION = `${lock.revision}:q8:cls:windows384-64:v1`;
 export interface Embedder {
   readonly revision: string;
   readonly dims: number;
-  count(text: string): number;
+  count(text: string, signal?: AbortSignal): number | Promise<number>;
   countAsync?(text: string, signal?: AbortSignal): Promise<number>;
   embed(text: string, query?: boolean, signal?: AbortSignal): Promise<Float32Array>;
   dispose?(): Promise<void>;
+}
+export interface SynchronousEmbedder extends Embedder {
+  count(text: string): number;
 }
 export function normalize(vector: Float32Array) {
   let norm = 0;
@@ -91,12 +94,31 @@ async function prepareBge(directory?: string) {
   return { path, config, special, windowSize, encode };
 }
 const sessionOptions = { intraOpNumThreads: 2, interOpNumThreads: 1 };
+async function embedTokenIds(
+  ids: number[],
+  dims: number,
+  special: number[],
+  windowSize: number,
+  infer: (ids: number[], signal?: AbortSignal) => Promise<Float32Array>,
+  signal?: AbortSignal,
+) {
+  signal?.throwIfAborted();
+  if (!ids.length) throw new Error('INVALID_EMBEDDING');
+  const windows: { vector: Float32Array; weight: number }[] = [];
+  for (const window of tokenWindows(ids, windowSize)) {
+    signal?.throwIfAborted();
+    const input = [special[0]!, ...window.ids, special[1]!];
+    windows.push({ vector: normalize(await infer(input, signal)), weight: window.weight });
+  }
+  signal?.throwIfAborted();
+  return weightedWindows(windows, dims);
+}
 function bgeEmbedder(
   setup: Awaited<ReturnType<typeof prepareBge>>,
   infer: (ids: number[], signal?: AbortSignal) => Promise<Float32Array>,
   dispose: () => Promise<void>,
   encodeAsync?: (text: string, signal?: AbortSignal) => Promise<number[]>,
-): Embedder {
+): SynchronousEmbedder {
   const { config, special, windowSize, encode } = setup;
   return {
     revision: EMBEDDING_REVISION,
@@ -106,25 +128,12 @@ function bgeEmbedder(
       signal?.throwIfAborted();
       const inputText = (query ? lock.queryPrefix : '') + text;
       const ids = encodeAsync ? await encodeAsync(inputText, signal) : encode(inputText);
-      signal?.throwIfAborted();
-      if (!ids.length) throw new Error('INVALID_EMBEDDING');
-      const windows: { vector: Float32Array; weight: number }[] = [];
-      for (const window of tokenWindows(ids, windowSize)) {
-        signal?.throwIfAborted();
-        const input = [special[0]!, ...window.ids, special[1]!];
-        // BGE uses the first [CLS] state per window, not truncation or mean over padded tokens.
-        windows.push({
-          vector: normalize(await infer(input, signal)),
-          weight: window.weight,
-        });
-      }
-      signal?.throwIfAborted();
-      return weightedWindows(windows, config.dims);
+      return embedTokenIds(ids, config.dims, special, windowSize, infer, signal);
     },
     dispose,
   };
 }
-export async function loadBge(directory?: string): Promise<Embedder> {
+export async function loadBge(directory?: string): Promise<SynchronousEmbedder> {
   const setup = await prepareBge(directory);
   const { AutoModel, Tensor } = await import('@huggingface/transformers');
   const model = await AutoModel.from_pretrained(setup.path, {
@@ -158,25 +167,34 @@ async function backgroundBge(
   directory?: string,
   shutdown?: AbortSignal,
 ): Promise<BackgroundEmbedder> {
-  const setup = await prepareBge(directory);
+  const path = directory ?? (await modelPath());
   shutdown?.throwIfAborted();
   const entry =
     typeof __dirname === 'string'
       ? join(__dirname, 'embedding-worker.mjs')
       : fileURLToPath(new URL('./embedding-worker.mjs', import.meta.url));
-  const client = new EmbeddingInference(entry, setup.path, setup.config.dims, sessionOptions, () =>
+  const client = new EmbeddingInference(entry, path, lock.dims, sessionOptions, () =>
     clients.delete(client),
   );
   clients.add(client);
-  await client.ready;
+  const { positions, special } = await client.ready;
   return {
-    ...bgeEmbedder(
-      setup,
-      (ids, signal) => client.run(ids, signal),
-      () => client.dispose(),
-      (text, signal) => client.encode(text, signal),
-    ),
+    revision: EMBEDDING_REVISION,
+    dims: lock.dims,
+    count: (text, signal) => client.count(text, signal),
     countAsync: (text, signal) => client.count(text, signal),
+    async embed(text, query = false, signal) {
+      signal?.throwIfAborted();
+      const ids = await client.encode((query ? lock.queryPrefix : '') + text, signal);
+      return embedTokenIds(
+        ids,
+        lock.dims,
+        special,
+        Math.min(384, positions - special.length),
+        (ids, signal) => client.run(ids, signal),
+        signal,
+      );
+    },
     healthy: () => client.healthy(),
     dispose: () => client.dispose(),
   };

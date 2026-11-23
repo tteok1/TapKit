@@ -1,0 +1,43 @@
+{
+  "repeatEachIndex": 0,
+  "diagnostic": true,
+  "checkedAt": "2026-11-23T16:11:30.257Z",
+  "commit": "6bdbd8646f606a59a740ac87319b18422d5834be",
+  "environment": {
+    "image": null,
+    "imageVersion": null,
+    "osRelease": "10.0.26200",
+    "cpu": "AMD Ryzen 7 H 255 w/ Radeon 780M",
+    "logicalCpus": 16,
+    "ramBytes": 24995295232
+  },
+  "dataset": {
+    "sessions": 10000,
+    "messages": 100000,
+    "documents": 2000,
+    "chunks": 20000
+  },
+  "settledFixtureEvents": 8066,
+  "scope": "Locked BGE CPU embeddings, two synthetic upstream chats, two isolated DOCX-to-PDF work roots. Windows process-tree working set including native helpers and their children.",
+  "samplerErrors": [],
+  "sampler": {
+    "startedAt": 1795450315902,
+    "firstSampleMs": 1077.7657000000036,
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "stopping": true
+  },
+  "results": {
+    "runtimeCapabilities": {
+      "nativeExecution": {
+        "status": "available"
+      },
+      "officeRender": {
+        "status": "available"
+      },
+      "terminal": {
+        "status": "available"
+      }
+    }
+  }
+}

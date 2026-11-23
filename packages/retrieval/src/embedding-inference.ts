@@ -1,20 +1,22 @@
 import { Worker } from 'node:worker_threads';
+import lock from '../../../embedding-model-lock.json';
 
 type Pending = {
   resolve: (value: unknown) => void;
   reject: (error: unknown) => void;
   cleanup: () => void;
 };
+type Configuration = { positions: number; special: number[] };
 
 /** The Node ONNX binding runs synchronously; keep it off Core's command/event loop. */
 export class EmbeddingInference {
-  readonly ready: Promise<void>;
+  readonly ready: Promise<Configuration>;
   private readonly worker: Worker;
   private readonly pending = new Map<number, Pending>();
   private nextId = 0;
   private closed = false;
   private closeReason: unknown;
-  private resolveReady!: () => void;
+  private resolveReady!: (configuration: Configuration) => void;
   private rejectReady!: (error: unknown) => void;
   private startupTimer: ReturnType<typeof setTimeout>;
   private termination: Promise<number> | undefined;
@@ -30,7 +32,9 @@ export class EmbeddingInference {
       this.resolveReady = resolve;
       this.rejectReady = reject;
     });
-    this.worker = new Worker(entry, { workerData: { directory, dims, sessionOptions } });
+    this.worker = new Worker(entry, {
+      workerData: { directory, dims, sessionOptions, files: lock.files },
+    });
     this.startupTimer = setTimeout(() => this.fail(new Error('INDEX_NOT_READY')), 30_000);
     this.startupTimer.unref();
     this.worker.on('error', () => this.fail(new Error('INDEX_NOT_READY')));
@@ -42,14 +46,24 @@ export class EmbeddingInference {
         id?: number;
         value?: unknown;
         protocolVersion?: number;
+        configuration?: Configuration;
       };
       if (reply.type === 'ready') {
-        if (reply.protocolVersion !== 1) {
+        const config = reply.configuration;
+        if (
+          reply.protocolVersion !== 2 ||
+          !config ||
+          !Number.isSafeInteger(config.positions) ||
+          config.positions <= 66 ||
+          !Array.isArray(config.special) ||
+          config.special.length !== 2 ||
+          !config.special.every((id) => Number.isSafeInteger(id) && id >= 0)
+        ) {
           this.fail(new Error('INDEX_NOT_READY'));
           return;
         }
         clearTimeout(this.startupTimer);
-        this.resolveReady();
+        this.resolveReady(config);
         if (!this.pending.size) this.worker.unref();
         return;
       }

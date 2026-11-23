@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { setImmediate as yieldTurn } from 'node:timers/promises';
 import type { Locator, ParsedDocument } from '@tapkit/contracts';
 import { selectedMaterial, locatedText, sheetRange } from '@tapkit/storage';
-import type { Embedder } from './embedding';
+import type { Embedder, SynchronousEmbedder } from './embedding';
 
 export const CHUNK_POLICY = 'structure800-overlap120-v1';
 export const digest = (text: string) => createHash('sha256').update(text).digest('hex');
@@ -187,17 +187,26 @@ function* chunkDocumentSteps(doc: ParsedDocument): Generator<string, Chunk[], nu
   return chunks;
 }
 
-function finish<T>(steps: Generator<string, T, number>, count: Embedder['count']): T {
+function finish<T>(steps: Generator<string, T, number>, count: SynchronousEmbedder['count']): T {
   let result = steps.next();
-  while (!result.done) result = steps.next(count(result.value));
+  while (!result.done) {
+    const tokens = count(result.value);
+    if (typeof tokens !== 'number') throw new Error('ASYNC_TOKENIZER_REQUIRED');
+    result = steps.next(tokens);
+  }
   return result.value;
 }
 
-export function textSlices(text: string, count: Embedder['count'], target = 800, overlap = 120) {
+export function textSlices(
+  text: string,
+  count: SynchronousEmbedder['count'],
+  target = 800,
+  overlap = 120,
+) {
   return finish(textSliceSteps(text, target, overlap), count);
 }
 
-export function chunkDocument(doc: ParsedDocument, count: Embedder['count']): Chunk[] {
+export function chunkDocument(doc: ParsedDocument, count: SynchronousEmbedder['count']): Chunk[] {
   return finish(chunkDocumentSteps(doc), count);
 }
 
@@ -213,8 +222,8 @@ export async function chunkDocumentAsync(
   guard();
   let result = steps.next();
   while (!result.done) {
-    const tokens = countAsync ? await countAsync(result.value) : count(result.value);
-    if (countAsync) guard();
+    const tokens = await (countAsync ? countAsync(result.value) : count(result.value));
+    guard();
     if (performance.now() - turnStarted >= 4) {
       await yieldTurn();
       guard();

@@ -17,5 +17,9 @@ parentPort.on('message', ({ type, id, ids }) => {
 });
 parentPort.postMessage({
   type: 'ready',
-  protocolVersion: workerData.directory === 'mismatch' ? 2 : 1,
+  protocolVersion: workerData.directory === 'mismatch' ? 1 : 2,
+  configuration: {
+    positions: 512,
+    special: workerData.directory === 'bad-config' ? [101] : [101, 102],
+  },
 });
