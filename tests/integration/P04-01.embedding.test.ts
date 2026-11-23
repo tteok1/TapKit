@@ -17,7 +17,7 @@ test('P04-01 T09 real pinned CPU ONNX tokenizer, 512 dimensions and tail windows
   const long = '普通说明和背景。'.repeat(130);
   const a = await bge.embed(long + '尾部退款期限为七天。'.repeat(40));
   const b = await bge.embed(long + '尾部禁止退款，期限为零天。'.repeat(40));
-  expect(bge.count(long)).toBeGreaterThan(800);
+  expect(await bge.count(long)).toBeGreaterThan(800);
   expect(cosine(a, b)).toBeLessThan(0.999);
 }, 120000);
 test('P04-01 model digest mismatch fails closed without downloading a replacement', async () => {

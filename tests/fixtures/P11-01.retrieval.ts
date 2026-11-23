@@ -21,7 +21,7 @@ export async function seedPerformanceRetrieval(f: Awaited<ReturnType<typeof retr
       const vector = await bge.embed(text);
       const blob = Buffer.alloc(vector.length * 4);
       vector.forEach((value, index) => blob.writeFloatLE(value, index * 4));
-      return { text, blob, hash: digest(text), tokens: bge.count(text) };
+      return { text, blob, hash: digest(text), tokens: await bge.count(text) };
     }),
   );
   const documents = 2000,

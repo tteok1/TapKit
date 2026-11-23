@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-11-23T16:23:27.332Z",
+  "failedCommit": "c1f576e",
+  "failedCommand": "pnpm test:e2e -- --grep 'P11-01 joint load' --repeat-each 2",
+  "failedExitCode": 1,
+  "failedCases": 2,
+  "phase": "fixture generation, before application measurement",
+  "error": "TypeError: SQLite3 can only bind numbers, strings, bigints, buffers, and null",
+  "location": "tests/fixtures/P11-01.retrieval.ts:44",
+  "cause": "Synthetic chunk token_count was assigned a Promise after the embedding count became asynchronous.",
+  "fix": "Await counts in the shared 2000-document/20000-chunk seed and the real embedding regression.",
+  "sourceFiles": [
+    {
+      "path": "tests/fixtures/P11-01.retrieval.ts",
+      "sha256": "aca94490d435c9a4b423a7e9ecbe2c2ddc81cb616ca967b18da9dc6fdbbe1030"
+    },
+    {
+      "path": "tests/integration/P04-01.embedding.test.ts",
+      "sha256": "1efad8097bba60a5c5840563b92252468e50cea3e2c1548c7b68c23f29278a0d"
+    }
+  ],
+  "regression": {
+    "command": "pnpm test:integration P11-01.embedding-worker P11-01.embedding-cold-start P11-01.index-scheduling P04-01.retrieval P04-01.embedding P11-01.work-fallback",
+    "exitCode": 0,
+    "passed": 18
+  },
+  "pending": [
+    "production retrieval smoke verifies full seed",
+    "normal joint load"
+  ]
+}
