@@ -140,10 +140,15 @@ export class HybridIndex {
     signal?.throwIfAborted();
     const doc = await source.document();
     assertScope();
-    const chunks = await chunkDocumentAsync(doc, this.embedder.count, () => {
-      signal?.throwIfAborted();
-      assertScope();
-    });
+    const chunks = await chunkDocumentAsync(
+      doc,
+      this.embedder.count,
+      () => {
+        signal?.throwIfAborted();
+        assertScope();
+      },
+      this.embedder.countAsync ? (text) => this.embedder.countAsync!(text, signal) : undefined,
+    );
     const vectors: Buffer[] = [];
     for (const chunk of chunks) {
       signal?.throwIfAborted();

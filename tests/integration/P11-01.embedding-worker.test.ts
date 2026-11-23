@@ -42,6 +42,7 @@ test('P11-01 BGE worker preserves counts and real vectors while keeping inferenc
       expect(background.revision).toBe(direct.revision);
       expect(background.dims).toBe(direct.dims);
       expect(background.count(text)).toBe(direct.count(text));
+      expect(await background.countAsync!(text)).toBe(direct.count(text));
       const expected = await direct.embed(text, query);
       const actual = await background.embed(text, query);
       maxAbsDifference = Math.max(
@@ -50,6 +51,8 @@ test('P11-01 BGE worker preserves counts and real vectors while keeping inferenc
       );
     }
     expect(maxAbsDifference).toBeLessThanOrEqual(1e-6);
+    expect(await background.countAsync!('')).toBe(0);
+    await expect(background.embed('')).rejects.toThrow('INVALID_EMBEDDING');
     const text = '退款规则、研发排期和材料审阅均通过项目授权。'.repeat(16);
     const baseline = await profile(direct, text);
     const worker = await profile(background, text);
@@ -101,7 +104,9 @@ test('P11-01 cancelling one embedding leaves the other root usable and shutdown 
 test('P11-01 shared embedding service can reopen after an explicit close', async () => {
   const first = await localEmbedder();
   await first.embed('第一轮检索。');
-  await closeLocalEmbedder();
+  const pending = localEmbedder();
+  const closed = expect(pending).rejects.toMatchObject({ name: 'AbortError' });
+  await Promise.all([closed, closeLocalEmbedder()]);
   const next = await localEmbedder();
   expect(next).not.toBe(first);
   expect(await next.embed('重新打开后的检索。')).toHaveLength(next.dims);

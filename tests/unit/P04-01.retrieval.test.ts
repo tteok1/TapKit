@@ -51,6 +51,14 @@ test('P04-01 structure slices keep original UTF16, headings, table units and nei
   ];
   const chunks = chunkDocument(doc, (s) => [...s].length);
   expect(await chunkDocumentAsync(doc, (s) => [...s].length)).toEqual(chunks);
+  expect(
+    await chunkDocumentAsync(
+      doc,
+      (s) => [...s].length,
+      () => {},
+      async (s) => [...s].length,
+    ),
+  ).toEqual(chunks);
   expect(chunks.length).toBeGreaterThan(3);
   expect(chunks.at(-1)!.text).toContain('最后一段不可丢失');
   for (const c of chunks) {

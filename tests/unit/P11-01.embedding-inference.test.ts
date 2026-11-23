@@ -8,6 +8,8 @@ test('P11-01 a cancelled worker window cannot deliver its late vector to another
   const client = new EmbeddingInference(entry, 'busy', 2, options, () => {});
   try {
     await client.ready;
+    expect(await client.count('')).toBe(0);
+    expect(await client.encode('')).toEqual([]);
     const abort = new AbortController();
     const cancelled = client.run([1, 2], abort.signal);
     const rejected = expect(cancelled).rejects.toMatchObject({ name: 'AbortError' });
@@ -41,4 +43,29 @@ test('P11-01 shutdown during initialization rejects waiting requests without sta
   await Promise.all([waiting, client.dispose()]);
   expect(client.healthy()).toBe(false);
   expect(closed).toHaveBeenCalledTimes(1);
+});
+
+test('P11-01 malformed worker vectors fail closed instead of reaching an index', async () => {
+  const closed = vi.fn();
+  const client = new EmbeddingInference(entry, 'malformed', 2, options, closed);
+  try {
+    await client.ready;
+    await expect(client.run([1, 2])).rejects.toThrow('INVALID_EMBEDDING');
+    expect(client.healthy()).toBe(false);
+    expect(closed).toHaveBeenCalledTimes(1);
+  } finally {
+    await client.dispose();
+  }
+});
+
+test('P11-01 a mismatched packaged worker protocol cannot become ready', async () => {
+  const closed = vi.fn();
+  const client = new EmbeddingInference(entry, 'mismatch', 2, options, closed);
+  try {
+    await expect(client.ready).rejects.toThrow('INDEX_NOT_READY');
+    expect(client.healthy()).toBe(false);
+    expect(closed).toHaveBeenCalledTimes(1);
+  } finally {
+    await client.dispose();
+  }
 });

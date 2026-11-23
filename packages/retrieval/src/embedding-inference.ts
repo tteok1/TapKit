@@ -1,7 +1,7 @@
 import { Worker } from 'node:worker_threads';
 
 type Pending = {
-  resolve: (values: Float32Array) => void;
+  resolve: (value: unknown) => void;
   reject: (error: unknown) => void;
   cleanup: () => void;
 };
@@ -37,8 +37,17 @@ export class EmbeddingInference {
     this.worker.on('exit', () => this.fail(new Error('INDEX_NOT_READY')));
     this.worker.on('message', (message: unknown) => {
       if (this.closed || !message || typeof message !== 'object') return;
-      const reply = message as { type?: string; id?: number; values?: unknown };
+      const reply = message as {
+        type?: string;
+        id?: number;
+        value?: unknown;
+        protocolVersion?: number;
+      };
       if (reply.type === 'ready') {
+        if (reply.protocolVersion !== 1) {
+          this.fail(new Error('INDEX_NOT_READY'));
+          return;
+        }
         clearTimeout(this.startupTimer);
         this.resolveReady();
         if (!this.pending.size) this.worker.unref();
@@ -46,13 +55,7 @@ export class EmbeddingInference {
       }
       if (!Number.isSafeInteger(reply.id)) return;
       if (reply.type === 'error') this.finish(reply.id!, new Error('INVALID_EMBEDDING'));
-      else if (reply.type === 'result') {
-        if (!(reply.values instanceof Float32Array) || reply.values.length !== this.dims) {
-          this.fail(new Error('INVALID_EMBEDDING'));
-          return;
-        }
-        this.finish(reply.id!, undefined, reply.values);
-      }
+      else if (reply.type === 'result') this.finish(reply.id!, undefined, reply.value, true);
     });
   }
 
@@ -60,13 +63,13 @@ export class EmbeddingInference {
     return !this.closed;
   }
 
-  private finish(id: number, error?: unknown, values?: Float32Array) {
+  private finish(id: number, error?: unknown, value?: unknown, success = false) {
     const pending = this.pending.get(id);
     if (!pending) return; // A cancelled window may finish later; it cannot reach its caller.
     this.pending.delete(id);
     pending.cleanup();
     if (!this.pending.size) this.worker.unref();
-    if (values) pending.resolve(values);
+    if (success) pending.resolve(value);
     else pending.reject(error);
   }
 
@@ -81,28 +84,75 @@ export class EmbeddingInference {
     this.termination ??= this.worker.terminate();
   }
 
-  async run(ids: number[], signal?: AbortSignal): Promise<Float32Array> {
+  private async request<T>(
+    payload: Record<string, unknown>,
+    decode: (value: unknown) => T,
+    signal?: AbortSignal,
+  ): Promise<T> {
     signal?.throwIfAborted();
     if (this.closed) throw new Error('INDEX_NOT_READY');
     await this.ready;
     signal?.throwIfAborted();
     if (this.closed) throw this.closeReason;
-    return new Promise((resolve, reject) => {
+    return new Promise<T>((resolve, reject) => {
       const id = ++this.nextId;
       const cancel = () => this.finish(id, signal!.reason);
       this.pending.set(id, {
-        resolve,
+        resolve: (value) => {
+          try {
+            resolve(decode(value));
+          } catch {
+            const error = new Error('INVALID_EMBEDDING');
+            reject(error);
+            this.fail(error);
+          }
+        },
         reject,
         cleanup: () => signal?.removeEventListener('abort', cancel),
       });
       signal?.addEventListener('abort', cancel, { once: true });
       this.worker.ref();
       try {
-        this.worker.postMessage({ type: 'run', id, ids });
+        this.worker.postMessage({ ...payload, id });
       } catch {
         this.fail(new Error('INDEX_NOT_READY'));
       }
     });
+  }
+
+  run(ids: number[], signal?: AbortSignal) {
+    return this.request(
+      { type: 'run', ids },
+      (value) => {
+        if (!(value instanceof Float32Array) || value.length !== this.dims) throw new Error();
+        return value;
+      },
+      signal,
+    );
+  }
+
+  count(text: string, signal?: AbortSignal) {
+    return this.request(
+      { type: 'count', text },
+      (value) => {
+        if (typeof value !== 'number' || !Number.isSafeInteger(value) || value < 0)
+          throw new Error();
+        return value;
+      },
+      signal,
+    );
+  }
+
+  encode(text: string, signal?: AbortSignal) {
+    return this.request(
+      { type: 'encode', text },
+      (value) => {
+        if (!Array.isArray(value) || !value.every((id) => Number.isSafeInteger(id) && id >= 0))
+          throw new Error();
+        return value as number[];
+      },
+      signal,
+    );
   }
 
   async dispose() {

@@ -11,6 +11,7 @@ export interface Embedder {
   readonly revision: string;
   readonly dims: number;
   count(text: string): number;
+  countAsync?(text: string, signal?: AbortSignal): Promise<number>;
   embed(text: string, query?: boolean, signal?: AbortSignal): Promise<Float32Array>;
   dispose?(): Promise<void>;
 }
@@ -94,6 +95,7 @@ function bgeEmbedder(
   setup: Awaited<ReturnType<typeof prepareBge>>,
   infer: (ids: number[], signal?: AbortSignal) => Promise<Float32Array>,
   dispose: () => Promise<void>,
+  encodeAsync?: (text: string, signal?: AbortSignal) => Promise<number[]>,
 ): Embedder {
   const { config, special, windowSize, encode } = setup;
   return {
@@ -102,7 +104,9 @@ function bgeEmbedder(
     count: (text) => encode(text).length,
     async embed(text, query = false, signal) {
       signal?.throwIfAborted();
-      const ids = encode((query ? lock.queryPrefix : '') + text);
+      const inputText = (query ? lock.queryPrefix : '') + text;
+      const ids = encodeAsync ? await encodeAsync(inputText, signal) : encode(inputText);
+      signal?.throwIfAborted();
       if (!ids.length) throw new Error('INVALID_EMBEDDING');
       const windows: { vector: Float32Array; weight: number }[] = [];
       for (const window of tokenWindows(ids, windowSize)) {
@@ -170,7 +174,9 @@ async function backgroundBge(
       setup,
       (ids, signal) => client.run(ids, signal),
       () => client.dispose(),
+      (text, signal) => client.encode(text, signal),
     ),
+    countAsync: (text, signal) => client.count(text, signal),
     healthy: () => client.healthy(),
     dispose: () => client.dispose(),
   };
@@ -181,11 +187,13 @@ export function loadBackgroundBge(directory?: string) {
 let loaded: Promise<BackgroundEmbedder> | undefined;
 let shutdown = new AbortController();
 export async function localEmbedder(): Promise<Embedder> {
-  const pending = (loaded ??= backgroundBge(undefined, shutdown.signal).catch((error) => {
+  const closingSignal = shutdown.signal;
+  const pending = (loaded ??= backgroundBge(undefined, closingSignal).catch((error) => {
     if (loaded === pending) loaded = undefined;
     throw error;
   }));
   const value = await pending;
+  closingSignal.throwIfAborted();
   if (!value.healthy()) {
     if (loaded === pending) loaded = undefined;
     return localEmbedder();

@@ -1,0 +1,114 @@
+{
+  "recordedAt": "2026-11-23T15:40:28.967Z",
+  "baseCommit": "18768f0ba02385257248aff9d9acfc432621bf47",
+  "priorJoint": {
+    "reports": [
+      "local-model-only-repeat-0.json",
+      "local-model-only-repeat-1.json"
+    ],
+    "p95Ms": [
+      140,
+      60
+    ],
+    "conclusion": "one failure; hold merge"
+  },
+  "fix": "Move indexing counts and embedding tokenization to the same compute worker. Sync and async chunking share one generator; check scope after every asynchronous count. Preserve pre-close AbortError and prevent old shared-service waiters from reopening after shutdown. Verify worker protocol before ready.",
+  "commands": [
+    {
+      "command": "pnpm test:integration P11-01.embedding-worker P11-01.index-scheduling P04-01.retrieval P11-01.work-fallback",
+      "exitCode": 0,
+      "passed": 12
+    },
+    {
+      "command": "pnpm test:unit P11-01.embedding-inference P04-01.retrieval",
+      "exitCode": 0,
+      "passed": 8
+    },
+    {
+      "command": "pnpm exec tsc --project tsconfig.json",
+      "exitCode": 0
+    }
+  ],
+  "regressionRed": {
+    "command": "pnpm test:integration P11-01.embedding-worker --testNamePattern shared embedding service",
+    "exitCode": 1,
+    "failed": 1,
+    "scope": "Development iteration before shared-close generation guard; not the unmodified base Git tree."
+  },
+  "sourceFiles": [
+    {
+      "path": "packages/retrieval/src/embedding.ts",
+      "sha256": "d2215ccc84f7eda7a7954f9dcf7c4d129bffd74675b460f8ad3e60138d1ced2c"
+    },
+    {
+      "path": "packages/retrieval/src/embedding-inference.ts",
+      "sha256": "c56ea1d209b5597620b000db03bc5dda344a131e11ffd820a2647ee8f6068471"
+    },
+    {
+      "path": "packages/retrieval/src/embedding-worker.mjs",
+      "sha256": "31926e9bb993ff00d38959f22b9cad4f072eef7bdeaab9dafce489274c41b9b8"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "a58f795e6a2a2430c6a66783a9c9be64a364d00d39fb5ba437ab254d41eaee9d"
+    },
+    {
+      "path": "scripts/desktop-build.mjs",
+      "sha256": "ad04367920e106448ed4fae83e5b3e4afc0e570c55018d8a0024b87376184724"
+    },
+    {
+      "path": "tests/setup.ts",
+      "sha256": "108892f5f3e06ada460047c478f0c5b5a786579284d6b6ec8ef08280df889717"
+    },
+    {
+      "path": "tests/fixtures/P11-01.joint-seed.test.ts",
+      "sha256": "dbbd8e9200a454ee07e4f4973bdb76d5ad0fe0ebc69fe84752c2a434e955fc04"
+    },
+    {
+      "path": "tests/integration/P11-01.embedding-worker.test.ts",
+      "sha256": "a89d6f6512282677981526c53dacdfd15f848a6244399f88c06e7a049ed3b512"
+    },
+    {
+      "path": "tests/unit/P11-01.embedding-inference.test.ts",
+      "sha256": "5a6b2563c0657cbfdd361b48fc8cf4861dd421f327284a50fcdb010ff133d046"
+    },
+    {
+      "path": "tests/fixtures/P11-01.embedding-worker-control.mjs",
+      "sha256": "53e3b419f1cc4f5959326ccc1dda790791d16f82d113fd4defd1ade994da7a4d"
+    },
+    {
+      "path": "tests/e2e/P11-01.joint-load.spec.ts",
+      "sha256": "a26fe866be66ce86b5b0cad809bb222ae20fa072cfab33f4088946441a80f02b"
+    },
+    {
+      "path": ".github/workflows/check.yml",
+      "sha256": "b27134fee1e21ec167510555e7e226b133dc2bb11b59f5718b12daa55944ac1e"
+    },
+    {
+      "path": "packages/retrieval/src/chunking.ts",
+      "sha256": "0bd0eabeccaf3e020c9d5f57476419d1978054ca11ad914fc0f9a8e8d2382c28"
+    },
+    {
+      "path": "packages/retrieval/src/search.ts",
+      "sha256": "bd0235bae2dcc42737ad06442ff2d42640b679dea358110ecddaa0c5bca60f61"
+    },
+    {
+      "path": "tests/unit/P04-01.retrieval.test.ts",
+      "sha256": "6c44a0915e639496b8c4dd16c5dc7cf0aaa4d7c12375980edd5dda5c1cc197d8"
+    },
+    {
+      "path": "tests/integration/P11-01.index-scheduling.test.ts",
+      "sha256": "70a2df937099a9a8dbbbe890d3e8aa90e35605bfe7a694100ef5da936c2645b5"
+    },
+    {
+      "path": "tests/e2e/P11-01.package-rag.spec.ts",
+      "sha256": "f9dff3616e327bb2445b2642d9869e6b1b4db6c5e5872f63374a0cf5e29d924e"
+    }
+  ],
+  "pending": [
+    "new two-round Electron joint load",
+    "source and package real BGE IPC smoke",
+    "full CI",
+    "fresh development package"
+  ]
+}

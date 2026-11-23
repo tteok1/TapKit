@@ -1,10 +1,16 @@
 import { expect, test, vi } from 'vitest';
+import { setImmediate as yieldTurn } from 'node:timers/promises';
 import { HybridIndex, type Embedder } from '../../packages/retrieval/src';
 import { retrievalFixture } from './P04-01.fixture';
 
-test.each(['cancel', 'revoke'] as const)(
-  'P11-01 indexing yields during chunking so %s runs before embedding or publication',
-  async (action) => {
+test.each([
+  ['cancel', false],
+  ['revoke', false],
+  ['cancel', true],
+  ['revoke', true],
+] as const)(
+  'P11-01 indexing yields so %s runs before publication with async count=%s',
+  async (action, asyncCount) => {
     const f = await retrievalFixture();
     const abort = new AbortController();
     let cancel: ReturnType<typeof setImmediate> | undefined;
@@ -28,6 +34,11 @@ test.each(['cancel', 'revoke'] as const)(
         },
         embed,
       };
+      if (asyncCount)
+        embedder.countAsync = async (text) => {
+          await yieldTurn();
+          return embedder.count(text);
+        };
       const task = new HybridIndex(f.store, embedder).ensure(
         {
           fileId: file.id,

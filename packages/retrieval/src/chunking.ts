@@ -23,10 +23,9 @@ export type Chunk = {
 /** Boundaries use the actual locked tokenizer and UTF-16 source offsets. */
 function* textSliceSteps(
   text: string,
-  count: Embedder['count'],
   target = 800,
   overlap = 120,
-): Generator<void, { start: number; end: number }[]> {
+): Generator<string, { start: number; end: number }[], number> {
   const slices: { start: number; end: number }[] = [];
   const boundary = (at: number) => (at > 0 && /[\uDC00-\uDFFF]/.test(text[at] ?? '') ? at - 1 : at);
   let start = 0;
@@ -35,8 +34,7 @@ function* textSliceSteps(
       hi = Math.min(text.length, start + 16000);
     while (lo < hi) {
       const mid = Math.ceil((lo + hi) / 2);
-      const size = count(text.slice(start, mid));
-      yield;
+      const size = yield text.slice(start, mid);
       if (size <= target) lo = mid;
       else hi = mid - 1;
     }
@@ -54,8 +52,7 @@ function* textSliceSteps(
     hi = end;
     while (lo < hi) {
       const mid = Math.floor((lo + hi) / 2);
-      const size = count(text.slice(mid, end));
-      yield;
+      const size = yield text.slice(mid, end);
       if (size > overlap) lo = mid + 1;
       else hi = mid;
     }
@@ -63,10 +60,7 @@ function* textSliceSteps(
   }
   return slices;
 }
-function* chunkDocumentSteps(
-  doc: ParsedDocument,
-  count: Embedder['count'],
-): Generator<void, Chunk[]> {
+function* chunkDocumentSteps(doc: ParsedDocument): Generator<string, Chunk[], number> {
   const chunks: Chunk[] = [],
     seen = new Set<string>();
   let parent: number | null = null,
@@ -94,8 +88,7 @@ function* chunkDocumentSteps(
         )
           break;
         const candidate = combined + '\t' + selectedMaterial(doc, next).text;
-        const size = count(candidate);
-        yield;
+        const size = yield candidate;
         if (size > 800) break;
         locator.range =
           locator.range.split(':')[0] + ':' + (next.range.split(':')[1] ?? next.range);
@@ -113,8 +106,7 @@ function* chunkDocumentSteps(
         )
           break;
         const combined = { ...locator, lineEnd: next.locator.lineEnd };
-        const size = count(locatedText(doc, combined));
-        yield;
+        const size = yield locatedText(doc, combined);
         if (size > 800) break;
         locator.lineEnd = next.locator.lineEnd;
         at++;
@@ -135,8 +127,7 @@ function* chunkDocumentSteps(
           next.locator.start !== locator.end + 1
         )
           break;
-        const size = count(selectedMaterial(doc, { ...locator, end: next.locator.end }).text);
-        yield;
+        const size = yield selectedMaterial(doc, { ...locator, end: next.locator.end }).text;
         if (size > 800) break;
         locator.end = next.locator.end;
         at++;
@@ -158,7 +149,7 @@ function* chunkDocumentSteps(
         context.push({ text: headText, locator: headLocator, hash: digest(headText) });
       }
     }
-    const slices = yield* textSliceSteps(source, count);
+    const slices = yield* textSliceSteps(source);
     for (const slice of slices) {
       let pieceLocator = locator,
         range: Chunk['range'] = slice;
@@ -171,9 +162,8 @@ function* chunkDocumentSteps(
         range = null;
       }
       const text = source.slice(slice.start, slice.end),
-        ordinal = chunks.length,
-        tokens = count(text);
-      yield;
+        ordinal = chunks.length;
+      const tokens = yield text;
       chunks.push({
         kind: block.kind,
         ordinal,
@@ -197,18 +187,18 @@ function* chunkDocumentSteps(
   return chunks;
 }
 
-function finish<T>(steps: Generator<void, T>): T {
+function finish<T>(steps: Generator<string, T, number>, count: Embedder['count']): T {
   let result = steps.next();
-  while (!result.done) result = steps.next();
+  while (!result.done) result = steps.next(count(result.value));
   return result.value;
 }
 
 export function textSlices(text: string, count: Embedder['count'], target = 800, overlap = 120) {
-  return finish(textSliceSteps(text, count, target, overlap));
+  return finish(textSliceSteps(text, target, overlap), count);
 }
 
 export function chunkDocument(doc: ParsedDocument, count: Embedder['count']): Chunk[] {
-  return finish(chunkDocumentSteps(doc, count));
+  return finish(chunkDocumentSteps(doc), count);
 }
 
 /** Keep tokenizer work cooperative without changing chunk boundaries or publication atomicity. */
@@ -216,20 +206,22 @@ export async function chunkDocumentAsync(
   doc: ParsedDocument,
   count: Embedder['count'],
   guard: () => void = () => {},
+  countAsync?: (text: string) => Promise<number>,
 ): Promise<Chunk[]> {
-  const steps = chunkDocumentSteps(doc, count);
+  const steps = chunkDocumentSteps(doc);
   let turnStarted = performance.now();
   guard();
-  for (;;) {
-    const result = steps.next();
-    if (result.done) {
-      guard();
-      return result.value;
-    }
+  let result = steps.next();
+  while (!result.done) {
+    const tokens = countAsync ? await countAsync(result.value) : count(result.value);
+    if (countAsync) guard();
     if (performance.now() - turnStarted >= 4) {
       await yieldTurn();
       guard();
       turnStarted = performance.now();
     }
+    result = steps.next(tokens);
   }
+  guard();
+  return result.value;
 }
