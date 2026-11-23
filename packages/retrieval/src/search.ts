@@ -1,7 +1,7 @@
 import type { ParsedDocument, EvidenceRef, ResourceRef } from '@tapkit/contracts';
 import { EvidenceRefSchema } from '@tapkit/contracts';
 import { type Store, newId, StorageError } from '@tapkit/storage';
-import { CHUNK_POLICY, chunkDocument, type Chunk, type ContextPart } from './chunking';
+import { CHUNK_POLICY, chunkDocumentAsync, type Chunk, type ContextPart } from './chunking';
 import { type Embedder } from './embedding';
 
 export type Source = {
@@ -140,7 +140,10 @@ export class HybridIndex {
     signal?.throwIfAborted();
     const doc = await source.document();
     assertScope();
-    const chunks = chunkDocument(doc, this.embedder.count);
+    const chunks = await chunkDocumentAsync(doc, this.embedder.count, () => {
+      signal?.throwIfAborted();
+      assertScope();
+    });
     const vectors: Buffer[] = [];
     for (const chunk of chunks) {
       signal?.throwIfAborted();

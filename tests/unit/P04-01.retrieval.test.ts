@@ -5,6 +5,7 @@ import {
   weightedWindows,
   textSlices,
   chunkDocument,
+  chunkDocumentAsync,
   cosine,
   markConflicts,
 } from '../../packages/retrieval/src';
@@ -29,7 +30,7 @@ test('P04-01 windows cover every token once in weights and preserve the final 38
   expect(() => weightedWindows([{ vector: new Float32Array([NaN, 0]), weight: 1 }], 2)).toThrow();
   expect(() => cosine(new Float32Array(2), new Float32Array(3))).toThrow();
 });
-test('P04-01 structure slices keep original UTF16, headings, table units and neighbors', () => {
+test('P04-01 structure slices keep original UTF16, headings, table units and neighbors', async () => {
   const doc = emptyDocument('markdown');
   const heading = '退款说明',
     body = '退款期限为七天。'.repeat(230) + '😀最后一段不可丢失';
@@ -49,6 +50,7 @@ test('P04-01 structure slices keep original UTF16, headings, table units and nei
     },
   ];
   const chunks = chunkDocument(doc, (s) => [...s].length);
+  expect(await chunkDocumentAsync(doc, (s) => [...s].length)).toEqual(chunks);
   expect(chunks.length).toBeGreaterThan(3);
   expect(chunks.at(-1)!.text).toContain('最后一段不可丢失');
   for (const c of chunks) {
