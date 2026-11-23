@@ -1,6 +1,6 @@
 # 当前接续点
 
-- 2026-11-23，P11-01 优化提交 `91f4909` 的 [CI #112](https://github.com/tteok1/TapKit/actions/runs/45111848600) 首轮联合负载流式 P95 106 毫秒超限，内存、取消与双 Office 工作通过。重跑接口权限不足，补只读分段诊断后重新推送验证。规格机与 R01–R08 待验。见 [P11-01](P11-01.md)。
+- 2026-11-23，P11-01 的 [CI #112](https://github.com/tteok1/TapKit/actions/runs/45111848600) 主工程通过，联合负载 P95 106 毫秒超限，Electron 63/65。修复 Markdown 加载状态和解压测试入口，补流式分段诊断，准备推送复验并重新出包。规格机与 R01–R08 待验。见 [P11-01](P11-01.md)。
 
 - 2026-11-13，P10-03=implemented_and_verified。分支 `codex/p10-03-data-lifecycle` 基于远端 main `761f08e`。T20、42 项定向集成和两次 Electron 验收通过。CI #103 的版本预检及 #104 的导出状态同步已修复，本地全量单元 522 项通过。P10 工程通过，R13 和 Windows 安装版登录启动仍待实机。详见 [P10-03](P10-03.md) 和 [P10-gate](P10-gate.md)。
 

@@ -1059,13 +1059,7 @@ export function ChatSurface({
               ) : message.role === 'assistant' ? (
                 <details open className="answer-body">
                   <summary hidden={message.text.length <= 20000}>展开或收起长回复</summary>
-                  <Suspense
-                    fallback={
-                      <div className="chat-markdown" style={{ whiteSpace: 'pre-wrap' }}>
-                        {message.text}
-                      </div>
-                    }
-                  >
+                  <Suspense fallback={<pre className="chat-stream">{message.text}</pre>}>
                     <ChatMarkdown
                       text={citationMarkdown(
                         message.text,
