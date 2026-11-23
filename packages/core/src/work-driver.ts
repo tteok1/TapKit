@@ -25,6 +25,7 @@ import type { WorkDriver, WorkCandidate } from './work-service';
 import { researchWorkDriver } from './research-driver';
 import type { ResearchService } from './research-service';
 import { MemoryService } from './memory-service';
+import { sourceBackgroundMessages } from './source-background';
 
 export function modelWorkDriver(
   models: ModelService,
@@ -547,7 +548,8 @@ export function modelWorkDriver(
     const backgroundModules = [background?.module, background?.historyModule].filter(
       (module) => module !== undefined,
     );
-    const sourceTokens = JSON.stringify([messages, backgroundModules]).length;
+    messages.unshift(...sourceBackgroundMessages(backgroundModules));
+    const sourceTokens = JSON.stringify(messages).length;
     if (sourceTokens > 100000) throw new StorageError('OUTPUT_LIMIT_REACHED');
     for await (const event of models.router.stream(
       {
@@ -573,7 +575,6 @@ export function modelWorkDriver(
         request: {
           messages,
           systemModules: [
-            ...backgroundModules,
             {
               id: 'tapkit.work',
               text:

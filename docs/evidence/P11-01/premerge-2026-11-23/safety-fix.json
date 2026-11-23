@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-11-23T13:09:30.730Z",
+  "baseCommit": "5829cd255444fafcb4a7805da112392a948a588a",
+  "issue": "Work driver passed recalled memory/history as system modules, violating ADR0054",
+  "red": {
+    "command": "local-retest.ps1 -Stage ReviewRed",
+    "exitCode": 1,
+    "failed": 1,
+    "expectedFailure": "memory.background was present in the provider request systemModules"
+  },
+  "fix": "Share source-data user-message wrapping with chat; preserve source IDs and current goal order; include wrapped data in work input estimate",
+  "green": {
+    "command": "local-retest.ps1 -Stage ReviewSafety",
+    "exitCode": 0,
+    "passed": 22,
+    "failed": 0,
+    "pending": 0
+  },
+  "typescript": {
+    "command": "pnpm exec tsc --project tsconfig.json",
+    "exitCode": 0
+  },
+  "assertionScope": [
+    "subscription and fallback API request roles",
+    "memory/history preserved as user data",
+    "current goal remains last user message",
+    "foreign project memory excluded",
+    "one committed tool side effect"
+  ],
+  "paidRequests": 0,
+  "sourceFiles": [
+    {
+      "path": "packages/core/src/source-background.ts",
+      "sha256": "e701fa7c9f2ff9fd460568d59f8c07f96f500cae6823b0260785105f08d1ac2a"
+    },
+    {
+      "path": "packages/core/src/context-service.ts",
+      "sha256": "2282983905f168088a1539e9f086ff6edf31ea63e668dd532cc327e0fc6f7d0c"
+    },
+    {
+      "path": "packages/core/src/work-driver.ts",
+      "sha256": "6851ad95fa818b3e123ea10166b30a2c85616e172d30c50e76d6a83d0dd94421"
+    },
+    {
+      "path": "tests/integration/P11-01.work-fallback.test.ts",
+      "sha256": "7425bca72b93c3091bf8934c73d39fafc7a2db368b69383d9cc0ccd8941c328e"
+    }
+  ]
+}
