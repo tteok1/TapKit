@@ -2,7 +2,7 @@ param([Parameter(Mandatory = $true)][int]$RootProcessId)
 
 $ErrorActionPreference = 'Stop'
 while (Get-Process -Id $RootProcessId -ErrorAction SilentlyContinue) {
-    $processes = Get-CimInstance Win32_Process -Property ProcessId, ParentProcessId, Name, WorkingSetSize
+    $processes = Get-CimInstance Win32_Process -Property ProcessId, ParentProcessId, Name, WorkingSetSize -OperationTimeoutSec 10
     if (!($processes | Where-Object ProcessId -eq $RootProcessId)) { break }
     $descendants = [System.Collections.Generic.HashSet[uint32]]::new()
     $null = $descendants.Add($RootProcessId)

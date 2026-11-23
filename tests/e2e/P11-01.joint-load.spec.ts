@@ -11,12 +11,27 @@ import { openSessionFixture, reopenSessionFixture } from './session-fixture';
 import { measureStreaming } from './streaming-perf-fixture';
 
 type Sample = { at: number; totalBytes: number; processCount: number; nativeHelpers: number };
+type SamplerState = {
+  startedAt: number | null;
+  firstSampleMs: number | null;
+  exitCode: number | null;
+  signal: string | null;
+  stopping: boolean;
+};
 
-function sampleWorkingSet(rootPid: number, samples: Sample[], errors: string[]) {
+function sampleWorkingSet(
+  rootPid: number,
+  samples: Sample[],
+  errors: string[],
+  state: SamplerState,
+) {
+  const started = performance.now();
+  state.startedAt = Date.now();
   const sampler = spawn(
-    'powershell.exe',
+    'pwsh.exe',
     [
       '-NoProfile',
+      '-NonInteractive',
       '-File',
       resolve('tests/fixtures/P11-01-working-set.ps1'),
       '-RootProcessId',
@@ -25,10 +40,16 @@ function sampleWorkingSet(rootPid: number, samples: Sample[], errors: string[]) 
     { windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] },
   );
   sampler.on('error', (error) => errors.push(error.message));
+  sampler.on('exit', (code, signal) => {
+    state.exitCode = code;
+    state.signal = signal;
+    if (!state.stopping) errors.push(`Memory sampler exited: ${code ?? signal ?? 'unknown'}`);
+  });
   sampler.stderr.setEncoding('utf8').on('data', (message: string) => errors.push(message));
   createInterface({ input: sampler.stdout }).on('line', (line) => {
     try {
       samples.push(JSON.parse(line) as Sample);
+      state.firstSampleMs ??= performance.now() - started;
     } catch {
       errors.push('Invalid working set sample');
     }
@@ -135,6 +156,13 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
   });
   const samples: Sample[] = [];
   const samplerErrors: string[] = [];
+  const samplerState: SamplerState = {
+    startedAt: null,
+    firstSampleMs: null,
+    exitCode: null,
+    signal: null,
+    stopping: false,
+  };
   let sampler: ReturnType<typeof sampleWorkingSet> | undefined;
   const phases = (start: number, end: number) => {
     const points = samples.filter(({ at }) => at >= start && at <= end);
@@ -165,6 +193,7 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
     scope:
       'Locked BGE CPU embeddings, two synthetic upstream chats, two isolated DOCX-to-PDF work roots. Windows process-tree working set including native helpers and their children.',
     samplerErrors,
+    sampler: samplerState,
     results: {} as Record<string, unknown>,
   };
   try {
@@ -186,8 +215,13 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
     const first = await openSessionFixture(page, 'P11 联合聊天'),
       second = await openSessionFixture(page, 'P11 联合取消');
     await reopenSessionFixture(page, first);
-    sampler = sampleWorkingSet(app.process().pid!, samples, samplerErrors);
-    await expect.poll(() => samples.length, { timeout: 15_000 }).toBeGreaterThan(0);
+    sampler = sampleWorkingSet(app.process().pid!, samples, samplerErrors, samplerState);
+    // Collector process/WMI startup is outside the application performance window.
+    await expect
+      .poll(() => samples.length > 0 || samplerErrors.length > 0, { timeout: 60_000 })
+      .toBe(true);
+    expect(samplerErrors).toEqual([]);
+    expect(samples.length).toBeGreaterThan(0);
     const chatStartedAt = Date.now();
     const chat = await measureStreaming(page, first, second, indexWork);
     const chatMemory = phases(chatStartedAt, Date.now());
@@ -213,6 +247,7 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
       expect(work.artifacts).toBeGreaterThan(0);
     }
   } finally {
+    samplerState.stopping = true;
     sampler?.kill();
     await app.close();
     const path = resolve('test-results/P11-01/joint-load.json');
@@ -221,6 +256,8 @@ test('P11-01 joint load: live index and two chat roots, then two native Office r
     console.info(
       'P11-01 joint load',
       JSON.stringify({
+        sampler: report.sampler,
+        samplerErrors: report.samplerErrors,
         runtimeCapabilities: report.results.runtimeCapabilities,
         chatAndIndex: Object.fromEntries(
           Object.entries(report.results.chatAndIndex ?? {}).filter(([key]) => key !== 'samples'),
