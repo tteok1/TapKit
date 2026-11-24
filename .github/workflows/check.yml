@@ -82,6 +82,53 @@ jobs:
             docs/evidence/P09-02
             docs/evidence/P09-03
             docs/evidence/P09-04
+  windows-installer:
+    if: github.event_name != 'workflow_dispatch'
+    runs-on: windows-2025
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+      - uses: actions/cache/restore@v5
+        with:
+          path: |
+            .cache/downloads
+            .cache/wheels
+          key: windows-runtime-archives-v1-${{ hashFiles('runtime-lock.json', 'dependency-baseline.json', 'python-wheels.lock.json') }}
+      - name: Bootstrap locked build inputs
+        run: node scripts/bootstrap.mjs
+      - name: Build unsigned NSIS development installer and upgrade fixture
+        id: package
+        run: |
+          .\.runtime\node\node-v24.21.0-win-x64\node.exe .cache/tools/pnpm/package/bin/pnpm.mjs dist:win --acceptance
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $release = @(Get-ChildItem release -Directory -Filter 'TapKit-windows-*')
+          if ($release.Count -ne 1) { throw 'Expected one installer build receipt' }
+          "directory=$($release[0].FullName)" >> $env:GITHUB_OUTPUT
+      - name: P11-02 self-contained install and lifecycle under a standard user
+        env:
+          TAPKIT_CI_INSTALLERS: ${{ steps.package.outputs.directory }}
+        run: ./tests/install/ci-standard-user.ps1 -Packages $env:TAPKIT_CI_INSTALLERS
+      - uses: actions/upload-artifact@v4
+        if: ${{ steps.package.outcome == 'success' }}
+        with:
+          name: windows-p11-02-development-installers
+          path: |
+            ${{ steps.package.outputs.directory }}/*.exe
+            ${{ steps.package.outputs.directory }}/*.sha256
+            ${{ steps.package.outputs.directory }}/build-receipt.json
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-p11-02-installation-evidence
+          path: ci-evidence/P11-02
   office-native:
     if: github.event_name != 'workflow_dispatch'
     # Keep the verified native report on this runner. Its full runtime hashing

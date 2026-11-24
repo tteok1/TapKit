@@ -1,0 +1,16 @@
+{
+  "repository": "tteok1/TapKit",
+  "branch": "codex/p11-02-windows-installer",
+  "head": "75e4714b799eefaab6835ac2a6eb01e9a2edaabf",
+  "runId": 45396690739,
+  "runNumber": 130,
+  "status": "in_progress",
+  "url": "https://github.com/tteok1/TapKit/actions/runs/45396690739",
+  "jobs": [
+    "check",
+    "office-native",
+    "electron",
+    "p11-joint-load",
+    "windows-installer"
+  ]
+}

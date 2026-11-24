@@ -1,6 +1,8 @@
 # 当前接续点
 
-- 2026-11-24，P11-01 CI127两轮流式39/40ms通过，第二轮内存采样短暂误归属风险（146进程/4239.69MiB）待复验；已补创建时间身份校验及4项回归，原算法3项失败可复现。新候选待CI；新包原生22/22通过而性能仍在执行，main未改。见 [P11-01](P11-01.md)。
+- 2026-11-24，P11-02=implemented_not_live_verified。分支 `codex/p11-02-windows-installer` 的 73c2bfc 通过 CI 五个常规作业，标准用户安装生命周期 33/33。已生成并核验开发 EXE。R09 干净 Win11 待实测，R11 签名待资源。见 [CI #135](https://github.com/tteok1/TapKit/actions/runs/45409702302) 和 [P11-02](P11-02.md)。
+
+- 2026-11-24，P11-01 源码开发版在基线 44cd07c 通过 CI #128 和 main CI #129。性能优化停止，待规格 Win11 和 R01–R08。见 [P11-01](P11-01.md)。
 
 - 2026-11-13，P10-03=implemented_and_verified。分支 `codex/p10-03-data-lifecycle` 基于远端 main `761f08e`。T20、42 项定向集成和两次 Electron 验收通过。CI #103 的版本预检及 #104 的导出状态同步已修复，本地全量单元 522 项通过。P10 工程通过，R13 和 Windows 安装版登录启动仍待实机。详见 [P10-03](P10-03.md) 和 [P10-gate](P10-gate.md)。
 

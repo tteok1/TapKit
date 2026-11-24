@@ -1,0 +1,23 @@
+appId: io.tapkit.desktop
+productName: TapKit
+executableName: TapKit
+electronVersion: 44.3.0
+asar: true
+buildDependenciesFromSource: false
+publish: null
+win:
+  target:
+    - target: nsis
+      arch: x64
+  signAndEditExecutable: false
+nsis:
+  script: build/installer.nsi
+  installerLanguages:
+    - zh-CN
+    - en-US
+  oneClick: false
+  perMachine: false
+  allowElevation: false
+  packElevateHelper: false
+  differentialPackage: false
+  artifactName: TapKit-${version}-windows-x64-development.exe

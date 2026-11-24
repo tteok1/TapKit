@@ -1,14 +1,14 @@
 import { mkdirSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { join } from 'node:path';
 import { afterAll, afterEach, beforeAll, beforeEach, vi } from 'vitest';
-import { cleanupTestDirectories, mkdtempSync } from '../scripts/test-temp.mjs';
+import { cleanupTestDirectories, mkdtempSync, testRoot } from '../scripts/test-temp.mjs';
 import { closeLocalEmbedder } from '../packages/retrieval/src/embedding';
-mkdirSync('.test-data', { recursive: true });
+mkdirSync(testRoot, { recursive: true });
 // Never expose an inherited account during collection, including entirely skipped files.
 delete process.env.TAPKIT_DATA_DIR;
 beforeAll(() => {
   // Allocate only when this file actually runs; skipped suites do not execute afterAll.
-  process.env.TAPKIT_DATA_DIR = mkdtempSync(resolve('.test-data', '单元 集成-'));
+  process.env.TAPKIT_DATA_DIR = mkdtempSync(join(testRoot, '单元 集成-'));
   mkdirSync(join(process.env.TAPKIT_DATA_DIR, 'tmp'), { recursive: true });
 });
 beforeEach(() => {

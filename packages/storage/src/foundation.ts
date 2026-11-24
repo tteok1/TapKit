@@ -551,12 +551,17 @@ export async function openStore(
   const trace = startupTrace('storage.open');
   trace('directory.begin');
   await mkdir(join(dataDir, 'db'), { recursive: true });
+  const databasePath = join(dataDir, 'db/app.sqlite');
   trace('restore-check.begin');
   if (allowRecovery && (await fileExists(join(dataDir, 'db/pending-restore.json')))) {
+    // An older package must never apply a pending restore over a newer live schema.
+    const schema = readExistingSchema(databasePath);
+    if (schema !== undefined && schema > SCHEMA_VERSION)
+      throw new StorageError('DATABASE_RECOVERY_REQUIRED');
     await deletionJournal(dataDir);
     await runPendingRestore(dataDir, SCHEMA_VERSION);
   }
-  if (!(await fileExists(join(dataDir, 'db/app.sqlite')))) {
+  if (!(await fileExists(databasePath))) {
     const restored = allowRecovery && (await restoreLatestSnapshot(dataDir));
     if (!restored && (await fileExists(join(dataDir, 'db/quarantine'))))
       throw new StorageError('DATABASE_RECOVERY_REQUIRED');
@@ -565,7 +570,10 @@ export async function openStore(
   let newer = false;
   try {
     trace('native-open.begin');
-    db = new Database(join(dataDir, 'db/app.sqlite'));
+    const schema = readExistingSchema(databasePath);
+    newer = schema !== undefined && schema > SCHEMA_VERSION;
+    if (newer) throw new StorageError('DATABASE_RECOVERY_REQUIRED');
+    db = new Database(databasePath);
     trace('integrity.begin');
     newer = (db.pragma('user_version', { simple: true }) as number) > SCHEMA_VERSION;
     if (newer) throw new StorageError('DATABASE_RECOVERY_REQUIRED');
@@ -599,6 +607,19 @@ export async function openStore(
     throw new StorageError('DATABASE_RECOVERY_REQUIRED');
   }
 }
+function readExistingSchema(path: string): number | undefined {
+  let db: Database.Database | undefined;
+  try {
+    db = new Database(path, { readonly: true, fileMustExist: true });
+    return db.pragma('user_version', { simple: true }) as number;
+  } catch {
+    // Existing integrity and recovery handling classifies missing or corrupt files.
+    return undefined;
+  } finally {
+    db?.close();
+  }
+}
+
 export async function fileExists(path: string) {
   try {
     await access(path);

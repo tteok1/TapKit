@@ -1,4 +1,4 @@
-import { mkdtemp } from '../../scripts/test-temp.mjs';
+import { mkdtemp, testRoot, testWorkRoot } from '../../scripts/test-temp.mjs';
 import { randomUUID } from 'node:crypto';
 import { describe, test, expect } from 'vitest';
 import { mkdir, writeFile, readFile, symlink, appendFile } from 'node:fs/promises';
@@ -17,7 +17,7 @@ async function request(
   runtime: 'node' | 'python' | 'git' | 'libreoffice' = 'node',
   args: string[] = [],
 ) {
-  const base = await mkdtemp(join(root, '.test-data/P00-03 中文 '));
+  const base = await mkdtemp(join(testRoot, 'P00-03 中文 '));
   const input = join(base, 'input'),
     workspace = join(base, 'workspace');
   await mkdir(input);
@@ -44,7 +44,7 @@ const run = (
 ) =>
   runDiagnostic(helperPath(root), r, options).then(async (result) => {
     await appendFile(
-      'docs/evidence/P00-03/native-cases.jsonl',
+      join(testWorkRoot, 'docs/evidence/P00-03/native-cases.jsonl'),
       JSON.stringify({
         launch: {
           operation: r.operation,
@@ -197,7 +197,7 @@ describe('P00-03 real Windows sandbox T08 T19', () => {
     const data = results.map((result) => finished(result));
     for (const result of results) {
       await appendFile(
-        'docs/evidence/P00-03/native-cases.jsonl',
+        join(testWorkRoot, 'docs/evidence/P00-03/native-cases.jsonl'),
         JSON.stringify({ concurrent: true, events: result.events }) + '\n',
       );
     }

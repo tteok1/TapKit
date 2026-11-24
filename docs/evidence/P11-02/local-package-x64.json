@@ -1,0 +1,22 @@
+{
+  "source": "68b5ada98a26e5235520b046fded36be0640e641",
+  "command": "pnpm dist:win",
+  "exitCode": 0,
+  "artifact": "release/TapKit-windows-2026-11-24T13-41-58-044Z/TapKit-0.1.0-windows-x64-development.exe",
+  "sha256": "36746e367d001c705df1b865cec2ef74bd1ff01e7d2f68bfa094292157508609",
+  "installerBytes": 823252616,
+  "installedPayloadBytes": 3388597888,
+  "authenticode": "NotSigned",
+  "readback": {
+    "commands": ["Get-FileHash -Algorithm SHA256", "Get-AuthenticodeSignature", "7za l -ba", "7za t -bd"],
+    "exitCode": 0,
+    "checksumMatchesReceiptAndSidecar": true,
+    "archiveFiles": 68249,
+    "archiveIntegrity": "Everything is Ok",
+    "archiveReaderReportedTrailingNsisData": true,
+    "requiredCatalogInventoryAndHelperFound": true,
+    "armLaunchers": 0,
+    "elevationHelperPresent": false,
+    "filesScannedBeforePackaging": 68173
+  }
+}

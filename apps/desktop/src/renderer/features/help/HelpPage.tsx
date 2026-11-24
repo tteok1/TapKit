@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from '@tapkit/ui';
+import { BootstrapViewSchema, type ExecutionCapabilities } from '@tapkit/contracts';
 import { useDesktopPreferences } from '../settings/desktop-preferences';
+import { requestOptions } from '../../src/desktop-state';
 import t from '../../locales/experience.zh-CN.json';
 
 const repo = 'https://github.com/tteok1/TapKit';
@@ -95,6 +97,10 @@ export function HelpPage({ ready, accounts }: { ready: boolean; accounts: string
   const [screenshot, setScreenshot] = useState('');
   const [notice, setNotice] = useState('');
   const [busy, setBusy] = useState(false);
+  const [updateBusy, setUpdateBusy] = useState(false);
+  const [updateVersion, setUpdateVersion] = useState('');
+  const [updateStatus, setUpdateStatus] = useState('');
+  const [runtime, setRuntime] = useState<ExecutionCapabilities>();
   const imageRequest = useRef(0);
 
   useEffect(() => {
@@ -111,6 +117,32 @@ export function HelpPage({ ready, accounts }: { ready: boolean; accounts: string
       current = false;
     };
   }, []);
+
+  useEffect(() => {
+    if (!environment?.packaged || !ready) return;
+    let disposed = false;
+    let timer: ReturnType<typeof setTimeout>;
+    async function refresh() {
+      try {
+        const reply = await window.tapkit.bootstrap(requestOptions());
+        if (disposed || !reply.ok) return;
+        const capabilities = BootstrapViewSchema.parse(reply.data).runtimeCapabilities;
+        setRuntime(capabilities);
+        if (
+          capabilities?.nativeExecution.status === 'failed' &&
+          capabilities.nativeExecution.reason === 'PROBE_IN_PROGRESS'
+        )
+          timer = setTimeout(() => void refresh(), 2000);
+      } catch {
+        // The regular Core status still reports storage recovery if startup failed.
+      }
+    }
+    void refresh();
+    return () => {
+      disposed = true;
+      clearTimeout(timer);
+    };
+  }, [environment?.packaged, ready]);
 
   const diagnostic = environment
     ? [
@@ -152,6 +184,37 @@ export function HelpPage({ ready, accounts }: { ready: boolean; accounts: string
       setNotice('保存失败。请选择其他文件名或位置后重试。');
     } finally {
       setBusy(false);
+    }
+  }
+
+  async function checkUpdate() {
+    setUpdateBusy(true);
+    setUpdateVersion('');
+    setUpdateStatus('正在检查更新…');
+    try {
+      const release = await window.tapkit.checkInstaller();
+      setUpdateVersion(release?.version ?? '');
+      setUpdateStatus(release ? '可下载开发测试版 ' + release.version : '当前没有可下载的更新。');
+    } catch {
+      setUpdateStatus('暂时无法连接 GitHub 检查更新。可以继续使用本机功能。');
+    } finally {
+      setUpdateBusy(false);
+    }
+  }
+
+  async function saveUpdate() {
+    setUpdateBusy(true);
+    setUpdateStatus('正在下载并校验安装包…');
+    try {
+      setUpdateStatus(
+        (await window.tapkit.downloadInstaller()) === 'saved'
+          ? 'SHA-256 校验通过。请在文件资源管理器中打开安装包。'
+          : '已取消保存。',
+      );
+    } catch {
+      setUpdateStatus('下载或校验失败。请检查网络，或选择一个新的保存位置后重试。');
+    } finally {
+      setUpdateBusy(false);
     }
   }
 
@@ -206,7 +269,7 @@ export function HelpPage({ ready, accounts }: { ready: boolean; accounts: string
             ' · Electron ' +
             environment.electron +
             ' · ' +
-            (environment.packaged ? '打包版本' : '开发构建')
+            (environment.packaged ? 'Windows 开发测试版' : '开发构建')
           : metadataFailed
             ? '无法读取构建信息。'
             : '正在读取构建信息…'}
@@ -214,13 +277,37 @@ export function HelpPage({ ready, accounts }: { ready: boolean; accounts: string
       <p>
         本地核心 {ready ? '可用' : '待连接'} · 模型账户 {accounts}
       </p>
+      {environment?.packaged && runtime && (
+        <p role="status">
+          {runtime.nativeExecution.status === 'available'
+            ? '原生隔离、Office 和代码运行时已校验。'
+            : runtime.nativeExecution.reason === 'PROBE_IN_PROGRESS'
+              ? '正在校验本地隔离、Office 和代码运行时。'
+              : '本地运行时校验失败（' +
+                runtime.nativeExecution.reason +
+                '）。请重新运行安装包修复，再启动 TapKit。'}
+        </p>
+      )}
       <div className="action-group">
+        {environment?.packaged && (
+          <>
+            <button disabled={updateBusy} onClick={() => void checkUpdate()}>
+              检查更新
+            </button>
+            {updateVersion && (
+              <button disabled={updateBusy} onClick={() => void saveUpdate()}>
+                下载并校验安装包
+              </button>
+            )}
+          </>
+        )}
         {prefs.showReleaseLink && (
           <button onClick={() => open(repo + '/releases')}>版本记录与新功能</button>
         )}
         <button onClick={() => open(repo + '/issues')}>查看问题进度与回复</button>
         <button onClick={() => open('https://status.openai.com/')}>查看 OpenAI 服务状态</button>
       </div>
+      {updateStatus && <p role="status">{updateStatus}</p>}
       <h2>问题与建议</h2>
       <p>
         在这里审阅反馈附件。打开 GitHub 后，可以自行填写问题和选择上传哪些内容。GitHub Issue

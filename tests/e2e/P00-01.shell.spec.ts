@@ -62,6 +62,8 @@ test('P00-01 sandbox bridge errors and clean child shutdown', async () => {
       'initialRoute',
       'openEntity',
       'desktopEnvironment',
+      'checkInstaller',
+      'downloadInstaller',
       'openQuickInput',
       'finishQuickInput',
       'saveConversation',
@@ -117,6 +119,12 @@ test('P00-01 sandbox bridge errors and clean child shutdown', async () => {
       'cancelJob',
     ],
   });
+  await expect(page.evaluate(() => window.tapkit.checkInstaller())).rejects.toThrow(
+    'PERMISSION_DENIED',
+  );
+  await expect(page.evaluate(() => window.tapkit.downloadInstaller())).rejects.toThrow(
+    'PERMISSION_DENIED',
+  );
   await expect(page.evaluate(() => window.tapkit.finishQuickInput(true))).rejects.toThrow(
     'PERMISSION_DENIED',
   );

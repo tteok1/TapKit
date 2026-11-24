@@ -3,7 +3,10 @@ import { mkdtemp as create, rm } from 'node:fs/promises';
 import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const testRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../.test-data');
+export const testWorkRoot = resolve(
+  process.env.TAPKIT_NATIVE_PROBE_WORK_DIR ?? dirname(fileURLToPath(import.meta.url)) + '/..',
+);
+export const testRoot = resolve(testWorkRoot, '.test-data');
 /** @type {Map<string, { dev: number, ino: number }>} */
 const owned = new Map();
 const samePath = (a, b) =>

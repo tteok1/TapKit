@@ -1,4 +1,6 @@
-2026-11-24，P11-01 CI127两轮流式39/40ms通过，第二轮内存采样短暂误归属风险（146进程/4239.69MiB）待复验；已补创建时间身份校验及4项回归，原算法3项失败可复现。新候选待CI；新包原生22/22通过而性能仍在执行，main未改。见 [P11-01](P11-01.md)。
+2026-11-24，P11-01 源码开发版在基线 44cd07c 通过 CI #128 和 main CI #129。性能优化停止，待规格 Win11 和 R01–R08。见 [P11-01](P11-01.md)。
+
+P11-02 安装分支为 `codex/p11-02-windows-installer`。73c2bfc 的开发包完整载荷与 SQLite ABI 校验通过，CI 五个常规作业通过。R09 干净 Win11 待实测，R11 签名待资源。见 [CI #135](https://github.com/tteok1/TapKit/actions/runs/45409702302) 和 [P11-02](P11-02.md)。
 
 2026-11-13，P10-03=implemented_and_verified。数据生命周期本地验收通过。CI #103 的版本预检及 #104 的导出状态同步已修复。P10 工程通过，实机待验见 [P10-gate](P10-gate.md)。
 
@@ -61,7 +63,7 @@ CI73三个job全success，测试清理及资料保全保持；耗时只读审计
 | P10-02 | 占位页面、通用体验与无障碍完善     | P10-01         | implemented_not_live_verified | docs/progress/P10-02.md              |
 | P10-03 | 数据导出、清理、备份和恢复闭环     | P10-02         | implemented_and_verified      | docs/progress/P10-03.md              |
 | P11-01 | 系统评测、故障回归与源码开发版交付 | P10-03         | in_progress                   | docs/progress/P11-01.md              |
-| P11-02 | Windows安装包、升级与标准用户验证  | P11-01         | not_started                   | docs/progress/P11-02.md              |
+| P11-02 | Windows安装包、升级与标准用户验证  | P11-01         | implemented_not_live_verified | docs/progress/P11-02.md              |
 | P11-03 | GitHub开源交接与官网下载准备       | P11-02         | not_started                   | docs/progress/P11-03.md              |
 
 ## 阶段状态

@@ -20,6 +20,7 @@ import {
   Tray,
   Menu,
   nativeImage,
+  net,
   dialog,
   Notification,
   powerMonitor,
@@ -35,11 +36,16 @@ import { SitePreviews } from './site-previews';
 const sitePreviews = new SitePreviews();
 import { resolveSystemProxy } from './system-proxy';
 import { readCoreStartupTimeout } from './core-startup';
+import {
+  checkInstallerRelease,
+  downloadInstaller,
+  type InstallerRelease,
+} from './installer-updates';
 import { createInterface } from 'node:readline';
 import { moveDataRoot, readDataRoot, validateMoveDestination } from './data-root';
 import { IpcAudit } from './ipc-audit';
-import { mkdirSync, statSync, writeFileSync, existsSync } from 'node:fs';
-import { isAbsolute, join } from 'node:path';
+import { mkdirSync, statSync, writeFileSync, existsSync, readFileSync } from 'node:fs';
+import { dirname, isAbsolute, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import {
   z,
@@ -108,6 +114,24 @@ protocol.registerSchemesAsPrivileged([
 ]);
 app.setName('TapKit');
 app.setAppUserModelId('io.tapkit.desktop');
+const installed = app.isPackaged && process.platform === 'win32';
+const appRoot = installed ? join(process.resourcesPath, 'tapkit') : join(__dirname, '../../../..');
+const setupJournal = installed
+  ? join(dirname(dirname(process.execPath)), '.TapKit-setup.json')
+  : undefined;
+const setupPending = () => !!setupJournal && existsSync(setupJournal);
+let selectedInstaller: InstallerRelease | undefined;
+let downloadInProgress = false;
+const setupClose = process.argv.includes('--tapkit-setup-close') && setupPending();
+function acknowledgeSetupClose() {
+  if (setupJournal && setupPending()) {
+    try {
+      writeFileSync(setupJournal + '.closed', 'OK', { flag: 'wx' });
+    } catch {
+      // Setup waits for both the acknowledgement and process exit.
+    }
+  }
+}
 if (!app.isPackaged && process.env.TAPKIT_DATA_DIR) {
   if (!isAbsolute(process.env.TAPKIT_DATA_DIR)) throw new Error('TAPKIT_DATA_DIR must be absolute');
   mkdirSync(process.env.TAPKIT_DATA_DIR, { recursive: true });
@@ -124,8 +148,14 @@ const configuredDataRoot = (() => {
 const dataDir = configuredDataRoot ?? launchRoot;
 let dataMaintenance = false;
 let backgroundExplained = existsSync(join(dataDir, 'background-notice-v1'));
-const ownsLock = app.requestSingleInstanceLock({ intent: 'activate' });
-if (!ownsLock) app.quit();
+const ownsLock = app.requestSingleInstanceLock({ intent: setupClose ? 'setup-close' : 'activate' });
+if (!ownsLock) app.exit(0);
+if (ownsLock && setupPending()) {
+  if (setupClose) acknowledgeSetupClose();
+  else
+    dialog.showErrorBox('TapKit 安装维护', '请完成安装或卸载。操作中断时，重新运行安装包可恢复。');
+  app.exit(0);
+}
 const windows = new Set<BrowserWindow>();
 let quickWindow: BrowserWindow | undefined;
 let desktopPreferences = DEFAULT_DESKTOP;
@@ -167,7 +197,7 @@ function applyDesktopPreferences(revision: number, prefs: SettingsValues['deskto
   }
   if (loginChanged && app.isPackaged && process.platform === 'win32') {
     try {
-      app.setLoginItemSettings({ openAtLogin: prefs.startOnLogin });
+      app.setLoginItemSettings({ openAtLogin: prefs.startOnLogin, name: 'io.tapkit.desktop' });
       loginStatus = app.getLoginItemSettings().openAtLogin ? 'enabled' : 'disabled';
     } catch {
       loginStatus = 'unavailable';
@@ -280,15 +310,11 @@ function publish(event: EventEnvelope) {
 function recoveryExport(command: Record<string, unknown>) {
   return new Promise<unknown>((resolve, reject) => {
     const id = randomUUID();
-    const child = utilityProcess.fork(
-      join(__dirname, '../../../../packages/core/dist/index.cjs'),
-      [],
-      {
-        serviceName: 'TapKit Recovery',
-        stdio: 'pipe',
-        env: { ...process.env, TAPKIT_CORE_DATA_DIR: dataDir, TAPKIT_CORE_RECOVERY_READONLY: '1' },
-      },
-    );
+    const child = utilityProcess.fork(join(appRoot, 'packages/core/dist/index.cjs'), [], {
+      serviceName: 'TapKit Recovery',
+      stdio: 'pipe',
+      env: { ...process.env, TAPKIT_CORE_DATA_DIR: dataDir, TAPKIT_CORE_RECOVERY_READONLY: '1' },
+    });
     const timer = setTimeout(() => {
       child.kill();
       reject(Error('DATABASE_RECOVERY_REQUIRED'));
@@ -318,28 +344,22 @@ function startCore() {
   });
   void ready.catch(() => {});
   const current = ++generation;
-  const child = utilityProcess.fork(
-    join(__dirname, '../../../../packages/core/dist/index.cjs'),
-    [],
-    {
-      serviceName: 'TapKit Core',
-      stdio: 'pipe',
-      env: {
-        ...process.env,
-        TAPKIT_CORE_DATA_DIR: dataDir,
-        TAPKIT_CORE_RECOVERY_READONLY: '0',
-        TAPKIT_APP_ROOT: join(__dirname, '../../../..'),
-      },
+  const child = utilityProcess.fork(join(appRoot, 'packages/core/dist/index.cjs'), [], {
+    serviceName: 'TapKit Core',
+    stdio: 'pipe',
+    env: {
+      ...process.env,
+      TAPKIT_CORE_DATA_DIR: dataDir,
+      TAPKIT_CORE_RECOVERY_READONLY: '0',
+      TAPKIT_APP_ROOT: appRoot,
+      TAPKIT_CORE_INSTALLED: installed ? '1' : '0',
     },
-  );
+  });
   core = child;
-  const timer = setTimeout(
-    () => {
-      rejectReady(new Error('Core startup timeout'));
-      child.kill();
-    },
-    readCoreStartupTimeout(join(__dirname, '../../../..')),
-  );
+  const timer = setTimeout(() => {
+    rejectReady(new Error('Core startup timeout'));
+    child.kill();
+  }, readCoreStartupTimeout(appRoot));
   if (child.stdout && process.env.TAPKIT_STARTUP_DIAGNOSTICS === '1')
     createInterface({ input: child.stdout }).on('line', (line) => {
       if (/^TAPKIT_CORE_STARTUP [a-z-]+ \d+ \d+$/.test(line)) console.log(line);
@@ -796,8 +816,17 @@ async function siteHostRequest(window: BrowserWindow, request: Request): Promise
   }
 }
 const ipcAudit = new IpcAudit(dataDir);
+let setupShutdown = false;
 if (ownsLock) {
-  app.on('second-instance', () => {
+  app.on('second-instance', (_event, _argv, _cwd, data) => {
+    if (setupPending()) {
+      if (typeof data === 'object' && data && 'intent' in data && data.intent === 'setup-close') {
+        setupShutdown = true;
+        app.quit();
+      }
+      return;
+    }
+    if (quitting) return;
     const window = [...windows].find((candidate) => candidate !== quickWindow) ?? createWindow();
     if (window.isMinimized()) window.restore();
     window.show();
@@ -805,6 +834,11 @@ if (ownsLock) {
     console.info('TAPKIT_SECOND_INSTANCE');
   });
   void app.whenReady().then(async () => {
+    if (setupPending()) {
+      if (setupShutdown) acknowledgeSetupClose();
+      app.exit(0);
+      return;
+    }
     if (__TAPKIT_TEST_BUILD__ && process.env.TAPKIT_BROWSER_FIXTURE === 'P08-01') {
       const { installBrowserWebFixture } =
         await import('../../../../tests/fixtures/web-app/fixture');
@@ -1016,6 +1050,45 @@ if (ownsLock) {
         shortcut: shortcutStatus,
         login: loginStatus,
       };
+    });
+    ipcMain.handle('tapkit:installer-check', async (event) => {
+      if (!installed || !checkSender(event)) throw Error('PERMISSION_DENIED');
+      selectedInstaller = undefined;
+      const metadata = z
+        .object({
+          channel: z.literal('development'),
+          version: z.literal(app.getVersion()),
+          repository: z.string(),
+        })
+        .parse(JSON.parse(readFileSync(join(appRoot, 'installation.json'), 'utf8')));
+      selectedInstaller = await checkInstallerRelease(
+        net.fetch,
+        metadata.repository,
+        metadata.version,
+      );
+      return selectedInstaller ? { version: selectedInstaller.version } : null;
+    });
+    ipcMain.handle('tapkit:installer-download', async (event) => {
+      const release = selectedInstaller;
+      const window = BrowserWindow.fromWebContents(event.sender);
+      if (!installed || !release || !window || !checkSender(event) || downloadInProgress)
+        throw Error('PERMISSION_DENIED');
+      downloadInProgress = true;
+      try {
+        const selected = await dialog.showSaveDialog(window, {
+          title: '保存已校验的 TapKit 开发测试安装包',
+          defaultPath: join(app.getPath('downloads'), release.name),
+          filters: [{ name: 'Windows 安装包', extensions: ['exe'] }],
+        });
+        if (selected.canceled || !selected.filePath) return 'cancelled';
+        if (!checkSender(event) || window.isDestroyed()) throw Error('PERMISSION_DENIED');
+        if (!selected.filePath.toLowerCase().endsWith('.exe')) throw Error('VALIDATION_ERROR');
+        await downloadInstaller(net.fetch, release, selected.filePath);
+        shell.showItemInFolder(selected.filePath);
+        return 'saved';
+      } finally {
+        downloadInProgress = false;
+      }
     });
     ipcMain.handle('tapkit:quick-input', (event) => {
       if (!checkSender(event)) throw new Error('PERMISSION_DENIED');
@@ -1525,26 +1598,28 @@ app.on('before-quit', (event) => {
   sitePreviews.close();
   void Promise.all([secretWork, vault.settled, authSecrets.settled]).finally(() => {
     const child = core;
-    const finish = async () => {
+    const finish = async (closed: boolean) => {
       // Let pending Core-reply continuations queue their metadata before draining.
       await new Promise<void>((resolve) => setImmediate(resolve));
       try {
         await ipcAudit.flush();
       } catch {
+        closed = false;
         console.error('TAPKIT_IPC_AUDIT_FAILED');
       }
+      if (setupShutdown && closed) acknowledgeSetupClose();
       shutdownComplete = true;
       tray?.destroy();
       app.quit();
     };
     if (!child) {
-      void finish();
+      void finish(true);
       return;
     }
-    const timer = setTimeout(() => child.kill(), 10_000);
-    child.once('exit', () => {
-      clearTimeout(timer);
-      void finish();
+    const timer = setupShutdown ? undefined : setTimeout(() => child.kill(), 10_000);
+    child.once('exit', (code) => {
+      if (timer) clearTimeout(timer);
+      void finish(code === 0);
     });
     child.postMessage({ type: 'shutdown' });
   });

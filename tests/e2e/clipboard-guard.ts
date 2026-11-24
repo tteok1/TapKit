@@ -30,6 +30,7 @@ finally {
     [
       '-NoLogo',
       '-NoProfile',
+      '-NonInteractive',
       '-STA',
       '-EncodedCommand',
       Buffer.from(script, 'utf16le').toString('base64'),
@@ -46,23 +47,33 @@ finally {
   child.stderr.on('data', (chunk: string) => {
     errors += chunk;
   });
-  const exit = once(child, 'exit');
-  await Promise.race([
-    new Promise<void>((resolve, reject) => {
-      const timer = setTimeout(() => reject(new Error('Clipboard backup timed out')), 15_000);
-      child.stdout.on('data', () => {
-        if (output.includes('CLIPBOARD_SAVED')) {
-          clearTimeout(timer);
-          resolve();
-        }
-      });
-      void exit.then(() => {
-        clearTimeout(timer);
-        if (!output.includes('CLIPBOARD_SAVED'))
+  const exit = once(child, 'close');
+  try {
+    await new Promise<void>((resolve, reject) => {
+      const timeout = setTimeout(() => reject(new Error('Clipboard backup timed out')), 30_000);
+      const ready = () => {
+        if (!output.includes('CLIPBOARD_SAVED')) return;
+        clearTimeout(timeout);
+        child.stdout.off('data', ready);
+        resolve();
+      };
+      child.stdout.on('data', ready);
+      void exit.then(
+        () => {
+          clearTimeout(timeout);
           reject(new Error('Clipboard backup failed: ' + errors));
-      });
-    }),
-  ]);
+        },
+        (error: Error) => {
+          clearTimeout(timeout);
+          reject(error);
+        },
+      );
+    });
+  } catch (error) {
+    // The test has not used the clipboard yet when snapshot setup fails.
+    child.kill();
+    throw error;
+  }
   return async () => {
     child.stdin.end('restore\n');
     const [code] = await exit;

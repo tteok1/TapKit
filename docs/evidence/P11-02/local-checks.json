@@ -1,0 +1,41 @@
+{
+  "scope": "Windows development host and isolated worktree",
+  "base": "44cd07c4911e6ad47899442d32371ab5c8aebb0a",
+  "installerSource": "75e4714b799eefaab6835ac2a6eb01e9a2edaabf",
+  "checks": [
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "collectedElectronTests": 141
+    },
+    {
+      "command": "pnpm test:unit",
+      "exitCode": 0,
+      "passed": 537,
+      "files": 85,
+      "scope": "normal Windows filesystem permissions"
+    },
+    {
+      "command": "pnpm test:integration P11-02.installer P10-03.data-lifecycle --reporter=verbose",
+      "exitCode": 0,
+      "passed": 13
+    },
+    {
+      "command": "makensis -WX -INPUTCHARSET UTF8",
+      "exitCode": 0,
+      "scope": "installer and uninstaller script compilation with a placeholder archive"
+    },
+    {
+      "command": "powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File .cache/p11-txn-verify.ps1",
+      "exitCode": 0,
+      "scope": "setup transaction functions and disposable paths; shortcut and registry replaced with a fixture file",
+      "passed": [
+        "program and database rollback after the directory switch",
+        "independent tombstone preservation",
+        "uninstall with data retention",
+        "uninstall with relocated data removal and external file preservation"
+      ]
+    }
+  ],
+  "pending": ["complete installer package", "CI standard-user installation", "R09 clean Windows 11", "R11 signing"]
+}

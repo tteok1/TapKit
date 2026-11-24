@@ -1,0 +1,29 @@
+{
+  "source": "73c2bfc581c6c4afe422bb997fb0005e887e6b68",
+  "command": "pnpm dist:win",
+  "exitCode": 0,
+  "artifact": "release/TapKit-windows-2026-11-24T14-01-01-160Z/TapKit-0.1.0-windows-x64-development.exe",
+  "sha256": "be4eeec5f57c5d3cf14afa6f91c70b5a6321d282b2d63f0722e306a7fac7f64a",
+  "installerBytes": 825469487,
+  "installedPayloadBytes": 3388949120,
+  "authenticode": "NotSigned",
+  "readback": {
+    "decoder": "Nsis7z from nsis-resources 3.4.1, extracting the embedded archive from the final EXE",
+    "method": "LZMA2:22 BCJ",
+    "extractExitCode": 0,
+    "preflight": "Run embedded storage.mjs using bundled Node against the exact unpacked EXE contents and an empty disposable DATA root",
+    "storagePreflightExitCode": 0,
+    "inventoryFiles": 68250,
+    "sha256AndSqliteABI": "OK"
+  },
+  "sourceChecks": [
+    { "command": "pnpm check", "exitCode": 0 },
+    {
+      "command": "pnpm test:integration P11-02.installer P10-03.data-lifecycle --reporter=verbose",
+      "exitCode": 0,
+      "passed": 13,
+      "note": "Windows sandbox refused an NTFS hard link (EPERM; 12/13). The same suite passed under normal Windows permissions."
+    }
+  ],
+  "ciRunId": 45409702302
+}

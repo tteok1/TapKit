@@ -99,6 +99,14 @@ async function start() {
   const verificationAbort = new AbortController();
   const verification = new RuntimeVerification(async () => {
     const verificationStarted = performance.now();
+    if (process.env.TAPKIT_CORE_INSTALLED === '1') {
+      const { verifyInstalledRuntime } = await import('./installed-runtime');
+      return verifyInstalledRuntime(
+        process.env.TAPKIT_APP_ROOT ?? '',
+        dataDir!,
+        verificationAbort.signal,
+      );
+    }
     const capabilities = await readExecutionCapabilities(
       process.env.TAPKIT_APP_ROOT ?? '',
       AbortSignal.any([verificationAbort.signal, AbortSignal.timeout(120_000)]),
@@ -661,6 +669,7 @@ async function start() {
       clearInterval(notificationTimer);
       clearInterval(stagingTimer);
       void Promise.all([
+        process.env.TAPKIT_CORE_INSTALLED === '1' ? verification.result : undefined,
         performanceFixture?.stop(),
         closeLocalEmbedder(),
         worker.stop(),

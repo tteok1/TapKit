@@ -6,6 +6,7 @@ param(
   [Parameter(Mandatory=$true)][string]$Journal
 )
 $ErrorActionPreference = 'Stop'
+[Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
 Add-Type -TypeDefinition @'
 using System;
 using System.Text;
@@ -60,8 +61,8 @@ try {
     }
     $mappings | ConvertTo-Json -Compress
   } else {
-    $mappings = @(Get-Content -LiteralPath $journalPath -Raw | ConvertFrom-Json)
-    if ($mappings.Count -ne 3) { throw 'Invalid test mapping journal.' }
+    $mappings = Get-Content -LiteralPath $journalPath -Raw | ConvertFrom-Json
+    if (@($mappings).Count -ne 3) { throw 'Invalid test mapping journal.' }
     foreach ($mapping in $mappings) {
       if ($mapping.drive -notmatch '^[E-Z]:$' -or $mapping.target -notmatch '^\\\?\?\\[A-Za-z]:\\') {
         throw 'Invalid test mapping record.'

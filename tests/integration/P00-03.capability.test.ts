@@ -1,12 +1,12 @@
-import { mkdtemp } from '../../scripts/test-temp.mjs';
+import { mkdtemp, testRoot } from '../../scripts/test-temp.mjs';
 import { test, expect } from 'vitest';
 
-import { resolve } from 'node:path';
+import { join } from 'node:path';
 import { openStore, newId } from '../../packages/storage/src';
 import { CoreService } from '../../packages/core/src/service';
 import { unavailableExecution } from '../../packages/contracts/src';
 test('P00-03 Core reports isolated capabilities failed while storage remains usable', async () => {
-  const store = await openStore(await mkdtemp(resolve('.test-data/P00-03 capability ')));
+  const store = await openStore(await mkdtemp(join(testRoot, 'P00-03 capability ')));
   try {
     const core = new CoreService(store, unavailableExecution('APP_CONTROL_POLICY_BLOCKED'));
     const reply = core.dispatch({

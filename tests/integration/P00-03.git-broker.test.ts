@@ -1,12 +1,12 @@
-import { mkdtemp } from '../../scripts/test-temp.mjs';
+import { mkdtemp, testRoot } from '../../scripts/test-temp.mjs';
 import { test, expect } from 'vitest';
 import { readdir } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { join, resolve } from 'node:path';
 import { GitBroker } from '../../packages/tools/src/execution/git-broker';
 import { runtimePaths } from '../../packages/tools/src/execution';
 
 test('P00-03 GitBroker bounds oversized diff output and cleans the private lease', async () => {
-  const privateRoot = await mkdtemp(resolve('.test-data/P00-03 broker output '));
+  const privateRoot = await mkdtemp(join(testRoot, 'P00-03 broker output '));
   const broker = new GitBroker((await runtimePaths(resolve('.'), 'git')).executable, privateRoot);
   await expect(
     broker.inspect(
@@ -19,7 +19,7 @@ test('P00-03 GitBroker bounds oversized diff output and cleans the private lease
 });
 
 test('P00-03 GitBroker runs real MinGit status/diff on private byte snapshots', async () => {
-  const privateRoot = await mkdtemp(resolve('.test-data/P00-03 broker 中文 '));
+  const privateRoot = await mkdtemp(join(testRoot, 'P00-03 broker 中文 '));
   const { executable } = await runtimePaths(resolve('.'), 'git');
   const broker = new GitBroker(executable, privateRoot);
   const before = [{ path: '目录/readme.txt', content: Buffer.from('before\n') }];
@@ -34,7 +34,7 @@ test('P00-03 GitBroker runs real MinGit status/diff on private byte snapshots', 
 });
 
 test('P00-03 GitBroker rejects model args, metadata pointers and Windows path aliases', async () => {
-  const privateRoot = await mkdtemp(resolve('.test-data/P00-03 broker reject '));
+  const privateRoot = await mkdtemp(join(testRoot, 'P00-03 broker reject '));
   const broker = new GitBroker((await runtimePaths(resolve('.'), 'git')).executable, privateRoot);
   await expect(broker.inspect({ kind: 'diff', args: ['--ext-diff'] }, [], [])).rejects.toThrow();
   for (const path of [
@@ -55,7 +55,7 @@ test('P00-03 GitBroker rejects model args, metadata pointers and Windows path al
 });
 
 test('P00-03 GitBroker excludes inherited Git config, external diff and SSH commands', async () => {
-  const privateRoot = await mkdtemp(resolve('.test-data/P00-03 broker hostile '));
+  const privateRoot = await mkdtemp(join(testRoot, 'P00-03 broker hostile '));
   const broker = new GitBroker((await runtimePaths(resolve('.'), 'git')).executable, privateRoot);
   const keys = {
     GIT_CONFIG_COUNT: '1',

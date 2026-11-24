@@ -191,10 +191,11 @@ export function helperPath(root: string) {
 export async function readExecutionCapabilities(
   root: string,
   signal?: AbortSignal,
+  installedReceipt?: string,
 ): Promise<ExecutionCapabilities> {
   try {
     const report = JSON.parse(
-      await readFile(join(root, 'resources/runtime/capabilities.json'), {
+      await readFile(installedReceipt ?? join(root, 'resources/runtime/capabilities.json'), {
         encoding: 'utf8',
         signal,
       }),
@@ -202,6 +203,8 @@ export async function readExecutionCapabilities(
     const capabilities = ExecutionCapabilitiesSchema.parse(report.capabilities);
     if (report.executionPolicy !== EXECUTION_POLICY)
       return unavailableExecution('EXECUTION_POLICY_CHANGED');
+    if (installedReceipt && report.verification?.scope !== 'current-user')
+      return unavailableExecution('PROBE_IDENTITY_UNAVAILABLE');
     // A failed report never grants permission, so it must not delay chat startup with full runtime hashing.
     if (Object.values(capabilities).every((c) => c.status === 'failed')) return capabilities;
     if (report.fingerprint !== (await executionFingerprint(root, signal)))

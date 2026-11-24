@@ -1,4 +1,4 @@
-import { mkdtemp } from '../../scripts/test-temp.mjs';
+import { mkdtemp, testRoot, testWorkRoot } from '../../scripts/test-temp.mjs';
 import { test, expect } from 'vitest';
 import { createHash, randomUUID } from 'node:crypto';
 import { appendFile, copyFile, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
@@ -36,7 +36,7 @@ function id() {
 }
 
 test('P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppContainer route', async () => {
-  const base = await mkdtemp(join(root, '.test-data/P00-03 OfficeWorker 中文 '));
+  const base = await mkdtemp(join(testRoot, 'P00-03 OfficeWorker 中文 '));
   const inputRoot = join(base, 'input');
   const workspace = join(base, 'workspace');
   await Promise.all([mkdir(inputRoot), mkdir(workspace)]);
@@ -58,7 +58,7 @@ test('P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppCon
         throw error;
       }
       await appendFile(
-        join(root, 'docs/evidence/P00-03/native-cases.jsonl'),
+        join(testWorkRoot, 'docs/evidence/P00-03/native-cases.jsonl'),
         JSON.stringify({
           case: 'office-render',
           requestId: request.requestId,
@@ -121,7 +121,7 @@ test('P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppCon
       input,
     );
     const pdf = await readFile(output.path);
-    await recordOfficePdf(root, 'sample-' + extension, pdf);
+    await recordOfficePdf('sample-' + extension, pdf);
     expect(output.format).toBe('pdf');
     expect(pdf.subarray(0, 5).toString()).toBe('%PDF-');
     expect(pdf.length).toBeGreaterThan(1000);
@@ -132,7 +132,7 @@ test('P00-03 T07 OfficeWorker converts DOCX, XLSX and PPTX in the current AppCon
 }, 450_000);
 
 test('P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an isolated positive control', async () => {
-  const base = await mkdtemp(join(root, '.test-data/P00-03 Office security policy 中文 '));
+  const base = await mkdtemp(join(testRoot, 'P00-03 Office security policy 中文 '));
   const inputRoot = join(base, 'input');
   const workspace = join(base, 'workspace');
   await Promise.all([mkdir(inputRoot), mkdir(workspace)]);
@@ -165,7 +165,7 @@ test('P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an is
 
       const result = await nativeExecutor.execute(request, options);
       await appendFile(
-        join(root, 'docs/evidence/P00-03/native-cases.jsonl'),
+        join(testWorkRoot, 'docs/evidence/P00-03/native-cases.jsonl'),
         JSON.stringify({
           case: 'office-macro-blocked',
           requestId: request.requestId,
@@ -215,7 +215,7 @@ test('P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an is
   const rendered = await worker.render({ fileVersionId, format: 'pdf' }, officeInput);
   expect(dispatchCount).toBe(1);
   const pdf = await readFile(rendered.path);
-  await recordOfficePdf(root, 'macro-blocked', pdf);
+  await recordOfficePdf('macro-blocked', pdf);
   expect(pdf.subarray(0, 5).toString()).toBe('%PDF-');
   expect(pdf.length).toBeGreaterThan(1000);
   const text = await pdfText(root, pdf);
@@ -227,14 +227,14 @@ test('P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an is
   const controlWorkspace = join(base, 'macro-control');
   await mkdir(controlWorkspace);
   const controlPdf = await officeControl(root, inputRoot, controlWorkspace, filename, 'macro');
-  await recordOfficePdf(root, 'macro-control', controlPdf);
+  await recordOfficePdf('macro-control', controlPdf);
   expect(await pdfText(root, controlPdf)).toContain(securityMarkers.macroExecuted);
   expect(await readFile(join(controlWorkspace, 'macro-ran.txt'), 'utf8')).toContain(
     securityMarkers.macroExecuted,
   );
   expect(sha(await readFile(sourcePath))).toBe(sourceHash);
   await appendFile(
-    join(root, 'docs/evidence/P00-03/native-cases.jsonl'),
+    join(testWorkRoot, 'docs/evidence/P00-03/native-cases.jsonl'),
     JSON.stringify({
       case: 'office-macro-behavior',
       sourceSha256: sourceHash,
@@ -250,7 +250,7 @@ test('P00-03 T08 T19 OfficeWorker blocks an executable embedded macro with an is
 }, 300_000);
 
 test('P00-03 T19 OfficeWorker preserves cached external-link data with an isolated refresh control', async () => {
-  const base = await mkdtemp(join(root, '.test-data/P00-03 external-link 中文 '));
+  const base = await mkdtemp(join(testRoot, 'P00-03 external-link 中文 '));
   const inputRoot = join(base, 'input');
   const workspace = join(base, 'workspace');
   const controlWorkspace = join(base, 'link-control');
@@ -266,7 +266,7 @@ test('P00-03 T19 OfficeWorker preserves cached external-link data with an isolat
     async execute(request, options) {
       const result = await native.execute(request, options);
       await appendFile(
-        join(root, 'docs/evidence/P00-03/native-cases.jsonl'),
+        join(testWorkRoot, 'docs/evidence/P00-03/native-cases.jsonl'),
         JSON.stringify({
           case: 'office-link-blocked',
           runId: request.runId,
@@ -291,19 +291,19 @@ test('P00-03 T19 OfficeWorker preserves cached external-link data with an isolat
     },
   );
   const linkedPdf = await readFile(rendered.path);
-  await recordOfficePdf(root, 'link-blocked', linkedPdf);
+  await recordOfficePdf('link-blocked', linkedPdf);
   const text = await pdfText(root, linkedPdf);
   expect(text).toContain(securityMarkers.linkCached);
   expect(text).not.toContain(securityMarkers.linkUpdated);
   const controlPdf = await officeControl(root, inputRoot, controlWorkspace, filename, 'links');
-  await recordOfficePdf(root, 'link-control', controlPdf);
+  await recordOfficePdf('link-control', controlPdf);
   const controlText = await pdfText(root, controlPdf);
   expect(controlText).toContain(securityMarkers.linkUpdated);
   expect(controlText).not.toContain(securityMarkers.linkCached);
   expect(sha(await readFile(sourcePath))).toBe(sourceHash);
   expect(sha(await readFile(targetPath))).toBe(targetHash);
   await appendFile(
-    join(root, 'docs/evidence/P00-03/native-cases.jsonl'),
+    join(testWorkRoot, 'docs/evidence/P00-03/native-cases.jsonl'),
     JSON.stringify({
       case: 'office-link-behavior',
       sourceSha256: sourceHash,
@@ -319,7 +319,7 @@ test('P00-03 T19 OfficeWorker preserves cached external-link data with an isolat
 }, 300_000);
 
 test('P00-03 T08 OfficeWorker fails closed on a corrupt document and remains usable', async () => {
-  const base = await mkdtemp(join(root, '.test-data/P00-03 corrupt Office 中文 '));
+  const base = await mkdtemp(join(testRoot, 'P00-03 corrupt Office 中文 '));
   const inputRoot = join(base, 'input');
   const workspace = join(base, 'workspace');
   await Promise.all([mkdir(inputRoot), mkdir(workspace)]);
@@ -332,7 +332,7 @@ test('P00-03 T08 OfficeWorker fails closed on a corrupt document and remains usa
     async execute(request, options) {
       const result = await native.execute(request, options);
       await appendFile(
-        join(root, 'docs/evidence/P00-03/native-cases.jsonl'),
+        join(testWorkRoot, 'docs/evidence/P00-03/native-cases.jsonl'),
         JSON.stringify({ case: 'office-corrupt', runId: request.runId, events: result.events }) +
           '\n',
       );
@@ -369,7 +369,7 @@ test('P00-03 T08 OfficeWorker fails closed on a corrupt document and remains usa
 }, 300_000);
 
 test('P00-03 Office hard kill recovers only its recorded mapped drives on the next helper run', async () => {
-  const base = await mkdtemp(join(root, '.test-data/P00-03 Office crash recovery 中文 '));
+  const base = await mkdtemp(join(testRoot, 'P00-03 Office crash recovery 中文 '));
   const inputRoot = join(base, 'input');
   const workspace = join(base, 'workspace');
   await Promise.all([mkdir(inputRoot), mkdir(workspace)]);
@@ -434,9 +434,7 @@ test('P00-03 Office hard kill recovers only its recorded mapped drives on the ne
     expect(await readdir(`${mapping.drive}\\`)).not.toHaveLength(0);
   }
 
-  const recoveryBase = await mkdtemp(
-    join(root, '.test-data/P00-03 Office recovery invocation 中文 '),
-  );
+  const recoveryBase = await mkdtemp(join(testRoot, 'P00-03 Office recovery invocation 中文 '));
   const recoveryInput = join(recoveryBase, 'input');
   const recoveryWorkspace = join(recoveryBase, 'workspace');
   await Promise.all([mkdir(recoveryInput), mkdir(recoveryWorkspace)]);

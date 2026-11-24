@@ -18,7 +18,9 @@ powershell -ExecutionPolicy Bypass -File scripts/bootstrap.ps1
 .\scripts\pnpm.ps1 pack:dir
 ```
 
-`pack:dir` 生成带 Electron 和运行时的 Windows 开发目录，生成位置保存在 `release/latest.json`。目录包含 `Start-TapKit.cmd`、`snapshot-manifest.json` 和 `SHA256SUMS.txt`。在当前 Windows 主机上生成的原生能力报告绑定运行环境，换机后须重新实测。该交付适用于开发和验收，安装、升级和卸载由 P11-02 验证。
+`pack:dir` 生成带 Electron 和运行时的 Windows 开发目录，生成位置保存在 `release/latest.json`。目录包含 `Start-TapKit.cmd`、`snapshot-manifest.json` 和 `SHA256SUMS.txt`。在当前 Windows 主机上生成的原生能力报告绑定运行环境，换机后须重新实测。
+
+`pnpm dist:win` 构建自带运行时的 Windows x64 开发测试安装包。安装 EXE、SHA-256 和版本信息位于 `release/TapKit-windows-*`。[安装、升级、卸载和 T21 实测](docs/distribution/windows-development.md)。
 
 ## 配置和使用
 

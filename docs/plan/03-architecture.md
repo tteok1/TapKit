@@ -124,6 +124,8 @@ DB设 WAL、foreign_keys=ON、busy_timeout=5000、synchronous=FULL；短事务�
 
 完整版安装包包含Electron、helper、Python受控发行、必要wheel、LibreOffice运行文件、MinGit、检索ONNX、字体和模板，用户无需后装依赖。体积目标下载≤1.5GiB、安装≤4GiB；超目标先清理不使用语言包/示例/符号，不牺牲所列能力。用户代码项目的新增依赖仍按明确下载策略获取，不混同应用依赖。
 
+P11-02 使用 NSIS 用户级安装事务，开发测试包的构建、更新、数据回滚和验收入口见 [ADR 0089](../adr/0089-per-user-windows-installer.md) 和 [分发说明](../distribution/windows-development.md)。
+
 pi、Office组件、字体、Git的许可不同。主仓库MIT不覆盖第三方文件；THIRD_PARTY_NOTICES记录版本、来源、许可、源码获取方式。不得重新标注第三方授权或直接打包他人浏览器资料。
 
 ## 6. 网络与安全依据

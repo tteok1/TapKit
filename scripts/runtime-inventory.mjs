@@ -62,6 +62,16 @@ export async function executionFingerprint(root, signal) {
   );
   for (const name of ['node', 'python', 'git', 'libreoffice'])
     await file(join(root, '.runtime', name, lock.runtimes[name].directory));
+  const installation = join(root, 'installation.json');
+  if (
+    await lstat(installation).catch((error) => {
+      if (error.code !== 'ENOENT') throw error;
+    })
+  ) {
+    await file(installation);
+    await file(join(root, 'scripts/installer/probe.config.mjs'));
+    await file(join(root, 'scripts/installer/payload.mjs'));
+  }
   signal?.throwIfAborted();
   return hash.digest('hex');
 }

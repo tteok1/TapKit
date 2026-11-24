@@ -1,0 +1,23 @@
+{
+  "runId": 45405997945,
+  "runNumber": 134,
+  "head": "68b5ada98a26e5235520b046fded36be0640e641",
+  "url": "https://github.com/tteok1/TapKit/actions/runs/45405997945",
+  "windowsInstaller": {
+    "jobId": 138486934560,
+    "conclusion": "failure",
+    "checksCompleted": ["build pair", "SHA-256 (two EXEs)", "NotSigned (two EXEs)"],
+    "failed": "Fresh install exited 1 before activation",
+    "code": "INSTALLATION_FILE_MISSING",
+    "path": "resources/tapkit/.runtime/libreoffice/program/python-core-3.12.14/lib/setuptools/cli-arm64.exe"
+  },
+  "localReproduction": {
+    "inputs": ["cli-64.exe", "cli-arm64.exe", "gui-arm64.exe"],
+    "compressor": "7za 24.09 -mx=3",
+    "extractor": "NSIS 3.0.4.1 x86-unicode, Nsis7z from nsis-resources 3.4.1",
+    "comparison": "Get-FileHash SHA256 for each extracted file",
+    "automaticFilter": { "archiveMethods": "ARM64 LZMA2 BCJ", "exitCode": 0, "matchingFiles": 1 },
+    "bcjFilter": { "archiveMethods": "LZMA2 BCJ", "exitCode": 0, "matchingFiles": 3 }
+  },
+  "change": "Use ELECTRON_BUILDER_7Z_FILTER=BCJ and preserve the entire locked runtime payload."
+}

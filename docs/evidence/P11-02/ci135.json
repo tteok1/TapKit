@@ -1,0 +1,43 @@
+{
+  "runId": 45409702302,
+  "runNumber": 135,
+  "head": "73c2bfc581c6c4afe422bb997fb0005e887e6b68",
+  "url": "https://github.com/tteok1/TapKit/actions/runs/45409702302",
+  "conclusion": "success",
+  "jobs": {
+    "check": { "id": 138500030352, "conclusion": "success" },
+    "windows-installer": { "id": 138500030241, "conclusion": "success" },
+    "electron": { "id": 138500030064, "conclusion": "success", "passed": 66 },
+    "office-native": { "id": 138500030397, "conclusion": "success" },
+    "p11-joint-load": { "id": 138500030371, "conclusion": "success", "passed": 2 },
+    "repeat-diagnostics": { "id": 138500032813, "conclusion": "skipped", "trigger": "manual only" }
+  },
+  "windowsInstaller": {
+    "runner": "windows-2025",
+    "account": "fresh medium-integrity standard user, separate from the runner account",
+    "path": "Windows system directories and Windows PowerShell only",
+    "buildCommand": "pnpm dist:win --acceptance",
+    "buildExitCode": 0,
+    "verifyCommand": "./tests/install/ci-standard-user.ps1 -Packages $env:TAPKIT_CI_INSTALLERS",
+    "verifyExitCode": 0,
+    "versions": ["0.1.0", "0.1.1"],
+    "passedAssertions": 33,
+    "totalAssertions": 33,
+    "packagedNativeAcceptance": { "passed": 22, "total": 22, "missing": 0 },
+    "verified": [
+      "SHA-256 sidecars and unsigned development packaging for both versions",
+      "Actual installation, Start menu and registry registration, bundled Host and SQLite",
+      "Actual interruption during extraction, then an invalid migration and coordinated shutdown",
+      "Recovery from persisted interruption after application directory and database replacement",
+      "SQLite snapshot and schema 25 to 26 migration with data and deletion tombstones retained",
+      "Rejection of future database schema without changing the installed version or content",
+      "Default uninstall with retention and verified data after reinstallation",
+      "Explicit clear removes the relocated data directory with Chinese path components and leaves external exports and the original repository intact"
+    ]
+  },
+  "artifacts": {
+    "installers": "https://github.com/tteok1/TapKit/actions/runs/45409702302/artifacts/14932263707",
+    "installationEvidence": "https://github.com/tteok1/TapKit/actions/runs/45409702302/artifacts/14932218749"
+  },
+  "pending": { "R09": "clean Windows 11 x64 T21", "R11": "formal signing identity" }
+}

@@ -25,7 +25,7 @@
     "test:perf": "node scripts/perf.mjs",
     "eval:agent": "node scripts/eval-agent.mjs",
     "pack:dir": "node scripts/pack-dir.mjs",
-    "dist:win": "node scripts/not-implemented.mjs installer",
+    "dist:win": "node scripts/installer/dist.mjs",
     "docs:check": "node scripts/docs-check.mjs",
     "format": "prettier --write .",
     "runtime:fetch": "node scripts/runtime-fetch.mjs",

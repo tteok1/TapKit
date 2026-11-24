@@ -269,6 +269,8 @@ export interface TapKitBridge {
     shortcut: 'registered' | 'conflict' | 'disabled';
     login: 'enabled' | 'disabled' | 'unavailable';
   }>;
+  checkInstaller(): Promise<{ version: string } | null>;
+  downloadInstaller(): Promise<'cancelled' | 'saved'>;
   openQuickInput(): Promise<void>;
   finishQuickInput(open: boolean): Promise<void>;
   newWindow(): Promise<void>;

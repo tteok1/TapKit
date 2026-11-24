@@ -1,0 +1,21 @@
+{
+  "runId": 45403057983,
+  "runNumber": 133,
+  "head": "4eeb8e54cdd10bf5016274b2bb78396d0b5b6805",
+  "conclusion": "cancelled",
+  "url": "https://github.com/tteok1/TapKit/actions/runs/45403057983",
+  "windowsInstaller": {
+    "jobId": 138476455658,
+    "conclusion": "failure",
+    "checksCompleted": ["build pair", "SHA-256 (two EXEs)", "NotSigned (two EXEs)"],
+    "failed": "Fresh install exited 1 before activation",
+    "code": "INSTALLATION_FILE_MISSING",
+    "path": "resources/tapkit/.runtime/libreoffice/program/python-core-3.12.14/lib/pip/_vendor/distlib/t64-arm.exe"
+  },
+  "next": {
+    "head": "68b5ada98a26e5235520b046fded36be0640e641",
+    "runId": 45405997945,
+    "runNumber": 134,
+    "change": "Exclude the two unused win-arm64 distlib launcher templates from x64 install payloads; runtime file integrity stays enforced."
+  }
+}

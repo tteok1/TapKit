@@ -1,0 +1,33 @@
+{
+  "scope": "current Windows development host, corrected disposable extraction",
+  "initialCompilerSource": "aa6068dcf1020a7e88de43caefeedf2a5a0b6c05",
+  "fixSource": "4eeb8e54cdd10bf5016274b2bb78396d0b5b6805",
+  "initialArchive": {
+    "bytes": 642806823,
+    "sha256": "e0baa7fc9b2aabe745630246fea0b601f8d70638ba98745ba816e18c099831fb",
+    "authenticode": "NotSigned",
+    "extraction": "68,245 files",
+    "rejectedExtraFile": "resources/elevate.exe",
+    "nativeCollectionFailure": "missing resources/catalogs/defaults.json"
+  },
+  "checks": [
+    {
+      "command": "bundled node.exe scripts/installer/storage.mjs <program> <fixture data> <transaction> <receipt>",
+      "exitCode": 0,
+      "receipt": "OK",
+      "originalSchema": 25,
+      "backupSchema": 25,
+      "stagedSchema": 26,
+      "syntheticRowPreserved": true
+    },
+    {
+      "command": "bundled node.exe node_modules/vitest/vitest.mjs run --config scripts/installer/probe.config.mjs --configLoader=native --reporter=verbose",
+      "exitCode": 0,
+      "passed": 22,
+      "total": 22,
+      "files": 5,
+      "durationSeconds": 370.19,
+      "scope": "actual packaged helper, Node, Python, Git and LibreOffice; bundled runtimes and Windows PowerShell 5.1"
+    }
+  ]
+}

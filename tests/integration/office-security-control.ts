@@ -1,3 +1,4 @@
+import { testWorkRoot } from '../../scripts/test-temp.mjs';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { createRequire } from 'node:module';
@@ -16,8 +17,8 @@ const id = () => {
   return value.slice(0, 14) + '7' + value.slice(15);
 };
 
-export async function recordOfficePdf(root: string, name: string, bytes: Buffer) {
-  const directory = join(root, 'test-results/P00-03-office');
+export async function recordOfficePdf(name: string, bytes: Buffer) {
+  const directory = join(testWorkRoot, 'test-results/P00-03-office');
   await mkdir(directory, { recursive: true });
   await writeFile(join(directory, name + '.pdf'), bytes);
 }
@@ -52,7 +53,17 @@ export async function officeControl(
   const runtime = await runtimePaths(root, 'libreoffice');
   const mappingScript = join(root, 'tests/fixtures/office-control-mappings.ps1');
   const journal = join(workspace, 'control-mappings.json');
-  const mappingArgs = ['-NoProfile', '-NonInteractive', '-File', mappingScript];
+  const windowsPowerShell = process.env.TAPKIT_NATIVE_PROBE_WORK_DIR;
+  const command = windowsPowerShell
+    ? join(process.env.SystemRoot ?? 'C:/Windows', 'System32/WindowsPowerShell/v1.0/powershell.exe')
+    : 'pwsh.exe';
+  const mappingArgs = [
+    '-NoProfile',
+    '-NonInteractive',
+    ...(windowsPowerShell ? ['-ExecutionPolicy', 'Bypass'] : []),
+    '-File',
+    mappingScript,
+  ];
   const runId = id();
   await prepareOfficeProfile(workspace);
   await copyFile(
@@ -61,7 +72,7 @@ export async function officeControl(
   );
   try {
     const created = await exec(
-      'pwsh.exe',
+      command,
       [
         ...mappingArgs,
         '-Operation',
@@ -75,7 +86,7 @@ export async function officeControl(
         '-InputRoot',
         inputRoot,
       ],
-      { cwd: root, windowsHide: true },
+      { cwd: testWorkRoot, windowsHide: true },
     );
     const mappings = JSON.parse(created.stdout) as Array<{ drive: string; target: string }>;
     if (mappings.length !== 3) throw new Error('OFFICE_CONTROL_MAPPINGS_INVALID');
@@ -273,7 +284,7 @@ worker = threading.Thread(target=schedule_control,`,
     });
     const result = await new NativeSandboxExecutor(root).execute(request);
     await appendFile(
-      join(root, 'docs/evidence/P00-03/native-cases.jsonl'),
+      join(testWorkRoot, 'docs/evidence/P00-03/native-cases.jsonl'),
       JSON.stringify({ case: 'office-control-' + mode, runId, events: result.events }) + '\n',
     );
     const started = result.events[0];
@@ -299,8 +310,8 @@ worker = threading.Thread(target=schedule_control,`,
       },
     );
     if (exists)
-      await exec('pwsh.exe', [...mappingArgs, '-Operation', 'remove', '-Journal', journal], {
-        cwd: root,
+      await exec(command, [...mappingArgs, '-Operation', 'remove', '-Journal', journal], {
+        cwd: testWorkRoot,
         windowsHide: true,
       });
   }
