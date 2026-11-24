@@ -1,0 +1,16 @@
+{
+  "recordedAt": "2026-11-24T04:58:33.154Z",
+  "legacySource": "083c2ea:tests/fixtures/P11-01-working-set.ps1",
+  "red": {
+    "exitCode": 1,
+    "passed": 1,
+    "failed": 3
+  },
+  "green": {
+    "exitCode": 0,
+    "passed": 4,
+    "failed": 0
+  },
+  "scope": "Original selector body extracted from Git and wrapped as a pure function; synthetic snapshots only, no CIM or live processes",
+  "microsoftReference": "https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32-process#properties"
+}

@@ -1,0 +1,16 @@
+{
+  "baseCommit": "836afe91c33b09bc27a979a75e343a6e4f587987",
+  "branch": "codex/p11-01-latency-investigation",
+  "state": "uncommitted source fix during measurement; raw report commit is the unchanged base HEAD",
+  "normalization": "UTF-8 CRLF/LF normalized",
+  "files": [
+    {
+      "path": "packages/core/src/memory-service.ts",
+      "sha256": "a177556bec76082977ec38a65ec5dffd3c402a596b924acd381965a8b36a5de9"
+    },
+    {
+      "path": "tests/integration/P11-01.history-query.test.ts",
+      "sha256": "0e5db5213fa7d4f139878ea9151e6dec2614e33dc133d40ffb769f6462ef0452"
+    }
+  ]
+}

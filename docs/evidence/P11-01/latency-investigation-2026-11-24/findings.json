@@ -1,0 +1,77 @@
+{
+  "recordedAt": "2026-11-24T04:18:02.346Z",
+  "branch": "codex/p11-01-latency-investigation",
+  "baseMain": "836afe91c33b09bc27a979a75e343a6e4f587987",
+  "applicationChange": "Only the profile-wide history query access order; nine added source lines and two replaced source lines. No schema, dependency, model, role, scope or threshold changes.",
+  "network": {
+    "directPublicNetworkInTimedPath": false,
+    "basis": [
+      "The explicit synthetic chat fixture overrides router.deps.adapter and locally yields P11 timestamp fragments. The fixture.invalid base URL is metadata and is never called on this path.",
+      "Embedding Worker loads the verified local model and tokenizer with local_files_only=true.",
+      "Text travels through Core utility-process messages and Electron IPC; the measurement runs inside Renderer without a per-fragment remote test-controller round trip.",
+      "Downloads, GitHub API polling and package-manager setup happen outside the measured fragment interval."
+    ],
+    "traceCaveat": "The failed artifact contains only test.trace, not browser .network or process CPU profiles. Zero recorded network requests in that trace is not treated as evidence of zero network activity."
+  },
+  "originalExcursion": {
+    "run": 125,
+    "attempt": 1,
+    "p95Ms": [
+      266,
+      39
+    ],
+    "slowFragment": {
+      "index": 2,
+      "domMs": 238,
+      "frameMs": 28,
+      "upstreamToLiveIndexStartMs": 235,
+      "domAfterLiveIndexStartMs": 3
+    },
+    "causeConfirmed": false,
+    "notClaimedFixedByThisPatch": true
+  },
+  "confirmedLocalIssue": {
+    "kind": "Synchronous history recall in Core during concurrent context preparation",
+    "profiledFirstDomMs": 1555,
+    "profiledCoreNativeMs": 1545.4,
+    "callStacks": "history -> background -> prepareContext; Host and Renderer were mostly idle in this window.",
+    "queryPlan": "sessions_activity -> messages_order -> temporary B-tree sorting before iterator results",
+    "commonQueryBeforeMs": 355.07450000000244,
+    "commonQueryAfterMs": 2.557600000000093,
+    "backgroundBeforeMs": 1090.5702999999994,
+    "backgroundAfterMs": 469.3319999999949,
+    "resultEqualityVerified": true,
+    "remainingCost": "No-match substring searches still scan the authorized history. No new universal per-query latency promise is made.",
+    "profiledHistoryNativeMs": 1515.3
+  },
+  "normalVerification": {
+    "p95Ms": 48,
+    "firstDomMs": 598,
+    "cancelAckMs": 46.30000000074506,
+    "cancelSettledMs": 116.60000000149012,
+    "office": [
+      {
+        "status": "completed",
+        "reason": null,
+        "artifacts": 2
+      },
+      {
+        "status": "completed",
+        "reason": null,
+        "artifacts": 2
+      }
+    ],
+    "nativeHelpers": 2,
+    "samplerErrors": []
+  },
+  "comparisonLimit": "The earlier first-fragment sample was instrumented and the later round was normal; their first-DOM times are observations, not a controlled percentage speedup. The SQL access-path comparison uses the same database and inputs in one probe.",
+  "disposition": "Stop speculative optimization and repeated CI retries after this measured, bounded query fix. Preserve the original 266ms failure. Use reference Windows 11 acceptance or a future reproduction with process-level trace to investigate that exact excursion.",
+  "taskStatus": "in_progress",
+  "mainModified": false,
+  "published": false,
+  "pending": [
+    "Reference Windows 11 hardware",
+    "R01-R08 complete live verification",
+    "CI for the new source candidate before any future merge; not started in this investigation"
+  ]
+}

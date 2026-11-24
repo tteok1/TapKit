@@ -1,0 +1,1093 @@
+{
+  "recordedAt": "2026-11-23 19:25:51 UTC",
+  "runId": 45239870638,
+  "runNumber": 125,
+  "attempt": 2,
+  "headSha": "836afe91c33b09bc27a979a75e343a6e4f587987",
+  "headBranch": "main",
+  "event": "push",
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/tteok1/TapKit/actions/runs/45239870638",
+  "updatedAt": "2026-11-23T19:25:17Z",
+  "requiredJobs": [
+    "check",
+    "electron",
+    "office-native",
+    "p11-joint-load"
+  ],
+  "jobs": [
+    {
+      "id": 137943051686,
+      "name": "p11-joint-load",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 45239870638,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify native isolation on this runner",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "P11-01 joint load",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ]
+    },
+    {
+      "id": 137943054744,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 45239870638,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Save verified runtime archives",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6
+        },
+        {
+          "name": "Check",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Unit and current-route integration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Offline system evaluation and release source scan",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Dedicated Core performance checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        }
+      ]
+    },
+    {
+      "id": 137943055155,
+      "name": "repeat-diagnostics",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 45239870638,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 137943055426,
+      "name": "electron",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 45239870638,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify current runner execution capabilities",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Prepare native Office preview for Electron",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Electron end-to-end checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        }
+      ]
+    },
+    {
+      "id": 137943139529,
+      "name": "office-native",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 45239870638,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify current runner execution capabilities",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Verify P00-03 and P03 parser as an independent standard user",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "P07 native office acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Host and application security suite",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "P10 canvas PDF acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        }
+      ]
+    }
+  ],
+  "jointMeasurements": [
+    {
+      "sampler": {
+        "startedAt": 1795461678691,
+        "firstSampleMs": 562.7462999999989,
+        "exitCode": null,
+        "signal": "SIGTERM",
+        "stopping": true
+      },
+      "samplerErrors": [],
+      "runtimeCapabilities": {
+        "nativeExecution": {
+          "status": "available"
+        },
+        "officeRender": {
+          "status": "available"
+        },
+        "terminal": {
+          "status": "available"
+        }
+      },
+      "chatAndIndex": {
+        "latencies": [
+          1328,
+          56,
+          21,
+          31,
+          19,
+          27,
+          19,
+          25,
+          17,
+          29,
+          17,
+          26,
+          31,
+          29,
+          30,
+          21,
+          21,
+          25,
+          16,
+          23,
+          15,
+          29,
+          19,
+          28
+        ],
+        "rendererSamples": [
+          {
+            "index": 0,
+            "domMs": 1302,
+            "waitForFirstFrameMs": 15,
+            "waitForSecondFrameMs": 11,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461680829,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 1,
+            "domMs": 30,
+            "waitForFirstFrameMs": 15,
+            "waitForSecondFrameMs": 11,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461682101,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 2,
+            "domMs": 15,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 5,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461682344,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 3,
+            "domMs": 16,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 14,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461682600,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 4,
+            "domMs": 15,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 4,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461682847,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 5,
+            "domMs": 14,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 12,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461683089,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 6,
+            "domMs": 16,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 3,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461683332,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 7,
+            "domMs": 15,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 9,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461683576,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 8,
+            "domMs": 13,
+            "waitForFirstFrameMs": 2,
+            "waitForSecondFrameMs": 2,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461683819,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 9,
+            "domMs": 17,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 12,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461684071,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 10,
+            "domMs": 14,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 3,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461684317,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 11,
+            "domMs": 16,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 10,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461684559,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 12,
+            "domMs": 16,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 15,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461684804,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 13,
+            "domMs": 16,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 12,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461685055,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 14,
+            "domMs": 17,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 13,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461685304,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 15,
+            "domMs": 11,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 9,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461685548,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 16,
+            "domMs": 18,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 3,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461685800,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 17,
+            "domMs": 18,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 7,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461686044,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 18,
+            "domMs": 13,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 3,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461686288,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 19,
+            "domMs": 16,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 6,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461686531,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 20,
+            "domMs": 12,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 3,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461686774,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 21,
+            "domMs": 15,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 13,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461687024,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 22,
+            "domMs": 14,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 4,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461687268,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 23,
+            "domMs": 16,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 11,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461687510,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          }
+        ],
+        "eventTimeline": [],
+        "longTasks": [],
+        "index": {
+          "startedAt": 1795461682262,
+          "finishedAt": 1795461692260,
+          "hits": 4,
+          "error": null,
+          "streamedDuringIndex": 22
+        },
+        "cancelAckMs": 12.20000000006985,
+        "cancelSettledMs": 62.90000000002328,
+        "callsBefore": 1,
+        "callsAfter": 1,
+        "cancelled": "cancelled",
+        "displayP95Ms": 56,
+        "peakMiB": 932.3515625,
+        "maxNativeHelpers": 0
+      },
+      "heavyWork": {
+        "startedAt": 1795461692272,
+        "finishedAt": 1795461731389,
+        "bothActive": true,
+        "states": [
+          {
+            "status": "completed",
+            "reason": null,
+            "artifacts": 2
+          },
+          {
+            "status": "completed",
+            "reason": null,
+            "artifacts": 2
+          }
+        ],
+        "peakMiB": 1507.34765625,
+        "maxNativeHelpers": 2
+      },
+      "repeatEachIndex": 0
+    },
+    {
+      "sampler": {
+        "startedAt": 1795461812393,
+        "firstSampleMs": 461.0405000000028,
+        "exitCode": null,
+        "signal": "SIGTERM",
+        "stopping": true
+      },
+      "samplerErrors": [],
+      "runtimeCapabilities": {
+        "nativeExecution": {
+          "status": "available"
+        },
+        "officeRender": {
+          "status": "available"
+        },
+        "terminal": {
+          "status": "available"
+        }
+      },
+      "chatAndIndex": {
+        "latencies": [
+          1343,
+          48,
+          28,
+          30,
+          30,
+          21,
+          35,
+          26,
+          30,
+          30,
+          19,
+          26,
+          17,
+          31,
+          22,
+          28,
+          31,
+          20,
+          23,
+          29,
+          24,
+          29,
+          17,
+          22
+        ],
+        "rendererSamples": [
+          {
+            "index": 0,
+            "domMs": 1320,
+            "waitForFirstFrameMs": 14,
+            "waitForSecondFrameMs": 9,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461814566,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 1,
+            "domMs": 25,
+            "waitForFirstFrameMs": 14,
+            "waitForSecondFrameMs": 9,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461815861,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 2,
+            "domMs": 15,
+            "waitForFirstFrameMs": 2,
+            "waitForSecondFrameMs": 11,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461816103,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 3,
+            "domMs": 19,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 10,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461816352,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 4,
+            "domMs": 16,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 14,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461816601,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 5,
+            "domMs": 11,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 9,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461816845,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 6,
+            "domMs": 27,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 7,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461817096,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 7,
+            "domMs": 14,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 12,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461817356,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 8,
+            "domMs": 15,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 14,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461817601,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 9,
+            "domMs": 17,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 12,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461817852,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 10,
+            "domMs": 15,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 3,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461818096,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 11,
+            "domMs": 16,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 10,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461818339,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 12,
+            "domMs": 15,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 2,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461818582,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 13,
+            "domMs": 15,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 15,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461818835,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 14,
+            "domMs": 16,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 6,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461819078,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 15,
+            "domMs": 15,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 13,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461819321,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 16,
+            "domMs": 16,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 14,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461819569,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 17,
+            "domMs": 14,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 5,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461819814,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 18,
+            "domMs": 16,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 6,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461820062,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 19,
+            "domMs": 13,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 15,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461820305,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 20,
+            "domMs": 15,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 9,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461820547,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 21,
+            "domMs": 15,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 13,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461820790,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 22,
+            "domMs": 14,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 3,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461821037,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 23,
+            "domMs": 14,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 8,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795461821281,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          }
+        ],
+        "eventTimeline": [],
+        "longTasks": [],
+        "index": {
+          "startedAt": 1795461815962,
+          "finishedAt": 1795461825639,
+          "hits": 4,
+          "error": null,
+          "streamedDuringIndex": 22
+        },
+        "cancelAckMs": 11.800000000046566,
+        "cancelSettledMs": 62.40000000002328,
+        "callsBefore": 1,
+        "callsAfter": 1,
+        "cancelled": "cancelled",
+        "displayP95Ms": 48,
+        "peakMiB": 889.01171875,
+        "maxNativeHelpers": 0
+      },
+      "heavyWork": {
+        "startedAt": 1795461825648,
+        "finishedAt": 1795461865820,
+        "bothActive": true,
+        "states": [
+          {
+            "status": "completed",
+            "reason": null,
+            "artifacts": 2
+          },
+          {
+            "status": "completed",
+            "reason": null,
+            "artifacts": 2
+          }
+        ],
+        "peakMiB": 1572.72265625,
+        "maxNativeHelpers": 2
+      },
+      "repeatEachIndex": 1
+    }
+  ],
+  "initialAttemptEvidence": "main-ci-attempt-1.json",
+  "initialAttemptFailureRetained": true,
+  "rerun": "User triggered Re-run failed jobs because the GitHub connector lacked Actions write permission. Only the joint-load job re-executed; the three prior successful job outcomes were retained by GitHub.",
+  "sourceUnchanged": true,
+  "thresholdUnchangedMs": 100,
+  "firstExcursionCauseConfirmed": false,
+  "provenance": {
+    "metadata": "GitHub public Actions API",
+    "jobs": "GitHub connector fetch_workflow_run_jobs",
+    "jointMeasurements": "Exact JSON emitted in retry job 137943051686 from GitHub connector fetch_workflow_job_logs"
+  }
+}

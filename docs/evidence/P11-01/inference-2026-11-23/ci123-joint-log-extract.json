@@ -1,0 +1,712 @@
+{
+  "runId": 45233714343,
+  "jobId": 137899747445,
+  "headSha": "0c2b1453a257e1d846ea9d4af0c0187edd87fb00",
+  "source": "GitHub connector fetch_workflow_job_logs; exact JSON emitted by the two normal joint-load repetitions",
+  "measurements": [
+    {
+      "sampler": {
+        "startedAt": 1795457368517,
+        "firstSampleMs": 644.6146000000008,
+        "exitCode": null,
+        "signal": "SIGTERM",
+        "stopping": true
+      },
+      "samplerErrors": [],
+      "runtimeCapabilities": {
+        "nativeExecution": {
+          "status": "available"
+        },
+        "officeRender": {
+          "status": "available"
+        },
+        "terminal": {
+          "status": "available"
+        }
+      },
+      "chatAndIndex": {
+        "latencies": [
+          1056,
+          43,
+          19,
+          23,
+          15,
+          22,
+          13,
+          15,
+          22,
+          14,
+          23,
+          13,
+          20,
+          14,
+          21,
+          29,
+          31,
+          13,
+          22,
+          13,
+          22,
+          15,
+          23,
+          15
+        ],
+        "rendererSamples": [
+          {
+            "index": 0,
+            "domMs": 1038,
+            "waitForFirstFrameMs": 15,
+            "waitForSecondFrameMs": 3,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457370399,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 1,
+            "domMs": 25,
+            "waitForFirstFrameMs": 15,
+            "waitForSecondFrameMs": 3,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457371412,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 2,
+            "domMs": 10,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 8,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457371654,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 3,
+            "domMs": 11,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 11,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457371901,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 4,
+            "domMs": 10,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 5,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457372143,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 5,
+            "domMs": 11,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 10,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457372386,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 6,
+            "domMs": 10,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 2,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457372629,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 7,
+            "domMs": 12,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 3,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457372878,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 8,
+            "domMs": 12,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 10,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457373120,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 9,
+            "domMs": 10,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 3,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457373362,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 10,
+            "domMs": 10,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 13,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457373604,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 11,
+            "domMs": 10,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 2,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457373848,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 12,
+            "domMs": 14,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 5,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457374090,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 13,
+            "domMs": 11,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 3,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457374332,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 14,
+            "domMs": 12,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 9,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457374574,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 15,
+            "domMs": 13,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 15,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457374816,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 16,
+            "domMs": 19,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 11,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457375064,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 17,
+            "domMs": 10,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 2,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457375316,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 18,
+            "domMs": 15,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 7,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457375558,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 19,
+            "domMs": 11,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 2,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457375801,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 20,
+            "domMs": 10,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 11,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457376042,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 21,
+            "domMs": 11,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 4,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457376284,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 22,
+            "domMs": 10,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 13,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457376525,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 23,
+            "domMs": 10,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 4,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457376768,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          }
+        ],
+        "eventTimeline": [],
+        "longTasks": [],
+        "index": {
+          "startedAt": 1795457371523,
+          "finishedAt": 1795457379743,
+          "hits": 4,
+          "error": null,
+          "streamedDuringIndex": 22
+        },
+        "cancelAckMs": 9.800000000046566,
+        "cancelSettledMs": 47.59999999997672,
+        "callsBefore": 1,
+        "callsAfter": 1,
+        "cancelled": "cancelled",
+        "displayP95Ms": 43,
+        "peakMiB": 990.87890625,
+        "maxNativeHelpers": 0
+      },
+      "heavyWork": {
+        "startedAt": 1795457379754,
+        "finishedAt": 1795457414592,
+        "bothActive": true,
+        "states": [
+          {
+            "status": "completed",
+            "reason": null,
+            "artifacts": 2
+          },
+          {
+            "status": "completed",
+            "reason": null,
+            "artifacts": 2
+          }
+        ],
+        "peakMiB": 1519.6015625,
+        "maxNativeHelpers": 2
+      },
+      "repeatEachIndex": 0
+    },
+    {
+      "sampler": {
+        "startedAt": 1795457477699,
+        "firstSampleMs": 418.1316000000006,
+        "exitCode": null,
+        "signal": "SIGTERM",
+        "stopping": true
+      },
+      "samplerErrors": [],
+      "runtimeCapabilities": {
+        "nativeExecution": {
+          "status": "available"
+        },
+        "officeRender": {
+          "status": "available"
+        },
+        "terminal": {
+          "status": "available"
+        }
+      },
+      "chatAndIndex": {
+        "latencies": [
+          1052,
+          38,
+          14,
+          15,
+          20,
+          14,
+          24,
+          15,
+          23,
+          15,
+          23,
+          30,
+          14,
+          25,
+          14,
+          13,
+          15,
+          22,
+          17,
+          26,
+          16,
+          25,
+          16,
+          25
+        ],
+        "rendererSamples": [
+          {
+            "index": 0,
+            "domMs": 1034,
+            "waitForFirstFrameMs": 9,
+            "waitForSecondFrameMs": 9,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457479593,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 1,
+            "domMs": 20,
+            "waitForFirstFrameMs": 9,
+            "waitForSecondFrameMs": 9,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457480607,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 2,
+            "domMs": 11,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 2,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457480849,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 3,
+            "domMs": 12,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 2,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457481099,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 4,
+            "domMs": 12,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 8,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457481342,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 5,
+            "domMs": 11,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 2,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457481598,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 6,
+            "domMs": 14,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 9,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457481839,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 7,
+            "domMs": 11,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 3,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457482082,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 8,
+            "domMs": 11,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 12,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457482323,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 9,
+            "domMs": 12,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 3,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457482566,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 10,
+            "domMs": 12,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 11,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457482808,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 11,
+            "domMs": 17,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 13,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457483051,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 12,
+            "domMs": 11,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 2,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457483300,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 13,
+            "domMs": 11,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 14,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457483541,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 14,
+            "domMs": 11,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 2,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457483785,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 15,
+            "domMs": 11,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 2,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457484036,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 16,
+            "domMs": 12,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 2,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457484284,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 17,
+            "domMs": 9,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 12,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457484527,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 18,
+            "domMs": 11,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 5,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457484768,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 19,
+            "domMs": 12,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 14,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457485009,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 20,
+            "domMs": 11,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 4,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457485252,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 21,
+            "domMs": 12,
+            "waitForFirstFrameMs": 0,
+            "waitForSecondFrameMs": 13,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457485493,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 22,
+            "domMs": 11,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 4,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457485736,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          },
+          {
+            "index": 23,
+            "domMs": 11,
+            "waitForFirstFrameMs": 1,
+            "waitForSecondFrameMs": 13,
+            "visibility": "visible",
+            "focused": true,
+            "upstreamAt": 1795457485978,
+            "deltaOccurredAt": null,
+            "deltaReceivedAt": null
+          }
+        ],
+        "eventTimeline": [],
+        "longTasks": [],
+        "index": {
+          "startedAt": 1795457480700,
+          "finishedAt": 1795457488534,
+          "hits": 4,
+          "error": null,
+          "streamedDuringIndex": 22
+        },
+        "cancelAckMs": 10.600000000093132,
+        "cancelSettledMs": 48.800000000046566,
+        "callsBefore": 1,
+        "callsAfter": 1,
+        "cancelled": "cancelled",
+        "displayP95Ms": 38,
+        "peakMiB": 923.2734375,
+        "maxNativeHelpers": 0
+      },
+      "heavyWork": {
+        "startedAt": 1795457488543,
+        "finishedAt": 1795457520827,
+        "bothActive": true,
+        "states": [
+          {
+            "status": "completed",
+            "reason": null,
+            "artifacts": 2
+          },
+          {
+            "status": "completed",
+            "reason": null,
+            "artifacts": 2
+          }
+        ],
+        "peakMiB": 1446.82421875,
+        "maxNativeHelpers": 2
+      },
+      "repeatEachIndex": 1
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "recordedAt": "2026-11-23T18:35:01.192Z",
+  "repository": "tteok1/TapKit",
+  "branch": "codex/p11-01-dev-acceptance",
+  "oldHead": "0c2b1453a257e1d846ea9d4af0c0187edd87fb00",
+  "base": "081c8213aeaad0eebdf3356a3aa72e67dd031d1e",
+  "newHead": "836afe91c33b09bc27a979a75e343a6e4f587987",
+  "tree": "6623dfca2a02dbb5a63acf3ebd3e231c03520521",
+  "oldCommitCount": 24,
+  "newCommitCount": 1,
+  "treeIdentical": true,
+  "backupRef": "refs/heads/codex/p11-01-history-20261124",
+  "ciReference": {
+    "run": 123,
+    "url": "https://github.com/tteok1/TapKit/actions/runs/45233714343",
+    "head": "0c2b1453a257e1d846ea9d4af0c0187edd87fb00",
+    "conclusion": "success",
+    "sameEntireGitTree": true
+  },
+  "workspaceDiffByteIdentical": true,
+  "protectedFilesVerified": 13,
+  "closure": {
+    "pr": 2,
+    "status": "closed",
+    "evidence": "pr-closed.json"
+  },
+  "published": true,
+  "mainMerged": true,
+  "taskStatus": "in_progress",
+  "pending": [
+    "reference Windows 11 hardware",
+    "R01-R08 complete live verification",
+    "exact cause of the initial 266ms main-run excursion remains unconfirmed"
+  ],
+  "currentHeadCi": "main-ci.json and branch-ci.json"
+}

@@ -1,0 +1,1590 @@
+[
+  {
+    "repeat": 0,
+    "stages": {
+      "chatAndIndex": {
+        "p95Ms": 39,
+        "peakMiB": 926.0234375,
+        "samples": 23,
+        "peakSamples": [
+          {
+            "processCount": 6,
+            "totalBytes": 971005952,
+            "nativeHelpers": 0,
+            "at": 1795495836346
+          },
+          {
+            "processCount": 6,
+            "totalBytes": 965517312,
+            "nativeHelpers": 0,
+            "at": 1795495836063
+          },
+          {
+            "processCount": 6,
+            "totalBytes": 965025792,
+            "nativeHelpers": 0,
+            "at": 1795495834948
+          },
+          {
+            "processCount": 6,
+            "totalBytes": 963829760,
+            "nativeHelpers": 0,
+            "at": 1795495835239
+          },
+          {
+            "processCount": 6,
+            "totalBytes": 963641344,
+            "nativeHelpers": 0,
+            "at": 1795495835786
+          },
+          {
+            "processCount": 6,
+            "totalBytes": 962125824,
+            "nativeHelpers": 0,
+            "at": 1795495833783
+          },
+          {
+            "processCount": 6,
+            "totalBytes": 962101248,
+            "nativeHelpers": 0,
+            "at": 1795495835513
+          },
+          {
+            "processCount": 6,
+            "totalBytes": 961282048,
+            "nativeHelpers": 0,
+            "at": 1795495834661
+          }
+        ],
+        "timeline": [
+          {
+            "at": 1795495829996,
+            "mib": 845.99,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495830282,
+            "mib": 850.01,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495830574,
+            "mib": 851.23,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495830876,
+            "mib": 885.41,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495831167,
+            "mib": 893.77,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495831464,
+            "mib": 899.61,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495831754,
+            "mib": 887.44,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495832046,
+            "mib": 894.43,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495832332,
+            "mib": 907.96,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495832621,
+            "mib": 912.01,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495832917,
+            "mib": 898.57,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495833211,
+            "mib": 908.47,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495833499,
+            "mib": 912.76,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495833783,
+            "mib": 917.55,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495834071,
+            "mib": 906.77,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495834368,
+            "mib": 911.36,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495834661,
+            "mib": 916.75,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495834948,
+            "mib": 920.32,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495835239,
+            "mib": 919.18,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495835513,
+            "mib": 917.53,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495835786,
+            "mib": 919.0,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495836063,
+            "mib": 920.79,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495836346,
+            "mib": 926.02,
+            "processes": 6,
+            "helpers": 0
+          }
+        ]
+      },
+      "heavyWork": {
+        "p95Ms": null,
+        "peakMiB": 1643.390625,
+        "samples": 89,
+        "peakSamples": [
+          {
+            "processCount": 16,
+            "totalBytes": 1723219968,
+            "nativeHelpers": 2,
+            "at": 1795495856189
+          },
+          {
+            "processCount": 16,
+            "totalBytes": 1720061952,
+            "nativeHelpers": 2,
+            "at": 1795495855900
+          },
+          {
+            "processCount": 16,
+            "totalBytes": 1644179456,
+            "nativeHelpers": 2,
+            "at": 1795495855619
+          },
+          {
+            "processCount": 16,
+            "totalBytes": 1485840384,
+            "nativeHelpers": 2,
+            "at": 1795495855337
+          },
+          {
+            "processCount": 16,
+            "totalBytes": 1484300288,
+            "nativeHelpers": 2,
+            "at": 1795495854485
+          },
+          {
+            "processCount": 16,
+            "totalBytes": 1483382784,
+            "nativeHelpers": 2,
+            "at": 1795495855051
+          },
+          {
+            "processCount": 16,
+            "totalBytes": 1482330112,
+            "nativeHelpers": 2,
+            "at": 1795495854766
+          },
+          {
+            "processCount": 16,
+            "totalBytes": 1474469888,
+            "nativeHelpers": 2,
+            "at": 1795495854208
+          }
+        ],
+        "timeline": [
+          {
+            "at": 1795495836627,
+            "mib": 927.49,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495836906,
+            "mib": 927.61,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495837183,
+            "mib": 927.91,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495837478,
+            "mib": 927.99,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495837759,
+            "mib": 978.27,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495838054,
+            "mib": 1000.5,
+            "processes": 10,
+            "helpers": 1
+          },
+          {
+            "at": 1795495838338,
+            "mib": 966.93,
+            "processes": 8,
+            "helpers": 1
+          },
+          {
+            "at": 1795495838625,
+            "mib": 1049.16,
+            "processes": 10,
+            "helpers": 1
+          },
+          {
+            "at": 1795495838903,
+            "mib": 962.42,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495839186,
+            "mib": 963.98,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495839460,
+            "mib": 972.21,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495839748,
+            "mib": 982.36,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495840047,
+            "mib": 988.41,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495840330,
+            "mib": 989.88,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495840611,
+            "mib": 989.19,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495840908,
+            "mib": 990.12,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495841190,
+            "mib": 989.64,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495841473,
+            "mib": 988.74,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495841757,
+            "mib": 988.64,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495842041,
+            "mib": 986.8,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495842318,
+            "mib": 986.97,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495842597,
+            "mib": 986.52,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495842886,
+            "mib": 985.57,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495843168,
+            "mib": 985.77,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495843453,
+            "mib": 985.62,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495843734,
+            "mib": 984.89,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495844018,
+            "mib": 985.45,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495844306,
+            "mib": 986.86,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495844587,
+            "mib": 986.59,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495844873,
+            "mib": 986.53,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495845158,
+            "mib": 986.94,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495845448,
+            "mib": 986.62,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495845728,
+            "mib": 986.64,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495846010,
+            "mib": 986.66,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495846296,
+            "mib": 986.8,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495846586,
+            "mib": 986.89,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495846873,
+            "mib": 986.66,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495847152,
+            "mib": 986.84,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495847432,
+            "mib": 988.17,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495847719,
+            "mib": 988.21,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495848001,
+            "mib": 988.44,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495848289,
+            "mib": 988.55,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495848572,
+            "mib": 988.61,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495848853,
+            "mib": 988.57,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495849138,
+            "mib": 988.64,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495849415,
+            "mib": 1002.15,
+            "processes": 8,
+            "helpers": 0
+          },
+          {
+            "at": 1795495849691,
+            "mib": 1049.84,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495849968,
+            "mib": 1050.04,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495850259,
+            "mib": 1052.36,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495850539,
+            "mib": 1052.76,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495850817,
+            "mib": 1114.26,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495851099,
+            "mib": 1196.78,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495851390,
+            "mib": 1238.42,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495851671,
+            "mib": 1279.56,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495851949,
+            "mib": 1287.28,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495852234,
+            "mib": 1220.34,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495852522,
+            "mib": 1257.3,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495852800,
+            "mib": 1286.5,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495853084,
+            "mib": 1322.73,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495853365,
+            "mib": 1379.52,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495853642,
+            "mib": 1389.08,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495853925,
+            "mib": 1398.22,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495854208,
+            "mib": 1406.16,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495854485,
+            "mib": 1415.54,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495854766,
+            "mib": 1413.66,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495855051,
+            "mib": 1414.66,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495855337,
+            "mib": 1417.01,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495855619,
+            "mib": 1568.01,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495855900,
+            "mib": 1640.38,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495856189,
+            "mib": 1643.39,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495856472,
+            "mib": 1014.95,
+            "processes": 13,
+            "helpers": 2
+          },
+          {
+            "at": 1795495856751,
+            "mib": 928.13,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495857028,
+            "mib": 928.85,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495857303,
+            "mib": 929.85,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495857586,
+            "mib": 929.92,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495857863,
+            "mib": 930.89,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495858143,
+            "mib": 931.72,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495858426,
+            "mib": 932.39,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495858712,
+            "mib": 910.63,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495858995,
+            "mib": 936.26,
+            "processes": 12,
+            "helpers": 2
+          },
+          {
+            "at": 1795495859276,
+            "mib": 980.67,
+            "processes": 12,
+            "helpers": 2
+          },
+          {
+            "at": 1795495859556,
+            "mib": 879.74,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495859838,
+            "mib": 868.42,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495860117,
+            "mib": 887.91,
+            "processes": 8,
+            "helpers": 1
+          },
+          {
+            "at": 1795495860401,
+            "mib": 986.39,
+            "processes": 10,
+            "helpers": 1
+          },
+          {
+            "at": 1795495860688,
+            "mib": 877.23,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495860971,
+            "mib": 907.89,
+            "processes": 8,
+            "helpers": 1
+          },
+          {
+            "at": 1795495861253,
+            "mib": 1009.45,
+            "processes": 10,
+            "helpers": 1
+          },
+          {
+            "at": 1795495861531,
+            "mib": 896.44,
+            "processes": 6,
+            "helpers": 0
+          }
+        ]
+      }
+    }
+  },
+  {
+    "repeat": 1,
+    "stages": {
+      "chatAndIndex": {
+        "p95Ms": 40,
+        "peakMiB": 888.6171875,
+        "samples": 23,
+        "peakSamples": [
+          {
+            "totalBytes": 931782656,
+            "nativeHelpers": 0,
+            "processCount": 6,
+            "at": 1795495919436
+          },
+          {
+            "totalBytes": 931778560,
+            "nativeHelpers": 0,
+            "processCount": 6,
+            "at": 1795495916331
+          },
+          {
+            "totalBytes": 930111488,
+            "nativeHelpers": 0,
+            "processCount": 6,
+            "at": 1795495919152
+          },
+          {
+            "totalBytes": 929378304,
+            "nativeHelpers": 0,
+            "processCount": 6,
+            "at": 1795495917478
+          },
+          {
+            "totalBytes": 929300480,
+            "nativeHelpers": 0,
+            "processCount": 6,
+            "at": 1795495918881
+          },
+          {
+            "totalBytes": 928071680,
+            "nativeHelpers": 0,
+            "processCount": 6,
+            "at": 1795495918606
+          },
+          {
+            "totalBytes": 926834688,
+            "nativeHelpers": 0,
+            "processCount": 6,
+            "at": 1795495918328
+          },
+          {
+            "totalBytes": 925519872,
+            "nativeHelpers": 0,
+            "processCount": 6,
+            "at": 1795495916051
+          }
+        ],
+        "timeline": [
+          {
+            "at": 1795495913160,
+            "mib": 813.46,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495913446,
+            "mib": 813.52,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495913729,
+            "mib": 814.89,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495914043,
+            "mib": 862.66,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495914328,
+            "mib": 865.66,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495914610,
+            "mib": 871.12,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495914898,
+            "mib": 874.24,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495915188,
+            "mib": 864.32,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495915482,
+            "mib": 871.07,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495915767,
+            "mib": 877.39,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495916051,
+            "mib": 882.64,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495916331,
+            "mib": 888.61,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495916614,
+            "mib": 869.42,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495916894,
+            "mib": 875.34,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495917184,
+            "mib": 880.41,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495917478,
+            "mib": 886.32,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495917761,
+            "mib": 875.38,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495918042,
+            "mib": 879.35,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495918328,
+            "mib": 883.9,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495918606,
+            "mib": 885.08,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495918881,
+            "mib": 886.25,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495919152,
+            "mib": 887.02,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495919436,
+            "mib": 888.62,
+            "processes": 6,
+            "helpers": 0
+          }
+        ]
+      },
+      "heavyWork": {
+        "p95Ms": null,
+        "peakMiB": 4239.69140625,
+        "samples": 90,
+        "peakSamples": [
+          {
+            "totalBytes": 4445638656,
+            "nativeHelpers": 1,
+            "processCount": 146,
+            "at": 1795495944376
+          },
+          {
+            "totalBytes": 4384468992,
+            "nativeHelpers": 1,
+            "processCount": 146,
+            "at": 1795495944076
+          },
+          {
+            "totalBytes": 1632337920,
+            "nativeHelpers": 2,
+            "processCount": 16,
+            "at": 1795495939615
+          },
+          {
+            "totalBytes": 1582387200,
+            "nativeHelpers": 2,
+            "processCount": 16,
+            "at": 1795495939329
+          },
+          {
+            "totalBytes": 1547784192,
+            "nativeHelpers": 2,
+            "processCount": 16,
+            "at": 1795495939042
+          },
+          {
+            "totalBytes": 1468620800,
+            "nativeHelpers": 2,
+            "processCount": 16,
+            "at": 1795495938761
+          },
+          {
+            "totalBytes": 1458593792,
+            "nativeHelpers": 2,
+            "processCount": 16,
+            "at": 1795495938475
+          },
+          {
+            "totalBytes": 1453334528,
+            "nativeHelpers": 2,
+            "processCount": 16,
+            "at": 1795495938185
+          }
+        ],
+        "timeline": [
+          {
+            "at": 1795495919719,
+            "mib": 886.34,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495919993,
+            "mib": 904.88,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495920266,
+            "mib": 904.99,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495920540,
+            "mib": 904.85,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495920836,
+            "mib": 948.65,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495921128,
+            "mib": 964.19,
+            "processes": 8,
+            "helpers": 1
+          },
+          {
+            "at": 1795495921404,
+            "mib": 964.98,
+            "processes": 8,
+            "helpers": 1
+          },
+          {
+            "at": 1795495921691,
+            "mib": 976.84,
+            "processes": 8,
+            "helpers": 1
+          },
+          {
+            "at": 1795495921967,
+            "mib": 978.77,
+            "processes": 8,
+            "helpers": 1
+          },
+          {
+            "at": 1795495922253,
+            "mib": 970.11,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495922527,
+            "mib": 988.35,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495922805,
+            "mib": 988.54,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495923082,
+            "mib": 994.54,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495923359,
+            "mib": 996.92,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495923636,
+            "mib": 997.28,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495923913,
+            "mib": 997.22,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495924190,
+            "mib": 997.18,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495924475,
+            "mib": 996.16,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495924762,
+            "mib": 995.04,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495925052,
+            "mib": 995.02,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495925331,
+            "mib": 993.79,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495925621,
+            "mib": 993.88,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495925904,
+            "mib": 992.89,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495926191,
+            "mib": 993.49,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495926473,
+            "mib": 993.22,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495926757,
+            "mib": 994.46,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495927039,
+            "mib": 990.54,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495927318,
+            "mib": 990.59,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495927599,
+            "mib": 991.76,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495927877,
+            "mib": 991.94,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495928185,
+            "mib": 992.22,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495928465,
+            "mib": 992.27,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495928743,
+            "mib": 992.45,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495929532,
+            "mib": 869.77,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495929811,
+            "mib": 861.51,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495930098,
+            "mib": 861.66,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495930381,
+            "mib": 861.38,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495930665,
+            "mib": 861.39,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495930976,
+            "mib": 862.0,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495931259,
+            "mib": 862.06,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495931540,
+            "mib": 860.94,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495931831,
+            "mib": 861.3,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495932110,
+            "mib": 859.68,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495932399,
+            "mib": 859.75,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495932678,
+            "mib": 868.88,
+            "processes": 8,
+            "helpers": 0
+          },
+          {
+            "at": 1795495932958,
+            "mib": 918.56,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495933249,
+            "mib": 921.52,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495933529,
+            "mib": 921.75,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495933806,
+            "mib": 921.93,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495934094,
+            "mib": 953.85,
+            "processes": 13,
+            "helpers": 2
+          },
+          {
+            "at": 1795495934383,
+            "mib": 996.91,
+            "processes": 13,
+            "helpers": 2
+          },
+          {
+            "at": 1795495934670,
+            "mib": 1049.69,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495934963,
+            "mib": 1107.5,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495935242,
+            "mib": 1146.15,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495935533,
+            "mib": 1185.73,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495935825,
+            "mib": 1223.03,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495936110,
+            "mib": 1259.61,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495936395,
+            "mib": 1295.18,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495936684,
+            "mib": 1334.32,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495937016,
+            "mib": 1329.55,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495937326,
+            "mib": 1348.37,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495937617,
+            "mib": 1372.5,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495937907,
+            "mib": 1380.13,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495938185,
+            "mib": 1386.01,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495938475,
+            "mib": 1391.02,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495938761,
+            "mib": 1400.59,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495939042,
+            "mib": 1476.08,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495939329,
+            "mib": 1509.08,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495939615,
+            "mib": 1556.72,
+            "processes": 16,
+            "helpers": 2
+          },
+          {
+            "at": 1795495939975,
+            "mib": 1270.51,
+            "processes": 15,
+            "helpers": 2
+          },
+          {
+            "at": 1795495940269,
+            "mib": 1215.58,
+            "processes": 13,
+            "helpers": 2
+          },
+          {
+            "at": 1795495940562,
+            "mib": 1216.0,
+            "processes": 13,
+            "helpers": 2
+          },
+          {
+            "at": 1795495940849,
+            "mib": 857.41,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495941127,
+            "mib": 859.46,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495941412,
+            "mib": 859.28,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495941694,
+            "mib": 859.83,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495941984,
+            "mib": 851.05,
+            "processes": 8,
+            "helpers": 1
+          },
+          {
+            "at": 1795495942268,
+            "mib": 866.31,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495942572,
+            "mib": 866.25,
+            "processes": 10,
+            "helpers": 2
+          },
+          {
+            "at": 1795495942858,
+            "mib": 956.53,
+            "processes": 12,
+            "helpers": 2
+          },
+          {
+            "at": 1795495943158,
+            "mib": 931.16,
+            "processes": 12,
+            "helpers": 2
+          },
+          {
+            "at": 1795495943440,
+            "mib": 958.35,
+            "processes": 10,
+            "helpers": 1
+          },
+          {
+            "at": 1795495943757,
+            "mib": 860.62,
+            "processes": 8,
+            "helpers": 1
+          },
+          {
+            "at": 1795495944076,
+            "mib": 4181.36,
+            "processes": 146,
+            "helpers": 1
+          },
+          {
+            "at": 1795495944376,
+            "mib": 4239.69,
+            "processes": 146,
+            "helpers": 1
+          },
+          {
+            "at": 1795495944672,
+            "mib": 848.07,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495945006,
+            "mib": 866.93,
+            "processes": 6,
+            "helpers": 0
+          },
+          {
+            "at": 1795495945286,
+            "mib": 886.6,
+            "processes": 8,
+            "helpers": 1
+          },
+          {
+            "at": 1795495945570,
+            "mib": 986.71,
+            "processes": 10,
+            "helpers": 1
+          },
+          {
+            "at": 1795495945871,
+            "mib": 872.65,
+            "processes": 6,
+            "helpers": 0
+          }
+        ]
+      }
+    }
+  }
+]

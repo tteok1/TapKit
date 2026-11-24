@@ -1,0 +1,1220 @@
+{
+  "artifactId": 14852595842,
+  "sha256": "aafadc5c25c51bca08b7f0413df8bd25e92ffc7e23ce336b995d9e9b6cbea98c",
+  "entries": [
+    {
+      "path": "test-results/P11-01/joint-load-repeat-0.json",
+      "bytes": 33789
+    },
+    {
+      "path": "test-results/P11-01/joint-load-trace/P11-01.joint-load-P11-01-j-9a82c-hen-two-native-Office-roots/error-context.md",
+      "bytes": 8251
+    },
+    {
+      "path": "test-results/P11-01/joint-load-repeat-1.json",
+      "bytes": 31478
+    },
+    {
+      "path": "test-results/P11-01/joint-load-trace/P11-01.joint-load-P11-01-j-9a82c-hen-two-native-Office-roots/trace.zip",
+      "bytes": 18072
+    },
+    {
+      "path": "test-results/P11-01/joint-load.json",
+      "bytes": 31478
+    },
+    {
+      "path": "docs/evidence/P11-01/ci-native/runtime-probe.json",
+      "bytes": 1047
+    },
+    {
+      "path": "docs/evidence/P11-01/ci-native/runtime-probe.log",
+      "bytes": 307
+    }
+  ],
+  "traceFiles": [
+    {
+      "path": "src/e1248b80817f344b5317bd748eb4b64c5a0daa28.ts",
+      "bytes": 518
+    },
+    {
+      "path": "src/7c824e35a7501e30ed0c8e84ac5b775870d45c1d.ts",
+      "bytes": 13338
+    },
+    {
+      "path": "src/ef1090f2487b1f0137ec807c7ee0082cada40ab9.ts",
+      "bytes": 1618
+    },
+    {
+      "path": "src/ef3ad353372eea7d06ef0e9af9088c1660c1432f.ts",
+      "bytes": 1789
+    },
+    {
+      "path": "src/497163cc27fa7e1157555b7ced2d4b6ea89d6835.ts",
+      "bytes": 8055
+    },
+    {
+      "path": "attachments/2daf0ff11cbee3caa05b12e4477725e2600187a5",
+      "bytes": 8251
+    },
+    {
+      "path": "test.trace",
+      "bytes": 55658,
+      "eventTypes": {
+        "context-options": 1,
+        "before": 85,
+        "after": 85,
+        "stdout": 2,
+        "error": 1
+      }
+    }
+  ],
+  "networkRequests": [],
+  "actions": [
+    {
+      "type": "before",
+      "callId": "hook@1",
+      "class": "Test",
+      "method": "hook",
+      "startTime": 1921.987
+    },
+    {
+      "type": "before",
+      "callId": "fixture@6",
+      "class": "Test",
+      "method": "fixture",
+      "startTime": 1924.491
+    },
+    {
+      "type": "after",
+      "callId": "fixture@6",
+      "endTime": 1924.619
+    },
+    {
+      "type": "after",
+      "callId": "hook@1",
+      "endTime": 1930.289
+    },
+    {
+      "type": "before",
+      "callId": "expect@35",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 46688.641
+    },
+    {
+      "type": "after",
+      "callId": "expect@35",
+      "endTime": 46689.916
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@36",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 46694.352
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@36",
+      "endTime": 46896.641
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@37",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 47069.927
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@37",
+      "endTime": 47180.444
+    },
+    {
+      "type": "before",
+      "callId": "expect@38",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 47186.748
+    },
+    {
+      "type": "after",
+      "callId": "expect@38",
+      "endTime": 52412.47
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@39",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 52413.744
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@39",
+      "endTime": 52439.747
+    },
+    {
+      "type": "before",
+      "callId": "expect@40",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 52440.674
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@41",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 52442.061
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@41",
+      "endTime": 52466.136
+    },
+    {
+      "type": "before",
+      "callId": "expect@42",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 52466.918
+    },
+    {
+      "type": "after",
+      "callId": "expect@42",
+      "endTime": 52469.164,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at waitRuntimeCapabilities (D:\\a\\TapKit\\TapKit\\tests\\e2e\\core-ready.ts:32:3)\n    at D:\\a\\TapKit\\TapKit\\tests\\e2e\\P11-01.joint-load.spec.ts:205:26"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@43",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 52731.423
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@43",
+      "endTime": 52765.481
+    },
+    {
+      "type": "before",
+      "callId": "expect@44",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 52766.294
+    },
+    {
+      "type": "after",
+      "callId": "expect@44",
+      "endTime": 52766.646,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at waitRuntimeCapabilities (D:\\a\\TapKit\\TapKit\\tests\\e2e\\core-ready.ts:32:3)\n    at D:\\a\\TapKit\\TapKit\\tests\\e2e\\P11-01.joint-load.spec.ts:205:26"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@45",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 53268.912
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@45",
+      "endTime": 53277.475
+    },
+    {
+      "type": "before",
+      "callId": "expect@46",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 53278.028
+    },
+    {
+      "type": "after",
+      "callId": "expect@46",
+      "endTime": 53278.382,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at waitRuntimeCapabilities (D:\\a\\TapKit\\TapKit\\tests\\e2e\\core-ready.ts:32:3)\n    at D:\\a\\TapKit\\TapKit\\tests\\e2e\\P11-01.joint-load.spec.ts:205:26"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@47",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 54294.488
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@47",
+      "endTime": 54302.348
+    },
+    {
+      "type": "before",
+      "callId": "expect@48",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 54302.889
+    },
+    {
+      "type": "after",
+      "callId": "expect@48",
+      "endTime": 54303.175,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at waitRuntimeCapabilities (D:\\a\\TapKit\\TapKit\\tests\\e2e\\core-ready.ts:32:3)\n    at D:\\a\\TapKit\\TapKit\\tests\\e2e\\P11-01.joint-load.spec.ts:205:26"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@49",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 55309.209
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@49",
+      "endTime": 55318.282
+    },
+    {
+      "type": "before",
+      "callId": "expect@50",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 55318.919
+    },
+    {
+      "type": "after",
+      "callId": "expect@50",
+      "endTime": 55319.207,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at waitRuntimeCapabilities (D:\\a\\TapKit\\TapKit\\tests\\e2e\\core-ready.ts:32:3)\n    at D:\\a\\TapKit\\TapKit\\tests\\e2e\\P11-01.joint-load.spec.ts:205:26"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@51",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 56320.202
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@51",
+      "endTime": 56330.055
+    },
+    {
+      "type": "before",
+      "callId": "expect@52",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 56330.511
+    },
+    {
+      "type": "after",
+      "callId": "expect@52",
+      "endTime": 56330.808,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at waitRuntimeCapabilities (D:\\a\\TapKit\\TapKit\\tests\\e2e\\core-ready.ts:32:3)\n    at D:\\a\\TapKit\\TapKit\\tests\\e2e\\P11-01.joint-load.spec.ts:205:26"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@53",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 57339.064
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@53",
+      "endTime": 57348.93
+    },
+    {
+      "type": "before",
+      "callId": "expect@54",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 57349.448
+    },
+    {
+      "type": "after",
+      "callId": "expect@54",
+      "endTime": 57349.704,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at waitRuntimeCapabilities (D:\\a\\TapKit\\TapKit\\tests\\e2e\\core-ready.ts:32:3)\n    at D:\\a\\TapKit\\TapKit\\tests\\e2e\\P11-01.joint-load.spec.ts:205:26"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@55",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 58360.599
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@55",
+      "endTime": 58368.97
+    },
+    {
+      "type": "before",
+      "callId": "expect@56",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 58369.454
+    },
+    {
+      "type": "after",
+      "callId": "expect@56",
+      "endTime": 58369.727,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at waitRuntimeCapabilities (D:\\a\\TapKit\\TapKit\\tests\\e2e\\core-ready.ts:32:3)\n    at D:\\a\\TapKit\\TapKit\\tests\\e2e\\P11-01.joint-load.spec.ts:205:26"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@57",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 59380.598
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@57",
+      "endTime": 59390.611
+    },
+    {
+      "type": "before",
+      "callId": "expect@58",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 59391.197
+    },
+    {
+      "type": "after",
+      "callId": "expect@58",
+      "endTime": 59391.494,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at waitRuntimeCapabilities (D:\\a\\TapKit\\TapKit\\tests\\e2e\\core-ready.ts:32:3)\n    at D:\\a\\TapKit\\TapKit\\tests\\e2e\\P11-01.joint-load.spec.ts:205:26"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@59",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 60397.05
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@59",
+      "endTime": 60405.275
+    },
+    {
+      "type": "before",
+      "callId": "expect@60",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 60405.783
+    },
+    {
+      "type": "after",
+      "callId": "expect@60",
+      "endTime": 60406.032,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at waitRuntimeCapabilities (D:\\a\\TapKit\\TapKit\\tests\\e2e\\core-ready.ts:32:3)\n    at D:\\a\\TapKit\\TapKit\\tests\\e2e\\P11-01.joint-load.spec.ts:205:26"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@61",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 61412.269
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@61",
+      "endTime": 61420.803
+    },
+    {
+      "type": "before",
+      "callId": "expect@62",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 61421.37
+    },
+    {
+      "type": "after",
+      "callId": "expect@62",
+      "endTime": 61421.6,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at waitRuntimeCapabilities (D:\\a\\TapKit\\TapKit\\tests\\e2e\\core-ready.ts:32:3)\n    at D:\\a\\TapKit\\TapKit\\tests\\e2e\\P11-01.joint-load.spec.ts:205:26"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@63",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 62430.586
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@63",
+      "endTime": 62439.436
+    },
+    {
+      "type": "before",
+      "callId": "expect@64",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 62440
+    },
+    {
+      "type": "after",
+      "callId": "expect@64",
+      "endTime": 62440.198,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at waitRuntimeCapabilities (D:\\a\\TapKit\\TapKit\\tests\\e2e\\core-ready.ts:32:3)\n    at D:\\a\\TapKit\\TapKit\\tests\\e2e\\P11-01.joint-load.spec.ts:205:26"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@65",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 63451.876
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@65",
+      "endTime": 63461.341
+    },
+    {
+      "type": "before",
+      "callId": "expect@66",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 63461.863
+    },
+    {
+      "type": "after",
+      "callId": "expect@66",
+      "endTime": 63462.107,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at waitRuntimeCapabilities (D:\\a\\TapKit\\TapKit\\tests\\e2e\\core-ready.ts:32:3)\n    at D:\\a\\TapKit\\TapKit\\tests\\e2e\\P11-01.joint-load.spec.ts:205:26"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@67",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 64472.036
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@67",
+      "endTime": 64481.323
+    },
+    {
+      "type": "before",
+      "callId": "expect@68",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 64481.824
+    },
+    {
+      "type": "after",
+      "callId": "expect@68",
+      "endTime": 64482.047,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at waitRuntimeCapabilities (D:\\a\\TapKit\\TapKit\\tests\\e2e\\core-ready.ts:32:3)\n    at D:\\a\\TapKit\\TapKit\\tests\\e2e\\P11-01.joint-load.spec.ts:205:26"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@69",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 65483.373
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@69",
+      "endTime": 65490.354
+    },
+    {
+      "type": "before",
+      "callId": "expect@70",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 65490.725
+    },
+    {
+      "type": "after",
+      "callId": "expect@70",
+      "endTime": 65490.773
+    },
+    {
+      "type": "after",
+      "callId": "expect@40",
+      "endTime": 65490.898
+    },
+    {
+      "type": "before",
+      "callId": "expect@71",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 65491.206
+    },
+    {
+      "type": "after",
+      "callId": "expect@71",
+      "endTime": 65491.289
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@72",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 65491.574
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@72",
+      "endTime": 66432.052
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@73",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 66433.715
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@73",
+      "endTime": 66463.984
+    },
+    {
+      "type": "before",
+      "callId": "expect@74",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 66464.988
+    },
+    {
+      "type": "after",
+      "callId": "expect@74",
+      "endTime": 66469.758
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@75",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 66470.733
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@75",
+      "endTime": 66480.859
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@76",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 66484.677
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@76",
+      "endTime": 66609.963
+    },
+    {
+      "type": "before",
+      "callId": "expect@77",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 66610.61
+    },
+    {
+      "type": "after",
+      "callId": "expect@77",
+      "endTime": 66647.585
+    },
+    {
+      "type": "before",
+      "callId": "expect@78",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 66648.812
+    },
+    {
+      "type": "after",
+      "callId": "expect@78",
+      "endTime": 66745.697
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@79",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 66746.446
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@79",
+      "endTime": 66776.707
+    },
+    {
+      "type": "before",
+      "callId": "expect@80",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 66777.611
+    },
+    {
+      "type": "after",
+      "callId": "expect@80",
+      "endTime": 66781.583
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@81",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 66782.102
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@81",
+      "endTime": 66794.543
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@82",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 66795.717
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@82",
+      "endTime": 66922.159
+    },
+    {
+      "type": "before",
+      "callId": "expect@83",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 66922.956
+    },
+    {
+      "type": "after",
+      "callId": "expect@83",
+      "endTime": 66957.639
+    },
+    {
+      "type": "before",
+      "callId": "expect@84",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 66958.351
+    },
+    {
+      "type": "after",
+      "callId": "expect@84",
+      "endTime": 67047.881
+    },
+    {
+      "type": "before",
+      "callId": "expect@85",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 67048.786
+    },
+    {
+      "type": "after",
+      "callId": "expect@85",
+      "endTime": 67054.136
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@86",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 67055.027
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@86",
+      "endTime": 67061.955
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@87",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 67062.927
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@87",
+      "endTime": 67109.094
+    },
+    {
+      "type": "before",
+      "callId": "expect@88",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 67109.655
+    },
+    {
+      "type": "after",
+      "callId": "expect@88",
+      "endTime": 67150.276
+    },
+    {
+      "type": "before",
+      "callId": "expect@89",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 67150.917
+    },
+    {
+      "type": "after",
+      "callId": "expect@89",
+      "endTime": 67227.013
+    },
+    {
+      "type": "before",
+      "callId": "expect@90",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 67230.862
+    },
+    {
+      "type": "before",
+      "callId": "expect@91",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 67231.196
+    },
+    {
+      "type": "after",
+      "callId": "expect@91",
+      "endTime": 67231.43,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "expect@92",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 67332.975
+    },
+    {
+      "type": "after",
+      "callId": "expect@92",
+      "endTime": 67333.167,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "expect@93",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 67583.579
+    },
+    {
+      "type": "after",
+      "callId": "expect@93",
+      "endTime": 67583.766,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "expect@94",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 68090.2
+    },
+    {
+      "type": "after",
+      "callId": "expect@94",
+      "endTime": 68090.478,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "expect@95",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 69102.291
+    },
+    {
+      "type": "after",
+      "callId": "expect@95",
+      "endTime": 69102.494,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "expect@96",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 70103.292
+    },
+    {
+      "type": "after",
+      "callId": "expect@96",
+      "endTime": 70103.45,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "expect@97",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 71110.471
+    },
+    {
+      "type": "after",
+      "callId": "expect@97",
+      "endTime": 71110.641,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "expect@98",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 72122.547
+    },
+    {
+      "type": "after",
+      "callId": "expect@98",
+      "endTime": 72122.743,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "expect@99",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 73123.092
+    },
+    {
+      "type": "after",
+      "callId": "expect@99",
+      "endTime": 73123.352,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "expect@100",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 74124.655
+    },
+    {
+      "type": "after",
+      "callId": "expect@100",
+      "endTime": 74124.884,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "expect@101",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 75129.914
+    },
+    {
+      "type": "after",
+      "callId": "expect@101",
+      "endTime": 75129.992
+    },
+    {
+      "type": "after",
+      "callId": "expect@90",
+      "endTime": 75130.075
+    },
+    {
+      "type": "before",
+      "callId": "expect@102",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 75130.524
+    },
+    {
+      "type": "after",
+      "callId": "expect@102",
+      "endTime": 75130.629
+    },
+    {
+      "type": "before",
+      "callId": "expect@103",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 75130.939
+    },
+    {
+      "type": "after",
+      "callId": "expect@103",
+      "endTime": 75131.249
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@104",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 75135.348
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@104",
+      "endTime": 87866.161
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@105",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 87867.468
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@105",
+      "endTime": 123175.997
+    },
+    {
+      "type": "before",
+      "callId": "expect@106",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 123176.598
+    },
+    {
+      "type": "after",
+      "callId": "expect@106",
+      "endTime": 123176.699
+    },
+    {
+      "type": "before",
+      "callId": "expect@107",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 123176.956
+    },
+    {
+      "type": "after",
+      "callId": "expect@107",
+      "endTime": 123176.99
+    },
+    {
+      "type": "before",
+      "callId": "expect@108",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 123177.324
+    },
+    {
+      "type": "after",
+      "callId": "expect@108",
+      "endTime": 123177.528
+    },
+    {
+      "type": "before",
+      "callId": "expect@109",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 123177.813
+    },
+    {
+      "type": "after",
+      "callId": "expect@109",
+      "endTime": 123177.924
+    },
+    {
+      "type": "before",
+      "callId": "expect@110",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 123178.181
+    },
+    {
+      "type": "after",
+      "callId": "expect@110",
+      "endTime": 123178.269
+    },
+    {
+      "type": "before",
+      "callId": "expect@111",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 123178.588
+    },
+    {
+      "type": "after",
+      "callId": "expect@111",
+      "endTime": 123178.608
+    },
+    {
+      "type": "before",
+      "callId": "expect@112",
+      "class": "Test",
+      "method": "expect",
+      "startTime": 123178.846
+    },
+    {
+      "type": "after",
+      "callId": "expect@112",
+      "endTime": 123179.091,
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m100\u001b[39m\nReceived:    \u001b[31m266\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m100\u001b[39m\nReceived:    \u001b[31m266\u001b[39m\n    at D:\\a\\TapKit\\TapKit\\tests\\e2e\\P11-01.joint-load.spec.ts:292:31"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "pw:api@113",
+      "class": "Test",
+      "method": "pw:api",
+      "startTime": 123184.964
+    },
+    {
+      "type": "after",
+      "callId": "pw:api@113",
+      "endTime": 123322.062
+    },
+    {
+      "type": "before",
+      "callId": "hook@114",
+      "class": "Test",
+      "method": "hook",
+      "startTime": 123324.194
+    },
+    {
+      "type": "before",
+      "callId": "attach@a035adfca4bb3a974715c9cb29eb5fd3",
+      "class": "Test",
+      "method": "test.attach",
+      "startTime": 123341.24
+    },
+    {
+      "type": "after",
+      "callId": "attach@a035adfca4bb3a974715c9cb29eb5fd3",
+      "endTime": 123341.249
+    },
+    {
+      "type": "after",
+      "callId": "hook@114",
+      "endTime": 123346.009
+    },
+    {
+      "type": "before",
+      "callId": "hook@147",
+      "class": "Test",
+      "method": "hook",
+      "startTime": 123346.253
+    },
+    {
+      "type": "before",
+      "callId": "fixture@149",
+      "class": "Test",
+      "method": "fixture",
+      "startTime": 123346.619
+    },
+    {
+      "type": "after",
+      "callId": "fixture@149",
+      "endTime": 123390.913
+    },
+    {
+      "type": "after",
+      "callId": "hook@147",
+      "endTime": 123391.666
+    }
+  ],
+  "httpRequests": []
+}

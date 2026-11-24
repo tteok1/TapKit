@@ -1,0 +1,9 @@
+{
+  "runId": 45239870638,
+  "jobId": 137921299920,
+  "head": "836afe91c33b09bc27a979a75e343a6e4f587987",
+  "result": "GitHub API HTTP 403: Resource not accessible by integration",
+  "action": "rerun_workflow_job",
+  "manualRerunRequested": true,
+  "reason": "One main repetition exceeded the unchanged 100ms gate at 266ms; its second repetition was 39ms, and both same-commit branch repetitions were 56/75ms. Exact cause remains unconfirmed. Preserve the failed attempt and obtain one independent confirmation without altering source, commit history, or thresholds."
+}

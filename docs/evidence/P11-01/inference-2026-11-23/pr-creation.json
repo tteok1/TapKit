@@ -22,7 +22,7 @@
     }
   ],
   "bodyFile": "docs/evidence/P11-01/premerge-2026-11-23/pr-draft.md",
-  "compareUrl": "https://github.com/tteok1/TapKit/compare/main...codex:p11-01-dev-acceptance?expand=1",
+  "compareUrl": "https://github.com/tteok1/TapKit/compare/main...codex/p11-01-dev-acceptance?expand=1",
   "fallback": "GitHub CLI is unavailable. No credential inspection, browser access or permission workaround attempted.",
   "nextAction": "Create a draft using the prepared body through a repository-authorized GitHub session, or grant this connector the repository PR permission.",
   "mergeAuthorized": false

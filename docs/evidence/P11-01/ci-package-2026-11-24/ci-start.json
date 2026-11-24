@@ -1,0 +1,344 @@
+{
+  "recordedAt": "2026-11-24 04:44:18 UTC",
+  "commit": "083c2ea72cc841273edc9956cd3e85cd639b5d41",
+  "branch": "codex/p11-01-latency-investigation",
+  "number": 127,
+  "runId": 45328268195,
+  "url": "https://github.com/tteok1/TapKit/actions/runs/45328268195",
+  "attempt": 1,
+  "status": "in_progress",
+  "conclusion": null,
+  "jobs": [
+    {
+      "id": 138222989713,
+      "name": "check",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_id": 45328268195,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 5
+        },
+        {
+          "name": "Save verified runtime archives",
+          "status": "pending",
+          "conclusion": null,
+          "number": 6
+        },
+        {
+          "name": "Check",
+          "status": "pending",
+          "conclusion": null,
+          "number": 7
+        },
+        {
+          "name": "Unit and current-route integration",
+          "status": "pending",
+          "conclusion": null,
+          "number": 8
+        },
+        {
+          "name": "Offline system evaluation and release source scan",
+          "status": "pending",
+          "conclusion": null,
+          "number": 9
+        },
+        {
+          "name": "Dedicated Core performance checks",
+          "status": "pending",
+          "conclusion": null,
+          "number": 10
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 21
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 22
+        }
+      ]
+    },
+    {
+      "id": 138222989946,
+      "name": "p11-joint-load",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_id": 45328268195,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 5
+        },
+        {
+          "name": "Verify native isolation on this runner",
+          "status": "pending",
+          "conclusion": null,
+          "number": 6
+        },
+        {
+          "name": "P11-01 joint load",
+          "status": "pending",
+          "conclusion": null,
+          "number": 7
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 8
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 15
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 16
+        }
+      ]
+    },
+    {
+      "id": 138222989969,
+      "name": "electron",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_id": 45328268195,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 5
+        },
+        {
+          "name": "Verify current runner execution capabilities",
+          "status": "pending",
+          "conclusion": null,
+          "number": 6
+        },
+        {
+          "name": "Prepare native Office preview for Electron",
+          "status": "pending",
+          "conclusion": null,
+          "number": 7
+        },
+        {
+          "name": "Electron end-to-end checks",
+          "status": "pending",
+          "conclusion": null,
+          "number": 8
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 17
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 18
+        }
+      ]
+    },
+    {
+      "id": 138222990078,
+      "name": "office-native",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_id": 45328268195,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Restore locked runtime archives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bootstrap locked runtime and native dependencies",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 5
+        },
+        {
+          "name": "Verify current runner execution capabilities",
+          "status": "pending",
+          "conclusion": null,
+          "number": 6
+        },
+        {
+          "name": "Verify P00-03 and P03 parser as an independent standard user",
+          "status": "pending",
+          "conclusion": null,
+          "number": 7
+        },
+        {
+          "name": "P07 native office acceptance",
+          "status": "pending",
+          "conclusion": null,
+          "number": 8
+        },
+        {
+          "name": "Host and application security suite",
+          "status": "pending",
+          "conclusion": null,
+          "number": 9
+        },
+        {
+          "name": "P10 canvas PDF acceptance",
+          "status": "pending",
+          "conclusion": null,
+          "number": 10
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 21
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 22
+        }
+      ]
+    },
+    {
+      "id": 138222991132,
+      "name": "repeat-diagnostics",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 45328268195,
+      "logs_url": null,
+      "steps": null
+    }
+  ]
+}

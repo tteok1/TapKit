@@ -1,0 +1,119 @@
+{
+  "recordedAt": "2026-11-24T04:18:02.327Z",
+  "baseCommit": "836afe91c33b09bc27a979a75e343a6e4f587987",
+  "sourceState": "source-state.json",
+  "commands": [
+    {
+      "command": "pwsh local-retest.ps1 -Stage LatencyDiagnostic",
+      "exitCode": 0,
+      "tests": 1,
+      "diagnosticOnly": true,
+      "p95Ms": 46
+    },
+    {
+      "command": "pnpm test:integration P11-01.history-query (before source change)",
+      "exitCode": 1,
+      "passed": 1,
+      "failed": 1,
+      "failures": [
+        {
+          "test": "P11-01 profile history yields newest valid matches without a global ordering buffer",
+          "failure": [
+            "AssertionError: expected true to be false // Object.is equality\n    at D:/Tapkit-public/tests/integration/P11-01.history-query.test.ts:54:81\n    at file:///D:/Tapkit-public/node_modules/.pnpm/vitest@5.0.0_@types+node@24_68d150b1aed274d0dc573b66b4a74a47/node_modules/vitest/dist/chunks/run.CQOUYP-x.js:2783:20"
+          ]
+        }
+      ]
+    },
+    {
+      "command": "pinned Node + pnpm test:integration P11-01.history-query P04-03.memory P02-02.chat P11-01.work-fallback",
+      "exitCode": 0,
+      "passed": 31,
+      "failed": 0
+    },
+    {
+      "command": "pwsh local-retest.ps1 -Stage LatencyConfirm",
+      "exitCode": 0,
+      "tests": 1,
+      "diagnostic": false,
+      "p95Ms": 48
+    }
+  ],
+  "checks": {
+    "rootCommand": {
+      "command": "pnpm check",
+      "exitCode": 1,
+      "reason": "Existing working-tree formatting changes in CURRENT.md, INDEX.md and P00-01.md; not introduced by this source patch. The two TypeScript and ESLint stages passed before this failure."
+    },
+    "components": [
+      {
+        "command": "node node_modules/typescript/bin/tsc --project tsconfig.json",
+        "exitCode": 0
+      },
+      {
+        "command": "node node_modules/typescript/bin/tsc --project apps/desktop/tsconfig.renderer.json",
+        "exitCode": 0
+      },
+      {
+        "command": "node node_modules/eslint/bin/eslint.js scripts eslint.config.mjs",
+        "exitCode": 0
+      },
+      {
+        "command": "node scripts/check-format.mjs (isolated base checkout plus the two changed code files)",
+        "exitCode": 0,
+        "files": 873
+      },
+      {
+        "command": "node scripts/check-boundaries.mjs",
+        "exitCode": 0
+      },
+      {
+        "command": "node scripts/check-test-temporaries.mjs",
+        "exitCode": 0,
+        "files": 261
+      },
+      {
+        "command": "node scripts/check-manifests.mjs",
+        "exitCode": 0
+      },
+      {
+        "command": "node node_modules/@playwright/test/cli.js test --list",
+        "exitCode": 0,
+        "tests": 141,
+        "files": 57
+      }
+    ],
+    "note": "The isolated pnpm wrapper attempted dependency verification for the linked dependency view and was stopped; no claim is made that that wrapper completed. Components were run directly using existing dependencies. No unrelated document formatting or dependency policy was changed."
+  },
+  "productionBuildRestored": true,
+  "productionCoreSha256": "dbc02990336754ca3841ea524e5b9224418ac0eb2f6799ede3220d02158f37de",
+  "gateMs": 100,
+  "fullNewCiRun": false,
+  "newDevelopmentPackage": false,
+  "rawProfiles": [
+    {
+      "path": "core-profile.json.gz",
+      "rawSha256": "5c76ab9588682eaf5d46d8c81c01731f4f7d4abe65a008be693bd371d3fb8c45",
+      "sha256": "d3a4a3dbdc8c19378c593246ddd7e11e23775394288619a12a5b1b69cb6c61b0",
+      "bytes": 185684
+    },
+    {
+      "path": "host-repeat-0.json.gz",
+      "rawSha256": "8a4079231f47069b03b5a9132b804f28dccf961b2b49491f80c1e4759ef0f60f",
+      "sha256": "e05de328250e734e6210cbbbf1a39acface99cffc7ccf75bdcfbd5220ac23b31",
+      "bytes": 16692
+    },
+    {
+      "path": "renderer-repeat-0.cpuprofile.gz",
+      "rawSha256": "20ceb705f7de78f732f4d7ef5054abf9a8c2dd25e76e7a7fc838dcd379bd8ec5",
+      "sha256": "05089855c42c504d3286ab63ba821d088bbd03ec4edf10cbc5990282c182e603",
+      "bytes": 23040
+    }
+  ],
+  "validationWorktreeRemoved": true,
+  "docsCheck": {
+    "command": "node scripts/docs-check.mjs",
+    "exitCode": 0,
+    "tasks": 37,
+    "mappings": 574
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "recordedAt": "2026-11-23T18:35:53.524Z",
+  "repository": "tteok1/TapKit",
+  "oldHead": "0c2b1453a257e1d846ea9d4af0c0187edd87fb00",
+  "base": "081c8213aeaad0eebdf3356a3aa72e67dd031d1e",
+  "newHead": "836afe91c33b09bc27a979a75e343a6e4f587987",
+  "tree": "6623dfca2a02dbb5a63acf3ebd3e231c03520521",
+  "oldCommitCount": 24,
+  "newCommitCount": 1,
+  "treeIdentical": true,
+  "backupRef": "refs/heads/codex/p11-01-history-20261124",
+  "originalPr": 2,
+  "originalPrClosed": true,
+  "publication": {
+    "atomic": true,
+    "developmentBranchRewrittenWithExplicitLease": "0c2b1453a257e1d846ea9d4af0c0187edd87fb00",
+    "mainFastForward": true,
+    "mainForcePushed": false
+  },
+  "localBranch": "main",
+  "mainMerged": true,
+  "sourceTreeExactlyMatchesCi123": true,
+  "originalWorktreePreservedBeforeProgressUpdates": true,
+  "protectedFilesVerified": 13,
+  "ci": [
+    {
+      "branch": "main",
+      "number": 125,
+      "id": 45239870638,
+      "attempt": 2,
+      "status": "completed",
+      "conclusion": "success",
+      "evidence": "main-ci.json",
+      "firstAttemptEvidence": "main-ci-attempt-1.json",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/45239870638"
+    },
+    {
+      "branch": "codex/p11-01-dev-acceptance",
+      "number": 126,
+      "id": 45239870914,
+      "status": "completed",
+      "conclusion": "success",
+      "evidence": "branch-ci.json",
+      "url": "https://github.com/tteok1/TapKit/actions/runs/45239870914"
+    }
+  ],
+  "taskStatus": "in_progress",
+  "pending": [
+    "reference Windows 11 hardware",
+    "R01-R08 complete live verification",
+    "exact cause of the initial 266ms main-run excursion remains unconfirmed"
+  ],
+  "receiptLocalOnly": true,
+  "reason": "Keep the user-requested single commit and the exact previously verified tree; final merge/CI receipts remain local.",
+  "performanceExcursion": {
+    "firstAttemptP95Ms": [
+      266,
+      39
+    ],
+    "branchP95Ms": [
+      56,
+      75
+    ],
+    "exactCauseConfirmed": false,
+    "gateUnchangedMs": 100,
+    "originalFailureRetained": true,
+    "notes": "The slow 238ms DOM sample was near index start. The collector first sample took 7.12s outside the measurement window. These observations do not establish whether the cause is application scheduling or runner conditions."
+  },
+  "finalRecordedAt": "2026-11-23T19:25:53.815Z",
+  "finalProtectedFilesVerified": 13,
+  "finalLocalChecks": {
+    "docsCheckExitCode": 0,
+    "taskStates": 37,
+    "requirementMappings": 574,
+    "prettierExitCode": 0
+  }
+}

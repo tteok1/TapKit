@@ -1,0 +1,12 @@
+{
+  "recordedAt": "2026-11-23 18:35:51 UTC",
+  "repository": "tteok1/TapKit",
+  "prNumber": 2,
+  "url": "https://github.com/tteok1/TapKit/pull/2",
+  "state": "closed",
+  "mergedAtClosure": false,
+  "closedAt": "2026-11-23T18:33:52Z",
+  "headAtClosure": "0c2b1453a257e1d846ea9d4af0c0187edd87fb00",
+  "method": "User manually closed the PR after both GitHub connector state-update endpoints returned HTTP 403; verified with get_pr_info before publishing.",
+  "verifiedBeforePublication": true
+}

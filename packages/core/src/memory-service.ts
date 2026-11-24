@@ -692,10 +692,17 @@ export class MemoryService {
     const max = Math.min(20, limit);
     if (!policy.historyEnabled || query.trim().length < 2 || max <= 0) return [];
     const selected = sessionIds ? JSON.stringify(sessionIds) : null;
+    // Profile-wide recall needs newest messages, not every session's full result
+    // sorted before iterate() can yield. Drive the rowid order explicitly; keep
+    // scoped queries on the existing session indexes and all live-source guards.
+    const historyFrom =
+      policy.scope.type === 'profile' && !sessionIds
+        ? 'messages m NOT INDEXED CROSS JOIN sessions s'
+        : 'messages m JOIN sessions s';
     const rows = this.store.db
       .prepare(
-        `SELECT m.id,m.session_id,m.revision,m.content_json FROM messages m
-          JOIN sessions s ON s.id=m.session_id AND s.profile_id=m.profile_id
+        `SELECT m.id,m.session_id,m.revision,m.content_json FROM ${historyFrom}
+          ON s.id=m.session_id AND s.profile_id=m.profile_id
           WHERE m.profile_id=? AND m.branch_id=s.active_branch_id AND m.role IN('user','assistant')
             AND m.status IN('final','interrupted') AND (?=0 OR s.id<>?)
             AND (s.project_id IS ? OR (?=1 AND s.project_id IS NULL))

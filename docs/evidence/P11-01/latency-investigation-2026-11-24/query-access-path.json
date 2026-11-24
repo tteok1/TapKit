@@ -1,0 +1,1059 @@
+{
+  "dataset": {
+    "sessions": 10000,
+    "messages": 100000
+  },
+  "seedMs": 34594.9755,
+  "outputs": [
+    {
+      "mode": "original",
+      "cases": [
+        {
+          "key": "性能",
+          "elapsedMs": 355.07450000000244,
+          "ids": [
+            "01a20bb1-1838-7e44-9e06-1a52a8f1bdff",
+            "01a20bb1-1838-7032-86c1-8429a8a7b922",
+            "01a20bb1-1838-70e6-98e3-fdac830112e2",
+            "01a20bb1-1838-724f-a4fb-74e7741188c2",
+            "01a20bb1-1838-7f88-b0ff-c3aa74f43b95",
+            "01a20bb1-1837-7865-abc6-48be94785368",
+            "01a20bb1-1837-7491-ab88-851173115755",
+            "01a20bb1-1837-7b21-a3f5-5540ffb5b47a",
+            "01a20bb1-1836-7e83-814a-3d52e3c446a3",
+            "01a20bb1-1836-72c5-b8eb-6e8519a4ce18",
+            "01a20bb1-1834-7855-97ca-844e3262111d",
+            "01a20bb1-1834-7a19-968a-60c70d854a23",
+            "01a20bb1-1833-7f2a-a1c0-7a836cd0afa3",
+            "01a20bb1-1833-7ddf-a698-b0904a8ba7ef",
+            "01a20bb1-1833-762b-85b2-b0fd54d7d46f",
+            "01a20bb1-1833-7610-9d43-096abe31a861",
+            "01a20bb1-1832-7240-9f76-f8e44fa21437",
+            "01a20bb1-1832-781d-910d-95edb0e98bb5",
+            "01a20bb1-1832-721d-ad72-5b6b5afa228a",
+            "01a20bb1-1831-7091-b2ec-2d0f24599be6"
+          ],
+          "plan": [
+            {
+              "id": 6,
+              "parent": 0,
+              "notused": 62,
+              "detail": "SEARCH s USING INDEX sessions_activity (profile_id=?)"
+            },
+            {
+              "id": 24,
+              "parent": 0,
+              "notused": 0,
+              "detail": "LIST SUBQUERY 1"
+            },
+            {
+              "id": 27,
+              "parent": 24,
+              "notused": 0,
+              "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+            },
+            {
+              "id": 36,
+              "parent": 24,
+              "notused": 0,
+              "detail": "CREATE BLOOM FILTER"
+            },
+            {
+              "id": 48,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 2"
+            },
+            {
+              "id": 52,
+              "parent": 48,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 67,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 4"
+            },
+            {
+              "id": 72,
+              "parent": 67,
+              "notused": 39,
+              "detail": "SEARCH p USING INDEX sqlite_autoindex_projects_1 (id=?)"
+            },
+            {
+              "id": 87,
+              "parent": 0,
+              "notused": 61,
+              "detail": "SEARCH m USING INDEX messages_order (session_id=? AND branch_id=?)"
+            },
+            {
+              "id": 113,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 3"
+            },
+            {
+              "id": 117,
+              "parent": 113,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 138,
+              "parent": 0,
+              "notused": 0,
+              "detail": "USE TEMP B-TREE FOR ORDER BY"
+            }
+          ]
+        },
+        {
+          "key": "P11-01",
+          "elapsedMs": 247.36260000000038,
+          "ids": [],
+          "plan": [
+            {
+              "id": 6,
+              "parent": 0,
+              "notused": 62,
+              "detail": "SEARCH s USING INDEX sessions_activity (profile_id=?)"
+            },
+            {
+              "id": 24,
+              "parent": 0,
+              "notused": 0,
+              "detail": "LIST SUBQUERY 1"
+            },
+            {
+              "id": 27,
+              "parent": 24,
+              "notused": 0,
+              "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+            },
+            {
+              "id": 36,
+              "parent": 24,
+              "notused": 0,
+              "detail": "CREATE BLOOM FILTER"
+            },
+            {
+              "id": 48,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 2"
+            },
+            {
+              "id": 52,
+              "parent": 48,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 67,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 4"
+            },
+            {
+              "id": 72,
+              "parent": 67,
+              "notused": 39,
+              "detail": "SEARCH p USING INDEX sqlite_autoindex_projects_1 (id=?)"
+            },
+            {
+              "id": 87,
+              "parent": 0,
+              "notused": 61,
+              "detail": "SEARCH m USING INDEX messages_order (session_id=? AND branch_id=?)"
+            },
+            {
+              "id": 113,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 3"
+            },
+            {
+              "id": 117,
+              "parent": 113,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 138,
+              "parent": 0,
+              "notused": 0,
+              "detail": "USE TEMP B-TREE FOR ORDER BY"
+            }
+          ]
+        },
+        {
+          "key": "流式",
+          "elapsedMs": 237.50759999999718,
+          "ids": [],
+          "plan": [
+            {
+              "id": 6,
+              "parent": 0,
+              "notused": 62,
+              "detail": "SEARCH s USING INDEX sessions_activity (profile_id=?)"
+            },
+            {
+              "id": 24,
+              "parent": 0,
+              "notused": 0,
+              "detail": "LIST SUBQUERY 1"
+            },
+            {
+              "id": 27,
+              "parent": 24,
+              "notused": 0,
+              "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+            },
+            {
+              "id": 36,
+              "parent": 24,
+              "notused": 0,
+              "detail": "CREATE BLOOM FILTER"
+            },
+            {
+              "id": 48,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 2"
+            },
+            {
+              "id": 52,
+              "parent": 48,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 67,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 4"
+            },
+            {
+              "id": 72,
+              "parent": 67,
+              "notused": 39,
+              "detail": "SEARCH p USING INDEX sqlite_autoindex_projects_1 (id=?)"
+            },
+            {
+              "id": 87,
+              "parent": 0,
+              "notused": 61,
+              "detail": "SEARCH m USING INDEX messages_order (session_id=? AND branch_id=?)"
+            },
+            {
+              "id": 113,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 3"
+            },
+            {
+              "id": 117,
+              "parent": 113,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 138,
+              "parent": 0,
+              "notused": 0,
+              "detail": "USE TEMP B-TREE FOR ORDER BY"
+            }
+          ]
+        },
+        {
+          "key": "式性",
+          "elapsedMs": 230.64600000000064,
+          "ids": [],
+          "plan": [
+            {
+              "id": 6,
+              "parent": 0,
+              "notused": 62,
+              "detail": "SEARCH s USING INDEX sessions_activity (profile_id=?)"
+            },
+            {
+              "id": 24,
+              "parent": 0,
+              "notused": 0,
+              "detail": "LIST SUBQUERY 1"
+            },
+            {
+              "id": 27,
+              "parent": 24,
+              "notused": 0,
+              "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+            },
+            {
+              "id": 36,
+              "parent": 24,
+              "notused": 0,
+              "detail": "CREATE BLOOM FILTER"
+            },
+            {
+              "id": 48,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 2"
+            },
+            {
+              "id": 52,
+              "parent": 48,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 67,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 4"
+            },
+            {
+              "id": 72,
+              "parent": 67,
+              "notused": 39,
+              "detail": "SEARCH p USING INDEX sqlite_autoindex_projects_1 (id=?)"
+            },
+            {
+              "id": 87,
+              "parent": 0,
+              "notused": 61,
+              "detail": "SEARCH m USING INDEX messages_order (session_id=? AND branch_id=?)"
+            },
+            {
+              "id": 113,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 3"
+            },
+            {
+              "id": 117,
+              "parent": 113,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 138,
+              "parent": 0,
+              "notused": 0,
+              "detail": "USE TEMP B-TREE FOR ORDER BY"
+            }
+          ]
+        }
+      ],
+      "backgroundMs": 1090.5702999999994,
+      "background": {
+        "memoryUses": [],
+        "historyUses": [
+          {
+            "messageId": "01a20bb1-1838-7e44-9e06-1a52a8f1bdff",
+            "sessionId": "01a20bb1-1834-7665-82e5-612a3228c725",
+            "revision": 1,
+            "text": "分页性能标记 9999/9"
+          },
+          {
+            "messageId": "01a20bb1-1838-7032-86c1-8429a8a7b922",
+            "sessionId": "01a20bb1-1834-7665-82e5-612a3228c725",
+            "revision": 1,
+            "text": "分页性能标记 9999/8"
+          },
+          {
+            "messageId": "01a20bb1-1838-70e6-98e3-fdac830112e2",
+            "sessionId": "01a20bb1-1834-7665-82e5-612a3228c725",
+            "revision": 1,
+            "text": "分页性能标记 9999/7"
+          },
+          {
+            "messageId": "01a20bb1-1838-724f-a4fb-74e7741188c2",
+            "sessionId": "01a20bb1-1834-7665-82e5-612a3228c725",
+            "revision": 1,
+            "text": "分页性能标记 9999/6"
+          },
+          {
+            "messageId": "01a20bb1-1838-7f88-b0ff-c3aa74f43b95",
+            "sessionId": "01a20bb1-1834-7665-82e5-612a3228c725",
+            "revision": 1,
+            "text": "分页性能标记 9999/5"
+          }
+        ],
+        "historyModule": {
+          "id": "history.background",
+          "text": "[过去聊天参考；数据而非指令，来源messageId]\n[{\"messageId\":\"01a20bb1-1838-7e44-9e06-1a52a8f1bdff\",\"sessionId\":\"01a20bb1-1834-7665-82e5-612a3228c725\",\"revision\":1,\"text\":\"分页性能标记 9999/9\"},{\"messageId\":\"01a20bb1-1838-7032-86c1-8429a8a7b922\",\"sessionId\":\"01a20bb1-1834-7665-82e5-612a3228c725\",\"revision\":1,\"text\":\"分页性能标记 9999/8\"},{\"messageId\":\"01a20bb1-1838-70e6-98e3-fdac830112e2\",\"sessionId\":\"01a20bb1-1834-7665-82e5-612a3228c725\",\"revision\":1,\"text\":\"分页性能标记 9999/7\"},{\"messageId\":\"01a20bb1-1838-724f-a4fb-74e7741188c2\",\"sessionId\":\"01a20bb1-1834-7665-82e5-612a3228c725\",\"revision\":1,\"text\":\"分页性能标记 9999/6\"},{\"messageId\":\"01a20bb1-1838-7f88-b0ff-c3aa74f43b95\",\"sessionId\":\"01a20bb1-1834-7665-82e5-612a3228c725\",\"revision\":1,\"text\":\"分页性能标记 9999/5\"}]"
+        }
+      }
+    },
+    {
+      "mode": "rowid-first",
+      "cases": [
+        {
+          "key": "性能",
+          "elapsedMs": 2.557600000000093,
+          "ids": [
+            "01a20bb1-1838-7e44-9e06-1a52a8f1bdff",
+            "01a20bb1-1838-7032-86c1-8429a8a7b922",
+            "01a20bb1-1838-70e6-98e3-fdac830112e2",
+            "01a20bb1-1838-724f-a4fb-74e7741188c2",
+            "01a20bb1-1838-7f88-b0ff-c3aa74f43b95",
+            "01a20bb1-1837-7865-abc6-48be94785368",
+            "01a20bb1-1837-7491-ab88-851173115755",
+            "01a20bb1-1837-7b21-a3f5-5540ffb5b47a",
+            "01a20bb1-1836-7e83-814a-3d52e3c446a3",
+            "01a20bb1-1836-72c5-b8eb-6e8519a4ce18",
+            "01a20bb1-1834-7855-97ca-844e3262111d",
+            "01a20bb1-1834-7a19-968a-60c70d854a23",
+            "01a20bb1-1833-7f2a-a1c0-7a836cd0afa3",
+            "01a20bb1-1833-7ddf-a698-b0904a8ba7ef",
+            "01a20bb1-1833-762b-85b2-b0fd54d7d46f",
+            "01a20bb1-1833-7610-9d43-096abe31a861",
+            "01a20bb1-1832-7240-9f76-f8e44fa21437",
+            "01a20bb1-1832-781d-910d-95edb0e98bb5",
+            "01a20bb1-1832-721d-ad72-5b6b5afa228a",
+            "01a20bb1-1831-7091-b2ec-2d0f24599be6"
+          ],
+          "plan": [
+            {
+              "id": 5,
+              "parent": 0,
+              "notused": 216,
+              "detail": "SCAN m"
+            },
+            {
+              "id": 25,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 3"
+            },
+            {
+              "id": 29,
+              "parent": 25,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 41,
+              "parent": 0,
+              "notused": 46,
+              "detail": "SEARCH s USING INDEX sqlite_autoindex_sessions_1 (id=?)"
+            },
+            {
+              "id": 53,
+              "parent": 0,
+              "notused": 0,
+              "detail": "LIST SUBQUERY 1"
+            },
+            {
+              "id": 56,
+              "parent": 53,
+              "notused": 0,
+              "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+            },
+            {
+              "id": 65,
+              "parent": 53,
+              "notused": 0,
+              "detail": "CREATE BLOOM FILTER"
+            },
+            {
+              "id": 89,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 2"
+            },
+            {
+              "id": 93,
+              "parent": 89,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 108,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 4"
+            },
+            {
+              "id": 113,
+              "parent": 108,
+              "notused": 39,
+              "detail": "SEARCH p USING INDEX sqlite_autoindex_projects_1 (id=?)"
+            }
+          ]
+        },
+        {
+          "key": "P11-01",
+          "elapsedMs": 155.32400000000052,
+          "ids": [],
+          "plan": [
+            {
+              "id": 5,
+              "parent": 0,
+              "notused": 216,
+              "detail": "SCAN m"
+            },
+            {
+              "id": 25,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 3"
+            },
+            {
+              "id": 29,
+              "parent": 25,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 41,
+              "parent": 0,
+              "notused": 46,
+              "detail": "SEARCH s USING INDEX sqlite_autoindex_sessions_1 (id=?)"
+            },
+            {
+              "id": 53,
+              "parent": 0,
+              "notused": 0,
+              "detail": "LIST SUBQUERY 1"
+            },
+            {
+              "id": 56,
+              "parent": 53,
+              "notused": 0,
+              "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+            },
+            {
+              "id": 65,
+              "parent": 53,
+              "notused": 0,
+              "detail": "CREATE BLOOM FILTER"
+            },
+            {
+              "id": 89,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 2"
+            },
+            {
+              "id": 93,
+              "parent": 89,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 108,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 4"
+            },
+            {
+              "id": 113,
+              "parent": 108,
+              "notused": 39,
+              "detail": "SEARCH p USING INDEX sqlite_autoindex_projects_1 (id=?)"
+            }
+          ]
+        },
+        {
+          "key": "流式",
+          "elapsedMs": 161.74499999999534,
+          "ids": [],
+          "plan": [
+            {
+              "id": 5,
+              "parent": 0,
+              "notused": 216,
+              "detail": "SCAN m"
+            },
+            {
+              "id": 25,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 3"
+            },
+            {
+              "id": 29,
+              "parent": 25,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 41,
+              "parent": 0,
+              "notused": 46,
+              "detail": "SEARCH s USING INDEX sqlite_autoindex_sessions_1 (id=?)"
+            },
+            {
+              "id": 53,
+              "parent": 0,
+              "notused": 0,
+              "detail": "LIST SUBQUERY 1"
+            },
+            {
+              "id": 56,
+              "parent": 53,
+              "notused": 0,
+              "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+            },
+            {
+              "id": 65,
+              "parent": 53,
+              "notused": 0,
+              "detail": "CREATE BLOOM FILTER"
+            },
+            {
+              "id": 89,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 2"
+            },
+            {
+              "id": 93,
+              "parent": 89,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 108,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 4"
+            },
+            {
+              "id": 113,
+              "parent": 108,
+              "notused": 39,
+              "detail": "SEARCH p USING INDEX sqlite_autoindex_projects_1 (id=?)"
+            }
+          ]
+        },
+        {
+          "key": "式性",
+          "elapsedMs": 163.75509999999485,
+          "ids": [],
+          "plan": [
+            {
+              "id": 5,
+              "parent": 0,
+              "notused": 216,
+              "detail": "SCAN m"
+            },
+            {
+              "id": 25,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 3"
+            },
+            {
+              "id": 29,
+              "parent": 25,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 41,
+              "parent": 0,
+              "notused": 46,
+              "detail": "SEARCH s USING INDEX sqlite_autoindex_sessions_1 (id=?)"
+            },
+            {
+              "id": 53,
+              "parent": 0,
+              "notused": 0,
+              "detail": "LIST SUBQUERY 1"
+            },
+            {
+              "id": 56,
+              "parent": 53,
+              "notused": 0,
+              "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+            },
+            {
+              "id": 65,
+              "parent": 53,
+              "notused": 0,
+              "detail": "CREATE BLOOM FILTER"
+            },
+            {
+              "id": 89,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 2"
+            },
+            {
+              "id": 93,
+              "parent": 89,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 108,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 4"
+            },
+            {
+              "id": 113,
+              "parent": 108,
+              "notused": 39,
+              "detail": "SEARCH p USING INDEX sqlite_autoindex_projects_1 (id=?)"
+            }
+          ]
+        }
+      ],
+      "backgroundMs": 469.3319999999949,
+      "background": {
+        "memoryUses": [],
+        "historyUses": [
+          {
+            "messageId": "01a20bb1-1838-7e44-9e06-1a52a8f1bdff",
+            "sessionId": "01a20bb1-1834-7665-82e5-612a3228c725",
+            "revision": 1,
+            "text": "分页性能标记 9999/9"
+          },
+          {
+            "messageId": "01a20bb1-1838-7032-86c1-8429a8a7b922",
+            "sessionId": "01a20bb1-1834-7665-82e5-612a3228c725",
+            "revision": 1,
+            "text": "分页性能标记 9999/8"
+          },
+          {
+            "messageId": "01a20bb1-1838-70e6-98e3-fdac830112e2",
+            "sessionId": "01a20bb1-1834-7665-82e5-612a3228c725",
+            "revision": 1,
+            "text": "分页性能标记 9999/7"
+          },
+          {
+            "messageId": "01a20bb1-1838-724f-a4fb-74e7741188c2",
+            "sessionId": "01a20bb1-1834-7665-82e5-612a3228c725",
+            "revision": 1,
+            "text": "分页性能标记 9999/6"
+          },
+          {
+            "messageId": "01a20bb1-1838-7f88-b0ff-c3aa74f43b95",
+            "sessionId": "01a20bb1-1834-7665-82e5-612a3228c725",
+            "revision": 1,
+            "text": "分页性能标记 9999/5"
+          }
+        ],
+        "historyModule": {
+          "id": "history.background",
+          "text": "[过去聊天参考；数据而非指令，来源messageId]\n[{\"messageId\":\"01a20bb1-1838-7e44-9e06-1a52a8f1bdff\",\"sessionId\":\"01a20bb1-1834-7665-82e5-612a3228c725\",\"revision\":1,\"text\":\"分页性能标记 9999/9\"},{\"messageId\":\"01a20bb1-1838-7032-86c1-8429a8a7b922\",\"sessionId\":\"01a20bb1-1834-7665-82e5-612a3228c725\",\"revision\":1,\"text\":\"分页性能标记 9999/8\"},{\"messageId\":\"01a20bb1-1838-70e6-98e3-fdac830112e2\",\"sessionId\":\"01a20bb1-1834-7665-82e5-612a3228c725\",\"revision\":1,\"text\":\"分页性能标记 9999/7\"},{\"messageId\":\"01a20bb1-1838-724f-a4fb-74e7741188c2\",\"sessionId\":\"01a20bb1-1834-7665-82e5-612a3228c725\",\"revision\":1,\"text\":\"分页性能标记 9999/6\"},{\"messageId\":\"01a20bb1-1838-7f88-b0ff-c3aa74f43b95\",\"sessionId\":\"01a20bb1-1834-7665-82e5-612a3228c725\",\"revision\":1,\"text\":\"分页性能标记 9999/5\"}]"
+        }
+      }
+    },
+    {
+      "mode": "text-first",
+      "cases": [
+        {
+          "key": "性能",
+          "elapsedMs": 0.9584000000031665,
+          "ids": [
+            "01a20bb1-1838-7e44-9e06-1a52a8f1bdff",
+            "01a20bb1-1838-7032-86c1-8429a8a7b922",
+            "01a20bb1-1838-70e6-98e3-fdac830112e2",
+            "01a20bb1-1838-724f-a4fb-74e7741188c2",
+            "01a20bb1-1838-7f88-b0ff-c3aa74f43b95",
+            "01a20bb1-1837-7865-abc6-48be94785368",
+            "01a20bb1-1837-7491-ab88-851173115755",
+            "01a20bb1-1837-7b21-a3f5-5540ffb5b47a",
+            "01a20bb1-1836-7e83-814a-3d52e3c446a3",
+            "01a20bb1-1836-72c5-b8eb-6e8519a4ce18",
+            "01a20bb1-1834-7855-97ca-844e3262111d",
+            "01a20bb1-1834-7a19-968a-60c70d854a23",
+            "01a20bb1-1833-7f2a-a1c0-7a836cd0afa3",
+            "01a20bb1-1833-7ddf-a698-b0904a8ba7ef",
+            "01a20bb1-1833-762b-85b2-b0fd54d7d46f",
+            "01a20bb1-1833-7610-9d43-096abe31a861",
+            "01a20bb1-1832-7240-9f76-f8e44fa21437",
+            "01a20bb1-1832-781d-910d-95edb0e98bb5",
+            "01a20bb1-1832-721d-ad72-5b6b5afa228a",
+            "01a20bb1-1831-7091-b2ec-2d0f24599be6"
+          ],
+          "plan": [
+            {
+              "id": 3,
+              "parent": 0,
+              "notused": 216,
+              "detail": "SCAN m"
+            },
+            {
+              "id": 21,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 4"
+            },
+            {
+              "id": 28,
+              "parent": 21,
+              "notused": 39,
+              "detail": "SEARCH s USING INDEX sqlite_autoindex_sessions_1 (id=?)"
+            },
+            {
+              "id": 48,
+              "parent": 21,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 1"
+            },
+            {
+              "id": 52,
+              "parent": 48,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 65,
+              "parent": 21,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 2"
+            },
+            {
+              "id": 69,
+              "parent": 65,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 84,
+              "parent": 21,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 3"
+            },
+            {
+              "id": 89,
+              "parent": 84,
+              "notused": 39,
+              "detail": "SEARCH p USING INDEX sqlite_autoindex_projects_1 (id=?)"
+            }
+          ]
+        },
+        {
+          "key": "P11-01",
+          "elapsedMs": 155.505799999999,
+          "ids": [],
+          "plan": [
+            {
+              "id": 3,
+              "parent": 0,
+              "notused": 216,
+              "detail": "SCAN m"
+            },
+            {
+              "id": 21,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 4"
+            },
+            {
+              "id": 28,
+              "parent": 21,
+              "notused": 39,
+              "detail": "SEARCH s USING INDEX sqlite_autoindex_sessions_1 (id=?)"
+            },
+            {
+              "id": 48,
+              "parent": 21,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 1"
+            },
+            {
+              "id": 52,
+              "parent": 48,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 65,
+              "parent": 21,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 2"
+            },
+            {
+              "id": 69,
+              "parent": 65,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 84,
+              "parent": 21,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 3"
+            },
+            {
+              "id": 89,
+              "parent": 84,
+              "notused": 39,
+              "detail": "SEARCH p USING INDEX sqlite_autoindex_projects_1 (id=?)"
+            }
+          ]
+        },
+        {
+          "key": "流式",
+          "elapsedMs": 162.49169999999867,
+          "ids": [],
+          "plan": [
+            {
+              "id": 3,
+              "parent": 0,
+              "notused": 216,
+              "detail": "SCAN m"
+            },
+            {
+              "id": 21,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 4"
+            },
+            {
+              "id": 28,
+              "parent": 21,
+              "notused": 39,
+              "detail": "SEARCH s USING INDEX sqlite_autoindex_sessions_1 (id=?)"
+            },
+            {
+              "id": 48,
+              "parent": 21,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 1"
+            },
+            {
+              "id": 52,
+              "parent": 48,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 65,
+              "parent": 21,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 2"
+            },
+            {
+              "id": 69,
+              "parent": 65,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 84,
+              "parent": 21,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 3"
+            },
+            {
+              "id": 89,
+              "parent": 84,
+              "notused": 39,
+              "detail": "SEARCH p USING INDEX sqlite_autoindex_projects_1 (id=?)"
+            }
+          ]
+        },
+        {
+          "key": "式性",
+          "elapsedMs": 161.8773000000001,
+          "ids": [],
+          "plan": [
+            {
+              "id": 3,
+              "parent": 0,
+              "notused": 216,
+              "detail": "SCAN m"
+            },
+            {
+              "id": 21,
+              "parent": 0,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 4"
+            },
+            {
+              "id": 28,
+              "parent": 21,
+              "notused": 39,
+              "detail": "SEARCH s USING INDEX sqlite_autoindex_sessions_1 (id=?)"
+            },
+            {
+              "id": 48,
+              "parent": 21,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 1"
+            },
+            {
+              "id": 52,
+              "parent": 48,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 65,
+              "parent": 21,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 2"
+            },
+            {
+              "id": 69,
+              "parent": 65,
+              "notused": 39,
+              "detail": "SEARCH d USING COVERING INDEX sqlite_autoindex_deletion_tombstones_2 (profile_id=? AND entity_type=? AND entity_id=?)"
+            },
+            {
+              "id": 84,
+              "parent": 21,
+              "notused": 0,
+              "detail": "CORRELATED SCALAR SUBQUERY 3"
+            },
+            {
+              "id": 89,
+              "parent": 84,
+              "notused": 39,
+              "detail": "SEARCH p USING INDEX sqlite_autoindex_projects_1 (id=?)"
+            }
+          ]
+        }
+      ],
+      "backgroundMs": 481.1140000000014,
+      "background": {
+        "memoryUses": [],
+        "historyUses": [
+          {
+            "messageId": "01a20bb1-1838-7e44-9e06-1a52a8f1bdff",
+            "sessionId": "01a20bb1-1834-7665-82e5-612a3228c725",
+            "revision": 1,
+            "text": "分页性能标记 9999/9"
+          },
+          {
+            "messageId": "01a20bb1-1838-7032-86c1-8429a8a7b922",
+            "sessionId": "01a20bb1-1834-7665-82e5-612a3228c725",
+            "revision": 1,
+            "text": "分页性能标记 9999/8"
+          },
+          {
+            "messageId": "01a20bb1-1838-70e6-98e3-fdac830112e2",
+            "sessionId": "01a20bb1-1834-7665-82e5-612a3228c725",
+            "revision": 1,
+            "text": "分页性能标记 9999/7"
+          },
+          {
+            "messageId": "01a20bb1-1838-724f-a4fb-74e7741188c2",
+            "sessionId": "01a20bb1-1834-7665-82e5-612a3228c725",
+            "revision": 1,
+            "text": "分页性能标记 9999/6"
+          },
+          {
+            "messageId": "01a20bb1-1838-7f88-b0ff-c3aa74f43b95",
+            "sessionId": "01a20bb1-1834-7665-82e5-612a3228c725",
+            "revision": 1,
+            "text": "分页性能标记 9999/5"
+          }
+        ],
+        "historyModule": {
+          "id": "history.background",
+          "text": "[过去聊天参考；数据而非指令，来源messageId]\n[{\"messageId\":\"01a20bb1-1838-7e44-9e06-1a52a8f1bdff\",\"sessionId\":\"01a20bb1-1834-7665-82e5-612a3228c725\",\"revision\":1,\"text\":\"分页性能标记 9999/9\"},{\"messageId\":\"01a20bb1-1838-7032-86c1-8429a8a7b922\",\"sessionId\":\"01a20bb1-1834-7665-82e5-612a3228c725\",\"revision\":1,\"text\":\"分页性能标记 9999/8\"},{\"messageId\":\"01a20bb1-1838-70e6-98e3-fdac830112e2\",\"sessionId\":\"01a20bb1-1834-7665-82e5-612a3228c725\",\"revision\":1,\"text\":\"分页性能标记 9999/7\"},{\"messageId\":\"01a20bb1-1838-724f-a4fb-74e7741188c2\",\"sessionId\":\"01a20bb1-1834-7665-82e5-612a3228c725\",\"revision\":1,\"text\":\"分页性能标记 9999/6\"},{\"messageId\":\"01a20bb1-1838-7f88-b0ff-c3aa74f43b95\",\"sessionId\":\"01a20bb1-1834-7665-82e5-612a3228c725\",\"revision\":1,\"text\":\"分页性能标记 9999/5\"}]"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "commit": "836afe91c33b09bc27a979a75e343a6e4f587987",
+  "diagnostic": true,
+  "window": {
+    "start": 1795491848020,
+    "end": 1795491849575
+  },
+  "firstSample": {
+    "index": 0,
+    "domMs": 1555,
+    "waitForFirstFrameMs": 10,
+    "waitForSecondFrameMs": 10,
+    "visibility": "visible",
+    "focused": true,
+    "upstreamAt": 1795491848020,
+    "deltaOccurredAt": null,
+    "deltaReceivedAt": null
+  },
+  "alignment": "Inspector profile sampling aligned approximately to the recorded epoch start; used for diagnosis, not acceptance timing.",
+  "processes": {
+    "core": {
+      "selfMs": [
+        [
+          " :0",
+          1545.424072265625
+        ],
+        [
+          "finalizeIssue file:///D:/Tapkit-public/packages/storage/dist/index.cjs:632",
+          1.552001953125
+        ],
+        [
+          "budget file:///D:/Tapkit-public/packages/storage/dist/index.cjs:12436",
+          1.54296875
+        ],
+        [
+          "text$1 file:///D:/Tapkit-public/packages/core/dist/index.cjs:76650",
+          1.529052734375
+        ],
+        [
+          "reserve file:///D:/Tapkit-public/packages/core/dist/index.cjs:75974",
+          1.4970703125
+        ],
+        [
+          "stream file:///D:/Tapkit-public/packages/core/dist/index.cjs:68709",
+          1.48193359375
+        ],
+        [
+          " :3",
+          1.052001953125
+        ],
+        [
+          "validateThisAbortSignal node:internal/abort_controller:135",
+          0.846923828125
+        ]
+      ],
+      "stacksMs": [
+        [
+          " :0\nhistory file:///D:/Tapkit-public/packages/core/dist/index.cjs:77061\nbackground file:///D:/Tapkit-public/packages/core/dist/index.cjs:77099\nbackground file:///D:/Tapkit-public/packages/core/dist/index.cjs:78578\nprepareContext file:///D:/Tapkit-public/packages/core/dist/index.cjs:78581\nstream file:///D:/Tapkit-public/packages/core/dist/index.cjs:68709\n(root) :0",
+          765.584228515625
+        ],
+        [
+          " :0\nhistory file:///D:/Tapkit-public/packages/core/dist/index.cjs:77061\nbackground file:///D:/Tapkit-public/packages/core/dist/index.cjs:77099\nbackground file:///D:/Tapkit-public/packages/core/dist/index.cjs:78578\nprepareContext file:///D:/Tapkit-public/packages/core/dist/index.cjs:78581\nrun file:///D:/Tapkit-public/packages/core/dist/index.cjs:78458\n(root) :0",
+          749.738037109375
+        ],
+        [
+          " :0\nack file:///D:/Tapkit-public/packages/storage/dist/index.cjs:12327\npublishPending file:///D:/Tapkit-public/packages/core/dist/index.cjs:71806\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:71801\nprocessImmediate node:internal/timers:525\n(root) :0",
+          4.158935546875
+        ],
+        [
+          " :0\nsqliteTransaction file:///D:/Tapkit-public/node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:52\nclaim file:///D:/Tapkit-public/packages/storage/dist/index.cjs:12304\npublishPending file:///D:/Tapkit-public/packages/core/dist/index.cjs:71806\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:71801\nprocessImmediate node:internal/timers:525\n(root) :0",
+          3.196044921875
+        ],
+        [
+          " :0\nprepareContext file:///D:/Tapkit-public/packages/core/dist/index.cjs:78581\nrun file:///D:/Tapkit-public/packages/core/dist/index.cjs:78458\n(root) :0",
+          1.568115234375
+        ],
+        [
+          " :0\nemit file:///D:/Tapkit-public/packages/storage/dist/index.cjs:11610\nevent file:///D:/Tapkit-public/packages/core/dist/index.cjs:77533\n file:///D:/Tapkit-public/packages/core/dist/index.cjs:78716\nsqliteTransaction file:///D:/Tapkit-public/node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/transaction.js:52\nrun file:///D:/Tapkit-public/packages/core/dist/index.cjs:78458\n(root) :0",
+          1.554931640625
+        ],
+        [
+          "finalizeIssue file:///D:/Tapkit-public/packages/storage/dist/index.cjs:632\n file:///D:/Tapkit-public/packages/storage/dist/index.cjs:2566\n file:///D:/Tapkit-public/packages/storage/dist/index.cjs:2566\nhandleUnionResults file:///D:/Tapkit-public/packages/storage/dist/index.cjs:2550\ninst._zod.parse file:///D:/Tapkit-public/packages/storage/dist/index.cjs:2588\ninst._zod.parse file:///D:/Tapkit-public/packages/storage/dist/index.cjs:2588\n :3\ninst._zod.parse file:///D:/Tapkit-public/packages/storage/dist/index.cjs:2527\ninst._zod.parse file:///D:/Tapkit-public/packages/storage/dist/index.cjs:2666\nfn file:///D:/Tapkit-public/packages/storage/dist/index.cjs:1051",
+          1.552001953125
+        ],
+        [
+          " :0\nprepare file:///D:/Tapkit-public/node_modules/.pnpm/better-sqlite3@13.0.3/node_modules/better-sqlite3/lib/methods/wrappers.js:4\nsession file:///D:/Tapkit-public/packages/core/dist/index.cjs:76686\npolicy file:///D:/Tapkit-public/packages/core/dist/index.cjs:76701\nbackground file:///D:/Tapkit-public/packages/core/dist/index.cjs:77099\nbackground file:///D:/Tapkit-public/packages/core/dist/index.cjs:78578\nprepareContext file:///D:/Tapkit-public/packages/core/dist/index.cjs:78581\nrun file:///D:/Tapkit-public/packages/core/dist/index.cjs:78458\n(root) :0",
+          1.549072265625
+        ]
+      ]
+    },
+    "host": {
+      "selfMs": [
+        [
+          "(idle) :0",
+          1552.384033203125
+        ],
+        [
+          "(program) :0",
+          1.530029296875
+        ],
+        [
+          "postMessage :0",
+          1.0859375
+        ]
+      ],
+      "stacksMs": [
+        [
+          "(idle) :0\n(root) :0",
+          1552.384033203125
+        ],
+        [
+          "(program) :0\n(root) :0",
+          1.530029296875
+        ],
+        [
+          "postMessage :0\npostMessage node:electron/js2c/browser_init:2\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12082\nforward file:///D:/Tapkit-public/apps/desktop/out/main/index.js:12078\n file:///D:/Tapkit-public/apps/desktop/out/main/index.js:13146\n(root) :0",
+          1.0859375
+        ]
+      ]
+    },
+    "renderer": {
+      "selfMs": [
+        [
+          "(idle) :0",
+          1553.5048828125
+        ],
+        [
+          " :3",
+          1.4951171875
+        ]
+      ],
+      "stacksMs": [
+        [
+          "(idle) :0\n(root) :0",
+          1553.5048828125
+        ],
+        [
+          " :3\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2313\n :3\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2252\ninst._zod.parse D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:2391\nfn D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:776\n_parse2 D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:5208\ninvoke D:\\Tapkit-public\\apps\\desktop\\out\\preload\\index.js:10532",
+          1.4951171875
+        ]
+      ]
+    }
+  }
+}
