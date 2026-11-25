@@ -27,11 +27,19 @@ export default defineConfig({
         },
       },
     ],
-    build: { externalizeDeps: { exclude: ['@tapkit/contracts', '@tapkit/network', 'zod'] } },
+    build: {
+      externalizeDeps: { exclude: ['@tapkit/contracts', '@tapkit/network', 'zod'] },
+      license: { fileName: 'licenses/npm-bundled.json' },
+    },
   },
-  preload: { build: { externalizeDeps: { exclude: ['@tapkit/contracts', 'zod'] } } },
+  preload: {
+    build: {
+      externalizeDeps: { exclude: ['@tapkit/contracts', 'zod'] },
+      license: { fileName: 'licenses/npm-bundled.json' },
+    },
+  },
   renderer: {
-    build: { minify: 'esbuild' },
+    build: { minify: 'esbuild', license: { fileName: 'licenses/npm-bundled.json' } },
     plugins: [
       tailwindcss(),
       {

@@ -82,7 +82,27 @@ Third-party license texts remain in installed packages and extracted runtimes.
 
 Python wheel versions, license metadata, official download URLs and hashes are in python-wheels.lock.json.
 Git source is available from https://github.com/git-for-windows/git at the locked release tag. LibreOffice source is available from https://download.documentfoundation.org/libreoffice/src/ at the locked version. Node source is available from its locked distribution directory; Rust source from its matching release distribution.
-Final installer redistribution, bundled model/font notices and GPL/LGPL source-offer review belong to P11; no installer is delivered by P00-01.
+
+## Windows installer notices
+
+The installer includes its MIT license, these notices, the retained runtime and package license files, and license reports for npm modules included in the Core and Electron bundles. Each installer has a matching CycloneDX SBOM. Electron and upstream runtimes are reported as distributions. Their internal component notices accompany the corresponding distribution.
+
+| Component           | Version or revision                                      | License and source                                                                                                                                                                                                                                                       |
+| ------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| pi AI               | 0.85.1                                                   | MIT. [Pinned npm package and upstream metadata](https://registry.npmjs.org/@earendil-works%2fpi-ai/0.85.1).                                                                                                                                                              |
+| Noto Sans CJK SC    | 2.004, revision 523d033d6cb47f4a80c58a35753646f5c3608a78 | SIL OFL 1.1. [Pinned source and license](https://github.com/notofonts/noto-cjk/tree/523d033d6cb47f4a80c58a35753646f5c3608a78). `resources/fonts/OFL.txt` accompanies the font.                                                                                           |
+| LibreOffice         | 26.2.6                                                   | MPL 2.0 and LGPL notices with the runtime. [Licenses](https://us.libreoffice.org/licenses/) and [upstream source downloads](https://download.documentfoundation.org/libreoffice/src/).                                                                                   |
+| MinGit              | 2.55.0.windows.5                                         | Git is GPL-2.0-only. [Exact distribution and Git source tag](https://github.com/git-for-windows/git/releases/tag/v2.55.0.windows.5). The distribution includes additional upstream component license notices.                                                            |
+| ONNX Runtime        | 1.24.3 Node runtime                                      | MIT. [Pinned source](https://github.com/microsoft/onnxruntime/tree/v1.24.3). Any separately included ONNX packages and versions are identified in the SBOM.                                                                                                              |
+| Quantized BGE model | 75c43b069aac4d136ba6bc1122f995fedcfd2781                 | MIT. [Pinned Xenova conversion](https://huggingface.co/Xenova/bge-small-zh-v1.5/tree/75c43b069aac4d136ba6bc1122f995fedcfd2781) and [BAAI base model](https://huggingface.co/BAAI/bge-small-zh-v1.5). The model and tokenizer digests are in `embedding-model-lock.json`. |
+
+Before public redistribution, record the corresponding source delivery for the exact bundled MinGit and LibreOffice distributions, including their applicable upstream components and notices. See [release maintenance](docs/releases/README.md). This checkpoint remains open for the formal package.
+
+### Supplemental npm notices
+
+- `buffers@0.1.1` omits a license field in the npm archive. The four shipped JavaScript files match the same-version Debian original source byte for byte. Debian's package copyright record identifies the upstream grant as MIT and cites the upstream declaration. TapKit includes that attribution and the MIT notice in `resources/licenses/buffers-0.1.1.txt`. [npm archive metadata](https://www.npmjs.com/package/buffers/v/0.1.1) · [Debian copyright record](https://sources.debian.org/copyright/license/node-buffers/0.1.1-2/)
+- `khroma@2.1.0` ships its MIT notice as `license`. The installer keeps that file and its SBOM records the reviewed license. [Upstream notice](https://github.com/fabiospampinato/khroma/blob/v2.1.0/license)
+- The `@earendil-works/pi-ai@0.85.1` registry record identifies the MIT license and the source commit. TapKit includes the license from that exact commit in `resources/licenses/pi-ai-0.85.1.txt`. [Pinned source notice](https://github.com/earendil-works/pi/blob/d981de1229ef899957bbe968bc8dcda02a21f477/LICENSE)
 
 ## P00-03 开发期原生构建依赖
 

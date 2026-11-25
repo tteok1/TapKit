@@ -1,0 +1,98 @@
+name: Prepare Windows release materials
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing Windows version tag, such as v0.1.0
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-release-preparation
+  cancel-in-progress: false
+
+jobs:
+  windows-release-candidate:
+    if: github.ref == 'refs/heads/main'
+    runs-on: windows-2025
+    timeout-minutes: 85
+    env:
+      TAPKIT_RELEASE_TAG: ${{ inputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+      - name: Check the repository and resolve the version tag
+        run: |
+          $distribution = Get-Content -Raw distribution.config.json | ConvertFrom-Json
+          if ($distribution.repository -cne $env:GITHUB_REPOSITORY) { throw 'Unexpected release repository.' }
+          if ($env:TAPKIT_RELEASE_TAG -cnotmatch '^v(0|[1-9][0-9]{0,4})(\.(0|[1-9][0-9]{0,4})){2}$') { throw 'Invalid Windows version tag.' }
+          $candidate = git rev-parse --verify "refs/tags/$($env:TAPKIT_RELEASE_TAG)^{commit}"
+          if ($LASTEXITCODE -ne 0) { throw 'The tag does not identify a commit.' }
+          git merge-base --is-ancestor $candidate $env:GITHUB_SHA
+          if ($LASTEXITCODE -ne 0) { throw 'The tag must point to a commit reachable from main.' }
+          git switch --detach $candidate
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $taggedDistribution = Get-Content -Raw distribution.config.json | ConvertFrom-Json
+          $desktop = Get-Content -Raw apps/desktop/package.json | ConvertFrom-Json
+          if ($taggedDistribution.repository -cne $env:GITHUB_REPOSITORY -or ('v' + $desktop.version) -cne $env:TAPKIT_RELEASE_TAG) { throw 'The tagged release configuration or version does not match.' }
+      - uses: actions/cache/restore@v5
+        with:
+          path: |
+            .cache/downloads
+            .cache/wheels
+          key: windows-runtime-archives-v1-${{ hashFiles('runtime-lock.json', 'dependency-baseline.json', 'python-wheels.lock.json') }}
+      - name: Bootstrap locked Windows inputs
+        run: node scripts/bootstrap.mjs
+      - name: Check source, history and tagged tests
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $PSNativeCommandUseErrorActionPreference = $true
+          node scripts/scan-release.mjs
+          node scripts/scan-release.mjs --history
+          $pnpm = '.cache/tools/pnpm/package/bin/pnpm.mjs'
+          node $pnpm check
+          node $pnpm exec vitest run --config vitest.config.ts --project integration P11-02 P11-03
+      - name: Build the development candidate and upgrade fixture
+        id: build
+        run: |
+          node .cache/tools/pnpm/package/bin/pnpm.mjs dist:win --acceptance
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $directories = @(Get-ChildItem release -Directory -Filter 'TapKit-windows-*')
+          if ($directories.Count -ne 1) { throw 'Expected one package receipt directory.' }
+          "directory=$($directories[0].FullName)" >> $env:GITHUB_OUTPUT
+      - name: Check the installer lifecycle as a standard user
+        env:
+          TAPKIT_CI_INSTALLERS: ${{ steps.build.outputs.directory }}
+        run: ./tests/install/ci-standard-user.ps1 -Packages $env:TAPKIT_CI_INSTALLERS
+      - name: Check the version, hash, SBOM and Authenticode status
+        env:
+          TAPKIT_CI_INSTALLERS: ${{ steps.build.outputs.directory }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $PSNativeCommandUseErrorActionPreference = $true
+          node scripts/release/prepare.mjs $env:TAPKIT_CI_INSTALLERS release/development-candidate $env:TAPKIT_RELEASE_TAG
+          node scripts/release/site.mjs release/development-candidate/release-manifest.json
+          Copy-Item -LiteralPath ('docs/releases/' + $env:TAPKIT_RELEASE_TAG.Substring(1) + '.md') -Destination release/development-candidate/RELEASE-NOTES.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-release-development-candidate
+          path: |
+            release/development-candidate
+            website/dist
+          if-no-files-found: error
+          compression-level: 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-release-lifecycle-evidence
+          path: ci-evidence/P11-02
+          if-no-files-found: ignore

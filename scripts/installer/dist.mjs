@@ -1,6 +1,5 @@
 import { createHash } from 'node:crypto';
-import { createReadStream } from 'node:fs';
-import { access, cp, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
+import { access, cp, mkdir, readFile, realpath, rename, rm, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { Arch, build, Platform } from 'electron-builder';
@@ -10,21 +9,29 @@ import { assertPublicFiles } from '../scan-release.mjs';
 import { materializeGraph } from '../package-graph.mjs';
 import { bundleExportFont } from '../export-font.mjs';
 import { inspectPayload, inventoryFile } from './payload.mjs';
+import {
+  installerAssetName,
+  installerMaximumBytes,
+  isInstallerVersion,
+} from '../../packages/contracts/src/distribution.ts';
+import { distributionConfig } from '../release/config.mjs';
+import {
+  collectInstallerComponents,
+  fileDigest,
+  installerSbom,
+  readJSON,
+} from '../release/sbom.mjs';
 
 const windows = process.platform === 'win32' && process.arch === 'x64';
 if (!windows) throw Error('dist:win requires Windows x64.');
 const acceptance = process.argv.length === 3 && process.argv[2] === '--acceptance';
 if (process.argv.length !== 2 && !acceptance) throw Error('Expected no arguments or --acceptance.');
-const version = JSON.parse(await readFile(join(root, 'apps/desktop/package.json'), 'utf8')).version;
-function versionParts(value) {
-  if (!/^\d{1,5}\.\d{1,5}\.\d{1,5}$/.test(value))
-    throw Error('Expected a numeric desktop version.');
-  const parts = value.split('.').map(Number);
-  if (parts.some((part) => part > 65535))
-    throw Error('Desktop version exceeds Windows version range.');
-  return parts;
-}
-const [major, minor, patch] = versionParts(version);
+const { repository } = await distributionConfig();
+const { version } = await readJSON(join(root, 'apps/desktop/package.json'));
+if (!isInstallerVersion(version)) throw Error('Expected a numeric Windows desktop version.');
+const [major, minor, patch] = version.split('.').map(Number);
+if (acceptance && patch === 65535)
+  throw Error('Acceptance version would exceed Windows version range.');
 const releases = acceptance ? [version, [major, minor, patch + 1].join('.')] : [version];
 for (const name of [
   'TAPKIT_TEST_BUILD',
@@ -52,8 +59,12 @@ process.env.ELECTRON_BUILDER_7Z_FILTER = 'BCJ';
 await access(join(root, 'resources/runtime/helper/tapkit-windows-helper.exe'));
 pnpm(['build:desktop']);
 const stamp = new Date().toISOString().replace(/[:.]/g, '-');
-const work = join(root, 'release', '.building-windows-' + stamp);
-const release = join(root, 'release', 'TapKit-windows-' + stamp);
+const releaseDirectory = join(root, 'release');
+await mkdir(releaseDirectory, { recursive: true });
+// The package graph checks resolved paths. Keep staging on the release volume.
+const releaseRoot = await realpath(releaseDirectory);
+const work = join(releaseRoot, '.building-windows-' + stamp);
+const release = join(releaseRoot, 'TapKit-windows-' + stamp);
 const payload = join(work, 'payload');
 const ui = join(work, 'ui');
 const delivery = join(work, 'installers');
@@ -86,6 +97,7 @@ const sources = [
   'packages/retrieval/dist',
   'resources/catalogs',
   'resources/prompts',
+  'resources/licenses',
   'resources/fonts/OFL.txt',
   'resources/runtime/helper/tapkit-windows-helper.exe',
   'resources/runtime/code-python-install.py',
@@ -141,7 +153,13 @@ try {
   );
   await mkdir(delivery);
   const require = createRequire(import.meta.url);
-  const electronDist = join(dirname(require.resolve('electron/package.json')), 'dist');
+  const electronPackage = require.resolve('electron/package.json');
+  const electronDist = join(dirname(electronPackage), 'dist');
+  const components = await collectInstallerComponents({
+    payload,
+    electronVersion: (await readJSON(electronPackage)).version,
+    reportRoots: { payload, ui },
+  });
   const settings = parse(await readFile(join(root, 'electron-builder.yml'), 'utf8'));
   const artifacts = [];
   for (const target of releases) {
@@ -156,7 +174,7 @@ try {
       }),
     );
     const metadata = JSON.stringify(
-      { product: 'TapKit', channel: 'development', version: target, repository: 'tteok1/TapKit' },
+      { product: 'TapKit', channel: 'development', version: target, repository },
       null,
       2,
     );
@@ -198,19 +216,17 @@ try {
         },
       },
     });
-    const name = 'TapKit-' + target + '-windows-x64-development.exe';
+    const name = installerAssetName(target, false);
     const file = join(directory, name);
-    const hash = createHash('sha256');
-    let installerBytes = 0;
-    for await (const bytes of createReadStream(file)) {
-      hash.update(bytes);
-      installerBytes += bytes.length;
-    }
-    if (!unpackedBytes || installerBytes > 1.5 * 1024 ** 3)
+    const { bytes: installerBytes, sha256 } = await fileDigest(file);
+    if (!unpackedBytes || installerBytes > installerMaximumBytes)
       throw Error('Installer size is invalid.');
-    const sha256 = hash.digest('hex');
     await rename(file, join(delivery, name));
     await writeFile(join(delivery, name + '.sha256'), sha256 + '  ' + name + '\n');
+    await writeFile(
+      join(delivery, name.replace(/\.exe$/, '.cdx.json')),
+      JSON.stringify(installerSbom(target, { sha256 }, components), null, 2) + '\n',
+    );
     artifacts.push({ version: target, name, sha256, installerBytes, unpackedBytes });
     if (target !== releases.at(-1)) {
       await rm(join(unpacked, inventoryFile));

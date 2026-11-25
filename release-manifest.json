@@ -1,0 +1,12 @@
+{
+  "version": "0.1.0",
+  "platform": "windows",
+  "arch": "x64",
+  "name": "TapKit-0.1.0-windows-x64-development.exe",
+  "bytes": 825325102,
+  "url": null,
+  "sha256": "2c865d12caa6c1e38b99da0b6f9cdbbe3e61fb92f739fb48f1deabfffeaf4f10",
+  "signatureStatus": "unsigned",
+  "minOS": "Windows 11",
+  "releaseNotesURL": null
+}

@@ -126,6 +126,8 @@ DB设 WAL、foreign_keys=ON、busy_timeout=5000、synchronous=FULL；短事务�
 
 P11-02 使用 NSIS 用户级安装事务，开发测试包的构建、更新、数据回滚和验收入口见 [ADR 0089](../adr/0089-per-user-windows-installer.md) 和 [分发说明](../distribution/windows-development.md)。
 
+P11-03 使用同一份版本清单生成下载页并验证桌面更新。GitHub 资产和清单必须匹配版本、地址、字节数和 SHA-256。未签名的开发包可以准备本地验收资产，正式下载地址留待配置。见 [ADR 0090](../adr/0090-windows-release-manifest.md)。
+
 pi、Office组件、字体、Git的许可不同。主仓库MIT不覆盖第三方文件；THIRD_PARTY_NOTICES记录版本、来源、许可、源码获取方式。不得重新标注第三方授权或直接打包他人浏览器资料。
 
 ## 6. 网络与安全依据

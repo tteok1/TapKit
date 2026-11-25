@@ -3,6 +3,7 @@ export default defineConfig({
   define: { __TAPKIT_TEST_BUILD__: JSON.stringify(process.env.TAPKIT_TEST_BUILD === '1') },
   build: {
     ssr: 'packages/core/src/index.ts',
+    license: { fileName: 'licenses/npm-bundled.json' },
     outDir: 'packages/core/dist',
     target: 'node24',
     minify: false,

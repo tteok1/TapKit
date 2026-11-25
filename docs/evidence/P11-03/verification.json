@@ -1,0 +1,92 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "85a81d81fadf4dc57fb8a74823b4e4af8afaa1f6",
+  "branch": "codex/p11-03-release-prep",
+  "finalDevelopmentCandidate": {
+    "command": "pnpm dist:win",
+    "exitCode": 0,
+    "version": "0.1.0",
+    "name": "TapKit-0.1.0-windows-x64-development.exe",
+    "sha256": "d5d66b1c141493860e5d313ac5e7f3baf1d7af50749fb035a1fb9c6ba2399df9",
+    "bytes": 825487810,
+    "unpackedBytes": 3389368664,
+    "authenticode": "NotSigned",
+    "sbomFormat": "CycloneDX 1.6",
+    "sbomComponents": 626,
+    "sbomSchemaValidated": true,
+    "componentsWithoutLicenseMetadata": 0,
+    "prepareExitCode": 0,
+    "extractedAndVerified": true,
+    "verifiedPayloadEntries": 68256,
+    "requiredNoticeFiles": 8,
+    "supplementalNoticeBytesMatched": true,
+    "localBundle": ".cache/windows-0.1.0-development"
+  },
+  "localAcceptancePair": {
+    "command": "pnpm dist:win --acceptance",
+    "exitCode": 0,
+    "format": "CycloneDX 1.6",
+    "schemaValidation": "official JSON Schema",
+    "componentsPerInstaller": 626,
+    "verifiedPayloadEntries": 68254,
+    "artifacts": [
+      {
+        "version": "0.1.0",
+        "sha256": "c6d13765418c7fefe1aa22abd8b70b79888809b9da5c3a1ab8f47a0af62dd898",
+        "bytes": 825486060,
+        "authenticode": "NotSigned"
+      },
+      {
+        "version": "0.1.1",
+        "sha256": "412164fdf96057ead48dbe6453a067c8bd1ca2c85cee58cb533bf07e48ea3550",
+        "bytes": 825486067,
+        "authenticode": "NotSigned"
+      }
+    ]
+  },
+  "licenseReview": {
+    "buffers": {
+      "version": "0.1.1",
+      "matchedShippedJavaScriptFiles": 4,
+      "codeSha256": "97801e296ba5f3c32242f647e1daac5917e300367fed7935ab1e62f40adb1b8a",
+      "matchingDebianSourceArchiveSha256": "f8de49c60e467005182d9687b5d87775bbcec6385ac63220b7741327441deb6d",
+      "licenseRecord": "https://sources.debian.org/copyright/license/node-buffers/0.1.1-2/"
+    },
+    "khroma": {
+      "version": "2.1.0",
+      "shippedLicenseSha256": "66b333b0f66759a0b710459e03f7029abe17f4358114a128d2c972e642961b49"
+    },
+    "piAi": {
+      "version": "0.85.1",
+      "upstreamCommit": "d981de1229ef899957bbe968bc8dcda02a21f477",
+      "supplementalLicenseSha256": "0457f5bcec3b3b211605dfb5d1a49042fd638f3686a410fe099c24a25af13c48"
+    }
+  },
+  "checks": {
+    "pnpmCheck": {
+      "exitCode": 0,
+      "electronCasesCollected": 141
+    },
+    "p11InstallerAndReleaseIntegration": {
+      "exitCode": 0,
+      "testsPassed": 13
+    },
+    "site": {
+      "browser": "Microsoft Edge",
+      "viewports": ["1440x1000", "390x844"],
+      "offlinePageLoaded": true,
+      "keyboardNavigation": true,
+      "unsignedDownloadDisabled": true,
+      "checksumDisclosure": true,
+      "sourceLink": 200,
+      "installationGuideLink": 200,
+      "independentFinishReview": "ship"
+    },
+    "releaseWorkflow": {
+      "yamlParsed": true,
+      "powerShellBlocksParsed": 6,
+      "remoteDispatch": "pending"
+    }
+  },
+  "openVerification": ["R09", "R10-logo", "R11", "R12", "formal-corresponding-source-delivery"]
+}

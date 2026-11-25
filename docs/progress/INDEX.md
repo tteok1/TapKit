@@ -1,4 +1,4 @@
-2026-11-25，`main` CI #137 的 P11-01 联合负载失败。`codex/p11-ci-display-latency` 已修复本机证实的同步历史扫描阻塞，定向集成 46/46。保留本机第二轮帧回调失败，等待 Windows CI 复验。详见 [P11-01](P11-01.md)。
+2026-11-25，P11-03 本地 Windows 候选、版本材料、发布工作流和静态下载页已准备，13 项定向集成通过。P11-02 验收基线为 [主线 CI #139](https://github.com/tteok1/TapKit/actions/runs/45585901409)，五个常规作业通过。详见 [P11-03](P11-03.md)。
 
 2026-11-24，P11-01 源码开发版在基线 44cd07c 通过 CI #128 和 main CI #129。性能优化停止，待规格 Win11 和 R01–R08。见 [P11-01](P11-01.md)。
 
@@ -66,7 +66,7 @@ CI73三个job全success，测试清理及资料保全保持；耗时只读审计
 | P10-03 | 数据导出、清理、备份和恢复闭环     | P10-02         | implemented_and_verified      | docs/progress/P10-03.md              |
 | P11-01 | 系统评测、故障回归与源码开发版交付 | P10-03         | in_progress                   | docs/progress/P11-01.md              |
 | P11-02 | Windows安装包、升级与标准用户验证  | P11-01         | implemented_not_live_verified | docs/progress/P11-02.md              |
-| P11-03 | GitHub开源交接与官网下载准备       | P11-02         | not_started                   | docs/progress/P11-03.md              |
+| P11-03 | GitHub开源交接与官网下载准备       | P11-02         | implemented_not_live_verified | docs/progress/P11-03.md              |
 
 ## 阶段状态
 

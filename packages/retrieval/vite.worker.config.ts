@@ -47,6 +47,7 @@ export default defineConfig({
   ssr: { noExternal: true },
   build: {
     ssr: 'packages/retrieval/src/ingest/entry.ts',
+    license: { fileName: 'licenses/npm-bundled.json' },
     outDir: 'packages/retrieval/dist',
     target: 'node24',
     minify: false,

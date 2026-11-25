@@ -1,16 +1,24 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { link, open, unlink } from 'node:fs/promises';
+import {
+  installerAssetName,
+  installerManifestMaximumBytes,
+  installerManifestName,
+  installerMaximumBytes,
+  isInstallerVersion,
+  isReleaseRepository,
+  readInstallerManifest,
+  releaseAssetURL,
+} from '@tapkit/contracts';
 
 type Fetch = (url: string, options: RequestInit) => Promise<Response>;
-export type InstallerRelease = {
-  version: string;
+type ReleaseAsset = {
   name: string;
   url: string;
   bytes: number;
   sha256: string;
 };
-const limit = 1.5 * 1024 ** 3;
-const versionPattern = /^\d{1,5}\.\d{1,5}\.\d{1,5}$/;
+export type InstallerRelease = ReleaseAsset & { version: string };
 const downloadHosts = new Set([
   'github.com',
   'release-assets.githubusercontent.com',
@@ -27,42 +35,69 @@ function asObject(value: unknown): Record<string, unknown> {
   return value && typeof value === 'object' ? (value as Record<string, unknown>) : {};
 }
 
+function findAsset(
+  assets: unknown[],
+  repository: string,
+  version: string,
+  name: string,
+  limit: number,
+): ReleaseAsset | undefined {
+  const url = releaseAssetURL(repository, version, name);
+  for (const rawAsset of assets) {
+    const asset = asObject(rawAsset);
+    if (
+      asset.name === name &&
+      asset.state === 'uploaded' &&
+      asset.browser_download_url === url &&
+      typeof asset.digest === 'string' &&
+      /^sha256:[a-f0-9]{64}$/.test(asset.digest) &&
+      typeof asset.size === 'number' &&
+      Number.isSafeInteger(asset.size) &&
+      asset.size > 0 &&
+      asset.size <= limit
+    )
+      return { name, url, bytes: asset.size, sha256: asset.digest.slice(7) };
+  }
+}
+
 export function selectInstallerRelease(
   value: unknown,
   repository: string,
   current: string,
-): InstallerRelease | undefined {
-  if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repository) || !versionPattern.test(current))
+): (InstallerRelease & { manifest: ReleaseAsset }) | undefined {
+  if (!isReleaseRepository(repository) || !isInstallerVersion(current))
     throw Error('UPDATE_CONFIGURATION');
   if (!Array.isArray(value)) throw Error('UPDATE_RELEASE_FORMAT');
-  let best: InstallerRelease | undefined;
+  let best: (InstallerRelease & { manifest: ReleaseAsset }) | undefined;
   for (const raw of value) {
     const release = asObject(raw);
     const tag = release.tag_name;
-    if (release.draft !== false || typeof tag !== 'string' || !Array.isArray(release.assets))
+    if (
+      release.draft !== false ||
+      release.prerelease === true ||
+      typeof tag !== 'string' ||
+      !tag.startsWith('v') ||
+      !Array.isArray(release.assets)
+    )
       continue;
-    const version = tag.replace(/^v/, '');
-    if (!versionPattern.test(version) || compareVersions(version, best?.version ?? current) <= 0)
+    const version = tag.slice(1);
+    if (!isInstallerVersion(version) || compareVersions(version, best?.version ?? current) <= 0)
       continue;
-    const name = 'TapKit-' + version + '-windows-x64-development.exe';
-    const url = 'https://github.com/' + repository + '/releases/download/' + tag + '/' + name;
-    for (const rawAsset of release.assets) {
-      const asset = asObject(rawAsset);
-      if (
-        asset.name === name &&
-        asset.state === 'uploaded' &&
-        asset.browser_download_url === url &&
-        typeof asset.digest === 'string' &&
-        /^sha256:[a-f0-9]{64}$/.test(asset.digest) &&
-        typeof asset.size === 'number' &&
-        Number.isSafeInteger(asset.size) &&
-        asset.size > 0 &&
-        asset.size <= limit
-      ) {
-        best = { version, name, url, bytes: asset.size, sha256: asset.digest.slice(7) };
-        break;
-      }
-    }
+    const installer = findAsset(
+      release.assets,
+      repository,
+      version,
+      installerAssetName(version, true),
+      installerMaximumBytes,
+    );
+    const manifest = findAsset(
+      release.assets,
+      repository,
+      version,
+      installerManifestName,
+      installerManifestMaximumBytes,
+    );
+    if (installer && manifest) best = { version, ...installer, manifest };
   }
   return best;
 }
@@ -89,8 +124,13 @@ async function consume(
   }
 }
 
-export async function checkInstallerRelease(fetch: Fetch, repository: string, current: string) {
-  if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repository)) throw Error('UPDATE_CONFIGURATION');
+export async function checkInstallerRelease(
+  fetch: Fetch,
+  repository: string,
+  current: string,
+): Promise<InstallerRelease | undefined> {
+  if (!isReleaseRepository(repository) || !isInstallerVersion(current))
+    throw Error('UPDATE_CONFIGURATION');
   const response = await fetch(
     'https://api.github.com/repos/' + repository + '/releases?per_page=15',
     {
@@ -104,21 +144,42 @@ export async function checkInstallerRelease(fetch: Fetch, repository: string, cu
   await consume(response, 2 * 1024 * 1024, (part) => {
     parts.push(part);
   });
-  return selectInstallerRelease(
+  const candidate = selectInstallerRelease(
     JSON.parse(Buffer.concat(parts).toString('utf8')),
     repository,
     current,
   );
+  if (!candidate) return undefined;
+  const { manifest, ...installer } = candidate;
+  const responseManifest = await fetchReleaseAsset(
+    fetch,
+    manifest.url,
+    AbortSignal.timeout(12_000),
+  );
+  const manifestParts: Uint8Array[] = [];
+  const size = await consume(responseManifest, manifest.bytes, (part) => {
+    manifestParts.push(part);
+  });
+  const bytes = Buffer.concat(manifestParts);
+  if (
+    size !== manifest.bytes ||
+    createHash('sha256').update(bytes).digest('hex') !== manifest.sha256
+  )
+    throw Error('UPDATE_MANIFEST_HASH');
+  const parsed = readInstallerManifest(JSON.parse(bytes.toString('utf8')), repository);
+  if (
+    parsed.signatureStatus !== 'verified' ||
+    parsed.version !== installer.version ||
+    parsed.url !== installer.url ||
+    parsed.bytes !== installer.bytes ||
+    parsed.sha256 !== installer.sha256
+  )
+    throw Error('UPDATE_MANIFEST_MISMATCH');
+  return installer;
 }
 
-export async function downloadInstaller(
-  fetch: Fetch,
-  release: InstallerRelease,
-  destination: string,
-) {
-  const signal = AbortSignal.timeout(20 * 60_000);
-  let url = new URL(release.url);
-  let response;
+async function fetchReleaseAsset(fetch: Fetch, address: string, signal: AbortSignal) {
+  let url = new URL(address);
   for (let hop = 0; hop < 5; hop++) {
     if (
       url.protocol !== 'https:' ||
@@ -128,14 +189,22 @@ export async function downloadInstaller(
       !downloadHosts.has(url.hostname)
     )
       throw Error('UPDATE_REDIRECT');
-    response = await fetch(url.href, { redirect: 'manual', credentials: 'omit', signal });
-    if (![301, 302, 303, 307, 308].includes(response.status)) break;
+    const response = await fetch(url.href, { redirect: 'manual', credentials: 'omit', signal });
+    if (![301, 302, 303, 307, 308].includes(response.status)) return response;
     const next = response.headers.get('location');
     await response.body?.cancel();
-    if (!next || hop === 4) throw Error('UPDATE_REDIRECT');
+    if (!next) throw Error('UPDATE_REDIRECT');
     url = new URL(next, url);
   }
-  if (!response) throw Error('UPDATE_UNAVAILABLE');
+  throw Error('UPDATE_REDIRECT');
+}
+
+export async function downloadInstaller(
+  fetch: Fetch,
+  release: InstallerRelease,
+  destination: string,
+) {
+  const response = await fetchReleaseAsset(fetch, release.url, AbortSignal.timeout(20 * 60_000));
   const temporary = destination + '.' + randomUUID() + '.download';
   const handle = await open(temporary, 'wx');
   try {

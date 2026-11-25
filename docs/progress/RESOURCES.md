@@ -1,3 +1,5 @@
+2026-11-25 P11 交接。R09 的 CI 标准用户证据绑定原验证环境，干净 Windows 11 客户端仍待接入。R10 仓库为 `tteok1/TapKit`，Logo 待确认。R11 Authenticode 签名资源与 R12 公开下载地址待配置。版本材料见 [P11-03](P11-03.md)。
+
 2026-11-12 P10-01：R13 画布选区模型实测待验。未配置本轮专用隔离测试 profile 与 opt-in，预检退出 2；本地及合成模型验收通过。见 [P10-01](P10-01.md)。
 
 2026-11-11 P09-03 R07 待配置。GitHub 授权、私有镜像、审阅提交、推送与 Draft PR 已完成本地和模拟验收。专用测试仓库与最小权限 PAT 就绪后运行 `pnpm test:live P09-03 --github`。预检证据见 docs/evidence/P09-03/live-preflight.log。

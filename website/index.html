@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="TapKit Windows 工作台的安装要求、版本和源码。" />
+    <title>TapKit for Windows</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳转到正文</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="wordmark" href="./index.html">{{LOGO}}TapKit</a>
+        <nav aria-label="页面导航">
+          <a href="#download">安装包</a>
+          <a href="#privacy">隐私</a>
+          <a href="{{REPOSITORY}}">源码</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="shell hero-inner">
+          <div class="hero-copy">
+            <h1 id="hero-title">TapKit <span>Windows 工作台</span></h1>
+            <p>在本机整理资料、与模型对话、研究网页并处理办公文档。</p>
+            <a class="button" href="#download">查看 Windows 安装包</a>
+          </div>
+          <figure class="preview">
+            <img
+              src="./assets/desktop.png"
+              width="2534"
+              height="1798"
+              alt="TapKit 桌面应用的合成研究示例，左侧是会话和资料导航，右侧列出已读取的来源。"
+              fetchpriority="high"
+            />
+            <figcaption>TapKit 桌面应用 · 合成资料预览</figcaption>
+          </figure>
+        </div>
+      </section>
+      <div class="shell">
+        <section class="release" id="download" aria-labelledby="download-title">
+          <div class="section-heading">
+            <h2 id="download-title">Windows 安装包</h2>
+            {{DOWNLOAD_ACTION}}
+          </div>
+          <dl class="release-facts">
+            <div>
+              <dt>版本</dt>
+              <dd>{{VERSION}} · {{CHANNEL}}</dd>
+            </div>
+            <div>
+              <dt>系统要求</dt>
+              <dd>{{OS}}，{{ARCH}}</dd>
+            </div>
+            <div>
+              <dt>运行环境</dt>
+              <dd>随包提供，无需另装 Node、Python、Git 或 Office</dd>
+            </div>
+          </dl>
+          <p class="release-state" id="download-state">{{DOWNLOAD_STATE}}</p>
+          <details>
+            <summary>查看文件大小和 SHA-256</summary>
+            <p>{{SIZE}}</p>
+            <code class="checksum">{{HASH}}</code>
+          </details>
+          <p class="release-docs">
+            <a href="{{INSTALL_DOCS}}">安装、升级和卸载说明</a>{{RELEASE_NOTES}}
+          </p>
+        </section>
+        <section class="privacy" id="privacy" aria-labelledby="privacy-title">
+          <h2 id="privacy-title">隐私</h2>
+          <p>
+            会话、项目和导入资料保存在本机。连接模型、访问网页或同步仓库时，会按所用功能向相应服务发送数据。
+          </p>
+        </section>
+      </div>
+    </main>
+    <footer class="shell site-footer">
+      <span>TapKit</span>
+      <a href="{{REPOSITORY}}">GitHub 源码</a>
+    </footer>
+  </body>
+</html>

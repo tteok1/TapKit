@@ -1,0 +1,23 @@
+name: 问题反馈
+description: 提交可以用合成资料复现的 TapKit 问题
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: 应用版本和 Windows 版本
+      description: 可附上安装包文件名及 SHA-256。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 复现步骤和实际结果
+      description: 请使用合成资料。安全漏洞的报告方式见 SECURITY.md。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期结果
+    validations:
+      required: true

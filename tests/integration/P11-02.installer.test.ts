@@ -10,12 +10,17 @@ import {
 } from '../../apps/desktop/src/main/installer-updates';
 import { inspectPayload, inventoryFile, verifyPayload } from '../../scripts/installer/payload.mjs';
 import { openStore, SCHEMA_VERSION } from '../../packages/storage/src';
+import {
+  installerAssetName,
+  installerManifestName,
+  releaseAssetURL,
+} from '../../packages/contracts/src';
 
 const owner = 'tteok1/TapKit';
 const installer = Buffer.from('P11-02 synthetic installer bytes');
 const sha256 = createHash('sha256').update(installer).digest('hex');
 function release(version: string, digest = 'sha256:' + sha256) {
-  const name = 'TapKit-' + version + '-windows-x64-development.exe';
+  const name = installerAssetName(version, true);
   return {
     draft: false,
     tag_name: 'v' + version,
@@ -25,14 +30,20 @@ function release(version: string, digest = 'sha256:' + sha256) {
         digest,
         state: 'uploaded',
         size: installer.length,
-        browser_download_url:
-          'https://github.com/' + owner + '/releases/download/v' + version + '/' + name,
+        browser_download_url: releaseAssetURL(owner, version, name),
+      },
+      {
+        name: installerManifestName,
+        digest: 'sha256:' + sha256,
+        state: 'uploaded',
+        size: installer.length,
+        browser_download_url: releaseAssetURL(owner, version, installerManifestName),
       },
     ],
   };
 }
 
-test('P11-02 only selects a newer development installer with the expected release URL and SHA-256', () => {
+test('P11-02 only selects a newer installer with the expected release URL, manifest and SHA-256', () => {
   const redirected = release('2.0.0');
   redirected.assets[0]!.browser_download_url = 'https://example.com/setup.exe';
   expect(

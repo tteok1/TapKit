@@ -1,0 +1,42 @@
+{
+  "sourceCommit": "85a81d81fadf4dc57fb8a74823b4e4af8afaa1f6",
+  "workflow": {
+    "run": 45585901409,
+    "number": 139,
+    "conclusion": "success",
+    "installerJob": 139107313935
+  },
+  "installerArchive": {
+    "id": 15010463174,
+    "sha256": "ce3476026265cf1e2b00d0a017c9f6af49e52fdeb1ce87cf858b3a0c456fce2d",
+    "bytes": 1650651852,
+    "receiptAndChecksumReadFromOfficialArchive": true,
+    "fullArchiveDownloadedLocally": false,
+    "installerHashVerifiedByStandardUserCI": true
+  },
+  "installer": {
+    "version": "0.1.0",
+    "name": "TapKit-0.1.0-windows-x64-development.exe",
+    "sha256": "2c865d12caa6c1e38b99da0b6f9cdbbe3e61fb92f739fb48f1deabfffeaf4f10",
+    "bytes": 825325102,
+    "unpackedBytes": 3388949729,
+    "signed": false
+  },
+  "upgradeFixture": {
+    "version": "0.1.1",
+    "sha256": "4890063ea1d16dbb86bb7572f4dfdc1ae4ef1ddd15ffa6598d0522fb050a8b7b",
+    "bytes": 825325099
+  },
+  "acceptanceReport": {
+    "artifactId": 15011430406,
+    "archiveSha256": "989360a82d3de808aa7e5cc5d1fcabfa4f19124ac8722fd452520c0adcdabd43",
+    "archiveHashVerifiedLocally": true,
+    "runner": "Windows Server 2025",
+    "windowsBuild": "26100",
+    "standardUser": true,
+    "minimalPath": true,
+    "lifecycleAssertions": 33,
+    "nativeAssertions": 22,
+    "cleanClientWindows11": "pending"
+  }
+}
