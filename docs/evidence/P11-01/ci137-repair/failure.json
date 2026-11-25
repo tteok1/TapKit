@@ -1,0 +1,149 @@
+{
+  "date": "2026-11-25",
+  "head": "41525927287041c5b75743f1308ce42ba26ee9a5",
+  "workflows": {
+    "main": {
+      "run": 137,
+      "id": 45461549960,
+      "job": 138685161826,
+      "conclusion": "failure",
+      "otherRequiredJobs": "success"
+    },
+    "branch": {
+      "run": 136,
+      "id": 45461541327,
+      "job": 138685127582,
+      "conclusion": "success"
+    }
+  },
+  "samples": [
+    {
+      "ref": "main",
+      "p95": 972,
+      "max": 1214,
+      "index": {
+        "begins": 1887,
+        "duration": 9787,
+        "ends": 11674,
+        "hits": 4,
+        "concurrent": 17
+      },
+      "cancelAck": 17,
+      "stall": [
+        {
+          "chunk": 0,
+          "upstream": 0,
+          "dom": 512,
+          "frames": 28
+        },
+        {
+          "chunk": 2,
+          "upstream": 730,
+          "dom": 1916,
+          "frames": 28
+        },
+        {
+          "chunk": 3,
+          "upstream": 972,
+          "dom": 1916,
+          "frames": 28
+        },
+        {
+          "chunk": 4,
+          "upstream": 1215,
+          "dom": 1916,
+          "frames": 28
+        },
+        {
+          "chunk": 5,
+          "upstream": 1456,
+          "dom": 1916,
+          "frames": 28
+        },
+        {
+          "chunk": 6,
+          "upstream": 1698,
+          "dom": 1916,
+          "frames": 28
+        }
+      ],
+      "sampler": 4393.322399999997,
+      "peak": 886.4296875
+    },
+    {
+      "ref": "main",
+      "p95": 50,
+      "max": 459,
+      "index": {
+        "begins": 501,
+        "duration": 8009,
+        "ends": 8510,
+        "hits": 4,
+        "concurrent": 22
+      },
+      "cancelAck": 12.199999999953434,
+      "stall": [
+        {
+          "chunk": 0,
+          "upstream": 0,
+          "dom": 442,
+          "frames": 17
+        }
+      ],
+      "sampler": 476.525999999998,
+      "peak": 927.7109375
+    },
+    {
+      "ref": "branch",
+      "p95": 51,
+      "max": 589,
+      "index": {
+        "begins": 663,
+        "duration": 12967,
+        "ends": 13630,
+        "hits": 4,
+        "concurrent": 22
+      },
+      "cancelAck": 16.299999999813735,
+      "stall": [
+        {
+          "chunk": 0,
+          "upstream": 0,
+          "dom": 559,
+          "frames": 30
+        }
+      ],
+      "sampler": 672.1834999999992,
+      "peak": 914.65234375
+    },
+    {
+      "ref": "branch",
+      "p95": 71,
+      "max": 573,
+      "index": {
+        "begins": 597,
+        "duration": 12811,
+        "ends": 13408,
+        "hits": 4,
+        "concurrent": 22
+      },
+      "cancelAck": 15.700000000186265,
+      "stall": [
+        {
+          "chunk": 0,
+          "upstream": 0,
+          "dom": 547,
+          "frames": 26
+        }
+      ],
+      "sampler": 599.0523000000103,
+      "peak": 913.953125
+    }
+  ],
+  "interpretation": "On the failed repeat, chunks 2-6 were produced regularly and entered the DOM together at 1916 ms, with 28 ms across the two following frames. The index request started at 1887 ms. The job log does not contain the event publication, IPC reply or renderer task traces needed to distinguish the earlier delay further.",
+  "contract": {
+    "displayP95Ms": 100,
+    "cancelAcknowledgementMs": 200,
+    "cancelSettledMs": 1000
+  }
+}

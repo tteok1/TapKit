@@ -1617,15 +1617,14 @@ export class ChatService {
             }),
           });
         }
-        const background = (): ReturnType<MemoryService['background']> =>
-          selectionOperation
-            ? { memoryUses: [], historyUses: [], module: undefined, historyModule: undefined }
-            : this.memories.background(session.id, textOf(user));
-        let usedBackground!: ReturnType<typeof background>;
+        let usedBackground!: ReturnType<MemoryService['background']>;
         const logicalCallId = newId();
         const prepareContext = async (descriptor: (typeof catalog)[number]) => {
           this.assertAlive(r, signal);
-          usedBackground = background();
+          usedBackground = selectionOperation
+            ? { memoryUses: [], historyUses: [], module: undefined, historyModule: undefined }
+            : await this.memories.backgroundForChat(session.id, textOf(user), signal);
+          this.assertAlive(r, signal);
           const prepared = this.contexts.prepare(
             session.id,
             r.id,

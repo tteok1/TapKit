@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { setImmediate as yieldTurn } from 'node:timers/promises';
 import { Store, JobQueue, StorageError, failure, newId, type Job } from '@tapkit/storage';
 import {
   RequestSchema,
@@ -45,6 +46,8 @@ type Row = {
 type Source = {
   id: string;
   session_id: string;
+  branch_id: string;
+  active_branch_id: string;
   revision: number;
   content_json: string;
   source_message_id: string | null;
@@ -54,6 +57,7 @@ type Source = {
   project_id: string | null;
   seq: number;
 };
+type HistoryMatch = { messageId: string; sessionId: string; revision: number; text: string };
 type Session = { id: string; project_id: string | null; settings_json: string; revision: number };
 type ExtractJob = Extract<JobPayload, { kind: 'memory.extract' }>;
 const text = (m: { content_json: string }) =>
@@ -180,7 +184,7 @@ export class MemoryService {
   private source(id: string): Source | undefined {
     return this.store.db
       .prepare(
-        `SELECT m.*,m.rowid seq,s.project_id FROM messages m
+        `SELECT m.*,m.rowid seq,s.project_id,s.active_branch_id FROM messages m
          JOIN sessions s ON s.id=m.session_id AND s.profile_id=m.profile_id
          WHERE m.id=? AND m.profile_id=? AND ${liveSource}`,
       )
@@ -687,7 +691,8 @@ export class MemoryService {
     limit = 5,
     sessionIds?: string[],
     excludeCurrent = false,
-  ) {
+    rowidRange?: readonly [bigint, bigint],
+  ): HistoryMatch[] {
     const policy = this.policy(sessionId);
     const max = Math.min(20, limit);
     if (!policy.historyEnabled || query.trim().length < 2 || max <= 0) return [];
@@ -708,6 +713,7 @@ export class MemoryService {
             AND (s.project_id IS ? OR (?=1 AND s.project_id IS NULL))
             AND (? IS NULL OR s.id IN (SELECT value FROM json_each(?)))
             AND instr(lower(m.content_json),lower(?))>0 AND ${liveSource}
+            ${rowidRange ? 'AND m.rowid BETWEEN ? AND ?' : ''}
           ORDER BY m.rowid DESC`,
       )
       .iterate(
@@ -719,6 +725,7 @@ export class MemoryService {
         selected,
         selected,
         query,
+        ...(rowidRange ?? []),
       ) as Iterable<Pick<Source, 'id' | 'session_id' | 'revision' | 'content_json'>>;
     const matches = [];
     for (const row of rows) {
@@ -735,8 +742,63 @@ export class MemoryService {
     return matches;
   }
   background(sessionId: string, query: string) {
-    const p = this.policy(sessionId),
-      keys = terms(query);
+    const keys = terms(query).sort((a, b) => b.length - a.length);
+    const matches = keys
+      .slice(0, 20)
+      .flatMap((key) => this.history(sessionId, key, 20, undefined, true));
+    return this.buildBackground(sessionId, keys, matches);
+  }
+
+  async backgroundForChat(sessionId: string, query: string, signal: AbortSignal) {
+    signal.throwIfAborted();
+    const policy = this.policy(sessionId);
+    if (policy.scope.type !== 'profile') return this.background(sessionId, query);
+    const keys = terms(query).sort((a, b) => b.length - a.length);
+    if (!policy.historyEnabled || !keys.length) return this.buildBackground(sessionId, keys, []);
+
+    // Take boundaries from up to 512 input rows. A term with no matches still
+    // yields regularly, and gaps between rowids do not create empty pages.
+    const db = this.store.db;
+    const oldest = db.prepare('SELECT min(rowid) FROM messages').pluck().safeIntegers().get() as
+      bigint | null;
+    const newest = db.prepare('SELECT max(rowid) FROM messages').pluck().safeIntegers().get() as
+      bigint | null;
+    const pageStart = db
+      .prepare(
+        'SELECT min(rowid) FROM (SELECT rowid FROM messages WHERE rowid<=? ORDER BY rowid DESC LIMIT 512)',
+      )
+      .pluck()
+      .safeIntegers();
+    const matches: HistoryMatch[] = [];
+    for (const key of keys.slice(0, 20)) {
+      let remaining = 20;
+      for (
+        let upper = newest;
+        upper !== null && oldest !== null && upper >= oldest && remaining > 0;
+      ) {
+        const lower = pageStart.get(upper) as bigint | null;
+        if (lower === null) break;
+        const page = this.history(sessionId, key, remaining, undefined, true, [lower, upper]);
+        matches.push(...page);
+        remaining -= page.length;
+        upper = lower - 1n;
+        await yieldTurn();
+        signal.throwIfAborted();
+      }
+    }
+    // Session scope, active branches and rows may change while the scan yields.
+    if (this.policy(sessionId).scope.type !== 'profile')
+      return { memoryUses: [], historyUses: [], module: undefined, historyModule: undefined };
+    return this.buildBackground(sessionId, keys, matches, true);
+  }
+
+  private buildBackground(
+    sessionId: string,
+    keys: string[],
+    matches: HistoryMatch[],
+    revalidate = false,
+  ) {
+    const p = this.policy(sessionId);
     let selected: MemoryView[] = [];
     const memoryModule = (items: MemoryView[]) => ({
       id: 'memory.background',
@@ -776,15 +838,31 @@ export class MemoryService {
         if (selected.length >= 100) break;
       }
     }
-    const historyMatches = new Map<string, ReturnType<MemoryService['history']>[number]>();
-    for (const key of keys.sort((a, b) => b.length - a.length).slice(0, 20))
-      for (const h of this.history(sessionId, key, 20, undefined, true))
-        if (h.sessionId !== sessionId) historyMatches.set(h.messageId, h);
-    const histories = [...historyMatches.values()]
+    const historyMatches = new Map<string, HistoryMatch>();
+    if (p.historyEnabled)
+      for (const h of matches) if (h.sessionId !== sessionId) historyMatches.set(h.messageId, h);
+    const ranked = [...historyMatches.values()]
       .map((h) => ({ h, score: keys.filter((k) => h.text.toLowerCase().includes(k)).length }))
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 5)
-      .map(({ h }) => h);
+      .sort((a, b) => b.score - a.score);
+    const histories: HistoryMatch[] = [];
+    for (const { h } of ranked) {
+      if (revalidate) {
+        const source = this.source(h.messageId);
+        if (
+          !source ||
+          source.session_id !== h.sessionId ||
+          source.revision !== h.revision ||
+          source.project_id !== null ||
+          source.branch_id !== source.active_branch_id ||
+          !['user', 'assistant'].includes(source.role) ||
+          !['final', 'interrupted'].includes(source.status) ||
+          credentialText(text(source))
+        )
+          continue;
+      }
+      histories.push(h);
+      if (histories.length === 5) break;
+    }
     const module = selected.length ? memoryModule(selected) : undefined;
     if (module && countTokens(module) > 1000) throw new StorageError('BUDGET_EXCEEDED');
     return {

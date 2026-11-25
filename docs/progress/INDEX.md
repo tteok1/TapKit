@@ -1,3 +1,5 @@
+2026-11-25，`main` CI #137 的 P11-01 联合负载失败。`codex/p11-ci-display-latency` 已修复本机证实的同步历史扫描阻塞，定向集成 46/46。保留本机第二轮帧回调失败，等待 Windows CI 复验。详见 [P11-01](P11-01.md)。
+
 2026-11-24，P11-01 源码开发版在基线 44cd07c 通过 CI #128 和 main CI #129。性能优化停止，待规格 Win11 和 R01–R08。见 [P11-01](P11-01.md)。
 
 P11-02 安装分支为 `codex/p11-02-windows-installer`。73c2bfc 的开发包完整载荷与 SQLite ABI 校验通过，CI 五个常规作业通过。R09 干净 Win11 待实测，R11 签名待资源。见 [CI #135](https://github.com/tteok1/TapKit/actions/runs/45409702302) 和 [P11-02](P11-02.md)。

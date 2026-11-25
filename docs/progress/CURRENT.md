@@ -1,5 +1,7 @@
 # 当前接续点
 
+- 2026-11-25，`main` CI #137 的 P11-01 联合负载失败。`codex/p11-ci-display-latency` 修复本机证实的 Core 历史扫描阻塞，定向集成 46/46。修复后两轮首段到 DOM 为 30/44 ms，第二轮因帧回调间隔约 1 秒失败，待 Windows CI 复验。见 [P11-01](P11-01.md)。
+
 - 2026-11-24，P11-02=implemented_not_live_verified。分支 `codex/p11-02-windows-installer` 的 73c2bfc 通过 CI 五个常规作业，标准用户安装生命周期 33/33。已生成并核验开发 EXE。R09 干净 Win11 待实测，R11 签名待资源。见 [CI #135](https://github.com/tteok1/TapKit/actions/runs/45409702302) 和 [P11-02](P11-02.md)。
 
 - 2026-11-24，P11-01 源码开发版在基线 44cd07c 通过 CI #128 和 main CI #129。性能优化停止，待规格 Win11 和 R01–R08。见 [P11-01](P11-01.md)。
